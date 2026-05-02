@@ -408,27 +408,26 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 .cal-nav-btn:hover { background: var(--primary); color: #fff; }
 .cal-month-label { font-size: 1.1rem; font-weight: 800; color: var(--primary); font-family: var(--heading-font); }
 
-.cal-grid { border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; background: #fff; }
-.cal-header-row {
+.cal-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  background: var(--primary-dark);
-  color: #f0ece0;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
 }
-.cal-header-row div {
+.cal-header-cell {
   text-align: center;
   padding: .55rem 0;
   font-size: .82rem;
   font-weight: 700;
   font-family: var(--heading-font);
+  background: var(--primary-dark);
+  color: #f0ece0;
+  border-right: 1px solid rgba(255,255,255,.12);
 }
-.cal-header-row div:first-child { color: #fca5a5; }
-.cal-header-row div:last-child { color: #93c5fd; }
-
-.cal-days-row {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-}
+.cal-header-cell.sun { color: #fca5a5; }
+.cal-header-cell.sat { color: #93c5fd; border-right: none; }
 .cal-day {
   min-height: 70px;
   padding: .35rem .4rem;
@@ -436,11 +435,10 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   border-bottom: 1px solid var(--border);
   font-size: .82rem;
   position: relative;
-  vertical-align: top;
   overflow: hidden;
   min-width: 0;
 }
-.cal-day:nth-child(7n) { border-right: none; }
+.cal-day.sat { border-right: none; }
 .cal-day.empty { background: #f8fafc; }
 .cal-day.today { background: #fffbe6; }
 .cal-day.has-event { background: var(--primary-light); cursor: pointer; }

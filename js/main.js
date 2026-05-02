@@ -168,8 +168,8 @@
     const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-    const grid = document.getElementById('cal-days');
-    grid.innerHTML = '';
+    const grid = document.getElementById('cal-grid');
+    while (grid.children.length > 7) grid.removeChild(grid.lastChild);
 
     for (let i = 0; i < firstDay; i++) {
       const empty = document.createElement('div');
