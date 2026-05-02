@@ -107,7 +107,7 @@
       container.innerHTML =
         `<p class="official-news-error">` +
           `情報の取得に失敗しました。` +
-          `<a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/718/index.html"` +
+          `<a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html"` +
           ` target="_blank" rel="noopener">公式サイト</a>をご確認ください。` +
         `</p>`;
     });

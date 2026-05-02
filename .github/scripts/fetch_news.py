@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Fetches the official Komaki City school reorganization announcements page,
+Fetches official Komaki City school reorganization pages,
 visits each item page to get its individual update date, and saves only
 items updated within the last WINDOW_DAYS days to data/news.json.
 """
@@ -12,7 +12,11 @@ import sys
 import time
 from datetime import datetime, timezone, timedelta
 
-INDEX_URL = "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/718/index.html"
+SOURCE_URLS = [
+    "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/718/index.html",
+    "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/shinooka_gsaihen/index.html",
+]
+PARENT_URL = "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html"
 OUTPUT = "data/news.json"
 WINDOW_DAYS = 30
 
@@ -40,23 +44,34 @@ def jp_date_to_dt(text):
 def main():
     os.makedirs("data", exist_ok=True)
 
-    # --- Fetch index page ---
-    try:
-        index_html = fetch_html(INDEX_URL)
-    except Exception as e:
-        print(f"ERROR: Failed to fetch index: {e}", file=sys.stderr)
-        sys.exit(1)
-
-    index_updated_at = extract_jp_date(index_html)
-
-    # --- Parse item list ---
+    # --- Fetch all index pages and merge items (deduplicate by URL) ---
     raw_items = []
-    for m in re.finditer(r'<li class="page">\s*<a href="([^"]+)">([^<]+)</a>', index_html):
-        href = m.group(1).strip()
-        title = m.group(2).strip()
-        if href.startswith("http://"):
-            href = "https://" + href[7:]
-        raw_items.append({"title": title, "url": href})
+    seen_urls = set()
+    index_updated_at = None
+
+    for index_url in SOURCE_URLS:
+        try:
+            index_html = fetch_html(index_url)
+        except Exception as e:
+            print(f"ERROR: Failed to fetch {index_url}: {e}", file=sys.stderr)
+            continue
+
+        page_date = extract_jp_date(index_html)
+        if page_date and (index_updated_at is None or page_date > index_updated_at):
+            index_updated_at = page_date
+
+        for m in re.finditer(r'<li class="page">\s*<a href="([^"]+)">([^<]+)</a>', index_html):
+            href = m.group(1).strip()
+            title = m.group(2).strip()
+            if href.startswith("http://"):
+                href = "https://" + href[7:]
+            if href not in seen_urls:
+                seen_urls.add(href)
+                raw_items.append({"title": title, "url": href})
+
+    if not raw_items and not seen_urls:
+        print("ERROR: Failed to fetch any index page", file=sys.stderr)
+        sys.exit(1)
 
     # --- Visit each item page to get its update date ---
     now = datetime.now(timezone.utc)
@@ -89,7 +104,7 @@ def main():
     new_data = {
         "fetched_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "index_updated_at": index_updated_at,
-        "source_url": INDEX_URL,
+        "source_url": PARENT_URL,
         "window_days": WINDOW_DAYS,
         "items": items,
     }
