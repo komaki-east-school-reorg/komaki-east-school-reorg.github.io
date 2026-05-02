@@ -1,39 +1,18 @@
 {
-  "fetched_at": "2026-05-02T02:06:43Z",
-  "updated_at": "2025年04月01日",
+  "fetched_at": "2026-05-02T02:12:55Z",
+  "index_updated_at": "2025年04月01日",
   "source_url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/718/index.html",
+  "window_days": 30,
   "items": [
     {
-      "title": "新たな学校づくり推進計画策定までの取組",
-      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/718/43424.html"
-    },
-    {
-      "title": "小牧市新たな学校づくり推進計画",
-      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/718/45169.html"
-    },
-    {
-      "title": "篠岡学校再編計画（案）についての住民説明会",
-      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/718/49215.html"
-    },
-    {
-      "title": "篠岡学校再編計画（案）についての保護者等意見交換会",
-      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/718/48940.html"
-    },
-    {
-      "title": "「篠岡地区学校再編計画」に関するアンケート調査結果",
-      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/718/49313.html"
-    },
-    {
-      "title": "篠岡地区学校再編に伴う新たな学校名に関するアンケートについて",
-      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/718/49829.html"
-    },
-    {
       "title": "しのおか学園の校章のデザインを募集します",
-      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/718/50750.html"
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/718/50750.html",
+      "updated_at": "2026年04月13日"
     },
     {
       "title": "篠岡地区の学校再編に関する保護者等説明会",
-      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/718/51565.html"
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/718/51565.html",
+      "updated_at": "2026年04月30日"
     }
   ]
 }

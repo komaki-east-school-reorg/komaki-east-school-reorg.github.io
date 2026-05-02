@@ -993,6 +993,12 @@ footer {
   border-bottom: 1px solid var(--border);
   padding: .6rem 0;
 }
+.official-news-item-inner {
+  display: flex;
+  align-items: baseline;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
 .official-news-item a {
   color: var(--primary-dark);
   font-size: .9rem;
@@ -1008,5 +1014,14 @@ footer {
   flex-shrink: 0;
 }
 .official-news-item a:hover { color: var(--primary); text-decoration: underline; }
+.official-news-date {
+  font-size: .75rem;
+  color: var(--white);
+  background: var(--primary);
+  padding: .1em .5em;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
 .official-news-loading,
 .official-news-error { font-size: .9rem; color: var(--text-muted); }

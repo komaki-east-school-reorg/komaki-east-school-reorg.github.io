@@ -1,82 +1,118 @@
 #!/usr/bin/env python3
 """
-Fetches the official Komaki City school reorganization announcements page
-and saves the results to data/news.json.
+Fetches the official Komaki City school reorganization announcements page,
+visits each item page to get its individual update date, and saves only
+items updated within the last WINDOW_DAYS days to data/news.json.
 """
 import urllib.request
 import json
 import re
 import os
 import sys
-from datetime import datetime, timezone
+import time
+from datetime import datetime, timezone, timedelta
 
-URL = "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/718/index.html"
+INDEX_URL = "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/718/index.html"
 OUTPUT = "data/news.json"
+WINDOW_DAYS = 30
 
 
-def fetch_page(url):
+def fetch_html(url):
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     with urllib.request.urlopen(req, timeout=30) as resp:
         return resp.read().decode("utf-8")
 
 
-def parse(html):
-    date_m = re.search(r"更新日：(\d{4}年\d{2}月\d{2}日)", html)
-    updated_at = date_m.group(1) if date_m else None
+def extract_jp_date(html):
+    """Return '2026年04月30日' string from page HTML, or None."""
+    m = re.search(r"更新日：(\d{4}年\d{2}月\d{2}日)", html)
+    return m.group(1) if m else None
 
-    items = []
-    for m in re.finditer(r'<li class="page">\s*<a href="([^"]+)">([^<]+)</a>', html):
-        href = m.group(1).strip()
-        title = m.group(2).strip()
-        # Normalize to https
-        if href.startswith("http://"):
-            href = "https://" + href[7:]
-        items.append({"title": title, "url": href})
 
-    return updated_at, items
+def jp_date_to_dt(text):
+    """'2026年04月30日' → datetime (UTC midnight), or None."""
+    m = re.match(r"(\d{4})年(\d{2})月(\d{2})日", text)
+    if not m:
+        return None
+    return datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)), tzinfo=timezone.utc)
 
 
 def main():
     os.makedirs("data", exist_ok=True)
 
+    # --- Fetch index page ---
     try:
-        html = fetch_page(URL)
+        index_html = fetch_html(INDEX_URL)
     except Exception as e:
-        print(f"ERROR: Failed to fetch {URL}: {e}", file=sys.stderr)
+        print(f"ERROR: Failed to fetch index: {e}", file=sys.stderr)
         sys.exit(1)
 
-    updated_at, items = parse(html)
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    index_updated_at = extract_jp_date(index_html)
 
+    # --- Parse item list ---
+    raw_items = []
+    for m in re.finditer(r'<li class="page">\s*<a href="([^"]+)">([^<]+)</a>', index_html):
+        href = m.group(1).strip()
+        title = m.group(2).strip()
+        if href.startswith("http://"):
+            href = "https://" + href[7:]
+        raw_items.append({"title": title, "url": href})
+
+    # --- Visit each item page to get its update date ---
+    now = datetime.now(timezone.utc)
+    cutoff = now - timedelta(days=WINDOW_DAYS)
+    items = []
+
+    for item in raw_items:
+        time.sleep(0.5)  # polite crawl delay
+        try:
+            page_html = fetch_html(item["url"])
+            updated_at = extract_jp_date(page_html)
+        except Exception:
+            updated_at = None
+
+        item["updated_at"] = updated_at
+
+        if updated_at:
+            dt = jp_date_to_dt(updated_at)
+            if dt is None or dt < cutoff:
+                print(f"  skip  {updated_at}  {item['title'][:40]}")
+                continue
+            print(f"  keep  {updated_at}  {item['title'][:40]}")
+        else:
+            # Can't determine date → include to avoid silent omission
+            print(f"  keep? (no date)  {item['title'][:40]}")
+
+        items.append(item)
+
+    # --- Build output ---
     new_data = {
-        "fetched_at": now,
-        "updated_at": updated_at,
-        "source_url": URL,
+        "fetched_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "index_updated_at": index_updated_at,
+        "source_url": INDEX_URL,
+        "window_days": WINDOW_DAYS,
         "items": items,
     }
 
-    # Load existing to detect item/date changes
-    existing_items = []
-    existing_updated = None
+    # --- Detect changes ---
+    old_items = []
     if os.path.exists(OUTPUT):
         with open(OUTPUT, encoding="utf-8") as f:
             old = json.load(f)
-        existing_items = old.get("items", [])
-        existing_updated = old.get("updated_at")
+        old_items = old.get("items", [])
 
-    changed = (items != existing_items) or (updated_at != existing_updated)
-    if changed:
-        print(f"Changes detected. Writing {len(items)} items (updated: {updated_at})")
+    changed = items != old_items
+    if not changed:
+        # Only update fetched_at, leave the rest
+        new_data = {**old, "fetched_at": new_data["fetched_at"]}
+        print(f"No content changes. {len(items)} items in window.")
     else:
-        print(f"No changes. {len(items)} items (updated: {updated_at})")
-        # Update only fetched_at
-        new_data = {**old, "fetched_at": now}
+        print(f"Changes detected. {len(items)}/{len(raw_items)} items in {WINDOW_DAYS}-day window.")
 
     with open(OUTPUT, "w", encoding="utf-8") as f:
         json.dump(new_data, f, ensure_ascii=False, indent=2)
         f.write("\n")
 
-    # Exit code 2 = no content change (used by workflow to skip commit)
     sys.exit(0 if changed else 2)
 
 

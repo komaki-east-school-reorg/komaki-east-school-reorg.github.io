@@ -72,22 +72,35 @@
   fetch('./data/news.json')
     .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(data => {
-      const items = data.items || [];
-      const updatedAt = data.updated_at || '';
+      const items = (data.items || []).slice().reverse();
+      const days = data.window_days || 30;
 
-      const listHtml = items.slice().reverse().map(item =>
-        `<li class="official-news-item">
-           <a href="${item.url}" target="_blank" rel="noopener">${item.title}</a>
-         </li>`
-      ).join('');
+      if (items.length === 0) {
+        container.innerHTML =
+          `<p class="official-news-loading">直近${days}日以内に更新された情報はありません。</p>` +
+          `<a href="${data.source_url}" target="_blank" rel="noopener" class="card-link">` +
+            `公式サイトで全ての情報を確認する →` +
+          `</a>`;
+        return;
+      }
+
+      const listHtml = items.map(item => {
+        const date = item.updated_at
+          ? `<span class="official-news-date">${item.updated_at} 更新</span>`
+          : '';
+        return `<li class="official-news-item">` +
+                 `<div class="official-news-item-inner">` +
+                   `<a href="${item.url}" target="_blank" rel="noopener">${item.title}</a>` +
+                   date +
+                 `</div>` +
+               `</li>`;
+      }).join('');
 
       container.innerHTML =
-        `<div class="official-news-meta">` +
-          `小牧市公式サイト掲載情報（公式更新日：${updatedAt}）` +
-        `</div>` +
+        `<div class="official-news-meta">直近${days}日以内に更新されたページを表示しています</div>` +
         `<ul class="official-news-list">${listHtml}</ul>` +
         `<a href="${data.source_url}" target="_blank" rel="noopener" class="card-link">` +
-          `公式サイトで確認する →` +
+          `公式サイトで全ての情報を確認する →` +
         `</a>`;
     })
     .catch(() => {
