@@ -437,6 +437,8 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   font-size: .82rem;
   position: relative;
   vertical-align: top;
+  overflow: hidden;
+  min-width: 0;
 }
 .cal-day:nth-child(7n) { border-right: none; }
 .cal-day.empty { background: #f8fafc; }
@@ -455,9 +457,9 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   padding: .1rem .35rem;
   margin-top: .15rem;
   line-height: 1.3;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-all;
 }
 .cal-event-dot.past { background: #aab4c0; }
 
