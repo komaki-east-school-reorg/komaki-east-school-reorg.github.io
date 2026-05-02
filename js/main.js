@@ -64,6 +64,42 @@
   });
 })();
 
+/* ===== OFFICIAL NEWS ===== */
+(function () {
+  const container = document.getElementById('official-news-container');
+  if (!container) return;
+
+  fetch('./data/news.json')
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(data => {
+      const items = data.items || [];
+      const updatedAt = data.updated_at || '';
+
+      const listHtml = items.slice().reverse().map(item =>
+        `<li class="official-news-item">
+           <a href="${item.url}" target="_blank" rel="noopener">${item.title}</a>
+         </li>`
+      ).join('');
+
+      container.innerHTML =
+        `<div class="official-news-meta">` +
+          `小牧市公式サイト掲載情報（公式更新日：${updatedAt}）` +
+        `</div>` +
+        `<ul class="official-news-list">${listHtml}</ul>` +
+        `<a href="${data.source_url}" target="_blank" rel="noopener" class="card-link">` +
+          `公式サイトで確認する →` +
+        `</a>`;
+    })
+    .catch(() => {
+      container.innerHTML =
+        `<p class="official-news-error">` +
+          `情報の取得に失敗しました。` +
+          `<a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/718/index.html"` +
+          ` target="_blank" rel="noopener">公式サイト</a>をご確認ください。` +
+        `</p>`;
+    });
+})();
+
 /* ===== CALENDAR ===== */
 (function () {
   const calContainer = document.getElementById('calendar-view');

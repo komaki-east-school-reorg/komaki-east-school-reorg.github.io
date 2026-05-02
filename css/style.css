@@ -976,3 +976,37 @@ footer {
   .cal-day { min-height: 48px; font-size: .72rem; }
   .cal-event-dot { font-size: .6rem; }
 }
+
+/* ===== OFFICIAL NEWS ===== */
+.official-news-meta {
+  font-size: .78rem;
+  color: var(--text-muted);
+  margin-bottom: .8rem;
+}
+.official-news-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  border-top: 1px solid var(--border);
+}
+.official-news-item {
+  border-bottom: 1px solid var(--border);
+  padding: .6rem 0;
+}
+.official-news-item a {
+  color: var(--primary-dark);
+  font-size: .9rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: baseline;
+  gap: .3rem;
+}
+.official-news-item a::after {
+  content: '↗';
+  font-size: .72rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+.official-news-item a:hover { color: var(--primary); text-decoration: underline; }
+.official-news-loading,
+.official-news-error { font-size: .9rem; color: var(--text-muted); }
