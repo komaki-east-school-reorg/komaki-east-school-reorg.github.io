@@ -21,7 +21,7 @@
 </head>
 <body>
 
-<div class="notice-banner">
+<div class="notice-banner" data-i18n-html="notice">
   ⚠️ このサイトは市民有志による情報提供サイトです。小牧市の公式サイトではありません。
   公式情報は <a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener" style="color:#5a4000; font-weight:700;">小牧市教育委員会のページ</a> をご確認ください。
 </div>
@@ -30,21 +30,27 @@
   <div class="header-inner">
     <a href="index.html" class="site-title">
       小牧市東部（篠岡地区）学校再編計画
-      <span>市民情報サイト（非公式）</span>
+      <span data-i18n="site_sub">市民情報サイト（非公式）</span>
     </a>
     <nav>
       <button class="hamburger" aria-label="メニュー">
         <span></span><span></span><span></span>
       </button>
       <ul>
-        <li><a href="index.html">ホーム</a></li>
-        <li><a href="about.html">計画概要</a></li>
-        <li><a href="schedule.html">スケジュール</a></li>
-        <li><a href="voices.html">賛否の声</a></li>
-        <li><a href="faq.html">よくある質問</a></li>
-        <li><a href="council.html">議会審議</a></li>
-        <li><a href="map.html">学校の場所（地図）</a></li>
+        <li><a href="index.html" data-i18n="nav_home">ホーム</a></li>
+        <li><a href="about.html" data-i18n="nav_about">計画概要</a></li>
+        <li><a href="schedule.html" data-i18n="nav_schedule">スケジュール</a></li>
+        <li><a href="voices.html" data-i18n="nav_voices">賛否の声</a></li>
+        <li><a href="faq.html" data-i18n="nav_faq">よくある質問</a></li>
+        <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
+        <li><a href="map.html" data-i18n="nav_map">学校の場所（地図）</a></li>
       </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn" data-lang="ja">JA</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="pt">PT</button>
+        <button class="lang-btn" data-lang="vi">VI</button>
+      </div>
     </nav>
   </div>
 </header>
@@ -52,12 +58,12 @@
 <main>
   <!-- HERO -->
   <section class="hero">
-    <h1>小牧市東部（篠岡地区）<br>学校再編計画</h1>
-    <p>小牧市東部（篠岡地区）の小中学校の再編について、<br>公式情報をもとにわかりやすくお伝えします。</p>
+    <h1 data-i18n-html="hero_title">小牧市東部（篠岡地区）<br>学校再編計画</h1>
+    <p data-i18n-html="hero_sub">小牧市東部（篠岡地区）の小中学校の再編について、<br>公式情報をもとにわかりやすくお伝えします。</p>
     <div class="hero-badges">
-      <span class="badge">📍 小牧市東部（篠岡地区）</span>
-      <span class="badge">🏫 小学校5校・中学校3校 → 東西各2校</span>
-      <span class="badge">📅 令和9年度（2027年度）実施予定</span>
+      <span class="badge" data-i18n="hero_badge1">📍 小牧市東部（篠岡地区）</span>
+      <span class="badge" data-i18n="hero_badge2">🏫 小学校5校・中学校3校 → 東西各2校</span>
+      <span class="badge" data-i18n="hero_badge3">📅 令和9年度（2027年度）実施予定</span>
     </div>
   </section>
 
@@ -65,7 +71,7 @@
   <section class="upcoming-bar">
     <div class="container">
       <div class="upcoming-inner">
-        <div class="upcoming-label">📅 今後のスケジュール</div>
+        <div class="upcoming-label" data-i18n="upcoming_label">📅 今後のスケジュール</div>
         <div class="upcoming-list">
           <div class="upcoming-item">
             <span class="upcoming-date">5月18日（月）</span>
@@ -80,7 +86,7 @@
             <span class="upcoming-name">第1期再編 実施</span>
           </div>
         </div>
-        <a href="schedule.html" class="upcoming-more">詳細 →</a>
+        <a href="schedule.html" class="upcoming-more" data-i18n="upcoming_more">詳細 →</a>
       </div>
     </div>
   </section>
@@ -88,7 +94,7 @@
   <!-- WHAT IS -->
   <section class="section section-alt">
     <div class="container">
-      <h2 class="section-title">小牧市東部（篠岡地区）学校再編計画とは<small>About the Reorganization Plan</small></h2>
+      <h2 class="section-title" data-i18n-html="section_whatis">小牧市東部（篠岡地区）学校再編計画とは<small>About the Reorganization Plan</small></h2>
       <p style="font-size:.95rem; color:var(--text-muted); max-width:720px; margin-bottom:1.2rem;">
         小牧市東部の篠岡地区では、急速な少子化と学校施設の老朽化が深刻な課題となっています。
         令和7年（2025年）現在、地区内の19歳以下の子どもの人口は<strong>20年前と比べて半分以下に減少</strong>しており、
@@ -113,25 +119,25 @@
   <!-- CARDS -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title">3つのポイント<small>Key Points</small></h2>
+      <h2 class="section-title" data-i18n-html="section_points">3つのポイント<small>Key Points</small></h2>
       <div class="cards">
         <div class="card">
           <div class="card-icon">📉</div>
-          <h3>なぜ再編が必要なのか</h3>
+          <h3 data-i18n="point1_h">なぜ再編が必要なのか</h3>
           <p>急速な少子化で地区の子どもは20年間で半分以下に減少。令和15年には全小学校と篠岡中が各学年1学級になる見込みで、猶予のない状況です。</p>
-          <a href="about.html#why" class="card-link">詳しく見る →</a>
+          <a href="about.html#why" class="card-link" data-i18n="point1_link">詳しく見る →</a>
         </div>
         <div class="card">
           <div class="card-icon">🏗️</div>
-          <h3>何が計画されているか</h3>
+          <h3 data-i18n="point2_h">何が計画されているか</h3>
           <p>令和9年度（2027年度）に5小・3中を2小・2中に再編。小学生にはスクールバス（市が全額負担）、中学生には自転車通学を計画しています。</p>
-          <a href="about.html#plan" class="card-link">計画概要を見る →</a>
+          <a href="about.html#plan" class="card-link" data-i18n="point2_link">計画概要を見る →</a>
         </div>
         <div class="card">
           <div class="card-icon">🗣️</div>
-          <h3>これまでの経緯</h3>
+          <h3 data-i18n="point3_h">これまでの経緯</h3>
           <p>令和7年（2025年）に「学校を考える会」5回・住民説明会・保護者意見交換会・パブリックコメント（55件）などが実施されました。</p>
-          <a href="schedule.html" class="card-link">スケジュールを確認 →</a>
+          <a href="schedule.html" class="card-link" data-i18n="point3_link">スケジュールを確認 →</a>
         </div>
       </div>
     </div>
@@ -140,43 +146,43 @@
   <!-- QUICK LINKS -->
   <section class="section section-alt">
     <div class="container">
-      <h2 class="section-title">各ページへのリンク<small>Quick Links</small></h2>
+      <h2 class="section-title" data-i18n-html="section_links">各ページへのリンク<small>Quick Links</small></h2>
       <div class="cards">
         <div class="card">
           <div class="card-icon">📋</div>
-          <h3>計画概要</h3>
+          <h3 data-i18n="ql_about_h">計画概要</h3>
           <p>再編計画の詳細内容、現状の数字、統合グループ分け（しのおか学園の4校）、通学計画をまとめています。</p>
-          <a href="about.html" class="card-link">計画概要を見る →</a>
+          <a href="about.html" class="card-link" data-i18n="ql_about_link">計画概要を見る →</a>
         </div>
         <div class="card">
           <div class="card-icon">📅</div>
-          <h3>スケジュール</h3>
+          <h3 data-i18n="ql_schedule_h">スケジュール</h3>
           <p>令和7年（2025年）の説明会・パブリックコメントの実績と、令和9年（2027年）の実施に向けた今後の流れです。</p>
-          <a href="schedule.html" class="card-link">カレンダーを見る →</a>
+          <a href="schedule.html" class="card-link" data-i18n="ql_schedule_link">カレンダーを見る →</a>
         </div>
         <div class="card">
           <div class="card-icon">💬</div>
-          <h3>賛否の声</h3>
+          <h3 data-i18n="ql_voices_h">賛否の声</h3>
           <p>地域住民・保護者・教員経験者などのさまざまな意見を公平に紹介しています。パブリックコメントの概要も掲載。</p>
-          <a href="voices.html" class="card-link">意見を見る →</a>
+          <a href="voices.html" class="card-link" data-i18n="ql_voices_link">意見を見る →</a>
         </div>
         <div class="card">
           <div class="card-icon">❓</div>
-          <h3>よくある質問</h3>
+          <h3 data-i18n="ql_faq_h">よくある質問</h3>
           <p>「通学はどうなる？」「バス代は？」「校舎はどうなる？」など、市の公式回答をもとにお答えします。</p>
-          <a href="faq.html" class="card-link">FAQを見る →</a>
+          <a href="faq.html" class="card-link" data-i18n="ql_faq_link">FAQを見る →</a>
         </div>
         <div class="card">
           <div class="card-icon">🏛️</div>
-          <h3>議会審議</h3>
+          <h3 data-i18n="ql_council_h">議会審議</h3>
           <p>令和8年第1回定例会での学校設置条例改正・委員会審査・一般質問・請願の審議内容をまとめています。</p>
-          <a href="council.html" class="card-link">審議内容を見る →</a>
+          <a href="council.html" class="card-link" data-i18n="ql_council_link">審議内容を見る →</a>
         </div>
         <div class="card">
           <div class="card-icon">🗺️</div>
-          <h3>学校の場所（地図）</h3>
+          <h3 data-i18n="ql_map_h">学校の場所（地図）</h3>
           <p>再編対象の各学校と新校予定地の位置を地図で確認できます。</p>
-          <a href="map.html" class="card-link">地図を見る →</a>
+          <a href="map.html" class="card-link" data-i18n="ql_map_link">地図を見る →</a>
         </div>
       </div>
     </div>
@@ -185,7 +191,7 @@
   <!-- OFFICIAL NEWS -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title">市公式サイト お知らせ<small>Official Announcements</small></h2>
+      <h2 class="section-title" data-i18n-html="section_news">市公式サイト お知らせ<small>Official Announcements</small></h2>
       <div id="official-news-container">
         <p class="official-news-loading">読み込み中…</p>
       </div>
@@ -195,7 +201,7 @@
   <!-- CURRENT STATUS -->
   <section class="section section-alt">
     <div class="container">
-      <h2 class="section-title">現在の状況（2026年5月時点）<small>Current Status</small></h2>
+      <h2 class="section-title" data-i18n-html="section_status">現在の状況（2026年5月時点）<small>Current Status</small></h2>
       <div class="status-timeline">
         <div class="status-item done">
           <div class="status-label">完了</div>
@@ -259,8 +265,8 @@
         </div>
       </div>
       <div style="margin-top:1.5rem; display:flex; gap:.8rem; flex-wrap:wrap;">
-        <a href="schedule.html" class="btn">スケジュール詳細を見る →</a>
-        <a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener" class="btn btn-outline">市公式ページ →</a>
+        <a href="schedule.html" class="btn" data-i18n="btn_schedule">スケジュール詳細を見る →</a>
+        <a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener" class="btn btn-outline" data-i18n="btn_official">市公式ページ →</a>
       </div>
     </div>
   </section>
@@ -270,34 +276,35 @@
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
-        <div class="footer-title">小牧市東部（篠岡地区）学校再編計画 市民情報サイト</div>
-        <p style="font-size:.82rem;">篠岡地区の学校再編計画について、小牧市公式情報をもとにわかりやすく情報提供することを目的とした市民有志サイトです。</p>
+        <div class="footer-title" data-i18n="footer_title">小牧市東部（篠岡地区）学校再編計画 市民情報サイト</div>
+        <p style="font-size:.82rem;" data-i18n="footer_tagline">篠岡地区の学校再編計画について、小牧市公式情報をもとにわかりやすく情報提供することを目的とした市民有志サイトです。</p>
       </div>
       <div>
-        <div class="footer-title">ページ一覧</div>
+        <div class="footer-title" data-i18n="footer_pages">ページ一覧</div>
         <ul class="footer-links">
-          <li><a href="index.html">ホーム</a></li>
-          <li><a href="about.html">計画概要</a></li>
-          <li><a href="schedule.html">スケジュール</a></li>
-          <li><a href="voices.html">賛否の声</a></li>
-          <li><a href="faq.html">よくある質問</a></li>
-          <li><a href="council.html">議会審議</a></li>
-          <li><a href="map.html">学校の場所（地図）</a></li>
+          <li><a href="index.html" data-i18n="nav_home">ホーム</a></li>
+          <li><a href="about.html" data-i18n="nav_about">計画概要</a></li>
+          <li><a href="schedule.html" data-i18n="nav_schedule">スケジュール</a></li>
+          <li><a href="voices.html" data-i18n="nav_voices">賛否の声</a></li>
+          <li><a href="faq.html" data-i18n="nav_faq">よくある質問</a></li>
+          <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
+          <li><a href="map.html" data-i18n="nav_map">学校の場所（地図）</a></li>
         </ul>
       </div>
       <div>
-        <div class="footer-title">参考リンク（公式）</div>
+        <div class="footer-title" data-i18n="footer_official">参考リンク（公式）</div>
         <ul class="footer-links">
-          <li><a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener">小牧市 学校再編計画（市公式）</a></li>
+          <li><a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener" data-i18n="footer_official_link">小牧市 学校再編計画（市公式）</a></li>
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="footer-bottom" data-i18n-html="footer_copyright">
       &copy; 2026 小牧市東部（篠岡地区）学校再編計画 市民情報サイト（非公式）｜このサイトは市民有志が運営しており、小牧市・教育委員会とは無関係です。
     </div>
   </div>
 </footer>
 
+<script src="js/i18n.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

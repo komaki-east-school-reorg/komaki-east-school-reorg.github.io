@@ -21,7 +21,7 @@
 </head>
 <body>
 
-<div class="notice-banner">
+<div class="notice-banner" data-i18n-html="notice">
   ⚠️ このサイトは市民有志による情報提供サイトです。小牧市の公式サイトではありません。
   公式情報は <a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener" style="color:#5a4000; font-weight:700;">小牧市教育委員会のページ</a> をご確認ください。
 </div>
@@ -30,21 +30,27 @@
   <div class="header-inner">
     <a href="index.html" class="site-title">
       小牧市東部（篠岡地区）学校再編計画
-      <span>市民情報サイト（非公式）</span>
+      <span data-i18n="site_sub">市民情報サイト（非公式）</span>
     </a>
     <nav>
       <button class="hamburger" aria-label="メニュー">
         <span></span><span></span><span></span>
       </button>
       <ul>
-        <li><a href="index.html">ホーム</a></li>
-        <li><a href="about.html">計画概要</a></li>
-        <li><a href="schedule.html">スケジュール</a></li>
-        <li><a href="voices.html">賛否の声</a></li>
-        <li><a href="faq.html">よくある質問</a></li>
-        <li><a href="council.html">議会審議</a></li>
-        <li><a href="map.html">学校の場所（地図）</a></li>
+        <li><a href="index.html" data-i18n="nav_home">ホーム</a></li>
+        <li><a href="about.html" data-i18n="nav_about">計画概要</a></li>
+        <li><a href="schedule.html" data-i18n="nav_schedule">スケジュール</a></li>
+        <li><a href="voices.html" data-i18n="nav_voices">賛否の声</a></li>
+        <li><a href="faq.html" data-i18n="nav_faq">よくある質問</a></li>
+        <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
+        <li><a href="map.html" data-i18n="nav_map">学校の場所（地図）</a></li>
       </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn" data-lang="ja">JA</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="pt">PT</button>
+        <button class="lang-btn" data-lang="vi">VI</button>
+      </div>
     </nav>
   </div>
 </header>
@@ -53,8 +59,8 @@
   <section class="page-hero">
     <div class="container">
       <div class="breadcrumb"><a href="index.html">ホーム</a> <span>›</span> スケジュール</div>
-      <h1>スケジュール</h1>
-      <p>令和7年（2025年）の取組実績と、令和9年（2027年）の再編実施に向けた全体の流れを掲載しています。</p>
+      <h1 data-i18n="schedule_h1">スケジュール</h1>
+      <p data-i18n="schedule_p">令和7年（2025年）の取組実績と、令和9年（2027年）の再編実施に向けた全体の流れを掲載しています。</p>
     </div>
   </section>
 
@@ -377,34 +383,35 @@
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
-        <div class="footer-title">小牧市東部（篠岡地区）学校再編計画 市民情報サイト</div>
-        <p style="font-size:.82rem;">篠岡地区の学校再編計画について、小牧市公式情報をもとにわかりやすく情報提供することを目的とした市民有志サイトです。</p>
+        <div class="footer-title" data-i18n="footer_title">小牧市東部（篠岡地区）学校再編計画 市民情報サイト</div>
+        <p style="font-size:.82rem;" data-i18n="footer_tagline">篠岡地区の学校再編計画について、小牧市公式情報をもとにわかりやすく情報提供することを目的とした市民有志サイトです。</p>
       </div>
       <div>
-        <div class="footer-title">ページ一覧</div>
+        <div class="footer-title" data-i18n="footer_pages">ページ一覧</div>
         <ul class="footer-links">
-          <li><a href="index.html">ホーム</a></li>
-          <li><a href="about.html">計画概要</a></li>
-          <li><a href="schedule.html">スケジュール</a></li>
-          <li><a href="voices.html">賛否の声</a></li>
-          <li><a href="faq.html">よくある質問</a></li>
-          <li><a href="council.html">議会審議</a></li>
-          <li><a href="map.html">学校の場所（地図）</a></li>
+          <li><a href="index.html" data-i18n="nav_home">ホーム</a></li>
+          <li><a href="about.html" data-i18n="nav_about">計画概要</a></li>
+          <li><a href="schedule.html" data-i18n="nav_schedule">スケジュール</a></li>
+          <li><a href="voices.html" data-i18n="nav_voices">賛否の声</a></li>
+          <li><a href="faq.html" data-i18n="nav_faq">よくある質問</a></li>
+          <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
+          <li><a href="map.html" data-i18n="nav_map">学校の場所（地図）</a></li>
         </ul>
       </div>
       <div>
-        <div class="footer-title">参考リンク（公式）</div>
+        <div class="footer-title" data-i18n="footer_official">参考リンク（公式）</div>
         <ul class="footer-links">
-          <li><a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener">小牧市 学校再編計画（市公式）</a></li>
+          <li><a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener" data-i18n="footer_official_link">小牧市 学校再編計画（市公式）</a></li>
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="footer-bottom" data-i18n-html="footer_copyright">
       &copy; 2026 小牧市東部（篠岡地区）学校再編計画 市民情報サイト（非公式）｜このサイトは市民有志が運営しており、小牧市・教育委員会とは無関係です。
     </div>
   </div>
 </footer>
 
+<script src="js/i18n.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
