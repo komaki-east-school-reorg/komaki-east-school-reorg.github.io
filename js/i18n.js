@@ -1,8 +1,8 @@
-/* ===== i18n: Multi-language support (JA / EN / PT / VI) ===== */
+/* ===== i18n: Multi-language support (JA / EN / PT / VI / TL / ES / ZH) ===== */
 (function () {
   'use strict';
 
-  const LANGS = ['ja', 'en', 'pt', 'vi'];
+  const LANGS = ['ja', 'en', 'pt', 'vi', 'tl', 'es', 'zh'];
   const DEFAULT = 'ja';
 
   const T = {
@@ -16,7 +16,7 @@
       nav_voices: '賛否の声',
       nav_faq: 'よくある質問',
       nav_council: '議会審議',
-      nav_map: '学校の場所（地図）',
+      nav_map: '地図',
       /* ---- site title ---- */
       site_sub: '市民情報サイト（非公式）',
       /* ---- footer ---- */
@@ -81,7 +81,7 @@
       nav_voices: 'Community Voices',
       nav_faq: 'FAQ',
       nav_council: 'Council Proceedings',
-      nav_map: 'School Locations (Map)',
+      nav_map: 'Map',
       site_sub: 'Community Info Site (Unofficial)',
       footer_title: 'Komaki East School Reorganization – Community Info Site',
       footer_tagline: 'A volunteer community site providing easy-to-understand information on the Shinooka school reorganization plan, based on official Komaki City sources.',
@@ -137,7 +137,7 @@
       nav_voices: 'Opiniões da Comunidade',
       nav_faq: 'Perguntas Frequentes',
       nav_council: 'Deliberações do Conselho',
-      nav_map: 'Localização das Escolas (Mapa)',
+      nav_map: 'Mapa',
       site_sub: 'Site Informativo da Comunidade (Não Oficial)',
       footer_title: 'Reorganização Escolar do Leste de Komaki – Site Informativo',
       footer_tagline: 'Site de voluntários comunitários com informações sobre o plano de reorganização escolar Shinooka, baseado em fontes oficiais de Komaki.',
@@ -193,7 +193,7 @@
       nav_voices: 'Tiếng nói cộng đồng',
       nav_faq: 'Câu hỏi thường gặp',
       nav_council: 'Nghị quyết hội đồng',
-      nav_map: 'Vị trí trường học (Bản đồ)',
+      nav_map: 'Bản đồ',
       site_sub: 'Trang thông tin cộng đồng (Không chính thức)',
       footer_title: 'Tái cơ cấu trường học phía Đông Komaki – Trang thông tin cộng đồng',
       footer_tagline: 'Trang web tình nguyện cộng đồng cung cấp thông tin dễ hiểu về kế hoạch tái cơ cấu trường học Shinooka, dựa trên nguồn thông tin chính thức của Komaki.',
@@ -240,6 +240,174 @@
       council_h1: 'Nghị quyết hội đồng',
       council_p: 'Tóm tắt sửa đổi quy định, đánh giá ủy ban, câu hỏi chung và kiến nghị tại Phiên họp thường kỳ lần 1 năm 2026.',
     },
+
+    tl: {
+      notice: '⚠️ Ito ay isang di-opisyal na site ng komunidad at hindi ito ang opisyal na website ng Lungsod ng Komaki. Para sa opisyal na impormasyon, bisitahin ang <a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener" style="color:#5a4000;font-weight:700;">Lupon ng Edukasyon ng Lungsod ng Komaki</a>.',
+      nav_home: 'Tahanan',
+      nav_about: 'Tungkol sa Plano',
+      nav_schedule: 'Iskedyul',
+      nav_voices: 'Boses ng Komunidad',
+      nav_faq: 'Mga Madalas na Tanong',
+      nav_council: 'Mga Talakayan ng Konseho',
+      nav_map: 'Mapa',
+      site_sub: 'Site ng Impormasyon ng Komunidad (Di-Opisyal)',
+      footer_title: 'Muling Pagsasaayos ng Paaralan sa Silangan ng Komaki – Site ng Impormasyon',
+      footer_tagline: 'Isang volunteer na site ng komunidad na nagbibigay ng madaling maunawaang impormasyon tungkol sa plano ng muling pagsasaayos ng paaralan ng Shinooka, batay sa opisyal na pinagkukunan ng Komaki.',
+      footer_pages: 'Mga Pahina',
+      footer_official: 'Mga Opisyal na Link',
+      footer_official_link: 'Muling Pagsasaayos ng Paaralan ng Komaki (Opisyal)',
+      footer_copyright: '© 2026 Site ng Impormasyon ng Komunidad ng Muling Pagsasaayos ng Paaralan sa Silangan ng Komaki (Di-Opisyal) | Ang site na ito ay pinapatakbo ng mga boluntaryo ng komunidad at hindi kaanib ng Lungsod ng Komaki o ng Lupon ng Edukasyon nito.',
+      hero_title: 'Plano ng Muling Pagsasaayos ng Paaralan<br>sa Silangan ng Komaki (Lugar ng Shinooka)',
+      hero_sub: 'Impormasyon tungkol sa muling pagsasaayos ng mga paaralang elementarya at junior high sa lugar ng Shinooka, silangan ng Komaki, batay sa opisyal na pinagkukunan.',
+      hero_badge1: '📍 Silangan ng Komaki (Lugar ng Shinooka)',
+      hero_badge2: '🏫 5 elementarya + 3 junior high → 2 + 2 paaralan',
+      hero_badge3: '📅 Nakatakda sa taong paaralan 2027 (Abril 2027)',
+      upcoming_label: '📅 Mga Darating na Kaganapan',
+      upcoming_more: 'Mga Detalye →',
+      section_whatis: 'Ano ang Plano ng Muling Pagsasaayos ng Paaralan ng Shinooka?<small>Tungkol sa Plano</small>',
+      section_points: 'Tatlong Pangunahing Punto<small>Key Points</small>',
+      section_links: 'Mga Link sa Pahina<small>Quick Links</small>',
+      section_news: 'Mga Opisyal na Anunsyo ng Lungsod<small>Official Announcements</small>',
+      section_status: 'Kasalukuyang Kalagayan (Mayo 2026)<small>Current Status</small>',
+      point1_h: 'Bakit Kailangan ang Muling Pagsasaayos?',
+      point1_link: 'Matuto pa →',
+      point2_h: 'Ano ang Planado?',
+      point2_link: 'Tingnan ang plano →',
+      point3_h: 'Kasaysayan at Konteksto',
+      point3_link: 'Tingnan ang iskedyul →',
+      ql_about_h: 'Tungkol sa Plano', ql_about_link: 'Tingnan ang plano →',
+      ql_schedule_h: 'Iskedyul', ql_schedule_link: 'Tingnan ang kalendaryo →',
+      ql_voices_h: 'Boses ng Komunidad', ql_voices_link: 'Tingnan ang mga opinyon →',
+      ql_faq_h: 'Mga Madalas na Tanong', ql_faq_link: 'Tingnan ang FAQ →',
+      ql_council_h: 'Mga Talakayan ng Konseho', ql_council_link: 'Tingnan ang mga talakayan →',
+      ql_map_h: 'Lokasyon ng Paaralan (Mapa)', ql_map_link: 'Tingnan ang mapa →',
+      btn_schedule: 'Tingnan ang buong iskedyul →',
+      btn_official: 'Opisyal na pahina ng lungsod →',
+      about_h1: 'Tungkol sa Plano',
+      about_p: 'Detalyadong impormasyon tungkol sa plano ng muling pagsasaayos ng paaralan ng Shinooka — konteksto, kasalukuyang sitwasyon, mga target na paaralan, at transportasyon — batay sa opisyal na pinagkukunan ng Komaki.',
+      schedule_h1: 'Iskedyul',
+      schedule_p: 'Mga pangunahing kaganapan mula 2025 at ang pangkalahatang roadmap patungo sa muling pagsasaayos ng paaralan noong Abril 2027.',
+      voices_h1: 'Boses ng Komunidad',
+      voices_p: 'Isang balanseng pangkalahatang-ideya ng mga pananaw ng mga lokal na residente, magulang, dating guro, at iba pa.',
+      faq_h1: 'Mga Madalas na Tanong',
+      faq_p: 'Mga karaniwang tanong at sagot batay sa opisyal na pahayag ng lungsod. I-click upang palawakin ang bawat sagot.',
+      map_h1: 'Lokasyon ng Paaralan (Mapa)',
+      map_p: 'Tingnan ang mga lokasyon ng mga kasalukuyang paaralan at mga planong bagong lokasyon ng paaralan sa lugar ng Shinooka.',
+      council_h1: 'Mga Talakayan ng Konseho',
+      council_p: 'Buod ng pagbabago sa ordinansa, pagsusuri ng komite, pangkalahatang mga tanong, at mga petisyon sa 1st Regular na Pulong ng Konseho ng 2026.',
+    },
+
+    es: {
+      notice: '⚠️ Este es un sitio comunitario no oficial. No es el sitio web oficial de la Ciudad de Komaki. Para información oficial, visite el <a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener" style="color:#5a4000;font-weight:700;">Consejo de Educación de la Ciudad de Komaki</a>.',
+      nav_home: 'Inicio',
+      nav_about: 'Sobre el Plan',
+      nav_schedule: 'Cronograma',
+      nav_voices: 'Voces de la Comunidad',
+      nav_faq: 'Preguntas Frecuentes',
+      nav_council: 'Deliberaciones del Consejo',
+      nav_map: 'Mapa',
+      site_sub: 'Sitio de Información Comunitaria (No Oficial)',
+      footer_title: 'Reorganización Escolar del Este de Komaki – Sitio de Información',
+      footer_tagline: 'Sitio comunitario de voluntarios que proporciona información fácil de entender sobre el plan de reorganización escolar de Shinooka, basado en fuentes oficiales de Komaki.',
+      footer_pages: 'Páginas',
+      footer_official: 'Enlaces Oficiales',
+      footer_official_link: 'Reorganización Escolar de Komaki (Oficial)',
+      footer_copyright: '© 2026 Sitio de Información Comunitaria de Reorganización Escolar del Este de Komaki (No Oficial) | Este sitio es operado por voluntarios de la comunidad y no está afiliado a la Ciudad de Komaki ni a su Consejo de Educación.',
+      hero_title: 'Plan de Reorganización Escolar<br>del Este de Komaki (Área Shinooka)',
+      hero_sub: 'Información sobre la reorganización de escuelas primarias y secundarias en el área Shinooka, este de Komaki, basada en fuentes oficiales.',
+      hero_badge1: '📍 Este de Komaki (Área Shinooka)',
+      hero_badge2: '🏫 5 primarias + 3 secundarias → 2 + 2 escuelas',
+      hero_badge3: '📅 Previsto para el año escolar 2027 (abril 2027)',
+      upcoming_label: '📅 Próximos Eventos',
+      upcoming_more: 'Detalles →',
+      section_whatis: '¿Qué es el Plan de Reorganización Escolar de Shinooka?<small>Sobre el Plan</small>',
+      section_points: 'Tres Puntos Clave<small>Key Points</small>',
+      section_links: 'Enlaces de Página<small>Quick Links</small>',
+      section_news: 'Anuncios Oficiales de la Ciudad<small>Official Announcements</small>',
+      section_status: 'Estado Actual (mayo de 2026)<small>Current Status</small>',
+      point1_h: '¿Por qué se necesita la reorganización?',
+      point1_link: 'Más información →',
+      point2_h: '¿Qué está planeado?',
+      point2_link: 'Ver el plan →',
+      point3_h: 'Historia y Antecedentes',
+      point3_link: 'Ver cronograma →',
+      ql_about_h: 'Sobre el Plan', ql_about_link: 'Ver el plan →',
+      ql_schedule_h: 'Cronograma', ql_schedule_link: 'Ver calendario →',
+      ql_voices_h: 'Voces de la Comunidad', ql_voices_link: 'Ver opiniones →',
+      ql_faq_h: 'Preguntas Frecuentes', ql_faq_link: 'Ver FAQ →',
+      ql_council_h: 'Deliberaciones del Consejo', ql_council_link: 'Ver deliberaciones →',
+      ql_map_h: 'Ubicación de Escuelas (Mapa)', ql_map_link: 'Ver mapa →',
+      btn_schedule: 'Ver cronograma completo →',
+      btn_official: 'Página oficial de la ciudad →',
+      about_h1: 'Sobre el Plan',
+      about_p: 'Información detallada sobre el plan de reorganización escolar de Shinooka — antecedentes, situación actual, escuelas objetivo y transporte — basada en fuentes oficiales de Komaki.',
+      schedule_h1: 'Cronograma',
+      schedule_p: 'Eventos clave desde 2025 y la hoja de ruta general hacia la reorganización escolar en abril de 2027.',
+      voices_h1: 'Voces de la Comunidad',
+      voices_p: 'Una visión equilibrada de las perspectivas de los residentes locales, padres, ex maestros y otros.',
+      faq_h1: 'Preguntas Frecuentes',
+      faq_p: 'Preguntas comunes sobre el plan de reorganización y respuestas basadas en declaraciones oficiales de la ciudad. Haga clic para expandir cada respuesta.',
+      map_h1: 'Ubicación de Escuelas (Mapa)',
+      map_p: 'Vea la ubicación de las escuelas actuales y los nuevos sitios planificados en el área de Shinooka.',
+      council_h1: 'Deliberaciones del Consejo',
+      council_p: 'Resumen de la enmienda a la ordenanza, revisión del comité, preguntas generales y peticiones en la 1.ª Sesión Regular del Consejo de 2026.',
+    },
+
+    zh: {
+      notice: '⚠️ 本网站是非官方的市民信息网站，并非小牧市的官方网站。如需官方信息，请访问<a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener" style="color:#5a4000;font-weight:700;">小牧市教育委员会页面</a>。',
+      nav_home: '首页',
+      nav_about: '计划概要',
+      nav_schedule: '日程安排',
+      nav_voices: '社区声音',
+      nav_faq: '常见问题',
+      nav_council: '议会审议',
+      nav_map: '地图',
+      site_sub: '市民信息网站（非官方）',
+      footer_title: '小牧市东部（篠岡地区）学校重组计划 市民信息网站',
+      footer_tagline: '本网站由市民志愿者运营，旨在以官方信息为基础，提供易于理解的篠岡地区学校重组计划信息。',
+      footer_pages: '页面列表',
+      footer_official: '参考链接（官方）',
+      footer_official_link: '小牧市 学校重组计划（市官方）',
+      footer_copyright: '© 2026 小牧市东部（篠岡地区）学校重组计划 市民信息网站（非官方）｜本网站由市民志愿者运营，与小牧市及教育委员会无关。',
+      hero_title: '小牧市东部（篠岡地区）<br>学校重组计划',
+      hero_sub: '以官方信息为基础，通俗易懂地介绍小牧市东部（篠岡地区）中小学重组情况。',
+      hero_badge1: '📍 小牧市东部（篠岡地区）',
+      hero_badge2: '🏫 5所小学·3所初中 → 东西各2所',
+      hero_badge3: '📅 预计2027年度（2027年）实施',
+      upcoming_label: '📅 近期日程',
+      upcoming_more: '详情 →',
+      section_whatis: '什么是小牧市东部（篠岡地区）学校重组计划？<small>关于重组计划</small>',
+      section_points: '三大要点<small>Key Points</small>',
+      section_links: '各页面链接<small>Quick Links</small>',
+      section_news: '市官方网站 通知<small>Official Announcements</small>',
+      section_status: '当前情况（2026年5月）<small>Current Status</small>',
+      point1_h: '为什么需要重组？',
+      point1_link: '了解更多 →',
+      point2_h: '计划内容是什么？',
+      point2_link: '查看计划概要 →',
+      point3_h: '历史经过',
+      point3_link: '查看日程安排 →',
+      ql_about_h: '计划概要', ql_about_link: '查看计划概要 →',
+      ql_schedule_h: '日程安排', ql_schedule_link: '查看日历 →',
+      ql_voices_h: '社区声音', ql_voices_link: '查看意见 →',
+      ql_faq_h: '常见问题', ql_faq_link: '查看FAQ →',
+      ql_council_h: '议会审议', ql_council_link: '查看审议内容 →',
+      ql_map_h: '学校位置（地图）', ql_map_link: '查看地图 →',
+      btn_schedule: '查看完整日程 →',
+      btn_official: '市官方页面 →',
+      about_h1: '计划概要',
+      about_p: '以小牧市官方信息为依据，详细解说「小牧市东部（篠岡地区）学校重组计划」的背景、现状、重组内容及通学计划。',
+      schedule_h1: '日程安排',
+      schedule_p: '记载2025年（令和7年）的工作成果以及2027年（令和9年）重组实施的整体流程。',
+      voices_h1: '社区声音',
+      voices_p: '公平介绍来自地区居民、家长、教师经验者等各方立场的意见。',
+      faq_h1: '常见问题',
+      faq_p: '根据市官方信息，解答地区说明会等场合常见的疑问。点击查看回答。',
+      map_h1: '学校位置（地图）',
+      map_p: '篠岡地区学校的位置信息。可确认重组前8所学校和重组后4所学校的位置。',
+      council_h1: '议会审议',
+      council_p: '汇总了2026年（令和8年）第1次定例会中有关学校重组的条例修订、委员会审查、一般质问和请愿内容。',
+    },
   };
 
   function applyLang(lang) {
@@ -254,10 +422,10 @@
       var key = el.dataset.i18nHtml;
       if (dict[key] != null) el.innerHTML = dict[key];
     });
-    document.querySelectorAll('.lang-btn').forEach(function (btn) {
-      btn.classList.toggle('active', btn.dataset.lang === lang);
+    document.querySelectorAll('.lang-select').forEach(function (sel) {
+      sel.value = lang;
     });
-    var langAttr = { ja: 'ja', en: 'en', pt: 'pt-BR', vi: 'vi' };
+    var langAttr = { ja: 'ja', en: 'en', pt: 'pt-BR', vi: 'vi', tl: 'tl', es: 'es', zh: 'zh-Hans' };
     document.documentElement.lang = langAttr[lang] || lang;
     try { localStorage.setItem('komaki_lang', lang); } catch (e) {}
   }
@@ -266,8 +434,8 @@
     var saved;
     try { saved = localStorage.getItem('komaki_lang'); } catch (e) {}
     var lang = LANGS.includes(saved) ? saved : DEFAULT;
-    document.querySelectorAll('.lang-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () { applyLang(btn.dataset.lang); });
+    document.querySelectorAll('.lang-select').forEach(function (sel) {
+      sel.addEventListener('change', function () { applyLang(sel.value); });
     });
     applyLang(lang);
   }
