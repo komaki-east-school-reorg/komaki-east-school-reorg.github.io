@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>議会での審議 – 小牧市東部（篠岡地区）学校再編計画</title>
+  <meta name="description" content="令和8年第1回定例会（2026年3月）における学校設置条例の改正と篠岡地区学校再編に関する議会審議の内容をわかりやすくまとめています。">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="小牧市東部（篠岡地区）学校再編計画 市民情報サイト（非公式）">
+  <meta property="og:title" content="議会での審議 – 小牧市東部（篠岡地区）学校再編計画">
+  <meta property="og:description" content="令和8年第1回定例会（2026年3月）における学校設置条例の改正と篠岡地区学校再編に関する議会審議の内容をわかりやすくまとめています。">
+  <meta property="og:url" content="https://komaki-east-school-reorg.github.io/council.html">
+  <meta property="og:image" content="https://komaki-east-school-reorg.github.io/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="議会での審議 – 小牧市東部（篠岡地区）学校再編計画">
+  <meta name="twitter:description" content="令和8年第1回定例会（2026年3月）における学校設置条例の改正と篠岡地区学校再編に関する議会審議の内容をわかりやすくまとめています。">
+  <meta name="twitter:image" content="https://komaki-east-school-reorg.github.io/img/og-image.png">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ===== PAGE-SPECIFIC STYLES ===== */
+    .council-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-bottom: 1.4rem;
+    }
+    .council-meta-badge {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border-radius: var(--radius-pill);
+      font-size: .8rem;
+      font-weight: 700;
+      padding: .28rem .9rem;
+      font-family: var(--heading-font);
+    }
+
+    /* 結果バッジ */
+    .result-badge {
+      display: inline-block;
+      font-size: .78rem;
+      font-weight: 700;
+      padding: .2rem .75rem;
+      border-radius: var(--radius-pill);
+      font-family: var(--heading-font);
+      vertical-align: middle;
+      margin-left: .4rem;
+    }
+    .result-badge--pass  { background: #d4f0da; color: #1a5c2a; }
+    .result-badge--fail  { background: #fde8e6; color: #8b1e18; }
+    .result-badge--majority { background: #fff3cd; color: #7a5800; }
+
+    /* セクションカード */
+    .council-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.6rem;
+      margin-bottom: 1.4rem;
+      box-shadow: var(--shadow);
+    }
+    .council-card-title {
+      font-family: var(--heading-font);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: .9rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      flex-wrap: wrap;
+    }
+    .council-card-subtitle {
+      font-size: .82rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-family: var(--heading-font);
+    }
+
+    /* 質疑応答ブロック */
+    .qa-block {
+      border-left: 4px solid var(--accent);
+      padding: .8rem 1rem;
+      margin-bottom: 1rem;
+      background: var(--accent-light);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+    .qa-block:last-child { margin-bottom: 0; }
+    .qa-q {
+      font-weight: 700;
+      color: var(--primary-dark);
+      font-size: .92rem;
+      margin-bottom: .4rem;
+      display: flex;
+      gap: .5rem;
+      align-items: flex-start;
+    }
+    .qa-q::before {
+      content: "問";
+      background: var(--primary);
+      color: #fff;
+      border-radius: 4px;
+      font-size: .75rem;
+      font-weight: 700;
+      padding: .1rem .45rem;
+      flex-shrink: 0;
+      margin-top: .1rem;
+      font-family: var(--heading-font);
+    }
+    .qa-a {
+      font-size: .9rem;
+      color: var(--text-muted);
+      display: flex;
+      gap: .5rem;
+      align-items: flex-start;
+    }
+    .qa-a::before {
+      content: "答";
+      background: var(--accent);
+      color: #5a3800;
+      border-radius: 4px;
+      font-size: .75rem;
+      font-weight: 700;
+      padding: .1rem .45rem;
+      flex-shrink: 0;
+      margin-top: .1rem;
+      font-family: var(--heading-font);
+    }
+
+    /* 表決テーブル */
+    .vote-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .88rem;
+      margin-top: .8rem;
+    }
+    .vote-table th {
+      background: var(--primary);
+      color: #fff;
+      padding: .55rem .8rem;
+      text-align: left;
+      font-family: var(--heading-font);
+      font-weight: 700;
+    }
+    .vote-table td {
+      padding: .55rem .8rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .vote-table tr:last-child td { border-bottom: none; }
+    .vote-table tr:nth-child(even) td { background: var(--primary-light); }
+    .vote-pass  { color: #1a5c2a; font-weight: 700; }
+    .vote-fail  { color: #8b1e18; font-weight: 700; }
+
+    /* タイムライン */
+    .council-timeline {
+      position: relative;
+      padding-left: 1.6rem;
+      margin-bottom: 1rem;
+    }
+    .council-timeline::before {
+      content: "";
+      position: absolute;
+      left: .5rem;
+      top: .5rem;
+      bottom: .5rem;
+      width: 3px;
+      background: var(--border);
+      border-radius: 2px;
+    }
+    .tl-item {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+    .tl-item::before {
+      content: "";
+      position: absolute;
+      left: -1.2rem;
+      top: .45rem;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--primary);
+    }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-label {
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      font-family: var(--heading-font);
+      margin-bottom: .15rem;
+    }
+    .tl-text {
+      font-size: .92rem;
+      color: var(--text);
+    }
+
+    /* ポイントリスト */
+    .point-list {
+      list-style: none;
+      padding: 0;
+    }
+    .point-list li {
+      padding: .4rem 0 .4rem 1.4rem;
+      position: relative;
+      font-size: .92rem;
+      border-bottom: 1px dashed var(--border);
+    }
+    .point-list li:last-child { border-bottom: none; }
+    .point-list li::before {
+      content: "▶";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: .75rem;
+      top: .55rem;
+    }
+
+    /* ソースボックス */
+    .source-box {
+      background: #f0f4f1;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: .9rem 1.1rem;
+      font-size: .82rem;
+      color: var(--text-muted);
+      margin-top: 2rem;
+    }
+    .source-box a { color: var(--primary); font-weight: 700; }
+
+    @media (max-width: 640px) {
+      .council-card { padding: 1.1rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="notice-banner">
+  ⚠️ このサイトは市民有志による情報提供サイトです。小牧市の公式サイトではありません。
+  公式情報は <a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener" style="color:#5a4000; font-weight:700;">小牧市教育委員会のページ</a> をご確認ください。
+</div>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="site-title">
+      小牧市東部（篠岡地区）学校再編計画
+      <span>市民情報サイト（非公式）</span>
+    </a>
+    <nav>
+      <button class="hamburger" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+      <ul>
+        <li><a href="index.html">ホーム</a></li>
+        <li><a href="about.html">計画概要</a></li>
+        <li><a href="schedule.html">スケジュール</a></li>
+        <li><a href="voices.html">賛否の声</a></li>
+        <li><a href="faq.html">よくある質問</a></li>
+        <li><a href="council.html">議会審議</a></li>
+        <li><a href="map.html">学校の場所（地図）</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">ホーム</a> <span>›</span> 議会での審議</div>
+      <h1>議会での審議</h1>
+      <p>令和8年（2026年）第1回定例会における、学校再編に関する条例改正・委員会審査・一般質問・請願の内容をまとめています。</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:860px;">
+
+      <!-- 出典バナー -->
+      <div class="info-box" style="margin-bottom:2rem;">
+        <strong>出典：</strong>
+        小牧市議会だより No.214（令和8年5月発行）をもとに作成しています。
+        正確な情報は小牧市議会だより No.214（令和8年5月発行）の原文でご確認ください。
+      </div>
+
+      <!-- 定例会の概要 -->
+      <div class="council-card">
+        <div class="council-card-title">
+          📋 令和8年 第1回定例会の概要
+        </div>
+        <div class="council-meta">
+          <span class="council-meta-badge">📅 令和8年3月（会期19日間）</span>
+          <span class="council-meta-badge">📄 53議案を審議・議決</span>
+          <span class="council-meta-badge">📰 市議会だより No.214</span>
+        </div>
+        <p style="font-size:.92rem;">
+          令和8年3月に開催された第1回定例会では、学校再編に関連する議案・請願を含む53件の議案が審議されました。
+          再編計画を具体化する条例改正案は<strong>賛成多数で可決</strong>されましたが、
+          一部の議員が反対票を投じるなど、議論のある定例会となりました。
+        </p>
+      </div>
+
+      <!-- ============================
+           条例改正案
+           ============================ -->
+      <h2 class="section-title" style="margin-top:2.5rem; margin-bottom:1.2rem;">
+        条例改正案の審議結果
+        <small>議案・表決</small>
+      </h2>
+
+      <div class="council-card">
+        <div class="council-card-title">
+          🏫 小牧市市立学校設置条例の一部を改正する条例の制定について
+          <span class="result-badge result-badge--majority">賛成多数で可決</span>
+        </div>
+        <p style="font-size:.92rem; margin-bottom:1rem;">
+          篠岡地区の学校再編を実現するために必要な「学校の新設・廃止」を条例上で定める改正案です。
+          桃花台東小・桃花台西小・桃花台東中・桃花台西中を設置し、
+          再編対象の各学校の廃止を盛り込んでいます。
+        </p>
+
+        <div class="council-timeline">
+          <div class="tl-item">
+            <div class="tl-label">委員会付託</div>
+            <div class="tl-text">文教建設委員会（文教建設分科会）に付託され、詳細審査が行われた。</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-label">分科会の審査結果</div>
+            <div class="tl-text">
+              <strong>賛成多数（反対1人）</strong>で可決。内容・スクールバス計画について
+              委員から質疑が行われた（詳細は下記参照）。
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-label">本会議での表決</div>
+            <div class="tl-text">
+              <strong>賛成多数で可決。</strong>全員一致ではなく、反対票があった<strong>（賛成:18、反対:6、欠席:1）</strong>
+              <span style="font-size:.82rem; color:var(--text-muted);">（★印は「表決結果の分かれた議案」として市議会だよりに掲載）</span>。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================
+           委員会での質疑
+           ============================ -->
+      <h2 class="section-title" style="margin-top:2.5rem; margin-bottom:1.2rem;">
+        委員会（文教建設分科会）での質疑
+        <small>審査の詳細</small>
+      </h2>
+
+      <div class="council-card">
+        <div class="council-card-title">
+          🚌 スクールバスの運行計画について
+          <span class="council-card-subtitle">債務負担行為「篠岡地区スクールバス運行」に関する審査</span>
+        </div>
+        <p style="font-size:.9rem; color:var(--text-muted); margin-bottom:1rem;">
+          再編後は一部の児童・生徒にとって通学距離が長くなるため、
+          スクールバスの運行が計画されています。委員会では運行委託料の内容について質疑が行われました。
+        </p>
+
+        <div class="qa-block">
+          <div class="qa-q">スクールバスの運行業務委託料の内容と、今後の準備スケジュールについて教えてください。</div>
+          <div class="qa-a">
+            令和8年度の早い段階でプレ登校を実施し、令和8・9年度にはスクールバスの体験乗車を行います。
+            スムーズな本格運行開始に向けて準備を進めるとともに、
+            バスの準備にあたっては多くの方への配慮を大切にしながら取り組んでいきます。
+          </div>
+        </div>
+
+        <div style="background: var(--primary-light); border-radius:var(--radius-sm); padding:.8rem 1rem; margin-top:.8rem; font-size:.87rem;">
+          <strong>スクールバス導入スケジュール（答弁より）</strong>
+          <ul class="point-list" style="margin-top:.4rem;">
+            <li>令和8年度（早期）：プレ登校の実施</li>
+            <li>令和8〜9年度：体験乗車・試験運行</li>
+            <li>令和9年度（2027年4月）：第1期再編に合わせて本格運行開始</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ============================
+           一般質問
+           ============================ -->
+      <h2 class="section-title" style="margin-top:2.5rem; margin-bottom:1.2rem;">
+        一般質問での審議
+        <small>篠岡地区の学校再編について</small>
+      </h2>
+
+      <div class="council-card">
+        <div class="council-card-title">
+          🎤 一般質問：篠岡地区の学校再編について
+        </div>
+        <p style="font-size:.9rem; color:var(--text-muted); margin-bottom:1.2rem;">
+          パブリックコメントの結果と住民への情報共有、再編計画の内容と理由、
+          住民意見への市の対応姿勢について、3つの観点から質疑が行われました。
+        </p>
+
+        <div class="qa-block">
+          <div class="qa-q">
+            パブリックコメントで寄せられた意見の傾向や主な内容、それに対する市の考え方を教えてください。
+            また、住民への情報共有・理解促進に向けた今後の取り組みについてもお聞かせください。
+          </div>
+          <div class="qa-a">
+            地域住民への説明会や意見聴取を複数回実施してきました。
+            引き続き、計画の内容について理解を深めていただけるよう取り組んでまいります。
+          </div>
+        </div>
+
+        <div class="qa-block">
+          <div class="qa-q">
+            再編計画では学校区が複数に分かれるなど、地域の実情に合っているか疑問に感じます。
+            計画の具体的な内容とその理由、そして地域の実情に合った再編となっているかについてお聞かせください。
+          </div>
+          <div class="qa-a">
+            篠岡地区の小学校を統合・再編するものです。近年の少子化・児童数の減少により
+            学校規模が小さくなっており、子どもたちが多様な仲間と切磋琢磨できる教育環境を整えるために
+            再編を進めています。21〜25人程度のクラス替えが可能な学級規模を確保することが必要です。
+            学区内で通学距離が長くなる児童に対してはスクールバスを計画しており、
+            篠岡地区はほぼ全域で距離的な課題があるため、広域での配備を行う考えです。
+          </div>
+        </div>
+
+        <div class="qa-block">
+          <div class="qa-q">
+            （再質問）パブリックコメントでは計画の見直し・中止を求める意見が多数寄せられていますが、
+            どのようにお受け止めでしょうか。住民の意見を十分に取り入れているといえますか。
+          </div>
+          <div class="qa-a">
+            寄せられた意見を切り捨てることなく、丁寧に対応してきました。
+            拙速に進めるのではなく、十分な情報公開・説明を行った上で進めていきます。
+            一日も早く子どもたちのために安定した教育環境を整えることが使命と考えています。
+          </div>
+        </div>
+      </div>
+
+      <!-- パブコメへの言及 -->
+      <div class="council-card" style="border-left:5px solid var(--against-color);">
+        <div class="council-card-title" style="color:var(--against-color);">
+          ⚠️ 一般質問で浮き彫りになった論点：パブリックコメントへの評価
+        </div>
+        <p style="font-size:.92rem;">
+          一般質問の中では、パブリックコメントで寄せられた意見のうち
+          <strong>計画の「見直し・中止」を求める割合が高い</strong>ことが指摘され、
+          市の対応の十分性が問われました。
+          これに対し市側は「丁寧に対応してきた」「情報公開を尽くして進める」と答弁し、
+          計画を推進する姿勢を崩しませんでした。
+        </p>
+        <div style="margin-top:.8rem;">
+          <a href="voices.html" class="card-link">パブリックコメントの詳細・住民の声を見る →</a>
+        </div>
+      </div>
+
+      <!-- ============================
+           請願
+           ============================ -->
+      <h2 class="section-title" style="margin-top:2.5rem; margin-bottom:1.2rem;">
+        請願の審議結果
+        <small>住民からの要求</small>
+      </h2>
+
+      <div class="council-card">
+        <div class="council-card-title">
+          📝 「住民合意のない学校再編・統廃合の中止を求める請願書」
+          <span class="result-badge result-badge--fail">不採択</span>
+        </div>
+        <p style="font-size:.92rem; margin-bottom:.8rem;">
+          住民から、学校再編を住民合意なく進めることの中止を求める請願書が提出されましたが、
+          議会での審議の結果、<strong>不採択</strong>となりました。
+        </p>
+        <div style="background:#fde8e6; border-radius:var(--radius-sm); padding:.8rem 1rem; font-size:.87rem; color:#5a1a18;">
+          <strong>不採択の意味：</strong>
+          議会が請願の趣旨（再編中止）を認めなかったことを意味します。
+          学校再編計画は引き続き推進される方針です。
+        </div>
+      </div>
+
+      <!-- ============================
+           表決結果まとめ
+           ============================ -->
+      <h2 class="section-title" style="margin-top:2.5rem; margin-bottom:1.2rem;">
+        再編関連議案の表決結果まとめ
+        <small>賛否一覧</small>
+      </h2>
+
+      <div class="council-card">
+        <table class="vote-table">
+          <thead>
+            <tr>
+              <th>議案・案件</th>
+              <th>種別</th>
+              <th>結果</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>小牧市市立学校設置条例の一部を改正する条例の制定</td>
+              <td>条例案</td>
+              <td class="vote-pass">賛成多数で可決 ★</td>
+            </tr>
+            <tr>
+              <td>篠岡地区スクールバス運行（債務負担行為）</td>
+              <td>予算関連</td>
+              <td class="vote-pass">委員会で可決</td>
+            </tr>
+            <tr>
+              <td>住民合意のない学校再編・統廃合の中止を求める請願書</td>
+              <td>請願</td>
+              <td class="vote-fail">不採択</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size:.8rem; color:var(--text-muted); margin-top:.6rem;">
+          ★ 市議会だよりで「表決結果の分かれた議案」として掲載されているもの（全員一致ではない）。
+          個々の議員の賛否の詳細は市議会だより No.214 の表決一覧表をご確認ください。
+        </p>
+      </div>
+
+      <!-- ============================
+           ポイントまとめ
+           ============================ -->
+      <div class="council-card" style="background:var(--accent-light); border-color:var(--accent); border-left:5px solid var(--accent);">
+        <div class="council-card-title">
+          📌 この定例会のポイントまとめ
+        </div>
+        <ul class="point-list">
+          <li>
+            学校再編の法的根拠となる<strong>設置条例の改正案が賛成多数で可決</strong>され、
+            新校（桃花台東小・西小・東中・西中）の設置と旧校廃止が条例上で確定した。
+          </li>
+          <li>
+            委員会では<strong>スクールバスの運行スケジュール</strong>（令和8年度プレ登校→体験乗車→令和9年度本格運行）について確認された。
+          </li>
+          <li>
+            一般質問では<strong>パブリックコメントへの対応</strong>や住民への情報共有が焦点となり、
+            見直し・中止を求める意見が多い点が指摘されたが、市は推進姿勢を維持。
+          </li>
+          <li>
+            住民から提出された<strong>「再編中止を求める請願書」は不採択</strong>となった。
+          </li>
+          <li>
+            条例改正案・請願ともに全員一致ではなく、議会内でも<strong>賛否が分かれる審議</strong>となった。
+          </li>
+        </ul>
+      </div>
+
+      <!-- 出典 -->
+      <div class="source-box">
+        <strong>出典・参考資料</strong><br>
+        このページは小牧市議会だより No.214（令和8年5月発行）の内容をもとに、
+        市民向けにわかりやすく要約・再構成したものです。
+        議員名・賛否の詳細・正確な答弁内容は必ず原文でご確認ください。
+        このサイトは小牧市の公式サイトではなく、市民有志による非公式の情報提供サイトです。
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-title">小牧市東部（篠岡地区）学校再編計画 市民情報サイト</div>
+        <p style="font-size:.82rem;">篠岡地区の学校再編計画について、小牧市公式情報をもとにわかりやすく情報提供することを目的とした市民有志サイトです。</p>
+      </div>
+      <div>
+        <div class="footer-title">ページ一覧</div>
+        <ul class="footer-links">
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="about.html">計画概要</a></li>
+          <li><a href="schedule.html">スケジュール</a></li>
+          <li><a href="voices.html">賛否の声</a></li>
+          <li><a href="faq.html">よくある質問</a></li>
+          <li><a href="council.html">議会審議</a></li>
+          <li><a href="map.html">学校の場所（地図）</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-title">参考リンク（公式）</div>
+        <ul class="footer-links">
+          <li><a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener">小牧市 学校再編計画（市公式）</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 小牧市東部（篠岡地区）学校再編計画 市民情報サイト（非公式）｜このサイトは市民有志が運営しており、小牧市・教育委員会とは無関係です。
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ハンバーガーメニュー
+  const hamburger = document.querySelector('.hamburger');
+  const navUl = document.querySelector('nav ul');
+  if (hamburger && navUl) {
+    hamburger.addEventListener('click', () => {
+      navUl.classList.toggle('nav-open');
+      hamburger.classList.toggle('is-active');
+    });
+  }
+</script>
+
+</body>
+</html>
