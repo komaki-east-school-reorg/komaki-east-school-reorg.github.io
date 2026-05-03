@@ -152,7 +152,11 @@
     '2026-01-13','2026-02-07',
   ]);
 
-  const DAYS_JA = ['日', '月', '火', '水', '木', '金', '土'];
+  const CAL_LOCALE_MAP = {ja:'ja-JP', en:'en-US', pt:'pt-BR', vi:'vi-VN', tl:'fil-PH', es:'es-ES', zh:'zh-Hans-CN'};
+  function getCalLocale() {
+    try { var l = localStorage.getItem('komaki_lang'); return CAL_LOCALE_MAP[l] || 'ja-JP'; } catch(e) { return 'ja-JP'; }
+  }
+
   const today = new Date();
   today.setHours(0,0,0,0);
 
@@ -163,7 +167,11 @@
 
   function renderCalendar(year, month) {
     const monthLabel = document.getElementById('cal-month-label');
-    monthLabel.textContent = `${year}年${month + 1}月`;
+    try {
+      monthLabel.textContent = new Intl.DateTimeFormat(getCalLocale(), {year:'numeric', month:'long'}).format(new Date(year, month, 1));
+    } catch(e) {
+      monthLabel.textContent = year + '年' + (month + 1) + '月';
+    }
 
     const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -219,5 +227,11 @@
   });
 
   renderCalendar(currentYear, currentMonth);
+
+  document.querySelectorAll('.lang-select').forEach(function(sel) {
+    sel.addEventListener('change', function() {
+      renderCalendar(currentYear, currentMonth);
+    });
+  });
 })();
 
