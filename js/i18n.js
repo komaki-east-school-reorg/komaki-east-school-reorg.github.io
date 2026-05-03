@@ -17,6 +17,7 @@
       nav_faq: 'よくある質問',
       nav_council: '議会審議',
       nav_map: '地図',
+      aria_menu: 'メニュー',
       /* ---- site title ---- */
       site_sub: '市民情報サイト（非公式）',
       /* ---- footer ---- */
@@ -187,6 +188,7 @@
       nav_faq: 'FAQ',
       nav_council: 'Council Proceedings',
       nav_map: 'Map',
+      aria_menu: 'Menu',
       site_sub: 'Community Info Site (Unofficial)',
       footer_title: 'Komaki East School Reorganization – Community Info Site',
       footer_tagline: 'A volunteer community site providing easy-to-understand information on the Shinooka school reorganization plan, based on official Komaki City sources.',
@@ -341,6 +343,7 @@
       nav_faq: 'Perguntas Frequentes',
       nav_council: 'Deliberações do Conselho',
       nav_map: 'Mapa',
+      aria_menu: 'Menu',
       site_sub: 'Site Informativo da Comunidade (Não Oficial)',
       footer_title: 'Reorganização Escolar do Leste de Komaki – Site Informativo',
       footer_tagline: 'Site de voluntários comunitários com informações sobre o plano de reorganização escolar Shinooka, baseado em fontes oficiais de Komaki.',
@@ -495,6 +498,7 @@
       nav_faq: 'Câu hỏi thường gặp',
       nav_council: 'Nghị quyết hội đồng',
       nav_map: 'Bản đồ',
+      aria_menu: 'Menu',
       site_sub: 'Trang thông tin cộng đồng (Không chính thức)',
       footer_title: 'Tái cơ cấu trường học phía Đông Komaki – Trang thông tin cộng đồng',
       footer_tagline: 'Trang web tình nguyện cộng đồng cung cấp thông tin dễ hiểu về kế hoạch tái cơ cấu trường học Shinooka, dựa trên nguồn thông tin chính thức của Komaki.',
@@ -649,6 +653,7 @@
       nav_faq: 'Mga Madalas na Tanong',
       nav_council: 'Mga Talakayan ng Konseho',
       nav_map: 'Mapa',
+      aria_menu: 'Menu',
       site_sub: 'Site ng Impormasyon ng Komunidad (Di-Opisyal)',
       footer_title: 'Muling Pagsasaayos ng Paaralan sa Silangan ng Komaki – Site ng Impormasyon',
       footer_tagline: 'Isang volunteer na site ng komunidad na nagbibigay ng madaling maunawaang impormasyon tungkol sa plano ng muling pagsasaayos ng paaralan ng Shinooka, batay sa opisyal na pinagkukunan ng Komaki.',
@@ -803,6 +808,7 @@
       nav_faq: 'Preguntas Frecuentes',
       nav_council: 'Deliberaciones del Consejo',
       nav_map: 'Mapa',
+      aria_menu: 'Menú',
       site_sub: 'Sitio de Información Comunitaria (No Oficial)',
       footer_title: 'Reorganización Escolar del Este de Komaki – Sitio de Información',
       footer_tagline: 'Sitio comunitario de voluntarios que proporciona información fácil de entender sobre el plan de reorganización escolar de Shinooka, basado en fuentes oficiales de Komaki.',
@@ -957,6 +963,7 @@
       nav_faq: '常见问题',
       nav_council: '议会审议',
       nav_map: '地图',
+      aria_menu: '菜单',
       site_sub: '市民信息网站（非官方）',
       footer_title: '小牧市东部（篠岡地区）学校重组计划 市民信息网站',
       footer_tagline: '本网站由市民志愿者运营，旨在以官方信息为基础，提供易于理解的篠岡地区学校重组计划信息。',
@@ -1114,6 +1121,10 @@
     document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
       var key = el.dataset.i18nHtml;
       if (dict[key] != null) el.innerHTML = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+      var key = el.dataset.i18nAria;
+      if (dict[key] != null) el.setAttribute('aria-label', dict[key]);
     });
     document.querySelectorAll('.lang-select').forEach(function (sel) {
       sel.value = lang;

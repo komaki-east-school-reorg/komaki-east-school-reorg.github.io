@@ -69,6 +69,22 @@
   const container = document.getElementById('official-news-container');
   if (!container) return;
 
+  var _nl = 'ja';
+  try { _nl = localStorage.getItem('komaki_lang') || 'ja'; } catch(e) {}
+  var _nt = {
+    no_items: {ja:'直近{d}日以内に更新された情報はありません。', en:'No updates found in the past {d} days.', pt:'Nenhuma atualização nos últimos {d} dias.', vi:'Không có cập nhật trong {d} ngày qua.', tl:'Walang mga update sa nakalipas na {d} araw.', es:'No hay actualizaciones en los últimos {d} días.', zh:'近{d}天内暂无更新。'},
+    see_all:  {ja:'公式サイトで全ての情報を確認する →', en:'View all on the official site →', pt:'Ver tudo no site oficial →', vi:'Xem tất cả trên trang chính thức →', tl:'Tingnan ang lahat sa opisyal na site →', es:'Ver todo en el sitio oficial →', zh:'在官方网站查看全部信息 →'},
+    showing:  {ja:'直近{d}日以内に更新されたページを表示しています', en:'Showing pages updated in the past {d} days', pt:'Exibindo páginas atualizadas nos últimos {d} dias', vi:'Hiển thị các trang cập nhật trong {d} ngày qua', tl:'Ipinapakita ang mga pahinang na-update sa nakalipas na {d} araw', es:'Mostrando páginas actualizadas en los últimos {d} días', zh:'显示近{d}天内更新的页面'},
+    updated:  {ja:' 更新', en:' updated', pt:' atualizado', vi:' cập nhật', tl:' na-update', es:' actualizado', zh:' 更新'},
+    error:    {ja:'情報の取得に失敗しました。', en:'Failed to load information.', pt:'Falha ao carregar as informações.', vi:'Không tải được thông tin.', tl:'Nabigo ang pag-load ng impormasyon.', es:'Error al cargar la información.', zh:'信息加载失败。'},
+    official: {ja:'公式サイト', en:'official website', pt:'site oficial', vi:'trang chính thức', tl:'opisyal na site', es:'sitio oficial', zh:'官方网站'},
+    check:    {ja:'をご確認ください。', en:'.', pt:'.', vi:'.', tl:'.', es:'.', zh:'。'},
+  };
+  function ntr(key, d) {
+    var s = (_nt[key][_nl] || _nt[key]['ja']);
+    return d !== undefined ? s.replace('{d}', d) : s;
+  }
+
   fetch('./data/news.json')
     .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(data => {
@@ -77,16 +93,14 @@
 
       if (items.length === 0) {
         container.innerHTML =
-          `<p class="official-news-loading">直近${days}日以内に更新された情報はありません。</p>` +
-          `<a href="${data.source_url}" target="_blank" rel="noopener" class="card-link">` +
-            `公式サイトで全ての情報を確認する →` +
-          `</a>`;
+          `<p class="official-news-loading">${ntr('no_items', days)}</p>` +
+          `<a href="${data.source_url}" target="_blank" rel="noopener" class="card-link">${ntr('see_all')}</a>`;
         return;
       }
 
       const listHtml = items.map(item => {
         const date = item.updated_at
-          ? `<span class="official-news-date">${item.updated_at} 更新</span>`
+          ? `<span class="official-news-date">${item.updated_at}${ntr('updated')}</span>`
           : '';
         return `<li class="official-news-item">` +
                  `<div class="official-news-item-inner">` +
@@ -97,18 +111,16 @@
       }).join('');
 
       container.innerHTML =
-        `<div class="official-news-meta">直近${days}日以内に更新されたページを表示しています</div>` +
+        `<div class="official-news-meta">${ntr('showing', days)}</div>` +
         `<ul class="official-news-list">${listHtml}</ul>` +
-        `<a href="${data.source_url}" target="_blank" rel="noopener" class="card-link">` +
-          `公式サイトで全ての情報を確認する →` +
-        `</a>`;
+        `<a href="${data.source_url}" target="_blank" rel="noopener" class="card-link">${ntr('see_all')}</a>`;
     })
     .catch(() => {
       container.innerHTML =
         `<p class="official-news-error">` +
-          `情報の取得に失敗しました。` +
+          `${ntr('error')}` +
           `<a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html"` +
-          ` target="_blank" rel="noopener">公式サイト</a>をご確認ください。` +
+          ` target="_blank" rel="noopener">${ntr('official')}</a>${ntr('check')}` +
         `</p>`;
     });
 })();
@@ -155,6 +167,17 @@
   const CAL_LOCALE_MAP = {ja:'ja-JP', en:'en-US', pt:'pt-BR', vi:'vi-VN', tl:'fil-PH', es:'es-ES', zh:'zh-Hans-CN'};
   function getCalLocale() {
     try { var l = localStorage.getItem('komaki_lang'); return CAL_LOCALE_MAP[l] || 'ja-JP'; } catch(e) { return 'ja-JP'; }
+  }
+
+  var _ct = {
+    done_marker: {ja:'済', en:'✓', pt:'✓', vi:'✓', tl:'✓', es:'✓', zh:'✓'},
+    done_prefix: {ja:'[済] ', en:'[Done] ', pt:'[Concluído] ', vi:'[Xong] ', tl:'[Tapos] ', es:'[Hecho] ', zh:'[已完成] '},
+    plan_prefix: {ja:'[予定] ', en:'[Planned] ', pt:'[Previsto] ', vi:'[KH] ', tl:'[Nakatakda] ', es:'[Previsto] ', zh:'[计划] '},
+  };
+  function ctr(key) {
+    var l = 'ja';
+    try { l = localStorage.getItem('komaki_lang') || 'ja'; } catch(e) {}
+    return _ct[key][l] || _ct[key]['ja'];
   }
 
   const today = new Date();
@@ -206,9 +229,9 @@
         const dot = document.createElement('span');
         const isPast = pastDates.has(key);
         dot.className = 'cal-event-dot' + (isPast ? ' past' : '');
-        dot.textContent = (isPast ? '済 ' : '★ ') + events[key];
+        dot.textContent = (isPast ? ctr('done_marker') + ' ' : '★ ') + events[key];
         cell.appendChild(dot);
-        cell.title = (isPast ? '[済] ' : '[予定] ') + events[key];
+        cell.title = (isPast ? ctr('done_prefix') : ctr('plan_prefix')) + events[key];
       }
 
       grid.appendChild(cell);
@@ -234,4 +257,3 @@
     });
   });
 })();
-
