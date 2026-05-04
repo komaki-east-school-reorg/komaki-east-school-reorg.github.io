@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- 桃花台の桃の花（5枚）＋学校（紺）をイメージした幾何学デザイン -->
+  <rect width="32" height="32" rx="6" fill="#2e5c3a"/>
+  <g transform="translate(16,16)">
+    <!-- 5枚の幾何学的花弁（ダイヤモンド形・72°間隔） -->
+    <polygon points="0,-11 3,-6 0,-2 -3,-6" fill="#f4a0b4" transform="rotate(0)"/>
+    <polygon points="0,-11 3,-6 0,-2 -3,-6" fill="#f4a0b4" transform="rotate(72)"/>
+    <polygon points="0,-11 3,-6 0,-2 -3,-6" fill="#f4a0b4" transform="rotate(144)"/>
+    <polygon points="0,-11 3,-6 0,-2 -3,-6" fill="#f4a0b4" transform="rotate(216)"/>
+    <polygon points="0,-11 3,-6 0,-2 -3,-6" fill="#f4a0b4" transform="rotate(288)"/>
+    <!-- 白い中心円（学校） -->
+    <circle r="3" fill="#ffffff"/>
+  </g>
+</svg>
