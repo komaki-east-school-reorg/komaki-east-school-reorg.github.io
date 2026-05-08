@@ -131,32 +131,38 @@
   if (!calContainer) return;
 
   const events = {
-    '2025-05-10': '第1回「学校を考える会」',
-    '2025-05-30': '第2回「学校を考える会」',
-    '2025-06-13': '地域協議会代表者報告',
-    '2025-06-14': '区長会報告（1回目）',
-    '2025-06-27': '第3回「学校を考える会」',
-    '2025-07-27': '城山3・4丁目説明会',
-    '2025-08-24': '第1回保護者等意見交換会',
-    '2025-08-30': '第2・3回保護者等意見交換会',
-    '2025-09-21': '住民説明会',
-    '2025-09-26': '区長会報告（2回目）',
-    '2025-10-11': '第4回「学校を考える会」',
-    '2025-11-02': '区長会報告（3回目）',
-    '2025-11-10': 'パブコメ開始・新校名アンケート開始',
-    '2025-11-27': '地域協議会代表者報告（2回目）',
-    '2025-12-09': 'パブリックコメント締切（55件）',
-    '2026-01-13': '通学区域審議会',
-    '2026-02-07': '第5回「学校を考える会」',
-    '2026-05-18': '校章デザイン募集締切',
-    '2026-06-06': '保護者等説明会（桃陵中）',
-    '2026-06-07': '保護者等説明会（篠岡中）',
-    '2026-06-14': '保護者等説明会（陶小）',
-    '2026-06-20': '保護者等説明会（大城小）',
-    '2026-06-21': '保護者等説明会（光ヶ丘中）',
-    '2026-06-29': '保護者等説明会（東部市民センター）',
-    '2027-04-01': '第1期再編 実施予定（しのおか学園）',
+    '2025-05-10': {ja:'第1回「学校を考える会」',         en:'1st School Discussion Meeting',          pt:'1ª Reunião de Discussão Escolar',         vi:'Cuộc họp thảo luận lần 1',              tl:'Ika-1 Pagpupulong ng Talakayan',       es:'1ª Reunión de Debate Escolar',          zh:'第1次学校研讨会'},
+    '2025-05-30': {ja:'第2回「学校を考える会」',         en:'2nd School Discussion Meeting',          pt:'2ª Reunião de Discussão Escolar',         vi:'Cuộc họp thảo luận lần 2',              tl:'Ika-2 Pagpupulong ng Talakayan',       es:'2ª Reunión de Debate Escolar',          zh:'第2次学校研讨会'},
+    '2025-06-13': {ja:'地域協議会代表者報告',             en:'Community Council Report',               pt:'Relatório ao Conselho Comunitário',        vi:'Báo cáo Hội đồng Cộng đồng',           tl:'Ulat sa Konseho ng Komunidad',         es:'Informe al Consejo Comunitario',         zh:'社区委员会报告'},
+    '2025-06-14': {ja:'区長会報告（1回目）',              en:'Neighborhood Assoc. Report (1st)',        pt:'Relatório Assoc. de Bairro (1º)',          vi:'Báo cáo Hội Khu dân cư (1)',            tl:'Ulat ng Samahan ng Kapitbahayan (1)',   es:'Informe Asoc. Vecinos (1º)',             zh:'自治区协会报告（第1次）'},
+    '2025-06-27': {ja:'第3回「学校を考える会」',         en:'3rd School Discussion Meeting',          pt:'3ª Reunião de Discussão Escolar',         vi:'Cuộc họp thảo luận lần 3',              tl:'Ika-3 Pagpupulong ng Talakayan',       es:'3ª Reunión de Debate Escolar',          zh:'第3次学校研讨会'},
+    '2025-07-27': {ja:'城山3・4丁目説明会',              en:'Shiroyama 3&4-chome Briefing',           pt:'Reunião Shiroyama 3&4 Bairros',           vi:'Buổi thông báo Shiroyama 3&4',          tl:'Briefing Shiroyama 3&4-chome',         es:'Charla Shiroyama 3º y 4º barrios',       zh:'城山3&4丁目说明会'},
+    '2025-08-24': {ja:'第1回保護者等意見交換会',          en:'1st Parent Opinion Exchange',            pt:'1ª Reunião de Opiniões de Pais',          vi:'Trao đổi ý kiến PH lần 1',              tl:'Ika-1 Pagpapalitan ng Opinyon',        es:'1ª Reunión Intercambio Padres',          zh:'第1次家长意见交流会'},
+    '2025-08-30': {ja:'第2・3回保護者等意見交換会',       en:'2nd & 3rd Parent Opinion Exchange',      pt:'2ª e 3ª Reuniões de Opiniões',            vi:'Trao đổi ý kiến PH lần 2&3',            tl:'Ika-2 at 3 na Pagpapalitan',           es:'2ª y 3ª Reuniones Intercambio',          zh:'第2次&第3次家长意见交流会'},
+    '2025-09-21': {ja:'住民説明会',                      en:'Community Briefing',                     pt:'Reunião Comunitária',                     vi:'Buổi Thông báo Cộng đồng',             tl:'Briefing sa Komunidad',                es:'Charla Comunitaria',                     zh:'社区说明会'},
+    '2025-09-26': {ja:'区長会報告（2回目）',              en:'Neighborhood Assoc. Report (2nd)',        pt:'Relatório Assoc. de Bairro (2º)',          vi:'Báo cáo Hội Khu dân cư (2)',            tl:'Ulat ng Samahan ng Kapitbahayan (2)',   es:'Informe Asoc. Vecinos (2º)',             zh:'自治区协会报告（第2次）'},
+    '2025-10-11': {ja:'第4回「学校を考える会」',         en:'4th School Discussion Meeting',          pt:'4ª Reunião de Discussão Escolar',         vi:'Cuộc họp thảo luận lần 4',              tl:'Ika-4 Pagpupulong ng Talakayan',       es:'4ª Reunión de Debate Escolar',          zh:'第4次学校研讨会'},
+    '2025-11-02': {ja:'区長会報告（3回目）',              en:'Neighborhood Assoc. Report (3rd)',        pt:'Relatório Assoc. de Bairro (3º)',          vi:'Báo cáo Hội Khu dân cư (3)',            tl:'Ulat ng Samahan ng Kapitbahayan (3)',   es:'Informe Asoc. Vecinos (3º)',             zh:'自治区协会报告（第3次）'},
+    '2025-11-10': {ja:'パブコメ開始・新校名アンケート開始', en:'Public Comment Opens / Name Survey',   pt:'Com. Público Abre / Pesquisa de Nome',    vi:'Lấy ý kiến bắt đầu / Khảo sát tên',    tl:'Simula ng Pampublikong Komento',       es:'Com. Público Abre / Encuesta Nombre',    zh:'公众意见征集开始·新校名调查'},
+    '2025-11-27': {ja:'地域協議会代表者報告（2回目）',     en:'Community Council Report (2nd)',         pt:'Relatório ao Conselho Comunitário (2º)',  vi:'Báo cáo HĐ Cộng đồng (2)',              tl:'Ulat sa Konseho ng Komunidad (2)',      es:'Informe al Consejo Comunitario (2º)',    zh:'社区委员会报告（第2次）'},
+    '2025-12-09': {ja:'パブリックコメント締切（55件）',   en:'Public Comment Closes (55 subs.)',       pt:'Com. Público Encerra (55)',               vi:'Hết hạn ý kiến công cộng (55)',         tl:'Pagtatapos ng Pampublikong Komento',   es:'Com. Público Cierra (55 envíos)',        zh:'公众意见截止（55件）'},
+    '2026-01-13': {ja:'通学区域審議会',                  en:'School District Advisory Cmte.',         pt:'Comitê de Distrito Escolar',              vi:'Ủy ban Tư vấn Khu vực Trường',         tl:'Komite ng Distrito ng Paaralan',       es:'Comité del Distrito Escolar',            zh:'学区审议委员会'},
+    '2026-02-07': {ja:'第5回「学校を考える会」',         en:'5th School Discussion Meeting',          pt:'5ª Reunião de Discussão Escolar',         vi:'Cuộc họp thảo luận lần 5',              tl:'Ika-5 Pagpupulong ng Talakayan',       es:'5ª Reunión de Debate Escolar',          zh:'第5次学校研讨会'},
+    '2026-05-18': {ja:'校章デザイン募集締切',             en:'School Emblem Design Deadline',          pt:'Prazo do Concurso de Emblema',            vi:'Hạn chót thiết kế huy hiệu',            tl:'Deadline ng Disenyo ng Sagisag',       es:'Plazo Diseño Emblema Escolar',           zh:'校徽设计截止日期'},
+    '2026-06-06': {ja:'保護者等説明会（桃陵中）',         en:'Parent Briefing (Toryou JHS)',           pt:'Sessão Pais (JHS Toryou)',                vi:'Thông tin PH (THCS Toryou)',            tl:'Briefing Magulang (Toryou JHS)',        es:'Sesión Padres (JHS Toryou)',             zh:'家长说明会（登竜中）'},
+    '2026-06-07': {ja:'保護者等説明会（篠岡中）',         en:'Parent Briefing (Shinooka JHS)',         pt:'Sessão Pais (JHS Shinooka)',              vi:'Thông tin PH (THCS Shinooka)',          tl:'Briefing Magulang (Shinooka JHS)',      es:'Sesión Padres (JHS Shinooka)',           zh:'家长说明会（篠岡中）'},
+    '2026-06-14': {ja:'保護者等説明会（陶小）',           en:'Parent Briefing (Sue Elem.)',            pt:'Sessão Pais (Sue Elem.)',                 vi:'Thông tin PH (TH Sue)',                 tl:'Briefing Magulang (Sue Elem.)',         es:'Sesión Padres (Sue Elem.)',              zh:'家长说明会（陶小）'},
+    '2026-06-20': {ja:'保護者等説明会（大城小）',         en:'Parent Briefing (Oshiro Elem.)',         pt:'Sessão Pais (Oshiro Elem.)',              vi:'Thông tin PH (TH Oshiro)',              tl:'Briefing Magulang (Oshiro Elem.)',      es:'Sesión Padres (Oshiro Elem.)',           zh:'家长说明会（大城小）'},
+    '2026-06-21': {ja:'保護者等説明会（光ヶ丘中）',       en:'Parent Briefing (Hikarigaoka JHS)',      pt:'Sessão Pais (JHS Hikarigaoka)',           vi:'Thông tin PH (THCS Hikarigaoka)',       tl:'Briefing Magulang (Hikarigaoka JHS)',   es:'Sesión Padres (JHS Hikarigaoka)',        zh:'家长说明会（光丘中）'},
+    '2026-06-29': {ja:'保護者等説明会（東部市民センター）', en:'Parent Briefing (East Community Ctr.)', pt:'Sessão Pais (Centro Comunit. Leste)',     vi:'Thông tin PH (TT Cộng đồng Đông)',     tl:'Briefing Magulang (Sentro Komunidad)',  es:'Sesión Padres (Centro Comunit. Este)',   zh:'家长说明会（东部市民中心）'},
+    '2027-04-01': {ja:'第1期再編 実施予定（しのおか学園）', en:'Phase 1 Reorganization (Shinooka Gakuen)', pt:'Fase 1 Reorganização (Shinooka Gakuen)', vi:'Tái cơ cấu GĐ1 (Shinooka Gakuen)',    tl:'Bahagi 1 Muling Pagsasaayos',          es:'Fase 1 Reorganización (Shinooka Gakuen)', zh:'第1期整合（篠岡学园）'},
   };
+  function getEventLabel(key) {
+    var l = 'ja';
+    try { l = localStorage.getItem('komaki_lang') || 'ja'; } catch(e) {}
+    var ev = events[key];
+    return ev ? (ev[l] || ev.ja) : '';
+  }
   const pastDates = new Set([
     '2025-05-10','2025-05-30','2025-06-13','2025-06-14','2025-06-27',
     '2025-07-27','2025-08-24','2025-08-30','2025-09-21','2025-09-26',
@@ -229,9 +235,9 @@
         const dot = document.createElement('span');
         const isPast = pastDates.has(key);
         dot.className = 'cal-event-dot' + (isPast ? ' past' : '');
-        dot.textContent = (isPast ? ctr('done_marker') + ' ' : '★ ') + events[key];
+        dot.textContent = (isPast ? ctr('done_marker') + ' ' : '★ ') + getEventLabel(key);
         cell.appendChild(dot);
-        cell.title = (isPast ? ctr('done_prefix') : ctr('plan_prefix')) + events[key];
+        cell.title = (isPast ? ctr('done_prefix') : ctr('plan_prefix')) + getEventLabel(key);
       }
 
       grid.appendChild(cell);
