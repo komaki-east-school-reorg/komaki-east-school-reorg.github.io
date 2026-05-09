@@ -198,6 +198,7 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   position: relative;
 }
 .hero-badges { display: flex; gap: .7rem; justify-content: center; flex-wrap: wrap; position: relative; }
+.hero-illustration { display: block; margin: 1.8rem auto 0; max-width: 280px; width: 85%; }
 .badge {
   background: rgba(255,255,255,.18);
   border: 1.5px solid rgba(255,255,255,.45);
