@@ -153,7 +153,7 @@
       merit5_p: '小規模校では<strong>経験年数・専門性のバランスがとれた教職員配置が難しい</strong>という課題があります。再編により適切な規模となり、多様な指導力・専門性を生かした教育活動が充実します。',
       merit6_h: '整備された教育環境',
       merit6_p: '篠岡小学校は<strong>1958年建築・築67年</strong>、篠岡中学校は1965年建築・築60年です。再編により建替えを計画的に実施し、<strong>安全・快適な最新の教育環境</strong>を整備することができます。',
-      about_merits_survey_box: '<strong>📊 保護者アンケート（令和7年7月・回答471人）「学校再編に期待すること」上位：</strong><br>🥇 部活動・クラブ活動の選択肢が広がること <strong>55.2%</strong><br>🥈 主体性・協調性を集団の中で育む機会 <strong>52.2%</strong><br>🥉 多くの友達ができる環境 <strong>48.6%</strong><br><span style="font-size:.82rem;"><a href="https://www.city.komaki.aichi.jp/material/files/group/47/anke_hogosya.pdf" target="_blank" rel="noopener">📄 出典：小牧市 保護者アンケート調査結果（PDF）</a></span>',
+      about_merits_survey_box: '<strong>📊 保護者アンケート（令和7年7月・回答471人）「学校再編に期待すること」上位：</strong><br>🥇 部活動・クラブ活動の選択肢が広がること <strong>55.2%</strong><br>🥈 主体性・協調性を集団の中で育む機会 <strong>52.2%</strong><br>🥉 多くの友達ができる環境 <strong>48.6%</strong><br><span style="font-size:.82rem;"><a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener">📄 出典：小牧市 学校再編計画 公式ページ</a></span>',
       /* ---- index: merits summary ---- */
       index_merits_h3: '再編で期待される主な効果',
       merit_stat1_num: '55.2%',
@@ -655,7 +655,7 @@
       merit5_p: 'Small schools struggle to maintain <strong>a well-balanced mix of experienced and specialist teachers</strong>. Larger schools enable better staffing, allowing diverse teaching expertise to be fully utilized.',
       merit6_h: 'Updated School Facilities',
       merit6_p: 'Shinooka Elementary School was built in <strong>1958 — now 67 years old</strong>; Shinooka Junior High in 1965. Reorganization allows the city to carry out planned replacements and provide students with <strong>safe, modern learning environments</strong>.',
-      about_merits_survey_box: '<strong>📊 Parent Survey (July 2025, 471 responses) — Top expectations for reorganization:</strong><br>🥇 Wider range of clubs & extracurricular activities <strong>55.2%</strong><br>🥈 Opportunities to develop independence & teamwork <strong>52.2%</strong><br>🥉 An environment with more friends <strong>48.6%</strong><br><span style="font-size:.82rem;"><a href="https://www.city.komaki.aichi.jp/material/files/group/47/anke_hogosya.pdf" target="_blank" rel="noopener">📄 Source: Komaki City Parent Survey Results (PDF)</a></span>',
+      about_merits_survey_box: '<strong>📊 Parent Survey (July 2025, 471 responses) — Top expectations for reorganization:</strong><br>🥇 Wider range of clubs & extracurricular activities <strong>55.2%</strong><br>🥈 Opportunities to develop independence & teamwork <strong>52.2%</strong><br>🥉 An environment with more friends <strong>48.6%</strong><br><span style="font-size:.82rem;"><a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener">📄 Source: Komaki City School Reorganization Official Page</a></span>',
       /* ---- index: merits summary ---- */
       index_merits_h3: 'Expected Benefits',
       merit_stat1_label: 'Wider club & extracurricular options',
