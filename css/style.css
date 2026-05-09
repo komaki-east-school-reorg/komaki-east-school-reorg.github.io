@@ -1006,6 +1006,7 @@ footer {
   header { position: sticky; }
   .site-title { font-size: .88rem; }
   .site-title span { font-size: .65rem; }
+  .lang-select { width: 6.9rem; }
   .notice-banner { font-size: .72rem; padding: .45rem .8rem; }
 
   .hero { padding: 2.8rem 1rem 2.2rem; }
