@@ -96,7 +96,7 @@ nav {
 nav ul {
   display: flex;
   list-style: none;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: .18rem .12rem;
 }
 .nav-break { display: none; }
