@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>地域協議会と学校再編 – 小牧市東部（篠岡地区）学校再編計画</title>
+  <meta name="description" content="小牧市篠岡地区の地域協議会とは何か。学校区と地域協議会の関係、学校再編後に変わること・変わらないことを解説します。">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="小牧市東部（篠岡地区）学校再編計画 市民情報サイト（非公式）">
+  <meta property="og:title" content="地域協議会と学校再編 – 小牧市東部（篠岡地区）学校再編計画">
+  <meta property="og:description" content="小牧市篠岡地区の地域協議会とは何か。学校区と地域協議会の関係、学校再編後に変わること・変わらないことを解説します。">
+  <meta property="og:url" content="https://komaki-east-school-reorg.github.io/community.html">
+  <meta property="og:image" content="https://komaki-east-school-reorg.github.io/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="地域協議会と学校再編 – 小牧市東部（篠岡地区）学校再編計画">
+  <meta name="twitter:description" content="小牧市篠岡地区の地域協議会とは何か。学校区と地域協議会の関係、学校再編後に変わること・変わらないことを解説します。">
+  <meta name="twitter:image" content="https://komaki-east-school-reorg.github.io/img/og-image.png">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .comm-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 1.2rem;
+      box-shadow: var(--shadow);
+    }
+    .comm-card-title {
+      font-family: var(--heading-font);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: .8rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .comm-card p { font-size: .93rem; color: var(--text-muted); margin: .5rem 0; }
+    .comm-card ul {
+      list-style: none;
+      padding: 0;
+      margin: .6rem 0 0;
+    }
+    .comm-card ul li {
+      padding: .35rem 0 .35rem 1.3rem;
+      position: relative;
+      font-size: .92rem;
+      color: var(--text-muted);
+      border-bottom: 1px dashed var(--border);
+    }
+    .comm-card ul li:last-child { border-bottom: none; }
+    .comm-card ul li::before {
+      content: "▶";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: .72rem;
+      top: .5rem;
+    }
+
+    .change-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+      margin-top: .8rem;
+    }
+    .change-table th {
+      background: var(--primary);
+      color: #fff;
+      padding: .6rem 1rem;
+      text-align: left;
+      font-family: var(--heading-font);
+      font-weight: 700;
+    }
+    .change-table td {
+      padding: .6rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .change-table tr:last-child td { border-bottom: none; }
+    .change-table tr:nth-child(even) td { background: var(--primary-light); }
+    .change-tag {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 700;
+      padding: .15rem .6rem;
+      border-radius: var(--radius-pill);
+      font-family: var(--heading-font);
+      margin-right: .4rem;
+      vertical-align: middle;
+    }
+    .change-tag--change { background: #fde8e6; color: #8b1e18; }
+    .change-tag--keep   { background: #d4f0da; color: #1a5c2a; }
+    .change-tag--tbd    { background: #fff3cd; color: #7a5800; }
+
+    .qa-block {
+      border-left: 4px solid var(--accent);
+      padding: .8rem 1rem;
+      margin-bottom: 1rem;
+      background: var(--accent-light);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+    .qa-block:last-child { margin-bottom: 0; }
+    .qa-q {
+      font-weight: 700;
+      color: var(--primary-dark);
+      font-size: .92rem;
+      margin-bottom: .4rem;
+      display: flex;
+      gap: .5rem;
+      align-items: flex-start;
+    }
+    .qa-q::before {
+      content: "Q";
+      background: var(--primary);
+      color: #fff;
+      border-radius: 4px;
+      font-size: .75rem;
+      font-weight: 700;
+      padding: .1rem .45rem;
+      flex-shrink: 0;
+      margin-top: .1rem;
+      font-family: var(--heading-font);
+    }
+    .qa-a {
+      font-size: .9rem;
+      color: var(--text-muted);
+      display: flex;
+      gap: .5rem;
+      align-items: flex-start;
+    }
+    .qa-a::before {
+      content: "A";
+      background: var(--accent);
+      color: #5a3800;
+      border-radius: 4px;
+      font-size: .75rem;
+      font-weight: 700;
+      padding: .1rem .45rem;
+      flex-shrink: 0;
+      margin-top: .1rem;
+      font-family: var(--heading-font);
+    }
+
+    .consider-box {
+      background: var(--primary-light);
+      border-left: 4px solid var(--primary);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      font-size: .92rem;
+      color: var(--text);
+    }
+    .consider-box strong { color: var(--primary-dark); }
+
+    .source-box {
+      background: #f0f4f1;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: .9rem 1.1rem;
+      font-size: .82rem;
+      color: var(--text-muted);
+      margin-top: 2rem;
+    }
+    .source-box a { color: var(--primary); font-weight: 700; }
+
+    @media (max-width: 640px) {
+      .comm-card { padding: 1.1rem 1rem; }
+      .change-table th, .change-table td { padding: .5rem .7rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="notice-banner" data-i18n-html="notice">
+  ⚠️ このサイトは市民有志による情報提供サイトです。小牧市の公式サイトではありません。
+  公式情報は <a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener" style="color:#5a4000; font-weight:700;">小牧市教育委員会のページ</a> をご確認ください。
+</div>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="site-title">
+      小牧市東部（篠岡地区）学校再編計画
+      <span data-i18n="site_sub">市民情報サイト（非公式）</span>
+    </a>
+    <nav>
+      <button class="hamburger" aria-label="メニュー" data-i18n-aria="aria_menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul>
+        <li><a href="about.html" data-i18n="nav_about">計画概要</a></li>
+        <li><a href="schedule.html" data-i18n="nav_schedule">スケジュール</a></li>
+        <li><a href="voices.html" data-i18n="nav_voices">賛否の声</a></li>
+        <li><a href="faq.html" data-i18n="nav_faq">よくある質問</a></li>
+        <li class="nav-break" aria-hidden="true"></li>
+        <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
+        <li><a href="bus.html" data-i18n="nav_bus">スクールバス</a></li>
+        <li><a href="community.html" data-i18n="nav_community">地域協議会</a></li>
+        <li><a href="map.html" data-i18n="nav_map">地図</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <select class="lang-select" aria-label="言語を選択 / Language">
+          <option value="ja">🇯🇵 日本語</option>
+          <option value="en">🇺🇸 English</option>
+          <option value="pt">🇧🇷 Português</option>
+          <option value="vi">🇻🇳 Tiếng Việt</option>
+          <option value="tl">🇵🇭 Filipino</option>
+          <option value="es">🌎 Español</option>
+          <option value="zh">🇨🇳 中文</option>
+          <option value="id">🇮🇩 Bahasa Indonesia</option>
+          <option value="tr">🇹🇷 Türkçe</option>
+        </select>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1 data-i18n="community_h1">地域協議会と学校再編</h1>
+      <p data-i18n="community_p">小牧市篠岡地区の地域協議会とは何か。学校との深い結びつき、そして学校再編によって何が変わり、何が変わらないのかを解説します。</p>
+    </div>
+  </section>
+
+  <!-- SECTION 1: 地域協議会とは -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">地域協議会とは<small>What Is a Community Council?</small></h2>
+
+      <div class="comm-card">
+        <div class="comm-card-title">🏘️ 定義と目的</div>
+        <p>
+          地域協議会（ちいき きょうぎかい）とは、<strong>小学校区を単位として地域住民が自主的に組織した団体</strong>です。
+          自治会・PTA・老人会・スポーツ団体・民生委員など、地域のさまざまな団体が横断的に参加し、
+          地域課題の協議・解決や地域コミュニティの活性化に取り組みます。
+        </p>
+        <p>
+          小牧市では、市内16の小学校区のうち14の小学校区に地域協議会が設立されています（2025年時点）。
+          篠岡地区の5小学校区（篠岡・光ヶ丘・大城・桃ヶ丘・陶）にもそれぞれ設置されています。
+        </p>
+      </div>
+
+      <div class="comm-card">
+        <div class="comm-card-title">📌 陶小学校区地域協議会の例</div>
+        <p>陶小学校区を対象とした地域協議会は、篠岡地区における地域協議会の一例です。</p>
+        <ul>
+          <li><strong>設立：</strong>2014年（平成26年）3月14日、地域住民・関係者約70名が参加して設立総会を開催</li>
+          <li><strong>スローガン：</strong>「むつまじく、心温まる地域」</li>
+          <li><strong>規模：</strong>3,885人・1,775世帯を統括（2026年4月時点）</li>
+          <li><strong>構成地区：</strong>上末・下末・高根など複数の小地域</li>
+        </ul>
+        <p style="margin-top:.8rem;font-size:.85rem;color:var(--text-muted);">
+          ※ 上記は陶小学校区地域協議会の情報です（出典：陶小学校区地域協議会ウェブサイト）。
+          他の4協議会も同様の組織構成・活動を行っています。
+        </p>
+      </div>
+
+      <div class="comm-card">
+        <div class="comm-card-title">📅 主な活動内容</div>
+        <p>地域協議会は、世代を超えた幅広い活動を展開しています。</p>
+        <ul>
+          <li><strong>防災・安全：</strong>広域防災訓練の主催・参加</li>
+          <li><strong>子ども向け行事：</strong>凧あげ大会、餅つき大会、ウォークラリー、ドッチビー大会など</li>
+          <li><strong>地域交流：</strong>夏祭り・花火大会（地域の伝統行事として継続）</li>
+          <li><strong>高齢者支援：</strong>いきいきサロン、オレンジカフェ（認知症カフェ）の開催</li>
+          <li><strong>デジタル支援：</strong>スマートフォン教室の実施</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: 学校との関係 -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">学校と地域協議会の関係<small>Schools & Community Councils</small></h2>
+
+      <div class="comm-card">
+        <div class="comm-card-title">🏫 学校区を基盤とした組織</div>
+        <p>
+          地域協議会の名称には「○○小学校区」とあるように、<strong>小学校区が活動の地理的基盤</strong>です。
+          学校区（通学区域）は地域の社会的なまとまりを示す単位でもあり、
+          地域協議会はその枠組みをもとに、住民同士の横のつながりを育んでいます。
+        </p>
+      </div>
+
+      <div class="comm-card">
+        <div class="comm-card-title">🤝 コミュニティスクール（学校運営協議会）</div>
+        <p>
+          小牧市の各学校には<strong>学校運営協議会（コミュニティスクール）</strong>が設置されています。
+          これは保護者・地域住民が学校の教育方針や運営に意見を述べる場であり、
+          地域協議会と学校をつなぐ重要な制度です。
+        </p>
+        <p>
+          地域の大人が学校の授業支援・読み聞かせ・キャリア教育に参加したり、
+          学校の課題を地域と共有したりする機会を生み出しています。
+        </p>
+      </div>
+
+      <div class="comm-card">
+        <div class="comm-card-title">🏟️ 学校施設の地域利用</div>
+        <p>
+          各学校の<strong>体育館・グラウンド・プール</strong>は、地域スポーツ活動や防災（避難場所）の拠点として
+          日常的に地域住民が利用しています。運動会・学習発表会などの学校行事にも地域住民が参加し、
+          学校は地域の「顔」として機能しています。
+        </p>
+      </div>
+
+      <div class="comm-card">
+        <div class="comm-card-title">🎒 児童クラブ（放課後学童保育）</div>
+        <p>
+          共働き家庭の子どもたちを放課後に預かる<strong>児童クラブ</strong>も、学校区を単位として配置されており、
+          地域協議会・PTAと連携しながら運営されています。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: 変わること・変わらないこと -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">再編後の変化と継続<small>What Changes, What Stays</small></h2>
+      <p style="font-size:.93rem;color:var(--text-muted);margin-bottom:1.4rem;">
+        以下は小牧市が公式に示している方針です。詳細については現在も検討が続いています。
+      </p>
+
+      <table class="change-table">
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>現状</th>
+            <th>再編後の方針</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>地域協議会の数</strong></td>
+            <td>篠岡地区に5協議会（各小学校区に1つ）</td>
+            <td>
+              <span class="change-tag change-tag--change">変わる</span>
+              2協議会に再編予定。令和11年度（2029年度）から新体制へ移行。
+              詳細な統合グループは現在検討中。
+            </td>
+          </tr>
+          <tr>
+            <td><strong>学校運営協議会<br>（コミュニティスクール）</strong></td>
+            <td>各学校に設置（現在8校に対応）</td>
+            <td>
+              <span class="change-tag change-tag--change">変わる</span>
+              再編後の新設校（4校）において新たに組織し直す。
+              （小牧市公式資料Q11より）
+            </td>
+          </tr>
+          <tr>
+            <td><strong>学校施設<br>（体育館・グラウンド）</strong></td>
+            <td>各学校の施設を地域が利用</td>
+            <td>
+              <span class="change-tag change-tag--keep">継続</span>
+              統合後も廃校となる学校の体育館・グラウンドは「地域スポーツや防災など地域の重要な拠点」として基本的に残す方針。
+            </td>
+          </tr>
+          <tr>
+            <td><strong>児童クラブ</strong></td>
+            <td>学校区単位で配置</td>
+            <td>
+              <span class="change-tag change-tag--keep">継続</span>
+              学校区単位での配置を継続する予定。
+            </td>
+          </tr>
+          <tr>
+            <td><strong>地域行事・活動</strong></td>
+            <td>各協議会が地域独自の行事を主催</td>
+            <td>
+              <span class="change-tag change-tag--tbd">検討中</span>
+              協議会が統合されることで活動エリアが広がる。
+              既存の行事・活動の継続については各協議会・地域での協議による。
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECTION 4: Q&A -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">よくある疑問<small>Q &amp; A</small></h2>
+
+      <div class="qa-block">
+        <div class="qa-q">地域協議会が2つになると、今の活動はどうなるの？</div>
+        <div class="qa-a">
+          市は令和11年度（2029年度）を目標に地域協議会を2協議会へ再編することを方針として示していますが、
+          統合の具体的な進め方や各行事の取り扱いについては、地域住民・各協議会との協議を経て決まる見通しです。
+          現時点では「活動をどう引き継ぐか」は未確定の部分が多く、
+          住民の声が反映される場が設けられることが期待されます。
+        </div>
+      </div>
+
+      <div class="qa-block">
+        <div class="qa-q">「地元の学校がなくなる」ことで地域のつながりは弱まらない？</div>
+        <div class="qa-a">
+          学校は地域行事・防災・スポーツ・子育ての拠点として機能してきました。
+          学校の統合はその拠点の数が変わることを意味しますが、
+          市は廃校施設の地域利用継続を方針として掲げており、
+          体育館やグラウンドは引き続き使える予定です。
+          コミュニティのあり方そのものをどう再構築するかは、
+          住民主体で議論していく必要があります。
+        </div>
+      </div>
+
+      <div class="qa-block">
+        <div class="qa-q">学校統合でコミュニティスクールの活動はなくなる？</div>
+        <div class="qa-a">
+          なくなるわけではありません。再編後の新しい4校（桃花台東小・西小・東中・西中）それぞれに
+          新たな学校運営協議会（コミュニティスクール）が組織し直されます。
+          ただし、現在の各校のコミュニティスクールが培ってきた関係性・活動内容をどう継承するかは
+          今後の協議にかかっています。
+        </div>
+      </div>
+
+      <div class="qa-block">
+        <div class="qa-q">陶小が統合されると「陶っ子」の行事はどうなる？</div>
+        <div class="qa-a">
+          陶小学校区地域協議会が主催してきた「陶っ子凧あげ大会」「陶っ子餅つき大会」などは、
+          地域協議会の活動として地域住民が担ってきた行事です。
+          協議会が統合された後も、地域住民の意思と合意次第で継続することは可能ですが、
+          その在り方は再編後の新協議会の判断によります。公式な方針はまだ示されていません。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: 考察 -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">考察<small>Commentary</small></h2>
+      <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:1.2rem;">
+        ※ このセクションは当サイトの考察であり、小牧市の公式見解ではありません。
+      </p>
+
+      <div class="consider-box">
+        <strong>学校は地域コミュニティの核である</strong><br>
+        子どもが集まる場所は自然と地域の人々も集まる場所になります。
+        運動会・学習発表会・避難訓練……学校の行事は世代を超えた交流の機会でもありました。
+        学校の統廃合は「教育環境の整備」という側面だけでなく、
+        地域社会の構造そのものに影響を与える出来事です。
+      </div>
+
+      <div class="consider-box">
+        <strong>広域化のメリットと課題</strong><br>
+        地域協議会が2つになることで、より広いエリアの住民が一体となって活動できる可能性があります。
+        一方で、地域の「顔」が見えにくくなる、参加のしやすさが変わる、
+        かつての学校区への帰属意識が薄れるといった懸念もあります。
+        広域化によって活動が活性化するか、逆に希薄化するかは、
+        移行のプロセスと住民のかかわり方に大きく左右されます。
+      </div>
+
+      <div class="consider-box">
+        <strong>住民参加が鍵</strong><br>
+        地域協議会の再編は、学校の統廃合と同様に住民の生活・コミュニティに密接に関わります。
+        2025年に実施された説明会・パブコメでは、地域コミュニティの在り方への不安の声も寄せられました。
+        市と住民が継続的に対話し、新しいコミュニティの形を一緒につくっていくことが重要です。
+      </div>
+
+      <div class="source-box">
+        <strong>参考情報・出典</strong><br>
+        ・小牧市「篠岡地区における学校再編について」（小牧市公式サイト）<br>
+        ・陶小学校区地域協議会ウェブサイト（陶地区の組織・活動の参考として参照）<br>
+        ・小牧市「地域協議会の設立状況」（市内16校区中14校区に設立、2025年時点）<br><br>
+        公式情報は
+        <a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener">
+          小牧市学校再編推進係のページ
+        </a>
+        をご確認ください。
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-title" data-i18n="footer_title">小牧市東部（篠岡地区）学校再編計画 市民情報サイト</div>
+        <p class="footer-tagline" data-i18n="footer_tagline">小牧市の公式情報をもとに、篠岡地区の学校再編計画をわかりやすくお伝えする市民有志サイトです。</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-section-title" data-i18n="footer_pages">ページ一覧</div>
+        <ul class="footer-links">
+          <li><a href="index.html" data-i18n="nav_home">ホーム</a></li>
+          <li><a href="about.html" data-i18n="nav_about">計画概要</a></li>
+          <li><a href="schedule.html" data-i18n="nav_schedule">スケジュール</a></li>
+          <li><a href="voices.html" data-i18n="nav_voices">賛否の声</a></li>
+          <li><a href="faq.html" data-i18n="nav_faq">よくある質問</a></li>
+          <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
+          <li><a href="bus.html" data-i18n="nav_bus">スクールバス</a></li>
+          <li><a href="community.html" data-i18n="nav_community">地域協議会</a></li>
+          <li><a href="map.html" data-i18n="nav_map">地図</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-section-title" data-i18n="footer_official">公式リンク</div>
+        <ul class="footer-links">
+          <li><a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener" data-i18n="footer_official_link">小牧市 学校再編推進係</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p data-i18n="footer_disclaimer">このサイトは市民有志による非公式の情報提供サイトです。掲載情報の正確性には最善を期していますが、最新・正確な情報は必ず小牧市公式サイトをご確認ください。</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/i18n.js"></script>
+</body>
+</html>
