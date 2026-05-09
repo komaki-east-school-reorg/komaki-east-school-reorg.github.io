@@ -1001,7 +1001,8 @@ footer {
     box-shadow: 0 4px 16px rgba(0,0,0,.2);
   }
   nav ul.open li a { padding: .8rem 1.5rem; border-radius: 0; }
-  .hamburger { display: flex; }
+  .hamburger { display: flex; order: 2; }
+  .lang-switcher { order: 1; }
   .header-inner { position: relative; }
   header { position: sticky; }
   .site-title { font-size: .88rem; }
