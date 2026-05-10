@@ -84,7 +84,7 @@ header {
   text-decoration: none;
   white-space: nowrap;
   flex-shrink: 0;
-  margin-top: -18px;
+  margin-top: -16px;
 }
 a.site-title:hover { opacity: .85; }
 .site-title span { display: block; font-size: .72rem; font-weight: 500; opacity: .85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
