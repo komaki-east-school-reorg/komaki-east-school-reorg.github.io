@@ -487,7 +487,7 @@
       comm_card_base: '🏫 学校区を基盤とした組織', comm_card_cs: '🤝 コミュニティスクール（学校運営協議会）',
       comm_card_fac: '🏟️ 学校施設の地域利用', comm_card_club: '🎒 児童クラブ（放課後学童保育）',
       comm_th_item: '項目', comm_th_current: '現状', comm_th_after: '再編後の方針',
-      comm_tag_change: '変わる', comm_tag_keep: '継続', comm_tag_tbd: '検討中'
+      comm_tag_change: '変わる', comm_tag_keep: '継続', comm_tag_tbd: '検討中',
       comm_sec3_intro: '以下は小牧市が公式に示している方針です。詳細については現在も検討が続いています。',
       comm_row1_cat: '<strong>地域協議会の数</strong>', comm_row1_now: '篠岡地区に5協議会（各小学校区に1つ）',
       comm_row2_cat: '<strong>学校運営協議会<br>（コミュニティスクール）</strong>', comm_row2_now: '各学校に設置（現在8校に対応）',
@@ -622,7 +622,7 @@
       comm_card_base: '🏫 School District as Organizational Base', comm_card_cs: '🤝 Community School (School Management Council)',
       comm_card_fac: '🏟️ Community Use of School Facilities', comm_card_club: '🎒 After-School Childcare Clubs',
       comm_th_item: 'Item', comm_th_current: 'Current Situation', comm_th_after: 'Policy After Reorganization',
-      comm_tag_change: 'Changes', comm_tag_keep: 'Continues', comm_tag_tbd: 'Under Review'
+      comm_tag_change: 'Changes', comm_tag_keep: 'Continues', comm_tag_tbd: 'Under Review',
       comm_sec3_intro: 'The following reflects official city policy. Details are still being finalized.',
       comm_row1_cat: '<strong>Number of Community Councils</strong>', comm_row1_now: '5 councils in Shinooka area (one per elementary school district)',
       comm_row2_cat: '<strong>School Management Councils<br>(Community Schools)</strong>', comm_row2_now: 'Established at each school (currently covering 8 schools)',
@@ -1142,7 +1142,7 @@
       comm_card_base: '🏫 Distrito Escolar como Base Organizacional', comm_card_cs: '🤝 Escola Comunitária (Conselho de Gestão Escolar)',
       comm_card_fac: '🏟️ Uso Comunitário das Instalações Escolares', comm_card_club: '🎒 Clubes de Cuidado Após a Escola',
       comm_th_item: 'Item', comm_th_current: 'Situação Atual', comm_th_after: 'Política Após a Reorganização',
-      comm_tag_change: 'Muda', comm_tag_keep: 'Continua', comm_tag_tbd: 'Em Análise'
+      comm_tag_change: 'Muda', comm_tag_keep: 'Continua', comm_tag_tbd: 'Em Análise',
       comm_sec3_intro: 'O seguinte reflete a política oficial da cidade. Os detalhes ainda estão sendo definidos.',
       comm_row1_cat: '<strong>Número de Conselhos Comunitários</strong>', comm_row1_now: '5 conselhos na área Shinooka (um por distrito escolar)',
       comm_row2_cat: '<strong>Conselhos de Gestão Escolar<br>(Escolas Comunitárias)</strong>', comm_row2_now: 'Estabelecido em cada escola (atualmente cobrindo 8 escolas)',
@@ -1652,7 +1652,7 @@
       comm_card_base: '🏫 Khu vực Trường học làm Cơ sở Tổ chức', comm_card_cs: '🤝 Trường Cộng đồng (Hội đồng Quản lý Trường học)',
       comm_card_fac: '🏟️ Cộng đồng Sử dụng Cơ sở Vật chất Trường học', comm_card_club: '🎒 Câu lạc bộ Chăm sóc Sau giờ học',
       comm_th_item: 'Hạng mục', comm_th_current: 'Tình trạng Hiện tại', comm_th_after: 'Chính sách Sau Tái cơ cấu',
-      comm_tag_change: 'Thay đổi', comm_tag_keep: 'Tiếp tục', comm_tag_tbd: 'Đang Xem xét'
+      comm_tag_change: 'Thay đổi', comm_tag_keep: 'Tiếp tục', comm_tag_tbd: 'Đang Xem xét',
       comm_sec3_intro: 'Dưới đây phản ánh chính sách chính thức của thành phố. Chi tiết vẫn đang được hoàn thiện.',
       comm_row1_cat: '<strong>Số lượng Hội đồng Cộng đồng</strong>', comm_row1_now: '5 hội đồng ở khu vực Shinooka (mỗi khu vực trường một hội đồng)',
       comm_row2_cat: '<strong>Hội đồng Quản lý Trường học<br>(Trường Cộng đồng)</strong>', comm_row2_now: 'Thành lập tại mỗi trường (hiện bao gồm 8 trường)',
@@ -2162,7 +2162,7 @@
       comm_card_base: '🏫 Distrito ng Paaralan bilang Organisasyon', comm_card_cs: '🤝 Paaralang Pambansa (Konseho ng Pamamahala ng Paaralan)',
       comm_card_fac: '🏟️ Paggamit ng Komunidad sa mga Pasilidad ng Paaralan', comm_card_club: '🎒 Mga Club para sa Pag-aalaga Pagkatapos ng Klase',
       comm_th_item: 'Bagay', comm_th_current: 'Kasalukuyang Sitwasyon', comm_th_after: 'Patakaran Pagkatapos ng Muling Pagsasaayos',
-      comm_tag_change: 'Magbabago', comm_tag_keep: 'Magpapatuloy', comm_tag_tbd: 'Inaaral'
+      comm_tag_change: 'Magbabago', comm_tag_keep: 'Magpapatuloy', comm_tag_tbd: 'Inaaral',
       comm_sec3_intro: 'Ang sumusunod ay sumasalamin sa opisyal na patakaran ng lungsod. Ang mga detalye ay kasalukuyang nini-finalize.',
       comm_row1_cat: '<strong>Bilang ng mga Konseho ng Komunidad</strong>', comm_row1_now: '5 konseho sa lugar ng Shinooka (isa bawat distrito ng paaralan)',
       comm_row2_cat: '<strong>Mga Konseho ng Pamamahala ng Paaralan<br>(Paaralang Pambansa)</strong>', comm_row2_now: 'Itinatag sa bawat paaralan (kasalukuyang sumasaklaw sa 8 paaralan)',
@@ -2672,7 +2672,7 @@
       comm_card_base: '🏫 Distrito Escolar como Base Organizacional', comm_card_cs: '🤝 Escuela Comunitaria (Consejo de Gestión Escolar)',
       comm_card_fac: '🏟️ Uso Comunitario de Instalaciones Escolares', comm_card_club: '🎒 Clubes de Cuidado Extraescolar',
       comm_th_item: 'Elemento', comm_th_current: 'Situación Actual', comm_th_after: 'Política Tras la Reorganización',
-      comm_tag_change: 'Cambia', comm_tag_keep: 'Continúa', comm_tag_tbd: 'En revisión'
+      comm_tag_change: 'Cambia', comm_tag_keep: 'Continúa', comm_tag_tbd: 'En revisión',
       comm_sec3_intro: 'Lo siguiente refleja la política oficial de la ciudad. Los detalles aún se están definiendo.',
       comm_row1_cat: '<strong>Número de Consejos Comunitarios</strong>', comm_row1_now: '5 consejos en la zona Shinooka (uno por distrito escolar)',
       comm_row2_cat: '<strong>Consejos de Gestión Escolar<br>(Escuelas Comunitarias)</strong>', comm_row2_now: 'Establecido en cada escuela (actualmente cubriendo 8 escuelas)',
@@ -3182,7 +3182,7 @@
       comm_card_base: '🏫 以学区为基础的组织', comm_card_cs: '🤝 社区学校（学校运营委员会）',
       comm_card_fac: '🏟️ 社区使用学校设施', comm_card_club: '🎒 课后儿童俱乐部',
       comm_th_item: '项目', comm_th_current: '现状', comm_th_after: '重组后的方针',
-      comm_tag_change: '变化', comm_tag_keep: '延续', comm_tag_tbd: '审议中'
+      comm_tag_change: '变化', comm_tag_keep: '延续', comm_tag_tbd: '审议中',
       comm_sec3_intro: '以下内容反映了市政府的官方政策。具体细节仍在敲定中。',
       comm_row1_cat: '<strong>地区协议会数量</strong>', comm_row1_now: '篠岡地区设有5个协议会（每个小学区各1个）',
       comm_row2_cat: '<strong>学校运营委员会<br>（社区学校）</strong>', comm_row2_now: '在每所学校设立（目前覆盖8所学校）',
@@ -3692,7 +3692,7 @@
       comm_card_base: '🏫 Distrik Sekolah sebagai Dasar Organisasi', comm_card_cs: '🤝 Sekolah Komunitas (Dewan Manajemen Sekolah)',
       comm_card_fac: '🏟️ Penggunaan Fasilitas Sekolah oleh Komunitas', comm_card_club: '🎒 Klub Penitipan Anak Sepulang Sekolah',
       comm_th_item: 'Item', comm_th_current: 'Situasi Saat Ini', comm_th_after: 'Kebijakan Setelah Reorganisasi',
-      comm_tag_change: 'Berubah', comm_tag_keep: 'Lanjut', comm_tag_tbd: 'Sedang Dikaji'
+      comm_tag_change: 'Berubah', comm_tag_keep: 'Lanjut', comm_tag_tbd: 'Sedang Dikaji',
       comm_sec3_intro: 'Berikut mencerminkan kebijakan resmi kota. Detail masih dalam proses finalisasi.',
       comm_row1_cat: '<strong>Jumlah Dewan Komunitas</strong>', comm_row1_now: '5 dewan di area Shinooka (satu per distrik sekolah)',
       comm_row2_cat: '<strong>Dewan Manajemen Sekolah<br>(Sekolah Komunitas)</strong>', comm_row2_now: 'Dibentuk di setiap sekolah (saat ini mencakup 8 sekolah)',
@@ -4197,7 +4197,7 @@
       comm_card_base: '🏫 Örgütsel Temel Olarak Okul Bölgesi', comm_card_cs: '🤝 Toplum Okulu (Okul Yönetim Konseyi)',
       comm_card_fac: '🏟️ Okul Tesislerinin Toplum Tarafından Kullanımı', comm_card_club: '🎒 Okul Sonrası Çocuk Kulüpleri',
       comm_th_item: 'Madde', comm_th_current: 'Mevcut Durum', comm_th_after: 'Yeniden Yapılanma Sonrası Politika',
-      comm_tag_change: 'Değişiyor', comm_tag_keep: 'Devam Ediyor', comm_tag_tbd: 'İnceleniyor'
+      comm_tag_change: 'Değişiyor', comm_tag_keep: 'Devam Ediyor', comm_tag_tbd: 'İnceleniyor',
       comm_sec3_intro: 'Aşağıdakiler şehrin resmi politikasını yansıtmaktadır. Ayrıntılar hâlâ netleştirilmektedir.',
       comm_row1_cat: '<strong>Toplum Konseyi Sayısı</strong>', comm_row1_now: 'Shinooka bölgesinde 5 konsey (her ilkokul bölgesi için bir tane)',
       comm_row2_cat: '<strong>Okul Yönetim Konseyleri<br>(Toplum Okulları)</strong>', comm_row2_now: 'Her okulda kurulmuş (şu anda 8 okulu kapsıyor)',
