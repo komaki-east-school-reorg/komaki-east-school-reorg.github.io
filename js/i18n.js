@@ -4128,8 +4128,6 @@
       meta_desc_council: 'Ringkasan jelas pembahasan dewan di Sidang Reguler Ke-1 tahun 2026 (Maret), termasuk amendemen peraturan sekolah dan pembahasan reorganisasi Shinooka.',
       meta_desc_map: 'Lihat lokasi 8 sekolah saat ini dan 4 sekolah pasca-reorganisasi di wilayah Shinooka di Google Maps, dengan tujuan penggabungan kelompok Timur/Barat.',
     },
-
-    tr: {}
   };
 
   function applyLang(lang) {
@@ -4151,7 +4149,7 @@
     document.querySelectorAll('.lang-select').forEach(function (sel) {
       sel.value = lang;
     });
-    var langAttr = { ja: 'ja', en: 'en', pt: 'pt-BR', vi: 'vi', tl: 'tl', es: 'es', zh: 'zh-Hans', id: 'id', tr: 'tr' };
+    var langAttr = { ja: 'ja', en: 'en', pt: 'pt-BR', vi: 'vi', tl: 'tl', es: 'es', zh: 'zh-Hans', id: 'id' };
     document.documentElement.lang = langAttr[lang] || lang;
     var pageId = (window.location.pathname.match(/([^/]+)\.html$/) || ['', 'index'])[1];
     if (!pageId) pageId = 'index';
