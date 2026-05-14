@@ -26,6 +26,24 @@
   });
 })();
 
+/* ===== UPCOMING SCHEDULE EXPIRY ===== */
+(function () {
+  var bar = document.querySelector('.upcoming-bar');
+  if (!bar) return;
+  var d = new Date();
+  var todayStr = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  var items = bar.querySelectorAll('.upcoming-item[data-expires]');
+  var visible = 0;
+  items.forEach(function (item) {
+    if (item.dataset.expires < todayStr) {
+      item.remove();
+    } else {
+      visible++;
+    }
+  });
+  if (visible === 0) bar.style.display = 'none';
+})();
+
 /* ===== FAQ ACCORDION ===== */
 (function () {
   document.querySelectorAll('.faq-q').forEach(btn => {
