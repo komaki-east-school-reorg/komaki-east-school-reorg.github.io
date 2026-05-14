@@ -541,8 +541,8 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 
 .voices-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.1rem; }
 
-.voices-columns { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.2rem; align-items: start; }
-.voices-col { display: flex; flex-direction: column; gap: .8rem; }
+.voices-columns { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: repeat(10, auto); column-gap: 1.2rem; row-gap: .8rem; }
+.voices-col { display: grid; grid-row: 1 / -1; grid-template-rows: subgrid; }
 .voices-col-header {
   font-weight: 800;
   font-size: .95rem;
@@ -1017,7 +1017,8 @@ footer {
 
   .hero { padding: 2.8rem 1rem 2.2rem; }
   .voices-grid { grid-template-columns: 1fr; }
-  .voices-columns { grid-template-columns: 1fr; }
+  .voices-columns { grid-template-columns: 1fr; grid-template-rows: none; }
+  .voices-col { display: flex; flex-direction: column; gap: .8rem; grid-row: auto; }
   .process-step:not(:last-child)::after { display: none; }
   .cal-day { min-height: 48px; font-size: .72rem; }
   .cal-event-dot { font-size: .6rem; }
