@@ -423,7 +423,6 @@
       voice_persona_parent: '保護者',
       voice_persona_teacher: '教員経験者',
       voice_persona_resident: '地域住民',
-      voice_persona_foreign_resident: '地域住民（外国にルーツあり）',
       voice_persona_principal: '元校長経験者',
       voice_for1: '「このまま放っておいたら令和15年には全校が1学年1クラスになってしまう。子どもたちが多様な仲間と切磋琢磨できる環境をつくるためにも、今のうちに統合を進めることは必要だと思います。」',
       voice_for2: '「篠岡小は1958年建築と聞いて驚きました。築60年以上の校舎に子どもを通わせるのは正直不安です。再編を機に施設を一新し、最新の教育環境を整えることには賛成です。」',
