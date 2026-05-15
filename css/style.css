@@ -1,6 +1,10 @@
 /* ===== GOOGLE FONTS ===== */
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap');
 
+/* ===== FOUC PREVENTION ===== */
+html:not(.i18n-ready) body { opacity: 0; }
+html.i18n-ready body { opacity: 1; transition: opacity .12s ease; }
+
 /* ===== BASE & RESET ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -71,6 +75,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 2rem;
   height: auto;
 }
 
@@ -93,7 +98,7 @@ nav {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: .5rem;
+  gap: 1rem;
 }
 nav ul {
   display: flex;
