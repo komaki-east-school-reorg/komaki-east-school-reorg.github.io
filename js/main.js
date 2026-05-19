@@ -41,6 +41,11 @@
         label.setAttribute('data-i18n', 'status_done');
         label.textContent = '完了';
       }
+      var timeline = item.closest('.status-timeline');
+      if (timeline) {
+        var currentItem = timeline.querySelector('.status-item.current');
+        if (currentItem) timeline.insertBefore(item, currentItem);
+      }
     }
   });
 
@@ -49,6 +54,11 @@
     if (item.dataset.eventDate <= todayStr) {
       item.classList.remove('upcoming', 'current');
       item.classList.add('done');
+      var list = item.closest('.event-list');
+      if (list) {
+        var currentItem = list.querySelector('.event-item.current');
+        if (currentItem) list.insertBefore(item, currentItem);
+      }
     }
   });
 })();
