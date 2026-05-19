@@ -26,6 +26,33 @@
   });
 })();
 
+/* ===== AUTO DATE STATUS ===== */
+(function () {
+  var d = new Date();
+  d.setHours(0, 0, 0, 0);
+  var todayStr = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+
+  // index.html 「現在の状況」ステータス項目
+  document.querySelectorAll('.status-item[data-event-date]').forEach(function (item) {
+    if (item.dataset.eventDate <= todayStr && !item.classList.contains('done') && !item.classList.contains('current')) {
+      item.classList.add('done');
+      var label = item.querySelector('.status-label');
+      if (label) {
+        label.setAttribute('data-i18n', 'status_done');
+        label.textContent = '完了';
+      }
+    }
+  });
+
+  // schedule.html イベント一覧項目
+  document.querySelectorAll('.event-item[data-event-date]').forEach(function (item) {
+    if (item.dataset.eventDate <= todayStr) {
+      item.classList.remove('upcoming', 'current');
+      item.classList.add('done');
+    }
+  });
+})();
+
 /* ===== UPCOMING SCHEDULE EXPIRY ===== */
 (function () {
   var bar = document.querySelector('.upcoming-bar');
@@ -181,12 +208,6 @@
     var ev = events[key];
     return ev ? (ev[l] || ev.ja) : '';
   }
-  const pastDates = new Set([
-    '2025-05-10','2025-05-30','2025-06-13','2025-06-14','2025-06-27',
-    '2025-07-27','2025-08-24','2025-08-30','2025-09-21','2025-09-26',
-    '2025-10-11','2025-11-02','2025-11-10','2025-11-27','2025-12-09',
-    '2026-01-13','2026-02-07',
-  ]);
 
   const CAL_LOCALE_MAP = {ja:'ja-JP', en:'en-US', pt:'pt-BR', vi:'vi-VN', tl:'fil-PH', es:'es-ES', zh:'zh-Hans-CN', id:'id-ID'};
   function getCalLocale() {
@@ -207,10 +228,11 @@
   const today = new Date();
   today.setHours(0,0,0,0);
 
+  function pad(n) { return String(n).padStart(2, '0'); }
+  const todayKey = `${today.getFullYear()}-${pad(today.getMonth()+1)}-${pad(today.getDate())}`;
+
   let currentYear = 2026;
   let currentMonth = 4; // 0-indexed: May = 4
-
-  function pad(n) { return String(n).padStart(2, '0'); }
 
   function renderCalendar(year, month) {
     const monthLabel = document.getElementById('cal-month-label');
@@ -251,7 +273,7 @@
       if (events[key]) {
         cell.classList.add('has-event');
         const dot = document.createElement('span');
-        const isPast = pastDates.has(key);
+        const isPast = key <= todayKey;
         dot.className = 'cal-event-dot' + (isPast ? ' past' : '');
         dot.textContent = (isPast ? ctr('done_marker') + ' ' : '★ ') + getEventLabel(key);
         cell.appendChild(dot);
