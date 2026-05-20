@@ -8,6 +8,8 @@
   var SAFETY_MS = 1000;
 
   var _safetyTimer = null;
+  var _currentLang = DEFAULT;
+  var _kidsMode = false;
 
   function showPage() {
     clearTimeout(_safetyTimer);
@@ -55,6 +57,33 @@
     showPage();
   }
 
+  function applyKidsSeoMeta(isKids) {
+    var existing = document.getElementById('kids-robots-meta');
+    if (isKids) {
+      if (!existing) {
+        var meta = document.createElement('meta');
+        meta.id = 'kids-robots-meta';
+        meta.name = 'robots';
+        meta.content = 'noindex, follow';
+        document.head.appendChild(meta);
+      }
+      document.documentElement.classList.add('kids-mode');
+    } else {
+      if (existing) existing.remove();
+      document.documentElement.classList.remove('kids-mode');
+    }
+  }
+
+  function updateKidsToggleUI() {
+    var isJa = _currentLang === DEFAULT;
+    document.querySelectorAll('.kids-toggle').forEach(function (btn) {
+      btn.style.display = isJa ? '' : 'none';
+      var active = _kidsMode && isJa;
+      btn.classList.toggle('kids-toggle--active', active);
+      btn.setAttribute('aria-pressed', String(active));
+    });
+  }
+
   function fetchJson(lang) {
     return fetch(BASE + lang + '.json').then(function (r) {
       if (!r.ok) throw new Error(r.status);
@@ -64,10 +93,25 @@
 
   function loadAndApply(lang) {
     if (!LANGS.includes(lang)) lang = DEFAULT;
+    _currentLang = lang;
 
     _safetyTimer = setTimeout(showPage, SAFETY_MS);
 
-    if (lang === DEFAULT) {
+    var useKids = _kidsMode && lang === DEFAULT;
+    applyKidsSeoMeta(useKids);
+    updateKidsToggleUI();
+
+    if (lang === DEFAULT && useKids) {
+      Promise.all([fetchJson(DEFAULT), fetchJson('ja-kids')])
+        .then(function (results) {
+          applyDict(Object.assign({}, results[0], results[1]), DEFAULT);
+        })
+        .catch(function () {
+          fetchJson(DEFAULT)
+            .then(function (dict) { applyDict(dict, DEFAULT); })
+            .catch(showPage);
+        });
+    } else if (lang === DEFAULT) {
       fetchJson(DEFAULT)
         .then(function (dict) { applyDict(dict, DEFAULT); })
         .catch(showPage);
@@ -85,13 +129,27 @@
     }
   }
 
+  function setKidsMode(kids) {
+    _kidsMode = kids;
+    try { localStorage.setItem('komaki_kids', kids ? '1' : '0'); } catch (e) {}
+    loadAndApply(_currentLang);
+  }
+
   function init() {
-    var saved;
-    try { saved = localStorage.getItem('komaki_lang'); } catch (e) {}
-    var lang = LANGS.includes(saved) ? saved : DEFAULT;
+    var savedLang;
+    try { savedLang = localStorage.getItem('komaki_lang'); } catch (e) {}
+    var lang = LANGS.includes(savedLang) ? savedLang : DEFAULT;
+
+    var savedKids;
+    try { savedKids = localStorage.getItem('komaki_kids'); } catch (e) {}
+    _kidsMode = savedKids === '1';
 
     document.querySelectorAll('.lang-select').forEach(function (sel) {
       sel.addEventListener('change', function () { loadAndApply(sel.value); });
+    });
+
+    document.querySelectorAll('.kids-toggle').forEach(function (btn) {
+      btn.addEventListener('click', function () { setKidsMode(!_kidsMode); });
     });
 
     loadAndApply(lang);
