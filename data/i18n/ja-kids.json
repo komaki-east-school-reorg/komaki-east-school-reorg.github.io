@@ -285,5 +285,23 @@
   "school_tokadai_east_elem": "とうかだいひがし小学校",
   "school_tokadai_east_jhs": "とうかだいひがし中学校",
   "school_tokadai_west_elem": "とうかだいにし小学校",
-  "school_tokadai_west_jhs": "とうかだいにし中学校"
+  "school_tokadai_west_jhs": "とうかだいにし中学校",
+
+  "about_contact_h2": "こまき市に きくときは",
+  "about_elem_row1_merged": "しのおか小・ひかりがおか小・おおしろ小（おおくさ・しろやま3ちょうめ）",
+  "about_elem_row1_note": "とうかだいひがし小学校の校舎をつかいます",
+  "about_elem_row2_merged": "ももがおか小・すえ小・おおしろ小（しろやま2・4・5ちょうめ）",
+  "about_elem_row2_note": "とうかだいにし小学校の校舎をつかいます",
+  "about_jhs_row1_merged": "しのおか中・ひかりがおか中（しろやま4ちょうめ以外）",
+  "about_jhs_row1_note": "とうかだいひがし中学校の校舎をつかいます",
+  "about_jhs_row2_merged": "とうりょう中・ひかりがおか中（しろやま4ちょうめ）",
+  "about_jhs_row2_note": "とうかだいにし中学校の校舎をつかいます",
+  "about_merits_survey_box": "<strong>📊 おとうさん・おかあさんへのアンケート（2025年7月・471人が回答）「学校まとめで きたいすること」上位：</strong><br>🥇 部活や クラブのしゅるいが増えること <strong>55.2%</strong><br>🥈 みんなで協力する力を育てること <strong>52.2%</strong><br>🥉 たくさんの友だちができること <strong>48.6%</strong><br><span style=\"font-size:.82rem;\"><a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\">📄 出典：こまき市 学校まとめ計画 公式ページ</a></span>",
+  "about_multilingual_box": "<strong>いろんな言語に対応：</strong>「しのおかちく 学校まとめだより」は<strong>スペイン語・タガログ語・ベトナム語・ポルトガル語・中国語</strong>のほんやく版もつくられています。外国にルーツをもつおとうさん・おかあさんへの情報ていきょうにも配りょされています。",
+  "about_oshiro_box": "<strong>おおしろ小学校のエリアについて：</strong>おおしろ小学校のエリアは、住んでいる場所によって2つに分かれます。おおくさ・しろやま3ちょうめの子どもは「とうかだいひがし小」、しろやま2・4・5ちょうめの子どもは「とうかだいにし小」にそれぞれまとまります。しろやま3・4ちょうめについては、2025年7月27日に説明会がひらかれ、住民アンケートをもとにエリアが決められました。",
+  "process_s1_label": "2025年5月〜<br>（おわった）",
+  "process_s2_label": "2025年5〜11月<br>（おわった）",
+  "process_s3_label": "2025年11〜12月<br>（おわった・55けん）",
+  "process_s4_label": "2026年〜<br>（じゅんびちゅう）",
+  "process_s5_label": "2027年4月<br>（よてい）"
 }
