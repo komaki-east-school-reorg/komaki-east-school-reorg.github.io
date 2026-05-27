@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """
 Fetches official Komaki City school reorganization pages,
+recursively follows sub-category index pages within each source subtree,
 visits each item page to get its individual update date, and saves only
 items updated within the last WINDOW_DAYS days to data/news.json.
 """
 import urllib.request
+import urllib.parse
 import json
 import re
 import os
@@ -12,11 +14,8 @@ import sys
 import time
 from datetime import datetime, timezone, timedelta
 
-SOURCE_URLS = [
-    "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/718/index.html",
-    "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/shinooka_gsaihen/index.html",
-]
 PARENT_URL = "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html"
+BASE_DOMAIN = "https://www.city.komaki.aichi.jp"
 OUTPUT = "data/news.json"
 WINDOW_DAYS = 30
 
@@ -41,37 +40,74 @@ def jp_date_to_dt(text):
     return datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)), tzinfo=timezone.utc)
 
 
+def normalize_url(href, base_url):
+    """Convert any href to an absolute https URL."""
+    if href.startswith("//"):
+        return "https:" + href
+    if href.startswith("http://"):
+        return "https://" + href[7:]
+    if href.startswith("https://"):
+        return href
+    if href.startswith("/"):
+        return BASE_DOMAIN + href
+    return urllib.parse.urljoin(base_url, href)
+
+
+def crawl_index(index_url, source_dir, visited_index, seen_item_urls, raw_items, all_dates):
+    """
+    BFS within source_dir: collect <li class="page"> items and follow any
+    sub-index pages whose URL starts with source_dir.
+    Appends found dates to all_dates (for index_updated_at tracking).
+    """
+    queue = [index_url]
+
+    while queue:
+        url = queue.pop(0)
+        print(f"  index: {url}")
+        try:
+            html = fetch_html(url)
+            time.sleep(0.3)
+        except Exception as e:
+            print(f"  ERROR fetching {url}: {e}", file=sys.stderr)
+            continue
+
+        page_date = extract_jp_date(html)
+        if page_date:
+            all_dates.append(page_date)
+
+        # Collect article links from <li class="page">
+        for m in re.finditer(r'<li class="page">\s*<a href="([^"]+)">([^<]+)</a>', html):
+            href = normalize_url(m.group(1).strip(), url)
+            title = m.group(2).strip()
+            if href not in seen_item_urls:
+                seen_item_urls.add(href)
+                raw_items.append({"title": title, "url": href})
+
+        # Enqueue sub-index pages that are within the same source subtree
+        for m in re.finditer(r'href="([^"#?]+/index\.html)"', html):
+            sub = normalize_url(m.group(1).strip(), url)
+            if sub.startswith(source_dir) and sub != url and sub not in visited_index:
+                visited_index.add(sub)
+                queue.append(sub)
+
+
 def main():
     os.makedirs("data", exist_ok=True)
 
-    # --- Fetch all index pages and merge items (deduplicate by URL) ---
     raw_items = []
-    seen_urls = set()
-    index_updated_at = None
+    seen_item_urls = set()
+    all_dates = []
 
-    for index_url in SOURCE_URLS:
-        try:
-            index_html = fetch_html(index_url)
-        except Exception as e:
-            print(f"ERROR: Failed to fetch {index_url}: {e}", file=sys.stderr)
-            continue
+    source_dir = PARENT_URL.rsplit("/", 1)[0] + "/"
+    visited_index = {PARENT_URL}
+    print(f"Crawling subtree: {source_dir}")
+    crawl_index(PARENT_URL, source_dir, visited_index, seen_item_urls, raw_items, all_dates)
 
-        page_date = extract_jp_date(index_html)
-        if page_date and (index_updated_at is None or page_date > index_updated_at):
-            index_updated_at = page_date
-
-        for m in re.finditer(r'<li class="page">\s*<a href="([^"]+)">([^<]+)</a>', index_html):
-            href = m.group(1).strip()
-            title = m.group(2).strip()
-            if href.startswith("http://"):
-                href = "https://" + href[7:]
-            if href not in seen_urls:
-                seen_urls.add(href)
-                raw_items.append({"title": title, "url": href})
-
-    if not raw_items and not seen_urls:
+    if not raw_items and not seen_item_urls:
         print("ERROR: Failed to fetch any index page", file=sys.stderr)
         sys.exit(1)
+
+    index_updated_at = max(all_dates) if all_dates else None
 
     # --- Visit each item page to get its update date ---
     now = datetime.now(timezone.utc)
@@ -79,7 +115,7 @@ def main():
     items = []
 
     for item in raw_items:
-        time.sleep(0.5)  # polite crawl delay
+        time.sleep(0.5)
         try:
             page_html = fetch_html(item["url"])
             updated_at = extract_jp_date(page_html)
@@ -118,7 +154,6 @@ def main():
 
     changed = items != old_items
     if not changed:
-        # Only update fetched_at, leave the rest
         new_data = {**old, "fetched_at": new_data["fetched_at"]}
         print(f"No content changes. {len(items)} items in window.")
     else:
