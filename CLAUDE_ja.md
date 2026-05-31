@@ -166,6 +166,7 @@ print('ja.json OK')
 - 「最終更新」は**サイトの最終デプロイ日**であり、そのセクションの編集日とは厳密には一致しない（≒ 直近の push 日）。
 - 見出しテキストに固定の日付を書かない（例：「現在の状況（2026年5月時点）」は廃止）。直下の `<p class="section-updated">` が自動表示する。
 - スケジュール／状況の項目を足すときは `data-event-date="YYYY-MM-DD"`（複数日は終了日）を設定する。恒久的に過去・進行中のものは HTML に `done`/`current` クラスを直接付ける。
+- **属性の使い分け**：「現在の状況」「主要イベント一覧」の項目は `data-event-date`（完了判定）。トップページ「今後のスケジュール」バー（`.upcoming-item`）は `data-expires`（その日を過ぎると非表示）。バーは直近の予定を schedule.html・カレンダーと同じ個別日程で記載する（文言は `upcoming_dateN`/`upcoming_nameN`）。
 - 詳細な運用ルールは [CONTRIBUTING.txt](CONTRIBUTING.txt) の【ルール5】を参照。
 
 ---

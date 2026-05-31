@@ -88,6 +88,7 @@ Several things reflect the current date automatically — no manual edits needed
 Notes:
 - "Last updated" is the site's **last deploy date**, not the editing date of that specific section (≈ most recent push). Do **not** hardcode a date into the heading text (e.g. the old `現在の状況（2026年5月時点）` was removed in favour of this auto-display).
 - When adding schedule/status items, set `data-event-date="YYYY-MM-DD"` (use the end date for multi-day events); permanently-past or in-progress items get a hand-written `done`/`current` class instead.
+- **Attribute distinction:** *Current Status* and *Key Events* items use `data-event-date` (drives "done"). The index "今後のスケジュール" (upcoming) bar items (`.upcoming-item`) use `data-expires` (hidden once past). List the bar's near-term items individually, mirroring `schedule.html`/the calendar (text via `upcoming_dateN`/`upcoming_nameN` keys).
 - Kids mode (`ja-kids.json`) targets a **3rd-grade reading level**; see `CONTRIBUTING.txt` rules 5 & 6 for full content-management rules.
 
 ## Page structure
