@@ -49,7 +49,7 @@
   "ql_map_link": "地図を見る →",
   "section_news": "市の 公式サイトのおしらせ",
   "news_loading": "よみこみちゅう…",
-  "section_status": "今のじょうきょう（2026年5月）",
+  "section_status": "今のじょうきょう",
   "status_done": "おわった",
   "status_current": "じゅんびちゅう",
   "status_upcoming": "予定",
@@ -566,5 +566,8 @@
   "nav_council": "まちの ぎかい",
   "nav_community": "まちの会",
   "nav_map": "学校の ばしょ",
-  "site_sub": "まちの人が つくった サイト"
+  "site_sub": "まちの人が つくった サイト",
+  "event_status_done": "おわった",
+  "event_status_current": "じゅんびちゅう",
+  "event_status_upcoming": "予定"
 }

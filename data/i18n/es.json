@@ -27,7 +27,7 @@
   "section_points": "Puntos Clave<small>Key Points</small>",
   "section_links": "Enlaces de Página<small>Quick Links</small>",
   "section_news": "Anuncios Oficiales de la Ciudad<small>Official Announcements</small>",
-  "section_status": "Estado Actual (mayo de 2026)<small>Current Status</small>",
+  "section_status": "Estado Actual<small>Current Status</small>",
   "point1_h": "¿Por qué se necesita la reorganización?",
   "point1_link": "Más información →",
   "point2_h": "¿Qué está planeado?",
@@ -585,5 +585,8 @@
   "comm_consider1": "<strong>Las escuelas son el núcleo de la vida comunitaria</strong><br>Donde se reúnen los niños, también se reúnen naturalmente los vecinos. Jornadas deportivas, festivales de aprendizaje, simulacros de evacuación — los eventos escolares han sido durante mucho tiempo oportunidades de intercambio intergeneracional. La consolidación escolar no es solo una cuestión educativa: afecta a la propia estructura de la sociedad local.",
   "comm_consider2": "<strong>Beneficios y retos de una gobernanza de área más amplia</strong><br>Reducir a dos consejos abre la posibilidad de que los vecinos de un área más amplia trabajen juntos. Por otro lado, hay preocupaciones de que el carácter local de la comunidad sea más difícil de distinguir, que la participación cambie y que el sentido de pertenencia al antiguo distrito escolar se diluya. Si la ampliación energiza o diluye las actividades depende del proceso de transición y del compromiso vecinal.",
   "comm_consider3": "<strong>La participación vecinal es clave</strong><br>La reorganización de los Consejos Comunitarios está tan ligada a la vida de los vecinos como la consolidación escolar. En las reuniones y consulta pública de 2025, se plantearon preocupaciones sobre el futuro de las comunidades locales. El diálogo continuo entre el ayuntamiento y los vecinos — y la construcción conjunta de nuevas formas de comunidad — será fundamental.",
-  "comm_source": "<strong>Referencias y fuentes</strong><br>・Komaki: \"Sobre la reorganización escolar en el distrito Shinooka\" (web oficial)<br>・Komaki: \"Estado del establecimiento de Consejos Comunitarios\" (14 de 16 distritos, 2025)<br><br>Para información oficial, consulte la <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\">página oficial de reorganización escolar de Komaki</a>."
+  "comm_source": "<strong>Referencias y fuentes</strong><br>・Komaki: \"Sobre la reorganización escolar en el distrito Shinooka\" (web oficial)<br>・Komaki: \"Estado del establecimiento de Consejos Comunitarios\" (14 de 16 distritos, 2025)<br><br>Para información oficial, consulte la <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\">página oficial de reorganización escolar de Komaki</a>.",
+  "event_status_done": "Hecho",
+  "event_status_current": "En curso",
+  "event_status_upcoming": "Previsto"
 }

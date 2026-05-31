@@ -50,9 +50,18 @@ python3 -m http.server 8000
 3. **新しい翻訳キー** — `ja`（日本語）と `en`（英語）への記載が必須。他の6言語は未記載でも日本語にフォールバック
 4. **事実確認** — 掲載する数値・日付は必ず公式情報源に基づく
 
-## 自動更新（GitHub Actions）
+## 自動更新（現在日付・最終更新の反映）
 
-`data/news.json`（公式お知らせウィジェットのデータ）は GitHub Actions が毎日 09:00 JST に自動更新します。手動実行は GitHub → Actions → "Fetch Official News" → Run workflow。
+サイトには現在日付に応じて自動で表示が変わる箇所があります（手動更新は不要）。
+
+| 箇所 | 更新タイミング |
+|---|---|
+| `data/news.json`（公式お知らせ） | 毎日 09:00 JST（GitHub Actions）。手動実行は GitHub → Actions → "Fetch Official News" → Run workflow |
+| 「最終更新: 〜」表示（index 現在の状況・schedule 主要イベント一覧） | サイトを再デプロイ（push）するたび（配信ファイルの最終更新日＝デプロイ日を表示） |
+| 月別カレンダーの初期表示月（schedule.html） | ページを開くたび（閲覧者の現在月を表示） |
+| 「現在の状況」の完了表示・イベント状態バッジ（完了/進行中/予定） | ページを開くたび（予定日を過ぎると自動的に「完了」へ） |
+
+スケジュールやイベントを追加・編集する際の運用ルール（`data-event-date` の設定方法など）は [CONTRIBUTING.txt](CONTRIBUTING.txt) の【ルール5】を参照してください。
 
 ## 開発者向けドキュメント
 

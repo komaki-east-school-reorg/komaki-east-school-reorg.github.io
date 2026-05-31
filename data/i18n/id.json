@@ -27,7 +27,7 @@
   "section_points": "Poin Penting<small>Key Points</small>",
   "section_links": "Tautan Halaman<small>Quick Links</small>",
   "section_news": "Pengumuman Resmi Kota<small>Official Announcements</small>",
-  "section_status": "Status Saat Ini (per Mei 2026)<small>Current Status</small>",
+  "section_status": "Status Saat Ini<small>Current Status</small>",
   "point1_h": "Mengapa Reorganisasi Diperlukan?",
   "point1_link": "Pelajari lebih lanjut →",
   "point2_h": "Apa yang Direncanakan?",
@@ -585,5 +585,8 @@
   "comm_consider1": "<strong>Sekolah adalah inti kehidupan komunitas</strong><br>Di mana anak-anak berkumpul, warga setempat pun secara alami berkumpul. Hari olahraga, festival belajar, latihan evakuasi — acara sekolah telah lama menjadi kesempatan pertukaran lintas generasi. Konsolidasi sekolah bukan hanya soal peningkatan lingkungan pendidikan — ini mempengaruhi struktur masyarakat lokal itu sendiri.",
   "comm_consider2": "<strong>Manfaat dan tantangan tata kelola area yang lebih luas</strong><br>Pengurangan menjadi dua dewan membuka kemungkinan warga di area lebih luas bekerja sama. Di sisi lain, ada kekhawatiran bahwa karakter lokal komunitas menjadi lebih sulit dikenali, kemudahan partisipasi berubah, dan rasa memiliki terhadap distrik sekolah lama memudar. Apakah pelebaran ini memvitalkan atau melarutkan kegiatan tergantung pada proses transisi dan keterlibatan warga.",
   "comm_consider3": "<strong>Partisipasi warga adalah kuncinya</strong><br>Reorganisasi Dewan Komunitas berkaitan erat dengan kehidupan warga seperti konsolidasi sekolah itu sendiri. Dalam pertemuan penjelasan dan proses komentar publik 2025, kekhawatiran tentang masa depan komunitas lokal turut disampaikan. Dialog berkelanjutan antara kota dan warga — serta membangun bersama bentuk komunitas baru — akan sangat penting.",
-  "comm_source": "<strong>Referensi &amp; Sumber</strong><br>・Komaki: \"Tentang Reorganisasi Sekolah di Distrik Shinooka\" (situs resmi)<br>・Komaki: \"Status Pembentukan Dewan Komunitas\" (14 dari 16 distrik, 2025)<br><br>Untuk informasi resmi: <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\">Halaman reorganisasi sekolah resmi Komaki</a>."
+  "comm_source": "<strong>Referensi &amp; Sumber</strong><br>・Komaki: \"Tentang Reorganisasi Sekolah di Distrik Shinooka\" (situs resmi)<br>・Komaki: \"Status Pembentukan Dewan Komunitas\" (14 dari 16 distrik, 2025)<br><br>Untuk informasi resmi: <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\">Halaman reorganisasi sekolah resmi Komaki</a>.",
+  "event_status_done": "Selesai",
+  "event_status_current": "Berlangsung",
+  "event_status_upcoming": "Rencana"
 }

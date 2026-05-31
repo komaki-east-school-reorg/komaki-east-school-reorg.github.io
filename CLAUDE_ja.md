@@ -77,6 +77,9 @@ print('ja.json OK')
 `ja.json` の上にマージされ、キーをひらがな・やさしい日本語に上書きします。
 `Object.assign({}, ja_dict, kids_dict)` の形で適用されます。
 
+**文章は小学校3年生レベルを基準**とする（難しい漢字・熟語はひらがな化／やさしい言葉に、一文は短く）。
+ナビ・サブタイトル等の共通キーもこどもむけ表記の対象（例：`nav_about`, `site_sub`）。詳細は [CONTRIBUTING.txt](CONTRIBUTING.txt) の【ルール6】。
+
 言語設定とこどもむけ状態は `localStorage` の `komaki_lang` / `komaki_kids` に保存されます。
 
 ### HTML 属性
@@ -135,12 +138,35 @@ print('ja.json OK')
 |---|---|
 | HAMBURGER NAV | ハンバーガーメニューの開閉 |
 | ACTIVE NAV LINK | 現在ページのナビリンクを `.active` でハイライト |
-| AUTO DATE STATUS | `data-event-date` を過ぎた項目に `.done` クラスを付与 |
+| AUTO DATE STATUS | `data-event-date` を過ぎた項目に `.done` を付与。index「現在の状況」はラベルを「完了」に書き換え、`schedule.html` のイベントには状態バッジ（完了 / 進行中 / 予定、キー `event_status_*`）を付与 |
+| SECTION LAST UPDATED | `.section-updated` 要素に `document.lastModified` から「最終更新: 〜」を多言語で表示（index 現在の状況・schedule 主要イベント一覧） |
 | UPCOMING SCHEDULE EXPIRY | `data-expires` を過ぎた直近スケジュール項目を非表示 |
 | FAQ ACCORDION | FAQ のアコーディオン開閉 |
 | VOICE FILTER | 賛否の声のカテゴリフィルター |
 | OFFICIAL NEWS | `data/news.json` を取得して公式お知らせを描画 |
-| CALENDAR | `schedule.html` のインタラクティブカレンダー（イベントは `events` オブジェクトにハードコード） |
+| CALENDAR | `schedule.html` のインタラクティブカレンダー（イベントは `events` オブジェクトにハードコード）。初期表示は閲覧者の**現在月**（`events` の範囲にクランプ） |
+
+---
+
+## 日付連動の自動表示と更新タイミング
+
+現在日付に応じて表示が自動で変わる箇所がある。手動更新は不要だが、
+データ（`data-event-date` / `events` / 見出し）の持ち方を誤ると正しく動かない。
+
+| 箇所 | 更新タイミング | 仕組み |
+|---|---|---|
+| `data/news.json`（公式お知らせ） | 毎日 09:00 JST | GitHub Actions |
+| 「最終更新: 〜」表示（index 現在の状況 / schedule 主要イベント一覧） | サイトを再デプロイ（push）してファイルが配信し直されるたび | `document.lastModified`（配信ファイルの Last-Modified＝GitHub Pages では再デプロイ時刻）を表示 |
+| 月別カレンダーの初期表示月（schedule.html） | ページを開くたび（閲覧者の現在月） | `new Date()`。`events` 範囲にクランプ |
+| 「現在の状況」のラベル「完了」化（index.html） | ページを開くたび（現在日付 ≧ `data-event-date`） | AUTO DATE STATUS |
+| イベント状態バッジ 完了/進行中/予定（schedule.html） | ページを開くたび（同上） | AUTO DATE STATUS |
+| 「これからの予定」バーの表示/非表示 | ページを開くたび（`data-expires` 経過で非表示） | UPCOMING SCHEDULE EXPIRY |
+
+注意点：
+- 「最終更新」は**サイトの最終デプロイ日**であり、そのセクションの編集日とは厳密には一致しない（≒ 直近の push 日）。
+- 見出しテキストに固定の日付を書かない（例：「現在の状況（2026年5月時点）」は廃止）。直下の `<p class="section-updated">` が自動表示する。
+- スケジュール／状況の項目を足すときは `data-event-date="YYYY-MM-DD"`（複数日は終了日）を設定する。恒久的に過去・進行中のものは HTML に `done`/`current` クラスを直接付ける。
+- 詳細な運用ルールは [CONTRIBUTING.txt](CONTRIBUTING.txt) の【ルール5】を参照。
 
 ---
 

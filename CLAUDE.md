@@ -70,7 +70,25 @@ Auto-updated by GitHub Actions (`.github/workflows/fetch-news.yml`), which runs 
 
 ## `js/main.js`
 
-Self-contained IIFE blocks handling: hamburger nav, active nav link highlighting, auto-date status (items past their `data-event-date` get a `.done` class), upcoming schedule expiry (`data-expires`), FAQ accordion, voice filter, official news rendering, and the interactive calendar on `schedule.html`. Calendar events are hardcoded in the `events` object inside `main.js`.
+Self-contained IIFE blocks handling: hamburger nav, active nav link highlighting, auto-date status, "last updated" display, upcoming schedule expiry (`data-expires`), FAQ accordion, voice filter, official news rendering, and the interactive calendar on `schedule.html`. Calendar events are hardcoded in the `events` object inside `main.js`.
+
+### Date-driven auto-display (and when it updates)
+
+Several things reflect the current date automatically — no manual edits needed, but the underlying data must be set correctly.
+
+| What | When it updates | How |
+|---|---|---|
+| `data/news.json` (official news) | Daily 09:00 JST | GitHub Actions |
+| "Last updated: …" line (index *Current Status* / schedule *Key Events*) | Every time the site is re-deployed (push) and files are re-served | `document.lastModified` of the served file (= deploy time on GitHub Pages), shown via `<p class="section-updated">` |
+| Calendar initial month (`schedule.html`) | Every page load (viewer's current month) | `new Date()`, clamped to the `events` date range |
+| "完了" labels in *Current Status* (`index.html`) | Every page load (today ≥ `data-event-date`) | AUTO DATE STATUS |
+| Event status badges 完了/進行中/予定 (`schedule.html`, keys `event_status_*`) | Every page load (same) | AUTO DATE STATUS |
+| "Upcoming" bar items | Every page load (hidden once past `data-expires`) | UPCOMING SCHEDULE EXPIRY |
+
+Notes:
+- "Last updated" is the site's **last deploy date**, not the editing date of that specific section (≈ most recent push). Do **not** hardcode a date into the heading text (e.g. the old `現在の状況（2026年5月時点）` was removed in favour of this auto-display).
+- When adding schedule/status items, set `data-event-date="YYYY-MM-DD"` (use the end date for multi-day events); permanently-past or in-progress items get a hand-written `done`/`current` class instead.
+- Kids mode (`ja-kids.json`) targets a **3rd-grade reading level**; see `CONTRIBUTING.txt` rules 5 & 6 for full content-management rules.
 
 ## Page structure
 

@@ -61,6 +61,25 @@
       }
     }
   });
+
+  // schedule.html: 各イベントに状態ラベル（完了/進行中/予定）を付与する。
+  // 上の処理で done クラスが確定した後に実行。data-i18n を付けるので
+  // 全言語・こどもモードへの翻訳・言語切替への追従は i18n.js が自動で行う。
+  document.querySelectorAll('.event-list .event-item').forEach(function (item) {
+    var state = item.classList.contains('done') ? 'done'
+      : item.classList.contains('current') ? 'current' : 'upcoming';
+    var fallback = { done: '完了', current: '進行中', upcoming: '予定' };
+    var badge = item.querySelector('.event-status');
+    if (!badge) {
+      badge = document.createElement('span');
+      var dateEl = item.querySelector('.event-date');
+      if (dateEl) dateEl.appendChild(badge);
+      else item.insertBefore(badge, item.firstChild);
+    }
+    badge.className = 'event-status ' + state;
+    badge.setAttribute('data-i18n', 'event_status_' + state);
+    badge.textContent = fallback[state];
+  });
 })();
 
 /* ===== UPCOMING SCHEDULE EXPIRY ===== */
@@ -79,6 +98,52 @@
     }
   });
   if (visible === 0) bar.style.display = 'none';
+})();
+
+/* ===== SECTION LAST UPDATED (auto) ===== */
+(function () {
+  var els = document.querySelectorAll('.section-updated');
+  if (!els.length) return;
+
+  // セクション（「現在の状況」「主要イベント一覧」など）の最終更新日を自動表示する。
+  // document.lastModified（配信ファイルの Last-Modified）を使うので、
+  // 内容を更新して再デプロイするたびに自動で日付が変わる（手動更新不要）。
+  var lm = new Date(document.lastModified);
+  // 取得できない/不正な場合（一部サーバーは 0 を返す）は表示しない
+  if (isNaN(lm.getTime()) || lm.getFullYear() < 2020) {
+    els.forEach(function (el) { el.style.display = 'none'; });
+    return;
+  }
+
+  var LOCALE_MAP = { ja: 'ja-JP', en: 'en-US', pt: 'pt-BR', vi: 'vi-VN', tl: 'fil-PH', es: 'es-ES', zh: 'zh-Hans-CN', id: 'id-ID' };
+  // 「最終更新: {date}」のラベル（main.js 内で言語管理：既存カレンダーと同じ方式）
+  var LABEL = {
+    ja: '最終更新: {d}', en: 'Last updated: {d}', pt: 'Última atualização: {d}', vi: 'Cập nhật lần cuối: {d}',
+    tl: 'Huling na-update: {d}', es: 'Última actualización: {d}', zh: '最后更新：{d}', id: 'Terakhir diperbarui: {d}'
+  };
+  var KIDS_LABEL_JA = 'さいごに 直した日: {d}';
+
+  function getLang() { try { return localStorage.getItem('komaki_lang') || 'ja'; } catch (e) { return 'ja'; } }
+  function isKids() { try { return localStorage.getItem('komaki_kids') === '1'; } catch (e) { return false; } }
+
+  function render() {
+    var lang = getLang();
+    var locale = LOCALE_MAP[lang] || 'ja-JP';
+    var dateStr;
+    try {
+      dateStr = new Intl.DateTimeFormat(locale, { year: 'numeric', month: 'long', day: 'numeric' }).format(lm);
+    } catch (e) {
+      dateStr = lm.getFullYear() + '-' + String(lm.getMonth() + 1).padStart(2, '0') + '-' + String(lm.getDate()).padStart(2, '0');
+    }
+    var tpl = (lang === 'ja' && isKids()) ? KIDS_LABEL_JA : (LABEL[lang] || LABEL.ja);
+    var text = tpl.replace('{d}', dateStr);
+    els.forEach(function (el) { el.textContent = text; });
+  }
+
+  render();
+  // 言語切替・こどもモード切替に追従
+  document.querySelectorAll('.lang-select').forEach(function (sel) { sel.addEventListener('change', render); });
+  document.querySelectorAll('.kids-toggle').forEach(function (btn) { btn.addEventListener('click', function () { setTimeout(render, 0); }); });
 })();
 
 /* ===== FAQ ACCORDION ===== */
@@ -241,8 +306,18 @@
   function pad(n) { return String(n).padStart(2, '0'); }
   const todayKey = `${today.getFullYear()}-${pad(today.getMonth()+1)}-${pad(today.getDate())}`;
 
-  let currentYear = 2026;
-  let currentMonth = 4; // 0-indexed: May = 4
+  // 初期表示は現在の月。ただしイベントデータのある範囲（最初〜最後のイベント月）に収める
+  var _evKeys = Object.keys(events).sort();
+  function _evYM(key) { return { y: parseInt(key.slice(0, 4), 10), m: parseInt(key.slice(5, 7), 10) - 1 }; }
+  var _firstEv = _evYM(_evKeys[0]);
+  var _lastEv = _evYM(_evKeys[_evKeys.length - 1]);
+
+  let currentYear = today.getFullYear();
+  let currentMonth = today.getMonth();
+
+  var _curIdx = currentYear * 12 + currentMonth;
+  if (_curIdx < _firstEv.y * 12 + _firstEv.m) { currentYear = _firstEv.y; currentMonth = _firstEv.m; }
+  else if (_curIdx > _lastEv.y * 12 + _lastEv.m) { currentYear = _lastEv.y; currentMonth = _lastEv.m; }
 
   function renderCalendar(year, month) {
     const monthLabel = document.getElementById('cal-month-label');

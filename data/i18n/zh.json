@@ -27,7 +27,7 @@
   "section_points": "重点内容<small>Key Points</small>",
   "section_links": "各页面链接<small>Quick Links</small>",
   "section_news": "市官方网站 通知<small>Official Announcements</small>",
-  "section_status": "当前情况（2026年5月）<small>Current Status</small>",
+  "section_status": "当前情况<small>Current Status</small>",
   "point1_h": "为什么需要重组？",
   "point1_link": "了解更多 →",
   "point2_h": "计划内容是什么？",
@@ -585,5 +585,8 @@
   "comm_consider1": "<strong>学校是社区的核心</strong><br>孩子们聚集的地方，自然也是地域居民聚集的地方。运动会、学习发表会、避难演练……学校活动也是跨越世代交流的机会。学校撤并不仅仅是\"改善教育环境\"，更是影响地域社会整体结构的大事。",
   "comm_consider2": "<strong>广域化的优势与课题</strong><br>协议会减为两个，有望让更广范围内的居民作为整体共同活动。另一方面，也存在地域面貌变得难以辨认、参与便利性变化、对原学校区归属感减弱等担忧。广域化究竟是激活还是稀薄化活动，在很大程度上取决于过渡过程与居民的参与方式。",
   "comm_consider3": "<strong>居民参与是关键</strong><br>地域协议会的重组与学校撤并一样，与居民的生活和社区密切相关。2025年举行的说明会和公众意见征集中，也出现了对地域社区未来的担忧。市政府与居民持续对话，共同构建新的社区形态，至关重要。",
-  "comm_source": "<strong>参考资料・出典</strong><br>・小牧市《关于篠岗地区的学校重组》（小牧市官方网站）<br>・小牧市《地域协议会设立情况》（全市16校区中14校区已设立，截至2025年）<br><br>官方信息请参阅<a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\">小牧市学校重组推进负责处页面</a>。"
+  "comm_source": "<strong>参考资料・出典</strong><br>・小牧市《关于篠岗地区的学校重组》（小牧市官方网站）<br>・小牧市《地域协议会设立情况》（全市16校区中14校区已设立，截至2025年）<br><br>官方信息请参阅<a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\">小牧市学校重组推进负责处页面</a>。",
+  "event_status_done": "已完成",
+  "event_status_current": "进行中",
+  "event_status_upcoming": "计划"
 }

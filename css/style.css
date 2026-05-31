@@ -353,6 +353,8 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   font-family: var(--heading-font);
 }
 .section-title small { display: block; font-size: .72rem; font-weight: 500; color: var(--text-muted); margin-top: .15rem; }
+.section-updated { font-size: .8rem; color: var(--text-muted); margin: -1.4rem 0 1.6rem; padding-left: 1rem; }
+.section-updated:empty { display: none; }
 
 /* ===== CARDS ===== */
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem; }
@@ -1011,6 +1013,10 @@ footer {
 .event-item.current { border-left-color: var(--accent); background: var(--accent-light); }
 .event-item.upcoming { border-left-color: var(--green); background: #f0fff7; }
 .event-item.upcoming .event-date { color: var(--green); }
+.event-status { display: inline-block; margin-top: .3rem; padding: .08rem .5rem; border-radius: 999px; font-size: .7rem; font-weight: 700; color: #fff; white-space: nowrap; }
+.event-status.done { background: #aab4c0; }
+.event-status.current { background: var(--accent); }
+.event-status.upcoming { background: var(--green); }
 
 /* ===== CONTACT BOX ===== */
 .contact-box {
