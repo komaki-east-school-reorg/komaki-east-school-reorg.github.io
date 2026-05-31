@@ -241,8 +241,8 @@
   "meta_desc_bus": "2027年度からはじまるしのおかちくのスクールバス計画。のれるエリア・本数・ひよう・安全対策・しつもんと回答。",
   "upcoming_label": "📅 これからのよてい",
   "upcoming_name1": "しのおか学園の こうしょうデザインぼしゅう しめきり",
-  "upcoming_name2": "おとうさん・おかあさんむけの話し合いの会（6かしょ）",
-  "upcoming_name3": "学校まとめスタート！",
+  "upcoming_name2": "おとうさん・おかあさんむけ せつめい会（とうりょう中）",
+  "upcoming_name3": "おとうさん・おかあさんむけ せつめい会（しのおか中）",
   "upcoming_more": "くわしく →",
   "bus_area_pending": "⚠️ バスていの ばしょ・みち・時間は、これから 決まります。<a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\">こまき市の ページ</a>で 新しい じょうほうを 見てください。",
   "faq_contact_h": "こまき市に きくときは（公式）",
@@ -569,5 +569,10 @@
   "site_sub": "まちの人が つくった サイト",
   "event_status_done": "おわった",
   "event_status_current": "じゅんびちゅう",
-  "event_status_upcoming": "予定"
+  "event_status_upcoming": "予定",
+  "upcoming_name4": "おとうさん・おかあさんむけ せつめい会（すえ小）",
+  "upcoming_name5": "おとうさん・おかあさんむけ せつめい会（おおしろ小）",
+  "upcoming_name6": "おとうさん・おかあさんむけ せつめい会（ひかりがおか中）",
+  "upcoming_name7": "おとうさん・おかあさんむけ せつめい会（東部市民センター）",
+  "upcoming_name8": "学校まとめ スタート！"
 }
