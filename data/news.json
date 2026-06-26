@@ -1,18 +1,18 @@
 {
-  "fetched_at": "2026-06-07T02:08:47Z",
-  "index_updated_at": "2025年09月18日",
+  "fetched_at": "2026-06-26T02:00:54Z",
+  "index_updated_at": "2026年06月24日",
   "source_url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html",
   "window_days": 30,
   "items": [
     {
-      "title": "しのおか学園の校章を作成しています",
-      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/718/50750.html",
-      "updated_at": "2026年05月27日"
-    },
-    {
       "title": "篠岡地区学校再編だより",
       "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/shinooka_gsaihen/49521.html",
       "updated_at": "2026年06月05日"
+    },
+    {
+      "title": "第1回北里地区の学校を考える会",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/719/kitazatochiku/51757.html",
+      "updated_at": "2026年06月25日"
     }
   ]
 }
