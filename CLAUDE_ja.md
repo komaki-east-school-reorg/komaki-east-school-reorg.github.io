@@ -138,6 +138,23 @@ Issue には変更ページ一覧・差分抜粋に加え、`data/site-facts.jso
 site-facts.json に対応エントリを追記してください。
 スクリプトの終了コード：0 = 変更あり、2 = 変更なし、1 = 致命的エラー。
 
+### 全自動更新パイプライン（auto-update ジョブ）
+
+本文変更の検知後、第2ジョブがサイトの修正を全自動で行います：
+
+1. **起案AI**（`anthropics/claude-code-action`・サブスクOAuth、Secret `CLAUDE_CODE_OAUTH_TOKEN`。
+   未登録ならジョブはスキップされ検知 Issue のみ）が差分を読解し、
+   `data/events.json`・`data/i18n/*.json`・`index.html`・`schedule.html` **のみ**を編集。
+   各変更の根拠として公式ページ原文の引用を `auto_update/evidence.json` に必ず書く
+2. **機械検証ゲート**（`.github/scripts/auto_gates.py`）：編集範囲・スキーマ
+   （イベント8言語必須）・外部リンク規則・**引用の実在照合**（創作検出）。
+   exit 0=合格 / 3=変更なし / 1=不合格
+3. **監査AI**（起案と独立した別セッション）が差分を審査し `auto_update/verdict.json` を出力。
+   approve の場合のみ PR を自動マージ（squash）し、`.github/scripts/auto_report.py` の
+   事後報告（出典・監査結果・取り消し手順つき）を検知 Issue にコメントして close
+4. **キルスイッチ**：リポジトリ変数 `AUTO_MERGE` を `false` にするとマージ直前で停止
+   （PR 作成までは行う）。ゲート・監査で不合格の場合、main は一切変更されない
+
 ---
 
 ## js/main.js の構成

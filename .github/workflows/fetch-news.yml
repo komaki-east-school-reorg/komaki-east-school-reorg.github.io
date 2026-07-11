@@ -8,10 +8,21 @@ on:
 permissions:
   contents: write
   issues: write
+  pull-requests: write
+
+concurrency:
+  group: fetch-news
+  cancel-in-progress: false
 
 jobs:
+  # ============================================================
+  # Job 1: 公式ページの取得・スナップショット更新・変更検知
+  # ============================================================
   fetch-news:
     runs-on: ubuntu-latest
+    outputs:
+      pages_changed: ${{ steps.report.outputs.pages_changed }}
+      issue_number: ${{ steps.issue.outputs.number }}
     steps:
       - uses: actions/checkout@v4
 
@@ -42,9 +53,11 @@ jobs:
             echo "pages_changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "pages_changed=true" >> "$GITHUB_OUTPUT"
+            git diff --staged -- data/official_pages > /tmp/pages.diff
+            git diff --staged --name-only -- data/official_pages > /tmp/changed_pages.txt
             {
               echo "公式サイトのページ本文に変化を検知しました。"
-              echo "サイト内の該当箇所（スケジュール・現在の状況・カレンダー・FAQ 等）の更新要否を確認してください。"
+              echo "この後、自動更新ジョブがサイトの修正案を作成します。結果はこの Issue にコメントされます。"
               echo
               echo "## 変更されたページ"
               echo
@@ -61,6 +74,16 @@ jobs:
             } > /tmp/issue_body.md
           fi
 
+      - name: Upload change report for auto-update job
+        if: steps.report.outputs.pages_changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: change-report
+          path: |
+            /tmp/pages.diff
+            /tmp/changed_pages.txt
+            /tmp/issue_body.md
+
       - name: Commit if content changed
         if: steps.fetch.outputs.changed == 'true'
         run: |
@@ -74,10 +97,233 @@ jobs:
           fi
 
       - name: Open issue for content changes
+        id: issue
         if: steps.report.outputs.pages_changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh issue create \
+          url=$(gh issue create \
             --title "📡 公式ページ更新検知 $(TZ=Asia/Tokyo date +%Y-%m-%d)" \
-            --body-file /tmp/issue_body.md
+            --body-file /tmp/issue_body.md)
+          echo "number=${url##*/}" >> "$GITHUB_OUTPUT"
+
+  # ============================================================
+  # Job 2: AIによる修正案の起案 → 機械検証 → 監査AI → 自動マージ
+  #   CLAUDE_CODE_OAUTH_TOKEN（サブスクOAuth）が未登録なら何もしない。
+  #   リポジトリ変数 AUTO_MERGE=false でマージ直前に停止（キルスイッチ）。
+  # ============================================================
+  auto-update:
+    needs: fetch-news
+    if: needs.fetch-news.outputs.pages_changed == 'true'
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      ISSUE: ${{ needs.fetch-news.outputs.issue_number }}
+    steps:
+      - name: Check OAuth token availability
+        id: token
+        env:
+          TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::CLAUDE_CODE_OAUTH_TOKEN が未登録のため自動更新をスキップします（検知 Issue のみ）"
+          else
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.token.outputs.available == 'true'
+        with:
+          ref: main          # Job 1 の push 後の最新 main
+          fetch-depth: 0
+
+      - name: Download change report
+        if: steps.token.outputs.available == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: change-report
+          path: report
+
+      - name: Prepare working branch
+        if: steps.token.outputs.available == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          BRANCH="auto-update/$(TZ=Asia/Tokyo date +%Y%m%d-%H%M%S)"
+          git checkout -b "$BRANCH"
+          echo "BRANCH=$BRANCH" >> "$GITHUB_ENV"
+          echo "TODAY=$(TZ=Asia/Tokyo date +%Y-%m-%d)" >> "$GITHUB_ENV"
+          mkdir -p auto_update
+
+      # ---------- 起案AI ----------
+      - name: Draft site updates (Claude)
+        if: steps.token.outputs.available == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          claude_args: '--model sonnet --max-turns 50 --allowedTools "Read,Grep,Glob,Edit,Write"'
+          prompt: |
+            あなたは小牧市篠岡地区の学校再編情報サイト（このリポジトリ）の自動更新担当です。
+            市公式サイトのページ本文に変更が検知されました。今日の日付は ${{ env.TODAY }} です。
+
+            ## 手順
+            1. report/pages.diff（検知された差分）と report/changed_pages.txt（変更ページ一覧）を読む
+            2. 変更された data/official_pages/*.txt の本文全体を読む
+            3. data/site-facts.json で影響しうるサイト内の箇所を確認する
+            4. CLAUDE.md のルール（特に日付連動の自動表示・属性の使い分け）を読む
+            5. サイトのデータを更新すべきか判断し、必要な場合のみ次のファイルだけを編集する:
+               - data/events.json … カレンダー。日付キー YYYY-MM-DD、8言語（ja,en,pt,vi,tl,es,zh,id）すべて必須
+               - data/i18n/*.json … 最低 ja と en。既存キーの命名規則に従う
+               - index.html … 「今後のスケジュール」バーの .upcoming-item（data-expires="YYYY-MM-DD" と upcoming_dateN/upcoming_nameN キー）
+               - schedule.html … 主要イベント一覧の項目（data-event-date="YYYY-MM-DD"、複数日イベントは終了日）
+            6. 必ず auto_update/evidence.json を書く（後述）
+
+            ## 絶対に守るルール
+            - 上記4種類以外のファイルの編集・新規ファイルの作成は禁止（検証で不合格になる）
+            - 事実は report/pages.diff と data/official_pages/ の内容のみに基づく。推測・創作は禁止
+            - 更新が不要な変更（誤字修正・体裁変更・サイトに載せない情報）なら何も編集せず evidence.json に [] を書く
+            - 判断に迷ったら「編集しない」を選ぶ
+            - 過去の記述の書き換え・削除はしない。ただし公式ページに日程変更・中止が明記された場合のみ該当箇所を修正してよい
+            - 外部リンクの追加は禁止（市サイトへのリンクは既存の 303/index.html のみ許可）
+
+            ## evidence.json の形式（必須）
+            編集した各ファイルについて、根拠となる公式ページ原文の引用を添える:
+            ```json
+            [
+              {
+                "file": "data/events.json",
+                "summary": "9月12日の保護者等説明会（桃陵中）をカレンダーに追加",
+                "quotes": [
+                  {"snapshot": "data/official_pages/303-718-51565.txt",
+                   "text": "スナップショットに実在する連続した原文をそのままコピー（10文字以上）"}
+                ]
+              }
+            ]
+            ```
+            quotes の text は改変せずスナップショットからコピーすること。実在しない引用は検証で不合格になる。
+
+      # ---------- 機械検証ゲート ----------
+      - name: Run guardrail gates
+        id: gates
+        if: steps.token.outputs.available == 'true'
+        run: |
+          set +e
+          python3 .github/scripts/auto_gates.py > /tmp/gates.log 2>&1
+          code=$?
+          set -e
+          cat /tmp/gates.log
+          case "$code" in
+            0) echo "result=pass"       >> "$GITHUB_OUTPUT" ;;
+            3) echo "result=no_changes" >> "$GITHUB_OUTPUT" ;;
+            *) echo "result=fail"       >> "$GITHUB_OUTPUT" ;;
+          esac
+
+      - name: Report "no update needed"
+        if: steps.gates.outputs.result == 'no_changes'
+        run: |
+          gh issue comment "$ISSUE" --body "🤖 自動更新ジョブの判断: **サイトの更新は不要**（誤字修正・体裁変更など、サイトに反映すべき内容ではありませんでした）。"
+          gh issue close "$ISSUE" --reason completed
+
+      - name: Report gate failure
+        if: steps.gates.outputs.result == 'fail'
+        run: |
+          {
+            echo "🤖 自動更新ジョブ: **機械検証ゲートで不合格**のため、サイトは変更していません。内容を確認して手動で対応してください。"
+            echo
+            echo '```'
+            cat /tmp/gates.log
+            echo '```'
+          } > /tmp/comment.md
+          gh issue comment "$ISSUE" --body-file /tmp/comment.md
+
+      # ---------- コミット・差分作成 ----------
+      - name: Commit proposal
+        if: steps.gates.outputs.result == 'pass'
+        run: |
+          git add data/events.json data/i18n index.html schedule.html
+          git commit -m "auto: 公式ページ更新の自動反映 ${TODAY}"
+          git diff origin/main..HEAD > auto_update/proposed.diff
+          echo "--- proposed diff ---"
+          cat auto_update/proposed.diff
+
+      # ---------- 監査AI（起案と独立した別セッション） ----------
+      - name: Verify proposal (independent Claude)
+        if: steps.gates.outputs.result == 'pass'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          claude_args: '--model sonnet --max-turns 30 --allowedTools "Read,Grep,Glob,Write"'
+          prompt: |
+            あなたは独立した監査担当です。別のAIがこの市民向け情報サイトに加えた変更を審査してください。
+            あなた自身がサイトのデータを修正することは禁止されています（Write は verdict.json の出力のみに使う）。
+
+            ## 入力
+            - 提案された変更: auto_update/proposed.diff
+            - 起案AIの根拠: auto_update/evidence.json
+            - 公式ソース原文: data/official_pages/*.txt（および検知差分 report/pages.diff）
+            - サイト規則: CLAUDE.md、対応表: data/site-facts.json
+
+            ## 審査観点
+            1. すべての変更が公式ソース原文に裏付けられているか（日付・名称・会場が原文と一致するか）
+            2. 推測・創作・原文にない情報が混入していないか
+            3. 8言語ラベル・翻訳が原文の意味と一致するか（不自然・誤訳があれば reject）
+            4. サイトの規約に沿うか（外部リンク制限、キー命名 upcoming_dateN 等、data-expires と data-event-date の使い分け、複数日イベントは終了日）
+            5. 過去の記述が不当に書き換え・削除されていないか
+
+            ## 出力（必須）
+            auto_update/verdict.json に次の形式で書く:
+            {"verdict": "approve" または "reject", "reasons": ["判定理由"], "notes": ["軽微な指摘（あれば）"]}
+
+            迷ったら reject を選ぶこと。reject の場合は reasons に具体的な問題箇所を書くこと。
+
+      - name: Check verdict
+        id: verdict
+        if: steps.gates.outputs.result == 'pass'
+        run: |
+          python3 - <<'EOF'
+          import json, os, sys
+          try:
+              with open("auto_update/verdict.json", encoding="utf-8") as f:
+                  v = json.load(f)
+              approved = v.get("verdict") == "approve"
+          except Exception as e:
+              print(f"verdict.json が読めない: {e}")
+              approved = False
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write(f"approved={'true' if approved else 'false'}\n")
+          EOF
+
+      # ---------- PR作成 → 自動マージ（または保留） ----------
+      - name: Create PR and merge
+        if: steps.gates.outputs.result == 'pass'
+        env:
+          APPROVED: ${{ steps.verdict.outputs.approved }}
+          AUTO_MERGE: ${{ vars.AUTO_MERGE }}
+        run: |
+          git push -u origin "$BRANCH"
+          python3 .github/scripts/auto_report.py pr > /tmp/pr_body.md
+
+          if [ "$APPROVED" = "true" ]; then
+            TITLE="auto: 公式ページ更新の自動反映 ${TODAY}"
+          else
+            TITLE="⚠️ 要確認: 監査AIが差し戻した自動更新案 ${TODAY}"
+          fi
+          PR_URL=$(gh pr create --title "$TITLE" --body-file /tmp/pr_body.md --base main --head "$BRANCH")
+          echo "PR: $PR_URL"
+
+          if [ "$APPROVED" = "true" ] && [ "$AUTO_MERGE" != "false" ]; then
+            gh pr merge "$PR_URL" --squash --delete-branch
+            python3 .github/scripts/auto_report.py report > /tmp/report.md
+            {
+              echo "🤖 **サイトを自動更新しました**（監査AI承認済み・マージ済み: $PR_URL）"
+              echo
+              cat /tmp/report.md
+            } > /tmp/comment.md
+            gh issue comment "$ISSUE" --body-file /tmp/comment.md
+            gh issue close "$ISSUE" --reason completed
+          elif [ "$APPROVED" = "true" ]; then
+            gh issue comment "$ISSUE" --body "🤖 修正案は監査AIに承認されましたが、AUTO_MERGE=false のためマージを保留しています: $PR_URL"
+          else
+            gh issue comment "$ISSUE" --body "🤖 監査AIが修正案を**差し戻し**ました。サイトは変更していません。PR を確認してください: $PR_URL"
+          fi
