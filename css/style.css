@@ -836,6 +836,12 @@ footer {
   text-align: center;
   color: rgba(255,255,255,.4);
 }
+.site-credit {
+  margin-top: .6rem;
+  font-size: .68rem;
+  text-align: center;
+  color: rgba(255,255,255,.25);
+}
 
 /* ===== PAGE HERO (sub pages) ===== */
 .page-hero {
