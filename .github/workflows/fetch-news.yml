@@ -9,6 +9,7 @@ permissions:
   contents: write
   issues: write
   pull-requests: write
+  id-token: write   # claude-code-action の認証（OIDC）に必要
 
 concurrency:
   group: fetch-news
