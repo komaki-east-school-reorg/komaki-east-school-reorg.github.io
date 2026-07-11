@@ -56,7 +56,7 @@ python3 -m http.server 8000
 
 | 箇所 | 更新タイミング |
 |---|---|
-| `data/news.json`（公式お知らせ） | 毎日 09:00 JST（GitHub Actions）。手動実行は GitHub → Actions → "Fetch Official News" → Run workflow |
+| `data/news.json`（公式お知らせ） | 毎日 09:17 JST（GitHub Actions）。手動実行は GitHub → Actions → "Fetch Official News" → Run workflow |
 | 「最終更新: 〜」表示（index 現在の状況・schedule 主要イベント一覧） | サイトを再デプロイ（push）するたび（配信ファイルの最終更新日＝デプロイ日を表示） |
 | 月別カレンダーの初期表示月（schedule.html） | ページを開くたび（閲覧者の現在月を表示） |
 | 「現在の状況」の完了表示・イベント状態バッジ（完了/進行中/予定） | ページを開くたび（予定日を過ぎると自動的に「完了」へ） |

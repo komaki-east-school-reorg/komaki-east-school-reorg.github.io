@@ -15,6 +15,7 @@ Exit codes: 0 = content changed (news items or snapshots), 2 = no change,
 import urllib.request
 import urllib.parse
 import json
+import random
 import re
 import os
 import sys
@@ -27,6 +28,15 @@ BASE_DOMAIN = "https://www.city.komaki.aichi.jp"
 OUTPUT = "data/news.json"
 SNAPSHOT_DIR = "data/official_pages"
 WINDOW_DAYS = 30
+
+# 市サーバへの負荷配慮: リクエスト間に必ずこの秒数（＋ゆらぎ）待つ
+REQUEST_WAIT_MIN = 3.0
+REQUEST_WAIT_MAX = 5.0
+
+
+def polite_wait():
+    """連続アクセスを避けるため、リクエストごとに 3〜5 秒待つ。"""
+    time.sleep(random.uniform(REQUEST_WAIT_MIN, REQUEST_WAIT_MAX))
 
 
 def fetch_html(url):
@@ -113,7 +123,7 @@ def crawl_index(index_url, source_dir, visited_index, seen_item_urls, raw_items,
         print(f"  index: {url}")
         try:
             html = fetch_html(url)
-            time.sleep(0.3)
+            polite_wait()
         except Exception as e:
             print(f"  ERROR fetching {url}: {e}", file=sys.stderr)
             continue
@@ -164,7 +174,7 @@ def main():
     snapshots_changed = False
 
     for item in raw_items:
-        time.sleep(0.5)
+        polite_wait()
         try:
             page_html = fetch_html(item["url"])
             updated_at = extract_jp_date(page_html)

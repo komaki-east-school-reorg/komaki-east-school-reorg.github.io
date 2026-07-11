@@ -117,7 +117,7 @@ print('ja.json OK')
 ## data/news.json と GitHub Actions
 
 `data/news.json` は GitHub Actions（`.github/workflows/fetch-news.yml`）が
-毎日 09:00 JST に自動更新します。
+毎日 09:17 JST に自動更新します（正時を避け、リクエスト間に3〜5秒の待機を入れて市サーバへの負荷を抑えています）。
 
 スクリプト（`.github/scripts/fetch_news.py`）は以下を行います：
 1. 市公式の2つのインデックスページをスクレイピング
@@ -182,7 +182,7 @@ site-facts.json に対応エントリを追記してください。
 
 | 箇所 | 更新タイミング | 仕組み |
 |---|---|---|
-| `data/news.json`（公式お知らせ） | 毎日 09:00 JST | GitHub Actions |
+| `data/news.json`（公式お知らせ） | 毎日 09:17 JST | GitHub Actions |
 | 「最終更新: 〜」表示（index 現在の状況 / schedule 主要イベント一覧） | サイトを再デプロイ（push）してファイルが配信し直されるたび | `document.lastModified`（配信ファイルの Last-Modified＝GitHub Pages では再デプロイ時刻）を表示 |
 | 月別カレンダーの初期表示月（schedule.html） | ページを開くたび（閲覧者の現在月） | `new Date()`。`events` 範囲にクランプ |
 | 「現在の状況」のラベル「完了」化（index.html） | ページを開くたび（現在日付 ≧ `data-event-date`） | AUTO DATE STATUS |

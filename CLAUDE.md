@@ -66,7 +66,7 @@ Keys follow the pattern `<page>_<section>_<type>`, e.g., `about_whatis_p1`, `faq
 
 ## `data/news.json`
 
-Auto-updated by GitHub Actions (`.github/workflows/fetch-news.yml`), which runs daily at 09:00 JST. The script (`.github/scripts/fetch_news.py`) scrapes two official city index pages, visits each item page to read its update date, keeps only items updated within the last `WINDOW_DAYS` (30) days, and commits changes with `[skip ci]`. To trigger manually: GitHub → Actions → "Fetch Official News" → Run workflow. Do not hand-edit `items` — it will be overwritten on the next run. The `window_days` and `source_url` fields are safe to edit.
+Auto-updated by GitHub Actions (`.github/workflows/fetch-news.yml`), which runs daily at 09:17 JST (off the hour, and with a 3–5 s polite wait between requests, to avoid load on the city server). The script (`.github/scripts/fetch_news.py`) scrapes two official city index pages, visits each item page to read its update date, keeps only items updated within the last `WINDOW_DAYS` (30) days, and commits changes with `[skip ci]`. To trigger manually: GitHub → Actions → "Fetch Official News" → Run workflow. Do not hand-edit `items` — it will be overwritten on the next run. The `window_days` and `source_url` fields are safe to edit.
 
 The same script also saves a normalized body-text snapshot of every item page to `data/official_pages/<slug>.txt` (auto-generated — never hand-edit). When any snapshot changes (page added/edited/removed on the city site), the workflow auto-opens a GitHub Issue titled 「📡 公式ページ更新検知 YYYY-MM-DD」 containing the changed-page list, a diff excerpt, and — via `.github/scripts/map_targets.py` — the site locations likely needing an update, looked up in `data/site-facts.json` (a hand-maintained map from official-page slug prefixes to site targets; add an entry when the city publishes a new page). Script exit codes: 0 = content changed, 2 = no change, 1 = fatal error.
 
@@ -84,7 +84,7 @@ Several things reflect the current date automatically — no manual edits needed
 
 | What | When it updates | How |
 |---|---|---|
-| `data/news.json` (official news) | Daily 09:00 JST | GitHub Actions |
+| `data/news.json` (official news) | Daily 09:17 JST | GitHub Actions |
 | "Last updated: …" line (index *Current Status* / schedule *Key Events*) | Every time the site is re-deployed (push) and files are re-served | `document.lastModified` of the served file (= deploy time on GitHub Pages), shown via `<p class="section-updated">` |
 | Calendar initial month (`schedule.html`) | Every page load (viewer's current month) | `new Date()`, clamped to the `events` date range |
 | "完了" labels in *Current Status* (`index.html`) | Every page load (today ≥ `data-event-date`) | AUTO DATE STATUS |

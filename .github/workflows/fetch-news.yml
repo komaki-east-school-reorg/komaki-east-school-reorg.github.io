@@ -2,7 +2,7 @@ name: Fetch Official News
 
 on:
   schedule:
-    - cron: '0 0 * * *'   # 毎日 0:00 UTC (9:00 JST)
+    - cron: '17 0 * * *'  # 毎日 0:17 UTC (9:17 JST)。正時を避けて市サーバ・Actionsの混雑時間帯を外す
   workflow_dispatch:        # 手動実行も可
 
 permissions:
