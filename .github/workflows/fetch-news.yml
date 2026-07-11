@@ -51,6 +51,8 @@ jobs:
               git diff --staged --name-status -- data/official_pages \
                 | sed -e $'s/^A\t/- 🆕 新規: /' -e $'s/^M\t/- ✏️ 更新: /' -e $'s/^D\t/- 🗑️ 削除: /'
               echo
+              git diff --staged --name-only -- data/official_pages \
+                | python3 .github/scripts/map_targets.py
               echo "## 差分（抜粋・最大200行）"
               echo
               echo '```diff'

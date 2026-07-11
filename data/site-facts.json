@@ -1,0 +1,36 @@
+{
+  "description": "公式ページ（data/official_pages/ のスラッグ）とサイト内の反映箇所の対応表。fetch-news.yml が本文変更を検知して Issue を起票したとき、サイトのどこを更新すべきか判断するために使う。スラッグは前方一致（slug_prefix）で照合する。",
+  "site_targets": {
+    "calendar": { "file": "data/events.json", "notes": "schedule.html のカレンダーイベント（日付キー＋8言語ラベル）" },
+    "upcoming_bar": { "file": "index.html / data/i18n/ja.json, en.json", "notes": "「今後のスケジュール」バー（.upcoming-item の data-expires と upcoming_dateN / upcoming_nameN キー）" },
+    "key_events": { "file": "schedule.html / data/i18n/*.json", "notes": "主要イベント一覧（data-event-date、状態バッジは自動）" },
+    "current_status": { "file": "index.html / data/i18n/*.json", "notes": "現在の状況（data-event-date、完了ラベルは自動）" },
+    "about": { "file": "about.html / data/i18n/*.json", "notes": "計画概要（背景・対象校・新校名・通学区域）" },
+    "schedule_timeline": { "file": "schedule.html / data/i18n/*.json", "notes": "フェーズ別タイムライン" },
+    "faq": { "file": "faq.html / data/i18n/*.json", "notes": "よくある質問" },
+    "voices": { "file": "voices.html / data/i18n/*.json", "notes": "住民の声（賛成・反対・中立）" },
+    "community": { "file": "community.html / data/i18n/*.json", "notes": "地域協議会・区長会への報告経緯" },
+    "bus": { "file": "bus.html / data/i18n/*.json", "notes": "スクールバス情報" },
+    "map": { "file": "map.html / data/i18n/*.json", "notes": "学校マップ・通学区域" },
+    "kids": { "file": "data/i18n/ja-kids.json", "notes": "こどもむけモードの上書き辞書（小3レベル）" }
+  },
+  "default_targets": ["current_status", "faq"],
+  "mappings": [
+    { "slug_prefix": "303-718-43424", "topic": "新たな学校づくり推進計画策定までの取組", "targets": ["about", "schedule_timeline", "community"] },
+    { "slug_prefix": "303-718-45169", "topic": "小牧市新たな学校づくり推進計画", "targets": ["about", "faq"] },
+    { "slug_prefix": "303-718-48940", "topic": "保護者等意見交換会", "targets": ["calendar", "key_events", "community", "voices"] },
+    { "slug_prefix": "303-718-49215", "topic": "住民説明会", "targets": ["calendar", "key_events", "community"] },
+    { "slug_prefix": "303-718-49313", "topic": "アンケート調査結果", "targets": ["voices", "community", "faq"] },
+    { "slug_prefix": "303-718-49829", "topic": "新たな学校名に関するアンケート", "targets": ["about", "calendar", "faq"] },
+    { "slug_prefix": "303-718-50750", "topic": "しのおか学園の校章", "targets": ["about", "current_status", "faq"] },
+    { "slug_prefix": "303-718-51565", "topic": "保護者等説明会（令和8年度）", "targets": ["calendar", "upcoming_bar", "key_events", "current_status"] },
+    { "slug_prefix": "303-719-aratanagakkoudukurisuishinkeikakukentouiinnkai-", "topic": "新たな学校づくり推進計画検討委員会（第1〜6回）", "targets": ["about", "community"] },
+    { "slug_prefix": "303-719-sinookachiku-", "topic": "篠岡地区の学校を考える会（第1〜5回）", "targets": ["calendar", "key_events", "community", "voices"] },
+    { "slug_prefix": "303-719-kitazatochiku-", "topic": "北里地区の学校を考える会（篠岡地区外・参考情報）", "targets": [] },
+    { "slug_prefix": "303-shinooka_gsaihen-48603", "topic": "篠岡地区における学校再編について（総合ページ）", "targets": ["about", "schedule_timeline", "faq", "current_status"] },
+    { "slug_prefix": "303-shinooka_gsaihen-48650", "topic": "城山三丁目・四丁目の通学区域", "targets": ["map", "about", "faq", "current_status"] },
+    { "slug_prefix": "303-shinooka_gsaihen-49521", "topic": "篠岡地区学校再編だより", "targets": ["current_status", "upcoming_bar", "calendar"] },
+    { "slug_prefix": "303-shinooka_gsaihen-49700", "topic": "意見募集（パブリックコメント・終了）", "targets": ["voices", "schedule_timeline"] },
+    { "slug_prefix": "303-shinooka_gsaihen-51199", "topic": "篠岡地区学校再編計画【こども版】", "targets": ["kids", "faq"] }
+  ]
+}
