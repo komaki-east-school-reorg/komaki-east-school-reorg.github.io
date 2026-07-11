@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   fetch-news:
@@ -14,22 +15,67 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Fetch official page and update JSON
+      - name: Fetch official pages and update data
         id: fetch
         run: |
+          set +e
           python3 .github/scripts/fetch_news.py
-          echo "exit=$?" >> $GITHUB_OUTPUT
-        continue-on-error: true
+          code=$?
+          set -e
+          if [ "$code" -eq 1 ]; then
+            echo "Fetch script failed" >&2
+            exit 1
+          fi
+          if [ "$code" -eq 0 ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # 本文スナップショットの差分から変更レポートを作成（コミット前に採取）
+      - name: Prepare content-change report
+        id: report
+        if: steps.fetch.outputs.changed == 'true'
+        run: |
+          git add data/news.json data/official_pages
+          if git diff --staged --quiet -- data/official_pages; then
+            echo "pages_changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "pages_changed=true" >> "$GITHUB_OUTPUT"
+            {
+              echo "公式サイトのページ本文に変化を検知しました。"
+              echo "サイト内の該当箇所（スケジュール・現在の状況・カレンダー・FAQ 等）の更新要否を確認してください。"
+              echo
+              echo "## 変更されたページ"
+              echo
+              git diff --staged --name-status -- data/official_pages \
+                | sed -e $'s/^A\t/- 🆕 新規: /' -e $'s/^M\t/- ✏️ 更新: /' -e $'s/^D\t/- 🗑️ 削除: /'
+              echo
+              echo "## 差分（抜粋・最大200行）"
+              echo
+              echo '```diff'
+              git diff --staged -- data/official_pages | head -200
+              echo '```'
+            } > /tmp/issue_body.md
+          fi
 
       - name: Commit if content changed
-        if: steps.fetch.outcome == 'success'
+        if: steps.fetch.outputs.changed == 'true'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/news.json
           if git diff --staged --quiet; then
             echo "Nothing to commit"
           else
             git commit -m "chore: update official news data [skip ci]"
             git push
           fi
+
+      - name: Open issue for content changes
+        if: steps.report.outputs.pages_changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "📡 公式ページ更新検知 $(TZ=Asia/Tokyo date +%Y-%m-%d)" \
+            --body-file /tmp/issue_body.md

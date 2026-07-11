@@ -68,6 +68,8 @@ Keys follow the pattern `<page>_<section>_<type>`, e.g., `about_whatis_p1`, `faq
 
 Auto-updated by GitHub Actions (`.github/workflows/fetch-news.yml`), which runs daily at 09:00 JST. The script (`.github/scripts/fetch_news.py`) scrapes two official city index pages, visits each item page to read its update date, keeps only items updated within the last `WINDOW_DAYS` (30) days, and commits changes with `[skip ci]`. To trigger manually: GitHub → Actions → "Fetch Official News" → Run workflow. Do not hand-edit `items` — it will be overwritten on the next run. The `window_days` and `source_url` fields are safe to edit.
 
+The same script also saves a normalized body-text snapshot of every item page to `data/official_pages/<slug>.txt` (auto-generated — never hand-edit). When any snapshot changes (page added/edited/removed on the city site), the workflow auto-opens a GitHub Issue titled 「📡 公式ページ更新検知 YYYY-MM-DD」 containing the changed-page list and a diff excerpt, so an editor can decide which parts of the site (schedule, status, calendar, FAQ, …) need updating. Script exit codes: 0 = content changed, 2 = no change, 1 = fatal error.
+
 ## `js/main.js`
 
 Self-contained IIFE blocks handling: hamburger nav, active nav link highlighting, auto-date status, "last updated" display, upcoming schedule expiry (`data-expires`), FAQ accordion, voice filter, official news rendering, and the interactive calendar on `schedule.html`. Calendar events are hardcoded in the `events` object inside `main.js`.

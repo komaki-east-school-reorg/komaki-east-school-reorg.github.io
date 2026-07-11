@@ -4,6 +4,13 @@ Fetches official Komaki City school reorganization pages,
 recursively follows sub-category index pages within each source subtree,
 visits each item page to get its individual update date, and saves only
 items updated within the last WINDOW_DAYS days to data/news.json.
+
+Additionally saves a normalized body-text snapshot of every item page to
+data/official_pages/<slug>.txt so that content changes (not just new items)
+can be detected via git diff by the workflow.
+
+Exit codes: 0 = content changed (news items or snapshots), 2 = no change,
+1 = fatal error.
 """
 import urllib.request
 import urllib.parse
@@ -12,11 +19,13 @@ import re
 import os
 import sys
 import time
+from html import unescape
 from datetime import datetime, timezone, timedelta
 
 PARENT_URL = "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html"
 BASE_DOMAIN = "https://www.city.komaki.aichi.jp"
 OUTPUT = "data/news.json"
+SNAPSHOT_DIR = "data/official_pages"
 WINDOW_DAYS = 30
 
 
@@ -38,6 +47,44 @@ def jp_date_to_dt(text):
     if not m:
         return None
     return datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)), tzinfo=timezone.utc)
+
+
+def extract_body_text(html):
+    """Extract readable text from the page's main content area, or None."""
+    m = re.search(r'<article id="contents"[^>]*>(.*?)</article>', html, re.DOTALL)
+    if not m:
+        return None
+    body = re.sub(r"<(script|style)[^>]*>.*?</\1>", "", m.group(1), flags=re.DOTALL)
+    body = re.sub(r"<[^>]+>", "\n", body)
+    body = unescape(body)
+    lines = [line.strip() for line in body.split("\n")]
+    return "\n".join(line for line in lines if line) + "\n"
+
+
+def url_to_slug(url):
+    """Item page URL → snapshot filename stem, e.g. '303-718-50750'."""
+    path = urllib.parse.urlparse(url).path.lstrip("/")
+    path = re.sub(r"\.html$", "", path)
+    prefix = "admin/soshiki/kyoiku/kyouikusoumu/"
+    if path.startswith(prefix):
+        path = path[len(prefix):]
+    return path.replace("/", "-")
+
+
+def save_snapshot(url, page_html):
+    """Write body-text snapshot if changed. Returns True if file changed."""
+    text = extract_body_text(page_html)
+    if text is None:
+        return False
+    path = os.path.join(SNAPSHOT_DIR, url_to_slug(url) + ".txt")
+    content = url + "\n---\n" + text
+    if os.path.exists(path):
+        with open(path, encoding="utf-8") as f:
+            if f.read() == content:
+                return False
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(content)
+    return True
 
 
 def normalize_url(href, base_url):
@@ -109,16 +156,20 @@ def main():
 
     index_updated_at = max(all_dates) if all_dates else None
 
-    # --- Visit each item page to get its update date ---
+    # --- Visit each item page to get its update date + body snapshot ---
+    os.makedirs(SNAPSHOT_DIR, exist_ok=True)
     now = datetime.now(timezone.utc)
     cutoff = now - timedelta(days=WINDOW_DAYS)
     items = []
+    snapshots_changed = False
 
     for item in raw_items:
         time.sleep(0.5)
         try:
             page_html = fetch_html(item["url"])
             updated_at = extract_jp_date(page_html)
+            if save_snapshot(item["url"], page_html):
+                snapshots_changed = True
         except Exception:
             updated_at = None
 
@@ -135,6 +186,16 @@ def main():
             print(f"  keep? (no date)  {item['title'][:40]}")
 
         items.append(item)
+
+    # --- Remove snapshots of pages that no longer exist on the site ---
+    # (only files whose URL is no longer listed; a transient fetch failure
+    #  keeps the item in seen_item_urls, so its snapshot survives)
+    expected = {url_to_slug(u) + ".txt" for u in seen_item_urls}
+    for fname in os.listdir(SNAPSHOT_DIR):
+        if fname.endswith(".txt") and fname not in expected:
+            os.remove(os.path.join(SNAPSHOT_DIR, fname))
+            print(f"  removed stale snapshot: {fname}")
+            snapshots_changed = True
 
     # --- Build output ---
     new_data = {
@@ -155,15 +216,18 @@ def main():
     changed = items != old_items
     if not changed:
         new_data = {**old, "fetched_at": new_data["fetched_at"]}
-        print(f"No content changes. {len(items)} items in window.")
+        print(f"No news-item changes. {len(items)} items in window.")
     else:
-        print(f"Changes detected. {len(items)}/{len(raw_items)} items in {WINDOW_DAYS}-day window.")
+        print(f"News-item changes detected. {len(items)}/{len(raw_items)} items in {WINDOW_DAYS}-day window.")
+
+    if snapshots_changed:
+        print("Page-body snapshot changes detected.")
 
     with open(OUTPUT, "w", encoding="utf-8") as f:
         json.dump(new_data, f, ensure_ascii=False, indent=2)
         f.write("\n")
 
-    sys.exit(0 if changed else 2)
+    sys.exit(0 if (changed or snapshots_changed) else 2)
 
 
 if __name__ == "__main__":
