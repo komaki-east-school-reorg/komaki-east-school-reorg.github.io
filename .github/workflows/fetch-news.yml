@@ -163,6 +163,7 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ github.token }}
           claude_args: '--model sonnet --max-turns 50 --allowedTools "Read,Grep,Glob,Edit,Write"'
           prompt: |
             あなたは小牧市篠岡地区の学校再編情報サイト（このリポジトリ）の自動更新担当です。
@@ -254,6 +255,7 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ github.token }}
           claude_args: '--model sonnet --max-turns 30 --allowedTools "Read,Grep,Glob,Write"'
           prompt: |
             あなたは独立した監査担当です。別のAIがこの市民向け情報サイトに加えた変更を審査してください。
