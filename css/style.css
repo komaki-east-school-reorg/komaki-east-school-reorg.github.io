@@ -115,20 +115,22 @@ nav ul {
   margin-top: -18px;
 }
 
-/* 言語切替であることを示す短いラベル。どの言語の閲覧者にも読めるよう
-   「言語 / Language」の併記で固定し、翻訳対象にしない（サイト名と同じ扱い）。 */
-.lang-label {
-  font-family: var(--heading-font);
-  font-size: .66rem;
-  font-weight: 700;
-  color: rgba(255,255,255,.72);
-  letter-spacing: .02em;
-  white-space: nowrap;
-  line-height: 1.2;
+/* 言語切替であることを示す目印。地球儀1文字に留めているのは、
+   768px以下で .lang-switcher が縦並びになり、ヘッダが height:64px 固定のため
+   文字列を足すと3段目ができて高さが破綻するから。.lang-pick で
+   セレクトと同じ行に閉じ込め、段数を増やさないようにしている。
+   翻訳対象にしない（どの言語で表示中でも同じ意味に読める必要があるため）。 */
+.lang-pick {
+  display: inline-flex;
+  align-items: center;
+  gap: .28rem;
 }
-
-@media (max-width: 420px) {
-  .lang-label { font-size: .6rem; }
+.lang-label {
+  font-size: .82rem;
+  line-height: 1;
+  opacity: .8;
+  cursor: help;
+  flex-shrink: 0;
 }
 
 /* ===== KIDS MODE TOGGLE ===== */
