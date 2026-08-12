@@ -617,5 +617,17 @@
   "footer_credit": "このサイトは Claude Code（クロードコード）と GitHub（ギットハブ）という どうぐで つくられています。",
   "section_site_updates": "このサイトを 直した きろく<small>Site Update Log</small>",
   "site_updates_lead": "このサイトを いつ・どこを 直したかの きろくです。",
-  "site_updates_note": "※ 市の ホームページや 学校の ホームページの 新しい おしらせは、上の コーナーに じどうで のります。ここに あるのは、このサイトを つくっている 人が 直したことです。"
+  "site_updates_note": "※ 市の ホームページや 学校の ホームページの 新しい おしらせは、上の コーナーに じどうで のります。ここに あるのは、このサイトを つくっている 人が 直したことです。",
+  "aria_lang": "ことばを えらぶ",
+  "aria_menu": "メニュー",
+  "nav_home": "ホーム",
+  "nav_schedule": "よてい",
+  "nav_bus": "スクールバス",
+  "footer_title": "こまき市 東部（しのおかちく）学校さいへん － 市民じょうほうサイト",
+  "footer_pages": "ページ",
+  "footer_official": "こうしきの リンク",
+  "footer_official_link": "こまき市の 学校さいへんのページ（こうしき）",
+  "footer_langs": "つかえる ことば：日本語・English・Português・Tiếng Việt・Filipino・Español・中文・Bahasa Indonesia・Türkçe・မြန်မာ",
+  "footer_copyright": "© 2026 こまき市 東部（しのおかちく）学校さいへん 市民じょうほうサイト（ひこうしき） | このサイトは 市民の ゆうしが つくっています。こまき市や 教育いいんかいとは かんけいありません。",
+  "upcoming_date8": "2027年4月"
 }

@@ -628,5 +628,6 @@
   "upcoming_name9": "Selección del emblema de Shinooka Gakuen (212 propuestas)",
   "section_site_updates": "Registro de actualizaciones<small>サイトの更新履歴</small>",
   "site_updates_lead": "Registro de los cambios realizados en este sitio comunitario, separando las actualizaciones de contenido de las nuevas funciones.",
-  "site_updates_note": "Nota: Las actualizaciones del sitio municipal y de los sitios escolares se reflejan automáticamente en las secciones anteriores. Aquí figuran los cambios hechos por quienes mantienen este sitio."
+  "site_updates_note": "Nota: Las actualizaciones del sitio municipal y de los sitios escolares se reflejan automáticamente en las secciones anteriores. Aquí figuran los cambios hechos por quienes mantienen este sitio.",
+  "aria_lang": "Seleccionar idioma"
 }
