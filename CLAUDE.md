@@ -108,8 +108,9 @@ The **bottom section of `index.html`** lists recent posts from the eight affecte
 The **last section of `index.html`** shows a changelog of changes made to this site itself. Unlike `news.json` and `school_news.json`, this one is **hand-maintained** — add a new entry at the top of the `updates` array when you ship something a reader would notice.
 
 - Each entry: `date` (`YYYY-MM-DD`), `type` (`content` / `feature` / `fix`), `ja` (required), `en` (recommended). Other languages fall back `en` → `ja`, matching the i18n chain.
-- Write a **reader-facing summary, not a commit message** — "Added Turkish and Burmese", not "feat(i18n): …". Internal refactors and doc fixes do not belong here.
-- The list is sorted newest-first at render time, so append order does not matter.
+- **Style: one short noun-ending line (体言止め), never a sentence.** Write 「トルコ語・ビルマ語を追加」, not 「トルコ語とビルマ語を追加しました。」. No trailing 「。」. English entries follow the same shape — a noun phrase such as "Monthly calendar added to the schedule page", not "We added a monthly calendar."
+- Write a **reader-facing summary, not a commit message** — "Turkish and Burmese added", not "feat(i18n): …". Internal refactors and doc fixes do not belong here.
+- The list is sorted newest-first at render time and **only the newest 6 are displayed** (`MAX_ITEMS` in the `js/main.js` block); keep the full history in the file.
 
 ## `js/main.js`
 

@@ -1,59 +1,59 @@
 {
-  "description": "このサイト自身の更新履歴。トップページ最下部の「サイトの更新履歴」コーナーが実行時に fetch して描画する。手動管理。閲覧者向けの要約を書くこと（コミットメッセージをそのまま貼らない）。新しいものを配列の先頭に足す。type は content（掲載内容）/ feature（機能追加）/ fix（修正）のいずれか。ja は必須、en は推奨（未記載なら ja が出る）。他言語は en → ja の順にフォールバックする。",
+  "description": "このサイト自身の更新履歴。トップページ最下部の「サイトの更新履歴」コーナーが実行時に fetch して描画する（表示は新しい順に6件まで。このファイルには全履歴を残す）。手動管理。新しいものを配列の先頭に足す。type は content（掲載内容）/ feature（機能追加）/ fix（修正）のいずれか。ja は必須、en は推奨（未記載なら ja が出る）。他言語は en → ja の順にフォールバックする。文体は体言止めの短い一行にすること（「〜しました。」と文章にしない。コミットメッセージの貼り付けもしない）。",
   "updates": [
     {
       "date": "2026-08-12",
       "type": "feature",
-      "ja": "トルコ語とビルマ語を追加しました（主要部分のみ。未翻訳部分は英語で表示されます）。",
-      "en": "Added Turkish and Burmese. Core pages only for now; untranslated parts are shown in English."
+      "ja": "トルコ語・ビルマ語を追加（主要部分のみ／未翻訳部分は英語表示）",
+      "en": "Turkish and Burmese added (core pages only; untranslated parts in English)"
     },
     {
       "date": "2026-08-12",
       "type": "feature",
-      "ja": "トップページ最下部に、再編対象8校のホームページの新着記事を集めたコーナーを追加しました。各校ホームページへのリンクは地図ページにも載せています。",
-      "en": "Added a section at the bottom of the home page collecting recent posts from the eight schools' own websites. Links to each school site were also added to the map page."
+      "ja": "対象8校のホームページ更新コーナーを新設（地図ページに各校リンクも追加）",
+      "en": "New section for the eight schools' website updates (school links also on the map page)"
     },
     {
       "date": "2026-08-12",
       "type": "content",
-      "ja": "地域協議会ページに、篠岡地区5協議会の設立年月日・活動拠点の一覧と、防犯分野の活動内容を追加しました（出典：小牧市「地域協議会の設立・活動状況」2026年6月4日更新）。",
-      "en": "Added a table of the five Shinooka community councils (founding dates and main bases) and their crime-prevention activities to the Community Councils page."
+      "ja": "地域協議会ページに篠岡地区5協議会の一覧と防犯分野の活動を追加",
+      "en": "List of the five Shinooka community councils and their crime-prevention activities added"
     },
     {
       "date": "2026-08-12",
       "type": "feature",
-      "ja": "トップページ冒頭に、いまどの段階なのかを一文で示す「いまの状況」枠を追加しました。",
-      "en": "Added a \"Right Now\" box at the top of the home page summarizing the current stage in one sentence."
+      "ja": "トップページ冒頭に現況を1文で示す「いまの状況」枠を追加",
+      "en": "One-sentence current-status box added at the top of the home page"
     },
     {
       "date": "2026-08-12",
       "type": "content",
-      "ja": "6月の保護者等説明会の質疑応答記録と、意見提出シートへの回答が市公式サイトで公開されたことを、現在の状況とスケジュールに反映しました（公式7月21日更新分）。",
-      "en": "Reflected the city's July 21 publication of Q&A records from the June parent briefings, and its responses to submitted opinions, in the current status and schedule."
+      "ja": "6月の保護者等説明会の質疑応答と意見への回答の公開を反映（公式7月21日更新分）",
+      "en": "City's July 21 publication of briefing Q&A and responses to opinions reflected"
     },
     {
       "date": "2026-07-11",
       "type": "content",
-      "ja": "城山3・4丁目のスクールバス対象外の注記、学校再編だより第5号、校章の選考中であることを追加しました（公式7月3日・6月5日・5月27日更新分）。",
-      "en": "Added notes on Shiroyama 3/4-chome being outside the school bus area, newsletter No. 5, and the school crest selection now under way."
+      "ja": "城山3・4丁目のバス対象外注記・再編だより第5号・校章選考中を追加",
+      "en": "Notes on Shiroyama 3/4-chome bus exclusion, newsletter No. 5, and crest selection added"
     },
     {
       "date": "2026-07-11",
       "type": "feature",
-      "ja": "市公式サイトの更新を毎日自動で検知し、サイトへの反映案を作成する仕組みを導入しました。市のサーバに負担をかけないよう、取得は1日1回・間隔を空けて行っています。",
-      "en": "Introduced daily automatic detection of updates on the city website, with drafted site updates. Fetching runs once a day with polite intervals to avoid loading the city server."
+      "ja": "市公式サイトの更新を毎日自動検知する仕組みを導入",
+      "en": "Daily automatic detection of city website updates introduced"
     },
     {
       "date": "2026-06-01",
       "type": "feature",
-      "ja": "スケジュールページに月別カレンダーを追加し、閲覧している月が自動で開くようにしました。",
-      "en": "Added a monthly calendar to the schedule page, opening automatically on the current month."
+      "ja": "スケジュールページに月別カレンダーを追加",
+      "en": "Monthly calendar added to the schedule page"
     },
     {
       "date": "2026-05-24",
       "type": "feature",
-      "ja": "日本語版に「こどもむけ」モード（小学3年生レベルのやさしい日本語）を追加しました。",
-      "en": "Added a kids mode to the Japanese version, using easy Japanese at a 3rd-grade reading level."
+      "ja": "日本語版に「こどもむけ」モードを追加",
+      "en": "Kids mode added to the Japanese version"
     }
   ]
 }
