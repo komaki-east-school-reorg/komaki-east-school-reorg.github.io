@@ -179,6 +179,9 @@ jobs:
                - data/i18n/*.json … 最低 ja と en。既存キーの命名規則に従う
                - index.html … 「今後のスケジュール」バーの .upcoming-item（data-expires="YYYY-MM-DD" と upcoming_dateN/upcoming_nameN キー）
                - schedule.html … 主要イベント一覧の項目（data-event-date="YYYY-MM-DD"、複数日イベントは終了日）
+               - community.html … 地域協議会ページ。スナップショットが sasaeai-3-3_2-* のとき
+                 （所管は支え合い協働推進課）はここが主対象。篠岡地区5協議会（陶・篠岡学区・
+                 大城・光ヶ丘・桃ヶ丘）に関わる記述のみ扱い、他学区の話題は追加しない
             6. **サイトの状況が動く変更なら、トップ冒頭「いまの状況」枠を必ず更新する**
                - data/i18n/*.json の now_text … 現況を **1文** で要約。全8言語＋ja-kids を更新する
                  （ja-kids は小学3年生レベルのやさしい日本語。CONTRIBUTING.txt 5・6 参照）
@@ -188,7 +191,8 @@ jobs:
             7. 必ず auto_update/evidence.json を書く（後述）
 
             ## 絶対に守るルール
-            - 上記4種類以外のファイルの編集・新規ファイルの作成は禁止（検証で不合格になる）
+            - 上記5種類以外のファイルの編集・新規ファイルの作成は禁止（検証で不合格になる）
+            - 代表者名など個人名は転載しない（市公式サイトに載っていても本サイトには載せない）
             - 事実は report/pages.diff と data/official_pages/ の内容のみに基づく。推測・創作は禁止
             - 更新が不要な変更（誤字修正・体裁変更・サイトに載せない情報）なら何も編集せず evidence.json に [] を書く
             - 判断に迷ったら「編集しない」を選ぶ

@@ -32,6 +32,9 @@
     { "slug_prefix": "303-shinooka_gsaihen-48650", "topic": "城山三丁目・四丁目の通学区域", "targets": ["now_bar", "map", "about", "faq", "current_status"] },
     { "slug_prefix": "303-shinooka_gsaihen-49521", "topic": "篠岡地区学校再編だより", "targets": ["now_bar", "current_status", "upcoming_bar", "calendar"] },
     { "slug_prefix": "303-shinooka_gsaihen-49700", "topic": "意見募集（パブリックコメント・終了）", "targets": ["voices", "schedule_timeline"] },
-    { "slug_prefix": "303-shinooka_gsaihen-51199", "topic": "篠岡地区学校再編計画【こども版】", "targets": ["kids", "faq"] }
+    { "slug_prefix": "303-shinooka_gsaihen-51199", "topic": "篠岡地区学校再編計画【こども版】", "targets": ["kids", "faq"] },
+    { "slug_prefix": "sasaeai-3-3_2-25722", "topic": "地域協議会の設立・活動状況（篠岡地区5協議会の一覧・支え合い協働推進課）", "targets": ["community"] },
+    { "slug_prefix": "sasaeai-3-3_2-chiikikyougikaievent-", "topic": "地域協議会イベント案内（篠岡地区の回があれば community に反映）", "targets": ["community"] },
+    { "slug_prefix": "sasaeai-3-3_2-index", "topic": "地域協議会（総論・支え合い協働推進課）", "targets": ["community"] }
   ]
 }

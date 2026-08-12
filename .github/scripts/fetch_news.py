@@ -29,6 +29,19 @@ OUTPUT = "data/news.json"
 SNAPSHOT_DIR = "data/official_pages"
 WINDOW_DAYS = 30
 
+# --- 監視のみ行うページ（地域協議会：支え合い協働推進課の所管） ---
+# 学校再編とは所管課が異なり news.json の「お知らせ」には載せない。本文スナップショット
+# だけを取り、変化したら community.html の更新候補として Issue に載せる。
+# WATCH_INDEXES はインデックスなので、配下の <li class="page"> 記事も辿って取得する。
+WATCH_BASE = BASE_DOMAIN + "/admin/soshiki/kenkouikigai/sasaeai/3/3_2/"
+WATCH_PAGES = [
+    WATCH_BASE + "index.html",     # 地域協議会（総論）
+    WATCH_BASE + "25722.html",     # 地域協議会の設立・活動状況（篠岡地区5協議会の一覧）
+]
+WATCH_INDEXES = [
+    WATCH_BASE + "chiikikyougikaievent/index.html",   # 地域協議会イベント案内
+]
+
 # 市サーバへの負荷配慮: リクエスト間に必ずこの秒数（＋ゆらぎ）待つ
 REQUEST_WAIT_MIN = 3.0
 REQUEST_WAIT_MAX = 5.0
@@ -75,9 +88,11 @@ def url_to_slug(url):
     """Item page URL → snapshot filename stem, e.g. '303-718-50750'."""
     path = urllib.parse.urlparse(url).path.lstrip("/")
     path = re.sub(r"\.html$", "", path)
-    prefix = "admin/soshiki/kyoiku/kyouikusoumu/"
-    if path.startswith(prefix):
-        path = path[len(prefix):]
+    for prefix in ("admin/soshiki/kyoiku/kyouikusoumu/",
+                   "admin/soshiki/kenkouikigai/"):
+        if path.startswith(prefix):
+            path = path[len(prefix):]
+            break
     return path.replace("/", "-")
 
 
@@ -197,10 +212,42 @@ def main():
 
         items.append(item)
 
+    # --- 監視のみのページ（地域協議会）のスナップショットを取る ---
+    # news.json の items には入れない。変化の検知だけが目的。
+    watch_urls = set(WATCH_PAGES)
+    keep_slugs = set()
+    for index_url in WATCH_INDEXES:
+        watch_urls.add(index_url)
+        polite_wait()
+        try:
+            index_html = fetch_html(index_url)
+        except Exception as e:
+            print(f"  ERROR fetching watch index {index_url}: {e}", file=sys.stderr)
+            # インデックスが引けないと配下記事のURLが分からない。この回だけの障害で
+            # 既存スナップショットを消さないよう、同じ接頭辞のファイルは保護する。
+            stem = url_to_slug(index_url).rsplit("-", 1)[0] + "-"
+            keep_slugs |= {f for f in os.listdir(SNAPSHOT_DIR) if f.startswith(stem)}
+            continue
+        if save_snapshot(index_url, index_html):
+            snapshots_changed = True
+        for m in re.finditer(r'<li class="page">\s*<a href="([^"]+)">', index_html):
+            watch_urls.add(normalize_url(m.group(1).strip(), index_url))
+
+    for url in sorted(watch_urls - set(WATCH_INDEXES)):
+        polite_wait()
+        try:
+            if save_snapshot(url, fetch_html(url)):
+                snapshots_changed = True
+                print(f"  watch: changed  {url}")
+        except Exception as e:
+            print(f"  ERROR fetching watch page {url}: {e}", file=sys.stderr)
+            # 取得失敗時は既存スナップショットを消さないよう URL は残す
+    seen_item_urls |= watch_urls
+
     # --- Remove snapshots of pages that no longer exist on the site ---
     # (only files whose URL is no longer listed; a transient fetch failure
     #  keeps the item in seen_item_urls, so its snapshot survives)
-    expected = {url_to_slug(u) + ".txt" for u in seen_item_urls}
+    expected = {url_to_slug(u) + ".txt" for u in seen_item_urls} | keep_slugs
     for fname in os.listdir(SNAPSHOT_DIR):
         if fname.endswith(".txt") and fname not in expected:
             os.remove(os.path.join(SNAPSHOT_DIR, fname))

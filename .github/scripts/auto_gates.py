@@ -19,7 +19,7 @@ import subprocess
 import sys
 
 LANGS = ["ja", "en", "pt", "vi", "tl", "es", "zh", "id"]
-ALLOWED = {"data/events.json", "index.html", "schedule.html"} | {
+ALLOWED = {"data/events.json", "index.html", "schedule.html", "community.html"} | {
     f"data/i18n/{l}.json" for l in LANGS + ["ja-kids"]
 }
 # 自動化の作業ファイル置き場（検査対象外）

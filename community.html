@@ -176,6 +176,13 @@
     }
     .source-box a { color: var(--primary); font-weight: 700; }
 
+    .comm-note {
+      font-size: .8rem;
+      color: var(--text-muted);
+      margin-top: .8rem;
+      line-height: 1.65;
+    }
+
     @media (max-width: 640px) {
       .comm-card { padding: 1.1rem 1rem; }
       .change-table th, .change-table td { padding: .5rem .7rem; }
@@ -249,8 +256,59 @@
           地域課題の協議・解決や地域コミュニティの活性化に取り組みます。
         </p>
         <p data-i18n-html="comm_def_p2">
-          小牧市では、市内16の小学校区のうち14の小学校区に地域協議会が設立されています（2025年時点）。
-          篠岡地区の5小学校区（篠岡・光ヶ丘・大城・桃ヶ丘・陶）にもそれぞれ設置されています。
+          小牧市では、市内16の小学校区のうち14の小学校区に地域協議会が設立されています（令和8年〈2026年〉4月現在）。
+          篠岡地区の5小学校区（篠岡・光ヶ丘・大城・桃ヶ丘・陶）にはすべて設置されています。
+        </p>
+      </div>
+
+      <div class="comm-card">
+        <div class="comm-card-title" data-i18n="comm_card_list">📋 篠岡地区の5つの地域協議会</div>
+        <p data-i18n-html="comm_list_intro">
+          篠岡地区は5小学校区すべてに地域協議会があり、いずれも<strong>令和2年（2020年）4月1日に市の認定</strong>を受けています。
+          最も早い陶小学校区は平成26年（2014年）の設立で、10年以上の活動実績があります。
+        </p>
+        <div style="overflow-x:auto;">
+          <table class="change-table">
+            <thead>
+              <tr>
+                <th data-i18n="comm_lt_name">協議会名</th>
+                <th data-i18n="comm_lt_est">設立年月日</th>
+                <th data-i18n="comm_lt_base">主な活動拠点</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-i18n="comm_cl1_name">陶小学校区地域協議会</td>
+                <td data-i18n="comm_cl1_date">平成26年3月2日</td>
+                <td data-i18n="comm_cl1_base">勤労センター</td>
+              </tr>
+              <tr>
+                <td data-i18n="comm_cl2_name">篠岡学区地域協議会</td>
+                <td data-i18n="comm_cl2_date">平成27年4月5日</td>
+                <td data-i18n="comm_cl2_base">池之内川南集会場</td>
+              </tr>
+              <tr>
+                <td data-i18n="comm_cl3_name">大城小学校区地域協議会</td>
+                <td data-i18n="comm_cl3_date">平成29年6月25日</td>
+                <td data-i18n="comm_cl3_base">大草会館</td>
+              </tr>
+              <tr>
+                <td data-i18n="comm_cl4_name">光ヶ丘小学校区地域協議会</td>
+                <td data-i18n="comm_cl4_date">平成30年11月10日</td>
+                <td data-i18n="comm_cl4_base">野口会館</td>
+              </tr>
+              <tr>
+                <td data-i18n="comm_cl5_name">桃ヶ丘小学校区地域協議会</td>
+                <td data-i18n="comm_cl5_date">令和元年6月23日</td>
+                <td data-i18n="comm_cl5_base">桃ヶ丘会館</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="comm-note" data-i18n-html="comm_list_note">
+          ※ 各協議会は毎年度の事業計画書・予算書を市公式サイトで公開しています（令和8年度分を掲載中）。
+          出典：小牧市「地域協議会の設立・活動状況」（令和8年〈2026年〉6月4日更新）。
+          代表者名は個人情報のため本サイトには掲載していません。
         </p>
       </div>
 
@@ -258,12 +316,16 @@
         <div class="comm-card-title" data-i18n="comm_card_act">📅 主な活動内容</div>
         <p data-i18n="comm_act_intro">地域協議会は、世代を超えた幅広い活動を展開しています。</p>
         <ul data-i18n-html="comm_act_list">
-          <li><strong>防災・安全：</strong>広域防災訓練の主催・参加</li>
+          <li><strong>防災・安全：</strong>広域防災訓練の主催・参加、避難所運営マニュアルの作成、災害図上訓練（DIG）</li>
+          <li><strong>防犯：</strong>青色回転灯パトロール隊の結成、安全マップの作成、児童の見守り</li>
           <li><strong>子ども向け行事：</strong>凧あげ大会、餅つき大会、ウォークラリー、スポーツ大会など</li>
           <li><strong>地域交流：</strong>夏祭り、花火大会、音楽祭</li>
-          <li><strong>高齢者支援：</strong>いきいきサロン、オレンジカフェ（認知症カフェ）の開催</li>
+          <li><strong>高齢者支援：</strong>いきいきサロン、オレンジカフェ（認知症カフェ）の開催、おたすけ隊の結成</li>
           <li><strong>デジタル支援：</strong>スマートフォン教室の実施</li>
         </ul>
+        <p class="comm-note" data-i18n="comm_act_note">
+          市は「防災」「防犯」「福祉」「交流」を地域課題の分野として整理しており、各協議会がこれらの分野ごとに事業を企画しています。
+        </p>
       </div>
     </div>
   </section>
