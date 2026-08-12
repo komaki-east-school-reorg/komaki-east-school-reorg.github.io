@@ -343,6 +343,8 @@
   const container = document.getElementById('site-updates-container');
   if (!container) return;
 
+  var MAX_ITEMS = 6;   // 表示件数。data/site-updates.json 側は全履歴を保持する
+
   var _ul = 'ja';
   try { _ul = localStorage.getItem('komaki_lang') || 'ja'; } catch (e) {}
 
@@ -376,7 +378,10 @@
       var items = (data.updates || []).slice();
       if (!items.length) { container.innerHTML = '<p class="school-empty">' + str('empty') + '</p>'; return; }
 
+      // 新しい順に並べ、直近 MAX_ITEMS 件だけ出す。
+      // JSON には履歴を残したままにして、表示だけを絞る。
       items.sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); });
+      items = items.slice(0, MAX_ITEMS);
 
       container.innerHTML = '<ol class="update-list">' + items.map(function (it) {
         // 本文は 対象言語 → en → ja の順（i18n.js のフォールバックと揃える）
