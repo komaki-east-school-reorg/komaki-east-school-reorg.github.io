@@ -115,6 +115,22 @@ nav ul {
   margin-top: -18px;
 }
 
+/* 言語切替であることを示す短いラベル。どの言語の閲覧者にも読めるよう
+   「言語 / Language」の併記で固定し、翻訳対象にしない（サイト名と同じ扱い）。 */
+.lang-label {
+  font-family: var(--heading-font);
+  font-size: .66rem;
+  font-weight: 700;
+  color: rgba(255,255,255,.72);
+  letter-spacing: .02em;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+@media (max-width: 420px) {
+  .lang-label { font-size: .6rem; }
+}
+
 /* ===== KIDS MODE TOGGLE ===== */
 .kids-toggle {
   display: inline-flex;
