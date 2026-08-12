@@ -625,5 +625,8 @@
   "upcoming_date8": "Abril 2027",
   "upcoming_name8": "Início da Reorganização Fase 1",
   "upcoming_date9": "Em seleção",
-  "upcoming_name9": "Seleção do emblema do Shinooka Gakuen (212 propostas)"
+  "upcoming_name9": "Seleção do emblema do Shinooka Gakuen (212 propostas)",
+  "section_site_updates": "Registro de atualizações do site<small>サイトの更新履歴</small>",
+  "site_updates_lead": "Registro das alterações feitas neste site comunitário, separadas entre atualizações de conteúdo e novos recursos.",
+  "site_updates_note": "Obs.: As atualizações do site da cidade e dos sites das escolas aparecem automaticamente nas seções acima. Aqui constam as alterações feitas por quem mantém este site."
 }

@@ -625,5 +625,8 @@
   "upcoming_date8": "Abril 2027",
   "upcoming_name8": "Simula ng Muling Pagsasaayos Bahagi 1",
   "upcoming_date9": "Isinasagawa",
-  "upcoming_name9": "Pagpili ng sagisag ng Shinooka Gakuen (212 disenyo)"
+  "upcoming_name9": "Pagpili ng sagisag ng Shinooka Gakuen (212 disenyo)",
+  "section_site_updates": "Talaan ng update ng site<small>サイトの更新履歴</small>",
+  "site_updates_lead": "Talaan ng mga pagbabago sa mismong site na ito, hiwalay ang nilalaman at ang mga bagong tampok.",
+  "site_updates_note": "Paalala: Awtomatikong lumalabas sa mga seksyon sa itaas ang mga update mula sa site ng lungsod at ng mga paaralan. Dito nakalista ang mga pagbabagong ginawa ng nagpapatakbo ng site."
 }

@@ -103,6 +103,14 @@ The **bottom section of `index.html`** lists recent posts from the eight affecte
 - A school whose page can't be fetched or parsed keeps its previous entries rather than being blanked; the workflow step is `continue-on-error` so a school-site outage never fails the run. Exit codes: 0 = changed, 2 = no change, 1 = all eight failed.
 - Changes here commit as `chore: update school website news [skip ci]` and do **not** open an Issue or trigger the auto-update job — these are not school-reorganization source facts.
 
+## `data/site-updates.json` (this site's own changelog)
+
+The **last section of `index.html`** shows a changelog of changes made to this site itself. Unlike `news.json` and `school_news.json`, this one is **hand-maintained** — add a new entry at the top of the `updates` array when you ship something a reader would notice.
+
+- Each entry: `date` (`YYYY-MM-DD`), `type` (`content` / `feature` / `fix`), `ja` (required), `en` (recommended). Other languages fall back `en` → `ja`, matching the i18n chain.
+- Write a **reader-facing summary, not a commit message** — "Added Turkish and Burmese", not "feat(i18n): …". Internal refactors and doc fixes do not belong here.
+- The list is sorted newest-first at render time, so append order does not matter.
+
 ## `js/main.js`
 
 Self-contained IIFE blocks handling: hamburger nav, active nav link highlighting, auto-date status, "last updated" display, upcoming schedule expiry (`data-expires`), FAQ accordion, voice filter, official news rendering, target-school website updates, and the interactive calendar on `schedule.html`. Calendar events live in `data/events.json` (`{"events": {"YYYY-MM-DD": {ja, en, pt, vi, tl, es, zh, id}}}`), fetched at runtime by the calendar block — edit that file, not `main.js`, to add/change events. All 8 language labels are required per event. If the fetch fails or the file is empty, the calendar section hides itself.

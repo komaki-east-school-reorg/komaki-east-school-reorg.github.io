@@ -425,6 +425,58 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   .school-date { margin-left: 0; width: 100%; }
 }
 
+/* ===== SITE UPDATE LOG（このサイト自身の更新履歴） ===== */
+.update-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 2px solid var(--border);
+}
+.update-item {
+  position: relative;
+  padding: .1rem 0 1.1rem 1.2rem;
+}
+.update-item:last-child { padding-bottom: 0; }
+.update-item::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: .45rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg);
+}
+.update-meta {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-bottom: .15rem;
+}
+.update-date {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: .78rem;
+  color: var(--text-muted);
+}
+.update-tag {
+  font-size: .68rem;
+  font-weight: 700;
+  font-family: var(--heading-font);
+  padding: .08rem .5rem;
+  border-radius: var(--radius-pill);
+}
+.update-tag--content { background: var(--primary-light); color: var(--primary); }
+.update-tag--feature { background: var(--accent-light); color: #8a6200; }
+.update-tag--fix     { background: #f0f4f1; color: #4a6050; }
+.update-text {
+  font-size: .88rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
 /* ===== UPCOMING SCHEDULE BAR ===== */
 .upcoming-bar {
   background: var(--primary-dark);

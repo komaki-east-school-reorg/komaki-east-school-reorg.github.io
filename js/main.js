@@ -337,6 +337,65 @@
     });
 })();
 
+/* ===== SITE UPDATE LOG ===== */
+/* このサイト自身の更新履歴。data/site-updates.json は手動管理（自動生成ではない）。 */
+(function () {
+  const container = document.getElementById('site-updates-container');
+  if (!container) return;
+
+  var _ul = 'ja';
+  try { _ul = localStorage.getItem('komaki_lang') || 'ja'; } catch (e) {}
+
+  var _ut = {
+    content: {ja:'掲載内容', en:'Content', pt:'Conteúdo', vi:'Nội dung', tl:'Nilalaman', es:'Contenido', zh:'内容', id:'Konten', tr:'İçerik', my:'အကြောင်းအရာ'},
+    feature: {ja:'機能',     en:'Feature', pt:'Recurso',  vi:'Tính năng', tl:'Tampok', es:'Función',   zh:'功能', id:'Fitur',  tr:'Özellik', my:'လုပ်ဆောင်ချက်'},
+    fix:     {ja:'修正',     en:'Fix',     pt:'Correção', vi:'Sửa lỗi',   tl:'Ayos',   es:'Corrección',zh:'修正', id:'Perbaikan', tr:'Düzeltme', my:'ပြင်ဆင်မှု'},
+    empty:   {ja:'更新履歴はまだありません。', en:'No updates recorded yet.'},
+    error:   {ja:'更新履歴を取得できませんでした。', en:'Could not load the update log.'}
+  };
+  function str(key) { return _ut[key][_ul] || _ut[key]['en'] || _ut[key]['ja']; }
+
+  function fmtDate(iso) {
+    var p = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+    if (!p) return iso || '';
+    try {
+      return new Date(+p[1], +p[2] - 1, +p[3])
+        .toLocaleDateString(_ul === 'ja' ? 'ja-JP' : _ul, {year: 'numeric', month: 'short', day: 'numeric'});
+    } catch (e) { return iso; }
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c];
+    });
+  }
+
+  fetch('./data/site-updates.json')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) {
+      var items = (data.updates || []).slice();
+      if (!items.length) { container.innerHTML = '<p class="school-empty">' + str('empty') + '</p>'; return; }
+
+      items.sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); });
+
+      container.innerHTML = '<ol class="update-list">' + items.map(function (it) {
+        // 本文は 対象言語 → en → ja の順（i18n.js のフォールバックと揃える）
+        var text = it[_ul] || it.en || it.ja || '';
+        var type = (it.type === 'feature' || it.type === 'fix') ? it.type : 'content';
+        return '<li class="update-item">' +
+                 '<div class="update-meta">' +
+                   '<time class="update-date" datetime="' + esc(it.date || '') + '">' + fmtDate(it.date) + '</time>' +
+                   '<span class="update-tag update-tag--' + type + '">' + str(type) + '</span>' +
+                 '</div>' +
+                 '<div class="update-text">' + esc(text) + '</div>' +
+               '</li>';
+      }).join('') + '</ol>';
+    })
+    .catch(function () {
+      container.innerHTML = '<p class="official-news-error">' + str('error') + '</p>';
+    });
+})();
+
 /* ===== CALENDAR ===== */
 (function () {
   const calContainer = document.getElementById('calendar-view');

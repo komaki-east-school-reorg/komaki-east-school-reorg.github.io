@@ -625,5 +625,8 @@
   "upcoming_date8": "April 2027",
   "upcoming_name8": "Phase 1 Reorganization Begins",
   "upcoming_date9": "In progress",
-  "upcoming_name9": "Shinooka Gakuen crest selection (212 entries)"
+  "upcoming_name9": "Shinooka Gakuen crest selection (212 entries)",
+  "section_site_updates": "Site Update Log<small>サイトの更新履歴</small>",
+  "site_updates_lead": "A record of changes made to this community info site itself, separated into content updates and new features.",
+  "site_updates_note": "Note: Updates on the city website and the schools' websites are reflected automatically in the sections above. What is listed here are changes made by the people who run this site."
 }
