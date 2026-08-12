@@ -86,6 +86,22 @@
     </div>
   </section>
 
+  <!-- NOW STATUS（いまの状況を一文で。内容が動いたら now_text と now_asof を更新する） -->
+  <section class="now-bar">
+    <div class="container">
+      <div class="now-inner">
+        <span class="now-label" data-i18n="now_label">📌 いまの状況</span>
+        <div class="now-body">
+          <span class="now-text" data-i18n-html="now_text">6月の保護者等説明会（全6会場）と7月の質疑応答・意見への回答の公開を経て、現在は<strong>しのおか学園の校章を選考中</strong>、2027年4月の再編実施に向けた準備が進んでいます。</span>
+          <span class="now-meta">
+            <span data-i18n="now_asof">2026年8月時点</span>
+            ・<a href="#status" class="now-more" data-i18n="now_more">現在の状況をくわしく見る →</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- UPCOMING SCHEDULE -->
   <section class="upcoming-bar">
     <div class="container">
@@ -234,7 +250,7 @@
   </section>
 
   <!-- CURRENT STATUS -->
-  <section class="section section-alt">
+  <section class="section section-alt" id="status">
     <div class="container">
       <h2 class="section-title" data-i18n-html="section_status">現在の状況<small>Current Status</small></h2>
       <p class="section-updated" id="status-last-updated"></p>

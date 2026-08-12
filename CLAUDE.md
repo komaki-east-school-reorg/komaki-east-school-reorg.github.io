@@ -97,6 +97,21 @@ Notes:
 - **Attribute distinction:** *Current Status* and *Key Events* items use `data-event-date` (drives "done"). The index "今後のスケジュール" (upcoming) bar items (`.upcoming-item`) use `data-expires` (hidden once past). List the bar's near-term items individually, mirroring `schedule.html`/the calendar (text via `upcoming_dateN`/`upcoming_nameN` keys).
 - Kids mode (`ja-kids.json`) targets a **3rd-grade reading level**; see `CONTRIBUTING.txt` rules 5 & 6 for full content-management rules.
 
+### The "いまの状況" box (`.now-bar`) — the one thing that is NOT automatic
+
+`index.html` opens with a `.now-bar` box that states the current situation in **a single sentence**, sitting between the hero and the upcoming bar. It is driven by four i18n keys:
+
+| Key | Content |
+|---|---|
+| `now_label` | Box label ("📌 いまの状況") — rarely changes |
+| `now_text` | **One sentence** summarizing where things stand. `data-i18n-html`, so `<strong>` is allowed |
+| `now_asof` | The month that sentence describes ("2026年8月時点") |
+| `now_more` | Link text to the `#status` anchor (the *Current Status* section) |
+
+Unlike the completion badges, the calendar month, and the "last updated" line, **nothing about this box updates itself** — it is hand-written prose, which makes it the fastest part of the site to go stale and the most visible when it does. Whenever the situation actually moves (an event finishes, new material is published, a decision is made), update `now_text` **and** `now_asof` **in all 8 languages plus `ja-kids`**. Do not touch it for changes that don't move the situation (typo fixes, layout changes on the city site).
+
+`data/site-facts.json` lists this as the `now_bar` target and includes it in `default_targets`, so the auto-update pipeline is prompted to maintain it on every detected change; the verifier AI checks it too.
+
 ## Page structure
 
 Every HTML page follows the same pattern: `notice-banner` → `<header>` (with `.lang-switcher` containing `.kids-toggle` and `.lang-select`) → `<main>` → `<footer>`. Both `js/i18n.js` and `js/main.js` are loaded at the end of `<body>`. Pages are standalone — there is no shared template or server-side include. When adding a new page, copy the full header/footer block from an existing page.

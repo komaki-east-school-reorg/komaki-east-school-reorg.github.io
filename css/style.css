@@ -262,6 +262,62 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   font-family: var(--heading-font);
 }
 
+/* ===== NOW BAR（トップ冒頭「いまの状況」を一文で示す枠） ===== */
+.now-bar {
+  background: var(--accent-light);
+  border-bottom: 1px solid var(--border);
+  padding: 1.1rem 0;
+}
+.now-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-left: 5px solid var(--accent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1rem 1.2rem;
+}
+.now-label {
+  font-family: var(--heading-font);
+  font-weight: 800;
+  font-size: .82rem;
+  color: var(--primary);
+  background: var(--primary-light);
+  border-radius: var(--radius-pill);
+  padding: .18rem .8rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: .04em;
+  margin-top: .12rem;
+}
+.now-body { flex: 1; min-width: 0; }
+.now-text {
+  font-size: .96rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+.now-text strong { color: var(--primary); }
+.now-meta {
+  display: block;
+  font-size: .76rem;
+  color: var(--text-muted);
+  margin-top: .35rem;
+}
+.now-more {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: .78rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .now-inner { flex-direction: column; gap: .55rem; padding: .9rem 1rem; }
+  .now-label { margin-top: 0; }
+  .now-text { font-size: .9rem; }
+}
+
 /* ===== UPCOMING SCHEDULE BAR ===== */
 .upcoming-bar {
   background: var(--primary-dark);
