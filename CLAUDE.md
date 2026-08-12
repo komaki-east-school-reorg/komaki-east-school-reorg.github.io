@@ -15,13 +15,20 @@ python3 -m http.server 8000
 
 ## Validation checks (run before every commit)
 
-**1. Illegal external links** — only one external URL is permitted: the official city page at `.../303/index.html`. No PDF direct links or subpages.
+**1. Illegal external links** — exactly **two** city URLs are permitted, both index pages. No PDF direct links, no article subpages.
+
+| Permitted URL | Used by |
+|---|---|
+| `.../kyoiku/kyouikusoumu/303/index.html` | school reorganization (Education General Affairs Div.) — site-wide |
+| `.../kenkouikigai/sasaeai/3/3_2/index.html` | community councils (Mutual Support Div.) — `community.html` only |
 
 ```bash
 grep -rn "city\.komaki\.aichi\.jp" *.html js/*.js \
-  | grep -v "303/index\.html"
-# Any output = violation. Replace with the permitted URL.
+  | grep -v -e "303/index\.html" -e "sasaeai/3/3_2/index\.html"
+# Any output = violation. Replace with one of the permitted URLs.
 ```
+
+The same two URLs are encoded in `PERMITTED_LINKS` in `.github/scripts/auto_gates.py` — keep them in sync. Adding a third requires updating this file, `CONTRIBUTING.txt` rule 1, `README.md`, and that gate together.
 
 **2. Apostrophe escaping in i18n JSON** — unescaped `'` inside a JSON string value will silently corrupt translations for all languages.
 
@@ -78,9 +85,19 @@ The same script also saves a normalized body-text snapshot of every item page to
 
 When a content change is detected, a second job drafts site updates fully automatically: a drafter Claude (via `anthropics/claude-code-action`, subscription OAuth — secret `CLAUDE_CODE_OAUTH_TOKEN`; if the secret is missing the job skips silently and only the detection issue remains) reads the diff and may edit **only** `data/events.json`, `data/i18n/*.json`, `index.html`, `schedule.html`, `community.html`, and must write `auto_update/evidence.json` quoting the exact official-source text for every change. `.github/scripts/auto_gates.py` then machine-verifies scope, schemas (8-language event labels), the external-link rule, and that every quote actually exists in `data/official_pages/` (hallucination check; exit 0 = pass, 3 = no changes, 1 = fail). An independent verifier Claude reviews the diff and writes `auto_update/verdict.json`; only on `approve` is the PR auto-merged (squash) and the detection issue closed with a report from `.github/scripts/auto_report.py`. Kill switch: set repo variable `AUTO_MERGE` to `false` to stop before merge (PR is still created). Any gate/verdict failure leaves `main` untouched.
 
+## `data/school_news.json` (target-school website updates)
+
+The **bottom section of `index.html`** lists recent posts from the eight affected schools' own websites (`komaki-aic.ed.jp/<slug>/` — a different domain, run by each school, not the city). `.github/scripts/fetch_schools.py` scrapes each school's top page once a day from the same workflow, taking the newest 3 article cards (`class="blogtitle"` + 公開日), and writes them here sorted newest-school-first. Cards updated within 7 days get a 新着 badge, computed client-side.
+
+- **Never hand-edit** `data/school_news.json`, and never add it to the auto-update pipeline's `ALLOWED` set — it is regenerated daily.
+- The eight schools are hard-coded in `SCHOOLS` in the script, with display names for ja / ja-kids / en / zh (other languages fall back to en).
+- Article headlines are shown **untranslated** — they are the schools' own words. Only the surrounding labels are localized (in `js/main.js`, same inline-dict pattern as the official-news block).
+- A school whose page can't be fetched or parsed keeps its previous entries rather than being blanked; the workflow step is `continue-on-error` so a school-site outage never fails the run. Exit codes: 0 = changed, 2 = no change, 1 = all eight failed.
+- Changes here commit as `chore: update school website news [skip ci]` and do **not** open an Issue or trigger the auto-update job — these are not school-reorganization source facts.
+
 ## `js/main.js`
 
-Self-contained IIFE blocks handling: hamburger nav, active nav link highlighting, auto-date status, "last updated" display, upcoming schedule expiry (`data-expires`), FAQ accordion, voice filter, official news rendering, and the interactive calendar on `schedule.html`. Calendar events live in `data/events.json` (`{"events": {"YYYY-MM-DD": {ja, en, pt, vi, tl, es, zh, id}}}`), fetched at runtime by the calendar block — edit that file, not `main.js`, to add/change events. All 8 language labels are required per event. If the fetch fails or the file is empty, the calendar section hides itself.
+Self-contained IIFE blocks handling: hamburger nav, active nav link highlighting, auto-date status, "last updated" display, upcoming schedule expiry (`data-expires`), FAQ accordion, voice filter, official news rendering, target-school website updates, and the interactive calendar on `schedule.html`. Calendar events live in `data/events.json` (`{"events": {"YYYY-MM-DD": {ja, en, pt, vi, tl, es, zh, id}}}`), fetched at runtime by the calendar block — edit that file, not `main.js`, to add/change events. All 8 language labels are required per event. If the fetch fails or the file is empty, the calendar section hides itself.
 
 ### Date-driven auto-display (and when it updates)
 

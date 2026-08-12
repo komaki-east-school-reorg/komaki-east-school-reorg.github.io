@@ -318,6 +318,79 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   .now-text { font-size: .9rem; }
 }
 
+/* ===== SCHOOL WEBSITE UPDATES（対象8校ホームページの更新コーナー） ===== */
+.school-lead {
+  font-size: .92rem;
+  color: var(--text-muted);
+  margin: -1rem 0 1.4rem;
+}
+.school-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.school-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  box-shadow: var(--shadow);
+}
+.school-card--fresh { border-color: var(--accent); }
+.school-card-head {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-bottom: .5rem;
+}
+.school-name {
+  font-family: var(--heading-font);
+  font-weight: 800;
+  font-size: .98rem;
+  color: var(--primary);
+}
+.school-badge {
+  font-size: .68rem;
+  font-weight: 700;
+  font-family: var(--heading-font);
+  padding: .1rem .5rem;
+  border-radius: var(--radius-pill);
+  background: var(--primary-light);
+  color: var(--primary);
+}
+.school-badge--new { background: var(--accent); color: var(--primary-dark); }
+.school-date {
+  font-size: .76rem;
+  color: var(--text-muted);
+  margin-left: auto;
+  white-space: nowrap;
+}
+.school-items { list-style: none; margin: 0; padding: 0; }
+.school-items li {
+  font-size: .84rem;
+  line-height: 1.55;
+  padding: .3rem 0;
+  border-top: 1px solid var(--border);
+}
+.school-items li:first-child { border-top: none; }
+.school-items a { color: var(--text); }
+.school-items a:hover { color: var(--primary); }
+.school-item-date { color: var(--text-muted); font-size: .74rem; margin-right: .4rem; }
+.school-card-link {
+  display: inline-block;
+  margin-top: .6rem;
+  font-size: .78rem;
+  font-family: var(--heading-font);
+  font-weight: 700;
+}
+.school-empty { font-size: .84rem; color: var(--text-muted); }
+.school-note { font-size: .78rem; color: var(--text-muted); margin-top: 1.2rem; line-height: 1.6; }
+
+@media (max-width: 480px) {
+  .school-date { margin-left: 0; width: 100%; }
+}
+
 /* ===== UPCOMING SCHEDULE BAR ===== */
 .upcoming-bar {
   background: var(--primary-dark);

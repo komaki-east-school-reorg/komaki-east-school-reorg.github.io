@@ -6,11 +6,15 @@
 
 
 ──────────────────────────────────────────────────────
-【ルール1】外部リンクは小牧市公式の学校再編係ページのみ
+【ルール1】外部リンクは小牧市公式の所管課インデックスページのみ
 ──────────────────────────────────────────────────────
 
-■ 許可するURL（1種類のみ）
-  https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html
+■ 許可するURL（2種類のみ。どちらも「インデックスページ」）
+  (1) 学校再編（教育総務課 学校再編推進係）＝サイト全体で使用
+      https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html
+  (2) 地域協議会（支え合い協働推進課）＝community.html でのみ使用
+      https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/index.html
+      ※2026-08-12 に追加。所管課が異なり (1) からはたどれないため。
 
 ■ 禁止するURL（例）
   - https://www.city.komaki.aichi.jp/material/files/group/47/*.pdf  ← PDF直リンク
@@ -19,13 +23,18 @@
 
 ■ 理由
   小牧市公式サイトの個別ページやPDFはURL・内容が予告なく変更・削除される
-  ことがある。リンク切れや情報の陳腐化を防ぐため、窓口となるトップページ
-  （学校再編推進係のページ）のみを参照先とする。
+  ことがある。リンク切れや情報の陳腐化を防ぐため、各所管課の窓口となる
+  インデックスページのみを参照先とする。個別記事は所管課のページからたどれる。
 
 ■ チェック方法（ターミナルで実行）
   grep -rn "city\.komaki\.aichi\.jp" *.html js/*.js \
-    | grep -v "303/index\.html"
+    | grep -v -e "303/index\.html" -e "sasaeai/3/3_2/index\.html"
   → 出力があれば違反箇所。許可URLに差し替えること。
+
+■ 許可URLを増やすとき
+  次の4か所を必ず同時に更新する（片方だけ直すと検証が誤検知する）：
+    本ファイルのルール1 / CLAUDE.md の検証コマンド / README.md の主なルール /
+    .github/scripts/auto_gates.py の PERMITTED_LINKS
 
 
 ──────────────────────────────────────────────────────
@@ -149,6 +158,12 @@
     （data-event-date なしでよい）。
   - 状態バッジの文言は event_status_done / event_status_current /
     event_status_upcoming キー（全言語に記載済み）。新しい状態を作らない。
+  - 地域協議会（支え合い協働推進課）のイベントが公式に掲載され、篠岡地区5校区
+    （陶・篠岡学区・大城・光ヶ丘・桃ヶ丘）のものであれば、community.html だけで
+    なくスケジュールにも入れる。data/events.json（8言語）＋ schedule.html の
+    主要イベント一覧、開催前なら index.html の「今後のスケジュール」バーにも追加。
+    他学区（小牧小・本庄小・小木小など）のイベントは対象外。
+
   - 月別カレンダーに予定を足すときは data/events.json の events オブジェクトに
     "YYYY-MM-DD": {ja, en, pt, vi, tl, es, zh, id} 形式で追加する（8言語すべて必須。
     初期表示月の範囲も自動で追従）。js/main.js が実行時に fetch して描画するので、

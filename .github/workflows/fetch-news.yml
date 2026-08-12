@@ -44,6 +44,39 @@ jobs:
             echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
 
+      # 再編対象8校のホームページ新着記事（別ドメイン・各校が更新）
+      # 学校再編の一次情報ではないため、変化しても Issue や自動更新ジョブは動かさない。
+      # data/school_news.json を差し替えるだけ。失敗してもワークフローは止めない。
+      - name: Fetch target-school website updates
+        id: schools
+        continue-on-error: true
+        run: |
+          set +e
+          python3 .github/scripts/fetch_schools.py
+          code=$?
+          set -e
+          if [ "$code" -eq 1 ]; then
+            echo "::warning::学校ホームページの取得に失敗しました（サイトの構成変更の可能性）"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          elif [ "$code" -eq 0 ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit school updates
+        if: steps.schools.outputs.changed == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/school_news.json
+          if git diff --staged --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "chore: update school website news [skip ci]"
+            git push
+          fi
+
       # 本文スナップショットの差分から変更レポートを作成（コミット前に採取）
       - name: Prepare content-change report
         id: report
@@ -182,6 +215,12 @@ jobs:
                - community.html … 地域協議会ページ。スナップショットが sasaeai-3-3_2-* のとき
                  （所管は支え合い協働推進課）はここが主対象。篠岡地区5協議会（陶・篠岡学区・
                  大城・光ヶ丘・桃ヶ丘）に関わる記述のみ扱い、他学区の話題は追加しない
+               - **地域協議会のイベントは日程が分かればスケジュールにも入れる**：
+                 sasaeai-3-3_2-chiikikyougikaievent-* に篠岡地区5校区（陶・篠岡学区・大城・
+                 光ヶ丘・桃ヶ丘）の催しが載ったら、community.html だけで終わらせず
+                 data/events.json（8言語ラベル）と schedule.html の主要イベント一覧、
+                 開催前なら index.html の「今後のスケジュール」バーにも追加する。
+                 他学区（小牧小・本庄小・小木小など）のイベントは対象外なので追加しない
             6. **サイトの状況が動く変更なら、トップ冒頭「いまの状況」枠を必ず更新する**
                - data/i18n/*.json の now_text … 現況を **1文** で要約。全8言語＋ja-kids を更新する
                  （ja-kids は小学3年生レベルのやさしい日本語。CONTRIBUTING.txt 5・6 参照）

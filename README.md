@@ -45,7 +45,7 @@ python3 -m http.server 8000
 
 詳細は [CONTRIBUTING.txt](CONTRIBUTING.txt) を参照してください。主なルール：
 
-1. **外部リンクは公式市ページのみ** — `https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html` 以外の city.komaki.aichi.jp URL は禁止
+1. **外部リンクは公式市ページの2つのインデックスのみ** — 学校再編 `.../kyoiku/kyouikusoumu/303/index.html`（サイト全体）と地域協議会 `.../kenkouikigai/sasaeai/3/3_2/index.html`（community.html のみ）。それ以外の city.komaki.aichi.jp URL は禁止
 2. **翻訳ファイルのアポストロフィ** — `data/i18n/*.json` の文字列値内のアポストロフィは `\'` でエスケープ
 3. **新しい翻訳キー** — `ja`（日本語）と `en`（英語）への記載が必須。他の6言語は未記載でも日本語にフォールバック
 4. **事実確認** — 掲載する数値・日付は必ず公式情報源に基づく

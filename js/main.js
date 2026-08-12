@@ -245,6 +245,95 @@
     });
 })();
 
+/* ===== SCHOOL WEBSITE UPDATES ===== */
+/* 再編対象8校のホームページ新着記事。data/school_news.json は
+   .github/scripts/fetch_schools.py が毎日更新する（手編集しない）。 */
+(function () {
+  const container = document.getElementById('school-news-container');
+  if (!container) return;
+
+  var _sl = 'ja', _sk = false;
+  try {
+    _sl = localStorage.getItem('komaki_lang') || 'ja';
+    _sk = localStorage.getItem('komaki_kids') === '1';
+  } catch (e) {}
+
+  var _st = {
+    elem:    {ja:'小学校', en:'Elementary', pt:'Primária', vi:'Tiểu học', tl:'Elementarya', es:'Primaria', zh:'小学', id:'SD'},
+    jhs:     {ja:'中学校', en:'Junior High', pt:'Ginásio', vi:'THCS', tl:'Junior High', es:'Secundaria', zh:'中学', id:'SMP'},
+    is_new:  {ja:'新着',   en:'NEW', pt:'NOVO', vi:'MỚI', tl:'BAGO', es:'NUEVO', zh:'最新', id:'BARU'},
+    updated: {ja:'最終更新 ', en:'Updated ', pt:'Atualizado ', vi:'Cập nhật ', tl:'Na-update ', es:'Actualizado ', zh:'最后更新 ', id:'Diperbarui '},
+    visit:   {ja:'学校ホームページを見る →', en:'Visit school website →', pt:'Ver site da escola →', vi:'Xem trang trường →', tl:'Bisitahin ang website →', es:'Ver sitio de la escuela →', zh:'访问学校网站 →', id:'Kunjungi situs sekolah →'},
+    empty:   {ja:'新着記事を取得できませんでした。', en:'No articles could be retrieved.', pt:'Não foi possível obter artigos.', vi:'Không lấy được bài viết.', tl:'Walang nakuhang artikulo.', es:'No se pudieron obtener artículos.', zh:'未能获取文章。', id:'Tidak ada artikel yang diperoleh.'},
+    error:   {ja:'学校ホームページの情報を取得できませんでした。', en:'Could not load school website updates.', pt:'Não foi possível carregar as atualizações.', vi:'Không tải được cập nhật từ trang trường.', tl:'Hindi ma-load ang mga update.', es:'No se pudieron cargar las actualizaciones.', zh:'无法加载学校网站更新。', id:'Gagal memuat pembaruan situs sekolah.'}
+  };
+  function str(key) { return _st[key][_sl] || _st[key]['ja']; }
+
+  function schoolName(names) {
+    if (_sl === 'ja') return (_sk && names.ja_kids) ? names.ja_kids : names.ja;
+    return names[_sl] || names.en || names.ja;
+  }
+
+  // ISO 日付 → 閲覧者の言語の表記に。失敗したら元の文字列のまま。
+  function fmtDate(iso) {
+    var p = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+    if (!p) return iso || '';
+    var d = new Date(+p[1], +p[2] - 1, +p[3]);
+    try {
+      return d.toLocaleDateString(_sl === 'ja' ? 'ja-JP' : _sl, {year: 'numeric', month: 'short', day: 'numeric'});
+    } catch (e) { return iso; }
+  }
+
+  function daysSince(iso) {
+    var p = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+    if (!p) return Infinity;
+    var then = new Date(+p[1], +p[2] - 1, +p[3]);
+    var now = new Date(); now.setHours(0, 0, 0, 0);
+    return Math.floor((now - then) / 86400000);
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c];
+    });
+  }
+
+  fetch('./data/school_news.json')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) {
+      var schools = (data.schools || []).slice();
+      if (!schools.length) { container.innerHTML = '<p class="school-empty">' + str('empty') + '</p>'; return; }
+
+      // 更新の新しい順（データ側でも整列済みだが表示側でも保証する）
+      schools.sort(function (a, b) { return (b.latest_date || '').localeCompare(a.latest_date || ''); });
+
+      container.innerHTML = '<div class="school-grid">' + schools.map(function (s) {
+        var fresh = daysSince(s.latest_date) <= 7;
+        var items = (s.items || []).map(function (it) {
+          return '<li><a href="' + esc(it.url) + '" target="_blank" rel="noopener">' +
+                   '<span class="school-item-date">' + fmtDate(it.date) + '</span>' +
+                   esc(it.title) +
+                 '</a></li>';
+        }).join('');
+
+        return '<div class="school-card' + (fresh ? ' school-card--fresh' : '') + '">' +
+                 '<div class="school-card-head">' +
+                   '<span class="school-name">' + esc(schoolName(s.names)) + '</span>' +
+                   '<span class="school-badge">' + str(s.level === 'jhs' ? 'jhs' : 'elem') + '</span>' +
+                   (fresh ? '<span class="school-badge school-badge--new">' + str('is_new') + '</span>' : '') +
+                   '<span class="school-date">' + (s.latest_date ? str('updated') + fmtDate(s.latest_date) : '') + '</span>' +
+                 '</div>' +
+                 (items ? '<ul class="school-items">' + items + '</ul>'
+                        : '<p class="school-empty">' + str('empty') + '</p>') +
+                 '<a class="school-card-link" href="' + esc(s.url) + '" target="_blank" rel="noopener">' + str('visit') + '</a>' +
+               '</div>';
+      }).join('') + '</div>';
+    })
+    .catch(function () {
+      container.innerHTML = '<p class="official-news-error">' + str('error') + '</p>';
+    });
+})();
+
 /* ===== CALENDAR ===== */
 (function () {
   const calContainer = document.getElementById('calendar-view');

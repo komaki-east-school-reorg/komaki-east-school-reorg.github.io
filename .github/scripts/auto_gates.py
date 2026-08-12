@@ -25,7 +25,10 @@ ALLOWED = {"data/events.json", "index.html", "schedule.html", "community.html"} 
 # 自動化の作業ファイル置き場（検査対象外）
 IGNORE_PREFIXES = ("auto_update/", "report/")
 EVIDENCE = "auto_update/evidence.json"
-PERMITTED_LINK = "303/index.html"
+# 市サイトへのリンクを張ってよいページ（この2つのインデックスのみ。PDF直リンク・
+# 個別記事ページは不可）。1つ目＝学校再編（教育総務課）、2つ目＝地域協議会（支え合い
+# 協働推進課、community.html 用に 2026-08-12 追加）。
+PERMITTED_LINKS = ("303/index.html", "sasaeai/3/3_2/index.html")
 MIN_QUOTE_LEN = 10
 
 fails = []
@@ -112,7 +115,7 @@ def main():
         with open(p, encoding="utf-8") as f:
             for i, line in enumerate(f, 1):
                 for m in re.finditer(r"city\.komaki\.aichi\.jp[^\s\"'<)]*", line):
-                    if PERMITTED_LINK not in m.group(0):
+                    if not any(p in m.group(0) for p in PERMITTED_LINKS):
                         link_violations.append(f"{p}:{i} {m.group(0)[:80]}")
     if link_violations:
         for v in link_violations:

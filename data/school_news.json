@@ -1,0 +1,239 @@
+{
+  "fetched_at": "2026-08-12T12:54:30Z",
+  "source": "各校公式ホームページ（小牧市立学校）",
+  "max_items": 3,
+  "schools": [
+    {
+      "slug": "shinooka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "篠岡中学校",
+        "ja_kids": "しのおか中学校",
+        "en": "Shinooka Junior High",
+        "zh": "篠冈中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
+      "latest_date": "2026-08-09",
+      "items": [
+        {
+          "title": "《桃花台野球部》新チーム初の練習試合",
+          "date": "2026-08-09",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135731119?tm=20260809183508"
+        },
+        {
+          "title": "ソフトテニス部 光ヶ丘中男子と合同練習",
+          "date": "2026-08-07",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135730051?tm=20260807154507"
+        },
+        {
+          "title": "《桃花台野球部》東京ヴェルディU-15と合同練習",
+          "date": "2026-08-03",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135723969?tm=20260803111635"
+        }
+      ]
+    },
+    {
+      "slug": "ohshiro-e",
+      "level": "elem",
+      "names": {
+        "ja": "大城小学校",
+        "ja_kids": "おおしろ小学校",
+        "en": "Oshiro Elem. School",
+        "zh": "大城小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
+      "latest_date": "2026-08-05",
+      "items": [
+        {
+          "title": "第１１３・１１４回バスケットボール教室",
+          "date": "2026-08-05",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/135723666?tm=20260803093255"
+        },
+        {
+          "title": "小牧市連絡協議会自主研修会",
+          "date": "2026-08-05",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/135701100?tm=20260723105326"
+        },
+        {
+          "title": "にじっこたいきゅうしき",
+          "date": "2026-08-05",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/135701040?tm=20260723104653"
+        }
+      ]
+    },
+    {
+      "slug": "sue-e",
+      "level": "elem",
+      "names": {
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-08-03",
+      "items": [
+        {
+          "title": "8/3 陶地域夏祭り：和太鼓部出演",
+          "date": "2026-08-03",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135723509?tm=20260803083233"
+        },
+        {
+          "title": "7/17 一学期終業式",
+          "date": "2026-07-21",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135520066?tm=20260721114054"
+        },
+        {
+          "title": "7/16 国語：音読発表会（１年生）",
+          "date": "2026-07-16",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135501722?tm=20260716124116"
+        }
+      ]
+    },
+    {
+      "slug": "hikarigaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "光ヶ丘小学校",
+        "ja_kids": "ひかりがおか小学校",
+        "en": "Hikari-ga-oka Elem. School",
+        "zh": "光之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
+      "latest_date": "2026-07-27",
+      "items": [
+        {
+          "title": "ぶどう棚のビニールを外しました",
+          "date": "2026-07-27",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135711182?tm=20260727094928"
+        },
+        {
+          "title": "１学期終業式を行いました ～「やってみる」チャレンジの夏休みへ～",
+          "date": "2026-07-17",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135508020?tm=20260717094028"
+        },
+        {
+          "title": "やまももくらぶ「不審者対策講座」",
+          "date": "2026-07-17",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135507363?tm=20260717081051"
+        }
+      ]
+    },
+    {
+      "slug": "toryo-j",
+      "level": "jhs",
+      "names": {
+        "ja": "桃陵中学校",
+        "ja_kids": "とうりょう中学校",
+        "en": "Toryo Junior High",
+        "zh": "桃陵中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
+      "latest_date": "2026-07-26",
+      "items": [
+        {
+          "title": "0726 女バス引退式",
+          "date": "2026-07-26",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135710351?tm=20260726165116"
+        },
+        {
+          "title": "0718 女子バスケットボール部 愛日大会敗退",
+          "date": "2026-07-18",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135515843?tm=20260718133346"
+        },
+        {
+          "title": "１年生 １学期終了",
+          "date": "2026-07-18",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135510328?tm=20260718135627"
+        }
+      ]
+    },
+    {
+      "slug": "hikarigaoka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "光ヶ丘中学校",
+        "ja_kids": "ひかりがおか中学校",
+        "en": "Hikari-ga-oka Junior High",
+        "zh": "光之丘中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
+      "latest_date": "2026-07-25",
+      "items": [
+        {
+          "title": "7/25(土)ジュニア奉仕団「盲導犬育成募金」",
+          "date": "2026-07-25",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135709396?tm=20260725190401"
+        },
+        {
+          "title": "吹奏楽部 応援ありがとうございました！",
+          "date": "2026-07-25",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135709281?tm=20260725180141"
+        },
+        {
+          "title": "吹奏楽部 合同練習会・明日は吹奏楽コンクールです",
+          "date": "2026-07-24",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135705415?tm=20260724103101"
+        }
+      ]
+    },
+    {
+      "slug": "shinooka-e",
+      "level": "elem",
+      "names": {
+        "ja": "篠岡小学校",
+        "ja_kids": "しのおか小学校",
+        "en": "Shinooka Elem. School",
+        "zh": "篠冈小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
+      "latest_date": "2026-07-18",
+      "items": [
+        {
+          "title": "1学期終業式",
+          "date": "2026-07-18",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135515662?tm=20260718111510"
+        },
+        {
+          "title": "6年生：薬物乱用防止教室",
+          "date": "2026-07-18",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135515561?tm=20260718095523"
+        },
+        {
+          "title": "6年生：選挙出前授業",
+          "date": "2026-07-18",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135515553?tm=20260718094746"
+        }
+      ]
+    },
+    {
+      "slug": "momogaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "桃ヶ丘小学校",
+        "ja_kids": "ももがおか小学校",
+        "en": "Momo-ga-oka Elem. School",
+        "zh": "桃之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
+      "latest_date": "2026-07-17",
+      "items": [
+        {
+          "title": "終業式 ～１学期のふりかえり～",
+          "date": "2026-07-17",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/135513222?tm=20260717155315"
+        },
+        {
+          "title": "4・５年生 : 東部地区小学校合同交流会",
+          "date": "2026-07-15",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/135496212?tm=20260715155536"
+        },
+        {
+          "title": "３年生：総合的な学習（桃の発表準備）",
+          "date": "2026-07-15",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/135494639?tm=20260715135314"
+        }
+      ]
+    }
+  ]
+}

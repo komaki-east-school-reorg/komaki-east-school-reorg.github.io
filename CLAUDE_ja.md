@@ -25,12 +25,17 @@ python3 -m http.server 8000
 
 ### 1. 不正な外部リンクのチェック
 
-許可されている外部 URL は `.../303/index.html` の公式市ページのみです。
-PDF の直リンクやサブページは禁止されています。
+許可されている外部 URL は次の2つのインデックスページのみです。
+PDF の直リンクや個別記事ページは禁止されています。
+
+| 許可URL | 用途 |
+|---|---|
+| `.../kyoiku/kyouikusoumu/303/index.html` | 学校再編（教育総務課）— サイト全体 |
+| `.../kenkouikigai/sasaeai/3/3_2/index.html` | 地域協議会（支え合い協働推進課）— community.html のみ |
 
 ```bash
 grep -rn "city\.komaki\.aichi\.jp" *.html js/*.js \
-  | grep -v "303/index\.html"
+  | grep -v -e "303/index\.html" -e "sasaeai/3/3_2/index\.html"
 # 出力があれば違反。許可 URL に差し替えること。
 ```
 

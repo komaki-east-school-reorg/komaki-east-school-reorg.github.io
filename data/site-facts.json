@@ -13,7 +13,8 @@
     "community": { "file": "community.html / data/i18n/*.json", "notes": "地域協議会・区長会への報告経緯" },
     "bus": { "file": "bus.html / data/i18n/*.json", "notes": "スクールバス情報" },
     "map": { "file": "map.html / data/i18n/*.json", "notes": "学校マップ・通学区域" },
-    "kids": { "file": "data/i18n/ja-kids.json", "notes": "こどもむけモードの上書き辞書（小3レベル）" }
+    "kids": { "file": "data/i18n/ja-kids.json", "notes": "こどもむけモードの上書き辞書（小3レベル）" },
+    "school_news": { "file": "data/school_news.json（自動生成・手編集不可）/ index.html の #school-news-container", "notes": "再編対象8校のホームページ更新コーナー。.github/scripts/fetch_schools.py が毎日更新するので手で編集しない" }
   },
   "default_targets": ["now_bar", "current_status", "faq"],
   "mappings": [
@@ -34,7 +35,7 @@
     { "slug_prefix": "303-shinooka_gsaihen-49700", "topic": "意見募集（パブリックコメント・終了）", "targets": ["voices", "schedule_timeline"] },
     { "slug_prefix": "303-shinooka_gsaihen-51199", "topic": "篠岡地区学校再編計画【こども版】", "targets": ["kids", "faq"] },
     { "slug_prefix": "sasaeai-3-3_2-25722", "topic": "地域協議会の設立・活動状況（篠岡地区5協議会の一覧・支え合い協働推進課）", "targets": ["community"] },
-    { "slug_prefix": "sasaeai-3-3_2-chiikikyougikaievent-", "topic": "地域協議会イベント案内（篠岡地区の回があれば community に反映）", "targets": ["community"] },
+    { "slug_prefix": "sasaeai-3-3_2-chiikikyougikaievent-", "topic": "地域協議会イベント案内（篠岡地区5校区の回はスケジュールにも反映する）", "targets": ["community", "calendar", "key_events", "upcoming_bar", "now_bar"] },
     { "slug_prefix": "sasaeai-3-3_2-index", "topic": "地域協議会（総論・支え合い協働推進課）", "targets": ["community"] }
   ]
 }
