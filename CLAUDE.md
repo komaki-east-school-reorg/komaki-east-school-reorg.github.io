@@ -30,6 +30,8 @@ grep -rn "city\.komaki\.aichi\.jp" *.html js/*.js \
 
 The same two URLs are encoded in `PERMITTED_LINKS` in `.github/scripts/auto_gates.py` — keep them in sync. Adding a third requires updating this file, `CONTRIBUTING.txt` rule 1, `README.md`, and that gate together.
 
+Separately, the **eight target schools' own homepages** (`komaki-aic.ed.jp/<slug>/`) may be linked: they are a different domain run by the schools, and the URLs are stable. They appear in `map.html` (the 各校ホームページ block) and, via `data/school_news.json`, in the bottom section of `index.html`. The grep above does not cover them — when the set of schools changes, keep `SCHOOLS` in `fetch_schools.py` and the `map.html` block in sync.
+
 **2. Apostrophe escaping in i18n JSON** — unescaped `'` inside a JSON string value will silently corrupt translations for all languages.
 
 ```bash

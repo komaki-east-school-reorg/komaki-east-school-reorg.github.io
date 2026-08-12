@@ -349,7 +349,11 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   font-weight: 800;
   font-size: .98rem;
   color: var(--primary);
+  text-decoration: none;
+  border-bottom: 1.5px solid transparent;
 }
+.school-name::after { content: ' ↗'; font-size: .72rem; font-weight: 400; opacity: .6; }
+.school-name:hover { color: var(--primary-dark); border-bottom-color: var(--accent); text-decoration: none; }
 .school-badge {
   font-size: .68rem;
   font-weight: 700;
@@ -1134,6 +1138,10 @@ footer {
 .school-map-tag.elem:hover { background: var(--primary); color: #fff; text-decoration: none; }
 .school-map-tag.jhs { border-color: #3a7a52; color: #3a7a52; }
 .school-map-tag.jhs:hover { background: #3a7a52; color: #fff; text-decoration: none; }
+/* 各校ホームページへのリンク（📍ではなく🏫。地図リンクと見分けるため） */
+.school-map-tag.hp { border-color: #5a7898; color: #40566e; }
+.school-map-tag.hp::before { content: '🏫'; }
+.school-map-tag.hp:hover { background: #5a7898; color: #fff; text-decoration: none; }
 .school-map-tag.new-school { border-color: var(--accent); color: #8a6200; background: var(--accent-light); }
 .school-map-tag.new-school:hover { background: var(--accent); color: var(--primary-dark); text-decoration: none; }
 

@@ -318,7 +318,9 @@
 
         return '<div class="school-card' + (fresh ? ' school-card--fresh' : '') + '">' +
                  '<div class="school-card-head">' +
-                   '<span class="school-name">' + esc(schoolName(s.names)) + '</span>' +
+                   '<a class="school-name" href="' + esc(s.url) + '" target="_blank" rel="noopener">' +
+                     esc(schoolName(s.names)) +
+                   '</a>' +
                    '<span class="school-badge">' + str(s.level === 'jhs' ? 'jhs' : 'elem') + '</span>' +
                    (fresh ? '<span class="school-badge school-badge--new">' + str('is_new') + '</span>' : '') +
                    '<span class="school-date">' + (s.latest_date ? str('updated') + fmtDate(s.latest_date) : '') + '</span>' +
