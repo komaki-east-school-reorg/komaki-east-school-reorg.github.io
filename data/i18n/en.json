@@ -629,5 +629,18 @@
   "section_site_updates": "Site Update Log<small>サイトの更新履歴</small>",
   "site_updates_lead": "A record of changes made to this community info site itself, separated into content updates and new features.",
   "site_updates_note": "Note: Updates on the city website and the schools' websites are reflected automatically in the sections above. What is listed here are changes made by the people who run this site.",
-  "aria_lang": "Select language"
+  "aria_lang": "Select language",
+  "hero_badge3__after": "📅 Implemented in FY2027 (April 2027)",
+  "now_text__after": "In April 2027, <strong>Shinooka Gakuen — Tokadai Higashi Elementary, Tokadai Nishi Elementary, Tokadai Higashi JHS and Tokadai Nishi JHS — began operating as four schools</strong>, and the school bus service for elementary students is now running.",
+  "now_asof__after": "As of April 2027",
+  "ql_bus_p__after": "A school bus service for elementary students has been running since FY2027, fully funded by the city (free of charge). Service areas, schedules and safety measures are explained here.",
+  "about_plan_intro__after": "In FY2027, the five elementary and three junior high schools were reorganized into two elementary and two junior high schools, split into the \"Tokadai Higashi\" (East) and \"Tokadai Nishi\" (West) groups.",
+  "process_s5_label__after": "April 2027 (completed)",
+  "faq_a2__after": "<p style=\"padding-top:.8rem;\">In the Phase 1 reorganization of FY2027, the schools were reorganized as follows.</p>",
+  "bus_tl3_title__after": "April 2027 (service started)",
+  "status_c8__after": "<strong>April 2027</strong><br><strong>Phase 1 reorganization carried out: Tokadai East/West Elementary and Junior High Schools opened</strong>",
+  "sched_desc28__after": "<strong>Phase 1 Reorganization — Carried Out</strong><br>Shinooka Gakuen (Tokadai Higashi Elem, Tokadai Nishi Elem, Tokadai Higashi JHS, Tokadai Nishi JHS) began as a four-school system. School bus service for elementary students also started (fully funded by the city — free).",
+  "schedule_2027_h3__after": "FY2027 (2027) – Completed",
+  "meta_desc_index__after": "A community info site providing easy-to-understand information, based on official sources, on the Komaki East (Shinooka) school reorganization carried out in FY2027.",
+  "meta_desc_about__after": "Detailed information on the plan that reorganized 5 elementary and 3 junior high schools into 4 schools in FY2027 — background, content, and commuting districts."
 }

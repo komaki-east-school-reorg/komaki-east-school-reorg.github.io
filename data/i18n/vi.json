@@ -629,5 +629,18 @@
   "section_site_updates": "Nhật ký cập nhật trang<small>サイトの更新履歴</small>",
   "site_updates_lead": "Ghi chép các thay đổi đối với chính trang thông tin cộng đồng này, tách riêng phần nội dung và phần tính năng mới.",
   "site_updates_note": "Lưu ý: Cập nhật từ trang thành phố và trang các trường được phản ánh tự động ở các mục phía trên. Phần này ghi những thay đổi do người vận hành trang thực hiện.",
-  "aria_lang": "Chọn ngôn ngữ"
+  "aria_lang": "Chọn ngôn ngữ",
+  "hero_badge3__after": "📅 Đã thực hiện trong năm tài khóa 2027 (tháng 4/2027)",
+  "now_text__after": "Tháng 4/2027, <strong>Shinooka Gakuen — Tiểu học Tokadai Higashi, Tiểu học Tokadai Nishi, THCS Tokadai Higashi và THCS Tokadai Nishi — đã bắt đầu hoạt động theo mô hình bốn trường</strong>, và xe buýt đưa đón học sinh tiểu học cũng đã vận hành.",
+  "now_asof__after": "Tính đến tháng 4/2027",
+  "ql_bus_p__after": "Từ năm tài khóa 2027, xe buýt đưa đón học sinh tiểu học đang hoạt động, do thành phố chi trả toàn bộ (miễn phí). Khu vực phục vụ, lịch chạy và biện pháp an toàn được giới thiệu tại đây.",
+  "about_plan_intro__after": "Trong năm tài khóa 2027, năm trường tiểu học và ba trường THCS đã được tái tổ chức thành hai trường tiểu học và hai trường THCS, chia thành nhóm \"Tokadai Higashi\" (Đông) và \"Tokadai Nishi\" (Tây).",
+  "process_s5_label__after": "Tháng 4/2027 (đã hoàn thành)",
+  "faq_a2__after": "<p style=\"padding-top:.8rem;\">Trong đợt tái tổ chức giai đoạn 1 năm tài khóa 2027, các trường đã được tái tổ chức như sau.</p>",
+  "bus_tl3_title__after": "Tháng 4/2027 (đã bắt đầu vận hành)",
+  "status_c8__after": "<strong>Tháng 4/2027</strong><br><strong>Đã thực hiện tái tổ chức giai đoạn 1: các trường tiểu học và THCS Tokadai Đông/Tây đã khai giảng</strong>",
+  "sched_desc28__after": "<strong>Tái tổ chức giai đoạn 1 — đã thực hiện</strong><br>Shinooka Gakuen (Tiểu học Tokadai Higashi, Tiểu học Tokadai Nishi, THCS Tokadai Higashi, THCS Tokadai Nishi) đã bắt đầu theo mô hình bốn trường. Xe buýt đưa đón học sinh tiểu học cũng đã vận hành (thành phố chi trả toàn bộ — miễn phí).",
+  "schedule_2027_h3__after": "2027 – Đã thực hiện",
+  "meta_desc_index__after": "Trang thông tin cộng đồng giải thích dễ hiểu, dựa trên nguồn chính thức, về việc tái tổ chức trường học khu Đông Komaki (Shinooka) đã thực hiện trong năm tài khóa 2027.",
+  "meta_desc_about__after": "Thông tin chi tiết về kế hoạch đã tái tổ chức 5 trường tiểu học và 3 trường THCS thành 4 trường trong năm tài khóa 2027 — bối cảnh, nội dung và khu vực tuyển sinh."
 }

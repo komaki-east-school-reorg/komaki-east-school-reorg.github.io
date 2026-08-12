@@ -629,5 +629,18 @@
   "section_site_updates": "Registro de atualizações do site<small>サイトの更新履歴</small>",
   "site_updates_lead": "Registro das alterações feitas neste site comunitário, separadas entre atualizações de conteúdo e novos recursos.",
   "site_updates_note": "Obs.: As atualizações do site da cidade e dos sites das escolas aparecem automaticamente nas seções acima. Aqui constam as alterações feitas por quem mantém este site.",
-  "aria_lang": "Selecionar idioma"
+  "aria_lang": "Selecionar idioma",
+  "hero_badge3__after": "📅 Implementado no ano fiscal de 2027 (abril de 2027)",
+  "now_text__after": "Em abril de 2027, <strong>o Shinooka Gakuen — E.F. Tokadai Higashi, E.F. Tokadai Nishi, Ginásio Tokadai Higashi e Ginásio Tokadai Nishi — passou a funcionar com quatro escolas</strong>, e o transporte escolar para alunos do primário já está em operação.",
+  "now_asof__after": "Em abril de 2027",
+  "ql_bus_p__after": "Desde o ano fiscal de 2027 há transporte escolar para alunos do primário, custeado integralmente pela cidade (gratuito). Áreas atendidas, horários e medidas de segurança são explicados aqui.",
+  "about_plan_intro__after": "No ano fiscal de 2027, as cinco escolas primárias e os três ginásios foram reorganizados em duas primárias e dois ginásios, divididos nos grupos \"Tokadai Higashi\" (Leste) e \"Tokadai Nishi\" (Oeste).",
+  "process_s5_label__after": "Abril de 2027 (concluído)",
+  "faq_a2__after": "<p style=\"padding-top:.8rem;\">Na 1ª fase da reorganização, no ano fiscal de 2027, as escolas foram reorganizadas da seguinte forma.</p>",
+  "bus_tl3_title__after": "Abril de 2027 (serviço iniciado)",
+  "status_c8__after": "<strong>Abril de 2027</strong><br><strong>1ª fase da reorganização realizada: as escolas Tokadai Leste/Oeste, primárias e ginásios, foram inauguradas</strong>",
+  "sched_desc28__after": "<strong>1ª fase da reorganização — realizada</strong><br>O Shinooka Gakuen (E.F. Tokadai Higashi, E.F. Tokadai Nishi, Ginásio Tokadai Higashi, Ginásio Tokadai Nishi) passou a funcionar com quatro escolas. O transporte escolar para o primário também começou (custeado pela cidade — gratuito).",
+  "schedule_2027_h3__after": "2027 – Realizado",
+  "meta_desc_index__after": "Site comunitário com informações claras, baseadas em fontes oficiais, sobre a reorganização escolar de Komaki Leste (Shinooka) realizada no ano fiscal de 2027.",
+  "meta_desc_about__after": "Informações detalhadas sobre o plano que reorganizou 5 escolas primárias e 3 ginásios em 4 escolas no ano fiscal de 2027 — contexto, conteúdo e distritos escolares."
 }

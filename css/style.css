@@ -1291,9 +1291,14 @@ footer {
   }
   nav ul.open li a { padding: .8rem 1.5rem; border-radius: 0; }
   .hamburger { display: flex; order: 2; }
-  .lang-switcher { order: 1; flex-direction: column; align-items: flex-end; gap: .22rem; margin-top: 0; }
-  .lang-select { width: 7rem; order: 1; }
-  .kids-toggle { font-size: .68rem; padding: .1rem .2rem; order: 2; }
+  /* 縦積みになるので、こどもむけトグルと言語切替の幅・左右端を揃える。
+     align-items:stretch で両方を同じ幅にし、space-between で
+     先頭アイコン（🧒 / 🌐）を左端、操作部（スイッチ / セレクト）を右端に置く。 */
+  .lang-switcher { order: 1; flex-direction: column; align-items: stretch; gap: .22rem; margin-top: 0; }
+  .lang-switcher > * { width: 8.6rem; }
+  .lang-select { width: auto; flex: 1; min-width: 0; order: 1; }
+  .lang-pick { justify-content: space-between; order: 1; }
+  .kids-toggle { font-size: .68rem; padding: .1rem .2rem; order: 2; justify-content: space-between; }
   header { position: sticky; }
   .site-title { font-size: .88rem; white-space: normal; flex-shrink: 1; min-width: 0; margin-top: 0; }
   .site-title span { font-size: .65rem; }

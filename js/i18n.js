@@ -11,6 +11,30 @@
   var BASE = './data/i18n/';
   var SAFETY_MS = 1000;
 
+  // ===== 第1期再編の実施後への文面切替 =====
+  // 「<キー>__after」を用意しておくと、このフラグが true のときだけ
+  // そのキーの値が採用される。実施後に「これから開校します」と言い続ける
+  // 状態を防ぐための仕組み。__after が無いキーは何も起きない。
+  //
+  // ★ 日付では切り替えない。第1期再編の実施日は未確定であり、勝手に
+  //   日付で切り替えると「実施予定日が過ぎただけで未実施」の期間に
+  //   誤った既成事実を掲載してしまうため。
+  //   市の公式発表で実施が確認でき、サイト管理者の指示があったときに
+  //   だけ、この定数を true にする（切替はこの1行だけ）。
+  //   自動更新パイプラインは js/ を編集できないので誤って倒すことはない。
+  var PHASE1_DONE = false;
+  var AFTER_SUFFIX = '__after';
+
+  function applyTemporal(dict) {
+    if (!PHASE1_DONE) return dict;
+    Object.keys(dict).forEach(function (k) {
+      if (k.slice(-AFTER_SUFFIX.length) !== AFTER_SUFFIX) return;
+      var base = k.slice(0, -AFTER_SUFFIX.length);
+      if (dict[base] != null) dict[base] = dict[k];
+    });
+    return dict;
+  }
+
   var _safetyTimer = null;
   var _currentLang = DEFAULT;
   var _kidsMode = false;
@@ -138,16 +162,16 @@
     if (lang === DEFAULT && useKids) {
       Promise.all([fetchJson(DEFAULT), fetchJson('ja-kids')])
         .then(function (results) {
-          applyDict(Object.assign({}, results[0], results[1]), DEFAULT);
+          applyDict(applyTemporal(Object.assign({}, results[0], results[1])), DEFAULT);
         })
         .catch(function () {
           fetchJson(DEFAULT)
-            .then(function (dict) { applyDict(dict, DEFAULT); })
+            .then(function (dict) { applyDict(applyTemporal(dict), DEFAULT); })
             .catch(showPage);
         });
     } else if (lang === DEFAULT) {
       fetchJson(DEFAULT)
-        .then(function (dict) { applyDict(dict, DEFAULT); })
+        .then(function (dict) { applyDict(applyTemporal(dict), DEFAULT); })
         .catch(showPage);
     } else {
       // ja → en → 対象言語 の順に重ねる。対象言語に無いキーは英語で出る。
@@ -156,15 +180,15 @@
       // 揃えてあるので、全キー翻訳済みの言語では見た目は一切変わらない。
       Promise.all([fetchJson(DEFAULT), fetchJson(BRIDGE), fetchJson(lang)])
         .then(function (results) {
-          applyDict(Object.assign({}, results[0], results[1], results[2]), lang);
+          applyDict(applyTemporal(Object.assign({}, results[0], results[1], results[2])), lang);
         })
         .catch(function () {
           // 対象言語が取れない場合は ja+en まで、それも駄目なら ja だけで表示
           Promise.all([fetchJson(DEFAULT), fetchJson(BRIDGE)])
-            .then(function (r) { applyDict(Object.assign({}, r[0], r[1]), lang); })
+            .then(function (r) { applyDict(applyTemporal(Object.assign({}, r[0], r[1])), lang); })
             .catch(function () {
               fetchJson(DEFAULT)
-                .then(function (dict) { applyDict(dict, DEFAULT); })
+                .then(function (dict) { applyDict(applyTemporal(dict), DEFAULT); })
                 .catch(showPage);
             });
         });
