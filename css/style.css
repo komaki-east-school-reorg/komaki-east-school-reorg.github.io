@@ -1277,7 +1277,7 @@ footer {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .header-inner { height: 64px; padding: 0 1.2rem; position: relative; align-items: center; }
+  .header-inner { height: 64px; padding: 0 1rem; position: relative; align-items: center; gap: .9rem; }
   nav ul { display: none; }
   nav ul.open {
     display: flex;
@@ -1295,7 +1295,7 @@ footer {
      align-items:stretch で両方を同じ幅にし、space-between で
      先頭アイコン（🧒 / 🌐）を左端、操作部（スイッチ / セレクト）を右端に置く。 */
   .lang-switcher { order: 1; flex-direction: column; align-items: stretch; gap: .22rem; margin-top: 0; }
-  .lang-switcher > * { width: 8.6rem; }
+  .lang-switcher > * { width: 7.4rem; }
   .lang-select { width: auto; flex: 1; min-width: 0; order: 1; }
   .lang-pick { justify-content: space-between; order: 1; }
   .kids-toggle { font-size: .68rem; padding: .1rem .2rem; order: 2; justify-content: space-between; }
