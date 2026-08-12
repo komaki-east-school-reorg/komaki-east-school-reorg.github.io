@@ -18,9 +18,13 @@ import re
 import subprocess
 import sys
 
+# events.json のイベントラベルに必須の言語（この8つが揃っていないと不合格）
 LANGS = ["ja", "en", "pt", "vi", "tl", "es", "zh", "id"]
+# 翻訳が部分的で、events.json のラベル必須対象には含めない言語。
+# i18n.js が対象言語→en→ja の順にフォールバックするため、未収録でも英語で出る。
+PARTIAL_LANGS = ["tr", "my"]
 ALLOWED = {"data/events.json", "index.html", "schedule.html", "community.html"} | {
-    f"data/i18n/{l}.json" for l in LANGS + ["ja-kids"]
+    f"data/i18n/{l}.json" for l in LANGS + PARTIAL_LANGS + ["ja-kids"]
 }
 # 自動化の作業ファイル置き場（検査対象外）
 IGNORE_PREFIXES = ("auto_update/", "report/")
@@ -115,7 +119,7 @@ def main():
         with open(p, encoding="utf-8") as f:
             for i, line in enumerate(f, 1):
                 for m in re.finditer(r"city\.komaki\.aichi\.jp[^\s\"'<)]*", line):
-                    if not any(p in m.group(0) for p in PERMITTED_LINKS):
+                    if not any(allowed in m.group(0) for allowed in PERMITTED_LINKS):
                         link_violations.append(f"{p}:{i} {m.group(0)[:80]}")
     if link_violations:
         for v in link_violations:

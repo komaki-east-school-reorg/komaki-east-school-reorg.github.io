@@ -2,8 +2,12 @@
 (function () {
   'use strict';
 
-  var LANGS = ['ja', 'en', 'pt', 'vi', 'tl', 'es', 'zh', 'id'];
+  var LANGS = ['ja', 'en', 'pt', 'vi', 'tl', 'es', 'zh', 'id', 'tr', 'my'];
   var DEFAULT = 'ja';
+  var BRIDGE = 'en';   // 未翻訳キーの中継言語。ja へ直接落とさず英語を挟む
+  // 全キーが揃っていない言語。ページ上部に「一部は英語表示」の断りを出す。
+  // 翻訳が 100% 揃ったらこの配列から外すこと（配列が空でも動作する）。
+  var PARTIAL = ['tr', 'my'];
   var BASE = './data/i18n/';
   var SAFETY_MS = 1000;
 
@@ -33,7 +37,7 @@
       sel.value = lang;
     });
 
-    var langAttr = { ja: 'ja', en: 'en', pt: 'pt-BR', vi: 'vi', tl: 'tl', es: 'es', zh: 'zh-Hans', id: 'id' };
+    var langAttr = { ja: 'ja', en: 'en', pt: 'pt-BR', vi: 'vi', tl: 'tl', es: 'es', zh: 'zh-Hans', id: 'id', tr: 'tr', my: 'my' };
     document.documentElement.lang = langAttr[lang] || lang;
 
     var pageId = (window.location.pathname.match(/([^/]+)\.html$/) || ['', 'index'])[1] || 'index';
@@ -52,6 +56,8 @@
         if (el) el.setAttribute('content', dict[descKey]);
       });
     }
+
+    updatePartialNotice(lang);
 
     try { localStorage.setItem('komaki_lang', lang); } catch (e) {}
     showPage();
@@ -72,6 +78,34 @@
       if (existing) existing.remove();
       document.documentElement.classList.remove('kids-mode');
     }
+  }
+
+  // 翻訳が部分的な言語のとき、「一部は英語表示」であることを断る帯を出す。
+  // 黙って英語が混ざるより、理由が分かるほうが親切なため。
+  var PARTIAL_MSG = {
+    tr: 'Bu sayfanın çevirisi henüz tamamlanmadı. Çevrilmemiş bölümler İngilizce olarak gösterilir.',
+    my: 'ဤစာမျက်နှာ၏ ဘာသာပြန်ဆိုမှု မပြီးမြောက်သေးပါ။ ဘာသာမပြန်ရသေးသော အပိုင်းများကို အင်္ဂလိပ်ဘာသာဖြင့် ဖော်ပြထားပါသည်။',
+    _: 'Translation of this page is still in progress. Untranslated parts are shown in English.'
+  };
+
+  function updatePartialNotice(lang) {
+    var el = document.getElementById('i18n-partial-notice');
+    if (PARTIAL.indexOf(lang) === -1) {
+      if (el) el.remove();
+      return;
+    }
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'i18n-partial-notice';
+      el.className = 'partial-notice';
+      var header = document.querySelector('header');
+      if (header && header.parentNode) {
+        header.parentNode.insertBefore(el, header.nextSibling);
+      } else {
+        document.body.insertBefore(el, document.body.firstChild);
+      }
+    }
+    el.textContent = '🌐 ' + (PARTIAL_MSG[lang] || PARTIAL_MSG._);
   }
 
   function updateKidsToggleUI() {
@@ -116,15 +150,23 @@
         .then(function (dict) { applyDict(dict, DEFAULT); })
         .catch(showPage);
     } else {
-      Promise.all([fetchJson(DEFAULT), fetchJson(lang)])
+      // ja → en → 対象言語 の順に重ねる。対象言語に無いキーは英語で出る。
+      // 英語を挟むのは、翻訳が部分的な言語で日本語が露出するのを避けるため
+      // （日本語より英語のほうが読める閲覧者が多い）。en は ja と同じ 627 キーを
+      // 揃えてあるので、全キー翻訳済みの言語では見た目は一切変わらない。
+      Promise.all([fetchJson(DEFAULT), fetchJson(BRIDGE), fetchJson(lang)])
         .then(function (results) {
-          applyDict(Object.assign({}, results[0], results[1]), lang);
+          applyDict(Object.assign({}, results[0], results[1], results[2]), lang);
         })
         .catch(function () {
-          // 対象言語が失敗した場合は ja だけで表示
-          fetchJson(DEFAULT)
-            .then(function (dict) { applyDict(dict, DEFAULT); })
-            .catch(showPage);
+          // 対象言語が取れない場合は ja+en まで、それも駄目なら ja だけで表示
+          Promise.all([fetchJson(DEFAULT), fetchJson(BRIDGE)])
+            .then(function (r) { applyDict(Object.assign({}, r[0], r[1]), lang); })
+            .catch(function () {
+              fetchJson(DEFAULT)
+                .then(function (dict) { applyDict(dict, DEFAULT); })
+                .catch(showPage);
+            });
         });
     }
   }

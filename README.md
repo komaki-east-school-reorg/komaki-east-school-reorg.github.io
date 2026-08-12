@@ -28,7 +28,10 @@
 
 ## 対応言語
 
-日本語 / English / Português / Tiếng Việt / Filipino / Español / 中文 / Bahasa Indonesia
+**全訳済み（8言語）**: 日本語 / English / Português / Tiếng Việt / Filipino / Español / 中文 / Bahasa Indonesia
+
+**部分翻訳（2言語）**: Türkçe（トルコ語）/ မြန်မာ（ビルマ語）
+主要部分のみ翻訳済みで、未翻訳部分は英語で表示されます（選択時にその旨の案内が出ます）。
 
 日本語版のみ「こどもむけ」モード（ひらがな・やさしい言葉）に切り替え可能です。
 
@@ -46,8 +49,8 @@ python3 -m http.server 8000
 詳細は [CONTRIBUTING.txt](CONTRIBUTING.txt) を参照してください。主なルール：
 
 1. **外部リンクは公式市ページの2つのインデックスのみ** — 学校再編 `.../kyoiku/kyouikusoumu/303/index.html`（サイト全体）と地域協議会 `.../kenkouikigai/sasaeai/3/3_2/index.html`（community.html のみ）。それ以外の city.komaki.aichi.jp URL は禁止
-2. **翻訳ファイルのアポストロフィ** — `data/i18n/*.json` の文字列値内のアポストロフィは `\'` でエスケープ
-3. **新しい翻訳キー** — `ja`（日本語）と `en`（英語）への記載が必須。他の6言語は未記載でも日本語にフォールバック
+2. **翻訳ファイルの構文** — `data/i18n/*.json` はコミット前に全ファイルを JSON パースして確認（アポストロフィのエスケープは不要。`\'` と書くと逆に壊れる）
+3. **新しい翻訳キー** — `ja`（日本語）と `en`（英語）への記載が必須。他の言語は未記載でも英語→日本語の順にフォールバック
 4. **事実確認** — 掲載する数値・日付は必ず公式情報源に基づく
 
 ## 自動更新（現在日付・最終更新の反映）

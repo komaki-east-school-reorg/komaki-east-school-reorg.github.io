@@ -32,22 +32,28 @@ The same two URLs are encoded in `PERMITTED_LINKS` in `.github/scripts/auto_gate
 
 Separately, the **eight target schools' own homepages** (`komaki-aic.ed.jp/<slug>/`) may be linked: they are a different domain run by the schools, and the URLs are stable. They appear in `map.html` (the 各校ホームページ block) and, via `data/school_news.json`, in the bottom section of `index.html`. The grep above does not cover them — when the set of schools changes, keep `SCHOOLS` in `fetch_schools.py` and the `map.html` block in sync.
 
-**2. Apostrophe escaping in i18n JSON** — unescaped `'` inside a JSON string value will silently corrupt translations for all languages.
+**2. i18n JSON syntax** — parse every translation file, not just the ones you edited.
+
+A bare apostrophe is **legal** in JSON and needs no escaping; writing `\'` is what breaks it (invalid escape). The failure modes that actually occur are an unescaped `"` inside a value, a trailing comma, a raw newline inside a string, and a lone backslash. See `CONTRIBUTING.txt` rule 2.
 
 ```bash
 python3 -c "
-import json, sys
-with open('data/i18n/ja.json', encoding='utf-8') as f:
-    data = json.load(f)
-print('ja.json OK')
+import json, glob, sys
+bad = 0
+for f in sorted(glob.glob('data/i18n/*.json')):
+    try:
+        json.load(open(f, encoding='utf-8')); print('OK  ', f)
+    except Exception as e:
+        bad += 1; print('NG  ', f, e)
+sys.exit(1 if bad else 0)
 "
-# Repeat for en.json, and any other file you edited.
-# A parse error means there is a bare apostrophe that must be escaped as \'
 ```
+
+A broken non-`ja` file is easy to miss: `i18n.js` silently falls back, so the page still renders — just in the wrong language.
 
 ## i18n architecture
 
-Translations live in `data/i18n/<lang>.json` (ja, en, pt, vi, tl, es, zh, id). `js/i18n.js` fetches the appropriate file at runtime and merges it with the Japanese base using `Object.assign({}, ja_dict, lang_dict)`, so **any key missing from a non-ja file automatically falls back to Japanese**. The minimum requirement when adding a new key is entries in `ja` and `en`.
+Translations live in `data/i18n/<lang>.json` (ja, en, pt, vi, tl, es, zh, id, tr, my). `js/i18n.js` fetches the files at runtime and merges them as `Object.assign({}, ja_dict, en_dict, lang_dict)` — a three-layer chain, so **a key missing from the target language falls back to English, and only then to Japanese**. English is the bridge because a reader who chose Turkish or Burmese is far more likely to read English than Japanese. Since ja and en both carry the full key set, fully-translated languages render identically to before. The minimum requirement when adding a new key is entries in `ja` and `en`.
 
 There is also `data/i18n/ja-kids.json`: when the kids-mode toggle is active (Japanese only), it is fetched and merged on top of `ja.json` (`Object.assign({}, ja_dict, kids_dict)`), overriding keys with simpler hiragana/easy-Japanese text.
 
@@ -71,7 +77,7 @@ Keys follow the pattern `<page>_<section>_<type>`, e.g., `about_whatis_p1`, `faq
 
 - **Header site name is permanently Japanese.** The `<a class="site-title">` element does not get a `data-i18n` attribute. The `<span data-i18n="site_sub">` subtitle inside it is translated, but the main site name text is not.
 - **All facts must come from official sources** — the permitted city URL above, or official printed materials (cite the source inline). Do not add speculative or unconfirmed information.
-- **Turkish (`tr`) is not in the active language list** — `LANGS` in `i18n.js` does not include `tr`. Do not add it without a full, syntax-validated translation block.
+- **Turkish (`tr`) and Burmese (`my`) are active but only partially translated** — they carry a ~150-key core (chrome, hero, current status, schedule, map, school section, meta) and fall back to English for the rest. They are listed in `PARTIAL` in `i18n.js`, which renders a notice bar explaining that untranslated parts appear in English. When a language reaches full key coverage, remove it from `PARTIAL`. `events.json` labels remain a strict 8-language requirement (`LANGS` in `auto_gates.py`); the calendar falls back to English for `tr`/`my`.
 
 ## `data/news.json`
 

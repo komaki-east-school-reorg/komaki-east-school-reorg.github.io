@@ -115,11 +115,12 @@
     return;
   }
 
-  var LOCALE_MAP = { ja: 'ja-JP', en: 'en-US', pt: 'pt-BR', vi: 'vi-VN', tl: 'fil-PH', es: 'es-ES', zh: 'zh-Hans-CN', id: 'id-ID' };
+  var LOCALE_MAP = { ja: 'ja-JP', en: 'en-US', pt: 'pt-BR', vi: 'vi-VN', tl: 'fil-PH', es: 'es-ES', zh: 'zh-Hans-CN', id: 'id-ID', tr: 'tr-TR', my: 'my-MM' };
   // 「最終更新: {date}」のラベル（main.js 内で言語管理：既存カレンダーと同じ方式）
   var LABEL = {
     ja: '最終更新: {d}', en: 'Last updated: {d}', pt: 'Última atualização: {d}', vi: 'Cập nhật lần cuối: {d}',
-    tl: 'Huling na-update: {d}', es: 'Última actualización: {d}', zh: '最后更新：{d}', id: 'Terakhir diperbarui: {d}'
+    tl: 'Huling na-update: {d}', es: 'Última actualización: {d}', zh: '最后更新：{d}', id: 'Terakhir diperbarui: {d}',
+    tr: 'Son güncelleme: {d}', my: 'နောက်ဆုံး ပြင်ဆင်သည့်ရက်- {d}'
   };
   var KIDS_LABEL_JA = 'さいごに 直した日: {d}';
 
@@ -135,7 +136,7 @@
     } catch (e) {
       dateStr = lm.getFullYear() + '-' + String(lm.getMonth() + 1).padStart(2, '0') + '-' + String(lm.getDate()).padStart(2, '0');
     }
-    var tpl = (lang === 'ja' && isKids()) ? KIDS_LABEL_JA : (LABEL[lang] || LABEL.ja);
+    var tpl = (lang === 'ja' && isKids()) ? KIDS_LABEL_JA : (LABEL[lang] || LABEL.en || LABEL.ja);
     var text = tpl.replace('{d}', dateStr);
     els.forEach(function (el) { el.textContent = text; });
   }
@@ -201,7 +202,7 @@
     check:    {ja:'をご確認ください。', en:'.', pt:'.', vi:'.', tl:'.', es:'.', zh:'。', id:'.'},
   };
   function ntr(key, d) {
-    var s = (_nt[key][_nl] || _nt[key]['ja']);
+    var s = (_nt[key][_nl] || _nt[key]['en'] || _nt[key]['ja']);
     return d !== undefined ? s.replace('{d}', d) : s;
   }
 
@@ -267,7 +268,7 @@
     empty:   {ja:'新着記事を取得できませんでした。', en:'No articles could be retrieved.', pt:'Não foi possível obter artigos.', vi:'Không lấy được bài viết.', tl:'Walang nakuhang artikulo.', es:'No se pudieron obtener artículos.', zh:'未能获取文章。', id:'Tidak ada artikel yang diperoleh.'},
     error:   {ja:'学校ホームページの情報を取得できませんでした。', en:'Could not load school website updates.', pt:'Não foi possível carregar as atualizações.', vi:'Không tải được cập nhật từ trang trường.', tl:'Hindi ma-load ang mga update.', es:'No se pudieron cargar las actualizaciones.', zh:'无法加载学校网站更新。', id:'Gagal memuat pembaruan situs sekolah.'}
   };
-  function str(key) { return _st[key][_sl] || _st[key]['ja']; }
+  function str(key) { return _st[key][_sl] || _st[key]['en'] || _st[key]['ja']; }
 
   function schoolName(names) {
     if (_sl === 'ja') return (_sk && names.ja_kids) ? names.ja_kids : names.ja;
@@ -354,7 +355,7 @@
       var l = 'ja';
       try { l = localStorage.getItem('komaki_lang') || 'ja'; } catch(e) {}
       var ev = events[key];
-      return ev ? (ev[l] || ev.ja) : '';
+      return ev ? (ev[l] || ev.en || ev.ja) : '';
     }
 
     const CAL_LOCALE_MAP = {ja:'ja-JP', en:'en-US', pt:'pt-BR', vi:'vi-VN', tl:'fil-PH', es:'es-ES', zh:'zh-Hans-CN', id:'id-ID'};

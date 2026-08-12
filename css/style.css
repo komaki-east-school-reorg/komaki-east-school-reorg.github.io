@@ -58,6 +58,18 @@ img { max-width: 100%; }
   font-family: var(--heading-font);
 }
 
+/* 翻訳が部分的な言語（i18n.js の PARTIAL）を選んだときにヘッダ直下へ差し込まれる帯。
+   要素は i18n.js が動的に生成するので、HTML 側には存在しない。 */
+.partial-notice {
+  background: #eef2f6;
+  border-bottom: 1px solid #c9d4de;
+  color: #3c4c5c;
+  padding: .5rem 1rem;
+  text-align: center;
+  font-size: .78rem;
+  line-height: 1.5;
+}
+
 /* ===== HEADER & NAV ===== */
 header {
   background: var(--primary-dark);
