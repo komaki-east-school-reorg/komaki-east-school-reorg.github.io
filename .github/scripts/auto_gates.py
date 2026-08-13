@@ -113,7 +113,27 @@ def main():
             except Exception as e:
                 fail(f"{p} が JSON として不正: {e}")
 
-    # --- 3. 外部リンク規則（サイト全体を検査） ---
+    # --- 3. ja / en のキー集合一致（サイト全体を検査） ---
+    # js/i18n.js は非日本語表示で ja.json を取得しない（ja 層は最終辞書に
+    # 1キーも寄与しないため）。これは「en が ja と同じキー集合を持つ」ことに
+    # 依存した最適化なので、前提が崩れたらここで機械的に止める。
+    try:
+        with open("data/i18n/ja.json", encoding="utf-8") as f:
+            ja_keys = set(json.load(f))
+        with open("data/i18n/en.json", encoding="utf-8") as f:
+            en_keys = set(json.load(f))
+        only_ja = sorted(ja_keys - en_keys)
+        only_en = sorted(en_keys - ja_keys)
+        if only_ja:
+            fail(f"ja.json にあって en.json に無いキー（英語フォールバックが効かない）: {only_ja[:5]}")
+        if only_en:
+            fail(f"en.json にあって ja.json に無いキー: {only_en[:5]}")
+        if not only_ja and not only_en:
+            ok(f"ja / en キー集合一致（{len(ja_keys)}キー）")
+    except Exception as e:
+        fail(f"ja.json / en.json が読めない: {e}")
+
+    # --- 4. 外部リンク規則（サイト全体を検査） ---
     link_violations = []
     for p in glob.glob("*.html") + glob.glob("js/*.js"):
         with open(p, encoding="utf-8") as f:
@@ -127,7 +147,7 @@ def main():
     else:
         ok("外部リンク規則")
 
-    # --- 4. 出典実在チェック ---
+    # --- 5. 出典実在チェック ---
     if not os.path.exists(EVIDENCE):
         fail(f"{EVIDENCE} がない（変更には出典が必須）")
     else:

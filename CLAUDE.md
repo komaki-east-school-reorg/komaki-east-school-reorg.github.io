@@ -53,11 +53,19 @@ A broken non-`ja` file is easy to miss: `i18n.js` silently falls back, so the pa
 
 ## i18n architecture
 
-Translations live in `data/i18n/<lang>.json` (ja, en, pt, vi, tl, es, zh, id, tr, my). `js/i18n.js` fetches the files at runtime and merges them as `Object.assign({}, ja_dict, en_dict, lang_dict)` — a three-layer chain, so **a key missing from the target language falls back to English, and only then to Japanese**. English is the bridge because a reader who chose Turkish or Burmese is far more likely to read English than Japanese. Since ja and en both carry the full key set, fully-translated languages render identically to before. The minimum requirement when adding a new key is entries in `ja` and `en`.
+Translations live in `data/i18n/<lang>.json` (ja, en, pt, vi, tl, es, zh, id, tr, my). `js/i18n.js` fetches the files at runtime. For Japanese it loads `ja.json` alone; **for every other language it loads only `en.json` and the target language**, merged as `Object.assign({}, en_dict, lang_dict)`, so a key missing from the target language falls back to English. English is the bridge because a reader who chose Turkish or Burmese is far more likely to read English than Japanese. The minimum requirement when adding a new key is entries in `ja` and `en`.
+
+**`ja.json` is deliberately not fetched for non-Japanese languages.** It used to be the first of three layers, but `ja` and `en` carry identical key sets, so the `en` layer overwrote every one of its keys — the `ja` layer contributed zero keys to the merged dictionary while costing ~23 KB gzip on every page view, on the critical render path (`body` stays hidden until `.i18n-ready`). If a key were ever missing from `en`, the element simply keeps the Japanese default text already written inline in the HTML, which is the same thing the `ja` layer would have supplied. `check 3` in `.github/scripts/auto_gates.py` machine-verifies the `ja` ⇔ `en` key-set equality this relies on — **do not remove that gate.**
 
 There is also `data/i18n/ja-kids.json`: when the kids-mode toggle is active (Japanese only), it is fetched and merged on top of `ja.json` (`Object.assign({}, ja_dict, kids_dict)`), overriding keys with simpler hiragana/easy-Japanese text.
 
 Language preference and kids-mode state are persisted in `localStorage` under `komaki_lang` and `komaki_kids`.
+
+### Language in the URL (`?lang=`)
+
+Every page also accepts `?lang=<code>` (the codes in `LANGS`, e.g. `about.html?lang=pt`). **The URL wins over `localStorage`**, so a link shared in a community group opens in that language for someone who has never visited. After the dictionary is applied, `i18n.js` rewrites the address bar to match the selected language via `history.replaceState` (no history entry — a back button that only rewinds the language is confusing), and updates `<link rel="canonical">` and `og:url` to the same URL. Japanese is the bare URL with no parameter; it is the canonical form.
+
+`js/main.js` resolves the language through the shared `window.KomakiLang()` helper defined at the top of the file, which reads `?lang=` first and `localStorage` second. Use it rather than reading `localStorage` directly — the blocks in `main.js` (official news, school news, changelog, calendar) render before `i18n.js` has finished fetching and written `komaki_lang`, so on a first visit through a shared link they would otherwise render in the wrong language.
 
 ### HTML attributes for translated content
 
@@ -152,7 +160,20 @@ Unlike the completion badges, the calendar month, and the "last updated" line, *
 
 ## Page structure
 
-Every HTML page follows the same pattern: `notice-banner` → `<header>` (with `.lang-switcher` containing `.kids-toggle` and `.lang-select`) → `<main>` → `<footer>`. Both `js/i18n.js` and `js/main.js` are loaded at the end of `<body>`. Pages are standalone — there is no shared template or server-side include. When adding a new page, copy the full header/footer block from an existing page.
+Every HTML page follows the same pattern: `notice-banner` → `<header>` (with `.lang-switcher` containing `.kids-toggle` and `.lang-select`) → `<main>` → `<footer>`. Both `js/i18n.js` and `js/main.js` are loaded at the end of `<body>`. Pages are standalone — there is no shared template or server-side include. When adding a new page, copy the full header/footer block from an existing page — **and add it to `sitemap.xml` and `files.txt`**, plus `meta_title_<pageId>` / `meta_desc_<pageId>` keys in every language file.
+
+## SEO
+
+| Piece | Where | Notes |
+|---|---|---|
+| `robots.txt` | repo root | Allows everything; points at the sitemap. Kids mode is excluded via a JS-injected `noindex` (`applyKidsSeoMeta`), not here. |
+| `sitemap.xml` | repo root | Hand-maintained, one `<url>` per page (9), each carrying the full `xhtml:link` alternate set. No `lastmod` — a stale date is worse than none. |
+| `<link rel="canonical">` | every page `<head>` | Static value is the bare (Japanese) URL. `i18n.js` rewrites it to the `?lang=` URL of the language actually being shown. |
+| `hreflang` | every page `<head>` | 10 languages + `x-default`, each pointing at a **distinct** `?lang=` URL. They previously all pointed at the same URL, which is an error Search Console reports. |
+| JSON-LD `WebSite` | `index.html` only | Static. Deliberately carries **no `publisher`/`Organization`** — inventing one would imply this site is official, which it is not. `citation` points at the permitted city URL. |
+| JSON-LD `FAQPage` | `faq.html`, generated at runtime | Built by `applyFaqJsonLd` in `i18n.js` from the loaded dictionary's `faq_q<N>`/`faq_a<N>` pairs. **Do not hand-write it into `faq.html`** — that would duplicate `data/i18n/` and silently drift. The loop stops at the first missing `faq_q<N>`, so FAQ keys must stay contiguously numbered. |
+
+Google has restricted `FAQPage` rich results to authoritative government and health sites, so this markup will most likely not produce rich results here. It is still valid, accurate structured data and costs nothing to keep.
 
 ## CSS design tokens
 

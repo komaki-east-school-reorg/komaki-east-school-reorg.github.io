@@ -45,6 +45,11 @@ data/i18n/ja-kids.json      「こどもむけ」モード用の上書き辞書�
 favicon.svg                 ブラウザタブに表示されるサイトアイコン（SVG形式）。
 img/og-image.png            SNSシェア時に表示されるOGP用サムネイル画像。
 
+■ 検索エンジン向け
+robots.txt                  クローラ向けの許可設定とサイトマップの所在。全ページ許可。
+sitemap.xml                 全9ページのサイトマップ。各URLに10言語＋x-defaultのhreflang相互参照を付与。
+                            手動管理のため、ページを追加・削除したらここも更新すること。
+
 ■ GitHub Actions
 .github/workflows/fetch-news.yml    市公式サイトから最新お知らせを定期取得してnews.jsonと本文スナップショットを更新し、本文変更時はIssue起票→AIによる修正案の起案→機械検証→監査AI→自動マージまで行うワークフロー定義。
 .github/scripts/fetch_news.py       市公式サイトをスクレイピングしてお知らせ情報の抽出・整形と各ページ本文のスナップショット保存を行うPythonスクリプト。

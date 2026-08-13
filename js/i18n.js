@@ -39,6 +39,53 @@
   var _currentLang = DEFAULT;
   var _kidsMode = false;
 
+  // ===== 言語つき URL（?lang=xx） =====
+  // 言語の選択を localStorage だけに持たせていたため、どの言語で読んでも URL が
+  // 同じという状態だった。そのため
+  //   (1) 「ポルトガル語で読めるページ」を保護者同士で共有できない
+  //   (2) hreflang が 11 言語すべて同一 URL を指す（検索エンジンにとっては誤り）
+  // の 2 つが起きていた。既定言語 ja は素の URL、それ以外は ?lang=xx を正規 URL とする。
+  var LANG_PARAM = 'lang';
+
+  // 静的 HTML に書かれた canonical を言語別 URL の土台にする。
+  // window.location から作ると「/」と「/index.html」で正規 URL が割れるため。
+  var _canonicalBase = (function () {
+    var el = document.querySelector('link[rel="canonical"]');
+    var href = el && el.getAttribute('href');
+    return href || window.location.href.split('?')[0].split('#')[0];
+  })();
+
+  function langFromUrl() {
+    try {
+      var v = new URLSearchParams(window.location.search).get(LANG_PARAM);
+      return LANGS.indexOf(v) !== -1 ? v : null;
+    } catch (e) { return null; }
+  }
+
+  function seoUrlForLang(lang) {
+    if (lang === DEFAULT) return _canonicalBase;
+    return _canonicalBase + (_canonicalBase.indexOf('?') === -1 ? '?' : '&') + LANG_PARAM + '=' + lang;
+  }
+
+  // アドレスバーの URL を選択中の言語に合わせる。履歴は増やさない
+  // （戻るボタンで言語だけが巻き戻るのは分かりにくいため replaceState）。
+  function syncUrl(lang) {
+    try {
+      var u = new URL(window.location.href);
+      if (lang === DEFAULT) u.searchParams.delete(LANG_PARAM);
+      else u.searchParams.set(LANG_PARAM, lang);
+      if (u.href !== window.location.href) window.history.replaceState(null, '', u.href);
+    } catch (e) {}
+  }
+
+  function updateSeoUrls(lang) {
+    var href = seoUrlForLang(lang);
+    var canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute('href', href);
+    var ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) ogUrl.setAttribute('content', href);
+  }
+
   function showPage() {
     clearTimeout(_safetyTimer);
     document.documentElement.classList.add('i18n-ready');
@@ -82,9 +129,57 @@
     }
 
     updatePartialNotice(lang);
+    applyFaqJsonLd(dict, pageId, lang);
+    syncUrl(lang);
+    updateSeoUrls(lang);
 
     try { localStorage.setItem('komaki_lang', lang); } catch (e) {}
     showPage();
+  }
+
+  // ===== FAQ ページの構造化データ（schema.org FAQPage） =====
+  // faq.html に静的に書き写すと data/i18n/*.json との二重管理になり、
+  // 片方だけ直したときに黙って食い違う。表示中の辞書からその場で組み立てて、
+  // 情報源を data/i18n/ 一本に保つ。表示している言語のまま出力する。
+  function stripTags(html) {
+    var d = document.createElement('div');
+    d.innerHTML = String(html);
+    return d.textContent.replace(/\s+/g, ' ').trim();
+  }
+
+  function applyFaqJsonLd(dict, pageId, lang) {
+    var existing = document.getElementById('faq-jsonld');
+    if (pageId !== 'faq') { if (existing) existing.remove(); return; }
+
+    var items = [];
+    for (var i = 1; dict['faq_q' + i] != null && dict['faq_a' + i] != null; i++) {
+      var q = stripTags(dict['faq_q' + i]);
+      var a = stripTags(dict['faq_a' + i]);
+      if (!q || !a) continue;
+      items.push({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: { '@type': 'Answer', text: a }
+      });
+    }
+    if (!items.length) { if (existing) existing.remove(); return; }
+
+    var langAttrMap = { ja: 'ja', en: 'en', pt: 'pt-BR', vi: 'vi', tl: 'tl', es: 'es', zh: 'zh-Hans', id: 'id', tr: 'tr', my: 'my' };
+    var payload = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      inLanguage: langAttrMap[lang] || lang,
+      mainEntity: items
+    };
+
+    var el = existing;
+    if (!el) {
+      el = document.createElement('script');
+      el.id = 'faq-jsonld';
+      el.type = 'application/ld+json';
+      document.head.appendChild(el);
+    }
+    el.textContent = JSON.stringify(payload);
   }
 
   function applyKidsSeoMeta(isKids) {
@@ -174,18 +269,23 @@
         .then(function (dict) { applyDict(applyTemporal(dict), DEFAULT); })
         .catch(showPage);
     } else {
-      // ja → en → 対象言語 の順に重ねる。対象言語に無いキーは英語で出る。
+      // en → 対象言語 の順に重ねる。対象言語に無いキーは英語で出る。
       // 英語を挟むのは、翻訳が部分的な言語で日本語が露出するのを避けるため
-      // （日本語より英語のほうが読める閲覧者が多い）。en は ja と同じ 627 キーを
-      // 揃えてあるので、全キー翻訳済みの言語では見た目は一切変わらない。
-      Promise.all([fetchJson(DEFAULT), fetchJson(BRIDGE), fetchJson(lang)])
+      // （日本語より英語のほうが読める閲覧者が多い）。
+      //
+      // ★ ja は取得しない。en は ja と同一のキー集合を持つ規約なので
+      //   （auto_gates.py のチェック3「ja / en のキー集合一致」が機械的に保証している）、
+      //   ja 層は最終辞書に 1 キーも寄与せず、gzip 約 23KB を捨てているだけだった。
+      //   万一 en に欠けたキーがあっても、HTML には日本語の既定文が
+      //   そのまま書かれているので、表示は従来と同じ日本語に落ちる。
+      Promise.all([fetchJson(BRIDGE), fetchJson(lang)])
         .then(function (results) {
-          applyDict(applyTemporal(Object.assign({}, results[0], results[1], results[2])), lang);
+          applyDict(applyTemporal(Object.assign({}, results[0], results[1])), lang);
         })
         .catch(function () {
-          // 対象言語が取れない場合は ja+en まで、それも駄目なら ja だけで表示
-          Promise.all([fetchJson(DEFAULT), fetchJson(BRIDGE)])
-            .then(function (r) { applyDict(applyTemporal(Object.assign({}, r[0], r[1])), lang); })
+          // 対象言語が取れない場合は en だけ、それも駄目なら ja で表示
+          fetchJson(BRIDGE)
+            .then(function (dict) { applyDict(applyTemporal(dict), lang); })
             .catch(function () {
               fetchJson(DEFAULT)
                 .then(function (dict) { applyDict(applyTemporal(dict), DEFAULT); })
@@ -204,7 +304,8 @@
   function init() {
     var savedLang;
     try { savedLang = localStorage.getItem('komaki_lang'); } catch (e) {}
-    var lang = LANGS.includes(savedLang) ? savedLang : DEFAULT;
+    // URL の ?lang= が最優先。共有されたリンクを開いた人には、その言語で見せる。
+    var lang = langFromUrl() || (LANGS.includes(savedLang) ? savedLang : DEFAULT);
 
     var savedKids;
     try { savedKids = localStorage.getItem('komaki_kids'); } catch (e) {}

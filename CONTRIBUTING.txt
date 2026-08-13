@@ -110,16 +110,23 @@
     全キー訳し終えたら PARTIAL から外すこと（帯が消える）。
   ★ 言語を増やすときに直す場所：
       data/i18n/<lang>.json 新規作成 / i18n.js の LANGS・langAttr・PARTIAL /
-      全9ページの <option> と hreflang / footer_langs（全言語）/
-      auto_gates.py の PARTIAL_LANGS / main.js の LOCALE_MAP・LABEL
+      全9ページの <option> と hreflang（?lang=<コード> 付きの実URL）/ sitemap.xml /
+      footer_langs（全言語）/ auto_gates.py の PARTIAL_LANGS /
+      main.js の KomakiLang の LANGS・CAL_LOCALE_MAP・各インラインラベル辞書
   ★ events.json のイベントラベルは【8言語必須】のまま（auto_gates.py の LANGS）。
     tr/my はカレンダーでも英語にフォールバックする。
 
 ■ 最低要件
-  新しいキーを追加する際は ja（日本語）と en（英語）に必ず記載する。
-  他の6言語（pt / vi / tl / es / zh / id）は未記載でも日本語フォールバックが
+  新しいキーを追加する際は ja（日本語）と en（英語）に【必ず両方】記載する。
+  他の6言語（pt / vi / tl / es / zh / id）は未記載でも英語フォールバックが
   適用されるが、できれば随時追加すること。
   こどもむけで言い回しを変えるべきキーは ja-kids.json にも入れる。
+
+  ★ ja と en のキー集合は完全に一致していなければならない。
+    js/i18n.js は非日本語表示で ja.json を取得しない（en が全キーを持つ前提で、
+    毎回 gzip 約23KB の無駄な転送をやめたため）。en に入れ忘れたキーは、
+    その言語の閲覧者には HTML に直書きされた日本語のまま表示される。
+    auto_gates.py のチェック3が機械的に検証するので、片方だけの追加は落ちる。
 
 ■ キー追加の注意
   - キー名は既存の命名規則に従う（ページ名_セクション名_種別）

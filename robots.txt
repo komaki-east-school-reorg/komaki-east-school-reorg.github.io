@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# こどもモードは同じ内容の別表記なので、重複コンテンツとして扱われないよう
+# JavaScript 側で noindex を付けている（js/i18n.js の applyKidsSeoMeta）。
+# ここでは特に禁止する場所はない。
+
+Sitemap: https://komaki-east-school-reorg.github.io/sitemap.xml

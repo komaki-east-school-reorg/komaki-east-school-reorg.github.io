@@ -16,7 +16,7 @@ html.i18n-ready body { opacity: 1; transition: opacity .12s ease; }
   --accent-light: #fdf6e0;     /* 薄いチョークイエロー */
   --for-color: #2a7a46;        /* 賛成：明るい黒板グリーン */
   --against-color: #b83228;    /* 反対：チョークレッド */
-  --neutral-color: #5a7898;    /* 中立：スレートブルー */
+  --neutral-color: #587595;    /* 中立：スレートブルー（白背景上 4.54:1 / 白文字 4.78:1 = WCAG AA） */
   --text: #1c2e20;             /* 濃いテキスト（黒板の縁の色） */
   --text-muted: #4a6050;       /* ミュートテキスト */
   --border: #bccec0;           /* セージボーダー */
@@ -1221,9 +1221,9 @@ footer {
 .school-map-tag.jhs { border-color: #3a7a52; color: #3a7a52; }
 .school-map-tag.jhs:hover { background: #3a7a52; color: #fff; text-decoration: none; }
 /* 各校ホームページへのリンク（📍ではなく🏫。地図リンクと見分けるため） */
-.school-map-tag.hp { border-color: #5a7898; color: #40566e; }
+.school-map-tag.hp { border-color: #587595; color: #40566e; }
 .school-map-tag.hp::before { content: '🏫'; }
-.school-map-tag.hp:hover { background: #5a7898; color: #fff; text-decoration: none; }
+.school-map-tag.hp:hover { background: #587595; color: #fff; text-decoration: none; }
 .school-map-tag.new-school { border-color: var(--accent); color: #8a6200; background: var(--accent-light); }
 .school-map-tag.new-school:hover { background: var(--accent); color: var(--primary-dark); text-decoration: none; }
 

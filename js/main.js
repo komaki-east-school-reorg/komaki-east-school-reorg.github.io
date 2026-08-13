@@ -1,3 +1,19 @@
+/* ===== 表示言語の解決（このファイル共通） =====
+   URL の ?lang=xx を最優先し、次に localStorage、どちらも無ければ既定の ja。
+   URL を先に見るのは、共有された「?lang=pt のリンク」を初めて開いた人でも、
+   i18n.js が localStorage を書き終える前にこのファイルの各ブロック
+   （公式ニュース・学校HP更新・更新履歴・カレンダー）が正しい言語で描けるようにするため。 */
+window.KomakiLang = (function () {
+  const LANGS = ['ja', 'en', 'pt', 'vi', 'tl', 'es', 'zh', 'id', 'tr', 'my'];
+  return function getLang() {
+    try {
+      const q = new URLSearchParams(location.search).get('lang');
+      if (LANGS.indexOf(q) !== -1) return q;
+    } catch (e) {}
+    try { return localStorage.getItem('komaki_lang') || 'ja'; } catch (e) { return 'ja'; }
+  };
+})();
+
 /* ===== HAMBURGER NAV ===== */
 (function () {
   const btn = document.querySelector('.hamburger');
@@ -124,7 +140,7 @@
   };
   var KIDS_LABEL_JA = 'さいごに 直した日: {d}';
 
-  function getLang() { try { return localStorage.getItem('komaki_lang') || 'ja'; } catch (e) { return 'ja'; } }
+  function getLang() { return window.KomakiLang(); }
   function isKids() { try { return localStorage.getItem('komaki_kids') === '1'; } catch (e) { return false; } }
 
   function render() {
@@ -190,8 +206,7 @@
   const container = document.getElementById('official-news-container');
   if (!container) return;
 
-  var _nl = 'ja';
-  try { _nl = localStorage.getItem('komaki_lang') || 'ja'; } catch(e) {}
+  var _nl = window.KomakiLang();
   var _nt = {
     no_items: {ja:'直近{d}日以内に更新された情報はありません。', en:'No updates found in the past {d} days.', pt:'Nenhuma atualização nos últimos {d} dias.', vi:'Không có cập nhật trong {d} ngày qua.', tl:'Walang mga update sa nakalipas na {d} araw.', es:'No hay actualizaciones en los últimos {d} días.', zh:'近{d}天内暂无更新。', id:'Tidak ada pembaruan dalam {d} hari terakhir.', tr:'Son {d} günde güncelleme yok.', my:'ပြီးခဲ့သည့် {d} ရက်အတွင်း အပ်ဒိတ် မရှိပါ။'},
     see_all:  {ja:'公式サイトで全ての情報を確認する →', en:'View all on the official site →', pt:'Ver tudo no site oficial →', vi:'Xem tất cả trên trang chính thức →', tl:'Tingnan ang lahat sa opisyal na site →', es:'Ver todo en el sitio oficial →', zh:'在官方网站查看全部信息 →', id:'Lihat semua di situs resmi →', tr:'Tümünü resmî sitede görün →', my:'တရားဝင်ဆိုက်တွင် အားလုံး ကြည့်ရန် →'},
@@ -253,11 +268,8 @@
   const container = document.getElementById('school-news-container');
   if (!container) return;
 
-  var _sl = 'ja', _sk = false;
-  try {
-    _sl = localStorage.getItem('komaki_lang') || 'ja';
-    _sk = localStorage.getItem('komaki_kids') === '1';
-  } catch (e) {}
+  var _sl = window.KomakiLang(), _sk = false;
+  try { _sk = localStorage.getItem('komaki_kids') === '1'; } catch (e) {}
 
   var _st = {
     elem:    {ja:'小学校', en:'Elementary', pt:'Primária', vi:'Tiểu học', tl:'Elementarya', es:'Primaria', zh:'小学', id:'SD', tr:'İlkokul', my:'မူလတန်း'},
@@ -345,8 +357,7 @@
 
   var MAX_ITEMS = 6;   // 表示件数。data/site-updates.json 側は全履歴を保持する
 
-  var _ul = 'ja';
-  try { _ul = localStorage.getItem('komaki_lang') || 'ja'; } catch (e) {}
+  var _ul = window.KomakiLang();
 
   var _ut = {
     content: {ja:'掲載内容', en:'Content', pt:'Conteúdo', vi:'Nội dung', tl:'Nilalaman', es:'Contenido', zh:'内容', id:'Konten', tr:'İçerik', my:'အကြောင်းအရာ'},
@@ -416,15 +427,16 @@
     if (!Object.keys(events).length) { calContainer.style.display = 'none'; return; }
 
     function getEventLabel(key) {
-      var l = 'ja';
-      try { l = localStorage.getItem('komaki_lang') || 'ja'; } catch(e) {}
+      var l = window.KomakiLang();
       var ev = events[key];
       return ev ? (ev[l] || ev.en || ev.ja) : '';
     }
 
-    const CAL_LOCALE_MAP = {ja:'ja-JP', en:'en-US', pt:'pt-BR', vi:'vi-VN', tl:'fil-PH', es:'es-ES', zh:'zh-Hans-CN', id:'id-ID'};
+    const CAL_LOCALE_MAP = {ja:'ja-JP', en:'en-US', pt:'pt-BR', vi:'vi-VN', tl:'fil-PH', es:'es-ES', zh:'zh-Hans-CN', id:'id-ID', tr:'tr-TR', my:'my-MM'};
+    // 未知の言語は英語に落とす。ja に落としてはいけない
+    // （サイト全体が「日本語より英語のほうが読める閲覧者が多い」前提で作られている）。
     function getCalLocale() {
-      try { var l = localStorage.getItem('komaki_lang'); return CAL_LOCALE_MAP[l] || 'ja-JP'; } catch(e) { return 'ja-JP'; }
+      return CAL_LOCALE_MAP[window.KomakiLang()] || 'en-US';
     }
 
     var _ct = {
@@ -432,10 +444,11 @@
       done_prefix: {ja:'[済] ', en:'[Done] ', pt:'[Concluído] ', vi:'[Xong] ', tl:'[Tapos] ', es:'[Hecho] ', zh:'[已完成] ', id:'[Selesai] '},
       plan_prefix: {ja:'[予定] ', en:'[Planned] ', pt:'[Previsto] ', vi:'[KH] ', tl:'[Nakatakda] ', es:'[Previsto] ', zh:'[计划] ', id:'[Rencana] '},
     };
+    // tr/my は _ct に項目を持たない。ja ではなく en に落とすこと
+    // （日本語より英語のほうが読める閲覧者が多い、というサイト全体の方針）。
     function ctr(key) {
-      var l = 'ja';
-      try { l = localStorage.getItem('komaki_lang') || 'ja'; } catch(e) {}
-      return _ct[key][l] || _ct[key]['ja'];
+      var l = window.KomakiLang();
+      return _ct[key][l] || _ct[key]['en'];
     }
 
     const today = new Date();
@@ -444,18 +457,27 @@
     function pad(n) { return String(n).padStart(2, '0'); }
     const todayKey = `${today.getFullYear()}-${pad(today.getMonth()+1)}-${pad(today.getDate())}`;
 
-    // 初期表示は現在の月。ただしイベントデータのある範囲（最初〜最後のイベント月）に収める
-    var _evKeys = Object.keys(events).sort();
-    function _evYM(key) { return { y: parseInt(key.slice(0, 4), 10), m: parseInt(key.slice(5, 7), 10) - 1 }; }
-    var _firstEv = _evYM(_evKeys[0]);
-    var _lastEv = _evYM(_evKeys[_evKeys.length - 1]);
+    // 初期表示は「予定が入っている月」。
+    // 以前はイベントの最初〜最後の月に収めるだけだったので、その範囲の内側にある
+    // 空の月（例: 2026年8月）を今月として開くと、予定が 1 件も見えない状態から
+    // 始まってしまい、次の予定にたどり着くまで ▶ を何度も押す必要があった。
+    // 今月に予定があればそのまま、無ければ「今月以降でいちばん近い予定の月」、
+    // それも無ければ「直近の過去の予定の月」を開く。
+    var _evMonths = Object.keys(events)
+      .map(function (k) { return parseInt(k.slice(0, 4), 10) * 12 + (parseInt(k.slice(5, 7), 10) - 1); })
+      .filter(function (v, i, a) { return a.indexOf(v) === i; })
+      .sort(function (a, b) { return a - b; });
 
     let currentYear = today.getFullYear();
     let currentMonth = today.getMonth();
 
     var _curIdx = currentYear * 12 + currentMonth;
-    if (_curIdx < _firstEv.y * 12 + _firstEv.m) { currentYear = _firstEv.y; currentMonth = _firstEv.m; }
-    else if (_curIdx > _lastEv.y * 12 + _lastEv.m) { currentYear = _lastEv.y; currentMonth = _lastEv.m; }
+    if (_evMonths.length && _evMonths.indexOf(_curIdx) === -1) {
+      var _pick = _evMonths.filter(function (v) { return v > _curIdx; })[0];
+      if (_pick === undefined) _pick = _evMonths[_evMonths.length - 1];
+      currentYear = Math.floor(_pick / 12);
+      currentMonth = _pick % 12;
+    }
 
     function renderCalendar(year, month) {
       const monthLabel = document.getElementById('cal-month-label');
