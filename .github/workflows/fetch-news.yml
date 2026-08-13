@@ -254,6 +254,16 @@ jobs:
             ```
             quotes の text は改変せずスナップショットからコピーすること。実在しない引用は検証で不合格になる。
 
+      # ---------- ページ別辞書の再生成 ----------
+      # 起案AIが data/i18n/*.json を編集すると data/i18n/pages/ が古くなる。
+      # 古いページ別辞書は 404 にならず「古い文面を 200 で返す」ため、
+      # i18n.js の 404 フォールバックでは救えない。ここで必ず作り直す。
+      # 起案AIに生成させないのは、生成物は決定的に作れるべきで、
+      # AI の手作業に依存させる理由がないため。
+      - name: Rebuild page dictionaries
+        if: steps.token.outputs.available == 'true'
+        run: python3 .github/scripts/build_page_dicts.py
+
       # ---------- 機械検証ゲート ----------
       - name: Run guardrail gates
         id: gates

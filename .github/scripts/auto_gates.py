@@ -5,8 +5,11 @@
 起案AIが作業ツリーに加えた変更を機械的に検査する：
   1. 編集範囲チェック  — 許可ファイル以外の変更・新規ファイル作成を拒否
   2. スキーマチェック  — events.json の日付キー・8言語ラベル、i18n の JSON 構文
-  3. 外部リンク規則    — 市サイトへのリンクは許可URL（303/index.html）のみ
-  4. 出典実在チェック  — evidence.json の各引用が data/official_pages/ の
+  3. ja/en キー一致    — i18n.js が非日本語表示で ja.json を取らない前提を守る
+  4. こどもモード      — ja-kids.json の1行がモーラ換算で長すぎないか
+  5. ページ別辞書      — data/i18n/pages/ が data/i18n/ と HTML に対して最新か
+  6. 外部リンク規則    — 市サイトへのリンクは許可URL（303/index.html）のみ
+  7. 出典実在チェック  — evidence.json の各引用が data/official_pages/ の
                           スナップショットに実在する文字列か照合（創作の検出）
 
 終了コード: 0 = 合格, 1 = 不合格, 3 = 変更なし（更新不要と判断）
@@ -26,6 +29,9 @@ PARTIAL_LANGS = ["tr", "my"]
 ALLOWED = {"data/events.json", "index.html", "schedule.html", "community.html"} | {
     f"data/i18n/{l}.json" for l in LANGS + PARTIAL_LANGS + ["ja-kids"]
 }
+# ページ別辞書は build_page_dicts.py が決定的に生成する。起案AIは触らないが、
+# ワークフローが辞書編集のあとに再生成するので、変更ファイルとして現れる。
+ALLOWED_PREFIXES = ("data/i18n/pages/",)
 # 自動化の作業ファイル置き場（検査対象外）
 IGNORE_PREFIXES = ("auto_update/", "report/")
 EVIDENCE = "auto_update/evidence.json"
@@ -77,7 +83,7 @@ def main():
 
     # --- 1. 編集範囲チェック ---
     for p in changed:
-        if p not in ALLOWED:
+        if p not in ALLOWED and not p.startswith(ALLOWED_PREFIXES):
             fail(f"許可されていないファイルの変更: {p}")
     if not fails:
         ok("編集範囲は許可ファイル内")
@@ -133,7 +139,60 @@ def main():
     except Exception as e:
         fail(f"ja.json / en.json が読めない: {e}")
 
-    # --- 4. 外部リンク規則（サイト全体を検査） ---
+    # --- 4. こどもモードの1行の長さ（サイト全体を検査） ---
+    # ja-kids.json は小3の読解力が目標。漢字をひらがなに開くだけでは足りず、
+    # 1文の長さこそが読みやすさを決めるので、ここで上限を機械的に守らせる。
+    # 「1行」= <br>/</li>/</p> と 。！？：| で切れる、読者が実際に目にする単位。
+    # モーラ換算は「漢字≒1.9・仮名≒1」。ひらがなに開くと文字数が増えるため、
+    # 文字数のままでは ja と比較できず、簡易化が効いているか判定できない。
+    # 上限 65 は現状の最大 58 に余裕を持たせた値。目標は 45 以下、理想は 30 前後。
+    KIDS_MAX_MORA = 65
+    KIDS_SKIP = re.compile(r"^(meta_|footer_langs$)")   # ページ題名・言語名リストは文ではない
+
+    def _kids_lines(v):
+        t = re.sub(r"<br\s*/?>|</li>|</p>|</h\d>", "\n", str(v))
+        t = re.sub(r"<[^>]+>", "", t)
+        t = re.sub(r"[。！？：|]", "\n", t)
+        return [x.strip() for x in t.split("\n") if x.strip()]
+
+    def _mora(t):
+        t = re.sub(r"\s", "", t)
+        k = sum(1 for c in t if "\u4e00" <= c <= "\u9fff")
+        return (len(t) - k) + 1.9 * k
+
+    try:
+        with open("data/i18n/ja-kids.json", encoding="utf-8") as f:
+            kids = json.load(f)
+        long_keys = []
+        for k, v in kids.items():
+            if KIDS_SKIP.match(k):
+                continue
+            lines = _kids_lines(v)
+            if lines and max(_mora(x) for x in lines) > KIDS_MAX_MORA:
+                long_keys.append((k, max(_mora(x) for x in lines)))
+        if long_keys:
+            for k, m in sorted(long_keys, key=lambda x: -x[1])[:5]:
+                fail(f"ja-kids: 1行が長すぎる（{m:.0f}モーラ / 上限{KIDS_MAX_MORA}）: {k}")
+        else:
+            ok(f"ja-kids 1行の長さ（{len(kids)}キー / 上限{KIDS_MAX_MORA}モーラ）")
+    except Exception as e:
+        fail(f"ja-kids.json が読めない: {e}")
+
+    # --- 5. ページ別辞書が最新か（サイト全体を検査） ---
+    # 古いページ別辞書は 404 にならず「古い文面を 200 で返す」ので、
+    # i18n.js の 404 フォールバックでは救えない。ここで確実に止める。
+    try:
+        r = subprocess.run(
+            [sys.executable, ".github/scripts/build_page_dicts.py", "--check"],
+            capture_output=True, text=True)
+        if r.returncode != 0:
+            fail("ページ別辞書が古い（build_page_dicts.py を実行すること）:\n" + r.stdout.strip())
+        else:
+            ok("ページ別辞書は最新")
+    except Exception as e:
+        fail(f"build_page_dicts.py が実行できない: {e}")
+
+    # --- 6. 外部リンク規則（サイト全体を検査） ---
     link_violations = []
     for p in glob.glob("*.html") + glob.glob("js/*.js"):
         with open(p, encoding="utf-8") as f:
@@ -147,7 +206,7 @@ def main():
     else:
         ok("外部リンク規則")
 
-    # --- 5. 出典実在チェック ---
+    # --- 7. 出典実在チェック ---
     if not os.path.exists(EVIDENCE):
         fail(f"{EVIDENCE} がない（変更には出典が必須）")
     else:
@@ -163,6 +222,8 @@ def main():
             by_file.setdefault(e.get("file", ""), []).append(e)
 
         for p in changed:
+            if p.startswith(ALLOWED_PREFIXES):
+                continue  # 生成物。出典は生成元の data/i18n/*.json 側で検証済み
             if p not in by_file:
                 fail(f"{p} の変更に evidence.json のエントリがない")
 

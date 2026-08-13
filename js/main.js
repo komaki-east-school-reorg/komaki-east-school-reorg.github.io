@@ -457,27 +457,12 @@ window.KomakiLang = (function () {
     function pad(n) { return String(n).padStart(2, '0'); }
     const todayKey = `${today.getFullYear()}-${pad(today.getMonth()+1)}-${pad(today.getDate())}`;
 
-    // 初期表示は「予定が入っている月」。
-    // 以前はイベントの最初〜最後の月に収めるだけだったので、その範囲の内側にある
-    // 空の月（例: 2026年8月）を今月として開くと、予定が 1 件も見えない状態から
-    // 始まってしまい、次の予定にたどり着くまで ▶ を何度も押す必要があった。
-    // 今月に予定があればそのまま、無ければ「今月以降でいちばん近い予定の月」、
-    // それも無ければ「直近の過去の予定の月」を開く。
-    var _evMonths = Object.keys(events)
-      .map(function (k) { return parseInt(k.slice(0, 4), 10) * 12 + (parseInt(k.slice(5, 7), 10) - 1); })
-      .filter(function (v, i, a) { return a.indexOf(v) === i; })
-      .sort(function (a, b) { return a - b; });
-
+    // 初期表示は常に「今月」。
+    // 予定のある月へ自動で飛ばす案もあるが、カレンダーを開いた人がまず知りたいのは
+    // 「今がどこか」なので、今月に予定が無くても今月から始める。
+    // 予定のある月へは ◀ ▶ で移動する。
     let currentYear = today.getFullYear();
     let currentMonth = today.getMonth();
-
-    var _curIdx = currentYear * 12 + currentMonth;
-    if (_evMonths.length && _evMonths.indexOf(_curIdx) === -1) {
-      var _pick = _evMonths.filter(function (v) { return v > _curIdx; })[0];
-      if (_pick === undefined) _pick = _evMonths[_evMonths.length - 1];
-      currentYear = Math.floor(_pick / 12);
-      currentMonth = _pick % 12;
-    }
 
     function renderCalendar(year, month) {
       const monthLabel = document.getElementById('cal-month-label');

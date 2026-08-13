@@ -642,5 +642,22 @@
   "sched_desc28__after": "<strong>Primera fase de la reorganización — realizada</strong><br>Shinooka Gakuen (Primaria Tokadai Higashi, Primaria Tokadai Nishi, Secundaria Tokadai Higashi, Secundaria Tokadai Nishi) comenzó con cuatro escuelas. También se inició el transporte escolar para primaria (financiado por la ciudad — gratuito).",
   "schedule_2027_h3__after": "2027 – Realizado",
   "meta_desc_index__after": "Sitio comunitario con información clara, basada en fuentes oficiales, sobre la reorganización escolar de Komaki Este (Shinooka) realizada en el ejercicio 2027.",
-  "meta_desc_about__after": "Información detallada sobre el plan que reorganizó 5 primarias y 3 secundarias en 4 escuelas en el ejercicio 2027: contexto, contenido y distritos escolares."
+  "meta_desc_about__after": "Información detallada sobre el plan que reorganizó 5 primarias y 3 secundarias en 4 escuelas en el ejercicio 2027: contexto, contenido y distritos escolares.",
+  "related_h": "Páginas relacionadas",
+  "rel_about_schedule": "Ver el calendario y las fechas clave hasta la reorganización",
+  "rel_about_faq": "Ver preguntas frecuentes sobre el trayecto, las actividades y los edificios",
+  "rel_schedule_about": "Ver qué escuelas se fusionan y de qué manera",
+  "rel_schedule_council": "Ver cómo el pleno municipal debatió el plan",
+  "rel_voices_about": "Ver el contexto y el objetivo del plan",
+  "rel_voices_faq": "Ver todas las respuestas a las dudas más frecuentes",
+  "rel_faq_about": "Ver en detalle el plan y las escuelas afectadas",
+  "rel_faq_schedule": "Ver lo que viene a continuación, en orden",
+  "rel_council_schedule": "Ver el calendario que se deriva de estas decisiones",
+  "rel_council_faq": "Ver los puntos del debate en formato de preguntas y respuestas",
+  "rel_bus_map": "Ver en el mapa dónde están las escuelas actuales y las nuevas",
+  "rel_bus_schedule": "Ver el calendario hasta el inicio del servicio",
+  "rel_community_about": "Ver el plan de reorganización en sí",
+  "rel_community_voices": "Ver lo que dicen los vecinos, a favor y en contra",
+  "rel_map_about": "Ver cómo se fusiona cada escuela",
+  "rel_map_bus": "Ver cómo funcionará el transporte escolar"
 }

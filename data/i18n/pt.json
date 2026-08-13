@@ -642,5 +642,22 @@
   "sched_desc28__after": "<strong>1ª fase da reorganização — realizada</strong><br>O Shinooka Gakuen (E.F. Tokadai Higashi, E.F. Tokadai Nishi, Ginásio Tokadai Higashi, Ginásio Tokadai Nishi) passou a funcionar com quatro escolas. O transporte escolar para o primário também começou (custeado pela cidade — gratuito).",
   "schedule_2027_h3__after": "2027 – Realizado",
   "meta_desc_index__after": "Site comunitário com informações claras, baseadas em fontes oficiais, sobre a reorganização escolar de Komaki Leste (Shinooka) realizada no ano fiscal de 2027.",
-  "meta_desc_about__after": "Informações detalhadas sobre o plano que reorganizou 5 escolas primárias e 3 ginásios em 4 escolas no ano fiscal de 2027 — contexto, conteúdo e distritos escolares."
+  "meta_desc_about__after": "Informações detalhadas sobre o plano que reorganizou 5 escolas primárias e 3 ginásios em 4 escolas no ano fiscal de 2027 — contexto, conteúdo e distritos escolares.",
+  "related_h": "Páginas relacionadas",
+  "rel_about_schedule": "Ver o cronograma e as datas principais até a mudança",
+  "rel_about_faq": "Ver perguntas frequentes sobre trajeto, atividades e prédios escolares",
+  "rel_schedule_about": "Ver quais escolas serão unificadas e como",
+  "rel_schedule_council": "Ver como a câmara municipal debateu o plano",
+  "rel_voices_about": "Ver o contexto e o objetivo do plano",
+  "rel_voices_faq": "Ver todas as respostas às dúvidas mais comuns",
+  "rel_faq_about": "Ver em detalhe o plano e as escolas envolvidas",
+  "rel_faq_schedule": "Ver o que vem a seguir, em ordem",
+  "rel_council_schedule": "Ver o cronograma decorrente dessas decisões",
+  "rel_council_faq": "Ver os pontos levantados no debate em formato de perguntas",
+  "rel_bus_map": "Ver no mapa onde ficam as escolas atuais e as novas",
+  "rel_bus_schedule": "Ver o cronograma até o início da operação",
+  "rel_community_about": "Ver o próprio plano de reorganização",
+  "rel_community_voices": "Ver o que dizem os moradores, a favor e contra",
+  "rel_map_about": "Ver como cada escola será unificada",
+  "rel_map_bus": "Ver como funcionará o transporte escolar"
 }

@@ -55,6 +55,14 @@ A broken non-`ja` file is easy to miss: `i18n.js` silently falls back, so the pa
 
 Translations live in `data/i18n/<lang>.json` (ja, en, pt, vi, tl, es, zh, id, tr, my). `js/i18n.js` fetches the files at runtime. For Japanese it loads `ja.json` alone; **for every other language it loads only `en.json` and the target language**, merged as `Object.assign({}, en_dict, lang_dict)`, so a key missing from the target language falls back to English. English is the bridge because a reader who chose Turkish or Burmese is far more likely to read English than Japanese. The minimum requirement when adding a new key is entries in `ja` and `en`.
 
+### Page-scoped dictionaries
+
+`i18n.js` does not fetch the whole-site dictionary. It fetches **`data/i18n/pages/<pageId>.<lang>.json`** — the subset of keys that page actually uses — and falls back to the full `data/i18n/<lang>.json` on a 404. Each page uses only 9–20% of the 661 keys, so this cuts a page view from ~45 KB to 4–10 KB gzip on the critical render path.
+
+Those files are **generated**: run `python3 .github/scripts/build_page_dicts.py` after changing any `data/i18n/*.json` or adding a `data-i18n` attribute to a page, and commit the result. Never hand-edit `data/i18n/pages/`. `check 5` in `auto_gates.py` runs the generator with `--check` and fails if the committed output is stale; the daily workflow regenerates them after the drafter AI edits any dictionary. A *stale* page dictionary is worse than a missing one — a missing file 404s and falls back, while a stale file serves old text with a 200.
+
+Keys that `main.js` attaches at runtime (`status_done`, `event_status_*`) never appear in the HTML, so they are listed in `RUNTIME_KEYS` in the generator and force-included in every page.
+
 **`ja.json` is deliberately not fetched for non-Japanese languages.** It used to be the first of three layers, but `ja` and `en` carry identical key sets, so the `en` layer overwrote every one of its keys — the `ja` layer contributed zero keys to the merged dictionary while costing ~23 KB gzip on every page view, on the critical render path (`body` stays hidden until `.i18n-ready`). If a key were ever missing from `en`, the element simply keeps the Japanese default text already written inline in the HTML, which is the same thing the `ja` layer would have supplied. `check 3` in `.github/scripts/auto_gates.py` machine-verifies the `ja` ⇔ `en` key-set equality this relies on — **do not remove that gate.**
 
 There is also `data/i18n/ja-kids.json`: when the kids-mode toggle is active (Japanese only), it is fetched and merged on top of `ja.json` (`Object.assign({}, ja_dict, kids_dict)`), overriding keys with simpler hiragana/easy-Japanese text.
@@ -132,7 +140,7 @@ Several things reflect the current date automatically — no manual edits needed
 |---|---|---|
 | `data/news.json` (official news) | Daily 09:17 JST | GitHub Actions |
 | "Last updated: …" line (index *Current Status* / schedule *Key Events*) | Every time the site is re-deployed (push) and files are re-served | `document.lastModified` of the served file (= deploy time on GitHub Pages), shown via `<p class="section-updated">` |
-| Calendar initial month (`schedule.html`) | Every page load (viewer's current month) | `new Date()`, clamped to the `events` date range |
+| Calendar initial month (`schedule.html`) | Every page load (viewer's current month) | `new Date()`, no clamping — it always opens on the current month even when that month has no events, because a reader opening the calendar first wants to know where "now" is. Do not "helpfully" jump to the nearest month that has events |
 | "完了" labels in *Current Status* (`index.html`) | Every page load (today ≥ `data-event-date`) | AUTO DATE STATUS |
 | Event status badges 完了/進行中/予定 (`schedule.html`, keys `event_status_*`) | Every page load (same) | AUTO DATE STATUS |
 | "Upcoming" bar items | Every page load (hidden once past `data-expires`) | UPCOMING SCHEDULE EXPIRY |
@@ -182,3 +190,13 @@ All colours and radii are defined as CSS custom properties on `:root` in `css/st
 ## `files.txt`
 
 A manually maintained human-readable index of all site files with descriptions. Update it when adding or removing files.
+
+## Machine-checked invariants (`.github/scripts/auto_gates.py`)
+
+Beyond the auto-update pipeline's scope and evidence checks, these run site-wide on every gate invocation and are the things most likely to be broken by an innocent-looking edit:
+
+| # | Check | Why it exists |
+|---|---|---|
+| 3 | `ja` and `en` have identical key sets | `i18n.js` skips `ja.json` for non-Japanese languages and relies on this |
+| 4 | No `ja-kids` line exceeds 65 mora | Kids mode targets 3rd-grade reading; splitting sentences matters more than opening kanji |
+| 5 | `data/i18n/pages/` is up to date | A stale page dictionary serves old text with a 200 and cannot be caught at runtime |

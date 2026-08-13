@@ -1,6 +1,24 @@
 {
-  "description": "このサイト自身の更新履歴。トップページ最下部の「サイトの更新履歴」コーナーが実行時に fetch して描画する（表示は新しい順に6件まで。このファイルには全履歴を残す）。手動管理。新しいものを配列の先頭に足す。type は content（掲載内容）/ feature（機能追加）/ fix（修正）のいずれか。ja は必須、en は推奨（未記載なら ja が出る）。他言語は en → ja の順にフォールバックする。文体は体言止めの短い一行にすること（「〜しました。」と文章にしない。コミットメッセージの貼り付けもしない）。",
+  "description": "このサイト自身の更新履歴。トップページ最下部の「サイトの更新履歴」コーナーが実行時に fetch して描画する（表示は新しい順に6件まで。このファイルには全履歴を残す）。手動管理。新しいものを配列の先頭に足す。type は content（掲載内容）/ feature（機能追加）/ fix（修正）のいずれか。ja は必須、en は推奨（未記載なら ja が出る）。他言語は en → ja の順にフォールバックする。文体は体言止めの短い一行にすること（「〜しました。」と文章にしない。コミットメッセージの貼り付けもしない）。読者が画面上で気づかない内部改修（表示の高速化・リファクタ・SEO の内部設定・ドキュメント修正など）は載せない。関連する小さな修正はまとめて1件にする。",
   "updates": [
+    {
+      "date": "2026-08-13",
+      "type": "feature",
+      "ja": "各ページの末尾に関連ページへの案内を追加",
+      "en": "Links to related pages added at the bottom of each page"
+    },
+    {
+      "date": "2026-08-13",
+      "type": "content",
+      "ja": "こどもむけモードの長い文を読みやすく分割",
+      "en": "Long sentences in kids mode split into shorter ones"
+    },
+    {
+      "date": "2026-08-13",
+      "type": "content",
+      "ja": "トルコ語・ビルマ語の翻訳を拡充（スクールバス・よくある質問・地図は全訳）",
+      "en": "More Turkish and Burmese added (school bus, FAQ and map pages now fully translated)"
+    },
     {
       "date": "2026-08-13",
       "type": "feature",
@@ -10,20 +28,8 @@
     {
       "date": "2026-08-13",
       "type": "fix",
-      "ja": "カレンダーの初期表示を予定のある月に変更",
-      "en": "Calendar now opens on a month that actually has events"
-    },
-    {
-      "date": "2026-08-13",
-      "type": "fix",
-      "ja": "トルコ語・ビルマ語のカレンダー表記を英語に統一",
-      "en": "Turkish and Burmese calendar labels now fall back to English"
-    },
-    {
-      "date": "2026-08-13",
-      "type": "fix",
-      "ja": "多言語ページの読み込みを軽量化",
-      "en": "Lighter dictionary download on non-Japanese pages"
+      "ja": "トルコ語・ビルマ語のカレンダー表記を修正",
+      "en": "Turkish and Burmese calendar labels fixed"
     },
     {
       "date": "2026-08-12",

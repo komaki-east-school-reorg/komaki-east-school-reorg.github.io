@@ -45,6 +45,11 @@ data/i18n/ja-kids.json      「こどもむけ」モード用の上書き辞書�
 favicon.svg                 ブラウザタブに表示されるサイトアイコン（SVG形式）。
 img/og-image.png            SNSシェア時に表示されるOGP用サムネイル画像。
 
+■ ページ別辞書（自動生成）
+data/i18n/pages/            各ページが実際に使うキーだけを切り出した辞書（<ページID>.<言語>.json、99ファイル）。
+                            .github/scripts/build_page_dicts.py が生成する。手編集不可。
+                            i18n.js はこちらを優先して取得し、404 のときだけ全体辞書に落ちる。
+
 ■ 検索エンジン向け
 robots.txt                  クローラ向けの許可設定とサイトマップの所在。全ページ許可。
 sitemap.xml                 全9ページのサイトマップ。各URLに10言語＋x-defaultのhreflang相互参照を付与。
@@ -55,7 +60,8 @@ sitemap.xml                 全9ページのサイトマップ。各URLに10言�
 .github/scripts/fetch_news.py       市公式サイトをスクレイピングしてお知らせ情報の抽出・整形と各ページ本文のスナップショット保存を行うPythonスクリプト。
 .github/scripts/fetch_schools.py    再編対象8校のホームページ（komaki-aic.ed.jp）を巡回し、各校の最新記事をschool_news.jsonに保存するスクリプト。
 .github/scripts/map_targets.py      変更された公式ページのスラッグをsite-facts.jsonで引き、サイト内の更新候補箇所をMarkdown出力するスクリプト（Issue本文生成用）。
-.github/scripts/auto_gates.py       自動更新のガードレール検証（編集範囲・スキーマ・外部リンク規則・出典実在チェック）。exit 0=合格/3=変更なし/1=不合格。
+.github/scripts/build_page_dicts.py  data/i18n/pages/ を生成する。辞書やHTMLのdata-i18nを変えたら実行してコミットすること。--check で鮮度検証のみ。
+.github/scripts/auto_gates.py       自動更新のガードレール検証（編集範囲・スキーマ・ja/enキー一致・こどもモード1行の長さ・ページ別辞書の鮮度・外部リンク規則・出典実在チェック）。exit 0=合格/3=変更なし/1=不合格。
 .github/scripts/auto_report.py      自動更新のPR本文・事後報告コメントをevidence.json/verdict.jsonから生成するスクリプト。
 
 ■ 設定・その他

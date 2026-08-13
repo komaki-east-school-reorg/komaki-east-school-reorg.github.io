@@ -642,5 +642,22 @@
   "sched_desc28__after": "<strong>Phase 1 na reorganisasyon — naisagawa</strong><br>Nagsimula ang Shinooka Gakuen (Tokadai Higashi Elem, Tokadai Nishi Elem, Tokadai Higashi JHS, Tokadai Nishi JHS) bilang apat na paaralan. Nagsimula rin ang school bus para sa elementarya (buong gastos ng lungsod — libre).",
   "schedule_2027_h3__after": "FY2027 (2027) – Natapos",
   "meta_desc_index__after": "Community info site na nagbibigay ng malinaw na impormasyon, batay sa opisyal na pinagmulan, tungkol sa reorganisasyon ng mga paaralan sa Komaki East (Shinooka) na isinagawa noong FY2027.",
-  "meta_desc_about__after": "Detalyadong impormasyon tungkol sa planong nagsama ng 5 elementarya at 3 junior high sa 4 na paaralan noong FY2027 — konteksto, nilalaman at mga distrito."
+  "meta_desc_about__after": "Detalyadong impormasyon tungkol sa planong nagsama ng 5 elementarya at 3 junior high sa 4 na paaralan noong FY2027 — konteksto, nilalaman at mga distrito.",
+  "related_h": "Mga kaugnay na pahina",
+  "rel_about_schedule": "Tingnan ang iskedyul at mga pangunahing petsa bago ang pagbabago",
+  "rel_about_faq": "Tingnan ang mga karaniwang tanong tungkol sa pagpasok, klab at gusali ng paaralan",
+  "rel_schedule_about": "Tingnan kung aling mga paaralan ang pagsasamahin at paano",
+  "rel_schedule_council": "Tingnan kung paano tinalakay ng konseho ng lungsod ang plano",
+  "rel_voices_about": "Tingnan ang pinagmulan at layunin ng plano",
+  "rel_voices_faq": "Tingnan sa isang lugar ang mga sagot sa karaniwang alalahanin",
+  "rel_faq_about": "Tingnan nang detalyado ang plano at ang mga paaralang kasama",
+  "rel_faq_schedule": "Tingnan ang mga susunod na mangyayari, ayon sa pagkakasunod",
+  "rel_council_schedule": "Tingnan ang iskedyul na sumusunod sa mga desisyong ito",
+  "rel_council_faq": "Tingnan bilang tanong-sagot ang mga puntong itinaas sa debate",
+  "rel_bus_map": "Tingnan sa mapa kung nasaan ang kasalukuyan at bagong mga paaralan",
+  "rel_bus_schedule": "Tingnan ang iskedyul hanggang sa unang araw ng serbisyo",
+  "rel_community_about": "Tingnan mismo ang plano ng muling pag-aayos",
+  "rel_community_voices": "Tingnan ang sinasabi ng mga residente, pabor at tutol",
+  "rel_map_about": "Tingnan kung paano pagsasamahin ang bawat paaralan",
+  "rel_map_bus": "Tingnan kung paano gagana ang serbisyo ng school bus"
 }

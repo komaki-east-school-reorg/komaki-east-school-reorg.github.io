@@ -642,5 +642,22 @@
   "sched_desc28__after": "<strong>Reorganisasi Tahap 1 — dilaksanakan</strong><br>Shinooka Gakuen (SD Tokadai Higashi, SD Tokadai Nishi, SMP Tokadai Higashi, SMP Tokadai Nishi) mulai beroperasi sebagai empat sekolah. Bus sekolah untuk siswa SD juga mulai berjalan (ditanggung penuh oleh kota — gratis).",
   "schedule_2027_h3__after": "2027 – Selesai",
   "meta_desc_index__after": "Situs informasi warga yang menjelaskan secara mudah dipahami, berdasarkan sumber resmi, tentang reorganisasi sekolah Komaki Timur (Shinooka) yang dilaksanakan pada TA2027.",
-  "meta_desc_about__after": "Informasi rinci tentang rencana yang mereorganisasi 5 SD dan 3 SMP menjadi 4 sekolah pada TA2027 — latar belakang, isi, dan wilayah sekolah."
+  "meta_desc_about__after": "Informasi rinci tentang rencana yang mereorganisasi 5 SD dan 3 SMP menjadi 4 sekolah pada TA2027 — latar belakang, isi, dan wilayah sekolah.",
+  "related_h": "Halaman terkait",
+  "rel_about_schedule": "Lihat jadwal dan tanggal penting menuju pelaksanaan",
+  "rel_about_faq": "Lihat pertanyaan umum tentang perjalanan, klub, dan gedung sekolah",
+  "rel_schedule_about": "Lihat sekolah mana yang digabung dan bagaimana caranya",
+  "rel_schedule_council": "Lihat bagaimana DPRD kota membahas rencana ini",
+  "rel_voices_about": "Lihat latar belakang dan tujuan rencana ini",
+  "rel_voices_faq": "Lihat kumpulan jawaban atas keraguan yang sering muncul",
+  "rel_faq_about": "Lihat rincian rencana dan sekolah yang terlibat",
+  "rel_faq_schedule": "Lihat rencana selanjutnya secara berurutan",
+  "rel_council_schedule": "Lihat jadwal yang mengikuti keputusan ini",
+  "rel_council_faq": "Lihat poin-poin dalam pembahasan dalam bentuk tanya jawab",
+  "rel_bus_map": "Lihat lokasi sekolah lama dan baru pada peta",
+  "rel_bus_schedule": "Lihat jadwal sampai layanan mulai beroperasi",
+  "rel_community_about": "Lihat rencana penataan ulang itu sendiri",
+  "rel_community_voices": "Lihat suara warga, yang setuju dan menolak",
+  "rel_map_about": "Lihat bagaimana setiap sekolah digabungkan",
+  "rel_map_bus": "Lihat bagaimana layanan bus sekolah akan berjalan"
 }

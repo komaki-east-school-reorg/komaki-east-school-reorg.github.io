@@ -9,7 +9,12 @@
   // 翻訳が 100% 揃ったらこの配列から外すこと（配列が空でも動作する）。
   var PARTIAL = ['tr', 'my'];
   var BASE = './data/i18n/';
+  var PAGE_BASE = BASE + 'pages/';
   var SAFETY_MS = 1000;
+
+  // ページID（ファイル名から .html を除いたもの）。meta_title_<ページID> の組み立てと、
+  // ページ別辞書の取得の両方で使う。
+  var PAGE_ID = (window.location.pathname.match(/([^/]+)\.html$/) || ['', 'index'])[1] || 'index';
 
   // ===== 第1期再編の実施後への文面切替 =====
   // 「<キー>__after」を用意しておくと、このフラグが true のときだけ
@@ -111,7 +116,7 @@
     var langAttr = { ja: 'ja', en: 'en', pt: 'pt-BR', vi: 'vi', tl: 'tl', es: 'es', zh: 'zh-Hans', id: 'id', tr: 'tr', my: 'my' };
     document.documentElement.lang = langAttr[lang] || lang;
 
-    var pageId = (window.location.pathname.match(/([^/]+)\.html$/) || ['', 'index'])[1] || 'index';
+    var pageId = PAGE_ID;
     var titleKey = 'meta_title_' + pageId;
     var descKey  = 'meta_desc_'  + pageId;
     if (dict[titleKey]) {
@@ -244,6 +249,23 @@
     });
   }
 
+  // 辞書は「ページ別に切り出したもの」を優先して取りに行く。
+  // 各ページが実際に使うキーは全体の 1〜2 割しかないのに全キーを配っていたため、
+  // 1ページ表示あたり gzip 45KB を使っていた（body は .i18n-ready まで非表示なので、
+  // この転送がそのまま描画の律速になる）。切り出すと 4〜10KB で済む。
+  //
+  // ページ別辞書は .github/scripts/build_page_dicts.py が生成してコミットする生成物。
+  // 生成し忘れ・新規ページなどで 404 になったときは全体辞書に自動で落ちるので、
+  // 表示が壊れることはない（遅くなるだけ）。
+  function fetchDict(lang) {
+    return fetch(PAGE_BASE + PAGE_ID + '.' + lang + '.json')
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        return r.json();
+      })
+      .catch(function () { return fetchJson(lang); });
+  }
+
   function loadAndApply(lang) {
     if (!LANGS.includes(lang)) lang = DEFAULT;
     _currentLang = lang;
@@ -255,17 +277,17 @@
     updateKidsToggleUI();
 
     if (lang === DEFAULT && useKids) {
-      Promise.all([fetchJson(DEFAULT), fetchJson('ja-kids')])
+      Promise.all([fetchDict(DEFAULT), fetchDict('ja-kids')])
         .then(function (results) {
           applyDict(applyTemporal(Object.assign({}, results[0], results[1])), DEFAULT);
         })
         .catch(function () {
-          fetchJson(DEFAULT)
+          fetchDict(DEFAULT)
             .then(function (dict) { applyDict(applyTemporal(dict), DEFAULT); })
             .catch(showPage);
         });
     } else if (lang === DEFAULT) {
-      fetchJson(DEFAULT)
+      fetchDict(DEFAULT)
         .then(function (dict) { applyDict(applyTemporal(dict), DEFAULT); })
         .catch(showPage);
     } else {
@@ -278,16 +300,16 @@
       //   ja 層は最終辞書に 1 キーも寄与せず、gzip 約 23KB を捨てているだけだった。
       //   万一 en に欠けたキーがあっても、HTML には日本語の既定文が
       //   そのまま書かれているので、表示は従来と同じ日本語に落ちる。
-      Promise.all([fetchJson(BRIDGE), fetchJson(lang)])
+      Promise.all([fetchDict(BRIDGE), fetchDict(lang)])
         .then(function (results) {
           applyDict(applyTemporal(Object.assign({}, results[0], results[1])), lang);
         })
         .catch(function () {
           // 対象言語が取れない場合は en だけ、それも駄目なら ja で表示
-          fetchJson(BRIDGE)
+          fetchDict(BRIDGE)
             .then(function (dict) { applyDict(applyTemporal(dict), lang); })
             .catch(function () {
-              fetchJson(DEFAULT)
+              fetchDict(DEFAULT)
                 .then(function (dict) { applyDict(applyTemporal(dict), DEFAULT); })
                 .catch(showPage);
             });

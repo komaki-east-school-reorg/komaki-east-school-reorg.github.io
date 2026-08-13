@@ -642,5 +642,22 @@
   "sched_desc28__after": "<strong>Tái tổ chức giai đoạn 1 — đã thực hiện</strong><br>Shinooka Gakuen (Tiểu học Tokadai Higashi, Tiểu học Tokadai Nishi, THCS Tokadai Higashi, THCS Tokadai Nishi) đã bắt đầu theo mô hình bốn trường. Xe buýt đưa đón học sinh tiểu học cũng đã vận hành (thành phố chi trả toàn bộ — miễn phí).",
   "schedule_2027_h3__after": "2027 – Đã thực hiện",
   "meta_desc_index__after": "Trang thông tin cộng đồng giải thích dễ hiểu, dựa trên nguồn chính thức, về việc tái tổ chức trường học khu Đông Komaki (Shinooka) đã thực hiện trong năm tài khóa 2027.",
-  "meta_desc_about__after": "Thông tin chi tiết về kế hoạch đã tái tổ chức 5 trường tiểu học và 3 trường THCS thành 4 trường trong năm tài khóa 2027 — bối cảnh, nội dung và khu vực tuyển sinh."
+  "meta_desc_about__after": "Thông tin chi tiết về kế hoạch đã tái tổ chức 5 trường tiểu học và 3 trường THCS thành 4 trường trong năm tài khóa 2027 — bối cảnh, nội dung và khu vực tuyển sinh.",
+  "related_h": "Trang liên quan",
+  "rel_about_schedule": "Xem lịch trình và các mốc thời gian chính cho đến khi thực hiện",
+  "rel_about_faq": "Xem câu hỏi thường gặp về việc đi học, câu lạc bộ và cơ sở trường",
+  "rel_schedule_about": "Xem trường nào sẽ sáp nhập và sáp nhập ra sao",
+  "rel_schedule_council": "Xem quá trình hội đồng thành phố thảo luận về kế hoạch",
+  "rel_voices_about": "Xem bối cảnh và mục đích của kế hoạch",
+  "rel_voices_faq": "Xem tổng hợp lời giải đáp cho các thắc mắc",
+  "rel_faq_about": "Xem chi tiết kế hoạch và các trường liên quan",
+  "rel_faq_schedule": "Xem các bước tiếp theo theo thứ tự thời gian",
+  "rel_council_schedule": "Xem lịch trình tiếp theo sau các quyết định này",
+  "rel_council_faq": "Xem các vấn đề được nêu ra dưới dạng hỏi đáp",
+  "rel_bus_map": "Xem vị trí các trường hiện tại và trường mới trên bản đồ",
+  "rel_bus_schedule": "Xem lịch trình cho đến ngày bắt đầu vận hành",
+  "rel_community_about": "Xem chính bản kế hoạch tái tổ chức",
+  "rel_community_voices": "Xem ý kiến của người dân, ủng hộ và phản đối",
+  "rel_map_about": "Xem từng trường sẽ được sáp nhập ra sao",
+  "rel_map_bus": "Xem xe buýt đưa đón học sinh sẽ hoạt động thế nào"
 }

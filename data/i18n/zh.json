@@ -642,5 +642,22 @@
   "sched_desc28__after": "<strong>第1期再编 已实施</strong><br>篠冈学园（桃花台东小学·桃花台西小学·桃花台东中学·桃花台西中学）的4校体制已启动。面向小学生的校车也已开始运行（市政府全额承担·免费）。",
   "schedule_2027_h3__after": "2027年（令和9年）【已实施】",
   "meta_desc_index__after": "基于官方信息，通俗易懂地介绍2027年度已实施的小牧市东部（篠冈地区）学校再编的市民信息网站。",
-  "meta_desc_about__after": "详细解说2027年度将小学5校·中学3校再编为4校的计划的背景、内容与通学区域。"
+  "meta_desc_about__after": "详细解说2027年度将小学5校·中学3校再编为4校的计划的背景、内容与通学区域。",
+  "related_h": "相关页面",
+  "rel_about_schedule": "查看实施前的时间表与主要日程",
+  "rel_about_faq": "查看关于通学、社团与校舍的常见问题",
+  "rel_schedule_about": "查看哪些学校将如何重组",
+  "rel_schedule_council": "查看市议会的审议经过",
+  "rel_voices_about": "查看计划的背景与目的",
+  "rel_voices_faq": "集中查看对疑问的解答",
+  "rel_faq_about": "详细查看计划内容与对象学校",
+  "rel_faq_schedule": "按时间顺序查看今后的安排",
+  "rel_council_schedule": "查看依据审议结果的今后安排",
+  "rel_council_faq": "以问答形式查看审议中的论点",
+  "rel_bus_map": "在地图上查看对象学校与新学校的位置",
+  "rel_bus_schedule": "查看到开始运行为止的日程",
+  "rel_community_about": "查看学校重组计划本身",
+  "rel_community_voices": "查看居民的赞成与反对意见",
+  "rel_map_about": "查看各校将如何整合",
+  "rel_map_bus": "查看通学用校车的安排"
 }
