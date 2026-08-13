@@ -28,9 +28,7 @@
 
 ## 対応言語
 
-**全訳済み（8言語）**: 日本語 / English / Português / Tiếng Việt / Filipino / Español / 中文 / Bahasa Indonesia
-
-**部分翻訳（2言語）**: Türkçe（トルコ語）/ မြန်မာ（ビルマ語）
+**全訳済み（10言語）**: 日本語 / English / Português / Tiếng Việt / Filipino / Español / 中文 / Bahasa Indonesia / Türkçe / မြန်မာ
 主要部分のみ翻訳済みで、未翻訳部分は英語で表示されます（選択時にその旨の案内が出ます）。
 
 日本語版のみ「こどもむけ」モード（ひらがな・やさしい言葉）に切り替え可能です。

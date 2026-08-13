@@ -118,20 +118,20 @@
      ・事実（数字・日付・学校名）は絶対に変えない。割るのは文であって内容ではない。
 
 ■ 対応言語（10言語）
-  【全キー翻訳済み】ja / en / pt / vi / tl / es / zh / id
-  【部分翻訳】      tr（トルコ語）/ my（ビルマ語）… 2026-08-12 追加
+  【全キー翻訳済み】ja / en / pt / vi / tl / es / zh / id / tr / my
   ＋ ja-kids（こどもむけ。言語切替の選択肢ではなくトグル）
 
-  ★ 部分翻訳の言語は i18n.js の PARTIAL 配列に入れてある。この配列にある間は
-    「未翻訳部分は英語で表示されます」という帯がヘッダ直下に自動で出る。
-    全キー訳し終えたら PARTIAL から外すこと（帯が消える）。
+  ★ 2026-08-13 に tr / my が全661キー揃ったので、10言語すべて全訳済みになった。
+    i18n.js の PARTIAL 配列は空。「未翻訳部分は英語で表示されます」の帯も出ない。
+    今後あらたに部分翻訳の言語を足すときは、i18n.js の PARTIAL と
+    auto_gates.py の PARTIAL_LANGS の両方にコードを入れること。
   ★ 言語を増やすときに直す場所：
       data/i18n/<lang>.json 新規作成 / i18n.js の LANGS・langAttr・PARTIAL /
       全9ページの <option> と hreflang（?lang=<コード> 付きの実URL）/ sitemap.xml /
       footer_langs（全言語）/ auto_gates.py の PARTIAL_LANGS /
       main.js の KomakiLang の LANGS・CAL_LOCALE_MAP・各インラインラベル辞書
-  ★ events.json のイベントラベルは【8言語必須】のまま（auto_gates.py の LANGS）。
-    tr/my はカレンダーでも英語にフォールバックする。
+  ★ events.json のイベントラベルは【10言語必須】（auto_gates.py の LANGS）。
+    部分翻訳の言語を足したときだけ PARTIAL_LANGS に入れて必須対象から外す。
 
 ■ 最低要件
   新しいキーを追加する際は ja（日本語）と en（英語）に【必ず両方】記載する。
@@ -247,12 +247,12 @@
     event_status_upcoming キー（全言語に記載済み）。新しい状態を作らない。
   - 地域協議会（支え合い協働推進課）のイベントが公式に掲載され、篠岡地区5校区
     （陶・篠岡学区・大城・光ヶ丘・桃ヶ丘）のものであれば、community.html だけで
-    なくスケジュールにも入れる。data/events.json（8言語）＋ schedule.html の
+    なくスケジュールにも入れる。data/events.json（10言語）＋ schedule.html の
     主要イベント一覧、開催前なら index.html の「今後のスケジュール」バーにも追加。
     他学区（小牧小・本庄小・小木小など）のイベントは対象外。
 
   - 月別カレンダーに予定を足すときは data/events.json の events オブジェクトに
-    "YYYY-MM-DD": {ja, en, pt, vi, tl, es, zh, id} 形式で追加する（8言語すべて必須。
+    "YYYY-MM-DD": {ja, en, pt, vi, tl, es, zh, id, tr, my} 形式で追加する（10言語すべて必須。
     初期表示月の範囲も自動で追従）。js/main.js が実行時に fetch して描画するので、
     main.js 側は編集しない。
 
@@ -271,7 +271,7 @@
     このルール5で挙げた他の表示（完了バッジ・カレンダー初期月・最終更新）が
     すべて日付から自動計算されるのに対し、ここだけは手書きの文章である。
   - そのため、放置すると最も早く古びるうえ、トップ冒頭なので古さが最も目立つ。
-  - 使うキー（全8言語＋ja-kids を必ず揃える）：
+  - 使うキー（全10言語＋ja-kids を必ず揃える）：
       now_label … 枠のラベル「📌 いまの状況」。ほぼ変えない
       now_text  … 現況を1文で要約。data-i18n-html なので <strong> が使える
       now_asof  … その文がいつ時点かを示す月（例「2026年8月時点」）

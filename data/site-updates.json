@@ -4,6 +4,12 @@
     {
       "date": "2026-08-13",
       "type": "feature",
+      "ja": "トルコ語・ビルマ語を全ページ全訳（10言語すべてが全訳済みに）",
+      "en": "Turkish and Burmese now fully translated on every page (all 10 languages complete)"
+    },
+    {
+      "date": "2026-08-13",
+      "type": "feature",
       "ja": "各ページの末尾に関連ページへの案内を追加",
       "en": "Links to related pages added at the bottom of each page"
     },

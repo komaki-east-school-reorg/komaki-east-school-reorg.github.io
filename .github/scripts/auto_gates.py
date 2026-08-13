@@ -4,7 +4,7 @@
 
 起案AIが作業ツリーに加えた変更を機械的に検査する：
   1. 編集範囲チェック  — 許可ファイル以外の変更・新規ファイル作成を拒否
-  2. スキーマチェック  — events.json の日付キー・8言語ラベル、i18n の JSON 構文
+  2. スキーマチェック  — events.json の日付キー・10言語ラベル、i18n の JSON 構文
   3. ja/en キー一致    — i18n.js が非日本語表示で ja.json を取らない前提を守る
   4. こどもモード      — ja-kids.json の1行がモーラ換算で長すぎないか
   5. ページ別辞書      — data/i18n/pages/ が data/i18n/ と HTML に対して最新か
@@ -21,11 +21,12 @@ import re
 import subprocess
 import sys
 
-# events.json のイベントラベルに必須の言語（この8つが揃っていないと不合格）
-LANGS = ["ja", "en", "pt", "vi", "tl", "es", "zh", "id"]
-# 翻訳が部分的で、events.json のラベル必須対象には含めない言語。
-# i18n.js が対象言語→en→ja の順にフォールバックするため、未収録でも英語で出る。
-PARTIAL_LANGS = ["tr", "my"]
+# events.json のイベントラベルに必須の言語（この10言語が揃っていないと不合格）。
+# tr / my は 2026-08-13 に全キー翻訳が揃ったので必須に含めた。
+LANGS = ["ja", "en", "pt", "vi", "tl", "es", "zh", "id", "tr", "my"]
+# 翻訳が部分的な言語（現在なし）。新たに部分翻訳の言語を足すときは、
+# i18n.js の PARTIAL と揃えてここに入れ、events.json のラベル必須対象から外す。
+PARTIAL_LANGS = []
 ALLOWED = {"data/events.json", "index.html", "schedule.html", "community.html"} | {
     f"data/i18n/{l}.json" for l in LANGS + PARTIAL_LANGS + ["ja-kids"]
 }
@@ -98,7 +99,7 @@ def main():
                 if not re.match(r"^\d{4}-\d{2}-\d{2}$", date):
                     fail(f"events.json: 不正な日付キー: {date}")
                 if sorted(labels) != sorted(LANGS):
-                    fail(f"events.json: {date} の言語キーが8言語と一致しない: {sorted(labels)}")
+                    fail(f"events.json: {date} の言語キーが{len(LANGS)}言語と一致しない: {sorted(labels)}")
                 elif not all(isinstance(v, str) and v.strip() for v in labels.values()):
                     fail(f"events.json: {date} に空のラベルがある")
             if len(fails) == n_before:

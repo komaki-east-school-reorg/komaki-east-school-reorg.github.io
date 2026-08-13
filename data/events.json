@@ -8,7 +8,9 @@
       "tl": "Ika-1 Pagpupulong ng Talakayan",
       "es": "1ª Reunión de Debate Escolar",
       "zh": "第1次学校研讨会",
-      "id": "Diskusi Sekolah ke-1"
+      "id": "Diskusi Sekolah ke-1",
+      "tr": "1. Okul Görüşme Toplantısı",
+      "my": "ပထမအကြိမ် ကျောင်းဆွေးနွေးပွဲ"
     },
     "2025-05-30": {
       "ja": "第2回「学校を考える会」",
@@ -18,7 +20,9 @@
       "tl": "Ika-2 Pagpupulong ng Talakayan",
       "es": "2ª Reunión de Debate Escolar",
       "zh": "第2次学校研讨会",
-      "id": "Diskusi Sekolah ke-2"
+      "id": "Diskusi Sekolah ke-2",
+      "tr": "2. Okul Görüşme Toplantısı",
+      "my": "ဒုတိယအကြိမ် ကျောင်းဆွေးနွေးပွဲ"
     },
     "2025-06-13": {
       "ja": "地域協議会代表者報告",
@@ -28,7 +32,9 @@
       "tl": "Ulat sa Konseho ng Komunidad",
       "es": "Informe al Consejo Comunitario",
       "zh": "社区委员会报告",
-      "id": "Laporan Dewan Komunitas"
+      "id": "Laporan Dewan Komunitas",
+      "tr": "Mahalle Konseyi raporu",
+      "my": "ရပ်ရွာကောင်စီ အစီရင်ခံစာ"
     },
     "2025-06-14": {
       "ja": "区長会報告（1回目）",
@@ -38,7 +44,9 @@
       "tl": "Ulat ng Samahan ng Kapitbahayan (1)",
       "es": "Informe Asoc. Vecinos (1º)",
       "zh": "自治区协会报告（第1次）",
-      "id": "Laporan Asosiasi Warga (1)"
+      "id": "Laporan Asosiasi Warga (1)",
+      "tr": "Mahalle birliği raporu (1.)",
+      "my": "ရပ်ကွက်အသင်း အစီရင်ခံစာ (ပထမ)"
     },
     "2025-06-27": {
       "ja": "第3回「学校を考える会」",
@@ -48,7 +56,9 @@
       "tl": "Ika-3 Pagpupulong ng Talakayan",
       "es": "3ª Reunión de Debate Escolar",
       "zh": "第3次学校研讨会",
-      "id": "Diskusi Sekolah ke-3"
+      "id": "Diskusi Sekolah ke-3",
+      "tr": "3. Okul Görüşme Toplantısı",
+      "my": "တတိယအကြိမ် ကျောင်းဆွေးနွေးပွဲ"
     },
     "2025-07-27": {
       "ja": "城山3・4丁目説明会",
@@ -58,7 +68,9 @@
       "tl": "Briefing Shiroyama 3&4-chome",
       "es": "Charla Shiroyama 3º y 4º barrios",
       "zh": "城山3&4丁目说明会",
-      "id": "Sosialisasi Shiroyama 3&4"
+      "id": "Sosialisasi Shiroyama 3&4",
+      "tr": "Shiroyama 3 ve 4-chome bilgilendirmesi",
+      "my": "Shiroyama ၃ နှင့် ၄-chome ရှင်းလင်းပွဲ"
     },
     "2025-08-24": {
       "ja": "第1回保護者等意見交換会",
@@ -68,7 +80,9 @@
       "tl": "Ika-1 Pagpapalitan ng Opinyon",
       "es": "1ª Reunión Intercambio Padres",
       "zh": "第1次家长意见交流会",
-      "id": "Pertukaran Pendapat Orang Tua (1)"
+      "id": "Pertukaran Pendapat Orang Tua (1)",
+      "tr": "1. veli görüş alışverişi",
+      "my": "ပထမအကြိမ် မိဘသဘောထားဖလှယ်ပွဲ"
     },
     "2025-08-30": {
       "ja": "第2・3回保護者等意見交換会",
@@ -78,7 +92,9 @@
       "tl": "Ika-2 at 3 na Pagpapalitan",
       "es": "2ª y 3ª Reuniones Intercambio",
       "zh": "第2次&第3次家长意见交流会",
-      "id": "Pertukaran Pendapat Orang Tua (2&3)"
+      "id": "Pertukaran Pendapat Orang Tua (2&3)",
+      "tr": "2. ve 3. veli görüş alışverişi",
+      "my": "ဒုတိယနှင့် တတိယအကြိမ် မိဘသဘောထားဖလှယ်ပွဲ"
     },
     "2025-09-21": {
       "ja": "住民説明会",
@@ -88,7 +104,9 @@
       "tl": "Briefing sa Komunidad",
       "es": "Charla Comunitaria",
       "zh": "社区说明会",
-      "id": "Sosialisasi Komunitas"
+      "id": "Sosialisasi Komunitas",
+      "tr": "Mahalle bilgilendirmesi",
+      "my": "ရပ်ရွာ ရှင်းလင်းပွဲ"
     },
     "2025-09-26": {
       "ja": "区長会報告（2回目）",
@@ -98,7 +116,9 @@
       "tl": "Ulat ng Samahan ng Kapitbahayan (2)",
       "es": "Informe Asoc. Vecinos (2º)",
       "zh": "自治区协会报告（第2次）",
-      "id": "Laporan Asosiasi Warga (2)"
+      "id": "Laporan Asosiasi Warga (2)",
+      "tr": "Mahalle birliği raporu (2.)",
+      "my": "ရပ်ကွက်အသင်း အစီရင်ခံစာ (ဒုတိယ)"
     },
     "2025-10-11": {
       "ja": "第4回「学校を考える会」",
@@ -108,7 +128,9 @@
       "tl": "Ika-4 Pagpupulong ng Talakayan",
       "es": "4ª Reunión de Debate Escolar",
       "zh": "第4次学校研讨会",
-      "id": "Diskusi Sekolah ke-4"
+      "id": "Diskusi Sekolah ke-4",
+      "tr": "4. Okul Görüşme Toplantısı",
+      "my": "စတုတ္ထအကြိမ် ကျောင်းဆွေးနွေးပွဲ"
     },
     "2025-11-02": {
       "ja": "区長会報告（3回目）",
@@ -118,7 +140,9 @@
       "tl": "Ulat ng Samahan ng Kapitbahayan (3)",
       "es": "Informe Asoc. Vecinos (3º)",
       "zh": "自治区协会报告（第3次）",
-      "id": "Laporan Asosiasi Warga (3)"
+      "id": "Laporan Asosiasi Warga (3)",
+      "tr": "Mahalle birliği raporu (3.)",
+      "my": "ရပ်ကွက်အသင်း အစီရင်ခံစာ (တတိယ)"
     },
     "2025-11-10": {
       "ja": "パブコメ開始・新校名アンケート開始",
@@ -128,7 +152,9 @@
       "tl": "Simula ng Pampublikong Komento",
       "es": "Com. Público Abre / Encuesta Nombre",
       "zh": "公众意见征集开始·新校名调查",
-      "id": "Komentar Publik Dibuka / Survei Nama"
+      "id": "Komentar Publik Dibuka / Survei Nama",
+      "tr": "Kamuoyu görüşü başlar / ad anketi",
+      "my": "အများပြည်သူ သဘောထား စတင် / အမည်စစ်တမ်း"
     },
     "2025-11-27": {
       "ja": "地域協議会代表者報告（2回目）",
@@ -138,7 +164,9 @@
       "tl": "Ulat sa Konseho ng Komunidad (2)",
       "es": "Informe al Consejo Comunitario (2º)",
       "zh": "社区委员会报告（第2次）",
-      "id": "Laporan Dewan Komunitas (2)"
+      "id": "Laporan Dewan Komunitas (2)",
+      "tr": "Mahalle Konseyi raporu (2.)",
+      "my": "ရပ်ရွာကောင်စီ အစီရင်ခံစာ (ဒုတိယ)"
     },
     "2025-12-09": {
       "ja": "パブリックコメント締切（55件）",
@@ -148,7 +176,9 @@
       "tl": "Pagtatapos ng Pampublikong Komento",
       "es": "Com. Público Cierra (55 envíos)",
       "zh": "公众意见截止（55件）",
-      "id": "Komentar Publik Ditutup (55)"
+      "id": "Komentar Publik Ditutup (55)",
+      "tr": "Kamuoyu görüşü kapanır (55 görüş)",
+      "my": "အများပြည်သူ သဘောထား ပိတ် (၅၅ ခု)"
     },
     "2026-01-13": {
       "ja": "通学区域審議会",
@@ -158,7 +188,9 @@
       "tl": "Komite ng Distrito ng Paaralan",
       "es": "Comité del Distrito Escolar",
       "zh": "学区审议委员会",
-      "id": "Komite Penasehat Distrik Sekolah"
+      "id": "Komite Penasehat Distrik Sekolah",
+      "tr": "Okul Bölgesi Danışma Komitesi",
+      "my": "ကျောင်းနယ်မြေ အကြံပေးကော်မတီ"
     },
     "2026-02-07": {
       "ja": "第5回「学校を考える会」",
@@ -168,7 +200,9 @@
       "tl": "Ika-5 Pagpupulong ng Talakayan",
       "es": "5ª Reunión de Debate Escolar",
       "zh": "第5次学校研讨会",
-      "id": "Diskusi Sekolah ke-5"
+      "id": "Diskusi Sekolah ke-5",
+      "tr": "5. Okul Görüşme Toplantısı",
+      "my": "ပဉ္စမအကြိမ် ကျောင်းဆွေးနွေးပွဲ"
     },
     "2026-05-18": {
       "ja": "校章デザイン募集締切",
@@ -178,7 +212,9 @@
       "tl": "Deadline ng Disenyo ng Sagisag",
       "es": "Plazo Diseño Emblema Escolar",
       "zh": "校徽设计截止日期",
-      "id": "Batas Desain Lambang Sekolah"
+      "id": "Batas Desain Lambang Sekolah",
+      "tr": "Okul arması tasarımı son tarihi",
+      "my": "ကျောင်းတံဆိပ် ဒီဇိုင်း နောက်ဆုံးရက်"
     },
     "2026-06-06": {
       "ja": "保護者等説明会（桃陵中）",
@@ -188,7 +224,9 @@
       "tl": "Briefing Magulang (Toryou JHS)",
       "es": "Sesión Padres (JHS Toryou)",
       "zh": "家长说明会（登竜中）",
-      "id": "Sosialisasi Orang Tua (SMP Toryou)"
+      "id": "Sosialisasi Orang Tua (SMP Toryou)",
+      "tr": "Veli bilgilendirmesi (Toryou Ortaokulu)",
+      "my": "မိဘရှင်းလင်းပွဲ (Toryou အလယ်တန်း)"
     },
     "2026-06-07": {
       "ja": "保護者等説明会（篠岡中）",
@@ -198,7 +236,9 @@
       "tl": "Briefing Magulang (Shinooka JHS)",
       "es": "Sesión Padres (JHS Shinooka)",
       "zh": "家长说明会（篠岡中）",
-      "id": "Sosialisasi Orang Tua (SMP Shinooka)"
+      "id": "Sosialisasi Orang Tua (SMP Shinooka)",
+      "tr": "Veli bilgilendirmesi (Shinooka Ortaokulu)",
+      "my": "မိဘရှင်းလင်းပွဲ (Shinooka အလယ်တန်း)"
     },
     "2026-06-14": {
       "ja": "保護者等説明会（陶小）",
@@ -208,7 +248,9 @@
       "tl": "Briefing Magulang (Sue Elem.)",
       "es": "Sesión Padres (Sue Elem.)",
       "zh": "家长说明会（陶小）",
-      "id": "Sosialisasi Orang Tua (SD Sue)"
+      "id": "Sosialisasi Orang Tua (SD Sue)",
+      "tr": "Veli bilgilendirmesi (Sue İlkokulu)",
+      "my": "မိဘရှင်းလင်းပွဲ (Sue မူလတန်း)"
     },
     "2026-06-20": {
       "ja": "保護者等説明会（大城小）",
@@ -218,7 +260,9 @@
       "tl": "Briefing Magulang (Oshiro Elem.)",
       "es": "Sesión Padres (Oshiro Elem.)",
       "zh": "家长说明会（大城小）",
-      "id": "Sosialisasi Orang Tua (SD Oshiro)"
+      "id": "Sosialisasi Orang Tua (SD Oshiro)",
+      "tr": "Veli bilgilendirmesi (Oshiro İlkokulu)",
+      "my": "မိဘရှင်းလင်းပွဲ (Oshiro မူလတန်း)"
     },
     "2026-06-21": {
       "ja": "保護者等説明会（光ヶ丘中）",
@@ -228,7 +272,9 @@
       "tl": "Briefing Magulang (Hikarigaoka JHS)",
       "es": "Sesión Padres (JHS Hikarigaoka)",
       "zh": "家长说明会（光丘中）",
-      "id": "Sosialisasi Orang Tua (SMP Hikarigaoka)"
+      "id": "Sosialisasi Orang Tua (SMP Hikarigaoka)",
+      "tr": "Veli bilgilendirmesi (Hikarigaoka Ortaokulu)",
+      "my": "မိဘရှင်းလင်းပွဲ (Hikarigaoka အလယ်တန်း)"
     },
     "2026-06-29": {
       "ja": "保護者等説明会（東部市民センター）",
@@ -238,7 +284,9 @@
       "tl": "Briefing Magulang (Sentro Komunidad)",
       "es": "Sesión Padres (Centro Comunit. Este)",
       "zh": "家长说明会（东部市民中心）",
-      "id": "Sosialisasi Orang Tua (Pusat Komunitas Timur)"
+      "id": "Sosialisasi Orang Tua (Pusat Komunitas Timur)",
+      "tr": "Veli bilgilendirmesi (Doğu Toplum Merkezi)",
+      "my": "မိဘရှင်းလင်းပွဲ (အရှေ့ပိုင်း ရပ်ရွာစင်တာ)"
     },
     "2026-07-21": {
       "ja": "説明会Q&Aを公開",
@@ -248,7 +296,9 @@
       "tl": "Nailathala ang Q&A ng Sesyon",
       "es": "Preguntas y Respuestas Publicadas",
       "zh": "说明会问答公开",
-      "id": "Tanya Jawab Sosialisasi Dipublikasikan"
+      "id": "Tanya Jawab Sosialisasi Dipublikasikan",
+      "tr": "Bilgilendirme soru-cevabı yayımlandı",
+      "my": "ရှင်းလင်းပွဲ မေးခွန်း-အဖြေ ထုတ်ပြန်"
     },
     "2027-04-01": {
       "ja": "第1期再編 実施予定（しのおか学園）",
@@ -258,7 +308,9 @@
       "tl": "Bahagi 1 Muling Pagsasaayos",
       "es": "Fase 1 Reorganización (Shinooka Gakuen)",
       "zh": "第1期整合（篠岡学园）",
-      "id": "Reorganisasi Tahap 1 (Shinooka Gakuen)"
+      "id": "Reorganisasi Tahap 1 (Shinooka Gakuen)",
+      "tr": "1. Aşama yeniden yapılandırma (Shinooka Gakuen)",
+      "my": "အဆင့် ၁ ပြန်လည်ဖွဲ့စည်းမှု (Shinooka Gakuen)"
     }
   }
 }

@@ -6,8 +6,9 @@
   var DEFAULT = 'ja';
   var BRIDGE = 'en';   // 未翻訳キーの中継言語。ja へ直接落とさず英語を挟む
   // 全キーが揃っていない言語。ページ上部に「一部は英語表示」の断りを出す。
-  // 翻訳が 100% 揃ったらこの配列から外すこと（配列が空でも動作する）。
-  var PARTIAL = ['tr', 'my'];
+  // 2026-08-13 に tr / my が全キー揃ったため空にした。
+  // 新しく部分翻訳の言語を足したときだけ、ここにコードを入れる。
+  var PARTIAL = [];
   var BASE = './data/i18n/';
   var PAGE_BASE = BASE + 'pages/';
   var SAFETY_MS = 1000;
