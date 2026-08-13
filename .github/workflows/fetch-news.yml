@@ -44,6 +44,12 @@ jobs:
             echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
 
+      # 地域協議会イベント案内の一覧を組み立てる。
+      # 市サーバへは行かず、直前の fetch_news.py が保存したスナップショットを読むだけ
+      # （同じページを2度取りに行かないため）。fetch の【あと】に置くこと。
+      - name: Build community council event list
+        run: python3 .github/scripts/build_community_events.py
+
       # 再編対象8校のホームページ新着記事（別ドメイン・各校が更新）
       # 学校再編の一次情報ではないため、変化しても Issue や自動更新ジョブは動かさない。
       # data/school_news.json を差し替えるだけ。失敗してもワークフローは止めない。
@@ -82,7 +88,7 @@ jobs:
         id: report
         if: steps.fetch.outputs.changed == 'true'
         run: |
-          git add data/news.json data/official_pages
+          git add data/news.json data/official_pages data/community_events.json
           if git diff --staged --quiet -- data/official_pages; then
             echo "pages_changed=false" >> "$GITHUB_OUTPUT"
           else

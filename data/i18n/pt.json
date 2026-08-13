@@ -659,5 +659,7 @@
   "rel_community_about": "Ver o próprio plano de reorganização",
   "rel_community_voices": "Ver o que dizem os moradores, a favor e contra",
   "rel_map_about": "Ver como cada escola será unificada",
-  "rel_map_bus": "Ver como funcionará o transporte escolar"
+  "rel_map_bus": "Ver como funcionará o transporte escolar",
+  "comm_events_h2": "Eventos dos conselhos comunitários<small>Community Council Events</small>",
+  "comm_events_lead": "Lista de eventos dos conselhos comunitários publicada pela cidade de Komaki. A lista cobre os 16 distritos escolares da cidade, por isso os eventos dos cinco conselhos da área de Shinooka são destacados e exibidos primeiro. Atualizada automaticamente todos os dias."
 }

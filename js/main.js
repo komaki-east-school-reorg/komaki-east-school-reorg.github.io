@@ -412,6 +412,72 @@ window.KomakiLang = (function () {
     });
 })();
 
+/* ===== COMMUNITY COUNCIL EVENTS ===== */
+/* 地域協議会イベント案内（community.html）。data/community_events.json は
+   .github/scripts/build_community_events.py が毎日組み立てる（手編集しない）。
+   イベント名は市の書いた見出しなので【翻訳しない】。まわりのラベルだけ多言語にする
+   （公式ニュース・学校HP更新のコーナーと同じ方針）。 */
+(function () {
+  const container = document.getElementById('community-events-container');
+  if (!container) return;
+
+  var _cl = window.KomakiLang();
+  var _cet = {
+    badge:   {ja:'篠岡地区', en:'Shinooka area', pt:'Área de Shinooka', vi:'Khu vực Shinooka', tl:'Lugar ng Shinooka', es:'Zona de Shinooka', zh:'篠冈地区', id:'Wilayah Shinooka', tr:'Shinooka bölgesi', my:'Shinooka ဒေသ'},
+    when:    {ja:'日時', en:'Date', pt:'Data', vi:'Thời gian', tl:'Petsa', es:'Fecha', zh:'日期', id:'Waktu', tr:'Tarih', my:'ရက်စွဲ'},
+    place:   {ja:'会場', en:'Venue', pt:'Local', vi:'Địa điểm', tl:'Lugar', es:'Lugar', zh:'地点', id:'Tempat', tr:'Yer', my:'နေရာ'},
+    updated: {ja:'更新', en:'Updated', pt:'Atualizado', vi:'Cập nhật', tl:'Na-update', es:'Actualizado', zh:'更新', id:'Diperbarui', tr:'Güncelleme', my:'ပြင်ဆင်သည့်ရက်'},
+    none:    {ja:'現在、掲載されているイベントはありません。', en:'No events are listed at the moment.', pt:'No momento não há eventos publicados.', vi:'Hiện chưa có sự kiện nào được đăng.', tl:'Wala pang nakalistang kaganapan sa ngayon.', es:'Por ahora no hay eventos publicados.', zh:'目前没有刊登的活动。', id:'Saat ini belum ada acara yang ditampilkan.', tr:'Şu anda yayımlanmış etkinlik yok.', my:'လက်ရှိတွင် ဖော်ပြထားသော ပွဲများ မရှိပါ။'},
+    error:   {ja:'イベント案内を取得できませんでした。', en:'Could not load the event listings.', pt:'Não foi possível carregar os eventos.', vi:'Không tải được danh sách sự kiện.', tl:'Hindi ma-load ang listahan ng kaganapan.', es:'No se pudieron cargar los eventos.', zh:'无法加载活动信息。', id:'Gagal memuat daftar acara.', tr:'Etkinlik listesi yüklenemedi.', my:'ပွဲစာရင်း မဖွင့်နိုင်ပါ။'},
+    see_all: {ja:'市の公式ページで確認する →', en:'Check on the official city page →', pt:'Ver na página oficial da cidade →', vi:'Xem trên trang chính thức của thành phố →', tl:'Tingnan sa opisyal na pahina ng lungsod →', es:'Ver en la página oficial del municipio →', zh:'在市政府官方页面确认 →', id:'Lihat di halaman resmi kota →', tr:'Belediyenin resmî sayfasında görün →', my:'မြို့တော် တရားဝင်စာမျက်နှာတွင် ကြည့်ရန် →'}
+  };
+  function cet(key) { return _cet[key][_cl] || _cet[key]['en'] || _cet[key]['ja']; }
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+  // 許可された所管課インデックス。JSON が読めなかったときの案内先にも使う。
+  var FALLBACK_SRC = 'https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/index.html';
+
+  fetch('./data/community_events.json')
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(data => {
+      const events = data.events || [];
+      const src = data.source_url || FALLBACK_SRC;
+      const seeAll = `<a href="${esc(src)}" target="_blank" rel="noopener" class="card-link">${cet('see_all')}</a>`;
+
+      if (!events.length) {
+        container.innerHTML = `<p class="official-news-loading">${cet('none')}</p>` + seeAll;
+        return;
+      }
+
+      const rows = events.map(ev => {
+        const badge = ev.shinooka
+          ? `<span class="ce-badge">${cet('badge')}</span>` : '';
+        const meta = [];
+        if (ev.when)  meta.push(`<span class="ce-meta-item"><b>${cet('when')}</b> ${esc(ev.when)}</span>`);
+        if (ev.place) meta.push(`<span class="ce-meta-item"><b>${cet('place')}</b> ${esc(ev.place)}</span>`);
+        const upd = ev.updated_at
+          ? `<span class="ce-updated">${cet('updated')} ${esc(ev.updated_at)}</span>` : '';
+        return `<li class="ce-item${ev.shinooka ? ' ce-item--shinooka' : ''}">` +
+                 `<div class="ce-head">${badge}` +
+                   `<a href="${esc(ev.url)}" target="_blank" rel="noopener">${esc(ev.title)}</a>` +
+                 `</div>` +
+                 (meta.length ? `<div class="ce-meta">${meta.join('')}</div>` : '') +
+                 upd +
+               `</li>`;
+      }).join('');
+
+      container.innerHTML = `<ul class="ce-list">${rows}</ul>` + seeAll;
+    })
+    .catch(() => {
+      container.innerHTML =
+        `<p class="official-news-error">${cet('error')}` +
+        `<a href="${FALLBACK_SRC}" target="_blank" rel="noopener">${cet('see_all')}</a></p>`;
+    });
+})();
+
 /* ===== CALENDAR ===== */
 (function () {
   const calContainer = document.getElementById('calendar-view');

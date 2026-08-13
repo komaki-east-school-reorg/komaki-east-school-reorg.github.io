@@ -174,6 +174,30 @@ sys.exit(1 if bad else 0)
 
 ---
 
+## data/community_events.json（地域協議会イベント案内）
+
+`community.html` の末尾に、市の地域協議会イベント案内を表示します。
+`.github/scripts/build_community_events.py` が、**`fetch_news.py` がすでに保存した
+スナップショット**（`data/official_pages/sasaeai-3-3_2-chiikikyougikaievent-*.txt`）
+を読んで組み立てます。**自分では HTTP リクエストを一切しません**。
+このコーナーを足しても市サーバへの負荷は増えていません。
+そのためワークフローでは `fetch_news.py` の【あと】に置く必要があります。
+
+- **手編集しないこと。** 自動更新パイプラインの `ALLOWED` にも入れないこと（毎日再生成される）。
+- 市の案内は**小牧市内16の小学校区すべて**が対象で、篠岡地区に限りません。
+  並び順は市の掲載順ですが、篠岡地区の5協議会（スクリプトの `SHINOOKA_COUNCILS`）は
+  `shinooka: true` を立てて先頭に出し、バッジを付けます。
+  よその地区のイベントを除外していないのは意図的です。2026-08-13 時点で
+  **篠岡地区のイベントは1件も載っていない**ため、絞ると常に空になります。
+  また「協議会が実際に何をしているか」は、地域協議会とは何かを知りたい読者に
+  とって具体例として役に立ちます。
+- イベント名は**翻訳しません**（市の書いた見出しのため。`school_news.json` と同じ方針）。
+  まわりのラベルだけ `js/main.js` のインライン辞書で多言語にします。
+- 解析は 関連イベント / 関連ファイル / この記事に関するお問い合わせ先 で打ち切ります。
+  その先はページに市内の無関係なイベントが並ぶためです。
+
+---
+
 ## data/news.json と GitHub Actions
 
 `data/news.json` は GitHub Actions（`.github/workflows/fetch-news.yml`）が

@@ -659,5 +659,7 @@
   "rel_community_about": "Lihat rencana penataan ulang itu sendiri",
   "rel_community_voices": "Lihat suara warga, yang setuju dan menolak",
   "rel_map_about": "Lihat bagaimana setiap sekolah digabungkan",
-  "rel_map_bus": "Lihat bagaimana layanan bus sekolah akan berjalan"
+  "rel_map_bus": "Lihat bagaimana layanan bus sekolah akan berjalan",
+  "comm_events_h2": "Acara dewan komunitas<small>Community Council Events</small>",
+  "comm_events_lead": "Daftar acara dewan komunitas yang diterbitkan Kota Komaki. Daftar ini mencakup seluruh 16 wilayah sekolah dasar di kota, sehingga acara dari lima dewan di wilayah Shinooka ditandai dan ditampilkan lebih dulu. Diperbarui otomatis setiap hari."
 }

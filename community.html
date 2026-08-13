@@ -542,6 +542,23 @@
       </div>
     </div>
   </section>
+  <!-- 地域協議会のイベント案内：市公式サイトのイベント案内を毎日自動取得して表示する。
+       中身は data/community_events.json（自動生成・手編集不可）。描画は js/main.js。
+       市の案内は市内16の小学校区ぜんぶが対象なので、篠岡地区5協議会のものだけ
+       バッジを付けて先頭に出す。よその地区のイベントも「協議会が実際に何をしているか」
+       の具体例として役に立つため、あえて隠さず載せている。 -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title" data-i18n-html="comm_events_h2">地域協議会のイベント案内<small>Community Council Events</small></h2>
+      <p class="section-lead" data-i18n="comm_events_lead">
+        小牧市が公開している地域協議会のイベント案内です。市内16の小学校区が対象なので、篠岡地区の5協議会のものには印を付けて先頭に出しています。毎日自動で取得しています。
+      </p>
+      <div id="community-events-container">
+        <p class="official-news-loading" data-i18n="news_loading">読み込み中…</p>
+      </div>
+    </div>
+  </section>
+
   <!-- 関連ページ：ナビの再掲ではなく、このページを読んだ人が次に必要とする所だけを、
        行き先が分かる文で挙げる。全ページが互いにリンクするナビだけでは「どれが中心か」が
        構造に現れないため、本文側で意図的に偏りを作っている。 -->

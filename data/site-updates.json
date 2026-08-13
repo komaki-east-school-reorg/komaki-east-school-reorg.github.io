@@ -4,6 +4,12 @@
     {
       "date": "2026-08-13",
       "type": "feature",
+      "ja": "地域協議会ページに市のイベント案内コーナーを新設",
+      "en": "City's community-council event listings added to the community councils page"
+    },
+    {
+      "date": "2026-08-13",
+      "type": "feature",
       "ja": "トルコ語・ビルマ語を全ページ全訳（10言語すべてが全訳済みに）",
       "en": "Turkish and Burmese now fully translated on every page (all 10 languages complete)"
     },

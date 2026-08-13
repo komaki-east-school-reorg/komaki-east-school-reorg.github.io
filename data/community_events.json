@@ -1,0 +1,33 @@
+{
+  "description": "地域協議会イベント案内（自動生成・手編集不可）。.github/scripts/build_community_events.py が data/official_pages/ のスナップショットから組み立てる。shinooka=true は篠岡地区5協議会のイベント。",
+  "source_url": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/index.html",
+  "events": [
+    {
+      "title": "小牧小学校区地域協議会 防災講演会",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/chiikikyougikaievent/52056.html",
+      "updated_at": "2026年07月01日",
+      "place": "小牧市役所本庁舎6階 601会議室",
+      "when": "8月16日（日曜日）13時30分～15時00分",
+      "category": "イベント / 講座・講演会",
+      "shinooka": false
+    },
+    {
+      "title": "本庄小学校区地域協議会 生涯学習と区民合同フェスティバル",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/chiikikyougikaievent/52331.html",
+      "updated_at": "2026年08月03日",
+      "place": "味岡市民センター講堂",
+      "when": "9月13日 9時30分～17時30分頃",
+      "category": "イベント / 催し",
+      "shinooka": false
+    },
+    {
+      "title": "小木小学校区地域協議会 ファミリーコンサート",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/chiikikyougikaievent/52332.html",
+      "updated_at": "2026年08月03日",
+      "place": "小木小学校 体育館",
+      "when": "9月23日 13時30分～16時00分",
+      "category": "イベント / 催し",
+      "shinooka": false
+    }
+  ]
+}

@@ -119,6 +119,15 @@ The **bottom section of `index.html`** lists recent posts from the eight affecte
 - A school whose page can't be fetched or parsed keeps its previous entries rather than being blanked; the workflow step is `continue-on-error` so a school-site outage never fails the run. Exit codes: 0 = changed, 2 = no change, 1 = all eight failed.
 - Changes here commit as `chore: update school website news [skip ci]` and do **not** open an Issue or trigger the auto-update job — these are not school-reorganization source facts.
 
+## `data/community_events.json` (community council events)
+
+The bottom of **`community.html`** lists the city's community-council event announcements. `.github/scripts/build_community_events.py` builds it **from the snapshots `fetch_news.py` has already saved** in `data/official_pages/sasaeai-3-3_2-chiikikyougikaievent-*.txt` — it makes **no HTTP request of its own**, so adding this corner did not increase load on the city server. It therefore must run *after* `fetch_news.py` in the workflow.
+
+- **Never hand-edit** it, and never add it to the auto-update pipeline's `ALLOWED` set — it is regenerated daily.
+- The city's listing covers **all 16 elementary school districts in Komaki**, not just Shinooka. Events are shown in the city's own order, but the five Shinooka councils (`SHINOOKA_COUNCILS` in the script) are flagged `shinooka: true`, sorted first, and badged. Other districts' events are deliberately kept rather than filtered out: as of 2026-08-13 **no Shinooka event is listed at all**, so filtering would leave the corner permanently empty, and seeing what other councils actually run is a useful concrete answer to "what does a community council do?".
+- Event titles are shown **untranslated** — they are the city's own words, the same policy as `school_news.json`. Only the surrounding labels are localized, via an inline dict in `js/main.js`.
+- The parser stops at 関連イベント / 関連ファイル / この記事に関するお問い合わせ先, because after those headings the page lists unrelated city-wide events.
+
 ## `data/site-updates.json` (this site's own changelog)
 
 The **last section of `index.html`** shows a changelog of changes made to this site itself. Unlike `news.json` and `school_news.json`, this one is **hand-maintained** — add a new entry at the top of the `updates` array when you ship something a reader would notice.

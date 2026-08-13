@@ -28,6 +28,8 @@ data/official_pages/        市公式サイト各記事ページの本文テキ�
 data/events.json            カレンダーイベントデータ（日付キー＋10言語ラベル）。schedule.htmlのカレンダーが実行時にfetchして描画。イベントの追加・変更はこのファイルを編集する。
 data/site-facts.json        公式ページのスラッグとサイト内反映箇所の対応表（手動管理）。更新検知Issueに「更新候補箇所」を載せるために使用。
 data/school_news.json       再編対象8校の公式ホームページ新着記事（自動生成・手編集不可）。トップページのコーナーが実行時にfetchして描画。
+data/community_events.json  地域協議会イベント案内（自動生成・手編集不可）。community.htmlのコーナーが実行時にfetchして描画。
+                            市サーバへは行かず、official_pages/のスナップショットから組み立てる。篠岡地区の5協議会分はshinooka=trueで先頭表示。
 data/site-updates.json      このサイト自身の更新履歴（手動管理）。トップページ最下部の「サイトの更新履歴」が実行時にfetchして描画。新しいものを配列の先頭に追加する。
 data/i18n/ja.json           日本語（デフォルト言語）の翻訳テキストをすべて格納する言語ファイル。
 data/i18n/en.json           英語の翻訳テキストを格納する言語ファイル。
@@ -47,7 +49,8 @@ img/og-image.png            SNSシェア時に表示されるOGP用サムネイ�
 
 ■ ページ別辞書（自動生成）
 data/i18n/pages/            各ページが実際に使うキーだけを切り出した辞書（<ページID>.<言語>.json、99ファイル）。
-                            .github/scripts/build_page_dicts.py が生成する。手編集不可。
+                            .github/scripts/build_community_events.py  地域協議会イベント案内をスナップショットから抽出してcommunity_events.jsonを生成するスクリプト。市サーバへのアクセスなし。
+.github/scripts/build_page_dicts.py が生成する。手編集不可。
                             i18n.js はこちらを優先して取得し、404 のときだけ全体辞書に落ちる。
 
 ■ 検索エンジン向け

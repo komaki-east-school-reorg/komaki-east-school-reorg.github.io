@@ -659,5 +659,7 @@
   "rel_community_about": "查看学校重组计划本身",
   "rel_community_voices": "查看居民的赞成与反对意见",
   "rel_map_about": "查看各校将如何整合",
-  "rel_map_bus": "查看通学用校车的安排"
+  "rel_map_bus": "查看通学用校车的安排",
+  "comm_events_h2": "地区协议会活动信息<small>Community Council Events</small>",
+  "comm_events_lead": "小牧市公开的地区协议会活动信息。信息涵盖市内全部16个小学区，因此篠冈地区5个协议会的活动会加上标记并排在最前面。每天自动获取。"
 }
