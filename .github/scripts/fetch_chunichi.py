@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-中日新聞Web の小牧市エリア記事一覧を1日1回巡回し、篠岡地区の学校再編に
-関する記事だけを data/chunichi_news.json に保存する。
+中日新聞Web の小牧市エリア記事一覧を1日1回巡回し、小牧市東部（篠岡地区）に
+関する記事を data/chunichi_news.json に保存する。話題は学校再編に限らない。
 
 保存するのは「見出し・掲載日・記事URL・リード文の1文（引用）」のみ。
 本文は有料会員限定であり、転載はしない。表示側でも出典を明示する。
@@ -35,16 +35,30 @@ BASE = "https://www.chunichi.co.jp"
 INDEX_URL = BASE + "/aichi_news/owari_area/komaki/"
 OUTPUT = "data/chunichi_news.json"
 
-# 篠岡地区の学校再編を扱った記事だけを拾う。見出し・リード文・無料公開部分の
-# 本文のいずれかで判定する。
-# （2026-06-23「人文字で作る校章…光ケ丘中」のように、見出しには再編の語が
-#   なく本文で初めて再編に触れる記事があるため、本文まで見る必要がある）
+# 小牧市東部（篠岡地区）に関する記事を拾う。話題は学校再編に限らない。
+# 見出し・リード文・無料公開部分の本文のいずれかで判定する。
+# （2026-06-23「人文字で作る校章…光ケ丘中」のように、見出しには地区名が
+#   なく本文で初めて地区に触れる記事があるため、本文まで見る必要がある）
 #
-# 地名だけで拾うと「しのおかの桃」のブランド化記事のような無関係な記事が
-# 混ざるので、地名（AREA）は再編を示す語（TOPIC）との組み合わせで判定する。
-STRONG_KEYWORDS = ("学校再編", "しのおか学園")
-AREA_KEYWORDS = ("篠岡", "しのおか")
-TOPIC_KEYWORDS = ("再編", "閉校", "統合", "小中一貫")
+# 巡回対象がもともと中日新聞Webの「小牧市」エリア一覧なので、ここに並ぶ地名は
+# ほぼ小牧市内のものとみなせる。よって地名だけで判定してよい。
+# 地名は当サイトが使っているもの（about.html の学区表・bus.html の路線・
+# community.html の地域協議会）に合わせてある。新聞は「光ケ丘」、学校名は
+# 「光ヶ丘」と表記ゆれがあるため両方を入れている。
+AREA_KEYWORDS = (
+    "篠岡", "しのおか",
+    "桃花台", "光ケ丘", "光ヶ丘", "桃ケ丘", "桃ヶ丘", "桃陵",
+    "大城", "陶小",          # 陶は「陶芸・陶器」と紛れるので学校名の形でのみ拾う
+    "城山", "大草", "上末", "下末", "高根", "大山", "池之内", "野口",
+    "市東部", "東部地区",
+)
+# 地区名が出てこない再編記事を取りこぼさないための保険。
+TOPIC_KEYWORDS = ("学校再編", "しのおか学園")
+
+# 地名を含むが東部地域の話ではない語。判定前に本文から取り除く。
+# 「大山廃寺跡」は東部の大山にある史跡だが、出土品は市中心部の歴史館に展示
+# されており、市史関連の記事で地区と関係なく言及される。
+EXCLUDE_PHRASES = ("大山廃寺",)
 
 # 一覧に載らなくなった過去記事の種。初回実行時だけ取得され、以後は
 # checked_ids に入るので二度と取りに行かない。
@@ -65,13 +79,48 @@ USER_AGENT = ("KomakiEastSchoolReorgSite/1.0 "
 REQUEST_WAIT_MIN = 3.0
 REQUEST_WAIT_MAX = 5.0
 
+# 開発用。設定するとHTMLをこのディレクトリに保存し、次回からはそこから読む。
+# 抽出条件を調整するたびに市外のサーバへ取りに行かないためのもの。
+# CI では設定しない（＝毎回ネットワークから取得する）。
+CACHE_DIR = os.environ.get("CHUNICHI_CACHE_DIR")
 
-def polite_wait():
-    time.sleep(random.uniform(REQUEST_WAIT_MIN, REQUEST_WAIT_MAX))
+_last_request = 0.0
+
+
+def throttle():
+    """直前のリクエストから 3〜5 秒あける（初回は待たない）。"""
+    global _last_request
+    if _last_request:
+        wait = random.uniform(REQUEST_WAIT_MIN, REQUEST_WAIT_MAX) - (time.time() - _last_request)
+        if wait > 0:
+            time.sleep(wait)
+    _last_request = time.time()
+
+
+def cache_path_for(url):
+    if not CACHE_DIR:
+        return None
+    name = re.sub(r"[^0-9A-Za-z]+", "_", url).strip("_") + ".html"
+    return os.path.join(CACHE_DIR, name)
 
 
 def fetch_html(url):
     """curl で1回だけ取得する。200 以外・curl 失敗はすべて例外。"""
+    cached = cache_path_for(url)
+    if cached and os.path.exists(cached):
+        with open(cached, encoding="utf-8") as f:
+            return f.read()
+
+    throttle()
+    html = _curl_get(url)
+    if cached:
+        os.makedirs(CACHE_DIR, exist_ok=True)
+        with open(cached, "w", encoding="utf-8") as f:
+            f.write(html)
+    return html
+
+
+def _curl_get(url):
     fd, body_path = tempfile.mkstemp(prefix="chunichi_", suffix=".html")
     os.close(fd)
     cmd = ["curl", "-sS", "-L", "--compressed", "--max-time", "30",
@@ -120,12 +169,24 @@ def parse_article(html):
     m = re.search(r'<meta name="description" content="([^"]*)"', html)
     lead = unescape(m.group(1)).strip() if m else ""
 
-    # 無料公開されている本文段落（有料部分の手前まで）。キーワード判定にのみ使う。
+    # 無料公開されている本文段落（有料部分の手前まで）。
     blocks = re.findall(r'<div class="block">(.*?)</div>\s*(?=<div class="block">|$)',
-                        html, re.DOTALL)
-    body = " ".join(strip_tags(b) for b in blocks[:6])
+                        html, re.DOTALL)[:6]
 
-    return {"title": title, "date": date, "lead": lead, "body": body}
+    # body はキーワード判定用。写真キャプション（「＝小牧市大草の愛知文教大で」の
+    # ような撮影地の記載）にしか地名が出ない記事があるので、こちらには含める。
+    body = " ".join(strip_tags(b) for b in blocks)
+
+    # first_para は引用用。キャプションは記事の書き出しではないので取り除く。
+    first_para = ""
+    for block in blocks:
+        text = strip_tags(re.sub(r'<p class="caption">.*?</p>', "", block, flags=re.DOTALL))
+        if text:
+            first_para = text
+            break
+
+    return {"title": title, "date": date, "lead": lead,
+            "body": body, "first_para": first_para}
 
 
 def first_sentence(text):
@@ -142,10 +203,9 @@ def first_sentence(text):
 
 def matches(article):
     haystack = article["title"] + article["lead"] + article["body"]
-    if any(k in haystack for k in STRONG_KEYWORDS):
-        return True
-    return (any(k in haystack for k in AREA_KEYWORDS)
-            and any(k in haystack for k in TOPIC_KEYWORDS))
+    for phrase in EXCLUDE_PHRASES:
+        haystack = haystack.replace(phrase, "")
+    return any(k in haystack for k in AREA_KEYWORDS + TOPIC_KEYWORDS)
 
 
 def load_existing():
@@ -187,8 +247,7 @@ def main():
             print(f"  (上限 {MAX_NEW_FETCH} 件に達したため残りは次回)")
             break
 
-        polite_wait()
-        fetched += 1
+        fetched += 1   # 実際の待ちは fetch_html 側（キャッシュ命中時は待たない）
         try:
             article = parse_article(fetch_html(url))
         except Exception as e:
@@ -205,7 +264,7 @@ def main():
 
         # 引用は本文の第1段落を優先する。description は末尾が「…」で切れており
         # 文として完結していないことがあるため、取れなかったときの控えに回す。
-        quote = first_sentence(article["body"]) or first_sentence(article["lead"])
+        quote = first_sentence(article["first_para"]) or first_sentence(article["lead"])
         items[url] = {
             "title": article["title"],
             "url": url,

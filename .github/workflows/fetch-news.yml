@@ -83,7 +83,7 @@ jobs:
             git push
           fi
 
-      # 中日新聞Webの小牧市エリア記事から学校再編に関するものを拾う。
+      # 中日新聞Webの小牧市エリア記事から東部（篠岡地区）に関するものを拾う。
       # 一次情報ではなく報道なので、変化しても Issue や自動更新ジョブは動かさない。
       # data/chunichi_news.json を差し替えるだけ。失敗してもワークフローは止めない。
       - name: Fetch newspaper coverage

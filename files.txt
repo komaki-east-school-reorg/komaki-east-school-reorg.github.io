@@ -30,7 +30,7 @@ data/site-facts.json        公式ページのスラッグとサイト内反映�
 data/school_news.json       再編対象8校の公式ホームページ新着記事（自動生成・手編集不可）。トップページのコーナーが実行時にfetchして描画。
 data/community_events.json  地域協議会イベント案内（自動生成・手編集不可）。community.htmlのコーナーが実行時にfetchして描画。
                             市サーバへは行かず、official_pages/のスナップショットから組み立てる。篠岡地区の5協議会分はshinooka=trueで先頭表示。
-data/chunichi_news.json     中日新聞Webの学校再編関連記事（自動生成・手編集不可）。トップページの「報道でみる学校再編」が実行時にfetchして描画。
+data/chunichi_news.json     中日新聞Webの小牧市東部（篠岡地区）関連記事（自動生成・手編集不可）。トップページの「報道でみる東部地域」が実行時にfetchして描画。
                             見出し・掲載日・記事URL・冒頭1文の引用のみを保持する。checked_idsは確認済み記事IDの記録で、同じ記事を二度取りに行かないためのもの。
 data/site-updates.json      このサイト自身の更新履歴（手動管理）。トップページ最下部の「サイトの更新履歴」が実行時にfetchして描画。新しいものを配列の先頭に追加する。
 data/i18n/ja.json           日本語（デフォルト言語）の翻訳テキストをすべて格納する言語ファイル。
@@ -64,7 +64,7 @@ sitemap.xml                 全9ページのサイトマップ。各URLに10言�
 .github/workflows/fetch-news.yml    市公式サイトから最新お知らせを定期取得してnews.jsonと本文スナップショットを更新し、本文変更時はIssue起票→AIによる修正案の起案→機械検証→監査AI→自動マージまで行うワークフロー定義。
 .github/scripts/fetch_news.py       市公式サイトをスクレイピングしてお知らせ情報の抽出・整形と各ページ本文のスナップショット保存を行うPythonスクリプト。
 .github/scripts/fetch_schools.py    再編対象8校のホームページ（komaki-aic.ed.jp）を巡回し、各校の最新記事をschool_news.jsonに保存するスクリプト。
-.github/scripts/fetch_chunichi.py   中日新聞Webの小牧市エリア一覧を巡回し、学校再編に関する記事の見出し・日付・冒頭1文をchunichi_news.jsonに保存するスクリプト。
+.github/scripts/fetch_chunichi.py   中日新聞Webの小牧市エリア一覧を巡回し、東部（篠岡地区）に関する記事の見出し・日付・冒頭1文をchunichi_news.jsonに保存するスクリプト。地名で判定する。
 .github/scripts/map_targets.py      変更された公式ページのスラッグをsite-facts.jsonで引き、サイト内の更新候補箇所をMarkdown出力するスクリプト（Issue本文生成用）。
 .github/scripts/build_page_dicts.py  data/i18n/pages/ を生成する。辞書やHTMLのdata-i18nを変えたら実行してコミットすること。--check で鮮度検証のみ。
 .github/scripts/auto_gates.py       自動更新のガードレール検証（編集範囲・スキーマ・ja/enキー一致・こどもモード1行の長さ・ページ別辞書の鮮度・外部リンク規則・出典実在チェック）。exit 0=合格/3=変更なし/1=不合格。
