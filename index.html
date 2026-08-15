@@ -383,8 +383,26 @@
     </div>
   </section>
 
-  <!-- SITE UPDATE LOG（このサイト自身の更新履歴。トップページ最下部） -->
+  <!-- PRESS COVERAGE（報道。data/chunichi_news.json は fetch_chunichi.py が毎日更新する） -->
   <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title" data-i18n-html="section_press">報道でみる学校再編<small>News Coverage</small></h2>
+      <p class="school-lead" data-i18n="press_lead">
+        中日新聞Webが報じた篠岡地区の学校再編に関する記事です。見出し・掲載日と、記事の書き出しの一文を引用しています。
+      </p>
+      <div id="press-container">
+        <p class="official-news-loading" data-i18n="news_loading">読み込み中…</p>
+      </div>
+      <p class="school-note" data-i18n="press_note">
+        ※ 中日新聞Webの小牧市エリアの記事から、学校再編に関するものを1日1回自動で探しています。
+        見出しと引用は中日新聞社の記事によるもので、翻訳していません。記事の全文は有料会員向けです。
+        市の公式な情報は、上の「市公式サイト お知らせ」をご確認ください。
+      </p>
+    </div>
+  </section>
+
+  <!-- SITE UPDATE LOG（このサイト自身の更新履歴。トップページ最下部） -->
+  <section class="section">
     <div class="container">
       <h2 class="section-title" data-i18n-html="section_site_updates">サイトの更新履歴<small>Site Update Log</small></h2>
       <p class="school-lead" data-i18n="site_updates_lead">

@@ -349,6 +349,73 @@ window.KomakiLang = (function () {
     });
 })();
 
+/* ===== PRESS COVERAGE ===== */
+/* 中日新聞Webが報じた学校再編の記事。data/chunichi_news.json は
+   .github/scripts/fetch_chunichi.py が毎日更新する（手編集しない）。
+   見出しと引用文は新聞社の原文なので翻訳しない。周りのラベルだけ多言語化する。 */
+(function () {
+  const container = document.getElementById('press-container');
+  if (!container) return;
+
+  var MAX_ITEMS = 6;   // 表示件数。data/chunichi_news.json 側は全件を保持する
+
+  var _pl = window.KomakiLang();
+
+  var _pt = {
+    source: {ja:'出典', en:'Source', pt:'Fonte', vi:'Nguồn', tl:'Pinagmulan', es:'Fuente', zh:'出处', id:'Sumber', tr:'Kaynak', my:'ရင်းမြစ်'},
+    empty:  {ja:'該当する記事はまだありません。', en:'No articles found yet.', pt:'Ainda não há reportagens.', vi:'Chưa có bài báo nào.', tl:'Wala pang artikulong natagpuan.', es:'Aún no hay artículos.', zh:'尚无相关报道。', id:'Belum ada artikel.', tr:'Henüz haber bulunamadı.', my:'သတင်း မတွေ့ရသေးပါ။'},
+    error:  {ja:'報道記事の一覧を取得できませんでした。', en:'Could not load the news coverage list.', pt:'Não foi possível carregar a lista de reportagens.', vi:'Không tải được danh sách bài báo.', tl:'Hindi ma-load ang listahan ng balita.', es:'No se pudo cargar la lista de artículos.', zh:'无法加载报道列表。', id:'Gagal memuat daftar artikel.', tr:'Haber listesi yüklenemedi.', my:'သတင်းစာရင်း မဖွင့်နိုင်ပါ။'}
+  };
+  function str(key) { return _pt[key][_pl] || _pt[key]['en'] || _pt[key]['ja']; }
+
+  function fmtDate(iso) {
+    var p = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+    if (!p) return iso || '';
+    try {
+      return new Date(+p[1], +p[2] - 1, +p[3])
+        .toLocaleDateString(_pl === 'ja' ? 'ja-JP' : _pl, {year: 'numeric', month: 'short', day: 'numeric'});
+    } catch (e) { return iso; }
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c];
+    });
+  }
+
+  fetch('./data/chunichi_news.json')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) {
+      var items = (data.items || []).slice()
+        .sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); })
+        .slice(0, MAX_ITEMS);
+      if (!items.length) {
+        container.innerHTML = '<p class="press-empty">' + str('empty') + '</p>';
+        return;
+      }
+
+      var source = data.source_name || '中日新聞Web';
+      container.innerHTML = '<ul class="press-list">' + items.map(function (it) {
+        return '<li class="press-item">' +
+                 '<span class="press-date">' + fmtDate(it.date) + '</span>' +
+                 '<a class="press-title" href="' + esc(it.url) + '" target="_blank" rel="noopener">' +
+                   esc(it.title) +
+                 '</a>' +
+                 (it.quote
+                   ? '<blockquote class="press-quote" cite="' + esc(it.url) + '">' +
+                       esc(it.quote) +
+                       '<cite class="press-cite">' + str('source') + '：' + esc(source) +
+                         '（' + (it.date || '') + '）</cite>' +
+                     '</blockquote>'
+                   : '') +
+               '</li>';
+      }).join('') + '</ul>';
+    })
+    .catch(function () {
+      container.innerHTML = '<p class="official-news-error">' + str('error') + '</p>';
+    });
+})();
+
 /* ===== SITE UPDATE LOG ===== */
 /* このサイト自身の更新履歴。data/site-updates.json は手動管理（自動生成ではない）。 */
 (function () {

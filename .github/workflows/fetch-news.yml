@@ -83,6 +83,39 @@ jobs:
             git push
           fi
 
+      # 中日新聞Webの小牧市エリア記事から学校再編に関するものを拾う。
+      # 一次情報ではなく報道なので、変化しても Issue や自動更新ジョブは動かさない。
+      # data/chunichi_news.json を差し替えるだけ。失敗してもワークフローは止めない。
+      - name: Fetch newspaper coverage
+        id: press
+        continue-on-error: true
+        run: |
+          set +e
+          python3 .github/scripts/fetch_chunichi.py
+          code=$?
+          set -e
+          if [ "$code" -eq 1 ]; then
+            echo "::warning::中日新聞Webの取得に失敗しました（サイトの構成変更の可能性）"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          elif [ "$code" -eq 0 ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit newspaper coverage
+        if: steps.press.outputs.changed == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/chunichi_news.json
+          if git diff --staged --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "chore: update newspaper coverage [skip ci]"
+            git push
+          fi
+
       # 本文スナップショットの差分から変更レポートを作成（コミット前に採取）
       - name: Prepare content-change report
         id: report

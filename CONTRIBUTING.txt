@@ -24,6 +24,20 @@
   上記の city.komaki.aichi.jp 用チェックには引っかからないので、
   増減させたときは fetch_schools.py の SCHOOLS と map.html を揃えること。
 
+■ 別枠：中日新聞Webの記事（chunichi.co.jp）
+  トップページの「報道でみる学校再編」コーナーでのみ使用する。
+  data/chunichi_news.json 経由で fetch_chunichi.py が1日1回更新する。
+  ・載せるのは見出し・掲載日・記事冒頭の1文の引用まで。本文は転載しない
+    （記事は途中から有料会員限定）。見出しと引用文は翻訳しない。
+  ・引用には必ず記事へのリンクと「出典：中日新聞Web」を添える。出典明示が
+    リンクを張る理由なので、リンクを外して引用だけ載せることはしない。
+  ・中日新聞Webの robots.txt は通常のクローラには Allow: / だが、
+    AIクローラ（ClaudeBot / GPTBot 等）は全面禁止。取得スクリプトは
+    サイト名とURLを名乗る固有UAで、1日1回・3〜5秒間隔を守ること。
+  ・報道は一次情報ではない。サイト本文の事実（数値・日付・計画内容）の根拠に
+    使ってはいけない。根拠は市の公式情報のみ（ルール4）。
+  ・上記の city.komaki.aichi.jp 用チェックには引っかからない。
+
 ■ 禁止するURL（例）
   - https://www.city.komaki.aichi.jp/material/files/group/47/*.pdf  ← PDF直リンク
   - https://www.city.komaki.aichi.jp/admin/soshiki/.../303/shinooka_gsaihen/...  ← 個別ページ
