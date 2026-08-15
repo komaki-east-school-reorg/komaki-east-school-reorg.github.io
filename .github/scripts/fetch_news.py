@@ -12,7 +12,9 @@ can be detected via git diff by the workflow.
 Exit codes: 0 = content changed (news items or snapshots), 2 = no change,
 1 = fatal error.
 """
-import urllib.request
+import atexit
+import subprocess
+import tempfile
 import urllib.parse
 import json
 import random
@@ -46,16 +48,74 @@ WATCH_INDEXES = [
 REQUEST_WAIT_MIN = 3.0
 REQUEST_WAIT_MAX = 5.0
 
+# --- 取得方法について（2026-08-15 変更） -------------------------------
+# 市サイトは WAF（Imperva/Incapsula）配下にあり、初回アクセスに対して Cookie を
+# 付けた 302 を同一URLへ返す。この Cookie を保持して踏み直さないと永久に
+# リダイレクトし続けるため、Cookie の保存が必須。
+#
+# さらに、Python の urllib は Cookie を保持しても 403 で弾かれる（UA を実ブラウザ
+# 相当にしても変わらない）。WAF が TLS/HTTP の指紋で判定しているため、ヘッダを
+# 足すだけでは通らない。curl なら同じ URL・同じ UA で 200 が返るので、取得だけ
+# curl に委ねる。curl は GitHub Actions の ubuntu-latest に標準搭載。
+COOKIE_FILE = os.path.join(tempfile.gettempdir(), f"komaki_cookies_{os.getpid()}.txt")
+atexit.register(lambda: os.path.exists(COOKIE_FILE) and os.remove(COOKIE_FILE))
+
+# Cookie は最初の1回で取れるので、2ページ目以降に追加の往復は発生しない。
+BROWSER_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+    ),
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
+}
+
+# WAF の判定が初回だけ滑ることがあるので、少しだけ待って粘る。
+# 市サーバへの負荷を増やさないよう回数は最小限、間隔は polite_wait と同等。
+FETCH_ATTEMPTS = 3
+
 
 def polite_wait():
     """連続アクセスを避けるため、リクエストごとに 3〜5 秒待つ。"""
     time.sleep(random.uniform(REQUEST_WAIT_MIN, REQUEST_WAIT_MAX))
 
 
+def _curl_get(url):
+    """curl で1回だけ取得する。200 以外・curl 失敗はすべて例外。"""
+    fd, body_path = tempfile.mkstemp(prefix="komaki_body_", suffix=".html")
+    os.close(fd)
+    cmd = ["curl", "-sS", "-L", "--compressed", "--max-time", "30",
+           "-c", COOKIE_FILE, "-b", COOKIE_FILE,
+           "-o", body_path, "-w", "%{http_code}"]
+    for name, value in BROWSER_HEADERS.items():
+        cmd += ["-H", f"{name}: {value}"]
+    cmd.append(url)
+    try:
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
+        if proc.returncode != 0:
+            raise RuntimeError(
+                f"curl exited {proc.returncode}: {proc.stderr.strip()}")
+        status = proc.stdout.strip()
+        if status != "200":
+            raise RuntimeError(f"HTTP {status}")
+        with open(body_path, encoding="utf-8") as f:
+            return f.read()
+    finally:
+        os.remove(body_path)
+
+
 def fetch_html(url):
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        return resp.read().decode("utf-8")
+    last_error = None
+    for attempt in range(1, FETCH_ATTEMPTS + 1):
+        try:
+            return _curl_get(url)
+        except Exception as e:
+            last_error = e
+            if attempt < FETCH_ATTEMPTS:
+                print(f"  retry {attempt}/{FETCH_ATTEMPTS - 1} after error: {e}",
+                      file=sys.stderr)
+                polite_wait()
+    raise last_error
 
 
 def extract_jp_date(html):
