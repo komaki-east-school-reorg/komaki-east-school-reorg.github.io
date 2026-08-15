@@ -25,7 +25,7 @@ jobs:
       pages_changed: ${{ steps.report.outputs.pages_changed }}
       issue_number: ${{ steps.issue.outputs.number }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Fetch official pages and update data
         id: fetch
@@ -116,7 +116,7 @@ jobs:
 
       - name: Upload change report for auto-update job
         if: steps.report.outputs.pages_changed == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: change-report
           path: |
@@ -172,7 +172,7 @@ jobs:
             echo "available=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         if: steps.token.outputs.available == 'true'
         with:
           ref: main          # Job 1 の push 後の最新 main
@@ -180,7 +180,7 @@ jobs:
 
       - name: Download change report
         if: steps.token.outputs.available == 'true'
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: change-report
           path: report
