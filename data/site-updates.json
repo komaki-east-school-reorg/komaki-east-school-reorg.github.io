@@ -4,6 +4,12 @@
     {
       "date": "2026-08-16",
       "type": "feature",
+      "ja": "対象校ホームページ・報道・地域協議会イベントの各コーナーを見出し中心の簡潔な表示に変更",
+      "en": "School, newspaper and community-event listings simplified to headline-only display"
+    },
+    {
+      "date": "2026-08-16",
+      "type": "feature",
       "ja": "トップページに中日新聞の東部地域ニュースのコーナーを新設",
       "en": "Newspaper coverage of the eastern district added to the top page"
     },

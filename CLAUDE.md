@@ -30,7 +30,7 @@ grep -rn "city\.komaki\.aichi\.jp" *.html js/*.js \
 
 The same two URLs are encoded in `PERMITTED_LINKS` in `.github/scripts/auto_gates.py` — keep them in sync. Adding a third requires updating this file, `CONTRIBUTING.txt` rule 1, `README.md`, and that gate together.
 
-Two other domains are permitted and are outside this grep. **Chunichi Shimbun Web article URLs** (`chunichi.co.jp/article/<id>`) appear in the 報道 corner on `index.html` via `data/chunichi_news.json`, where each quotation must link to its source — see that file's section below. And the **eight target schools' own homepages** (`komaki-aic.ed.jp/<slug>/`) may be linked: they are a different domain run by the schools, and the URLs are stable. They appear in `map.html` (the 各校ホームページ block) and, via `data/school_news.json`, in the bottom section of `index.html`. The grep above does not cover them — when the set of schools changes, keep `SCHOOLS` in `fetch_schools.py` and the `map.html` block in sync.
+Two other domains are permitted and are outside this grep. **Chunichi Shimbun Web article URLs** (`chunichi.co.jp/article/<id>`) appear in the 報道 corner on `index.html` via `data/chunichi_news.json`, where each headline must link to its source — see that file's section below. And the **eight target schools' own homepages** (`komaki-aic.ed.jp/<slug>/`) may be linked: they are a different domain run by the schools, and the URLs are stable. They appear in `map.html` (the 各校ホームページ block) and, via `data/school_news.json`, in the bottom section of `index.html`. The grep above does not cover them — when the set of schools changes, keep `SCHOOLS` in `fetch_schools.py` and the `map.html` block in sync.
 
 **2. i18n JSON syntax** — parse every translation file, not just the ones you edited.
 
@@ -115,6 +115,8 @@ When a content change is detected, a second job drafts site updates fully automa
 
 The **bottom section of `index.html`** lists recent posts from the eight affected schools' own websites (`komaki-aic.ed.jp/<slug>/` — a different domain, run by each school, not the city). `.github/scripts/fetch_schools.py` scrapes each school's top page once a day from the same workflow, taking the newest 3 article cards (`class="blogtitle"` + 公開日), and writes them here sorted newest-school-first. Cards updated within 7 days get a 新着 badge, computed client-side.
 
+**Only the newest article of each school is displayed** — the block in `js/main.js` slices `items` to 1, and the article's own date is not repeated next to the headline because the card header already shows 最終更新. The file keeps all three so the display count can be changed without waiting for a re-fetch.
+
 - **Never hand-edit** `data/school_news.json`, and never add it to the auto-update pipeline's `ALLOWED` set — it is regenerated daily.
 - The eight schools are hard-coded in `SCHOOLS` in the script, with display names for ja / ja-kids / en / zh (other languages fall back to en).
 - Article headlines are shown **untranslated** — they are the schools' own words. Only the surrounding labels are localized (in `js/main.js`, same inline-dict pattern as the official-news block).
@@ -128,16 +130,19 @@ The bottom of **`community.html`** lists the city's community-council event anno
 - **Never hand-edit** it, and never add it to the auto-update pipeline's `ALLOWED` set — it is regenerated daily.
 - The city's listing covers **all 16 elementary school districts in Komaki**, not just Shinooka. Events are shown in the city's own order, but the five Shinooka councils (`SHINOOKA_COUNCILS` in the script) are flagged `shinooka: true`, sorted first, and badged. Other districts' events are deliberately kept rather than filtered out: as of 2026-08-13 **no Shinooka event is listed at all**, so filtering would leave the corner permanently empty, and seeing what other councils actually run is a useful concrete answer to "what does a community council do?".
 - Event titles are shown **untranslated** — they are the city's own words, the same policy as `school_news.json`. Only the surrounding labels are localized, via an inline dict in `js/main.js`.
+- The corner is rendered as **the same plain row list as the 市公式サイト お知らせ block**: the linked title plus 日時, nothing else. `place` and `updated_at` are still collected in the JSON but not displayed — the linked article carries them.
 - The parser stops at 関連イベント / 関連ファイル / この記事に関するお問い合わせ先, because after those headings the page lists unrelated city-wide events.
 
 ## `data/chunichi_news.json` (newspaper coverage)
 
 The **「報道でみる東部地域」 section near the bottom of `index.html`** lists Chunichi Shimbun Web articles about eastern Komaki (the Shinooka district) — **not only the school reorganization**, but local news in general. `.github/scripts/fetch_chunichi.py` crawls the paper's Komaki-city area index once a day and stores, per article, **only the headline, the publication date, the article URL, and one quoted sentence from the opening**. The body is never copied — the articles are paywalled part-way through.
 
+**The corner displays headlines only** — the headline, its date, and the 出典 line. The stored `quote` is deliberately not rendered (it made the section long enough to bury the site's own content); it stays in the JSON so it can be brought back without re-fetching.
+
 - **Never hand-edit** it, and never add it to the auto-update pipeline's `ALLOWED` set — it is regenerated daily.
 - **This is reporting, not a primary source.** Facts on the rest of the site (figures, dates, plan contents) must still come only from the city's official information. Never cite a newspaper article as the evidence for a site edit. Because the corner now covers the district generally, most entries are not about the reorganization at all — that is intended.
-- Headlines and quotations are shown **untranslated** — they are the newspaper's own words, the same policy as `school_news.json`. Only the surrounding labels are localized (`section_press` / `press_lead` / `press_note` plus an inline dict in `js/main.js`).
-- Each entry links to the article and is labelled 出典：中日新聞Web. The link is what makes the quotation properly attributed, so do not strip it.
+- Headlines are shown **untranslated** — they are the newspaper's own words, the same policy as `school_news.json`. Only the surrounding labels are localized (`section_press` / `press_lead` / `press_note` plus an inline dict in `js/main.js`).
+- Each entry links to the article and is labelled 出典：中日新聞Web. The link is what makes the headline properly attributed, so do not strip it.
 - **robots.txt**: chunichi.co.jp allows ordinary crawlers (`User-Agent: *` → `Allow: /`) but bans AI crawlers (`ClaudeBot`, `GPTBot`, `CCBot`, …) outright. The script therefore identifies itself with its own UA naming this site, runs once a day, and waits 3–5 s between requests. **Do not fetch this domain with AI browsing tools.**
 - Matching is by **place name** (`AREA_KEYWORDS`: 篠岡/しのおか, 桃花台, 光ケ丘・光ヶ丘, 桃ケ丘・桃ヶ丘, 桃陵, 大城, 陶小, 城山, 大草, 上末, 下末, 高根, 大山, 池之内, 野口, 市東部, 東部地区), plus `学校再編` / `しのおか学園` as a safety net for reorganization articles that never name the district. The names are the ones this site itself uses (`about.html` school-district table, `bus.html` routes, `community.html` councils); the newspaper writes 光**ケ**丘 while the school writes 光**ヶ**丘, so both are listed. Bare `陶` is excluded because it collides with 陶芸/陶器 — only `陶小` is matched.
 - Scanning only the paper's **Komaki city** area index is what makes bare place names safe: everything in that list is already about Komaki.
