@@ -360,6 +360,8 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   gap: 1rem;
 }
 .school-card {
+  display: flex;
+  flex-direction: column;
   background: var(--white);
   border: 1.5px solid var(--border);
   border-radius: var(--radius);
@@ -394,10 +396,11 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   color: var(--primary);
 }
 .school-badge--new { background: var(--accent); color: var(--primary-dark); }
+/* 最終更新はカード末尾の行に置く。校名・バッジと横幅を取り合わないので、
+   幅の狭いカードでも折り返さない（nowrap のまま1行に収まる）。 */
 .school-date {
   font-size: .76rem;
   color: var(--text-muted);
-  margin-left: auto;
   white-space: nowrap;
 }
 /* 各校とも最新1件だけを出すので、この見出しがカードの主役になる。
@@ -434,19 +437,26 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   text-decoration-color: var(--primary);
 }
 .school-items a:hover::after { color: var(--primary); }
+/* 見出しの下に区切り線を1本引き、最終更新（左）とリンク（右）を振り分ける。
+   カードは flex 列なので、記事見出しの長さが違ってもこの行の高さがそろう。 */
+.school-card-foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .3rem .8rem;
+  margin-top: auto;
+  padding-top: .55rem;
+  border-top: 1px dashed var(--border);
+}
 .school-card-link {
-  display: inline-block;
-  margin-top: .6rem;
   font-size: .78rem;
   font-family: var(--heading-font);
   font-weight: 700;
+  white-space: nowrap;
 }
 .school-empty { font-size: .84rem; color: var(--text-muted); }
 .school-note { font-size: .78rem; color: var(--text-muted); margin-top: 1.2rem; line-height: 1.6; }
-
-@media (max-width: 480px) {
-  .school-date { margin-left: 0; width: 100%; }
-}
 
 /* ===== PRESS COVERAGE（報道コーナー。見出し＋日付＋出典のみ） ===== */
 .press-list {

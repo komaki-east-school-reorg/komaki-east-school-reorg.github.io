@@ -115,7 +115,7 @@ When a content change is detected, a second job drafts site updates fully automa
 
 The **bottom section of `index.html`** lists recent posts from the eight affected schools' own websites (`komaki-aic.ed.jp/<slug>/` — a different domain, run by each school, not the city). `.github/scripts/fetch_schools.py` scrapes each school's top page once a day from the same workflow, taking the newest 3 article cards (`class="blogtitle"` + 公開日), and writes them here sorted newest-school-first. Cards updated within 7 days get a 新着 badge, computed client-side.
 
-**Only the newest article of each school is displayed** — the block in `js/main.js` slices `items` to 1, and the article's own date is not repeated next to the headline because the card header already shows 最終更新. The file keeps all three so the display count can be changed without waiting for a re-fetch.
+**Only the newest article of each school is displayed** — the block in `js/main.js` slices `items` to 1, and the article's own date is not repeated next to the headline because the card's footer row already shows 最終更新 (it sits there, not in the header, so it never has to wrap around the school name and badges). The file keeps all three so the display count can be changed without waiting for a re-fetch.
 
 - **Never hand-edit** `data/school_news.json`, and never add it to the auto-update pipeline's `ALLOWED` set — it is regenerated daily.
 - The eight schools are hard-coded in `SCHOOLS` in the script, with display names for ja / ja-kids / en / zh (other languages fall back to en).

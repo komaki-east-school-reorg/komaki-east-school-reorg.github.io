@@ -329,6 +329,11 @@ window.KomakiLang = (function () {
                  '</a></li>';
         }).join('');
 
+        // 「最終更新」は校名やバッジと横幅を取り合うと折り返してしまうので、
+        // 見出し行ではなくカード末尾の行に置き、リンクと左右に振り分ける。
+        var date = s.latest_date
+          ? '<span class="school-date">' + str('updated') + fmtDate(s.latest_date) + '</span>' : '';
+
         return '<div class="school-card' + (fresh ? ' school-card--fresh' : '') + '">' +
                  '<div class="school-card-head">' +
                    '<a class="school-name" href="' + esc(s.url) + '" target="_blank" rel="noopener">' +
@@ -336,11 +341,12 @@ window.KomakiLang = (function () {
                    '</a>' +
                    '<span class="school-badge">' + str(s.level === 'jhs' ? 'jhs' : 'elem') + '</span>' +
                    (fresh ? '<span class="school-badge school-badge--new">' + str('is_new') + '</span>' : '') +
-                   '<span class="school-date">' + (s.latest_date ? str('updated') + fmtDate(s.latest_date) : '') + '</span>' +
                  '</div>' +
                  (items ? '<ul class="school-items">' + items + '</ul>'
                         : '<p class="school-empty">' + str('empty') + '</p>') +
-                 '<a class="school-card-link" href="' + esc(s.url) + '" target="_blank" rel="noopener">' + str('visit') + '</a>' +
+                 '<div class="school-card-foot">' + date +
+                   '<a class="school-card-link" href="' + esc(s.url) + '" target="_blank" rel="noopener">' + str('visit') + '</a>' +
+                 '</div>' +
                '</div>';
       }).join('') + '</div>';
     })
