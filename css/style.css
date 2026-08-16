@@ -400,16 +400,40 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   margin-left: auto;
   white-space: nowrap;
 }
+/* 各校とも最新1件だけを出すので、この見出しがカードの主役になる。
+   チョーク色の下線と少し大きめの字でリンクだと一目で分かるようにし、
+   校名（見出し用フォント・緑）との主従が崩れない程度の強さに留める。 */
 .school-items { list-style: none; margin: 0; padding: 0; }
 .school-items li {
-  font-size: .84rem;
-  line-height: 1.55;
-  padding: .3rem 0;
+  font-size: .88rem;
+  line-height: 1.7;
+  padding: .5rem 0 .1rem;
   border-top: 1px solid var(--border);
 }
-.school-items li:first-child { border-top: none; }
-.school-items a { color: var(--text); }
-.school-items a:hover { color: var(--primary); }
+.school-items li:first-child { border-top: none; padding-top: .1rem; }
+.school-items a {
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition: color .15s ease, text-decoration-color .15s ease;
+}
+/* inline-block にすると親の下線が矢印の上を通らない */
+.school-items a::after {
+  content: '↗';
+  display: inline-block;
+  margin-left: .3rem;
+  font-size: .72rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+.school-items a:hover {
+  color: var(--primary-dark);
+  text-decoration-color: var(--primary);
+}
+.school-items a:hover::after { color: var(--primary); }
 .school-card-link {
   display: inline-block;
   margin-top: .6rem;
