@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-08-12T12:54:30Z",
+  "fetched_at": "2026-08-20T01:52:57Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
@@ -13,8 +13,13 @@
         "zh": "篠冈中学"
       },
       "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-08-09",
+      "latest_date": "2026-08-19",
       "items": [
+        {
+          "title": "ソフトテニス部 ３校で練習試合",
+          "date": "2026-08-19",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135735112?tm=20260819141413"
+        },
         {
           "title": "《桃花台野球部》新チーム初の練習試合",
           "date": "2026-08-09",
@@ -24,11 +29,6 @@
           "title": "ソフトテニス部 光ヶ丘中男子と合同練習",
           "date": "2026-08-07",
           "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135730051?tm=20260807154507"
-        },
-        {
-          "title": "《桃花台野球部》東京ヴェルディU-15と合同練習",
-          "date": "2026-08-03",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135723969?tm=20260803111635"
         }
       ]
     },
