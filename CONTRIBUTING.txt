@@ -40,6 +40,19 @@
     使ってはいけない。根拠は市の公式情報のみ（ルール4）。
   ・上記の city.komaki.aichi.jp 用チェックには引っかからない。
 
+■ 別枠：文部科学省の資料ページ（mext.go.jp）
+  nationwide.html（全国の動き）でのみ使用する。全国の統計や国が示す基準は
+  市の公式情報では賄えないため、国の一次資料を出典にする。
+  ・許可するのは次の4URLのみ（いずれも索引・通知ページ。PDF直リンクは不可）：
+      /a_menu/shotou/tekisei/index.htm            適正規模・適正配置（索引）
+      /a_menu/shotou/tekisei/1413885_00007.htm    手引の改訂等について（通知）
+      /a_menu/shotou/zyosei/yoyuu_00002.htm       廃校施設活用状況実態調査
+      /b_menu/toukei/chousa01/kihon/1267995.htm   学校基本調査
+  ・翻訳辞書（data/i18n/*.json）にも同じURLが入る。ここも検査対象。
+  ・auto_gates.py の PERMITTED_MEXT_LINKS / MEXT_PAGES が機械で守っている。
+  ・国の資料は全国の話の根拠であって、小牧市の計画に関する事実の根拠には
+    使わない。市の計画の根拠は市の公式情報のみ（ルール4）。
+
 ■ 禁止するURL（例）
   - https://www.city.komaki.aichi.jp/material/files/group/47/*.pdf  ← PDF直リンク
   - https://www.city.komaki.aichi.jp/admin/soshiki/.../303/shinooka_gsaihen/...  ← 個別ページ
@@ -55,10 +68,17 @@
     | grep -v -e "303/index\.html" -e "sasaeai/3/3_2/index\.html"
   → 出力があれば違反箇所。許可URLに差し替えること。
 
+  文科省URL（nationwide.html と翻訳辞書のみ許可）：
+  grep -rn "mext\.go\.jp" *.html js/*.js data/i18n/*.json \
+    | grep -v -e "tekisei/index\.htm" -e "tekisei/1413885_00007\.htm" \
+             -e "zyosei/yoyuu_00002\.htm" -e "kihon/1267995\.htm"
+  → 出力があれば違反箇所。nationwide.html 以外のページに出た場合も違反。
+
 ■ 許可URLを増やすとき
   次の4か所を必ず同時に更新する（片方だけ直すと検証が誤検知する）：
     本ファイルのルール1 / CLAUDE.md の検証コマンド / README.md の主なルール /
     .github/scripts/auto_gates.py の PERMITTED_LINKS
+    （文科省URLを増やす場合は PERMITTED_MEXT_LINKS。ページを増やす場合は MEXT_PAGES）
 
 
 ──────────────────────────────────────────────────────
@@ -143,7 +163,7 @@
     auto_gates.py の PARTIAL_LANGS の両方にコードを入れること。
   ★ 言語を増やすときに直す場所：
       data/i18n/<lang>.json 新規作成 / i18n.js の LANGS・langAttr・PARTIAL /
-      全9ページの <option> と hreflang（?lang=<コード> 付きの実URL）/ sitemap.xml /
+      全10ページの <option> と hreflang（?lang=<コード> 付きの実URL）/ sitemap.xml /
       footer_langs（全言語）/ auto_gates.py の PARTIAL_LANGS /
       main.js の KomakiLang の LANGS・CAL_LOCALE_MAP・各インラインラベル辞書
   ★ events.json のイベントラベルは【10言語必須】（auto_gates.py の LANGS）。

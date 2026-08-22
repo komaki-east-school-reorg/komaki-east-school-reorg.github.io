@@ -30,7 +30,16 @@ grep -rn "city\.komaki\.aichi\.jp" *.html js/*.js \
 
 The same two URLs are encoded in `PERMITTED_LINKS` in `.github/scripts/auto_gates.py` — keep them in sync. Adding a third requires updating this file, `CONTRIBUTING.txt` rule 1, `README.md`, and that gate together.
 
-Two other domains are permitted and are outside this grep. **Chunichi Shimbun Web article URLs** (`chunichi.co.jp/article/<id>`) appear in the 報道 corner on `index.html` via `data/chunichi_news.json`, where each headline must link to its source — see that file's section below. And the **eight target schools' own homepages** (`komaki-aic.ed.jp/<slug>/`) may be linked: they are a different domain run by the schools, and the URLs are stable. They appear in `map.html` (the 各校ホームページ block) and, via `data/school_news.json`, in the bottom section of `index.html`. The grep above does not cover them — when the set of schools changes, keep `SCHOOLS` in `fetch_schools.py` and the `map.html` block in sync.
+Three other domains are permitted and are outside this grep. **Chunichi Shimbun Web article URLs** (`chunichi.co.jp/article/<id>`) appear in the 報道 corner on `index.html` via `data/chunichi_news.json`, where each headline must link to its source — see that file's section below. And the **eight target schools' own homepages** (`komaki-aic.ed.jp/<slug>/`) may be linked: they are a different domain run by the schools, and the URLs are stable. They appear in `map.html` (the 各校ホームページ block) and, via `data/school_news.json`, in the bottom section of `index.html`. The grep above does not cover them — when the set of schools changes, keep `SCHOOLS` in `fetch_schools.py` and the `map.html` block in sync. And **four MEXT pages** (`mext.go.jp`) are linked from `nationwide.html` only, as the sources for the nationwide figures and the national standards — see that page's section below.
+
+```bash
+grep -rn "mext\.go\.jp" *.html js/*.js data/i18n/*.json \
+  | grep -v -e "tekisei/index\.htm" -e "tekisei/1413885_00007\.htm" \
+           -e "zyosei/yoyuu_00002\.htm" -e "kihon/1267995\.htm"
+# Any output = violation. A hit in any page other than nationwide.html is also a violation.
+```
+
+`PERMITTED_MEXT_LINKS` and `MEXT_PAGES` in `auto_gates.py` enforce both halves of that rule, and the link check now also scans `data/i18n/*.json` — for non-Japanese readers the link that actually renders comes from the dictionary, not from the HTML.
 
 **2. i18n JSON syntax** — parse every translation file, not just the ones you edited.
 
@@ -92,7 +101,7 @@ Keys follow the pattern `<page>_<section>_<type>`, e.g., `about_whatis_p1`, `faq
 ## Important constraints
 
 - **Header site name is permanently Japanese.** The `<a class="site-title">` element does not get a `data-i18n` attribute. The `<span data-i18n="site_sub">` subtitle inside it is translated, but the main site name text is not.
-- **All facts must come from official sources** — the permitted city URL above, or official printed materials (cite the source inline). Do not add speculative or unconfirmed information. The one place newspaper reporting appears is the 報道 corner on `index.html`, where it is clearly attributed as such; see `data/chunichi_news.json` below. It is never evidence for a claim made elsewhere on the site.
+- **All facts must come from official sources** — the permitted city URL above, or official printed materials (cite the source inline). Do not add speculative or unconfirmed information. The one place newspaper reporting appears is the 報道 corner on `index.html`, where it is clearly attributed as such; see `data/chunichi_news.json` below. It is never evidence for a claim made elsewhere on the site. **Nationwide figures and national standards come from MEXT** and live on `nationwide.html` only; they are never evidence for a statement about the Komaki plan itself, and the city's information is never used for a nationwide claim.
 - **All ten languages are now fully translated.** Turkish (`tr`) and Burmese (`my`) reached full key coverage on 2026-08-13, so `PARTIAL` in `i18n.js` is empty and the "parts of this page are in English" notice bar no longer appears. `events.json` labels are a strict **10-language** requirement (`LANGS` in `auto_gates.py`). If a new partially-translated language is ever added, put its code in both `PARTIAL` (`i18n.js`) and `PARTIAL_LANGS` (`auto_gates.py`) so the notice bar shows and its event labels are not demanded.
 
 ## `data/news.json`
@@ -161,6 +170,16 @@ The **last section of `index.html`** shows a changelog of changes made to this s
 - Write a **reader-facing summary, not a commit message** — "Turkish and Burmese added", not "feat(i18n): …". Internal refactors and doc fixes do not belong here.
 - The list is sorted newest-first at render time and **only the newest 6 are displayed** (`MAX_ITEMS` in the `js/main.js` block); keep the full history in the file.
 
+## `nationwide.html` (the nationwide context page)
+
+Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics and the standards the national government sets, so that a reader can judge the Komaki plan against something. It is **static hand-written content** — no JSON feed, no script, nothing on the daily workflow.
+
+- **Every fact on it must come from MEXT**, and the four permitted `mext.go.jp` URLs are its bibliography. Numbers currently on the page: 8,850 closures FY2004–FY2023 and 298 in FY2023 (191/82/25), 92 in Aichi (62/14/16), 74.4% of 7,612 surviving buildings reused, ~2,000 fewer public schools and ~850,000 fewer pupils in ten years, standards of 12–18 classes (18–27 for compulsory education schools), 4 km / 6 km, "about one hour", the 2026-08-05 revision (notice 8文科初第1125号) and its 広域化 / 総合化 / 現代化 pillars, ~40% / ~50% below 12 classes, ~16% one-elementary-one-JHS municipalities, 5,812,000 / 3,105,000 pupils, 232 public compulsory education schools with 75,828 pupils (FY2024).
+- **No 賛否 content, and no citizen-run events.** The page deliberately carries no pro/con framing — that belongs on `voices.html` — and does not advertise meetings or lectures held by any group, whichever side they are on. A neutral-looking national page is the easiest place on this site to smuggle in a position, so keep it descriptive.
+- The 国の基準 ⇔ 小牧の計画 table is the point of the page. Its right-hand column restates facts that already exist elsewhere on this site (令和15年に各学年1学級, 2km でスクールバス, ガイドラインは未定) — when those change, change them here too.
+- The 手引 was revised in August 2026 and will be revised again. When it is, the numeric standards must be re-checked against the new 改訂版 rather than assumed to carry over.
+- Not in the auto-update pipeline's `ALLOWED` set: the city's page changes do not move national statistics.
+
 ## `js/main.js`
 
 Self-contained IIFE blocks handling: hamburger nav, active nav link highlighting, auto-date status, "last updated" display, upcoming schedule expiry (`data-expires`), FAQ accordion, voice filter, official news rendering, target-school website updates, and the interactive calendar on `schedule.html`. Calendar events live in `data/events.json` (`{"events": {"YYYY-MM-DD": {ja, en, pt, vi, tl, es, zh, id, tr, my}}}`), fetched at runtime by the calendar block — edit that file, not `main.js`, to add/change events. All 10 language labels are required per event. If the fetch fails or the file is empty, the calendar section hides itself.
@@ -208,7 +227,7 @@ Every HTML page follows the same pattern: `notice-banner` → `<header>` (with `
 | Piece | Where | Notes |
 |---|---|---|
 | `robots.txt` | repo root | Allows everything; points at the sitemap. Kids mode is excluded via a JS-injected `noindex` (`applyKidsSeoMeta`), not here. |
-| `sitemap.xml` | repo root | Hand-maintained, one `<url>` per page (9), each carrying the full `xhtml:link` alternate set. No `lastmod` — a stale date is worse than none. |
+| `sitemap.xml` | repo root | Hand-maintained, one `<url>` per page (10), each carrying the full `xhtml:link` alternate set. No `lastmod` — a stale date is worse than none. |
 | `<link rel="canonical">` | every page `<head>` | Static value is the bare (Japanese) URL. `i18n.js` rewrites it to the `?lang=` URL of the language actually being shown. |
 | `hreflang` | every page `<head>` | 10 languages + `x-default`, each pointing at a **distinct** `?lang=` URL. They previously all pointed at the same URL, which is an error Search Console reports. |
 | JSON-LD `WebSite` | `index.html` only | Static. Deliberately carries **no `publisher`/`Organization`** — inventing one would imply this site is official, which it is not. `citation` points at the permitted city URL. |

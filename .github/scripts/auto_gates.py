@@ -8,7 +8,8 @@
   3. ja/en キー一致    — i18n.js が非日本語表示で ja.json を取らない前提を守る
   4. こどもモード      — ja-kids.json の1行がモーラ換算で長すぎないか
   5. ページ別辞書      — data/i18n/pages/ が data/i18n/ と HTML に対して最新か
-  6. 外部リンク規則    — 市サイトへのリンクは許可URL（303/index.html）のみ
+  6. 外部リンク規則    — 市サイトへのリンクは許可URL（303/index.html）のみ、
+                          文科省へのリンクは nationwide.html の許可URLのみ
   7. 出典実在チェック  — evidence.json の各引用が data/official_pages/ の
                           スナップショットに実在する文字列か照合（創作の検出）
 
@@ -40,6 +41,17 @@ EVIDENCE = "auto_update/evidence.json"
 # 個別記事ページは不可）。1つ目＝学校再編（教育総務課）、2つ目＝地域協議会（支え合い
 # 協働推進課、community.html 用に 2026-08-12 追加）。
 PERMITTED_LINKS = ("303/index.html", "sasaeai/3/3_2/index.html")
+# 文部科学省へのリンク。全国の動向を扱う nationwide.html でのみ、この4つに限って
+# 張ってよい（2026-08-22 追加）。全国の数値・基準は市の公式情報では賄えないため
+# 国の一次資料を出典にするが、市サイトと同じく「索引ページのみ・PDF直リンク不可」
+# を機械で守らせる。増やすときは CLAUDE.md・CONTRIBUTING.txt 規則1・README.md も同時に更新すること。
+PERMITTED_MEXT_LINKS = (
+    "shotou/tekisei/index.htm",          # 適正規模・適正配置（索引）
+    "shotou/tekisei/1413885_00007.htm",  # 手引の改訂等について（通知・令和8年8月5日）
+    "shotou/zyosei/yoyuu_00002.htm",     # 廃校施設活用状況実態調査
+    "kihon/1267995.htm",                 # 学校基本調査
+)
+MEXT_PAGES = ("nationwide.html",)
 MIN_QUOTE_LEN = 10
 
 fails = []
@@ -195,15 +207,23 @@ def main():
 
     # --- 6. 外部リンク規則（サイト全体を検査） ---
     link_violations = []
-    for p in glob.glob("*.html") + glob.glob("js/*.js"):
+    # 翻訳辞書も見る：非日本語ではリンクの実体が data/i18n/*.json 側の文面なので、
+    # HTML だけを検査してもすり抜ける。
+    for p in glob.glob("*.html") + glob.glob("js/*.js") + glob.glob("data/i18n/*.json"):
+        is_dict = p.startswith("data/i18n/")
         with open(p, encoding="utf-8") as f:
             for i, line in enumerate(f, 1):
-                for m in re.finditer(r"city\.komaki\.aichi\.jp[^\s\"'<)]*", line):
+                for m in re.finditer(r"city\.komaki\.aichi\.jp[^\s\"'<)\\]*", line):
                     if not any(allowed in m.group(0) for allowed in PERMITTED_LINKS):
                         link_violations.append(f"{p}:{i} {m.group(0)[:80]}")
+                for m in re.finditer(r"mext\.go\.jp[^\s\"'<)\\]*", line):
+                    if not (is_dict or p in MEXT_PAGES):
+                        link_violations.append(f"{p}:{i} 文科省リンクは {'/'.join(MEXT_PAGES)} のみ可 {m.group(0)[:60]}")
+                    elif not any(allowed in m.group(0) for allowed in PERMITTED_MEXT_LINKS):
+                        link_violations.append(f"{p}:{i} 許可外の文科省URL {m.group(0)[:80]}")
     if link_violations:
         for v in link_violations:
-            fail(f"許可外の市サイトURL: {v}")
+            fail(f"許可外の外部URL: {v}")
     else:
         ok("外部リンク規則")
 

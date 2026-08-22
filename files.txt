@@ -13,6 +13,7 @@ voices.html         再編計画に対する賛成・反対・中立の住民意
 faq.html            よくある質問と回答をアコーディオン形式で提供するFAQページ。
 bus.html            スクールバスの運行予定・対象校・費用負担などを解説するスクールバス情報ページ。
 map.html            再編対象の各学校の位置を地図で確認できる学校マップページ。
+nationwide.html     全国の廃校数・国が示す学校規模と通学の基準・2026年8月の手引改訂を整理した「全国の動き」ページ。
 
 ■ スタイル
 css/style.css       サイト全体のデザイン・レイアウト・カラー・レスポンシブ対応を定義するスタイルシート。
@@ -50,14 +51,14 @@ favicon.svg                 ブラウザタブに表示されるサイトアイ�
 img/og-image.png            SNSシェア時に表示されるOGP用サムネイル画像。
 
 ■ ページ別辞書（自動生成）
-data/i18n/pages/            各ページが実際に使うキーだけを切り出した辞書（<ページID>.<言語>.json、99ファイル）。
+data/i18n/pages/            各ページが実際に使うキーだけを切り出した辞書（<ページID>.<言語>.json、110ファイル）。
                             .github/scripts/build_community_events.py  地域協議会イベント案内をスナップショットから抽出してcommunity_events.jsonを生成するスクリプト。市サーバへのアクセスなし。
 .github/scripts/build_page_dicts.py が生成する。手編集不可。
                             i18n.js はこちらを優先して取得し、404 のときだけ全体辞書に落ちる。
 
 ■ 検索エンジン向け
 robots.txt                  クローラ向けの許可設定とサイトマップの所在。全ページ許可。
-sitemap.xml                 全9ページのサイトマップ。各URLに10言語＋x-defaultのhreflang相互参照を付与。
+sitemap.xml                 全10ページのサイトマップ。各URLに10言語＋x-defaultのhreflang相互参照を付与。
                             手動管理のため、ページを追加・削除したらここも更新すること。
 
 ■ GitHub Actions
