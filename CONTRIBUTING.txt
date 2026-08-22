@@ -53,6 +53,33 @@
   ・国の資料は全国の話の根拠であって、小牧市の計画に関する事実の根拠には
     使わない。市の計画の根拠は市の公式情報のみ（ルール4）。
 
+■ 別枠：共有ボタンの送り先（SNS・はてな）
+  全ページ最下部の「このページを共有する」欄でのみ使用する。リンク先は
+  js/main.js の SHARE BUTTONS ブロックが組み立てる（HTMLには書かれていない）。
+  ・送り先は次の7つ＋Mastodon だけ：
+      social-plugins.line.me/lineit/share      LINEで送る
+      x.com/intent/post                        Xでポスト
+      www.facebook.com/sharer/sharer.php       Facebookでシェア
+      b.hatena.ne.jp/entry/panel/              はてなブックマーク
+      www.threads.net/intent/post              Threadsで投稿
+      bsky.app/intent/compose                  Blueskyで投稿
+      www.reddit.com/submit                    Redditに投稿
+      https://<閲覧者のサーバー>/share          Mastodonで共有
+    Mastodon は分散型で送り先が固定できないため、閲覧者が入力したサーバーの
+    ドメインを localStorage（komaki_mastodon）に覚えて使う。第三者のリダイレクト
+    サービスは挟まない（外部ホストを増やさないため）。
+  ・Instagram・TikTok はリンクを渡せる共有 URL を公開していないので、
+    ボタンは投稿画面を開かず、リンクをコピーして貼り付けを案内するだけ。
+    ラベルにも「（リンクをコピー）」と書く。存在しないエンドポイントを
+    推測で書かないこと。
+  ・はてなスターだけは表示のために外部スクリプトを読む：
+      s.hatena.ne.jp/js/HatenaStar.js
+    このサイトが読み込む唯一の外部スクリプト。共有欄が画面に入るまで
+    読み込まない（IntersectionObserver）ので、最下部まで来なかった閲覧者に
+    はてなへの通信は発生しない。増やすときはこの方針ごと考え直すこと。
+  ・これらは「出典」ではない。事実の根拠に使うことは一切ない（ルール4）。
+  ・上記の city.komaki.aichi.jp / mext.go.jp 用チェックには引っかからない。
+
 ■ 禁止するURL（例）
   - https://www.city.komaki.aichi.jp/material/files/group/47/*.pdf  ← PDF直リンク
   - https://www.city.komaki.aichi.jp/admin/soshiki/.../303/shinooka_gsaihen/...  ← 個別ページ

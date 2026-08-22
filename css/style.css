@@ -1536,3 +1536,119 @@ footer {
   padding: .12rem .6rem;
 }
 .ce-when { display: block; margin-top: .25rem; font-size: .78rem; color: var(--text-muted); }
+
+/* ===== SHARE / このページを共有する =====
+   全ページ共通。ボタンの実体（href・ラベル）は js/main.js が組み立てる。
+   ブランド色はアイコンチップと hover の背景にだけ使い、既定はサイトの
+   黒板テーマ（白地＋セージ枠）に寄せる。全面ブランド色のボタンを6個並べると
+   ページの中で共有欄がいちばん目立ってしまうため。 */
+.share { padding: 2.4rem 0 3rem; border-top: 1px solid var(--border); background: var(--white); }
+.share-h {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--primary);
+  font-family: var(--heading-font);
+  margin-bottom: .35rem;
+}
+.share-lead { font-size: .84rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.7; }
+
+.share-buttons { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+
+/* ボタンはアイコンだけの丸。サービス名は aria-label に入っていて、
+   マウスを載せると title として出る（js/main.js の syncTitles）。 */
+.share-btn {
+  --share-color: var(--primary);
+  --share-color-dark: var(--primary-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  padding: 0;
+  border: 1.5px solid var(--share-color);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--share-color-dark);
+  cursor: pointer;
+  transition: background .18s, color .18s, transform .18s;
+}
+.share-btn:hover,
+.share-btn:focus-visible {
+  background: var(--share-color-dark);
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+.share-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* アイコンは各サービスの頭文字・記号。ロゴ画像を置かないのは、外部ホストを増やさず
+   （画像リクエストは押していなくても飛ぶ）、10言語どこでも同じ幅で並ぶため。 */
+.share-icon {
+  display: block;
+  font-family: var(--heading-font);
+  font-size: .95rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0;
+}
+/* 2文字のものは少し詰める */
+.share-btn--hatena .share-icon,
+.share-btn--instagram .share-icon { font-size: .74rem; letter-spacing: -.02em; }
+
+.share-btn--line     { --share-color: #06c755; --share-color-dark: #04833a; }
+.share-btn--x        { --share-color: #333333; --share-color-dark: #000000; }
+.share-btn--fb       { --share-color: #1877f2; --share-color-dark: #145dbf; }
+.share-btn--hatena   { --share-color: #00a4de; --share-color-dark: #00749e; }
+.share-btn--threads  { --share-color: #101010; --share-color-dark: #000000; }
+.share-btn--bluesky  { --share-color: #0085ff; --share-color-dark: #0060bd; }
+.share-btn--reddit   { --share-color: #ff4500; --share-color-dark: #b83200; }
+.share-btn--mastodon { --share-color: #6364ff; --share-color-dark: #4a4bd8; }
+/* リンクをコピーする方式の2つ（投稿画面は開かない）。ブランド色は使うが、
+   ラベルに「（リンクをコピー）」と入れて動きの違いを示している。 */
+.share-btn--instagram { --share-color: #e1306c; --share-color-dark: #b3164d; }
+.share-btn--tiktok    { --share-color: #010101; --share-color-dark: #000000; }
+
+.share-copy-msg {
+  display: none;
+  margin-top: .5rem;
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--primary);
+  font-family: var(--heading-font);
+}
+.share-copy-msg.is-visible { display: block; }
+
+/* ===== はてなスター ===== */
+.share-star {
+  margin-top: 1.3rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border);
+}
+.hatena-star-entry { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; min-height: 1.8rem; }
+.share-star-label {
+  font-size: .84rem;
+  font-weight: 700;
+  font-family: var(--heading-font);
+  color: var(--primary);
+}
+.share-star-label::before { content: '☆'; margin-right: .3rem; color: var(--accent); }
+/* はてなスターの登録先になるページ題名リンク。スターの本体（☆ボタン）は
+   この直後の .hatena-star-holder に、はてな側のスクリプトが差し込む。 */
+.hatena-star-permalink {
+  max-width: 100%;
+  font-size: .8rem;
+  color: var(--text-muted);
+  border-bottom: 1px dotted var(--border);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hatena-star-permalink:hover { color: var(--primary); border-bottom-color: var(--accent); text-decoration: none; }
+.hatena-star-holder img { vertical-align: middle; }
+.share-star-note { font-size: .75rem; color: var(--text-muted); margin-top: .45rem; line-height: 1.65; }
+.share-note { font-size: .73rem; color: var(--text-muted); margin-top: 1rem; line-height: 1.65; }
+
+@media (max-width: 480px) {
+  .share-buttons { gap: .45rem; }
+  .share-btn { width: 2.2rem; height: 2.2rem; }
+}

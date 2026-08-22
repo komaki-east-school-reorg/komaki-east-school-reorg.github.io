@@ -40,11 +40,31 @@ AFTER_SUFFIX = "__after"
 # ここに列挙して全ページの辞書に必ず入れる（いずれも数文字で、コストは無視できる）。
 #   status_done        … index.html の「現在の状況」完了ラベル
 #   event_status_*     … schedule.html の 完了/進行中/予定 バッジ
+#   share_*            … 全ページ共通の共有ボタン（main.js が組み立てる）
 RUNTIME_KEYS = [
     "status_done",
     "event_status_done",
     "event_status_current",
     "event_status_upcoming",
+    "share_line",
+    "share_x",
+    "share_facebook",
+    "share_hatena",
+    "share_threads",
+    "share_bluesky",
+    "share_reddit",
+    "share_mastodon",
+    "share_mastodon_prompt",
+    "share_mastodon_invalid",
+    "share_instagram",
+    "share_tiktok",
+    "share_copied_paste",
+    "share_copy",
+    "share_copied",
+    "share_copy_failed",
+    "share_native",
+    "share_star_label",
+    "share_star_note",
 ]
 
 KEY_RE = re.compile(r'data-i18n(?:-html|-aria)?="([^"]+)"')

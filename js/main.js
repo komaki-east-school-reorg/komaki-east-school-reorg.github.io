@@ -664,3 +664,356 @@ window.KomakiLang = (function () {
     });
   }
 })();
+
+/* ===== SHARE BUTTONS ===== */
+/* 全ページ共通の「このページを共有する」欄。HTML 側には見出しと空の入れ物だけがあり、
+   ボタンはここで組み立てる（共有先URLに表示中の言語を載せるため、静的に書けない）。
+
+   ラベルは data-i18n を付けて i18n.js に任せる。公式ニュース等のブロックが
+   インライン辞書を持っているのは JSON 取得より先に描くためだが、こちらは
+   applyDict より前に DOM を作れるので、辞書に一本化したほうが10言語を揃えやすい。
+   HTML に現れないキーなので build_page_dicts.py の RUNTIME_KEYS に入れてある。 */
+(function () {
+  var box = document.getElementById('share-buttons');
+  if (!box) return;
+
+  var LANGS = ['ja', 'en', 'pt', 'vi', 'tl', 'es', 'zh', 'id', 'tr', 'my'];
+
+  /* 共有する URL は「アドレスバーの URL」ではなく canonical から組み立てる。
+     i18n.js が ?lang= を replaceState で書き足すのは辞書取得のあとなので、
+     読み込み直後や言語切替の直後に location.href を読むと 1 手遅れた URL になる。
+     canonical を読むのもこの時点だけ（i18n.js があとで言語別 URL に書き換えるため）。 */
+  var CANON = (function () {
+    var el = document.querySelector('link[rel="canonical"]');
+    var href = (el && el.getAttribute('href')) || location.href;
+    return href.split('#')[0].split('?')[0];
+  })();
+
+  // 言語切替の直後は、まだ URL にも localStorage にも新しい言語が入っていない
+  // （i18n.js が書くのは辞書取得のあと）。切替イベントで受け取った値を一時的に優先する。
+  var _selectedLang = null;
+  function currentLang() { return _selectedLang || window.KomakiLang(); }
+
+  // 共有される URL。日本語は素の URL（正規形）、他言語は ?lang= 付き。
+  function shareUrl() {
+    var lang = currentLang();
+    return lang === 'ja' ? CANON : CANON + '?lang=' + lang;
+  }
+
+  function shareTitle() { return document.title || CANON; }
+
+  function enc(v) { return encodeURIComponent(v); }
+
+  /* url() は生の URL と題名を受け取る（エスケープは各自）。Threads・Bluesky は
+     本文欄しか受け取らないので、題名と URL を1つのテキストにまとめて渡す。
+     Instagram・TikTok は、リンクを渡せる共有 URL を公開していないためここには
+     並べられない（下のコピー方式のボタンと、端末標準の共有が受け皿）。 */
+  var SERVICES = [
+    {cls: 'line',    icon: 'L',  key: 'share_line',     ja: 'LINEで送る',
+     url: function (u, t) { return 'https://social-plugins.line.me/lineit/share?url=' + enc(u) + '&text=' + enc(t); }},
+    {cls: 'x',       icon: 'X',  key: 'share_x',        ja: 'Xでポスト',
+     url: function (u, t) { return 'https://x.com/intent/post?url=' + enc(u) + '&text=' + enc(t); }},
+    {cls: 'fb',      icon: 'f',  key: 'share_facebook', ja: 'Facebookでシェア',
+     url: function (u)    { return 'https://www.facebook.com/sharer/sharer.php?u=' + enc(u); }},
+    {cls: 'hatena',  icon: 'B!', key: 'share_hatena',   ja: 'はてなブックマーク',
+     url: function (u, t) { return 'https://b.hatena.ne.jp/entry/panel/?url=' + enc(u) + '&btitle=' + enc(t); }},
+    {cls: 'threads', icon: '@',  key: 'share_threads',  ja: 'Threadsで投稿',
+     url: function (u, t) { return 'https://www.threads.net/intent/post?text=' + enc(t + ' ' + u); }},
+    {cls: 'bluesky', icon: '🦋', key: 'share_bluesky',  ja: 'Blueskyで投稿',
+     url: function (u, t) { return 'https://bsky.app/intent/compose?text=' + enc(t + ' ' + u); }},
+    {cls: 'reddit',  icon: 'r',  key: 'share_reddit',   ja: 'Redditに投稿',
+     url: function (u, t) { return 'https://www.reddit.com/submit?url=' + enc(u) + '&title=' + enc(t); }}
+  ];
+
+  /* ボタンはアイコンだけ。サービス名は aria-label（＝辞書）に持たせ、
+     マウスを載せたときだけ title として見せる。10個以上並ぶ列で
+     1つずつ文字ラベルを付けると、共有欄がページで一番大きな塊になってしまうため。 */
+  function makeBtn(tag, cls, icon, key, ja) {
+    var el = document.createElement(tag);
+    el.className = 'share-btn share-btn--' + cls;
+    if (tag === 'button') el.type = 'button';
+    el.setAttribute('data-i18n-aria', key);
+    el.setAttribute('aria-label', ja);
+    var ic = document.createElement('span');
+    ic.className = 'share-icon';
+    ic.setAttribute('aria-hidden', 'true');
+    ic.textContent = icon;
+    el.appendChild(ic);
+    return el;
+  }
+
+  // aria-label（辞書が入れた訳文）をそのまま title に写す。辞書の取得は非同期なので、
+  // 描画時ではなく「使う直前」に写す。
+  function syncTitles() {
+    box.querySelectorAll('.share-btn').forEach(function (el) {
+      var t = el.getAttribute('aria-label');
+      if (t && el.title !== t) el.title = t;
+    });
+  }
+
+  var links = [];
+
+  SERVICES.forEach(function (s) {
+    var a = makeBtn('a', s.cls, s.icon, s.key, s.ja);
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a._build = function () { a.href = s.url(shareUrl(), shareTitle()); };
+    a._build();
+    links.push(a);
+    box.appendChild(a);
+  });
+
+  // href は「使われる直前」に組み直す。ページ題名は i18n.js が辞書取得後に
+  // 差し替えるので、描画時の値のままだと日本語の題名で共有されてしまう。
+  function refresh() {
+    links.forEach(function (a) { a._build(); });
+    syncTitles();
+    if (starPermalink) starPermalink.textContent = shareTitle();
+  }
+  var starPermalink = null;   // はてなスターの題名リンク（下で作る）
+  ['pointerdown', 'focusin', 'touchstart', 'mouseover'].forEach(function (ev) {
+    box.addEventListener(ev, refresh, {passive: true});
+  });
+  document.querySelectorAll('.lang-select').forEach(function (sel) {
+    sel.addEventListener('change', function () {
+      _selectedLang = LANGS.indexOf(sel.value) !== -1 ? sel.value : null;
+      refresh();
+    });
+  });
+
+  // --- リンクをコピー ---
+  // 結果の文言は最初から DOM に置いて出し入れするだけにする。押されたあとに
+  // 作ると、そのとき i18n.js の適用は終わっているので日本語のまま出てしまう。
+  var msg = document.createElement('span');
+  msg.className = 'share-copy-msg';
+  msg.setAttribute('role', 'status');
+
+  function msgSpan(key, ja) {
+    var el = document.createElement('span');
+    el.setAttribute('data-i18n', key);
+    el.textContent = ja;
+    el.style.display = 'none';
+    msg.appendChild(el);
+    return el;
+  }
+  var msgOk = msgSpan('share_copied', 'コピーしました');
+  var msgNg = msgSpan('share_copy_failed', 'コピーできませんでした');
+  var msgHostNg = msgSpan('share_mastodon_invalid', 'サーバーのドメインが正しくないようです');
+  // アプリ名を差し込んで組み立てる文言（Instagram 等）はここに書き出す。
+  var msgFree = document.createElement('span');
+  msgFree.style.display = 'none';
+  msg.appendChild(msgFree);
+  var msgAll = [msgOk, msgNg, msgHostNg, msgFree];
+  var msgTimer = null;
+
+  function showMsg(target) {
+    msgAll.forEach(function (el) { el.style.display = el === target ? '' : 'none'; });
+    msg.classList.add('is-visible');
+    clearTimeout(msgTimer);
+    msgTimer = setTimeout(function () { msg.classList.remove('is-visible'); }, 3000);
+  }
+
+  function showText(text) { msgFree.textContent = text; showMsg(msgFree); }
+
+  // クリップボードへのコピー。成否を cb(true/false) で返す。
+  function copyLink(text, cb) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(
+        function () { cb(true); },
+        function () { cb(fallbackCopy(text)); });
+    } else {
+      cb(fallbackCopy(text));
+    }
+  }
+
+  /* --- Mastodon ---
+     分散型なので共有先のサーバーが1つに決まらない。利用者のサーバーのドメインを
+     一度だけ聞いて localStorage（komaki_mastodon）に覚える。第三者のリダイレクト
+     サービスを挟む方法もあるが、このサイトの外部通信先を増やしたくないので採らない。
+     入力を促す文言も辞書から出したいので、非表示の要素に data-i18n で持たせて
+     その textContent を prompt に渡している（main.js からは辞書を直接読めない）。 */
+  var MASTODON_KEY = 'komaki_mastodon';
+
+  function mastodonHost() {
+    try { return localStorage.getItem(MASTODON_KEY) || ''; } catch (e) { return ''; }
+  }
+
+  function normalizeHost(v) {
+    var h = String(v == null ? '' : v).trim().toLowerCase();
+    h = h.replace(/^https?:\/\//, '').replace(/\/.*$/, '');
+    if (h.indexOf('@') !== -1) h = h.split('@').pop();   // @user@example.social 形式
+    return /^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$/.test(h) ? h : '';
+  }
+
+  var hostPrompt = document.createElement('span');
+  hostPrompt.setAttribute('data-i18n', 'share_mastodon_prompt');
+  hostPrompt.textContent = '使っている Mastodon サーバーのドメインを入力してください（例：mstdn.jp）';
+  hostPrompt.style.display = 'none';
+  box.appendChild(hostPrompt);
+
+  // <a> ではなく <button>：サーバーが未登録のうちは行き先が決まらず、
+  // href の無い <a> はキーボードで到達できなくなるため。
+  var mastodonBtn = makeBtn('button', 'mastodon', 'm', 'share_mastodon', 'Mastodonで共有');
+  mastodonBtn.addEventListener('click', function () {
+    var host = mastodonHost();
+    if (!host) {
+      var raw = window.prompt(hostPrompt.textContent, '');
+      if (raw === null) return;                 // 取り消し
+      host = normalizeHost(raw);
+      if (!host) { showMsg(msgHostNg); return; }
+      try { localStorage.setItem(MASTODON_KEY, host); } catch (e) {}
+    }
+    window.open('https://' + host + '/share?text=' + enc(shareTitle() + ' ' + shareUrl()),
+                '_blank', 'noopener');
+  });
+  box.appendChild(mastodonBtn);
+
+  /* --- Instagram・TikTok ---
+     この2つは「リンクを渡して投稿画面を開く」共有URLを公開していないので、
+     ボタンとしては作れない。押したらリンクをコピーして、アプリに貼り付けて
+     もらう案内を出す（ストーリーズやプロフィール欄に貼る使い方に合わせている）。
+     ラベルに「（リンクをコピー）」と書いてあるのは、押しても投稿画面が
+     開かないことを押す前に分かるようにするため。 */
+  var pasteTpl = document.createElement('span');
+  pasteTpl.setAttribute('data-i18n', 'share_copied_paste');
+  pasteTpl.textContent = 'リンクをコピーしました。{app} に貼り付けてください';
+  pasteTpl.style.display = 'none';
+  box.appendChild(pasteTpl);
+
+  [{cls: 'instagram', icon: 'IG', key: 'share_instagram', ja: 'Instagram（リンクをコピー）', app: 'Instagram'},
+   {cls: 'tiktok',    icon: '♪',  key: 'share_tiktok',    ja: 'TikTok（リンクをコピー）',    app: 'TikTok'}
+  ].forEach(function (s) {
+    var b = makeBtn('button', s.cls, s.icon, s.key, s.ja);
+    b.addEventListener('click', function () {
+      copyLink(shareUrl(), function (okFlag) {
+        if (!okFlag) { showMsg(msgNg); return; }
+        showText(pasteTpl.textContent.replace('{app}', s.app));
+      });
+    });
+    box.appendChild(b);
+  });
+
+  var copyBtn = makeBtn('button', 'copy', '🔗', 'share_copy', 'リンクをコピー');
+  copyBtn.addEventListener('click', function () {
+    copyLink(shareUrl(), function (okFlag) { showMsg(okFlag ? msgOk : msgNg); });
+  });
+  box.appendChild(copyBtn);
+
+  function fallbackCopy(text) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:absolute;left:-9999px;top:0;';
+      document.body.appendChild(ta);
+      ta.select();
+      var okFlag = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return okFlag;
+    } catch (e) { return false; }
+  }
+
+  /* --- 端末標準の共有（スマートフォン）---
+     WhatsApp・Zalo・Messenger など、ここに並べきれない共有先の受け皿。
+     Instagram・TikTok も、スマートフォンならこの共有シートから直接開ける
+     （上の2ボタンはコピーまでしかできないPC向けの経路）。 */
+  if (navigator.share) {
+    var nativeBtn = makeBtn('button', 'native', '↗', 'share_native', 'ほかのアプリで共有');
+    nativeBtn.addEventListener('click', function () {
+      navigator.share({title: shareTitle(), url: shareUrl()}).catch(function () {});
+    });
+    box.appendChild(nativeBtn);
+  }
+
+  // 結果表示はボタンの行の外（下）に置く。行の中に空の要素を混ぜると
+  // flex の gap ぶんだけ最後のボタンの右に隙間が残るため。
+  box.parentNode.insertBefore(msg, box.nextSibling);
+
+  /* ===== はてなスター ===== */
+  /* 星は「共有」ではなくページへの反応なので、URL は言語を付けない canonical に
+     固定する。?lang= 付きにすると同じページの星が10か所に散ってしまう。 */
+  var starBox = document.getElementById('share-star');
+  if (!starBox) return;
+
+  /* 並びは「ラベル → ページ題名のリンク → 星」。題名リンクを実体にするのは
+     はてなスターの標準の貼り方で、押しても同じページに戻るだけの空リンクを
+     作らずに済むため（スターの登録先 URL と題名は、この a から読まれる）。 */
+  var entry = document.createElement('div');
+  entry.className = 'hatena-star-entry';
+
+  var starLabel = document.createElement('span');
+  starLabel.className = 'share-star-label';
+  starLabel.setAttribute('data-i18n', 'share_star_label');
+  starLabel.textContent = 'このページに星をつける';
+
+  var permalink = document.createElement('a');
+  permalink.className = 'hatena-star-permalink';
+  permalink.href = CANON;
+  permalink.textContent = shareTitle();
+  starPermalink = permalink;
+
+  var holder = document.createElement('span');
+  holder.className = 'hatena-star-holder';
+
+  entry.appendChild(starLabel);
+  entry.appendChild(permalink);
+  entry.appendChild(holder);
+  starBox.appendChild(entry);
+
+  var note = document.createElement('p');
+  note.className = 'share-star-note';
+  note.setAttribute('data-i18n', 'share_star_note');
+  note.textContent = '★は「はてなスター」。はてなのアカウントで「読んだよ」の印を残せます。';
+  starBox.appendChild(note);
+
+  var STAR_CONFIG = {
+    entryNodes: {
+      'div.hatena-star-entry': {
+        uri: 'a.hatena-star-permalink',
+        title: 'a.hatena-star-permalink',
+        container: 'span.hatena-star-holder'
+      }
+    }
+  };
+
+  /* スクリプトは共有欄が画面に入るまで読み込まない。このサイトは外部の
+     スクリプトをほかに1つも読んでいないので、最下部まで来なかった閲覧者に
+     はてなへの通信を発生させたくない。IntersectionObserver が無い環境では
+     星の欄をクリックしたときに読み込む。 */
+  var starLoaded = false;
+  function loadHatenaStar() {
+    if (starLoaded) return;
+    starLoaded = true;
+    permalink.textContent = shareTitle();   // i18n 適用後の題名で登録する
+    // SiteConfig はスクリプト読み込みの前後どちらでも効くように両方で入れる。
+    window.Hatena = window.Hatena || {};
+    window.Hatena.Star = window.Hatena.Star || {};
+    window.Hatena.Star.SiteConfig = STAR_CONFIG;
+    var s = document.createElement('script');
+    s.src = 'https://s.hatena.ne.jp/js/HatenaStar.js';
+    s.async = true;
+    s.onload = function () {
+      if (!window.Hatena || !window.Hatena.Star) return;
+      window.Hatena.Star.SiteConfig = STAR_CONFIG;
+      // window の load を過ぎてから差し込んだ場合、スクリプト自身の初期化は
+      // もう走らないので手で呼ぶ。まだ load 前なら二重に走らせない。
+      if (document.readyState === 'complete' &&
+          window.Hatena.Star.EntryLoader &&
+          window.Hatena.Star.EntryLoader.loadEntries) {
+        try { window.Hatena.Star.EntryLoader.loadEntries(); } catch (e) {}
+      }
+    };
+    document.body.appendChild(s);
+  }
+
+  if (window.IntersectionObserver) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { io.disconnect(); loadHatenaStar(); }
+      });
+    }, {rootMargin: '200px'});
+    io.observe(starBox);
+  } else {
+    starBox.addEventListener('click', loadHatenaStar, {once: true});
+  }
+})();

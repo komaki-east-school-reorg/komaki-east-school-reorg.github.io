@@ -455,6 +455,19 @@
       </div>
     </div>
   </section>
+  <!-- ===== このページを共有する =====
+       ボタンの実体（リンク先・ラベル）は js/main.js の SHARE BUTTONS ブロックが組み立てる。
+       共有URLは canonical に表示中の言語（?lang=）を足して作るので、静的には書けない。
+       はてなスターのスクリプトはこの欄が画面に入るまで読み込まない（外部通信を遅らせる）。 -->
+  <section class="section share" id="share" aria-labelledby="share-h">
+    <div class="container">
+      <h2 class="share-h" id="share-h" data-i18n="share_heading">このページを共有する</h2>
+      <p class="share-lead" data-i18n="share_lead">リンクを送るだけでも、知る人は増えます。</p>
+      <div class="share-buttons" id="share-buttons"></div>
+      <div class="share-star" id="share-star"></div>
+      <p class="share-note" data-i18n="share_note">Instagram・TikTok はリンクのコピーのみ。自動の外部通信ははてなスターの表示だけです。</p>
+    </div>
+  </section>
 </main>
 
 <footer>

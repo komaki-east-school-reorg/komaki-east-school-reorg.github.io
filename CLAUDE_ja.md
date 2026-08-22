@@ -54,6 +54,15 @@ grep -rn "mext\.go\.jp" *.html js/*.js data/i18n/*.json \
 リンク検査は `data/i18n/*.json` も見ます——日本語以外では、実際に表示されるリンクは
 HTML ではなく辞書側の文面だからです。
 
+さらに別枠として、全ページ最下部の**共有ボタンの送り先**（`social-plugins.line.me` /
+`x.com/intent/post` / `www.facebook.com/sharer/sharer.php` / `b.hatena.ne.jp/entry/panel/` /
+`www.threads.net/intent/post` / `bsky.app/intent/compose` / `www.reddit.com/submit`、および
+閲覧者が入力した Mastodon サーバー `https://<ホスト>/share`）と、
+はてなスターの表示に使う外部スクリプト `s.hatena.ne.jp/js/HatenaStar.js` があります
+（2026-08-22 追加）。これらの URL は HTML にも辞書にも書かれておらず、`js/main.js` の
+SHARE BUTTONS ブロックが組み立てます。**出典ではないので、サイト本文の事実の根拠には
+一切使いません。** 詳しくは下の「共有ボタン（全ページ）」の節を参照。
+
 ### 2. i18n JSON の構文チェック（全ファイル）
 
 JSON では**アポストロフィはそのまま書いてよく**、`\'` と書くと逆に構文エラーになります。
@@ -289,7 +298,66 @@ site-facts.json に対応エントリを追記してください。
 | FAQ ACCORDION | FAQ のアコーディオン開閉 |
 | VOICE FILTER | 賛否の声のカテゴリフィルター |
 | OFFICIAL NEWS | `data/news.json` を取得して公式お知らせを描画 |
+| SHARE BUTTONS | 全ページ最下部の共有ボタン（LINE / X / Facebook / はてなブックマーク / リンクのコピー / 端末標準の共有）と、はてなスターを組み立てる。→ 下の「共有ボタン」節 |
 | CALENDAR | `schedule.html` のインタラクティブカレンダー（イベントは `data/events.json` を実行時に fetch。追加・変更は main.js ではなく JSON を編集。10言語ラベル必須）。初期表示は閲覧者の**現在月**で固定。予定が0件の月でもクランプせず今月を開く（開いた人がまず知りたいのは「今がどこか」のため）。予定のある月へ自動で飛ばさないこと |
+
+---
+
+## 共有ボタン（全ページ）
+
+各ページの `</main>` の直前に `<section class="section share" id="share">` があります。
+見出し・リード文・注記は HTML に `data-i18n` 付きで書かれていますが、**ボタンの実体は
+`js/main.js` の SHARE BUTTONS ブロックが `#share-buttons` / `#share-star` に組み立てます**。
+
+- **ボタン**（並び順）：LINE・X・Facebook・はてなブックマーク・Threads・Bluesky・Reddit
+  （`<a target="_blank">`。URL は `SERVICES` の `url()` が組み立てる）→ Mastodon（`<button>`）
+  → Instagram・TikTok（`<button>`。コピーのみ）→「リンクをコピー」→
+  `navigator.share` がある端末でのみ「ほかのアプリで共有」。
+  最後のボタンが WhatsApp・Zalo・Messenger など個別に並べきれない共有先を引き受けており、
+  Instagram・TikTok を実際に「開ける」唯一の経路でもある。
+  サービスごとのボタンを増やす代わりにこれを外す、ということはしないこと。
+- **Instagram・TikTok はリンクを渡せる共有インテントを公開していない**ため、
+  ボタンは投稿画面を開かず、URL をコピーして「{app} に貼り付けてください」と出す。
+  押す前に分かるようラベルに「（リンクをコピー）」と入れてある。将来どちらかが本物の
+  共有 URL を公開したら `SERVICES` に移してコピー経路を外すこと。存在しない
+  エンドポイントを推測で書かないこと。
+- **Mastodon は分散型**で送り先が1つに決まらない。初回だけ利用者のサーバーの
+  ドメインを聞き、正規化して（`https://`・末尾のパス・`@user@example` 形式を除去）
+  `localStorage` の `komaki_mastodon` に保存し、`https://<ホスト>/share?text=` を開く。
+  第三者のリダイレクトサービスを使えば簡単だが、外部ホストが1つしかないサイトに
+  もう1つ足すことになるので採らない。入力を促す文言は辞書（`share_mastodon_prompt`）に
+  あり、非表示の `data-i18n` 要素から読んでいる（main.js は辞書を直接読めないため）。
+- **ボタンに文字ラベルは付けず、アイコンだけ**。サービス名は `aria-label`
+  （`data-i18n-aria`）に入れ、マウスを載せたときだけ `syncTitles()` が `title` に写す。
+  10個が1列に並ぶので、1つずつ文字ラベルを付けると共有欄がページで一番大きな塊に
+  なってしまう。アイコンにロゴ画像を使わないのは、外部ホスト（またはバイト数）が
+  増えるうえ、10言語で同じ幅に揃わないため。`share_lead` / `share_note` を
+  1行の短文にしているのも同じ理由。
+- **共有する URL は `<link rel="canonical">` ＋ 表示中の言語**から組み立てる。
+  アドレスバーからは作らない。`i18n.js` が `?lang=` を書き込むのは辞書取得のあとなので、
+  読み込み直後と言語切替の直後は 1 手遅れた URL になるため。canonical を読むのも
+  スクリプト読み込み時の1回だけ（`i18n.js` があとで言語別 URL に書き換えるため）。
+- **`href` とページ題名は `pointerdown` / `focusin` / 言語切替のたびに組み直す**。
+  `document.title` は `i18n.js` が辞書取得後に差し替えるので、描画時の値のままだと
+  日本語の題名で共有されてしまう。
+- **ラベルはインライン辞書ではなく `data-i18n`**。公式ニュース等のブロックが
+  インライン辞書を持つのは辞書取得より先に描くためだが、このブロックは `applyDict` より
+  前に DOM を作れるので辞書側に一本化している。HTML に現れないキーなので
+  `build_page_dicts.py` の `RUNTIME_KEYS` に列挙してある。
+  **共有まわりのキーを増やしたらここにも足すこと**（足さないと日本語のまま出る）。
+
+### はてなスター
+
+ボタンの下に「ラベル → ページ題名のリンク → 星」の順で置いています
+（`Hatena.Star.SiteConfig.entryNodes` の標準的な貼り方）。2点は意図的です。
+
+- 登録先 URL は **`?lang=` を付けない素の canonical** に固定。星は「共有」ではなく
+  ページへの反応なので、言語別にすると同じページの星が10か所に散ってしまう。
+- `HatenaStar.js` は **このサイトが読み込む唯一の外部スクリプト**で、共有欄が
+  画面の 200px 手前に入るまで読み込まない（`IntersectionObserver`。この API が無い
+  環境では星の欄をクリックしたときに読み込む）。最下部まで来なかった閲覧者には
+  はてなへの通信が発生しない。**外部スクリプトを2つ目に増やすときは、この
+  「自動では外部と通信しない」性質ごと考え直すこと**（ウィジェット1つより価値がある）。
 
 ---
 
@@ -346,6 +414,7 @@ notice-banner（非公式サイト注意書き）
 </header>
 <main>
   ページ固有コンテンツ
+  <section class="section share" id="share">（全ページ共通の共有ボタン欄）
 </main>
 <footer>
   ...
@@ -354,7 +423,7 @@ notice-banner（非公式サイト注意書き）
 <script src="js/main.js">
 ```
 
-ページ間で共有テンプレートや SSI は使用していないため、新規ページ追加時は既存ページからヘッダ・フッターブロックをまるごとコピーしてください。
+ページ間で共有テンプレートや SSI は使用していないため、新規ページ追加時は既存ページからヘッダ・共有欄・フッターの各ブロックをまるごとコピーしてください。
 あわせて **`sitemap.xml` と `files.txt` への追加**、および全言語ファイルへの
 `meta_title_<ページID>` / `meta_desc_<ページID>` の追加も必要です。
 
