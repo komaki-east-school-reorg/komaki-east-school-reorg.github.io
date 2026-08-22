@@ -200,6 +200,11 @@ Every page carries a `<section class="section share" id="share">` just above `</
 
 - Its URL is the **bare canonical URL with no `?lang=`**. A star is a reaction to the page, not a share; keying it per language would scatter one page's stars across ten URLs.
 - `HatenaStar.js` is **the only external script this site loads**, and it is not loaded until the share section comes within 200 px of the viewport (`IntersectionObserver`; a click on the star row is the fallback where that API is missing). A reader who never reaches the bottom of the page causes no request to Hatena. If a second third-party script is ever added, revisit this — the "no automatic third-party traffic" property is worth more than any one widget.
+- **Loading it late takes two non-obvious steps** (both were got wrong first time round, and the failure is silent — the label renders with no star next to it):
+  1. Set `Hatena.Star.SiteConfig` **after** the script loads, never before. The script's own line is `void 0 === window.Hatena.Star && (window.Hatena.Star = {…})`, so pre-creating `window.Hatena.Star` to hold the config makes it skip its own assignment and never initialize.
+  2. Its initializer is registered as `window.addEventListener("DOMContentLoaded", …)`, which has long since fired by the time the section scrolls into view, so it must be re-triggered with `window.dispatchEvent(new Event('DOMContentLoaded'))`. There is no public entry point for this — `Hatena.Star.EntryLoader.loadEntries()` does not exist in the current build. Double-firing is safe: it skips any entry node that already contains `[data-hatena-star]`.
+- In the current build **both the star's URL and its displayed title are read from the `uri` node** (the title comes from that element's `innerText`, not from the `title` selector). The permalink's text is the page title, so both readings give the right answer — keep it that way rather than moving the title into a separate node.
+- If nothing renders within 4 s the whole star row hides itself, so a broken widget never leaves a label with no star beside it.
 
 ### Date-driven auto-display (and when it updates)
 

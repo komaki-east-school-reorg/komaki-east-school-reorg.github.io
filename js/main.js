@@ -966,6 +966,10 @@ window.KomakiLang = (function () {
   note.textContent = '★は「はてなスター」。はてなのアカウントで「読んだよ」の印を残せます。';
   starBox.appendChild(note);
 
+  /* セレクタは entryNode（div.hatena-star-entry）の中を querySelector する。
+     ★ 現行の HatenaStar.js は登録先 URL も表示題名も uri のノードから読む
+     （題名は title ではなく uri のノードの innerText。はてな側の実装がそうなっている）。
+     題名リンクを実体にしているので、どちらの読み方でも正しい値になる。 */
   var STAR_CONFIG = {
     entryNodes: {
       'div.hatena-star-entry': {
@@ -985,23 +989,31 @@ window.KomakiLang = (function () {
     if (starLoaded) return;
     starLoaded = true;
     permalink.textContent = shareTitle();   // i18n 適用後の題名で登録する
-    // SiteConfig はスクリプト読み込みの前後どちらでも効くように両方で入れる。
-    window.Hatena = window.Hatena || {};
-    window.Hatena.Star = window.Hatena.Star || {};
-    window.Hatena.Star.SiteConfig = STAR_CONFIG;
+
     var s = document.createElement('script');
     s.src = 'https://s.hatena.ne.jp/js/HatenaStar.js';
     s.async = true;
+    s.onerror = function () { starBox.hidden = true; };
     s.onload = function () {
-      if (!window.Hatena || !window.Hatena.Star) return;
+      /* ★ SiteConfig は「読み込んだあと」に入れること。
+         HatenaStar.js は  void 0 === window.Hatena.Star && (window.Hatena.Star = {...})
+         という書き方なので、先回りして window.Hatena.Star を作っておくと
+         本体側の代入がまるごとスキップされ、初期化に必要な中身が入らない。 */
+      if (!window.Hatena || !window.Hatena.Star) { starBox.hidden = true; return; }
       window.Hatena.Star.SiteConfig = STAR_CONFIG;
-      // window の load を過ぎてから差し込んだ場合、スクリプト自身の初期化は
-      // もう走らないので手で呼ぶ。まだ load 前なら二重に走らせない。
-      if (document.readyState === 'complete' &&
-          window.Hatena.Star.EntryLoader &&
-          window.Hatena.Star.EntryLoader.loadEntries) {
-        try { window.Hatena.Star.EntryLoader.loadEntries(); } catch (e) {}
-      }
+
+      /* ★ 本体の初期化は window の DOMContentLoaded に紐づいている。この欄は
+         画面に入ってから読み込むので本物の DOMContentLoaded はとうに過ぎており、
+         そのままでは初期化関数が一度も走らない。同じイベントを window に投げて
+         走らせる。二重に走っても、はてな側が [data-hatena-star] の有無で弾く。
+         （EntryLoader.loadEntries() という入口は現行ビルドには無い。） */
+      try { window.dispatchEvent(new Event('DOMContentLoaded')); } catch (e) {}
+
+      // 描画されなかったとき（読み込み失敗・仕様変更）は、星の出ないラベルだけが
+      // 残るのを避けて欄ごと畳む。はてな側は setTimeout(0) で差し込むので4秒あれば足りる。
+      setTimeout(function () {
+        if (!holder.querySelector('[data-hatena-star]')) starBox.hidden = true;
+      }, 4000);
     };
     document.body.appendChild(s);
   }
