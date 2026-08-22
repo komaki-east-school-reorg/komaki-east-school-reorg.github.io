@@ -732,7 +732,7 @@
   "share_native": "ほかの アプリで おくる",
   "share_star_label": "このページに ほしを つける",
   "share_star_note": "★は「はてなスター」。よんだ しるしを のこせます。",
-  "share_note": "ボタンは おしたときだけ うごきます。じどうで そとと つながるのは ★だけです。",
+  "share_note": "ボタンは おしたときだけ うごきます。じどうで そとと つながるのは ★と Facebookの いいねだけです。",
   "share_threads": "Threadsに かく",
   "share_bluesky": "Blueskyに かく",
   "share_reddit": "Redditに かく",
@@ -741,5 +741,6 @@
   "share_mastodon_invalid": "サーバーの なまえが ちがうみたいです",
   "share_instagram": "Instagram（リンクを コピー）",
   "share_tiktok": "TikTok（リンクを コピー）",
-  "share_copied_paste": "リンクを コピーしました。{app} に はりつけてください"
+  "share_copied_paste": "リンクを コピーしました。{app} に はりつけてください",
+  "share_fb_like": "Facebookの いいねボタン"
 }

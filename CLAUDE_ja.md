@@ -58,7 +58,8 @@ HTML ではなく辞書側の文面だからです。
 `x.com/intent/post` / `www.facebook.com/sharer/sharer.php` / `b.hatena.ne.jp/entry/panel/` /
 `www.threads.net/intent/post` / `bsky.app/intent/compose` / `www.reddit.com/submit`、および
 閲覧者が入力した Mastodon サーバー `https://<ホスト>/share`）と、
-はてなスターの表示に使う外部スクリプト `s.hatena.ne.jp/js/HatenaStar.js` があります
+はてなスターの表示に使う外部スクリプト `s.hatena.ne.jp/js/HatenaStar.js`、
+Facebook いいねの iframe `www.facebook.com/plugins/like.php` があります
 （2026-08-22 追加）。これらの URL は HTML にも辞書にも書かれておらず、`js/main.js` の
 SHARE BUTTONS ブロックが組み立てます。**出典ではないので、サイト本文の事実の根拠には
 一切使いません。** 詳しくは下の「共有ボタン（全ページ）」の節を参照。
@@ -372,8 +373,28 @@ site-facts.json に対応エントリを追記してください。
 - 現行ビルドは**登録先 URL も表示題名も `uri` のノードから読む**（題名は `title`
   セレクタではなく、そのノードの `innerText`）。題名リンクを実体にしてあるので
   どちらの読み方でも正しい値になる。題名を別ノードに移さないこと。
-- 4秒たっても描画されないときは星の欄ごと畳む。星の出ないラベルだけが
-  残るのを避けるため。
+- 4秒たっても描画されないときは、はてなスターのまとまり（`.share-star-hatena`）を
+  畳む。星の出ないラベルだけが残るのを避けるため。畳むのははてな側だけで、
+  下の Facebook いいねは巻き込まない。
+
+### Facebook いいね
+
+星の行の下に置き、同じ `IntersectionObserver` で読み込む。
+
+- **必ず iframe 版（`plugins/like.php`）を使う。公式 SDK
+  （`connect.facebook.net/…/sdk.js`）は使わない。** SDK はこのサイトのオリジンで
+  Facebook のコードを動かすことになり、DOM もクッキーも触れる。iframe なら
+  facebook.com のオリジンに閉じるので、外に出るのは URL と Facebook 自身の
+  クッキーだけで済む。SDK に「乗り換え」ないこと。
+- **このサイトで最もプライバシー上の負担が大きい部品**。押さなくても、表示された
+  時点で Facebook にページ URL が渡る（Facebook にログイン中の閲覧者なら誰でも）。
+  遅延読み込みにしているのはそのためで、`share_note` でもはてなスターと並べて
+  明示している。いいねを外すときは `share_note` からも消すこと。
+- `href` は星と同じ理由で **`?lang=` を付けない canonical に固定**。`locale` だけは
+  表示中の言語に追随する（`FB_LOCALE`）。言語が実際に変わったときだけ src を
+  入れ直すので、切り替えのたびに Facebook を叩くことはない。
+- iframe の高さは CSS（`.fb-like-frame`）で先に確保してある。読み込み時に
+  下の行がずれないようにするため。
 
 ---
 

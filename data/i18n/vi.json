@@ -739,7 +739,7 @@
   "share_native": "Chia sẻ bằng ứng dụng khác",
   "share_star_label": "Tặng sao cho trang này",
   "share_star_note": "★ là Hatena Star — để lại dấu đã đọc bằng tài khoản Hatena.",
-  "share_note": "Nút Instagram và TikTok chỉ sao chép liên kết. Hatena Star là kết nối bên ngoài tự động duy nhất.",
+  "share_note": "Nút Instagram và TikTok chỉ sao chép liên kết. Hatena Star và nút Thích của Facebook là những kết nối bên ngoài tự động duy nhất.",
   "share_threads": "Đăng lên Threads",
   "share_bluesky": "Đăng lên Bluesky",
   "share_reddit": "Đăng lên Reddit",
@@ -748,5 +748,6 @@
   "share_mastodon_invalid": "Đây có vẻ không phải là tên miền máy chủ",
   "share_instagram": "Instagram (sao chép liên kết)",
   "share_tiktok": "TikTok (sao chép liên kết)",
-  "share_copied_paste": "Đã sao chép liên kết. Hãy dán vào {app}."
+  "share_copied_paste": "Đã sao chép liên kết. Hãy dán vào {app}.",
+  "share_fb_like": "Nút Thích của Facebook"
 }

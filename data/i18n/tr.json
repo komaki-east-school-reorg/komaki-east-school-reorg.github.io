@@ -739,7 +739,7 @@
   "share_native": "Başka bir uygulamayla paylaş",
   "share_star_label": "Bu sayfaya yıldız ver",
   "share_star_note": "★ Hatena Star'dır — Hatena hesabıyla okudum işareti bırakın.",
-  "share_note": "Instagram ve TikTok düğmeleri yalnızca bağlantıyı kopyalar. Otomatik dış bağlantı yalnızca Hatena Star'dır.",
+  "share_note": "Instagram ve TikTok düğmeleri yalnızca bağlantıyı kopyalar. Otomatik dış bağlantılar yalnızca Hatena Star ve Facebook Beğen düğmesidir.",
   "share_threads": "Threads'te paylaş",
   "share_bluesky": "Bluesky'da paylaş",
   "share_reddit": "Reddit'te paylaş",
@@ -748,5 +748,6 @@
   "share_mastodon_invalid": "Bu bir sunucu alan adına benzemiyor",
   "share_instagram": "Instagram (bağlantıyı kopyala)",
   "share_tiktok": "TikTok (bağlantıyı kopyala)",
-  "share_copied_paste": "Bağlantı kopyalandı. {app} uygulamasına yapıştırın."
+  "share_copied_paste": "Bağlantı kopyalandı. {app} uygulamasına yapıştırın.",
+  "share_fb_like": "Facebook Beğen düğmesi"
 }

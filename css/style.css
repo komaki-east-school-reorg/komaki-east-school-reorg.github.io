@@ -1646,6 +1646,19 @@ footer {
 .hatena-star-permalink:hover { color: var(--primary); border-bottom-color: var(--accent); text-decoration: none; }
 .hatena-star-holder img { vertical-align: middle; }
 .share-star-note { font-size: .75rem; color: var(--text-muted); margin-top: .45rem; line-height: 1.65; }
+
+/* Facebook いいね。公式SDKではなく iframe 版なので、枠だけこちらで整える。
+   src は画面に入るまで入れないが、高さは最初から取っておく（読み込み時に
+   下の行がガクッと動かないように）。 */
+.share-star-hatena { margin-bottom: .75rem; }
+.fb-like-box { line-height: 0; }
+.fb-like-frame {
+  border: none;
+  overflow: hidden;
+  width: 160px;
+  height: 21px;
+  vertical-align: middle;
+}
 .share-note { font-size: .73rem; color: var(--text-muted); margin-top: 1rem; line-height: 1.65; }
 
 @media (max-width: 480px) {

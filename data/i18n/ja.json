@@ -739,7 +739,7 @@
   "share_native": "ほかのアプリで共有",
   "share_star_label": "このページに星をつける",
   "share_star_note": "★は「はてなスター」。はてなのアカウントで「読んだよ」の印を残せます。",
-  "share_note": "Instagram・TikTok はリンクのコピーのみ。自動の外部通信ははてなスターの表示だけです。",
+  "share_note": "Instagram・TikTok はリンクのコピーのみ。自動の外部通信は、はてなスターと Facebook いいねの表示だけです。",
   "share_threads": "Threadsで投稿",
   "share_bluesky": "Blueskyで投稿",
   "share_reddit": "Redditに投稿",
@@ -748,5 +748,6 @@
   "share_mastodon_invalid": "サーバーのドメインが正しくないようです",
   "share_instagram": "Instagram（リンクをコピー）",
   "share_tiktok": "TikTok（リンクをコピー）",
-  "share_copied_paste": "リンクをコピーしました。{app} に貼り付けてください"
+  "share_copied_paste": "リンクをコピーしました。{app} に貼り付けてください",
+  "share_fb_like": "Facebookのいいねボタン"
 }

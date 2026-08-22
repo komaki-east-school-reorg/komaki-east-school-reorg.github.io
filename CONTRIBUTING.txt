@@ -72,11 +72,15 @@
     ボタンは投稿画面を開かず、リンクをコピーして貼り付けを案内するだけ。
     ラベルにも「（リンクをコピー）」と書く。存在しないエンドポイントを
     推測で書かないこと。
-  ・はてなスターだけは表示のために外部スクリプトを読む：
-      s.hatena.ne.jp/js/HatenaStar.js
-    このサイトが読み込む唯一の外部スクリプト。共有欄が画面に入るまで
-    読み込まない（IntersectionObserver）ので、最下部まで来なかった閲覧者に
-    はてなへの通信は発生しない。増やすときはこの方針ごと考え直すこと。
+  ・押さなくても外部と通信する部品は次の2つだけ。どちらも共有欄が画面に
+    入るまで読み込まない（IntersectionObserver）ので、最下部まで来なかった
+    閲覧者には通信が発生しない。増やすときはこの方針ごと考え直すこと。
+      s.hatena.ne.jp/js/HatenaStar.js            はてなスター（スクリプト）
+      www.facebook.com/plugins/like.php          Facebook いいね（iframe）
+  ・Facebook いいねは必ず iframe 版を使い、公式 SDK（connect.facebook.net）は
+    使わない。SDK はこのサイトのオリジンで Facebook のコードを動かすことになる。
+    また、表示しただけでページURLが Facebook に渡る点は share_note に明記して
+    あるので、外すときはその文面も直すこと。
   ・これらは「出典」ではない。事実の根拠に使うことは一切ない（ルール4）。
   ・上記の city.komaki.aichi.jp / mext.go.jp 用チェックには引っかからない。
 

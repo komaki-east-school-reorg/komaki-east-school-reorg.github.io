@@ -4,6 +4,12 @@
     {
       "date": "2026-08-23",
       "type": "feature",
+      "ja": "共有欄に Facebook のいいねボタンを追加",
+      "en": "Facebook Like button added to the share section"
+    },
+    {
+      "date": "2026-08-23",
+      "type": "feature",
       "ja": "全ページ下部にSNS共有ボタン（10種）・リンクのコピー・はてなスターを追加",
       "en": "Share buttons for 10 services, link copying, and Hatena Star added to the bottom of every page"
     },
