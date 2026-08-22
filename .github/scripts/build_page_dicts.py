@@ -65,7 +65,6 @@ RUNTIME_KEYS = [
     "share_native",
     "share_star_label",
     "share_star_note",
-    "share_fb_like",
 ]
 
 KEY_RE = re.compile(r'data-i18n(?:-html|-aria)?="([^"]+)"')

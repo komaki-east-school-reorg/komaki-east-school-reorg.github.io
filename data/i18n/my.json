@@ -739,7 +739,7 @@
   "share_native": "အခြားအက်ပ်ဖြင့် မျှဝေရန်",
   "share_star_label": "ဤစာမျက်နှာကို ကြယ်ပေးရန်",
   "share_star_note": "★ သည် Hatena Star ဖြစ်သည်။ Hatena အကောင့်ဖြင့် ဖတ်ပြီးကြောင်း အမှတ်အသား ချန်နိုင်သည်။",
-  "share_note": "Instagram နှင့် TikTok ခလုတ်များမှာ လင့်ခ် ကူးယူရုံသာ ဖြစ်သည်။ အလိုအလျောက် ပြင်ပချိတ်ဆက်မှုမှာ Hatena Star နှင့် Facebook Like ခလုတ် နှစ်ခုသာ ဖြစ်သည်။",
+  "share_note": "Instagram နှင့် TikTok ခလုတ်များမှာ လင့်ခ် ကူးယူရုံသာ ဖြစ်သည်။ အလိုအလျောက် ပြင်ပချိတ်ဆက်မှုမှာ Hatena Star သာ ဖြစ်သည်။",
   "share_threads": "Threads တွင် တင်ရန်",
   "share_bluesky": "Bluesky တွင် တင်ရန်",
   "share_reddit": "Reddit တွင် တင်ရန်",
@@ -748,6 +748,5 @@
   "share_mastodon_invalid": "၎င်းသည် ဆာဗာဒိုမိန်း မဟုတ်ပုံရပါသည်",
   "share_instagram": "Instagram (လင့်ခ် ကူးယူရန်)",
   "share_tiktok": "TikTok (လင့်ခ် ကူးယူရန်)",
-  "share_copied_paste": "လင့်ခ် ကူးယူပြီးပါပြီ။ {app} တွင် ကူးထည့်ပါ။",
-  "share_fb_like": "Facebook Like ခလုတ်"
+  "share_copied_paste": "လင့်ခ် ကူးယူပြီးပါပြီ။ {app} တွင် ကူးထည့်ပါ။"
 }

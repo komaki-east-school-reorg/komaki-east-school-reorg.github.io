@@ -739,7 +739,7 @@
   "share_native": "Bagikan dengan aplikasi lain",
   "share_star_label": "Beri bintang pada halaman ini",
   "share_star_note": "★ adalah Hatena Star — tinggalkan tanda sudah membaca dengan akun Hatena.",
-  "share_note": "Tombol Instagram dan TikTok hanya menyalin tautan. Hatena Star dan tombol Suka Facebook adalah satu-satunya koneksi luar otomatis.",
+  "share_note": "Tombol Instagram dan TikTok hanya menyalin tautan. Hatena Star adalah satu-satunya koneksi luar otomatis.",
   "share_threads": "Posting di Threads",
   "share_bluesky": "Posting di Bluesky",
   "share_reddit": "Posting di Reddit",
@@ -748,6 +748,5 @@
   "share_mastodon_invalid": "Itu sepertinya bukan domain server",
   "share_instagram": "Instagram (salin tautan)",
   "share_tiktok": "TikTok (salin tautan)",
-  "share_copied_paste": "Tautan disalin. Tempelkan ke {app}.",
-  "share_fb_like": "Tombol Suka Facebook"
+  "share_copied_paste": "Tautan disalin. Tempelkan ke {app}."
 }

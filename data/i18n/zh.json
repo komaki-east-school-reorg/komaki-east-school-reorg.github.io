@@ -739,7 +739,7 @@
   "share_native": "用其他应用分享",
   "share_star_label": "给本页加星",
   "share_star_note": "★是Hatena Star。用Hatena账号可以留下「读过了」的标记。",
-  "share_note": "Instagram・TikTok 只是复制链接。自动的外部通信只有Hatena Star和Facebook点赞按钮的显示。",
+  "share_note": "Instagram・TikTok 只是复制链接。自动的外部通信只有Hatena Star的显示。",
   "share_threads": "发布到Threads",
   "share_bluesky": "发布到Bluesky",
   "share_reddit": "发布到Reddit",
@@ -748,6 +748,5 @@
   "share_mastodon_invalid": "这似乎不是服务器域名",
   "share_instagram": "Instagram（复制链接）",
   "share_tiktok": "TikTok（复制链接）",
-  "share_copied_paste": "已复制链接。请粘贴到{app}。",
-  "share_fb_like": "Facebook点赞按钮"
+  "share_copied_paste": "已复制链接。请粘贴到{app}。"
 }

@@ -739,7 +739,7 @@
   "share_native": "Compartilhar em outro aplicativo",
   "share_star_label": "Dar uma estrela a esta página",
   "share_star_note": "★ é o Hatena Star: deixe a marca de que leu com uma conta Hatena.",
-  "share_note": "Os botões do Instagram e do TikTok apenas copiam o link. O Hatena Star e o botão Curtir do Facebook são as únicas conexões externas automáticas.",
+  "share_note": "Os botões do Instagram e do TikTok apenas copiam o link. O Hatena Star é a única conexão externa automática.",
   "share_threads": "Publicar no Threads",
   "share_bluesky": "Publicar no Bluesky",
   "share_reddit": "Publicar no Reddit",
@@ -748,6 +748,5 @@
   "share_mastodon_invalid": "Isso não parece um domínio de servidor",
   "share_instagram": "Instagram (copiar link)",
   "share_tiktok": "TikTok (copiar link)",
-  "share_copied_paste": "Link copiado. Cole no {app}.",
-  "share_fb_like": "Botão Curtir do Facebook"
+  "share_copied_paste": "Link copiado. Cole no {app}."
 }

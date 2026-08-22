@@ -769,9 +769,7 @@ window.KomakiLang = (function () {
     links.forEach(function (a) { a._build(); });
     syncTitles();
     if (starPermalink) starPermalink.textContent = shareTitle();
-    if (refreshFbLike) refreshFbLike();
   }
-  var refreshFbLike = null;   // Facebook いいねの読み直し（下で定義する）
   var starPermalink = null;   // はてなスターの題名リンク（下で作る）
   ['pointerdown', 'focusin', 'touchstart', 'mouseover'].forEach(function (ev) {
     box.addEventListener(ev, refresh, {passive: true});
@@ -960,57 +958,13 @@ window.KomakiLang = (function () {
   entry.appendChild(starLabel);
   entry.appendChild(permalink);
   entry.appendChild(holder);
+  starBox.appendChild(entry);
 
   var note = document.createElement('p');
   note.className = 'share-star-note';
   note.setAttribute('data-i18n', 'share_star_note');
   note.textContent = '★は「はてなスター」。はてなのアカウントで「読んだよ」の印を残せます。';
-
-  // 描画に失敗したときはこのまとまりごと畳む（Facebook いいねは巻き込まない）
-  var starWrap = document.createElement('div');
-  starWrap.className = 'share-star-hatena';
-  starWrap.appendChild(entry);
-  starWrap.appendChild(note);
-  starBox.appendChild(starWrap);
-
-  /* ===== Facebook いいね =====
-     公式の SDK（connect.facebook.net/sdk.js）ではなく iframe 版を使う。
-     SDK はこのサイトのオリジンで Facebook の JavaScript を実行させることになり、
-     ページの DOM もクッキーも触れるようになる。iframe なら中身は facebook.com の
-     オリジンに閉じるので、渡るのは URL と Facebook 自身のクッキーだけで済む。
-     いいねの対象 URL は、はてなスターと同じ理由で ?lang= を付けない canonical に固定。 */
-  var FB_LOCALE = {ja: 'ja_JP', en: 'en_US', pt: 'pt_BR', vi: 'vi_VN', tl: 'tl_PH',
-                   es: 'es_LA', zh: 'zh_CN', id: 'id_ID', tr: 'tr_TR', my: 'my_MM'};
-
-  var fbBox = document.createElement('div');
-  fbBox.className = 'fb-like-box';
-
-  var fbFrame = document.createElement('iframe');
-  fbFrame.className = 'fb-like-frame';
-  fbFrame.setAttribute('scrolling', 'no');
-  fbFrame.setAttribute('frameborder', '0');
-  fbFrame.setAttribute('allowtransparency', 'true');
-  fbFrame.setAttribute('data-i18n-aria', 'share_fb_like');
-  fbFrame.setAttribute('aria-label', 'Facebookのいいねボタン');
-  fbFrame.title = 'Facebookのいいねボタン';
-  fbBox.appendChild(fbFrame);
-  starBox.appendChild(fbBox);
-
-  var fbLocale = null;
-  function fbSrc() {
-    return 'https://www.facebook.com/plugins/like.php' +
-           '?href=' + enc(CANON) +
-           '&layout=button_count&action=like&size=small&share=false' +
-           '&locale=' + (FB_LOCALE[currentLang()] || 'en_US') +
-           '&width=160&height=21&appId=';
-  }
-  // 表示中の言語が変わったときだけ読み直す（毎回入れ直すと通信が増えるため）
-  refreshFbLike = function () {
-    var lang = currentLang();
-    if (!fbLoaded || lang === fbLocale) return;
-    fbLocale = lang;
-    fbFrame.src = fbSrc();
-  };
+  starBox.appendChild(note);
 
   /* セレクタは entryNode（div.hatena-star-entry）の中を querySelector する。
      ★ 現行の HatenaStar.js は登録先 URL も表示題名も uri のノードから読む
@@ -1030,20 +984,7 @@ window.KomakiLang = (function () {
      スクリプトをほかに1つも読んでいないので、最下部まで来なかった閲覧者に
      はてなへの通信を発生させたくない。IntersectionObserver が無い環境では
      星の欄をクリックしたときに読み込む。 */
-  var starLoaded = false, fbLoaded = false;
-
-  function loadReactions() {
-    loadFbLike();
-    loadHatenaStar();
-  }
-
-  function loadFbLike() {
-    if (fbLoaded) return;
-    fbLoaded = true;
-    fbLocale = currentLang();
-    fbFrame.src = fbSrc();
-  }
-
+  var starLoaded = false;
   function loadHatenaStar() {
     if (starLoaded) return;
     starLoaded = true;
@@ -1052,13 +993,13 @@ window.KomakiLang = (function () {
     var s = document.createElement('script');
     s.src = 'https://s.hatena.ne.jp/js/HatenaStar.js';
     s.async = true;
-    s.onerror = function () { starWrap.hidden = true; };
+    s.onerror = function () { starBox.hidden = true; };
     s.onload = function () {
       /* ★ SiteConfig は「読み込んだあと」に入れること。
          HatenaStar.js は  void 0 === window.Hatena.Star && (window.Hatena.Star = {...})
          という書き方なので、先回りして window.Hatena.Star を作っておくと
          本体側の代入がまるごとスキップされ、初期化に必要な中身が入らない。 */
-      if (!window.Hatena || !window.Hatena.Star) { starWrap.hidden = true; return; }
+      if (!window.Hatena || !window.Hatena.Star) { starBox.hidden = true; return; }
       window.Hatena.Star.SiteConfig = STAR_CONFIG;
 
       /* ★ 本体の初期化は window の DOMContentLoaded に紐づいている。この欄は
@@ -1071,7 +1012,7 @@ window.KomakiLang = (function () {
       // 描画されなかったとき（読み込み失敗・仕様変更）は、星の出ないラベルだけが
       // 残るのを避けて欄ごと畳む。はてな側は setTimeout(0) で差し込むので4秒あれば足りる。
       setTimeout(function () {
-        if (!holder.querySelector('[data-hatena-star]')) starWrap.hidden = true;
+        if (!holder.querySelector('[data-hatena-star]')) starBox.hidden = true;
       }, 4000);
     };
     document.body.appendChild(s);
@@ -1080,11 +1021,11 @@ window.KomakiLang = (function () {
   if (window.IntersectionObserver) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (en.isIntersecting) { io.disconnect(); loadReactions(); }
+        if (en.isIntersecting) { io.disconnect(); loadHatenaStar(); }
       });
     }, {rootMargin: '200px'});
     io.observe(starBox);
   } else {
-    starBox.addEventListener('click', loadReactions, {once: true});
+    starBox.addEventListener('click', loadHatenaStar, {once: true});
   }
 })();
