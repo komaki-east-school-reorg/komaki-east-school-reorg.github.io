@@ -1,8 +1,37 @@
 {
-  "fetched_at": "2026-08-21T01:58:56Z",
+  "fetched_at": "2026-08-23T02:01:22Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "hikarigaoka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "光ヶ丘中学校",
+        "ja_kids": "ひかりがおか中学校",
+        "en": "Hikari-ga-oka Junior High",
+        "zh": "光之丘中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
+      "latest_date": "2026-08-22",
+      "items": [
+        {
+          "title": "新生Toukadai！新しいユニフォームで挑んだ誇り高き初公式戦",
+          "date": "2026-08-22",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135738422?tm=20260822121319"
+        },
+        {
+          "title": "7/25(土)ジュニア奉仕団「盲導犬育成募金」",
+          "date": "2026-07-25",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135709396?tm=20260725190401"
+        },
+        {
+          "title": "吹奏楽部 応援ありがとうございました！",
+          "date": "2026-07-25",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135709281?tm=20260725180141"
+        }
+      ]
+    },
     {
       "slug": "sue-e",
       "level": "elem",
@@ -174,35 +203,6 @@
           "title": "１年生 １学期終了",
           "date": "2026-07-18",
           "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135510328?tm=20260718135627"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "光ヶ丘中学校",
-        "ja_kids": "ひかりがおか中学校",
-        "en": "Hikari-ga-oka Junior High",
-        "zh": "光之丘中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
-      "latest_date": "2026-07-25",
-      "items": [
-        {
-          "title": "7/25(土)ジュニア奉仕団「盲導犬育成募金」",
-          "date": "2026-07-25",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135709396?tm=20260725190401"
-        },
-        {
-          "title": "吹奏楽部 応援ありがとうございました！",
-          "date": "2026-07-25",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135709281?tm=20260725180141"
-        },
-        {
-          "title": "吹奏楽部 合同練習会・明日は吹奏楽コンクールです",
-          "date": "2026-07-24",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135705415?tm=20260724103101"
         }
       ]
     },
