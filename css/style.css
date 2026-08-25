@@ -1652,3 +1652,76 @@ footer {
   .share-buttons { gap: .45rem; }
   .share-btn { width: 2.2rem; height: 2.2rem; }
 }
+
+/* ===== BUS SERVICE AREA MAP（bus.html）=====
+   図形は data/bus_area.geojson、描画は js/main.js の BUS SERVICE AREA MAP。
+   市の対象エリア図を当サイトがトレースした「近似図」なので、凡例と注記
+   （.info-box--warn）は地図と必ずセットで出す。片方だけ消さないこと。 */
+.bus-map-figure { margin: 0 0 1.2rem; }
+.bus-area-map {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  line-height: 0;             /* SVG 下の余白を消す */
+}
+.bus-area-map svg { display: block; width: 100%; height: auto; }
+.bus-area-map[hidden] { display: none; }
+
+.bus-map-caption { margin-top: .7rem; }
+.bus-map-legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem 1.2rem;
+  font-size: .84rem;
+  color: var(--text-muted);
+}
+.bus-map-legend li { display: flex; align-items: center; gap: .45rem; }
+.bus-map-key {
+  width: 1.05rem; height: 1.05rem;
+  border-radius: 3px;
+  flex: none;
+}
+.bus-map-key--area   { background: rgba(126,110,196,.45); border: 2px solid #6b58b8; }
+.bus-map-key--walk   { background: var(--white); border: 2px solid var(--border); }
+.bus-map-key--school { background: var(--primary); border-radius: 50%; border: 2px solid var(--white); box-shadow: 0 0 0 1px var(--primary); }
+
+.info-box--warn {
+  background: var(--accent-light);
+  border-left-color: var(--accent);
+}
+.info-box--warn strong { color: #7a5c00; }
+
+.bus-map-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1.4rem;
+  font-size: .9rem;
+  margin: 1rem 0 .4rem;
+}
+
+/* 提出期限のように「その日を過ぎたら消える」告知。data-expires は js/main.js が見る。 */
+.deadline-box {
+  background: var(--white);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow);
+}
+.deadline-label { font-size: .85rem; font-weight: 700; color: var(--text-muted); }
+.deadline-date {
+  font-family: var(--heading-font);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: .25rem 0 .5rem;
+  line-height: 1.35;
+}
+.deadline-note { font-size: .9rem; }
+.deadline-note strong { color: var(--against-color); }
+
+@media (max-width: 480px) {
+  .deadline-date { font-size: 1.12rem; }
+}

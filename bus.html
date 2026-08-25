@@ -165,16 +165,90 @@
         </div>
       </div>
 
-      <p style="font-size:.85rem; color:var(--text-muted); margin-bottom:1rem;" data-i18n="bus_area_outside">※ エリア外の児童でも、最寄りの通学団が著しく遠く集団での登下校が困難な場合は、教育委員会よりスクールバス利用の提案を受けることがあります。</p>
+      <p style="font-size:.85rem; color:var(--text-muted); margin-bottom:1.5rem;" data-i18n="bus_area_outside">※ エリア外の児童でも、最寄りの通学団が著しく遠く集団での登下校が困難な場合は、教育委員会よりスクールバス利用の提案を受けることがあります。</p>
+
+      <!-- ===== 対象エリアの地図 =====
+           形状は data/bus_area.geojson（市教委「学校再編だより」vol.6 の対象エリア図を
+           当サイトが目視トレースしたもの）。描画は js/main.js の BUS SERVICE AREA MAP。
+           【重要】これは非公式の近似図。正式な対象可否は市の送付書類が決める。
+           注記（bus_map_caveat）を外したり弱めたりしないこと。 -->
+      <h3 style="font-size:1.05rem; font-weight:700; color:var(--primary); margin-bottom:.8rem;" data-i18n="bus_map_h">対象エリアの地図</h3>
+      <p style="margin-bottom:1rem;" data-i18n="bus_map_lead">市教育委員会が示した対象エリア図をもとに、当サイトで地図に起こしたものです。新しい2校のまわり（徒歩で通える範囲）が対象外、その外側がスクールバスの対象エリアになります。</p>
+
+      <figure class="bus-map-figure">
+        <div id="bus-area-map" class="bus-area-map" role="img" data-i18n-aria="bus_map_alt"
+             aria-label="篠岡地区のスクールバス通学対象エリアを示した地図。新設2校の周囲が対象外、その外側が対象エリア。"></div>
+        <figcaption class="bus-map-caption">
+          <ul class="bus-map-legend">
+            <li><span class="bus-map-key bus-map-key--area" aria-hidden="true"></span><span data-i18n="bus_map_legend_area">スクールバス通学 対象エリア</span></li>
+            <li><span class="bus-map-key bus-map-key--walk" aria-hidden="true"></span><span data-i18n="bus_map_legend_walk">対象外（2校のまわりは徒歩通学の範囲、いちばん外側は篠岡地区の外）</span></li>
+            <li><span class="bus-map-key bus-map-key--school" aria-hidden="true"></span><span data-i18n="bus_map_legend_school">新設される2つの小学校</span></li>
+          </ul>
+        </figcaption>
+      </figure>
+
+      <div class="info-box info-box--warn" data-i18n-html="bus_map_caveat">
+        ⚠️ <strong>これは当サイトが作成した非公式の「およその図」です。</strong>
+        小牧市教育委員会『篠岡地区 学校再編だより』vol.6 に載っている対象エリア図を、当サイトが目で見てなぞり、地図の座標に合わせ直したものです。
+        境界の位置には <strong>100m ほどの誤差</strong>があり、図の北側・東側は元の図の枠で切れています。
+        <strong>ご自宅が対象かどうかは、市から届いた書類で必ずご確認ください。</strong>この図では判断できません。
+      </div>
+
+      <p class="bus-map-links">
+        <a href="https://maps.google.co.jp/maps?q=桃花台+小牧市+愛知県" target="_blank" rel="noopener" data-i18n="bus_map_gmap">Googleマップでこの一帯を見る →</a>
+        <a href="data/bus_area.kml" download data-i18n="bus_map_kml">対象エリアの図形データ（KML）</a>
+      </p>
+      <p style="font-size:.82rem; color:var(--text-muted); margin-bottom:1.5rem;" data-i18n="bus_map_kml_note">KML は Googleマイマップ（「新しい地図を作成」→「インポート」）に読み込むと、Googleマップの地図の上に同じ範囲を重ねて見ることができます。</p>
 
       <div class="info-box" data-i18n-html="bus_area_pending">
-        ⚠️ バス停の場所・路線・時刻は「（仮称）スクールバス運行ガイドライン」で今後決定される予定です。最新情報は<a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener">市公式ページ</a>でご確認ください。
+        ⚠️ バス停の場所・運行ダイヤ・利用のルールは「スクールバス利用ガイドライン」にまとめられ、対象者向けの説明会で配布・説明される予定です。最新情報は<a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener">市公式ページ</a>でご確認ください。
       </div>
     </div>
   </section>
 
+  <!-- ===== 申請手続き =====
+       だより vol.6（令和8年8月）で示された、実際に動いている手続き。
+       提出期限を過ぎたら data-expires が付いた締切ボックスは自動で消えるが、
+       節そのものは残る（次年度以降も同じ手続きが繰り返されるため）。 -->
+  <section id="apply" class="section">
+    <div class="container">
+      <h2 class="section-title" data-i18n-html="bus_apply_h2">申請の手続き<small>How to Apply</small></h2>
+
+      <div class="deadline-box" data-expires="2026-09-30">
+        <div class="deadline-label" data-i18n="bus_apply_deadline_label">📮 書類の提出期限</div>
+        <div class="deadline-date" data-i18n="bus_apply_deadline_date">令和8年（2026年）8月30日 〜 9月30日</div>
+        <div class="deadline-note" data-i18n-html="bus_apply_deadline_note"><strong>スクールバスを希望する・しないに関わらず、書類の返送が必要です。</strong></div>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">✉️</div>
+          <h3 data-i18n="bus_apply_send_h">書類が届いた人</h3>
+          <p data-i18n="bus_apply_send_p">対象エリア内の児童の保護者あてに、申請書類と説明会の案内が市から郵送されています。届いていない場合は、教育総務課へお問い合わせください。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">↩️</div>
+          <h3 data-i18n="bus_apply_return_h">全員が返送</h3>
+          <p data-i18n="bus_apply_return_p">利用を希望しない場合も返送が必要です。返送がないと、市が利用希望の有無を把握できません。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🗣️</div>
+          <h3 data-i18n="bus_apply_meeting_h">説明会（希望者）</h3>
+          <p data-i18n="bus_apply_meeting_p">利用を希望する方は説明会への参加が求められています。乗降場所・運行ダイヤ・「スクールバス利用ガイドライン」が配布・説明される予定です。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💬</div>
+          <h3 data-i18n="bus_apply_consult_h">相談会</h3>
+          <p data-i18n="bus_apply_consult_p">説明会のなかで、バス利用について気になることや不安なことを相談できる「相談会」も実施される予定です。</p>
+        </div>
+      </div>
+
+      <p style="font-size:.85rem; color:var(--text-muted); margin-top:1rem;" data-i18n="bus_apply_source">出典：小牧市教育委員会 教育総務課『篠岡地区 学校再編だより』vol.6（令和8年8月）</p>
+    </div>
+  </section>
+
   <!-- SAFETY -->
-  <section id="safety" class="section">
+  <section id="safety" class="section section-alt">
     <div class="container">
       <h2 class="section-title" data-i18n-html="bus_safety_h2">安全対策<small>Safety Measures</small></h2>
       <div class="cards">
@@ -198,7 +272,7 @@
   </section>
 
   <!-- TIMELINE -->
-  <section id="timeline" class="section section-alt">
+  <section id="timeline" class="section">
     <div class="container">
       <h2 class="section-title" data-i18n-html="bus_timeline_h2">導入スケジュール<small>Timeline</small></h2>
       <div class="process-steps">
@@ -222,7 +296,7 @@
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="section">
+  <section id="faq" class="section section-alt">
     <div class="container" style="max-width:800px;">
       <h2 class="section-title" data-i18n-html="bus_faq_h2">よくある質問<small>FAQ</small></h2>
       <div class="faq-list">
@@ -233,7 +307,7 @@
             <span class="faq-q-icon">+</span>
           </button>
           <div class="faq-a" data-i18n-html="bus_faq_a1">
-            <p style="padding-top:.8rem;">乗り遅れた場合の対応は、「（仮称）スクールバス運行ガイドライン」で定められる予定です。詳細は決定次第、市より案内があります。</p>
+            <p style="padding-top:.8rem;">乗り遅れた場合の対応は「スクールバス利用ガイドライン」で定められ、対象者向けの説明会で配布・説明される予定です。</p>
           </div>
         </div>
 
@@ -243,7 +317,7 @@
             <span class="faq-q-icon">+</span>
           </button>
           <div class="faq-a" data-i18n-html="bus_faq_a2">
-            <p style="padding-top:.8rem;">警報発令時の対応はガイドラインで定められる予定です。学校の登校判断に連動した運用となる見込みです。</p>
+            <p style="padding-top:.8rem;">警報発令時の対応は「スクールバス利用ガイドライン」で定められる予定です。学校の登校判断に連動した運用となる見込みです。</p>
           </div>
         </div>
 
@@ -273,7 +347,7 @@
             <span class="faq-q-icon">+</span>
           </button>
           <div class="faq-a" data-i18n-html="bus_faq_a5">
-            <p style="padding-top:.8rem;">具体的なバス停の場所は、学校や事業者と協議の上、「（仮称）スクールバス運行ガイドライン」で定められる予定です。決定次第、市より公表されます。</p>
+            <p style="padding-top:.8rem;">乗降場所（バス停）と運行ダイヤは、対象者向けの説明会で「スクールバス利用ガイドライン」とあわせて示される予定です。</p>
           </div>
         </div>
 
@@ -283,7 +357,7 @@
             <span class="faq-q-icon">+</span>
           </button>
           <div class="faq-a" data-i18n-html="bus_faq_a6">
-            <p style="padding-top:.8rem;">申請の時期・方法は現在調整中です。対象エリア内の保護者向けに、市教育委員会から詳細が案内される予定です。<a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener">市公式ページ</a>をご確認ください。</p>
+            <p style="padding-top:.8rem;">令和8年（2026年）8月に、対象エリア内の児童の保護者あてに申請書類と説明会の案内が郵送されています。提出期限は<strong>8月30日〜9月30日</strong>で、<strong>利用を希望するかどうかに関わらず返送が必要</strong>です。詳しくは<a href="#apply">申請の手続き</a>をご覧ください。</p>
           </div>
         </div>
 

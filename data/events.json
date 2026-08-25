@@ -288,6 +288,18 @@
       "tr": "Veli bilgilendirmesi (Doğu Toplum Merkezi)",
       "my": "မိဘရှင်းလင်းပွဲ (အရှေ့ပိုင်း ရပ်ရွာစင်တာ)"
     },
+    "2026-07-14": {
+      "ja": "小学校5校合同交流会（4・5年生）",
+      "en": "5-School Exchange Event (Yr 4–5)",
+      "pt": "Encontro das 5 escolas (4º–5º ano)",
+      "vi": "Giao lưu 5 trường (lớp 4–5)",
+      "tl": "Palitan ng 5 Paaralan (Baitang 4–5)",
+      "es": "Encuentro de 5 escuelas (4.º–5.º)",
+      "zh": "5所小学联合交流会（4・5年级）",
+      "id": "Pertemuan 5 Sekolah (Kelas 4–5)",
+      "tr": "5 okul buluşması (4–5. sınıf)",
+      "my": "ကျောင်း ၅ ကျောင်း ပေါင်းစုံတွေ့ဆုံပွဲ (၄–၅ တန်း)"
+    },
     "2026-07-21": {
       "ja": "説明会Q&Aを公開",
       "en": "Briefing Q&A Published",
@@ -299,6 +311,30 @@
       "id": "Tanya Jawab Sosialisasi Dipublikasikan",
       "tr": "Bilgilendirme soru-cevabı yayımlandı",
       "my": "ရှင်းလင်းပွဲ မေးခွန်း-အဖြေ ထုတ်ပြန်"
+    },
+    "2026-08-30": {
+      "ja": "スクールバス申請書類 受付開始",
+      "en": "School Bus Application Opens",
+      "pt": "Início da inscrição do ônibus escolar",
+      "vi": "Bắt đầu nhận đơn xe buýt trường",
+      "tl": "Simula ng aplikasyon ng school bus",
+      "es": "Inicio de solicitud del autobús escolar",
+      "zh": "校车申请开始受理",
+      "id": "Pendaftaran bus sekolah dibuka",
+      "tr": "Okul servisi başvurusu başlıyor",
+      "my": "ကျောင်းဘတ်စ် လျှောက်လွှာ စတင်လက်ခံ"
+    },
+    "2026-09-30": {
+      "ja": "スクールバス申請書類 提出期限",
+      "en": "School Bus Application Deadline",
+      "pt": "Prazo final do ônibus escolar",
+      "vi": "Hạn nộp đơn xe buýt trường",
+      "tl": "Huling araw ng aplikasyon ng school bus",
+      "es": "Fecha límite del autobús escolar",
+      "zh": "校车申请截止",
+      "id": "Batas akhir pendaftaran bus sekolah",
+      "tr": "Okul servisi başvuru son günü",
+      "my": "ကျောင်းဘတ်စ် လျှောက်လွှာ နောက်ဆုံးရက်"
     },
     "2027-04-01": {
       "ja": "第1期再編 実施予定（しのおか学園）",

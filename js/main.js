@@ -1029,3 +1029,155 @@ window.KomakiLang = (function () {
     starBox.addEventListener('click', loadHatenaStar, {once: true});
   }
 })();
+
+/* ===== DEADLINE BOX EXPIRY =====
+   「提出期限」のように、その日を過ぎたら出しっぱなしにしたくない告知を自動で消す。
+   .upcoming-item の data-expires と同じ考え方だが、あちらはトップの予定バー専用なので分けてある。
+   期限当日は残す（data-expires の日付を含む）。 */
+(function () {
+  var boxes = document.querySelectorAll('.deadline-box[data-expires]');
+  if (!boxes.length) return;
+  var d = new Date();
+  var today = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  boxes.forEach(function (box) {
+    if (box.dataset.expires < today) box.remove();
+  });
+})();
+
+/* ===== BUS SERVICE AREA MAP（bus.html）=====
+   data/bus_area.geojson を読んで、スクールバスの対象エリアを SVG で描く。
+
+   【この図の性格】小牧市教育委員会『篠岡地区 学校再編だより』vol.6 の対象エリア図を
+   当サイトが目視でトレースし、図中の 500m スケールバーと2校の位置注記から座標を割り出した
+   「近似図」。正式な対象可否を決めるのは市から届く書類であって、この図ではない。
+   HTML 側の注記（bus_map_caveat）と必ずセットで表示すること。
+
+   投影は緯度経度をそのまま使う簡易正距円筒（x に cos(緯度) を掛けるだけ）。
+   範囲が 6km 四方しかないので、これで十分に形は合う。
+   学校名だけは geojson 側の name / name_en を使う（他ブロックと同じ ja→en フォールバック）。 */
+(function () {
+  var host = document.getElementById('bus-area-map');
+  if (!host) return;
+
+  var _bl = window.KomakiLang();
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  var VIEW_W = 1000;      // viewBox の横幅（実寸は CSS 側で 100% に伸びる）
+  var PAD = 34;           // ラベルとスケールバーのための余白
+
+  function el(name, attrs) {
+    var n = document.createElementNS(SVGNS, name);
+    for (var k in attrs) if (attrs.hasOwnProperty(k)) n.setAttribute(k, attrs[k]);
+    return n;
+  }
+
+  fetch('./data/bus_area.geojson')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (gj) {
+      var feats = gj.features || [];
+      var poly = null, pts = [];
+      feats.forEach(function (f) {
+        var g = f.geometry || {};
+        if (g.type === 'Polygon' && !poly) poly = g.coordinates[0];
+        else if (g.type === 'Point') pts.push({ lon: g.coordinates[0], lat: g.coordinates[1], props: f.properties || {} });
+      });
+      if (!poly || poly.length < 4) throw new Error('no polygon');
+
+      // --- 範囲を出す（学校の点も入れて、マーカーが枠から出ないようにする）
+      var all = poly.concat(pts.map(function (p) { return [p.lon, p.lat]; }));
+      var lonMin = Infinity, lonMax = -Infinity, latMin = Infinity, latMax = -Infinity;
+      all.forEach(function (c) {
+        if (c[0] < lonMin) lonMin = c[0];
+        if (c[0] > lonMax) lonMax = c[0];
+        if (c[1] < latMin) latMin = c[1];
+        if (c[1] > latMax) latMax = c[1];
+      });
+      var K = Math.cos((latMin + latMax) / 2 * Math.PI / 180);
+      var spanX = (lonMax - lonMin) * K, spanY = (latMax - latMin);
+      var S = (VIEW_W - PAD * 2) / spanX;
+      var VIEW_H = spanY * S + PAD * 2;
+
+      function px(lon) { return PAD + (lon - lonMin) * K * S; }
+      function py(lat) { return PAD + (latMax - lat) * S; }
+
+      var svg = el('svg', {
+        viewBox: '0 0 ' + VIEW_W + ' ' + Math.round(VIEW_H),
+        role: 'presentation', 'aria-hidden': 'true'
+      });
+
+      svg.appendChild(el('rect', { x: 0, y: 0, width: VIEW_W, height: VIEW_H, fill: 'var(--white)' }));
+
+      // --- 対象エリア
+      var d = poly.map(function (c, i) {
+        return (i ? 'L' : 'M') + px(c[0]).toFixed(1) + ' ' + py(c[1]).toFixed(1);
+      }).join(' ') + ' Z';
+      svg.appendChild(el('path', {
+        d: d, fill: 'rgba(126,110,196,.42)', stroke: '#5b48a8',
+        'stroke-width': 2.5, 'stroke-linejoin': 'round'
+      }));
+
+      // --- 新設校のマーカー
+      pts.forEach(function (p) {
+        var x = px(p.lon), y = py(p.lat);
+        var g = el('g', {});
+        g.appendChild(el('circle', { cx: x, cy: y, r: 9, fill: 'var(--primary)', stroke: 'var(--white)', 'stroke-width': 3 }));
+        var name = (_bl === 'ja' ? p.props.name : (p.props.name_en || p.props.name)) || '';
+        // ラベルは白フチを敷いてから本体を重ね、下の図形の上でも読めるようにする
+        [['var(--white)', 6], ['var(--text)', 0]].forEach(function (pair) {
+          var t = el('text', {
+            x: x, y: y - 16, 'text-anchor': 'middle',
+            'font-size': 21, 'font-weight': 700, fill: pair[0]
+          });
+          if (pair[1]) { t.setAttribute('stroke', pair[0]); t.setAttribute('stroke-width', pair[1]); t.setAttribute('stroke-linejoin', 'round'); }
+          t.textContent = name;
+          g.appendChild(t);
+        });
+        svg.appendChild(g);
+      });
+
+      // --- スケールバー（1km）と方位
+      // どちらもエリアの色の上に乗ることがあるので、白い下地を敷いてから描く
+      function plate(x, y, w, h) {
+        return el('rect', {
+          x: x, y: y, width: w, height: h, rx: 6,
+          fill: 'var(--white)', 'fill-opacity': .82
+        });
+      }
+
+      var kmDeg = 1000 / 110946;                 // 緯度1度 ≒ 110,946m
+      var barLen = kmDeg * S;
+      var bx = PAD, by = VIEW_H - PAD * 0.55;
+      var bar = el('g', {});
+      bar.appendChild(plate(bx - 8, by - 34, barLen + 16, 42));
+      bar.appendChild(el('path', {
+        d: 'M' + bx + ' ' + (by - 7) + ' V' + by + ' H' + (bx + barLen) + ' V' + (by - 7),
+        fill: 'none', stroke: 'var(--text)', 'stroke-width': 2.5
+      }));
+      var lab = el('text', { x: bx, y: by - 12, 'font-size': 19, fill: 'var(--text)' });
+      lab.textContent = '1 km';
+      bar.appendChild(lab);
+      svg.appendChild(bar);
+
+      var nx = VIEW_W - PAD - 10, ny = PAD + 4;
+      var north = el('g', {});
+      north.appendChild(plate(nx - 18, ny - 8, 36, 62));
+      north.appendChild(el('path', {
+        d: 'M' + nx + ' ' + (ny + 26) + ' L' + nx + ' ' + ny,
+        stroke: 'var(--text)', 'stroke-width': 2.5, fill: 'none'
+      }));
+      north.appendChild(el('path', {
+        d: 'M' + (nx - 6) + ' ' + (ny + 9) + ' L' + nx + ' ' + ny + ' L' + (nx + 6) + ' ' + (ny + 9) + ' Z',
+        fill: 'var(--text)'
+      }));
+      var nlab = el('text', { x: nx, y: ny + 43, 'text-anchor': 'middle', 'font-size': 19, 'font-weight': 700, fill: 'var(--text)' });
+      nlab.textContent = 'N';
+      north.appendChild(nlab);
+      svg.appendChild(north);
+
+      host.appendChild(svg);
+    })
+    .catch(function () {
+      // 図が出せないときは、凡例だけが残らないように図と説明ごと隠す
+      var fig = host.closest('.bus-map-figure');
+      (fig || host).hidden = true;
+    });
+})();
