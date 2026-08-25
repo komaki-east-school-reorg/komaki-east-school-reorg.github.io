@@ -1,6 +1,4 @@
 {
-  "actions_lead": "Kapanacak okulları anmak ve anılarını yaşatmak için mahalle sakinlerinin yürüttüğü girişimler. Belediyenin ya da okulların etkinliği değildir; sakinler kendileri düzenler.",
-  "actions_note": "Tarih ve ayrıntılar değişebilir. Güncel bilgi ve katılım için her grubun kendi kanalına bakın. Yeniden yapılandırmaya dair resmî bilgi için “Belediye sitesinden haberler” bölümüne bakın.",
   "aria_lang": "Dil seçin",
   "aria_menu": "Menü",
   "btn_official": "Belediyenin resmî sayfası →",
@@ -90,7 +88,6 @@
   "ql_voices_p": "Mahalle sakinlerinin, velilerin ve eski öğretmenlerin çeşitli görüşlerinin tarafsız sunumu. Kamuoyu görüşü sonuçlarının özetini de içerir.",
   "school_news_lead": "Yeniden yapılandırmadan etkilenen beş ilkokul ve üç ortaokulun kendi işlettiği resmî web sitelerindeki son yazılar. Okulların günlük haberleri belediyenin yeniden yapılandırma sayfasında yer almadığı için burada toplanmıştır.",
   "school_news_note": "Not: Her okulun son yazıları günde bir kez otomatik olarak alınır ve her okuldan yalnızca en yeni yazı gösterilir. Başlıklar okulların yayımladığı hâliyle gösterilir (çevrilmez). Yeniden yapılandırmaya ilişkin resmî bilgiler için yukarıdaki \"Belediyenin resmî duyuruları\" bölümüne bakınız.",
-  "section_actions": "Yerel girişimler<small>Community Efforts</small>",
   "section_links": "Sayfa bağlantıları<small>Quick Links</small>",
   "section_news": "Belediyenin resmî duyuruları<small>Official Announcements</small>",
   "section_points": "Bilinmesi gereken noktalar<small>Key Points</small>",

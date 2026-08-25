@@ -1,4 +1,6 @@
 {
+  "actions_lead": "这是惋惜即将闭校的学校、希望留下回忆的市民有志的取组。并非市或学校的事业，而是有志者自发进行的活动。",
+  "actions_note": "※ 日期与内容可能变更。最新信息与参加申请请查阅各取组的发布方。关于学校再编本身的官方信息，请参阅「市官方网站通知」。",
   "aria_lang": "选择语言",
   "aria_menu": "菜单",
   "comm_act_intro": "地域协议会开展跨越世代的多元化活动。",
@@ -110,6 +112,7 @@
   "rel_community_about": "查看学校重组计划本身",
   "rel_community_voices": "查看居民的赞成与反对意见",
   "related_h": "相关页面",
+  "section_actions": "地域的取组<small>Community Efforts</small>",
   "share_bluesky": "发布到Bluesky",
   "share_copied": "已复制链接",
   "share_copied_paste": "已复制链接。请粘贴到{app}。",

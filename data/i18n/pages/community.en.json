@@ -1,4 +1,6 @@
 {
+  "actions_lead": "Efforts by local residents to mark the closing schools and keep their memories. These are not run by the city or the schools — residents organise them themselves.",
+  "actions_note": "Dates and details may change. For the latest information and to take part, check each group’s own channel. For official information on the reorganisation itself, see “News from the city website”.",
   "aria_lang": "Select language",
   "aria_menu": "Menu",
   "comm_act_intro": "Community Councils carry out a wide range of activities that span generations.",
@@ -110,6 +112,7 @@
   "rel_community_about": "See the reorganization plan itself",
   "rel_community_voices": "See what residents are saying, for and against",
   "related_h": "Related pages",
+  "section_actions": "Community efforts<small>Community Efforts</small>",
   "share_bluesky": "Post on Bluesky",
   "share_copied": "Link copied",
   "share_copied_paste": "Link copied. Paste it into {app}.",

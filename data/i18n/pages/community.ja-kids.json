@@ -1,4 +1,6 @@
 {
+  "actions_lead": "なくなる 学校を おしんで、思い出を のこそうと する 人たちの とりくみです。市や 学校の しごとでは なく、地いきの 人たちが じぶんたちで やって います。",
+  "actions_note": "※ 日にちや 中みは かわる ことが あります。いちばん 新しい ことは、それぞれの はっしん元で たしかめて ください。",
   "aria_lang": "ことばを えらぶ",
   "aria_menu": "メニュー",
   "comm_act_intro": "まちの会は、子どもからおとしよりまで はば広い活動をしています。",
@@ -110,6 +112,7 @@
   "rel_community_about": "がっこうの けいかくそのものを 見る",
   "rel_community_voices": "まちの 人たちの さんせい・はんたいの こえを 見る",
   "related_h": "かんけいの あるページ",
+  "section_actions": "地いきの とりくみ<small>Community Efforts</small>",
   "share_bluesky": "Blueskyに かく",
   "share_copied": "コピーしました",
   "share_copied_paste": "リンクを コピーしました。{app} に はりつけてください",

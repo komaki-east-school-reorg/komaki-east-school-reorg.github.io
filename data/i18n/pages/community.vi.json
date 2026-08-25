@@ -1,4 +1,6 @@
 {
+  "actions_lead": "Hoạt động của người dân nhằm ghi dấu các trường sắp đóng cửa và lưu giữ kỷ niệm. Đây không phải chương trình của thành phố hay nhà trường mà do người dân tự tổ chức.",
+  "actions_note": "Ngày giờ và nội dung có thể thay đổi. Để biết thông tin mới nhất và đăng ký tham gia, hãy xem kênh của từng nhóm. Thông tin chính thức về việc tái cơ cấu, xem “Tin từ trang thành phố”.",
   "aria_lang": "Chọn ngôn ngữ",
   "aria_menu": "Menu",
   "comm_act_intro": "Hội đồng Cộng đồng triển khai nhiều hoạt động đa dạng vượt qua ranh giới thế hệ.",
@@ -110,6 +112,7 @@
   "rel_community_about": "Xem chính bản kế hoạch tái tổ chức",
   "rel_community_voices": "Xem ý kiến của người dân, ủng hộ và phản đối",
   "related_h": "Trang liên quan",
+  "section_actions": "Hoạt động cộng đồng<small>Community Efforts</small>",
   "share_bluesky": "Đăng lên Bluesky",
   "share_copied": "Đã sao chép liên kết",
   "share_copied_paste": "Đã sao chép liên kết. Hãy dán vào {app}.",

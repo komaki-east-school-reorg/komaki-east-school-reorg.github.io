@@ -105,10 +105,10 @@
              -e "zyosei/yoyuu_00002\.htm" -e "kihon/1267995\.htm"
   → 出力があれば違反箇所。nationwide.html 以外のページに出た場合も違反。
 
-  Instagram（index.html と翻訳辞書のみ許可。許可アカウントのみ）：
+  Instagram（community.html と翻訳辞書のみ許可。許可アカウントのみ）：
   grep -rn "instagram\.com" *.html js/*.js data/i18n/*.json \
     | grep -v -e "arigato\.ohshirosho"
-  → 出力があれば違反箇所。index.html 以外での使用も違反。
+  → 出力があれば違反箇所。community.html 以外での使用も違反。
     ここは市の公式情報でも報道でもなく【市民有志の発信】。計画の内容・数値の
     根拠には決して使わない。アカウントを増やすときは auto_gates.py の
     PERMITTED_INSTAGRAM・CLAUDE.md・README.md も同時に更新すること。

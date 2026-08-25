@@ -1,4 +1,6 @@
 {
+  "actions_lead": "Iniciativas de vecinos para despedir a las escuelas que cierran y conservar sus recuerdos. No son actividades del ayuntamiento ni de los centros: las organizan los propios vecinos.",
+  "actions_note": "Las fechas y los detalles pueden cambiar. Para la información más reciente y para participar, consulte el canal de cada grupo. Para la información oficial sobre la reorganización, véase «Novedades del sitio municipal».",
   "aria_lang": "Seleccionar idioma",
   "aria_menu": "Menú",
   "comm_act_intro": "Los Consejos Comunitarios desarrollan una amplia gama de actividades que trascienden generaciones.",
@@ -110,6 +112,7 @@
   "rel_community_about": "Ver el plan de reorganización en sí",
   "rel_community_voices": "Ver lo que dicen los vecinos, a favor y en contra",
   "related_h": "Páginas relacionadas",
+  "section_actions": "Iniciativas vecinales<small>Community Efforts</small>",
   "share_bluesky": "Publicar en Bluesky",
   "share_copied": "Enlace copiado",
   "share_copied_paste": "Enlace copiado. Péguelo en {app}.",

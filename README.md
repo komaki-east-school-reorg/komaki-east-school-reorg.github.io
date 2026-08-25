@@ -47,7 +47,7 @@ python3 -m http.server 8000
 
 詳細は [CONTRIBUTING.txt](CONTRIBUTING.txt) を参照してください。主なルール：
 
-1. **外部リンクは公式市ページの2つのインデックスのみ** — 学校再編 `.../kyoiku/kyouikusoumu/303/index.html`（サイト全体）と地域協議会 `.../kenkouikigai/sasaeai/3/3_2/index.html`（community.html のみ）。それ以外の city.komaki.aichi.jp URL は禁止。別枠として、再編対象8校のホームページ（`komaki-aic.ed.jp`）、報道コーナーが出典として張る中日新聞Web の記事（`chunichi.co.jp`）、nationwide.html が出典として張る文部科学省の4つの資料ページ（`mext.go.jp`）、index.html「地域の取組」が発信元として張る市民有志の許可アカウント（`instagram.com`）、そして全ページ下部の共有ボタンの送り先（LINE・X・Facebook・はてなブックマーク・Threads・Bluesky・Reddit・Mastodon／はてなスター）は可。いずれも `auto_gates.py` が機械検査する
+1. **外部リンクは公式市ページの2つのインデックスのみ** — 学校再編 `.../kyoiku/kyouikusoumu/303/index.html`（サイト全体）と地域協議会 `.../kenkouikigai/sasaeai/3/3_2/index.html`（community.html のみ）。それ以外の city.komaki.aichi.jp URL は禁止。別枠として、再編対象8校のホームページ（`komaki-aic.ed.jp`）、報道コーナーが出典として張る中日新聞Web の記事（`chunichi.co.jp`）、nationwide.html が出典として張る文部科学省の4つの資料ページ（`mext.go.jp`）、community.html「地域の取組」が発信元として張る市民有志の許可アカウント（`instagram.com`）、そして全ページ下部の共有ボタンの送り先（LINE・X・Facebook・はてなブックマーク・Threads・Bluesky・Reddit・Mastodon／はてなスター）は可。いずれも `auto_gates.py` が機械検査する
 2. **翻訳ファイルの構文** — `data/i18n/*.json` はコミット前に全ファイルを JSON パースして確認（アポストロフィのエスケープは不要。`\'` と書くと逆に壊れる）
 3. **新しい翻訳キー** — `ja`（日本語）と `en`（英語）への記載が必須。他の言語は未記載でも英語→日本語の順にフォールバック
 4. **事実確認** — 掲載する数値・日付は必ず公式情報源に基づく

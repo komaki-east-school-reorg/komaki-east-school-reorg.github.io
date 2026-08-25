@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-08-26",
+      "type": "content",
+      "ja": "「地域の取組」を地域協議会ページへ移動し、地域協議会のイベント案内の隣に配置",
+      "en": "“Community efforts” moved to the community council page, next to the council events listing"
+    },
+    {
+      "date": "2026-08-26",
       "type": "fix",
       "ja": "「現在の状況」と「主要イベント一覧」の時系列を正しい順序に整列",
       "en": "Current Status and Key Events lists put back into correct chronological order"

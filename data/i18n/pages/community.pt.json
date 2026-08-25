@@ -1,4 +1,6 @@
 {
+  "actions_lead": "Iniciativas de moradores para assinalar o encerramento das escolas e guardar as memórias. Não são da prefeitura nem das escolas: os próprios moradores as organizam.",
+  "actions_note": "Datas e detalhes podem mudar. Para informação atualizada e para participar, consulte o canal de cada grupo. Para informação oficial sobre a reorganização, veja “Notícias do site da prefeitura”.",
   "aria_lang": "Selecionar idioma",
   "aria_menu": "Menu",
   "comm_act_intro": "Os Conselhos Comunitários realizam uma ampla gama de atividades que abrangem gerações.",
@@ -110,6 +112,7 @@
   "rel_community_about": "Ver o próprio plano de reorganização",
   "rel_community_voices": "Ver o que dizem os moradores, a favor e contra",
   "related_h": "Páginas relacionadas",
+  "section_actions": "Iniciativas locais<small>Community Efforts</small>",
   "share_bluesky": "Publicar no Bluesky",
   "share_copied": "Link copiado",
   "share_copied_paste": "Link copiado. Cole no {app}.",
