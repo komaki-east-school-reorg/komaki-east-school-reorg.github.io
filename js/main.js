@@ -42,7 +42,15 @@ window.KomakiLang = (function () {
   });
 })();
 
-/* ===== AUTO DATE STATUS ===== */
+/* ===== AUTO DATE STATUS =====
+   予定日を過ぎた項目に done を付け、ラベル／バッジを「完了」にする。
+
+   【並び順は触らない】以前はここで完了項目を .current の前へ移動していたが、
+   それをやると HTML 側で data-start（開始日）順に並べた年表が実行時に崩れる。
+   実際、2026-05-18 と 2026-06-06 の項目が 2026-02-08 の前へ動いて逆転していた。
+   並び順は HTML の記述順（＝data-start 昇順）が正であり、
+   このブロックは状態表示だけを担当する。並べ替えを再び入れないこと。
+   （CONTRIBUTING.txt ルール7 / auto_gates.py の「年表の並び」を参照） */
 (function () {
   var d = new Date();
   d.setHours(0, 0, 0, 0);
@@ -57,11 +65,6 @@ window.KomakiLang = (function () {
         label.setAttribute('data-i18n', 'status_done');
         label.textContent = '完了';
       }
-      var timeline = item.closest('.status-timeline');
-      if (timeline) {
-        var currentItem = timeline.querySelector('.status-item.current');
-        if (currentItem) timeline.insertBefore(item, currentItem);
-      }
     }
   });
 
@@ -70,11 +73,6 @@ window.KomakiLang = (function () {
     if (item.dataset.eventDate <= todayStr) {
       item.classList.remove('upcoming', 'current');
       item.classList.add('done');
-      var list = item.closest('.event-list');
-      if (list) {
-        var currentItem = list.querySelector('.event-item.current');
-        if (currentItem) list.insertBefore(item, currentItem);
-      }
     }
   });
 

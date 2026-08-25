@@ -243,7 +243,9 @@ The *Current Status* list (`index.html`) and the *Key Events* list (`schedule.ht
 - `data-start` is the **start** date. For a span (「2026年〜2027年3月」) use the start; for a month with no day (「2026年10月」) use the first of the month; for something that begins right after a dated event, use the day after it (e.g. 校章の選考 starts 2026-05-19, the day after the 5/18 deadline).
 - Ties keep their existing relative order, so two items in the same month stay where you put them.
 - **A list is a `<h3>`/`<h4>` heading's worth of items.** `schedule.html` 令和7年 deliberately holds two lists — 「学校を考える会（全5回）」 then 「その他の取組」 — so the 5th 考える会 (2025-10-11) sitting above 2025-06-13 is correct. Order is checked *within* each heading's block, never across headings.
-- `check 8` in `.github/scripts/auto_gates.py` fails the build on a missing `data-start` or a reversed pair, so this survives the auto-update pipeline's edits too.
+- **DOM order is authoritative — nothing may reorder these lists at runtime.** AUTO DATE STATUS used to move a newly-done item above the first `.current` one; with the source now sorted by `data-start` that silently undid the sorting in the browser (2026-05-18 and 2026-06-06 jumped above 2026-02-08). That block sets state only.
+- Items whose date has definitively passed carry a hand-written `done` class **and** the 完了 label in the HTML, so the list reads correctly with JavaScript disabled; the script then just re-applies the same state.
+- `check 8` in `.github/scripts/auto_gates.py` fails the build on a missing `data-start`, a reversed pair, **or a reordering call reappearing in AUTO DATE STATUS** — so this survives the auto-update pipeline's edits too.
 
 ### The "いまの状況" box (`.now-bar`) — the one thing that is NOT automatic
 

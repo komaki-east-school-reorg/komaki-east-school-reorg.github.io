@@ -426,6 +426,15 @@
       data-event-date … 終了日。「完了」バッジの自動判定に使う
       data-expires    … 掲載期限。過ぎたら非表示（今後の予定バー）
 
+  ■ 並び順は HTML の記述順が正。JavaScript で並べ替えないこと。
+    js/main.js の AUTO DATE STATUS は以前、完了した項目を .current の前へ
+    動かしており、せっかく整えた順序がブラウザ上で崩れていた。
+    あのブロックは「完了」表示だけを担当する。
+
+  ■ 期日が確実に過ぎた項目は、HTML 側に done クラスと「完了」ラベルを直接書く。
+    JavaScript が無効な環境でも正しく見える。
+
   ■ 機械検査：
     python3 .github/scripts/auto_gates.py
-    → 「年表の並び」が NG なら、data-start の欠落か時系列の逆転がある。
+    → 「年表の並び」が NG なら、data-start の欠落・時系列の逆転・
+      AUTO DATE STATUS への並べ替え処理の復活のいずれか。

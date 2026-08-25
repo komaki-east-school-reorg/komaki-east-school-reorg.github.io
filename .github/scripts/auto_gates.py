@@ -277,6 +277,22 @@ def main():
                     order_problems.append(f"{page}: 時系列が逆転 {a} → {b}")
         if seen == 0:
             order_problems.append(f"{page}: data-start が1件も無い")
+    # 実行時に並べ替えられていないか。以前 AUTO DATE STATUS が完了項目を
+    # .current の前へ動かしており、HTML で整えた順序がブラウザ上で崩れていた。
+    # 並び順は HTML の記述順が正。あのブロックに並べ替えを戻させない。
+    try:
+        with open("js/main.js", encoding="utf-8") as f:
+            js = f.read()
+        i = js.find("AUTO DATE STATUS")
+        if i >= 0:
+            block = js[i:js.find("/* =====", i + 10)]
+            if "insertBefore(item" in block or "appendChild(item" in block:
+                order_problems.append(
+                    "js/main.js の AUTO DATE STATUS が項目を移動している"
+                    "（並び順は HTML の data-start 順が正。移動処理を入れないこと）")
+    except FileNotFoundError:
+        pass
+
     if order_problems:
         for v in order_problems:
             fail(f"年表の並び: {v}")
