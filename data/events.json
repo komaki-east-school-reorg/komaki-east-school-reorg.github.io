@@ -216,6 +216,18 @@
       "tr": "Okul arması tasarımı son tarihi",
       "my": "ကျောင်းတံဆိပ် ဒီဇိုင်း နောက်ဆုံးရက်"
     },
+    "2026-06-01": {
+      "ja": "スクールバス事業者 開札（あおい交通）",
+      "en": "School Bus Operator Selected (Aoi Kotsu)",
+      "pt": "Operadora do ônibus definida (Aoi Kotsu)",
+      "vi": "Chọn đơn vị vận hành xe buýt (Aoi Kotsu)",
+      "tl": "Napiling operator ng school bus (Aoi Kotsu)",
+      "es": "Operadora del autobús elegida (Aoi Kotsu)",
+      "zh": "校车事业者开标（AOI交通）",
+      "id": "Operator bus sekolah ditetapkan (Aoi Kotsu)",
+      "tr": "Okul servisi işletmecisi belirlendi (Aoi Kotsu)",
+      "my": "ကျောင်းဘတ်စ် လုပ်ငန်းရှင် ရွေးချယ် (Aoi Kotsu)"
+    },
     "2026-06-06": {
       "ja": "保護者等説明会（桃陵中）",
       "en": "Parent Briefing (Toryou JHS)",
@@ -335,6 +347,66 @@
       "id": "Batas akhir pendaftaran bus sekolah",
       "tr": "Okul servisi başvuru son günü",
       "my": "ကျောင်းဘတ်စ် လျှောက်လွှာ နောက်ဆုံးရက်"
+    },
+    "2026-10-31": {
+      "ja": "就学時健診（R9新入生・5小学校）",
+      "en": "Pre-entry Health Check (5 schools)",
+      "pt": "Exame pré-matrícula (5 escolas)",
+      "vi": "Khám sức khỏe trước nhập học (5 trường)",
+      "tl": "Health check bago pumasok (5 paaralan)",
+      "es": "Reconocimiento previo a la matrícula (5 escuelas)",
+      "zh": "就学时健诊（R9新生・5小学）",
+      "id": "Pemeriksaan kesehatan pra-masuk (5 sekolah)",
+      "tr": "Okul öncesi sağlık taraması (5 okul)",
+      "my": "ကျောင်းမဝင်မီ ကျန်းမာရေးစစ်ဆေးမှု (ကျောင်း ၅)"
+    },
+    "2026-11-30": {
+      "ja": "スクールバス体験乗車会・アプリ試用",
+      "en": "School Bus Trial Rides & App Test",
+      "pt": "Viagens experimentais e teste do app",
+      "vi": "Đi thử xe buýt & thử ứng dụng",
+      "tl": "Pagsubok na pagsakay at app",
+      "es": "Viajes de prueba y prueba de la app",
+      "zh": "校车体验乘车会・应用试用",
+      "id": "Uji coba naik bus & aplikasi",
+      "tr": "Servis deneme yolculuğu ve uygulama denemesi",
+      "my": "ဘတ်စ် စမ်းသပ်စီးနင်းခြင်းနှင့် အက်ပ် စမ်းသပ်မှု"
+    },
+    "2026-12-31": {
+      "ja": "8校合同学校運営協議会",
+      "en": "Joint School Management Council (8 schools)",
+      "pt": "Conselho conjunto de gestão (8 escolas)",
+      "vi": "Hội đồng quản lý chung (8 trường)",
+      "tl": "Pinagsamang konseho ng pamamahala (8 paaralan)",
+      "es": "Consejo conjunto de gestión (8 escuelas)",
+      "zh": "8校联合学校运营协议会",
+      "id": "Dewan pengelolaan gabungan (8 sekolah)",
+      "tr": "Sekiz okul ortak yönetim kurulu",
+      "my": "ကျောင်း ၈ ကျောင်း ပူးတွဲ စီမံခန့်ခွဲရေးကောင်စီ"
+    },
+    "2027-02-28": {
+      "ja": "入学説明会・プレ登下校",
+      "en": "Enrolment Briefing & Pre-commute Trial",
+      "pt": "Sessão de matrícula e trajeto de teste",
+      "vi": "Họp nhập học & đi học thử",
+      "tl": "Briefing sa pagpasok at pre-commute",
+      "es": "Sesión de matrícula y trayecto de prueba",
+      "zh": "入学说明会・预备上下学",
+      "id": "Sosialisasi pendaftaran & uji perjalanan",
+      "tr": "Kayıt bilgilendirmesi ve deneme yolculuğu",
+      "my": "ကျောင်းအပ် ရှင်းလင်းပွဲနှင့် ကြိုတင် ကျောင်းသွားလာမှု"
+    },
+    "2027-03-31": {
+      "ja": "閉校式（5小学校・3中学校）",
+      "en": "Closing Ceremonies (5 elem. + 3 JHS)",
+      "pt": "Cerimônias de encerramento (5+3 escolas)",
+      "vi": "Lễ đóng trường (5 TH + 3 THCS)",
+      "tl": "Seremonya ng pagsasara (5+3 paaralan)",
+      "es": "Ceremonias de clausura (5+3 escuelas)",
+      "zh": "闭校式（5所小学・3所中学）",
+      "id": "Upacara penutupan (5 SD + 3 SMP)",
+      "tr": "Kapanış törenleri (5 ilkokul + 3 ortaokul)",
+      "my": "ကျောင်းပိတ်သိမ်းပွဲ (မူလတန်း ၅ + အလယ်တန်း ၃)"
     },
     "2027-04-01": {
       "ja": "第1期再編 実施予定（しのおか学園）",

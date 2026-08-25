@@ -135,6 +135,11 @@
           <p data-i18n-html="bus_ov_free_p"><strong>児童は無料</strong>で利用できます。学校再編によって通学距離が遠くなる点を考慮し、市が全額負担します。</p>
         </div>
         <div class="card">
+          <div class="card-icon">🚐</div>
+          <h3 data-i18n="bus_ov_fleet_h">車両と台数</h3>
+          <p data-i18n-html="bus_ov_fleet_p">2校合計で<strong>5〜6台程度</strong>。定員28名（運転手を除く）のマイクロバス（横幅約2.1m×全長約7m）を想定しています。</p>
+        </div>
+        <div class="card">
           <div class="card-icon">📋</div>
           <h3 data-i18n="bus_ov_apply_h">申請制</h3>
           <p data-i18n="bus_ov_apply_p">対象エリア内の児童の希望申請を受け付けます。毎年、バスの定員・通学団の編成状況をふまえながら決定します。</p>
@@ -167,6 +172,34 @@
 
       <p style="font-size:.85rem; color:var(--text-muted); margin-bottom:1.5rem;" data-i18n="bus_area_outside">※ エリア外の児童でも、最寄りの通学団が著しく遠く集団での登下校が困難な場合は、教育委員会よりスクールバス利用の提案を受けることがあります。</p>
 
+      <h3 style="font-size:1.05rem; font-weight:700; color:var(--primary); margin-bottom:.8rem;" data-i18n="bus_area_size_h">エリアの広さと利用者の見込み</h3>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th data-i18n="bus_area_tbl_district">地区</th>
+              <th data-i18n="bus_area_tbl_total">通学区域の面積</th>
+              <th data-i18n="bus_area_tbl_walk">うち徒歩エリア</th>
+              <th data-i18n="bus_area_tbl_bus">うちバスエリア</th>
+              <th data-i18n="bus_area_tbl_users">バス利用者の想定</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-i18n="bus_area_west_label">桃花台西</td>
+              <td>約6.9km²</td><td>3.5km²</td><td>3.4km²</td>
+              <td data-i18n="bus_area_west_users">約100名</td>
+            </tr>
+            <tr>
+              <td data-i18n="bus_area_east_label">桃花台東</td>
+              <td>約20.3km²</td><td>5.2km²</td><td>15.1km²</td>
+              <td data-i18n="bus_area_east_users">約160名</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.82rem; color:var(--text-muted); margin-bottom:1.5rem;" data-i18n="bus_area_size_source">出典：『篠岡地区 学校再編だより』vol.3。東側のほうが面積・利用者数とも大きく、バスエリアだけで15.1km²あります。</p>
+
       <!-- ===== 対象エリアの地図 =====
            形状は data/bus_area.geojson（市教委「学校再編だより」vol.6 の対象エリア図を
            当サイトが目視トレースしたもの）。描画は js/main.js の BUS SERVICE AREA MAP。
@@ -175,6 +208,21 @@
       <h3 style="font-size:1.05rem; font-weight:700; color:var(--primary); margin-bottom:.8rem;" data-i18n="bus_map_h">対象エリアの地図</h3>
       <p style="margin-bottom:1rem;" data-i18n="bus_map_lead">市教育委員会が示した対象エリア図をもとに、当サイトで地図に起こしたものです。新しい2校のまわり（徒歩で通える範囲）が対象外、その外側がスクールバスの対象エリアになります。</p>
 
+      <div class="bus-map-layers" id="bus-map-layers">
+        <span class="bus-map-layers-h" data-i18n="bus_map_layers_h">表示する情報</span>
+        <label><input type="checkbox" data-layer="busarea" checked><span data-i18n="bus_map_legend_area">スクールバス通学 対象エリア</span></label>
+        <label><input type="checkbox" data-layer="district" checked><span data-i18n="bus_map_lyr_district">通学区域（桃花台東・西）</span></label>
+        <label><input type="checkbox" data-layer="road" checked><span data-i18n="bus_map_lyr_road">主要道路</span></label>
+        <label><input type="checkbox" data-layer="place" checked><span data-i18n="bus_map_lyr_place">地区名</span></label>
+        <label><input type="checkbox" data-layer="school" checked><span data-i18n="bus_map_lyr_school">学校</span></label>
+        <label><input type="checkbox" data-layer="kinder"><span data-i18n="bus_map_lyr_kinder">幼稚園・保育園・児童館</span></label>
+        <label><input type="checkbox" data-layer="facility"><span data-i18n="bus_map_lyr_facility">公共施設・大学</span></label>
+        <label><input type="checkbox" data-layer="shop"><span data-i18n="bus_map_lyr_shop">スーパー・商業施設</span></label>
+        <label><input type="checkbox" data-layer="conveni"><span data-i18n="bus_map_lyr_conveni">コンビニ</span></label>
+        <label><input type="checkbox" data-layer="worship"><span data-i18n="bus_map_lyr_worship">神社・寺</span></label>
+        <label><input type="checkbox" data-layer="park"><span data-i18n="bus_map_lyr_park">公園・児童遊園</span></label>
+      </div>
+
       <figure class="bus-map-figure">
         <div id="bus-area-map" class="bus-area-map" role="img" data-i18n-aria="bus_map_alt"
              aria-label="篠岡地区のスクールバス通学対象エリアを示した地図。新設2校の周囲が対象外、その外側が対象エリア。"></div>
@@ -182,8 +230,10 @@
           <ul class="bus-map-legend">
             <li><span class="bus-map-key bus-map-key--area" aria-hidden="true"></span><span data-i18n="bus_map_legend_area">スクールバス通学 対象エリア</span></li>
             <li><span class="bus-map-key bus-map-key--walk" aria-hidden="true"></span><span data-i18n="bus_map_legend_walk">対象外（2校のまわりは徒歩通学の範囲、いちばん外側は篠岡地区の外）</span></li>
+            <li><span class="bus-map-key bus-map-key--line" aria-hidden="true"></span><span data-i18n="bus_map_legend_line">赤い線＝新しい通学区域の境（桃花台東・桃花台西の分かれ目）</span></li>
             <li><span class="bus-map-key bus-map-key--school" aria-hidden="true"></span><span data-i18n="bus_map_legend_school">新設される2つの小学校</span></li>
           </ul>
+          <p class="bus-map-osm" data-i18n="bus_map_osm">道路・地区名・施設の位置は OpenStreetMap（&copy; OpenStreetMap contributors, ODbL）によります。</p>
         </figcaption>
       </figure>
 
@@ -247,6 +297,116 @@
     </div>
   </section>
 
+  <!-- ===== バス停と乗降場所 =====
+       バス停案は だより vol.3 の図から復元したもの。vol.4 に「改めてバス停（案）を
+       お示ししていく考えです」と明記されているため、【見直し中である】ことを
+       停留所名より先に読ませる。確定版は対象者向け説明会で配布される。 -->
+  <section id="stops" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title" data-i18n-html="bus_stops_h2">バス停と乗降場所<small>Bus Stops</small></h2>
+      <p style="margin-bottom:1.2rem;" data-i18n="bus_stops_lead">バス停は、児童が安全に待機・乗降できる地域の会館や公共用地等が指定されます。バスの定時性を確保するため、箇所数は絞る考えが示されています。</p>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th data-i18n="bus_area_tbl_district">地区</th>
+              <th data-i18n="bus_stops_tbl_count">バス停の数（想定）</th>
+              <th data-i18n="bus_stops_tbl_courses">コース数（案）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td data-i18n="bus_area_west_label">桃花台西</td><td data-i18n="bus_stops_west_count">5〜6箇所</td><td data-i18n="bus_stops_west_courses">3コース</td></tr>
+            <tr><td data-i18n="bus_area_east_label">桃花台東</td><td data-i18n="bus_stops_east_count">9〜10箇所</td><td data-i18n="bus_stops_east_courses">4コース</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-box info-box--warn" data-i18n-html="bus_stops_revising">
+        ⚠️ <strong>以下のバス停は「だより vol.3」時点の案で、現在見直しが進んでいます。</strong>
+        vol.4 では、実際にバスを走らせて乗り降りのしやすさ・待機スペース・運行ルートを確認する作業を進めており、課題の洗い出しを経て<strong>改めてバス停（案）を示す</strong>と説明されています。確定した乗降場所と運行ダイヤは、対象者向けの説明会で配布されます。
+      </div>
+
+      <h3 style="font-size:1.05rem; font-weight:700; color:var(--primary); margin:1.5rem 0 .8rem;" data-i18n="bus_stops_west_h">桃花台西のコース案</h3>
+      <ol class="bus-course-list">
+        <li><span class="bus-course-label" data-i18n="bus_course1">コース1</span><span class="bus-course-route">上末八幡緑地 → 陶小学校 → <em>現.桃ヶ丘小学校</em> → 陶小学校 → <em>現.桃ヶ丘小学校</em></span></li>
+        <li><span class="bus-course-label" data-i18n="bus_course2">コース2</span><span class="bus-course-route">下末会館北側 → 勤労センター → <em>現.桃ヶ丘小学校</em> → 下末会館北側 → <em>現.桃ヶ丘小学校</em></span></li>
+        <li><span class="bus-course-label" data-i18n="bus_course3">コース3</span><span class="bus-course-route">大草会館 → <em>現.光ヶ丘小学校</em> → 高根会館前 → <em>現.桃ヶ丘小学校</em></span></li>
+      </ol>
+
+      <h3 style="font-size:1.05rem; font-weight:700; color:var(--primary); margin:1.5rem 0 .8rem;" data-i18n="bus_stops_east_h">桃花台東のコース案</h3>
+      <ol class="bus-course-list">
+        <li><span class="bus-course-label" data-i18n="bus_course1">コース1</span><span class="bus-course-route">赤坂児童遊園 → 池之内会館 → <em>現.光ヶ丘小学校</em> → 池之内川南集会所 → <em>現.光ヶ丘小学校</em></span></li>
+        <li><span class="bus-course-label" data-i18n="bus_course2">コース2</span><span class="bus-course-route">林会館 → <em>現.光ヶ丘小学校</em> → 林会館 → 野口会館 → <em>現.光ヶ丘小学校</em></span></li>
+        <li><span class="bus-course-label" data-i18n="bus_course3">コース3</span><span class="bus-course-route">大草会館 → <em>現.光ヶ丘小学校</em> → 高根会館前 → <em>現.桃ヶ丘小学校</em></span></li>
+        <li><span class="bus-course-label" data-i18n="bus_course4">コース4</span><span class="bus-course-route">四季の森前 → 老人憩の家 → 愛知文教大学前 → <em>現.光ヶ丘小学校</em> → 大草会館 → <em>現.光ヶ丘小学校</em></span></li>
+      </ol>
+      <p style="font-size:.82rem; color:var(--text-muted); margin-bottom:1.2rem;" data-i18n-html="bus_stops_route_note">地名・施設名は市の資料の表記のまま載せています。<em>斜体</em>が降車先の学校です。1台のバスが学校へ着いたあと、別のバス停へ戻ってもう一度運ぶコースも含まれています。</p>
+
+      <div class="info-box" data-i18n-html="bus_stops_time">
+        🕗 <strong>学校への到着は7時50分〜8時15分の間</strong>を想定。下校は<strong>5限後・6限後・部活動後</strong>の最大3便が想定されています。
+      </div>
+
+      <h3 style="font-size:1.05rem; font-weight:700; color:var(--primary); margin:1.5rem 0 .8rem;" data-i18n="bus_stops_school_h">学校の敷地内での乗降場所</h3>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">🏫</div>
+          <h3 data-i18n="bus_stops_school_east_h">桃花台東小（現・光ヶ丘小学校）</h3>
+          <p data-i18n-html="bus_stops_school_east_p"><strong>東側駐車場</strong>。東門から進入し、敷地内で転回して東門から出ます。登校時は玄関付近に縦列（最大2台程度）、下校時は横並びでの停車を想定しています。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🏫</div>
+          <h3 data-i18n="bus_stops_school_west_h">桃花台西小（現・桃ヶ丘小学校）</h3>
+          <p data-i18n-html="bus_stops_school_west_p"><strong>北側駐車場</strong>。現在使っていない西門から進入し、敷地内で転回して西門から出る（または北門から西門への一方通行）ことを想定。登下校とも渡り廊下付近または北側昇降口付近での停車を想定しています。</p>
+        </div>
+      </div>
+      <p style="font-size:.85rem; color:var(--text-muted); margin-top:1rem;" data-i18n="bus_stops_source">出典：『篠岡地区 学校再編だより』vol.3・vol.4（小牧市教育委員会 教育総務課）</p>
+    </div>
+  </section>
+
+  <!-- ===== 運行事業者 =====
+       出典は「あいち電子調達共同システム（物品等）」の入札結果詳細（公式）。
+       ドメインを増やさない方針のため本文にリンクは張らず、出典名だけを明記している。
+       だより vol.4 の「令和8年6月 スクールバス事業者との契約締結」とも一致する。 -->
+  <section id="operator" class="section">
+    <div class="container">
+      <h2 class="section-title" data-i18n-html="bus_operator_h2">運行事業者と契約<small>Operator</small></h2>
+      <p style="margin-bottom:1.2rem;" data-i18n="bus_operator_lead">スクールバスの運行管理は民間事業者への業務委託です。指名競争入札が行われ、令和8年6月1日に開札されました。</p>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <tbody>
+            <tr><th data-i18n="bus_operator_row_name">落札者</th><td>あおい交通株式会社</td></tr>
+            <tr><th data-i18n="bus_operator_row_amount">落札金額</th><td data-i18n="bus_operator_amount">111,750,000円（税抜き）</td></tr>
+            <tr><th data-i18n="bus_operator_row_method">入札方式</th><td data-i18n="bus_operator_method">指名競争入札（電子入札・役務調達）</td></tr>
+            <tr><th data-i18n="bus_operator_row_period">履行期間</th><td data-i18n="bus_operator_period">令和8年6月8日 〜 令和12年3月31日</td></tr>
+            <tr><th data-i18n="bus_operator_row_place">履行場所</th><td data-i18n="bus_operator_place">小牧市内</td></tr>
+            <tr><th data-i18n="bus_operator_row_dept">発注所属</th><td data-i18n="bus_operator_dept">小牧市 総務部総務課</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size:1.05rem; font-weight:700; color:var(--primary); margin:1.5rem 0 .8rem;" data-i18n="bus_operator_bids_h">入札の結果（7社を指名）</h3>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th data-i18n="bus_operator_tbl_company">事業者</th><th data-i18n="bus_operator_tbl_amount">入札金額（税抜き）</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>あおい交通株式会社</td><td>111,750,000円 <span class="badge-win" data-i18n="bus_operator_win">落札</span></td></tr>
+            <tr><td>ゼットスタッフ株式会社</td><td>323,800,000円</td></tr>
+            <tr><td>姫観光バス株式会社</td><td>351,540,000円</td></tr>
+            <tr><td>株式会社オーワ 本社営業所</td><td data-i18n="bus_operator_declined">辞退</td></tr>
+            <tr><td>愛知バス株式会社</td><td data-i18n="bus_operator_declined">辞退</td></tr>
+            <tr><td>名阪近鉄バス株式会社 観光バス営業部 愛知支店</td><td data-i18n="bus_operator_nores">未受領</td></tr>
+            <tr><td>ジェイアール東海バス株式会社</td><td data-i18n="bus_operator_nores">未受領</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.85rem; color:var(--text-muted); margin-top:1rem;" data-i18n="bus_operator_source">出典：あいち電子調達共同システム（物品等）入札結果詳細情報（案件番号 2605122321900712170）。『篠岡地区 学校再編だより』vol.4 も「令和8年6月 スクールバス事業者との契約締結」と記載しています。</p>
+    </div>
+  </section>
+
   <!-- SAFETY -->
   <section id="safety" class="section section-alt">
     <div class="container">
@@ -265,7 +425,7 @@
         <div class="card">
           <div class="card-icon">👨‍✈️</div>
           <h3 data-i18n="bus_safety_guide_h">添乗員</h3>
-          <p data-i18n-html="bus_safety_guide_p">事業者に業務委託した<strong>添乗員</strong>がバスに同乗します。マニュアルに基づく事前研修を受けた人材が担当します。</p>
+          <p data-i18n-html="bus_safety_guide_p">保護者の不安解消と児童の安全・安心を最優先に、<strong>すべてのバスに添乗員を配置する方針</strong>が示されています。事業者に業務委託した添乗員が同乗し、マニュアルに基づく事前研修を受けた人材が担当します。</p>
         </div>
       </div>
     </div>
@@ -278,18 +438,28 @@
       <div class="process-steps">
         <div class="process-step done">
           <div class="process-num">①</div>
-          <div style="font-size:.88rem; font-weight:700; margin-top:.3rem;" data-i18n="bus_tl1_title">令和8年度（早期）</div>
-          <div class="process-label" data-i18n-html="bus_tl1_body"><strong>プレ登校の実施。</strong>再編後の学校への慣れを目的とした取り組み。</div>
+          <div style="font-size:.88rem; font-weight:700; margin-top:.3rem;" data-i18n="bus_tl1_title">令和8年6月</div>
+          <div class="process-label" data-i18n-html="bus_tl1_body"><strong>運行事業者と契約締結。</strong>指名競争入札を経て、あおい交通株式会社が受託しました。</div>
         </div>
         <div class="process-step current">
           <div class="process-num">②</div>
-          <div style="font-size:.88rem; font-weight:700; margin-top:.3rem;" data-i18n="bus_tl2_title">令和8〜9年度</div>
-          <div class="process-label" data-i18n-html="bus_tl2_body"><strong>体験乗車・試験運行。</strong>実際のルート・停留所を確認しながら段階的に準備を進めます。</div>
+          <div style="font-size:.88rem; font-weight:700; margin-top:.3rem;" data-i18n="bus_tl2_title">令和8年8〜9月</div>
+          <div class="process-label" data-i18n-html="bus_tl2_body"><strong>申請書類の受付と利用説明会。</strong>対象エリアの家庭へ書類を送付。8月30日〜9月30日に受付。</div>
         </div>
         <div class="process-step">
           <div class="process-num">③</div>
-          <div style="font-size:.88rem; font-weight:700; margin-top:.3rem;" data-i18n="bus_tl3_title">令和9年4月（予定）</div>
-          <div class="process-label" data-i18n-html="bus_tl3_body"><strong>第1期再編に合わせて本格運行開始。</strong>篠岡地区のスクールバス運行がスタートします。</div>
+          <div style="font-size:.88rem; font-weight:700; margin-top:.3rem;" data-i18n="bus_tl3_title">令和8年11〜12月</div>
+          <div class="process-label" data-i18n-html="bus_tl3_body"><strong>体験乗車会とアプリの試用。</strong>実際のルート・停留所を確認しながら段階的に準備を進めます。</div>
+        </div>
+        <div class="process-step">
+          <div class="process-num">④</div>
+          <div style="font-size:.88rem; font-weight:700; margin-top:.3rem;" data-i18n="bus_tl4_title">令和9年2月</div>
+          <div class="process-label" data-i18n-html="bus_tl4_body"><strong>プレ登下校。</strong>再編後の学校への通学に慣れることを目的とした取り組みです。</div>
+        </div>
+        <div class="process-step">
+          <div class="process-num">⑤</div>
+          <div style="font-size:.88rem; font-weight:700; margin-top:.3rem;" data-i18n="bus_tl5_title">令和9年4月（予定）</div>
+          <div class="process-label" data-i18n-html="bus_tl5_body"><strong>第1期再編に合わせて本格運行開始。</strong>篠岡地区のスクールバス運行がスタートします。</div>
         </div>
       </div>
     </div>
@@ -347,7 +517,7 @@
             <span class="faq-q-icon">+</span>
           </button>
           <div class="faq-a" data-i18n-html="bus_faq_a5">
-            <p style="padding-top:.8rem;">乗降場所（バス停）と運行ダイヤは、対象者向けの説明会で「スクールバス利用ガイドライン」とあわせて示される予定です。</p>
+            <p style="padding-top:.8rem;">「だより vol.3」で各コースのバス停案が示されており、<a href="#stops">バス停と乗降場所</a>にまとめています。ただし vol.4 で見直し中と説明されており、確定した乗降場所と運行ダイヤは対象者向けの説明会で「スクールバス利用ガイドライン」とあわせて示される予定です。</p>
           </div>
         </div>
 

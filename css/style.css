@@ -1095,6 +1095,9 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 .process-label { font-size: .82rem; color: var(--text-muted); margin-top: .2rem; }
 
 /* ===== TABLE ===== */
+/* 横に広い表は、ページ本体ではなくこの箱の中だけを横スクロールさせる */
+.table-wrap { overflow-x: auto; margin-bottom: 1rem; }
+.table-wrap .data-table { min-width: 32rem; }
 .data-table { width: 100%; border-collapse: collapse; font-size: .9rem; background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
 .data-table th {
   background: var(--primary);
@@ -1725,3 +1728,88 @@ footer {
 @media (max-width: 480px) {
   .deadline-date { font-size: 1.12rem; }
 }
+
+/* ===== バス停コース一覧（bus.html）=====
+   停留所名は市の資料の表記のまま載せるため翻訳しない。行が長くなるので
+   狭い画面ではラベルと経路を縦に積む。 */
+.bus-course-list { list-style: none; margin-bottom: 1rem; }
+.bus-course-list li {
+  display: flex;
+  gap: .8rem;
+  align-items: baseline;
+  padding: .7rem .9rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: .5rem;
+  font-size: .9rem;
+}
+.bus-course-label {
+  flex: none;
+  font-weight: 700;
+  color: var(--primary);
+  font-family: var(--heading-font);
+  font-size: .85rem;
+}
+.bus-course-route { line-height: 1.8; }
+.bus-course-route em { font-style: italic; color: var(--primary); font-weight: 700; }
+
+/* 入札結果の「落札」バッジ */
+.badge-win {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 700;
+  padding: .1rem .5rem;
+  border-radius: var(--radius-pill);
+  margin-left: .4rem;
+  vertical-align: middle;
+}
+
+/* 入札結果の表は左見出し列を持つ（th が行頭にある） */
+.data-table tbody th {
+  text-align: left;
+  padding: .7rem 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .bus-course-list li { flex-direction: column; gap: .25rem; }
+}
+
+/* ===== 地図のレイヤー切り替え（bus.html）=====
+   地物が多いので既定では主要な層だけを出し、残りは読者が必要なときに開く。 */
+.bus-map-layers {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .35rem .9rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: .8rem 1rem;
+  margin-bottom: .8rem;
+  font-size: .84rem;
+}
+.bus-map-layers[hidden] { display: none; }
+.bus-map-layers-h {
+  font-weight: 700;
+  color: var(--primary);
+  font-family: var(--heading-font);
+  margin-right: .2rem;
+}
+.bus-map-layers label {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.bus-map-layers input { accent-color: var(--primary); cursor: pointer; }
+.bus-map-key--line { background: #d32f2f; border: none; height: .3rem; border-radius: 2px; }
+.bus-map-osm { font-size: .75rem; color: var(--text-muted); margin-top: .5rem; }
