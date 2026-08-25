@@ -1,4 +1,6 @@
 {
+  "actions_lead": "Kegiatan warga untuk mengenang sekolah yang akan ditutup dan menyimpan kenangannya. Ini bukan program pemerintah kota atau sekolah — warga sendiri yang menyelenggarakannya.",
+  "actions_note": "Tanggal dan detail dapat berubah. Untuk informasi terbaru dan cara ikut serta, lihat kanal masing-masing kelompok. Informasi resmi soal reorganisasi ada di “Berita dari situs kota”.",
   "aria_lang": "Pilih bahasa",
   "aria_menu": "Menu",
   "btn_official": "Halaman resmi kota →",
@@ -88,6 +90,7 @@
   "ql_voices_p": "Presentasi adil dari berbagai pendapat warga lokal, orang tua, dan mantan guru. Termasuk ringkasan hasil komentar publik.",
   "school_news_lead": "Tulisan terbaru dari situs resmi yang dikelola oleh lima SD dan tiga SMP yang terdampak reorganisasi. Kegiatan harian sekolah tidak dimuat di halaman reorganisasi kota, sehingga dikumpulkan di sini.",
   "school_news_note": "Catatan: Tulisan diambil otomatis sekali sehari dan hanya tulisan terbaru dari tiap sekolah yang ditampilkan. Judul ditampilkan persis seperti yang dipublikasikan tiap sekolah (tanpa terjemahan). Untuk informasi resmi tentang reorganisasi, lihat \"Pengumuman resmi\" di atas.",
+  "section_actions": "Kegiatan warga<small>Community Efforts</small>",
   "section_links": "Tautan Halaman<small>Quick Links</small>",
   "section_news": "Pengumuman Resmi Kota<small>Official Announcements</small>",
   "section_points": "Poin Penting<small>Key Points</small>",

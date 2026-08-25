@@ -9,6 +9,7 @@
   4. こどもモード      — ja-kids.json の1行がモーラ換算で長すぎないか
   5. ページ別辞書      — data/i18n/pages/ が data/i18n/ と HTML に対して最新か
   6. 外部リンク規則    — 市サイトへのリンクは許可URL（303/index.html）のみ、
+                       Instagram は許可アカウントかつ index.html のみ、
                           文科省へのリンクは nationwide.html の許可URLのみ
   7. 出典実在チェック  — evidence.json の各引用が data/official_pages/ の
                           スナップショットに実在する文字列か照合（創作の検出）
@@ -52,6 +53,15 @@ PERMITTED_MEXT_LINKS = (
     "kihon/1267995.htm",                 # 学校基本調査
 )
 MEXT_PAGES = ("nationwide.html",)
+# 閉校を惜しむ市民有志の Instagram アカウント。index.html の「地域の取組」欄でのみ、
+# ここに挙げたアカウントに限って張ってよい（2026-08-26 追加）。
+# これは市の公式情報でも報道でもなく【市民有志の発信】であり、
+# 計画の内容・数値の根拠には決して使わない（報道コーナーと同じ扱い）。
+# 増やすときは CLAUDE.md・CONTRIBUTING.txt 規則1・README.md も同時に更新すること。
+PERMITTED_INSTAGRAM = (
+    "instagram.com/arigato.ohshirosho",   # ありがとう大城小
+)
+INSTAGRAM_PAGES = ("index.html",)
 MIN_QUOTE_LEN = 10
 
 fails = []
@@ -221,6 +231,11 @@ def main():
                         link_violations.append(f"{p}:{i} 文科省リンクは {'/'.join(MEXT_PAGES)} のみ可 {m.group(0)[:60]}")
                     elif not any(allowed in m.group(0) for allowed in PERMITTED_MEXT_LINKS):
                         link_violations.append(f"{p}:{i} 許可外の文科省URL {m.group(0)[:80]}")
+                for m in re.finditer(r"instagram\.com[^\s\"'<)\\]*", line):
+                    if not (is_dict or p in INSTAGRAM_PAGES):
+                        link_violations.append(f"{p}:{i} Instagram リンクは {'/'.join(INSTAGRAM_PAGES)} のみ可 {m.group(0)[:60]}")
+                    elif not any(allowed in m.group(0) for allowed in PERMITTED_INSTAGRAM):
+                        link_violations.append(f"{p}:{i} 許可外の Instagram アカウント {m.group(0)[:80]}")
     if link_violations:
         for v in link_violations:
             fail(f"許可外の外部URL: {v}")

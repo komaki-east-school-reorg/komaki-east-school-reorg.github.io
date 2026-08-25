@@ -1,4 +1,6 @@
 {
+  "actions_lead": "Hoạt động của người dân nhằm ghi dấu các trường sắp đóng cửa và lưu giữ kỷ niệm. Đây không phải chương trình của thành phố hay nhà trường mà do người dân tự tổ chức.",
+  "actions_note": "Ngày giờ và nội dung có thể thay đổi. Để biết thông tin mới nhất và đăng ký tham gia, hãy xem kênh của từng nhóm. Thông tin chính thức về việc tái cơ cấu, xem “Tin từ trang thành phố”.",
   "aria_lang": "Chọn ngôn ngữ",
   "aria_menu": "Menu",
   "btn_official": "Trang chính thức của thành phố →",
@@ -88,6 +90,7 @@
   "ql_voices_p": "Giới thiệu công bằng các ý kiến đa dạng từ cư dân, phụ huynh và cựu giáo viên. Bao gồm tóm tắt kết quả lấy ý kiến công cộng.",
   "school_news_lead": "Bài viết mới nhất từ trang web chính thức do năm trường tiểu học và ba trường THCS thuộc diện tái tổ chức tự vận hành. Sinh hoạt hằng ngày của trường không có trên trang tái tổ chức của thành phố nên được tập hợp tại đây.",
   "school_news_note": "Lưu ý: Bài viết được lấy tự động mỗi ngày một lần và chỉ hiển thị bài mới nhất của mỗi trường. Tiêu đề giữ nguyên như trường công bố (không dịch). Thông tin chính thức về việc tái tổ chức xin xem mục \"Thông báo chính thức\" ở trên.",
+  "section_actions": "Hoạt động cộng đồng<small>Community Efforts</small>",
   "section_links": "Liên kết trang<small>Quick Links</small>",
   "section_news": "Thông báo chính thức của thành phố<small>Official Announcements</small>",
   "section_points": "Điểm quan trọng<small>Key Points</small>",

@@ -9,6 +9,10 @@
 【ルール1】外部リンクは小牧市公式の所管課インデックスページのみ
 ──────────────────────────────────────────────────────
 
+※ 例外として、報道コーナー（chunichi.co.jp）、対象8校のHP（komaki-aic.ed.jp）、
+   nationwide.html の文科省4URL、index.html の「地域の取組」の Instagram 許可
+   アカウントのみ、別途認めている。いずれも下のチェックで機械検査している。
+
 ■ 許可するURL（2種類のみ。どちらも「インデックスページ」）
   (1) 学校再編（教育総務課 学校再編推進係）＝サイト全体で使用
       https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html
@@ -97,6 +101,14 @@
 
   文科省URL（nationwide.html と翻訳辞書のみ許可）：
   grep -rn "mext\.go\.jp" *.html js/*.js data/i18n/*.json \
+
+  Instagram（index.html と翻訳辞書のみ許可。許可アカウントのみ）：
+    grep -rn "instagram\.com" *.html js/*.js data/i18n/*.json \
+      | grep -v -e "arigato\.ohshirosho"
+  → 出力があれば違反箇所。index.html 以外での使用も違反。
+    ここは市の公式情報でも報道でもなく【市民有志の発信】。計画の内容・数値の
+    根拠には決して使わない。アカウントを増やすときは auto_gates.py の
+    PERMITTED_INSTAGRAM・CLAUDE.md・README.md も同時に更新すること。
     | grep -v -e "tekisei/index\.htm" -e "tekisei/1413885_00007\.htm" \
              -e "zyosei/yoyuu_00002\.htm" -e "kihon/1267995\.htm"
   → 出力があれば違反箇所。nationwide.html 以外のページに出た場合も違反。

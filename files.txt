@@ -37,6 +37,7 @@ data/site-updates.json      このサイト自身の更新履歴（手動管理�
 data/bus_area.geojson       スクールバス通学対象エリアのポリゴン（手動生成）。市教委「学校再編だより」vol.6の対象エリア図を目視トレースし、図中の500mスケールバーと2校の位置注記で座標を合わせた非公式の近似図。bus.htmlの地図がfetchして描画。正式な対象可否は市の送付書類による。
 data/bus_area.kml           上記と同じ図形のKML版。Googleマイマップに読み込んでGoogleマップ上に重ねるためのもの。bus.htmlからダウンロードリンクを張っている。
 data/bus_map.geojson        bus.htmlの地図が描画する全データ（手動生成）。対象エリア・通学区域（桃花台東/西）は「学校再編だより」vol.6の図を目視トレースした非公式の近似。道路・地区名・施設はOpenStreetMap（ODbL、出典表示が必要）。層ごとにlayer/catプロパティを持ち、js/main.jsがチェックボックスで表示を切り替える。
+data/community_actions.json 閉校を惜しむ市民有志の取組（手動管理）。トップページ「地域の取組」が実行時にfetchして描画。市の公式情報でも報道でもなく市民有志の発信であり、計画の内容・数値の根拠には使わない。source_urlはauto_gates.pyのPERMITTED_INSTAGRAMにあるアカウントのみ。
 data/i18n/ja.json           日本語（デフォルト言語）の翻訳テキストをすべて格納する言語ファイル。
 data/i18n/en.json           英語の翻訳テキストを格納する言語ファイル。
 data/i18n/pt.json           ポルトガル語（ブラジル）の翻訳テキストを格納する言語ファイル。

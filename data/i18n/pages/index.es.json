@@ -1,4 +1,6 @@
 {
+  "actions_lead": "Iniciativas de vecinos para despedir a las escuelas que cierran y conservar sus recuerdos. No son actividades del ayuntamiento ni de los centros: las organizan los propios vecinos.",
+  "actions_note": "Las fechas y los detalles pueden cambiar. Para la información más reciente y para participar, consulte el canal de cada grupo. Para la información oficial sobre la reorganización, véase «Novedades del sitio municipal».",
   "aria_lang": "Seleccionar idioma",
   "aria_menu": "Menú",
   "btn_official": "Página oficial de la ciudad →",
@@ -88,6 +90,7 @@
   "ql_voices_p": "Una presentación imparcial de diversas opiniones de residentes locales, padres y ex maestros. Incluye un resumen de los resultados del proceso de comentarios públicos.",
   "school_news_lead": "Publicaciones recientes de los sitios oficiales que gestionan las cinco escuelas primarias y las tres secundarias afectadas por la reorganización. El día a día escolar no aparece en la página de reorganización de la ciudad, por eso se reúne aquí.",
   "school_news_note": "Nota: Las publicaciones se obtienen automáticamente una vez al día y solo se muestra la más reciente de cada escuela. Los títulos se muestran tal como los publica cada escuela (sin traducir). Para información oficial sobre la reorganización, consulte «Comunicados oficiales» más arriba.",
+  "section_actions": "Iniciativas vecinales<small>Community Efforts</small>",
   "section_links": "Enlaces de Página<small>Quick Links</small>",
   "section_news": "Anuncios Oficiales de la Ciudad<small>Official Announcements</small>",
   "section_points": "Puntos Clave<small>Key Points</small>",

@@ -1274,3 +1274,77 @@ window.KomakiLang = (function () {
       if (box) box.hidden = true;
     });
 })();
+
+/* ===== COMMUNITY ACTIONS（index.html「地域の取組」）=====
+   閉校を惜しむ市民有志の取組。data/community_actions.json は手動管理。
+
+   【このコーナーだけ出典の性格が違う】市の公式情報でも報道でもなく、
+   市民有志自身の発信（Instagram）。報道コーナーと同じく、
+   計画の内容・数値の根拠には決して使わない。発信元へのリンクが
+   「有志の発信である」ことを示す唯一の手がかりなので、外さないこと。
+
+   取組の名称と学校名は主催者・市の書いた固有名なので【翻訳しない】。
+   まわりのラベルだけ多言語にする（公式ニュース・報道コーナーと同じ方針）。 */
+(function () {
+  var container = document.getElementById('community-actions-container');
+  if (!container) return;
+
+  var _al = window.KomakiLang();
+  var _at = {
+    when:   {ja:'日時', en:'Date', pt:'Data', vi:'Thời gian', tl:'Petsa', es:'Fecha', zh:'日期', id:'Waktu', tr:'Tarih', my:'ရက်စွဲ'},
+    place:  {ja:'場所', en:'Place', pt:'Local', vi:'Địa điểm', tl:'Lugar', es:'Lugar', zh:'地点', id:'Tempat', tr:'Yer', my:'နေရာ'},
+    source: {ja:'発信元', en:'Posted by', pt:'Divulgado por', vi:'Nguồn tin', tl:'Mula sa', es:'Publicado por', zh:'发布方', id:'Diposting oleh', tr:'Paylaşan', my:'တင်သူ'},
+    citizen:{ja:'市民有志', en:'Citizen-run', pt:'Iniciativa de cidadãos', vi:'Do người dân tổ chức', tl:'Mamamayan ang nagpapatakbo', es:'Iniciativa ciudadana', zh:'市民有志', id:'Inisiatif warga', tr:'Vatandaş girişimi', my:'ပြည်သူ့ဦးဆောင်'},
+    empty:  {ja:'現在、掲載されている取組はありません。', en:'Nothing is listed at the moment.', pt:'No momento não há nada publicado.', vi:'Hiện chưa có nội dung nào.', tl:'Wala pang nakalista sa ngayon.', es:'Por ahora no hay nada publicado.', zh:'目前没有刊登的取组。', id:'Saat ini belum ada yang ditampilkan.', tr:'Şu anda listelenen bir şey yok.', my:'လက်ရှိတွင် ဖော်ပြထားသည် မရှိပါ။'},
+    error:  {ja:'地域の取組を取得できませんでした。', en:'Could not load community efforts.', pt:'Não foi possível carregar.', vi:'Không tải được nội dung.', tl:'Hindi ma-load ang listahan.', es:'No se pudo cargar.', zh:'无法加载地域取组。', id:'Gagal memuat.', tr:'Yüklenemedi.', my:'မဖွင့်နိုင်ပါ။'}
+  };
+  function at(k) { return _at[k][_al] || _at[k]['en'] || _at[k]['ja']; }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c];
+    });
+  }
+  function pick(it, base) { return it[base + '_' + _al] || it[base + '_en'] || it[base + '_ja'] || ''; }
+
+  // 終わった取組は落とす（当日は残す）
+  function notPast(it) {
+    if (!it.date) return true;
+    var d = new Date();
+    var today = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    return it.date >= today;
+  }
+
+  fetch('./data/community_actions.json')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) {
+      var items = (data.actions || []).filter(notPast);
+      if (!items.length) { container.innerHTML = '<p class="school-empty">' + at('empty') + '</p>'; return; }
+      items.sort(function (a, b) { return (a.date || '').localeCompare(b.date || ''); });
+
+      container.innerHTML = '<ul class="action-list">' + items.map(function (it) {
+        // 取組名と学校名は主催者・市の固有名なので翻訳しない
+        var rows = '';
+        var when = pick(it, 'date_note');
+        var place = pick(it, 'place');
+        if (when)  rows += '<div class="action-row"><span class="action-label">' + at('when') + '</span>' + esc(when) + '</div>';
+        if (place) rows += '<div class="action-row"><span class="action-label">' + at('place') + '</span>' + esc(place) + '</div>';
+        var body = pick(it, 'body');
+        var src = it.source_url
+          ? '<a href="' + esc(it.source_url) + '" target="_blank" rel="noopener">' + esc(it.source_label || it.source_url) + '</a>'
+          : esc(it.source_label || '');
+        return '<li class="action-item">' +
+                 '<div class="action-head">' +
+                   '<span class="action-title">' + esc(it.title_ja || '') + '</span>' +
+                   '<span class="action-badge">' + at('citizen') + '</span>' +
+                 '</div>' +
+                 '<div class="action-school">' + esc(it.school_ja || '') + '</div>' +
+                 rows +
+                 (body ? '<p class="action-body">' + esc(body) + '</p>' : '') +
+                 '<div class="action-source">' + at('source') + '：' + src + '</div>' +
+               '</li>';
+      }).join('') + '</ul>';
+    })
+    .catch(function () {
+      container.innerHTML = '<p class="official-news-error">' + at('error') + '</p>';
+    });
+})();

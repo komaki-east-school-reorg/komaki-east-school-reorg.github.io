@@ -1,0 +1,19 @@
+{
+  "note": "閉校を惜しむ市民有志の取組。手動管理。市の公式情報でも報道でもなく、市民有志の発信である。計画の内容・数値の根拠には決して使わない。source_url は auto_gates.py の PERMITTED_INSTAGRAM に載っているアカウントのみ。",
+  "actions": [
+    {
+      "school_ja": "大城小学校",
+      "school_en": "Oshiro Elementary School",
+      "title_ja": "ありがとう大城小",
+      "date": "2026-12-13",
+      "date_note_ja": "2026年12月13日（日）日中",
+      "date_note_en": "Sunday 13 December 2026, daytime",
+      "place_ja": "大城小学校",
+      "place_en": "Oshiro Elementary School",
+      "body_ja": "体育館でお祭りマルシェ、校庭で野球などを予定。キッチンカーの出店も予定されています。実行委員と当日ボランティアを募集中です。",
+      "body_en": "A festival market in the gym and baseball on the school ground are planned, with food trucks. The group is recruiting committee members and volunteers for the day.",
+      "source_label": "Instagram @arigato.ohshirosho",
+      "source_url": "https://www.instagram.com/arigato.ohshirosho/"
+    }
+  ]
+}
