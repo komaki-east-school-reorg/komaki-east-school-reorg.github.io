@@ -30,7 +30,7 @@
 ## 対応言語
 
 **全訳済み（10言語）**: 日本語 / English / Português / Tiếng Việt / Filipino / Español / 中文 / Bahasa Indonesia / Türkçe / မြန်မာ
-主要部分のみ翻訳済みで、未翻訳部分は英語で表示されます（選択時にその旨の案内が出ます）。
+10言語すべてが全訳済みです（2026-08-13 にトルコ語・ビルマ語が全訳に到達）。新しいキーを追加した直後など、未訳が生じた場合は英語→日本語の順にフォールバックします。
 
 日本語版のみ「こどもむけ」モード（ひらがな・やさしい言葉）に切り替え可能です。
 
@@ -47,10 +47,11 @@ python3 -m http.server 8000
 
 詳細は [CONTRIBUTING.txt](CONTRIBUTING.txt) を参照してください。主なルール：
 
-1. **外部リンクは公式市ページの2つのインデックスのみ** — 学校再編 `.../kyoiku/kyouikusoumu/303/index.html`（サイト全体）と地域協議会 `.../kenkouikigai/sasaeai/3/3_2/index.html`（community.html のみ）。それ以外の city.komaki.aichi.jp URL は禁止。別枠として、再編対象8校のホームページ（`komaki-aic.ed.jp`）、報道コーナーが出典として張る中日新聞Web の記事（`chunichi.co.jp`）、nationwide.html が出典として張る文部科学省の4つの資料ページ（`mext.go.jp`）、そして全ページ下部の共有ボタンの送り先（LINE・X・Facebook・はてなブックマーク・Threads・Bluesky・Reddit・Mastodon／はてなスター）は可（例外：報道コーナーの中日新聞、対象8校のHP、`nationwide.html` の文科省4URL、`index.html`「地域の取組」の許可 Instagram アカウント。いずれも `auto_gates.py` が機械検査）
+1. **外部リンクは公式市ページの2つのインデックスのみ** — 学校再編 `.../kyoiku/kyouikusoumu/303/index.html`（サイト全体）と地域協議会 `.../kenkouikigai/sasaeai/3/3_2/index.html`（community.html のみ）。それ以外の city.komaki.aichi.jp URL は禁止。別枠として、再編対象8校のホームページ（`komaki-aic.ed.jp`）、報道コーナーが出典として張る中日新聞Web の記事（`chunichi.co.jp`）、nationwide.html が出典として張る文部科学省の4つの資料ページ（`mext.go.jp`）、index.html「地域の取組」が発信元として張る市民有志の許可アカウント（`instagram.com`）、そして全ページ下部の共有ボタンの送り先（LINE・X・Facebook・はてなブックマーク・Threads・Bluesky・Reddit・Mastodon／はてなスター）は可。いずれも `auto_gates.py` が機械検査する
 2. **翻訳ファイルの構文** — `data/i18n/*.json` はコミット前に全ファイルを JSON パースして確認（アポストロフィのエスケープは不要。`\'` と書くと逆に壊れる）
 3. **新しい翻訳キー** — `ja`（日本語）と `en`（英語）への記載が必須。他の言語は未記載でも英語→日本語の順にフォールバック
 4. **事実確認** — 掲載する数値・日付は必ず公式情報源に基づく
+5. **年表は時系列に並べる** — `index.html`「現在の状況」と `schedule.html`「主要イベント一覧」は全項目に `data-start="YYYY-MM-DD"`（開始日）を付け、見出しごとに昇順で書く。末尾に足さず日付の位置に差し込む
 
 ## 自動更新（現在日付・最終更新の反映）
 
@@ -64,7 +65,7 @@ python3 -m http.server 8000
 | 「現在の状況」の完了表示・イベント状態バッジ（完了/進行中/予定） | ページを開くたび（予定日を過ぎると自動的に「完了」へ） |
 | トップページ「今後のスケジュール」バーの各項目 | ページを開くたび（予定日を過ぎた項目から自動的に非表示。直近の個別日程を表示） |
 
-スケジュールやイベントを追加・編集する際の運用ルール（`data-event-date` の設定方法など）は [CONTRIBUTING.txt](CONTRIBUTING.txt) の【ルール5】を参照してください。
+スケジュールやイベントを追加・編集する際の運用ルールは [CONTRIBUTING.txt](CONTRIBUTING.txt) の【ルール5】（`data-event-date` などの日付属性）と【ルール7】（`data-start` による時系列の並べ方）を参照してください。
 
 ## 開発者向けドキュメント
 

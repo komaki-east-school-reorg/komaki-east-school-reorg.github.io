@@ -232,8 +232,18 @@ Several things reflect the current date automatically — no manual edits needed
 Notes:
 - "Last updated" is the site's **last deploy date**, not the editing date of that specific section (≈ most recent push). Do **not** hardcode a date into the heading text (e.g. the old `現在の状況（2026年5月時点）` was removed in favour of this auto-display).
 - When adding schedule/status items, set `data-event-date="YYYY-MM-DD"` (use the end date for multi-day events); permanently-past or in-progress items get a hand-written `done`/`current` class instead.
-- **Attribute distinction:** *Current Status* and *Key Events* items use `data-event-date` (drives "done"). The index "今後のスケジュール" (upcoming) bar items (`.upcoming-item`) use `data-expires` (hidden once past). List the bar's near-term items individually, mirroring `schedule.html`/the calendar (text via `upcoming_dateN`/`upcoming_nameN` keys).
+- **Three date attributes, three jobs — do not conflate them.** `data-start` (**required on every** `.status-item` and `.event-item`) is the item's *start* date and is **only** used to keep the list in chronological order; `data-event-date` is the *end* date and drives the 完了 badge; `data-expires` hides an `.upcoming-item` once past. List the bar's near-term items individually, mirroring `schedule.html`/the calendar (text via `upcoming_dateN`/`upcoming_nameN` keys).
 - Kids mode (`ja-kids.json`) targets a **3rd-grade reading level**; see `CONTRIBUTING.txt` rules 5 & 6 for full content-management rules.
+
+### Keeping the two timelines in order
+
+The *Current Status* list (`index.html`) and the *Key Events* list (`schedule.html`) are appended to constantly, and appending is exactly what breaks them: a June item added after an August one reads as though June came later. So:
+
+- **Every `.status-item` and every `.event-item` carries `data-start="YYYY-MM-DD"`**, and each list is written in ascending `data-start` order. When you add an item, put it in its chronological place — do not append to the end.
+- `data-start` is the **start** date. For a span (「2026年〜2027年3月」) use the start; for a month with no day (「2026年10月」) use the first of the month; for something that begins right after a dated event, use the day after it (e.g. 校章の選考 starts 2026-05-19, the day after the 5/18 deadline).
+- Ties keep their existing relative order, so two items in the same month stay where you put them.
+- **A list is a `<h3>`/`<h4>` heading's worth of items.** `schedule.html` 令和7年 deliberately holds two lists — 「学校を考える会（全5回）」 then 「その他の取組」 — so the 5th 考える会 (2025-10-11) sitting above 2025-06-13 is correct. Order is checked *within* each heading's block, never across headings.
+- `check 8` in `.github/scripts/auto_gates.py` fails the build on a missing `data-start` or a reversed pair, so this survives the auto-update pipeline's edits too.
 
 ### The "いまの状況" box (`.now-bar`) — the one thing that is NOT automatic
 
@@ -285,3 +295,4 @@ Beyond the auto-update pipeline's scope and evidence checks, these run site-wide
 | 4 | No `ja-kids` line exceeds 65 mora | Kids mode targets 3rd-grade reading; splitting sentences matters more than opening kanji |
 | 5 | `data/i18n/pages/` is up to date | A stale page dictionary serves old text with a 200 and cannot be caught at runtime |
 | 6 | External links (city / MEXT / Instagram) | Each domain is confined to its permitted URLs, and MEXT/Instagram additionally to their permitted pages |
+| 8 | Timelines are in ascending `data-start` order | Both lists are append-targets; an out-of-order entry silently misstates when things happened |

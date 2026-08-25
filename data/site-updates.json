@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-08-26",
+      "type": "fix",
+      "ja": "「現在の状況」と「主要イベント一覧」の時系列を正しい順序に整列",
+      "en": "Current Status and Key Events lists put back into correct chronological order"
+    },
+    {
+      "date": "2026-08-26",
       "type": "content",
       "ja": "「学校再編だより」vol.3・vol.4と入札結果を反映。バス停案・運行事業者・校内の乗降場所を追加し、対象エリアの地図に通学区域・主要道路・地区名・施設を重ねて表示。市民有志の取組を紹介する「地域の取組」も新設",
       "en": "Newsletters vol.3–4 and the tender result reflected: draft bus stops, the operator, and where buses stop on school grounds; the map now also shows school districts, roads, neighbourhood names and facilities; new “Community efforts” section"

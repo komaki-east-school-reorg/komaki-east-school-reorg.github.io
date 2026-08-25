@@ -101,17 +101,17 @@
 
   文科省URL（nationwide.html と翻訳辞書のみ許可）：
   grep -rn "mext\.go\.jp" *.html js/*.js data/i18n/*.json \
+    | grep -v -e "tekisei/index\.htm" -e "tekisei/1413885_00007\.htm" \
+             -e "zyosei/yoyuu_00002\.htm" -e "kihon/1267995\.htm"
+  → 出力があれば違反箇所。nationwide.html 以外のページに出た場合も違反。
 
   Instagram（index.html と翻訳辞書のみ許可。許可アカウントのみ）：
-    grep -rn "instagram\.com" *.html js/*.js data/i18n/*.json \
-      | grep -v -e "arigato\.ohshirosho"
+  grep -rn "instagram\.com" *.html js/*.js data/i18n/*.json \
+    | grep -v -e "arigato\.ohshirosho"
   → 出力があれば違反箇所。index.html 以外での使用も違反。
     ここは市の公式情報でも報道でもなく【市民有志の発信】。計画の内容・数値の
     根拠には決して使わない。アカウントを増やすときは auto_gates.py の
     PERMITTED_INSTAGRAM・CLAUDE.md・README.md も同時に更新すること。
-    | grep -v -e "tekisei/index\.htm" -e "tekisei/1413885_00007\.htm" \
-             -e "zyosei/yoyuu_00002\.htm" -e "kihon/1267995\.htm"
-  → 出力があれば違反箇所。nationwide.html 以外のページに出た場合も違反。
 
 ■ 許可URLを増やすとき
   次の4か所を必ず同時に更新する（片方だけ直すと検証が誤検知する）：
@@ -399,3 +399,33 @@
             - ルール2（i18n.js アポストロフィ）追加：2026-05-09発生バグをもとに制定
             - ルール3（多言語キーフォールバック）追加
             - ルール4（事実確認）追加
+
+
+──────────────────────────────────────────────────────
+【ルール7】年表は時系列に並べる（data-start）
+──────────────────────────────────────────────────────
+  対象：index.html の「現在の状況」（.status-item）
+        schedule.html の「主要イベント一覧」（.event-item）
+
+  ■ 全項目に data-start="YYYY-MM-DD"（開始日）を付ける。
+    ・期間もの（「2026年〜2027年3月」）→ 開始日
+    ・月だけの記載（「2026年10月」）    → その月の1日
+    ・ある日付の直後に始まるもの        → その翌日
+      （例：校章の選考は 5/18 締切の翌日 2026-05-19）
+
+  ■ 各リストは data-start の昇順で書く。末尾に足さず、
+    日付の位置に差し込むこと。同じ日付は元の順序のまま。
+
+  ■ 昇順を見るのは「見出し（h3/h4）ごとの塊」の中だけ。
+    schedule.html の令和7年は「考える会（全5回）」と「その他の取組」の
+    2リストに分かれており、考える会の第5回（2025-10-11）が
+    その他の 2025-06-13 より上にあるのは正しい。
+
+  ■ data-start は【並び順専用】。役割の違う属性と混同しないこと：
+      data-start      … 開始日。並び順だけに使う
+      data-event-date … 終了日。「完了」バッジの自動判定に使う
+      data-expires    … 掲載期限。過ぎたら非表示（今後の予定バー）
+
+  ■ 機械検査：
+    python3 .github/scripts/auto_gates.py
+    → 「年表の並び」が NG なら、data-start の欠落か時系列の逆転がある。

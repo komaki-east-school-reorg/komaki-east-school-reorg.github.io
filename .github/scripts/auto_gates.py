@@ -8,6 +8,7 @@
   3. ja/en キー一致    — i18n.js が非日本語表示で ja.json を取らない前提を守る
   4. こどもモード      — ja-kids.json の1行がモーラ換算で長すぎないか
   5. ページ別辞書      — data/i18n/pages/ が data/i18n/ と HTML に対して最新か
+  8. 年表の並び        — 現在の状況・主要イベント一覧が data-start の昇順か
   6. 外部リンク規則    — 市サイトへのリンクは許可URL（303/index.html）のみ、
                        Instagram は許可アカウントかつ index.html のみ、
                           文科省へのリンクは nationwide.html の許可URLのみ
@@ -241,6 +242,46 @@ def main():
             fail(f"許可外の外部URL: {v}")
     else:
         ok("外部リンク規則")
+
+    # --- 8. 年表の並び（サイト全体を検査） ---
+    # 「現在の状況」（index.html）と「主要イベント一覧」（schedule.html）は、
+    # 追記を重ねると簡単に時系列が崩れる。並べ替えの根拠を data-start（開始日）に
+    # 一本化し、リストごとに昇順であることを機械で守らせる。
+    # data-event-date（完了判定・終了日）や data-expires（掲載期限）とは役割が違う。
+    TIMELINE_LISTS = [("index.html", "status-item"), ("schedule.html", "event-item")]
+    order_problems = []
+    for page, cls in TIMELINE_LISTS:
+        try:
+            with open(page, encoding="utf-8") as f:
+                html = f.read()
+        except FileNotFoundError:
+            continue
+        items = re.findall(
+            r'<div class="' + cls + r'\b[^"]*"([^>]*)>', html)
+        if not items:
+            order_problems.append(f"{page}: .{cls} が1件も無い")
+            continue
+        # 見出し等で区切られた「かたまり」ごとに昇順を見る。
+        # 区切りは HTML 上の並び順そのままで判定する（h3/h4 をまたぐ塊は別リスト）。
+        blocks = re.split(r"<h[34][^>]*>", html)
+        seen = 0
+        for bi, block in enumerate(blocks):
+            dates = re.findall(
+                r'<div class="' + cls + r'\b[^"]*"[^>]*\sdata-start="([\d-]+)"', block)
+            missing = len(re.findall(r'<div class="' + cls + r'\b', block)) - len(dates)
+            if missing > 0:
+                order_problems.append(f"{page}: data-start の無い .{cls} が {missing} 件（{bi} 番目の塊）")
+            seen += len(dates)
+            for a, b in zip(dates, dates[1:]):
+                if a > b:
+                    order_problems.append(f"{page}: 時系列が逆転 {a} → {b}")
+        if seen == 0:
+            order_problems.append(f"{page}: data-start が1件も無い")
+    if order_problems:
+        for v in order_problems:
+            fail(f"年表の並び: {v}")
+    else:
+        ok("年表の並び（data-start 昇順）")
 
     # --- 7. 出典実在チェック ---
     if not os.path.exists(EVIDENCE):
