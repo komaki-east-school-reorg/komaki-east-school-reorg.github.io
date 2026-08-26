@@ -1,9 +1,19 @@
 {
-  "fetched_at": "2026-08-25T01:50:34Z",
+  "fetched_at": "2026-08-26T01:56:53Z",
   "index_updated_at": "2026年06月24日",
   "source_url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html",
   "window_days": 30,
   "items": [
+    {
+      "title": "学校再編に向けた取組について",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/52402.html",
+      "updated_at": "2026年08月25日"
+    },
+    {
+      "title": "篠岡地区における学校再編について",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/shinooka_gsaihen/48603.html",
+      "updated_at": "2026年08月20日"
+    },
     {
       "title": "篠岡地区学校再編だより",
       "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/shinooka_gsaihen/49521.html",
