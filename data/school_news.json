@@ -1,8 +1,66 @@
 {
-  "fetched_at": "2026-08-23T02:01:22Z",
+  "fetched_at": "2026-08-26T01:59:51Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "toryo-j",
+      "level": "jhs",
+      "names": {
+        "ja": "桃陵中学校",
+        "ja_kids": "とうりょう中学校",
+        "en": "Toryo Junior High",
+        "zh": "桃陵中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
+      "latest_date": "2026-08-26",
+      "items": [
+        {
+          "title": "0825 ソフト部練習試合",
+          "date": "2026-08-26",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135741877?tm=20260825130949"
+        },
+        {
+          "title": "0726 女バス引退式",
+          "date": "2026-07-26",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135710351?tm=20260726165116"
+        },
+        {
+          "title": "0718 女子バスケットボール部 愛日大会敗退",
+          "date": "2026-07-18",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135515843?tm=20260718133346"
+        }
+      ]
+    },
+    {
+      "slug": "shinooka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "篠岡中学校",
+        "ja_kids": "しのおか中学校",
+        "en": "Shinooka Junior High",
+        "zh": "篠冈中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
+      "latest_date": "2026-08-25",
+      "items": [
+        {
+          "title": "M探究 〜科学的探究〜",
+          "date": "2026-08-25",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135741650?tm=20260825121706"
+        },
+        {
+          "title": "《桃花台野球部》文部科学大臣杯１回戦",
+          "date": "2026-08-25",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135738460?tm=20260822134541"
+        },
+        {
+          "title": "１年生 出校日の一コマ その３",
+          "date": "2026-08-21",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135737094?tm=20260821075233"
+        }
+      ]
+    },
     {
       "slug": "hikarigaoka-j",
       "level": "jhs",
@@ -58,35 +116,6 @@
           "title": "7/17 一学期終業式",
           "date": "2026-07-21",
           "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135520066?tm=20260721114054"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "篠岡中学校",
-        "ja_kids": "しのおか中学校",
-        "en": "Shinooka Junior High",
-        "zh": "篠冈中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-08-21",
-      "items": [
-        {
-          "title": "１年生 出校日の一コマ その３",
-          "date": "2026-08-21",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135737094?tm=20260821075233"
-        },
-        {
-          "title": "１年生 出校日の一コマ その２",
-          "date": "2026-08-21",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135737090?tm=20260821074952"
-        },
-        {
-          "title": "１年生 出校日の一コマ その１",
-          "date": "2026-08-21",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135737086?tm=20260821074600"
         }
       ]
     },
@@ -174,35 +203,6 @@
           "title": "やまももくらぶ「不審者対策講座」",
           "date": "2026-07-17",
           "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135507363?tm=20260717081051"
-        }
-      ]
-    },
-    {
-      "slug": "toryo-j",
-      "level": "jhs",
-      "names": {
-        "ja": "桃陵中学校",
-        "ja_kids": "とうりょう中学校",
-        "en": "Toryo Junior High",
-        "zh": "桃陵中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
-      "latest_date": "2026-07-26",
-      "items": [
-        {
-          "title": "0726 女バス引退式",
-          "date": "2026-07-26",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135710351?tm=20260726165116"
-        },
-        {
-          "title": "0718 女子バスケットボール部 愛日大会敗退",
-          "date": "2026-07-18",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135515843?tm=20260718133346"
-        },
-        {
-          "title": "１年生 １学期終了",
-          "date": "2026-07-18",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135510328?tm=20260718135627"
         }
       ]
     },
