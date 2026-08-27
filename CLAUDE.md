@@ -102,7 +102,7 @@ Keys follow the pattern `<page>_<section>_<type>`, e.g., `about_whatis_p1`, `faq
 
 - **Header site name is permanently Japanese.** The `<a class="site-title">` element does not get a `data-i18n` attribute. The `<span data-i18n="site_sub">` subtitle inside it is translated, but the main site name text is not.
 - **All facts must come from official sources** — the permitted city URL above, or official printed materials (cite the source inline). Do not add speculative or unconfirmed information. The one place newspaper reporting appears is the 報道 corner on `index.html`, where it is clearly attributed as such; see `data/chunichi_news.json` below. It is never evidence for a claim made elsewhere on the site. **Nationwide figures and national standards come from MEXT** and live on `nationwide.html` only; they are never evidence for a statement about the Komaki plan itself, and the city's information is never used for a nationwide claim.
-- **All ten languages are now fully translated.** Turkish (`tr`) and Burmese (`my`) reached full key coverage on 2026-08-13, so `PARTIAL` in `i18n.js` is empty and the "parts of this page are in English" notice bar no longer appears. `events.json` labels are a strict **10-language** requirement (`LANGS` in `auto_gates.py`). If a new partially-translated language is ever added, put its code in both `PARTIAL` (`i18n.js`) and `PARTIAL_LANGS` (`auto_gates.py`) so the notice bar shows and its event labels are not demanded.
+- **All ten languages are now fully translated, except `review.html`** (added 2026-08-28), which has `ja` and `en` only and falls back to English elsewhere. Turkish (`tr`) and Burmese (`my`) reached full key coverage on 2026-08-13, so `PARTIAL` in `i18n.js` is empty and the "parts of this page are in English" notice bar no longer appears. `events.json` labels are a strict **10-language** requirement (`LANGS` in `auto_gates.py`). If a new partially-translated language is ever added, put its code in both `PARTIAL` (`i18n.js`) and `PARTIAL_LANGS` (`auto_gates.py`) so the notice bar shows and its event labels are not demanded.
 
 ## `data/news.json`
 
@@ -191,6 +191,16 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 - The 手引 was revised in August 2026 and will be revised again. When it is, the numeric standards must be re-checked against the new 改訂版 rather than assumed to carry over.
 - Not in the auto-update pipeline's `ALLOWED` set: the city's page changes do not move national statistics.
 
+## `review.html`（計画の検証と提案のページ）
+
+2026-08-28 追加。**このサイトで唯一、当サイト自身の検証と提案を載せるページ**です。他のページは「公式情報をわかりやすく伝える」に徹していますが、ここだけは違います。だからこそ書き分けの規則が重い。
+
+- **事実と意見を版面で分ける。** 【事実】は公表資料にもとづき出典つき（`.rev-fact`、左帯は `--neutral-color`）、🔎 検証・💡 提案は当サイトの考え（`.rev-view`、左帯は `--accent`）。この色分けと帯を外さないこと。冒頭の `rev_stance`（市の見解ではない旨）も外さない。
+- **事実の出所は3つだけ** — 市の公式情報、『篠岡地区 学校再編だより』、文部科学省。MEXT の数値は `nationwide.html` 経由で引用し、**このページから `mext.go.jp` に直リンクしない**（`MEXT_PAGES` は `nationwide.html` 限定のまま）。
+- **「確認できなかったこと」を必ず残す。** `rev_o1`〜`rev_o6` と各提案の「確認できていないこと」は、当サイトが調べきれていないという意味であって「存在しない」という意味ではない。ここを削ると、検証が断定に化ける。
+- **提案は市が検討しているものではない。** `rev_s3_lead` にそう書いてある。市が実際に検討を始めたら、その事実は出典つきで別途書き、提案からは外すこと。
+- 翻訳は現在 **ja と en のみ**。他の8言語は `i18n.js` の en フォールバックで英語が出る（設計どおりの挙動で、表示は壊れない）。他言語を足すときは `rev_*` を各辞書に入れて `build_page_dicts.py` を回す。`ja-kids` も未整備で、こどもむけ表示では日本語の本文がそのまま出る。
+
 ## `js/main.js`
 
 Self-contained IIFE blocks handling: hamburger nav, active nav link highlighting, auto-date status, "last updated" display, upcoming schedule expiry (`data-expires`), FAQ accordion, voice filter, official news rendering, target-school website updates, the share buttons at the bottom of every page, and the interactive calendar on `schedule.html`. Calendar events live in `data/events.json` (`{"events": {"YYYY-MM-DD": {ja, en, pt, vi, tl, es, zh, id, tr, my}}}`), fetched at runtime by the calendar block — edit that file, not `main.js`, to add/change events. All 10 language labels are required per event. If the fetch fails or the file is empty, the calendar section hides itself.
@@ -272,6 +282,13 @@ Every HTML page follows the same pattern: `notice-banner` → `<header>` (with `
 The bottom of `index.html` is split in two. Everything down to **現在の状況** is the site's own hand-written explanation; everything below the `.group-head` band (`<section id="latest">`, key `section_latest`) is **automatically refreshed every day** — 市公式サイト お知らせ (`id="news"`), 対象校ホームページの更新, 報道でみる東部地域, サイトの更新履歴. The band's `<h2>` groups them, so those four corner headings are `<h3 class="section-title sub">`, not `<h2>` — do not promote them back. The reader benefit is that "what this site says" and "what just happened" are no longer interleaved.
 
 - `.group-head` and `.group-head + .section` in `css/style.css` trim the padding so the band and the first corner read as one block. If a corner is inserted between them, that pairing breaks.
+### The map on `bus.html`
+
+The 対象エリアの地図 draws two sources at once — see the header comment of the BUS SERVICE AREA MAP block in `js/main.js`. Two things about it are easy to undo by accident:
+
+- **The stretch of the 通学区域 boundary (red line) in front of ピアーレ (桃花台センター) is aligned to 県道荒井大草線, not traced.** The rest of the red line is a by-eye trace of the newsletter figure and is off by up to ~300 m in places. The evidence for that one stretch is that the 13 district labels in `bus_map.geojson` all fall on the district-correct side of that road. `boundary_note` on each `district` feature records this; `bus_map_caveat` states it to the reader. If the boundary is ever re-traced, do not put that stretch back.
+- **`cls: 'local'` roads are the 桃花台 main local streets (OSM `tertiary`) plus 桃花台鳥居松線** (named 桃花台・春日井線 in OSM). They live in the `localroad` layer so a reader can switch them off; the 幹線 keep the `road` layer and are drawn above them. 県道 names are labelled so a reader can check the boundary claim above for themselves.
+
 - **Two anchors are linked from other pages and must not be removed**: `index.html#news` (from `actions_note` on `community.html`) and `community.html#qa` (from the 「ほかのページにもQ&A」 box on `faq.html`). Both carry an HTML comment saying so.
 - The site's Q&A deliberately lives in three places — `faq.html`, the FAQ section of `bus.html` (`#faq`), and the よくある疑問 section of `community.html` (`#qa`). Keeping each next to its context is the point; the box at the bottom of `faq.html` (`faq_more_*`) is what stops the other two from being unreachable for a reader who treats `faq.html` as the index of questions.
 
@@ -280,7 +297,7 @@ The bottom of `index.html` is split in two. Everything down to **現在の状況
 | Piece | Where | Notes |
 |---|---|---|
 | `robots.txt` | repo root | Allows everything; points at the sitemap. Kids mode is excluded via a JS-injected `noindex` (`applyKidsSeoMeta`), not here. |
-| `sitemap.xml` | repo root | Hand-maintained, one `<url>` per page (10), each carrying the full `xhtml:link` alternate set. No `lastmod` — a stale date is worse than none. |
+| `sitemap.xml` | repo root | Hand-maintained, one `<url>` per page (11), each carrying the full `xhtml:link` alternate set. No `lastmod` — a stale date is worse than none. |
 | `<link rel="canonical">` | every page `<head>` | Static value is the bare (Japanese) URL. `i18n.js` rewrites it to the `?lang=` URL of the language actually being shown. |
 | `hreflang` | every page `<head>` | 10 languages + `x-default`, each pointing at a **distinct** `?lang=` URL. They previously all pointed at the same URL, which is an error Search Console reports. |
 | JSON-LD `WebSite` | `index.html` only | Static. Deliberately carries **no `publisher`/`Organization`** — inventing one would imply this site is official, which it is not. `citation` points at the permitted city URL. |

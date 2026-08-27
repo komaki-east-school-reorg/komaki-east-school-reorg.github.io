@@ -1049,7 +1049,12 @@ window.KomakiLang = (function () {
    ・対象エリアと通学区域（赤線）… 小牧市教育委員会『篠岡地区 学校再編だより』vol.6 の
      図を当サイトが目視トレースしたもの。非公式の近似で、桃花台東は原図の北端が
      枠で切れているため全体が入っていない。HTML 側の注記（bus_map_caveat）と必ずセットで出す。
+     ただし【ピアーレ（桃花台センター）前の区間だけは県道荒井大草線の実線に合わせてある】。
+     学校区の境がそこだけ県道に沿っていることが確認できたため（bus_map.geojson の
+     district フィーチャの boundary_note 参照）。トレースし直すときも、この区間は戻さないこと。
    ・道路・地区名・施設… OpenStreetMap（ODbL）。出典表示（bus_map_osm）を消さないこと。
+     cls='local' は桃花台の主要生活道路（OSM の tertiary）と桃花台鳥居松線
+     （OSM 上の名称は「桃花台・春日井線」）。localroad レイヤで表示を切り替える。
 
    投影は緯度経度をそのまま使う簡易正距円筒（x に cos(緯度) を掛けるだけ）。
    6km 四方なのでこれで形は合う。地物が多いので層ごとに <g data-layer> を作り、
@@ -1143,24 +1148,33 @@ window.KomakiLang = (function () {
       }
 
       // --- 道路（いちばん下）
-      var ROAD_W = {motorway: 5.5, trunk: 3.6, secondary: 2.2};
-      var ROAD_C = {motorway: '#9aa7ad', trunk: '#b0a58f', secondary: '#c3c9cc'};
+      // cls='local' は桃花台の主要生活道路と桃花台鳥居松線。別レイヤに分け、
+      // チェックボックスで消せるようにしてある（本数が多く、消さないと地区名が読みにくい）。
+      var ROAD_W = {motorway: 5.5, trunk: 3.6, secondary: 2.2, local: 1.3};
+      var ROAD_C = {motorway: '#9aa7ad', trunk: '#b0a58f', secondary: '#c3c9cc', local: '#dde1e4'};
+      var gLocal = layer('localroad');   // 生活道路は幹線の下
       var gRoad = layer('road');
       var nameSeen = {};
       roads.forEach(function (f) {
         var cls = f.properties.cls;
-        gRoad.appendChild(el('path', {d: path(f.geometry.coordinates), fill: 'none',
+        var g = (cls === 'local') ? gLocal : gRoad;
+        g.appendChild(el('path', {d: path(f.geometry.coordinates), fill: 'none',
           stroke: ROAD_C[cls] || '#ccc', 'stroke-width': ROAD_W[cls] || 2,
           'stroke-linecap': 'round', 'stroke-linejoin': 'round'}));
-        // 高速・国道だけ、名前ごとに1回ラベルを出す（県道まで出すと読めなくなる）
+        // 名前ごとに1回だけラベルを出す。県道まで出すのは、通学区域界が
+        // どの県道に沿っているかを読者が自分で確かめられるようにするため。
+        // 無名の生活道路は出さない（本数が多く、地図が読めなくなる）。
         var nm = f.properties.name;
-        if (nm && (cls === 'motorway' || cls === 'trunk') && !nameSeen[nm]) {
+        var named = (cls === 'motorway' || cls === 'trunk' || cls === 'secondary' || cls === 'local');
+        if (nm && named && !nameSeen[nm]) {
           var cs = f.geometry.coordinates;
           if (cs.length >= 2) {
             var m = cs[Math.floor(cs.length / 2)];
             if (inView(m[0], m[1])) {
               nameSeen[nm] = 1;
-              gRoad.appendChild(label(px(m[0]), py(m[1]) - 6, nm, 17, 400, '#5a6a70'));
+              var small = (cls === 'secondary' || cls === 'local');
+              g.appendChild(label(px(m[0]), py(m[1]) - 6, nm, small ? 15 : 17, 400,
+                                  small ? '#77878e' : '#5a6a70'));
             }
           }
         }
