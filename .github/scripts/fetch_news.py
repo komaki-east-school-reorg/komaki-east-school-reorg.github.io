@@ -57,6 +57,13 @@ REQUEST_WAIT_MAX = 5.0
 # 相当にしても変わらない）。WAF が TLS/HTTP の指紋で判定しているため、ヘッダを
 # 足すだけでは通らない。curl なら同じ URL・同じ UA で 200 が返るので、取得だけ
 # curl に委ねる。curl は GitHub Actions の ubuntu-latest に標準搭載。
+# --- 取得した HTML のランレベルキャッシュ ---------------------------------
+# 本文スナップショットはタグを落としてあるため、添付 PDF の href が残らない。
+# だより（PDF）の中身を読む fetch_newsletters.py が同じページをもう一度
+# 取りに行かずに済むよう、取得した記事ページの生 HTML を実行中だけ置いておく。
+# 実行後に消える一時領域なので、リポジトリには何も残らない。
+HTML_CACHE_DIR = os.path.join(tempfile.gettempdir(), "komaki_html")
+
 COOKIE_FILE = os.path.join(tempfile.gettempdir(), f"komaki_cookies_{os.getpid()}.txt")
 atexit.register(lambda: os.path.exists(COOKIE_FILE) and os.remove(COOKIE_FILE))
 
@@ -156,6 +163,17 @@ def url_to_slug(url):
     return path.replace("/", "-")
 
 
+def cache_html(url, page_html):
+    """取得した生 HTML を実行中だけ残す（失敗しても本処理は止めない）。"""
+    try:
+        os.makedirs(HTML_CACHE_DIR, exist_ok=True)
+        path = os.path.join(HTML_CACHE_DIR, url_to_slug(url) + ".html")
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(page_html)
+    except OSError as e:
+        print(f"  WARN: HTML キャッシュに失敗 {url}: {e}", file=sys.stderr)
+
+
 def save_snapshot(url, page_html):
     """Write body-text snapshot if changed. Returns True if file changed."""
     text = extract_body_text(page_html)
@@ -252,6 +270,7 @@ def main():
         polite_wait()
         try:
             page_html = fetch_html(item["url"])
+            cache_html(item["url"], page_html)
             updated_at = extract_jp_date(page_html)
             if save_snapshot(item["url"], page_html):
                 snapshots_changed = True

@@ -1,0 +1,3 @@
+# fetch_newsletters.py が fetch_news.py を import するため生成される
+__pycache__/
+*.pyc

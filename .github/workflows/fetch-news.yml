@@ -44,6 +44,28 @@ jobs:
             echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
 
+      # 『学校再編だより』の PDF から本文テキストを取り出す。
+      # 掲載ページの HTML は直前の fetch_news.py が取得済みのものを使い回すので、
+      # 市サーバへ余分に取りに行くのは【まだ取っていない号の PDF】だけ。
+      # fetch の【あと】に置くこと。失敗してもワークフローは止めない。
+      - name: Fetch school reorganization newsletters (PDF)
+        id: newsletters
+        continue-on-error: true
+        run: |
+          pip install --quiet --disable-pip-version-check pdfminer.six
+          set +e
+          python3 .github/scripts/fetch_newsletters.py
+          code=$?
+          set -e
+          if [ "$code" -eq 1 ]; then
+            echo "::warning::学校再編だよりの取得に失敗しました（掲載ページの構成変更の可能性）"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          elif [ "$code" -eq 0 ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
       # 地域協議会イベント案内の一覧を組み立てる。
       # 市サーバへは行かず、直前の fetch_news.py が保存したスナップショットを読むだけ
       # （同じページを2度取りに行かないため）。fetch の【あと】に置くこと。
@@ -119,7 +141,7 @@ jobs:
       # 本文スナップショットの差分から変更レポートを作成（コミット前に採取）
       - name: Prepare content-change report
         id: report
-        if: steps.fetch.outputs.changed == 'true'
+        if: steps.fetch.outputs.changed == 'true' || steps.newsletters.outputs.changed == 'true'
         run: |
           git add data/news.json data/official_pages data/community_events.json
           if git diff --staged --quiet -- data/official_pages; then
@@ -158,7 +180,7 @@ jobs:
             /tmp/issue_body.md
 
       - name: Commit if content changed
-        if: steps.fetch.outputs.changed == 'true'
+        if: steps.fetch.outputs.changed == 'true' || steps.newsletters.outputs.changed == 'true'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -243,7 +265,17 @@ jobs:
 
             ## 手順
             1. report/pages.diff（検知された差分）と report/changed_pages.txt（変更ページ一覧）を読む
-            2. 変更された data/official_pages/*.txt の本文全体を読む
+            2. 変更された data/official_pages/ 配下の .txt の本文全体を読む
+            2-b. **変更が data/official_pages/newsletters/saihen-dayori-*.txt なら、
+               それは『篠岡地区学校再編だより』の新しい号（または差し替え）の本文全体**。
+               市が保護者・地域向けに出す一次情報なので、必ず全文を読んでから判断する。
+               扱う範囲は広く（説明会の実施報告、新校名・校章、スクールバス、通学区域、
+               今後の日程など）、日程・数値・名称はそのまま出典として引用してよい。
+               ただし2点だけ注意する:
+               - **図版・地図・表の中の文字は取り出せていない**（ファイル冒頭に明記してある）。
+                 テキストに出てこないからといって「載っていない」と判断しないこと
+               - **PDF への直リンクを張ってはいけない**。だよりを根拠に本文を書くのはよいが、
+                 リンク先として PDF の URL を書くと検証で不合格になる
             3. data/site-facts.json で影響しうるサイト内の箇所を確認する
             4. CLAUDE.md のルール（特に日付連動の自動表示・属性の使い分け）を読む
             5. サイトのデータを更新すべきか判断し、必要な場合のみ次のファイルだけを編集する:
@@ -362,7 +394,10 @@ jobs:
             ## 入力
             - 提案された変更: auto_update/proposed.diff
             - 起案AIの根拠: auto_update/evidence.json
-            - 公式ソース原文: data/official_pages/*.txt（および検知差分 report/pages.diff）
+            - 公式ソース原文: data/official_pages/ 配下の .txt（および検知差分 report/pages.diff）
+              うち data/official_pages/newsletters/saihen-dayori-*.txt は『学校再編だより』
+              各号の本文。図版・地図の中の文字は取り出せていないので、原文テキストに
+              無い事実を起案AIが書いていたら、それは推測とみなして reject する
             - サイト規則: CLAUDE.md、対応表: data/site-facts.json
 
             ## 審査観点
