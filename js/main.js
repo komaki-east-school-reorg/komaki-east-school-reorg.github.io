@@ -1051,6 +1051,8 @@ window.KomakiLang = (function () {
      分割は e-Stat 国勢調査小地域境界（総務省統計局）の町丁境で行い、大草・城山三丁目を東、
      城山二・四・五丁目を西とした。得られた面積は東 20.31 km²・西 6.89 km² で、だより vol.3 の
      公表値 20.3・6.9 と小数第1位まで一致する。【トレースではない。目視で引き直さないこと】
+     表示範囲は geojson の view_bbox で決めており、桃花台東はその北東の枠外へさらに広がる。
+     枠に全部収めると桃花台の住宅地が小さくなりすぎるため、意図的に切ってある。
    ・対象エリア（紫・busarea）… だより vol.6 の図を目視トレースし、上の通学区域の内側に
      切り詰めたもの。非公式の近似で、原図の北端が枠で切れているため、公表バスエリア
      18.5 km² のうち 9.81 km² しか入っていない。切り詰めで飛び地3片に分かれるので、
@@ -1116,15 +1118,24 @@ window.KomakiLang = (function () {
       });
       if (!busPolys.length) throw new Error('no bus area');
 
-      // --- 範囲（対象エリア＋通学区域＋地区名が収まるように取る）
+      // --- 範囲
+      // view_bbox がある場合はそれに従う。桃花台東の通学区域は枠の北東へさらに広がって
+      // いるが、全部を収めると桃花台の住宅地が小さくなりすぎるので、意図的に切っている。
+      // 枠からはみ出す線は viewBox が切るので、ここで座標を加工する必要はない。
       var lo0 = Infinity, lo1 = -Infinity, la0 = Infinity, la1 = -Infinity;
       function grow(lon, lat) {
         if (lon < lo0) lo0 = lon; if (lon > lo1) lo1 = lon;
         if (lat < la0) la0 = lat; if (lat > la1) la1 = lat;
       }
-      busPolys.forEach(function (ring) { ring.forEach(function (c) { grow(c[0], c[1]); }); });
-      districts.forEach(function (f) { f.geometry.coordinates[0].forEach(function (c) { grow(c[0], c[1]); }); });
-      places.forEach(function (f) { grow(f.geometry.coordinates[0], f.geometry.coordinates[1]); });
+      var vb = gj.view_bbox;
+      if (vb && vb.length === 4) {
+        grow(vb[0], vb[1]); grow(vb[2], vb[3]);
+      } else {
+        // 指定が無ければ全データが収まるように取る
+        busPolys.forEach(function (ring) { ring.forEach(function (c) { grow(c[0], c[1]); }); });
+        districts.forEach(function (f) { f.geometry.coordinates[0].forEach(function (c) { grow(c[0], c[1]); }); });
+        places.forEach(function (f) { grow(f.geometry.coordinates[0], f.geometry.coordinates[1]); });
+      }
 
       var K = Math.cos((la0 + la1) / 2 * Math.PI / 180);
       var S = (VIEW_W - PAD * 2) / ((lo1 - lo0) * K);
