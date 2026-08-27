@@ -277,19 +277,8 @@
     </div>
   </section>
 
-  <!-- OFFICIAL NEWS -->
-  <!-- id="news" は community.html の actions_note から張られている。外すとリンク切れ。 -->
-  <section class="section" id="news">
-    <div class="container">
-      <h2 class="section-title" data-i18n-html="section_news">市公式サイト お知らせ<small>Official Announcements</small></h2>
-      <div id="official-news-container">
-        <p class="official-news-loading" data-i18n="news_loading">読み込み中…</p>
-      </div>
-    </div>
-  </section>
-
   <!-- CURRENT STATUS -->
-  <section class="section section-alt" id="status">
+  <section class="section" id="status">
     <div class="container">
       <h2 class="section-title" data-i18n-html="section_status">現在の状況<small>Current Status</small></h2>
       <p class="section-updated" id="status-last-updated"></p>
@@ -401,10 +390,36 @@
     </div>
   </section>
 
+
+  <!-- ===== 最新の動き =====
+       ここから下の4コーナー（お知らせ・対象校HP更新・報道・サイトの更新履歴）は、
+       いずれも毎日自動で更新される。上の「現在の状況」までがこのサイト自身の静的な解説で、
+       ここから下が「いま何が起きたか」。読者が両者を取り違えないよう帯で区切っている。
+       各コーナーの見出しは h3。この帯の h2 が束ねる関係なので、h2 に戻さないこと。 -->
+  <section class="section section-alt group-head" id="latest">
+    <div class="container">
+      <h2 class="section-title" data-i18n-html="section_latest">最新の動き<small>Latest Updates</small></h2>
+      <p class="school-lead" data-i18n="latest_lead">
+        ここから下の4つのコーナーは、市の公式サイト・対象校のホームページ・新聞報道を毎日自動で取得して表示しています。いちばん下は、このサイト自身の更新履歴です。
+      </p>
+    </div>
+  </section>
+
+  <!-- OFFICIAL NEWS -->
+  <!-- id="news" は community.html の actions_note から張られている。外すとリンク切れ。 -->
+  <section class="section section-alt" id="news">
+    <div class="container">
+      <h3 class="section-title sub" data-i18n-html="section_news">市公式サイト お知らせ<small>Official Announcements</small></h3>
+      <div id="official-news-container">
+        <p class="official-news-loading" data-i18n="news_loading">読み込み中…</p>
+      </div>
+    </div>
+  </section>
+
   <!-- SCHOOL WEBSITE UPDATES（トップページ最下段） -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title" data-i18n-html="section_school_news">対象校ホームページの更新<small>School Website Updates</small></h2>
+      <h3 class="section-title sub" data-i18n-html="section_school_news">対象校ホームページの更新<small>School Website Updates</small></h3>
       <p class="school-lead" data-i18n="school_news_lead">
         再編対象の小学校5校・中学校3校が各自で運営している公式ホームページの新着記事です。
         学校の日々の様子は市の学校再編ページには載らないため、ここに集約しています。
@@ -422,7 +437,7 @@
   <!-- PRESS COVERAGE（報道。data/chunichi_news.json は fetch_chunichi.py が毎日更新する） -->
   <section class="section section-alt">
     <div class="container">
-      <h2 class="section-title" data-i18n-html="section_press">報道でみる東部地域<small>News Coverage</small></h2>
+      <h3 class="section-title sub" data-i18n-html="section_press">報道でみる東部地域<small>News Coverage</small></h3>
       <p class="school-lead" data-i18n="press_lead">
         中日新聞Webが報じた小牧市東部（篠岡地区）の記事です。学校再編に限らず、地域の話題を集めています。
         見出しと掲載日だけを掲載しています。
@@ -442,7 +457,7 @@
   <!-- SITE UPDATE LOG（このサイト自身の更新履歴。トップページ最下部） -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title" data-i18n-html="section_site_updates">サイトの更新履歴<small>Site Update Log</small></h2>
+      <h3 class="section-title sub" data-i18n-html="section_site_updates">サイトの更新履歴<small>Site Update Log</small></h3>
       <p class="school-lead" data-i18n="site_updates_lead">
         この市民情報サイト自身に加えた変更の記録です。掲載内容の追加・修正と、機能の追加を分けて載せています。
       </p>

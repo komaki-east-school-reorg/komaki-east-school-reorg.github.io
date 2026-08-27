@@ -645,6 +645,17 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   font-family: var(--heading-font);
 }
 .section-title small { display: block; font-size: .72rem; font-weight: 500; color: var(--text-muted); margin-top: .15rem; }
+/* faq.html 下部「ほかのページにもQ&Aがあります」。3か所に分かれたQ&Aの相互導線。 */
+.faq-more { border: 1px dashed var(--border); border-radius: var(--radius-sm); padding: 1.1rem 1.2rem; background: transparent; }
+.faq-more-h { font-weight: 700; font-size: .95rem; color: var(--primary); margin-bottom: .6rem; }
+.faq-more a { display: block; font-size: .9rem; padding: .2rem 0; }
+
+/* 「最新の動き」の帯（index 下部）。帯の h2 と直後のコーナーを1つの塊に見せるため、
+   帯の下余白を詰め、続くセクションの上余白も詰める。束ねられる側の見出しは .sub。 */
+.group-head { padding-bottom: .8rem; }
+.group-head + .section { padding-top: 1.2rem; }
+.section-title.sub { font-size: 1.18rem; border-left-width: 4px; }
+
 .section-updated { font-size: .8rem; color: var(--text-muted); margin: -1.4rem 0 1.6rem; padding-left: 1rem; }
 .section-updated:empty { display: none; }
 

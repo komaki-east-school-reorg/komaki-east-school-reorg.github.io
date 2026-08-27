@@ -267,6 +267,14 @@ Unlike the completion badges, the calendar month, and the "last updated" line, *
 
 Every HTML page follows the same pattern: `notice-banner` → `<header>` (with `.lang-switcher` containing `.kids-toggle` and `.lang-select`) → `<main>` → `<footer>`. Both `js/i18n.js` and `js/main.js` are loaded at the end of `<body>`. Pages are standalone — there is no shared template or server-side include. Every page also carries the SHARE section (`<section class="section share" id="share">`) as the last thing inside `<main>`. When adding a new page, copy the full header/share/footer blocks from an existing page — **and add it to `sitemap.xml` and `files.txt`**, plus `meta_title_<pageId>` / `meta_desc_<pageId>` keys in every language file.
 
+### The 「最新の動き」 group on `index.html`
+
+The bottom of `index.html` is split in two. Everything down to **現在の状況** is the site's own hand-written explanation; everything below the `.group-head` band (`<section id="latest">`, key `section_latest`) is **automatically refreshed every day** — 市公式サイト お知らせ (`id="news"`), 対象校ホームページの更新, 報道でみる東部地域, サイトの更新履歴. The band's `<h2>` groups them, so those four corner headings are `<h3 class="section-title sub">`, not `<h2>` — do not promote them back. The reader benefit is that "what this site says" and "what just happened" are no longer interleaved.
+
+- `.group-head` and `.group-head + .section` in `css/style.css` trim the padding so the band and the first corner read as one block. If a corner is inserted between them, that pairing breaks.
+- **Two anchors are linked from other pages and must not be removed**: `index.html#news` (from `actions_note` on `community.html`) and `community.html#qa` (from the 「ほかのページにもQ&A」 box on `faq.html`). Both carry an HTML comment saying so.
+- The site's Q&A deliberately lives in three places — `faq.html`, the FAQ section of `bus.html` (`#faq`), and the よくある疑問 section of `community.html` (`#qa`). Keeping each next to its context is the point; the box at the bottom of `faq.html` (`faq_more_*`) is what stops the other two from being unreachable for a reader who treats `faq.html` as the index of questions.
+
 ## SEO
 
 | Piece | Where | Notes |
