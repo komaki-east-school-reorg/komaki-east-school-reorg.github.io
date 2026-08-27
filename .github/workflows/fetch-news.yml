@@ -373,7 +373,10 @@ jobs:
       - name: Commit proposal
         if: steps.gates.outputs.result == 'pass'
         run: |
-          git add data/events.json data/i18n index.html schedule.html
+          # auto_gates.py の ALLOWED と同じ集合を並べること。ここに書き漏らすと、
+          # 起案AIの編集が commit されず PR にも proposed.diff にも現れないまま消える
+          # （community.html が長らくそうなっていた）。
+          git add data/events.json data/i18n index.html schedule.html community.html
           git commit -m "auto: 公式ページ更新の自動反映 ${TODAY}"
           git diff origin/main..HEAD > auto_update/proposed.diff
           echo "--- proposed diff ---"
