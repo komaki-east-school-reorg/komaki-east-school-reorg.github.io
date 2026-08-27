@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-08-26T01:59:51Z",
+  "fetched_at": "2026-08-27T09:46:30Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
@@ -16,6 +16,11 @@
       "latest_date": "2026-08-26",
       "items": [
         {
+          "title": "0822 野球部新人戦",
+          "date": "2026-08-26",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135744667?tm=20260826121320"
+        },
+        {
           "title": "0825 ソフト部練習試合",
           "date": "2026-08-26",
           "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135741877?tm=20260825130949"
@@ -24,11 +29,6 @@
           "title": "0726 女バス引退式",
           "date": "2026-07-26",
           "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135710351?tm=20260726165116"
-        },
-        {
-          "title": "0718 女子バスケットボール部 愛日大会敗退",
-          "date": "2026-07-18",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135515843?tm=20260718133346"
         }
       ]
     },
