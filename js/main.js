@@ -1045,16 +1045,18 @@ window.KomakiLang = (function () {
 /* ===== BUS SERVICE AREA MAP（bus.html）=====
    data/bus_map.geojson を読んで、スクールバスの対象エリアと周辺の地図を SVG で描く。
 
-   【出典が2系統あることに注意】
-   ・対象エリアと通学区域（赤線）… 小牧市教育委員会『篠岡地区 学校再編だより』vol.6 の
-     図を当サイトが目視トレースしたもの。非公式の近似で、桃花台東は原図の北端が
-     枠で切れているため全体が入っていない。HTML 側の注記（bus_map_caveat）と必ずセットで出す。
-     ただし【桃花台東西の境は、池之内・古雅の北端から城山一〜二丁目の南まで
-     県道荒井大草線（OSM ref 195）の実線に置き換えてある】。OSM の丁目 37 点のうち
-     36 点が同県道に対して正しい学区側に落ちることを確認したため。唯一の例外である
-     城山三丁目（県道の西側だが桃花台東）の区間だけは丁目の重心から補間した。
-     詳細は district フィーチャの boundary_note。トレースし直すときも、この区間は戻さないこと。
-   ・道路・地区名・施設… OpenStreetMap（ODbL）。出典表示（bus_map_osm）を消さないこと。
+   【出典が3系統あり、精度が違うことに注意】
+   ・通学区域（赤線・layer='district'）… 国土数値情報「小学校区」（国土交通省 A27-21）の
+     現行5校区を、『学校再編だより』が示す統合の組合せどおりに合成したもの。大城小学校区の
+     分割は e-Stat 国勢調査小地域境界（総務省統計局）の町丁境で行い、大草・城山三丁目を東、
+     城山二・四・五丁目を西とした。得られた面積は東 20.31 km²・西 6.89 km² で、だより vol.3 の
+     公表値 20.3・6.9 と小数第1位まで一致する。【トレースではない。目視で引き直さないこと】
+   ・対象エリア（紫・busarea）… だより vol.6 の図を目視トレースし、上の通学区域の内側に
+     切り詰めたもの。非公式の近似で、原図の北端が枠で切れているため、公表バスエリア
+     18.5 km² のうち 9.81 km² しか入っていない。切り詰めで飛び地3片に分かれるので、
+     1枚のポリゴン前提のコードに戻さないこと。HTML の注記（bus_map_caveat）と必ずセットで出す。
+   ・道路・地区名・施設… OpenStreetMap（ODbL）。出典表示（bus_map_osm）には OSM に加えて
+     国土数値情報・e-Stat も並べてある。どれも消さないこと。
      cls='local' は桃花台の主要生活道路（OSM の tertiary）と桃花台鳥居松線
      （OSM 上の名称は「桃花台・春日井線」）。localroad レイヤで表示を切り替える。
 
@@ -1102,17 +1104,17 @@ window.KomakiLang = (function () {
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(function (gj) {
       var feats = gj.features || [];
-      var busPoly = null, districts = [], roads = [], places = [], facs = [], newSchools = [];
+      var busPolys = [], districts = [], roads = [], places = [], facs = [], newSchools = [];
       feats.forEach(function (f) {
         var p = f.properties || {}, g = f.geometry || {};
         if (p.layer === 'district') districts.push(f);
         else if (p.layer === 'road') roads.push(f);
         else if (p.layer === 'place') places.push(f);
         else if (p.layer === 'facility') facs.push(f);
-        else if (g.type === 'Polygon' && !busPoly) busPoly = g.coordinates[0];
+        else if (g.type === 'Polygon') busPolys.push(g.coordinates[0]);
         else if (g.type === 'Point') newSchools.push(f);
       });
-      if (!busPoly) throw new Error('no bus area');
+      if (!busPolys.length) throw new Error('no bus area');
 
       // --- 範囲（対象エリア＋通学区域＋地区名が収まるように取る）
       var lo0 = Infinity, lo1 = -Infinity, la0 = Infinity, la1 = -Infinity;
@@ -1120,7 +1122,7 @@ window.KomakiLang = (function () {
         if (lon < lo0) lo0 = lon; if (lon > lo1) lo1 = lon;
         if (lat < la0) la0 = lat; if (lat > la1) la1 = lat;
       }
-      busPoly.forEach(function (c) { grow(c[0], c[1]); });
+      busPolys.forEach(function (ring) { ring.forEach(function (c) { grow(c[0], c[1]); }); });
       districts.forEach(function (f) { f.geometry.coordinates[0].forEach(function (c) { grow(c[0], c[1]); }); });
       places.forEach(function (f) { grow(f.geometry.coordinates[0], f.geometry.coordinates[1]); });
 
@@ -1192,9 +1194,13 @@ window.KomakiLang = (function () {
       });
 
       // --- 対象エリア
-      layer('busarea').appendChild(el('path', {d: path(busPoly) + ' Z',
-        fill: 'rgba(126,110,196,.40)', stroke: '#5b48a8',
-        'stroke-width': 2.5, 'stroke-linejoin': 'round'}));
+      // 通学区域の内側に切り詰めてあるため、飛び地に分かれる（3片）。
+      // 1枚のポリゴン前提に戻さないこと。
+      busPolys.forEach(function (ring) {
+        layer('busarea').appendChild(el('path', {d: path(ring) + ' Z',
+          fill: 'rgba(126,110,196,.40)', stroke: '#5b48a8',
+          'stroke-width': 2.5, 'stroke-linejoin': 'round'}));
+      });
 
       // --- 施設（種類ごとの層）
       facs.forEach(function (f) {

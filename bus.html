@@ -202,12 +202,16 @@
       <p style="font-size:.82rem; color:var(--text-muted); margin-bottom:1.5rem;" data-i18n="bus_area_size_source">出典：『篠岡地区 学校再編だより』vol.3。東側のほうが面積・利用者数とも大きく、バスエリアだけで15.1km²あります。</p>
 
       <!-- ===== 対象エリアの地図 =====
-           形状は data/bus_area.geojson（市教委「学校再編だより」vol.6 の対象エリア図を
-           当サイトが目視トレースしたもの）。描画は js/main.js の BUS SERVICE AREA MAP。
-           【重要】これは非公式の近似図。正式な対象可否は市の送付書類が決める。
+           形状は data/bus_map.geojson。出典が2系統あり、精度が違う:
+           ・通学区域（赤線）… 国土数値情報「小学校区」（国土交通省）＋国勢調査の町丁境
+             （総務省統計局）から合成。町丁境まで正確で、面積が市の公表値と一致する。
+           ・対象エリア（紫）… 市教委『学校再編だより』vol.6 の図を目視トレースし、
+             通学区域の内側に切り詰めたもの。非公式の近似で、原図は北側が枠で切れている。
+           描画は js/main.js の BUS SERVICE AREA MAP。
+           【重要】正式な対象可否は市の送付書類が決める。
            注記（bus_map_caveat）を外したり弱めたりしないこと。 -->
       <h3 style="font-size:1.05rem; font-weight:700; color:var(--primary); margin-bottom:.8rem;" data-i18n="bus_map_h">対象エリアの地図</h3>
-      <p style="margin-bottom:1rem;" data-i18n="bus_map_lead">市教育委員会が示した対象エリア図をもとに、当サイトで地図に起こしたものです。新しい2校のまわり（徒歩で通える範囲）が対象外、その外側がスクールバスの対象エリアになります。</p>
+      <p style="margin-bottom:1rem;" data-i18n="bus_map_lead">新しい2校のまわり（徒歩で通える範囲）が対象外、その外側がスクールバスの対象エリアです。通学区域の境は国の公表データから、対象エリアは市教育委員会の図から起こしています。</p>
 
       <div class="bus-map-layers" id="bus-map-layers">
         <span class="bus-map-layers-h" data-i18n="bus_map_layers_h">表示する情報</span>
@@ -227,24 +231,24 @@
 
       <figure class="bus-map-figure">
         <div id="bus-area-map" class="bus-area-map" role="img" data-i18n-aria="bus_map_alt"
-             aria-label="篠岡地区のスクールバス通学対象エリアを示した地図。新設2校の周囲が対象外、その外側が対象エリア。"></div>
+             aria-label="篠岡地区のスクールバス通学対象エリアを示した地図。赤い線が新しい通学区域の境、紫がスクールバスの対象エリア。"></div>
         <figcaption class="bus-map-caption">
           <ul class="bus-map-legend">
             <li><span class="bus-map-key bus-map-key--area" aria-hidden="true"></span><span data-i18n="bus_map_legend_area">スクールバス通学 対象エリア</span></li>
-            <li><span class="bus-map-key bus-map-key--walk" aria-hidden="true"></span><span data-i18n="bus_map_legend_walk">対象外（2校のまわりは徒歩通学の範囲、いちばん外側は篠岡地区の外）</span></li>
-            <li><span class="bus-map-key bus-map-key--line" aria-hidden="true"></span><span data-i18n="bus_map_legend_line">赤い線＝新しい通学区域の境（桃花台東・桃花台西の分かれ目）</span></li>
+            <li><span class="bus-map-key bus-map-key--walk" aria-hidden="true"></span><span data-i18n="bus_map_legend_walk">色のない部分（2校のまわりは徒歩通学の範囲。赤線の内側で色のない北側・東側は、元の図に載っていない範囲）</span></li>
+            <li><span class="bus-map-key bus-map-key--line" aria-hidden="true"></span><span data-i18n="bus_map_legend_line">赤い線＝新しい通学区域の境（いちばん外側は篠岡地区の外、まん中の線は桃花台東・西の分かれ目）</span></li>
             <li><span class="bus-map-key bus-map-key--school" aria-hidden="true"></span><span data-i18n="bus_map_legend_school">新設される2つの小学校</span></li>
           </ul>
-          <p class="bus-map-osm" data-i18n="bus_map_osm">道路・地区名・施設の位置は OpenStreetMap（&copy; OpenStreetMap contributors, ODbL）によります。</p>
+          <p class="bus-map-osm" data-i18n="bus_map_osm">道路・地区名・施設の位置は OpenStreetMap（&copy; OpenStreetMap contributors, ODbL）、通学区域は国土数値情報「小学校区」（国土交通省）と国勢調査 小地域境界（e-Stat・総務省統計局）によります。</p>
         </figcaption>
       </figure>
 
       <div class="info-box info-box--warn" data-i18n-html="bus_map_caveat">
-        ⚠️ <strong>これは当サイトが作成した非公式の「およその図」です。</strong>
-        小牧市教育委員会『篠岡地区 学校再編だより』vol.6 に載っている対象エリア図を、当サイトが目で見てなぞり、地図の座標に合わせ直したものです。
-        <strong>桃花台東西の境（赤線）は、池之内・古雅の北端から城山一〜二丁目の南まで県道荒井大草線に一致させています</strong>（OpenStreetMap の県道の線を使用）。
-        城山三丁目だけは県道の西側にありながら桃花台東に入るため、その区間は丁目の位置から当サイトが補間しました。
-        それ以外の境界はトレースのままで、場所によって300mほどのずれがあり、図の北側・東側は元の図の枠で切れています。
+        ⚠️ <strong>赤線（通学区域の境）と、紫（スクールバスの対象エリア）では正確さが違います。</strong>
+        <strong>赤線は正確です。</strong>国土数値情報「小学校区」（国土交通省）と国勢調査の町丁境（総務省統計局）を、『学校再編だより』が示す統合の組合せどおりに合成したもので、町丁の境まで合っています（面積は桃花台東20.3km²・桃花台西6.9km²となり、市の公表値と一致します）。
+        <strong>紫は当サイトが目で見てなぞった非公式の近似で、場所によって300mほどのずれがあります。</strong>
+        小牧市教育委員会『篠岡地区 学校再編だより』vol.6 の図をもとにしていますが、原図は北側が枠で切れているため、公表されているバスエリア18.5km²のうち9.8km²しか描けていません。
+        <strong>赤線の内側で色のついていない北側・東側は、「対象外」ではなく「元の図に載っていない」という意味です。</strong>
         <strong>ご自宅が対象かどうかは、市から届いた書類で必ずご確認ください。</strong>この図では判断できません。
       </div>
 

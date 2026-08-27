@@ -37,9 +37,11 @@ data/community_events.json  地域協議会イベント案内（自動生成・�
 data/chunichi_news.json     中日新聞Webの小牧市東部（篠岡地区）関連記事（自動生成・手編集不可）。トップページの「報道でみる東部地域」が実行時にfetchして描画。
                             見出し・掲載日・記事URL・冒頭1文の引用のみを保持する。checked_idsは確認済み記事IDの記録で、同じ記事を二度取りに行かないためのもの。
 data/site-updates.json      このサイト自身の更新履歴（手動管理）。トップページ最下部の「サイトの更新履歴」が実行時にfetchして描画。新しいものを配列の先頭に追加する。
-data/bus_area.geojson       スクールバス通学対象エリアのポリゴン（手動生成）。市教委「学校再編だより」vol.6の対象エリア図を目視トレースし、図中の500mスケールバーと2校の位置注記で座標を合わせた非公式の近似図。bus.htmlの地図がfetchして描画。正式な対象可否は市の送付書類による。
-data/bus_area.kml           上記と同じ図形のKML版。Googleマイマップに読み込んでGoogleマップ上に重ねるためのもの。bus.htmlからダウンロードリンクを張っている。
-data/bus_map.geojson        bus.htmlの地図が描画する全データ（手動生成）。対象エリア・通学区域（桃花台東/西）は「学校再編だより」vol.6の図を目視トレースした非公式の近似。道路・地区名・施設はOpenStreetMap（ODbL、出典表示が必要）。層ごとにlayer/catプロパティを持ち、js/main.jsがチェックボックスで表示を切り替える。
+data/bus_area.geojson       対象エリアだけを収めた旧ファイル。bus_map.geojsonに統合済みで、現在どこからも読み込んでいない（残置）。
+data/bus_area.kml           bus_map.geojsonと同じ図形のKML版（通学区域2つ＋対象エリア3片＋新設2校）。Googleマイマップに読み込んでGoogleマップ上に重ねるためのもの。bus.htmlからダウンロードリンクを張っている。
+data/bus_map.geojson        bus.htmlの地図が描画する全データ（手動生成）。出典が3系統で精度が違う：通学区域（桃花台東/西）は国土数値情報「小学校区」（国土交通省）＋国勢調査の町丁境（総務省統計局）から合成した正確なもの、
+                            対象エリアは「学校再編だより」vol.6の図を目視トレースして通学区域の内側に切り詰めた非公式の近似（飛び地3片）、道路・地区名・施設はOpenStreetMap（ODbL、出典表示が必要）。
+                            層ごとにlayer/catプロパティを持ち、js/main.jsがチェックボックスで表示を切り替える。
 data/community_actions.json 閉校を惜しむ市民有志の取組（手動管理）。community.html「地域の取組」（地域協議会イベント案内の直下）が実行時にfetchして描画。市の公式情報でも報道でもなく市民有志の発信であり、計画の内容・数値の根拠には使わない。source_urlはauto_gates.pyのPERMITTED_INSTAGRAMにあるアカウントのみ。
 data/i18n/ja.json           日本語（デフォルト言語）の翻訳テキストをすべて格納する言語ファイル。
 data/i18n/en.json           英語の翻訳テキストを格納する言語ファイル。

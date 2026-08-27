@@ -1668,7 +1668,7 @@ footer {
 }
 
 /* ===== BUS SERVICE AREA MAP（bus.html）=====
-   図形は data/bus_area.geojson、描画は js/main.js の BUS SERVICE AREA MAP。
+   図形は data/bus_map.geojson、描画は js/main.js の BUS SERVICE AREA MAP。
    市の対象エリア図を当サイトがトレースした「近似図」なので、凡例と注記
    （.info-box--warn）は地図と必ずセットで出す。片方だけ消さないこと。 */
 .bus-map-figure { margin: 0 0 1.2rem; }

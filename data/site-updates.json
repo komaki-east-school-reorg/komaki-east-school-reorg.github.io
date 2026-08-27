@@ -10,8 +10,8 @@
     {
       "date": "2026-08-28",
       "type": "fix",
-      "ja": "対象エリアの地図で、桃花台東西の学校区の境を県道荒井大草線に合わせて修正。桃花台の主要生活道路と桃花台鳥居松線も追加",
-      "en": "Service-area map: the boundary between Tokadai-Higashi and Tokadai-Nishi corrected onto the Arai–Okusa prefectural road; Tokadai’s main local streets and the Tokadai–Torimatsu road added"
+      "ja": "対象エリアの地図の通学区域を、国の公表データ（小学校区・町丁境）から引き直し。城山四丁目・高根三丁目・大字大山の区分けを修正し、面積が市の公表値と一致",
+      "en": "School-district boundary on the service-area map rebuilt from national open data (school districts and chome boundaries); Shiroyama 4-chome, Takane 3-chome and Oyama corrected, and the areas now match the city’s published figures"
     },
     {
       "date": "2026-08-27",
