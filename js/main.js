@@ -1052,27 +1052,33 @@ window.KomakiLang = (function () {
      城山二・四・五丁目を西とした。得られた面積は東 20.31 km²・西 6.89 km² で、だより vol.3 の
      公表値 20.3・6.9 と小数第1位まで一致する。【トレースではない。目視で引き直さないこと】
      表示範囲は geojson の view_bbox で決めており、桃花台東はその北東の枠外へさらに広がる。
-     枠に全部収めると桃花台の住宅地が小さくなりすぎるため、意図的に切ってある。
-   ・対象エリア（紫・busarea）… だより vol.6 の図を目視トレースし、上の通学区域の内側に
-     切り詰めたもの。非公式の近似で、原図の北端が枠で切れているため、公表バスエリア
-     18.5 km² のうち 9.81 km² しか入っていない。切り詰めで飛び地3片に分かれるので、
-     1枚のポリゴン前提のコードに戻さないこと。HTML の注記（bus_map_caveat）と必ずセットで出す。
+     この枠は市の公表図（48603.html の R9sinooka_busarea.png、1639×1179px）と同じ範囲で、
+     枠の大きさ・縮尺も原図に合わせてある。原図も桃花台東の北東側は切れている。
+   ・対象エリア（紫・busarea）… 市が公表している対象エリア図の着色部分を色で抽出し、
+     原図の学校区線に上の通学区域データを重ねて位置合わせしたもの（約3.785 m/px、
+     誤差はおおむね1画素）。【目視トレースではない。引き直すなら同じ手順で原図から】
+     公表バスエリア 18.5 km² のうち、原図の枠に写っている 12.28 km² が入っている。
+     内側に穴（バス対象外の一画）があるので Polygon の2本目以降のリングも描くこと
+     （fill-rule="evenodd"）。HTML の注記（bus_map_caveat）と必ずセットで出す。
    ・道路・地区名・施設… OpenStreetMap（ODbL）。出典表示（bus_map_osm）には OSM に加えて
      国土数値情報・e-Stat も並べてある。どれも消さないこと。
      cls='local' は桃花台の主要生活道路（OSM の tertiary）と桃花台鳥居松線
      （OSM 上の名称は「桃花台・春日井線」）。localroad レイヤで表示を切り替える。
 
-   投影は緯度経度をそのまま使う簡易正距円筒（x に cos(緯度) を掛けるだけ）。
-   6km 四方なのでこれで形は合う。地物が多いので層ごとに <g data-layer> を作り、
-   チェックボックスで表示を切り替える。 */
+   投影は簡易正距円筒。ただし縮尺を原図に厳密に合わせるため、1度あたりの長さは
+   経度・緯度それぞれの実長を使う（cos(緯度) だけの近似だと縦が約0.5%伸びる）。
+   地物が多いので層ごとに <g data-layer> を作り、チェックボックスで表示を切り替える。 */
 (function () {
   var host = document.getElementById('bus-area-map');
   if (!host) return;
 
   var _bl = window.KomakiLang();
   var NS = 'http://www.w3.org/2000/svg';
-  var VIEW_W = 1400;
-  var PAD = 40;
+  // 枠は市の公表図（R9sinooka_busarea.png）と同じ 1639×1179px、同じ縮尺。
+  // 1ユニット＝原図の1px＝約3.785m。原図に余白は無いので地図は枠いっぱいに描き、
+  // スケールバーと方位記号だけ UI_PAD ぶん内側に置く。
+  var VIEW_W = 1639;
+  var UI_PAD = 40;
 
   function el(n, a) {
     var e = document.createElementNS(NS, n);
@@ -1113,15 +1119,15 @@ window.KomakiLang = (function () {
         else if (p.layer === 'road') roads.push(f);
         else if (p.layer === 'place') places.push(f);
         else if (p.layer === 'facility') facs.push(f);
-        else if (g.type === 'Polygon') busPolys.push(g.coordinates[0]);
+        else if (g.type === 'Polygon') busPolys.push(g.coordinates);
         else if (g.type === 'Point') newSchools.push(f);
       });
       if (!busPolys.length) throw new Error('no bus area');
 
       // --- 範囲
-      // view_bbox がある場合はそれに従う。桃花台東の通学区域は枠の北東へさらに広がって
-      // いるが、全部を収めると桃花台の住宅地が小さくなりすぎるので、意図的に切っている。
-      // 枠からはみ出す線は viewBox が切るので、ここで座標を加工する必要はない。
+      // view_bbox がある場合はそれに従う。これは市の公表図と同じ範囲で、桃花台東の
+      // 通学区域は原図と同じく枠の北東へさらに広がる。枠からはみ出す線は viewBox が
+      // 切るので、ここで座標を加工する必要はない。
       var lo0 = Infinity, lo1 = -Infinity, la0 = Infinity, la1 = -Infinity;
       function grow(lon, lat) {
         if (lon < lo0) lo0 = lon; if (lon > lo1) lo1 = lon;
@@ -1132,16 +1138,19 @@ window.KomakiLang = (function () {
         grow(vb[0], vb[1]); grow(vb[2], vb[3]);
       } else {
         // 指定が無ければ全データが収まるように取る
-        busPolys.forEach(function (ring) { ring.forEach(function (c) { grow(c[0], c[1]); }); });
+        busPolys.forEach(function (poly) { poly.forEach(function (ring) { ring.forEach(function (c) { grow(c[0], c[1]); }); }); });
         districts.forEach(function (f) { f.geometry.coordinates[0].forEach(function (c) { grow(c[0], c[1]); }); });
         places.forEach(function (f) { grow(f.geometry.coordinates[0], f.geometry.coordinates[1]); });
       }
 
-      var K = Math.cos((la0 + la1) / 2 * Math.PI / 180);
-      var S = (VIEW_W - PAD * 2) / ((lo1 - lo0) * K);
-      var VIEW_H = (la1 - la0) * S + PAD * 2;
-      function px(lon) { return PAD + (lon - lo0) * K * S; }
-      function py(lat) { return PAD + (la1 - lat) * S; }
+      // 1度あたりのメートル数は経度と緯度で違うので、両方の実長を使う。
+      var rad = (la0 + la1) / 2 * Math.PI / 180;
+      var MPD_LON = 111412.84 * Math.cos(rad) - 93.5 * Math.cos(3 * rad);
+      var MPD_LAT = 111132.92 - 559.82 * Math.cos(2 * rad) + 1.175 * Math.cos(4 * rad);
+      var S = VIEW_W / ((lo1 - lo0) * MPD_LON);   // 1メートルあたりのSVGユニット
+      var VIEW_H = (la1 - la0) * MPD_LAT * S;
+      function px(lon) { return (lon - lo0) * MPD_LON * S; }
+      function py(lat) { return (la1 - lat) * MPD_LAT * S; }
       function inView(lon, lat) { return lon >= lo0 && lon <= lo1 && lat >= la0 && lat <= la1; }
 
       var svg = el('svg', {viewBox: '0 0 ' + VIEW_W + ' ' + Math.round(VIEW_H),
@@ -1205,10 +1214,12 @@ window.KomakiLang = (function () {
       });
 
       // --- 対象エリア
-      // 通学区域の内側に切り詰めてあるため、飛び地に分かれる（3片）。
-      // 1枚のポリゴン前提に戻さないこと。
-      busPolys.forEach(function (ring) {
-        layer('busarea').appendChild(el('path', {d: path(ring) + ' Z',
+      // 外周のほかに穴（対象外の一画）を持つので、リングを全部つないで evenodd で塗る。
+      // coordinates[0] だけを描く形に戻さないこと。
+      busPolys.forEach(function (poly) {
+        layer('busarea').appendChild(el('path', {
+          d: poly.map(function (ring) { return path(ring) + ' Z'; }).join(' '),
+          'fill-rule': 'evenodd',
           fill: 'rgba(126,110,196,.40)', stroke: '#5b48a8',
           'stroke-width': 2.5, 'stroke-linejoin': 'round'}));
       });
@@ -1263,7 +1274,7 @@ window.KomakiLang = (function () {
       function plate(x, y, w, h) {
         return el('rect', {x: x, y: y, width: w, height: h, rx: 6, fill: 'var(--white)', 'fill-opacity': .82});
       }
-      var barLen = (1000 / 110946) * S, bx = PAD, by = VIEW_H - PAD * 0.5;
+      var barLen = 1000 * S, bx = UI_PAD, by = VIEW_H - UI_PAD * 0.5;
       var gUi = el('g', {});
       gUi.appendChild(plate(bx - 8, by - 36, barLen + 16, 44));
       gUi.appendChild(el('path', {d: 'M' + bx + ' ' + (by - 8) + ' V' + by + ' H' + (bx + barLen) + ' V' + (by - 8),
@@ -1271,7 +1282,7 @@ window.KomakiLang = (function () {
       var lt = el('text', {x: bx, y: by - 13, 'font-size': 20, fill: 'var(--text)'});
       lt.textContent = '1 km';
       gUi.appendChild(lt);
-      var nx = VIEW_W - PAD - 12, ny = PAD;
+      var nx = VIEW_W - UI_PAD - 12, ny = UI_PAD;
       gUi.appendChild(plate(nx - 19, ny - 8, 38, 64));
       gUi.appendChild(el('path', {d: 'M' + nx + ' ' + (ny + 28) + ' L' + nx + ' ' + ny,
         stroke: 'var(--text)', 'stroke-width': 2.5, fill: 'none'}));
