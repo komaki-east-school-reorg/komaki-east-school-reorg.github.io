@@ -240,6 +240,45 @@ Every page carries a `<section class="section share" id="share">` just above `</
 - In the current build **both the star's URL and its displayed title are read from the `uri` node** (the title comes from that element's `innerText`, not from the `title` selector). The permalink's text is the page title, so both readings give the right answer — keep it that way rather than moving the title into a separate node.
 - If nothing renders within 4 s the whole star row hides itself, so a broken widget never leaves a label with no star beside it.
 
+### 学年ビュー（`schedule.html`）と回覧板シート（全ページ）
+
+2026-08-30 追加。どちらも「共有」を広げるための機能で、扱いに注意が要る。
+
+**学年ビュー（`GRADE VIEW` in `js/main.js`）** — `?grade=` で学年を1つ選ぶと、`.event-item` の各予定に「そのときお子さんは何年生か」を添える。`window.KomakiGrade()`（`main.js` 冒頭）が `?grade=` → `localStorage`（`komaki_grade`）の順で解決する。
+
+- **これは公表日付に対する学年の足し算にすぎない。** 市の計画に学年別の扱いがあるという意味ではなく、どの学校に通うかは住所で決まる。その旨は `grade_lead` に書いてある — **消さないこと**。ここを外すと、ただの計算が「市の学年別方針」に読めてしまう。
+- 学年コードは**令和8年度（2026年度）の学年**。`y3/y4/y5`＝年少・年中・年長、`e1`〜`e6`＝小1〜小6、`j1`〜`j3`＝中1〜中3。基準は `BASE_FY = 2026`。**年度が変わったら `BASE_FY` を上げる**（上げないと1年ずれた学年が出る）。年度は4月始まりで、1〜3月の日付は前年度として数える。
+- 予定の選り分けはしない。「この予定はこの学年に関係する」という判断は公表資料に無く、当サイトが作ると事実になってしまうため、**全部の予定に学年を添えるだけ**にしてある。
+- `.ics` は静的ファイルではなく、押されたときに `data/events.json` から組み立てる。`events.json` は自動更新パイプラインの編集対象なので、静的な `.ics` を置くと更新のたびに古くなる。折り返しは RFC 5545 の**75オクテット**規定で、日本語は1文字3バイトなので文字数で数えないこと。
+- 共有 URL にも `grade` が乗る（`shareUrl()`）。同学年の保護者にそのまま渡せる。
+
+**回覧板シート（`BOARD SHEET` in `js/main.js`）** — A4 1枚を2種類刷る。共有欄いちばん右の「回」ボタンが**そのページの要約**、`index.html` の「最新の動き」内のボタン（`#latest-print-btn`）が**4コーナーの新着一覧**。この地区で実際に情報が回るのは回覧板と掲示板で、SNS のリンクでは届かない層がいる。
+
+- **シートの文章はページ内の既存要素からしか取らない。** ページ要約は `main h1`・`meta[name=description]`・`main h2.section-title` と**その見出しが受け持つ範囲**（次の見出しの手前まで）の先頭段落、最新の動きは `h3.section-title.sub` と各コーナーの描画済み一覧（`.official-news-item` / `.school-card` / `.press-item` / `.update-item`）。ここで独自の要約を書き起こすと、出典のない二次情報が紙になって出て行く。コーナーの描画クラス名を変えたら、この抽出も直すこと。
+- **ページ要約シートは「いま近づいている予定」で始める**（`urgentBlock()`、見出しは `board_now`）。紙が回っているのは「いま」なので、節の要約をページ順に並べただけではサイトの目次を刷ったものにしかならない。中身はそのページの `.deadline-box[data-expires]` / `.upcoming-item[data-expires]`（期限切れは除く）と、足りなければ年表の未来ぶん（`.status-item` / `.event-item` の `data-start` が今日以降）。**最大3行**にし、ここに出た行は下の節から取り除く（狭い紙面で同じ予定が二度出ると目立つ）。期限も予定も無いページ（`about` / `review` / `map` など）ではこのブロックは出ない。
+- **最新の動きシートは直近7日ぶんだけ**（`LATEST_DAYS`）。画面のコーナーは30日ぶりを出すが、紙は「いまどうなっているか」を短く伝えるためのもので、1か月ぶんを刷ると読み飛ばされる。絞り込みは各コーナーが描画時に付ける **`data-date="YYYY-MM-DD"`**（`.official-news-item` / `.school-items li` / `.press-item` / `.update-item`）で行う。**コーナーの描画を書き換えるときは `data-date` を落とさないこと** — 日付が無い項目は「直近1週間」として配れないので黙って落ちる。紙の説明文は画面の `latest_lead` ではなく、`board_latest_range` で「いつからいつまでの分か」を出す（該当なしのときは `board_latest_none`）。
+- **範囲は `<section>` ではなく見出し単位で切る。** `faq.html` のように1つの節へ `h2` が4つ並ぶページがあり、節で切ると4つとも同じ本文がぶら下がる。
+- **文は絶対に途中で切らない。** 字数で切ると「…」で尻切れになり、回覧板として読めない。本文は句点で文に割って入る本数だけを載せ、一覧の各行も句点で終わる分（最大2文）だけを残す。長さの調整は「文の本数 → 一覧の項目数 → 文字の倍率 → 末尾の見出しごと落とす」でやる。**字数での切り詰めを復活させないこと。**
+- **紙に載せたくないものは HTML 側で外す。** 節ごとなら `<section data-board="skip">`、1文だけなら `<p data-board="skip">`。現在の指定は `index.html` の「各ページへのリンク」節と「最新の動き」の帯（どちらも他ページへの案内で、紙に刷っても内容が伝わらない）、`index.html` の `status_digest`、`community.html` の `comm_sec5_disclaimer`（どちらも案内文・注記）。**判定を賢くしようとしないこと** — 「カードの中は見ない」等のヒューリスティックを入れると、内容がカードで出来ている節（スクールバスの運行の概要など）まで巻き添えで落ちる。
+- **文が取れない見出しは載せない。** 見出しの羅列は要約として読めないので、「見出しを全部入れる」ことより「読める文が付いていること」を優先する。`voices.html` はこの結果ブロックが0になり、題名＋説明＋QRだけの紙になる。賛否の声は選び方しだいで意味が変わるので、機械的に抜粋しないほうがよい。
+- **年表は「これからの予定」を優先する。** 日付（`data-start`）を持つ並びは、今日以降のものがあればそれだけを載せる。紙で配るものが去年の実績から始まっていては回覧板として役に立たない。
+- **回覧板の体裁**：左肩に「回覧」の枠（`board_stamp`）、その横に発行元と非公式である旨。発行元を枠のすぐ横に置くのは、自治会や市が出した回覧と取り違えられないようにするため — **この並びを崩さないこと**。回し読みを促す文や確認欄のマスは置かない。
+- **A4 1枚に収める仕掛けが `#board-sheet` を `display:none` にできない理由。** シートは常に DOM にあり、印刷と同じ幅 178mm（A4 210mm − 左右16mm）で画面外（`position:fixed; left:-10000px`）に置いてある。だから刷る前に実寸で高さを測れる。`fit()` が上限 265mm（297mm − 上下16mm、実測 px に換算）に収まるまで「1行の字数」「1コーナーの行数」「文字の倍率」を `LADDER` の順に詰め、それでも溢れたら**末尾のコーナーから落とす**（先頭ほど重要なため）。`display:none` に戻すと高さが 0 になり、常に最も詰めた版が刷られる。
+- 切り詰めたことは `board_excerpt` として紙面にも書く。全文はサイトにある、と紙の上で分かるようにするため。
+- **QR は自前生成しない。** `.github/scripts/build_qr.py`（segno）が `qr/<pageId>.<lang>.svg` を110枚（11ページ×10言語、誤り訂正 H）書き出し、それをコミットしてある。ページ側は `<img>` を1枚読むだけ。JS の QR エンコーダを自作すると壊れていても「QR に見える絵」が出て、印刷して配ったあとまで気づけない。CDN から読めば「自動で読む外部スクリプトははてなスター1本だけ」という方針が崩れる。**ページを増減したら `build_qr.py` を実行してコミットすること。**
+- 印刷指定は `@media print` の `html.board-printing`。**ふつうの Ctrl+P はページをそのまま印刷する**（本文を刷りたい読者がいるので既定は変えない）。ボタンを押したときだけシート1枚になる。`body > *:not(#board-sheet)` の `:not()` は必須 — `!important` は詳細度に勝つので、除外しないとシート自身も消える。
+- `board_btn` は実行時に作るボタンの `aria-label` で HTML に現れないため、`build_page_dicts.py` の `RUNTIME_KEYS` に入れてある。
+
+### 新機能カットイン（`index.html` 上部）
+
+`NEW FEATURE CUT-IN` in `js/main.js`。`data/site-updates.json` の `type: "feature"` のうち、`date` が**今日から14日以内**（`WINDOW_DAYS`）のものを、ヘッダの上にスライドインする帯で出す。
+
+- **カットイン専用のお知らせデータを作らないこと。** 文面は更新履歴そのもの。別データにすると更新履歴と食い違ったまま気づけなくなる。**機能を足したら更新履歴に `type: "feature"` の1行を足すだけ**でここは自動的に出て、14日で自動的に消える（消し忘れが起きない）。
+- 閉じるとその項目は二度と出ない（`localStorage: komaki_feature_seen`）。複数あるときは最大3件を7秒ごとに入れ替え、マウスやフォーカスが乗ったら止まる。`prefers-reduced-motion` では動きを出さない。
+- 帯は `position: sticky` のヘッダの**上**（通常フロー）に置く。ヘッダに重ねると本文が読めなくなる。
+- `.feature-cutin` の `display:flex` は UA の `[hidden]{display:none}` に勝つので、`.feature-cutin[hidden] { display:none; }` が要る。無いと出す前と閉じたあとに padding ぶんの帯が残る。
+- リンク先は `index.html#site-updates`。そのアンカーを外すとカットインの「くわしく」がどこにも飛ばなくなる。
+
 ### Date-driven auto-display (and when it updates)
 
 Several things reflect the current date automatically — no manual edits needed, but the underlying data must be set correctly.

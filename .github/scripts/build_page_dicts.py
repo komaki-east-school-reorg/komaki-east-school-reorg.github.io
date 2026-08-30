@@ -65,6 +65,8 @@ RUNTIME_KEYS = [
     "share_native",
     "share_star_label",
     "share_star_note",
+    # 回覧板シートのボタン。main.js が実行時に作るので HTML に現れない。
+    "board_btn",
 ]
 
 KEY_RE = re.compile(r'data-i18n(?:-html|-aria)?="([^"]+)"')

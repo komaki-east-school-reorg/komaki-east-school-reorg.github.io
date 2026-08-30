@@ -82,9 +82,9 @@
         <li><a href="schedule.html" data-i18n="nav_schedule">スケジュール</a></li>
         <li><a href="voices.html" data-i18n="nav_voices">賛否の声</a></li>
         <li><a href="faq.html" data-i18n="nav_faq">よくある質問</a></li>
-        <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
-        <li class="nav-break" aria-hidden="true"></li>
         <li><a href="bus.html" data-i18n="nav_bus">スクールバス</a></li>
+        <li class="nav-break" aria-hidden="true"></li>
+        <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
         <li><a href="community.html" data-i18n="nav_community">地域協議会</a></li>
         <li><a href="map.html" data-i18n="nav_map">地図</a></li>
         <li><a href="nationwide.html" data-i18n="nav_nationwide">全国の動き</a></li>
@@ -293,6 +293,21 @@
       <p class="share-lead" data-i18n="share_lead">リンクを送るだけでも、知る人は増えます。</p>
       <div class="share-buttons" id="share-buttons"></div>
       <div class="share-star" id="share-star"></div>
+      <!-- 回覧板シートの文言。js/main.js の BOARD SHEET が組み立てるので
+           HTML には現れない。翻訳は辞書に持たせる。 -->
+      <div id="board-strings" hidden>
+        <span data-bk="unofficial" data-i18n="board_unofficial">市民有志が運営する非公式のサイトです。小牧市・教育委員会が発行したものではありません。</span>
+        <span data-bk="cta" data-i18n="board_cta">この紙に載せきれなかったことは、サイトにすべて載っています。</span>
+        <span data-bk="scan" data-i18n="board_scan">スマートフォンのカメラで読み取れます。</span>
+        <span data-bk="excerpt" data-i18n="board_excerpt">紙面の都合で要点だけを載せています。</span>
+        <span data-bk="asof" data-i18n="board_asof">この紙は{date}時点の内容です。計画は今後も動きます。最新の情報はサイトでご確認ください。</span>
+        <span data-bk="contact" data-i18n="board_contact">計画そのものについての公式の問い合わせ先：小牧市教育委員会事務局 教育総務課 学校再編推進係（電話 0568-39-5261）</span>
+        <span data-bk="issuer" data-i18n="board_issuer">発行：小牧市東部（篠岡地区）学校再編計画 市民情報サイト（市民有志・非公式）</span>
+        <span data-bk="stamp" data-i18n="board_stamp">回 覧</span>
+        <span data-bk="now" data-i18n="board_now">いま近づいている予定</span>
+        <span data-bk="range" data-i18n="board_latest_range">直近1週間（{from}〜{to}）に更新された内容です。</span>
+        <span data-bk="none" data-i18n="board_latest_none">この1週間に新しい動きはありませんでした。</span>
+      </div>
       <p class="share-note" data-i18n="share_note">Instagram・TikTok はリンクのコピーのみ。自動の外部通信ははてなスターの表示だけです。</p>
     </div>
   </section>
@@ -315,8 +330,8 @@
           <li><a href="voices.html" data-i18n="nav_voices">賛否の声</a></li>
           <li><a href="faq.html" data-i18n="nav_faq">よくある質問</a></li>
           <li class="nav-break" aria-hidden="true"></li>
-          <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
           <li><a href="bus.html" data-i18n="nav_bus">スクールバス</a></li>
+          <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
           <li><a href="community.html" data-i18n="nav_community">地域協議会</a></li>
           <li><a href="map.html" data-i18n="nav_map">学校の場所（地図）</a></li>
           <li><a href="nationwide.html" data-i18n="nav_nationwide">全国の動き</a></li>

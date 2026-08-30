@@ -17,11 +17,12 @@ nationwide.html     全国の廃校数・国が示す学校規模と通学の基
 review.html         計画の検証と提案のページ。公表資料から確認できること・できないことを整理し、地区全体の児童生徒数を増やす方策を検討する。当サイトの見解を含む唯一のページ。
 
 ■ スタイル
-css/style.css       サイト全体のデザイン・レイアウト・カラー・レスポンシブ対応を定義するスタイルシート。共有ボタン（.share-*）もここ。
+css/style.css       サイト全体のデザイン・レイアウト・カラー・レスポンシブ対応を定義するスタイルシート。共有ボタン（.share-*）・学年ビュー（.grade-*）・回覧板シートの印刷指定（@media print の #board-sheet）もここ。
+qr/                 回覧板シート用のQRコード。<ページID>.<言語>.svg の110枚。.github/scripts/build_qr.py が生成する。手編集不可。
 
 ■ JavaScript
 js/i18n.js          言語JSONファイルを非同期取得してページ内テキストを多言語に切り替える国際化スクリプト。
-js/main.js          ハンバーガーメニュー・カレンダー・日付自動ステータス更新・公式ニュース表示・共有ボタン（SNS＋はてな）などのUIロジックを担うメインスクリプト。
+js/main.js          ハンバーガーメニュー・カレンダー・日付自動ステータス更新・公式ニュース表示・共有ボタン（SNS＋はてな）・学年ビュー（schedule.html）・回覧板シート印刷などのUIロジックを担うメインスクリプト。
 
 ■ データ
 data/news.json              GitHub Actionsが定期取得した市公式サイトの最新お知らせを格納するJSONファイル。
@@ -78,6 +79,7 @@ sitemap.xml                 全10ページのサイトマップ。各URLに10言
 .github/scripts/fetch_chunichi.py   中日新聞Webの小牧市エリア一覧を巡回し、東部（篠岡地区）に関する記事の見出し・日付・冒頭1文をchunichi_news.jsonに保存するスクリプト。地名で判定する。
 .github/scripts/map_targets.py      変更された公式ページのスラッグをsite-facts.jsonで引き、サイト内の更新候補箇所をMarkdown出力するスクリプト（Issue本文生成用）。
 .github/scripts/build_page_dicts.py  data/i18n/pages/ を生成する。辞書やHTMLのdata-i18nを変えたら実行してコミットすること。--check で鮮度検証のみ。
+.github/scripts/build_qr.py         回覧板シートに載せるQRコード（qr/*.svg）をページ×言語ぶん生成する。segnoが必要（pip install segno）。ページを増減したら実行してコミットすること。--check で鮮度検証のみ。
 .github/scripts/auto_gates.py       自動更新のガードレール検証（編集範囲・スキーマ・ja/enキー一致・こどもモード1行の長さ・ページ別辞書の鮮度・外部リンク規則・出典実在チェック）。exit 0=合格/3=変更なし/1=不合格。
 .github/scripts/auto_report.py      自動更新のPR本文・事後報告コメントをevidence.json/verdict.jsonから生成するスクリプト。
 

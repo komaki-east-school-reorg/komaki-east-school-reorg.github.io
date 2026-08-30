@@ -54,9 +54,9 @@
         <li><a href="schedule.html" data-i18n="nav_schedule">スケジュール</a></li>
         <li><a href="voices.html" data-i18n="nav_voices">賛否の声</a></li>
         <li><a href="faq.html" data-i18n="nav_faq">よくある質問</a></li>
-        <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
-        <li class="nav-break" aria-hidden="true"></li>
         <li><a href="bus.html" data-i18n="nav_bus">スクールバス</a></li>
+        <li class="nav-break" aria-hidden="true"></li>
+        <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
         <li><a href="community.html" data-i18n="nav_community">地域協議会</a></li>
         <li><a href="map.html" data-i18n="nav_map">地図</a></li>
         <li><a href="nationwide.html" data-i18n="nav_nationwide">全国の動き</a></li>
@@ -90,6 +90,52 @@
       <div class="breadcrumb"><a href="index.html" data-i18n="nav_home">ホーム</a> <span>›</span> <span data-i18n="schedule_h1">スケジュール</span></div>
       <h1 data-i18n="schedule_h1">スケジュール</h1>
       <p data-i18n="schedule_p">令和7年（2025年）の取組実績と、令和9年（2027年）の再編実施に向けた全体の流れを掲載しています。</p>
+    </div>
+  </section>
+
+  <!-- GRADE VIEW（お子さんの学年で見る）
+       選んだ学年は ?grade= と localStorage に残る。学年から予定に
+       「そのとき何年生か」を添えるだけで、市の計画に学年別の扱いがあるという
+       意味ではない（grade_lead に明記）。処理は js/main.js の GRADE VIEW。 -->
+  <section class="section">
+    <div class="container">
+      <div class="grade-box">
+        <h2 class="grade-h" data-i18n="grade_h">お子さんの学年で見る</h2>
+        <p class="grade-lead" data-i18n="grade_lead">学年を選ぶと、下の予定に「そのときお子さんは何年生か」を添えて表示します。学年は令和8年度（2026年度）のものです。市の計画に学年ごとの扱いがあるという意味ではなく、公表されている日付からの単純な計算です。どの学校に通うかは住所で決まります。</p>
+        <div class="grade-row">
+          <label class="grade-label" for="grade-select" data-i18n="grade_select_label">学年</label>
+          <select id="grade-select" class="grade-select">
+            <option value="" data-i18n="grade_none">指定しない</option>
+            <option value="y3" data-i18n="grade_opt_y3">年少（3歳児）</option>
+            <option value="y4" data-i18n="grade_opt_y4">年中（4歳児）</option>
+            <option value="y5" data-i18n="grade_opt_y5">年長（5歳児）</option>
+            <option value="e1" data-i18n="grade_opt_e1">小学1年生</option>
+            <option value="e2" data-i18n="grade_opt_e2">小学2年生</option>
+            <option value="e3" data-i18n="grade_opt_e3">小学3年生</option>
+            <option value="e4" data-i18n="grade_opt_e4">小学4年生</option>
+            <option value="e5" data-i18n="grade_opt_e5">小学5年生</option>
+            <option value="e6" data-i18n="grade_opt_e6">小学6年生</option>
+            <option value="j1" data-i18n="grade_opt_j1">中学1年生</option>
+            <option value="j2" data-i18n="grade_opt_j2">中学2年生</option>
+            <option value="j3" data-i18n="grade_opt_j3">中学3年生</option>
+          </select>
+          <button type="button" id="grade-ics" class="grade-ics" data-i18n="grade_ics">予定をカレンダーに追加（.ics）</button>
+        </div>
+        <p class="grade-summary" id="grade-summary" hidden></p>
+        <p class="grade-note" data-i18n="grade_ics_note">.ics ファイルを保存します。カレンダーアプリで開くと、このページの予定が取り込まれます。</p>
+        <!-- js/main.js が組み立てる文言の置き場。翻訳は辞書に持たせる。 -->
+        <div id="grade-strings" hidden>
+          <span data-gk="pre" data-i18n="grade_lbl_pre">就学前</span>
+          <span data-gk="elem" data-i18n="grade_lbl_e">小学{n}年生</span>
+          <span data-gk="jhs" data-i18n="grade_lbl_j">中学{n}年生</span>
+          <span data-gk="post" data-i18n="grade_lbl_post">中学校卒業後</span>
+          <span data-gk="badge" data-i18n="grade_badge">{grade}のとき</span>
+          <span data-gk="at_reorg" data-i18n="grade_at_reorg">第1期再編（2027年4月）のとき、お子さんは{grade}です</span>
+          <span data-gk="calname" data-i18n="grade_ics_calname">小牧市東部 学校再編の予定</span>
+          <span data-gk="icsdesc" data-i18n="grade_ics_desc">この予定は市民有志のサイトがまとめたものです。正式な案内は市から届く書類でご確認ください。</span>
+          <span data-gk="icsfail" data-i18n="grade_ics_fail">カレンダーの書き出しに失敗しました</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -513,6 +559,21 @@
       <p class="share-lead" data-i18n="share_lead">リンクを送るだけでも、知る人は増えます。</p>
       <div class="share-buttons" id="share-buttons"></div>
       <div class="share-star" id="share-star"></div>
+      <!-- 回覧板シートの文言。js/main.js の BOARD SHEET が組み立てるので
+           HTML には現れない。翻訳は辞書に持たせる。 -->
+      <div id="board-strings" hidden>
+        <span data-bk="unofficial" data-i18n="board_unofficial">市民有志が運営する非公式のサイトです。小牧市・教育委員会が発行したものではありません。</span>
+        <span data-bk="cta" data-i18n="board_cta">この紙に載せきれなかったことは、サイトにすべて載っています。</span>
+        <span data-bk="scan" data-i18n="board_scan">スマートフォンのカメラで読み取れます。</span>
+        <span data-bk="excerpt" data-i18n="board_excerpt">紙面の都合で要点だけを載せています。</span>
+        <span data-bk="asof" data-i18n="board_asof">この紙は{date}時点の内容です。計画は今後も動きます。最新の情報はサイトでご確認ください。</span>
+        <span data-bk="contact" data-i18n="board_contact">計画そのものについての公式の問い合わせ先：小牧市教育委員会事務局 教育総務課 学校再編推進係（電話 0568-39-5261）</span>
+        <span data-bk="issuer" data-i18n="board_issuer">発行：小牧市東部（篠岡地区）学校再編計画 市民情報サイト（市民有志・非公式）</span>
+        <span data-bk="stamp" data-i18n="board_stamp">回 覧</span>
+        <span data-bk="now" data-i18n="board_now">いま近づいている予定</span>
+        <span data-bk="range" data-i18n="board_latest_range">直近1週間（{from}〜{to}）に更新された内容です。</span>
+        <span data-bk="none" data-i18n="board_latest_none">この1週間に新しい動きはありませんでした。</span>
+      </div>
       <p class="share-note" data-i18n="share_note">Instagram・TikTok はリンクのコピーのみ。自動の外部通信ははてなスターの表示だけです。</p>
     </div>
   </section>
@@ -535,8 +596,8 @@
           <li><a href="voices.html" data-i18n="nav_voices">賛否の声</a></li>
           <li><a href="faq.html" data-i18n="nav_faq">よくある質問</a></li>
           <li class="nav-break" aria-hidden="true"></li>
-          <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
           <li><a href="bus.html" data-i18n="nav_bus">スクールバス</a></li>
+          <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
           <li><a href="community.html" data-i18n="nav_community">地域協議会</a></li>
           <li><a href="map.html" data-i18n="nav_map">学校の場所（地図）</a></li>
           <li><a href="nationwide.html" data-i18n="nav_nationwide">全国の動き</a></li>

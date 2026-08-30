@@ -3,6 +3,24 @@
   "updates": [
     {
       "date": "2026-08-30",
+      "type": "feature",
+      "ja": "新しい機能を追加したとき、トップページ上部にお知らせの帯が出るように",
+      "en": "New features are now announced in a banner at the top of the home page"
+    },
+    {
+      "date": "2026-08-30",
+      "type": "feature",
+      "ja": "スケジュールに「お子さんの学年で見る」を追加。予定のカレンダー取込にも対応",
+      "en": "Schedule page: view dates by your child’s school year, and export them to your calendar"
+    },
+    {
+      "date": "2026-08-30",
+      "type": "feature",
+      "ja": "各ページと最新の動きを、QRつきのA4 1枚に要約して印刷できる機能を追加",
+      "en": "New: print any page, or the latest updates, as a one-sheet A4 summary with a QR code"
+    },
+    {
+      "date": "2026-08-30",
       "type": "fix",
       "ja": "対象エリアの地図を市の公表図と同じ範囲・縮尺に作り直し、紫の範囲も読み直し",
       "en": "Service-area map rebuilt to match the city figure’s extent, scale and shading"

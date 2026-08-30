@@ -1638,6 +1638,8 @@ footer {
    ラベルに「（リンクをコピー）」と入れて動きの違いを示している。 */
 .share-btn--instagram { --share-color: #e1306c; --share-color-dark: #b3164d; }
 .share-btn--tiktok    { --share-color: #010101; --share-color-dark: #000000; }
+/* 回覧板（印刷）はサービスではなく紙への共有。サイトの色を使う。 */
+.share-btn--board     { --share-color: #6b5b3a; --share-color-dark: #4a3f27; }
 
 .share-copy-msg {
   display: none;
@@ -1881,3 +1883,220 @@ footer {
 }
 .action-body { font-size: .9rem; margin-top: .5rem; }
 .action-source { font-size: .78rem; color: var(--text-muted); margin-top: .6rem; }
+
+
+/* ===== GRADE VIEW（schedule.html「お子さんの学年で見る」）===== */
+.grade-box {
+  background: var(--accent-light);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.2rem;
+}
+.grade-h { font-size: 1.02rem; font-weight: 800; font-family: var(--heading-font); margin-bottom: .35rem; }
+.grade-lead { font-size: .84rem; color: var(--text-muted); line-height: 1.7; margin-bottom: .8rem; }
+.grade-row { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.grade-label { font-size: .85rem; font-weight: 700; }
+.grade-select {
+  font: inherit;
+  font-size: .9rem;
+  padding: .35rem .6rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  max-width: 100%;
+}
+.grade-ics {
+  font: inherit;
+  font-size: .84rem;
+  font-weight: 700;
+  padding: .38rem .9rem;
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  color: var(--primary);
+  cursor: pointer;
+}
+.grade-ics:hover { background: var(--primary); color: #fff; }
+.grade-ics[disabled] { opacity: .55; cursor: default; }
+.grade-summary {
+  margin-top: .8rem;
+  font-size: .95rem;
+  font-weight: 700;
+  background: var(--white);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius-sm);
+  padding: .55rem .8rem;
+}
+.grade-note { font-size: .78rem; color: var(--text-muted); margin-top: .6rem; }
+/* 予定1件ごとに付く「小4のとき」。日付の行に並べる。 */
+.grade-badge {
+  display: inline-block;
+  margin-left: .5rem;
+  font-size: .72rem;
+  font-weight: 700;
+  color: #7a5c00;
+  background: var(--accent-light);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-pill);
+  padding: .05rem .5rem;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* ===== BOARD SHEET（回覧板・掲示用のA4 1枚印刷）=====
+   画面には出さないが、DOM からは外さない。印刷と同じ幅（A4 210mm − 左右16mm）で
+   画面外に置いてあるので、刷る前に実寸で高さを測って1枚に収められる
+   （js/main.js の BOARD SHEET の fit()）。display:none だと高さが測れない。
+   ふつうの Ctrl+P はページをそのまま印刷する（本文を刷りたい読者がいるので
+   既定は変えない）。ボタンを押したときだけ <html> に .board-printing が付き、
+   印刷でこのシート1枚になる。 */
+#board-sheet {
+  --board-scale: 1;
+  position: fixed;
+  left: -10000px;
+  top: 0;
+  width: 178mm;
+  background: #fff;
+  color: #000;
+  font-size: calc(10.5pt * var(--board-scale));
+  line-height: 1.65;
+}
+/* 回覧板の体裁。左肩の「回覧」枠と、その横に発行元＋非公式である旨。
+   発行元を枠のすぐ横に置くのは、自治会や市が出した回覧と取り違えられないため。 */
+#board-sheet .board-head {
+  display: flex; align-items: flex-start; gap: .7rem;
+  border-bottom: 2px solid #000; padding-bottom: .35rem; margin-bottom: .9rem;
+}
+#board-sheet .board-stamp {
+  flex: none;
+  border: 2px solid #000;
+  padding: .12rem .5rem;
+  font-size: calc(12pt * var(--board-scale));
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+#board-sheet .board-head-text { min-width: 0; }
+#board-sheet .board-site { font-size: calc(12pt * var(--board-scale)); font-weight: 800; }
+#board-sheet .board-unofficial { font-size: calc(8pt * var(--board-scale)); margin-top: .15rem; }
+#board-sheet .board-title { font-size: calc(20pt * var(--board-scale)); font-weight: 800; margin: 0 0 .4rem; line-height: 1.25; }
+#board-sheet .board-desc { font-size: calc(11pt * var(--board-scale)); margin: 0 0 .9rem; }
+#board-sheet .board-block { margin-bottom: .7rem; break-inside: avoid; }
+#board-sheet .board-block-h {
+  font-size: calc(11pt * var(--board-scale));
+  font-weight: 800;
+  border-left: 4px solid #000;
+  padding-left: .4rem;
+  margin-bottom: .2rem;
+}
+#board-sheet .board-block p { margin: 0; }
+#board-sheet .board-block ul { margin: 0 0 0 1.1rem; padding: 0; }
+#board-sheet .board-block li { margin-bottom: .1rem; }
+#board-sheet .board-qr {
+  display: flex; align-items: center; gap: 1rem;
+  border: 2px solid #000; padding: .5rem .7rem; margin-top: .8rem;
+}
+#board-sheet .board-qr img { width: 34mm; height: 34mm; flex: 0 0 34mm; }
+#board-sheet .board-cta { font-size: calc(11pt * var(--board-scale)); font-weight: 800; margin-bottom: .2rem; }
+#board-sheet .board-url { font-size: calc(9pt * var(--board-scale)); word-break: break-all; }
+#board-sheet .board-scan { font-size: calc(9pt * var(--board-scale)); margin-top: .2rem; }
+/* 紙面の末尾。いつ時点か・要点だけであること・公式の問い合わせ先・発行元。 */
+#board-sheet .board-notes {
+  margin-top: .6rem;
+  border-top: 1px solid #000;
+  padding-top: .3rem;
+  font-size: calc(8.5pt * var(--board-scale));
+  line-height: 1.5;
+}
+#board-sheet .board-notes div { margin-bottom: .1rem; }
+
+/* 「最新の動きを印刷する」ボタン（index.html の最新の動き） */
+.latest-print { margin-top: .8rem; }
+.latest-print button {
+  font: inherit;
+  font-size: .84rem;
+  font-weight: 700;
+  padding: .38rem .9rem;
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  color: var(--primary);
+  cursor: pointer;
+}
+.latest-print button:hover { background: var(--primary); color: #fff; }
+
+@media print {
+  /* :not() でシート自身を除く。!important は詳細度に勝つので、
+     ここで除外しておかないと下の position:static が効く前に消える。 */
+  html.board-printing body > *:not(#board-sheet) { display: none !important; }
+  html.board-printing #board-sheet { position: static; left: auto; width: auto; }
+  @page { size: A4 portrait; margin: 16mm; }
+}
+
+
+/* ===== NEW FEATURE CUT-IN（index.html 上部の期間限定の帯）=====
+   data/site-updates.json の type:"feature" が新しいうちだけ出る。
+   出典は更新履歴そのもので、専用のお知らせデータは持たない
+   （js/main.js の NEW FEATURE CUT-IN を参照）。
+   ヘッダは position:sticky なので、この帯はその上（通常フロー）に置き、
+   スクロールで一緒に流れて消える。ヘッダに重ねると本文が読めなくなる。 */
+.feature-cutin {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  flex-wrap: wrap;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #fff;
+  padding: .5rem 1.1rem;
+  font-size: .85rem;
+  /* 閉じるまでの動き。max-height も動かして、出る瞬間に下の内容が押し下がる
+     様子まで含めて「カットイン」に見せる。 */
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-100%);
+  transition: transform .45s cubic-bezier(.2, .8, .3, 1), opacity .45s, max-height .45s;
+}
+.feature-cutin.is-open { max-height: 6rem; opacity: 1; transform: translateY(0); }
+/* display:flex は UA の [hidden]{display:none} に勝ってしまうので、明示的に消す。
+   これが無いと、出す前と閉じたあとに padding ぶんの帯が残る。 */
+.feature-cutin[hidden] { display: none; }
+.feature-cutin-label {
+  flex: none;
+  font-weight: 800;
+  font-size: .74rem;
+  letter-spacing: .04em;
+  background: var(--accent);
+  color: #3a2c00;
+  border-radius: var(--radius-pill);
+  padding: .1rem .6rem;
+}
+/* 入れ替えのたびに文字だけを差し替える。帯そのものは動かさない。 */
+.feature-cutin-text { flex: 1 1 12rem; font-weight: 700; min-width: 0; }
+.feature-cutin.is-swap .feature-cutin-text { animation: feature-swap .5s ease; }
+@keyframes feature-swap {
+  from { opacity: 0; transform: translateX(1.2rem); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.feature-cutin-more { flex: none; color: #fff; font-size: .8rem; text-decoration: underline; }
+.feature-cutin-more:hover { color: var(--accent); }
+.feature-cutin-close {
+  flex: none;
+  background: none;
+  border: 0;
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: .1rem .3rem;
+  cursor: pointer;
+  opacity: .8;
+}
+.feature-cutin-close:hover { opacity: 1; }
+
+/* 動きを減らす設定の人には、スライドも入れ替えアニメも出さない。
+   情報は同じで、出方だけを静かにする。 */
+@media (prefers-reduced-motion: reduce) {
+  .feature-cutin { transition: none; }
+  .feature-cutin.is-swap .feature-cutin-text { animation: none; }
+}
+
+@media print { .feature-cutin { display: none !important; } }

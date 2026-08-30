@@ -14,6 +14,165 @@ window.KomakiLang = (function () {
   };
 })();
 
+/* ===== 学年の解決（このファイル共通） =====
+   URL の ?grade=xx を最優先し、次に localStorage。指定が無ければ空文字。
+   ?lang= と同じ考え方で、共有されたリンクを開いた人にもその学年で見せる。
+   値は「令和8年度（2026年度）に何年生か」で、y3=年少 y4=年中 y5=年長
+   e1〜e6=小学1〜6年 j1〜j3=中学1〜3年。
+   学年は日付から学年を計算するためだけに使う。市の計画に学年別の扱いが
+   あるという意味ではない（その旨は grade_lead に明記してある）。 */
+window.KomakiGrade = (function () {
+  var CODES = ['y3', 'y4', 'y5', 'e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'j1', 'j2', 'j3'];
+  return function getGrade() {
+    try {
+      var q = new URLSearchParams(location.search).get('grade');
+      if (CODES.indexOf(q) !== -1) return q;
+    } catch (e) {}
+    try {
+      var v = localStorage.getItem('komaki_grade') || '';
+      return CODES.indexOf(v) !== -1 ? v : '';
+    } catch (e) { return ''; }
+  };
+})();
+
+/* ===== NEW FEATURE CUT-IN（index.html 上部）=====
+   機能を足したことに気づいてもらうための、期間限定の帯。
+   data/site-updates.json の type:"feature" のうち、date が今日から
+   WINDOW_DAYS 日以内のものを、ヘッダの上にスライドインさせる。
+
+   【新しい情報源を作らない】
+   文面は更新履歴（data/site-updates.json）そのもの。カットイン専用の
+   お知らせデータを別に持つと、更新履歴と食い違ったまま気づけなくなる。
+   だから「機能を足したら更新履歴に1行足す」だけで、ここは自動で出る。
+   期間を過ぎれば自動で消えるので、消し忘れも起きない。
+
+   【うるさくしない】
+   ・閉じたら、その項目は二度と出さない（localStorage: komaki_feature_seen）。
+   ・複数あるときは1本ずつ入れ替える（最大3件）。ページを開いた直後は
+     読み込み中の視線を奪わないよう、少し置いてから出す。
+   ・prefers-reduced-motion のときはスライドさせず、そのまま出す。 */
+(function () {
+  var host = document.getElementById('feature-cutin');
+  if (!host) return;
+
+  var WINDOW_DAYS = 14;      // 掲載から何日出すか
+  var MAX_ITEMS = 3;         // 入れ替えで見せる最大件数
+  var ROTATE_MS = 7000;      // 入れ替えの間隔
+  var APPEAR_MS = 900;       // 表示を始めるまでの間
+
+  var _fl = window.KomakiLang();
+  var strings = document.getElementById('feature-strings');
+  function t(key, fallback) {
+    var el = strings && strings.querySelector('[data-fk="' + key + '"]');
+    var v = el && el.textContent;
+    return (v && v.trim()) || fallback;
+  }
+
+  function seen() {
+    try { return JSON.parse(localStorage.getItem('komaki_feature_seen') || '[]'); }
+    catch (e) { return []; }
+  }
+  function markSeen(id) {
+    try {
+      var a = seen();
+      if (a.indexOf(id) === -1) a.push(id);
+      localStorage.setItem('komaki_feature_seen', JSON.stringify(a.slice(-40)));
+    } catch (e) {}
+  }
+
+  function daysSince(d) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(d || '');
+    if (!m) return Infinity;
+    var then = Date.UTC(+m[1], +m[2] - 1, +m[3]);
+    var now = new Date();
+    var today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+    return Math.floor((today - then) / 86400000);
+  }
+
+  fetch('./data/site-updates.json')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) {
+      var done = seen();
+      var items = (data.updates || [])
+        .filter(function (u) {
+          if (u.type !== 'feature') return false;
+          var age = daysSince(u.date);
+          return age >= 0 && age <= WINDOW_DAYS;
+        })
+        .sort(function (a, b) { return (a.date < b.date) - (a.date > b.date); })
+        .map(function (u) {
+          // 本文は 対象言語 → en → ja（i18n.js のフォールバックと揃える）
+          return {id: u.date + '|' + (u.ja || ''), text: u[_fl] || u.en || u.ja || ''};
+        })
+        .filter(function (u) { return u.text && done.indexOf(u.id) === -1; });
+      if (!items.length) return;
+      // 閉じたときは「期間内の機能追加ぜんぶ」を見たことにする。表示した3件だけを
+      // 記録すると、次に開いたときに少し前の機能が繰り上がって出てきてしまう。
+      var all = items;
+      items = items.slice(0, MAX_ITEMS);
+
+      var label = document.createElement('span');
+      label.className = 'feature-cutin-label';
+      label.setAttribute('data-i18n', 'feature_new_label');
+      label.textContent = t('label', '新機能');
+
+      var text = document.createElement('span');
+      text.className = 'feature-cutin-text';
+      text.setAttribute('role', 'status');
+
+      var more = document.createElement('a');
+      more.className = 'feature-cutin-more';
+      more.href = '#site-updates';
+      more.setAttribute('data-i18n', 'feature_new_more');
+      more.textContent = t('more', '更新履歴を見る');
+
+      var close = document.createElement('button');
+      close.type = 'button';
+      close.className = 'feature-cutin-close';
+      close.setAttribute('data-i18n-aria', 'feature_new_close');
+      close.setAttribute('aria-label', t('close', '閉じる'));
+      close.textContent = '×';
+
+      host.appendChild(label);
+      host.appendChild(text);
+      host.appendChild(more);
+      host.appendChild(close);
+
+      var idx = 0, timer = null;
+      function show(i) {
+        idx = i;
+        text.textContent = items[i].text;
+        host.classList.remove('is-swap');
+        // 入れ替えを1回のリフローで確実に走らせる
+        void host.offsetWidth;
+        host.classList.add('is-swap');
+      }
+      function stop() {
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+      close.addEventListener('click', function () {
+        stop();
+        all.forEach(function (it) { markSeen(it.id); });
+        host.classList.remove('is-open');
+        window.setTimeout(function () { host.hidden = true; }, 400);
+      });
+      // 読んでいる最中に入れ替わらないよう、マウスやフォーカスが乗ったら止める
+      ['mouseenter', 'focusin'].forEach(function (ev) {
+        host.addEventListener(ev, stop);
+      });
+
+      host.hidden = false;
+      window.setTimeout(function () {
+        host.classList.add('is-open');
+        show(0);
+        if (items.length > 1) {
+          timer = window.setInterval(function () { show((idx + 1) % items.length); }, ROTATE_MS);
+        }
+      }, APPEAR_MS);
+    })
+    .catch(function () { /* 出せなくても本文には影響しないので黙って諦める */ });
+})();
+
 /* ===== HAMBURGER NAV ===== */
 (function () {
   const btn = document.querySelector('.hamburger');
@@ -246,7 +405,11 @@ window.KomakiLang = (function () {
         const date = item.updated_at
           ? `<span class="official-news-date">${item.updated_at}${ntr('updated')}</span>`
           : '';
-        return `<li class="official-news-item">` +
+        // 回覧板シート（BOARD SHEET）が日付で絞り込めるよう、機械可読な日付を持たせる
+        const iso = (item.updated_at || '').replace(
+          /^(\d{4})年(\d{1,2})月(\d{1,2})日.*$/,
+          (m, y, mo, d) => `${y}-${('0' + mo).slice(-2)}-${('0' + d).slice(-2)}`);
+        return `<li class="official-news-item" data-date="${/^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso : ''}">` +
                  `<div class="official-news-item-inner">` +
                    `<a href="${item.url}" target="_blank" rel="noopener">${item.title}</a>` +
                    date +
@@ -332,7 +495,8 @@ window.KomakiLang = (function () {
         var fresh = daysSince(s.latest_date) <= 7;
         // 各校とも最新1件だけ出す。日付はカード見出しの「最終更新」と同じになるので添えない。
         var items = (s.items || []).slice(0, 1).map(function (it) {
-          return '<li><a href="' + esc(it.url) + '" target="_blank" rel="noopener">' +
+          // data-date は回覧板シート（BOARD SHEET）が直近1週間を絞り込むのに使う
+          return '<li data-date="' + esc(it.date || '') + '"><a href="' + esc(it.url) + '" target="_blank" rel="noopener">' +
                    esc(it.title) +
                  '</a></li>';
         }).join('');
@@ -411,7 +575,7 @@ window.KomakiLang = (function () {
       // 見出し・掲載日・出典だけを出す（本文の引用は載せない）。
       var source = data.source_name || '中日新聞Web';
       container.innerHTML = '<ul class="press-list">' + items.map(function (it) {
-        return '<li class="press-item">' +
+        return '<li class="press-item" data-date="' + esc(it.date || '') + '">' +
                  '<span class="press-date">' + fmtDate(it.date) + '</span>' +
                  '<a class="press-title" href="' + esc(it.url) + '" target="_blank" rel="noopener">' +
                    esc(it.title) +
@@ -474,7 +638,7 @@ window.KomakiLang = (function () {
         // 本文は 対象言語 → en → ja の順（i18n.js のフォールバックと揃える）
         var text = it[_ul] || it.en || it.ja || '';
         var type = (it.type === 'feature' || it.type === 'fix') ? it.type : 'content';
-        return '<li class="update-item">' +
+        return '<li class="update-item" data-date="' + esc(it.date || '') + '">' +
                  '<div class="update-meta">' +
                    '<time class="update-date" datetime="' + esc(it.date || '') + '">' + fmtDate(it.date) + '</time>' +
                    '<span class="update-tag update-tag--' + type + '">' + str(type) + '</span>' +
@@ -673,6 +837,194 @@ window.KomakiLang = (function () {
   }
 })();
 
+/* ===== GRADE VIEW（schedule.html）=====
+   「お子さんの学年」を1つ選ぶと、ページ内の各予定に「そのときお子さんは何年生か」を
+   添える。あわせて、data/events.json の予定を .ics で書き出してカレンダーアプリに
+   取り込めるようにする。
+
+   【この機能が言っていないこと】
+   市の計画に学年別の扱いがあるわけではない。ここでやっているのは
+   「公表されている日付」と「選んだ学年」からの単純な学年計算だけで、
+   どの学校に通うことになるか（＝住所で決まる）には一切触れない。
+   その旨は grade_lead に書いてあるので、消さないこと。
+
+   学年の数え方: 令和8年度（2026年度）を基準に n を振る。
+   年少 -2 / 年中 -1 / 年長 0 / 小1〜小6 = 1〜6 / 中1〜中3 = 7〜9。
+   ある日付 D の年度は「4月始まり」なので、D が1〜3月なら年-1。
+   その年度の学年 = 基準 n + (年度 - 2026)。
+
+   .ics をサーバに置いた購読用ファイルにしていないのは、events.json が
+   自動更新パイプラインの編集対象で、静的な .ics を置くと更新のたびに
+   古くなるため。読み込み時に events.json から組み立てれば必ず最新になる。 */
+(function () {
+  var sel = document.getElementById('grade-select');
+  if (!sel) return;
+
+  var BASE_FY = 2026;                 // 令和8年度。学年コードはこの年度の学年。
+  var REORG = '2027-04-01';           // 第1期再編（令和9年4月）
+  var OFFSET = {y3: -2, y4: -1, y5: 0, e1: 1, e2: 2, e3: 3, e4: 4, e5: 5, e6: 6,
+                j1: 7, j2: 8, j3: 9};
+
+  var summary = document.getElementById('grade-summary');
+  var icsBtn = document.getElementById('grade-ics');
+  var dict = document.getElementById('grade-strings');   // 訳文の置き場（data-i18n）
+
+  // 辞書は i18n.js が非同期に流し込むので、使う直前に隠し要素から読む。
+  function t(key, fallback) {
+    var el = dict && dict.querySelector('[data-gk="' + key + '"]');
+    var v = el && el.textContent;
+    return (v && v.trim()) || fallback;
+  }
+
+  function fy(dateStr) {
+    var m = /^(\d{4})-(\d{2})/.exec(dateStr || '');
+    if (!m) return null;
+    return (+m[2]) >= 4 ? +m[1] : (+m[1]) - 1;
+  }
+
+  // その日付のときの学年ラベル。範囲外は「就学前」「中学校卒業後」でまとめる。
+  function labelAt(dateStr, code) {
+    var f = fy(dateStr);
+    if (f === null || !OFFSET.hasOwnProperty(code)) return '';
+    var n = OFFSET[code] + (f - BASE_FY);
+    if (n <= 0) return t('pre', '就学前');
+    if (n <= 6) return t('elem', '小学{n}年生').replace('{n}', n);
+    if (n <= 9) return t('jhs', '中学{n}年生').replace('{n}', n - 6);
+    return t('post', '中学校卒業後');
+  }
+
+  function apply() {
+    var code = sel.value;
+    document.querySelectorAll('.event-item').forEach(function (item) {
+      var old = item.querySelector('.grade-badge');
+      if (old) old.remove();
+      if (!code) return;
+      var lab = labelAt(item.getAttribute('data-start'), code);
+      if (!lab) return;
+      var b = document.createElement('span');
+      b.className = 'grade-badge';
+      b.textContent = t('badge', '{grade}のとき').replace('{grade}', lab);
+      var head = item.querySelector('.event-date') || item;
+      head.appendChild(b);
+    });
+    if (summary) {
+      if (!code) {
+        summary.textContent = '';
+        summary.hidden = true;
+      } else {
+        summary.textContent = t('at_reorg', '第1期再編（2027年4月）のとき、お子さんは{grade}です')
+          .replace('{grade}', labelAt(REORG, code));
+        summary.hidden = false;
+      }
+    }
+  }
+
+  // 選んだ学年を URL にも残す（同じ学年の保護者にそのまま渡せるようにする）。
+  // 履歴は増やさない。?lang= と同じ扱い。
+  function syncUrl(code) {
+    try {
+      var u = new URL(window.location.href);
+      if (code) u.searchParams.set('grade', code);
+      else u.searchParams.delete('grade');
+      if (u.href !== window.location.href) window.history.replaceState(null, '', u.href);
+    } catch (e) {}
+  }
+
+  sel.addEventListener('change', function () {
+    try { localStorage.setItem('komaki_grade', sel.value); } catch (e) {}
+    syncUrl(sel.value);
+    apply();
+  });
+
+  var initial = window.KomakiGrade();
+  if (initial) sel.value = initial;
+  apply();
+  // 辞書の適用は非同期（i18n.js は完了イベントを出さない）。訳文が
+  // #grade-strings に流し込まれた瞬間を見て、ラベルを組み直す。
+  if (dict && window.MutationObserver) {
+    new MutationObserver(apply).observe(dict, {childList: true, subtree: true, characterData: true});
+  }
+
+  /* ---- .ics の書き出し ---- */
+  function esc(v) {
+    return String(v).replace(/\\/g, '\\\\').replace(/;/g, '\\;')
+                    .replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+  }
+  // RFC 5545 の折り返しは「75オクテット」。日本語は1文字3バイトなので文字数では数えない。
+  function fold(line) {
+    var out = '', len = 0, i, ch, b;
+    for (i = 0; i < line.length; i++) {
+      ch = line[i];
+      b = encodeURIComponent(ch).replace(/%../g, 'x').length;
+      if (len + b > 73) { out += '\r\n '; len = 1; }
+      out += ch; len += b;
+    }
+    return out;
+  }
+  function stamp() {
+    return new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
+  }
+  function ymd(d) { return d.replace(/-/g, ''); }
+  function nextDay(d) {
+    var t2 = new Date(d + 'T00:00:00Z');
+    t2.setUTCDate(t2.getUTCDate() + 1);
+    return t2.toISOString().slice(0, 10).replace(/-/g, '');
+  }
+
+  function buildIcs(events, lang, code) {
+    var L = ['BEGIN:VCALENDAR', 'VERSION:2.0',
+             'PRODID:-//komaki-east-school-reorg//schedule//' + lang.toUpperCase(),
+             'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+             'X-WR-CALNAME:' + esc(t('calname', '小牧市東部 学校再編の予定'))];
+    Object.keys(events).sort().forEach(function (d) {
+      var e = events[d];
+      var title = e[lang] || e.en || e.ja || '';
+      if (!title) return;
+      var lab = code ? labelAt(d, code) : '';
+      var sum = lab ? title + '（' + lab + '）' : title;
+      L.push('BEGIN:VEVENT');
+      L.push('UID:' + d + '-komaki-saihen@komaki-east-school-reorg.github.io');
+      L.push('DTSTAMP:' + stamp());
+      L.push('DTSTART;VALUE=DATE:' + ymd(d));
+      L.push('DTEND;VALUE=DATE:' + nextDay(d));
+      L.push(fold('SUMMARY:' + esc(sum)));
+      L.push(fold('DESCRIPTION:' + esc(t('icsdesc', 'この予定は市民有志のサイトがまとめたものです。正式な案内は市から届く書類でご確認ください。'))));
+      L.push('URL:https://komaki-east-school-reorg.github.io/schedule.html');
+      L.push('END:VEVENT');
+    });
+    L.push('END:VCALENDAR');
+    return L.join('\r\n') + '\r\n';
+  }
+
+  if (icsBtn) {
+    icsBtn.addEventListener('click', function () {
+      var lang = window.KomakiLang(), code = sel.value;
+      icsBtn.disabled = true;
+      fetch('./data/events.json')
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function (data) {
+          var text = buildIcs(data.events || {}, lang, code);
+          var blob = new Blob([text], {type: 'text/calendar;charset=utf-8'});
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = 'komaki-saihen' + (code ? '-' + code : '') + '.ics';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+        })
+        .catch(function () {
+          // ラベルは data-i18n 管理なので、書き換えたら必ず戻す。
+          // 戻さないと、そのあと言語を切り替えても失敗文言が残る。
+          var keep = icsBtn.textContent;
+          icsBtn.textContent = t('icsfail', 'カレンダーの書き出しに失敗しました');
+          window.setTimeout(function () { icsBtn.textContent = keep; }, 4000);
+        })
+        .then(function () { icsBtn.disabled = false; });
+    });
+  }
+})();
+
 /* ===== SHARE BUTTONS ===== */
 /* 全ページ共通の「このページを共有する」欄。HTML 側には見出しと空の入れ物だけがあり、
    ボタンはここで組み立てる（共有先URLに表示中の言語を載せるため、静的に書けない）。
@@ -703,9 +1055,15 @@ window.KomakiLang = (function () {
   function currentLang() { return _selectedLang || window.KomakiLang(); }
 
   // 共有される URL。日本語は素の URL（正規形）、他言語は ?lang= 付き。
+  // schedule.html で学年が選ばれているときは ?grade= も足す。同じ学年の保護者に
+  // 渡したときに、相手も同じ見え方（各予定に「○年生のとき」が付いた状態）で開ける。
   function shareUrl() {
     var lang = currentLang();
-    return lang === 'ja' ? CANON : CANON + '?lang=' + lang;
+    var u = lang === 'ja' ? CANON : CANON + '?lang=' + lang;
+    var g = document.getElementById('grade-select');
+    var code = g && g.value;
+    if (code) u += (u.indexOf('?') === -1 ? '?' : '&') + 'grade=' + code;
+    return u;
   }
 
   function shareTitle() { return document.title || CANON; }
@@ -1035,6 +1393,424 @@ window.KomakiLang = (function () {
     io.observe(starBox);
   } else {
     starBox.addEventListener('click', loadHatenaStar, {once: true});
+  }
+})();
+
+/* ===== BOARD SHEET（回覧板・掲示用のA4 1枚印刷）=====
+   2種類のシートを同じ仕組みで刷る。
+     ・ページ要約シート … 共有欄いちばん右の「回」ボタン。開いているページの要約。
+     ・最新の動きシート … index.html の「最新の動き」内のボタン。4コーナーの新着一覧。
+
+   なぜ作ったか: この地区で実際に情報が回るのは回覧板と掲示板で、
+   SNS のリンクでは届かない層がいる。紙で配り、QR で戻ってこられるようにする。
+
+   【文章はページ内の既存要素からしか取らない】
+   見出し・本文の先頭段落・各コーナーの一覧を、表示されているものからそのまま拾う。
+   ここで独自の要約文を書き起こすと、出典のないニ次情報が紙になって出て行く。
+   紙幅の都合で切り詰めるので、そのことは board_excerpt で紙面にも書く。
+
+   【A4 1枚に収める】
+   #board-sheet は常に DOM にあり、画面外（position:fixed, left:-10000px）に
+   印刷と同じ幅 178mm（A4 210mm − 左右16mm）で置いてある。だから刷る前に
+   実寸で高さを測れる。収まるまで「1行の字数」「1コーナーの行数」を段階的に
+   詰め、それでも溢れるときは末尾のコーナーから落とす。
+   高さの上限は 265mm（297mm − 上下16mm）を実測の px に直して使う。
+
+   【QR は自前生成しない】
+   qr/<pageId>.<lang>.svg を .github/scripts/build_qr.py（segno）で書き出して
+   コミットしてあり、ここでは <img> を1枚読むだけ。JS の QR エンコーダを自作すると、
+   壊れていても「QR に見える絵」が出て、印刷して配ったあとまで気づけない。
+   CDN から読むと「自動で読む外部スクリプトははてなスター1本だけ」の方針が崩れる。 */
+(function () {
+  var shareBox = document.getElementById('share-buttons');
+  var latestBtn = document.getElementById('latest-print-btn');
+  if (!shareBox && !latestBtn) return;
+
+  var pageId = (location.pathname.split('/').pop() || 'index.html').replace(/\.html$/, '') || 'index';
+  var strings = document.getElementById('board-strings');
+
+  function t(key, fallback) {
+    var el = strings && strings.querySelector('[data-bk="' + key + '"]');
+    var v = el && el.textContent;
+    return (v && v.trim()) || fallback;
+  }
+
+  // 共有ボタンと同じ考え方で、URL は canonical から組み立てる（アドレスバーは1手遅れる）。
+  var CANON = (function () {
+    var el = document.querySelector('link[rel="canonical"]');
+    var href = (el && el.getAttribute('href')) || location.href;
+    return href.split('#')[0].split('?')[0];
+  })();
+  function pageUrl(lang) { return lang === 'ja' ? CANON : CANON + '?lang=' + lang; }
+
+  function esc(v) {
+    return String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+  // 見出しの <small>（英語併記）は紙では冗長なので落とす
+  function headText(h) {
+    var c = h.cloneNode(true);
+    c.querySelectorAll('small').forEach(function (s) { s.remove(); });
+    return (c.textContent || '').replace(/\s+/g, ' ').trim();
+  }
+  function clean(el) { return ((el && el.textContent) || '').replace(/\s+/g, ' ').trim(); }
+
+  /* 紙に載せる文は、途中で切らない。
+     字数で切ると「…」で尻切れになり、回覧板として読めたものにならないので、
+     句点（。．!?！？）で文に割り、入る本数だけを載せる。長さの調整は
+     「文の本数」「項目の本数」「見出しごと落とす」でやる（fit() 参照）。 */
+  function sentencesOf(text) {
+    var m = text.match(/[^。．！？!?]+[。．！？!?]+|[^。．！？!?]+$/g);
+    return (m || []).map(function (x) { return x.trim(); }).filter(Boolean);
+  }
+  /* 一覧の1行は、文になっているところだけを先頭から n 文とる。
+     行末にリンクの文字がぶら下がっていても（「…返送が必要です。 スクールバスの申請手続き」）
+     句点で終わる分だけを残すので、尻切れにならない。句点が1つも無い行
+     （「令和9年4月 第1期再編実施：…」など）は、切ると何も残らないのでそのまま返す。 */
+  function leadSentences(text, n) {
+    var m = text.match(/[^。．！？!?]+[。．！？!?]/g);
+    if (!m) return text;
+    return m.slice(0, n).join('').replace(/\s+/g, ' ').trim();
+  }
+
+  /* ---- 材料あつめ ---- */
+
+  // ページ要約: 各 h2.section-title と、その節の先頭の段落。
+  var SKIP_P = /section-updated|caption|source|note|osm|credit|lead-sub/;
+
+  /* 見出し1つが受け持つ範囲は「その見出しの次から、次の見出しの手前まで」。
+     節（<section>）ではなく見出し単位で切るのは、faq.html のように1つの節へ
+     見出しが4つ並ぶページがあり、節で切ると4つとも同じ本文がぶら下がるため。 */
+  function scopeOf(h) {
+    var nodes = [], n = h.nextElementSibling;
+    while (n) {
+      if (n.matches('h2') || n.querySelector('h2.section-title')) break;
+      nodes.push(n);
+      n = n.nextElementSibling;
+    }
+    if (!nodes.length) {
+      var sec = h.closest('section');
+      if (sec) nodes.push(sec);
+    }
+    return nodes;
+  }
+  function pick(nodes, sel) {
+    var out = [];
+    nodes.forEach(function (n) {
+      if (n.matches(sel)) out.push(n);
+      [].push.apply(out, n.querySelectorAll(sel));
+    });
+    return out;
+  }
+
+  /* 紙が「いま」回っている以上、まず要るのは締切とこれからの予定。
+     ページの上から順に節の要約を並べただけでは、サイトの目次を刷ったものにしかならない。
+     ここでは、そのページにある期限つき・日付つきの要素のうち、まだ先のものだけを
+     いちばん上のブロックにまとめる。文面は既存の要素からそのまま取る。 */
+  function urgentBlock() {
+    var today = new Date().toISOString().slice(0, 10);
+    var lines = [];
+    function add(txt) {
+      txt = leadSentences(txt, 2);
+      if (txt.length >= 6 && lines.indexOf(txt) === -1) lines.push(txt);
+    }
+    // 提出期限の枠と「もうすぐ」の行。期限切れは data-expires で落とす
+    // （画面側の DEADLINE BOX EXPIRY / UPCOMING SCHEDULE EXPIRY と同じ判定）。
+    document.querySelectorAll('.deadline-box[data-expires], .upcoming-item[data-expires]')
+      .forEach(function (el) {
+        if (el.getAttribute('data-expires') < today) return;
+        add(clean(el));
+      });
+    // 年表のこれからの予定は、上で3件そろわなかったときだけ足す。
+    // 「もうすぐ」の行と年表は同じ予定を別の言い方で書いていることが多く、
+    // 両方載せると狭い紙面で同じ話が二度出てしまう。
+    // 状態ラベル（完了・準備中）は紙では意味が薄いので .status-content 側だけ読む。
+    [].slice.call(document.querySelectorAll('.status-item[data-start], .event-item[data-start]'))
+      .filter(function (el) { return el.getAttribute('data-start') >= today; })
+      .forEach(function (el) {
+        if (lines.length >= 3) return;
+        add(clean(el.querySelector('.status-content') || el));
+      });
+    return lines.length
+      ? {h: t('now', 'いま近づいている予定'), kind: 'list', lines: lines.slice(0, 3)}
+      : null;
+  }
+
+  // ページ要約: 見出しと、その見出しが受け持つ範囲の代表文。
+  function pageBlocks() {
+    var out = [];
+    document.querySelectorAll('main h2.section-title').forEach(function (h) {
+      var sec = h.closest('section');
+      if (sec && sec.getAttribute('data-board') === 'skip') return;
+      var nodes = scopeOf(h);
+
+      // 代表文は「範囲に最初に現れる段落」。判定を賢くしようとせず、紙に載せたく
+      // ないものは HTML 側で data-board="skip" と書いて外す（節ごとなら
+      // <section data-board="skip">、1文だけなら <p data-board="skip">）。
+      var txt = '';
+      var ps = pick(nodes, 'p');
+      for (var i = 0; i < ps.length && !txt; i++) {
+        var p = ps[i];
+        if (SKIP_P.test(p.className) || p.getAttribute('data-board') === 'skip') continue;
+        var c = clean(p);
+        if (c.length >= 20) txt = c;
+      }
+      if (txt) {
+        out.push({h: headText(h), kind: 'prose', lines: sentencesOf(txt)});
+        return;
+      }
+
+      // 段落が無い範囲（年表・Q&A・箇条書きだけ）は、その並びをそのまま拾う。
+      // 年表は li ではなく .status-content / .event-desc、Q&A は .faq-q の中。
+      var lines = [];
+      var cand = pick(nodes, 'li, .status-content, .event-desc, .faq-q > span:first-child');
+      // 日付を持つ並び（年表）は、これからの予定を優先する。
+      // 紙で配るものが去年の実績から始まっていては、回覧板として役に立たない。
+      var today = new Date().toISOString().slice(0, 10);
+      var future = cand.filter(function (el) {
+        var owner = el.closest('[data-start]');
+        return owner && owner.getAttribute('data-start') >= today;
+      });
+      if (future.length) cand = future;
+      for (var j = 0; j < cand.length && lines.length < 6; j++) {
+        var lt = leadSentences(clean(cand[j]), 2);
+        if (lt.length >= 8) lines.push(lt);
+      }
+      // 見出しだけの範囲は紙に載せない。見出しの羅列は要約として読めないため、
+      // 「見出しを全部入れる」ことより「読める文が付いていること」を優先する。
+      if (lines.length) out.push({h: headText(h), kind: 'list', lines: lines});
+    });
+    // 先頭に「いま近づいている予定」を置き、そこに出た行は下の節から取り除く
+    // （同じ予定が紙の中で二度出ると、紙面が狭いぶん目立って読みづらい）。
+    var urgent = urgentBlock();
+    if (urgent) {
+      out.forEach(function (b) {
+        if (b.kind !== 'list') return;
+        b.lines = b.lines.filter(function (l) { return urgent.lines.indexOf(l) === -1; });
+      });
+      out = out.filter(function (b) { return b.kind === 'prose' || b.lines.length; });
+      out.unshift(urgent);
+    }
+    return out;
+  }
+
+  /* 最新の動き: 4つのコーナーを、描画済みの DOM からそのまま拾う。
+     構造はコーナーごとに違うので、入れ物の id ごとに書き分ける。
+
+     載せるのは直近 LATEST_DAYS 日ぶんだけ。画面のコーナーは30日ぶんを出すが、
+     紙は「今どうなっているか」を短く伝えるためのもので、1か月ぶんを刷ると
+     読み飛ばされる。日付は各コーナーの描画時に data-date（YYYY-MM-DD）で
+     持たせてあるので、それで絞る。data-date が無い項目は落とす
+     （日付が分からないものを「直近1週間」として配れないため）。 */
+  var LATEST_DAYS = 7;
+
+  function withinDays(el, days) {
+    var d = el.getAttribute('data-date') || '';
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return false;
+    var then = Date.parse(d + 'T00:00:00Z');
+    var now = new Date();
+    var today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+    var age = Math.floor((today - then) / 86400000);
+    return age >= 0 && age < days;
+  }
+
+  function latestBlocks() {
+    var out = [];
+    document.querySelectorAll('main h3.section-title.sub').forEach(function (h) {
+      var box = h.closest('.container');
+      if (!box) return;
+      var lines = [];
+      function take(sel, fn) {
+        box.querySelectorAll(sel).forEach(function (el) {
+          if (!withinDays(el, LATEST_DAYS)) return;
+          var line = fn(el);
+          if (line) lines.push(line);
+        });
+      }
+      take('.official-news-item', function (li) {
+        return clean(li.querySelector('.official-news-date')) + ' ' + clean(li.querySelector('a'));
+      });
+      // 学校HPは記事1件ずつに日付が付いている。校名は親カードから取る。
+      take('.school-items li', function (li) {
+        var card = li.closest('.school-card');
+        return clean(card && card.querySelector('.school-name')) + '｜' + clean(li);
+      });
+      take('.press-item', function (li) {
+        return clean(li.querySelector('.press-date')) + ' ' + clean(li.querySelector('.press-title'));
+      });
+      take('.update-item', function (li) {
+        return clean(li.querySelector('.update-date')) + ' ' + clean(li.querySelector('.update-text'));
+      });
+      if (lines.length) out.push({h: headText(h), kind: 'list', lines: lines});
+    });
+    return out;
+  }
+
+  /* ---- シートの組み立てと、A4 1枚に収める調整 ---- */
+
+  var sheet = null;
+  function ensureSheet() {
+    if (!sheet) {
+      sheet = document.createElement('div');
+      sheet.id = 'board-sheet';
+      sheet.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(sheet);
+    }
+    return sheet;
+  }
+
+  // 265mm（A4 297mm − 上下16mm）が何 px かを実測する。
+  function targetHeight() {
+    var probe = document.createElement('div');
+    probe.style.cssText = 'position:fixed;left:-10000px;top:0;width:1mm;height:265mm;';
+    document.body.appendChild(probe);
+    var h = probe.offsetHeight;
+    document.body.removeChild(probe);
+    return h || 1000;
+  }
+
+  function render(title, lead, blocks, lang, cfg) {
+    var el = ensureSheet();
+    var today = new Date();
+    var ymd = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) +
+              '-' + ('0' + today.getDate()).slice(-2);
+    var body = blocks.map(function (b) {
+      var inner;
+      if (b.kind === 'prose') {
+        // 本文は文の途中で切らない。入る本数だけを段落として載せる。
+        inner = '<p>' + esc(b.lines.slice(0, cfg.sentences).join('')) + '</p>';
+      } else {
+        inner = '<ul>' + b.lines.slice(0, cfg.maxLines).map(function (l) {
+          return '<li>' + esc(l) + '</li>';
+        }).join('') + '</ul>';
+      }
+      return '<div class="board-block"><div class="board-block-h">' + esc(b.h) + '</div>' +
+             inner + '</div>';
+    }).join('');
+    el.style.setProperty('--board-scale', cfg.scale);
+    el.innerHTML =
+      // 回覧板の体裁: 左肩に「回覧」の枠、その横に発行元。発行元がすぐ隣に来るのは、
+      // 自治会や市の回覧と取り違えられないようにするため。非公式である旨は必ず並べる。
+      '<div class="board-head">' +
+        '<div class="board-stamp">' + esc(t('stamp', '回 覧')) + '</div>' +
+        '<div class="board-head-text">' +
+          '<div class="board-site">小牧市東部（篠岡地区）学校再編計画</div>' +
+          '<div class="board-unofficial">' + esc(t('unofficial',
+            '市民有志による非公式の情報サイトです。公式情報は小牧市教育委員会のページをご確認ください。')) + '</div>' +
+        '</div>' +
+      '</div>' +
+      '<h1 class="board-title">' + esc(title) + '</h1>' +
+      (lead ? '<p class="board-desc">' + esc(lead) + '</p>' : '') +
+      '<div class="board-body">' + body + '</div>' +
+      '<div class="board-qr">' +
+        '<img id="board-qr-img" alt="" src="qr/' + pageId + '.' + lang + '.svg">' +
+        '<div class="board-qr-text">' +
+          '<div class="board-cta">' + esc(t('cta', 'この紙に載せきれなかったことは、サイトにすべて載っています。')) + '</div>' +
+          '<div class="board-url">' + esc(pageUrl(lang)) + '</div>' +
+          '<div class="board-scan">' + esc(t('scan', 'スマートフォンのカメラで読み取れます。')) + '</div>' +
+        '</div>' +
+      '</div>' +
+      /* 紙は掲示板や回覧板の上に何週間も残る。だから「いつ時点か」と
+         「公式に聞く先」を必ず入れる。画面と違って、読者はその場で
+         最新かどうかを確かめられないため。 */
+      '<div class="board-notes">' +
+        '<div>' + esc(t('asof', 'この紙は{date}時点の内容です。計画は今後も動きます。最新の情報はサイトでご確認ください。')
+                        .replace('{date}', ymd)) + '</div>' +
+        '<div>' + esc(t('excerpt', '紙面の都合で要点だけを載せています。')) + '</div>' +
+        '<div>' + esc(t('contact', '計画そのものについての公式の問い合わせ先：小牧市教育委員会事務局 教育総務課 学校再編推進係（電話 0568-39-5261）')) + '</div>' +
+        '<div>' + esc(t('issuer', '発行：小牧市東部（篠岡地区）学校再編計画 市民情報サイト（市民有志・非公式）')) + '</div>' +
+      '</div>';
+    return el;
+  }
+
+  /* 詰め方の順番。文や見出しを途中で切ることは一切しない。
+     文の本数 → 一覧の項目数 → 文字の倍率、の順に減らし、
+     それでも溢れるときは fit() が末尾の見出しごと落とす。 */
+  var LADDER = [
+    {sentences: 3, maxLines: 8, scale: 1},
+    {sentences: 2, maxLines: 7, scale: 1},
+    {sentences: 1, maxLines: 6, scale: 1},
+    {sentences: 1, maxLines: 5, scale: .95},
+    {sentences: 1, maxLines: 4, scale: .9},
+    {sentences: 1, maxLines: 3, scale: .85}
+  ];
+
+  function fit(title, lead, blocks, lang) {
+    var limit = targetHeight();
+    var el, i;
+    for (i = 0; i < LADDER.length; i++) {
+      el = render(title, lead, blocks, lang, LADDER[i]);
+      if (el.scrollHeight <= limit) return el;
+    }
+    // いちばん詰めても溢れる場合は、末尾の見出しごと落とす（先頭ほど重要なため）。
+    // 文を削るのではなく見出し単位で落とすので、載った節は必ず文が完結している。
+    var cut = blocks.slice();
+    while (cut.length > 1) {
+      cut = cut.slice(0, cut.length - 1);
+      el = render(title, lead, cut, lang, LADDER[LADDER.length - 1]);
+      if (el.scrollHeight <= limit) return el;
+    }
+    return el;
+  }
+
+  function printSheet(title, lead, blocks) {
+    var lang = window.KomakiLang();
+    var el = fit(title, lead, blocks, lang);
+    var img = el.querySelector('#board-qr-img');
+    var root = document.documentElement;
+    var go = function () {
+      root.classList.add('board-printing');
+      var done = function () { root.classList.remove('board-printing'); };
+      window.addEventListener('afterprint', done, {once: true});
+      window.setTimeout(done, 8000);   // afterprint を出さないブラウザ向けの保険
+      window.print();
+    };
+    if (img && !img.complete) {
+      img.addEventListener('load', go, {once: true});
+      // QR が取れなくてもシートは出す（URL は文字でも書いてある）
+      img.addEventListener('error', function () { img.remove(); go(); }, {once: true});
+    } else {
+      go();
+    }
+  }
+
+  /* ---- ボタン ---- */
+
+  if (shareBox) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'share-btn share-btn--board';
+    btn.setAttribute('data-i18n-aria', 'board_btn');
+    btn.setAttribute('aria-label', '印刷して回覧・掲示する');
+    var ic = document.createElement('span');
+    ic.className = 'share-icon';
+    ic.setAttribute('aria-hidden', 'true');
+    ic.textContent = '回';        // 「回」＝回覧
+    btn.appendChild(ic);
+    btn.addEventListener('click', function () {
+      var h1 = document.querySelector('main h1');
+      var desc = document.querySelector('meta[name="description"]');
+      printSheet((h1 && clean(h1)) || document.title,
+                 (desc && desc.getAttribute('content')) || '',
+                 pageBlocks());
+    });
+    shareBox.appendChild(btn);
+  }
+
+  if (latestBtn) {
+    latestBtn.addEventListener('click', function () {
+      var h2 = document.querySelector('#latest h2.section-title');
+      var blocks = latestBlocks();
+      // 画面の説明文（「4つのコーナーは毎日自動で取得して…」）は紙では意味がない。
+      // 代わりに「いつからいつまでの分か」を出す。紙は日付が命なので。
+      var now = new Date();
+      var to = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+      var from = new Date(to.getTime() - (LATEST_DAYS - 1) * 86400000);
+      var fmt = function (d) { return d.toISOString().slice(0, 10); };
+      var lead = t('range', '直近1週間（{from}〜{to}）に更新された内容です。')
+                   .replace('{from}', fmt(from)).replace('{to}', fmt(to));
+      if (!blocks.length) lead += ' ' + t('none', 'この1週間に新しい動きはありませんでした。');
+      printSheet((h2 && headText(h2)) || '', lead, blocks);
+    });
   }
 })();
 
