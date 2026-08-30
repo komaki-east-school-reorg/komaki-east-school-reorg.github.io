@@ -1,29 +1,29 @@
 {
-  "description": "このサイト自身の更新履歴。トップページ最下部の「サイトの更新履歴」コーナーが実行時に fetch して描画する（表示は新しい順に6件まで。このファイルには全履歴を残す）。手動管理。新しいものを配列の先頭に足す。type は content（掲載内容）/ feature（機能追加）/ fix（修正）のいずれか。ja は必須、en は推奨（未記載なら ja が出る）。他言語は en → ja の順にフォールバックする。文体は体言止めの短い一行にすること（「〜しました。」と文章にしない。コミットメッセージの貼り付けもしない）。読者が画面上で気づかない内部改修（表示の高速化・リファクタ・SEO の内部設定・ドキュメント修正など）は載せない。関連する小さな修正はまとめて1件にする。",
+  "description": "このサイト自身の更新履歴。トップページ最下部の「サイトの更新履歴」コーナーが実行時に fetch して描画する（表示は新しい順に6件まで。このファイルには全履歴を残す）。手動管理。新しいものを配列の先頭に足す。type は content（掲載内容）/ feature（機能追加）/ fix（修正）のいずれか。ja は必須、en は推奨（未記載なら ja が出る）。他言語は en → ja の順にフォールバックする。文体は体言止めの短い一行にすること（ja は30〜40字を目安に、長くても45字まで。入りきらない詳細はコミットメッセージへ）（「〜しました。」と文章にしない。コミットメッセージの貼り付けもしない）。読者が画面上で気づかない内部改修（表示の高速化・リファクタ・SEO の内部設定・ドキュメント修正など）は載せない。関連する小さな修正はまとめて1件にする。",
   "updates": [
     {
       "date": "2026-08-30",
       "type": "fix",
-      "ja": "対象エリアの地図を作り直し。表示範囲と縮尺を市の公表図と同じにし、紫の対象エリアを目視トレースから公表図の読み取りに変更（誤差300m→約4m、描画範囲9.8km²→12.3km²）",
-      "en": "Service-area map rebuilt: same extent and scale as the city’s published figure, and the purple bus area now read off that figure instead of traced by eye (error 300 m → about 4 m, area drawn 9.8 → 12.3 km²)"
+      "ja": "対象エリアの地図を市の公表図と同じ範囲・縮尺に作り直し、紫の範囲も読み直し",
+      "en": "Service-area map rebuilt to match the city figure’s extent, scale and shading"
     },
     {
       "date": "2026-08-28",
       "type": "content",
-      "ja": "「検証と提案」ページを新設。公表資料から確認できないことの整理と、地区の子どもを増やす方策の検討を掲載",
-      "en": "New “Review & ideas” page: what the published material does not show, and ideas for increasing the number of children in the district"
+      "ja": "公表資料で確認できない点と当サイトの提案をまとめた「検証と提案」ページを新設",
+      "en": "New “Review & ideas” page: gaps in the published material, and our proposals"
     },
     {
       "date": "2026-08-28",
       "type": "fix",
-      "ja": "対象エリアの地図の通学区域を、国の公表データ（小学校区・町丁境）から引き直し。城山四丁目・高根三丁目・大字大山の区分けを修正し、面積が市の公表値と一致",
-      "en": "School-district boundary on the service-area map rebuilt from national open data (school districts and chome boundaries); Shiroyama 4-chome, Takane 3-chome and Oyama corrected, and the areas now match the city’s published figures"
+      "ja": "対象エリアの地図の通学区域を国の公表データから引き直し、面積が市の公表値と一致",
+      "en": "School-district boundary on the map rebuilt from national open data"
     },
     {
       "date": "2026-08-27",
       "type": "feature",
-      "ja": "トップページ下部の自動更新コーナーを「最新の動き」に集約し、よくある質問・賛否の声からの関連ページ導線を追加",
-      "en": "Auto-updating corners on the top page grouped under “Latest updates”, with new cross-links from the FAQ and voices pages"
+      "ja": "トップページ下部の自動更新コーナーを「最新の動き」に集約し、関連ページ導線を追加",
+      "en": "Auto-updating corners grouped under “Latest updates”, with new cross-links"
     },
     {
       "date": "2026-08-26",
@@ -40,14 +40,14 @@
     {
       "date": "2026-08-26",
       "type": "content",
-      "ja": "「学校再編だより」vol.3・vol.4と入札結果を反映。バス停案・運行事業者・校内の乗降場所を追加し、対象エリアの地図に通学区域・主要道路・地区名・施設を重ねて表示。市民有志の取組を紹介する「地域の取組」も新設",
-      "en": "Newsletters vol.3–4 and the tender result reflected: draft bus stops, the operator, and where buses stop on school grounds; the map now also shows school districts, roads, neighbourhood names and facilities; new “Community efforts” section"
+      "ja": "「学校再編だより」vol.3・vol.4と入札結果を反映し、「地域の取組」を新設",
+      "en": "Newsletters vol.3–4 and the tender result reflected; “Local initiatives” added"
     },
     {
       "date": "2026-08-25",
       "type": "content",
-      "ja": "「学校再編だより」vol.6 の内容を反映。スクールバスの申請手続き（9月30日締切）と対象エリアの地図を追加",
-      "en": "Newsletter vol.6 reflected: school bus application steps (deadline 30 Sep) and a map of the service area added"
+      "ja": "「学校再編だより」vol.6 を反映し、バスの申請手続きと対象エリアの地図を追加",
+      "en": "Newsletter vol.6 reflected: bus application steps and the service-area map"
     },
     {
       "date": "2026-08-23",
@@ -64,8 +64,8 @@
     {
       "date": "2026-08-16",
       "type": "feature",
-      "ja": "対象校ホームページ・報道・地域協議会イベントの各コーナーを見出し中心の簡潔な表示に変更",
-      "en": "School, newspaper and community-event listings simplified to headline-only display"
+      "ja": "対象校HP・報道・地域協議会イベントの各コーナーを見出し中心の表示に変更",
+      "en": "School, press and council-event corners switched to a headline-only view"
     },
     {
       "date": "2026-08-16",

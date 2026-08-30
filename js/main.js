@@ -222,7 +222,17 @@ window.KomakiLang = (function () {
   fetch('./data/news.json')
     .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(data => {
-      const items = (data.items || []).slice().reverse();
+      // 更新日の古い順（昇順）に並べる。news.json の items は市のインデックスに
+      // 載っている順序（＝更新日順とはかぎらない）なので、ここで必ず並べ替える。
+      // 日付は「YYYY年MM月DD日」。読めないものは末尾へ送る（Infinity で最後尾）。
+      const dnum = (t) => {
+        const m = /^(\d{4})年(\d{1,2})月(\d{1,2})日/.exec(t || '');
+        return m ? (+m[1]) * 10000 + (+m[2]) * 100 + (+m[3]) : Infinity;
+      };
+      const items = (data.items || []).slice()
+        .map((it, i) => [it, i])
+        .sort((a, b) => (dnum(a[0].updated_at) - dnum(b[0].updated_at)) || (a[1] - b[1]))
+        .map(x => x[0]);
       const days = data.window_days || 30;
 
       if (items.length === 0) {

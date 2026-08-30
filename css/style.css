@@ -119,6 +119,23 @@ nav ul {
   gap: .18rem .12rem;
 }
 .nav-break { display: none; }
+
+/* PC ではリンクメニューを必ず2段（上下5項目ずつ）に固定する。
+   項目が10・言語が10種あるので、折り返しを幅任せにすると窓幅と言語で
+   1段〜3段の間で揺れ、ヘッダの高さが言語ごとに変わってしまう。
+   5項目めの後ろに置いた .nav-break を flex の全幅アイテムにして、
+   そこで必ず折り返す。フッタの .nav-break は縦並びなので出さない
+   （だから header nav ul に限定している）。
+   幅が狭いときに3段目ができにくいよう、1060px 以下では文字と余白を詰める。
+   ラベルの長いラテン文字系（es/pt/vi/tl）とビルマ語は、狭い画面では
+   それでも3段目ができることがある。日本語・中国語は概ね2段に収まる。 */
+@media (min-width: 769px) {
+  header nav ul { flex-wrap: wrap; row-gap: .12rem; }
+  header nav ul li.nav-break { display: block; flex: 0 0 100%; height: 0; margin: 0; padding: 0; }
+}
+@media (min-width: 769px) and (max-width: 1060px) {
+  header nav a { font-size: .72rem; padding: .3rem .42rem; }
+}
 /* ===== LANGUAGE SWITCHER ===== */
 .lang-switcher {
   display: flex;
