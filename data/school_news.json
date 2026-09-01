@@ -1,8 +1,95 @@
 {
-  "fetched_at": "2026-08-27T09:46:30Z",
+  "fetched_at": "2026-09-01T05:06:45Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "shinooka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "篠岡中学校",
+        "ja_kids": "しのおか中学校",
+        "en": "Shinooka Junior High",
+        "zh": "篠冈中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
+      "latest_date": "2026-09-01",
+      "items": [
+        {
+          "title": "２年生 始業式",
+          "date": "2026-09-01",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135765428?tm=20260901130743"
+        },
+        {
+          "title": "３年生 始業式",
+          "date": "2026-09-01",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135762505?tm=20260901100211"
+        },
+        {
+          "title": "M探究 〜科学的探究〜",
+          "date": "2026-08-25",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135741650?tm=20260825121706"
+        }
+      ]
+    },
+    {
+      "slug": "shinooka-e",
+      "level": "elem",
+      "names": {
+        "ja": "篠岡小学校",
+        "ja_kids": "しのおか小学校",
+        "en": "Shinooka Elem. School",
+        "zh": "篠冈小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
+      "latest_date": "2026-09-01",
+      "items": [
+        {
+          "title": "2学期が始まりました",
+          "date": "2026-09-01",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135765865?tm=20260901133556"
+        },
+        {
+          "title": "出校日",
+          "date": "2026-08-20",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135737018?tm=20260820202717"
+        },
+        {
+          "title": "1学期終業式",
+          "date": "2026-07-18",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135515662?tm=20260718111510"
+        }
+      ]
+    },
+    {
+      "slug": "hikarigaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "光ヶ丘小学校",
+        "ja_kids": "ひかりがおか小学校",
+        "en": "Hikari-ga-oka Elem. School",
+        "zh": "光之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
+      "latest_date": "2026-09-01",
+      "items": [
+        {
+          "title": "9月1日（火）2学期がスタートしました！",
+          "date": "2026-09-01",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135763357?tm=20260901105454"
+        },
+        {
+          "title": "ぶどう棚のビニールを外しました",
+          "date": "2026-07-27",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135711182?tm=20260727094928"
+        },
+        {
+          "title": "１学期終業式を行いました ～「やってみる」チャレンジの夏休みへ～",
+          "date": "2026-07-17",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135508020?tm=20260717094028"
+        }
+      ]
+    },
     {
       "slug": "toryo-j",
       "level": "jhs",
@@ -29,35 +116,6 @@
           "title": "0726 女バス引退式",
           "date": "2026-07-26",
           "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135710351?tm=20260726165116"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "篠岡中学校",
-        "ja_kids": "しのおか中学校",
-        "en": "Shinooka Junior High",
-        "zh": "篠冈中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-08-25",
-      "items": [
-        {
-          "title": "M探究 〜科学的探究〜",
-          "date": "2026-08-25",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135741650?tm=20260825121706"
-        },
-        {
-          "title": "《桃花台野球部》文部科学大臣杯１回戦",
-          "date": "2026-08-25",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135738460?tm=20260822134541"
-        },
-        {
-          "title": "１年生 出校日の一コマ その３",
-          "date": "2026-08-21",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135737094?tm=20260821075233"
         }
       ]
     },
@@ -145,64 +203,6 @@
           "title": "小牧市連絡協議会自主研修会",
           "date": "2026-08-05",
           "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/135701100?tm=20260723105326"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-e",
-      "level": "elem",
-      "names": {
-        "ja": "篠岡小学校",
-        "ja_kids": "しのおか小学校",
-        "en": "Shinooka Elem. School",
-        "zh": "篠冈小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
-      "latest_date": "2026-08-20",
-      "items": [
-        {
-          "title": "出校日",
-          "date": "2026-08-20",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135737018?tm=20260820202717"
-        },
-        {
-          "title": "1学期終業式",
-          "date": "2026-07-18",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135515662?tm=20260718111510"
-        },
-        {
-          "title": "6年生：薬物乱用防止教室",
-          "date": "2026-07-18",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135515561?tm=20260718095523"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "光ヶ丘小学校",
-        "ja_kids": "ひかりがおか小学校",
-        "en": "Hikari-ga-oka Elem. School",
-        "zh": "光之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
-      "latest_date": "2026-07-27",
-      "items": [
-        {
-          "title": "ぶどう棚のビニールを外しました",
-          "date": "2026-07-27",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135711182?tm=20260727094928"
-        },
-        {
-          "title": "１学期終業式を行いました ～「やってみる」チャレンジの夏休みへ～",
-          "date": "2026-07-17",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135508020?tm=20260717094028"
-        },
-        {
-          "title": "やまももくらぶ「不審者対策講座」",
-          "date": "2026-07-17",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135507363?tm=20260717081051"
         }
       ]
     },
