@@ -281,11 +281,22 @@ Every page carries a `<section class="section share" id="share">` just above `</
 - 印刷指定は `@media print` の `html.board-printing`。**ふつうの Ctrl+P はページをそのまま印刷する**（本文を刷りたい読者がいるので既定は変えない）。ボタンを押したときだけシート1枚になる。`body > *:not(#board-sheet)` の `:not()` は必須 — `!important` は詳細度に勝つので、除外しないとシート自身も消える。
 - `board_btn` は実行時に作るボタンの `aria-label` で HTML に現れないため、`build_page_dicts.py` の `RUNTIME_KEYS` に入れてある。
 
-### 新機能カットイン（`index.html` 上部）
+### トップのカットイン（`index.html` 上部）
 
-`NEW FEATURE CUT-IN` in `js/main.js`。`data/site-updates.json` の `type: "feature"` のうち、`date` が**今日から14日以内**（`WINDOW_DAYS`）のものを、ヘッダの上にスライドインする帯で出す。
+`TOP CUT-IN` in `js/main.js`（2026-09-03 に `NEW FEATURE CUT-IN` から改称・拡張）。ヘッダの上にスライドインする帯で、**今日から14日以内**（`WINDOW_DAYS`）の新しい情報を出す。出すのは3種類：
 
-- **カットイン専用のお知らせデータを作らないこと。** 文面は更新履歴そのもの。別データにすると更新履歴と食い違ったまま気づけなくなる。**機能を足したら更新履歴に `type: "feature"` の1行を足すだけ**でここは自動的に出て、14日で自動的に消える（消し忘れが起きない）。
+| 札 | 元データ | 飛び先 |
+|---|---|---|
+| 新機能 | `data/site-updates.json` の `type: "feature"` | `#site-updates` |
+| 更新 | 同 `type: "content"` | `#site-updates` |
+| 市からのお知らせ | `data/news.json`（見出しは市の原文のまま・翻訳しない） | `#news` |
+
+`type: "fix"` は出さない（誤字直しや体裁の修正は帯で知らせる話ではない）。市のお知らせでも**飛び先は本文の該当コーナー**にする — 帯から直接市の個別ページへ出すと、読者が説明を読まないまま外へ抜けてしまう。
+
+- **3つの枠を種類で取り合わせない。** まず種類ごとの最新を1件ずつ確保し（お知らせ → 新機能 → 更新の順）、余った枠を日付順で埋める。単純に日付順の上位3件にすると、サイトを続けて更新した日に市のお知らせが押し出され、いちばん知らせたい公式の新着が一度も出ないまま14日が過ぎる。
+- **札とリンクには `data-i18n` を付けない。** 項目ごとに種類が変わるので、辞書に上書きされると札と中身が食い違う。文言は `#feature-strings` の隠し要素から `data-fk` で読む（`label` / `label_update` / `label_news` / `more` / `more_news` / `close`）。
+
+- **カットイン専用のお知らせデータを作らないこと。** 文面は更新履歴と市のお知らせ、どちらもサイトが既に持っているデータそのもの。別データにすると元の一覧と食い違ったまま気づけなくなる。**更新履歴に1行足す／市がページを更新する**だけでここは自動的に出て、14日で自動的に消える（消し忘れが起きない）。
 - 閉じるとその項目は二度と出ない（`localStorage: komaki_feature_seen`）。複数あるときは最大3件を7秒ごとに入れ替え、マウスやフォーカスが乗ったら止まる。`prefers-reduced-motion` では動きを出さない。
 - 帯は `position: sticky` のヘッダの**上**（通常フロー）に置く。ヘッダに重ねると本文が読めなくなる。
 - `.feature-cutin` の `display:flex` は UA の `[hidden]{display:none}` に勝つので、`.feature-cutin[hidden] { display:none; }` が要る。無いと出す前と閉じたあとに padding ぶんの帯が残る。

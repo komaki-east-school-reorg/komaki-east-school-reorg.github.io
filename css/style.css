@@ -2113,6 +2113,11 @@ footer {
   border-radius: var(--radius-pill);
   padding: .1rem .6rem;
 }
+/* 札の色は種類ごとに変える。新機能はいちばん目立つ黄色のままにして、
+   更新・お知らせは落ち着いた色にする（機能追加の合図を薄めないため）。 */
+.feature-cutin-label.is-content { background: #ece7d3; color: #3a3320; }
+.feature-cutin-label.is-news { background: #fff; color: var(--primary-dark); }
+
 /* 入れ替えのたびに文字だけを差し替える。帯そのものは動かさない。 */
 .feature-cutin-text { flex: 1 1 12rem; font-weight: 700; min-width: 0; }
 .feature-cutin.is-swap .feature-cutin-text { animation: feature-swap .5s ease; }

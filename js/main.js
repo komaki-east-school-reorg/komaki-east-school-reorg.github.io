@@ -35,16 +35,23 @@ window.KomakiGrade = (function () {
   };
 })();
 
-/* ===== NEW FEATURE CUT-IN（index.html 上部）=====
-   機能を足したことに気づいてもらうための、期間限定の帯。
-   data/site-updates.json の type:"feature" のうち、date が今日から
-   WINDOW_DAYS 日以内のものを、ヘッダの上にスライドインさせる。
+/* ===== TOP CUT-IN（index.html 上部）=====
+   「このサイトで今何が新しいか」に気づいてもらうための、期間限定の帯。
+   WINDOW_DAYS 日以内のものを、ヘッダの上にスライドインさせる。出すのは3種類:
+     ・新機能   … data/site-updates.json の type:"feature"
+     ・更新     … data/site-updates.json の type:"content"（掲載内容の追加・修正）
+     ・お知らせ … data/news.json（市公式サイトのお知らせ。見出しは市の原文のまま）
+   type:"fix" は出さない。誤字直しや体裁の修正は、帯で知らせる話ではない。
 
    【新しい情報源を作らない】
-   文面は更新履歴（data/site-updates.json）そのもの。カットイン専用の
-   お知らせデータを別に持つと、更新履歴と食い違ったまま気づけなくなる。
-   だから「機能を足したら更新履歴に1行足す」だけで、ここは自動で出る。
-   期間を過ぎれば自動で消えるので、消し忘れも起きない。
+   文面は更新履歴と市のお知らせ、どちらも既にサイトが持っているデータそのもの。
+   カットイン専用のお知らせデータを別に持つと、元の一覧と食い違ったまま
+   気づけなくなる。だから「更新履歴に1行足す」「市がページを更新する」だけで、
+   ここは自動で出る。期間を過ぎれば自動で消えるので、消し忘れも起きない。
+
+   【リンクは中に留める】
+   市のお知らせでも、飛び先は本文の該当コーナー（#news）にする。帯から直接
+   市の個別ページへ出すと、読者が説明を読まないまま外へ抜けてしまう。
 
    【うるさくしない】
    ・閉じたら、その項目は二度と出さない（localStorage: komaki_feature_seen）。
@@ -89,32 +96,90 @@ window.KomakiGrade = (function () {
     return Math.floor((today - then) / 86400000);
   }
 
-  fetch('./data/site-updates.json')
-    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function (data) {
-      var done = seen();
-      var items = (data.updates || [])
-        .filter(function (u) {
-          if (u.type !== 'feature') return false;
-          var age = daysSince(u.date);
-          return age >= 0 && age <= WINDOW_DAYS;
-        })
-        .sort(function (a, b) { return (a.date < b.date) - (a.date > b.date); })
-        .map(function (u) {
-          // 本文は 対象言語 → en → ja（i18n.js のフォールバックと揃える）
-          return {id: u.date + '|' + (u.ja || ''), text: u[_fl] || u.en || u.ja || ''};
-        })
-        .filter(function (u) { return u.text && done.indexOf(u.id) === -1; });
-      if (!items.length) return;
-      // 閉じたときは「期間内の機能追加ぜんぶ」を見たことにする。表示した3件だけを
-      // 記録すると、次に開いたときに少し前の機能が繰り上がって出てきてしまう。
-      var all = items;
-      items = items.slice(0, MAX_ITEMS);
+  // 市のお知らせの日付は「YYYY年MM月DD日」。帯では他の情報源と同じ物差しで
+  // 並べたいので ISO に直す。読めないものは落とす（日付の分からない新着は出さない）。
+  function isoOf(t) {
+    var m = /^(\d{4})年(\d{1,2})月(\d{1,2})日/.exec(t || '');
+    if (!m) return '';
+    return m[1] + '-' + ('0' + m[2]).slice(-2) + '-' + ('0' + m[3]).slice(-2);
+  }
 
+  var KIND = {
+    feature: {labelKey: 'label',        labelJa: '新機能',       href: '#site-updates', moreKey: 'more',      moreJa: '更新履歴を見る'},
+    content: {labelKey: 'label_update', labelJa: '更新',         href: '#site-updates', moreKey: 'more',      moreJa: '更新履歴を見る'},
+    news:    {labelKey: 'label_news',   labelJa: '市からのお知らせ', href: '#news',      moreKey: 'more_news', moreJa: 'お知らせを見る'}
+  };
+
+  function inWindow(d) {
+    var age = daysSince(d);
+    return age >= 0 && age <= WINDOW_DAYS;
+  }
+
+  function get(url) {
+    return fetch(url)
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .catch(function () { return null; });
+  }
+
+  Promise.all([get('./data/site-updates.json'), get('./data/news.json')])
+    .then(function (res) {
+      var done = seen();
+      var pool = [];
+
+      // 更新履歴（新機能・掲載内容）。本文は 対象言語 → en → ja
+      // （i18n.js のフォールバックと揃える）。
+      ((res[0] && res[0].updates) || []).forEach(function (u) {
+        if (u.type !== 'feature' && u.type !== 'content') return;
+        if (!inWindow(u.date)) return;
+        pool.push({
+          kind: u.type,
+          date: u.date,
+          id: u.type + '|' + u.date + '|' + (u.ja || ''),
+          text: u[_fl] || u.en || u.ja || ''
+        });
+      });
+
+      // 市公式サイトのお知らせ。見出しは市の原文のままで、翻訳しない
+      // （報道・学校HPのコーナーと同じ方針）。
+      ((res[1] && res[1].items) || []).forEach(function (it) {
+        var d = isoOf(it.updated_at);
+        if (!d || !inWindow(d)) return;
+        pool.push({
+          kind: 'news',
+          date: d,
+          id: 'news|' + d + '|' + (it.title || ''),
+          text: it.title || ''
+        });
+      });
+
+      var items = pool
+        .filter(function (u) { return u.text && done.indexOf(u.id) === -1; })
+        .sort(function (a, b) { return (a.date < b.date) - (a.date > b.date); });
+      if (!items.length) return;
+      // 閉じたときは「期間内の項目ぜんぶ」を見たことにする。表示した3件だけを
+      // 記録すると、次に開いたときに少し前の項目が繰り上がって出てきてしまう。
+      var all = items;
+
+      /* 3つの枠を種類で取り合わせない。まず種類ごとの最新を1件ずつ確保し、
+         余った枠を日付順で埋める。単純に日付順で上から3件にすると、
+         サイトを続けて更新した日には市のお知らせが押し出され、
+         いちばん知らせたい公式の新着が一度も出ないまま期間が過ぎてしまう。
+         枠を取る順は お知らせ → 新機能 → 更新（公式の情報がいちばん強い）。 */
+      var firstOf = {};
+      items.forEach(function (it) { if (!firstOf[it.kind]) firstOf[it.kind] = it; });
+      var picked = [];
+      ['news', 'feature', 'content'].forEach(function (k) {
+        if (firstOf[k] && picked.length < MAX_ITEMS) picked.push(firstOf[k]);
+      });
+      items.forEach(function (it) {
+        if (picked.length < MAX_ITEMS && picked.indexOf(it) === -1) picked.push(it);
+      });
+      items = picked.sort(function (a, b) { return (a.date < b.date) - (a.date > b.date); });
+
+      // ラベルと飛び先は項目ごとに変わるので、data-i18n は付けない
+      // （i18n.js に上書きされると、種類と食い違った札が出てしまう）。
       var label = document.createElement('span');
       label.className = 'feature-cutin-label';
-      label.setAttribute('data-i18n', 'feature_new_label');
-      label.textContent = t('label', '新機能');
 
       var text = document.createElement('span');
       text.className = 'feature-cutin-text';
@@ -122,9 +187,6 @@ window.KomakiGrade = (function () {
 
       var more = document.createElement('a');
       more.className = 'feature-cutin-more';
-      more.href = '#site-updates';
-      more.setAttribute('data-i18n', 'feature_new_more');
-      more.textContent = t('more', '更新履歴を見る');
 
       var close = document.createElement('button');
       close.type = 'button';
@@ -141,6 +203,11 @@ window.KomakiGrade = (function () {
       var idx = 0, timer = null;
       function show(i) {
         idx = i;
+        var k = KIND[items[i].kind] || KIND.feature;
+        label.textContent = t(k.labelKey, k.labelJa);
+        label.className = 'feature-cutin-label is-' + items[i].kind;
+        more.href = k.href;
+        more.textContent = t(k.moreKey, k.moreJa);
         text.textContent = items[i].text;
         host.classList.remove('is-swap');
         // 入れ替えを1回のリフローで確実に走らせる

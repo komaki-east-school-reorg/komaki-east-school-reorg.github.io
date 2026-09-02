@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-09-03",
+      "type": "feature",
+      "ja": "トップ上部の帯に市のお知らせと更新も表示",
+      "en": "Top banner now also shows city announcements and content updates"
+    },
+    {
+      "date": "2026-09-03",
       "type": "content",
       "ja": "地域の取組をスケジュールとカレンダーにも反映",
       "en": "Community efforts now also appear in the schedule and calendar"

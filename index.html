@@ -58,13 +58,18 @@
   公式情報は <a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener" style="color:#5a4000; font-weight:700;">小牧市教育委員会のページ</a> をご確認ください。
 </div>
 
-<!-- NEW FEATURE CUT-IN
-     data/site-updates.json の type:"feature" のうち、掲載から一定期間内のものを
-     ここに出す。中身は js/main.js の NEW FEATURE CUT-IN が組み立てる。 -->
+<!-- TOP CUT-IN
+     掲載から一定期間内の「新機能」「更新（掲載内容）」「市公式サイトのお知らせ」を
+     ここに出す。中身は js/main.js の TOP CUT-IN が組み立てる。
+     札と飛び先は項目の種類ごとに変わるので、札とリンクには data-i18n を付けない
+     （辞書に上書きされると種類と食い違う）。文言は下の隠し要素から読む。 -->
 <div id="feature-cutin" class="feature-cutin" hidden></div>
 <div id="feature-strings" hidden>
   <span data-fk="label" data-i18n="feature_new_label">新機能</span>
+  <span data-fk="label_update" data-i18n="feature_new_label_update">更新</span>
+  <span data-fk="label_news" data-i18n="feature_new_label_news">市からのお知らせ</span>
   <span data-fk="more" data-i18n="feature_new_more">更新履歴を見る</span>
+  <span data-fk="more_news" data-i18n="feature_new_more_news">お知らせを見る</span>
   <span data-fk="close" data-i18n="feature_new_close">閉じる</span>
 </div>
 
@@ -498,7 +503,7 @@
   </section>
 
   <!-- SITE UPDATE LOG（このサイト自身の更新履歴。トップページ最下部）
-       id="site-updates" は新機能カットイン（js/main.js の NEW FEATURE CUT-IN）の
+       id="site-updates" はトップのカットイン（js/main.js の TOP CUT-IN）の
        リンク先。外すとカットインの「くわしく」がどこにも飛ばなくなる。 -->
   <section class="section section-alt" id="site-updates">
     <div class="container">
