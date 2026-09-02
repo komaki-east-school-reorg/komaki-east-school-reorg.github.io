@@ -132,6 +132,17 @@ The newsletter page (`303-shinooka_gsaihen-49521`) is snapshotted like any other
 
 When a content change is detected, a second job drafts site updates fully automatically: a drafter Claude (via `anthropics/claude-code-action`, subscription OAuth — secret `CLAUDE_CODE_OAUTH_TOKEN`; if the secret is missing the job skips silently and only the detection issue remains) reads the diff (including any newly extracted newsletter text — see above) and may edit **only** `data/events.json`, `data/i18n/*.json`, `index.html`, `schedule.html`, `community.html`, and must write `auto_update/evidence.json` quoting the exact official-source text for every change. `.github/scripts/auto_gates.py` then machine-verifies scope, schemas (10-language event labels), the external-link rule, and that every quote actually exists in `data/official_pages/` (hallucination check; exit 0 = pass, 3 = no changes, 1 = fail). An independent verifier Claude reviews the diff and writes `auto_update/verdict.json`; only on `approve` is the PR auto-merged (squash) and the detection issue closed with a report from `.github/scripts/auto_report.py`. Kill switch: set repo variable `AUTO_MERGE` to `false` to stop before merge (PR is still created). Any gate/verdict failure leaves `main` untouched.
 
+## 新機能アイデアの日次メール（`.github/workflows/feature-ideas.yml`）
+
+毎日 06:35 JST に、このサイトに足すとよさそうな機能を Claude（`anthropics/claude-code-action`、`CLAUDE_CODE_OAUTH_TOKEN`）に考えさせ、**メールで届ける**だけの仕事。サイトのファイルは一切変更しない。
+
+- **AI が書いてよいのは `auto_ideas/ideas.md` の1枚だけ。** サイトの実装はさせない（提案と実装を同じ走行で混ぜると、検証されていない変更が毎日入ってくる）。
+- **本文はリポジトリに残さない。** 残るのは `auto_ideas/history.json`（過去に出した見出し）だけで、`ideas.md` は `.gitignore` 済み。起案AIはこの履歴を読んで**同じ案を二度出さない**。本文はメールと Actions のアーティファクト（30日）にある。
+- **通知は SMTP → だめなら Issue。** `.github/scripts/send_mail.py` は設定が無ければ exit 2 を返し、ワークフローは `gh issue create` に切り替える（Issue を立てれば GitHub の通知メールが届く）。必要な Secrets は `SMTP_HOST` / `SMTP_USER` / `SMTP_PASS` / `MAIL_TO`（任意で `SMTP_PORT`＝既定 587、465 なら SMTP_SSL／`MAIL_FROM`）。**未設定でも壊れない**のが設計で、設定を促す警告だけが出る。
+- 見出しの抽出・履歴の更新・件名の組み立ては `.github/scripts/ideas_digest.py` が決定的に行う。**AI に JSON を直接書かせない** — 壊れていても気づけないため。件名はシェルの `"..."` を通るので、`"` `` ` `` `$` `\` は見出しから落としてある。
+- 起案プロンプトには、この CLAUDE.md の禁止事項（外部ドメインを増やさない／自動読み込みの第三者スクリプトを増やさない／`bus.html` の地図は凍結／`council.html` は対象外／自動生成ファイルを手編集する案を出さない）を明記してある。**規則を増やしたらこのプロンプトにも書き足すこと。**
+- 「今日は出すに値する案が無い」日は `## ` 見出しを1つも書かせない。その日はメールも Issue も出ず、履歴も増えない。
+
 ## `data/school_news.json` (target-school website updates)
 
 The **bottom section of `index.html`** lists recent posts from the eight affected schools' own websites (`komaki-aic.ed.jp/<slug>/` — a different domain, run by each school, not the city). `.github/scripts/fetch_schools.py` scrapes each school's top page once a day from the same workflow, taking the newest 3 article cards (`class="blogtitle"` + 公開日), and writes them here sorted newest-school-first. Cards updated within 7 days get a 新着 badge, computed client-side.

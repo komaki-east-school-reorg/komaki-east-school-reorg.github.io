@@ -1,0 +1,178 @@
+name: Daily Feature Ideas
+
+# このサイトに足すとよさそうな機能を毎朝1回だけ考えて、メールで届ける。
+# サイトのファイルは一切変更しない（提案するだけ）。リポジトリに残るのは
+# auto_ideas/history.json（過去に出した見出し）だけで、本文はメールにある。
+on:
+  schedule:
+    - cron: '35 21 * * *'   # 毎日 21:35 UTC = 06:35 JST。fetch-news（0:17 UTC）と時間帯を分ける
+  workflow_dispatch:         # 手動実行も可
+
+permissions:
+  contents: write   # history.json のコミット
+  issues: write     # メールが設定されていない／失敗したときの代替通知
+  id-token: write   # claude-code-action の認証（OIDC）
+
+concurrency:
+  group: feature-ideas
+  cancel-in-progress: false
+
+jobs:
+  ideas:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check OAuth token availability
+        id: token
+        env:
+          TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::CLAUDE_CODE_OAUTH_TOKEN が未登録のためアイデア生成をスキップします"
+          else
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v7
+        if: steps.token.outputs.available == 'true'
+        with:
+          fetch-depth: 50   # 直近の作業を把握するため履歴を少し多めに
+
+      - name: Set date
+        if: steps.token.outputs.available == 'true'
+        run: echo "TODAY=$(TZ=Asia/Tokyo date +%Y-%m-%d)" >> "$GITHUB_ENV"
+
+      # ---------- 起案AI ----------
+      # サイトのファイルは触らせない。書いてよいのは auto_ideas/ideas.md だけ。
+      - name: Think up feature ideas (Claude)
+        if: steps.token.outputs.available == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ github.token }}
+          claude_args: '--model sonnet --max-turns 40 --allowedTools "Read,Grep,Glob,Bash(git log:*),Write"'
+          prompt: |
+            あなたはこの市民向け情報サイト（小牧市東部・篠岡地区の学校再編を伝える非公式サイト）の
+            機能改善の提案担当です。今日は ${{ env.TODAY }} です。
+
+            ## やること
+            サイトに足すとよさそうな機能・改善を考え、**auto_ideas/ideas.md を1枚だけ書く**。
+            それ以外のファイルは絶対に変更しない（サイトの実装はしない。提案するだけ）。
+
+            ## まず読むもの
+            1. CLAUDE.md … このサイトの規則。特に「Important constraints」「Machine-checked invariants」
+            2. files.txt … ファイル構成の一覧
+            3. auto_ideas/history.json … **過去に出した提案の見出し。ここにある案は二度出さない**
+            4. data/site-updates.json … 最近ここで何を作ってきたか（読者向けの更新履歴）
+            5. `git log --oneline -30` … 直近の作業
+            6. 気になったページの HTML と js/main.js の該当ブロック
+
+            ## 提案の条件
+            - **1日あたり最大3件**。数より、明日すぐ着手できる具体性を優先する
+            - 読者（地区の保護者・住民、日本語を母語としない読者を含む）にとって何が良くなるかを書く
+            - このサイトは**非公式**で、事実は市の公式情報・『学校再編だより』・文部科学省からしか取らない。
+              新しい事実を載せる提案や、出典の要る主張をサイトに足す提案はしない
+            - **外部ドメインを増やす提案はしない**（CLAUDE.md の外部リンク規則と auto_gates.py の検査に反する）。
+              自動で読み込む第三者スクリプトを増やす提案もしない（現在はてなスター1本のみ）
+            - **`bus.html` の対象エリア地図は完成・凍結**。図形・枠・縮尺・色・線を変える提案はしない
+            - **`council.html` は対象外**。このページの更新・改修は提案しない
+            - `data/` 配下の自動生成ファイル（news.json, school_news.json, chunichi_news.json,
+              community_events.json, i18n/pages/, official_pages/）を手編集する前提の案は出さない
+            - 実装が10言語に波及するものは、その手間も書く（辞書キー追加＋build_page_dicts.py の再生成）
+            - 「今日は出すに値する案が無い」と判断したら、**見出し（## で始まる行）を1つも書かず**、
+              理由を数行だけ書いて終える。無理に絞り出さないこと
+
+            ## auto_ideas/ideas.md の形式（この形を守る）
+            ```
+            # 新機能アイデア ${{ env.TODAY }}
+
+            ## 1. <30字以内の見出し>
+            - **読者にとって何が良くなるか**: 1〜2文
+            - **やること**: 触るファイルと処理を具体的に。3〜5行
+            - **手間**: 小 / 中 / 大（と、その理由を一言）
+            - **注意点**: CLAUDE.md のどの規則に触れるか、壊しやすい箇所はどこか
+
+            ## 2. …
+            ```
+            見出しは `## ` で始める（機械が見出しだけ拾って履歴に残す）。
+            見送りの日は `## ` の行を書かないこと。
+
+      - name: Build subject line
+        id: digest
+        if: steps.token.outputs.available == 'true'
+        run: |
+          if [ ! -f auto_ideas/ideas.md ]; then
+            echo "::warning::auto_ideas/ideas.md が作られませんでした"
+            echo "has_ideas=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          set +e
+          SUBJECT=$(python3 .github/scripts/ideas_digest.py subject auto_ideas/ideas.md)
+          code=$?
+          set -e
+          echo "subject=$SUBJECT" >> "$GITHUB_OUTPUT"
+          if [ "$code" -eq 0 ]; then
+            echo "has_ideas=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_ideas=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # ---------- 通知：メール、だめなら Issue ----------
+      - name: Send mail
+        id: mail
+        if: steps.digest.outputs.has_ideas == 'true'
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          MAIL_TO:   ${{ secrets.MAIL_TO }}
+        run: |
+          set +e
+          python3 .github/scripts/send_mail.py \
+            --subject "${{ steps.digest.outputs.subject }}" \
+            --body-file auto_ideas/ideas.md
+          code=$?
+          set -e
+          case "$code" in
+            0) echo "sent=true"  >> "$GITHUB_OUTPUT" ;;
+            2) echo "sent=false" >> "$GITHUB_OUTPUT"
+               echo "::notice::SMTP 未設定のため Issue で通知します" ;;
+            *) echo "sent=false" >> "$GITHUB_OUTPUT"
+               echo "::warning::メール送信に失敗したため Issue で通知します" ;;
+          esac
+
+      # メールが出せなかったときの代替。Issue を作れば GitHub の通知メールが届く。
+      - name: Open issue instead
+        if: steps.digest.outputs.has_ideas == 'true' && steps.mail.outputs.sent != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "${{ steps.digest.outputs.subject }}" \
+            --body-file auto_ideas/ideas.md
+
+      # 本文はメール（または Issue）にあるので、リポジトリには見出しの履歴だけ残す。
+      - name: Record history
+        if: steps.digest.outputs.has_ideas == 'true'
+        run: |
+          python3 .github/scripts/ideas_digest.py record auto_ideas/ideas.md
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add auto_ideas/history.json
+          if git diff --staged --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "chore: record daily feature ideas [skip ci]"
+            git push
+          fi
+
+      # 生成物は 30 日だけ残す（メールを消してしまったときの控え）
+      - name: Upload ideas as artifact
+        if: steps.token.outputs.available == 'true' && hashFiles('auto_ideas/ideas.md') != ''
+        uses: actions/upload-artifact@v7
+        with:
+          name: feature-ideas-${{ env.TODAY }}
+          path: auto_ideas/ideas.md
+          retention-days: 30

@@ -82,6 +82,10 @@ sitemap.xml                 全10ページのサイトマップ。各URLに10言
 .github/scripts/build_qr.py         回覧板シートに載せるQRコード（qr/*.svg）をページ×言語ぶん生成する。segnoが必要（pip install segno）。ページを増減したら実行してコミットすること。--check で鮮度検証のみ。
 .github/scripts/auto_gates.py       自動更新のガードレール検証（編集範囲・スキーマ・ja/enキー一致・こどもモード1行の長さ・ページ別辞書の鮮度・外部リンク規則・出典実在チェック）。exit 0=合格/3=変更なし/1=不合格。
 .github/scripts/auto_report.py      自動更新のPR本文・事後報告コメントをevidence.json/verdict.jsonから生成するスクリプト。
+.github/workflows/feature-ideas.yml 毎朝1回、このサイトに足すとよさそうな機能をAIに考えさせてメールで届けるワークフロー定義。サイトのファイルは変更しない。
+.github/scripts/send_mail.py        件名と本文ファイルを受け取ってSMTPでメールを1通送るスクリプト。設定が無ければexit 2（呼び出し側はIssueに切り替える）。
+.github/scripts/ideas_digest.py     アイデア案（auto_ideas/ideas.md）から見出しを拾い、履歴への追記とメール件名の生成を行うスクリプト。
+auto_ideas/history.json             過去に出した新機能アイデアの見出しの記録。同じ案を繰り返さないために起案AIが読む。本文はメール（とActionsのアーティファクト30日）にのみ残る。
 
 ■ 設定・その他
 .claude/settings.local.json    Claude Codeのプロジェクト固有の権限・設定を記述するローカル設定ファイル。

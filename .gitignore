@@ -1,3 +1,6 @@
 # fetch_newsletters.py が fetch_news.py を import するため生成される
 __pycache__/
 *.pyc
+
+# 毎日の新機能アイデアの本文（メールで届く。リポジトリには見出しの履歴だけ残す）
+auto_ideas/ideas.md
