@@ -54,7 +54,8 @@ PERMITTED_MEXT_LINKS = (
     "kihon/1267995.htm",                 # 学校基本調査
 )
 MEXT_PAGES = ("nationwide.html",)
-# 閉校を惜しむ市民有志の Instagram アカウント。community.html の「地域の取組」欄でのみ、
+# 閉校を惜しむ市民有志の Instagram アカウント。「地域の取組」欄（community.html と、
+# トップの「最新の動き」に同じ一覧を出す index.html）でのみ、
 # ここに挙げたアカウントに限って張ってよい（2026-08-26 追加）。
 # これは市の公式情報でも報道でもなく【市民有志の発信】であり、
 # 計画の内容・数値の根拠には決して使わない（報道コーナーと同じ扱い）。
@@ -62,7 +63,7 @@ MEXT_PAGES = ("nationwide.html",)
 PERMITTED_INSTAGRAM = (
     "instagram.com/arigato.ohshirosho",   # ありがとう大城小
 )
-INSTAGRAM_PAGES = ("community.html",)
+INSTAGRAM_PAGES = ("community.html", "index.html")   # index は「最新の動き」に同じ一覧を出すため（2026-09-03）
 MIN_QUOTE_LEN = 10
 
 fails = []

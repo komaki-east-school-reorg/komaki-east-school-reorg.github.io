@@ -1,4 +1,6 @@
 {
+  "actions_lead": "Các hoạt động và sự kiện diễn ra trong khu vực. Có việc do người dân tự làm để lưu giữ kỷ niệm về những ngôi trường sắp đóng cửa, có việc do hội đồng cộng đồng thông báo qua tờ tin luân chuyển. Mỗi mục đều ghi rõ ai đứng ra tổ chức. Đây không phải thông báo chính thức của thành phố, xin liên hệ ban tổ chức để biết chi tiết.",
+  "actions_more": "Xem cùng với thông báo sự kiện của hội đồng cộng đồng →",
   "aria_lang": "Chọn ngôn ngữ",
   "aria_menu": "Menu",
   "board_asof": "Tờ này phản ánh nội dung trang web tính đến {date}. Kế hoạch vẫn đang tiến triển; hãy xem trang web để biết thông tin mới nhất.",
@@ -39,7 +41,7 @@
   "index_whatis_box": "<strong>Các trường hiện tại (đối tượng tái tổ chức):</strong><br>[Tiểu học: 5] Shinooka · Hikari-ga-oka · Oshiro · Momo-ga-oka · Sue<br>[THCS: 3] Shinooka · Hikari-ga-oka · Toryō<br><br><strong>Sau tái tổ chức (từ năm tài khóa 2027):</strong><br>[Tiểu học: 2] Tokadai Đông · Tokadai Tây<br>[THCS: 2] THCS Tokadai Đông · THCS Tokadai Tây",
   "index_whatis_p1": "Tại khu vực Shinooka phía đông thành phố Komaki, tình trạng dân số giảm nhanh chóng và cơ sở vật chất trường học xuống cấp đang trở thành những thách thức nghiêm trọng. Tính đến năm 2025, dân số từ 19 tuổi trở xuống trong khu vực đã giảm xuống còn <strong>chưa bằng một nửa so với 20 năm trước</strong>, và nếu xu hướng hiện tại tiếp tục, dự kiến đến năm 2033 tất cả các trường tiểu học và Trường THCS Shinooka sẽ chỉ còn một lớp mỗi khối.",
   "index_whatis_p2": "Để ứng phó với tình hình này, thành phố Komaki đã xây dựng kế hoạch tái tổ chức này, xem toàn bộ khu vực Shinooka như một cộng đồng học tập thống nhất nhằm nâng cao 9 năm giáo dục liên tục. Bốn trường sau khi tái tổ chức sẽ được gọi chung là <strong>\"Shinooka Gakuen.\"</strong> Kế hoạch nhằm hợp nhất <strong>5 trường tiểu học và 3 THCS hiện tại thành 2 tiểu học và 2 THCS</strong> vào năm tài khóa 2027.",
-  "latest_lead": "Bốn mục dưới đây được cập nhật tự động mỗi ngày từ trang thành phố, trang web của các trường liên quan và báo chí. Mục cuối cùng là nhật ký thay đổi của chính trang này.",
+  "latest_lead": "Các mục dưới đây được cập nhật tự động mỗi ngày từ trang thành phố, trang web của các trường liên quan và báo chí. Riêng “Hoạt động của khu dân cư” được tập hợp thủ công, còn mục cuối là nhật ký thay đổi của chính trang này.",
   "meta_desc_index": "Trang thông tin cộng đồng cung cấp thông tin dễ hiểu về kế hoạch tái cơ cấu trường học phía Đông Komaki (Shinooka), dự kiến thực hiện năm học 2027.",
   "meta_desc_index__after": "Trang thông tin cộng đồng giải thích dễ hiểu, dựa trên nguồn chính thức, về việc tái tổ chức trường học khu Đông Komaki (Shinooka) đã thực hiện trong năm tài khóa 2027.",
   "meta_title_index": "Kế hoạch Tái cơ cấu Trường học phía Đông Komaki – Trang Thông tin Cộng đồng (Không chính thức)",
@@ -109,6 +111,7 @@
   "ql_voices_p": "Giới thiệu công bằng các ý kiến đa dạng từ cư dân, phụ huynh và cựu giáo viên. Bao gồm tóm tắt kết quả lấy ý kiến công cộng.",
   "school_news_lead": "Bài viết mới nhất từ trang web chính thức do năm trường tiểu học và ba trường THCS thuộc diện tái tổ chức tự vận hành. Sinh hoạt hằng ngày của trường không có trên trang tái tổ chức của thành phố nên được tập hợp tại đây.",
   "school_news_note": "Lưu ý: Bài viết được lấy tự động mỗi ngày một lần và chỉ hiển thị bài mới nhất của mỗi trường. Tiêu đề giữ nguyên như trường công bố (không dịch). Thông tin chính thức về việc tái tổ chức xin xem mục \"Thông báo chính thức\" ở trên.",
+  "section_actions": "Hoạt động cộng đồng<small>Community Efforts</small>",
   "section_latest": "Cập nhật mới nhất<small>Latest Updates</small>",
   "section_links": "Liên kết trang<small>Quick Links</small>",
   "section_news": "Thông báo chính thức của thành phố<small>Official Announcements</small>",

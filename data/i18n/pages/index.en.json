@@ -1,4 +1,6 @@
 {
+  "actions_lead": "Events and efforts run within the district. Some are by residents marking the closing schools; others are announced by a community council on a paper notice. Each entry shows who is behind it. These are not city announcements, so please check the details with the organizer.",
+  "actions_more": "See these alongside the community council events →",
   "aria_lang": "Select language",
   "aria_menu": "Menu",
   "board_asof": "This sheet reflects the site as of {date}. The plan keeps moving; check the website for the latest.",
@@ -39,7 +41,7 @@
   "index_whatis_box": "<strong>Current Schools (Target for Reorganization):</strong><br>[Elementary: 5] Shinooka · Hikari-ga-oka · Oshiro · Momo-ga-oka · Sue<br>[Junior High: 3] Shinooka · Hikari-ga-oka · Toryō<br><br><strong>After Reorganization (from FY2027):</strong><br>[Elementary: 2] Tokadai East Elementary · Tokadai West Elementary<br>[Junior High: 2] Tokadai East Junior High · Tokadai West Junior High",
   "index_whatis_p1": "In the Shinooka area of eastern Komaki City, rapid population decline and aging school facilities have become serious challenges. As of 2025, the population aged 19 and under in the area has fallen to <strong>less than half compared to 20 years ago</strong>, and if current trends continue, it is projected that by 2033 all elementary schools and Shinooka Junior High School will have only one class per grade.",
   "index_whatis_p2": "In response to this situation, Komaki City has formulated this reorganization plan, viewing the entire Shinooka area as a unified learning community to enrich nine years of continuous education. The four post-reorganization schools will be collectively called <strong>\"Shinooka Gakuen.\"</strong> The plan aims to consolidate the current <strong>5 elementary and 3 junior high schools into 2 elementary and 2 junior high schools</strong> in FY2027.",
-  "latest_lead": "The four corners below are refreshed automatically every day from the city website, the target schools’ own websites, and newspaper coverage. The last one is this site’s own update log.",
+  "latest_lead": "The corners below are refreshed automatically every day from the city website, the target schools’ own websites, and newspaper coverage. “Community efforts” is collected by hand, and the last one is this site’s own update log.",
   "meta_desc_index": "A community info site providing easy-to-understand information on the Komaki East (Shinooka) school reorganization plan, planned for FY2027, based on official sources.",
   "meta_desc_index__after": "A community info site providing easy-to-understand information, based on official sources, on the Komaki East (Shinooka) school reorganization carried out in FY2027.",
   "meta_title_index": "Komaki East School Reorganization Plan – Community Info Site (Unofficial)",
@@ -109,6 +111,7 @@
   "ql_voices_p": "A fair presentation of diverse opinions from local residents, parents, and former teachers. Includes a summary of the public comment results.",
   "school_news_lead": "The latest posts from the official websites run by the five elementary schools and three junior high schools affected by the reorganization. Day-to-day school news does not appear on the city's reorganization page, so it is gathered here.",
   "school_news_note": "Note: Each school's posts are fetched automatically once a day, and only the newest post from each school is shown. Headlines are shown exactly as published by each school (not translated). For official information on the reorganization itself, see \"Official Announcements\" above.",
+  "section_actions": "Community efforts<small>Community Efforts</small>",
   "section_latest": "Latest Updates<small>最新の動き</small>",
   "section_links": "Page Links<small>Quick Links</small>",
   "section_news": "Official City Announcements<small>Official Announcements</small>",

@@ -412,15 +412,17 @@
 
 
   <!-- ===== 最新の動き =====
-       ここから下の4コーナー（お知らせ・対象校HP更新・報道・サイトの更新履歴）は、
-       いずれも毎日自動で更新される。上の「現在の状況」までがこのサイト自身の静的な解説で、
-       ここから下が「いま何が起きたか」。読者が両者を取り違えないよう帯で区切っている。
+       ここから下の5コーナー（お知らせ・対象校HP更新・報道・地域の取組・サイトの更新履歴）が
+       「いま何が起きたか」。上の「現在の状況」までがこのサイト自身の静的な解説で、
+       読者が両者を取り違えないよう帯で区切っている。
+       うち4つは毎日自動で更新されるが、【地域の取組だけは手で足す】。
+       自動と手動が混じっているので、latest_lead でその旨を断っている。
        各コーナーの見出しは h3。この帯の h2 が束ねる関係なので、h2 に戻さないこと。 -->
   <section class="section section-alt group-head" id="latest" data-board="skip">
     <div class="container">
       <h2 class="section-title" data-i18n-html="section_latest">最新の動き<small>Latest Updates</small></h2>
       <p class="school-lead" data-i18n="latest_lead">
-        ここから下の4つのコーナーは、市の公式サイト・対象校のホームページ・新聞報道を毎日自動で取得して表示しています。いちばん下は、このサイト自身の更新履歴です。
+        ここから下のコーナーでは、市の公式サイト・対象校のホームページ・新聞報道を毎日自動で取得して表示しています。「地域の取組」は手で集めたもの、いちばん下はこのサイト自身の更新履歴です。
       </p>
       <!-- 4コーナーの新着をA4 1枚にまとめて印刷する。処理は js/main.js の BOARD SHEET。 -->
       <p class="latest-print">
@@ -478,10 +480,27 @@
     </div>
   </section>
 
+  <!-- COMMUNITY ACTIONS（地域の取組。data/community_actions.json は手動管理）
+       本体は community.html の「地域協議会のイベント案内」の隣。ここはトップに出す同じ一覧で、
+       描画は js/main.js の COMMUNITY ACTIONS（#community-actions-container を見つけたら描く）。
+       【このコーナーだけ毎日の自動取得ではない】ので、上の帯の latest_lead でその旨を断っている。
+       実行時に Instagram リンクが入るため、auto_gates.py の INSTAGRAM_PAGES に index.html を足してある
+       （CLAUDE.md・CONTRIBUTING.txt 規則1・README.md も同時に更新すること）。 -->
+  <section class="section">
+    <div class="container">
+      <h3 class="section-title sub" data-i18n-html="section_actions">地域の取組<small>Community Efforts</small></h3>
+      <p class="school-lead" data-i18n="actions_lead">地域で行われている催しや取組です。閉校を惜しむ市民有志のものと、地域協議会が回覧板などで知らせているものがあり、それぞれ主催を示しています。市の公式発表ではないので、詳しくは主催者にご確認ください。</p>
+      <div id="community-actions-container"></div>
+      <p class="school-note">
+        <a href="community.html#community-actions" data-i18n="actions_more">地域協議会のイベント案内とあわせて見る →</a>
+      </p>
+    </div>
+  </section>
+
   <!-- SITE UPDATE LOG（このサイト自身の更新履歴。トップページ最下部）
        id="site-updates" は新機能カットイン（js/main.js の NEW FEATURE CUT-IN）の
        リンク先。外すとカットインの「くわしく」がどこにも飛ばなくなる。 -->
-  <section class="section" id="site-updates">
+  <section class="section section-alt" id="site-updates">
     <div class="container">
       <h3 class="section-title sub" data-i18n-html="section_site_updates">サイトの更新履歴<small>Site Update Log</small></h3>
       <p class="school-lead" data-i18n="site_updates_lead">

@@ -42,7 +42,7 @@ data/bus_area.kml           bus_map.geojsonと同じ図形のKML版（通学区�
 data/bus_map.geojson        bus.htmlの地図が描画する全データ（手動生成）。出典が3系統で精度が違う：通学区域（桃花台東/西）は国土数値情報「小学校区」（国土交通省）＋国勢調査の町丁境（総務省統計局）から合成した正確なもの、
                             対象エリアは「学校再編だより」vol.6の図を目視トレースして通学区域の内側に切り詰めた非公式の近似（飛び地3片）、道路・地区名・施設はOpenStreetMap（ODbL、出典表示が必要）。
                             層ごとにlayer/catプロパティを持ち、js/main.jsがチェックボックスで表示を切り替える。
-data/community_actions.json 閉校を惜しむ市民有志の取組（手動管理）。community.html「地域の取組」（地域協議会イベント案内の直下）が実行時にfetchして描画。市の公式情報でも報道でもなく市民有志の発信であり、計画の内容・数値の根拠には使わない。source_urlはauto_gates.pyのPERMITTED_INSTAGRAMにあるアカウントのみ。
+data/community_actions.json 地域で行われている催し・取組（手動管理）。community.html「地域の取組」（地域協議会イベント案内の直下）と、index.html「最新の動き」の同名コーナーが実行時にfetchして描画。市の公式情報でも報道でもなく主催者自身の発信であり、計画の内容・数値の根拠には使わない。badgeで市民有志（citizen）と地域協議会（council）を書き分ける。source_urlはauto_gates.pyのPERMITTED_INSTAGRAMにあるアカウントのみ。
 data/i18n/ja.json           日本語（デフォルト言語）の翻訳テキストをすべて格納する言語ファイル。
 data/i18n/en.json           英語の翻訳テキストを格納する言語ファイル。
 data/i18n/pt.json           ポルトガル語（ブラジル）の翻訳テキストを格納する言語ファイル。

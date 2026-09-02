@@ -1,4 +1,6 @@
 {
+  "actions_lead": "Kegiatan dan acara yang berlangsung di distrik ini. Ada yang digerakkan warga untuk mengenang sekolah yang akan ditutup, ada pula yang diumumkan dewan komunitas lewat surat edaran keliling. Setiap butir mencantumkan siapa penyelenggaranya. Ini bukan pengumuman resmi pemerintah kota, jadi silakan pastikan detailnya kepada penyelenggara.",
+  "actions_more": "Lihat bersama info acara dewan komunitas →",
   "aria_lang": "Pilih bahasa",
   "aria_menu": "Menu",
   "board_asof": "Lembar ini mencerminkan situs per {date}. Rencana terus berjalan; lihat situs untuk yang terbaru.",
@@ -39,7 +41,7 @@
   "index_whatis_box": "<strong>Sekolah Saat Ini (Target Reorganisasi):</strong><br>[SD: 5] Shinooka · Hikari-ga-oka · Oshiro · Momo-ga-oka · Sue<br>[SMP: 3] Shinooka · Hikari-ga-oka · Toryō<br><br><strong>Setelah Reorganisasi (mulai TA2027):</strong><br>[SD: 2] SD Tokadai Higashi · SD Tokadai Nishi<br>[SMP: 2] SMP Tokadai Higashi · SMP Tokadai Nishi",
   "index_whatis_p1": "Di wilayah Shinooka, Komaki Timur, penurunan populasi yang cepat dan fasilitas sekolah yang menua telah menjadi tantangan serius. Per 2025, populasi berusia 19 tahun ke bawah di wilayah ini telah turun menjadi <strong>kurang dari setengah dibandingkan 20 tahun lalu</strong>, dan jika tren saat ini berlanjut, diperkirakan bahwa pada 2033 semua SD dan SMP Shinooka hanya akan memiliki satu kelas per tingkat.",
   "index_whatis_p2": "Menanggapi situasi ini, Kota Komaki telah menyusun rencana reorganisasi ini, memandang seluruh wilayah Shinooka sebagai komunitas belajar terpadu untuk memperkaya sembilan tahun pendidikan berkelanjutan. Empat sekolah pasca-reorganisasi secara kolektif akan disebut <strong>\"Shinooka Gakuen.\"</strong> Rencana ini bertujuan untuk menggabungkan <strong>5 SD dan 3 SMP yang ada menjadi 2 SD dan 2 SMP</strong> pada TA2027.",
-  "latest_lead": "Empat bagian di bawah ini diperbarui otomatis setiap hari dari situs kota, situs sekolah terkait, dan pemberitaan surat kabar. Bagian terakhir adalah catatan perubahan situs ini sendiri.",
+  "latest_lead": "Bagian-bagian di bawah ini diperbarui otomatis setiap hari dari situs kota, situs sekolah terkait, dan pemberitaan surat kabar. “Kegiatan warga” dikumpulkan secara manual, dan bagian terakhir adalah catatan perubahan situs ini sendiri.",
   "meta_desc_index": "Situs informasi komunitas yang menyediakan informasi mudah dipahami tentang rencana reorganisasi sekolah Komaki Timur (Shinooka), direncanakan untuk TA2027, berdasarkan sumber resmi.",
   "meta_desc_index__after": "Situs informasi warga yang menjelaskan secara mudah dipahami, berdasarkan sumber resmi, tentang reorganisasi sekolah Komaki Timur (Shinooka) yang dilaksanakan pada TA2027.",
   "meta_title_index": "Rencana Reorganisasi Sekolah Komaki Timur – Situs Informasi Komunitas (Tidak Resmi)",
@@ -109,6 +111,7 @@
   "ql_voices_p": "Presentasi adil dari berbagai pendapat warga lokal, orang tua, dan mantan guru. Termasuk ringkasan hasil komentar publik.",
   "school_news_lead": "Tulisan terbaru dari situs resmi yang dikelola oleh lima SD dan tiga SMP yang terdampak reorganisasi. Kegiatan harian sekolah tidak dimuat di halaman reorganisasi kota, sehingga dikumpulkan di sini.",
   "school_news_note": "Catatan: Tulisan diambil otomatis sekali sehari dan hanya tulisan terbaru dari tiap sekolah yang ditampilkan. Judul ditampilkan persis seperti yang dipublikasikan tiap sekolah (tanpa terjemahan). Untuk informasi resmi tentang reorganisasi, lihat \"Pengumuman resmi\" di atas.",
+  "section_actions": "Kegiatan warga<small>Community Efforts</small>",
   "section_latest": "Pembaruan terbaru<small>Latest Updates</small>",
   "section_links": "Tautan Halaman<small>Quick Links</small>",
   "section_news": "Pengumuman Resmi Kota<small>Official Announcements</small>",
