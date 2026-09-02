@@ -102,7 +102,7 @@ Keys follow the pattern `<page>_<section>_<type>`, e.g., `about_whatis_p1`, `faq
 
 - **Header site name is permanently Japanese.** The `<a class="site-title">` element does not get a `data-i18n` attribute. The `<span data-i18n="site_sub">` subtitle inside it is translated, but the main site name text is not.
 - **All facts must come from official sources** — the permitted city URL above, or official printed materials (cite the source inline). Do not add speculative or unconfirmed information. The one place newspaper reporting appears is the 報道 corner on `index.html`, where it is clearly attributed as such; see `data/chunichi_news.json` below. It is never evidence for a claim made elsewhere on the site. **Nationwide figures and national standards come from MEXT** and live on `nationwide.html` only; they are never evidence for a statement about the Komaki plan itself, and the city's information is never used for a nationwide claim.
-- **All ten languages are now fully translated, except `review.html`** (added 2026-08-28), which has `ja` and `en` only and falls back to English elsewhere. Turkish (`tr`) and Burmese (`my`) reached full key coverage on 2026-08-13, so `PARTIAL` in `i18n.js` is empty and the "parts of this page are in English" notice bar no longer appears. `events.json` labels are a strict **10-language** requirement (`LANGS` in `auto_gates.py`). If a new partially-translated language is ever added, put its code in both `PARTIAL` (`i18n.js`) and `PARTIAL_LANGS` (`auto_gates.py`) so the notice bar shows and its event labels are not demanded.
+- **All ten languages are now fully translated**, `review.html` included: its `rev_*` keys plus the twelve review-related keys that appear on other pages (`nav_review`, `ql_review_*`, `rel_*`, `meta_*_review`, `status_digest`) were translated into the remaining eight languages on 2026-09-02. Turkish (`tr`) and Burmese (`my`) reached full key coverage on 2026-08-13, so `PARTIAL` in `i18n.js` is empty and the "parts of this page are in English" notice bar no longer appears. `events.json` labels are a strict **10-language** requirement (`LANGS` in `auto_gates.py`). If a new partially-translated language is ever added, put its code in both `PARTIAL` (`i18n.js`) and `PARTIAL_LANGS` (`auto_gates.py`) so the notice bar shows and its event labels are not demanded.
 
 ## `data/news.json`
 
@@ -212,7 +212,7 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 - **事実の出所は3つだけ** — 市の公式情報、『篠岡地区 学校再編だより』、文部科学省。MEXT の数値は `nationwide.html` 経由で引用し、**このページから `mext.go.jp` に直リンクしない**（`MEXT_PAGES` は `nationwide.html` 限定のまま）。
 - **「確認できなかったこと」を必ず残す。** `rev_o1`〜`rev_o6` と各提案の「確認できていないこと」は、当サイトが調べきれていないという意味であって「存在しない」という意味ではない。ここを削ると、検証が断定に化ける。
 - **提案は市が検討しているものではない。** `rev_s3_lead` にそう書いてある。市が実際に検討を始めたら、その事実は出典つきで別途書き、提案からは外すこと。
-- 翻訳は現在 **ja と en のみ**。他の8言語は `i18n.js` の en フォールバックで英語が出る（設計どおりの挙動で、表示は壊れない）。他言語を足すときは `rev_*` を各辞書に入れて `build_page_dicts.py` を回す。`ja-kids` も未整備で、こどもむけ表示では日本語の本文がそのまま出る。
+- 翻訳は **10言語すべて**（2026-09-02 に `rev_*` 76キーを pt/vi/tl/es/zh/id/tr/my へ追加）。`rev_*` を足したり書き換えたりしたら、10言語ぶん入れて `build_page_dicts.py` を回すこと。**`ja-kids` は未整備**で、こどもむけ表示では日本語の本文がそのまま出る（事実と見解の書き分けを平易な日本語で崩さずに書けるか未検証のため、意図的に手を付けていない）。
 
 ## `js/main.js`
 
