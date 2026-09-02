@@ -190,6 +190,73 @@ window.KomakiGrade = (function () {
   });
 })();
 
+/* ===== HEADER NAV FIT（PC のリンクメニュー）=====
+   段数（必ず2段）は CSS のグリッドが保証しているので、ここでやるのは
+   「横に溢れない範囲でいちばん大きい文字」を実測で選ぶことだけ。
+
+   なぜ実測するのか: ラベルの合計幅は日本語 26em に対しビルマ語 57em と
+   2倍以上ちがい、CSS の clamp() のように窓幅だけで決める式にすると、
+   長い言語では溢れ、短い言語では無駄に小さくなる。溢れた場合、CSS 側は
+   overflow:hidden なので黙って端が切れる（気づけない壊れ方をする）。
+
+   走らせる契機は「読み込み直後」「i18n.js が文言を差し替えたとき」
+   「言語・こどもモードの切替」「窓幅の変化」。文言の差し替えは
+   MutationObserver で拾う（i18n.js は完了イベントを出さないため）。 */
+(function () {
+  var ul = document.querySelector('header nav ul');
+  if (!ul) return;
+
+  var MAX = 13.5, MIN = 8, STEP = 0.5;   // px
+  var mq = window.matchMedia('(min-width: 769px)');
+  var busy = false;
+
+  function pad(fs) { return (fs >= 12 ? 0.42 : fs >= 10 ? 0.3 : 0.2) + 'rem'; }
+
+  function fit() {
+    // 768px 以下はハンバーガーの縦並び。ここで付けた値は邪魔になるので外す
+    if (!mq.matches) {
+      ul.style.fontSize = '';
+      ul.style.removeProperty('--nav-pad');
+      ul.classList.remove('nav-fit-tight');
+      return;
+    }
+    ul.classList.remove('nav-fit-tight');
+    for (var fs = MAX; fs >= MIN; fs -= STEP) {
+      ul.style.fontSize = fs + 'px';
+      ul.style.setProperty('--nav-pad', pad(fs));
+      // scrollWidth は overflow:hidden でも溢れたぶんを含む。
+      // 端数の切り上げで 1px 溢れることがあるので、余裕は見ない
+      if (ul.scrollWidth <= ul.clientWidth) return;
+    }
+    // 最小でも1行に収まらないほど狭いとき（ビルマ語×狭い PC 窓など）。
+    // セル内で折り返させる。行数は2行のままで、切れて読めなくなるよりよい
+    ul.classList.add('nav-fit-tight');
+  }
+
+  function schedule() {
+    if (busy) return;
+    busy = true;
+    requestAnimationFrame(function () { busy = false; fit(); });
+  }
+
+  fit();
+  window.addEventListener('resize', schedule, {passive: true});
+  window.addEventListener('load', schedule);
+  // i18n.js による文言の差し替え（初回の適用・言語切替・こどもモード）
+  if (window.MutationObserver) {
+    new MutationObserver(schedule).observe(ul, {
+      subtree: true, childList: true, characterData: true
+    });
+  } else {
+    document.querySelectorAll('.lang-select').forEach(function (sel) {
+      sel.addEventListener('change', function () { setTimeout(fit, 0); });
+    });
+    document.querySelectorAll('.kids-toggle').forEach(function (btn) {
+      btn.addEventListener('click', function () { setTimeout(fit, 0); });
+    });
+  }
+})();
+
 /* ===== ACTIVE NAV LINK ===== */
 (function () {
   const path = location.pathname.split('/').pop() || 'index.html';
@@ -2103,13 +2170,19 @@ window.KomakiGrade = (function () {
     });
 })();
 
-/* ===== COMMUNITY ACTIONS（index.html「地域の取組」）=====
-   閉校を惜しむ市民有志の取組。data/community_actions.json は手動管理。
+/* ===== COMMUNITY ACTIONS（community.html「地域の取組」）=====
+   地域で行われている取組。data/community_actions.json は手動管理。
 
    【このコーナーだけ出典の性格が違う】市の公式情報でも報道でもなく、
-   市民有志自身の発信（Instagram）。報道コーナーと同じく、
-   計画の内容・数値の根拠には決して使わない。発信元へのリンクが
-   「有志の発信である」ことを示す唯一の手がかりなので、外さないこと。
+   主催者自身の発信（Instagram や紙の回覧板）。報道コーナーと同じく、
+   計画の内容・数値の根拠には決して使わない。発信元の表示が
+   「誰の発信か」を示す唯一の手がかりなので、外さないこと。
+
+   バッジは主催者の別で切り替える（data 側の badge）。市民有志の催しと
+   地域協議会の催しは主催が違うので、まとめて「市民有志」と書いてはいけない
+   ——主催者を偽ることになる。協議会の催しでも、市が公式サイトで案内した
+   ものはすぐ上の自動取得コーナーに出る。こちらは紙の回覧など、
+   自動取得では拾えない経路で知った分を手で載せる場所。
 
    取組の名称と学校名は主催者・市の書いた固有名なので【翻訳しない】。
    まわりのラベルだけ多言語にする（公式ニュース・報道コーナーと同じ方針）。 */
@@ -2123,6 +2196,7 @@ window.KomakiGrade = (function () {
     place:  {ja:'場所', en:'Place', pt:'Local', vi:'Địa điểm', tl:'Lugar', es:'Lugar', zh:'地点', id:'Tempat', tr:'Yer', my:'နေရာ'},
     source: {ja:'発信元', en:'Posted by', pt:'Divulgado por', vi:'Nguồn tin', tl:'Mula sa', es:'Publicado por', zh:'发布方', id:'Diposting oleh', tr:'Paylaşan', my:'တင်သူ'},
     citizen:{ja:'市民有志', en:'Citizen-run', pt:'Iniciativa de cidadãos', vi:'Do người dân tổ chức', tl:'Mamamayan ang nagpapatakbo', es:'Iniciativa ciudadana', zh:'市民有志', id:'Inisiatif warga', tr:'Vatandaş girişimi', my:'ပြည်သူ့ဦးဆောင်'},
+    council:{ja:'地域協議会', en:'Community council', pt:'Conselho comunitário', vi:'Hội đồng cộng đồng', tl:'Konseho ng komunidad', es:'Consejo comunitario', zh:'地区协议会', id:'Dewan komunitas', tr:'Bölge konseyi', my:'ဒေသဆိုင်ရာ ကောင်စီ'},
     empty:  {ja:'現在、掲載されている取組はありません。', en:'Nothing is listed at the moment.', pt:'No momento não há nada publicado.', vi:'Hiện chưa có nội dung nào.', tl:'Wala pang nakalista sa ngayon.', es:'Por ahora no hay nada publicado.', zh:'目前没有刊登的取组。', id:'Saat ini belum ada yang ditampilkan.', tr:'Şu anda listelenen bir şey yok.', my:'လက်ရှိတွင် ဖော်ပြထားသည် မရှိပါ။'},
     error:  {ja:'地域の取組を取得できませんでした。', en:'Could not load community efforts.', pt:'Não foi possível carregar.', vi:'Không tải được nội dung.', tl:'Hindi ma-load ang listahan.', es:'No se pudo cargar.', zh:'无法加载地域取组。', id:'Gagal memuat.', tr:'Yüklenemedi.', my:'မဖွင့်နိုင်ပါ။'}
   };
@@ -2163,7 +2237,7 @@ window.KomakiGrade = (function () {
         return '<li class="action-item">' +
                  '<div class="action-head">' +
                    '<span class="action-title">' + esc(it.title_ja || '') + '</span>' +
-                   '<span class="action-badge">' + at('citizen') + '</span>' +
+                   '<span class="action-badge">' + at(it.badge === 'council' ? 'council' : 'citizen') + '</span>' +
                  '</div>' +
                  '<div class="action-school">' + esc(it.school_ja || '') + '</div>' +
                  rows +

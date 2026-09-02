@@ -1,5 +1,5 @@
 {
-  "note": "閉校を惜しむ市民有志の取組。手動管理。市の公式情報でも報道でもなく、市民有志の発信である。計画の内容・数値の根拠には決して使わない。source_url は auto_gates.py の PERMITTED_INSTAGRAM に載っているアカウントのみ。",
+  "note": "地域で行われている取組。手動管理。市の公式情報でも報道でもない。計画の内容・数値の根拠には決して使わない。badge は citizen（市民有志・既定）か council（地域協議会）。主催がどちらかで必ず使い分けること — 協議会の催しを市民有志と書くと主催者を偽ることになる。source_url は auto_gates.py の PERMITTED_INSTAGRAM に載っているアカウントのみ。紙の回覧板が出どころのときは source_url を空にし、source_label に発行元と『回覧板』と書く。",
   "actions": [
     {
       "school_ja": "大城小学校",
@@ -14,6 +14,21 @@
       "body_en": "A festival market in the gym and baseball on the school ground are planned, with food trucks. The group is recruiting committee members and volunteers for the day.",
       "source_label": "Instagram @arigato.ohshirosho",
       "source_url": "https://www.instagram.com/arigato.ohshirosho/"
+    },
+    {
+      "school_ja": "光ヶ丘・篠岡・大城 小学校区",
+      "school_en": "Hikarigaoka, Shinooka and Oshiro elementary school districts",
+      "badge": "council",
+      "title_ja": "新学校区交流 ミュージックフェスティバル",
+      "date": "2026-10-31",
+      "date_note_ja": "2026年10月31日（土）",
+      "date_note_en": "Saturday 31 October 2026",
+      "place_ja": "光ヶ丘中学校 体育館",
+      "place_en": "Hikarigaoka Junior High School gymnasium",
+      "body_ja": "「音楽やダンスで新学校区の交流を広げよう」として開かれます。出演者を募集していましたが、申込は2026年8月30日で締め切られました（応募多数の場合は抽選）。出演資格は、光ヶ丘・篠岡・大城の各小学校区に住む人が1名以上含まれることで、ジャンルは自由とされていました。問合先は小牧市役所 支え合い協働推進課（電話 0568-76-1149）です。",
+      "body_en": "Held under the banner “let music and dance widen the ties across the new school district”. Performers were invited to apply, but applications closed on 30 August 2026 (a draw was to be held if oversubscribed). Each act had to include at least one resident of the Hikarigaoka, Shinooka or Oshiro elementary school district; any genre was welcome. Enquiries: Komaki City Mutual Support and Collaboration Division, tel. 0568-76-1149.",
+      "source_label": "光ヶ丘小学校区地域協議会 音楽部会（回覧板）",
+      "source_url": ""
     }
   ]
 }

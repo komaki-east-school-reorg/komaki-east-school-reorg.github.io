@@ -5,7 +5,7 @@ name: Daily Feature Ideas
 # auto_ideas/history.json（過去に出した見出し）だけで、本文はメールにある。
 on:
   schedule:
-    - cron: '35 21 * * *'   # 毎日 21:35 UTC = 06:35 JST。fetch-news（0:17 UTC）と時間帯を分ける
+    - cron: '35 21 * * *'   # 毎日 21:35 UTC = 06:35 JST。fetch-news（22:17 UTC = 7:17 JST）と時間帯を分ける
   workflow_dispatch:         # 手動実行も可
 
 permissions:

@@ -562,11 +562,14 @@
     </div>
   </section>
 
-  <!-- ===== 地域の取組（閉校を惜しむ市民有志の活動） =====
-       【重要】ここだけは出典が市の公式情報でも報道でもなく「市民有志の発信」。
+  <!-- ===== 地域の取組（地域発の催し・活動） =====
+       【重要】ここだけは出典が市の公式情報でも報道でもなく「主催者自身の発信」。
        報道コーナーと同じく、計画の内容・数値の根拠には決して使わない。
+       主催は市民有志のものと地域協議会のものがあり、項目ごとのバッジで書き分ける
+       （data 側の badge が citizen / council）。まとめて「市民有志」と書かないこと。
        リンク先アカウントは auto_gates.py の PERMITTED_INSTAGRAM に登録したものだけ
-       （許可ページも community.html に付け替えてある）。
+       （許可ページも community.html に付け替えてある）。紙の回覧が出どころのものは
+       リンクを張らず、発行元を文字で書く。
        データは data/community_actions.json（手動管理）、描画は js/main.js。
        すぐ上の「地域協議会のイベント案内」と対の関係にある。どちらも地域発の動きだが、
        協議会は市が制度として関わるもの、こちらは有志が自主的に始めたもの。
@@ -574,7 +577,7 @@
   <section class="section section-alt" id="community-actions">
     <div class="container">
       <h2 class="section-title" data-i18n-html="section_actions">地域の取組<small>Community Efforts</small></h2>
-      <p style="font-size:.95rem; color:var(--text-muted); max-width:760px; margin-bottom:1.2rem;" data-i18n="actions_lead">閉校する学校を惜しみ、思い出を残そうとする市民有志の取組です。市や学校の事業ではなく、有志の方々が自主的に行っているものです。</p>
+      <p style="font-size:.95rem; color:var(--text-muted); max-width:760px; margin-bottom:1.2rem;" data-i18n="actions_lead">地域で行われている催しや取組です。閉校を惜しむ市民有志のものと、地域協議会が回覧板などで知らせているものがあり、それぞれ主催を示しています。市の公式発表ではないので、詳しくは主催者にご確認ください。</p>
       <div id="community-actions-container"></div>
       <p style="font-size:.8rem; color:var(--text-muted); margin-top:1rem;" data-i18n-html="actions_note">※ 日時・内容は変わることがあります。最新の情報と参加の申込みは、各取組の発信元をご確認ください。学校再編そのものの公式情報は<a href="index.html#news">トップページの「市公式サイト お知らせ」</a>をご覧ください。</p>
     </div>

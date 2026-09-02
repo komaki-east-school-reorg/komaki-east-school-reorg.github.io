@@ -4,6 +4,18 @@
     {
       "date": "2026-09-02",
       "type": "content",
+      "ja": "地域の取組に新学校区交流ミュージックフェスティバルを追加",
+      "en": "Music festival for the new school district added to community efforts"
+    },
+    {
+      "date": "2026-09-02",
+      "type": "fix",
+      "ja": "PCのリンクメニューをどの言語・画面幅でも2段で表示",
+      "en": "Header menu now always two rows, in every language and window size"
+    },
+    {
+      "date": "2026-09-02",
+      "type": "content",
       "ja": "「検証と提案」ページを10言語に対応",
       "en": "Review & ideas page now available in all ten languages"
     },

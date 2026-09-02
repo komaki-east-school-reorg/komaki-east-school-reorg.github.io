@@ -106,7 +106,7 @@ Keys follow the pattern `<page>_<section>_<type>`, e.g., `about_whatis_p1`, `faq
 
 ## `data/news.json`
 
-Auto-updated by GitHub Actions (`.github/workflows/fetch-news.yml`), which runs daily at 09:17 JST (off the hour, and with a 3–5 s polite wait between requests, to avoid load on the city server). The script (`.github/scripts/fetch_news.py`) scrapes two official city index pages, visits each item page to read its update date, keeps only items updated within the last `WINDOW_DAYS` (30) days, and commits changes with `[skip ci]`. To trigger manually: GitHub → Actions → "Fetch Official News" → Run workflow. Do not hand-edit `items` — it will be overwritten on the next run. The `window_days` and `source_url` fields are safe to edit.
+Auto-updated by GitHub Actions (`.github/workflows/fetch-news.yml`), which runs daily at 07:17 JST (off the hour, and with a 3–5 s polite wait between requests, to avoid load on the city server). The script (`.github/scripts/fetch_news.py`) scrapes two official city index pages, visits each item page to read its update date, keeps only items updated within the last `WINDOW_DAYS` (30) days, and commits changes with `[skip ci]`. To trigger manually: GitHub → Actions → "Fetch Official News" → Run workflow. Do not hand-edit `items` — it will be overwritten on the next run. The `window_days` and `source_url` fields are safe to edit.
 
 **The city site is behind an Imperva/Incapsula WAF, so `fetch_html()` shells out to `curl` — do not "simplify" it back to `urllib`.** The first request gets a 302 to the *same* URL carrying `visid_incap_*` / `incap_ses_*` cookies; without keeping those, the client redirects forever. Cookies alone are not enough: Python's `urllib` is answered with a flat **403** even with a browser `User-Agent` and cookie jar (the WAF fingerprints the TLS/HTTP client, not the headers), while `curl` gets 200 for the same URL and UA. `curl` is preinstalled on `ubuntu-latest`. The cookie jar is one temp file reused for the whole run, so the extra WAF round-trip happens only on the first page.
 
@@ -296,7 +296,7 @@ Several things reflect the current date automatically — no manual edits needed
 
 | What | When it updates | How |
 |---|---|---|
-| `data/news.json` (official news) | Daily 09:17 JST | GitHub Actions |
+| `data/news.json` (official news) | Daily 07:17 JST | GitHub Actions |
 | "Last updated: …" line (index *Current Status* / schedule *Key Events*) | Every time the site is re-deployed (push) and files are re-served | `document.lastModified` of the served file (= deploy time on GitHub Pages), shown via `<p class="section-updated">` |
 | Calendar initial month (`schedule.html`) | Every page load (viewer's current month) | `new Date()`, no clamping — it always opens on the current month even when that month has no events, because a reader opening the calendar first wants to know where "now" is. Do not "helpfully" jump to the nearest month that has events |
 | "完了" labels in *Current Status* (`index.html`) | Every page load (today ≥ `data-event-date`) | AUTO DATE STATUS |

@@ -121,20 +121,58 @@ nav ul {
 .nav-break { display: none; }
 
 /* PC ではリンクメニューを必ず2段（上下5項目ずつ）に固定する。
-   項目が10・言語が10種あるので、折り返しを幅任せにすると窓幅と言語で
-   1段〜3段の間で揺れ、ヘッダの高さが言語ごとに変わってしまう。
-   5項目めの後ろに置いた .nav-break を flex の全幅アイテムにして、
-   そこで必ず折り返す。フッタの .nav-break は縦並びなので出さない
-   （だから header nav ul に限定している）。
-   幅が狭いときに3段目ができにくいよう、1060px 以下では文字と余白を詰める。
-   ラベルの長いラテン文字系（es/pt/vi/tl）とビルマ語は、狭い画面では
-   それでも3段目ができることがある。日本語・中国語は概ね2段に収まる。 */
+   項目が10・言語が10種あって、ラベルの合計幅は日本語の 26em に対して
+   ビルマ語で 57em と2倍以上ちがう。折り返しを幅任せ（flex-wrap）にすると
+   窓幅と言語で1段〜3段の間で揺れ、ヘッダの高さが言語ごとに変わってしまう。
+
+   そこで **5列のグリッド**にする。項目は10個なので、幅がいくつであろうと、
+   どのブラウザであろうと、行は必ず2行になる（.nav-break は display:none
+   にしてグリッドから外す。フッタでは縦並びなので元から出さない）。
+   段数の保証は CSS だけで完結していて、JavaScript には依存しない。
+
+   文字の大きさだけは JS（main.js の HEADER NAV FIT）が実測して詰める。
+   横に溢れない範囲でいちばん大きい値を選ぶので、日本語・中国語では大きく、
+   ビルマ語やスペイン語では小さくなる。JS が動かない環境のために、
+   既定値も窓幅に追随する clamp() にしてある（上限は、いちばん長い言語が
+   1100px の版面に収まる大きさ）。 */
 @media (min-width: 769px) {
-  header nav ul { flex-wrap: wrap; row-gap: .12rem; }
-  header nav ul li.nav-break { display: block; flex: 0 0 100%; height: 0; margin: 0; padding: 0; }
+  header nav { flex: 1 1 auto; min-width: 0; }
+  header .lang-switcher { flex-shrink: 0; }
+  header nav ul {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    justify-items: stretch;
+    gap: .12rem;
+    min-width: 0;
+    margin-left: auto;   /* 余白があるときは右に寄せる。justify-content: end と
+                            ちがい、溢れたときに左端が切れることがない */
+    overflow: hidden;    /* JS が効かない環境で溢れても、ヘッダの外には出さない */
+    font-size: clamp(.5rem, .8vw, .68rem);
+  }
+  header nav ul li.nav-break { display: none; }
+  header nav ul li { min-width: 0; }
+  header nav a {
+    font-size: 1em;
+    padding: .3rem var(--nav-pad, .42rem);
+    text-align: center;
+  }
+  /* 最小の文字でも1行に収まらないほど幅が狭いときの最後の手段。
+     セル内で折り返すだけなので、グリッドの行数は2行のままになる。 */
+  header nav ul.nav-fit-tight a { white-space: normal; line-height: 1.15; }
 }
-@media (min-width: 769px) and (max-width: 1060px) {
-  header nav a { font-size: .72rem; padding: .3rem .42rem; }
+
+/* 狭い PC 幅ではメニューをタイトルの下の行に落とす。
+   769px のとき、サイト名 277px と言語切替 304px で版面を使い切り、
+   メニューに残る幅は 101px しかない。同じ行に並べたままだと、2段は保てても
+   セル内で何度も折り返してヘッダが 138px の厚みになる（実測）。
+   行を分ければメニューに 450px 前後を渡せるので、文字を小さくしすぎずに済む。
+   1100px 以上（＝版面が max-width に達して以降）は1行に戻す。 */
+@media (min-width: 769px) and (max-width: 1099px) {
+  .header-inner { flex-wrap: wrap; gap: .2rem 1rem; padding-bottom: .35rem; }
+  .site-title { margin-top: 0; }
+  header nav { flex: 0 0 100%; order: 3; gap: .6rem; }
+  header nav ul { margin-left: 0; flex: 1 1 auto; }
+  header .lang-switcher { margin-top: 0; margin-left: auto; }
 }
 /* ===== LANGUAGE SWITCHER ===== */
 .lang-switcher {
@@ -621,8 +659,13 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 .upcoming-item--future .upcoming-date {
   color: rgba(240,232,192,.5);
 }
+/* 1件が版面より長いとき（ビルマ語など、語間に空白が無く1件で 700px を
+   超える言語がある）だけ折り返す。nowrap のままだと折り返せず、ページ全体に
+   横スクロールが出ていた。空白の無い言語のために overflow-wrap も要る。
+   短いラベルは .upcoming-list の flex-wrap が先に効くので1行のまま。 */
+.upcoming-item { min-width: 0; }
 .upcoming-name {
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 .upcoming-more {
   font-family: var(--heading-font);
