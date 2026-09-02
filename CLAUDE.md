@@ -138,7 +138,7 @@ When a content change is detected, a second job drafts site updates fully automa
 
 - **AI が書いてよいのは `auto_ideas/ideas.md` の1枚だけ。** サイトの実装はさせない（提案と実装を同じ走行で混ぜると、検証されていない変更が毎日入ってくる）。
 - **本文はリポジトリに残さない。** 残るのは `auto_ideas/history.json`（過去に出した見出し）だけで、`ideas.md` は `.gitignore` 済み。起案AIはこの履歴を読んで**同じ案を二度出さない**。本文はメールと Actions のアーティファクト（30日）にある。
-- **通知は SMTP → だめなら Issue。** `.github/scripts/send_mail.py` は設定が無ければ exit 2 を返し、ワークフローは `gh issue create` に切り替える（Issue を立てれば GitHub の通知メールが届く）。必要な Secrets は `SMTP_HOST` / `SMTP_USER` / `SMTP_PASS` / `MAIL_TO`（任意で `SMTP_PORT`＝既定 587、465 なら SMTP_SSL／`MAIL_FROM`）。**未設定でも壊れない**のが設計で、設定を促す警告だけが出る。
+- **通知は SMTP → だめなら Issue。** `.github/scripts/send_mail.py` は設定が無ければ exit 2 を返し、ワークフローは `gh issue create` に切り替える（Issue を立てれば GitHub の通知メールが届く）。必要な Secrets は `SMTP_HOST` / `SMTP_USER` / `SMTP_PASS`（任意で `MAIL_TO`＝未指定なら `SMTP_USER` 宛て、`SMTP_PORT`＝既定 587・465 なら SMTP_SSL、`MAIL_FROM`）。**未設定でも壊れない**のが設計で、設定を促す警告だけが出る。**宛先は1件だけ**で、カンマ区切りで複数渡すと送らずに失敗する（自分宛ての通知がいつのまにか同報配信になる事故を機械で止めるため）。**このリポジトリは公開なので、宛先のアドレスはワークフローにもスクリプトにも書かない** — Secrets に置くか、`SMTP_USER` と同じにする。
 - 見出しの抽出・履歴の更新・件名の組み立ては `.github/scripts/ideas_digest.py` が決定的に行う。**AI に JSON を直接書かせない** — 壊れていても気づけないため。件名はシェルの `"..."` を通るので、`"` `` ` `` `$` `\` は見出しから落としてある。
 - 起案プロンプトには、この CLAUDE.md の禁止事項（外部ドメインを増やさない／自動読み込みの第三者スクリプトを増やさない／`bus.html` の地図は凍結／`council.html` は対象外／自動生成ファイルを手編集する案を出さない）を明記してある。**規則を増やしたらこのプロンプトにも書き足すこと。**
 - 「今日は出すに値する案が無い」日は `## ` 見出しを1つも書かせない。その日はメールも Issue も出ず、履歴も増えない。

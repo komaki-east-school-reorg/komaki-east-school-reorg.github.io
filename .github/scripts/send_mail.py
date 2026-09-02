@@ -6,8 +6,13 @@
   SMTP_PORT  任意  既定 587。465 なら SMTP_SSL、それ以外は STARTTLS
   SMTP_USER  必須  SMTP の認証ユーザ（多くの場合そのまま差出人）
   SMTP_PASS  必須  アプリパスワード等
-  MAIL_TO    必須  宛先。カンマ区切りで複数可
+  MAIL_TO    任意  宛先。**1件だけ**。未指定なら SMTP_USER（＝自分宛て）
   MAIL_FROM  任意  差出人。未指定なら SMTP_USER
+
+宛先は1件に限る。このリポジトリは公開なので、宛先のアドレスはコードにも
+ワークフローにも書かない（Secrets に置くか、SMTP_USER と同じにする）。
+カンマ区切りで複数渡されたら送らずに失敗する — 「自分宛ての通知」が
+いつのまにか同報配信になっている、という事故を機械で止めるため。
 
 終了コード:
   0 = 送信した
@@ -41,10 +46,16 @@ def main():
     host = os.environ.get("SMTP_HOST", "").strip()
     user = os.environ.get("SMTP_USER", "").strip()
     password = os.environ.get("SMTP_PASS", "")
+    # 宛先が空なら自分宛て（SMTP_USER）。公開リポジトリにアドレスを書かずに済む。
     to = [x.strip() for x in os.environ.get("MAIL_TO", "").split(",") if x.strip()]
+    if not to and user:
+        to = [user]
     if not (host and user and password and to):
-        print("SMTP の設定が無いためメールは送りません（SMTP_HOST/SMTP_USER/SMTP_PASS/MAIL_TO）")
+        print("SMTP の設定が無いためメールは送りません（SMTP_HOST/SMTP_USER/SMTP_PASS）")
         return 2
+    if len(to) > 1:
+        print("宛先は1件だけにしてください（MAIL_TO に %d 件）" % len(to), file=sys.stderr)
+        return 1
 
     port = int(os.environ.get("SMTP_PORT", "587") or "587")
     sender = os.environ.get("MAIL_FROM", "").strip() or user
@@ -55,7 +66,7 @@ def main():
     msg = EmailMessage()
     msg["Subject"] = subject
     msg["From"] = sender
-    msg["To"] = ", ".join(to)
+    msg["To"] = to[0]
     msg["Date"] = formatdate(localtime=True)
     msg.set_content(body)
 
@@ -77,7 +88,7 @@ def main():
         print("メール送信に失敗: %s: %s" % (type(e).__name__, e), file=sys.stderr)
         return 1
 
-    print("メールを送信しました → %s" % ", ".join(to))
+    print("メールを送信しました → %s" % to[0])
     return 0
 
 

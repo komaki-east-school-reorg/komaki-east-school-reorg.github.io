@@ -118,6 +118,9 @@ jobs:
           fi
 
       # ---------- 通知：メール、だめなら Issue ----------
+      # 宛先は1件だけ（送るのは自分宛ての通知であって、配信ではない）。
+      # このリポジトリは公開なので、アドレスはここに書かず Secrets に置く。
+      # MAIL_TO が未設定なら SMTP_USER 宛てに送る。
       - name: Send mail
         id: mail
         if: steps.digest.outputs.has_ideas == 'true'
