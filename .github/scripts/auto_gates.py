@@ -119,13 +119,21 @@ def main():
             with open("data/events.json", encoding="utf-8") as f:
                 events = json.load(f)["events"]
             n_before = len(fails)
-            for date, labels in events.items():
+            for date, entry in events.items():
                 if not re.match(r"^\d{4}-\d{2}-\d{2}$", date):
                     fail(f"events.json: 不正な日付キー: {date}")
-                if sorted(labels) != sorted(LANGS):
-                    fail(f"events.json: {date} の言語キーが{len(LANGS)}言語と一致しない: {sorted(labels)}")
-                elif not all(isinstance(v, str) and v.strip() for v in labels.values()):
-                    fail(f"events.json: {date} に空のラベルがある")
+                # 1日に複数の予定が入ることがある。値は「1件ならオブジェクト、
+                # 複数なら配列」のどちらでもよい（js/main.js のカレンダーと .ics が両方を受ける）。
+                items = entry if isinstance(entry, list) else [entry]
+                if not items:
+                    fail(f"events.json: {date} の予定が空")
+                for labels in items:
+                    if not isinstance(labels, dict):
+                        fail(f"events.json: {date} の要素がオブジェクトでない")
+                    elif sorted(labels) != sorted(LANGS):
+                        fail(f"events.json: {date} の言語キーが{len(LANGS)}言語と一致しない: {sorted(labels)}")
+                    elif not all(isinstance(v, str) and v.strip() for v in labels.values()):
+                        fail(f"events.json: {date} に空のラベルがある")
             if len(fails) == n_before:
                 ok(f"events.json スキーマ（{len(events)}件）")
         except Exception as e:

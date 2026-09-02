@@ -4,6 +4,18 @@
     {
       "date": "2026-09-03",
       "type": "content",
+      "ja": "地域の取組をスケジュールとカレンダーにも反映",
+      "en": "Community efforts now also appear in the schedule and calendar"
+    },
+    {
+      "date": "2026-09-03",
+      "type": "feature",
+      "ja": "回覧板の印刷に「これからの催し」を追加",
+      "en": "Printable sheet now ends with upcoming local events"
+    },
+    {
+      "date": "2026-09-03",
+      "type": "content",
       "ja": "トップの「最新の動き」に地域の取組を追加",
       "en": "Community efforts now also shown in Latest Updates on the top page"
     },

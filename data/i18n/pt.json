@@ -880,6 +880,8 @@
   "actions_note": "Datas e detalhes podem mudar. Para informação atualizada e para participar, consulte o canal de cada grupo. Para informação oficial sobre a reorganização, veja <a href=\"index.html#news\">“Notícias do site da prefeitura”, na página inicial</a>.",
   "sched_date39": "domingo, 13 dez 2026",
   "sched_desc39": "<strong>“Arigato Oshiro-sho” (iniciativa de cidadãos)</strong><br>Na Escola Primária Oshiro, que vai encerrar, prevê-se uma feira no ginásio e basebol no recinto, com food trucks. Procuram-se voluntários. <strong>É organizado por moradores, não pela prefeitura nem pela escola.</strong> Ver <a href=\"community.html#community-actions\">iniciativas locais</a>.",
+  "sched_date40": "sábado, 31 out 2026",
+  "sched_desc40": "<strong>Festival de música do novo distrito escolar (conselho comunitário)</strong><br>No ginásio da Escola Secundária Hikarigaoka, um evento para ampliar a convivência no novo distrito escolar através da música e da dança. As inscrições para se apresentar encerraram em 30 de agosto de 2026. <strong>É organizado pela seção de música do conselho comunitário do distrito escolar de Hikarigaoka, não pela prefeitura.</strong> Ver <a href=\"community.html#community-actions\">iniciativas locais</a>.",
   "rev_h1": "Análise do plano e o que poderia vir a seguir",
   "rev_p": "Com base nos números publicados pela prefeitura, esta página organiza o que se pode e o que não se pode confirmar sobre o plano de reorganização, e pergunta o que seria preciso para aumentar o número de crianças em todo o distrito de Shinooka.",
   "rev_stance": "⚠️ <strong>Esta página contém a análise e as propostas do próprio site.</strong> Não são a posição da Prefeitura de Komaki nem do seu Conselho de Educação. <strong>Tudo o que está marcado como 【Facto】 vem de material publicado e traz a fonte</strong>, ao passo que <strong>tudo o que está marcado como 🔎 análise ou 💡 proposta é o pensamento deste site</strong>. Leia as duas partes separadamente. As opiniões a favor e contra estão em <a href=\"voices.html\">Opiniões da Comunidade</a>, e o panorama nacional e os parâmetros do governo em <a href=\"nationwide.html\">Panorama nacional</a>.",
@@ -967,7 +969,7 @@
   "rel_nationwide_community": "Ver a ligação entre os conselhos comunitários e as escolas",
   "rel_community_nationwide": "Ver o panorama nacional e os parâmetros do governo",
   "rel_voices_review": "Ver a análise do plano e as propostas",
-  "status_digest": "Aqui estão apenas os marcos principais. A lista completa, com 39 itens, está no <a href=\"schedule.html\">cronograma</a>.",
+  "status_digest": "Aqui estão apenas os marcos principais. A lista completa, com 40 itens, está no <a href=\"schedule.html\">cronograma</a>.",
   "grade_h": "Ver pelo ano escolar do seu filho",
   "grade_lead": "Escolha um ano escolar e cada data abaixo receberá a indicação do ano em que a criança estará naquele momento. O ano escolhido é o do ano letivo de 2026. É apenas um cálculo sobre as datas publicadas — o plano da prefeitura não trata os anos escolares de forma diferente — e a escola que a criança frequentará é definida pelo endereço.",
   "grade_select_label": "Ano escolar",
@@ -1010,5 +1012,6 @@
   "board_issuer": "Emitido por: site de informação cidadã sobre a reorganização escolar de Komaki leste (Shinooka) — não oficial",
   "board_latest_range": "Novidades da última semana ({from} – {to}).",
   "board_latest_none": "Não houve novidades na última semana.",
+  "board_actions": "Próximos eventos locais",
   "board_now": "Próximos prazos"
 }

@@ -880,6 +880,8 @@
   "actions_note": "Tarih ve ayrıntılar değişebilir. Güncel bilgi ve katılım için her grubun kendi kanalına bakın. Yeniden yapılandırmaya dair resmî bilgi için ana sayfadaki <a href=\"index.html#news\">“Belediye sitesinden haberler”</a> bölümüne bakın.",
   "sched_date39": "13 Aralık 2026 Pazar",
   "sched_desc39": "<strong>“Arigato Oshiro-sho” (vatandaş girişimi)</strong><br>Kapanacak Oshiro İlkokulu’nda spor salonunda şenlik pazarı, bahçede beyzbol ve yemek araçları planlanıyor. Komite üyesi ve gönüllü aranıyor. <strong>Belediye ya da okul değil, mahalle sakinleri düzenliyor.</strong> Bkz. <a href=\"community.html#community-actions\">yerel girişimler</a>.",
+  "sched_date40": "31 Ekim 2026 Cumartesi",
+  "sched_desc40": "<strong>Yeni okul bölgesi müzik festivali (bölge konseyi)</strong><br>Hikarigaoka Ortaokulu spor salonunda, müzik ve dansla yeni okul bölgesindeki kaynaşmayı genişletmek için düzenleniyor. Sahne almak için başvurular 30 Ağustos 2026'da kapandı. <strong>Belediyenin değil, Hikarigaoka ilkokul bölgesi konseyinin müzik kolunun etkinliğidir.</strong> Bkz. <a href=\"community.html#community-actions\">bölgedeki girişimler</a>.",
   "rev_h1": "Planın incelenmesi ve bundan sonrası için öneriler",
   "rev_p": "Belediyenin yayımladığı sayılardan yola çıkarak bu sayfa, yeniden yapılandırma planında nelerin doğrulanabildiğini ve nelerin doğrulanamadığını derliyor; ayrıca Shinooka bölgesinin tamamında çocuk sayısını artırmak için neler gerektiğini soruyor.",
   "rev_stance": "⚠️ <strong>Bu sayfa, sitenin kendi incelemesini ve önerilerini içerir.</strong> Bunlar Komaki Belediyesi'nin ya da Belediye Eğitim Kurulu'nun görüşü değildir. <strong>【Olgu】 diye işaretlenen bölümler yayımlanmış belgelere dayanır ve kaynağı gösterilir</strong>; buna karşılık <strong>🔎 inceleme ve 💡 öneri diye işaretlenen bölümler bu sitenin kendi düşüncesidir</strong>. Lütfen ikisini ayırarak okuyun. Lehte ve aleyhte görüşler <a href=\"voices.html\">Sakinlerin Görüşleri</a> sayfasında, ülke genelindeki durum ve ulusal ölçütler ise <a href=\"nationwide.html\">Ülke genelindeki durum</a> sayfasında toplanmıştır.",
@@ -967,7 +969,7 @@
   "rel_nationwide_community": "Bölge konseyleri ile okulların bağını gör",
   "rel_community_nationwide": "Ülke genelindeki duruma ve ulusal ölçütlere bak",
   "rel_voices_review": "Planın incelemesine ve önerilere bak",
-  "status_digest": "Burada yalnızca dönüm noktaları yer alıyor. 39 maddenin tamamı <a href=\"schedule.html\">takvim</a> sayfasında.",
+  "status_digest": "Burada yalnızca dönüm noktaları yer alıyor. 40 maddenin tamamı <a href=\"schedule.html\">takvim</a> sayfasında.",
   "grade_h": "Çocuğunuzun sınıfına göre görün",
   "grade_lead": "Bir sınıf seçin; aşağıdaki her tarih, çocuğunuzun o sırada hangi sınıfta olacağıyla birlikte gösterilir. Seçtiğiniz sınıf 2026 öğretim yılına aittir. Bu, açıklanan tarihler üzerinde yapılan basit bir hesaptır; belediyenin planı sınıflara göre bir ayrım yapmaz ve çocuğun gideceği okul adrese göre belirlenir.",
   "grade_select_label": "Sınıf",
@@ -1010,5 +1012,6 @@
   "board_issuer": "Yayımlayan: Komaki doğu (Shinooka) okul yeniden yapılandırması vatandaş bilgi sitesi — resmî değildir",
   "board_latest_range": "Son bir haftanın güncellemeleri ({from} – {to}).",
   "board_latest_none": "Son bir haftada güncelleme olmadı.",
+  "board_actions": "Yaklaşan mahalle etkinlikleri",
   "board_now": "Yaklaşan tarihler"
 }

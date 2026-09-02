@@ -880,6 +880,8 @@
   "actions_note": "Tanggal dan detail dapat berubah. Untuk informasi terbaru dan cara ikut serta, lihat kanal masing-masing kelompok. Informasi resmi soal reorganisasi ada di <a href=\"index.html#news\">“Berita dari situs kota” pada halaman utama</a>.",
   "sched_date39": "Minggu, 13 Des 2026",
   "sched_desc39": "<strong>“Arigato Oshiro-sho” (inisiatif warga)</strong><br>Di SD Oshiro yang akan ditutup, direncanakan pasar festival di aula dan bisbol di lapangan, disertai food truck. Sedang mencari panitia dan relawan. <strong>Diselenggarakan warga, bukan pemerintah kota atau sekolah.</strong> Lihat <a href=\"community.html#community-actions\">kegiatan warga</a>.",
+  "sched_date40": "Sabtu, 31 Oktober 2026",
+  "sched_desc40": "<strong>Festival musik distrik sekolah baru (dewan komunitas)</strong><br>Di aula olahraga SMP Hikarigaoka, sebuah acara untuk mempererat pergaulan di distrik sekolah yang baru lewat musik dan tari. Pendaftaran penampil ditutup pada 30 Agustus 2026. <strong>Ini kegiatan seksi musik dewan komunitas distrik SD Hikarigaoka, bukan program pemerintah kota.</strong> Lihat <a href=\"community.html#community-actions\">kegiatan warga</a>.",
   "rev_h1": "Telaah rencana dan langkah yang mungkin berikutnya",
   "rev_p": "Berdasarkan angka yang dipublikasikan pemerintah kota, halaman ini merangkum apa yang dapat dan tidak dapat dipastikan mengenai rencana penataan ulang, sekaligus menanyakan apa yang diperlukan untuk menambah jumlah anak di seluruh distrik Shinooka.",
   "rev_stance": "⚠️ <strong>Halaman ini memuat telaah dan usulan dari situs ini sendiri.</strong> Ini bukan pandangan Pemerintah Kota Komaki maupun Dewan Pendidikannya. <strong>Bagian yang ditandai 【Fakta】 bersumber dari materi resmi dan disertai sumbernya</strong>, sedangkan <strong>bagian yang ditandai 🔎 telaah atau 💡 usulan adalah pemikiran situs ini</strong>. Bacalah keduanya secara terpisah. Suara yang mendukung dan menentang ada di <a href=\"voices.html\">Suara Komunitas</a>, sedangkan gambaran nasional dan standar pemerintah pusat ada di <a href=\"nationwide.html\">Gambaran nasional</a>.",
@@ -967,7 +969,7 @@
   "rel_nationwide_community": "Lihat kaitan antara dewan komunitas dan sekolah",
   "rel_community_nationwide": "Lihat gambaran nasional dan standar pemerintah",
   "rel_voices_review": "Lihat telaah rencana dan usulannya",
-  "status_digest": "Di sini hanya dicantumkan peristiwa yang menjadi titik penting. Daftar lengkap sebanyak 39 butir ada di halaman <a href=\"schedule.html\">jadwal</a>.",
+  "status_digest": "Di sini hanya dicantumkan peristiwa yang menjadi titik penting. Daftar lengkap sebanyak 40 butir ada di halaman <a href=\"schedule.html\">jadwal</a>.",
   "grade_h": "Lihat berdasarkan kelas anak Anda",
   "grade_lead": "Pilih kelas, dan setiap tanggal di bawah akan diberi keterangan kelas anak Anda pada saat itu. Kelas yang dipilih adalah untuk tahun ajaran 2026. Ini hanya perhitungan atas tanggal yang telah diumumkan — rencana kota tidak membedakan berdasarkan kelas — dan sekolah yang dimasuki ditentukan oleh alamat.",
   "grade_select_label": "Kelas",
@@ -1010,5 +1012,6 @@
   "board_issuer": "Diterbitkan oleh: situs informasi warga tentang reorganisasi sekolah Komaki timur (Shinooka) — tidak resmi",
   "board_latest_range": "Pembaruan dalam sepekan terakhir ({from} – {to}).",
   "board_latest_none": "Tidak ada pembaruan dalam sepekan terakhir.",
+  "board_actions": "Acara warga mendatang",
   "board_now": "Yang akan datang"
 }

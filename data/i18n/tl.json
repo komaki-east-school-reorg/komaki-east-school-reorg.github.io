@@ -880,6 +880,8 @@
   "actions_note": "Maaaring magbago ang petsa at detalye. Para sa pinakabagong impormasyon at pagsali, tingnan ang sariling channel ng bawat grupo. Para sa opisyal na impormasyon, tingnan ang <a href=\"index.html#news\">“Balita mula sa lungsod” sa unang pahina</a>.",
   "sched_date39": "Linggo, 13 Dis 2026",
   "sched_desc39": "<strong>“Arigato Oshiro-sho” (mamamayan ang nagpapatakbo)</strong><br>Sa Oshiro Elementary na magsasara, may festival market sa gym at baseball sa bakuran, may food trucks. Naghahanap ng komite at volunteer. <strong>Mga residente ang nag-organisa, hindi ang lungsod o paaralan.</strong> Tingnan ang <a href=\"community.html#community-actions\">mga pagkilos ng komunidad</a>.",
+  "sched_date40": "Sabado, 31 Oktubre 2026",
+  "sched_desc40": "<strong>Music Festival ng bagong school district (konseho ng komunidad)</strong><br>Sa gym ng Hikarigaoka Junior High School, isang okasyon para palawakin ang ugnayan sa bagong school district sa pamamagitan ng musika at sayaw. Nagsara ang aplikasyon para tumugtog noong 30 Agosto 2026. <strong>Isinasagawa ito ng seksyong musika ng konseho ng komunidad ng school district ng Hikarigaoka, hindi ng lungsod.</strong> Tingnan ang <a href=\"community.html#community-actions\">mga gawain sa komunidad</a>.",
   "rev_h1": "Pagsusuri sa plano, at kung ano ang maaaring sumunod",
   "rev_p": "Batay sa mga numerong inilathala ng lungsod, inaayos ng pahinang ito kung ano ang makukumpirma at hindi makukumpirma tungkol sa plano ng muling pagsasaayos, at tinatanong kung ano ang kailangan upang dumami ang mga bata sa buong distrito ng Shinooka.",
   "rev_stance": "⚠️ <strong>Naglalaman ang pahinang ito ng sariling pagsusuri at mga mungkahi ng site na ito.</strong> Hindi ito ang paninindigan ng Lungsod ng Komaki o ng Board of Education nito. <strong>Ang anumang may markang 【Katotohanan】 ay mula sa inilathalang materyal at may pinagkunan</strong>, samantalang <strong>ang anumang may markang 🔎 pagsusuri o 💡 mungkahi ay sariling pag-iisip ng site na ito</strong>. Pakibasa nang hiwalay ang dalawa. Ang mga boses na pabor at tutol ay nasa <a href=\"voices.html\">Boses ng Komunidad</a>, at ang sitwasyon sa buong bansa at ang pamantayan ng pamahalaan ay nasa <a href=\"nationwide.html\">Sitwasyon sa buong bansa</a>.",
@@ -967,7 +969,7 @@
   "rel_nationwide_community": "Tingnan ang ugnayan ng mga konseho ng komunidad at ng mga paaralan",
   "rel_community_nationwide": "Tingnan ang sitwasyon sa buong bansa at ang pamantayan ng pamahalaan",
   "rel_voices_review": "Tingnan ang pagsusuri sa plano at mga mungkahi",
-  "status_digest": "Ang mga mahahalagang yugto lamang ang nakalista rito. Ang buong listahan na 39 na aytem ay nasa <a href=\"schedule.html\">iskedyul</a>.",
+  "status_digest": "Ang mga mahahalagang yugto lamang ang nakalista rito. Ang buong listahan na 40 na aytem ay nasa <a href=\"schedule.html\">iskedyul</a>.",
   "grade_h": "Tingnan ayon sa baitang ng inyong anak",
   "grade_lead": "Pumili ng baitang at bawat petsa sa ibaba ay lalagyan ng baitang ng inyong anak sa panahong iyon. Ang piniling baitang ay para sa taong panuruan 2026. Simpleng kuwenta lamang ito sa mga inilathalang petsa — hindi naman iba ang pagtrato ng plano ng lungsod sa bawat baitang — at ang paaralang papasukan ay batay sa tirahan.",
   "grade_select_label": "Baitang",
@@ -1010,5 +1012,6 @@
   "board_issuer": "Inilabas ng: citizen information site tungkol sa reorganisasyon ng paaralan sa silangang Komaki (Shinooka) — hindi opisyal",
   "board_latest_range": "Mga update mula sa nakaraang linggo ({from} – {to}).",
   "board_latest_none": "Walang update sa nakaraang linggo.",
+  "board_actions": "Mga paparating na okasyon",
   "board_now": "Paparating"
 }

@@ -348,18 +348,32 @@
       "tr": "Okul servisi başvuru son günü",
       "my": "ကျောင်းဘတ်စ် လျှောက်လွှာ နောက်ဆုံးရက်"
     },
-    "2026-10-31": {
-      "ja": "就学時健診（R9新入生・5小学校）",
-      "en": "Pre-entry Health Check (5 schools)",
-      "pt": "Exame pré-matrícula (5 escolas)",
-      "vi": "Khám sức khỏe trước nhập học (5 trường)",
-      "tl": "Health check bago pumasok (5 paaralan)",
-      "es": "Reconocimiento previo a la matrícula (5 escuelas)",
-      "zh": "就学时健诊（R9新生・5小学）",
-      "id": "Pemeriksaan kesehatan pra-masuk (5 sekolah)",
-      "tr": "Okul öncesi sağlık taraması (5 okul)",
-      "my": "ကျောင်းမဝင်မီ ကျန်းမာရေးစစ်ဆေးမှု (ကျောင်း ၅)"
-    },
+    "2026-10-31": [
+      {
+        "ja": "就学時健診（R9新入生・5小学校）",
+        "en": "Pre-entry Health Check (5 schools)",
+        "pt": "Exame pré-matrícula (5 escolas)",
+        "vi": "Khám sức khỏe trước nhập học (5 trường)",
+        "tl": "Health check bago pumasok (5 paaralan)",
+        "es": "Reconocimiento previo a la matrícula (5 escuelas)",
+        "zh": "就学时健诊（R9新生・5小学）",
+        "id": "Pemeriksaan kesehatan pra-masuk (5 sekolah)",
+        "tr": "Okul öncesi sağlık taraması (5 okul)",
+        "my": "ကျောင်းမဝင်မီ ကျန်းမာရေးစစ်ဆေးမှု (ကျောင်း ၅)"
+      },
+      {
+        "ja": "新学校区交流 ミュージックフェスティバル（地域協議会）",
+        "en": "New School District Music Festival (community council)",
+        "pt": "Festival de música do novo distrito escolar (conselho)",
+        "vi": "Ngày hội âm nhạc khu học mới (hội đồng cộng đồng)",
+        "tl": "Music Festival ng bagong school district (konseho)",
+        "es": "Festival de música del nuevo distrito escolar (consejo)",
+        "zh": "新学区交流 音乐节（地区协议会）",
+        "id": "Festival musik distrik sekolah baru (dewan komunitas)",
+        "tr": "Yeni okul bölgesi müzik festivali (bölge konseyi)",
+        "my": "ကျောင်းနယ်မြေသစ် ဂီတပွဲတော် (ဒေသဆိုင်ရာ ကောင်စီ)"
+      }
+    ],
     "2026-11-30": {
       "ja": "スクールバス体験乗車会・アプリ試用",
       "en": "School Bus Trial Rides & App Test",

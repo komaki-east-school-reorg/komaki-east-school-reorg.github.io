@@ -880,6 +880,8 @@
   "actions_note": "Dates and details may change. For the latest information and to take part, check each group’s own channel. For official information on the reorganisation itself, see <a href=\"index.html#news\">“News from the city website” on the top page</a>.",
   "sched_date39": "Sunday 13 December 2026",
   "sched_desc39": "<strong>“Arigato Oshiro-sho” (citizen-run)</strong><br>At Oshiro Elementary School, which is closing, a festival market in the gym and baseball on the ground are planned, with food trucks. Committee members and volunteers are being recruited. <strong>This is organised by residents, not by the city or the school.</strong> See <a href=\"community.html#community-actions\">community efforts</a>.",
+  "sched_date40": "Saturday 31 October 2026",
+  "sched_desc40": "<strong>New School District Music Festival (community council)</strong><br>In the gym of Hikarigaoka Junior High School, an event to widen ties across the new school district through music and dance. Applications to perform closed on 30 August 2026. <strong>This is run by the music section of the Hikarigaoka elementary school district community council, not by the city.</strong> See <a href=\"community.html#community-actions\">community efforts</a>.",
   "rev_h1": "Reviewing the plan, and what could come next",
   "rev_p": "Using the figures the city has published, this page sets out what can and cannot be confirmed about the reorganization plan, and asks what it would take to increase the number of children in the Shinooka district as a whole.",
   "rev_stance": "⚠️ <strong>This page contains this site’s own review and proposals.</strong> They are not the position of Komaki City or its Board of Education. <strong>Anything marked 【Fact】 comes from published material and is sourced</strong>, while <strong>anything marked 🔎 review or 💡 proposal is this site’s own thinking</strong>. Please read the two separately. Views for and against the plan are on <a href=\"voices.html\">Voices</a>, and the national picture and standards are on <a href=\"nationwide.html\">Nationwide</a>.",
@@ -967,7 +969,7 @@
   "rel_nationwide_community": "See how community councils and schools are tied together",
   "rel_community_nationwide": "See the national picture and standards",
   "rel_voices_review": "See the review of the plan and the ideas",
-  "status_digest": "Only the turning points are listed here. All 39 entries are on the <a href=\"schedule.html\">schedule</a> page.",
+  "status_digest": "Only the turning points are listed here. All 40 entries are on the <a href=\"schedule.html\">schedule</a> page.",
   "grade_h": "View by your child’s school year",
   "grade_lead": "Pick a school year and each date below is labelled with the year your child will be in at that time. The year you pick is the one for FY2026. This is simple arithmetic on the published dates — the city’s plan does not treat school years differently — and which school a child attends is decided by address.",
   "grade_select_label": "School year",
@@ -1010,5 +1012,6 @@
   "board_issuer": "Issued by: Komaki East (Shinooka) School Reorganization — citizen information site (unofficial)",
   "board_latest_range": "Updates from the past week ({from} – {to}).",
   "board_latest_none": "There were no updates in the past week.",
+  "board_actions": "Upcoming local events",
   "board_now": "Coming up"
 }

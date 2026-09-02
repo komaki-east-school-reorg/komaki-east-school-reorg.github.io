@@ -574,7 +574,8 @@
        すぐ上の「地域協議会のイベント案内」と対の関係にある。どちらも地域発の動きだが、
        協議会は市が制度として関わるもの、こちらは有志が自主的に始めたもの。
        見出しを分けて隣に置き、混ぜないこと。 -->
-  <section class="section section-alt" id="community-actions">
+  <!-- 紙（回覧板シート）では、この節の案内文ではなく末尾の「これからの催し」が受け持つので skip -->
+  <section class="section section-alt" id="community-actions" data-board="skip">
     <div class="container">
       <h2 class="section-title" data-i18n-html="section_actions">地域の取組<small>Community Efforts</small></h2>
       <p style="font-size:.95rem; color:var(--text-muted); max-width:760px; margin-bottom:1.2rem;" data-i18n="actions_lead">地域で行われている催しや取組です。閉校を惜しむ市民有志のものと、地域協議会が回覧板などで知らせているものがあり、それぞれ主催を示しています。市の公式発表ではないので、詳しくは主催者にご確認ください。</p>
@@ -620,6 +621,7 @@
         <span data-bk="now" data-i18n="board_now">いま近づいている予定</span>
         <span data-bk="range" data-i18n="board_latest_range">直近1週間（{from}〜{to}）に更新された内容です。</span>
         <span data-bk="none" data-i18n="board_latest_none">この1週間に新しい動きはありませんでした。</span>
+        <span data-bk="actions" data-i18n="board_actions">これからの催し</span>
       </div>
       <p class="share-note" data-i18n="share_note">Instagram・TikTok はリンクのコピーのみ。自動の外部通信ははてなスターの表示だけです。</p>
     </div>

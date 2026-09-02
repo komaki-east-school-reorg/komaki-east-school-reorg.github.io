@@ -795,10 +795,19 @@ window.KomakiGrade = (function () {
   function initCalendar(events) {
     if (!Object.keys(events).length) { calContainer.style.display = 'none'; return; }
 
-    function getEventLabel(key) {
-      var l = window.KomakiLang();
+    /* 1日に複数の予定が入ることがある（10/31 の就学時健診と地域の催しなど）。
+       値は「1件ならオブジェクト、複数なら配列」のどちらでも受ける。
+       全部を配列に統一しないのは、既存の日付を書き換えずに済ませるため。 */
+    function eventsAt(key) {
       var ev = events[key];
-      return ev ? (ev[l] || ev.en || ev.ja) : '';
+      if (!ev) return [];
+      return Array.isArray(ev) ? ev : [ev];
+    }
+    function getEventLabels(key) {
+      var l = window.KomakiLang();
+      return eventsAt(key).map(function (ev) {
+        return (ev && (ev[l] || ev.en || ev.ja)) || '';
+      }).filter(Boolean);
     }
 
     const CAL_LOCALE_MAP = {ja:'ja-JP', en:'en-US', pt:'pt-BR', vi:'vi-VN', tl:'fil-PH', es:'es-ES', zh:'zh-Hans-CN', id:'id-ID', tr:'tr-TR', my:'my-MM'};
@@ -869,14 +878,17 @@ window.KomakiGrade = (function () {
         numEl.textContent = d;
         cell.appendChild(numEl);
 
-        if (events[key]) {
+        const labels = getEventLabels(key);
+        if (labels.length) {
           cell.classList.add('has-event');
-          const dot = document.createElement('span');
           const isPast = key <= todayKey;
-          dot.className = 'cal-event-dot' + (isPast ? ' past' : '');
-          dot.textContent = (isPast ? ctr('done_marker') + ' ' : '★ ') + getEventLabel(key);
-          cell.appendChild(dot);
-          cell.title = (isPast ? ctr('done_prefix') : ctr('plan_prefix')) + getEventLabel(key);
+          labels.forEach(function (lb) {
+            const dot = document.createElement('span');
+            dot.className = 'cal-event-dot' + (isPast ? ' past' : '');
+            dot.textContent = (isPast ? ctr('done_marker') + ' ' : '★ ') + lb;
+            cell.appendChild(dot);
+          });
+          cell.title = (isPast ? ctr('done_prefix') : ctr('plan_prefix')) + labels.join(' / ');
         }
 
         grid.appendChild(cell);
@@ -1044,20 +1056,25 @@ window.KomakiGrade = (function () {
              'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
              'X-WR-CALNAME:' + esc(t('calname', '小牧市東部 学校再編の予定'))];
     Object.keys(events).sort().forEach(function (d) {
-      var e = events[d];
-      var title = e[lang] || e.en || e.ja || '';
-      if (!title) return;
-      var lab = code ? labelAt(d, code) : '';
-      var sum = lab ? title + '（' + lab + '）' : title;
-      L.push('BEGIN:VEVENT');
-      L.push('UID:' + d + '-komaki-saihen@komaki-east-school-reorg.github.io');
-      L.push('DTSTAMP:' + stamp());
-      L.push('DTSTART;VALUE=DATE:' + ymd(d));
-      L.push('DTEND;VALUE=DATE:' + nextDay(d));
-      L.push(fold('SUMMARY:' + esc(sum)));
-      L.push(fold('DESCRIPTION:' + esc(t('icsdesc', 'この予定は市民有志のサイトがまとめたものです。正式な案内は市から届く書類でご確認ください。'))));
-      L.push('URL:https://komaki-east-school-reorg.github.io/schedule.html');
-      L.push('END:VEVENT');
+      // 1日に複数件のことがある（カレンダーと同じく、オブジェクトと配列の両方を受ける）
+      var list = Array.isArray(events[d]) ? events[d] : [events[d]];
+      list.forEach(function (e, idx) {
+        var title = (e && (e[lang] || e.en || e.ja)) || '';
+        if (!title) return;
+        var lab = code ? labelAt(d, code) : '';
+        var sum = lab ? title + '（' + lab + '）' : title;
+        L.push('BEGIN:VEVENT');
+        // 2件目以降だけ連番を足す。既存の予定の UID を変えると、
+        // 取り込み済みのカレンダー側で別の予定として二重に増える。
+        L.push('UID:' + d + (idx ? '-' + (idx + 1) : '') + '-komaki-saihen@komaki-east-school-reorg.github.io');
+        L.push('DTSTAMP:' + stamp());
+        L.push('DTSTART;VALUE=DATE:' + ymd(d));
+        L.push('DTEND;VALUE=DATE:' + nextDay(d));
+        L.push(fold('SUMMARY:' + esc(sum)));
+        L.push(fold('DESCRIPTION:' + esc(t('icsdesc', 'この予定は市民有志のサイトがまとめたものです。正式な案内は市から届く書類でご確認ください。'))));
+        L.push('URL:https://komaki-east-school-reorg.github.io/schedule.html');
+        L.push('END:VEVENT');
+      });
     });
     L.push('END:VCALENDAR');
     return L.join('\r\n') + '\r\n';
@@ -1602,6 +1619,35 @@ window.KomakiGrade = (function () {
       : null;
   }
 
+  /* これからの催し（地域の取組）。
+     「最新の動き」は起きたことを配る紙なので直近7日の data-date で絞るが、
+     地域の催しはこれから開かれるもので、回覧板でこそ知らせる値打ちがある。
+     だから7日の窓とは別枠にして、紙のいちばん最後に置く。
+     文面は画面に描かれた要素からそのまま取る。終わった催しは COMMUNITY ACTIONS が
+     描画時に落としているので、ここで日付を見る必要はない。 */
+  function actionRowValue(item, idx) {
+    var r = item.querySelectorAll('.action-row')[idx];
+    if (!r) return '';
+    var c = r.cloneNode(true);
+    var lab = c.querySelector('.action-label');
+    if (lab) lab.remove();
+    return (c.textContent || '').replace(/\s+/g, ' ').trim();
+  }
+  function upcomingActionsBlock() {
+    var items = document.querySelectorAll('#community-actions-container .action-item');
+    if (!items.length) return null;
+    var lines = [];
+    [].forEach.call(items, function (it) {
+      var title = clean(it.querySelector('.action-title'));
+      if (!title) return;
+      var when = actionRowValue(it, 0);
+      var place = actionRowValue(it, 1);
+      var line = (when ? when + ' ' : '') + title + (place ? '（' + place + '）' : '');
+      if (lines.indexOf(line) === -1) lines.push(line);
+    });
+    return lines.length ? {h: t('actions', 'これからの催し'), kind: 'list', lines: lines} : null;
+  }
+
   // ページ要約: 見出しと、その見出しが受け持つ範囲の代表文。
   function pageBlocks() {
     var out = [];
@@ -1657,6 +1703,10 @@ window.KomakiGrade = (function () {
       out = out.filter(function (b) { return b.kind === 'prose' || b.lines.length; });
       out.unshift(urgent);
     }
+    // これからの催しは紙のいちばん最後。地域の取組の節は data-board="skip" にしてあり、
+    // 節の要約（案内文）ではなくこの一覧が載る。
+    var acts = upcomingActionsBlock();
+    if (acts) out.push(acts);
     return out;
   }
 
@@ -1709,6 +1759,8 @@ window.KomakiGrade = (function () {
       });
       if (lines.length) out.push({h: headText(h), kind: 'list', lines: lines});
     });
+    var acts = upcomingActionsBlock();
+    if (acts) out.push(acts);
     return out;
   }
 

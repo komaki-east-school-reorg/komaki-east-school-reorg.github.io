@@ -460,8 +460,25 @@
     </div>
   </section>
 
-  <!-- PRESS COVERAGE（報道。data/chunichi_news.json は fetch_chunichi.py が毎日更新する） -->
+  <!-- COMMUNITY ACTIONS（地域の取組。data/community_actions.json は手動管理）
+       本体は community.html の「地域協議会のイベント案内」の隣。ここはトップに出す同じ一覧で、
+       描画は js/main.js の COMMUNITY ACTIONS（#community-actions-container を見つけたら描く）。
+       【このコーナーだけ毎日の自動取得ではない】ので、上の帯の latest_lead でその旨を断っている。
+       実行時に Instagram リンクが入るため、auto_gates.py の INSTAGRAM_PAGES に index.html を足してある
+       （CLAUDE.md・CONTRIBUTING.txt 規則1・README.md も同時に更新すること）。 -->
   <section class="section section-alt">
+    <div class="container">
+      <h3 class="section-title sub" data-i18n-html="section_actions">地域の取組<small>Community Efforts</small></h3>
+      <p class="school-lead" data-i18n="actions_lead">地域で行われている催しや取組です。閉校を惜しむ市民有志のものと、地域協議会が回覧板などで知らせているものがあり、それぞれ主催を示しています。市の公式発表ではないので、詳しくは主催者にご確認ください。</p>
+      <div id="community-actions-container"></div>
+      <p class="school-note">
+        <a href="community.html#community-actions" data-i18n="actions_more">地域協議会のイベント案内とあわせて見る →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- PRESS COVERAGE（報道。data/chunichi_news.json は fetch_chunichi.py が毎日更新する） -->
+  <section class="section">
     <div class="container">
       <h3 class="section-title sub" data-i18n-html="section_press">報道でみる東部地域<small>News Coverage</small></h3>
       <p class="school-lead" data-i18n="press_lead">
@@ -476,23 +493,6 @@
         地名で拾っているため、関連の薄い記事が混じることがあります。
         見出しは中日新聞社の記事によるもので、翻訳していません。記事の全文は有料会員向けです。
         学校再編の公式情報は、上の「市公式サイト お知らせ」をご確認ください。
-      </p>
-    </div>
-  </section>
-
-  <!-- COMMUNITY ACTIONS（地域の取組。data/community_actions.json は手動管理）
-       本体は community.html の「地域協議会のイベント案内」の隣。ここはトップに出す同じ一覧で、
-       描画は js/main.js の COMMUNITY ACTIONS（#community-actions-container を見つけたら描く）。
-       【このコーナーだけ毎日の自動取得ではない】ので、上の帯の latest_lead でその旨を断っている。
-       実行時に Instagram リンクが入るため、auto_gates.py の INSTAGRAM_PAGES に index.html を足してある
-       （CLAUDE.md・CONTRIBUTING.txt 規則1・README.md も同時に更新すること）。 -->
-  <section class="section">
-    <div class="container">
-      <h3 class="section-title sub" data-i18n-html="section_actions">地域の取組<small>Community Efforts</small></h3>
-      <p class="school-lead" data-i18n="actions_lead">地域で行われている催しや取組です。閉校を惜しむ市民有志のものと、地域協議会が回覧板などで知らせているものがあり、それぞれ主催を示しています。市の公式発表ではないので、詳しくは主催者にご確認ください。</p>
-      <div id="community-actions-container"></div>
-      <p class="school-note">
-        <a href="community.html#community-actions" data-i18n="actions_more">地域協議会のイベント案内とあわせて見る →</a>
       </p>
     </div>
   </section>
@@ -539,6 +539,7 @@
         <span data-bk="now" data-i18n="board_now">いま近づいている予定</span>
         <span data-bk="range" data-i18n="board_latest_range">直近1週間（{from}〜{to}）に更新された内容です。</span>
         <span data-bk="none" data-i18n="board_latest_none">この1週間に新しい動きはありませんでした。</span>
+        <span data-bk="actions" data-i18n="board_actions">これからの催し</span>
       </div>
       <p class="share-note" data-i18n="share_note">Instagram・TikTok はリンクのコピーのみ。自動の外部通信ははてなスターの表示だけです。</p>
     </div>
