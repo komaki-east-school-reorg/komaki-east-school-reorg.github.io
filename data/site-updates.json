@@ -4,6 +4,12 @@
     {
       "date": "2026-09-02",
       "type": "content",
+      "ja": "こどもむけ表示を全ページ・全項目に対応",
+      "en": "Kids-mode wording now covers every page and every item"
+    },
+    {
+      "date": "2026-09-02",
+      "type": "content",
       "ja": "地域の取組に新学校区交流ミュージックフェスティバルを追加",
       "en": "Music festival for the new school district added to community efforts"
     },
