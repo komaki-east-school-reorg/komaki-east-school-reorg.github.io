@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-01T05:06:45Z",
+  "fetched_at": "2026-09-02T04:32:36Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
@@ -13,22 +13,22 @@
         "zh": "篠冈中学"
       },
       "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-09-01",
+      "latest_date": "2026-09-02",
       "items": [
         {
-          "title": "２年生 始業式",
-          "date": "2026-09-01",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135765428?tm=20260901130743"
+          "title": "３年生 実力テスト",
+          "date": "2026-09-02",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135770932?tm=20260902091847"
         },
         {
-          "title": "３年生 始業式",
+          "title": "１年生 ２学期が始まりました",
           "date": "2026-09-01",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135762505?tm=20260901100211"
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135768341?tm=20260901163459"
         },
         {
-          "title": "M探究 〜科学的探究〜",
-          "date": "2026-08-25",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135741650?tm=20260825121706"
+          "title": "１年生 道徳",
+          "date": "2026-09-01",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135765816?tm=20260901133256"
         }
       ]
     },
@@ -42,8 +42,13 @@
         "zh": "篠冈小学"
       },
       "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
-      "latest_date": "2026-09-01",
+      "latest_date": "2026-09-02",
       "items": [
+        {
+          "title": "図工：言葉から感じて",
+          "date": "2026-09-02",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135772571?tm=20260902115713"
+        },
         {
           "title": "2学期が始まりました",
           "date": "2026-09-01",
@@ -53,11 +58,93 @@
           "title": "出校日",
           "date": "2026-08-20",
           "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135737018?tm=20260820202717"
+        }
+      ]
+    },
+    {
+      "slug": "hikarigaoka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "光ヶ丘中学校",
+        "ja_kids": "ひかりがおか中学校",
+        "en": "Hikari-ga-oka Junior High",
+        "zh": "光之丘中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
+      "latest_date": "2026-09-02",
+      "items": [
+        {
+          "title": "温かいご支援に感謝！かつおクラブ様より『宇宙兄弟』をご寄贈いただきました",
+          "date": "2026-09-02",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135770506?tm=20260902080620"
         },
         {
-          "title": "1学期終業式",
-          "date": "2026-07-18",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135515662?tm=20260718111510"
+          "title": "新生Toukadai！新しいユニフォームで挑んだ誇り高き初公式戦",
+          "date": "2026-08-22",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135738422?tm=20260822121319"
+        },
+        {
+          "title": "7/25(土)ジュニア奉仕団「盲導犬育成募金」",
+          "date": "2026-07-25",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135709396?tm=20260725190401"
+        }
+      ]
+    },
+    {
+      "slug": "toryo-j",
+      "level": "jhs",
+      "names": {
+        "ja": "桃陵中学校",
+        "ja_kids": "とうりょう中学校",
+        "en": "Toryo Junior High",
+        "zh": "桃陵中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
+      "latest_date": "2026-09-01",
+      "items": [
+        {
+          "title": "１年生 ２学期初日",
+          "date": "2026-09-01",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135766941?tm=20260901152125"
+        },
+        {
+          "title": "避難訓練",
+          "date": "2026-09-01",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135764047?tm=20260901113603"
+        },
+        {
+          "title": "2学期始業式",
+          "date": "2026-09-01",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135763698?tm=20260901111615"
+        }
+      ]
+    },
+    {
+      "slug": "sue-e",
+      "level": "elem",
+      "names": {
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-09-01",
+      "items": [
+        {
+          "title": "9/1 二学期始業式",
+          "date": "2026-09-01",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135766932?tm=20260901145620"
+        },
+        {
+          "title": "8/20 全校出校日",
+          "date": "2026-08-21",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135737114?tm=20260821081657"
+        },
+        {
+          "title": "8/3 陶地域夏祭り：和太鼓部出演",
+          "date": "2026-08-03",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135723509?tm=20260803083233"
         }
       ]
     },
@@ -87,93 +174,6 @@
           "title": "１学期終業式を行いました ～「やってみる」チャレンジの夏休みへ～",
           "date": "2026-07-17",
           "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135508020?tm=20260717094028"
-        }
-      ]
-    },
-    {
-      "slug": "toryo-j",
-      "level": "jhs",
-      "names": {
-        "ja": "桃陵中学校",
-        "ja_kids": "とうりょう中学校",
-        "en": "Toryo Junior High",
-        "zh": "桃陵中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
-      "latest_date": "2026-08-26",
-      "items": [
-        {
-          "title": "0822 野球部新人戦",
-          "date": "2026-08-26",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135744667?tm=20260826121320"
-        },
-        {
-          "title": "0825 ソフト部練習試合",
-          "date": "2026-08-26",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135741877?tm=20260825130949"
-        },
-        {
-          "title": "0726 女バス引退式",
-          "date": "2026-07-26",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135710351?tm=20260726165116"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "光ヶ丘中学校",
-        "ja_kids": "ひかりがおか中学校",
-        "en": "Hikari-ga-oka Junior High",
-        "zh": "光之丘中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
-      "latest_date": "2026-08-22",
-      "items": [
-        {
-          "title": "新生Toukadai！新しいユニフォームで挑んだ誇り高き初公式戦",
-          "date": "2026-08-22",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135738422?tm=20260822121319"
-        },
-        {
-          "title": "7/25(土)ジュニア奉仕団「盲導犬育成募金」",
-          "date": "2026-07-25",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135709396?tm=20260725190401"
-        },
-        {
-          "title": "吹奏楽部 応援ありがとうございました！",
-          "date": "2026-07-25",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135709281?tm=20260725180141"
-        }
-      ]
-    },
-    {
-      "slug": "sue-e",
-      "level": "elem",
-      "names": {
-        "ja": "陶小学校",
-        "ja_kids": "すえ小学校",
-        "en": "Sue Elem. School",
-        "zh": "陶小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-08-21",
-      "items": [
-        {
-          "title": "8/20 全校出校日",
-          "date": "2026-08-21",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135737114?tm=20260821081657"
-        },
-        {
-          "title": "8/3 陶地域夏祭り：和太鼓部出演",
-          "date": "2026-08-03",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135723509?tm=20260803083233"
-        },
-        {
-          "title": "7/17 一学期終業式",
-          "date": "2026-07-21",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135520066?tm=20260721114054"
         }
       ]
     },
