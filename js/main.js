@@ -1191,7 +1191,12 @@ window.KomakiGrade = (function () {
    まとめて行う。固定バーには「はてなスター」は入れない — 星は共有ではなくページへの
    反応であることに加え、常に画面内にあると IntersectionObserver が読み込み直後に
    発火してしまい、「読者が最下部まで来なければはてなへ通信しない」という設計
-   （下の ===== はてなスター ===== 参照）が崩れるため。 */
+   （下の ===== はてなスター ===== 参照）が崩れるため。
+
+   固定バーの先頭には「共有」の一語（share_sticky_label）を必ず添える。アイコンだけの
+   丸ボタンが横に並ぶだけでは、初見の読者にはこの帯が何のためのものか伝わらない。
+   本文側の共有欄には見出し（share_heading・全文）が別にあるので重複を避け、
+   固定バー側は横幅の限られる帯にふさわしい短い単語だけにしてある。 */
 (function () {
   var mainBox = document.getElementById('share-buttons');
   if (!mainBox) return;
@@ -1199,8 +1204,13 @@ window.KomakiGrade = (function () {
   var stickyBar = document.createElement('div');
   stickyBar.className = 'share-sticky';
   stickyBar.setAttribute('role', 'region');
-  stickyBar.setAttribute('data-i18n-aria', 'share_heading');
-  stickyBar.setAttribute('aria-label', 'このページを共有する');
+  stickyBar.setAttribute('aria-labelledby', 'share-sticky-label');
+  var stickyLabel = document.createElement('span');
+  stickyLabel.className = 'share-sticky-label';
+  stickyLabel.id = 'share-sticky-label';
+  stickyLabel.setAttribute('data-i18n', 'share_sticky_label');
+  stickyLabel.textContent = '共有';
+  stickyBar.appendChild(stickyLabel);
   var stickyBox = document.createElement('div');
   stickyBox.className = 'share-buttons share-buttons--sticky';
   stickyBox.id = 'share-buttons-sticky';

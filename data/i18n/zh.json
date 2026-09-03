@@ -733,6 +733,7 @@
   "comm_events_h2": "地区协议会活动信息<small>Community Council Events</small>",
   "comm_events_lead": "小牧市公开的地区协议会活动信息。信息涵盖市内全部16个小学区，因此篠冈地区5个协议会的活动会加上标记并排在最前面。每天自动获取。",
   "share_heading": "分享本页",
+  "share_sticky_label": "分享",
   "share_lead": "只要把链接发过去，知道的人就会增加。",
   "share_line": "用LINE发送",
   "share_x": "在X上发布",

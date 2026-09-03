@@ -1743,13 +1743,29 @@ footer {
   border-top: 1px solid var(--border);
   box-shadow: 0 -3px 12px rgba(0,0,0,.12);
   padding: .4rem .7rem calc(.4rem + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+/* アイコンだけの丸ボタンが並ぶだけでは、初見の読者にはこの帯の意味が伝わらない
+   ため、先頭に「共有」の一語を必ず添える（share_sticky_label）。横スクロールする
+   ボタン列とは別の要素にして、スクロールしても隠れないようにしてある。 */
+.share-sticky-label {
+  flex: 0 0 auto;
+  font-family: var(--heading-font);
+  font-weight: 800;
+  font-size: .82rem;
+  color: var(--primary-dark);
+  white-space: nowrap;
 }
 .share-buttons--sticky {
+  flex: 1 1 auto;
+  min-width: 0;
   flex-wrap: nowrap;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  max-width: 1100px;
-  margin: 0 auto;
 }
 .share-buttons--sticky .share-btn { flex: 0 0 auto; }
 /* トーストは固定バーの真下が画面外になるので、バーの上に浮かせる。 */

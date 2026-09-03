@@ -733,6 +733,7 @@
   "comm_events_h2": "地域協議会のイベント案内<small>Community Council Events</small>",
   "comm_events_lead": "小牧市が公開している地域協議会のイベント案内です。市内16の小学校区が対象なので、篠岡地区の5協議会のものには印を付けて先頭に出しています。毎日自動で取得しています。",
   "share_heading": "このページを共有する",
+  "share_sticky_label": "共有",
   "share_lead": "リンクを送るだけでも、知る人は増えます。",
   "share_line": "LINEで送る",
   "share_x": "Xでポスト",

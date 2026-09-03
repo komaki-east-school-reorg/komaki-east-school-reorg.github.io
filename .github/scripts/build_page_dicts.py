@@ -65,6 +65,7 @@ RUNTIME_KEYS = [
     "share_native",
     "share_star_label",
     "share_star_note",
+    "share_sticky_label",
     # 回覧板シートのボタン。main.js が実行時に作るので HTML に現れない。
     "board_btn",
 ]

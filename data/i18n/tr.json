@@ -733,6 +733,7 @@
   "comm_events_h2": "Mahalle konseyi etkinlikleri<small>Community Council Events</small>",
   "comm_events_lead": "Komaki Belediyesi tarafından yayımlanan mahalle konseyi etkinlik listesi. Liste şehirdeki 16 ilkokul bölgesinin tamamını kapsadığı için, Shinooka bölgesindeki beş konseyin etkinlikleri işaretlenip en başta gösterilir. Her gün otomatik olarak güncellenir.",
   "share_heading": "Bu sayfayı paylaş",
+  "share_sticky_label": "Paylaş",
   "share_lead": "Bağlantıyı göndermek bile yardımcı olur.",
   "share_line": "LINE ile gönder",
   "share_x": "X'te paylaş",
