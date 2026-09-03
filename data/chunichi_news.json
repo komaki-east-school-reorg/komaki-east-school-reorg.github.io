@@ -1,8 +1,14 @@
 {
-  "fetched_at": "2026-08-30T05:24:17Z",
+  "fetched_at": "2026-09-03T00:22:49Z",
   "source_name": "中日新聞Web",
   "source_url": "https://www.chunichi.co.jp/aichi_news/owari_area/komaki/",
   "items": [
+    {
+      "title": "キレあるダンスで世界王者に　小牧市の小学6年生・平田さん所属のチーム",
+      "url": "https://www.chunichi.co.jp/article/1305443",
+      "date": "2026-09-02",
+      "quote": "7月に米カリフォルニア州アナハイムであった世界最高峰のダンスコンテスト「WORLD OF DANCE（ワールド・オブ・ダンス）」に新設された12歳以下の部門で、小牧市の篠岡小学校6年平田杏樹さん（12…"
+    },
     {
       "title": "「しのおかの桃」広まれ　愛知・小牧産桃のブランド化目指し、JA尾張中央と名城大学生がタッグ",
       "url": "https://www.chunichi.co.jp/article/1284857",
@@ -80,6 +86,7 @@
     "1301790",
     "1303306",
     "1303799",
-    "1303847"
+    "1303847",
+    "1305443"
   ]
 }
