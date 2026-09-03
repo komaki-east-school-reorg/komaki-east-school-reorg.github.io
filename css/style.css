@@ -1768,11 +1768,16 @@ footer {
   -webkit-overflow-scrolling: touch;
 }
 .share-buttons--sticky .share-btn { flex: 0 0 auto; }
-/* PC幅は横に十分な余白があるので、ボタン列を中央ぞろいにする。スマホ幅では
-   崩さない — 折り返さず横スクロールする列を中央ぞろいにすると、先頭のボタンが
-   画面外に出た状態で表示されてしまうため（左端から順に見えるほうがよい）。 */
+/* PC幅は横に十分な余白があるので、「共有」の一語も含めてひとまとまりで
+   中央ぞろいにする。ボタン列に横幅いっぱいまで伸びさせない（flex-grow を
+   打ち消す）ことで、.share-sticky 側の justify-content:center が
+   「共有」＋ボタン列の全体を1つの塊として中央に置けるようにしている。
+   スマホ幅では崩さない — 折り返さず横スクロールする列を中央ぞろいにすると、
+   先頭のボタンが画面外に出た状態で表示されてしまうため（左端から順に
+   見えるほうがよい）。 */
 @media (min-width: 769px) {
-  .share-buttons--sticky { justify-content: center; }
+  .share-sticky { justify-content: center; }
+  .share-buttons--sticky { flex: 0 1 auto; justify-content: center; }
 }
 /* トーストは固定バーの真下が画面外になるので、バーの上に浮かせる。 */
 .share-sticky .share-copy-msg {
