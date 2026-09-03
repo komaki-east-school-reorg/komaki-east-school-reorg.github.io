@@ -1015,6 +1015,5 @@
   "board_issuer": "发行：小牧市东部（篠冈地区）学校重组 市民信息网站（市民自发·非官方）",
   "board_latest_range": "最近一周（{from}〜{to}）的更新内容。",
   "board_latest_none": "最近一周没有新的动态。",
-  "board_actions": "即将举行的活动",
-  "board_now": "近期日程"
+  "board_actions": "即将举行的活动"
 }

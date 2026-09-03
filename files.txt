@@ -18,7 +18,7 @@ review.html         計画の検証と提案のページ。公表資料から確
 
 ■ スタイル
 css/style.css       サイト全体のデザイン・レイアウト・カラー・レスポンシブ対応を定義するスタイルシート。共有ボタン（.share-*）・学年ビュー（.grade-*）・回覧板シートの印刷指定（@media print の #board-sheet）もここ。
-qr/                 回覧板シート用のQRコード。<ページID>.<言語>.svg の110枚。.github/scripts/build_qr.py が生成する。手編集不可。
+qr/                 回覧板シート用のQRコード。index.<言語>.svg の10枚（回覧板はindex.htmlにしか無い）。.github/scripts/build_qr.py が生成する。手編集不可。
 
 ■ JavaScript
 js/i18n.js          言語JSONファイルを非同期取得してページ内テキストを多言語に切り替える国際化スクリプト。
@@ -79,7 +79,7 @@ sitemap.xml                 全10ページのサイトマップ。各URLに10言
 .github/scripts/fetch_chunichi.py   中日新聞Webの小牧市エリア一覧を巡回し、東部（篠岡地区）に関する記事の見出し・日付・冒頭1文をchunichi_news.jsonに保存するスクリプト。地名で判定する。
 .github/scripts/map_targets.py      変更された公式ページのスラッグをsite-facts.jsonで引き、サイト内の更新候補箇所をMarkdown出力するスクリプト（Issue本文生成用）。
 .github/scripts/build_page_dicts.py  data/i18n/pages/ を生成する。辞書やHTMLのdata-i18nを変えたら実行してコミットすること。--check で鮮度検証のみ。
-.github/scripts/build_qr.py         回覧板シートに載せるQRコード（qr/*.svg）をページ×言語ぶん生成する。segnoが必要（pip install segno）。ページを増減したら実行してコミットすること。--check で鮮度検証のみ。
+.github/scripts/build_qr.py         回覧板シート（index.htmlのみ）に載せるQRコード（qr/index.*.svg）を言語ぶん生成する。segnoが必要（pip install segno）。--check で鮮度検証のみ。
 .github/scripts/auto_gates.py       自動更新のガードレール検証（編集範囲・スキーマ・ja/enキー一致・こどもモード1行の長さ・ページ別辞書の鮮度・外部リンク規則・出典実在チェック）。exit 0=合格/3=変更なし/1=不合格。
 .github/scripts/auto_report.py      自動更新のPR本文・事後報告コメントをevidence.json/verdict.jsonから生成するスクリプト。
 .github/workflows/feature-ideas.yml 毎朝1回、このサイトに足すとよさそうな機能をAIに考えさせてメールで届けるワークフロー定義。サイトのファイルは変更しない。

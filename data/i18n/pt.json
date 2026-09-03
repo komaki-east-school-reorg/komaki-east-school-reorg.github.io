@@ -1015,6 +1015,5 @@
   "board_issuer": "Emitido por: site de informação cidadã sobre a reorganização escolar de Komaki leste (Shinooka) — não oficial",
   "board_latest_range": "Novidades da última semana ({from} – {to}).",
   "board_latest_none": "Não houve novidades na última semana.",
-  "board_actions": "Próximos eventos locais",
-  "board_now": "Próximos prazos"
+  "board_actions": "Próximos eventos locais"
 }

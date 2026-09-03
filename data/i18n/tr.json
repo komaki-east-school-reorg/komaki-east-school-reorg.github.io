@@ -1015,6 +1015,5 @@
   "board_issuer": "Yayımlayan: Komaki doğu (Shinooka) okul yeniden yapılandırması vatandaş bilgi sitesi — resmî değildir",
   "board_latest_range": "Son bir haftanın güncellemeleri ({from} – {to}).",
   "board_latest_none": "Son bir haftada güncelleme olmadı.",
-  "board_actions": "Yaklaşan mahalle etkinlikleri",
-  "board_now": "Yaklaşan tarihler"
+  "board_actions": "Yaklaşan mahalle etkinlikleri"
 }

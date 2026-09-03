@@ -1015,6 +1015,5 @@
   "board_issuer": "Issued by: Komaki East (Shinooka) School Reorganization — citizen information site (unofficial)",
   "board_latest_range": "Updates from the past week ({from} – {to}).",
   "board_latest_none": "There were no updates in the past week.",
-  "board_actions": "Upcoming local events",
-  "board_now": "Coming up"
+  "board_actions": "Upcoming local events"
 }

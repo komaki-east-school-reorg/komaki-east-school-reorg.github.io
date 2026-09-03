@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-回覧板シート（bus.html などの共有欄の「印刷して回覧する」）に載せる QR コードを
-ページ×言語ぶん SVG で書き出す。
+回覧板シート（index.html の共有欄「回」ボタンと「最新の動き」節内の専用ボタン）に
+載せる QR コードを、言語ぶん SVG で書き出す。回覧板シートは index.html にしか無いので
+PAGES は index 1件のみ。
 
 なぜ静的生成なのか:
   このサイトが自動で読み込む外部スクリプトは、はてなスターの1本だけという方針
@@ -25,19 +26,10 @@ except ImportError:
 BASE = "https://komaki-east-school-reorg.github.io/"
 OUT_DIR = "qr"
 LANGS = ["ja", "en", "pt", "vi", "tl", "es", "zh", "id", "tr", "my"]
-# canonical と同じ並び。index だけは素のディレクトリ URL が正規形。
+# 回覧板シートは index.html の共有欄／「最新の動き」節にしか無いので、QRも index だけでよい。
+# canonical と同じ並び。index は素のディレクトリ URL が正規形。
 PAGES = {
     "index": "",
-    "about": "about.html",
-    "schedule": "schedule.html",
-    "voices": "voices.html",
-    "faq": "faq.html",
-    "council": "council.html",
-    "bus": "bus.html",
-    "community": "community.html",
-    "map": "map.html",
-    "nationwide": "nationwide.html",
-    "review": "review.html",
 }
 
 # 紙に印刷して読むので、誤り訂正は高め（H）にしておく。折り目や汚れに強い。

@@ -505,7 +505,7 @@
   <section class="section section-alt">
     <div class="container">
       <h2 class="section-title" data-i18n-html="comm_sec5_h2">考察<small>Commentary</small></h2>
-      <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:1.2rem;" data-board="skip" data-i18n="comm_sec5_disclaimer">
+      <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:1.2rem;" data-i18n="comm_sec5_disclaimer">
         ※ このセクションは当サイトの考察であり、小牧市の公式見解ではありません。
       </p>
 
@@ -574,8 +574,7 @@
        すぐ上の「地域協議会のイベント案内」と対の関係にある。どちらも地域発の動きだが、
        協議会は市が制度として関わるもの、こちらは有志が自主的に始めたもの。
        見出しを分けて隣に置き、混ぜないこと。 -->
-  <!-- 紙（回覧板シート）では、この節の案内文ではなく末尾の「これからの催し」が受け持つので skip -->
-  <section class="section section-alt" id="community-actions" data-board="skip">
+  <section class="section section-alt" id="community-actions">
     <div class="container">
       <h2 class="section-title" data-i18n-html="section_actions">地域の取組<small>Community Efforts</small></h2>
       <p style="font-size:.95rem; color:var(--text-muted); max-width:760px; margin-bottom:1.2rem;" data-i18n="actions_lead">地域で行われている催しや取組です。閉校を惜しむ市民有志のものと、地域協議会が回覧板などで知らせているものがあり、それぞれ主催を示しています。市の公式発表ではないので、詳しくは主催者にご確認ください。</p>
@@ -607,22 +606,6 @@
       <p class="share-lead" data-i18n="share_lead">リンクを送るだけでも、知る人は増えます。</p>
       <div class="share-buttons" id="share-buttons"></div>
       <div class="share-star" id="share-star"></div>
-      <!-- 回覧板シートの文言。js/main.js の BOARD SHEET が組み立てるので
-           HTML には現れない。翻訳は辞書に持たせる。 -->
-      <div id="board-strings" hidden>
-        <span data-bk="unofficial" data-i18n="board_unofficial">市民有志が運営する非公式のサイトです。小牧市・教育委員会が発行したものではありません。</span>
-        <span data-bk="cta" data-i18n="board_cta">この紙に載せきれなかったことは、サイトにすべて載っています。</span>
-        <span data-bk="scan" data-i18n="board_scan">スマートフォンのカメラで読み取れます。</span>
-        <span data-bk="excerpt" data-i18n="board_excerpt">紙面の都合で要点だけを載せています。</span>
-        <span data-bk="asof" data-i18n="board_asof">この紙は{date}時点の内容です。計画は今後も動きます。最新の情報はサイトでご確認ください。</span>
-        <span data-bk="contact" data-i18n="board_contact">計画そのものについての公式の問い合わせ先：小牧市教育委員会事務局 教育総務課 学校再編推進係（電話 0568-39-5261）</span>
-        <span data-bk="issuer" data-i18n="board_issuer">発行：小牧市東部（篠岡地区）学校再編計画 市民情報サイト（市民有志・非公式）</span>
-        <span data-bk="stamp" data-i18n="board_stamp">回 覧</span>
-        <span data-bk="now" data-i18n="board_now">いま近づいている予定</span>
-        <span data-bk="range" data-i18n="board_latest_range">直近1週間（{from}〜{to}）に更新された内容です。</span>
-        <span data-bk="none" data-i18n="board_latest_none">この1週間に新しい動きはありませんでした。</span>
-        <span data-bk="actions" data-i18n="board_actions">これからの催し</span>
-      </div>
       <p class="share-note" data-i18n="share_note">Instagram・TikTok はリンクのコピーのみ。自動の外部通信ははてなスターの表示だけです。</p>
     </div>
   </section>

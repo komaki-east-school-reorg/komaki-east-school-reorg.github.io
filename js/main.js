@@ -1548,15 +1548,21 @@ window.KomakiGrade = (function () {
 })();
 
 /* ===== BOARD SHEET（回覧板・掲示用のA4 1枚印刷）=====
-   2種類のシートを同じ仕組みで刷る。
-     ・ページ要約シート … 共有欄いちばん右の「回」ボタン。開いているページの要約。
-     ・最新の動きシート … index.html の「最新の動き」内のボタン。4コーナーの新着一覧。
+   index.html 専用。「最新の動き」4コーナーの新着一覧を、共有欄の「回」ボタンと、
+   「最新の動き」節内の専用ボタン（#latest-print-btn）のどちらからでも同じ内容で刷る。
+
+   【ほかのページには置かない】
+   以前はページごとの要約シート（各ページの共有欄の「回」ボタンで、その節の見出しと
+   代表文を集めたもの）もあったが廃止した。「お知らせ」「学校HP更新」等のコーナー DOM は
+   index.html にしか無く、下の【文章はページ内の既存要素からしか取らない】原則のもとでは
+   ほかのページで再現しようがないため、この機能は index.html だけに一本化してある。
+   このIIFEは #latest-print-btn が無いページ（= index.html 以外）では何もしない。
 
    なぜ作ったか: この地区で実際に情報が回るのは回覧板と掲示板で、
    SNS のリンクでは届かない層がいる。紙で配り、QR で戻ってこられるようにする。
 
    【文章はページ内の既存要素からしか取らない】
-   見出し・本文の先頭段落・各コーナーの一覧を、表示されているものからそのまま拾う。
+   各コーナーの一覧を、表示されているものからそのまま拾う。
    ここで独自の要約文を書き起こすと、出典のないニ次情報が紙になって出て行く。
    紙幅の都合で切り詰めるので、そのことは board_excerpt で紙面にも書く。
 
@@ -1575,7 +1581,7 @@ window.KomakiGrade = (function () {
 (function () {
   var shareBox = document.getElementById('share-buttons');
   var latestBtn = document.getElementById('latest-print-btn');
-  if (!shareBox && !latestBtn) return;
+  if (!latestBtn) return;   // 「最新の動き」節が無いページ = index.html 以外では機能ごと出さない
 
   var pageId = (location.pathname.split('/').pop() || 'index.html').replace(/\.html$/, '') || 'index';
   var strings = document.getElementById('board-strings');
@@ -1605,86 +1611,7 @@ window.KomakiGrade = (function () {
   }
   function clean(el) { return ((el && el.textContent) || '').replace(/\s+/g, ' ').trim(); }
 
-  /* 紙に載せる文は、途中で切らない。
-     字数で切ると「…」で尻切れになり、回覧板として読めたものにならないので、
-     句点（。．!?！？）で文に割り、入る本数だけを載せる。長さの調整は
-     「文の本数」「項目の本数」「見出しごと落とす」でやる（fit() 参照）。 */
-  function sentencesOf(text) {
-    var m = text.match(/[^。．！？!?]+[。．！？!?]+|[^。．！？!?]+$/g);
-    return (m || []).map(function (x) { return x.trim(); }).filter(Boolean);
-  }
-  /* 一覧の1行は、文になっているところだけを先頭から n 文とる。
-     行末にリンクの文字がぶら下がっていても（「…返送が必要です。 スクールバスの申請手続き」）
-     句点で終わる分だけを残すので、尻切れにならない。句点が1つも無い行
-     （「令和9年4月 第1期再編実施：…」など）は、切ると何も残らないのでそのまま返す。 */
-  function leadSentences(text, n) {
-    var m = text.match(/[^。．！？!?]+[。．！？!?]/g);
-    if (!m) return text;
-    return m.slice(0, n).join('').replace(/\s+/g, ' ').trim();
-  }
-
   /* ---- 材料あつめ ---- */
-
-  // ページ要約: 各 h2.section-title と、その節の先頭の段落。
-  var SKIP_P = /section-updated|caption|source|note|osm|credit|lead-sub/;
-
-  /* 見出し1つが受け持つ範囲は「その見出しの次から、次の見出しの手前まで」。
-     節（<section>）ではなく見出し単位で切るのは、faq.html のように1つの節へ
-     見出しが4つ並ぶページがあり、節で切ると4つとも同じ本文がぶら下がるため。 */
-  function scopeOf(h) {
-    var nodes = [], n = h.nextElementSibling;
-    while (n) {
-      if (n.matches('h2') || n.querySelector('h2.section-title')) break;
-      nodes.push(n);
-      n = n.nextElementSibling;
-    }
-    if (!nodes.length) {
-      var sec = h.closest('section');
-      if (sec) nodes.push(sec);
-    }
-    return nodes;
-  }
-  function pick(nodes, sel) {
-    var out = [];
-    nodes.forEach(function (n) {
-      if (n.matches(sel)) out.push(n);
-      [].push.apply(out, n.querySelectorAll(sel));
-    });
-    return out;
-  }
-
-  /* 紙が「いま」回っている以上、まず要るのは締切とこれからの予定。
-     ページの上から順に節の要約を並べただけでは、サイトの目次を刷ったものにしかならない。
-     ここでは、そのページにある期限つき・日付つきの要素のうち、まだ先のものだけを
-     いちばん上のブロックにまとめる。文面は既存の要素からそのまま取る。 */
-  function urgentBlock() {
-    var today = new Date().toISOString().slice(0, 10);
-    var lines = [];
-    function add(txt) {
-      txt = leadSentences(txt, 2);
-      if (txt.length >= 6 && lines.indexOf(txt) === -1) lines.push(txt);
-    }
-    // 提出期限の枠と「もうすぐ」の行。期限切れは data-expires で落とす
-    // （画面側の DEADLINE BOX EXPIRY / UPCOMING SCHEDULE EXPIRY と同じ判定）。
-    document.querySelectorAll('.deadline-box[data-expires], .upcoming-item[data-expires]')
-      .forEach(function (el) {
-        if (el.getAttribute('data-expires') < today) return;
-        add(clean(el));
-      });
-    // 年表のこれからの予定は、上で3件そろわなかったときだけ足す。
-    // 「もうすぐ」の行と年表は同じ予定を別の言い方で書いていることが多く、
-    // 両方載せると狭い紙面で同じ話が二度出てしまう。
-    // 状態ラベル（完了・準備中）は紙では意味が薄いので .status-content 側だけ読む。
-    [].slice.call(document.querySelectorAll('.status-item[data-start], .event-item[data-start]'))
-      .filter(function (el) { return el.getAttribute('data-start') >= today; })
-      .forEach(function (el) {
-        if (lines.length >= 3) return;
-        add(clean(el.querySelector('.status-content') || el));
-      });
-    return lines.length
-      ? {h: t('now', 'いま近づいている予定'), kind: 'list', lines: lines.slice(0, 3)}
-      : null;
-  }
 
   /* これからの催し（地域の取組）。
      「最新の動き」は起きたことを配る紙なので直近7日の data-date で絞るが、
@@ -1713,68 +1640,6 @@ window.KomakiGrade = (function () {
       if (lines.indexOf(line) === -1) lines.push(line);
     });
     return lines.length ? {h: t('actions', 'これからの催し'), kind: 'list', lines: lines} : null;
-  }
-
-  // ページ要約: 見出しと、その見出しが受け持つ範囲の代表文。
-  function pageBlocks() {
-    var out = [];
-    document.querySelectorAll('main h2.section-title').forEach(function (h) {
-      var sec = h.closest('section');
-      if (sec && sec.getAttribute('data-board') === 'skip') return;
-      var nodes = scopeOf(h);
-
-      // 代表文は「範囲に最初に現れる段落」。判定を賢くしようとせず、紙に載せたく
-      // ないものは HTML 側で data-board="skip" と書いて外す（節ごとなら
-      // <section data-board="skip">、1文だけなら <p data-board="skip">）。
-      var txt = '';
-      var ps = pick(nodes, 'p');
-      for (var i = 0; i < ps.length && !txt; i++) {
-        var p = ps[i];
-        if (SKIP_P.test(p.className) || p.getAttribute('data-board') === 'skip') continue;
-        var c = clean(p);
-        if (c.length >= 20) txt = c;
-      }
-      if (txt) {
-        out.push({h: headText(h), kind: 'prose', lines: sentencesOf(txt)});
-        return;
-      }
-
-      // 段落が無い範囲（年表・Q&A・箇条書きだけ）は、その並びをそのまま拾う。
-      // 年表は li ではなく .status-content / .event-desc、Q&A は .faq-q の中。
-      var lines = [];
-      var cand = pick(nodes, 'li, .status-content, .event-desc, .faq-q > span:first-child');
-      // 日付を持つ並び（年表）は、これからの予定を優先する。
-      // 紙で配るものが去年の実績から始まっていては、回覧板として役に立たない。
-      var today = new Date().toISOString().slice(0, 10);
-      var future = cand.filter(function (el) {
-        var owner = el.closest('[data-start]');
-        return owner && owner.getAttribute('data-start') >= today;
-      });
-      if (future.length) cand = future;
-      for (var j = 0; j < cand.length && lines.length < 6; j++) {
-        var lt = leadSentences(clean(cand[j]), 2);
-        if (lt.length >= 8) lines.push(lt);
-      }
-      // 見出しだけの範囲は紙に載せない。見出しの羅列は要約として読めないため、
-      // 「見出しを全部入れる」ことより「読める文が付いていること」を優先する。
-      if (lines.length) out.push({h: headText(h), kind: 'list', lines: lines});
-    });
-    // 先頭に「いま近づいている予定」を置き、そこに出た行は下の節から取り除く
-    // （同じ予定が紙の中で二度出ると、紙面が狭いぶん目立って読みづらい）。
-    var urgent = urgentBlock();
-    if (urgent) {
-      out.forEach(function (b) {
-        if (b.kind !== 'list') return;
-        b.lines = b.lines.filter(function (l) { return urgent.lines.indexOf(l) === -1; });
-      });
-      out = out.filter(function (b) { return b.kind === 'prose' || b.lines.length; });
-      out.unshift(urgent);
-    }
-    // これからの催しは紙のいちばん最後。地域の取組の節は data-board="skip" にしてあり、
-    // 節の要約（案内文）ではなくこの一覧が載る。
-    var acts = upcomingActionsBlock();
-    if (acts) out.push(acts);
-    return out;
   }
 
   /* 最新の動き: 4つのコーナーを、描画済みの DOM からそのまま拾う。
@@ -1860,15 +1725,9 @@ window.KomakiGrade = (function () {
     var ymd = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) +
               '-' + ('0' + today.getDate()).slice(-2);
     var body = blocks.map(function (b) {
-      var inner;
-      if (b.kind === 'prose') {
-        // 本文は文の途中で切らない。入る本数だけを段落として載せる。
-        inner = '<p>' + esc(b.lines.slice(0, cfg.sentences).join('')) + '</p>';
-      } else {
-        inner = '<ul>' + b.lines.slice(0, cfg.maxLines).map(function (l) {
-          return '<li>' + esc(l) + '</li>';
-        }).join('') + '</ul>';
-      }
+      var inner = '<ul>' + b.lines.slice(0, cfg.maxLines).map(function (l) {
+        return '<li>' + esc(l) + '</li>';
+      }).join('') + '</ul>';
       return '<div class="board-block"><div class="board-block-h">' + esc(b.h) + '</div>' +
              inner + '</div>';
     }).join('');
@@ -1909,15 +1768,15 @@ window.KomakiGrade = (function () {
   }
 
   /* 詰め方の順番。文や見出しを途中で切ることは一切しない。
-     文の本数 → 一覧の項目数 → 文字の倍率、の順に減らし、
+     一覧の項目数 → 文字の倍率、の順に減らし、
      それでも溢れるときは fit() が末尾の見出しごと落とす。 */
   var LADDER = [
-    {sentences: 3, maxLines: 8, scale: 1},
-    {sentences: 2, maxLines: 7, scale: 1},
-    {sentences: 1, maxLines: 6, scale: 1},
-    {sentences: 1, maxLines: 5, scale: .95},
-    {sentences: 1, maxLines: 4, scale: .9},
-    {sentences: 1, maxLines: 3, scale: .85}
+    {maxLines: 8, scale: 1},
+    {maxLines: 7, scale: 1},
+    {maxLines: 6, scale: 1},
+    {maxLines: 5, scale: .95},
+    {maxLines: 4, scale: .9},
+    {maxLines: 3, scale: .85}
   ];
 
   function fit(title, lead, blocks, lang) {
@@ -1959,7 +1818,25 @@ window.KomakiGrade = (function () {
     }
   }
 
-  /* ---- ボタン ---- */
+  /* ---- 印刷実行と、ボタン2つ（共有欄の「回」＋「最新の動き」節内の専用ボタン） ----
+     両方とも同じ内容（「最新の動き」4コーナーの新着一覧）を刷る。 */
+
+  function printLatest() {
+    var h2 = document.querySelector('#latest h2.section-title');
+    var blocks = latestBlocks();
+    // 画面の説明文（「4つのコーナーは毎日自動で取得して…」）は紙では意味がない。
+    // 代わりに「いつからいつまでの分か」を出す。紙は日付が命なので。
+    var now = new Date();
+    var to = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+    var from = new Date(to.getTime() - (LATEST_DAYS - 1) * 86400000);
+    var fmt = function (d) { return d.toISOString().slice(0, 10); };
+    var lead = t('range', '直近1週間（{from}〜{to}）に更新された内容です。')
+                 .replace('{from}', fmt(from)).replace('{to}', fmt(to));
+    if (!blocks.length) lead += ' ' + t('none', 'この1週間に新しい動きはありませんでした。');
+    printSheet((h2 && headText(h2)) || '', lead, blocks);
+  }
+
+  latestBtn.addEventListener('click', printLatest);
 
   if (shareBox) {
     var btn = document.createElement('button');
@@ -1972,31 +1849,8 @@ window.KomakiGrade = (function () {
     ic.setAttribute('aria-hidden', 'true');
     ic.textContent = '回';        // 「回」＝回覧
     btn.appendChild(ic);
-    btn.addEventListener('click', function () {
-      var h1 = document.querySelector('main h1');
-      var desc = document.querySelector('meta[name="description"]');
-      printSheet((h1 && clean(h1)) || document.title,
-                 (desc && desc.getAttribute('content')) || '',
-                 pageBlocks());
-    });
+    btn.addEventListener('click', printLatest);
     shareBox.appendChild(btn);
-  }
-
-  if (latestBtn) {
-    latestBtn.addEventListener('click', function () {
-      var h2 = document.querySelector('#latest h2.section-title');
-      var blocks = latestBlocks();
-      // 画面の説明文（「4つのコーナーは毎日自動で取得して…」）は紙では意味がない。
-      // 代わりに「いつからいつまでの分か」を出す。紙は日付が命なので。
-      var now = new Date();
-      var to = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
-      var from = new Date(to.getTime() - (LATEST_DAYS - 1) * 86400000);
-      var fmt = function (d) { return d.toISOString().slice(0, 10); };
-      var lead = t('range', '直近1週間（{from}〜{to}）に更新された内容です。')
-                   .replace('{from}', fmt(from)).replace('{to}', fmt(to));
-      if (!blocks.length) lead += ' ' + t('none', 'この1週間に新しい動きはありませんでした。');
-      printSheet((h2 && headText(h2)) || '', lead, blocks);
-    });
   }
 })();
 

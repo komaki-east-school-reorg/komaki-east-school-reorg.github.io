@@ -13,7 +13,6 @@
   "board_latest_btn": "最新の動きを印刷して回覧する",
   "board_latest_none": "この1週間に新しい動きはありませんでした。",
   "board_latest_range": "直近1週間（{from}〜{to}）に更新された内容です。",
-  "board_now": "いま近づいている予定",
   "board_scan": "スマートフォンのカメラで読み取れます。",
   "board_stamp": "回 覧",
   "board_unofficial": "市民有志が運営する非公式のサイトです。小牧市・教育委員会が発行したものではありません。",
