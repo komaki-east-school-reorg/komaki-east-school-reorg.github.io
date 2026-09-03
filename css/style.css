@@ -1729,6 +1729,50 @@ footer {
   .share-btn { width: 2.2rem; height: 2.2rem; }
 }
 
+/* ===== 共有ボタン・固定バー（画面下部に全ページ常時表示）=====
+   本文最後の共有欄と同じボタン一式をもう1つ、画面下端に position:fixed で
+   置く（js/main.js の SHARE BUTTONS が組み立てる）。はてなスターはここには
+   出さない — 常に画面内にあると IntersectionObserver が読み込み直後に発火し、
+   「読者が最下部まで来なければ、はてなへの通信は起きない」設計が崩れるため。
+   横に並べきれない数のボタンがあるので、折り返さず横スクロールにする。 */
+.share-sticky {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 90;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -3px 12px rgba(0,0,0,.12);
+  padding: .4rem .7rem calc(.4rem + env(safe-area-inset-bottom, 0px));
+}
+.share-buttons--sticky {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.share-buttons--sticky .share-btn { flex: 0 0 auto; }
+/* トーストは固定バーの真下が画面外になるので、バーの上に浮かせる。 */
+.share-sticky .share-copy-msg {
+  position: absolute;
+  bottom: 100%;
+  left: .7rem;
+  margin: 0 0 .4rem;
+  background: var(--white);
+  padding: .35rem .65rem;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 2px 10px rgba(0,0,0,.18);
+}
+/* 固定バーの高さぶん、本文の最後（フッター・共有欄）が隠れないよう空けておく。
+   JS が動かず固定バーが作られない場合は html.has-share-sticky も付かないので、
+   その場合は無駄な余白を残さない。 */
+html.has-share-sticky body {
+  padding-bottom: calc(3.6rem + env(safe-area-inset-bottom, 0px));
+}
+@media print {
+  .share-sticky { display: none !important; }
+}
+
 /* ===== BUS SERVICE AREA MAP（bus.html）=====
    図形は data/bus_map.geojson、描画は js/main.js の BUS SERVICE AREA MAP。
    市の対象エリア図を当サイトがトレースした「近似図」なので、凡例と注記

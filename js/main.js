@@ -1183,10 +1183,32 @@ window.KomakiGrade = (function () {
    ラベルは data-i18n を付けて i18n.js に任せる。公式ニュース等のブロックが
    インライン辞書を持っているのは JSON 取得より先に描くためだが、こちらは
    applyDict より前に DOM を作れるので、辞書に一本化したほうが10言語を揃えやすい。
-   HTML に現れないキーなので build_page_dicts.py の RUNTIME_KEYS に入れてある。 */
+   HTML に現れないキーなので build_page_dicts.py の RUNTIME_KEYS に入れてある。
+
+   2026-09 に、画面下部に常時追従する固定バー（.share-sticky）を追加した。
+   中身は本文最後の共有欄とまったく同じボタン一式（＋index.htmlでは回覧板ボタンも）で、
+   ボタンの生成・href の組み直し・タイトル同期はすべて2つの入れ物（boxes）に対して
+   まとめて行う。固定バーには「はてなスター」は入れない — 星は共有ではなくページへの
+   反応であることに加え、常に画面内にあると IntersectionObserver が読み込み直後に
+   発火してしまい、「読者が最下部まで来なければはてなへ通信しない」という設計
+   （下の ===== はてなスター ===== 参照）が崩れるため。 */
 (function () {
-  var box = document.getElementById('share-buttons');
-  if (!box) return;
+  var mainBox = document.getElementById('share-buttons');
+  if (!mainBox) return;
+
+  var stickyBar = document.createElement('div');
+  stickyBar.className = 'share-sticky';
+  stickyBar.setAttribute('role', 'region');
+  stickyBar.setAttribute('data-i18n-aria', 'share_heading');
+  stickyBar.setAttribute('aria-label', 'このページを共有する');
+  var stickyBox = document.createElement('div');
+  stickyBox.className = 'share-buttons share-buttons--sticky';
+  stickyBox.id = 'share-buttons-sticky';
+  stickyBar.appendChild(stickyBox);
+  document.body.appendChild(stickyBar);
+  document.documentElement.classList.add('has-share-sticky');
+
+  var boxes = [mainBox, stickyBox];
 
   var LANGS = ['ja', 'en', 'pt', 'vi', 'tl', 'es', 'zh', 'id', 'tr', 'my'];
 
@@ -1260,9 +1282,9 @@ window.KomakiGrade = (function () {
   }
 
   // aria-label（辞書が入れた訳文）をそのまま title に写す。辞書の取得は非同期なので、
-  // 描画時ではなく「使う直前」に写す。
+  // 描画時ではなく「使う直前」に写す。両方の入れ物ぶんをまとめて拾う。
   function syncTitles() {
-    box.querySelectorAll('.share-btn').forEach(function (el) {
+    document.querySelectorAll('.share-btn').forEach(function (el) {
       var t = el.getAttribute('aria-label');
       if (t && el.title !== t) el.title = t;
     });
@@ -1270,14 +1292,18 @@ window.KomakiGrade = (function () {
 
   var links = [];
 
-  SERVICES.forEach(function (s) {
-    var a = makeBtn('a', s.cls, s.icon, s.key, s.ja);
-    a.target = '_blank';
-    a.rel = 'noopener';
-    a._build = function () { a.href = s.url(shareUrl(), shareTitle()); };
-    a._build();
-    links.push(a);
-    box.appendChild(a);
+  // 同じサービス一式を、共有欄と固定バーの両方に作る。href の組み直しは
+  // 入れ物を区別せず、links に集めた <a> をまとめて refresh() するだけでよい。
+  boxes.forEach(function (box) {
+    SERVICES.forEach(function (s) {
+      var a = makeBtn('a', s.cls, s.icon, s.key, s.ja);
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a._build = function () { a.href = s.url(shareUrl(), shareTitle()); };
+      a._build();
+      links.push(a);
+      box.appendChild(a);
+    });
   });
 
   // href は「使われる直前」に組み直す。ページ題名は i18n.js が辞書取得後に
@@ -1287,9 +1313,11 @@ window.KomakiGrade = (function () {
     syncTitles();
     if (starPermalink) starPermalink.textContent = shareTitle();
   }
-  var starPermalink = null;   // はてなスターの題名リンク（下で作る）
-  ['pointerdown', 'focusin', 'touchstart', 'mouseover'].forEach(function (ev) {
-    box.addEventListener(ev, refresh, {passive: true});
+  var starPermalink = null;   // はてなスターの題名リンク（下で作る。固定バーには無い）
+  boxes.forEach(function (box) {
+    ['pointerdown', 'focusin', 'touchstart', 'mouseover'].forEach(function (ev) {
+      box.addEventListener(ev, refresh, {passive: true});
+    });
   });
   document.querySelectorAll('.lang-select').forEach(function (sel) {
     sel.addEventListener('change', function () {
@@ -1298,39 +1326,44 @@ window.KomakiGrade = (function () {
     });
   });
 
-  // --- リンクをコピー ---
-  // 結果の文言は最初から DOM に置いて出し入れするだけにする。押されたあとに
-  // 作ると、そのとき i18n.js の適用は終わっているので日本語のまま出てしまう。
-  var msg = document.createElement('span');
-  msg.className = 'share-copy-msg';
-  msg.setAttribute('role', 'status');
+  /* --- コピー結果などの案内文言 ---
+     文言そのもの（辞書からの訳文）は1組のテンプレートだけ持てばよいが、
+     表示する場所（トースト）は入れ物ごとに要る。押されたあとに作ると、
+     そのとき i18n.js の適用は終わっているので日本語のまま出てしまうため、
+     テンプレートは最初から DOM に置いて出し入れするだけにする。 */
+  var tpl = document.createElement('div');
+  tpl.hidden = true;
+  document.body.appendChild(tpl);
 
-  function msgSpan(key, ja) {
+  function tplSpan(key, ja) {
     var el = document.createElement('span');
     el.setAttribute('data-i18n', key);
     el.textContent = ja;
-    el.style.display = 'none';
-    msg.appendChild(el);
+    tpl.appendChild(el);
     return el;
   }
-  var msgOk = msgSpan('share_copied', 'コピーしました');
-  var msgNg = msgSpan('share_copy_failed', 'コピーできませんでした');
-  var msgHostNg = msgSpan('share_mastodon_invalid', 'サーバーのドメインが正しくないようです');
-  // アプリ名を差し込んで組み立てる文言（Instagram 等）はここに書き出す。
-  var msgFree = document.createElement('span');
-  msgFree.style.display = 'none';
-  msg.appendChild(msgFree);
-  var msgAll = [msgOk, msgNg, msgHostNg, msgFree];
-  var msgTimer = null;
+  var msgOkTpl = tplSpan('share_copied', 'コピーしました');
+  var msgNgTpl = tplSpan('share_copy_failed', 'コピーできませんでした');
+  var msgHostNgTpl = tplSpan('share_mastodon_invalid', 'サーバーのドメインが正しくないようです');
+  // アプリ名を差し込んで組み立てる文言（Instagram 等）もここに置く。
+  var pasteTpl = tplSpan('share_copied_paste', 'リンクをコピーしました。{app} に貼り付けてください');
+  var hostPromptTpl = tplSpan('share_mastodon_prompt', '使っている Mastodon サーバーのドメインを入力してください（例：mstdn.jp）');
 
-  function showMsg(target) {
-    msgAll.forEach(function (el) { el.style.display = el === target ? '' : 'none'; });
-    msg.classList.add('is-visible');
-    clearTimeout(msgTimer);
-    msgTimer = setTimeout(function () { msg.classList.remove('is-visible'); }, 3000);
+  // トースト本体は入れ物ごとに1つ。結果表示はボタンの行の外（下）に置く。
+  // 行の中に空の要素を混ぜると flex の gap ぶんだけ最後のボタンの右に隙間が残るため。
+  function makeToast(box) {
+    var el = document.createElement('span');
+    el.className = 'share-copy-msg';
+    el.setAttribute('role', 'status');
+    box.parentNode.insertBefore(el, box.nextSibling);
+    return el;
   }
-
-  function showText(text) { msgFree.textContent = text; showMsg(msgFree); }
+  function showMsg(toast, text) {
+    toast.textContent = text;
+    toast.classList.add('is-visible');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function () { toast.classList.remove('is-visible'); }, 3000);
+  }
 
   // クリップボードへのコピー。成否を cb(true/false) で返す。
   function copyLink(text, cb) {
@@ -1342,79 +1375,6 @@ window.KomakiGrade = (function () {
       cb(fallbackCopy(text));
     }
   }
-
-  /* --- Mastodon ---
-     分散型なので共有先のサーバーが1つに決まらない。利用者のサーバーのドメインを
-     一度だけ聞いて localStorage（komaki_mastodon）に覚える。第三者のリダイレクト
-     サービスを挟む方法もあるが、このサイトの外部通信先を増やしたくないので採らない。
-     入力を促す文言も辞書から出したいので、非表示の要素に data-i18n で持たせて
-     その textContent を prompt に渡している（main.js からは辞書を直接読めない）。 */
-  var MASTODON_KEY = 'komaki_mastodon';
-
-  function mastodonHost() {
-    try { return localStorage.getItem(MASTODON_KEY) || ''; } catch (e) { return ''; }
-  }
-
-  function normalizeHost(v) {
-    var h = String(v == null ? '' : v).trim().toLowerCase();
-    h = h.replace(/^https?:\/\//, '').replace(/\/.*$/, '');
-    if (h.indexOf('@') !== -1) h = h.split('@').pop();   // @user@example.social 形式
-    return /^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$/.test(h) ? h : '';
-  }
-
-  var hostPrompt = document.createElement('span');
-  hostPrompt.setAttribute('data-i18n', 'share_mastodon_prompt');
-  hostPrompt.textContent = '使っている Mastodon サーバーのドメインを入力してください（例：mstdn.jp）';
-  hostPrompt.style.display = 'none';
-  box.appendChild(hostPrompt);
-
-  // <a> ではなく <button>：サーバーが未登録のうちは行き先が決まらず、
-  // href の無い <a> はキーボードで到達できなくなるため。
-  var mastodonBtn = makeBtn('button', 'mastodon', 'm', 'share_mastodon', 'Mastodonで共有');
-  mastodonBtn.addEventListener('click', function () {
-    var host = mastodonHost();
-    if (!host) {
-      var raw = window.prompt(hostPrompt.textContent, '');
-      if (raw === null) return;                 // 取り消し
-      host = normalizeHost(raw);
-      if (!host) { showMsg(msgHostNg); return; }
-      try { localStorage.setItem(MASTODON_KEY, host); } catch (e) {}
-    }
-    window.open('https://' + host + '/share?text=' + enc(shareTitle() + ' ' + shareUrl()),
-                '_blank', 'noopener');
-  });
-  box.appendChild(mastodonBtn);
-
-  /* --- Instagram・TikTok ---
-     この2つは「リンクを渡して投稿画面を開く」共有URLを公開していないので、
-     ボタンとしては作れない。押したらリンクをコピーして、アプリに貼り付けて
-     もらう案内を出す（ストーリーズやプロフィール欄に貼る使い方に合わせている）。
-     ラベルに「（リンクをコピー）」と書いてあるのは、押しても投稿画面が
-     開かないことを押す前に分かるようにするため。 */
-  var pasteTpl = document.createElement('span');
-  pasteTpl.setAttribute('data-i18n', 'share_copied_paste');
-  pasteTpl.textContent = 'リンクをコピーしました。{app} に貼り付けてください';
-  pasteTpl.style.display = 'none';
-  box.appendChild(pasteTpl);
-
-  [{cls: 'instagram', icon: 'IG', key: 'share_instagram', ja: 'Instagram（リンクをコピー）', app: 'Instagram'},
-   {cls: 'tiktok',    icon: '♪',  key: 'share_tiktok',    ja: 'TikTok（リンクをコピー）',    app: 'TikTok'}
-  ].forEach(function (s) {
-    var b = makeBtn('button', s.cls, s.icon, s.key, s.ja);
-    b.addEventListener('click', function () {
-      copyLink(shareUrl(), function (okFlag) {
-        if (!okFlag) { showMsg(msgNg); return; }
-        showText(pasteTpl.textContent.replace('{app}', s.app));
-      });
-    });
-    box.appendChild(b);
-  });
-
-  var copyBtn = makeBtn('button', 'copy', '🔗', 'share_copy', 'リンクをコピー');
-  copyBtn.addEventListener('click', function () {
-    copyLink(shareUrl(), function (okFlag) { showMsg(okFlag ? msgOk : msgNg); });
-  });
-  box.appendChild(copyBtn);
 
   function fallbackCopy(text) {
     try {
@@ -1430,21 +1390,84 @@ window.KomakiGrade = (function () {
     } catch (e) { return false; }
   }
 
-  /* --- 端末標準の共有（スマートフォン）---
-     WhatsApp・Zalo・Messenger など、ここに並べきれない共有先の受け皿。
-     Instagram・TikTok も、スマートフォンならこの共有シートから直接開ける
-     （上の2ボタンはコピーまでしかできないPC向けの経路）。 */
-  if (navigator.share) {
-    var nativeBtn = makeBtn('button', 'native', '↗', 'share_native', 'ほかのアプリで共有');
-    nativeBtn.addEventListener('click', function () {
-      navigator.share({title: shareTitle(), url: shareUrl()}).catch(function () {});
-    });
-    box.appendChild(nativeBtn);
+  /* --- Mastodon ---
+     分散型なので共有先のサーバーが1つに決まらない。利用者のサーバーのドメインを
+     一度だけ聞いて localStorage（komaki_mastodon）に覚える。第三者のリダイレクト
+     サービスを挟む方法もあるが、このサイトの外部通信先を増やしたくないので採らない。 */
+  var MASTODON_KEY = 'komaki_mastodon';
+
+  function mastodonHost() {
+    try { return localStorage.getItem(MASTODON_KEY) || ''; } catch (e) { return ''; }
   }
 
-  // 結果表示はボタンの行の外（下）に置く。行の中に空の要素を混ぜると
-  // flex の gap ぶんだけ最後のボタンの右に隙間が残るため。
-  box.parentNode.insertBefore(msg, box.nextSibling);
+  function normalizeHost(v) {
+    var h = String(v == null ? '' : v).trim().toLowerCase();
+    h = h.replace(/^https?:\/\//, '').replace(/\/.*$/, '');
+    if (h.indexOf('@') !== -1) h = h.split('@').pop();   // @user@example.social 形式
+    return /^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$/.test(h) ? h : '';
+  }
+
+  var hasNative = !!navigator.share;
+
+  // Mastodon・Instagram・TikTok・コピー・端末共有は、両方の入れ物にそれぞれ
+  // 独立したボタンとトーストを持たせる（ボタン自体は複製できないため）。
+  boxes.forEach(function (box) {
+    var toast = makeToast(box);
+
+    // <a> ではなく <button>：サーバーが未登録のうちは行き先が決まらず、
+    // href の無い <a> はキーボードで到達できなくなるため。
+    var mastodonBtn = makeBtn('button', 'mastodon', 'm', 'share_mastodon', 'Mastodonで共有');
+    mastodonBtn.addEventListener('click', function () {
+      var host = mastodonHost();
+      if (!host) {
+        var raw = window.prompt(hostPromptTpl.textContent, '');
+        if (raw === null) return;                 // 取り消し
+        host = normalizeHost(raw);
+        if (!host) { showMsg(toast, msgHostNgTpl.textContent); return; }
+        try { localStorage.setItem(MASTODON_KEY, host); } catch (e) {}
+      }
+      window.open('https://' + host + '/share?text=' + enc(shareTitle() + ' ' + shareUrl()),
+                  '_blank', 'noopener');
+    });
+    box.appendChild(mastodonBtn);
+
+    /* --- Instagram・TikTok ---
+       この2つは「リンクを渡して投稿画面を開く」共有URLを公開していないので、
+       ボタンとしては作れない。押したらリンクをコピーして、アプリに貼り付けて
+       もらう案内を出す（ストーリーズやプロフィール欄に貼る使い方に合わせている）。
+       ラベルに「（リンクをコピー）」と書いてあるのは、押しても投稿画面が
+       開かないことを押す前に分かるようにするため。 */
+    [{cls: 'instagram', icon: 'IG', key: 'share_instagram', ja: 'Instagram（リンクをコピー）', app: 'Instagram'},
+     {cls: 'tiktok',    icon: '♪',  key: 'share_tiktok',    ja: 'TikTok（リンクをコピー）',    app: 'TikTok'}
+    ].forEach(function (s) {
+      var b = makeBtn('button', s.cls, s.icon, s.key, s.ja);
+      b.addEventListener('click', function () {
+        copyLink(shareUrl(), function (okFlag) {
+          if (!okFlag) { showMsg(toast, msgNgTpl.textContent); return; }
+          showMsg(toast, pasteTpl.textContent.replace('{app}', s.app));
+        });
+      });
+      box.appendChild(b);
+    });
+
+    var copyBtn = makeBtn('button', 'copy', '🔗', 'share_copy', 'リンクをコピー');
+    copyBtn.addEventListener('click', function () {
+      copyLink(shareUrl(), function (okFlag) { showMsg(toast, okFlag ? msgOkTpl.textContent : msgNgTpl.textContent); });
+    });
+    box.appendChild(copyBtn);
+
+    /* --- 端末標準の共有（スマートフォン）---
+       WhatsApp・Zalo・Messenger など、ここに並べきれない共有先の受け皿。
+       Instagram・TikTok も、スマートフォンならこの共有シートから直接開ける
+       （上の2ボタンはコピーまでしかできないPC向けの経路）。 */
+    if (hasNative) {
+      var nativeBtn = makeBtn('button', 'native', '↗', 'share_native', 'ほかのアプリで共有');
+      nativeBtn.addEventListener('click', function () {
+        navigator.share({title: shareTitle(), url: shareUrl()}).catch(function () {});
+      });
+      box.appendChild(nativeBtn);
+    }
+  });
 
   /* ===== はてなスター ===== */
   /* 星は「共有」ではなくページへの反応なので、URL は言語を付けない canonical に
@@ -1838,7 +1861,11 @@ window.KomakiGrade = (function () {
 
   latestBtn.addEventListener('click', printLatest);
 
-  if (shareBox) {
+  // 共有欄・固定バー（画面下部に常時表示、SHARE BUTTONS が作る）の両方に置く。
+  // 固定バーは index.html にしか無い latestBtn がある前提でしか作られないので、
+  // ここに来ている時点でどちらも存在する（他ページはこの関数より前で return 済み）。
+  [shareBox, document.getElementById('share-buttons-sticky')].forEach(function (box) {
+    if (!box) return;
     var btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'share-btn share-btn--board';
@@ -1850,8 +1877,8 @@ window.KomakiGrade = (function () {
     ic.textContent = '回';        // 「回」＝回覧
     btn.appendChild(ic);
     btn.addEventListener('click', printLatest);
-    shareBox.appendChild(btn);
-  }
+    box.appendChild(btn);
+  });
 })();
 
 /* ===== DEADLINE BOX EXPIRY =====
