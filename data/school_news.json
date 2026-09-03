@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-02T04:32:36Z",
+  "fetched_at": "2026-09-03T00:22:43Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
@@ -13,22 +13,51 @@
         "zh": "篠冈中学"
       },
       "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-09-02",
+      "latest_date": "2026-09-03",
       "items": [
+        {
+          "title": "１年生 ２学期最初の給食",
+          "date": "2026-09-03",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135778828?tm=20260903083254"
+        },
+        {
+          "title": "３年生 体育祭運営種目練習",
+          "date": "2026-09-02",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135777143?tm=20260902171103"
+        },
         {
           "title": "３年生 実力テスト",
           "date": "2026-09-02",
           "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135770932?tm=20260902091847"
+        }
+      ]
+    },
+    {
+      "slug": "sue-e",
+      "level": "elem",
+      "names": {
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-09-02",
+      "items": [
+        {
+          "title": "9/2 委員会活動（５＆６年生）",
+          "date": "2026-09-02",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135775817?tm=20260902153415"
         },
         {
-          "title": "１年生 ２学期が始まりました",
-          "date": "2026-09-01",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135768341?tm=20260901163459"
+          "title": "9/2 今日の給食",
+          "date": "2026-09-02",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135774394?tm=20260902135330"
         },
         {
-          "title": "１年生 道徳",
+          "title": "9/1 二学期始業式",
           "date": "2026-09-01",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135765816?tm=20260901133256"
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135766932?tm=20260901145620"
         }
       ]
     },
@@ -45,19 +74,48 @@
       "latest_date": "2026-09-02",
       "items": [
         {
-          "title": "図工：言葉から感じて",
+          "title": "委員会活動も再開です",
           "date": "2026-09-02",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135772571?tm=20260902115713"
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135777753?tm=20260902180939"
         },
         {
-          "title": "2学期が始まりました",
-          "date": "2026-09-01",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135765865?tm=20260901133556"
+          "title": "2学期はじめての給食は",
+          "date": "2026-09-02",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135777690?tm=20260902180323"
         },
         {
-          "title": "出校日",
-          "date": "2026-08-20",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135737018?tm=20260820202717"
+          "title": "1年生：ロケットを遠くまで飛ばそう",
+          "date": "2026-09-02",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135777627?tm=20260902175617"
+        }
+      ]
+    },
+    {
+      "slug": "momogaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "桃ヶ丘小学校",
+        "ja_kids": "ももがおか小学校",
+        "en": "Momo-ga-oka Elem. School",
+        "zh": "桃之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
+      "latest_date": "2026-09-02",
+      "items": [
+        {
+          "title": "シェイクアウト訓練",
+          "date": "2026-09-02",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/135778123?tm=20260902192612"
+        },
+        {
+          "title": "２学期スタート!!!",
+          "date": "2026-09-02",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/135764167?tm=20260902191038"
+        },
+        {
+          "title": "終業式 ～１学期のふりかえり～",
+          "date": "2026-07-17",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/135513222?tm=20260717155315"
         }
       ]
     },
@@ -91,6 +149,35 @@
       ]
     },
     {
+      "slug": "hikarigaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "光ヶ丘小学校",
+        "ja_kids": "ひかりがおか小学校",
+        "en": "Hikari-ga-oka Elem. School",
+        "zh": "光之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
+      "latest_date": "2026-09-02",
+      "items": [
+        {
+          "title": "ぶどうの収穫体験を行いました",
+          "date": "2026-09-02",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135777826?tm=20260902182140"
+        },
+        {
+          "title": "６年生 身体測定",
+          "date": "2026-09-02",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135773240?tm=20260902124444"
+        },
+        {
+          "title": "5年生 家庭科",
+          "date": "2026-09-02",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135773102?tm=20260902123342"
+        }
+      ]
+    },
+    {
       "slug": "toryo-j",
       "level": "jhs",
       "names": {
@@ -120,64 +207,6 @@
       ]
     },
     {
-      "slug": "sue-e",
-      "level": "elem",
-      "names": {
-        "ja": "陶小学校",
-        "ja_kids": "すえ小学校",
-        "en": "Sue Elem. School",
-        "zh": "陶小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-09-01",
-      "items": [
-        {
-          "title": "9/1 二学期始業式",
-          "date": "2026-09-01",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135766932?tm=20260901145620"
-        },
-        {
-          "title": "8/20 全校出校日",
-          "date": "2026-08-21",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135737114?tm=20260821081657"
-        },
-        {
-          "title": "8/3 陶地域夏祭り：和太鼓部出演",
-          "date": "2026-08-03",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135723509?tm=20260803083233"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "光ヶ丘小学校",
-        "ja_kids": "ひかりがおか小学校",
-        "en": "Hikari-ga-oka Elem. School",
-        "zh": "光之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
-      "latest_date": "2026-09-01",
-      "items": [
-        {
-          "title": "9月1日（火）2学期がスタートしました！",
-          "date": "2026-09-01",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135763357?tm=20260901105454"
-        },
-        {
-          "title": "ぶどう棚のビニールを外しました",
-          "date": "2026-07-27",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135711182?tm=20260727094928"
-        },
-        {
-          "title": "１学期終業式を行いました ～「やってみる」チャレンジの夏休みへ～",
-          "date": "2026-07-17",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135508020?tm=20260717094028"
-        }
-      ]
-    },
-    {
       "slug": "ohshiro-e",
       "level": "elem",
       "names": {
@@ -203,35 +232,6 @@
           "title": "小牧市連絡協議会自主研修会",
           "date": "2026-08-05",
           "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/135701100?tm=20260723105326"
-        }
-      ]
-    },
-    {
-      "slug": "momogaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "桃ヶ丘小学校",
-        "ja_kids": "ももがおか小学校",
-        "en": "Momo-ga-oka Elem. School",
-        "zh": "桃之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
-      "latest_date": "2026-07-17",
-      "items": [
-        {
-          "title": "終業式 ～１学期のふりかえり～",
-          "date": "2026-07-17",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/135513222?tm=20260717155315"
-        },
-        {
-          "title": "4・５年生 : 東部地区小学校合同交流会",
-          "date": "2026-07-15",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/135496212?tm=20260715155536"
-        },
-        {
-          "title": "３年生：総合的な学習（桃の発表準備）",
-          "date": "2026-07-15",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/135494639?tm=20260715135314"
         }
       ]
     }
