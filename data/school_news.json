@@ -1,8 +1,37 @@
 {
-  "fetched_at": "2026-09-03T00:22:43Z",
+  "fetched_at": "2026-09-04T00:12:07Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "sue-e",
+      "level": "elem",
+      "names": {
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-09-04",
+      "items": [
+        {
+          "title": "二学期初の放課後子ども教室は体育館で楽しみました",
+          "date": "2026-09-04",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135787248?tm=20260904080509"
+        },
+        {
+          "title": "9/3 今日の給食",
+          "date": "2026-09-04",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135782443?tm=20260903133711"
+        },
+        {
+          "title": "9/3 家庭科：思いを形にして生活を豊かに（６年生）",
+          "date": "2026-09-03",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135782286?tm=20260903132658"
+        }
+      ]
+    },
     {
       "slug": "shinooka-j",
       "level": "jhs",
@@ -33,35 +62,6 @@
       ]
     },
     {
-      "slug": "sue-e",
-      "level": "elem",
-      "names": {
-        "ja": "陶小学校",
-        "ja_kids": "すえ小学校",
-        "en": "Sue Elem. School",
-        "zh": "陶小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-09-02",
-      "items": [
-        {
-          "title": "9/2 委員会活動（５＆６年生）",
-          "date": "2026-09-02",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135775817?tm=20260902153415"
-        },
-        {
-          "title": "9/2 今日の給食",
-          "date": "2026-09-02",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135774394?tm=20260902135330"
-        },
-        {
-          "title": "9/1 二学期始業式",
-          "date": "2026-09-01",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135766932?tm=20260901145620"
-        }
-      ]
-    },
-    {
       "slug": "shinooka-e",
       "level": "elem",
       "names": {
@@ -71,22 +71,51 @@
         "zh": "篠冈小学"
       },
       "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
-      "latest_date": "2026-09-02",
+      "latest_date": "2026-09-03",
       "items": [
+        {
+          "title": "図工：ほり進めて刷り重ねて",
+          "date": "2026-09-03",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135781038?tm=20260903120134"
+        },
+        {
+          "title": "算数：輪っかの変身",
+          "date": "2026-09-03",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135780896?tm=20260903115340"
+        },
         {
           "title": "委員会活動も再開です",
           "date": "2026-09-02",
           "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135777753?tm=20260902180939"
+        }
+      ]
+    },
+    {
+      "slug": "hikarigaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "光ヶ丘小学校",
+        "ja_kids": "ひかりがおか小学校",
+        "en": "Hikari-ga-oka Elem. School",
+        "zh": "光之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
+      "latest_date": "2026-09-03",
+      "items": [
+        {
+          "title": "６年生 ぶどうの試食",
+          "date": "2026-09-03",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135781586?tm=20260903123735"
         },
         {
-          "title": "2学期はじめての給食は",
-          "date": "2026-09-02",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135777690?tm=20260902180323"
+          "title": "ぶどうを全校で味わいました",
+          "date": "2026-09-03",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135781631?tm=20260903124130"
         },
         {
-          "title": "1年生：ロケットを遠くまで飛ばそう",
+          "title": "ぶどうの収穫体験を行いました",
           "date": "2026-09-02",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135777627?tm=20260902175617"
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135777826?tm=20260902182140"
         }
       ]
     },
@@ -145,35 +174,6 @@
           "title": "7/25(土)ジュニア奉仕団「盲導犬育成募金」",
           "date": "2026-07-25",
           "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135709396?tm=20260725190401"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "光ヶ丘小学校",
-        "ja_kids": "ひかりがおか小学校",
-        "en": "Hikari-ga-oka Elem. School",
-        "zh": "光之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
-      "latest_date": "2026-09-02",
-      "items": [
-        {
-          "title": "ぶどうの収穫体験を行いました",
-          "date": "2026-09-02",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135777826?tm=20260902182140"
-        },
-        {
-          "title": "６年生 身体測定",
-          "date": "2026-09-02",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135773240?tm=20260902124444"
-        },
-        {
-          "title": "5年生 家庭科",
-          "date": "2026-09-02",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135773102?tm=20260902123342"
         }
       ]
     },
