@@ -14,6 +14,12 @@
       "en": "Map legend now explains the school-district fill colours"
     },
     {
+      "date": "2026-09-04",
+      "type": "feature",
+      "ja": "どのページでも画面下部に共有ボタンを固定表示（トップは回覧板も）",
+      "en": "Sticky share bar at the bottom of every page (plus the printable sheet on the top page)"
+    },
+    {
       "date": "2026-09-03",
       "type": "feature",
       "ja": "トップ上部の帯に市のお知らせと更新も表示",
