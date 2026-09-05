@@ -143,6 +143,17 @@
       ]
     },
     {
+      "slug_prefix": "303-718-52576",
+      "topic": "しのおか学園の校章決定（令和8年9月4日公表）",
+      "targets": [
+        "now_bar",
+        "current_status",
+        "key_events",
+        "calendar",
+        "about"
+      ]
+    },
+    {
       "slug_prefix": "303-719-aratanagakkoudukurisuishinkeikakukentouiinnkai-",
       "topic": "新たな学校づくり推進計画検討委員会（第1〜6回）",
       "targets": [

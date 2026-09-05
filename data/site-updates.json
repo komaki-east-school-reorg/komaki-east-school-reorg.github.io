@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-09-05",
+      "type": "content",
+      "ja": "しのおか学園の校章決定（9月4日公表）を反映",
+      "en": "Shinooka Gakuen emblem decision (4 Sep) reflected"
+    },
+    {
+      "date": "2026-09-05",
       "type": "fix",
       "ja": "対象エリアの地図の凡例に通学区域の色分けを追加",
       "en": "Map legend now explains the school-district fill colours"
