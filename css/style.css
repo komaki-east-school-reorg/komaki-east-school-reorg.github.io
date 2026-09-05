@@ -1832,6 +1832,9 @@ html.has-share-sticky body {
 }
 .bus-map-key--area   { background: rgba(126,110,196,.45); border: 2px solid #6b58b8; }
 .bus-map-key--walk   { background: var(--white); border: 2px solid var(--border); }
+/* 通学区域の塗り分け。js/main.js の DFILL と同じ値（地図の背景は白なので見た目も一致する） */
+.bus-map-key--east   { background: rgba(212,170,48,.16); border: 2px solid var(--border); }
+.bus-map-key--west   { background: rgba(88,117,149,.16); border: 2px solid var(--border); }
 .bus-map-key--school { background: var(--primary); border-radius: 50%; border: 2px solid var(--white); box-shadow: 0 0 0 1px var(--primary); }
 
 .info-box--warn {

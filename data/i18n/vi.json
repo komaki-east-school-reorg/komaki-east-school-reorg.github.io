@@ -761,6 +761,8 @@
   "bus_map_legend_area": "Khu vực có xe buýt trường",
   "bus_map_legend_walk": "Không tô màu (quanh hai trường) — vùng đi bộ",
   "bus_map_legend_school": "Hai trường tiểu học mới",
+  "bus_map_legend_east": "Màu vàng nhạt = khu vực trường Tokadai-Higashi",
+  "bus_map_legend_west": "Màu xanh nhạt = khu vực trường Tokadai-Nishi",
   "bus_map_caveat": "⚠️ <strong>Vùng tím được đọc trực tiếp từ hình vùng xe buýt đưa đón do thành phố công bố.</strong> Khung và tỉ lệ của bản đồ này khớp với hình gốc (1639×1179 px, khoảng 3,8 m mỗi điểm ảnh), và hình dạng sai lệch khoảng 4 m so với hình gốc. Để kiểm chứng, vùng đi bộ nằm trong khung là 8,4 km², so với 8,7 km² thành phố công bố. Dù vậy, hình gốc có tỉ lệ nhỏ nên không thể xác định ranh giới tới từng địa chỉ. <strong>Đường đỏ (ranh giới khu vực trường) cũng chính xác.</strong> Nó ghép các khu vực trường tiểu học hiện nay từ dữ liệu “Khu vực trường học” của Bộ Đất đai (MLIT) với ranh giới chome trong dữ liệu tổng điều tra dân số (Cục Thống kê), đúng theo cách sáp nhập nêu trong bản tin tái cơ cấu; nó chính xác đến từng ranh giới chome (diện tích thu được, 20,3 km² cho Tokadai-Higashi và 6,9 km² cho Tokadai-Nishi, trùng với số liệu thành phố công bố). <strong>Bản đồ này chỉ vẽ những gì có trong hình gốc.</strong> Khu vực trường Tokadai-Higashi còn kéo dài ra ngoài mép trên bên phải (đông bắc), vào vùng đồi Oyama và Noguchi, và hình gốc cũng dừng ở đó: trong 18,5 km² vùng xe buýt đã công bố, 12,3 km² nằm trong khung này; phần ngoài khung không được vẽ. <strong>Hãy luôn kiểm tra giấy tờ thành phố gửi để biết nhà bạn có thuộc diện hay không.</strong> Bản đồ này không thể quyết định điều đó.",
   "bus_map_gmap": "Xem khu vực này trên Google Maps →",
   "bus_map_kml": "Dữ liệu hình khu vực (KML)",
