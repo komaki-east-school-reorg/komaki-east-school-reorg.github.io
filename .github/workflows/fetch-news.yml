@@ -258,7 +258,7 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ github.token }}
-          claude_args: '--model sonnet --max-turns 50 --allowedTools "Read,Grep,Glob,Edit,Write"'
+          claude_args: '--model sonnet --max-turns 120 --allowedTools "Read,Grep,Glob,Edit,Write"'
           prompt: |
             あなたは小牧市篠岡地区の学校再編情報サイト（このリポジトリ）の自動更新担当です。
             市公式サイトのページ本文に変更が検知されました。今日の日付は ${{ env.TODAY }} です。
@@ -279,7 +279,8 @@ jobs:
             3. data/site-facts.json で影響しうるサイト内の箇所を確認する
             4. CLAUDE.md のルール（特に日付連動の自動表示・属性の使い分け）を読む
             5. サイトのデータを更新すべきか判断し、必要な場合のみ次のファイルだけを編集する:
-               - data/events.json … カレンダー。日付キー YYYY-MM-DD、8言語（ja,en,pt,vi,tl,es,zh,id）すべて必須
+               - data/events.json … カレンダー。日付キー YYYY-MM-DD、10言語（ja,en,pt,vi,tl,es,zh,id,tr,my）すべて必須
+                 （1日に複数の予定があるときは、その日付の値をオブジェクトの配列にする）
                - data/i18n/*.json … 最低 ja と en。既存キーの命名規則に従う
                - index.html … 「今後のスケジュール」バーの .upcoming-item（data-expires="YYYY-MM-DD" と upcoming_dateN/upcoming_nameN キー）
                - schedule.html … 主要イベント一覧の項目（data-event-date="YYYY-MM-DD"、複数日イベントは終了日）
@@ -289,11 +290,11 @@ jobs:
                - **地域協議会のイベントは日程が分かればスケジュールにも入れる**：
                  sasaeai-3-3_2-chiikikyougikaievent-* に篠岡地区5校区（陶・篠岡学区・大城・
                  光ヶ丘・桃ヶ丘）の催しが載ったら、community.html だけで終わらせず
-                 data/events.json（8言語ラベル）と schedule.html の主要イベント一覧、
+                 data/events.json（10言語ラベル）と schedule.html の主要イベント一覧、
                  開催前なら index.html の「今後のスケジュール」バーにも追加する。
                  他学区（小牧小・本庄小・小木小など）のイベントは対象外なので追加しない
             6. **サイトの状況が動く変更なら、トップ冒頭「いまの状況」枠を必ず更新する**
-               - data/i18n/*.json の now_text … 現況を **1文** で要約。全8言語＋ja-kids を更新する
+               - data/i18n/*.json の now_text … 現況を **1文** で要約。全10言語＋ja-kids を更新する
                  （ja-kids は小学3年生レベルのやさしい日本語。CONTRIBUTING.txt 5・6 参照）
                - data/i18n/*.json の now_asof … その基準月（例「2026年8月時点」）を今日の日付に合わせて更新
                - この枠は自動計算ではなく手書きの一文なので、放置すると最も古びやすい。
@@ -308,6 +309,9 @@ jobs:
             - 判断に迷ったら「編集しない」を選ぶ
             - 過去の記述の書き換え・削除はしない。ただし公式ページに日程変更・中止が明記された場合のみ該当箇所を修正してよい
             - 外部リンクの追加は禁止（市サイトへのリンクは既存の 303/index.html のみ許可）
+            - 使えるツールは Read / Grep / Glob / Edit / Write だけで、**Bash は使えない**。
+              ページ別辞書（data/i18n/pages/）の再生成と JSON の構文検査はワークフロー側が
+              このあと自動で行うので、実行を試みずに辞書本体（data/i18n/*.json）だけ直すこと
 
             ## evidence.json の形式（必須）
             編集した各ファイルについて、根拠となる公式ページ原文の引用を添える:
@@ -389,7 +393,7 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ github.token }}
-          claude_args: '--model sonnet --max-turns 30 --allowedTools "Read,Grep,Glob,Write"'
+          claude_args: '--model sonnet --max-turns 60 --allowedTools "Read,Grep,Glob,Write"'
           prompt: |
             あなたは独立した監査担当です。別のAIがこの市民向け情報サイトに加えた変更を審査してください。
             あなた自身がサイトのデータを修正することは禁止されています（Write は verdict.json の出力のみに使う）。
@@ -406,11 +410,11 @@ jobs:
             ## 審査観点
             1. すべての変更が公式ソース原文に裏付けられているか（日付・名称・会場が原文と一致するか）
             2. 推測・創作・原文にない情報が混入していないか
-            3. 8言語ラベル・翻訳が原文の意味と一致するか（不自然・誤訳があれば reject）
+            3. 10言語ラベル・翻訳が原文の意味と一致するか（不自然・誤訳があれば reject）
             4. サイトの規約に沿うか（外部リンク制限、キー命名 upcoming_dateN 等、data-expires と data-event-date の使い分け、複数日イベントは終了日）
             5. 過去の記述が不当に書き換え・削除されていないか
             6. 状況が動く変更なのに「いまの状況」枠（now_text / now_asof）が古いまま放置されていないか。
-               逆に now_text が原文にない推測を含んでいないか。更新するなら全8言語＋ja-kids が揃っているか
+               逆に now_text が原文にない推測を含んでいないか。更新するなら全10言語＋ja-kids が揃っているか
 
             ## 出力（必須）
             auto_update/verdict.json に次の形式で書く:
