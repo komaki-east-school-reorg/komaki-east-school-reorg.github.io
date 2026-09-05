@@ -1,8 +1,66 @@
 {
-  "fetched_at": "2026-09-04T00:12:07Z",
+  "fetched_at": "2026-09-05T00:12:36Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "hikarigaoka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "光ヶ丘中学校",
+        "ja_kids": "ひかりがおか中学校",
+        "en": "Hikari-ga-oka Junior High",
+        "zh": "光之丘中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
+      "latest_date": "2026-09-05",
+      "items": [
+        {
+          "title": "PTA校内除草作業 【実施します】",
+          "date": "2026-09-05",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135795846?tm=20260905072327"
+        },
+        {
+          "title": "温かいご支援に感謝！かつおクラブ様より『宇宙兄弟』をご寄贈いただきました",
+          "date": "2026-09-02",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135770506?tm=20260902080620"
+        },
+        {
+          "title": "新生Toukadai！新しいユニフォームで挑んだ誇り高き初公式戦",
+          "date": "2026-08-22",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135738422?tm=20260822121319"
+        }
+      ]
+    },
+    {
+      "slug": "toryo-j",
+      "level": "jhs",
+      "names": {
+        "ja": "桃陵中学校",
+        "ja_kids": "とうりょう中学校",
+        "en": "Toryo Junior High",
+        "zh": "桃陵中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
+      "latest_date": "2026-09-04",
+      "items": [
+        {
+          "title": "テスト週間です",
+          "date": "2026-09-04",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135791064?tm=20260904145607"
+        },
+        {
+          "title": "My探究研修",
+          "date": "2026-09-04",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135786759?tm=20260903190413"
+        },
+        {
+          "title": "１年生 ２学期初日",
+          "date": "2026-09-01",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135766941?tm=20260901152125"
+        }
+      ]
+    },
     {
       "slug": "sue-e",
       "level": "elem",
@@ -29,6 +87,64 @@
           "title": "9/3 家庭科：思いを形にして生活を豊かに（６年生）",
           "date": "2026-09-03",
           "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135782286?tm=20260903132658"
+        }
+      ]
+    },
+    {
+      "slug": "momogaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "桃ヶ丘小学校",
+        "ja_kids": "ももがおか小学校",
+        "en": "Momo-ga-oka Elem. School",
+        "zh": "桃之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
+      "latest_date": "2026-09-04",
+      "items": [
+        {
+          "title": "５年生：理科",
+          "date": "2026-09-04",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/135791577?tm=20260904140124"
+        },
+        {
+          "title": "５年生：算数「整数」",
+          "date": "2026-09-04",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/135791534?tm=20260904135917"
+        },
+        {
+          "title": "にぎやかな体育館！ 体育１年生＆４年生",
+          "date": "2026-09-04",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/135791465?tm=20260904151028"
+        }
+      ]
+    },
+    {
+      "slug": "hikarigaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "光ヶ丘小学校",
+        "ja_kids": "ひかりがおか小学校",
+        "en": "Hikari-ga-oka Elem. School",
+        "zh": "光之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
+      "latest_date": "2026-09-04",
+      "items": [
+        {
+          "title": "６年生 避難訓練",
+          "date": "2026-09-04",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135787706?tm=20260904085100"
+        },
+        {
+          "title": "６年生 ぶどうの試食",
+          "date": "2026-09-03",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135781586?tm=20260903123735"
+        },
+        {
+          "title": "ぶどうを全校で味わいました",
+          "date": "2026-09-03",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135781631?tm=20260903124130"
         }
       ]
     },
@@ -87,122 +203,6 @@
           "title": "委員会活動も再開です",
           "date": "2026-09-02",
           "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135777753?tm=20260902180939"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "光ヶ丘小学校",
-        "ja_kids": "ひかりがおか小学校",
-        "en": "Hikari-ga-oka Elem. School",
-        "zh": "光之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
-      "latest_date": "2026-09-03",
-      "items": [
-        {
-          "title": "６年生 ぶどうの試食",
-          "date": "2026-09-03",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135781586?tm=20260903123735"
-        },
-        {
-          "title": "ぶどうを全校で味わいました",
-          "date": "2026-09-03",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135781631?tm=20260903124130"
-        },
-        {
-          "title": "ぶどうの収穫体験を行いました",
-          "date": "2026-09-02",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135777826?tm=20260902182140"
-        }
-      ]
-    },
-    {
-      "slug": "momogaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "桃ヶ丘小学校",
-        "ja_kids": "ももがおか小学校",
-        "en": "Momo-ga-oka Elem. School",
-        "zh": "桃之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
-      "latest_date": "2026-09-02",
-      "items": [
-        {
-          "title": "シェイクアウト訓練",
-          "date": "2026-09-02",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/135778123?tm=20260902192612"
-        },
-        {
-          "title": "２学期スタート!!!",
-          "date": "2026-09-02",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/135764167?tm=20260902191038"
-        },
-        {
-          "title": "終業式 ～１学期のふりかえり～",
-          "date": "2026-07-17",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/135513222?tm=20260717155315"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "光ヶ丘中学校",
-        "ja_kids": "ひかりがおか中学校",
-        "en": "Hikari-ga-oka Junior High",
-        "zh": "光之丘中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
-      "latest_date": "2026-09-02",
-      "items": [
-        {
-          "title": "温かいご支援に感謝！かつおクラブ様より『宇宙兄弟』をご寄贈いただきました",
-          "date": "2026-09-02",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135770506?tm=20260902080620"
-        },
-        {
-          "title": "新生Toukadai！新しいユニフォームで挑んだ誇り高き初公式戦",
-          "date": "2026-08-22",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135738422?tm=20260822121319"
-        },
-        {
-          "title": "7/25(土)ジュニア奉仕団「盲導犬育成募金」",
-          "date": "2026-07-25",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135709396?tm=20260725190401"
-        }
-      ]
-    },
-    {
-      "slug": "toryo-j",
-      "level": "jhs",
-      "names": {
-        "ja": "桃陵中学校",
-        "ja_kids": "とうりょう中学校",
-        "en": "Toryo Junior High",
-        "zh": "桃陵中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
-      "latest_date": "2026-09-01",
-      "items": [
-        {
-          "title": "１年生 ２学期初日",
-          "date": "2026-09-01",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135766941?tm=20260901152125"
-        },
-        {
-          "title": "避難訓練",
-          "date": "2026-09-01",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135764047?tm=20260901113603"
-        },
-        {
-          "title": "2学期始業式",
-          "date": "2026-09-01",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135763698?tm=20260901111615"
         }
       ]
     },
