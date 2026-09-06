@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-09-06",
+      "type": "fix",
+      "ja": "英語版の見出し副題を英語から日本語に変更",
+      "en": "Section subtitles in the English version now show the Japanese heading"
+    },
+    {
+      "date": "2026-09-06",
       "type": "content",
       "ja": "検証と提案ページに市・県・国の施策の検証を追加",
       "en": "Review of past city, prefectural and national policies added"

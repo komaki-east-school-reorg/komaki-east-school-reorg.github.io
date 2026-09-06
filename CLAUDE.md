@@ -98,6 +98,21 @@ Page `<title>` and OG/Twitter meta tags are updated automatically via keys named
 
 Keys follow the pattern `<page>_<section>_<type>`, e.g., `about_whatis_p1`, `faq_a3`. Shared/global keys (nav, footer, notice, hero) have no page prefix.
 
+### 見出しの `<small>` 副題（62キー）
+
+節見出し（`h2.section-title` など）は `見出し本文<small>副題</small>` という形の1キーで、`data-i18n-html` で流し込む。副題に入れる言語は**辞書ごとに違う**：
+
+| 辞書 | `<small>` の中身 |
+|---|---|
+| `ja` | 英語（日本語話者に英語の手がかりを渡す）※`council.html` だけ日本語 |
+| `en` | **日本語**（2026-09-06 にユーザー指示で全62キーを英語→日本語へ入れ替え） |
+| その他8言語 | 英語のまま（見出しはその言語なので重複しない。橋渡しとして残す） |
+| `ja-kids` | 24キーのみ英語副題を残し、`rev_*` など残りは副題ごと落としてある |
+
+- **`en` で英語副題は使わない。** 見出しも副題も英語だと「Key Points<small>Key Points</small>」のように同じ語が二度出る。日本語を置けば、英語話者が市の日本語資料と照合する手がかりになる。
+- **見出しの先頭に絵文字がある場合、副題からは絵文字を落とす**（`rev_s2_h` など6キー）。両方に付くと同じ絵文字が2つ並ぶ。
+- 新しい節見出しを足すときは、`ja` に英語副題・`en` に日本語副題・他言語に英語副題、という形をそろえること。
+
 ## Important constraints
 
 - **Header site name is permanently Japanese.** The `<a class="site-title">` element does not get a `data-i18n` attribute. The `<span data-i18n="site_sub">` subtitle inside it is translated, but the main site name text is not.
