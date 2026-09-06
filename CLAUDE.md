@@ -398,6 +398,16 @@ The bottom of `index.html` is split in two. Everything down to **現在の状況
 **On the 回覧板 sheet the corner is a block of its own at the very end** (`upcomingActionsBlock()` in `js/main.js`, heading `board_actions`／「これからの催し」), on both sheet kinds. It sits outside the 7-day `data-date` window on purpose: the rest of the 最新の動き sheet reports what has happened, while these are events still to come — which is exactly what a circulated paper is for. Do not give the action items a `data-date` to fold them into the window. The 地域の取組 section on `community.html` carries `data-board="skip"` so the page-summary sheet prints this list instead of the section's lead paragraph.
 
 - `.group-head` and `.group-head + .section` in `css/style.css` trim the padding so the band and the first corner read as one block. If a corner is inserted between them, that pairing breaks.
+
+#### リンク見出しを翻訳しない理由と、参考訳の案（2026-09-06 保留）
+
+4つのコーナーに並ぶ記事タイトル（市のお知らせ・各校HP・中日新聞・地域の取組の催し名）は**原文のまま**出す。出どころの言葉としての引用だからで、訳すと「市が言ったこと」ではなくなり、しかもリンク先は日本語のページのままになる。日付とラベルは翻訳・整形の対象（`nFmtDate` ほか）だが、見出しは対象外。
+
+**⛔ 自動生成される `news.json` / `school_news.json` / `chunichi_news.json` に訳を書き足さないこと。** 毎日 fetch スクリプトが上書きするうえ、検証されていない訳が公式発表の見出しとして出る。自動更新パイプラインの `ALLOWED` にも入っていない。
+
+原文をリンク文のまま残し、その下に「当サイトによる参考訳」と明示した行を足す案を 2026-09-06 に検討したが、**ユーザー指示で着手前に中止し、今後の課題として保留**した。再開するときの要点だけ残す：訳は手動管理の別ファイルに置く／キーは見出しの原文にする（見出しが変われば訳が自動で外れ、古い訳が残らない）／言語は `en` だけ持ち他言語はフォールバック／`ja`・`ja-kids` では出さない／描画は `js/main.js` の3ブロックで共通ヘルパーを1つ作る。いちばん重いのは実装ではなく、毎日入れ替わる見出しに訳を足し続ける運用。
+
+なお、見出しが原文のままである理由は読者にも見えるようにしてある（`news_note` / `school_news_note` / `press_note`）。
 ### The map on `bus.html`
 
 > **⛔ この地図は完成・凍結。ユーザーの明示的な指示がないかぎり、図形・枠・縮尺・色・線を一切変更しないこと。**
