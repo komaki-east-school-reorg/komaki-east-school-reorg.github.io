@@ -511,6 +511,21 @@ window.KomakiGrade = (function () {
     var s = (_nt[key][_nl] || _nt[key]['en'] || _nt[key]['ja']);
     return d !== undefined ? s.replace('{d}', d) : s;
   }
+  // 市の updated_at は「YYYY年MM月DD日」という日本語表記のまま届く。見出し（市の原文）
+  // とちがって日付は表記の問題でしかないので、他の3コーナー（学校HP・報道・更新履歴）と
+  // 同じく表示言語の書式に直す。読めない文字列はそのまま出す（欠測より原文のほうがまし）。
+  function nIso(t) {
+    var m = /^(\d{4})年(\d{1,2})月(\d{1,2})日/.exec(t || '');
+    return m ? m[1] + '-' + ('0' + m[2]).slice(-2) + '-' + ('0' + m[3]).slice(-2) : '';
+  }
+  function nFmtDate(t) {
+    var iso = nIso(t);
+    if (!iso) return t || '';
+    var d = new Date(iso + 'T00:00:00');
+    if (isNaN(d)) return t || '';
+    return d.toLocaleDateString(_nl === 'ja' ? 'ja-JP' : _nl,
+      {year: 'numeric', month: _nl === 'ja' ? 'long' : 'short', day: 'numeric'});
+  }
 
   fetch('./data/news.json')
     .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
@@ -537,13 +552,11 @@ window.KomakiGrade = (function () {
 
       const listHtml = items.map(item => {
         const date = item.updated_at
-          ? `<span class="official-news-date">${item.updated_at}${ntr('updated')}</span>`
+          ? `<span class="official-news-date">${nFmtDate(item.updated_at)}${ntr('updated')}</span>`
           : '';
         // 回覧板シート（BOARD SHEET）が日付で絞り込めるよう、機械可読な日付を持たせる
-        const iso = (item.updated_at || '').replace(
-          /^(\d{4})年(\d{1,2})月(\d{1,2})日.*$/,
-          (m, y, mo, d) => `${y}-${('0' + mo).slice(-2)}-${('0' + d).slice(-2)}`);
-        return `<li class="official-news-item" data-date="${/^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso : ''}">` +
+        const iso = nIso(item.updated_at);
+        return `<li class="official-news-item" data-date="${iso}">` +
                  `<div class="official-news-item-inner">` +
                    `<a href="${item.url}" target="_blank" rel="noopener">${item.title}</a>` +
                    date +

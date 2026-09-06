@@ -4,6 +4,12 @@
     {
       "date": "2026-09-06",
       "type": "fix",
+      "ja": "市公式サイトお知らせの日付を各言語の表記に対応",
+      "en": "Dates in the official-announcements corner now follow each language's format"
+    },
+    {
+      "date": "2026-09-06",
+      "type": "fix",
       "ja": "英語版の見出し副題を英語から日本語に変更",
       "en": "Section subtitles in the English version now show the Japanese heading"
     },
