@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-05T00:12:36Z",
+  "fetched_at": "2026-09-06T00:00:00Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
@@ -16,6 +16,11 @@
       "latest_date": "2026-09-05",
       "items": [
         {
+          "title": "みんなの汗がつくった、聖火の走る道",
+          "date": "2026-09-05",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135796232?tm=20260905123353"
+        },
+        {
           "title": "PTA校内除草作業 【実施します】",
           "date": "2026-09-05",
           "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135795846?tm=20260905072327"
@@ -24,11 +29,6 @@
           "title": "温かいご支援に感謝！かつおクラブ様より『宇宙兄弟』をご寄贈いただきました",
           "date": "2026-09-02",
           "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135770506?tm=20260902080620"
-        },
-        {
-          "title": "新生Toukadai！新しいユニフォームで挑んだ誇り高き初公式戦",
-          "date": "2026-08-22",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135738422?tm=20260822121319"
         }
       ]
     },
