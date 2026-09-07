@@ -1,8 +1,66 @@
 {
-  "fetched_at": "2026-09-06T00:00:00Z",
+  "fetched_at": "2026-09-07T00:01:51Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "ohshiro-e",
+      "level": "elem",
+      "names": {
+        "ja": "大城小学校",
+        "ja_kids": "おおしろ小学校",
+        "en": "Oshiro Elem. School",
+        "zh": "大城小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
+      "latest_date": "2026-09-07",
+      "items": [
+        {
+          "title": "２学期のスタート",
+          "date": "2026-09-07",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/135763333?tm=20260907075431"
+        },
+        {
+          "title": "２学期がはじまりました",
+          "date": "2026-09-07",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/135774204?tm=20260902134344"
+        },
+        {
+          "title": "第１１５回バスケットボール教室",
+          "date": "2026-08-21",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/135733029?tm=20260817115932"
+        }
+      ]
+    },
+    {
+      "slug": "sue-e",
+      "level": "elem",
+      "names": {
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-09-06",
+      "items": [
+        {
+          "title": "9/4 体育：キッズソーラン練習（１＆３年生）",
+          "date": "2026-09-06",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135796914?tm=20260906102228"
+        },
+        {
+          "title": "9/4 今日の給食",
+          "date": "2026-09-06",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135790992?tm=20260904132620"
+        },
+        {
+          "title": "9/4 歯磨き指導（４年生）",
+          "date": "2026-09-06",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135796907?tm=20260906101553"
+        }
+      ]
+    },
     {
       "slug": "hikarigaoka-j",
       "level": "jhs",
@@ -13,22 +71,22 @@
         "zh": "光之丘中学"
       },
       "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
-      "latest_date": "2026-09-05",
+      "latest_date": "2026-09-06",
       "items": [
+        {
+          "title": "探究パートナーと",
+          "date": "2026-09-06",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135796189?tm=20260905130350"
+        },
+        {
+          "title": "Ｍｙ探究 前半を振り返って",
+          "date": "2026-09-06",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135796268?tm=20260905130331"
+        },
         {
           "title": "みんなの汗がつくった、聖火の走る道",
           "date": "2026-09-05",
           "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135796232?tm=20260905123353"
-        },
-        {
-          "title": "PTA校内除草作業 【実施します】",
-          "date": "2026-09-05",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135795846?tm=20260905072327"
-        },
-        {
-          "title": "温かいご支援に感謝！かつおクラブ様より『宇宙兄弟』をご寄贈いただきました",
-          "date": "2026-09-02",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/135770506?tm=20260902080620"
         }
       ]
     },
@@ -58,35 +116,6 @@
           "title": "１年生 ２学期初日",
           "date": "2026-09-01",
           "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/135766941?tm=20260901152125"
-        }
-      ]
-    },
-    {
-      "slug": "sue-e",
-      "level": "elem",
-      "names": {
-        "ja": "陶小学校",
-        "ja_kids": "すえ小学校",
-        "en": "Sue Elem. School",
-        "zh": "陶小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-09-04",
-      "items": [
-        {
-          "title": "二学期初の放課後子ども教室は体育館で楽しみました",
-          "date": "2026-09-04",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135787248?tm=20260904080509"
-        },
-        {
-          "title": "9/3 今日の給食",
-          "date": "2026-09-04",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135782443?tm=20260903133711"
-        },
-        {
-          "title": "9/3 家庭科：思いを形にして生活を豊かに（６年生）",
-          "date": "2026-09-03",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135782286?tm=20260903132658"
         }
       ]
     },
@@ -203,35 +232,6 @@
           "title": "委員会活動も再開です",
           "date": "2026-09-02",
           "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135777753?tm=20260902180939"
-        }
-      ]
-    },
-    {
-      "slug": "ohshiro-e",
-      "level": "elem",
-      "names": {
-        "ja": "大城小学校",
-        "ja_kids": "おおしろ小学校",
-        "en": "Oshiro Elem. School",
-        "zh": "大城小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
-      "latest_date": "2026-08-21",
-      "items": [
-        {
-          "title": "第１１５回バスケットボール教室",
-          "date": "2026-08-21",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/135733029?tm=20260817115932"
-        },
-        {
-          "title": "第１１３・１１４回バスケットボール教室",
-          "date": "2026-08-05",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/135723666?tm=20260803093255"
-        },
-        {
-          "title": "小牧市連絡協議会自主研修会",
-          "date": "2026-08-05",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/135701100?tm=20260723105326"
         }
       ]
     }
