@@ -1,8 +1,95 @@
 {
-  "fetched_at": "2026-09-08T00:30:58Z",
+  "fetched_at": "2026-09-09T00:21:58Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "sue-e",
+      "level": "elem",
+      "names": {
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-09-08",
+      "items": [
+        {
+          "title": "9/8 外国語：会話テストの準備（５年生）",
+          "date": "2026-09-08",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135808585?tm=20260908124859"
+        },
+        {
+          "title": "9/7 道徳：「手品師」（６年生）",
+          "date": "2026-09-07",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135804579?tm=20260907180240"
+        },
+        {
+          "title": "9/7 道徳：「たてわりはんそうじ」（３年生）",
+          "date": "2026-09-07",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135804537?tm=20260907175754"
+        }
+      ]
+    },
+    {
+      "slug": "shinooka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "篠岡中学校",
+        "ja_kids": "しのおか中学校",
+        "en": "Shinooka Junior High",
+        "zh": "篠冈中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
+      "latest_date": "2026-09-08",
+      "items": [
+        {
+          "title": "１年生 テスト週間の朝学習",
+          "date": "2026-09-08",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135805645?tm=20260908083155"
+        },
+        {
+          "title": "２年生 運営種目練習",
+          "date": "2026-09-07",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135805245?tm=20260907220124"
+        },
+        {
+          "title": "１年生 ２学期最初の給食",
+          "date": "2026-09-03",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135778828?tm=20260903083254"
+        }
+      ]
+    },
+    {
+      "slug": "shinooka-e",
+      "level": "elem",
+      "names": {
+        "ja": "篠岡小学校",
+        "ja_kids": "しのおか小学校",
+        "en": "Shinooka Elem. School",
+        "zh": "篠冈小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
+      "latest_date": "2026-09-08",
+      "items": [
+        {
+          "title": "家庭科：手縫いに挑戦",
+          "date": "2026-09-08",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135809582?tm=20260908135158"
+        },
+        {
+          "title": "図工：不思議なたまご",
+          "date": "2026-09-08",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135809483?tm=20260908134536"
+        },
+        {
+          "title": "初めての鍵盤ハーモニカ",
+          "date": "2026-09-08",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135809354?tm=20260908133708"
+        }
+      ]
+    },
     {
       "slug": "ohshiro-e",
       "level": "elem",
@@ -16,6 +103,11 @@
       "latest_date": "2026-09-08",
       "items": [
         {
+          "title": "6年体育 5年生との合同練習",
+          "date": "2026-09-08",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/135806132?tm=20260908093318"
+        },
+        {
           "title": "5年体育 6年生との合同練習",
           "date": "2026-09-08",
           "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/135806067?tm=20260908092601"
@@ -24,11 +116,6 @@
           "title": "5年家庭科 手ぬいにトライ！",
           "date": "2026-09-07",
           "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/135799210?tm=20260907105238"
-        },
-        {
-          "title": "3年 書写の時間",
-          "date": "2026-09-07",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/135799140?tm=20260907104406"
         }
       ]
     },
@@ -45,77 +132,19 @@
       "latest_date": "2026-09-08",
       "items": [
         {
-          "title": "4年生 国語「あなたならどう言う」",
+          "title": "5年生 書写",
           "date": "2026-09-08",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135804189?tm=20260907172836"
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135807080?tm=20260908110034"
         },
         {
-          "title": "5年生 学年集会・オリエンテーション",
-          "date": "2026-09-07",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135802265?tm=20260907150029"
+          "title": "３年生 菜の花プロジェクト その４",
+          "date": "2026-09-08",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135806133?tm=20260908093319"
         },
         {
-          "title": "学年集会",
-          "date": "2026-09-07",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135801640?tm=20260907141645"
-        }
-      ]
-    },
-    {
-      "slug": "sue-e",
-      "level": "elem",
-      "names": {
-        "ja": "陶小学校",
-        "ja_kids": "すえ小学校",
-        "en": "Sue Elem. School",
-        "zh": "陶小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-09-07",
-      "items": [
-        {
-          "title": "9/7 道徳：「手品師」（６年生）",
-          "date": "2026-09-07",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135804579?tm=20260907180240"
-        },
-        {
-          "title": "9/7 道徳：「たてわりはんそうじ」（３年生）",
-          "date": "2026-09-07",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135804537?tm=20260907175754"
-        },
-        {
-          "title": "9/7 外国語活動（１年生）",
-          "date": "2026-09-07",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/135804502?tm=20260907175325"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "篠岡中学校",
-        "ja_kids": "しのおか中学校",
-        "en": "Shinooka Junior High",
-        "zh": "篠冈中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-09-07",
-      "items": [
-        {
-          "title": "２年生 運営種目練習",
-          "date": "2026-09-07",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135805245?tm=20260907220124"
-        },
-        {
-          "title": "１年生 ２学期最初の給食",
-          "date": "2026-09-03",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135778828?tm=20260903083254"
-        },
-        {
-          "title": "３年生 体育祭運営種目練習",
-          "date": "2026-09-02",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/135777143?tm=20260902171103"
+          "title": "３年生 菜の花プロジェクト その３",
+          "date": "2026-09-08",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/135806096?tm=20260908092932"
         }
       ]
     },
@@ -203,35 +232,6 @@
           "title": "にぎやかな体育館！ 体育１年生＆４年生",
           "date": "2026-09-04",
           "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/135791465?tm=20260904151028"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-e",
-      "level": "elem",
-      "names": {
-        "ja": "篠岡小学校",
-        "ja_kids": "しのおか小学校",
-        "en": "Shinooka Elem. School",
-        "zh": "篠冈小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
-      "latest_date": "2026-09-03",
-      "items": [
-        {
-          "title": "図工：ほり進めて刷り重ねて",
-          "date": "2026-09-03",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135781038?tm=20260903120134"
-        },
-        {
-          "title": "算数：輪っかの変身",
-          "date": "2026-09-03",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135780896?tm=20260903115340"
-        },
-        {
-          "title": "委員会活動も再開です",
-          "date": "2026-09-02",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135777753?tm=20260902180939"
         }
       ]
     }
