@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-09T00:18:45Z",
+  "fetched_at": "2026-09-10T00:17:58Z",
   "index_updated_at": "2026年06月24日",
   "source_url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html",
   "window_days": 30,
@@ -23,6 +23,11 @@
       "title": "篠岡地区学校再編だより",
       "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/shinooka_gsaihen/49521.html",
       "updated_at": "2026年09月03日"
+    },
+    {
+      "title": "第2回北里地区の学校を考える会",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/719/kitazatochiku/52590.html",
+      "updated_at": "2026年09月09日"
     }
   ]
 }
