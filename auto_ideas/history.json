@@ -2,6 +2,18 @@
   "description": "毎日の新機能アイデア（.github/workflows/feature-ideas.yml）が過去に出した見出しの記録。同じ案を繰り返さないために起案AIが読む。手編集可（消せばまた提案されうる）。",
   "ideas": [
     {
+      "date": "2026-09-12",
+      "title": "about.htmlに再編関連の用語メモカードを追加"
+    },
+    {
+      "date": "2026-09-12",
+      "title": "地域協議会イベント案内の各行に個別.ics追加ボタン"
+    },
+    {
+      "date": "2026-09-12",
+      "title": "共有欄に通常印刷用の「印刷する」ボタンを追加"
+    },
+    {
       "date": "2026-09-11",
       "title": "bus.html/community.htmlのQ&AからもFAQへ相互リンク"
     },
