@@ -1,8 +1,37 @@
 {
-  "fetched_at": "2026-09-12T00:24:29Z",
+  "fetched_at": "2026-09-13T00:05:33Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "sue-e",
+      "level": "elem",
+      "names": {
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-09-12",
+      "items": [
+        {
+          "title": "9/12 水てっぽう大会：おやじの会主催",
+          "date": "2026-09-12",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136088065?tm=20260912112034"
+        },
+        {
+          "title": "9/11 今日の給食",
+          "date": "2026-09-11",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136082607?tm=20260911131603"
+        },
+        {
+          "title": "9/11 理科：台風と天気の変化（５年生）",
+          "date": "2026-09-11",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136087067?tm=20260911182337"
+        }
+      ]
+    },
     {
       "slug": "toryo-j",
       "level": "jhs",
@@ -29,35 +58,6 @@
           "title": "テスト全教科終了しました",
           "date": "2026-09-11",
           "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136080755?tm=20260911112831"
-        }
-      ]
-    },
-    {
-      "slug": "sue-e",
-      "level": "elem",
-      "names": {
-        "ja": "陶小学校",
-        "ja_kids": "すえ小学校",
-        "en": "Sue Elem. School",
-        "zh": "陶小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-09-11",
-      "items": [
-        {
-          "title": "9/11 今日の給食",
-          "date": "2026-09-11",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136082607?tm=20260911131603"
-        },
-        {
-          "title": "9/11 理科：台風と天気の変化（５年生）",
-          "date": "2026-09-11",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136087067?tm=20260911182337"
-        },
-        {
-          "title": "9/10 算数：円の面積（６年生）",
-          "date": "2026-09-10",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136077912?tm=20260910183514"
         }
       ]
     },
