@@ -152,6 +152,6 @@
   "site_sub": "Situs Informasi Komunitas (Tidak Resmi)",
   "status_done": "Selesai",
   "tobu_actions_h": "Kabar penataan wilayah timur<small>Eastern District Updates</small>",
-  "tobu_actions_lead": "Catatan kegiatan di wilayah timur yang dipublikasikan oleh Kantor Pengembangan Wilayah Timur kota. Diambil otomatis dari halaman kota sekali sehari. Judul tetap dalam kata-kata asli kota dan tidak diterjemahkan.",
-  "tobu_actions_note": "Situs ini hanya menautkan ke dua halaman resmi, sehingga item di sini tidak ditautkan ke halaman kota. Teks lengkapnya ada di halaman \"Pengembangan Wilayah Timur\" pada situs resmi Kota Komaki."
+  "tobu_actions_lead": "Kegiatan di wilayah timur yang dipublikasikan Kantor Pengembangan Wilayah Timur: yang akan datang dan yang terjadi dalam dua bulan terakhir. Diambil otomatis dari halaman kota sekali sehari. Judul tetap dalam kata-kata asli kota dan tidak diterjemahkan.",
+  "tobu_actions_note": "Judul dan nama acara adalah kata-kata asli kota. Tiap item tidak ditautkan satu per satu karena situs ini hanya menautkan ke halaman indeks resmi; ikuti tautan sumber di atas untuk teks lengkapnya."
 }

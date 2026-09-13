@@ -2284,9 +2284,15 @@ window.KomakiGrade = (function () {
    公表したもの。同じ一覧に混ぜると「誰が出している情報か」が消える。だから
    見出しを分け、行の形（.tobu-item）も市民有志の取組（.action-item）と変えてある。
 
-   【リンクを張らない】市サイトへのリンクは許可された2つのインデックスだけ
-   （CLAUDE.md／auto_gates.py check 6）。東部まちづくりのページはその2つに
-   含まれないので、出典は文字で示すにとどめる。JSON 側も url を持っていない。
+   【これからの催しを先に出す】参加できるものが先、済んだ動きが後。載せるのは
+   直近2か月ぶん（絞り込みは build_tobu_actions.py 側。これからの催しは日付が
+   未来なので必ず残る）。
+
+   【出典だけリンクする】市サイトへのリンクは許可された索引ページのみ
+   （CLAUDE.md／auto_gates.py check 6）。2026-09-13 に東部まちづくりの索引が
+   許可されたので、出典の行だけそこへリンクする。URL をこのファイルに置いてあるのは、
+   ゲートの検査対象（js/*.js）に入れて機械で守らせるため — JSON 側に持たせると
+   検査をすり抜ける。個々の記事ページは許可されていないので項目にリンクは張らない。
 
    取組の名称は市の書いた固有名なので【翻訳しない】。まわりのラベルだけ多言語にする
    （公式ニュース・報道・地域の取組コーナーと同じ方針）。 */
@@ -2294,12 +2300,20 @@ window.KomakiGrade = (function () {
   var container = document.getElementById('tobu-actions-container');
   if (!container) return;
 
+  // 許可された索引ページ（出典リンク）。増やすときは CLAUDE.md・CONTRIBUTING.txt 規則1・
+  // README.md・auto_gates.py の PERMITTED_LINKS を同時に直すこと。
+  var SOURCE_URL = 'https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/index.html';
+
   var _tl = window.KomakiLang();
   var _tt = {
-    badge:  {ja:'市公式', en:'City official', pt:'Oficial da cidade', vi:'Chính quyền thành phố', tl:'Opisyal ng lungsod', es:'Oficial municipal', zh:'市官方', id:'Resmi kota', tr:'Belediye resmî', my:'မြို့တော် တရားဝင်'},
-    source: {ja:'出典', en:'Source', pt:'Fonte', vi:'Nguồn', tl:'Pinagkunan', es:'Fuente', zh:'出处', id:'Sumber', tr:'Kaynak', my:'ရင်းမြစ်'},
-    empty:  {ja:'現在、掲載されている取組はありません。', en:'Nothing is listed at the moment.', pt:'No momento não há nada publicado.', vi:'Hiện chưa có nội dung nào.', tl:'Wala pang nakalista sa ngayon.', es:'Por ahora no hay nada publicado.', zh:'目前没有刊登的取组。', id:'Saat ini belum ada yang ditampilkan.', tr:'Şu anda listelenen bir şey yok.', my:'လက်ရှိတွင် ဖော်ပြထားသည် မရှိပါ။'},
-    error:  {ja:'東部まちづくりの動きを取得できませんでした。', en:'Could not load the eastern district updates.', pt:'Não foi possível carregar.', vi:'Không tải được nội dung.', tl:'Hindi ma-load ang listahan.', es:'No se pudo cargar.', zh:'无法加载东部城市建设的动态。', id:'Gagal memuat.', tr:'Yüklenemedi.', my:'မဖွင့်နိုင်ပါ။'}
+    badge:   {ja:'市公式', en:'City official', pt:'Oficial da cidade', vi:'Chính quyền thành phố', tl:'Opisyal ng lungsod', es:'Oficial municipal', zh:'市官方', id:'Resmi kota', tr:'Belediye resmî', my:'မြို့တော် တရားဝင်'},
+    source:  {ja:'出典', en:'Source', pt:'Fonte', vi:'Nguồn', tl:'Pinagkunan', es:'Fuente', zh:'出处', id:'Sumber', tr:'Kaynak', my:'ရင်းမြစ်'},
+    upcoming:{ja:'これからの催し', en:'Coming up', pt:'Próximos eventos', vi:'Sắp diễn ra', tl:'Nalalapit na kaganapan', es:'Próximos actos', zh:'即将举办', tr:'Yaklaşan etkinlikler', id:'Akan datang', my:'လာမည့် ပွဲများ'},
+    recent:  {ja:'さいきんの動き', en:'Recently', pt:'Recentemente', vi:'Gần đây', tl:'Kamakailan', es:'Recientemente', zh:'最近的动态', id:'Belakangan ini', tr:'Son gelişmeler', my:'မကြာသေးမီက'},
+    when:    {ja:'日時', en:'Date', pt:'Data', vi:'Thời gian', tl:'Petsa', es:'Fecha', zh:'日期', id:'Waktu', tr:'Tarih', my:'ရက်စွဲ'},
+    place:   {ja:'場所', en:'Place', pt:'Local', vi:'Địa điểm', tl:'Lugar', es:'Lugar', zh:'地点', id:'Tempat', tr:'Yer', my:'နေရာ'},
+    empty:   {ja:'この2か月に新しい動きはありませんでした。', en:'Nothing new in the last two months.', pt:'Nada novo nos últimos dois meses.', vi:'Không có gì mới trong hai tháng qua.', tl:'Walang bago sa nakalipas na dalawang buwan.', es:'Nada nuevo en los últimos dos meses.', zh:'最近两个月没有新的动态。', id:'Tidak ada yang baru dalam dua bulan terakhir.', tr:'Son iki ayda yeni bir şey yok.', my:'လွန်ခဲ့သော နှစ်လအတွင်း အသစ်မရှိပါ။'},
+    error:   {ja:'東部まちづくりの動きを取得できませんでした。', en:'Could not load the eastern district updates.', pt:'Não foi possível carregar.', vi:'Không tải được nội dung.', tl:'Hindi ma-load ang listahan.', es:'No se pudo cargar.', zh:'无法加载东部城市建设的动态。', id:'Gagal memuat.', tr:'Yüklenemedi.', my:'မဖွင့်နိုင်ပါ။'}
   };
   function tt(k) { return _tt[k][_tl] || _tt[k]['en'] || _tt[k]['ja']; }
   function esc(s) {
@@ -2315,25 +2329,51 @@ window.KomakiGrade = (function () {
     return d.toLocaleDateString(_tl === 'ja' ? 'ja-JP' : _tl,
       {year: 'numeric', month: _tl === 'ja' ? 'long' : 'short', day: 'numeric'});
   }
+  function todayIso() {
+    var d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
 
-  var MAX_SHOWN = 5;
+  var MAX_UPCOMING = 3;
+  var MAX_RECENT = 5;
+
+  function row(it) {
+    // 開催日が分かる催しは「日時」欄に市の原文（例: 令和8年11月15日(日曜日)14時から）を添える。
+    var extra = '';
+    if (it.date_note) extra += '<span class="tobu-from">' + tt('when') + '：' + esc(it.date_note) + '</span>';
+    if (it.place)     extra += '<span class="tobu-from">' + tt('place') + '：' + esc(it.place) + '</span>';
+    if (it.from)      extra += '<span class="tobu-from">' + esc(it.from) + '</span>';
+    return '<li class="tobu-item" data-date="' + esc(it.date || '') + '">' +
+             '<div class="tobu-head">' +
+               '<span class="tobu-date">' + esc(fmtDate(it.date)) + '</span>' +
+               '<span class="tobu-title">' + esc(it.title || '') + '</span>' +
+               '<span class="ce-badge">' + tt('badge') + '</span>' +
+             '</div>' + extra +
+           '</li>';
+  }
 
   fetch('./data/tobu_actions.json')
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(function (data) {
-      var items = (data.items || []).slice(0, MAX_SHOWN);
-      if (!items.length) { container.innerHTML = '<p class="school-empty">' + tt('empty') + '</p>'; return; }
-      container.innerHTML = '<ul class="tobu-list">' + items.map(function (it) {
-        return '<li class="tobu-item" data-date="' + esc(it.date || '') + '">' +
-                 '<div class="tobu-head">' +
-                   '<span class="tobu-date">' + esc(fmtDate(it.date)) + '</span>' +
-                   '<span class="tobu-title">' + esc(it.title || '') + '</span>' +
-                   '<span class="ce-badge">' + tt('badge') + '</span>' +
-                 '</div>' +
-                 (it.from ? '<span class="tobu-from">' + esc(it.from) + '</span>' : '') +
-               '</li>';
-      }).join('') + '</ul>' +
-      '<div class="tobu-source">' + tt('source') + '：' + esc(data.source_label || '') + '</div>';
+      var all = data.items || [];
+      var today = todayIso();
+      var up = all.filter(function (it) { return it.kind === 'event' && (it.date || '') >= today; }).slice(0, MAX_UPCOMING);
+      var rest = all.filter(function (it) { return up.indexOf(it) === -1; }).slice(0, MAX_RECENT);
+      if (!up.length && !rest.length) { container.innerHTML = '<p class="school-empty">' + tt('empty') + '</p>'; return; }
+
+      var html = '';
+      if (up.length) {
+        html += '<div class="tobu-group-h">' + tt('upcoming') + '</div>' +
+                '<ul class="tobu-list">' + up.map(row).join('') + '</ul>';
+      }
+      if (rest.length) {
+        html += '<div class="tobu-group-h">' + tt('recent') + '</div>' +
+                '<ul class="tobu-list">' + rest.map(row).join('') + '</ul>';
+      }
+      html += '<div class="tobu-source">' + tt('source') + '：' +
+              '<a href="' + SOURCE_URL + '" target="_blank" rel="noopener">' +
+              esc(data.source_label || '') + '</a></div>';
+      container.innerHTML = html;
     })
     .catch(function () {
       container.innerHTML = '<p class="official-news-error">' + tt('error') + '</p>';

@@ -4,6 +4,12 @@
     {
       "date": "2026-09-13",
       "type": "feature",
+      "ja": "東部まちづくりの欄にこれからの催しと直近2か月の動き",
+      "en": "Upcoming events and the last two months of eastern-district updates"
+    },
+    {
+      "date": "2026-09-13",
+      "type": "feature",
       "ja": "地域の取組の欄に市の東部まちづくりの動きを毎日自動で掲載",
       "en": "Eastern-district updates from the city now shown in Community Efforts"
     },

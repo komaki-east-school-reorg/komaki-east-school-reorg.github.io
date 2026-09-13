@@ -3,24 +3,34 @@
 東部まちづくり（東部まちづくり推進室）の取組一覧を data/tobu_actions.json に組み立てる。
 
 ■ 市サーバへは一切アクセスしない
-   fetch_news.py が「監視のみ」の対象として
+   fetch_news.py が監視対象として
    data/official_pages/toubumachidukuri-tobumachidukurisingikai-*.txt に
    本文スナップショットをすでに保存している。このスクリプトはそれを読むだけ。
    同じページを2度取りに行かないので、市サーバへの負荷は増えない。
    （このため、fetch_news.py の【あと】に実行すること。）
 
-■ 何を拾うか
-   「東部まちづくりニュース（年度別）」と「小牧市東部まちづくり審議会」のページは、
-   本文が〈見出し（令和8年8月24日）〉という形で1件ずつ並んでいる。この
-   「行末が（令和○年○月○日）で終わる短い行」だけを取組の見出しとみなす。
-   本文の文は「。」で終わるのでこの形にはならず、日付の無い見出しは拾わない。
-   拾えなかったからといって「載っていない」わけではない（図や PDF の中は読めない）。
+■ 何を拾うか（3通り）
+   1. 催し   … 「開催場所・会場」「開催日・期間」を持つページ（協働提案事業・団体等の
+                イベント情報）。開催日が読めれば、それが日付になる。
+   2. 記録   … 年度別の『東部まちづくりニュース』と『東部まちづくり審議会』の本文に
+                〈見出し（令和8年8月24日）〉の形で並ぶ行。この形の行だけを見出しとみなす。
+                本文の文は「。」で終わるのでこの形にならない。
+   3. その他 … 上のどちらでもないページ（トライアル活動の紹介など）は、そのページの
+                更新日を日付として扱う。
 
-■ リンクは張らない
-   市サイトへのリンクは許可された2つのインデックスだけ（CLAUDE.md／
-   auto_gates.py check 6）。東部まちづくりのページはその2つに含まれないので、
-   JSON にも URL を持たせず、出典は「小牧市 東部まちづくり推進室」という
-   文字だけで示す。読者が原文に当たる導線が要るなら、許可URLを増やす判断が先。
+   図やPDFの中は読めないので、**載っていない＝存在しない ではない**。
+
+■ 直近2か月ぶんだけ（ユーザー指示 2026-09-13）
+   古い記録が積もると「いま何が起きているか」が読めなくなるので、
+   日付が WINDOW_DAYS（60日）より古いものは落とす。
+   ただし**これから開催される催しは日付が未来なので必ず残す** — 参加できる催しを
+   期限切れ扱いで落としてしまっては、この欄を置く意味がない。
+
+■ リンク
+   市サイトへのリンクは許可された索引ページのみ（CLAUDE.md／auto_gates.py check 6）。
+   2026-09-13 に東部まちづくりの索引が許可に加わったので、コーナーの「出典」だけ
+   そこへリンクする（リンクの文字列は js/main.js が持つ＝機械検査の対象になる）。
+   個々の記事ページは許可されていないので、項目ごとのリンクは持たない。
 
 ■ 出力は生成物。手で編集しないこと（次回実行で上書きされる）。
 
@@ -31,20 +41,37 @@ import json
 import os
 import re
 import sys
+from datetime import date, timedelta
 
 SNAPSHOT_DIR = "data/official_pages"
 PREFIX = "toubumachidukuri-tobumachidukurisingikai-"
 OUTPUT = "data/tobu_actions.json"
-# 画面に出すのは js/main.js 側で絞る。ここは少し多めに持つ。
-MAX_ITEMS = 12
+WINDOW_DAYS = 60          # 直近2か月
+MAX_ITEMS = 12            # 画面に出す数は js/main.js 側で更に絞る
 
-# 行末が（令和○年○月○日）で終わる見出し行。日付のあとに「・26日」「月曜日」等が
+# 行末が（令和○年○月○日）で終わる見出し行（＝記録）。日付のあとに「・26日」「月曜日」等が
 # 付くことがあるので、閉じ括弧までは何が来てもよい。
 ITEM_RE = re.compile(
     r"^(?P<title>.{4,80}?)\s*[（(]令和(?P<y>\d{1,2})年(?P<m>\d{1,2})月(?P<d>\d{1,2})日[^)）]*[)）]$"
 )
+REIWA_RE = re.compile(r"令和(\d{1,2})年(\d{1,2})月(\d{1,2})日")
+UPDATED_RE = re.compile(r"^更新日：\s*(\d{4})年(\d{1,2})月(\d{1,2})日")
 # 見出しではない行（ページの meta 行や本文の途中）を落とす
 SKIP_WORDS = ("更新日", "ページID", "詳しくはこちら", "お問い合わせ", "電話番号")
+
+# スラッグの一部 → 画面に出す「どこの話か」。市の書いた名称なので翻訳しない。
+SECTIONS = [
+    ("kyoudouteianjigyou", "協働提案事業"),
+    ("purattofo-mu-trial", "東部地域トライアル活動"),
+    ("purattofo-mu-machidukurisemina", "まちづくりセミナー"),
+    ("purattofo-mu-openfactory", "オープンファクトリー"),
+    ("purattofo-mu-project", "東部まちづくりプラットフォーム"),
+    ("purattofo-mu", "東部まちづくりプラットフォーム"),
+    ("ibentojyoho", "団体等によるイベント情報"),
+    ("toubutiikimatidukuripa-tona-shippuseido", "まちづくり活動パートナーシップ制度"),
+    ("toubusinnkoukousou", "東部振興構想"),
+    ("actionplan", "アクションプラン"),
+]
 
 
 def read_snapshot(path):
@@ -55,17 +82,55 @@ def read_snapshot(path):
     return url.strip(), [l for l in lines if l]
 
 
-def page_title(lines):
-    """本文1行目がページ見出し（更新日・ページIDより前）。"""
-    return lines[0] if lines else ""
+def reiwa_to_iso(y, m, d):
+    return f"{2018 + int(y):04d}-{int(m):02d}-{int(d):02d}"
+
+
+def section_of(path, fallback):
+    name = os.path.basename(path)
+    for key, label in SECTIONS:
+        if key in name:
+            return label
+    return fallback
+
+
+def field_value(lines, label):
+    """「開催日・期間」などの見出し行の次の行を値として読む。"""
+    for i, l in enumerate(lines):
+        if l == label and i + 1 < len(lines):
+            return lines[i + 1]
+    return None
 
 
 def parse_page(path):
-    _url, lines = read_snapshot(path)
+    url, lines = read_snapshot(path)
     if not lines:
         return []
-    src = page_title(lines)
+    page_title = lines[0]
+    updated = None
+    for l in lines[:6]:
+        m = UPDATED_RE.match(l)
+        if m:
+            updated = f"{int(m.group(1)):04d}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
+            break
+
     out = []
+
+    # 1. 催し（開催日・期間を持つページ）
+    when = field_value(lines, "開催日・期間")
+    if when is not None:
+        m = REIWA_RE.search(when)
+        out.append({
+            "kind": "event",
+            "title": page_title,
+            "date": reiwa_to_iso(*m.groups()) if m else updated,
+            "date_note": when,
+            "place": field_value(lines, "開催場所・会場") or "",
+            "from": section_of(path, "東部まちづくり"),
+        })
+        return out
+
+    # 2. 記録（本文に並ぶ〈見出し（令和○年○月○日）〉）
     for line in lines:
         if any(w in line for w in SKIP_WORDS):
             continue
@@ -75,13 +140,22 @@ def parse_page(path):
         title = m.group("title").strip("　 ・-—")
         if not title:
             continue
-        y = 2018 + int(m.group("y"))       # 令和1年 = 2019年
-        date = f"{y:04d}-{int(m.group('m')):02d}-{int(m.group('d')):02d}"
         out.append({
+            "kind": "report",
             "title": title,
-            "date": date,
-            "date_ja": f"令和{m.group('y')}年{m.group('m')}月{m.group('d')}日",
-            "from": src,
+            "date": reiwa_to_iso(m.group("y"), m.group("m"), m.group("d")),
+            "from": page_title,
+        })
+    if out:
+        return out
+
+    # 3. その他（トライアル活動の紹介など）。ページの更新日を日付として扱う。
+    if updated:
+        out.append({
+            "kind": "info",
+            "title": page_title,
+            "date": updated,
+            "from": section_of(path, "東部まちづくり"),
         })
     return out
 
@@ -92,31 +166,47 @@ def main():
         return 1
 
     paths = sorted(glob.glob(os.path.join(SNAPSHOT_DIR, PREFIX + "*.txt")))
+    today = date.today()
+    cutoff = (today - timedelta(days=WINDOW_DAYS)).isoformat()
+    today_s = today.isoformat()
+
     items = []
     seen = set()
     for path in paths:
+        # 索引ページ自体は「取組」ではないので拾わない（見出しの羅列でしかない）
+        if path.endswith("-index.txt"):
+            continue
         try:
             found = parse_page(path)
         except Exception as e:
             print(f"  WARN 解析できない: {path}: {e}", file=sys.stderr)
             continue
         for it in found:
+            if not it.get("date"):
+                continue
+            # 直近2か月ぶんだけ。ただしこれからの催しは未来の日付なので必ず残る。
+            if it["date"] < cutoff:
+                continue
             key = (it["title"], it["date"])
             if key in seen:
                 continue
             seen.add(key)
             items.append(it)
 
-    # 新しい順。同日は取り込み順を保つ（市のページ内の並び）。
-    items.sort(key=lambda it: it["date"], reverse=True)
-    items = items[:MAX_ITEMS]
+    upcoming = sorted([i for i in items if i["kind"] == "event" and i["date"] >= today_s],
+                      key=lambda i: i["date"])
+    recent = sorted([i for i in items if i not in upcoming],
+                    key=lambda i: i["date"], reverse=True)
+    items = (upcoming + recent)[:MAX_ITEMS]
 
     data = {
         "description": ("東部まちづくりの取組（自動生成・手編集不可）。"
                         ".github/scripts/build_tobu_actions.py が "
                         "data/official_pages/" + PREFIX + "*.txt から組み立てる。"
-                        "市サイトへのリンクは許可URL以外を張れないため url は持たない。"),
+                        f"日付が直近{WINDOW_DAYS}日より古いものは載せない（これからの催しは残す）。"
+                        "個々の記事ページへのリンクは許可されていないので url は持たない。"),
         "source_label": "小牧市 都市政策部 東部まちづくり推進室",
+        "window_days": WINDOW_DAYS,
         "items": items,
     }
     text = json.dumps(data, ensure_ascii=False, indent=2) + "\n"
@@ -124,7 +214,8 @@ def main():
     if old != text:
         with open(OUTPUT, "w", encoding="utf-8") as f:
             f.write(text)
-        print(f"更新: {OUTPUT}（{len(items)}件 / スナップショット {len(paths)}枚）")
+        print(f"更新: {OUTPUT}（{len(items)}件 / うちこれからの催し {len(upcoming)}件 "
+              f"/ スナップショット {len(paths)}枚）")
     else:
         print(f"変化なし: {OUTPUT}（{len(items)}件）")
     return 0

@@ -15,20 +15,22 @@ python3 -m http.server 8000
 
 ## Validation checks (run before every commit)
 
-**1. Illegal external links** — exactly **two** city URLs are permitted, both index pages. No PDF direct links, no article subpages.
+**1. Illegal external links** — exactly **three** city URLs are permitted, all index pages. No PDF direct links, no article subpages.
 
 | Permitted URL | Used by |
 |---|---|
 | `.../kyoiku/kyouikusoumu/303/index.html` | school reorganization (Education General Affairs Div.) — site-wide |
 | `.../kenkouikigai/sasaeai/3/3_2/index.html` | community councils (Mutual Support Div.) — `community.html` only |
+| `.../toubumachidukuri/tobumachidukurisingikai/index.html` | eastern-district development (Eastern District Office) — the 出典 line of the 地域の取組 corner, built in `js/main.js` (added 2026-09-13 on the user's say-so) |
 
 ```bash
 grep -rn "city\.komaki\.aichi\.jp" *.html js/*.js \
-  | grep -v -e "303/index\.html" -e "sasaeai/3/3_2/index\.html"
+  | grep -v -e "303/index\.html" -e "sasaeai/3/3_2/index\.html" \
+           -e "tobumachidukurisingikai/index\.html"
 # Any output = violation. Replace with one of the permitted URLs.
 ```
 
-The same two URLs are encoded in `PERMITTED_LINKS` in `.github/scripts/auto_gates.py` — keep them in sync. Adding a third requires updating this file, `CONTRIBUTING.txt` rule 1, `README.md`, and that gate together.
+The same three URLs are encoded in `PERMITTED_LINKS` in `.github/scripts/auto_gates.py` — keep them in sync. The third one is matched with its `index.html` suffix on purpose, so the pages **under** it (`.../tobumachidukurisingikai/34277.html`, `.../toubumatidukurinyu-su/index.html`) stay forbidden. Adding a fourth requires updating this file, `CONTRIBUTING.txt` rule 1, `README.md`, and that gate together.
 
 Several other domains are permitted and are outside this grep. **Chunichi Shimbun Web article URLs** (`chunichi.co.jp/article/<id>`) appear in the 報道 corner on `index.html` via `data/chunichi_news.json`, where each headline must link to its source — see that file's section below. And the **eight target schools' own homepages** (`komaki-aic.ed.jp/<slug>/`) may be linked: they are a different domain run by the schools, and the URLs are stable. They appear in `map.html` (the 各校ホームページ block) and, via `data/school_news.json`, in the bottom section of `index.html`. The grep above does not cover them — when the set of schools changes, keep `SCHOOLS` in `fetch_schools.py` and the `map.html` block in sync. And **four MEXT pages** (`mext.go.jp`) are linked from `nationwide.html` only, as the sources for the nationwide figures and the national standards — see that page's section below. And **one citizen-run Instagram account** (`instagram.com/arigato.ohshirosho`) is linked from the 地域の取組 corner, which appears on `community.html` and — as the same list inside the 最新の動き group — on `index.html` — see `data/community_actions.json` below. Finally, the **share buttons** at the bottom of every page point at seven sharing endpoints (`social-plugins.line.me`, `x.com/intent/post`, `www.facebook.com/sharer/sharer.php`, `b.hatena.ne.jp/entry/panel/`, `www.threads.net/intent/post`, `bsky.app/intent/compose`, `www.reddit.com/submit`), at whatever Mastodon server the reader names (`https://<host>/share`), and load one external script (`s.hatena.ne.jp/js/HatenaStar.js`) — see the SHARE BUTTONS section below. Those URLs are built in `js/main.js`, never written into HTML or a dictionary, and are **not sources**: nothing on the site may cite them.
 
@@ -218,11 +220,12 @@ The **地域の取組 section on `community.html`**, sitting directly below the 
 2026-09-13 追加（ユーザー指示）。**「地域の取組」欄の下半分**に、市の東部まちづくり推進室が公表している東部地域の取組を並べる。`community.html` と `index.html` の両方に出る（`#tobu-actions-container` を見つけた所に `js/main.js` の TOBU ACTIONS ブロックが描く）。市民有志の取組（`data/community_actions.json`）とは**見出しも行の形も分けてある** — 上は住民自身が始めたもの、下は市の部署が公表したもので、混ぜると「誰が出している情報か」が消えるため。
 
 - **自動生成・手編集不可。** `fetch_news.py` が監視している `data/official_pages/toubumachidukuri-tobumachidukurisingikai-*.txt` から `.github/scripts/build_tobu_actions.py` が組み立てる（市サーバへのアクセスはゼロ。`fetch_news.py` の**あと**に実行すること）。自動更新パイプラインの `ALLOWED` にも入れない。
-- **拾い方は「行末が（令和○年○月○日）で終わる短い行」だけ。** 年度別の『東部まちづくりニュース』と『小牧市東部まちづくり審議会』のページは、本文がこの形の見出しで1件ずつ並んでいる。本文の文は「。」で終わるのでこの形にならない。**図やPDFの中は読めないので、載っていない＝存在しない ではない。**
-- **リンクを張らない。** 市サイトへのリンクは許可された2つのインデックスだけなので（check 6）、この一覧は日付＋見出し＋出典の文字だけ。見出しは市の原文のままで**翻訳しない**（`school_news.json` と同じ方針）。読者に原文へ当たってもらう導線が要るなら、許可URLを増やす判断が先。
-- 監視対象は `TOBU_BASE` 配下。ディレクトリが入れ子なので `fetch_news.py` の watch は `<li class="dir">` も辿るが、**過去年度の記録まで含めると110ページ規模**あるため、ふだんは直下まで（`WATCH_DIR_MAX_DEPTH = 1`、約20ページ）。**日曜だけ `WATCH_DEEP=1` で全階層**を回る（`fetch-news.yml` の "Decide crawl depth" ステップ）。浅い巡回の日は下位ページのスナップショットを `keep_slugs` で守る — 守らないと毎日消えて毎週復活し、差分が無意味に膨らむ。
+- **載せるのは直近2か月ぶんだけ**（`WINDOW_DAYS = 60`、2026-09-13 ユーザー指示）。古い記録が積もると「いま何が起きているか」が読めなくなるため。**ただし、これから開催される催しは日付が未来なので必ず残る** — 参加できる催しを期限切れで落としては、この欄を置く意味がない。画面は「これからの催し」→「さいきんの動き」の順。
+- **拾い方は3通り。** ①「開催場所・会場」「開催日・期間」を持つページ＝催し（協働提案事業・団体等のイベント情報）。②年度別『東部まちづくりニュース』と『東部まちづくり審議会』の本文に〈見出し（令和8年8月24日）〉の形で並ぶ行＝記録。③それ以外のページ（トライアル活動の紹介など）はそのページの更新日を日付として扱う。**図やPDFの中は読めないので、載っていない＝存在しない ではない。**
+- **リンクは「出典」の1本だけ。** 2026-09-13 にユーザーが `.../toubumachidukuri/tobumachidukurisingikai/index.html` を許可したので、コーナーの出典だけそこへリンクする。**URL は `js/main.js` の TOBU ACTIONS ブロックに置く** — ゲートの検査対象（`js/*.js`）に入れて機械で守らせるため。JSON に持たせると検査をすり抜ける。配下の個別記事ページは今までどおり不可なので、項目ごとのリンクは張らない。見出しは市の原文のままで**翻訳しない**（`school_news.json` と同じ方針）。
+- 監視対象は `TOBU_BASE` 配下。ディレクトリが入れ子なので `fetch_news.py` の watch は `<li class="dir">` も辿るが、**過去年度の記録まで含めると110ページ規模**あるため、ふだんは直下まで（`WATCH_DIR_MAX_DEPTH = 1`）。**日曜だけ `WATCH_DEEP=1` で全階層**を回る（`fetch-news.yml` の "Decide crawl depth" ステップ）。浅い巡回の日は下位ページのスナップショットを `keep_slugs` で守る — 守らないと毎日消えて毎週復活し、差分が無意味に膨らむ。
+- **深いところにある2つだけは毎日見る**（2026-09-13 ユーザー指示）：協働提案事業（これからの催しが載る）と東部地域トライアル活動（年度ごとの認定活動）。`WATCH_INDEXES` に直接足してあるが、配下に過去分が数十ページ積もっているので、浅い巡回の日は**末尾（＝新しいほう）だけ**を取る（`WATCH_TAIL_INDEXES` / `WATCH_TAIL_PAGES = 8` / `WATCH_TAIL_DIRS = 1`）。市のインデックスは古い順に並んでいるため末尾が最新。これで毎日の取得は東部まちづくり全体で 40ページ弱に収まる。
 - `site-facts.json` ではこの接頭辞の `targets` を空にしてある。**一覧は自動で入れ替わるので、検知 Issue を見た人やAIが手でページを直す必要はない。**
-
 ## `data/site-updates.json` (this site's own changelog)
 
 The **last section of `index.html`** shows a changelog of changes made to this site itself. Unlike `news.json` and `school_news.json`, this one is **hand-maintained** — add a new entry at the top of the `updates` array when you ship something a reader would notice.

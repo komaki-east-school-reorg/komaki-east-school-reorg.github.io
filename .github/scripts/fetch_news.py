@@ -65,6 +65,20 @@ WATCH_SUBTREES = (WATCH_BASE, TOBU_BASE)
 WATCH_DEEP = os.environ.get("WATCH_DEEP") == "1"
 WATCH_DIR_MAX_DEPTH = 6 if WATCH_DEEP else 1
 
+# 深いところにあるが【毎日】見たいインデックス（2026-09-13 ユーザー指示）。
+# 協働提案事業＝これから開催される催しが載る。トライアル活動＝年度ごとの認定活動。
+# どちらも「地域の取組」欄に出す元なので、週1回の深い巡回まで待てない。
+WATCH_INDEXES += [
+    TOBU_BASE + "toubumatidukurinyu-su/kyoudouteianjigyou/index.html",
+    TOBU_BASE + "toubumatidukurinyu-su/purattofo-mu/trial/index.html",
+]
+# ただし、この2つは配下に過去の分が数十ページ積もっている。毎日その全部を取るのは
+# 市サーバに対して過剰なので、**末尾（＝新しいほう）だけ**を毎日見る。
+# 市のインデックスは古い順に並んでいるため、末尾が最新。過去分は日曜の WATCH_DEEP で拾う。
+WATCH_TAIL_INDEXES = set(WATCH_INDEXES[-2:])
+WATCH_TAIL_PAGES = 8   # 末尾から何件の記事ページを毎日取るか
+WATCH_TAIL_DIRS = 1    # 末尾から何件の下位インデックス（＝最新年度）を毎日辿るか
+
 # 市サーバへの負荷配慮: リクエスト間に必ずこの秒数（＋ゆらぎ）待つ
 REQUEST_WAIT_MIN = 3.0
 REQUEST_WAIT_MAX = 5.0
@@ -339,13 +353,19 @@ def main():
             continue
         if save_snapshot(index_url, index_html):
             snapshots_changed = True
-        for m in re.finditer(r'<li class="page">\s*<a href="([^"]+)">', index_html):
-            watch_urls.add(normalize_url(m.group(1).strip(), index_url))
+        pages = [normalize_url(m.group(1).strip(), index_url) for m in
+                 re.finditer(r'<li class="page">\s*<a href="([^"]+)">', index_html)]
+        subs = [normalize_url(m.group(1).strip(), index_url) for m in
+                re.finditer(r'<li class="dir">\s*<a href="([^"]+)">', index_html)]
+        # 過去分が積もっているインデックスは、浅い巡回の日は末尾（新しいほう）だけ見る
+        if not WATCH_DEEP and index_url in WATCH_TAIL_INDEXES:
+            pages = pages[-WATCH_TAIL_PAGES:]
+            subs = subs[-WATCH_TAIL_DIRS:]
+        watch_urls.update(pages)
         # 下位インデックス（<li class="dir">）も同じ木の中なら辿る。
         # 市がフォルダを増やしても取りこぼさないため、URL は決め打ちしない。
         if depth < WATCH_DIR_MAX_DEPTH:
-            for m in re.finditer(r'<li class="dir">\s*<a href="([^"]+)">', index_html):
-                sub = normalize_url(m.group(1).strip(), index_url)
+            for sub in subs:
                 if sub.startswith(WATCH_SUBTREES) and sub not in seen_watch_indexes:
                     seen_watch_indexes.add(sub)
                     watch_indexes.append((sub, depth + 1))

@@ -39,10 +39,14 @@ ALLOWED_PREFIXES = ("data/i18n/pages/",)
 # 自動化の作業ファイル置き場（検査対象外）
 IGNORE_PREFIXES = ("auto_update/", "report/")
 EVIDENCE = "auto_update/evidence.json"
-# 市サイトへのリンクを張ってよいページ（この2つのインデックスのみ。PDF直リンク・
+# 市サイトへのリンクを張ってよいページ（この3つのインデックスのみ。PDF直リンク・
 # 個別記事ページは不可）。1つ目＝学校再編（教育総務課）、2つ目＝地域協議会（支え合い
-# 協働推進課、community.html 用に 2026-08-12 追加）。
-PERMITTED_LINKS = ("303/index.html", "sasaeai/3/3_2/index.html")
+# 協働推進課、community.html 用に 2026-08-12 追加）、3つ目＝東部まちづくり（東部まちづくり
+# 推進室、「地域の取組」欄の出典として 2026-09-13 にユーザーが許可）。
+# 3つ目は末尾まで含めて照合するので、配下の個別ページ（.../tobumachidukurisingikai/34277.html や
+# .../toubumatidukurinyu-su/index.html）は今までどおり不可のまま。
+PERMITTED_LINKS = ("303/index.html", "sasaeai/3/3_2/index.html",
+                   "tobumachidukurisingikai/index.html")
 # 文部科学省へのリンク。全国の動向を扱う nationwide.html でのみ、この4つに限って
 # 張ってよい（2026-08-22 追加）。全国の数値・基準は市の公式情報では賄えないため
 # 国の一次資料を出典にするが、市サイトと同じく「索引ページのみ・PDF直リンク不可」

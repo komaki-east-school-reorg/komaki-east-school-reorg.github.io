@@ -13,12 +13,16 @@
    nationwide.html の文科省4URL、「地域の取組」（community.html と index.html）の
    Instagram 許可アカウントのみ、別途認めている。いずれも下のチェックで機械検査している。
 
-■ 許可するURL（2種類のみ。どちらも「インデックスページ」）
+■ 許可するURL（3種類のみ。いずれも「インデックスページ」）
   (1) 学校再編（教育総務課 学校再編推進係）＝サイト全体で使用
       https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html
   (2) 地域協議会（支え合い協働推進課）＝community.html でのみ使用
       https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/index.html
       ※2026-08-12 に追加。所管課が異なり (1) からはたどれないため。
+  (3) 東部まちづくり（東部まちづくり推進室）＝「地域の取組」欄の出典として使用
+      https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/index.html
+      ※2026-09-13 に追加（ユーザー許可）。リンクの文字列は js/main.js の
+        TOBU ACTIONS ブロックが持つ。配下の個別記事ページは今までどおり不可。
 
 ■ 別枠：再編対象8校のホームページ（komaki-aic.ed.jp）
   市サイトとは別ドメインで、各校が自分で運営している。市サイトのように
