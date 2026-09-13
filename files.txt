@@ -30,6 +30,9 @@ data/official_pages/        市公式サイト各記事ページの本文テキ�
                             303-* は学校再編（教育総務課）、sasaeai-3-3_2-* は地域協議会（支え合い協働推進課）の監視専用ページ。
 data/official_pages/newsletters/  『篠岡地区学校再編だより』各号のPDF本文テキスト（自動生成・手編集不可）。掲載ページのスナップショットにはPDFの題名しか
                             載らないため、中身をここに取り出して出典として引用できるようにしている。図版・地図の中の文字は含まれない。過去号は削除しない。
+data/official_pages/setsumeikai/  保護者等説明会（令和8年6月・6会場）の質疑応答と、意見提出シートの質問と回答・意見と提案のPDF本文（自動生成・手編集不可）。
+data/official_pages/pubcom/       パブリックコメント（令和7年11〜12月・55件）の意見と市の考え方、実施結果概要、計画修正案のPDF本文（自動生成・手編集不可）。
+data/official_pages/gikai/        こまき市議会だよりのPDF本文（自動生成・手編集不可）。紙面が画像のため本文テキストは取り出せず、その旨が記録される。
 data/events.json            カレンダーイベントデータ（日付キー＋10言語ラベル）。schedule.htmlのカレンダーが実行時にfetchして描画。イベントの追加・変更はこのファイルを編集する。
 data/site-facts.json        公式ページのスラッグとサイト内反映箇所の対応表（手動管理）。更新検知Issueに「更新候補箇所」を載せるために使用。
 data/school_news.json       再編対象8校の公式ホームページ新着記事（自動生成・手編集不可）。トップページのコーナーが実行時にfetchして描画。
@@ -77,8 +80,10 @@ sitemap.xml                 全10ページのサイトマップ。各URLに10言
 ■ GitHub Actions
 .github/workflows/fetch-news.yml    市公式サイトから最新お知らせを定期取得してnews.jsonと本文スナップショットを更新し、本文変更時はIssue起票→AIによる修正案の起案→機械検証→監査AI→自動マージまで行うワークフロー定義。
 .github/scripts/fetch_news.py       市公式サイトをスクレイピングしてお知らせ情報の抽出・整形と各ページ本文のスナップショット保存を行うPythonスクリプト。
-.github/scripts/fetch_newsletters.py 『篠岡地区学校再編だより』のPDFから本文テキストを抽出し、official_pages/newsletters/ に保存するスクリプト。
-                            掲載ページのHTMLはfetch_news.pyの取得結果を使い回し、PDFは未取得の号だけ落とす。fetch_news.pyの【あと】に実行すること。
+.github/scripts/fetch_pdf_docs.py   市の掲載ページに添付されたPDFから本文テキストを抽出し、official_pages/<群>/ に保存するスクリプト（SOURCESの表で対象を宣言）。
+                            現在の対象は newsletters/（学校再編だより）、setsumeikai/（説明会の質疑応答・意見提出シート）、pubcom/（パブコメの意見と市の考え方）、gikai/（市議会だより）。
+                            掲載ページのHTMLはfetch_news.pyの取得結果を使い回し、PDFは未取得のものだけ落とす。fetch_news.pyの【あと】に実行すること。
+                            取り込むのは出典であって原稿ではない。市の文面をそのままページに貼らず、当サイトの言葉で書き直すこと。
 .github/scripts/fetch_schools.py    再編対象8校のホームページ（komaki-aic.ed.jp）を巡回し、各校の最新記事をschool_news.jsonに保存するスクリプト。
 .github/scripts/build_community_events.py 地域協議会イベント案内をスナップショットから抽出してcommunity_events.jsonを生成するスクリプト。市サーバへのアクセスなし。fetch_news.pyの【あと】に実行すること。
 .github/scripts/build_tobu_actions.py 東部まちづくりの取組一覧（tobu_actions.json）をスナップショットから組み立てるスクリプト。市サーバへのアクセスなし。fetch_news.pyの【あと】に実行すること。

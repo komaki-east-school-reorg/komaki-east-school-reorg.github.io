@@ -1513,6 +1513,46 @@ footer {
 .official-news-loading,
 .official-news-error { font-size: .9rem; color: var(--text-muted); }
 
+/* ===== パブリックコメントの論点（voices.html） =====
+   左が住民の意見、右（下）が市の考え方。どちらも当サイトの要約なので、
+   色分けは「意見か回答か」だけを示す。賛否の色（--for-color 等）は使わない
+   ——市の回答に賛否の色を付けると、市が一方の立場に立って見えるため。 */
+.pc-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+}
+.pc-q {
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.75;
+  border-left: 4px solid var(--neutral-color);
+  padding-left: .8rem;
+}
+.pc-a {
+  margin-top: .7rem;
+  border-left: 4px solid var(--primary);
+  padding-left: .8rem;
+}
+.pc-a p {
+  font-size: .92rem;
+  line-height: 1.85;
+  color: var(--text-muted);
+}
+/* ラベルは CSS の content ではなく要素で持つ。content に日本語を書くと翻訳されない。 */
+.pc-a-label {
+  display: block;
+  font-family: var(--heading-font);
+  font-size: .72rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: .04em;
+  margin-bottom: .2rem;
+}
+
 /* ===== RELATED PAGES ===== */
 /* 各ページ末尾の「関連するページ」。ナビの再掲ではなく、行き先の分かる文でリンクする。
    ナビだけだと全ページが互いにリンクする完全グラフになり、構造がどのページが中心かを

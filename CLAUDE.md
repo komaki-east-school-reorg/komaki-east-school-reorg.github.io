@@ -119,6 +119,7 @@ Keys follow the pattern `<page>_<section>_<type>`, e.g., `about_whatis_p1`, `faq
 
 ## Important constraints
 
+- **市の資料の文面をそのまま載せない（ユーザー指示 2026-09-13）。** 計画・パブリックコメントの回答・説明会の質疑応答・市議会だよりなどは、読んで理解したうえで**当サイトの言葉で書き直す**。数値・日付・議決結果のような事実はそのまま使ってよい。**書き直していることはページに明記し**（共通キー `recomposed_note`／`council_ref_box`／`voices_pc_note`）、**その理由は書かない**（同指示）。
 - **Header site name is permanently Japanese.** The `<a class="site-title">` element does not get a `data-i18n` attribute. The `<span data-i18n="site_sub">` subtitle inside it is translated, but the main site name text is not.
 - **All facts must come from official sources** — the permitted city URL above, or official printed materials (cite the source inline). Do not add speculative or unconfirmed information. The one place newspaper reporting appears is the 報道 corner on `index.html`, where it is clearly attributed as such; see `data/chunichi_news.json` below. It is never evidence for a claim made elsewhere on the site. **Nationwide figures and national standards come from MEXT** and live on `nationwide.html` only; they are never evidence for a statement about the Komaki plan itself, and the city's information is never used for a nationwide claim.
 - **All ten languages are now fully translated, and `ja-kids` covers every key** (1011/1011 as of 2026-09-02), `review.html` included: its `rev_*` keys plus the twelve review-related keys that appear on other pages (`nav_review`, `ql_review_*`, `rel_*`, `meta_*_review`, `status_digest`) were translated into the remaining eight languages on 2026-09-02. Turkish (`tr`) and Burmese (`my`) reached full key coverage on 2026-08-13, so `PARTIAL` in `i18n.js` is empty and the "parts of this page are in English" notice bar no longer appears. `events.json` labels are a strict **10-language** requirement (`LANGS` in `auto_gates.py`). If a new partially-translated language is ever added, put its code in both `PARTIAL` (`i18n.js`) and `PARTIAL_LANGS` (`auto_gates.py`) so the notice bar shows and its event labels are not demanded.
@@ -135,18 +136,25 @@ Beyond the school-reorganization subtree, `fetch_news.py` also snapshots a small
 
 The same script also saves a normalized body-text snapshot of every item page to `data/official_pages/<slug>.txt` (auto-generated — never hand-edit). When any snapshot changes (page added/edited/removed on the city site), the workflow auto-opens a GitHub Issue titled 「📡 公式ページ更新検知 YYYY-MM-DD」 containing the changed-page list, a diff excerpt, and — via `.github/scripts/map_targets.py` — the site locations likely needing an update, looked up in `data/site-facts.json` (a hand-maintained map from official-page slug prefixes to site targets; add an entry when the city publishes a new page). Script exit codes: 0 = content changed, 2 = no change, 1 = fatal error.
 
-### 『学校再編だより』の PDF 本文 (`data/official_pages/newsletters/`)
+### 添付 PDF の本文 (`data/official_pages/` の下の資料群)
 
-The newsletter page (`303-shinooka_gsaihen-49521`) is snapshotted like any other, but its snapshot is **only a list of PDF titles** — every issue's actual content lives inside an attached PDF. So a new issue used to reach the pipeline as the single line 「篠岡地区学校再編だより（第7号）(PDFファイル:…)」 and nobody downstream could read it. `.github/scripts/fetch_newsletters.py` closes that gap: it extracts each issue's text (pdfminer.six) into `data/official_pages/newsletters/saihen-dayori-<NN>-<pdf-basename>.txt`, which puts it inside the tree `auto_gates.py` checks quotes against — so a newsletter sentence can be cited as evidence for a site edit.
+市の掲載ページは HTML だが、肝心の中身が添付 PDF の中にある資料が多い。`fetch_news.py` のスナップショットは PDF の題名しか拾えないので、`.github/scripts/fetch_pdf_docs.py` が PDF の本文テキストを取り出して `data/official_pages/<群>/` に保存する（2026-09-13 に `fetch_newsletters.py` から一般化）。取り込む資料群は同スクリプトの `SOURCES` に宣言する。
 
+| 群 | 中身 | 主な使い道 |
+|---|---|---|
+| `newsletters/` | 『篠岡地区学校再編だより』各号 | 全般（日程・新校名・通学区域など） |
+| `setsumeikai/` | 保護者等説明会6会場の質疑応答、意見提出シートの質問と回答・意見と提案 | `faq.html`・`bus.html` のQ&A、`voices.html` |
+| `pubcom/` | パブリックコメント55件の意見と市の考え方、実施結果概要、計画修正案 | `voices.html` の「実際に言われたこと」、`faq.html` |
+| `gikai/` | こまき市議会だより | `council.html` |
+
+- **⛔ 市の資料の文面をそのままページに貼らないこと（ユーザー指示 2026-09-13）。** ここに取り込むのは**出典であって原稿ではない**。読んで理解し、当サイトの言葉で書き直す。数値・日付・議決結果のような事実そのものはもちろんそのまま使ってよい。**書き直していることはページに明記する**（共通キー `recomposed_note`、`council_ref_box`、`voices_pc_note`）。ただし**その理由はページに書かない**（同指示）。
 - **Never hand-edit** these files — they are regenerated from the PDFs.
-- **It adds almost no load on the city server.** The listing page's HTML is reused from the run-local cache `fetch_news.py` writes (`HTML_CACHE_DIR`), so it is never fetched twice; and a PDF is downloaded **only when its URL is new, or when the file-size label in the link text changed**. On an ordinary day it makes zero requests. It must therefore run *after* `fetch_news.py` in the workflow.
-- **Figures, maps and much of the tables are images, so their text is not extracted.** Every file says so in its header. Absence from the text is not evidence that something is absent from the newsletter — the drafter prompt and the verifier prompt both state this.
-- **The site must never link to these PDFs.** The extracted text may be quoted and used as a source, but a PDF direct link is still a link-rule violation (`auto_gates.py` check 6).
-- **Old issues are never deleted**, even if the city takes them off the page: site text written from an issue must keep its source verifiable. This is unlike the HTML snapshots, which are pruned when the page disappears. (The pruning loop in `fetch_news.py` only looks at `*.txt` directly inside `data/official_pages/`, so the `newsletters/` subdirectory is out of its reach — keep it a subdirectory.)
-- Slugs come from the issue number in the **link text**, not the filename: the city's own PDF names are inconsistent (`saihendayori01`, `kawaraban2`, `dayori3_nishi`, `dayori6`). The PDF basename is appended so that vol.3, which exists in a 篠岡西 and a 篠岡東 edition, does not collide.
-- `SOURCE_PAGES` / `TITLE_RE` control what is captured. `TITLE_RE` matches 「学校再編だより」 in the link text, which deliberately excludes both the per-issue translations (linked as 「スペイン語」 etc., same content) and the 意見提出フォームから頂いたご意見 PDFs (residents' own opinions) sitting on the same page.
-
+- **市サーバへの負荷はほぼ増えない。** 掲載ページの HTML は `fetch_news.py` の run-local キャッシュ（`HTML_CACHE_DIR`）を使い回し、PDF は **URL が新しいか、リンク文字列のファイルサイズ表示が変わったときだけ**落とす。ふつうの日は1本もダウンロードしない。だから `fetch_news.py` の**あと**に実行すること。
+- **図・地図・表の多くは画像なので、その中の文字は取り出せない。** 各ファイルの冒頭にその旨が書いてある。テキストに無いことは「載っていない」の証拠にならない。
+- **こまき市議会だよりの PDF は文字レイヤを持たない**（紙面がまるごと画像）。抽出結果は「本文テキストを取り出せませんでした」という1行になる。`council.html` を更新するときは、人（かAI）が PDF の紙面を読んで書き起こすしかない。掲載ページ（`gikai-giji-2-2-51603`）は監視対象なので、新しい号が出れば検知はされる。
+- **サイトから PDF へ直リンクしてはいけない。** 取り出したテキストを根拠に本文を書くのはよいが、PDF の URL をリンクとして書くと `auto_gates.py` check 6 に引っかかる。
+- **古い資料は消さない。** 市がページから下ろしても、それを根拠に書いた記述の裏取りができなくなるため（`newsletters/` などのサブディレクトリは `fetch_news.py` の剪定ループの対象外なので、サブディレクトリに置き続けること）。
+- だよりのスラッグは**リンク文字列の号数**から作る（市の PDF 名は `saihendayori01` / `kawaraban2` / `dayori3_nishi` と不統一）。号数の無い資料は PDF のファイル名をそのまま使う。
 ### Auto-update pipeline (`auto-update` job)
 
 When a content change is detected, a second job drafts site updates fully automatically: a drafter Claude (via `anthropics/claude-code-action`, subscription OAuth — secret `CLAUDE_CODE_OAUTH_TOKEN`; if the secret is missing the job skips silently and only the detection issue remains) reads the diff (including any newly extracted newsletter text — see above) and may edit **only** `data/events.json`, `data/i18n/*.json`, `index.html`, `schedule.html`, `community.html`, and must write `auto_update/evidence.json` quoting the exact official-source text for every change. `.github/scripts/auto_gates.py` then machine-verifies scope, schemas (10-language event labels), the external-link rule, and that every quote actually exists in `data/official_pages/` (hallucination check; exit 0 = pass, 3 = no changes, 1 = fail). An independent verifier Claude reviews the diff and writes `auto_update/verdict.json`; only on `approve` is the PR auto-merged (squash) and the detection issue closed with a report from `.github/scripts/auto_report.py`. Kill switch: set repo variable `AUTO_MERGE` to `false` to stop before merge (PR is still created). Any gate/verdict failure leaves `main` untouched.

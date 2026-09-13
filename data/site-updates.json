@@ -3,6 +3,30 @@
   "updates": [
     {
       "date": "2026-09-13",
+      "type": "content",
+      "ja": "議会審議に令和8年第2回定例会と傍聴・請願の案内を追加",
+      "en": "June 2026 council session and how to attend or petition added"
+    },
+    {
+      "date": "2026-09-13",
+      "type": "content",
+      "ja": "スクールバスのQ&Aを最新の説明会の回答に更新し4件追加",
+      "en": "School bus Q&A updated and four new questions added"
+    },
+    {
+      "date": "2026-09-13",
+      "type": "content",
+      "ja": "よくある質問を12件から20件に拡充（説明会の質疑から）",
+      "en": "FAQ expanded from 12 to 20 questions, drawn from the briefings"
+    },
+    {
+      "date": "2026-09-13",
+      "type": "content",
+      "ja": "賛否の声にパブリックコメント55件の論点と市の回答を追加",
+      "en": "Public comment topics and the city's responses added to Community Voices"
+    },
+    {
+      "date": "2026-09-13",
       "type": "feature",
       "ja": "東部まちづくりの欄にこれからの催しと直近2か月の動き",
       "en": "Upcoming events and the last two months of eastern-district updates"
