@@ -44,6 +44,12 @@ WATCH_INDEXES = [
     WATCH_BASE + "chiikikyougikaievent/index.html",   # 地域協議会イベント案内
 ]
 
+# --- 監視のみ行うページ（市議会だより：議会事務局 議事課の所管） ---
+# 2026-09-13 追加（ユーザー指示）。council.html の出典。中身は添付 PDF なので、
+# ここで取るスナップショットは号の一覧だけ。本文は fetch_pdf_docs.py が PDF から取り出す。
+# 新しい号が出るとこのページが変わるので、それが「議会審議のページを更新する合図」になる。
+WATCH_PAGES.append(BASE_DOMAIN + "/admin/soshiki/gikai/giji/2/2/51603.html")
+
 # --- 監視のみ行うページ（東部まちづくり：東部まちづくり推進室の所管） ---
 # 2026-09-13 追加（ユーザー指示）。学校再編とは所管課が違うので news.json の
 # 「お知らせ」には載せない。本文スナップショットだけを取り、そこから
@@ -192,7 +198,9 @@ def url_to_slug(url):
     path = re.sub(r"\.html$", "", path)
     for prefix in ("admin/soshiki/kyoiku/kyouikusoumu/",
                    "admin/soshiki/kenkouikigai/",
-                   "admin/soshiki/toshiseisakubu/"):
+                   "admin/soshiki/toshiseisakubu/",
+                   # 上のどれにも当たらない所管（市議会など）は soshiki まで落とす
+                   "admin/soshiki/"):
         if path.startswith(prefix):
             path = path[len(prefix):]
             break

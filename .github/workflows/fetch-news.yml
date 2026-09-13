@@ -58,21 +58,22 @@ jobs:
             echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
 
-      # 『学校再編だより』の PDF から本文テキストを取り出す。
-      # 掲載ページの HTML は直前の fetch_news.py が取得済みのものを使い回すので、
-      # 市サーバへ余分に取りに行くのは【まだ取っていない号の PDF】だけ。
-      # fetch の【あと】に置くこと。失敗してもワークフローは止めない。
-      - name: Fetch school reorganization newsletters (PDF)
+      # 添付 PDF（学校再編だより・説明会の質疑応答・パブコメの意見と市の考え方・
+      # 市議会だより）から本文テキストを取り出す。掲載ページの HTML は直前の
+      # fetch_news.py が取得済みのものを使い回すので、市サーバへ余分に取りに行くのは
+      # 【まだ取っていない PDF】だけ。fetch の【あと】に置くこと。
+      # 失敗してもワークフローは止めない。
+      - name: Fetch attached documents (PDF → text)
         id: newsletters
         continue-on-error: true
         run: |
           pip install --quiet --disable-pip-version-check pdfminer.six
           set +e
-          python3 .github/scripts/fetch_newsletters.py
+          python3 .github/scripts/fetch_pdf_docs.py
           code=$?
           set -e
           if [ "$code" -eq 1 ]; then
-            echo "::warning::学校再編だよりの取得に失敗しました（掲載ページの構成変更の可能性）"
+            echo "::warning::添付PDFの取得に失敗しました（掲載ページの構成変更の可能性）"
             echo "changed=false" >> "$GITHUB_OUTPUT"
           elif [ "$code" -eq 0 ]; then
             echo "changed=true" >> "$GITHUB_OUTPUT"
