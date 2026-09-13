@@ -44,6 +44,27 @@ WATCH_INDEXES = [
     WATCH_BASE + "chiikikyougikaievent/index.html",   # 地域協議会イベント案内
 ]
 
+# --- 監視のみ行うページ（東部まちづくり：東部まちづくり推進室の所管） ---
+# 2026-09-13 追加（ユーザー指示）。学校再編とは所管課が違うので news.json の
+# 「お知らせ」には載せない。本文スナップショットだけを取り、そこから
+# build_tobu_actions.py が「地域の取組」欄に出す一覧を組み立てる。
+# この配下はディレクトリが2階層入れ子（東部まちづくりニュース > その他、団体等に
+# よるイベント情報 など）なので、下の BFS が <li class="dir"> も辿る。
+TOBU_BASE = BASE_DOMAIN + "/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/"
+WATCH_INDEXES.append(TOBU_BASE + "index.html")
+
+# 配下の下位インデックスまで辿ってよい接頭辞。ここに挙げた木の外へは出ない
+# （<li class="dir"> のリンクは市サイトのどこへでも張れるため、境界は機械で持つ）。
+WATCH_SUBTREES = (WATCH_BASE, TOBU_BASE)
+
+# 東部まちづくり配下は、過去年度の記録まで含めると 110ページ規模ある。毎日その全部を
+# 取りに行くのは市サーバに対して過剰なので、ふだんは直下のインデックスまで（約20ページ）。
+# 週1回だけ WATCH_DEEP=1 で全階層を回る（fetch-news.yml が日曜に立てる）。
+# 「地域の取組」欄に出す一覧の元（年度別の東部まちづくりニュース・審議会）は
+# どちらも直下にあるので、毎日の浅い巡回でも最新のまま保てる。
+WATCH_DEEP = os.environ.get("WATCH_DEEP") == "1"
+WATCH_DIR_MAX_DEPTH = 6 if WATCH_DEEP else 1
+
 # 市サーバへの負荷配慮: リクエスト間に必ずこの秒数（＋ゆらぎ）待つ
 REQUEST_WAIT_MIN = 3.0
 REQUEST_WAIT_MAX = 5.0
@@ -156,7 +177,8 @@ def url_to_slug(url):
     path = urllib.parse.urlparse(url).path.lstrip("/")
     path = re.sub(r"\.html$", "", path)
     for prefix in ("admin/soshiki/kyoiku/kyouikusoumu/",
-                   "admin/soshiki/kenkouikigai/"):
+                   "admin/soshiki/kenkouikigai/",
+                   "admin/soshiki/toshiseisakubu/"):
         if path.startswith(prefix):
             path = path[len(prefix):]
             break
@@ -295,7 +317,15 @@ def main():
     # news.json の items には入れない。変化の検知だけが目的。
     watch_urls = set(WATCH_PAGES)
     keep_slugs = set()
-    for index_url in WATCH_INDEXES:
+    watch_indexes = [(u, 0) for u in WATCH_INDEXES]   # BFS の待ち行列（URL, 深さ）
+    seen_watch_indexes = set(WATCH_INDEXES)
+    # 浅い巡回の日は、今回見に行かない下位ページのスナップショットを消さないよう守る
+    # （消して翌週また作る、を繰り返すと差分が毎週まるごと出てしまう）。
+    if not WATCH_DEEP:
+        keep_slugs |= {f for f in os.listdir(SNAPSHOT_DIR)
+                       if f.startswith(url_to_slug(TOBU_BASE + "x").rsplit("-", 1)[0] + "-")}
+    while watch_indexes:
+        index_url, depth = watch_indexes.pop(0)
         watch_urls.add(index_url)
         polite_wait()
         try:
@@ -311,11 +341,21 @@ def main():
             snapshots_changed = True
         for m in re.finditer(r'<li class="page">\s*<a href="([^"]+)">', index_html):
             watch_urls.add(normalize_url(m.group(1).strip(), index_url))
+        # 下位インデックス（<li class="dir">）も同じ木の中なら辿る。
+        # 市がフォルダを増やしても取りこぼさないため、URL は決め打ちしない。
+        if depth < WATCH_DIR_MAX_DEPTH:
+            for m in re.finditer(r'<li class="dir">\s*<a href="([^"]+)">', index_html):
+                sub = normalize_url(m.group(1).strip(), index_url)
+                if sub.startswith(WATCH_SUBTREES) and sub not in seen_watch_indexes:
+                    seen_watch_indexes.add(sub)
+                    watch_indexes.append((sub, depth + 1))
 
-    for url in sorted(watch_urls - set(WATCH_INDEXES)):
+    for url in sorted(watch_urls - seen_watch_indexes):
         polite_wait()
         try:
-            if save_snapshot(url, fetch_html(url)):
+            page_html = fetch_html(url)
+            cache_html(url, page_html)
+            if save_snapshot(url, page_html):
                 snapshots_changed = True
                 print(f"  watch: changed  {url}")
         except Exception as e:

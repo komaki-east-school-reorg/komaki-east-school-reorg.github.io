@@ -292,6 +292,22 @@
           <a href="review.html" class="card-link" data-i18n="ql_review_link">検証と提案を見る →</a>
         </div>
       </div>
+
+      <!-- 担当部署への行き先案内。連絡先そのものは各ページに置いてあり、ここはその入口。
+           番号をここにも書くと、部署が変わったときに直す場所が増えて食い違う
+           （連絡先の本体は data/contacts.json と各ページ、週1回の照合は check_contacts.py）。 -->
+      <div class="info-box" style="margin-top:1.6rem;">
+        <strong data-i18n="contacts_guide_h">📞 担当部署に直接たずねる</strong>
+        <p style="margin:.5rem 0 .6rem;" data-i18n="contacts_guide_p">このサイトは市の公式サイトではありません。制度そのものについては、それぞれの担当部署にたずねるのが確実です。連絡先は次のページに載せています。</p>
+        <ul style="margin:0; padding-left:1.2rem;">
+          <li><a href="about.html#contact" data-i18n="contacts_guide_l1">学校再編について（市 教育総務課 学校再編推進係）</a></li>
+          <li><a href="bus.html#contact" data-i18n="contacts_guide_l5">スクールバスについて（市 教育総務課と運行事業者）</a></li>
+          <li><a href="council.html#contact" data-i18n="contacts_guide_l6">市議会の傍聴・請願について（市議会 議会事務局）</a></li>
+          <li><a href="community.html#contact" data-i18n="contacts_guide_l2">地域協議会について（市 支え合い協働推進課）</a></li>
+          <li><a href="review.html#rev-contact" data-i18n="contacts_guide_l3">まちづくり・住宅・子育て・産業などの市と県の部署</a></li>
+          <li><a href="nationwide.html#contact" data-i18n="contacts_guide_l4">全国の統計と国の基準を所管する文部科学省の部署</a></li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -483,6 +499,14 @@
       <h3 class="section-title sub" data-i18n-html="section_actions">地域の取組<small>Community Efforts</small></h3>
       <p class="school-lead" data-i18n="actions_lead">地域で行われている催しや取組です。閉校を惜しむ市民有志のものと、地域協議会が回覧板などで知らせているものがあり、それぞれ主催を示しています。市の公式発表ではないので、詳しくは主催者にご確認ください。</p>
       <div id="community-actions-container"></div>
+
+      <!-- 東部まちづくりの動き（市公式）。community.html と同じ一覧を出す。
+           見出しはこのコーナー（h3）の下位なので h4。回覧板シートの latestBlocks() は
+           h3 だけを見るので、ここを h4 にしておくと紙面の構成は変わらない。 -->
+      <h4 class="section-title sub" style="margin-top:2rem;" data-i18n-html="tobu_actions_h">東部まちづくりの動き<small>Eastern District Updates</small></h4>
+      <p class="school-lead" data-i18n="tobu_actions_lead">市の東部まちづくり推進室が公表している、東部地域の取組の記録です。市の公式ページから1日1回自動で取り込んでいます。見出しは市の原文のままで、翻訳していません。</p>
+      <div id="tobu-actions-container"></div>
+      <p class="school-note" data-i18n="tobu_actions_note">※ 当サイトが外部に張るリンクは公式ページ2つに限っているため、この一覧から市の各ページへは直接リンクしていません。全文は小牧市公式サイトの「東部まちづくり」のページでご覧ください。</p>
       <p class="school-note">
         <a href="community.html#community-actions" data-i18n="actions_more">地域協議会のイベント案内とあわせて見る →</a>
       </p>

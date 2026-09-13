@@ -2273,3 +2273,69 @@ window.KomakiGrade = (function () {
       container.innerHTML = '<p class="official-news-error">' + at('error') + '</p>';
     });
 })();
+
+/* ===== TOBU ACTIONS（「地域の取組」欄の中の「東部まちづくりの動き」）=====
+   2026-09-13 追加（ユーザー指示）。市の東部まちづくり推進室が公表している
+   東部地域の取組を、市民有志の取組のすぐ下に出す。data/tobu_actions.json は
+   .github/scripts/build_tobu_actions.py が毎日の取得結果から組み立てる生成物で、
+   手編集しない（自動更新パイプラインの ALLOWED にも入れない）。
+
+   【市民有志の取組とは分けて出す】上は住民自身が始めたもの、ここは市の部署が
+   公表したもの。同じ一覧に混ぜると「誰が出している情報か」が消える。だから
+   見出しを分け、行の形（.tobu-item）も市民有志の取組（.action-item）と変えてある。
+
+   【リンクを張らない】市サイトへのリンクは許可された2つのインデックスだけ
+   （CLAUDE.md／auto_gates.py check 6）。東部まちづくりのページはその2つに
+   含まれないので、出典は文字で示すにとどめる。JSON 側も url を持っていない。
+
+   取組の名称は市の書いた固有名なので【翻訳しない】。まわりのラベルだけ多言語にする
+   （公式ニュース・報道・地域の取組コーナーと同じ方針）。 */
+(function () {
+  var container = document.getElementById('tobu-actions-container');
+  if (!container) return;
+
+  var _tl = window.KomakiLang();
+  var _tt = {
+    badge:  {ja:'市公式', en:'City official', pt:'Oficial da cidade', vi:'Chính quyền thành phố', tl:'Opisyal ng lungsod', es:'Oficial municipal', zh:'市官方', id:'Resmi kota', tr:'Belediye resmî', my:'မြို့တော် တရားဝင်'},
+    source: {ja:'出典', en:'Source', pt:'Fonte', vi:'Nguồn', tl:'Pinagkunan', es:'Fuente', zh:'出处', id:'Sumber', tr:'Kaynak', my:'ရင်းမြစ်'},
+    empty:  {ja:'現在、掲載されている取組はありません。', en:'Nothing is listed at the moment.', pt:'No momento não há nada publicado.', vi:'Hiện chưa có nội dung nào.', tl:'Wala pang nakalista sa ngayon.', es:'Por ahora no hay nada publicado.', zh:'目前没有刊登的取组。', id:'Saat ini belum ada yang ditampilkan.', tr:'Şu anda listelenen bir şey yok.', my:'လက်ရှိတွင် ဖော်ပြထားသည် မရှိပါ။'},
+    error:  {ja:'東部まちづくりの動きを取得できませんでした。', en:'Could not load the eastern district updates.', pt:'Não foi possível carregar.', vi:'Không tải được nội dung.', tl:'Hindi ma-load ang listahan.', es:'No se pudo cargar.', zh:'无法加载东部城市建设的动态。', id:'Gagal memuat.', tr:'Yüklenemedi.', my:'မဖွင့်နိုင်ပါ။'}
+  };
+  function tt(k) { return _tt[k][_tl] || _tt[k]['en'] || _tt[k]['ja']; }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c];
+    });
+  }
+  // 日付は表示言語の書式に直す（見出しは市の原文のまま、ラベルと日付だけ多言語）
+  function fmtDate(iso) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(iso || '')) return iso || '';
+    var d = new Date(iso + 'T00:00:00');
+    if (isNaN(d)) return iso;
+    return d.toLocaleDateString(_tl === 'ja' ? 'ja-JP' : _tl,
+      {year: 'numeric', month: _tl === 'ja' ? 'long' : 'short', day: 'numeric'});
+  }
+
+  var MAX_SHOWN = 5;
+
+  fetch('./data/tobu_actions.json')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) {
+      var items = (data.items || []).slice(0, MAX_SHOWN);
+      if (!items.length) { container.innerHTML = '<p class="school-empty">' + tt('empty') + '</p>'; return; }
+      container.innerHTML = '<ul class="tobu-list">' + items.map(function (it) {
+        return '<li class="tobu-item" data-date="' + esc(it.date || '') + '">' +
+                 '<div class="tobu-head">' +
+                   '<span class="tobu-date">' + esc(fmtDate(it.date)) + '</span>' +
+                   '<span class="tobu-title">' + esc(it.title || '') + '</span>' +
+                   '<span class="ce-badge">' + tt('badge') + '</span>' +
+                 '</div>' +
+                 (it.from ? '<span class="tobu-from">' + esc(it.from) + '</span>' : '') +
+               '</li>';
+      }).join('') + '</ul>' +
+      '<div class="tobu-source">' + tt('source') + '：' + esc(data.source_label || '') + '</div>';
+    })
+    .catch(function () {
+      container.innerHTML = '<p class="official-news-error">' + tt('error') + '</p>';
+    });
+})();

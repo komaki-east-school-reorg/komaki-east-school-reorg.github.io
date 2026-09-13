@@ -587,6 +587,30 @@
         このサイトは小牧市の公式サイトではなく、市民有志による非公式の情報提供サイトです。
       </div>
 
+      <!-- 問い合わせ先：傍聴・請願・会議録は議会事務局、条例の中身は教育総務課と、
+           窓口が分かれている。部署名の欄に data-i18n を付けていないのは review.html と
+           同じ理由（窓口・電話で使うのは日本語の名称そのもの）。番号は市が公表している
+           ページの写しで、週1回 check_contacts.py が照合する。 -->
+      <h2 class="section-title" id="contact" style="margin-top:2.5rem; margin-bottom:1.2rem;" data-i18n-html="council_contact_h">議会についての問い合わせ先<small>Who to Contact</small></h2>
+      <p style="margin-bottom:1.2rem;" data-i18n="council_contact_lead">本会議・委員会の傍聴や、請願・陳情の出し方、会議録の閲覧については市議会の事務局が窓口です。条例改正の中身そのもの（学校再編計画）は市長部局ではなく教育委員会の担当です。</p>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th data-i18n="contact_tbl_dept">部署</th>
+              <th data-i18n="contact_tbl_scope">このページで触れた事柄</th>
+              <th data-i18n="contact_tbl_tel">電話</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>議会事務局 議事課 議事調査係</td><td data-i18n="council_c1_w">本会議・委員会の運営、議案、請願・陳情・意見書、会議録、傍聴</td><td><a href="tel:0568761169">0568-76-1169</a></td></tr>
+            <tr><td>議会事務局 議事課 庶務係</td><td data-i18n="council_c2_w">議会の庶務、議員の身分、議会事務局の予算・決算</td><td><a href="tel:0568761168">0568-76-1168</a></td></tr>
+            <tr><td>教育委員会事務局 教育総務課 学校再編推進係</td><td data-i18n="council_c3_w">条例改正の中身（学校再編計画そのもの）</td><td><a href="tel:0568395261">0568-39-5261</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.82rem; color:var(--text-muted); margin-top:1rem;" data-i18n-html="council_contact_note">※ 議会事務局は東庁舎3階、教育総務課は本庁舎3階です。小牧市役所の代表電話は 0568-72-2101。部署名は日本語のまま載せています（窓口で示したり電話で伝えたりするのに確実なためです）。議員個人の氏名や連絡先は当サイトでは扱いません。市と県のほかの部署は <a href="review.html#rev-contact">検証と提案</a> にまとめました。</p>
+
     </div>
   </section>
 
@@ -599,6 +623,7 @@
       <div class="related-list">
         <a href="schedule.html" class="related-link" data-i18n="rel_council_schedule">審議をふまえた今後の予定を見る</a>
         <a href="faq.html" class="related-link" data-i18n="rel_council_faq">審議で出た論点を質問形式で見る</a>
+        <a href="voices.html" class="related-link" data-i18n="rel_council_voices">住民から出ている賛否の声を見る</a>
       </div>
     </div>
   </section>

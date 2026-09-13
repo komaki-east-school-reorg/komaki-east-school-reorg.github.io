@@ -213,6 +213,16 @@ The **地域の取組 section on `community.html`**, sitting directly below the 
 - `source_url` may only point at an account listed in `PERMITTED_INSTAGRAM` in `auto_gates.py`, and Instagram links are allowed on `community.html` and `index.html` only (`INSTAGRAM_PAGES`) — the two pages that render this corner. Adding an account, or another page that renders the corner, requires updating this file, `CONTRIBUTING.txt` rule 1, `README.md` and that gate together.
 - As of 2026-08-26 only the Oshiro account is known; searches found no equivalent account for 篠岡小・陶小・篠岡中. Do not guess at handles — an account that turns out to be someone else's would be presented here as if it spoke for the school community.
 
+## `data/tobu_actions.json`（東部まちづくりの取組）
+
+2026-09-13 追加（ユーザー指示）。**「地域の取組」欄の下半分**に、市の東部まちづくり推進室が公表している東部地域の取組を並べる。`community.html` と `index.html` の両方に出る（`#tobu-actions-container` を見つけた所に `js/main.js` の TOBU ACTIONS ブロックが描く）。市民有志の取組（`data/community_actions.json`）とは**見出しも行の形も分けてある** — 上は住民自身が始めたもの、下は市の部署が公表したもので、混ぜると「誰が出している情報か」が消えるため。
+
+- **自動生成・手編集不可。** `fetch_news.py` が監視している `data/official_pages/toubumachidukuri-tobumachidukurisingikai-*.txt` から `.github/scripts/build_tobu_actions.py` が組み立てる（市サーバへのアクセスはゼロ。`fetch_news.py` の**あと**に実行すること）。自動更新パイプラインの `ALLOWED` にも入れない。
+- **拾い方は「行末が（令和○年○月○日）で終わる短い行」だけ。** 年度別の『東部まちづくりニュース』と『小牧市東部まちづくり審議会』のページは、本文がこの形の見出しで1件ずつ並んでいる。本文の文は「。」で終わるのでこの形にならない。**図やPDFの中は読めないので、載っていない＝存在しない ではない。**
+- **リンクを張らない。** 市サイトへのリンクは許可された2つのインデックスだけなので（check 6）、この一覧は日付＋見出し＋出典の文字だけ。見出しは市の原文のままで**翻訳しない**（`school_news.json` と同じ方針）。読者に原文へ当たってもらう導線が要るなら、許可URLを増やす判断が先。
+- 監視対象は `TOBU_BASE` 配下。ディレクトリが入れ子なので `fetch_news.py` の watch は `<li class="dir">` も辿るが、**過去年度の記録まで含めると110ページ規模**あるため、ふだんは直下まで（`WATCH_DIR_MAX_DEPTH = 1`、約20ページ）。**日曜だけ `WATCH_DEEP=1` で全階層**を回る（`fetch-news.yml` の "Decide crawl depth" ステップ）。浅い巡回の日は下位ページのスナップショットを `keep_slugs` で守る — 守らないと毎日消えて毎週復活し、差分が無意味に膨らむ。
+- `site-facts.json` ではこの接頭辞の `targets` を空にしてある。**一覧は自動で入れ替わるので、検知 Issue を見た人やAIが手でページを直す必要はない。**
+
 ## `data/site-updates.json` (this site's own changelog)
 
 The **last section of `index.html`** shows a changelog of changes made to this site itself. Unlike `news.json` and `school_news.json`, this one is **hand-maintained** — add a new entry at the top of the `updates` array when you ship something a reader would notice.
@@ -232,6 +242,31 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 - The 国の基準 ⇔ 小牧の計画 table is the point of the page. Its right-hand column restates facts that already exist elsewhere on this site (令和15年に各学年1学級, 2km でスクールバス, ガイドラインは未定) — when those change, change them here too.
 - The 手引 was revised in August 2026 and will be revised again. When it is, the numeric standards must be re-checked against the new 改訂版 rather than assumed to carry over.
 - Not in the auto-update pipeline's `ALLOWED` set: the city's page changes do not move national statistics.
+- 末尾に **国の担当部署の連絡先**（`id="contact"`）がある。数値ごとにどの部署の所管かを並べたもので、番号は文科省が各ページで公表しているものだけ。リンクは増やしていない（出典リンクは上の4つのまま）。詳しくは「担当部署の連絡先」の節を参照。
+
+## 担当部署の連絡先（`data/contacts.json` と週1回の照合）
+
+2026-09-13 追加（ユーザー指示）。読者が「では誰に聞けばいいのか」で止まらないよう、**制度ごとの担当部署と電話番号**をサイトに載せている。置き場所は4か所：
+
+| ページ | 何を載せるか |
+|---|---|
+| `about.html#contact` / `faq.html` | 学校再編そのもの（教育総務課 学校再編推進係） |
+| `bus.html#contact` | スクールバス。市の窓口と、**運行事業者**（あおい交通株式会社・本社と野口営業所）。`bus_contact_*` / `bus_c*_w` キー |
+| `council.html#contact` | 市議会。傍聴・請願・会議録は議会事務局 議事課、条例の中身は教育総務課。`council_contact_*` / `council_c*_w` キー |
+| `community.html#contact` | 地域協議会（支え合い協働推進課）。`comm_contact_*` キー |
+| `review.html#rev-contact` | このページで触れた事柄の市8部署・県5部署。`rev_c_*` / `rev_s9_*` キー |
+| `nationwide.html#contact` | 全国の統計と国の基準を所管する文科省3部署。`nw_c*_w` ほか |
+
+トップページの「各ページへのリンク」の下に、この4か所への案内（`contacts_guide_*`）を置いてある。**番号そのものをトップに書かない** — 直す場所が増えると必ず食い違うため。
+
+- **部署名は日本語のまま**（表の「部署」欄に `data-i18n` を付けない）。窓口で見せたり電話で伝えたりするのは日本語の名称そのもので、訳すと用を成さないため。訳すのは「このページで触れた事柄」の欄とラベルだけ。年表の西暦欄と同じ考え方。ただし `about.html`・`faq.html`・`community.html` の `.contact-box` は従来どおり部署名も翻訳する（1部署だけなので窓口で示す用途より読みやすさを優先）。
+- **番号は HTML と辞書に直接書く。** `tel:` リンクの数字だけの形と、表示用のハイフン入りの形の2つが本文中にある。
+- **出典は「その部署の公表ページ」**。市・県・国のどのページから写したかは `data/contacts.json` の `source` にある。**このURLはサイトからはリンクしない**（許可外部リンクを増やせないため）。
+- **週1回、機械で見張る。** `.github/workflows/check-contacts.yml`（日曜 21:50 UTC＝月曜 6:50 JST）が `.github/scripts/check_contacts.py` を回し、17件の連絡先を公表ページと突き合わせる。**電話・FAX番号の変更は `--fix` がそのまま `*.html` と `data/i18n/*.json` を書き換えてコミットし、ページ別辞書も作り直す**（番号は翻訳されないので機械で直せる）。**部署名・所在地の変更は直さず Issue（☎️）で知らせるだけ** — 部署名は10言語＋こどもむけに訳してあるので、人（かAI）が文面を書き直す必要がある。
+- 照合のしかたは `probe.kind`（`article_contact` / `kakari` / `pref_group` / `text`）で切り替える。市の記事ページの「この記事に関するお問い合わせ先」、係の一覧表、愛知県の「連絡先」欄、文科省の「お問合せ先」で構造が違うため。**係名はページ上部の目次にも出るので、`kakari` は「次の行が『電話番号』」のものだけを本文の表とみなす** — ここを緩めると隣の係の番号を読む。
+- **運行事業者のような民間の連絡先も同じ扱い。** 出所はその会社が自社サイトで公表しているページで、**サイトからリンクはしない**（許可外部リンクを増やせない）。`bus_contact_note` に「制度のことを会社にたずねても答えは出ない」と書いてあるのは、市の窓口へ行くべき問い合わせが会社に流れるのを防ぐため — 外さないこと。
+- **議員個人の氏名・連絡先は載せない**（[[個人名は書かない]]の方針）。`council.html` は職と部署だけを書く。
+- 組織改編は4月1日付が多い。**4月の第1週は結果を必ず見ること。**
 
 ## `review.html`（計画の検証と提案のページ）
 
@@ -244,9 +279,9 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 - **提案は市が検討しているものではない。** `rev_s3_lead` にそう書いてある。市が実際に検討を始めたら、その事実は出典つきで別途書き、提案からは外すこと。
 - 翻訳は **10言語すべて**（2026-09-02 に `rev_*` 76キー、2026-09-06 にさらに 103キーを追加し、`rev_*` は計 179キー）。`rev_*` を足したり書き換えたりしたら、10言語ぶん入れて `build_page_dicts.py` を回すこと。`ja-kids` も同様。**こどもむけでも【わかって いる こと】／🔎／💡 の書き分けを崩さないこと** — 平易にする過程で印を落とすと、検証と事実が地続きに読めてしまう。見出しの `<small>` の英語副題は、他ページの `ja-kids` と同じく落としてある。
 
-### 節の構成（2026-09-06 に4節追加）
+### 節の構成（2026-09-06 に4節追加、2026-09-13 に連絡先を追加）
 
-節が8つあるため、冒頭の `rev_stance` の直下に行き先の一覧（`rev_toc_h` / `rev_nav1`〜`rev_nav8`）を置いてある。**節を足す・順番を変えるときは、この一覧と各 `<section>` の `id` を必ず揃えること。**
+節が9つあるため、冒頭の `rev_stance` の直下に行き先の一覧（`rev_toc_h` / `rev_nav1`〜`rev_nav9`）を置いてある。**節を足す・順番を変えるときは、この一覧と各 `<section>` の `id` を必ず揃えること。**
 
 | id | 内容 | 主なキー |
 |---|---|---|
@@ -258,6 +293,7 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 | `rev-should` | 💡 本来どうすべきだったか（10提案） | `rev_q1`〜`rev_q10` |
 | `rev-ideas` | 💡 地区全体の子どもを増やすには（6提案） | `rev_p1`〜`rev_p6` |
 | `rev-open` | 確認できなかったこと | `rev_o1`〜`rev_o12` |
+| `rev-contact` | 関係する部署の連絡先（市8・県5） | `rev_s9_*`、`rev_c_c1_w`〜`rev_c_c8_w`、`rev_c_p1_w`〜`rev_c_p5_w` |
 
 - **背景色は `section` / `section-alt` の交互**。節を挿入したら、以降のクラスをずらして交互を保つこと。
 - **年表（`rev_y*`）の年の欄は翻訳しない。** `<td>` に西暦の数字をそのまま書いてあり `data-i18n` を付けていない。数字は言語に依存せず、これで 15キー分の翻訳を節約している。出典の欄は `rev_src_sangyo` / `rev_src_tobu` / `rev_src_toshi` / `rev_src_komaki` の4つを使い回す。
@@ -389,11 +425,15 @@ Unlike the completion badges, the calendar month, and the "last updated" line, *
 
 Every HTML page follows the same pattern: `notice-banner` → `<header>` (with `.lang-switcher` containing `.kids-toggle` and `.lang-select`) → `<main>` → `<footer>`. Both `js/i18n.js` and `js/main.js` are loaded at the end of `<body>`. Pages are standalone — there is no shared template or server-side include. Every page also carries the SHARE section (`<section class="section share" id="share">`) as the last thing inside `<main>`. When adding a new page, copy the full header/share/footer blocks from an existing page — **and add it to `sitemap.xml` and `files.txt`**, plus `meta_title_<pageId>` / `meta_desc_<pageId>` keys in every language file.
 
+### 関連するページ（`.related-list`）は各ページ3つ
+
+どのページも末尾の「関連するページ」は **ちょうど3つ**（2026-09-13 にユーザー指示で統一。それまで2つのページと3つのページが混ざっていた）。ナビの再掲ではなく「このページを読んだ人が次に必要とする所」を選ぶ、という方針は変わらない。ページを足すときも3つ選ぶこと。文言キーは `rel_<このページ>_<行き先>`。
+
 ### The 「最新の動き」 group on `index.html`
 
 The bottom of `index.html` is split in two. Everything down to **現在の状況** is the site's own hand-written explanation; everything below the `.group-head` band (`<section id="latest">`, key `section_latest`) is "what just happened" — 市公式サイト お知らせ (`id="news"`), 対象校ホームページの更新, 地域の取組, 報道でみる東部地域, サイトの更新履歴. The band's `<h2>` groups them, so those five corner headings are `<h3 class="section-title sub">`, not `<h2>` — do not promote them back. The reader benefit is that "what this site says" and "what just happened" are no longer interleaved.
 
-**Four of the five refresh automatically every day; 地域の取組 is the exception** — it is hand-maintained (`data/community_actions.json`) and renders the same list as the corner on `community.html`, from the same COMMUNITY ACTIONS block in `js/main.js` (it draws wherever `#community-actions-container` exists). `latest_lead` says so; keep that caveat if the mix of automatic and manual corners changes. Because the Instagram source link is rendered here at runtime, `index.html` is in `INSTAGRAM_PAGES` in `auto_gates.py` alongside `community.html` — a third page rendering this corner has to be added there too.
+**地域の取組 is the corner with two halves.** Its top half is hand-maintained (`data/community_actions.json`, the COMMUNITY ACTIONS block, drawn wherever `#community-actions-container` exists — the same list as on `community.html`); its bottom half, 東部まちづくりの動き, refreshes automatically like the other four (`data/tobu_actions.json`, the TOBU ACTIONS block, `#tobu-actions-container` — see that file's section above). `latest_lead` says exactly this; keep that caveat accurate if the mix of automatic and manual corners changes again. Because the Instagram source link is rendered here at runtime, `index.html` is in `INSTAGRAM_PAGES` in `auto_gates.py` alongside `community.html` — a third page rendering this corner has to be added there too.
 
 **On the 回覧板 sheet the corner is a block of its own at the very end** (`upcomingActionsBlock()` in `js/main.js`, heading `board_actions`／「これからの催し」), on both sheet kinds. It sits outside the 7-day `data-date` window on purpose: the rest of the 最新の動き sheet reports what has happened, while these are events still to come — which is exactly what a circulated paper is for. Do not give the action items a `data-date` to fold them into the window. The 地域の取組 section on `community.html` carries `data-board="skip"` so the page-summary sheet prints this list instead of the section's lead paragraph.
 

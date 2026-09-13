@@ -27,8 +27,22 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      # 東部まちづくり配下は過去年度の記録まで含めると 110ページ規模あるため、
+      # ふだんは直下まで（約20ページ）。日曜だけ WATCH_DEEP=1 で全階層を回る。
+      # 「地域の取組」欄に出す一覧の元は直下にあるので、平日も最新のまま保てる。
+      - name: Decide crawl depth for the eastern-district subtree
+        id: depth
+        run: |
+          if [ "$(date -u -d '+9 hours' +%u)" = "7" ]; then
+            echo "deep=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "deep=0" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Fetch official pages and update data
         id: fetch
+        env:
+          WATCH_DEEP: ${{ steps.depth.outputs.deep }}
         run: |
           set +e
           python3 .github/scripts/fetch_news.py
@@ -71,6 +85,11 @@ jobs:
       # （同じページを2度取りに行かないため）。fetch の【あと】に置くこと。
       - name: Build community council event list
         run: python3 .github/scripts/build_community_events.py
+
+      # 東部まちづくりの取組一覧（トップと community.html の「地域の取組」欄に出す）。
+      # これも市サーバへは行かず、直前の fetch_news.py のスナップショットを読むだけ。
+      - name: Build eastern-district action list
+        run: python3 .github/scripts/build_tobu_actions.py
 
       # 再編対象8校のホームページ新着記事（別ドメイン・各校が更新）
       # 学校再編の一次情報ではないため、変化しても Issue や自動更新ジョブは動かさない。
@@ -143,7 +162,7 @@ jobs:
         id: report
         if: steps.fetch.outputs.changed == 'true' || steps.newsletters.outputs.changed == 'true'
         run: |
-          git add data/news.json data/official_pages data/community_events.json
+          git add data/news.json data/official_pages data/community_events.json data/tobu_actions.json
           if git diff --staged --quiet -- data/official_pages; then
             echo "pages_changed=false" >> "$GITHUB_OUTPUT"
           else
@@ -276,6 +295,10 @@ jobs:
                  テキストに出てこないからといって「載っていない」と判断しないこと
                - **PDF への直リンクを張ってはいけない**。だよりを根拠に本文を書くのはよいが、
                  リンク先として PDF の URL を書くと検証で不合格になる
+            2-c. **変更が data/official_pages/toubumachidukuri-* なら、それは東部まちづくり推進室の
+               ページ（監視のみ）**。取組の一覧は build_tobu_actions.py が data/tobu_actions.json に
+               自動で反映するので、「地域の取組」欄を手で書き足してはいけない。学校再編そのものの
+               事実（日程・対象校・通学区域など）が書かれていた場合にかぎり、通常どおり扱う
             3. data/site-facts.json で影響しうるサイト内の箇所を確認する
             4. CLAUDE.md のルール（特に日付連動の自動表示・属性の使い分け）を読む
             5. サイトのデータを更新すべきか判断し、必要な場合のみ次のファイルだけを編集する:

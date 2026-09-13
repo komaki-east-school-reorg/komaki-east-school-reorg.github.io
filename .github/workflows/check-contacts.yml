@@ -1,0 +1,73 @@
+name: Check Department Contacts
+
+# サイトに載せている市・県・国の担当部署の連絡先（data/contacts.json）を、
+# 出所の公表ページと突き合わせる。組織改編は4月1日付が多いが、年度途中の
+# 番号変更もあるので週1回見に行く。取りに行くのは17件ぶんの11ページだけで、
+# 1ページごとに3〜5秒あけるため、各サーバへの負荷はほぼない。
+#
+# 電話・FAX番号の変更は --fix がそのまま直してコミットする（番号は翻訳されない）。
+# 部署名・所在地の変更は10言語＋こどもむけの訳が絡むので、Issue で知らせるだけにする。
+
+on:
+  schedule:
+    - cron: '50 21 * * 0'   # 毎週日曜 21:50 UTC（＝月曜 6:50 JST）。正時を避ける
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: check-contacts
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Compare published contacts with the site
+        id: check
+        run: |
+          set +e
+          python3 .github/scripts/check_contacts.py --fix --report /tmp/contacts.md
+          code=$?
+          set -e
+          if [ "$code" -eq 1 ]; then
+            echo "Contact check failed" >&2
+            exit 1
+          fi
+          if [ "$code" -eq 3 ]; then
+            echo "diff=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "diff=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # 番号は辞書（data/i18n/*.json）の文面にも入っているので、
+      # 直したらページ別辞書を作り直さないと古い番号が 200 で配られ続ける。
+      - name: Rebuild page dictionaries
+        if: steps.check.outputs.diff == 'true'
+        run: python3 .github/scripts/build_page_dicts.py
+
+      - name: Commit automatic number fixes
+        if: steps.check.outputs.diff == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A data/contacts.json data/i18n *.html
+          if git diff --staged --quiet; then
+            echo "Nothing to commit (報告のみ)"
+          else
+            git commit -m "chore: update department phone numbers [skip ci]"
+            git push
+          fi
+
+      - name: Open issue for contact changes
+        if: steps.check.outputs.diff == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "☎️ 担当部署の連絡先に変化 $(TZ=Asia/Tokyo date +%Y-%m-%d)" \
+            --body-file /tmp/contacts.md

@@ -56,6 +56,10 @@
     "school_news": {
       "file": "data/school_news.json（自動生成・手編集不可）/ index.html の #school-news-container",
       "notes": "再編対象8校のホームページ更新コーナー。.github/scripts/fetch_schools.py が毎日更新するので手で編集しない"
+    },
+    "tobu_actions": {
+      "file": "data/tobu_actions.json（自動生成・手編集不可）/ community.html と index.html の #tobu-actions-container",
+      "notes": "東部まちづくりの取組一覧。build_tobu_actions.py がスナップショットから毎日組み立てるので、人もAIも手で直さない"
     }
   },
   "default_targets": [
@@ -263,6 +267,11 @@
       "targets": [
         "community"
       ]
+    },
+    {
+      "slug_prefix": "toubumachidukuri-tobumachidukurisingikai-",
+      "topic": "東部まちづくり（東部まちづくり推進室・監視のみ）。取組一覧は data/tobu_actions.json に自動反映されるので手編集は不要",
+      "targets": []
     }
   ]
 }

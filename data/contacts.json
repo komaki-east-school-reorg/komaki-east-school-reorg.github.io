@@ -1,0 +1,321 @@
+{
+  "description": "サイトに載せている市・県・国の担当部署の連絡先と、その出所ページの対応表（手動管理）。.github/scripts/check_contacts.py が毎週この一覧と公表ページを突き合わせ、食い違いがあれば報告する（--fix で電話・FAX番号だけ自動で書き換える）。name / location はここを直したら shown_in の各ページと data/i18n/*.json も直すこと（部署名は翻訳されているため機械では直せない）。source は照合にだけ使うURLで、サイトからリンクはしない（外部リンクは CLAUDE.md の許可URLのみ）。",
+  "checked_note": "電話番号・FAX番号はページに書いてある文字列をそのまま持つ（ハイフンあり）。tel: リンクは数字だけの形で書かれているので、--fix は両方を置き換える。",
+  "contacts": [
+    {
+      "id": "city-gakkousaihen",
+      "level": "city",
+      "name": "教育委員会事務局　教育総務課　学校再編推進係",
+      "location": "小牧市役所　本庁舎3階",
+      "tel": "0568-39-5261",
+      "fax": "0568-75-8283",
+      "source": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/shinooka_gsaihen/48603.html",
+      "probe": {
+        "kind": "article_contact"
+      },
+      "shown_in": [
+        "about.html",
+        "faq.html",
+        "bus.html",
+        "review.html",
+        "index.html",
+        "schedule.html",
+        "nationwide.html",
+        "community.html"
+      ]
+    },
+    {
+      "id": "city-sasaeai",
+      "level": "city",
+      "name": "健康生きがい支え合い推進部　支え合い協働推進課　支え合い協働推進係",
+      "location": "小牧市役所　本庁舎3階",
+      "tel": "0568-76-1629",
+      "fax": "0568-75-8283",
+      "source": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/25722.html",
+      "probe": {
+        "kind": "article_contact"
+      },
+      "shown_in": [
+        "community.html"
+      ]
+    },
+    {
+      "id": "city-toubu",
+      "level": "city",
+      "name": "都市政策部　東部まちづくり推進室",
+      "location": "小牧市役所　東庁舎2階",
+      "tel": "0568-39-5229",
+      "fax": "0568-71-1481",
+      "source": "https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toubumachidukuri/28236.html",
+      "probe": {
+        "kind": "article_contact"
+      },
+      "shown_in": [
+        "review.html"
+      ]
+    },
+    {
+      "id": "city-toshikeikaku",
+      "level": "city",
+      "name": "都市政策部　都市計画課　都市計画係",
+      "location": "東庁舎2階",
+      "tel": "0568-76-1155",
+      "source": "https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toshikeikaku/7222.html",
+      "probe": {
+        "kind": "kakari",
+        "label": "都市計画係"
+      },
+      "shown_in": [
+        "review.html"
+      ]
+    },
+    {
+      "id": "city-kyojusuishin",
+      "level": "city",
+      "name": "都市政策部　都市計画課　居住推進係",
+      "location": "東庁舎2階",
+      "tel": "0568-39-6534",
+      "source": "https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toshikeikaku/7222.html",
+      "probe": {
+        "kind": "kakari",
+        "label": "居住推進係"
+      },
+      "shown_in": [
+        "review.html"
+      ]
+    },
+    {
+      "id": "city-kodomoseisaku",
+      "level": "city",
+      "name": "こども未来部　こども政策課",
+      "location": "小牧市役所　本庁舎2階",
+      "tel": "0568-76-1129",
+      "fax": "0568-72-2340",
+      "source": "https://www.city.komaki.aichi.jp/admin/soshiki/kodomomirai/kodomoseisaku/8694.html",
+      "probe": {
+        "kind": "article_contact"
+      },
+      "shown_in": [
+        "review.html"
+      ]
+    },
+    {
+      "id": "city-deai",
+      "level": "city",
+      "name": "こども未来部　出会い・結婚支援室　出会い・結婚支援係",
+      "location": "小牧市役所　本庁舎2階",
+      "tel": "0568-39-5572",
+      "fax": "0568-72-2340",
+      "source": "https://www.city.komaki.aichi.jp/admin/soshiki/kodomomirai/deai_kekkon/40701.html",
+      "probe": {
+        "kind": "article_contact"
+      },
+      "shown_in": [
+        "review.html"
+      ]
+    },
+    {
+      "id": "city-kigyouricchi",
+      "level": "city",
+      "name": "地域活性化営業部　企業立地・次世代産業推進課　企業立地・次世代産業係",
+      "location": "小牧市役所　本庁舎3階",
+      "tel": "0568-76-1135",
+      "fax": "0568-75-8283",
+      "source": "https://www.city.komaki.aichi.jp/admin/soshiki/chiikikassei/kigyouricchi/5024.html",
+      "probe": {
+        "kind": "article_contact"
+      },
+      "shown_in": [
+        "review.html"
+      ]
+    },
+    {
+      "id": "city-hisyoseisaku",
+      "level": "city",
+      "name": "市長公室　秘書政策課",
+      "location": "小牧市役所　本庁舎5階",
+      "tel": "0568-76-1100",
+      "fax": "0568-71-3138",
+      "source": "https://www.city.komaki.aichi.jp/admin/soshiki/shicokoshitsu/hisyo/7211.html",
+      "probe": {
+        "kind": "article_contact"
+      },
+      "shown_in": [
+        "review.html"
+      ]
+    },
+    {
+      "id": "pref-toshikeikaku",
+      "level": "pref",
+      "name": "都市・交通局　都市基盤部　都市計画課　土地利用計画グループ",
+      "tel": "052-954-6518",
+      "source": "https://www.pref.aichi.jp/soshiki/toshi/",
+      "probe": {
+        "kind": "pref_group",
+        "label": "土地利用計画グループ"
+      },
+      "shown_in": [
+        "review.html"
+      ]
+    },
+    {
+      "id": "pref-kotsu",
+      "level": "pref",
+      "name": "都市・交通局　都市基盤部　交通対策課",
+      "tel": "052-954-6124",
+      "source": "https://www.pref.aichi.jp/soshiki/kotsu/",
+      "probe": {
+        "kind": "pref_group",
+        "label": "地域公共交通グループ"
+      },
+      "shown_in": [
+        "review.html"
+      ]
+    },
+    {
+      "id": "pref-kosodate",
+      "level": "pref",
+      "name": "福祉局　福祉部　子育て支援課　子ども政策グループ",
+      "tel": "052-954-6106",
+      "source": "https://www.pref.aichi.jp/soshiki/kosodate/",
+      "probe": {
+        "kind": "pref_group",
+        "label": "子ども政策グループ"
+      },
+      "shown_in": [
+        "review.html"
+      ]
+    },
+    {
+      "id": "pref-ricchi",
+      "level": "pref",
+      "name": "経済産業局　産業部　産業立地通商課　立地推進グループ",
+      "tel": "052-954-6372",
+      "source": "https://www.pref.aichi.jp/soshiki/ricchitsusho/",
+      "probe": {
+        "kind": "pref_group",
+        "label": "立地推進グループ"
+      },
+      "shown_in": [
+        "review.html"
+      ]
+    },
+    {
+      "id": "pref-zaimusisetsu",
+      "level": "pref",
+      "name": "教育委員会事務局　管理部　財務施設課",
+      "tel": "052-954-6762",
+      "source": "https://www.pref.aichi.jp/soshiki/zaimusisetsu/",
+      "probe": {
+        "kind": "pref_group",
+        "label": "振興・管財グループ"
+      },
+      "shown_in": [
+        "review.html"
+      ]
+    },
+    {
+      "id": "mext-kyoikuseido",
+      "level": "mext",
+      "name": "初等中等教育局初等中等教育企画課教育制度改革室",
+      "tel": "03-5253-4111",
+      "source": "https://www.mext.go.jp/a_menu/shotou/tekisei/index.htm",
+      "probe": {
+        "kind": "text",
+        "check_tel": false
+      },
+      "shown_in": [
+        "nationwide.html"
+      ]
+    },
+    {
+      "id": "mext-shisetsujosei",
+      "level": "mext",
+      "name": "大臣官房文教施設企画・防災部施設助成課",
+      "tel": "03-6734-2464",
+      "source": "https://www.mext.go.jp/a_menu/shotou/zyosei/yoyuu_00002.htm",
+      "probe": {
+        "kind": "text",
+        "check_tel": true
+      },
+      "shown_in": [
+        "nationwide.html"
+      ]
+    },
+    {
+      "id": "mext-chousakikaku",
+      "level": "mext",
+      "name": "総合教育政策局参事官（調査企画担当）付",
+      "tel": "03-5253-4111",
+      "source": "https://www.mext.go.jp/b_menu/toukei/chousa01/kihon/1267995.htm",
+      "probe": {
+        "kind": "text",
+        "check_tel": false
+      },
+      "shown_in": [
+        "nationwide.html"
+      ]
+    },
+    {
+      "id": "city-gikai-gijichousa",
+      "level": "city",
+      "name": "議会事務局　議事課　議事調査係",
+      "location": "東庁舎3階",
+      "tel": "0568-76-1169",
+      "source": "https://www.city.komaki.aichi.jp/admin/soshiki/gikai/giji/5025.html",
+      "probe": {
+        "kind": "kakari",
+        "label": "議事調査係"
+      },
+      "shown_in": [
+        "council.html"
+      ]
+    },
+    {
+      "id": "city-gikai-shomu",
+      "level": "city",
+      "name": "議会事務局　議事課　庶務係",
+      "location": "東庁舎3階",
+      "tel": "0568-76-1168",
+      "source": "https://www.city.komaki.aichi.jp/admin/soshiki/gikai/giji/5025.html",
+      "probe": {
+        "kind": "kakari",
+        "label": "庶務係"
+      },
+      "shown_in": [
+        "council.html"
+      ]
+    },
+    {
+      "id": "aoi-honsha",
+      "level": "company",
+      "name": "あおい交通株式会社",
+      "location": "小牧市新町三丁目430番地",
+      "tel": "0568-77-0001",
+      "fax": "0568-73-7762",
+      "source": "https://aoi-komaki.jp/profile",
+      "probe": {
+        "kind": "text",
+        "check_tel": true
+      },
+      "shown_in": [
+        "bus.html"
+      ]
+    },
+    {
+      "id": "aoi-noguchi",
+      "level": "company",
+      "name": "あおい交通株式会社 野口営業所",
+      "tel": "0568-79-6464",
+      "source": "https://aoi-komaki.jp/",
+      "probe": {
+        "kind": "text",
+        "check_tel": true,
+        "match": "野口営業所"
+      },
+      "shown_in": [
+        "bus.html"
+      ]
+    }
+  ]
+}

@@ -442,6 +442,31 @@
         このサイトは小牧市の公式サイトではなく、市民有志による非公式の情報提供サイトです。
       </div>
 
+      <!-- 国の担当部署：このページの数値ごとに、それを所管する部署を並べる。
+           部署名の欄に data-i18n を付けていないのは review.html と同じ理由（窓口・電話で
+           使うのは日本語の名称そのもの）。番号は文部科学省が各ページで公表しているものだけを
+           書き写し、リンクは増やしていない（出典リンクは上の4つのまま）。 -->
+      <!-- id="contact" はトップページの「担当部署に直接たずねる」欄から張られている。外すとリンク切れ。 -->
+      <h2 class="section-title" id="contact" style="margin-top:2.5rem; margin-bottom:1.2rem;" data-i18n-html="nationwide_s6_h">国の担当部署<small>Who to Contact</small></h2>
+      <p style="margin-bottom:1.2rem;" data-i18n="nationwide_contact_lead">このページの数値と基準は、文部科学省の次の部署が所管しています。連絡先は同省が上の各ページで公表しているものです（2026年9月現在）。</p>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th data-i18n="contact_tbl_dept">部署</th>
+              <th data-i18n="contact_tbl_scope">このページで触れた事柄</th>
+              <th data-i18n="contact_tbl_tel">電話</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>初等中等教育局 初等中等教育企画課 教育制度改革室</td><td data-i18n="nw_c1_w">適正規模・適正配置の手引、令和8年8月5日の改訂通知</td><td><a href="tel:0352534111">03-5253-4111（代表）</a></td></tr>
+            <tr><td>大臣官房文教施設企画・防災部 施設助成課 振興地域係</td><td data-i18n="nw_c2_w">廃校施設活用状況実態調査</td><td><a href="tel:0367342464">03-6734-2464（直通）</a></td></tr>
+            <tr><td>総合教育政策局 参事官（調査企画担当）付</td><td data-i18n="nw_c3_w">学校基本調査</td><td><a href="tel:0352534111">03-5253-4111（代表）</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.82rem; color:var(--text-muted); margin-top:1rem;" data-i18n-html="nationwide_contact_note">※ 部署名は日本語のまま載せています。窓口や電話で使うのは日本語の名称そのものだからです。意見や質問は文部科学省ホームページの「御意見・お問合せ」からも送れます。ここは全国の統計と国の基準についての窓口で、小牧市の計画そのものの問い合わせ先ではありません。市の担当は教育委員会事務局 教育総務課 学校再編推進係（0568-39-5261）、市と県の部署は <a href="review.html#rev-contact">検証と提案</a> にまとめました。</p>
+
     </div>
   </section>
 

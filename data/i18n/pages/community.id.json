@@ -34,6 +34,10 @@
   "comm_consider1": "<strong>Sekolah adalah inti kehidupan komunitas</strong><br>Di mana anak-anak berkumpul, warga setempat pun secara alami berkumpul. Hari olahraga, festival belajar, latihan evakuasi — acara sekolah telah lama menjadi kesempatan pertukaran lintas generasi. Konsolidasi sekolah bukan hanya soal peningkatan lingkungan pendidikan — ini mempengaruhi struktur masyarakat lokal itu sendiri.",
   "comm_consider2": "<strong>Manfaat dan tantangan tata kelola area yang lebih luas</strong><br>Pengurangan menjadi dua dewan membuka kemungkinan warga di area lebih luas bekerja sama. Di sisi lain, ada kekhawatiran bahwa karakter lokal komunitas menjadi lebih sulit dikenali, kemudahan partisipasi berubah, dan rasa memiliki terhadap distrik sekolah lama memudar. Apakah pelebaran ini memvitalkan atau melarutkan kegiatan tergantung pada proses transisi dan keterlibatan warga.",
   "comm_consider3": "<strong>Partisipasi warga adalah kuncinya</strong><br>Reorganisasi Dewan Komunitas berkaitan erat dengan kehidupan warga seperti konsolidasi sekolah itu sendiri. Dalam pertemuan penjelasan dan proses komentar publik 2025, kekhawatiran tentang masa depan komunitas lokal turut disampaikan. Dialog berkelanjutan antara kota dan warga — serta membangun bersama bentuk komunitas baru — akan sangat penting.",
+  "comm_contact_dept_val": "Seksi Promosi Gotong Royong dan Kolaborasi, Divisi Promosi Gotong Royong dan Kolaborasi, Departemen Kesehatan, Kesejahteraan dan Gotong Royong",
+  "comm_contact_h2": "Kontak tentang dewan komunitas<small>Contact</small>",
+  "comm_contact_note": "Ini adalah divisi yang menangani dewan komunitas. Penataan ulang sekolah sendiri ditangani oleh Seksi Promosi Penataan Ulang Sekolah (telepon 0568-39-5261). Sumber: blok kontak di halaman \"Dewan komunitas\" milik kota. Nama dan nomor dapat berubah bila struktur organisasi diubah.",
+  "comm_contact_web_val": "Kota Komaki — Dewan komunitas (resmi)",
   "comm_cs_p1": "Setiap sekolah di Kota Komaki memiliki <strong>Dewan Manajemen Sekolah (Community School)</strong>. Ini adalah forum di mana orang tua dan warga lokal dapat menyampaikan pendapat tentang kebijakan pendidikan dan operasional sekolah — institusi penting yang menghubungkan Dewan Komunitas dengan sekolah.",
   "comm_cs_p2": "Menciptakan kesempatan bagi warga dewasa lokal untuk berpartisipasi dalam dukungan kelas, membaca keras, dan pendidikan karir, serta berbagi tantangan sekolah dengan komunitas yang lebih luas.",
   "comm_def_p1": "Dewan Komunitas adalah organisasi yang <strong>dibentuk secara sukarela oleh warga berdasarkan wilayah sekolah dasar</strong>. Asosiasi warga, PTA, klub lansia, klub olahraga, dan komisioner kesejahteraan berpartisipasi lintas organisasi untuk mendiskusikan masalah lokal dan merevitalisasi kehidupan komunitas.",
@@ -88,6 +92,12 @@
   "event_status_current": "Berlangsung",
   "event_status_done": "Selesai",
   "event_status_upcoming": "Rencana",
+  "faq_contact_dept_label": "Divisi",
+  "faq_contact_fax_label": "Faks",
+  "faq_contact_loc_label": "Lokasi",
+  "faq_contact_loc_val": "Balai Kota Komaki, Gedung Utama Lantai 3",
+  "faq_contact_tel_label": "Telepon",
+  "faq_contact_web_label": "Situs Resmi",
   "footer_copyright": "© 2026 Situs Informasi Reorganisasi Sekolah Komaki Timur (Tidak Resmi) | Situs ini dioperasikan oleh sukarelawan komunitas dan tidak berafiliasi dengan Kota Komaki atau Dinas Pendidikan.",
   "footer_credit": "Situs ini dibuat dan dikelola dengan Claude Code dan GitHub.",
   "footer_langs": "Bahasa: 日本語・English・Português・Tiếng Việt・Filipino・Español・中文・Bahasa Indonesia・Türkçe・မြန်မာ",
@@ -140,5 +150,8 @@
   "share_tiktok": "TikTok (salin tautan)",
   "share_x": "Posting di X",
   "site_sub": "Situs Informasi Komunitas (Tidak Resmi)",
-  "status_done": "Selesai"
+  "status_done": "Selesai",
+  "tobu_actions_h": "Kabar penataan wilayah timur<small>Eastern District Updates</small>",
+  "tobu_actions_lead": "Catatan kegiatan di wilayah timur yang dipublikasikan oleh Kantor Pengembangan Wilayah Timur kota. Diambil otomatis dari halaman kota sekali sehari. Judul tetap dalam kata-kata asli kota dan tidak diterjemahkan.",
+  "tobu_actions_note": "Situs ini hanya menautkan ke dua halaman resmi, sehingga item di sini tidak ditautkan ke halaman kota. Teks lengkapnya ada di halaman \"Pengembangan Wilayah Timur\" pada situs resmi Kota Komaki."
 }

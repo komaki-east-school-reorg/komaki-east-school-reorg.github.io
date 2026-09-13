@@ -34,6 +34,10 @@
   "comm_consider1": "<strong>Okullar toplum yaşamının çekirdeğidir</strong><br>Çocukların toplandığı yerde yerel sakinler de doğal olarak bir araya gelir. Spor şenlikleri, öğrenme festivalleri, tahliye tatbikatları — okul etkinlikleri uzun zamandır kuşaklar arası kaynaşmanın fırsatı olmuştur. Okulların birleşmesi yalnızca eğitim ortamının iyileştirilmesi meselesi değildir; yerel toplumun yapısını doğrudan etkileyen bir olaydır.",
   "comm_consider2": "<strong>Geniş alanlı yönetişimin yararları ve zorlukları</strong><br>İki konseye inilmesi, daha geniş bir alandaki sakinlerin tek bir bütün olarak birlikte çalışabilmesinin önünü açıyor. Öte yandan, mahallenin kendine özgü niteliğinin görünmez hâle gelmesi, katılım kolaylığının azalması ve eski okul bölgesine aidiyet duygusunun zayıflaması gibi kaygılar da var. Kapsamın genişlemesinin faaliyetleri canlandırması mı yoksa sulandırması mı, geçiş sürecine ve sakinlerin katılım biçimine büyük ölçüde bağlı.",
   "comm_consider3": "<strong>Sakinlerin katılımı belirleyici</strong><br>Bölge Konseylerinin yeniden yapılandırılması, okulların birleşmesi kadar sakinlerin günlük yaşamı ve topluluklarıyla iç içedir. 2025'te düzenlenen bilgilendirme toplantılarında ve kamuoyu görüşü sürecinde yerel toplulukların geleceğine ilişkin kaygılar dile getirilmiştir. Belediye ile sakinler arasında sürekli diyalog ve yeni topluluk biçimlerinin birlikte kurulması vazgeçilmez olacaktır.",
+  "comm_contact_dept_val": "Sağlık, Yaşam Doyumu ve Dayanışma Dairesi, Dayanışma ve İşbirliğini Geliştirme Müdürlüğü, Dayanışma ve İşbirliğini Geliştirme Birimi",
+  "comm_contact_h2": "Bölge konseyleri için iletişim<small>Contact</small>",
+  "comm_contact_note": "Bu birim bölge konseylerinden sorumludur. Okul yeniden düzenlemesinin kendisi Okul Yeniden Düzenleme Birimi tarafından yürütülür (telefon 0568-39-5261). Kaynak: belediyenin \"Bölge konseyleri\" sayfasındaki iletişim bölümü. Teşkilat değişikliğinde adlar ve numaralar değişebilir.",
+  "comm_contact_web_val": "Komaki Belediyesi — Bölge konseyleri (resmî)",
   "comm_cs_p1": "Komaki Şehri'ndeki her okulda bir <strong>Okul Yönetim Konseyi (Topluluk Okulu)</strong> bulunur. Bu, velilerin ve mahalle sakinlerinin okulun eğitim politikaları ve işleyişi hakkında görüş bildirebildiği bir platformdur — mahalle konseyleriyle okulları birbirine bağlayan önemli bir kurumdur.",
   "comm_cs_p2": "Yerel yetişkinlerin sınıf içi destek, sesli okuma ve meslek eğitimine katılmasına ve okulun sorunlarını daha geniş bir kesimle paylaşmasına imkân sağlar.",
   "comm_def_p1": "Bölge Konseyi, <strong>ilkokul bölgesi esas alınarak yerel sakinlerin gönüllü olarak kurduğu</strong> bir örgüttür. Mahalle birlikleri, okul aile birlikleri, yaşlı kulüpleri, spor kulüpleri ve sosyal hizmet görevlileri gibi gruplar örgüt sınırlarını aşarak katılır; yerel sorunları görüşür ve topluluk yaşamını canlandırır.",
@@ -88,6 +92,12 @@
   "event_status_current": "Devam ediyor",
   "event_status_done": "Tamamlandı",
   "event_status_upcoming": "Planlanan",
+  "faq_contact_dept_label": "Birim",
+  "faq_contact_fax_label": "Faks",
+  "faq_contact_loc_label": "Konum",
+  "faq_contact_loc_val": "Komaki Belediye Binası, Ana Bina 3. kat",
+  "faq_contact_tel_label": "Telefon",
+  "faq_contact_web_label": "Resmî web sitesi",
   "footer_copyright": "© 2026 Komaki Doğu Okul Yeniden Yapılandırması Vatandaş Bilgi Sitesi (Resmî Değildir) | Bu site gönüllü vatandaşlarca işletilir; Komaki Belediyesi veya Eğitim Kurulu ile bağlantılı değildir.",
   "footer_credit": "Bu site Claude Code ve GitHub ile hazırlanıp güncellenmektedir.",
   "footer_langs": "Mevcut diller: 日本語・English・Português・Tiếng Việt・Filipino・Español・中文・Bahasa Indonesia・Türkçe・မြန်မာ",
@@ -140,5 +150,8 @@
   "share_tiktok": "TikTok (bağlantıyı kopyala)",
   "share_x": "X'te paylaş",
   "site_sub": "Vatandaş Bilgi Sitesi (Resmî Değildir)",
-  "status_done": "Tamamlandı"
+  "status_done": "Tamamlandı",
+  "tobu_actions_h": "Doğu bölgesindeki gelişmeler<small>Eastern District Updates</small>",
+  "tobu_actions_lead": "Belediyenin Doğu Bölgesi Kalkındırma Ofisi'nin yayımladığı, doğu bölgesindeki çalışmaların kaydı. Günde bir kez belediyenin sayfalarından otomatik olarak alınır. Başlıklar belediyenin kendi sözleridir ve çevrilmez.",
+  "tobu_actions_note": "Bu site dışarıya yalnızca iki resmî sayfaya bağlantı verir; bu nedenle buradaki maddeler belediye sayfalarına bağlanmaz. Tam metin için Komaki Belediyesi sitesindeki \"Doğu Bölgesi Kalkınması\" sayfalarına bakın."
 }

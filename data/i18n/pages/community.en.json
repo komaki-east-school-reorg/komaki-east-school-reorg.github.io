@@ -34,6 +34,10 @@
   "comm_consider1": "<strong>Schools are the core of community life</strong><br>Where children gather, local residents naturally gather too. Sports days, learning festivals, evacuation drills — school events have long been opportunities for cross-generational exchange. School consolidation is not just a matter of improving the educational environment — it is an event that affects the very structure of local society.",
   "comm_consider2": "<strong>Benefits and challenges of wider-area governance</strong><br>Reducing to two councils opens the possibility of residents across a wider area working together as one. On the other hand, concerns include the local character of the community becoming harder to see, reduced ease of participation, and a fading sense of belonging to the former school district. Whether widening the scope energizes or dilutes activities depends greatly on the transition process and how residents engage.",
   "comm_consider3": "<strong>Resident participation is key</strong><br>The reorganization of Community Councils is as closely tied to residents daily lives and communities as the school consolidation itself. In the explanatory meetings and public comment process held in 2025, concerns were raised about the future of local communities. Ongoing dialogue between the city and residents — and building new community forms together — will be essential.",
+  "comm_contact_dept_val": "Mutual Support and Collaboration Promotion Section, Mutual Support and Collaboration Promotion Division, Department of Health, Well-being and Mutual Support",
+  "comm_contact_h2": "Contact for Community Councils<small>地域協議会についてのお問い合わせ</small>",
+  "comm_contact_note": "This is the division in charge of the community councils. The school reorganization itself is handled by the School Reorganization Promotion Section (phone 0568-39-5261). Source: the contact block on the city's \"Community Councils\" page. Names and numbers can change when the city reorganizes its departments.",
+  "comm_contact_web_val": "Komaki City — Community Councils (official)",
   "comm_cs_p1": "Each school in Komaki City has a <strong>School Management Council (Community School)</strong>. This is a forum where parents and local residents can share opinions on the school's educational policies and operations — an important institution connecting Community Councils with schools.",
   "comm_cs_p2": "It creates opportunities for local adults to participate in classroom support, read-alouds, and career education, and to share school challenges with the wider community.",
   "comm_def_p1": "A Community Council is an organization <strong>voluntarily formed by local residents based on the elementary school district</strong>. Groups such as neighborhood associations, PTAs, senior clubs, sports clubs, and welfare commissioners participate across organizational lines to discuss local issues and revitalize community life.",
@@ -88,6 +92,12 @@
   "event_status_current": "In progress",
   "event_status_done": "Done",
   "event_status_upcoming": "Planned",
+  "faq_contact_dept_label": "Department",
+  "faq_contact_fax_label": "FAX",
+  "faq_contact_loc_label": "Location",
+  "faq_contact_loc_val": "Komaki City Hall, Main Building 3F",
+  "faq_contact_tel_label": "Phone",
+  "faq_contact_web_label": "Official Website",
   "footer_copyright": "© 2026 Komaki East School Reorganization Community Info Site (Unofficial) | This site is operated by community volunteers and is not affiliated with Komaki City or its Board of Education.",
   "footer_credit": "This site is built and maintained with Claude Code and GitHub.",
   "footer_langs": "Available in: 日本語・English・Português・Tiếng Việt・Filipino・Español・中文・Bahasa Indonesia・Türkçe・မြန်မာ",
@@ -140,5 +150,8 @@
   "share_tiktok": "TikTok (copy link)",
   "share_x": "Post on X",
   "site_sub": "Community Info Site (Unofficial)",
-  "status_done": "Done"
+  "status_done": "Done",
+  "tobu_actions_h": "Eastern District Updates<small>東部まちづくりの動き</small>",
+  "tobu_actions_lead": "A record of activities in the eastern district published by the city's Eastern District Development Office. It is collected automatically from the city's pages once a day. The headings are the city's own words and are not translated.",
+  "tobu_actions_note": "This site links out to only two official pages, so the items here are not linked to the city's pages. For the full text, see the \"Eastern District Development\" pages on the Komaki City website."
 }

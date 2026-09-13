@@ -77,7 +77,10 @@ jobs:
             - **`bus.html` の対象エリア地図は完成・凍結**。図形・枠・縮尺・色・線を変える提案はしない
             - **`council.html` は対象外**。このページの更新・改修は提案しない
             - `data/` 配下の自動生成ファイル（news.json, school_news.json, chunichi_news.json,
-              community_events.json, i18n/pages/, official_pages/）を手編集する前提の案は出さない
+              community_events.json, tobu_actions.json, i18n/pages/, official_pages/）を
+              手編集する前提の案は出さない
+            - 市・県・国の担当部署の連絡先（data/contacts.json）は毎週 check_contacts.py が
+              公表ページと照合している。番号を別の場所にも書き写す案は出さない（食い違う）
             - 実装が10言語に波及するものは、その手間も書く（辞書キー追加＋build_page_dicts.py の再生成）
             - 「今日は出すに値する案が無い」と判断したら、**見出し（## で始まる行）を1つも書かず**、
               理由を数行だけ書いて終える。無理に絞り出さないこと

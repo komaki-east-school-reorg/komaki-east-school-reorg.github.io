@@ -1611,6 +1611,27 @@ footer {
 }
 .ce-when { display: block; margin-top: .25rem; font-size: .78rem; color: var(--text-muted); }
 
+/* ===== 東部まちづくりの動き（「地域の取組」欄の中の市公式リスト） =====
+   市サイトへのリンクは許可URL以外を張れないので、この一覧だけは
+   リンクの無い行リストになる（日付＋見出し）。出典は最後の1行で文字で示す。
+   .ce-* と同じ簡素な行リストにそろえ、市民有志の取組（.action-item）とは
+   見た目を変えて「誰が出している情報か」が版面から分かるようにしている。 */
+.tobu-list { list-style: none; padding: 0; margin: 0 0 .8rem; border-top: 1px solid var(--border); }
+.tobu-item { border-bottom: 1px solid var(--border); padding: .6rem 0; }
+.tobu-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem; }
+.tobu-date {
+  flex-shrink: 0;
+  font-size: .75rem;
+  color: var(--white);
+  background: var(--primary);
+  padding: .1em .5em;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+.tobu-title { font-size: .9rem; color: var(--text); line-height: 1.5; }
+.tobu-from { display: block; margin-top: .25rem; font-size: .78rem; color: var(--text-muted); }
+.tobu-source { font-size: .78rem; color: var(--text-muted); margin-top: .6rem; }
+
 /* ===== SHARE / このページを共有する =====
    全ページ共通。ボタンの実体（href・ラベル）は js/main.js が組み立てる。
    ブランド色はアイコンチップと hover の背景にだけ使い、既定はサイトの

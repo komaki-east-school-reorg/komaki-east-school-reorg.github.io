@@ -34,6 +34,10 @@
   "comm_consider1": "<strong>学校是社区的核心</strong><br>孩子们聚集的地方，自然也是地域居民聚集的地方。运动会、学习发表会、避难演练……学校活动也是跨越世代交流的机会。学校撤并不仅仅是\"改善教育环境\"，更是影响地域社会整体结构的大事。",
   "comm_consider2": "<strong>广域化的优势与课题</strong><br>协议会减为两个，有望让更广范围内的居民作为整体共同活动。另一方面，也存在地域面貌变得难以辨认、参与便利性变化、对原学校区归属感减弱等担忧。广域化究竟是激活还是稀薄化活动，在很大程度上取决于过渡过程与居民的参与方式。",
   "comm_consider3": "<strong>居民参与是关键</strong><br>地域协议会的重组与学校撤并一样，与居民的生活和社区密切相关。2025年举行的说明会和公众意见征集中，也出现了对地域社区未来的担忧。市政府与居民持续对话，共同构建新的社区形态，至关重要。",
+  "comm_contact_dept_val": "健康生活互助推进部 互助协作推进课 互助协作推进系",
+  "comm_contact_h2": "关于地区协议会的咨询<small>Contact</small>",
+  "comm_contact_note": "这是主管地区协议会的部门。学校重组本身由教育委员会事务局 教育总务课 学校重组推进系（电话 0568-39-5261）负责。出处：小牧市“地区协议会”页面的“本文相关咨询处”。机构调整时名称和号码可能变更。",
+  "comm_contact_web_val": "小牧市 地区协议会（官方）",
   "comm_cs_p1": "小牧市各学校均设有<strong>学校运营协议会（社区学校）</strong>。这是家长和地域居民就学校教育方针及运营发表意见的场所，是连接地域协议会与学校的重要制度。",
   "comm_cs_p2": "为地域大人参与学校课堂支援、绘本朗读、职业教育，以及与地域共享学校课题提供了机会。",
   "comm_def_p1": "地域协议会是一个<strong>由地域居民以小学校区为单位自主组成的团体</strong>。自治会、PTA、老人会、体育团体、民生委员等各类团体横向参与，共同协商解决地域课题，推动社区活性化。",
@@ -88,6 +92,12 @@
   "event_status_current": "进行中",
   "event_status_done": "已完成",
   "event_status_upcoming": "计划",
+  "faq_contact_dept_label": "负责部门",
+  "faq_contact_fax_label": "FAX",
+  "faq_contact_loc_label": "所在地",
+  "faq_contact_loc_val": "小牧市政府 本馆3楼",
+  "faq_contact_tel_label": "电话",
+  "faq_contact_web_label": "官方网站",
   "footer_copyright": "© 2026 小牧市东部（篠岡地区）学校重组计划 市民信息网站（非官方）｜本网站由市民志愿者运营，与小牧市及教育委员会无关。",
   "footer_credit": "本网站使用 Claude Code 和 GitHub 制作与运营。",
   "footer_langs": "支持语言：日本語・English・Português・Tiếng Việt・Filipino・Español・中文・Bahasa Indonesia・Türkçe・မြန်မာ",
@@ -140,5 +150,8 @@
   "share_tiktok": "TikTok（复制链接）",
   "share_x": "在X上发布",
   "site_sub": "市民信息网站（非官方）",
-  "status_done": "已完成"
+  "status_done": "已完成",
+  "tobu_actions_h": "东部城市建设的动态<small>Eastern District Updates</small>",
+  "tobu_actions_lead": "这是市东部城市建设推进室公开的东部地区取组记录，每天自动从市官方页面获取一次。标题保留市方原文，未作翻译。",
+  "tobu_actions_note": "※ 本站对外链接仅限于两个官方页面，因此此处各条目未直接链接到市方页面。全文请见小牧市官方网站的「东部まちづくり」页面。"
 }

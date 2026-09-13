@@ -44,6 +44,10 @@ data/bus_map.geojson        bus.htmlの地図が描画する全データ（手�
                             層ごとにlayer/catプロパティを持ち、js/main.jsがチェックボックスで表示を切り替える。
 data/community_actions.json 地域で行われている催し・取組（手動管理）。community.html「地域の取組」（地域協議会イベント案内の直下）と、index.html「最新の動き」の同名コーナーが実行時にfetchして描画。市の公式情報でも報道でもなく主催者自身の発信であり、計画の内容・数値の根拠には使わない。badgeで市民有志（citizen）と地域協議会（council）を書き分ける。source_urlはauto_gates.pyのPERMITTED_INSTAGRAMにあるアカウントのみ。
 data/i18n/ja.json           日本語（デフォルト言語）の翻訳テキストをすべて格納する言語ファイル。
+data/tobu_actions.json      東部まちづくりの取組（自動生成・手編集不可）。community.htmlとindex.htmlの「地域の取組」欄の下半分が実行時にfetchして描画。
+                            市サーバへは行かず、official_pages/のtoubumachidukuri-*スナップショットから組み立てる。市サイトへのリンクは許可URL以外を張れないのでurlは持たない。
+data/contacts.json          サイトに載せている市・県・国の担当部署の連絡先と出所ページの対応表（手動管理）。check_contacts.pyが毎週これと公表ページを突き合わせる。
+                            sourceは照合専用のURLで、サイトからはリンクしない。部署名を直したらshown_inの各ページとdata/i18n/*.jsonも直すこと。
 data/i18n/en.json           英語の翻訳テキストを格納する言語ファイル。
 data/i18n/pt.json           ポルトガル語（ブラジル）の翻訳テキストを格納する言語ファイル。
 data/i18n/vi.json           ベトナム語の翻訳テキストを格納する言語ファイル。
@@ -61,7 +65,6 @@ img/og-image.png            SNSシェア時に表示されるOGP用サムネイ�
 
 ■ ページ別辞書（自動生成）
 data/i18n/pages/            各ページが実際に使うキーだけを切り出した辞書（<ページID>.<言語>.json、110ファイル）。
-                            .github/scripts/build_community_events.py  地域協議会イベント案内をスナップショットから抽出してcommunity_events.jsonを生成するスクリプト。市サーバへのアクセスなし。
 .github/scripts/build_page_dicts.py が生成する。手編集不可。
                             i18n.js はこちらを優先して取得し、404 のときだけ全体辞書に落ちる。
 
@@ -76,12 +79,16 @@ sitemap.xml                 全10ページのサイトマップ。各URLに10言
 .github/scripts/fetch_newsletters.py 『篠岡地区学校再編だより』のPDFから本文テキストを抽出し、official_pages/newsletters/ に保存するスクリプト。
                             掲載ページのHTMLはfetch_news.pyの取得結果を使い回し、PDFは未取得の号だけ落とす。fetch_news.pyの【あと】に実行すること。
 .github/scripts/fetch_schools.py    再編対象8校のホームページ（komaki-aic.ed.jp）を巡回し、各校の最新記事をschool_news.jsonに保存するスクリプト。
+.github/scripts/build_community_events.py 地域協議会イベント案内をスナップショットから抽出してcommunity_events.jsonを生成するスクリプト。市サーバへのアクセスなし。fetch_news.pyの【あと】に実行すること。
+.github/scripts/build_tobu_actions.py 東部まちづくりの取組一覧（tobu_actions.json）をスナップショットから組み立てるスクリプト。市サーバへのアクセスなし。fetch_news.pyの【あと】に実行すること。
+.github/scripts/check_contacts.py   data/contacts.jsonの連絡先を市・県・国の公表ページと突き合わせるスクリプト。--fixで電話・FAX番号だけ自動修正（部署名は翻訳があるので手で直す）。exit 0=一致/3=食い違い/1=エラー。
 .github/scripts/fetch_chunichi.py   中日新聞Webの小牧市エリア一覧を巡回し、東部（篠岡地区）に関する記事の見出し・日付・冒頭1文をchunichi_news.jsonに保存するスクリプト。地名で判定する。
 .github/scripts/map_targets.py      変更された公式ページのスラッグをsite-facts.jsonで引き、サイト内の更新候補箇所をMarkdown出力するスクリプト（Issue本文生成用）。
 .github/scripts/build_page_dicts.py  data/i18n/pages/ を生成する。辞書やHTMLのdata-i18nを変えたら実行してコミットすること。--check で鮮度検証のみ。
 .github/scripts/build_qr.py         回覧板シート（index.htmlのみ）に載せるQRコード（qr/index.*.svg）を言語ぶん生成する。segnoが必要（pip install segno）。--check で鮮度検証のみ。
 .github/scripts/auto_gates.py       自動更新のガードレール検証（編集範囲・スキーマ・ja/enキー一致・こどもモード1行の長さ・ページ別辞書の鮮度・外部リンク規則・出典実在チェック）。exit 0=合格/3=変更なし/1=不合格。
 .github/scripts/auto_report.py      自動更新のPR本文・事後報告コメントをevidence.json/verdict.jsonから生成するスクリプト。
+.github/workflows/check-contacts.yml 毎週1回、担当部署の連絡先を公表ページと照合するワークフロー定義。番号の変更は自動コミット、部署名の変更はIssueで知らせる。
 .github/workflows/feature-ideas.yml 毎朝1回、このサイトに足すとよさそうな機能をAIに考えさせてメールで届けるワークフロー定義。サイトのファイルは変更しない。
 .github/scripts/send_mail.py        件名と本文ファイルを受け取ってSMTPでメールを1通送るスクリプト。宛先は1件のみ（未指定ならSMTP_USER宛て）。設定が無ければexit 2（呼び出し側はIssueに切り替える）。
 .github/scripts/ideas_digest.py     アイデア案（auto_ideas/ideas.md）から見出しを拾い、履歴への追記とメール件名の生成を行うスクリプト。

@@ -34,6 +34,10 @@
   "comm_consider1": "<strong>Trường học là hạt nhân của cuộc sống cộng đồng</strong><br>Nơi trẻ em tập hợp, người dân địa phương cũng tự nhiên tập hợp. Ngày hội thể thao, lễ hội học tập, diễn tập sơ tán — các sự kiện trường học từ lâu là cơ hội giao lưu giữa các thế hệ. Hợp nhất trường học không chỉ là cải thiện môi trường giáo dục — đó là sự kiện ảnh hưởng đến cấu trúc xã hội địa phương.",
   "comm_consider2": "<strong>Lợi ích và thách thức của quản trị khu vực rộng hơn</strong><br>Việc giảm xuống còn hai hội đồng mở ra khả năng cư dân trên khu vực rộng hơn cùng làm việc. Mặt khác, lo ngại bao gồm bản sắc địa phương khó nhận ra hơn, thay đổi về sự tham gia, và cảm giác thuộc về khu trường cũ phai nhạt. Liệu việc mở rộng phạm vi có thúc đẩy hay làm loãng các hoạt động phụ thuộc vào quá trình chuyển đổi và sự tham gia của cư dân.",
   "comm_consider3": "<strong>Sự tham gia của cư dân là chìa khóa</strong><br>Việc tổ chức lại Hội đồng Cộng đồng gắn chặt với cuộc sống cư dân như bản thân việc hợp nhất trường học. Trong các cuộc họp và lấy ý kiến công khai năm 2025, đã có lo ngại về tương lai cộng đồng. Đối thoại liên tục giữa thành phố và cư dân — cùng xây dựng các hình thức cộng đồng mới — sẽ là điều cần thiết.",
+  "comm_contact_dept_val": "Tổ Xúc tiến Tương trợ và Hợp tác, Phòng Xúc tiến Tương trợ và Hợp tác, Ban Sức khỏe, Sức sống và Tương trợ",
+  "comm_contact_h2": "Liên hệ về hội đồng cộng đồng<small>Contact</small>",
+  "comm_contact_note": "Đây là bộ phận phụ trách các hội đồng cộng đồng. Việc tái tổ chức trường học do Tổ Xúc tiến Tái tổ chức Trường học phụ trách (điện thoại 0568-39-5261). Nguồn: mục liên hệ trên trang \"Hội đồng cộng đồng\" của thành phố. Tên và số điện thoại có thể thay đổi khi thành phố cải tổ bộ máy.",
+  "comm_contact_web_val": "Thành phố Komaki — Hội đồng cộng đồng (chính thức)",
   "comm_cs_p1": "Mỗi trường học ở thành phố Komaki đều có <strong>Hội đồng Quản lý Trường học (Trường Cộng đồng)</strong>. Đây là diễn đàn để phụ huynh và cư dân địa phương đóng góp ý kiến về chính sách giáo dục và vận hành của trường — một tổ chức quan trọng kết nối Hội đồng Cộng đồng với các trường học.",
   "comm_cs_p2": "Tạo cơ hội cho người lớn địa phương tham gia hỗ trợ lớp học, đọc sách và giáo dục hướng nghiệp, đồng thời chia sẻ các thách thức của trường với cộng đồng.",
   "comm_def_p1": "Hội đồng Cộng đồng là tổ chức <strong>được thành lập tự nguyện bởi cư dân địa phương theo đơn vị khu trường tiểu học</strong>. Các hội khu phố, PTA, câu lạc bộ người cao tuổi, câu lạc bộ thể thao và ủy viên phúc lợi cùng tham gia để thảo luận giải quyết vấn đề địa phương và thúc đẩy cộng đồng.",
@@ -88,6 +92,12 @@
   "event_status_current": "Đang tiến hành",
   "event_status_done": "Hoàn thành",
   "event_status_upcoming": "Dự kiến",
+  "faq_contact_dept_label": "Bộ phận",
+  "faq_contact_fax_label": "FAX",
+  "faq_contact_loc_label": "Địa điểm",
+  "faq_contact_loc_val": "Tòa thị chính Komaki, Tòa nhà Chính Tầng 3",
+  "faq_contact_tel_label": "Điện thoại",
+  "faq_contact_web_label": "Trang Web Chính Thức",
   "footer_copyright": "© 2026 Trang thông tin cộng đồng tái cơ cấu trường học phía Đông Komaki (Không chính thức) | Trang web này do tình nguyện viên cộng đồng vận hành và không liên kết với Thành phố Komaki hay Ban Giáo dục.",
   "footer_credit": "Trang web này được xây dựng và vận hành bằng Claude Code và GitHub.",
   "footer_langs": "Ngôn ngữ: 日本語・English・Português・Tiếng Việt・Filipino・Español・中文・Bahasa Indonesia・Türkçe・မြန်မာ",
@@ -140,5 +150,8 @@
   "share_tiktok": "TikTok (sao chép liên kết)",
   "share_x": "Đăng lên X",
   "site_sub": "Trang thông tin cộng đồng (Không chính thức)",
-  "status_done": "Hoàn thành"
+  "status_done": "Hoàn thành",
+  "tobu_actions_h": "Động thái phát triển khu đông<small>Eastern District Updates</small>",
+  "tobu_actions_lead": "Ghi chép về các hoạt động ở khu vực phía đông do Phòng Xúc tiến Phát triển Khu Đông của thành phố công bố. Nội dung được tự động lấy từ trang của thành phố mỗi ngày một lần. Tiêu đề giữ nguyên văn của thành phố, không dịch.",
+  "tobu_actions_note": "Trang này chỉ liên kết ra ngoài tới hai trang chính thức, nên các mục ở đây không dẫn tới trang của thành phố. Toàn văn xin xem tại mục \"Phát triển khu đông\" trên trang chính thức của thành phố Komaki."
 }

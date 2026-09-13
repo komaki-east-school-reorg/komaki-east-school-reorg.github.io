@@ -565,6 +565,31 @@
           <span><a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener" data-i18n="footer_official_link">小牧市 学校再編計画（市公式）</a></span>
         </div>
       </div>
+
+      <!-- 問い合わせ先：申請・バス停・通学区域は市、走っているバスのことは運行事業者、と
+           窓口が分かれる。運行事業者の番号は会社が自社サイトで公表しているものの写しで、
+           週1回 check_contacts.py が照合する。会社のサイトへのリンクは張らない
+           （外部リンクは許可URLのみ。auto_gates.py check 6）。部署・社名の欄に
+           data-i18n を付けていないのは review.html と同じ理由。 -->
+      <h2 class="section-title" id="contact" style="margin-top:2.5rem; margin-bottom:1.2rem;" data-i18n-html="bus_contact_h">スクールバスの問い合わせ先<small>Who to Contact</small></h2>
+      <p style="margin-bottom:1.2rem;" data-i18n="bus_contact_lead">通学区域・対象エリア・申請・バス停の場所は市が決めているので、市の教育総務課が窓口です。走っているバスそのもの（車内の忘れ物など）は、運行を受託しているあおい交通株式会社になります。</p>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th data-i18n="contact_tbl_dept">連絡先</th>
+              <th data-i18n="contact_tbl_scope">このページで触れた事柄</th>
+              <th data-i18n="contact_tbl_tel">電話</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>教育委員会事務局 教育総務課 学校再編推進係</td><td data-i18n="bus_c1_w">対象エリア、申請、バス停の場所、通学区域</td><td><a href="tel:0568395261">0568-39-5261</a></td></tr>
+            <tr><td>あおい交通株式会社（本社）</td><td data-i18n="bus_c2_w">運行を受託している事業者。会社そのものへの連絡先</td><td><a href="tel:0568770001">0568-77-0001</a></td></tr>
+            <tr><td>あおい交通株式会社 野口営業所</td><td data-i18n="bus_c3_w">走っているバスのこと、車内の忘れ物</td><td><a href="tel:0568796464">0568-79-6464</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.82rem; color:var(--text-muted); margin-top:1rem;" data-i18n-html="bus_contact_note">※ 運行事業者は令和8年6月8日から令和12年3月31日までの契約でスクールバスを運行します（出典：小牧市の入札結果）。<strong>制度のこと（誰が乗れるか、申請、バス停）を会社にたずねても答えは出ません</strong>。市の教育総務課へどうぞ。市と県のほかの部署は <a href="review.html#rev-contact">検証と提案</a> にまとめました。</p>
     </div>
   </section>
   <!-- 関連ページ：ナビの再掲ではなく、このページを読んだ人が次に必要とする所だけを、
@@ -576,6 +601,7 @@
       <div class="related-list">
         <a href="map.html" class="related-link" data-i18n="rel_bus_map">対象校と新しい学校の位置を地図で見る</a>
         <a href="schedule.html" class="related-link" data-i18n="rel_bus_schedule">運行開始までの予定を見る</a>
+        <a href="about.html" class="related-link" data-i18n="rel_bus_about">再編される8校と新しい学校を見る</a>
       </div>
     </div>
   </section>

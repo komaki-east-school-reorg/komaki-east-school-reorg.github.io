@@ -580,6 +580,48 @@
       <p style="font-size:.95rem; color:var(--text-muted); max-width:760px; margin-bottom:1.2rem;" data-i18n="actions_lead">地域で行われている催しや取組です。閉校を惜しむ市民有志のものと、地域協議会が回覧板などで知らせているものがあり、それぞれ主催を示しています。市の公式発表ではないので、詳しくは主催者にご確認ください。</p>
       <div id="community-actions-container"></div>
       <p style="font-size:.8rem; color:var(--text-muted); margin-top:1rem;" data-i18n-html="actions_note">※ 日時・内容は変わることがあります。最新の情報と参加の申込みは、各取組の発信元をご確認ください。学校再編そのものの公式情報は<a href="index.html#news">トップページの「市公式サイト お知らせ」</a>をご覧ください。</p>
+
+      <!-- 東部まちづくりの動き（市公式）。市民有志の取組とは出どころが違うので、
+           同じ節の中でも見出しを分けて並べる。中身は data/tobu_actions.json（生成物）で、
+           描画は js/main.js の TOBU ACTIONS。市サイトへのリンクは許可URL以外を
+           張れないため、この一覧はリンクを持たず出典を文字で示す。 -->
+      <h3 class="section-title sub" style="margin-top:2.2rem;" data-i18n-html="tobu_actions_h">東部まちづくりの動き<small>Eastern District Updates</small></h3>
+      <p style="font-size:.95rem; color:var(--text-muted); max-width:760px; margin-bottom:1.2rem;" data-i18n="tobu_actions_lead">市の東部まちづくり推進室が公表している、東部地域の取組の記録です。市の公式ページから1日1回自動で取り込んでいます。見出しは市の原文のままで、翻訳していません。</p>
+      <div id="tobu-actions-container"></div>
+      <p style="font-size:.8rem; color:var(--text-muted); margin-top:.6rem;" data-i18n="tobu_actions_note">※ 当サイトが外部に張るリンクは公式ページ2つに限っているため、この一覧から市の各ページへは直接リンクしていません。全文は小牧市公式サイトの「東部まちづくり」のページでご覧ください。</p>
+    </div>
+  </section>
+
+  <!-- 市へのお問い合わせ：地域協議会を所管するのは支え合い協働推進課で、学校再編の教育総務課とは
+       別の課。番号・階数は市公式ページの「この記事に関するお問い合わせ先」の写しで、当サイトが
+       調べて書いたものではない。課の再編で変わりうるので、出典を note に残してある。 -->
+  <!-- id="contact" はトップページの「担当部署に直接たずねる」欄から張られている。外すとリンク切れ。 -->
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 class="section-title" data-i18n-html="comm_contact_h2">地域協議会についてのお問い合わせ<small>Contact</small></h2>
+      <div class="contact-box">
+        <div class="contact-row">
+          <span class="contact-label" data-i18n="faq_contact_dept_label">担当課</span>
+          <span data-i18n="comm_contact_dept_val">健康生きがい支え合い推進部 支え合い協働推進課 支え合い協働推進係</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label" data-i18n="faq_contact_loc_label">場所</span>
+          <span data-i18n="faq_contact_loc_val">小牧市役所 本庁舎3階</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label" data-i18n="faq_contact_tel_label">電話</span>
+          <span><a href="tel:0568761629">0568-76-1629</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label" data-i18n="faq_contact_fax_label">FAX</span>
+          <span>0568-75-8283</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label" data-i18n="faq_contact_web_label">公式ページ</span>
+          <span><a href="https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/index.html" target="_blank" rel="noopener" data-i18n="comm_contact_web_val">小牧市 地域協議会（市公式）</a></span>
+        </div>
+      </div>
+      <p style="font-size:.8rem; color:var(--text-muted); margin-top:1rem;" data-i18n="comm_contact_note">※ 地域協議会を所管する課の連絡先です。学校再編そのものについては、教育委員会事務局 教育総務課 学校再編推進係（電話 0568-39-5261）が担当します。出典：小牧市「地域協議会」ページの「この記事に関するお問い合わせ先」。組織改編で変わることがあります。</p>
     </div>
   </section>
 
