@@ -2311,6 +2311,28 @@ html.has-share-sticky body {
 
 @media print { .feature-cutin { display: none !important; } }
 
+/* ===== PAGE TOC（長いページの「このページの目次」。js/main.js の PAGE TOC が作る）===== */
+/* 左右の余白はヒーロー（.page-hero の padding 1.2rem ＋ .container の 1.2rem）とそろえる */
+.page-toc { background: var(--white); border-bottom: 1px solid var(--border); text-align: left; padding: 0 1.2rem; }
+.page-toc .container { padding-top: .7rem; padding-bottom: .7rem; }
+.page-toc-h {
+  font-family: var(--heading-font);
+  font-size: .92rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  cursor: pointer;
+}
+.page-toc-list {
+  margin: .5rem 0 .2rem;
+  padding-left: 1.4rem;
+  columns: 2 18rem;
+  column-gap: 2rem;
+}
+.page-toc-list li { font-size: .88rem; line-height: 1.8; break-inside: avoid; }
+.page-toc-list a { color: var(--primary-dark); }
+/* 目次から飛んだとき、見出しが上の固定ヘッダの下に隠れないようにする */
+main section[id], main h2.section-title[id] { scroll-margin-top: 84px; }
+
 /* ===== ふつうの印刷（Ctrl+P・共有欄の🖨）の共通スタイル（2026-09-14）=====
    本文（<main> の説明文・表・図）はそのまま刷る — 「ふつうの印刷はページをそのまま」という
    方針は変えない。消すのは画面で操作するための部品だけで、Q&A は答えを開いた状態にする

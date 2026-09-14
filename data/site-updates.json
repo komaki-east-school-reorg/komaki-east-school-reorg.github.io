@@ -4,6 +4,12 @@
     {
       "date": "2026-09-14",
       "type": "feature",
+      "ja": "長いページに「このページの目次」を追加",
+      "en": "\"On this page\" contents added to long pages"
+    },
+    {
+      "date": "2026-09-14",
+      "type": "feature",
       "ja": "印刷ボタンを追加し、Q&Aの答えまで印刷できるように",
       "en": "Print button added; printed pages now include Q&A answers"
     },

@@ -441,6 +441,10 @@ Unlike the completion badges, the calendar month, and the "last updated" line, *
 
 Every HTML page follows the same pattern: `notice-banner` → `<header>` (with `.lang-switcher` containing `.kids-toggle` and `.lang-select`) → `<main>` → `<footer>`. Both `js/i18n.js` and `js/main.js` are loaded at the end of `<body>`. Pages are standalone — there is no shared template or server-side include. Every page also carries the SHARE section (`<section class="section share" id="share">`) as the last thing inside `<main>`. When adding a new page, copy the full header/share/footer blocks from an existing page — **and add it to `sitemap.xml` and `files.txt`**, plus `meta_title_<pageId>` / `meta_desc_<pageId>` keys in every language file.
 
+### 長いページの目次（`.page-toc`）
+
+2026-09-14 追加。`js/main.js` の PAGE TOC が、`TOC_PAGES`（about / bus / community / nationwide / schedule / faq）のヒーロー直下に「このページの目次」（`page_toc_h`、`RUNTIME_KEYS` 入り）を組み立てる。**中身は `main h2.section-title` から自動で作る**ので、節を足しても目次を直す必要はない。飛び先は「その見出しが先頭の section の id → 見出しの id → 無ければ `toc-<見出しのキー>`」の順で決め、他ページからリンクされている既存のアンカー（`#contact`・`#qa` など）は変えない。スマートフォン幅では閉じた状態で出す。review.html は手書きの目次（`rev_nav*`）を持つので対象外、council.html は節が少ないので対象外。**`<nav>` にしないこと** — ヘッダ用の `nav a` のスタイル（白文字）がかかって文字が見えなくなる。
+
 ### 関連するページ（`.related-list`）は各ページ3つ
 
 どのページも末尾の「関連するページ」は **ちょうど3つ**（2026-09-13 にユーザー指示で統一。それまで2つのページと3つのページが混ざっていた）。ナビの再掲ではなく「このページを読んだ人が次に必要とする所」を選ぶ、という方針は変わらない。ページを足すときも3つ選ぶこと。文言キーは `rel_<このページ>_<行き先>`。

@@ -69,6 +69,8 @@ RUNTIME_KEYS = [
     "share_sticky_label",
     # 回覧板シートのボタン。main.js が実行時に作るので HTML に現れない。
     "board_btn",
+    # 長いページの目次の見出し。main.js の PAGE TOC が実行時に作る。
+    "page_toc_h",
 ]
 
 KEY_RE = re.compile(r'data-i18n(?:-html|-aria)?="([^"]+)"')

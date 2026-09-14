@@ -2050,6 +2050,81 @@ window.KomakiGrade = (function () {
   });
 })();
 
+/* ===== PAGE TOC（長いページの「このページの目次」）=====
+   2026-09-14 追加。節（main の h2.section-title）が多いページで、ヒーローの直下に
+   節へのジャンプリンクを置く。対象は TOC_PAGES のページだけ（review.html は手書きの
+   目次を持ち、index.html は各ページへのリンク自体が目次、council.html は節が少ない）。
+   ・目次は見出しから自動で組むので、節を足しても消しても直す場所は無い。
+   ・飛び先は、見出しが属する section の id → 見出しの id → 無ければ見出しの
+     data-i18n(-html) のキーを id として付ける。既存のアンカー（#contact など、
+     他ページからリンクされているもの）は変えない。
+   ・文言は見出しの文字をそのまま使い、<small> の副題は落とす。見出しは i18n.js が
+     辞書で書き換えるので、MutationObserver で追いかけて目次の文字も直す。
+   ・スマートフォンでは閉じた状態（details）で出す。10項目を開いたまま置くと本文が
+     画面の外へ押し出されるため。 */
+(function () {
+  var TOC_PAGES = ['about', 'bus', 'community', 'nationwide', 'schedule', 'faq'];
+  var page = (location.pathname.match(/([^/]+)\.html$/) || ['', 'index'])[1];
+  if (TOC_PAGES.indexOf(page) === -1) return;
+  var hero = document.querySelector('main > .page-hero');
+  var heads = [].slice.call(document.querySelectorAll('main h2.section-title'));
+  if (!hero || heads.length < 4) return;
+
+  function label(h) {
+    var c = h.cloneNode(true);
+    c.querySelectorAll('small').forEach(function (s) { s.remove(); });
+    return (c.textContent || '').replace(/\s+/g, ' ').trim();
+  }
+  function targetId(h) {
+    var sec = h.closest('section');
+    if (sec && sec.id && sec.querySelector('h2.section-title') === h) return sec.id;
+    if (h.id) return h.id;
+    var key = h.getAttribute('data-i18n-html') || h.getAttribute('data-i18n') || '';
+    var id = key ? 'toc-' + key : '';
+    if (!id || document.getElementById(id)) id = 'toc-' + (heads.indexOf(h) + 1);
+    h.id = id;
+    return id;
+  }
+
+  // <nav> にするとヘッダ用の nav / nav a のスタイル（白文字・横並び）がかかるので、
+  // div に role="navigation" を付ける。
+  var nav = document.createElement('div');
+  nav.setAttribute('role', 'navigation');
+  nav.className = 'page-toc';
+  var wrap = document.createElement('div');
+  wrap.className = 'container';
+  var det = document.createElement('details');
+  var sum = document.createElement('summary');
+  sum.className = 'page-toc-h';
+  sum.setAttribute('data-i18n', 'page_toc_h');
+  sum.textContent = 'このページの目次';
+  var ol = document.createElement('ol');
+  ol.className = 'page-toc-list';
+
+  heads.forEach(function (h) {
+    var li = document.createElement('li');
+    var a = document.createElement('a');
+    a.href = '#' + targetId(h);
+    a.textContent = label(h);
+    li.appendChild(a);
+    ol.appendChild(li);
+    if (window.MutationObserver) {
+      new MutationObserver(function () { a.textContent = label(h); })
+        .observe(h, {childList: true, subtree: true, characterData: true});
+    }
+  });
+
+  det.appendChild(sum);
+  det.appendChild(ol);
+  try { det.open = !window.matchMedia('(max-width: 700px)').matches; } catch (e) { det.open = true; }
+  nav.setAttribute('aria-label', sum.textContent);
+  new MutationObserver(function () { nav.setAttribute('aria-label', sum.textContent); })
+    .observe(sum, {childList: true, characterData: true, subtree: true});
+  wrap.appendChild(det);
+  nav.appendChild(wrap);
+  hero.parentNode.insertBefore(nav, hero.nextSibling);
+})();
+
 /* ===== DEADLINE BOX EXPIRY =====
    「提出期限」のように、その日を過ぎたら出しっぱなしにしたくない告知を自動で消す。
    .upcoming-item の data-expires と同じ考え方だが、あちらはトップの予定バー専用なので分けてある。
