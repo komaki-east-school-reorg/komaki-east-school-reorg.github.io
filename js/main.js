@@ -1755,6 +1755,11 @@ window.KomakiGrade = (function () {
     return (c.textContent || '').replace(/\s+/g, ' ').trim();
   }
   function clean(el) { return ((el && el.textContent) || '').replace(/\s+/g, ' ').trim(); }
+  // 場所の括弧は日本語・中国語では全角、ほかの言語では半角（英文に全角括弧が混ざらないように）
+  function paren(v) {
+    var l = window.KomakiLang();
+    return (l === 'ja' || l === 'zh') ? '（' + v + '）' : ' (' + v + ')';
+  }
 
   /* ---- 材料あつめ ---- */
 
@@ -1781,7 +1786,7 @@ window.KomakiGrade = (function () {
       if (!title) return;
       var when = actionRowValue(it, 0);
       var place = actionRowValue(it, 1);
-      var line = (when ? when + ' ' : '') + title + (place ? '（' + place + '）' : '');
+      var line = (when ? when + ' ' : '') + title + (place ? paren(place) : '');
       if (lines.indexOf(line) === -1) lines.push(line);
     });
     return lines.length ? {h: t('actions', 'これからの催し'), kind: 'list', lines: lines} : null;
@@ -1836,9 +1841,42 @@ window.KomakiGrade = (function () {
       });
       if (lines.length) out.push({h: headText(h), kind: 'list', lines: lines});
     });
+    var tobu = tobuBlock();
+    if (tobu) out.push(tobu);
     var acts = upcomingActionsBlock();
     if (acts) out.push(acts);
     return out;
+  }
+
+  /* 東部まちづくりの動き（2026-09-14 ユーザー指示で紙に追加）。
+     市の東部まちづくり推進室が公表したもので、すぐ下の「これからの催し」（住民・協議会の催し）とは
+     出どころが違うので、見出しを分けた別の塊にする（画面と同じ分け方）。
+     市の記録は月に数件しか増えず、7日の窓で絞るとほぼ毎回空になるため、この塊だけは
+     「これから開かれる催し」ぜんぶ＋「さいきんの動き」の新しい3件を載せる。どの行にも日付を
+     付けるので、古い記録を新着と取り違えることはない。文面は画面に描かれた要素から取る
+     （日本語以外の表示なら、見出しはすでに訳に置き換わっている）。 */
+  var TOBU_RECENT_ON_SHEET = 3;
+  function tobuBlock() {
+    var box = document.getElementById('tobu-actions-container');
+    var h = document.querySelector('[data-i18n-html="tobu_actions_h"]');
+    if (!box || !h) return null;
+    var today = (function () {
+      var d = new Date();
+      return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    })();
+    var up = [], recent = [];
+    box.querySelectorAll('.tobu-item').forEach(function (li) {
+      var title = clean(li.querySelector('.tobu-title'));
+      if (!title) return;
+      var date = clean(li.querySelector('.tobu-date'));
+      var placeEl = li.querySelector('.tobu-from [data-hl]');
+      var place = placeEl ? clean(placeEl) : '';
+      var line = (date ? date + ' ' : '') + title + (place ? paren(place) : '');
+      if ((li.getAttribute('data-date') || '') >= today) up.push(line);
+      else if (recent.length < TOBU_RECENT_ON_SHEET) recent.push(line);
+    });
+    var lines = up.concat(recent);
+    return lines.length ? {h: headText(h), kind: 'list', lines: lines} : null;
   }
 
   /* ---- シートの組み立てと、A4 1枚に収める調整 ---- */
