@@ -1,8 +1,37 @@
 {
-  "fetched_at": "2026-09-13T00:05:33Z",
+  "fetched_at": "2026-09-14T00:20:44Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "ohshiro-e",
+      "level": "elem",
+      "names": {
+        "ja": "大城小学校",
+        "ja_kids": "おおしろ小学校",
+        "en": "Oshiro Elem. School",
+        "zh": "大城小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
+      "latest_date": "2026-09-14",
+      "items": [
+        {
+          "title": "5年 福祉実践教室",
+          "date": "2026-09-14",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136084823?tm=20260914091946"
+        },
+        {
+          "title": "3年図工 読書感想画をかこう！",
+          "date": "2026-09-11",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136084439?tm=20260911150623"
+        },
+        {
+          "title": "7組 読書の時間",
+          "date": "2026-09-11",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136084293?tm=20260911145918"
+        }
+      ]
+    },
     {
       "slug": "sue-e",
       "level": "elem",
@@ -116,35 +145,6 @@
           "title": "図工：不思議なたまご",
           "date": "2026-09-08",
           "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/135809483?tm=20260908134536"
-        }
-      ]
-    },
-    {
-      "slug": "ohshiro-e",
-      "level": "elem",
-      "names": {
-        "ja": "大城小学校",
-        "ja_kids": "おおしろ小学校",
-        "en": "Oshiro Elem. School",
-        "zh": "大城小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
-      "latest_date": "2026-09-11",
-      "items": [
-        {
-          "title": "3年図工 読書感想画をかこう！",
-          "date": "2026-09-11",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136084439?tm=20260911150623"
-        },
-        {
-          "title": "7組 読書の時間",
-          "date": "2026-09-11",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136084293?tm=20260911145918"
-        },
-        {
-          "title": "8・９組 書写の時間",
-          "date": "2026-09-11",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136084202?tm=20260911145009"
         }
       ]
     },
