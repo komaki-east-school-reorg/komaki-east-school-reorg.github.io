@@ -142,6 +142,7 @@
   "share_mastodon_prompt": "使っている Mastodon サーバーのドメインを入力してください（例：mstdn.jp）",
   "share_native": "ほかのアプリで共有",
   "share_note": "Instagram・TikTok はリンクのコピーのみ。自動の外部通信ははてなスターの表示だけです。",
+  "share_print": "このページを印刷する",
   "share_reddit": "Redditに投稿",
   "share_star_label": "このページに星をつける",
   "share_star_note": "★は「はてなスター」。はてなのアカウントで「読んだよ」の印を残せます。",

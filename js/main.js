@@ -1578,6 +1578,15 @@ window.KomakiGrade = (function () {
     });
     box.appendChild(copyBtn);
 
+    /* --- このページをそのまま印刷する（2026-09-14 追加）---
+       Ctrl+P を知らない読者やスマートフォンから、ページを紙にする入口。ふつうの印刷と
+       まったく同じで、画面用の部品（ヘッダ・共有欄・固定バーなど）は css/style.css の
+       共通印刷スタイルが消し、Q&A は答えを開いた状態で刷られる。
+       index.html の「回」（回覧板シート＝要約1枚）とは別物なので、アイコンも分けてある。 */
+    var printBtn = makeBtn('button', 'print', '🖨', 'share_print', 'このページを印刷する');
+    printBtn.addEventListener('click', function () { window.print(); });
+    box.appendChild(printBtn);
+
     /* --- 端末標準の共有（スマートフォン）---
        WhatsApp・Zalo・Messenger など、ここに並べきれない共有先の受け皿。
        Instagram・TikTok も、スマートフォンならこの共有シートから直接開ける

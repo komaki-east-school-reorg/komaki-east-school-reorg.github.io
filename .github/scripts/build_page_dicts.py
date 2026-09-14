@@ -63,6 +63,7 @@ RUNTIME_KEYS = [
     "share_copied",
     "share_copy_failed",
     "share_native",
+    "share_print",
     "share_star_label",
     "share_star_note",
     "share_sticky_label",

@@ -1769,6 +1769,8 @@ footer {
 .share-btn--tiktok    { --share-color: #010101; --share-color-dark: #000000; }
 /* 回覧板（印刷）はサービスではなく紙への共有。サイトの色を使う。 */
 .share-btn--board     { --share-color: #6b5b3a; --share-color-dark: #4a3f27; }
+/* ページをそのまま印刷。回覧板（要約1枚）と見分けられるよう、サイトの黒板色にする。 */
+.share-btn--print     { --share-color: #2e5c3a; --share-color-dark: #1b3826; }
 
 .share-copy-msg {
   display: none;
@@ -2308,3 +2310,27 @@ html.has-share-sticky body {
 }
 
 @media print { .feature-cutin { display: none !important; } }
+
+/* ===== ふつうの印刷（Ctrl+P・共有欄の🖨）の共通スタイル（2026-09-14）=====
+   本文（<main> の説明文・表・図）はそのまま刷る — 「ふつうの印刷はページをそのまま」という
+   方針は変えない。消すのは画面で操作するための部品だけで、Q&A は答えを開いた状態にする
+   （閉じたまま刷ると質問しか紙に残らなかった）。
+   回覧板シートの印刷（html.board-printing）とは別物なので、:not(.board-printing) で分ける。
+   サイトが非公式である旨の帯（.notice-banner）とフッタの運営者表示は、紙の上でも
+   市の配布物と取り違えられないよう、あえて残す。 */
+@media print {
+  html:not(.board-printing) header,
+  html:not(.board-printing) .partial-notice,
+  html:not(.board-printing) .section.share,
+  html:not(.board-printing) .section.related,
+  html:not(.board-printing) .page-toc,
+  html:not(.board-printing) #latest-print-btn,
+  html:not(.board-printing) .footer-grid > div:not(:first-child) { display: none !important; }
+  html.has-share-sticky:not(.board-printing) body { padding-bottom: 0 !important; }
+
+  html:not(.board-printing) .faq-a { display: block !important; }
+  html:not(.board-printing) .faq-q-icon { display: none !important; }
+  html:not(.board-printing) .faq-item,
+  html:not(.board-printing) .qa-block,
+  html:not(.board-printing) .contact-box { break-inside: avoid; }
+}
