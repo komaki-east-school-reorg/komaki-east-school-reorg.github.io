@@ -1,0 +1,129 @@
+name: Translate Headlines
+
+# 自動取得した見出しを9言語に訳す（2026-09-14 ユーザー指示：見出しを原文のまま残さない）。
+# 毎日の「Fetch Official News」が終わったら動き、新しく入った見出しだけを訳す。
+# 市サーバ・学校サイト・新聞社サイトには一切アクセスしない（取得済みの JSON を読むだけ）。
+# 訳の下書きは AI が auto_i18n/translations.json に書き、headline_i18n.py が機械検証して
+# 合格したものだけを data/headline_i18n.json に取り込む。
+on:
+  workflow_run:
+    workflows: ["Fetch Official News"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: write   # data/headline_i18n.json のコミット
+  id-token: write   # claude-code-action の認証（OIDC）
+
+concurrency:
+  group: translate-headlines
+  cancel-in-progress: false
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check OAuth token availability
+        id: token
+        env:
+          TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::CLAUDE_CODE_OAUTH_TOKEN が未登録のため見出しの翻訳をスキップします（見出しは原文のまま表示されます）"
+          else
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # workflow_run は起動時点のコミットを取るので、取得ジョブが push した最新の main を明示して取る
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - name: List untranslated headlines
+        id: pending
+        run: |
+          set +e
+          python3 .github/scripts/headline_i18n.py pending
+          code=$?
+          set -e
+          if [ "$code" -eq 0 ]; then echo "todo=true" >> "$GITHUB_OUTPUT"; else echo "todo=false" >> "$GITHUB_OUTPUT"; fi
+
+      # ---------- 翻訳AI ----------
+      # 書いてよいのは auto_i18n/translations.json の1枚だけ。サイトのファイルは触らせない。
+      - name: Translate headlines (Claude)
+        if: steps.token.outputs.available == 'true' && steps.pending.outputs.todo == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ github.token }}
+          claude_args: '--model sonnet --max-turns 15 --allowedTools "Read,Write"'
+          prompt: |
+            あなたは、小牧市東部（篠岡地区）の学校再編を伝える市民向け非公式サイトの翻訳担当です。
+            サイトには、市の公式サイト・対象校のホームページ・新聞・市の東部まちづくりのページから
+            毎日自動で取り込んだ日本語の見出しが並びます。日本語以外で読む人のために、それを訳します。
+
+            ## やること
+            1. auto_i18n/pending.json を読む（訳す見出しの配列）。
+            2. **auto_i18n/translations.json を1枚だけ書く**。それ以外のファイルは絶対に作らない・変えない。
+
+            ## translations.json の形（この形以外は機械検証で捨てられる）
+            ```json
+            {
+              "<pending.json の見出しを1文字も変えずにキーにする>": {
+                "en": "...", "pt": "...", "vi": "...", "tl": "...", "es": "...",
+                "zh": "...", "id": "...", "tr": "...", "my": "..."
+              }
+            }
+            ```
+            - pending.json のすべての見出しについて、9言語すべてを書く。
+            - en=英語, pt=ブラジル・ポルトガル語, vi=ベトナム語, tl=フィリピノ語（タガログ語）,
+              es=スペイン語, zh=簡体字中国語, id=インドネシア語, tr=トルコ語, my=ビルマ語（ミャンマー語）。
+
+            ## 訳し方
+            - 見出しとして自然な短さで、**原文にある情報だけ**を訳す。説明・補足・推測を足さない。
+              原文に無い主語や評価を加えない（例：「〜が決定しました」を「ついに決定」にしない）。
+            - 新聞の見出しの「　」（全角空白）区切りは、各言語で自然な区切り（コロンやダッシュ）にしてよい。
+            - HTML タグ、URL、改行を入れない。訳にひらがな・カタカナを残さない。zh 以外に漢字を残さない。
+            - 人名はローマ字（zh は漢字のまま）。個人を特定する説明を足さない。
+            - 固有名詞の表記はそろえる：
+              小牧市 Komaki / 篠岡 Shinooka / 桃花台 Tokadai / 光ヶ丘・光ケ丘 Hikarigaoka /
+              桃ヶ丘 Momogaoka / 陶 Sue / 大城 Oshiro / 桃陵 Toryo / 城山 Shiroyama / 大草 Okusa /
+              しのおか学園 Shinooka Gakuen / 東部市民センター Eastern Civic Center /
+              地域協議会 community council / 学校再編 school reorganization。
+              zh では 篠冈、桃花台、光之丘、桃之丘、陶、大城、桃陵、篠冈学园、学校重组 と書く。
+            - 学校の行事や授業の見出し（「5年 福祉実践教室」「9/11 今日の給食」など）は、学年・日付・教科を
+              その言語の書き方に直して訳す（「5年」は 5th grade、「7組」は Class 7 など）。
+            - 催しや団体の名前（「ありがとう大城小」「しのおかRADIO」など）は、意味が伝わるように訳し、
+              英字の部分はそのまま残す。
+      - name: Validate and merge translations
+        id: apply
+        run: |
+          set +e
+          if [ -f auto_i18n/translations.json ]; then
+            python3 .github/scripts/headline_i18n.py apply
+          else
+            python3 .github/scripts/headline_i18n.py prune
+          fi
+          code=$?
+          set -e
+          if [ "$code" -eq 0 ]; then echo "changed=true" >> "$GITHUB_OUTPUT"; else echo "changed=false" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Commit translations
+        if: steps.apply.outputs.changed == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/headline_i18n.json
+          if git diff --staged --quiet; then
+            echo "Nothing to commit"
+            exit 0
+          fi
+          git commit -m "chore: update headline translations [skip ci]"
+          # 自動更新ジョブが同じ時間帯に main へマージすることがあるので、取り込んでから送る
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep 10
+          done
+          echo "::error::push に失敗しました"
+          exit 1

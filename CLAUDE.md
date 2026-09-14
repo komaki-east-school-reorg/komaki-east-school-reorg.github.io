@@ -178,7 +178,7 @@ The **bottom section of `index.html`** lists recent posts from the eight affecte
 
 - **Never hand-edit** `data/school_news.json`, and never add it to the auto-update pipeline's `ALLOWED` set — it is regenerated daily.
 - The eight schools are hard-coded in `SCHOOLS` in the script, with display names for ja / ja-kids / en / zh (other languages fall back to en).
-- Article headlines are shown **untranslated** — they are the schools' own words. Only the surrounding labels are localized (in `js/main.js`, same inline-dict pattern as the official-news block).
+- Article headlines are **translated for non-Japanese readers** via `data/headline_i18n.json` (see 「自動取得した見出しの翻訳」 below). The surrounding labels are localized in `js/main.js` (same inline-dict pattern as the official-news block).
 - A school whose page can't be fetched or parsed keeps its previous entries rather than being blanked; the workflow step is `continue-on-error` so a school-site outage never fails the run. Exit codes: 0 = changed, 2 = no change, 1 = all eight failed.
 - Changes here commit as `chore: update school website news [skip ci]` and do **not** open an Issue or trigger the auto-update job — these are not school-reorganization source facts.
 
@@ -188,7 +188,7 @@ The bottom of **`community.html`** lists the city's community-council event anno
 
 - **Never hand-edit** it, and never add it to the auto-update pipeline's `ALLOWED` set — it is regenerated daily.
 - The city's listing covers **all 16 elementary school districts in Komaki**, not just Shinooka. Events are shown in the city's own order, but the five Shinooka councils (`SHINOOKA_COUNCILS` in the script) are flagged `shinooka: true`, sorted first, and badged. Other districts' events are deliberately kept rather than filtered out: as of 2026-08-13 **no Shinooka event is listed at all**, so filtering would leave the corner permanently empty, and seeing what other councils actually run is a useful concrete answer to "what does a community council do?".
-- Event titles are shown **untranslated** — they are the city's own words, the same policy as `school_news.json`. Only the surrounding labels are localized, via an inline dict in `js/main.js`.
+- Event titles are **translated for non-Japanese readers** via `data/headline_i18n.json`, and the 日時 text is re-formatted into the reader's language by `window.KomakiJaWhen()` in `js/main.js`. Labels use an inline dict.
 - The corner is rendered as **the same plain row list as the 市公式サイト お知らせ block**: the linked title plus 日時, nothing else. `place` and `updated_at` are still collected in the JSON but not displayed — the linked article carries them.
 - The parser stops at 関連イベント / 関連ファイル / この記事に関するお問い合わせ先, because after those headings the page lists unrelated city-wide events.
 
@@ -200,7 +200,7 @@ The **「報道でみる東部地域」 section near the bottom of `index.html`*
 
 - **Never hand-edit** it, and never add it to the auto-update pipeline's `ALLOWED` set — it is regenerated daily.
 - **This is reporting, not a primary source.** Facts on the rest of the site (figures, dates, plan contents) must still come only from the city's official information. Never cite a newspaper article as the evidence for a site edit. Because the corner now covers the district generally, most entries are not about the reorganization at all — that is intended.
-- Headlines are shown **untranslated** — they are the newspaper's own words, the same policy as `school_news.json`. Only the surrounding labels are localized (`section_press` / `press_lead` / `press_note` plus an inline dict in `js/main.js`).
+- Headlines are **translated for non-Japanese readers** via `data/headline_i18n.json`; `press_note` says they are machine-translated and that the originals' copyright belongs to the paper. Labels: `section_press` / `press_lead` / `press_note` plus an inline dict in `js/main.js`.
 - Each entry links to the article and is labelled 出典：中日新聞Web. The link is what makes the headline properly attributed, so do not strip it.
 - **robots.txt**: chunichi.co.jp allows ordinary crawlers (`User-Agent: *` → `Allow: /`) but bans AI crawlers (`ClaudeBot`, `GPTBot`, `CCBot`, …) outright. The script therefore identifies itself with its own UA naming this site, runs once a day, and waits 3–5 s between requests. **Do not fetch this domain with AI browsing tools.**
 - Matching is by **place name** (`AREA_KEYWORDS`: 篠岡/しのおか, 桃花台, 光ケ丘・光ヶ丘, 桃ケ丘・桃ヶ丘, 桃陵, 大城, 陶小, 城山, 大草, 上末, 下末, 高根, 大山, 池之内, 野口, 市東部, 東部地区), plus `学校再編` / `しのおか学園` as a safety net for reorganization articles that never name the district. The names are the ones this site itself uses (`about.html` school-district table, `bus.html` routes, `community.html` councils); the newspaper writes 光**ケ**丘 while the school writes 光**ヶ**丘, so both are listed. Bare `陶` is excluded because it collides with 陶芸/陶器 — only `陶小` is matched.
@@ -218,7 +218,7 @@ The **地域の取組 section on `community.html`**, sitting directly below the 
 - **Everything listed here must also be reflected in the schedule** — an `.event-item` in `schedule.html` (in `data-start` order, with `sched_date<N>`/`sched_desc<N>` keys in all 10 languages plus `ja-kids`) and an entry in `data/events.json` for the calendar. A reader who only looks at スケジュール must not miss an event that the 地域の取組 corner announces. When adding one, bump the count in `status_digest` (「全 N 件」) in every dictionary too. Standing instruction from the user (2026-09-03): check this every time this file changes.
 - **This is neither official information nor reporting — it is what residents themselves have posted.** Like the 報道 corner, it is never evidence for a claim made elsewhere on the site, and never a source for the plan's contents, figures or dates.
 - Every entry carries a 市民有志 badge and a 発信元 line linking the source. **Do not strip either** — they are what stops the corner reading as a city announcement.
-- Event names and school names are shown **untranslated** (the organisers' own words); only the surrounding labels are localized, via an inline dict in `js/main.js`, same policy as `school_news.json`.
+- Event names are **translated for non-Japanese readers** via `data/headline_i18n.json` (the script picks up `title_ja`); school names, dates and places come from the entry's own `school_<lang>` / `date_note_<lang>` / `place_<lang>` fields (falling back to `_en`). Labels use an inline dict in `js/main.js`.
 - **It sits next to the council-events corner, not merged into it.** Both are things the district does for itself — the councils are the form the city gives that, this is what residents started on their own — so they read as a pair of adjacent sections with their own headings. Do not fold them into one list.
 - `source_url` may only point at an account listed in `PERMITTED_INSTAGRAM` in `auto_gates.py`, and Instagram links are allowed on `community.html` and `index.html` only (`INSTAGRAM_PAGES`) — the two pages that render this corner. Adding an account, or another page that renders the corner, requires updating this file, `CONTRIBUTING.txt` rule 1, `README.md` and that gate together.
 - As of 2026-08-26 only the Oshiro account is known; searches found no equivalent account for 篠岡小・陶小・篠岡中. Do not guess at handles — an account that turns out to be someone else's would be presented here as if it spoke for the school community.
@@ -230,7 +230,7 @@ The **地域の取組 section on `community.html`**, sitting directly below the 
 - **自動生成・手編集不可。** `fetch_news.py` が監視している `data/official_pages/toubumachidukuri-tobumachidukurisingikai-*.txt` から `.github/scripts/build_tobu_actions.py` が組み立てる（市サーバへのアクセスはゼロ。`fetch_news.py` の**あと**に実行すること）。自動更新パイプラインの `ALLOWED` にも入れない。
 - **載せるのは直近2か月ぶんだけ**（`WINDOW_DAYS = 60`、2026-09-13 ユーザー指示）。古い記録が積もると「いま何が起きているか」が読めなくなるため。**ただし、これから開催される催しは日付が未来なので必ず残る** — 参加できる催しを期限切れで落としては、この欄を置く意味がない。画面は「これからの催し」→「さいきんの動き」の順。
 - **拾い方は3通り。** ①「開催場所・会場」「開催日・期間」を持つページ＝催し（協働提案事業・団体等のイベント情報）。②年度別『東部まちづくりニュース』と『東部まちづくり審議会』の本文に〈見出し（令和8年8月24日）〉の形で並ぶ行＝記録。③それ以外のページ（トライアル活動の紹介など）はそのページの更新日を日付として扱う。**図やPDFの中は読めないので、載っていない＝存在しない ではない。**
-- **リンクは「出典」の1本だけ。** 2026-09-13 にユーザーが `.../toubumachidukuri/tobumachidukurisingikai/index.html` を許可したので、コーナーの出典だけそこへリンクする。**URL は `js/main.js` の TOBU ACTIONS ブロックに置く** — ゲートの検査対象（`js/*.js`）に入れて機械で守らせるため。JSON に持たせると検査をすり抜ける。配下の個別記事ページは今までどおり不可なので、項目ごとのリンクは張らない。見出しは市の原文のままで**翻訳しない**（`school_news.json` と同じ方針）。
+- **リンクは「出典」の1本だけ。** 2026-09-13 にユーザーが `.../toubumachidukuri/tobumachidukurisingikai/index.html` を許可したので、コーナーの出典だけそこへリンクする。**URL は `js/main.js` の TOBU ACTIONS ブロックに置く** — ゲートの検査対象（`js/*.js`）に入れて機械で守らせるため。JSON に持たせると検査をすり抜ける。配下の個別記事ページは今までどおり不可なので、項目ごとのリンクは張らない。見出し・会場名は日本語以外の表示で `data/headline_i18n.json` の訳に置き換え、「どのページ群から拾ったか」の分類名（協働提案事業など）は TOBU ACTIONS ブロックの `_from` で訳す。市がページ群を増やしたら `_from` に足すこと（足すまでは原文で出る）。
 - 監視対象は `TOBU_BASE` 配下。ディレクトリが入れ子なので `fetch_news.py` の watch は `<li class="dir">` も辿るが、**過去年度の記録まで含めると110ページ規模**あるため、ふだんは直下まで（`WATCH_DIR_MAX_DEPTH = 1`）。**日曜だけ `WATCH_DEEP=1` で全階層**を回る（`fetch-news.yml` の "Decide crawl depth" ステップ）。浅い巡回の日は下位ページのスナップショットを `keep_slugs` で守る — 守らないと毎日消えて毎週復活し、差分が無意味に膨らむ。
 - **深いところにある2つだけは毎日見る**（2026-09-13 ユーザー指示）：協働提案事業（これからの催しが載る）と東部地域トライアル活動（年度ごとの認定活動）。`WATCH_INDEXES` に直接足してあるが、配下に過去分が数十ページ積もっているので、浅い巡回の日は**末尾（＝新しいほう）だけ**を取る（`WATCH_TAIL_INDEXES` / `WATCH_TAIL_PAGES = 8` / `WATCH_TAIL_DIRS = 1`）。市のインデックスは古い順に並んでいるため末尾が最新。これで毎日の取得は東部まちづくり全体で 40ページ弱に収まる。
 - `site-facts.json` ではこの接頭辞の `targets` を空にしてある。**一覧は自動で入れ替わるので、検知 Issue を見た人やAIが手でページを直す必要はない。**
@@ -373,7 +373,7 @@ Every page carries a `<section class="section share" id="share">` just above `</
 |---|---|---|
 | 新機能 | `data/site-updates.json` の `type: "feature"` | `#site-updates` |
 | 更新 | 同 `type: "content"` | `#site-updates` |
-| 市からのお知らせ | `data/news.json`（見出しは市の原文のまま・翻訳しない） | `#news` |
+| 市からのお知らせ | `data/news.json`（日本語以外では見出しを訳して出す） | `#news` |
 
 `type: "fix"` は出さない（誤字直しや体裁の修正は帯で知らせる話ではない）。市のお知らせでも**飛び先は本文の該当コーナー**にする — 帯から直接市の個別ページへ出すと、読者が説明を読まないまま外へ抜けてしまう。
 
@@ -450,15 +450,19 @@ The bottom of `index.html` is split in two. Everything down to **現在の状況
 
 - `.group-head` and `.group-head + .section` in `css/style.css` trim the padding so the band and the first corner read as one block. If a corner is inserted between them, that pairing breaks.
 
-#### リンク見出しを翻訳しない理由と、参考訳の案（2026-09-06 保留）
+#### 自動取得した見出しの翻訳（2026-09-14 ユーザー指示：見出しを原文のまま残さない）
 
-4つのコーナーに並ぶ記事タイトル（市のお知らせ・各校HP・中日新聞・地域の取組の催し名）は**原文のまま**出す。出どころの言葉としての引用だからで、訳すと「市が言ったこと」ではなくなり、しかもリンク先は日本語のページのままになる。日付とラベルは翻訳・整形の対象（`nFmtDate` ほか）だが、見出しは対象外。
+「最新の動き」の各コーナーと community.html に自動で並ぶ見出し（市のお知らせ・各校HPの記事・中日新聞・地域協議会のイベント・東部まちづくりの取組名と会場名・地域の取組の催し名）は、**日本語以外の表示では訳した見出しに置き換える**。原文を残して下に参考訳を添える形（2026-09-06 に検討・保留した案）は採らない — ユーザーが「原文のまま残すことは禁止」と指示した。日本語とこどもむけでは原文をそのまま出す。
 
-**⛔ 自動生成される `news.json` / `school_news.json` / `chunichi_news.json` に訳を書き足さないこと。** 毎日 fetch スクリプトが上書きするうえ、検証されていない訳が公式発表の見出しとして出る。自動更新パイプラインの `ALLOWED` にも入っていない。
+- **訳の置き場は `data/headline_i18n.json`**（`{"items": {"見出しの原文": {"en": …, …, "my": …}}}`）。キーは見出しの原文そのもので、見出しが1文字でも変われば別キーになり訳し直される。いま表示されない見出しの訳は自動で落ちる。
+- **毎日の更新は `.github/workflows/translate-headlines.yml`**。「Fetch Official News」が終わると動き、`headline_i18n.py pending` で訳の無い見出しを出し、Claude（sonnet）に `auto_i18n/translations.json` だけを書かせ、`headline_i18n.py apply` が機械検証（9言語そろい・タグ/URL/改行なし・かな残りなし・zh 以外に漢字なし・長さ）して合格分だけ取り込む。市・学校・新聞社のサーバには一切アクセスしない。`CLAUDE_CODE_OAUTH_TOKEN` が無ければ何もしない。
+- **⛔ AI に `data/headline_i18n.json` を直接書かせない。** 壊れた JSON や規則違反の訳がそのまま公開されるため。人が誤訳を直すのはよい（見出しが変わらないかぎり上書きされない）。
+- **⛔ 自動生成される `news.json` / `school_news.json` / `chunichi_news.json` などに訳を書き足さないこと。** 毎日上書きされる。
+- 画面側は `js/main.js` 冒頭の `window.KomakiHeadline`。各コーナーは見出しの要素に `data-hl="原文"` を付けて描き、描き終えたら `KomakiHeadline.apply(container)` を呼ぶ。帯（TOP CUT-IN）は `KomakiHeadline.text()` で文字列を訳す。**新しい自動取得コーナーを足すときは、この2つと `headline_i18n.py` の `current_headlines()` の3か所をそろえること。**
+- **訳がまだ無い見出しだけは原文で出る**（取得直後で翻訳ジョブがまだ走っていない数分〜、または訳が検証に落ちた日）。見出しごと隠すと新着があったこと自体が伝わらないため。
+- 読者向けの注記（`news_note` / `school_news_note` / `press_note` / `tobu_actions_lead` / `tobu_actions_note`）には「日本語以外の表示では自動翻訳」と書いてある。訳す範囲を変えたらここも直す。
+- 自動取得の日時（「9月23日 13時30分～16時00分」「令和8年11月15日(日曜日)14時から（開場13時）」）は `window.KomakiJaWhen()` が日付と時刻だけを読み取り、表示言語の書式に組み直す。読めない書き方のときは原文が出る。
 
-原文をリンク文のまま残し、その下に「当サイトによる参考訳」と明示した行を足す案を 2026-09-06 に検討したが、**ユーザー指示で着手前に中止し、今後の課題として保留**した。再開するときの要点だけ残す：訳は手動管理の別ファイルに置く／キーは見出しの原文にする（見出しが変われば訳が自動で外れ、古い訳が残らない）／言語は `en` だけ持ち他言語はフォールバック／`ja`・`ja-kids` では出さない／描画は `js/main.js` の3ブロックで共通ヘルパーを1つ作る。いちばん重いのは実装ではなく、毎日入れ替わる見出しに訳を足し続ける運用。
-
-なお、見出しが原文のままである理由は読者にも見えるようにしてある（`news_note` / `school_news_note` / `press_note`）。
 ### The map on `bus.html`
 
 > **⛔ この地図は完成・凍結。ユーザーの明示的な指示がないかぎり、図形・枠・縮尺・色・線を一切変更しないこと。**

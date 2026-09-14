@@ -48,6 +48,7 @@ data/bus_map.geojson        bus.htmlの地図が描画する全データ（手�
 data/community_actions.json 地域で行われている催し・取組（手動管理）。community.html「地域の取組」（地域協議会イベント案内の直下）と、index.html「最新の動き」の同名コーナーが実行時にfetchして描画。市の公式情報でも報道でもなく主催者自身の発信であり、計画の内容・数値の根拠には使わない。badgeで市民有志（citizen）と地域協議会（council）を書き分ける。source_urlはauto_gates.pyのPERMITTED_INSTAGRAMにあるアカウントのみ。
 data/i18n/ja.json           日本語（デフォルト言語）の翻訳テキストをすべて格納する言語ファイル。
 data/tobu_actions.json      東部まちづくりの取組（自動生成・手編集不可）。community.htmlとindex.htmlの「地域の取組」欄の下半分が実行時にfetchして描画。
+data/headline_i18n.json     自動取得した見出しの9言語訳（translate-headlines.yml が毎日更新）。日本語以外の表示で見出しを置き換える。キーは見出しの原文。
                             市サーバへは行かず、official_pages/のtoubumachidukuri-*スナップショットから組み立てる。載せるのは直近2か月ぶん（これからの催しは日付が未来なので残る）。
                             個別記事ページへのリンクは許可されていないのでurlは持たず、出典の索引ページへのリンクだけをjs/main.jsが持つ。
 data/contacts.json          サイトに載せている市・県・国の担当部署の連絡先と出所ページの対応表（手動管理）。check_contacts.pyが毎週これと公表ページを突き合わせる。
@@ -96,6 +97,8 @@ sitemap.xml                 全10ページのサイトマップ。各URLに10言
 .github/scripts/auto_report.py      自動更新のPR本文・事後報告コメントをevidence.json/verdict.jsonから生成するスクリプト。
 .github/workflows/check-contacts.yml 毎週1回、担当部署の連絡先を公表ページと照合するワークフロー定義。番号の変更は自動コミット、部署名の変更はIssueで知らせる。
 .github/workflows/feature-ideas.yml 毎朝1回、このサイトに足すとよさそうな機能をAIに考えさせてメールで届けるワークフロー定義。サイトのファイルは変更しない。
+.github/workflows/translate-headlines.yml 取得ワークフローの完了後、新しく入った見出しだけをAIで9言語に訳し、機械検証してheadline_i18n.jsonに取り込むワークフロー定義。
+.github/scripts/headline_i18n.py    見出し翻訳の下ごしらえと検証（pending＝訳の無い見出しを書き出す／apply＝AIの下書きを検証して取り込む／prune＝古い訳を落とす）。
 .github/scripts/send_mail.py        件名と本文ファイルを受け取ってSMTPでメールを1通送るスクリプト。宛先は1件のみ（未指定ならSMTP_USER宛て）。設定が無ければexit 2（呼び出し側はIssueに切り替える）。
 .github/scripts/ideas_digest.py     アイデア案（auto_ideas/ideas.md）から見出しを拾い、履歴への追記とメール件名の生成を行うスクリプト。
 auto_ideas/history.json             過去に出した新機能アイデアの見出しの記録。同じ案を繰り返さないために起案AIが読む。本文はメール（とActionsのアーティファクト30日）にのみ残る。

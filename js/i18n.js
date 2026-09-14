@@ -334,8 +334,24 @@
     try { savedKids = localStorage.getItem('komaki_kids'); } catch (e) {}
     _kidsMode = savedKids === '1';
 
+    // 言語を変えたら、その言語の URL で読み直す（2026-09-14）。
+    // 辞書で差し替わるのは data-i18n の付いた要素だけで、js/main.js が読み込み時の言語で
+    // 組み立てる部分（自動取得コーナーの見出しの訳・日付・ラベル、カレンダー、帯など）は
+    // 追従しない。以前はそのまま前の言語で残っていた。?lang= は localStorage より優先されるので、
+    // 読み直した先で確実にその言語になる。履歴は増やさない（syncUrl と同じ考え方）。
     document.querySelectorAll('.lang-select').forEach(function (sel) {
-      sel.addEventListener('change', function () { loadAndApply(sel.value); });
+      sel.addEventListener('change', function () {
+        var v = LANGS.indexOf(sel.value) !== -1 ? sel.value : DEFAULT;
+        try { localStorage.setItem('komaki_lang', v); } catch (e) {}
+        try {
+          var u = new URL(window.location.href);
+          if (v === DEFAULT) u.searchParams.delete(LANG_PARAM);
+          else u.searchParams.set(LANG_PARAM, v);
+          window.location.replace(u.href);
+          return;
+        } catch (e) {}
+        loadAndApply(v);
+      });
     });
 
     document.querySelectorAll('.kids-toggle').forEach(function (btn) {

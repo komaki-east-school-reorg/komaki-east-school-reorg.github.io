@@ -4,3 +4,6 @@ __pycache__/
 
 # 毎日の新機能アイデアの本文（メールで届く。リポジトリには見出しの履歴だけ残す）
 auto_ideas/ideas.md
+
+# 見出し翻訳の作業ファイル（translate-headlines.yml が毎回作り直す）
+auto_i18n/

@@ -14,6 +14,95 @@ window.KomakiLang = (function () {
   };
 })();
 
+/* ===== 市の原文の「日時」を表示言語に直す（このファイル共通） =====
+   自動取得コーナーの日時欄は市の書いた日本語のまま届く（例:「9月23日 13時30分～16時00分」
+   「令和8年11月15日(日曜日)14時から（開場13時）」）。見出しとちがい、日時は表記の問題で
+   しかないので、読み取れた日付と時刻だけを表示言語の書式に組み直す。
+   ・日本語表示では原文をそのまま返す。
+   ・opts.timeOnly のときは時刻だけを返す（日付を別の欄で出しているコーナー用）。
+     時刻が無く日付だけ読めたときは空文字（＝同じ日付を二度出さない）。
+   ・日付も時刻も読めなければ原文を返す（欠測より原文のほうがまし）。 */
+window.KomakiJaWhen = (function () {
+  var DOORS = {en: 'doors open', pt: 'abertura', vi: 'mở cửa', tl: 'bukas ang pinto', es: 'apertura de puertas',
+               zh: '入场', id: 'pintu dibuka', tr: 'kapılar açılır', my: 'တံခါးဖွင့်'};
+  var LOCALE = {tl: 'fil'};
+  function hm(h, m) { return h + ':' + ('0' + (m || 0)).slice(-2); }
+  return function (text, lang, opts) {
+    opts = opts || {};
+    if (!text || lang === 'ja') return text || '';
+    var t = String(text).replace(/[０-９]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0xFEE0); });
+    var date = '';
+    var dm = /(?:令和(\d+)年)?(\d{1,2})月(\d{1,2})日/.exec(t);
+    if (dm) {
+      var y = dm[1] ? 2018 + (+dm[1]) : new Date().getFullYear();
+      var d = new Date(y, +dm[2] - 1, +dm[3]);
+      var o = {month: 'short', day: 'numeric', weekday: 'short'};
+      if (dm[1]) o.year = 'numeric';
+      try { date = d.toLocaleDateString(LOCALE[lang] || lang, o); } catch (e) { date = ''; }
+    }
+    var doors = '';
+    t = t.replace(/開場\s*(\d{1,2})時(?:(\d{1,2})分)?/, function (_, h, m) { doors = hm(h, m); return ''; });
+    var time = '';
+    var rm = /(\d{1,2})時(?:(\d{1,2})分)?\s*[～〜~\-－ー]\s*(\d{1,2})時(?:(\d{1,2})分)?/.exec(t);
+    if (rm) {
+      time = hm(rm[1], rm[2]) + '–' + hm(rm[3], rm[4]);
+    } else {
+      var sm = /(\d{1,2})時(?:(\d{1,2})分)?(から)?/.exec(t);
+      if (sm) time = hm(sm[1], sm[2]) + (sm[3] ? ' –' : '');
+    }
+    if (time && doors) time += ' (' + (DOORS[lang] || DOORS.en) + ' ' + doors + ')';
+    if (opts.timeOnly) return time || (date ? '' : text);
+    if (!date && !time) return text;
+    return [date, time].filter(Boolean).join(' ');
+  };
+})();
+
+/* ===== 自動取得した見出しの訳（このファイル共通） =====
+   2026-09-14 ユーザー指示：自動取得した見出しを原文のまま残さず、表示言語に訳す。
+   訳は data/headline_i18n.json（.github/workflows/translate-headlines.yml が毎日更新）に
+   「見出しの原文 → 9言語」で入っている。各コーナーは見出しの要素に data-hl="原文" を付けて
+   描き、描き終えたら apply(container) を呼ぶ。日本語以外の表示なら、その要素の文字を訳に
+   置き換える。
+   ・訳がまだ無い見出し（取得された直後で、翻訳ジョブがまだ走っていないもの）だけは原文のまま。
+     見出しごと隠すと、新着があったこと自体が伝わらなくなるため。
+   ・日本語（こどもむけを含む）では何もしない。
+   ・訳を取るのは text() でも同じ。帯（TOP CUT-IN）のように文字列で持つところが使う。 */
+window.KomakiHeadline = (function () {
+  var p = null;
+  function load() {
+    if (!p) {
+      p = fetch('./data/headline_i18n.json')
+        .then(function (r) { return r.ok ? r.json() : {}; })
+        .then(function (d) { return (d && d.items) || {}; })
+        .catch(function () { return {}; });
+    }
+    return p;
+  }
+  function pick(map, src, lang) {
+    var e = map[src];
+    return (e && e[lang]) || '';
+  }
+  function apply(root) {
+    var lang = window.KomakiLang();
+    if (lang === 'ja' || !root) return Promise.resolve();
+    return load().then(function (map) {
+      root.querySelectorAll('[data-hl]').forEach(function (el) {
+        var tr = pick(map, el.getAttribute('data-hl'), lang);
+        if (!tr) return;
+        el.textContent = tr;
+        el.setAttribute('lang', lang);
+      });
+    });
+  }
+  // 文字列の見出しを訳す（訳が無ければ原文）。呼ぶ前に load() を待つこと。
+  function text(map, src) {
+    var lang = window.KomakiLang();
+    return lang === 'ja' ? src : (pick(map, src, lang) || src);
+  }
+  if (window.KomakiLang() !== 'ja') load();   // 各コーナーの描画より先に取りに行っておく
+  return {load: load, apply: apply, text: text};
+})();
+
 /* ===== 学年の解決（このファイル共通） =====
    URL の ?grade=xx を最優先し、次に localStorage。指定が無ければ空文字。
    ?lang= と同じ考え方で、共有されたリンクを開いた人にもその学年で見せる。
@@ -40,7 +129,7 @@ window.KomakiGrade = (function () {
    WINDOW_DAYS 日以内のものを、ヘッダの上にスライドインさせる。出すのは3種類:
      ・新機能   … data/site-updates.json の type:"feature"
      ・更新     … data/site-updates.json の type:"content"（掲載内容の追加・修正）
-     ・お知らせ … data/news.json（市公式サイトのお知らせ。見出しは市の原文のまま）
+     ・お知らせ … data/news.json（市公式サイトのお知らせ。日本語以外では見出しを訳して出す）
    type:"fix" は出さない。誤字直しや体裁の修正は、帯で知らせる話ではない。
 
    【新しい情報源を作らない】
@@ -121,7 +210,7 @@ window.KomakiGrade = (function () {
       .catch(function () { return null; });
   }
 
-  Promise.all([get('./data/site-updates.json'), get('./data/news.json')])
+  Promise.all([get('./data/site-updates.json'), get('./data/news.json'), window.KomakiHeadline.load()])
     .then(function (res) {
       var done = seen();
       var pool = [];
@@ -139,8 +228,8 @@ window.KomakiGrade = (function () {
         });
       });
 
-      // 市公式サイトのお知らせ。見出しは市の原文のままで、翻訳しない
-      // （報道・学校HPのコーナーと同じ方針）。
+      // 市公式サイトのお知らせ。見出しは表示言語に訳す（訳がまだ無いものだけ原文）。
+      // 閉じた記録（id）は原文で持つ — 言語を変えても同じ項目として扱うため。
       ((res[1] && res[1].items) || []).forEach(function (it) {
         var d = isoOf(it.updated_at);
         if (!d || !inWindow(d)) return;
@@ -148,7 +237,7 @@ window.KomakiGrade = (function () {
           kind: 'news',
           date: d,
           id: 'news|' + d + '|' + (it.title || ''),
-          text: it.title || ''
+          text: window.KomakiHeadline.text(res[2] || {}, it.title || '')
         });
       });
 
@@ -507,6 +596,11 @@ window.KomakiGrade = (function () {
     official: {ja:'公式サイト', en:'official website', pt:'site oficial', vi:'trang chính thức', tl:'opisyal na site', es:'sitio oficial', zh:'官方网站', id:'situs resmi', tr:'resmî site', my:'တရားဝင်ဆိုက်'},
     check:    {ja:'をご確認ください。', en:'.', pt:'.', vi:'.', tl:'.', es:'.', zh:'。', id:'.', tr:'.', my:'။'},
   };
+  function nEsc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c];
+    });
+  }
   function ntr(key, d) {
     var s = (_nt[key][_nl] || _nt[key]['en'] || _nt[key]['ja']);
     return d !== undefined ? s.replace('{d}', d) : s;
@@ -558,7 +652,7 @@ window.KomakiGrade = (function () {
         const iso = nIso(item.updated_at);
         return `<li class="official-news-item" data-date="${iso}">` +
                  `<div class="official-news-item-inner">` +
-                   `<a href="${item.url}" target="_blank" rel="noopener">${item.title}</a>` +
+                   `<a href="${nEsc(item.url)}" target="_blank" rel="noopener" data-hl="${nEsc(item.title)}">${nEsc(item.title)}</a>` +
                    date +
                  `</div>` +
                `</li>`;
@@ -568,6 +662,7 @@ window.KomakiGrade = (function () {
         `<div class="official-news-meta">${ntr('showing', days)}</div>` +
         `<ul class="official-news-list">${listHtml}</ul>` +
         `<a href="${data.source_url}" target="_blank" rel="noopener" class="card-link">${ntr('see_all')}</a>`;
+      window.KomakiHeadline.apply(container);   // 見出しを表示言語に
     })
     .catch(() => {
       container.innerHTML =
@@ -643,7 +738,7 @@ window.KomakiGrade = (function () {
         // 各校とも最新1件だけ出す。日付はカード見出しの「最終更新」と同じになるので添えない。
         var items = (s.items || []).slice(0, 1).map(function (it) {
           // data-date は回覧板シート（BOARD SHEET）が直近1週間を絞り込むのに使う
-          return '<li data-date="' + esc(it.date || '') + '"><a href="' + esc(it.url) + '" target="_blank" rel="noopener">' +
+          return '<li data-date="' + esc(it.date || '') + '"><a href="' + esc(it.url) + '" target="_blank" rel="noopener" data-hl="' + esc(it.title) + '">' +
                    esc(it.title) +
                  '</a></li>';
         }).join('');
@@ -668,6 +763,7 @@ window.KomakiGrade = (function () {
                  '</div>' +
                '</div>';
       }).join('') + '</div>';
+      window.KomakiHeadline.apply(container);   // 記事の見出しを表示言語に
     })
     .catch(function () {
       container.innerHTML = '<p class="official-news-error">' + str('error') + '</p>';
@@ -677,7 +773,7 @@ window.KomakiGrade = (function () {
 /* ===== PRESS COVERAGE ===== */
 /* 中日新聞Webが報じた学校再編の記事。data/chunichi_news.json は
    .github/scripts/fetch_chunichi.py が毎日更新する（手編集しない）。
-   見出しと引用文は新聞社の原文なので翻訳しない。周りのラベルだけ多言語化する。 */
+   見出しは日本語以外の表示で data/headline_i18n.json の訳に置き換える（2026-09-14 ユーザー指示）。 */
 (function () {
   const container = document.getElementById('press-container');
   if (!container) return;
@@ -724,12 +820,13 @@ window.KomakiGrade = (function () {
       container.innerHTML = '<ul class="press-list">' + items.map(function (it) {
         return '<li class="press-item" data-date="' + esc(it.date || '') + '">' +
                  '<span class="press-date">' + fmtDate(it.date) + '</span>' +
-                 '<a class="press-title" href="' + esc(it.url) + '" target="_blank" rel="noopener">' +
+                 '<a class="press-title" href="' + esc(it.url) + '" target="_blank" rel="noopener" data-hl="' + esc(it.title) + '">' +
                    esc(it.title) +
                  '</a>' +
                  '<span class="press-cite">' + str('source') + '：' + esc(source) + '</span>' +
                '</li>';
       }).join('') + '</ul>';
+      window.KomakiHeadline.apply(container);   // 見出しを表示言語に
     })
     .catch(function () {
       container.innerHTML = '<p class="official-news-error">' + str('error') + '</p>';
@@ -802,8 +899,8 @@ window.KomakiGrade = (function () {
 /* ===== COMMUNITY COUNCIL EVENTS ===== */
 /* 地域協議会イベント案内（community.html）。data/community_events.json は
    .github/scripts/build_community_events.py が毎日組み立てる（手編集しない）。
-   イベント名は市の書いた見出しなので【翻訳しない】。まわりのラベルだけ多言語にする
-   （公式ニュース・学校HP更新のコーナーと同じ方針）。 */
+   イベント名は日本語以外の表示で data/headline_i18n.json の訳に置き換え、日時も表示言語の
+   書式に直す（2026-09-14 ユーザー指示：見出しを原文のまま残さない）。 */
 (function () {
   const container = document.getElementById('community-events-container');
   if (!container) return;
@@ -842,17 +939,19 @@ window.KomakiGrade = (function () {
       const rows = events.map(ev => {
         const badge = ev.shinooka
           ? `<span class="ce-badge">${cet('badge')}</span>` : '';
+        // 日時は表示言語の書式に組み直す（イベント名は下の apply で訳に置き換える）
         const when = ev.when
-          ? `<span class="ce-when">${cet('when')} ${esc(ev.when)}</span>` : '';
+          ? `<span class="ce-when">${cet('when')} ${esc(window.KomakiJaWhen(ev.when, _cl))}</span>` : '';
         return `<li class="ce-item${ev.shinooka ? ' ce-item--shinooka' : ''}">` +
                  `<div class="ce-head">${badge}` +
-                   `<a href="${esc(ev.url)}" target="_blank" rel="noopener">${esc(ev.title)}</a>` +
+                   `<a href="${esc(ev.url)}" target="_blank" rel="noopener" data-hl="${esc(ev.title)}">${esc(ev.title)}</a>` +
                  `</div>` +
                  when +
                `</li>`;
       }).join('');
 
       container.innerHTML = `<ul class="ce-list">${rows}</ul>` + seeAll;
+      window.KomakiHeadline.apply(container);   // イベント名を表示言語に
     })
     .catch(() => {
       container.innerHTML =
@@ -2207,8 +2306,8 @@ window.KomakiGrade = (function () {
    ものはすぐ上の自動取得コーナーに出る。こちらは紙の回覧など、
    自動取得では拾えない経路で知った分を手で載せる場所。
 
-   取組の名称と学校名は主催者・市の書いた固有名なので【翻訳しない】。
-   まわりのラベルだけ多言語にする（公式ニュース・報道コーナーと同じ方針）。 */
+   取組の名称は日本語以外の表示で data/headline_i18n.json の訳に、学校名は school_<言語> に
+   置き換える（2026-09-14 ユーザー指示：見出しを原文のまま残さない）。 */
 (function () {
   var container = document.getElementById('community-actions-container');
   if (!container) return;
@@ -2218,10 +2317,10 @@ window.KomakiGrade = (function () {
     when:   {ja:'日時', en:'Date', pt:'Data', vi:'Thời gian', tl:'Petsa', es:'Fecha', zh:'日期', id:'Waktu', tr:'Tarih', my:'ရက်စွဲ'},
     place:  {ja:'場所', en:'Place', pt:'Local', vi:'Địa điểm', tl:'Lugar', es:'Lugar', zh:'地点', id:'Tempat', tr:'Yer', my:'နေရာ'},
     source: {ja:'発信元', en:'Posted by', pt:'Divulgado por', vi:'Nguồn tin', tl:'Mula sa', es:'Publicado por', zh:'发布方', id:'Diposting oleh', tr:'Paylaşan', my:'တင်သူ'},
-    citizen:{ja:'市民有志', en:'Citizen-run', pt:'Iniciativa de cidadãos', vi:'Do người dân tổ chức', tl:'Mamamayan ang nagpapatakbo', es:'Iniciativa ciudadana', zh:'市民有志', id:'Inisiatif warga', tr:'Vatandaş girişimi', my:'ပြည်သူ့ဦးဆောင်'},
+    citizen:{ja:'市民有志', en:'Citizen-run', pt:'Iniciativa de cidadãos', vi:'Do người dân tổ chức', tl:'Mamamayan ang nagpapatakbo', es:'Iniciativa ciudadana', zh:'市民自发', id:'Inisiatif warga', tr:'Vatandaş girişimi', my:'ပြည်သူ့ဦးဆောင်'},
     council:{ja:'地域協議会', en:'Community council', pt:'Conselho comunitário', vi:'Hội đồng cộng đồng', tl:'Konseho ng komunidad', es:'Consejo comunitario', zh:'地区协议会', id:'Dewan komunitas', tr:'Bölge konseyi', my:'ဒေသဆိုင်ရာ ကောင်စီ'},
-    empty:  {ja:'現在、掲載されている取組はありません。', en:'Nothing is listed at the moment.', pt:'No momento não há nada publicado.', vi:'Hiện chưa có nội dung nào.', tl:'Wala pang nakalista sa ngayon.', es:'Por ahora no hay nada publicado.', zh:'目前没有刊登的取组。', id:'Saat ini belum ada yang ditampilkan.', tr:'Şu anda listelenen bir şey yok.', my:'လက်ရှိတွင် ဖော်ပြထားသည် မရှိပါ။'},
-    error:  {ja:'地域の取組を取得できませんでした。', en:'Could not load community efforts.', pt:'Não foi possível carregar.', vi:'Không tải được nội dung.', tl:'Hindi ma-load ang listahan.', es:'No se pudo cargar.', zh:'无法加载地域取组。', id:'Gagal memuat.', tr:'Yüklenemedi.', my:'မဖွင့်နိုင်ပါ။'}
+    empty:  {ja:'現在、掲載されている取組はありません。', en:'Nothing is listed at the moment.', pt:'No momento não há nada publicado.', vi:'Hiện chưa có nội dung nào.', tl:'Wala pang nakalista sa ngayon.', es:'Por ahora no hay nada publicado.', zh:'目前没有刊登的活动。', id:'Saat ini belum ada yang ditampilkan.', tr:'Şu anda listelenen bir şey yok.', my:'လက်ရှိတွင် ဖော်ပြထားသည် မရှိပါ။'},
+    error:  {ja:'地域の取組を取得できませんでした。', en:'Could not load community efforts.', pt:'Não foi possível carregar.', vi:'Không tải được nội dung.', tl:'Hindi ma-load ang listahan.', es:'No se pudo cargar.', zh:'无法加载地区行动。', id:'Gagal memuat.', tr:'Yüklenemedi.', my:'မဖွင့်နိုင်ပါ။'}
   };
   function at(k) { return _at[k][_al] || _at[k]['en'] || _at[k]['ja']; }
   function esc(s) {
@@ -2247,7 +2346,7 @@ window.KomakiGrade = (function () {
       items.sort(function (a, b) { return (a.date || '').localeCompare(b.date || ''); });
 
       container.innerHTML = '<ul class="action-list">' + items.map(function (it) {
-        // 取組名と学校名は主催者・市の固有名なので翻訳しない
+        // 取組名は data/headline_i18n.json の訳に、学校名は school_<言語>（無ければ英語）に置き換える
         var rows = '';
         var when = pick(it, 'date_note');
         var place = pick(it, 'place');
@@ -2259,15 +2358,16 @@ window.KomakiGrade = (function () {
           : esc(it.source_label || '');
         return '<li class="action-item">' +
                  '<div class="action-head">' +
-                   '<span class="action-title">' + esc(it.title_ja || '') + '</span>' +
+                   '<span class="action-title" data-hl="' + esc(it.title_ja || '') + '">' + esc(it.title_ja || '') + '</span>' +
                    '<span class="action-badge">' + at(it.badge === 'council' ? 'council' : 'citizen') + '</span>' +
                  '</div>' +
-                 '<div class="action-school">' + esc(it.school_ja || '') + '</div>' +
+                 '<div class="action-school">' + esc(pick(it, 'school')) + '</div>' +
                  rows +
                  (body ? '<p class="action-body">' + esc(body) + '</p>' : '') +
                  '<div class="action-source">' + at('source') + '：' + src + '</div>' +
                '</li>';
       }).join('') + '</ul>';
+      window.KomakiHeadline.apply(container);   // 取組名を表示言語に
     })
     .catch(function () {
       container.innerHTML = '<p class="official-news-error">' + at('error') + '</p>';
@@ -2294,8 +2394,8 @@ window.KomakiGrade = (function () {
    ゲートの検査対象（js/*.js）に入れて機械で守らせるため — JSON 側に持たせると
    検査をすり抜ける。個々の記事ページは許可されていないので項目にリンクは張らない。
 
-   取組の名称は市の書いた固有名なので【翻訳しない】。まわりのラベルだけ多言語にする
-   （公式ニュース・報道・地域の取組コーナーと同じ方針）。 */
+   取組の名称・会場名は日本語以外の表示で data/headline_i18n.json の訳に置き換える
+   （2026-09-14 ユーザー指示：見出しを原文のまま残さない）。 */
 (function () {
   var container = document.getElementById('tobu-actions-container');
   if (!container) return;
@@ -2316,12 +2416,34 @@ window.KomakiGrade = (function () {
     error:   {ja:'東部まちづくりの動きを取得できませんでした。', en:'Could not load the eastern district updates.', pt:'Não foi possível carregar.', vi:'Không tải được nội dung.', tl:'Hindi ma-load ang listahan.', es:'No se pudo cargar.', zh:'无法加载东部城市建设的动态。', id:'Gagal memuat.', tr:'Yüklenemedi.', my:'မဖွင့်နိုင်ပါ။'}
   };
   function tt(k) { return _tt[k][_tl] || _tt[k]['en'] || _tt[k]['ja']; }
+
+  // 「どのページから拾ったか」の分類名。市のページ群の名前で、数が限られた固定の語なので、
+  // 表示言語に直す。知らない分類名（市がページ群を増やしたとき）だけは、ここに足すまで原文で出る。
+  var _from = {
+    '協働提案事業': {en:'Collaborative proposal project', pt:'Projeto de proposta colaborativa', vi:'Dự án đề xuất hợp tác', tl:'Collaborative proposal project', es:'Proyecto de propuesta colaborativa', zh:'协作提案事业', id:'Proyek usulan kolaboratif', tr:'Ortak öneri projesi', my:'ပူးပေါင်းအဆိုပြု စီမံကိန်း'},
+    '東部地域トライアル活動': {en:'Eastern district trial activity', pt:'Atividade-piloto da zona leste', vi:'Hoạt động thử nghiệm khu vực phía đông', tl:'Trial na aktibidad sa silangang distrito', es:'Actividad piloto de la zona este', zh:'东部地区试行活动', id:'Kegiatan uji coba wilayah timur', tr:'Doğu bölgesi deneme etkinliği', my:'အရှေ့ပိုင်းဒေသ စမ်းသပ်လှုပ်ရှားမှု'},
+    'オープンファクトリー': {en:'Open factory', pt:'Fábrica aberta', vi:'Nhà máy mở cửa', tl:'Open factory', es:'Fábrica abierta', zh:'开放工厂', id:'Pabrik terbuka', tr:'Açık fabrika', my:'စက်ရုံ ဖွင့်လှစ်ပြသပွဲ'},
+    '東部まちづくり': {en:'Eastern district development', pt:'Desenvolvimento da zona leste', vi:'Phát triển khu vực phía đông', tl:'Pagpapaunlad ng silangang distrito', es:'Desarrollo de la zona este', zh:'东部城市建设', id:'Pembangunan wilayah timur', tr:'Doğu bölgesi kalkınması', my:'အရှေ့ပိုင်း မြို့ပြဖွံ့ဖြိုးရေး'},
+    '東部まちづくりニュース': {en:'Eastern District Development News', pt:'Notícias do desenvolvimento da zona leste', vi:'Bản tin phát triển khu vực phía đông', tl:'Balita sa pagpapaunlad ng silangang distrito', es:'Noticias del desarrollo de la zona este', zh:'东部城市建设新闻', id:'Berita pembangunan wilayah timur', tr:'Doğu bölgesi kalkınma haberleri', my:'အရှေ့ပိုင်း မြို့ပြဖွံ့ဖြိုးရေး သတင်း'},
+    '東部まちづくり審議会': {en:'Eastern District Development Council', pt:'Conselho de desenvolvimento da zona leste', vi:'Hội đồng thẩm định phát triển khu vực phía đông', tl:'Konseho sa pagpapaunlad ng silangang distrito', es:'Consejo de desarrollo de la zona este', zh:'东部城市建设审议会', id:'Dewan pembangunan wilayah timur', tr:'Doğu bölgesi kalkınma kurulu', my:'အရှေ့ပိုင်း မြို့ပြဖွံ့ဖြိုးရေး ကောင်စီ'}
+  };
+  var _fy = {en:'FY', pt:'ano fiscal ', vi:'năm tài chính ', tl:'FY', es:'ejercicio ', zh:'', id:'TA ', tr:'mali yıl ', my:'ဘဏ္ဍာနှစ် '};
+  function fromLabel(s) {
+    if (!s || _tl === 'ja') return s || '';
+    var fy = '', base = s;
+    var m = /^令和(\d+)年度\s*(.+)$/.exec(s);
+    if (m) { fy = String(2018 + (+m[1])); base = m[2]; }
+    var tr = _from[base] && (_from[base][_tl] || _from[base].en);
+    if (!tr) return s;
+    if (fy) tr += _tl === 'zh' ? '（' + fy + '年度）' : ' (' + (_fy[_tl] || 'FY') + fy + ')';
+    return tr;
+  }
   function esc(s) {
     return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
       return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c];
     });
   }
-  // 日付は表示言語の書式に直す（見出しは市の原文のまま、ラベルと日付だけ多言語）
+  // 日付は表示言語の書式に直す（見出しは apply で訳に置き換える）
   function fmtDate(iso) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(iso || '')) return iso || '';
     var d = new Date(iso + 'T00:00:00');
@@ -2340,13 +2462,16 @@ window.KomakiGrade = (function () {
   function row(it) {
     // 開催日が分かる催しは「日時」欄に市の原文（例: 令和8年11月15日(日曜日)14時から）を添える。
     var extra = '';
-    if (it.date_note) extra += '<span class="tobu-from">' + tt('when') + '：' + esc(it.date_note) + '</span>';
-    if (it.place)     extra += '<span class="tobu-from">' + tt('place') + '：' + esc(it.place) + '</span>';
-    if (it.from)      extra += '<span class="tobu-from">' + esc(it.from) + '</span>';
+    // 日本語以外では日付を左の欄で出しているので、ここは時刻だけに組み直す（読めなければ原文）。
+    var note = it.date_note ? window.KomakiJaWhen(it.date_note, _tl, {timeOnly: true}) : '';
+    var sep = (_tl === 'ja' || _tl === 'zh') ? '：' : ': ';
+    if (note)         extra += '<span class="tobu-from">' + tt('when') + sep + esc(note) + '</span>';
+    if (it.place)     extra += '<span class="tobu-from">' + tt('place') + sep + '<span data-hl="' + esc(it.place) + '">' + esc(it.place) + '</span></span>';
+    if (it.from)      extra += '<span class="tobu-from">' + esc(fromLabel(it.from)) + '</span>';
     return '<li class="tobu-item" data-date="' + esc(it.date || '') + '">' +
              '<div class="tobu-head">' +
                '<span class="tobu-date">' + esc(fmtDate(it.date)) + '</span>' +
-               '<span class="tobu-title">' + esc(it.title || '') + '</span>' +
+               '<span class="tobu-title" data-hl="' + esc(it.title || '') + '">' + esc(it.title || '') + '</span>' +
                '<span class="ce-badge">' + tt('badge') + '</span>' +
              '</div>' + extra +
            '</li>';
@@ -2370,10 +2495,11 @@ window.KomakiGrade = (function () {
         html += '<div class="tobu-group-h">' + tt('recent') + '</div>' +
                 '<ul class="tobu-list">' + rest.map(row).join('') + '</ul>';
       }
-      html += '<div class="tobu-source">' + tt('source') + '：' +
+      html += '<div class="tobu-source">' + tt('source') + ((_tl === 'ja' || _tl === 'zh') ? '：' : ': ') +
               '<a href="' + SOURCE_URL + '" target="_blank" rel="noopener">' +
               esc(data.source_label || '') + '</a></div>';
       container.innerHTML = html;
+      window.KomakiHeadline.apply(container);   // 取組の名称・会場名を表示言語に
     })
     .catch(function () {
       container.innerHTML = '<p class="official-news-error">' + tt('error') + '</p>';

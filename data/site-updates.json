@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-09-14",
+      "type": "feature",
+      "ja": "自動取得の見出しを9言語に翻訳し、各ページの表記と見出しを統一",
+      "en": "Auto-fetched headlines translated; wording and headings unified"
+    },
+    {
+      "date": "2026-09-14",
       "type": "content",
       "ja": "議会審議の第2回定例会に委員会の義務教育学校視察などを追記",
       "en": "June 2026 session expanded, incl. a committee school study visit"

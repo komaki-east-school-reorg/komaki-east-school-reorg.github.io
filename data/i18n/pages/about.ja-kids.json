@@ -2,7 +2,7 @@
   "about_buildings_h2": "なくなる学校のたてものはどうなるの？",
   "about_city_view": "<strong>市の かんがえ：</strong>「子どもの 数が へって います。できるだけ 早く 学校を まとめたい」（こまき市 きょういくいいんかい）",
   "about_commute_h2": "どうやって学校に通うの？",
-  "about_contact_h2": "こまき市に きくときは",
+  "about_contact_h2": "学校の さいへんの ことを きく ところ<small>Who to Contact</small>",
   "about_diagram_col_after": "2027年4月から",
   "about_diagram_col_before": "今（2027年3月まで）",
   "about_diagram_h3": "■ まとめ方のイメージ図",
@@ -162,7 +162,7 @@
   "th_new_name": "新しい学校の名前",
   "th_note": "その他",
   "transport_elem_h": "小学生：スクールバス",
-  "transport_elem_p": "<strong>学校まで 2kmより 遠いなどの エリアの 小学生</strong>に スクールバスを はしらせます（バス代は ただ）。<br><br>・<strong>行き：</strong>1本<br>・<strong>帰り：</strong>おおくて 3本（下の 学年・上の 学年・部活の ある日）<br>・<strong>お金：ただ（市が ぜんぶ はらう）</strong><br><br>のれる 地区・バスていの ばしょ・時間は これから 決まります。<a href=\"bus.html\" style=\"font-weight:700;\">→ スクールバスの くわしい ページ</a>",
+  "transport_elem_p": "<strong>学校まで 2kmより 遠いなどの エリアの 小学生</strong>に スクールバスを はしらせます（バス代は ただ）。<br><br>・<strong>行き：</strong>1本<br>・<strong>帰り：</strong>おおくて 3本（下の 学年・上の 学年・部活の ある日）<br>・<strong>お金：ただ（市が ぜんぶ はらう）</strong><br><br>のれる エリアや バスていの あん、もうしこみの しかたは スクールバスの ページに あります。<a href=\"bus.html\" style=\"font-weight:700;\">→ スクールバスの くわしい ページ</a>",
   "transport_jhs_h": "中学生：自転車で通学",
   "transport_jhs_p": "中学生は<strong>自転車で通学する</strong>計画です。<br><br>安全な通学路や、雨の日の対応についてはこれから決まる予定です。"
 }

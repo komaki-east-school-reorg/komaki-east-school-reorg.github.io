@@ -2,7 +2,7 @@
   "about_buildings_h2": "閉校となる施設について<small>Closed School Buildings</small>",
   "about_city_view": "<strong>市の見解：</strong>「児童生徒数の減少状況を鑑みると学校再編に猶予はなく、可能な限り早く再編を行う必要がある」（小牧市教育委員会）",
   "about_commute_h2": "通学の計画<small>Commuting Plan</small>",
-  "about_contact_h2": "市へのお問い合わせ<small>Contact</small>",
+  "about_contact_h2": "学校再編の問い合わせ先<small>Who to Contact</small>",
   "about_diagram_col_after": "令和9年度（2027年度）〜",
   "about_diagram_col_before": "現在（令和9年度まで）",
   "about_diagram_h3": "■ 再編イメージ図",
@@ -162,7 +162,7 @@
   "th_new_name": "新校名",
   "th_note": "備考",
   "transport_elem_h": "小学生：スクールバス",
-  "transport_elem_p": "<strong>通学距離2km以上などの対象エリアの小学生</strong>にスクールバスを運行します（市が全額負担・無償）。<br><br>・<strong>登校：</strong>1便<br>・<strong>下校：</strong>最大3便（低学年・高学年・部活動日）<br>・<strong>費用：市が全額負担（無償）</strong><br><br>対象地区・バス停・時刻は今後決定予定。<a href=\\\"bus.html\\\" style=\\\"font-weight:700;\\\">→ スクールバスの詳細ページ</a>",
+  "transport_elem_p": "<strong>通学距離2km以上などの対象エリアの小学生</strong>にスクールバスを運行します（市が全額負担・無償）。<br><br>・<strong>登校：</strong>1便<br>・<strong>下校：</strong>最大3便（低学年・高学年・部活動日）<br>・<strong>費用：市が全額負担（無償）</strong><br><br>対象エリア・バス停（案）・申請の手続きは、スクールバスのページにまとめています。<a href=\"bus.html\" style=\"font-weight:700;\">→ スクールバスの詳細ページ</a>",
   "transport_jhs_h": "中学生：自転車通学",
   "transport_jhs_p": "中学生については<strong>自転車通学</strong>が計画されています。<br><br>安全な通学路の確保や、雨天時の対応については今後、詳細が検討・発表される予定です。"
 }
