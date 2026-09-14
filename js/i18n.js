@@ -61,6 +61,91 @@
     return href || window.location.href.split('?')[0].split('#')[0];
   })();
 
+  // ===== 初めて開いた人の言語をブラウザ設定から選ぶ（2026-09-14） =====
+  // 検索などから直接来た日本語以外の読者は、これまで必ず日本語表示から始まり、
+  // 言語の切り替えに気づかないと訳を一度も見ないまま帰っていた。
+  // URL に ?lang= が無く、この端末で一度も言語を選んでいない（localStorage が空の）
+  // ときだけ、navigator.languages を上から見て、対応10言語に当たった最初のものを使う。
+  //   ・日本語が先に当たれば何もしない（既定の日本語のまま）。
+  //   ・判定した言語は、ここで同期的に URL の ?lang= に書き込む（履歴は増やさない）。
+  //     js/main.js は window.KomakiLang() で「?lang= → localStorage」の順に言語を読んで
+  //     すぐ描画を始めるので、URL に載せておかないと本文とコーナーの言語が食い違う。
+  //   ・検索ロボットや自動ツールでは判定しない。ロボットのブラウザ言語はたいてい英語で、
+  //     判定に通すと日本語ページが英語として登録されてしまうため。
+  //   ・自動で切り替えたときだけ、ヘッダ直下に「日本語で見る」を添えた1行の案内を出す
+  //     （英語設定のスマホを使う日本語話者が、ワンタップで戻れるように）。
+  var _autoLang = null;
+  (function detectFirstVisitLang() {
+    try {
+      var q = new URLSearchParams(window.location.search).get(LANG_PARAM);
+      if (q) return;
+      if (localStorage.getItem('komaki_lang')) return;
+      if (navigator.webdriver) return;
+      if (/bot|crawl|spider|slurp|lighthouse|headless|inspectiontool|facebookexternalhit|bingpreview|embedly|preview/i.test(navigator.userAgent || '')) return;
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ''];
+      var hit = null;
+      for (var i = 0; i < prefs.length && !hit; i++) {
+        var base = String(prefs[i] || '').toLowerCase().split('-')[0];
+        if (base === 'fil') base = 'tl';
+        if (LANGS.indexOf(base) !== -1) hit = base;
+      }
+      if (!hit || hit === DEFAULT) return;
+      var u = new URL(window.location.href);
+      u.searchParams.set(LANG_PARAM, hit);
+      window.history.replaceState(null, '', u.href);
+      _autoLang = hit;
+    } catch (e) {}
+  })();
+
+  var AUTO_MSG = {
+    en: 'Showing this page in English, based on your browser settings.',
+    pt: 'Esta página está em português, conforme as configurações do seu navegador.',
+    vi: 'Trang này đang hiển thị bằng tiếng Việt theo cài đặt trình duyệt của bạn.',
+    tl: 'Ipinapakita ang pahinang ito sa Filipino, ayon sa setting ng iyong browser.',
+    es: 'Esta página se muestra en español según la configuración de su navegador.',
+    zh: '已根据您的浏览器设置，以中文显示本页。',
+    id: 'Halaman ini ditampilkan dalam bahasa Indonesia sesuai pengaturan browser Anda.',
+    tr: 'Bu sayfa, tarayıcı ayarlarınıza göre Türkçe gösteriliyor.',
+    my: 'သင့်ဘရောက်ဇာ ဆက်တင်အရ ဤစာမျက်နှာကို မြန်မာဘာသာဖြင့် ပြသထားသည်။'
+  };
+  var AUTO_CLOSE = {en: 'Close', pt: 'Fechar', vi: 'Đóng', tl: 'Isara', es: 'Cerrar', zh: '关闭', id: 'Tutup', tr: 'Kapat', my: 'ပိတ်ရန်'};
+
+  function showAutoLangNotice(lang) {
+    if (!_autoLang || lang !== _autoLang || document.getElementById('i18n-auto-notice')) return;
+    var el = document.createElement('div');
+    el.id = 'i18n-auto-notice';
+    el.className = 'partial-notice auto-lang-notice';
+    el.setAttribute('role', 'status');
+    var msg = document.createElement('span');
+    msg.textContent = '🌐 ' + (AUTO_MSG[lang] || AUTO_MSG.en) + ' ';
+    msg.setAttribute('lang', lang);
+    var ja = document.createElement('a');
+    ja.href = seoUrlForLang(DEFAULT).split('#')[0];
+    ja.lang = 'ja';
+    ja.textContent = '日本語で見る';
+    ja.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      try { localStorage.setItem('komaki_lang', DEFAULT); } catch (e) {}
+      try {
+        var u = new URL(window.location.href);
+        u.searchParams.delete(LANG_PARAM);
+        window.location.replace(u.href);
+      } catch (e) { loadAndApply(DEFAULT); }
+    });
+    var close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'auto-lang-close';
+    close.setAttribute('aria-label', AUTO_CLOSE[lang] || AUTO_CLOSE.en);
+    close.textContent = '×';
+    close.addEventListener('click', function () { el.remove(); });
+    el.appendChild(msg);
+    el.appendChild(ja);
+    el.appendChild(close);
+    var header = document.querySelector('header');
+    if (header && header.parentNode) header.parentNode.insertBefore(el, header.nextSibling);
+    else document.body.insertBefore(el, document.body.firstChild);
+  }
+
   function langFromUrl() {
     try {
       var v = new URLSearchParams(window.location.search).get(LANG_PARAM);
@@ -135,6 +220,7 @@
     }
 
     updatePartialNotice(lang);
+    showAutoLangNotice(lang);
     applyFaqJsonLd(dict, pageId, lang);
     syncUrl(lang);
     updateSeoUrls(lang);

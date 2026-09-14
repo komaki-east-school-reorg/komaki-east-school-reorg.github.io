@@ -70,6 +70,22 @@ img { max-width: 100%; }
   line-height: 1.5;
 }
 
+/* 初めて開いた人の言語をブラウザ設定から選んだときだけ出る案内（i18n.js の showAutoLangNotice）。
+   見た目は .partial-notice と同じ帯で、「日本語で見る」と閉じるボタンを並べる。 */
+.auto-lang-notice a { font-weight: 700; white-space: nowrap; }
+.auto-lang-close {
+  margin-left: .6rem;
+  background: none;
+  border: 0;
+  color: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: .1rem .35rem;
+  vertical-align: middle;
+}
+@media print { .auto-lang-notice { display: none !important; } }
+
 /* ===== HEADER & NAV ===== */
 header {
   background: var(--primary-dark);
