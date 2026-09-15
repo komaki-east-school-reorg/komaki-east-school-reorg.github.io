@@ -1,8 +1,14 @@
 {
-  "fetched_at": "2026-09-12T00:24:36Z",
+  "fetched_at": "2026-09-15T00:47:49Z",
   "source_name": "中日新聞Web",
   "source_url": "https://www.chunichi.co.jp/aichi_news/owari_area/komaki/",
   "items": [
+    {
+      "title": "2026年度末で閉校、万感の聖火リレー　小牧市の光ケ丘中学校、16人がトーチつなぐ",
+      "url": "https://www.chunichi.co.jp/article/1311197",
+      "date": "2026-09-14",
+      "quote": "愛知県小牧市の光ケ丘中学校で14日、愛知・名古屋アジア大会の学校聖火リレーがあった。"
+    },
     {
       "title": "愛知県春日井市で一時180人が避難、小牧市や犬山市で浸水被害　東海地方の記録的豪雨で",
       "url": "https://www.chunichi.co.jp/article/1308973",
@@ -104,6 +110,7 @@
     "1308973",
     "1308755",
     "1309510",
-    "1309816"
+    "1309816",
+    "1311197"
   ]
 }
