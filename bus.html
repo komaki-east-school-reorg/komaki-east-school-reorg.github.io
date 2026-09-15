@@ -215,18 +215,18 @@
 
       <div class="bus-map-layers" id="bus-map-layers">
         <span class="bus-map-layers-h" data-i18n="bus_map_layers_h">表示する情報</span>
-        <label><input type="checkbox" data-layer="busarea" checked><span data-i18n="bus_map_legend_area">スクールバス通学 対象エリア</span></label>
-        <label><input type="checkbox" data-layer="district" checked><span data-i18n="bus_map_lyr_district">通学区域（桃花台東・西）</span></label>
-        <label><input type="checkbox" data-layer="road" checked><span data-i18n="bus_map_lyr_road">主要道路</span></label>
-        <label><input type="checkbox" data-layer="localroad" checked><span data-i18n="bus_map_lyr_localroad">桃花台の主要生活道路</span></label>
+        <label><input type="checkbox" data-layer="busarea" checked><span class="bus-map-key bus-map-key--area" aria-hidden="true"></span><span data-i18n="bus_map_legend_area">スクールバス通学 対象エリア</span></label>
+        <label><input type="checkbox" data-layer="district" checked><span class="bus-map-key bus-map-key--line" aria-hidden="true"></span><span data-i18n="bus_map_lyr_district">通学区域（桃花台東・西）</span></label>
+        <label><input type="checkbox" data-layer="road" checked><span class="bus-map-sym-road" aria-hidden="true"></span><span data-i18n="bus_map_lyr_road">主要道路</span></label>
+        <label><input type="checkbox" data-layer="localroad" checked><span class="bus-map-sym-road bus-map-sym-road--local" aria-hidden="true"></span><span data-i18n="bus_map_lyr_localroad">桃花台の主要生活道路</span></label>
         <label><input type="checkbox" data-layer="place" checked><span data-i18n="bus_map_lyr_place">地区名</span></label>
-        <label><input type="checkbox" data-layer="school" checked><span data-i18n="bus_map_lyr_school">学校</span></label>
-        <label><input type="checkbox" data-layer="kinder"><span data-i18n="bus_map_lyr_kinder">幼稚園・保育園・児童館</span></label>
-        <label><input type="checkbox" data-layer="facility"><span data-i18n="bus_map_lyr_facility">公共施設・大学</span></label>
-        <label><input type="checkbox" data-layer="shop"><span data-i18n="bus_map_lyr_shop">スーパー・商業施設</span></label>
-        <label><input type="checkbox" data-layer="conveni"><span data-i18n="bus_map_lyr_conveni">コンビニ</span></label>
-        <label><input type="checkbox" data-layer="worship"><span data-i18n="bus_map_lyr_worship">神社・寺</span></label>
-        <label><input type="checkbox" data-layer="park"><span data-i18n="bus_map_lyr_park">公園・児童遊園</span></label>
+        <label><input type="checkbox" data-layer="school" checked><span class="bus-map-sym" style="--c:var(--primary)" aria-hidden="true">学</span><span data-i18n="bus_map_lyr_school">学校</span></label>
+        <label><input type="checkbox" data-layer="kinder"><span class="bus-map-sym" style="--c:#2f8f7a" aria-hidden="true">園</span><span data-i18n="bus_map_lyr_kinder">幼稚園・保育園・児童館</span></label>
+        <label><input type="checkbox" data-layer="facility"><span class="bus-map-sym" style="--c:#587595" aria-hidden="true">公</span><span data-i18n="bus_map_lyr_facility">公共施設・大学</span></label>
+        <label><input type="checkbox" data-layer="shop"><span class="bus-map-sym" style="--c:#b8722a" aria-hidden="true">店</span><span data-i18n="bus_map_lyr_shop">スーパー・商業施設</span></label>
+        <label><input type="checkbox" data-layer="conveni"><span class="bus-map-sym" style="--c:#8a7f2a" aria-hidden="true">C</span><span data-i18n="bus_map_lyr_conveni">コンビニ</span></label>
+        <label><input type="checkbox" data-layer="worship"><span class="bus-map-sym" style="--c:#8a5a8a" aria-hidden="true">神</span><span data-i18n="bus_map_lyr_worship">神社・寺</span></label>
+        <label><input type="checkbox" data-layer="park"><span class="bus-map-sym bus-map-sym--dot" style="--c:#4a8a4a" aria-hidden="true"></span><span data-i18n="bus_map_lyr_park">公園・児童遊園</span></label>
       </div>
 
       <figure class="bus-map-figure">
@@ -235,8 +235,8 @@
         <figcaption class="bus-map-caption">
           <ul class="bus-map-legend">
             <li><span class="bus-map-key bus-map-key--area" aria-hidden="true"></span><span data-i18n="bus_map_legend_area">スクールバス通学 対象エリア</span></li>
-            <li><span class="bus-map-key bus-map-key--walk" aria-hidden="true"></span><span data-i18n="bus_map_legend_walk">色のない部分（2校のまわり）＝徒歩で通う範囲</span></li>
-            <li><span class="bus-map-key bus-map-key--line" aria-hidden="true"></span><span data-i18n="bus_map_legend_line">赤い線＝新しい通学区域の境（まん中の線は桃花台東・西の分かれ目。桃花台東は図の右上の枠外へさらに続きます）</span></li>
+            <li><span class="bus-map-key bus-map-key--walk" aria-hidden="true"></span><span data-i18n="bus_map_legend_walk">赤線の内側で紫のかかっていない部分（2校のまわり）＝徒歩で通う範囲</span></li>
+            <li><span class="bus-map-key bus-map-key--line" aria-hidden="true"></span><span data-i18n="bus_map_legend_line">赤い線＝新しい通学区域の境（まん中の線は桃花台東・西の分かれ目。桃花台東は図の上端と右端から枠の外へさらに続きます）</span></li>
             <li><span class="bus-map-key bus-map-key--east" aria-hidden="true"></span><span data-i18n="bus_map_legend_east">うすい黄色＝桃花台東の通学区域</span></li>
             <li><span class="bus-map-key bus-map-key--west" aria-hidden="true"></span><span data-i18n="bus_map_legend_west">うすい青＝桃花台西の通学区域</span></li>
             <li><span class="bus-map-key bus-map-key--school" aria-hidden="true"></span><span data-i18n="bus_map_legend_school">新設される2つの小学校</span></li>
@@ -249,7 +249,7 @@
         ⚠️
         <strong>紫（スクールバスの対象エリア）は、市が公表している対象エリア図の色のついた部分を、そのまま写し取ったものです。</strong>この地図の枠と縮尺は原図（1639×1179ピクセル、1ピクセル約3.8m）に合わせてあり、形のずれは原図に対しておおむね4mです。検算として、枠の中の徒歩エリアは8.4km²となり、市の公表値8.7km²とほぼ一致します。ただし原図そのものが縮尺の小さい図なので、番地単位の線引きまでは読み取れません。
         <strong>赤線（通学区域の境）も正確です。</strong>国土数値情報「小学校区」（国土交通省）と国勢調査の町丁境（総務省統計局）を、『学校再編だより』が示す統合の組合せどおりに合成したもので、町丁の境まで合っています（面積は桃花台東20.3km²・桃花台西6.9km²となり、市の公表値と一致します）。
-        <strong>この図に描いてあるのは、原図に写っている範囲だけです。</strong>桃花台東の通学区域は右上（北東）の枠の外へさらに広がっており（大字大山・野口の山側）、原図もそこで切れています。公表されているバスエリア18.5km²のうち、この図に入っているのは12.3km²で、枠の外の対象エリアは描けていません。
+        <strong>この図に描いてあるのは、原図に写っている範囲だけです。</strong>桃花台東の通学区域は上（北）と右（東）の枠の外へさらに広がっており（大字大山・野口の山側）、原図もそこで切れています。公表されているバスエリア18.5km²のうち、この図に入っているのは12.3km²で、枠の外の対象エリアは描けていません。
         <strong>ご自宅が対象かどうかは、市から届いた書類で必ずご確認ください。</strong>この図では判断できません。
       </div>
 

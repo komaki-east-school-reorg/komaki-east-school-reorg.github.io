@@ -1918,12 +1918,15 @@ html.has-share-sticky body {
   border-radius: 3px;
   flex: none;
 }
-.bus-map-key--area   { background: rgba(126,110,196,.45); border: 2px solid #6b58b8; }
-.bus-map-key--walk   { background: var(--white); border: 2px solid var(--border); }
+/* 見本の色は js/main.js の BUS SERVICE AREA MAP で地図に塗っている値と同じにする */
+.bus-map-key--area   { background: rgba(126,110,196,.40); border: 2px solid #5b48a8; }
+/* 徒歩の範囲は赤線の内側なので、通学区域のうすい黄色・青がかかっている（白ではない） */
+.bus-map-key--walk   { background: linear-gradient(135deg, rgba(212,170,48,.16) 50%, rgba(88,117,149,.16) 50%); border: 2px solid var(--border); }
 /* 通学区域の塗り分け。js/main.js の DFILL と同じ値（地図の背景は白なので見た目も一致する） */
 .bus-map-key--east   { background: rgba(212,170,48,.16); border: 2px solid var(--border); }
 .bus-map-key--west   { background: rgba(88,117,149,.16); border: 2px solid var(--border); }
-.bus-map-key--school { background: var(--primary); border-radius: 50%; border: 2px solid var(--white); box-shadow: 0 0 0 1px var(--primary); }
+/* 新設校は地図で緑の丸に黄色のふち（現在の学校の「学」の印は白ふち） */
+.bus-map-key--school { background: var(--primary); border-radius: 50%; border: 3px solid var(--accent); }
 
 .info-box--warn {
   background: var(--accent-light);
@@ -2047,6 +2050,19 @@ html.has-share-sticky body {
 }
 .bus-map-layers input { accent-color: var(--primary); cursor: pointer; }
 .bus-map-key--line { background: #d32f2f; border: none; height: .3rem; border-radius: 2px; }
+/* 「表示する情報」の各項目に、地図上の印と同じ見本を添える */
+.bus-map-layers .bus-map-key { width: .95rem; height: .95rem; }
+.bus-map-layers .bus-map-key--line { height: .3rem; }
+.bus-map-sym {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.05rem; height: 1.05rem; flex: none;
+  border-radius: 50%; background: var(--c); color: #fff;
+  font-size: .62rem; font-weight: 700; line-height: 1;
+  box-shadow: 0 0 0 1.5px var(--white), 0 0 0 2.5px var(--border);
+}
+.bus-map-sym--dot { width: .7rem; height: .7rem; }
+.bus-map-sym-road { display: inline-block; flex: none; width: 1.2rem; height: .32rem; border-radius: 2px; background: #9aa7ad; }
+.bus-map-sym-road--local { height: .2rem; background: #dde1e4; box-shadow: 0 0 0 1px #c3c9cc; }
 .bus-map-osm { font-size: .75rem; color: var(--text-muted); margin-top: .5rem; }
 
 /* ===== 地域の取組（index.html）=====
