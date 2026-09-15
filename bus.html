@@ -205,12 +205,13 @@
            形状は data/bus_map.geojson。出典が2系統あり、精度が違う:
            ・通学区域（赤線）… 国土数値情報「小学校区」（国土交通省）＋国勢調査の町丁境
              （総務省統計局）から合成。町丁境まで正確で、面積が市の公表値と一致する。
-           ・対象エリア（紫）… 市教委『学校再編だより』vol.6 の図を目視トレースし、
-             通学区域の内側に切り詰めたもの。非公式の近似で、原図は北側が枠で切れている。
+           ・対象エリア（紫）… 市の公表図（48603.html の R9sinooka_busarea.png）の着色部分を
+             色で抽出したもの。枠と縮尺も原図と同じ。原図は北と東が枠で切れている。
            描画は js/main.js の BUS SERVICE AREA MAP。
            【重要】正式な対象可否は市の送付書類が決める。
-           注記（bus_map_caveat）を外したり弱めたりしないこと。 -->
-      <h3 style="font-size:1.05rem; font-weight:700; color:var(--primary); margin-bottom:.8rem;" data-i18n="bus_map_h">対象エリアの地図</h3>
+           注記（bus_map_caveat）を外したり弱めたりしないこと。
+           id="area-map" は map.html から張られている。外すとリンク切れ。 -->
+      <h3 id="area-map" style="font-size:1.05rem; font-weight:700; color:var(--primary); margin-bottom:.8rem;" data-i18n="bus_map_h">対象エリアの地図</h3>
       <p style="margin-bottom:1rem;" data-i18n="bus_map_lead">新しい2校のまわり（徒歩で通える範囲）が対象外、その外側がスクールバスの対象エリアです。通学区域の境は国の公表データから、対象エリアは市教育委員会の図から起こしています。</p>
 
       <div class="bus-map-layers" id="bus-map-layers">
