@@ -56,71 +56,16 @@
       "tr": "Kitasato bölgesinin okullarını düşünme toplantısı (2.)",
       "my": "Kitasato ဒေသ ကျောင်းများအကြောင်း စဉ်းစားသည့် ဒုတိယအကြိမ် အစည်းအဝေး"
     },
-    "5年 福祉実践教室": {
-      "en": "5th grade: hands-on welfare class",
-      "pt": "5º ano: aula prática sobre bem-estar social",
-      "vi": "Lớp 5: lớp học trải nghiệm phúc lợi xã hội",
-      "tl": "Ika-5 baitang: praktikal na klase sa kapakanang panlipunan",
-      "es": "5.º curso: clase práctica de bienestar social",
-      "zh": "五年级 福利实践课",
-      "id": "Kelas 5: kelas praktik kesejahteraan sosial",
-      "tr": "5. sınıf: uygulamalı sosyal yardım dersi",
-      "my": "၅ တန်း - လူမှုဖူလုံရေး လက်တွေ့ သင်ခန်းစာ"
-    },
-    "3年図工 読書感想画をかこう！": {
-      "en": "3rd grade art: let's paint a picture about a book we read!",
-      "pt": "Artes do 3º ano: vamos pintar um desenho sobre um livro lido!",
-      "vi": "Mỹ thuật lớp 3: cùng vẽ tranh cảm nhận về cuốn sách đã đọc!",
-      "tl": "Sining ng ika-3 baitang: gumuhit ng larawan tungkol sa binasang aklat!",
-      "es": "Plástica de 3.º: ¡pintemos un dibujo sobre un libro leído!",
-      "zh": "三年级美术：来画读后感绘画吧！",
-      "id": "Seni rupa kelas 3: ayo gambar kesan dari buku yang dibaca!",
-      "tr": "3. sınıf resim: okuduğumuz kitabın resmini çizelim!",
-      "my": "၃ တန်း ပန်းချီ - ဖတ်ခဲ့သော စာအုပ်အကြောင်း ပုံဆွဲကြစို့!"
-    },
-    "7組 読書の時間": {
-      "en": "Class 7 Reading Time",
-      "pt": "Horário de Leitura da Turma 7",
-      "vi": "Giờ đọc sách lớp 7",
-      "tl": "Oras ng Pagbasa ng Klase 7",
-      "es": "Hora de lectura de la Clase 7",
-      "zh": "7班 读书时间",
-      "id": "Waktu Membaca Kelas 7",
-      "tr": "7. Sınıf Okuma Saati",
-      "my": "အတန်း ၇ စာဖတ်ချိန်"
-    },
-    "9/12 水てっぽう大会：おやじの会主催": {
-      "en": "Sep 12: water-gun contest, hosted by the fathers' club",
-      "pt": "12/9: competição de pistola d'água, organizada pelo grupo de pais",
-      "vi": "12/9: hội thi súng nước do hội các ông bố tổ chức",
-      "tl": "Set. 12: paligsahan sa water gun, inihanda ng samahan ng mga ama",
-      "es": "12/9: concurso de pistolas de agua, organizado por el grupo de padres",
-      "zh": "9月12日 水枪大会：父亲会主办",
-      "id": "12/9: lomba pistol air, diselenggarakan perkumpulan para ayah",
-      "tr": "12 Eylül: su tabancası yarışması, babalar kulübünün düzenlemesi",
-      "my": "စက်တင်ဘာ ၁၂ - ရေသေနတ် ပြိုင်ပွဲ၊ ဖခင်များအသင်း ကြီးမှူး"
-    },
-    "9/11 今日の給食": {
-      "en": "Sep 11: today's school lunch",
-      "pt": "11/9: merenda de hoje",
-      "vi": "11/9: bữa trưa ở trường hôm nay",
-      "tl": "Set. 11: tanghalian sa paaralan ngayon",
-      "es": "11/9: el almuerzo escolar de hoy",
-      "zh": "9月11日 今天的午餐",
-      "id": "11/9: makan siang sekolah hari ini",
-      "tr": "11 Eylül: bugünün okul yemeği",
-      "my": "စက်တင်ဘာ ၁၁ - ယနေ့ ကျောင်းနေ့လယ်စာ"
-    },
-    "9/11 理科：台風と天気の変化（５年生）": {
-      "en": "Sep 11 science: typhoons and changes in the weather (5th grade)",
-      "pt": "11/9 ciências: tufões e mudanças do tempo (5º ano)",
-      "vi": "11/9 khoa học: bão và sự thay đổi thời tiết (lớp 5)",
-      "tl": "Set. 11 agham: bagyo at pagbabago ng panahon (ika-5 baitang)",
-      "es": "11/9 ciencias: tifones y cambios del tiempo (5.º curso)",
-      "zh": "9月11日 科学：台风与天气变化（五年级）",
-      "id": "11/9 IPA: topan dan perubahan cuaca (kelas 5)",
-      "tr": "11 Eylül fen: tayfunlar ve hava değişimleri (5. sınıf)",
-      "my": "စက်တင်ဘာ ၁၁ သိပ္ပံ - တိုင်ဖွန်းနှင့် ရာသီဥတု ပြောင်းလဲမှု (၅ တန်း)"
+    "１年生 学年競遊練習": {
+      "en": "Grade 1: Grade Games Practice",
+      "pt": "1º ano: treino do jogo em grupo",
+      "vi": "Lớp 1: Luyện tập trò chơi khối",
+      "tl": "Grade 1: Pagsasanay sa Grade Games",
+      "es": "1.º grado: práctica de juegos de grado",
+      "zh": "一年级：年级竞技游戏练习",
+      "id": "Kelas 1: Latihan Permainan Tingkat",
+      "tr": "1. sınıf: Sınıf oyunları antrenmanı",
+      "my": "ပထမတန်း - အတန်းပြိုင်ပွဲအားကစားလေ့ကျင့်ခန်း"
     },
     "１年生 学年競遊に向けて": {
       "en": "1st years: preparing for the grade team games",
@@ -144,16 +89,49 @@
       "tr": "1. sınıflar: sınavlar bitti!",
       "my": "ပထမနှစ် - စာမေးပွဲ ပြီးပါပြီ!"
     },
-    "テスト全教科終了しました": {
-      "en": "Tests in all subjects are over",
-      "pt": "Terminaram as provas de todas as matérias",
-      "vi": "Đã thi xong tất cả các môn",
-      "tl": "Tapos ang pagsusulit sa lahat ng asignatura",
-      "es": "Terminaron los exámenes de todas las asignaturas",
-      "zh": "全部科目的考试已结束",
-      "id": "Ujian semua mata pelajaran telah selesai",
-      "tr": "Tüm derslerin sınavları bitti",
-      "my": "ဘာသာရပ်အားလုံး စာမေးပွဲ ပြီးဆုံးပါပြီ"
+    "探求が続いております・・・・": {
+      "en": "The inquiry continues...",
+      "pt": "A pesquisa continua...",
+      "vi": "Việc tìm hiểu vẫn đang tiếp tục...",
+      "tl": "Nagpapatuloy pa rin ang pagsisiyasat...",
+      "es": "La investigación continúa...",
+      "zh": "探究仍在继续……",
+      "id": "Penyelidikan masih berlanjut...",
+      "tr": "Araştırma devam ediyor...",
+      "my": "စူးစမ်းလေ့လာမှု ဆက်လက်လုပ်ဆောင်နေဆဲ..."
+    },
+    "9/14 今日の給食": {
+      "en": "9/14 Today's School Lunch",
+      "pt": "14/9 Almoço escolar de hoje",
+      "vi": "14/9 Bữa trưa học đường hôm nay",
+      "tl": "9/14 Pananghalian sa Paaralan Ngayon",
+      "es": "14/9 Almuerzo escolar de hoy",
+      "zh": "9/14 今日校餐",
+      "id": "14/9 Makan Siang Sekolah Hari Ini",
+      "tr": "14/9 Bugünün okul öğle yemeği",
+      "my": "၉/၁၄ ယနေ့ကျောင်းထမင်းစာ"
+    },
+    "9/12 水てっぽう大会：おやじの会主催": {
+      "en": "Sep 12: water-gun contest, hosted by the fathers' club",
+      "pt": "12/9: competição de pistola d'água, organizada pelo grupo de pais",
+      "vi": "12/9: hội thi súng nước do hội các ông bố tổ chức",
+      "tl": "Set. 12: paligsahan sa water gun, inihanda ng samahan ng mga ama",
+      "es": "12/9: concurso de pistolas de agua, organizado por el grupo de padres",
+      "zh": "9月12日 水枪大会：父亲会主办",
+      "id": "12/9: lomba pistol air, diselenggarakan perkumpulan para ayah",
+      "tr": "12 Eylül: su tabancası yarışması, babalar kulübünün düzenlemesi",
+      "my": "စက်တင်ဘာ ၁၂ - ရေသေနတ် ပြိုင်ပွဲ၊ ဖခင်များအသင်း ကြီးမှူး"
+    },
+    "２年生 道徳": {
+      "en": "Grade 2: Moral Education",
+      "pt": "2º ano: Educação Moral",
+      "vi": "Lớp 2: Đạo đức",
+      "tl": "Grade 2: Edukasyon sa Pagpapahalaga",
+      "es": "2.º grado: Educación Moral",
+      "zh": "二年级：道德课",
+      "id": "Kelas 2: Pendidikan Moral",
+      "tr": "2. sınıf: Ahlak Eğitimi",
+      "my": "ဒုတိယတန်း - ကျင့်ဝတ်ပညာ"
     },
     "２年生 学級運営種目&パフォーマンス練習": {
       "en": "2nd years: class-run events & performance practice",
@@ -177,49 +155,137 @@
       "tr": "3. sınıflar: gösteri provaları başladı",
       "my": "တတိယနှစ် - ဖျော်ဖြေမှု လေ့ကျင့်ခြင်း စတင်ပါပြီ"
     },
-    "１年生 道徳": {
-      "en": "1st years: moral education",
-      "pt": "1º ano: educação moral",
-      "vi": "Khối 1: giáo dục đạo đức",
-      "tl": "Unang taon: edukasyon sa pagpapahalaga",
-      "es": "1.º: educación en valores",
-      "zh": "一年级 道德课",
-      "id": "Kelas 1: pendidikan moral",
-      "tr": "1. sınıflar: ahlak eğitimi",
-      "my": "ပထမနှစ် - ကိုယ်ကျင့်တရား ပညာ"
+    "放課の様子": {
+      "en": "Recess Time",
+      "pt": "Momento do recreio",
+      "vi": "Giờ ra chơi",
+      "tl": "Oras ng Recess",
+      "es": "Momento del recreo",
+      "zh": "课间休息时光",
+      "id": "Waktu Istirahat",
+      "tr": "Teneffüs zamanı",
+      "my": "အားလပ်ချိန်"
     },
-    "2学期最初のしのキッズは": {
-      "en": "The first Shino Kids of the second term",
-      "pt": "O primeiro Shino Kids do segundo período",
-      "vi": "Buổi Shino Kids đầu tiên của học kỳ 2",
-      "tl": "Ang unang Shino Kids ng ikalawang termino",
-      "es": "El primer Shino Kids del segundo trimestre",
-      "zh": "第二学期的第一次Shino Kids活动",
-      "id": "Shino Kids pertama di semester kedua",
-      "tr": "İkinci dönemin ilk Shino Kids etkinliği",
-      "my": "ဒုတိယ စာသင်နှစ်ဝက်၏ ပထမဆုံး Shino Kids"
+    "家庭科：ナップサック作り": {
+      "en": "Home Economics: Making a Drawstring Bag",
+      "pt": "Economia Doméstica: fazendo uma mochila saco",
+      "vi": "Kinh tế gia đình: Làm túi rút",
+      "tl": "Home Economics: Paggawa ng Drawstring Bag",
+      "es": "Economía doméstica: cómo hacer una mochila de cordón",
+      "zh": "家政课：制作束口背包",
+      "id": "Tata Busana: Membuat Tas Serut",
+      "tr": "Ev Ekonomisi: İpli sırt çantası yapımı",
+      "my": "အိမ်တွင်းမှုပညာ - ကြိုးတန်းအိတ် ချုပ်ခြင်း"
     },
-    "家庭科：手縫いに挑戦": {
-      "en": "Home economics: trying hand sewing",
-      "pt": "Economia doméstica: desafio da costura à mão",
-      "vi": "Kinh tế gia đình: thử sức may tay",
-      "tl": "Home economics: pagsubok sa pananahi ng kamay",
-      "es": "Economía doméstica: probamos a coser a mano",
-      "zh": "家政课：挑战手工缝纫",
-      "id": "Tata boga dan busana: mencoba menjahit tangan",
-      "tr": "Ev ekonomisi: elde dikiş denemesi",
-      "my": "အိမ်တွင်းစီးပွား - လက်ချုပ် စမ်းကြည့်ခြင်း"
+    "防災倉庫には何があるのかな": {
+      "en": "What's Inside the Disaster Supply Storage?",
+      "pt": "O que há no depósito de suprimentos de emergência?",
+      "vi": "Trong kho vật tư phòng chống thiên tai có gì nhỉ?",
+      "tl": "Ano Kaya ang Nasa Loob ng Imbakan ng Gamit Pang-Sakuna?",
+      "es": "¿Qué hay dentro del depósito de suministros para desastres?",
+      "zh": "防灾仓库里有什么呢",
+      "id": "Apa Saja Isi Gudang Perlengkapan Bencana?",
+      "tr": "Afet deposunda neler var acaba?",
+      "my": "ဘေးအန္တရာယ်ကာကွယ်ရေး ပစ္စည်းသိုလှောင်ရုံထဲမှာ ဘာတွေရှိလဲ"
     },
-    "図工：不思議なたまご": {
-      "en": "Art: the mysterious egg",
-      "pt": "Artes: o ovo misterioso",
-      "vi": "Mỹ thuật: quả trứng kỳ lạ",
-      "tl": "Sining: ang mahiwagang itlog",
-      "es": "Plástica: el huevo misterioso",
-      "zh": "美术：神奇的蛋",
-      "id": "Seni rupa: telur ajaib",
-      "tr": "Resim-iş: gizemli yumurta",
-      "my": "ပန်းချီလက်မှု - ထူးဆန်းသော ဥ"
+    "放課後子ども教室わくわくっ子⑧": {
+      "en": "After-School Children's Class \"Wakuwaku Kids\" #8",
+      "pt": "Sala infantil pós-aula \"Wakuwaku Kids\" nº 8",
+      "vi": "Lớp học sau giờ cho trẻ em \"Wakuwaku Kids\" số 8",
+      "tl": "After-School Children's Class na \"Wakuwaku Kids\" Blg. 8",
+      "es": "Aula infantil después de clases \"Wakuwaku Kids\" n.º 8",
+      "zh": "课后儿童教室「活力孩子」第8期",
+      "id": "Kelas Anak Sepulang Sekolah \"Wakuwaku Kids\" #8",
+      "tr": "Okul sonrası çocuk sınıfı \"Wakuwaku Kids\" #8",
+      "my": "ကျောင်းပြီးနောက် ကလေးသင်တန်း Wakuwaku Kids အမှတ် ၈"
+    },
+    "6年理科 植物と空気": {
+      "en": "Grade 6 Science: Plants and Air",
+      "pt": "6º ano Ciências: Plantas e ar",
+      "vi": "Lớp 6 Khoa học: Thực vật và không khí",
+      "tl": "Grade 6 Science: Mga Halaman at Hangin",
+      "es": "6.º grado Ciencias: Plantas y aire",
+      "zh": "六年级理科：植物与空气",
+      "id": "Kelas 6 IPA: Tumbuhan dan Udara",
+      "tr": "6. sınıf Fen: Bitkiler ve Hava",
+      "my": "ဆဌမတန်း သိပ္ပံ - အပင်များနှင့် လေ"
+    },
+    "5年 福祉実践教室": {
+      "en": "5th grade: hands-on welfare class",
+      "pt": "5º ano: aula prática sobre bem-estar social",
+      "vi": "Lớp 5: lớp học trải nghiệm phúc lợi xã hội",
+      "tl": "Ika-5 baitang: praktikal na klase sa kapakanang panlipunan",
+      "es": "5.º curso: clase práctica de bienestar social",
+      "zh": "五年级 福利实践课",
+      "id": "Kelas 5: kelas praktik kesejahteraan sosial",
+      "tr": "5. sınıf: uygulamalı sosyal yardım dersi",
+      "my": "၅ တန်း - လူမှုဖူလုံရေး လက်တွေ့ သင်ခန်းစာ"
+    },
+    "歩みたしかに": {
+      "en": "Steady Steps Forward",
+      "pt": "Passos firmes e seguros",
+      "vi": "Từng bước vững chắc",
+      "tl": "Matatag na mga Hakbang",
+      "es": "Pasos firmes y seguros",
+      "zh": "稳步前行",
+      "id": "Langkah yang Mantap",
+      "tr": "Emin adımlarla ilerleme",
+      "my": "တည်ငြိမ်သော ခြေလှမ်းများ"
+    },
+    "１年生 学パ練習始動！": {
+      "en": "Grade 1: Grade Performance Practice Begins!",
+      "pt": "1º ano: começa o treino da apresentação de série!",
+      "vi": "Lớp 1: Bắt đầu luyện tập biểu diễn khối!",
+      "tl": "Grade 1: Nagsimula na ang Pagsasanay sa Grade Performance!",
+      "es": "1.º grado: ¡comienza el ensayo de la presentación de grado!",
+      "zh": "一年级：年级表演练习启动！",
+      "id": "Kelas 1: Latihan Pertunjukan Tingkat Dimulai!",
+      "tr": "1. sınıf: Sınıf gösterisi provaları başladı!",
+      "my": "ပထမတန်း - အတန်းအကပွဲ လေ့ကျင့်ခန်း စတင်ပြီ!"
+    },
+    "学校聖火リレー": {
+      "en": "School Torch Relay",
+      "pt": "Revezamento da tocha na escola",
+      "vi": "Rước đuốc tại trường",
+      "tl": "Torch Relay sa Paaralan",
+      "es": "Relevo de la antorcha en la escuela",
+      "zh": "校内圣火传递",
+      "id": "Estafet Obor di Sekolah",
+      "tr": "Okulda meşale yarışı",
+      "my": "ကျောင်းအတွင်း လှုံ့ဆော်မီးတိုင် လွှဲပြောင်းပွဲ"
+    },
+    "第20回アジア競技大会 聖火リレーを応援しました": {
+      "en": "We Cheered for the Torch Relay of the 20th Asian Games",
+      "pt": "Torcemos pelo revezamento da tocha dos 20º Jogos Asiáticos",
+      "vi": "Chúng tôi đã cổ vũ cho lễ rước đuốc Đại hội Thể thao châu Á lần thứ 20",
+      "tl": "Nag-cheer Kami para sa Torch Relay ng ika-20 Asian Games",
+      "es": "Animamos el relevo de la antorcha de los XX Juegos Asiáticos",
+      "zh": "为第20届亚运会圣火传递加油",
+      "id": "Kami Memberi Semangat untuk Estafet Obor Asian Games ke-20",
+      "tr": "20. Asya Oyunları meşale yarışını alkışladık",
+      "my": "၂၀ ကြိမ်မြောက် အာရှအားကစားပြိုင်ပွဲ လှုံ့ဆော်မီးတိုင်လွှဲပွဲအား အားပေးခဲ့ကြသည်"
+    },
+    "1年生 図工「はじめての絵の具」": {
+      "en": "1st grade art: \"our first paints\"",
+      "pt": "Artes do 1º ano: \"nossas primeiras tintas\"",
+      "vi": "Mỹ thuật lớp 1: \"lần đầu dùng màu vẽ\"",
+      "tl": "Sining ng unang baitang: \"ang aming unang pintura\"",
+      "es": "Plástica de 1.º: \"nuestras primeras pinturas\"",
+      "zh": "一年级 美术“第一次用颜料”",
+      "id": "Seni rupa kelas 1: \"cat air pertamaku\"",
+      "tr": "1. sınıf resim: \"ilk boyalarımız\"",
+      "my": "၁ တန်း ပန်းချီ - \"ပထမဆုံး ဆေးရောင်\""
+    },
+    "６年「図工」": {
+      "en": "6th grade: art",
+      "pt": "6º ano: artes",
+      "vi": "Lớp 6: mỹ thuật",
+      "tl": "Ika-6 baitang: sining",
+      "es": "6.º curso: plástica",
+      "zh": "六年级“美术”",
+      "id": "Kelas 6: seni rupa",
+      "tr": "6. sınıf: resim-iş",
+      "my": "၆ တန်း - ပန်းချီလက်မှု"
     },
     "３年生：図工「いろいろうつして」": {
       "en": "3rd grade art: \"printing all sorts of things\"",
@@ -254,71 +320,16 @@
       "tr": "5. sınıf Japonca: \"gazete okuyalım\"",
       "my": "၅ တန်း ဂျပန်စာ - \"သတင်းစာ ဖတ်ကြစို့\""
     },
-    "1年生 図工「はじめての絵の具」": {
-      "en": "1st grade art: \"our first paints\"",
-      "pt": "Artes do 1º ano: \"nossas primeiras tintas\"",
-      "vi": "Mỹ thuật lớp 1: \"lần đầu dùng màu vẽ\"",
-      "tl": "Sining ng unang baitang: \"ang aming unang pintura\"",
-      "es": "Plástica de 1.º: \"nuestras primeras pinturas\"",
-      "zh": "一年级 美术“第一次用颜料”",
-      "id": "Seni rupa kelas 1: \"cat air pertamaku\"",
-      "tr": "1. sınıf resim: \"ilk boyalarımız\"",
-      "my": "၁ တန်း ပန်းချီ - \"ပထမဆုံး ဆေးရောင်\""
-    },
-    "６年「図工」": {
-      "en": "6th grade: art",
-      "pt": "6º ano: artes",
-      "vi": "Lớp 6: mỹ thuật",
-      "tl": "Ika-6 baitang: sining",
-      "es": "6.º curso: plástica",
-      "zh": "六年级“美术”",
-      "id": "Kelas 6: seni rupa",
-      "tr": "6. sınıf: resim-iş",
-      "my": "၆ တန်း - ပန်းချီလက်မှု"
-    },
-    "やまももくらぶ「はらだ歯科ライブ」と工作「オーバークラフト」": {
-      "en": "Yamamomo Club: \"Harada Dental Live\" and a crafts session making \"overcraft\"",
-      "pt": "Clube Yamamomo: \"Harada Dental ao vivo\" e trabalho manual \"overcraft\"",
-      "vi": "Câu lạc bộ Yamamomo: \"Nha khoa Harada trực tiếp\" và làm đồ thủ công \"overcraft\"",
-      "tl": "Yamamomo Club: \"Harada Dental Live\" at gawaing-kamay na \"overcraft\"",
-      "es": "Club Yamamomo: \"Harada Dental en directo\" y manualidad \"overcraft\"",
-      "zh": "杨梅俱乐部“原田牙科现场讲座”与手工“气垫船”",
-      "id": "Klub Yamamomo: \"Harada Dental Live\" dan prakarya \"overcraft\"",
-      "tr": "Yamamomo Kulübü: \"Harada Diş Kliniği Canlı\" ve \"overcraft\" el işi",
-      "my": "Yamamomo ကလပ် - \"Harada သွားဆေးခန်း Live\" နှင့် \"overcraft\" လက်မှုပညာ"
-    },
-    "探究パートナーと": {
-      "en": "With our inquiry partners",
-      "pt": "Com os parceiros de investigação",
-      "vi": "Cùng các đối tác học tập khám phá",
-      "tl": "Kasama ang aming mga inquiry partner",
-      "es": "Con nuestros socios de indagación",
-      "zh": "与探究伙伴一起",
-      "id": "Bersama mitra pembelajaran inkuiri",
-      "tr": "Araştırma ortaklarımızla",
-      "my": "စူးစမ်းလေ့လာရေး မိတ်ဖက်များနှင့်အတူ"
-    },
-    "Ｍｙ探究 前半を振り返って": {
-      "en": "My Inquiry: looking back on the first half",
-      "pt": "Minha investigação: olhando para a primeira metade",
-      "vi": "Khám phá của tôi: nhìn lại nửa đầu",
-      "tl": "My Inquiry: pagbabalik-tanaw sa unang bahagi",
-      "es": "Mi indagación: repaso de la primera mitad",
-      "zh": "My探究 回顾前半段",
-      "id": "My Inquiry: menengok kembali paruh pertama",
-      "tr": "Benim araştırmam: ilk yarıya dönüp bakış",
-      "my": "My Inquiry - ပထမပိုင်းကို ပြန်လည်သုံးသပ်ခြင်း"
-    },
-    "みんなの汗がつくった、聖火の走る道": {
-      "en": "The torch relay route built by everyone's sweat",
-      "pt": "O caminho da tocha, construído com o suor de todos",
-      "vi": "Con đường rước đuốc được tạo nên từ mồ hôi của mọi người",
-      "tl": "Ang daan ng sulo na itinayo ng pawis ng bawat isa",
-      "es": "El camino de la antorcha, hecho con el sudor de todos",
-      "zh": "大家的汗水铺就的圣火之路",
-      "id": "Jalur obor yang dibangun dengan keringat semua orang",
-      "tr": "Herkesin teriyle yapılan meşale yolu",
-      "my": "လူတိုင်း၏ ချွေးဖြင့် ဖန်တီးခဲ့သော မီးရှူးတိုင် လမ်းကြောင်း"
+    "2026年度末で閉校、万感の聖火リレー　小牧市の光ケ丘中学校、16人がトーチつなぐ": {
+      "en": "Closing at the End of FY2026: An Emotional Torch Relay — 16 Students Carry the Torch at Komaki's Hikarigaoka Junior High School",
+      "pt": "Fechamento no fim do ano fiscal de 2026: revezamento emocionante da tocha — 16 alunos carregam a tocha na escola fundamental II Hikarigaoka, em Komaki",
+      "vi": "Đóng cửa vào cuối năm tài khóa 2026: lễ rước đuốc đầy cảm xúc — 16 học sinh tiếp sức ngọn đuốc tại trường THCS Hikarigaoka, thành phố Komaki",
+      "tl": "Magsasara sa Katapusan ng FY2026: Isang Makabuluhang Torch Relay — 16 na Mag-aaral ang Nagpasa ng Sulo sa Hikarigaoka Junior High School sa Komaki",
+      "es": "Cierra a fines del año fiscal 2026: un emotivo relevo de la antorcha — 16 estudiantes portan la antorcha en la secundaria Hikarigaoka de Komaki",
+      "zh": "2026年度末闭校，感慨万千的圣火传递——小牧市光之丘初中16名学生传递火炬",
+      "id": "Ditutup Akhir Tahun Fiskal 2026: Estafet Obor yang Mengharukan — 16 Siswa Membawa Obor di SMP Hikarigaoka, Komaki",
+      "tr": "2026 mali yılı sonunda kapanıyor: Duygusal meşale yarışı — Komaki'deki Hikarigaoka Ortaokulu'nda 16 öğrenci meşaleyi taşıdı",
+      "my": "၂၀၂၆ ဘဏ္ဍာရေးနှစ်အကုန်တွင် ကျောင်းပိတ်တော့မည်၊ စိတ်လှုပ်ရှားဖွယ် လှုံ့ဆော်မီးတိုင်လွှဲပွဲ — Komaki မြို့ Hikarigaoka အလယ်တန်းကျောင်းမှ ကျောင်းသား ၁၆ ဦး တိုင်ကို လက်ဆင့်ကမ်းခဲ့ကြသည်"
     },
     "愛知県春日井市で一時180人が避難、小牧市や犬山市で浸水被害　東海地方の記録的豪雨で": {
       "en": "Record rain in the Tokai region: 180 people briefly evacuated in Kasugai, flooding in Komaki and Inuyama",
