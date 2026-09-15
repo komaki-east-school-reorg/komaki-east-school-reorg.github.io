@@ -166,5 +166,7 @@
   "transport_elem_h": "Elementary Students: School Bus",
   "transport_elem_p": "<strong>School bus service</strong> for eligible elementary students in the service area (commuting distance of 2 km or more, etc.) — fully covered by the city, free for students.<br><br>· <strong>Morning:</strong> 1 trip<br>· <strong>Afternoon:</strong> Up to 3 trips (lower grades / upper grades / club days)<br>· <strong>Cost: Free (fully city-funded)</strong><br><br>The service area, the proposed stops and how to apply are on the School Bus page. <a href=\"bus.html\" style=\"font-weight:700;\">→ School Bus details page</a>",
   "transport_jhs_h": "Junior High Students: Bicycle Commuting",
-  "transport_jhs_p": "<strong>Bicycle commuting</strong> is planned for junior high students.<br><br>Details regarding safe commuting routes and rainy-day arrangements will be studied and announced at a later date."
+  "transport_jhs_p": "<strong>Bicycle commuting</strong> is planned for junior high students.<br><br>Details regarding safe commuting routes and rainy-day arrangements will be studied and announced at a later date.",
+  "tts_play": "🔊 Listen",
+  "tts_stop": "■ Stop"
 }

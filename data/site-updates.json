@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-09-15",
+      "type": "feature",
+      "ja": "各節に読み上げボタンを追加（表示中の言語の声で読む）",
+      "en": "Read-aloud button added to each section, in the language shown"
+    },
+    {
+      "date": "2026-09-15",
       "type": "fix",
       "ja": "スクールバスの対象エリア地図の凡例を、地図の色と範囲に合わせて修正",
       "en": "School bus map legend corrected to match the map's colours and extent"

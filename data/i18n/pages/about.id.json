@@ -166,5 +166,7 @@
   "transport_elem_h": "Siswa SD: Bus Sekolah",
   "transport_elem_p": "<strong>Layanan bus sekolah</strong> untuk siswa SD yang memenuhi syarat di area layanan (jarak 2 km atau lebih, dll.) — sepenuhnya ditanggung kota, gratis.<br><br>· <strong>Pagi:</strong> 1 perjalanan<br>· <strong>Sore:</strong> Hingga 3 perjalanan (kelas bawah / atas / hari ekstrakurikuler)<br>· <strong>Biaya: Gratis (sepenuhnya ditanggung kota)</strong><br><br>Area layanan, usulan halte, dan cara mendaftar ada di halaman bus sekolah. <a href=\"bus.html\" style=\"font-weight:700;\">→ Halaman detail Bus Sekolah</a>",
   "transport_jhs_h": "Siswa SMP: Bersepeda ke Sekolah",
-  "transport_jhs_p": "<strong>Bersepeda ke sekolah</strong> direncanakan untuk siswa SMP.<br><br>Detail mengenai rute aman dan pengaturan hari hujan akan dipelajari dan diumumkan kemudian."
+  "transport_jhs_p": "<strong>Bersepeda ke sekolah</strong> direncanakan untuk siswa SMP.<br><br>Detail mengenai rute aman dan pengaturan hari hujan akan dipelajari dan diumumkan kemudian.",
+  "tts_play": "🔊 Dengarkan",
+  "tts_stop": "■ Berhenti"
 }

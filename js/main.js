@@ -2627,3 +2627,214 @@ window.KomakiGrade = (function () {
       container.innerHTML = '<p class="official-news-error">' + tt('error') + '</p>';
     });
 })();
+
+/* ===== READ ALOUD（全ページ）=====
+   2026-09-15 ユーザー採用。節の見出しの下に「🔊 読み上げる」を置き、その節の本文を
+   ブラウザに内蔵された音声合成（speechSynthesis）で、表示中の言語のまま読み上げる。
+   日本語の読み書きが難しい住民・高齢者・目の不自由な人に、耳で届けるため。
+
+   ・ボタンはページ全体ではなく節ごと。review.html などは全文を一気に読むと長すぎて使えない。
+     対象は main 内の h2.section-title と、index の「最新の動き」の各コーナー（h3.section-title.sub）。
+   ・表示中の言語の声が端末に無ければ、ボタン自体を出さない（押しても無音、がいちばんまずい）。
+     ビルマ語の声はほとんどの端末に無く、タガログ語も端末しだい。声の一覧は非同期に届くので
+     voiceschanged と数回の再確認で待つ。
+   ・声は端末内のもの（localService）を優先する。ブラウザによっては端末外の音声サービスに
+     本文を送って読む声しか無いが（Linux の Chrome など）、読むのは公開中の本文だけで、
+     読者がボタンを押したときにしか動かない。新しい外部ドメインをページが読みにいくことはない。
+   ・1文ずつ区切って順に渡す。Chrome は長い発話を途中で黙って止めることがある。
+   ・読まないもの: 表示されていない要素（閉じた Q&A の答えは読む）、見出しの <small> 副題
+     （英語表示では日本語の副題なので、英語の声で日本語を読むことになる）、地図と層の切り替え、
+     ボタン類、目次、絵文字（声によっては「虫眼鏡」などと名前を読んでしまう）。表は行ごとに読む。
+   ・日本語の地名の読み: 声が読み違えやすい地名は YOMI でかなに置き換えて渡す。
+     【読みは事実なので、公表資料で確かめられたものだけを足すこと】（しのおか学園・おおくさ）。
+   ・ボタンの文言は data-i18n（tts_play / tts_stop）。HTML に現れないので
+     build_page_dicts.py の RUNTIME_KEYS に入れてある。
+   ・こどもむけの切り替えで本文が作り直されたら（komaki:i18n-applied）、読み上げを止める。 */
+(function () {
+  var synth = window.speechSynthesis;
+  if (!synth || typeof window.SpeechSynthesisUtterance !== 'function') return;
+  var main = document.querySelector('main');
+  if (!main) return;
+
+  var lang = window.KomakiLang();
+  var VOICE_LANGS = {ja: ['ja'], en: ['en'], pt: ['pt-br', 'pt'], vi: ['vi'], tl: ['fil', 'tl'],
+                     es: ['es'], zh: ['zh-cn', 'cmn-hans-cn', 'zh-hans', 'zh'], id: ['id', 'in'],
+                     tr: ['tr'], my: ['my']};
+  // 公表資料で読みが確かめられた地名だけ。推測で足さないこと。
+  var YOMI = {ja: [['篠岡', 'しのおか'], ['大草', 'おおくさ']]};
+  // 1回に渡す長さ。日本語・中国語は1文字あたりの読み時間が長いので短めに切る。
+  var MAX = (lang === 'ja' || lang === 'zh') ? 70 : 180;
+  var COMMA = (lang === 'ja' || lang === 'zh') ? '、' : ', ';
+
+  var SKIP = 'script,style,noscript,svg,rt,select,input,textarea,button:not(.faq-q),' +
+             '.tts-row,.page-toc,.faq-q-icon,.section-updated,.bus-map-layers,.bus-area-map,' +
+             '[hidden],[aria-hidden="true"],.section-title small';
+  var BLOCK = 'h2,h3,h4,h5,p,li,dt,dd,tr,caption,figcaption,blockquote,summary,.faq-q,div';
+  // 札（「概要」などの分類ラベル）は直後の文とつなげて読むと意味が崩れるので、あとに読点を挟む
+  var TAGLIKE = '[class*="tag"],[class*="badge"],[class*="label"],[class*="date"],[class*="cite"],time';
+  var EMOJI = null, LETTER = null;
+  try { EMOJI = new RegExp('[\\p{Extended_Pictographic}\\uFE0F\\u200D\\u20E3]', 'gu'); } catch (e) {}
+  try { LETTER = new RegExp('[\\p{L}\\p{N}]', 'u'); } catch (e) {}
+
+  var heads = Array.prototype.filter.call(
+    main.querySelectorAll('h2.section-title, h3.section-title.sub'),
+    function (h) { return !h.closest('.group-head, .share, .related, #board-sheet'); });
+  if (!heads.length) return;
+
+  function pickVoice() {
+    var vs = [];
+    try { vs = synth.getVoices() || []; } catch (e) {}
+    var want = VOICE_LANGS[lang] || [lang];
+    for (var i = 0; i < want.length; i++) {
+      var hit = vs.filter(function (v) {
+        var l = String(v.lang || '').toLowerCase().replace(/_/g, '-');
+        return l === want[i] || l.indexOf(want[i] + '-') === 0;
+      });
+      if (hit.length) {
+        hit.sort(function (a, b) {
+          return ((b.localService ? 1 : 0) - (a.localService ? 1 : 0)) || ((b['default'] ? 1 : 0) - (a['default'] ? 1 : 0));
+        });
+        return hit[0];
+      }
+    }
+    return null;
+  }
+
+  // 見出し h の節にある文字を、ブロック（段落・項目・表の行など）ごとに集める
+  function blocksOf(h) {
+    var root = h.closest('section') || h.parentNode;
+    var i = heads.indexOf(h);
+    var stop = (i + 1 < heads.length && root.contains(heads[i + 1])) ? heads[i + 1] : null;
+    var FOLLOW = Node.DOCUMENT_POSITION_FOLLOWING;
+    var out = [], cur = null, prevTag = null, n;
+    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+    while ((n = w.nextNode())) {
+      var pe = n.parentElement;
+      if (!pe) continue;
+      if (!(h.compareDocumentPosition(n) & FOLLOW)) continue;          // 見出しより前
+      if (stop && (stop.compareDocumentPosition(n) & FOLLOW)) break;   // 次の見出しから先
+      if (pe.closest(SKIP)) continue;
+      if (!pe.closest('.faq-a') && !pe.getClientRects().length) continue;   // 表示されていない
+      var t = n.nodeValue.replace(/\s+/g, ' ');
+      if (!t.trim()) continue;
+      var b = pe.closest(BLOCK) || pe;
+      var cell = pe.closest('td,th');
+      var tag = pe.closest(TAGLIKE);
+      if (!cur || cur.el !== b) { cur = {el: b, text: '', cell: cell}; out.push(cur); }
+      else if (cell && cell !== cur.cell) { cur.text += COMMA; cur.cell = cell; }
+      else if (prevTag && prevTag !== tag) cur.text += COMMA;
+      prevTag = tag;
+      cur.text += t;
+    }
+    return out;
+  }
+
+  function sentences(text) {
+    if (EMOJI) text = text.replace(EMOJI, '');
+    (YOMI[lang] || []).forEach(function (p) { text = text.split(p[0]).join(p[1]); });
+    text = text.replace(/\s+/g, ' ').trim();
+    if (!text) return [];
+    var out = [];
+    text.replace(/([。！？!?။]|\.(?=\s))\s*/g, '$1\n').split('\n').forEach(function (s) {
+      s = s.trim();
+      while (s.length > MAX) {
+        var cut = Math.max(s.lastIndexOf('、', MAX), s.lastIndexOf('，', MAX), s.lastIndexOf(',', MAX), s.lastIndexOf(' ', MAX));
+        if (cut < MAX / 3) cut = MAX - 1;
+        out.push(s.slice(0, cut + 1));
+        s = s.slice(cut + 1).trim();
+      }
+      if (s && (!LETTER || LETTER.test(s))) out.push(s);
+    });
+    return out;
+  }
+
+  // --- 再生
+  var token = 0, current = null, activeBtn = null, lit = null;
+  function highlight(el) {
+    if (lit === el) return;
+    if (lit) lit.classList.remove('tts-reading');
+    lit = el;
+    if (el) el.classList.add('tts-reading');
+  }
+  function setActive(btn) {
+    if (activeBtn) {
+      activeBtn.setAttribute('aria-pressed', 'false');
+      activeBtn.children[0].hidden = false;
+      activeBtn.children[1].hidden = true;
+    }
+    activeBtn = btn;
+    if (btn) {
+      btn.setAttribute('aria-pressed', 'true');
+      btn.children[0].hidden = true;
+      btn.children[1].hidden = false;
+    }
+  }
+  function stop() {
+    token++;
+    current = null;
+    try { synth.cancel(); } catch (e) {}
+    setActive(null);
+    highlight(null);
+  }
+  function play(h, btn) {
+    var voice = pickVoice();
+    stop();
+    if (!voice) return;
+    var queue = [];
+    blocksOf(h).forEach(function (b) {
+      sentences(b.text).forEach(function (s) { queue.push({el: b.el, s: s}); });
+    });
+    if (!queue.length) return;
+    var my = token;
+    setActive(btn);
+    function next() {
+      if (my !== token) return;
+      var item = queue.shift();
+      if (!item) { stop(); return; }
+      highlight(item.el);
+      var u = new SpeechSynthesisUtterance(item.s);
+      u.voice = voice;
+      u.lang = voice.lang;
+      u.onend = next;
+      u.onerror = function () { if (my === token) next(); };
+      current = u;   // 参照を持っておかないと、Chrome では読み終わりの合図が来ないことがある
+      synth.speak(u);
+    }
+    // cancel() の直後に speak() すると、読み始めずに捨てられるブラウザがある
+    setTimeout(next, 80);
+  }
+
+  // --- ボタン
+  var rows = [];
+  heads.forEach(function (h) {
+    var row = document.createElement('div');
+    row.className = 'tts-row';
+    row.hidden = true;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'tts-btn';
+    btn.setAttribute('aria-pressed', 'false');
+    btn.innerHTML = '<span data-i18n="tts_play">🔊 読み上げる</span><span data-i18n="tts_stop" hidden>■ 止める</span>';
+    btn.addEventListener('click', function () {
+      if (activeBtn === btn) stop(); else play(h, btn);
+    });
+    row.appendChild(btn);
+    var after = h.nextElementSibling;
+    (after && after.classList.contains('section-updated') ? after : h).insertAdjacentElement('afterend', row);
+    rows.push(row);
+  });
+
+  function reveal() {
+    var ok = !!pickVoice();
+    rows.forEach(function (r) { r.hidden = !ok; });
+    if (!ok && activeBtn) stop();
+  }
+  reveal();
+  try { synth.addEventListener('voiceschanged', reveal); } catch (e) { synth.onvoiceschanged = reveal; }
+  [400, 1500, 4000].forEach(function (ms) { setTimeout(reveal, ms); });
+
+  try { synth.cancel(); } catch (e) {}   // 前のページで読みかけていたものを残さない
+  document.addEventListener('komaki:i18n-applied', function () { if (activeBtn) stop(); });
+  window.addEventListener('pagehide', function () { try { synth.cancel(); } catch (e) {} });
+})();
+

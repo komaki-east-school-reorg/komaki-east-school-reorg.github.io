@@ -166,5 +166,7 @@
   "transport_elem_h": "Học sinh Tiểu học: Xe buýt trường",
   "transport_elem_p": "<strong>Dịch vụ xe buýt học đường</strong> cho học sinh tiểu học đủ điều kiện trong khu vực phục vụ (quãng đường 2 km trở lên, v.v.) — thành phố chi trả toàn bộ, miễn phí.<br><br>· <strong>Buổi sáng:</strong> 1 chuyến<br>· <strong>Buổi chiều:</strong> Tối đa 3 chuyến (khối thấp / khối cao / ngày câu lạc bộ)<br>· <strong>Chi phí: Miễn phí (thành phố chi trả)</strong><br><br>Khu vực phục vụ, các điểm dừng dự kiến và cách đăng ký có trên trang xe buýt đưa đón. <a href=\"bus.html\" style=\"font-weight:700;\">→ Trang chi tiết Xe Buýt Học Đường</a>",
   "transport_jhs_h": "Học sinh THCS: Đi xe đạp",
-  "transport_jhs_p": "<strong>Đi xe đạp</strong> được lên kế hoạch cho học sinh THCS.<br><br>Chi tiết về tuyến đường đi học an toàn và cách xử lý vào ngày mưa sẽ được nghiên cứu và công bố sau."
+  "transport_jhs_p": "<strong>Đi xe đạp</strong> được lên kế hoạch cho học sinh THCS.<br><br>Chi tiết về tuyến đường đi học an toàn và cách xử lý vào ngày mưa sẽ được nghiên cứu và công bố sau.",
+  "tts_play": "🔊 Nghe",
+  "tts_stop": "■ Dừng"
 }

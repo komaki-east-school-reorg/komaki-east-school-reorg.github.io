@@ -2349,6 +2349,33 @@ html.has-share-sticky body {
 /* 目次から飛んだとき、見出しが上の固定ヘッダの下に隠れないようにする */
 main section[id], main h2.section-title[id] { scroll-margin-top: 84px; }
 
+/* ===== 節ごとの読み上げボタン（js/main.js の READ ALOUD）=====
+   見出しのすぐ下に小さく置く。見出しの下余白（1.8rem）に食い込ませて、節の間延びを防ぐ。
+   声が端末に無い言語では JS が .tts-row を hidden のままにする。 */
+.tts-row { margin: -1rem 0 1.2rem; }
+.tts-row[hidden] { display: none; }
+.section-title.sub + .tts-row { margin-top: -1.4rem; }
+.tts-btn {
+  font: inherit;
+  font-size: .8rem;
+  line-height: 1.2;
+  padding: .3rem .8rem;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--primary-dark);
+  cursor: pointer;
+}
+.tts-btn:hover, .tts-btn:focus-visible { border-color: var(--primary); }
+.tts-btn[aria-pressed="true"] { background: var(--primary); border-color: var(--primary); color: #fff; }
+/* いま読んでいるブロック */
+.tts-reading { background: var(--accent-light); box-shadow: 0 0 0 .25rem var(--accent-light); border-radius: 2px; }
+
+@media print {
+  .tts-row { display: none !important; }
+  .tts-reading { background: none; box-shadow: none; }
+}
+
 /* ===== ふつうの印刷（Ctrl+P・共有欄の🖨）の共通スタイル（2026-09-14）=====
    本文（<main> の説明文・表・図）はそのまま刷る — 「ふつうの印刷はページをそのまま」という
    方針は変えない。消すのは画面で操作するための部品だけで、Q&A は答えを開いた状態にする

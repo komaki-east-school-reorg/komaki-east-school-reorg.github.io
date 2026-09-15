@@ -183,6 +183,8 @@
   "tobu_actions_h": "Eastern District Updates<small>東部まちづくりの動き</small>",
   "tobu_actions_lead": "Activities in the eastern district published by the city's Eastern District Development Office: what is coming up, and what has happened in the last two months. Collected automatically from the city's pages once a day. The headings are machine-translated from the city's Japanese.",
   "tobu_actions_note": "The headings and event names are machine-translated from the city's Japanese. Individual items are not linked, because this site links out only to official index pages; follow the source link above to the city's \"Eastern District Development\" pages for the full text.",
+  "tts_play": "🔊 Listen",
+  "tts_stop": "■ Stop",
   "upcoming_date10": "By 30 Sep",
   "upcoming_date8": "April 2027",
   "upcoming_label": "📅 Upcoming Events",

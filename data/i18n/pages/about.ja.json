@@ -166,5 +166,7 @@
   "transport_elem_h": "小学生：スクールバス",
   "transport_elem_p": "<strong>通学距離2km以上などの対象エリアの小学生</strong>にスクールバスを運行します（市が全額負担・無償）。<br><br>・<strong>登校：</strong>1便<br>・<strong>下校：</strong>最大3便（低学年・高学年・部活動日）<br>・<strong>費用：市が全額負担（無償）</strong><br><br>対象エリア・バス停（案）・申請の手続きは、スクールバスのページにまとめています。<a href=\"bus.html\" style=\"font-weight:700;\">→ スクールバスの詳細ページ</a>",
   "transport_jhs_h": "中学生：自転車通学",
-  "transport_jhs_p": "中学生については<strong>自転車通学</strong>が計画されています。<br><br>安全な通学路の確保や、雨天時の対応については今後、詳細が検討・発表される予定です。"
+  "transport_jhs_p": "中学生については<strong>自転車通学</strong>が計画されています。<br><br>安全な通学路の確保や、雨天時の対応については今後、詳細が検討・発表される予定です。",
+  "tts_play": "🔊 読み上げる",
+  "tts_stop": "■ 止める"
 }

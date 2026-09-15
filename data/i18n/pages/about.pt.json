@@ -166,5 +166,7 @@
   "transport_elem_h": "Alunos do Ensino Primário: Ônibus Escolar",
   "transport_elem_p": "<strong>Serviço de ônibus escolar</strong> para alunos do ensino fundamental elegíveis na área de atendimento (distância de 2 km ou mais, etc.) — totalmente custeado pela cidade, gratuito.<br><br>· <strong>Manhã:</strong> 1 viagem<br>· <strong>Tarde:</strong> Até 3 viagens (séries iniciais / finais / dias de clube)<br>· <strong>Custo: Gratuito (totalmente custeado pela cidade)</strong><br><br>A área atendida, as paradas propostas e como solicitar estão na página do ônibus escolar. <a href=\"bus.html\" style=\"font-weight:700;\">→ Página de detalhes do Ônibus Escolar</a>",
   "transport_jhs_h": "Alunos do Ensino Secundário: Ciclismo",
-  "transport_jhs_p": "<strong>Ciclismo</strong> está planejado para alunos do ensino secundário.<br><br>Detalhes sobre rotas seguras e medidas para dias chuvosos serão estudados e anunciados posteriormente."
+  "transport_jhs_p": "<strong>Ciclismo</strong> está planejado para alunos do ensino secundário.<br><br>Detalhes sobre rotas seguras e medidas para dias chuvosos serão estudados e anunciados posteriormente.",
+  "tts_play": "🔊 Ouvir",
+  "tts_stop": "■ Parar"
 }

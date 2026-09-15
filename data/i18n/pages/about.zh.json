@@ -166,5 +166,7 @@
   "transport_elem_h": "小学生：校车",
   "transport_elem_p": "为通学距离2km以上等<strong>对象区域的小学生</strong>运行校车（市政府全额承担・免费）。<br><br>・<strong>上学：</strong>1班<br>・<strong>放学：</strong>最多3班（低年级・高年级・课外活动日）<br>・<strong>费用：市政府全额负担（免费）</strong><br><br>对象区域、站点（方案）和申请手续请见校车页面。<a href=\"bus.html\" style=\"font-weight:700;\">→ 校车详情页</a>",
   "transport_jhs_h": "初中生：骑自行车上学",
-  "transport_jhs_p": "初中生计划采用<strong>骑自行车上学</strong>方式。<br><br>有关安全通学路线的保障及雨天应对措施，将在今后进一步研讨后公布详情。"
+  "transport_jhs_p": "初中生计划采用<strong>骑自行车上学</strong>方式。<br><br>有关安全通学路线的保障及雨天应对措施，将在今后进一步研讨后公布详情。",
+  "tts_play": "🔊 朗读",
+  "tts_stop": "■ 停止"
 }

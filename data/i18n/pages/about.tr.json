@@ -166,5 +166,7 @@
   "transport_elem_h": "İlkokul öğrencileri: okul servisi",
   "transport_elem_p": "<strong>Okul servisi</strong>, hizmet alanındaki uygun ilkokul öğrencileri içindir (2 km ve üzeri mesafe vb.) — tamamı belediye tarafından karşılanır, öğrenciler için ücretsizdir.<br><br>· <strong>Sabah:</strong> 1 sefer<br>· <strong>Öğleden sonra:</strong> En fazla 3 sefer (küçük sınıflar / büyük sınıflar / kulüp günleri)<br>· <strong>Ücret: Ücretsiz (tamamı belediye bütçesinden)</strong><br><br>Hizmet bölgesi, önerilen duraklar ve başvuru yöntemi Okul Servisi sayfasındadır. <a href=\"bus.html\" style=\"font-weight:700;\">→ Okul Servisi ayrıntı sayfası</a>",
   "transport_jhs_h": "Ortaokul öğrencileri: bisikletle gidiş",
-  "transport_jhs_p": "Ortaokul öğrencileri için <strong>bisikletle okula gidiş</strong> planlanıyor.<br><br>Güvenli güzergâhlar ve yağmurlu gün düzenlemelerine ilişkin ayrıntılar incelenecek ve ileride duyurulacaktır."
+  "transport_jhs_p": "Ortaokul öğrencileri için <strong>bisikletle okula gidiş</strong> planlanıyor.<br><br>Güvenli güzergâhlar ve yağmurlu gün düzenlemelerine ilişkin ayrıntılar incelenecek ve ileride duyurulacaktır.",
+  "tts_play": "🔊 Dinle",
+  "tts_stop": "■ Durdur"
 }

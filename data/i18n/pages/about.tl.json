@@ -166,5 +166,7 @@
   "transport_elem_h": "Mga Mag-aaral sa Elementarya: School Bus",
   "transport_elem_p": "<strong>Serbisyo ng school bus</strong> para sa mga karapat-dapat na mag-aaral sa elementarya sa lugar ng serbisyo (distansya ng 2 km o higit pa, atbp.) — ganap na sakop ng lungsod, libre.<br><br>· <strong>Umaga:</strong> 1 biyahe<br>· <strong>Hapon:</strong> Hanggang 3 biyahe (mababang baitang / mataas / araw ng club)<br>· <strong>Gastos: Libre (ganap na sakop ng lungsod)</strong><br><br>Ang lugar ng serbisyo, ang mga panukalang hintuan at ang pag-apply ay nasa pahina ng School Bus. <a href=\"bus.html\" style=\"font-weight:700;\">→ Pahina ng detalye ng School Bus</a>",
   "transport_jhs_h": "Mga Mag-aaral sa Junior High: Pagbibisikleta",
-  "transport_jhs_p": "<strong>Pagbibisikleta</strong> ang planado para sa mga mag-aaral sa junior high.<br><br>Ang mga detalye tungkol sa ligtas na mga ruta at mga pagsasaayos sa makulimlim na araw ay pag-aaralan at ipaaanunsyo sa ibang pagkakataon."
+  "transport_jhs_p": "<strong>Pagbibisikleta</strong> ang planado para sa mga mag-aaral sa junior high.<br><br>Ang mga detalye tungkol sa ligtas na mga ruta at mga pagsasaayos sa makulimlim na araw ay pag-aaralan at ipaaanunsyo sa ibang pagkakataon.",
+  "tts_play": "🔊 Pakinggan",
+  "tts_stop": "■ Itigil"
 }

@@ -166,5 +166,7 @@
   "transport_elem_h": "小学生：スクールバス",
   "transport_elem_p": "<strong>学校まで 2kmより 遠いなどの エリアの 小学生</strong>に スクールバスを はしらせます（バス代は ただ）。<br><br>・<strong>行き：</strong>1本<br>・<strong>帰り：</strong>おおくて 3本（下の 学年・上の 学年・部活の ある日）<br>・<strong>お金：ただ（市が ぜんぶ はらう）</strong><br><br>のれる エリアや バスていの あん、もうしこみの しかたは スクールバスの ページに あります。<a href=\"bus.html\" style=\"font-weight:700;\">→ スクールバスの くわしい ページ</a>",
   "transport_jhs_h": "中学生：自転車で通学",
-  "transport_jhs_p": "中学生は<strong>自転車で通学する</strong>計画です。<br><br>安全な通学路や、雨の日の対応についてはこれから決まる予定です。"
+  "transport_jhs_p": "中学生は<strong>自転車で通学する</strong>計画です。<br><br>安全な通学路や、雨の日の対応についてはこれから決まる予定です。",
+  "tts_play": "🔊 よみあげる",
+  "tts_stop": "■ とめる"
 }

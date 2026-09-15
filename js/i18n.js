@@ -227,6 +227,11 @@
 
     try { localStorage.setItem('komaki_lang', lang); } catch (e) {}
     showPage();
+
+    // 辞書を流し込み終えた合図。data-i18n-html の要素は中身ごと作り直されるので、
+    // 本文の DOM を掴んでいる処理（js/main.js の READ ALOUD など）はこれを見て手を離す。
+    // 言語の切り替えはページの読み直しになるが、こどもむけの切り替えはここを通る。
+    try { document.dispatchEvent(new CustomEvent('komaki:i18n-applied', { detail: { lang: lang } })); } catch (e) {}
   }
 
   // ===== FAQ ページの構造化データ（schema.org FAQPage） =====
