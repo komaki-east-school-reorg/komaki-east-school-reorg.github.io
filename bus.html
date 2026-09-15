@@ -233,7 +233,14 @@
       <figure class="bus-map-figure">
         <div id="bus-area-map" class="bus-area-map" role="img" data-i18n-aria="bus_map_alt"
              aria-label="篠岡地区のスクールバス通学対象エリアを示した地図。赤い線が新しい通学区域の境、紫がスクールバスの対象エリア。"></div>
+        <!-- 拡大縮小のボタン。地図が描けたときだけ js/main.js（BUS SERVICE AREA MAP）が出す -->
+        <div class="bus-map-zoom" hidden>
+          <button type="button" data-zoom="in" aria-label="拡大" data-i18n-aria="bus_map_zoom_in">＋</button>
+          <button type="button" data-zoom="out" aria-label="縮小" data-i18n-aria="bus_map_zoom_out">−</button>
+          <button type="button" data-zoom="reset" aria-label="元の範囲に戻す" data-i18n-aria="bus_map_zoom_reset">⟲</button>
+        </div>
         <figcaption class="bus-map-caption">
+          <p class="bus-map-zoom-hint" data-i18n="bus_map_zoom_hint">地図は拡大できます：＋／−のボタン、スマートフォンは2本指、パソコンは Ctrl（Mac は ⌘）＋ホイールかダブルクリック。拡大中はドラッグで動かせます。</p>
           <ul class="bus-map-legend">
             <li><span class="bus-map-key bus-map-key--area" aria-hidden="true"></span><span data-i18n="bus_map_legend_area">スクールバス通学 対象エリア</span></li>
             <li><span class="bus-map-key bus-map-key--walk" aria-hidden="true"></span><span data-i18n="bus_map_legend_walk">赤線の内側で紫のかかっていない部分（2校のまわり）＝徒歩で通う範囲</span></li>

@@ -4,6 +4,12 @@
     {
       "date": "2026-09-15",
       "type": "feature",
+      "ja": "スクールバスの対象エリア地図を拡大・縮小できるように",
+      "en": "School bus service area map can now be zoomed"
+    },
+    {
+      "date": "2026-09-15",
+      "type": "feature",
       "ja": "「このページの目次」を全ページに",
       "en": "\"On this page\" contents now on every page"
     },

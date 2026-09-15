@@ -1892,7 +1892,37 @@ html.has-share-sticky body {
    図形は data/bus_map.geojson、描画は js/main.js の BUS SERVICE AREA MAP。
    市の対象エリア図を当サイトがトレースした「近似図」なので、凡例と注記
    （.info-box--warn）は地図と必ずセットで出す。片方だけ消さないこと。 */
-.bus-map-figure { margin: 0 0 1.2rem; }
+.bus-map-figure { margin: 0 0 1.2rem; position: relative; }
+/* 倍率1のあいだは1本指の操作をページのスクロールに残し、2本指の拡大は JS が受ける。
+   拡大中は1本指でも地図を動かすので、ブラウザの操作を止める。 */
+.bus-area-map { touch-action: pan-x pan-y; -webkit-user-select: none; user-select: none; }
+.bus-area-map.is-zoomed { touch-action: none; cursor: grab; }
+.bus-area-map.is-dragging { cursor: grabbing; }
+.bus-map-zoom {
+  position: absolute; top: .55rem; left: .55rem;
+  display: flex; flex-direction: column; gap: .3rem;
+}
+.bus-map-zoom[hidden] { display: none; }
+.bus-map-zoom button {
+  width: 2.3rem; height: 2.3rem;
+  display: flex; align-items: center; justify-content: center;
+  font: inherit; font-size: 1.15rem; font-weight: 700; line-height: 1;
+  color: var(--primary-dark);
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 1px 3px rgba(0,0,0,.12);
+  cursor: pointer;
+}
+.bus-map-zoom button:hover:not(:disabled), .bus-map-zoom button:focus-visible { border-color: var(--primary); }
+.bus-map-zoom button:disabled { opacity: .45; cursor: default; }
+.bus-map-zoom-hint { font-size: .78rem; color: var(--text-muted); margin-bottom: .5rem; }
+/* スマートフォンでは地図の高さが250px ほどしかないので、ボタンを小さく横に並べる */
+@media (max-width: 600px) {
+  .bus-map-zoom { top: .35rem; left: .35rem; flex-direction: row; gap: .25rem; }
+  .bus-map-zoom button { width: 1.9rem; height: 1.9rem; font-size: .95rem; }
+}
+@media print { .bus-map-zoom, .bus-map-zoom-hint { display: none !important; } }
 .bus-area-map {
   background: var(--white);
   border: 1px solid var(--border);

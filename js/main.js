@@ -2180,7 +2180,17 @@ window.KomakiGrade = (function () {
 
    投影は簡易正距円筒。ただし縮尺を原図に厳密に合わせるため、1度あたりの長さは
    経度・緯度それぞれの実長を使う（cos(緯度) だけの近似だと縦が約0.5%伸びる）。
-   地物が多いので層ごとに <g data-layer> を作り、チェックボックスで表示を切り替える。 */
+   地物が多いので層ごとに <g data-layer> を作り、チェックボックスで表示を切り替える。
+
+   【拡大縮小（2026-09-15 ユーザー指示で追加）】
+   図形の座標には触れず、SVG の viewBox（表示範囲）だけを動かす。倍率1では従来の表示と同一。
+   ・範囲は原図の枠の中だけ（枠の外へは動かせない）、倍率は 1〜MAX_ZOOM 倍。
+   ・文字・印・線をそのまま拡大すると大きくなりすぎるので、倍率 z のとき 1/√z 倍に縮めて
+     描き直す（見た目は √z 倍）。SCALE_ITEMS（位置を中心に縮める）と STROKES（線の太さ）。
+   ・縮尺バーと方位記号は画面に対して固定し、縮尺バーの距離は倍率に応じて 1km→500m→200m→100m。
+   ・操作: ＋／−／元に戻すボタン、Ctrl（Mac は ⌘）＋ホイール（トラックパッドのピンチを含む）、
+     ダブルクリック、拡大中のドラッグ。スマートフォンは2本指で拡大縮小し、拡大中は1本指で動かす。
+     倍率1のあいだは1本指の操作をページのスクロールに残す（地図が画面を塞いでも先へ読めるように）。 */
 (function () {
   var host = document.getElementById('bus-area-map');
   if (!host) return;
@@ -2192,6 +2202,11 @@ window.KomakiGrade = (function () {
   // スケールバーと方位記号だけ UI_PAD ぶん内側に置く。
   var VIEW_W = 1639;
   var UI_PAD = 40;
+  var MAX_ZOOM = 6;
+  var SCALE_ITEMS = [];   // [要素, 中心x, 中心y]
+  var STROKES = [];       // [要素, 倍率1での線の太さ]
+  function scalable(g, x, y) { SCALE_ITEMS.push([g, x, y]); return g; }
+  function stroked(e, w) { STROKES.push([e, w]); return e; }
 
   function el(n, a) {
     var e = document.createElementNS(NS, n);
@@ -2295,9 +2310,9 @@ window.KomakiGrade = (function () {
       roads.forEach(function (f) {
         var cls = f.properties.cls;
         var g = (cls === 'local') ? gLocal : gRoad;
-        g.appendChild(el('path', {d: path(f.geometry.coordinates), fill: 'none',
+        g.appendChild(stroked(el('path', {d: path(f.geometry.coordinates), fill: 'none',
           stroke: ROAD_C[cls] || '#ccc', 'stroke-width': ROAD_W[cls] || 2,
-          'stroke-linecap': 'round', 'stroke-linejoin': 'round'}));
+          'stroke-linecap': 'round', 'stroke-linejoin': 'round'}), ROAD_W[cls] || 2));
         // 名前ごとに1回だけラベルを出す。県道まで出すのは、通学区域界が
         // どの県道に沿っているかを読者が自分で確かめられるようにするため。
         // 無名の生活道路は出さない（本数が多く、地図が読めなくなる）。
@@ -2310,8 +2325,8 @@ window.KomakiGrade = (function () {
             if (inView(m[0], m[1])) {
               nameSeen[nm] = 1;
               var small = (cls === 'secondary' || cls === 'local');
-              g.appendChild(label(px(m[0]), py(m[1]) - 6, nm, small ? 15 : 17, 400,
-                                  small ? '#77878e' : '#5a6a70'));
+              g.appendChild(scalable(label(px(m[0]), py(m[1]) - 6, nm, small ? 15 : 17, 400,
+                                  small ? '#77878e' : '#5a6a70'), px(m[0]), py(m[1]) - 6));
             }
           }
         }
@@ -2321,20 +2336,20 @@ window.KomakiGrade = (function () {
       var DFILL = {east: 'rgba(212,170,48,.16)', west: 'rgba(88,117,149,.16)'};
       var gDist = layer('district');
       districts.forEach(function (f) {
-        gDist.appendChild(el('path', {d: path(f.geometry.coordinates[0]) + ' Z',
+        gDist.appendChild(stroked(el('path', {d: path(f.geometry.coordinates[0]) + ' Z',
           fill: DFILL[f.properties.key] || 'rgba(0,0,0,.05)',
-          stroke: '#d32f2f', 'stroke-width': 3, 'stroke-linejoin': 'round'}));
+          stroke: '#d32f2f', 'stroke-width': 3, 'stroke-linejoin': 'round'}), 3));
       });
 
       // --- 対象エリア
       // 外周のほかに穴（対象外の一画）を持つので、リングを全部つないで evenodd で塗る。
       // coordinates[0] だけを描く形に戻さないこと。
       busPolys.forEach(function (poly) {
-        layer('busarea').appendChild(el('path', {
+        layer('busarea').appendChild(stroked(el('path', {
           d: poly.map(function (ring) { return path(ring) + ' Z'; }).join(' '),
           'fill-rule': 'evenodd',
           fill: 'rgba(126,110,196,.40)', stroke: '#5b48a8',
-          'stroke-width': 2.5, 'stroke-linejoin': 'round'}));
+          'stroke-width': 2.5, 'stroke-linejoin': 'round'}), 2.5));
       });
 
       // --- 施設（種類ごとの層）
@@ -2343,8 +2358,9 @@ window.KomakiGrade = (function () {
         if (!m) return;
         var c = f.geometry.coordinates;
         if (!inView(c[0], c[1])) return;
-        var g = layer(cat);
         var x = px(c[0]), y = py(c[1]);
+        var g = scalable(el('g', {}), x, y);   // 印と名前をひとまとめにして、拡大時に一緒に縮める
+        layer(cat).appendChild(g);
         g.appendChild(el('circle', {cx: x, cy: y, r: m.r, fill: m.fill,
           stroke: 'var(--white)', 'stroke-width': 2}));
         if (m.icon) {
@@ -2363,24 +2379,26 @@ window.KomakiGrade = (function () {
       var gNew = layer('school');
       newSchools.forEach(function (f) {
         var c = f.geometry.coordinates, x = px(c[0]), y = py(c[1]);
-        gNew.appendChild(el('circle', {cx: x, cy: y, r: 11, fill: 'var(--primary)',
+        var g = scalable(el('g', {}), x, y);
+        gNew.appendChild(g);
+        g.appendChild(el('circle', {cx: x, cy: y, r: 11, fill: 'var(--primary)',
           stroke: 'var(--accent)', 'stroke-width': 3.5}));
         var nm = (_bl === 'ja' ? f.properties.name : (f.properties.name_en || f.properties.name)) || '';
-        gNew.appendChild(label(x, y - 18, nm, 20, 700, 'var(--text)'));
+        g.appendChild(label(x, y - 18, nm, 20, 700, 'var(--text)'));
       });
 
       // --- 地区名（いちばん上・大きめ）
       var gPlace = layer('place');
       places.forEach(function (f) {
         var c = f.geometry.coordinates;
-        gPlace.appendChild(label(px(c[0]), py(c[1]), f.properties.name, 24, 700, '#3b4a55'));
+        gPlace.appendChild(scalable(label(px(c[0]), py(c[1]), f.properties.name, 24, 700, '#3b4a55'), px(c[0]), py(c[1])));
       });
       // 通学区域の名前
       districts.forEach(function (f) {
         var p = f.properties;
         if (p.label_lon == null) return;
         var nm = (_bl === 'ja' ? p.name : (p.name_en || p.name));
-        gDist.appendChild(label(px(p.label_lon), py(p.label_lat), nm, 27, 700, '#8a5a00'));
+        gDist.appendChild(scalable(label(px(p.label_lon), py(p.label_lat), nm, 27, 700, '#8a5a00'), px(p.label_lon), py(p.label_lat)));
       });
 
       // --- スケールバーと方位（白い下地つき）
@@ -2389,9 +2407,11 @@ window.KomakiGrade = (function () {
       }
       var barLen = 1000 * S, bx = UI_PAD, by = VIEW_H - UI_PAD * 0.5;
       var gUi = el('g', {});
-      gUi.appendChild(plate(bx - 8, by - 36, barLen + 16, 44));
-      gUi.appendChild(el('path', {d: 'M' + bx + ' ' + (by - 8) + ' V' + by + ' H' + (bx + barLen) + ' V' + (by - 8),
-        fill: 'none', stroke: 'var(--text)', 'stroke-width': 2.5}));
+      var barPlate = plate(bx - 8, by - 36, barLen + 16, 44);
+      gUi.appendChild(barPlate);
+      var barPath = el('path', {d: 'M' + bx + ' ' + (by - 8) + ' V' + by + ' H' + (bx + barLen) + ' V' + (by - 8),
+        fill: 'none', stroke: 'var(--text)', 'stroke-width': 2.5});
+      gUi.appendChild(barPath);
       var lt = el('text', {x: bx, y: by - 13, 'font-size': 20, fill: 'var(--text)'});
       lt.textContent = '1 km';
       gUi.appendChild(lt);
@@ -2407,6 +2427,154 @@ window.KomakiGrade = (function () {
       svg.appendChild(gUi);
 
       host.appendChild(svg);
+
+      // --- 拡大縮小（viewBox を動かすだけ。図形の座標は変えない）
+      var view = {x: 0, y: 0, w: VIEW_W, h: VIEW_H};
+      var raf = 0;
+      function zoomOf() { return VIEW_W / view.w; }
+      function clampView() {
+        view.w = Math.min(VIEW_W, Math.max(VIEW_W / MAX_ZOOM, view.w));
+        view.h = view.w * VIEW_H / VIEW_W;
+        view.x = Math.min(VIEW_W - view.w, Math.max(0, view.x));
+        view.y = Math.min(VIEW_H - view.h, Math.max(0, view.y));
+      }
+      function render() {
+        raf = 0;
+        var z = zoomOf(), one = z < 1.0001;
+        svg.setAttribute('viewBox', one ? '0 0 ' + VIEW_W + ' ' + Math.round(VIEW_H)
+                                        : [view.x, view.y, view.w, view.h].map(function (v) { return v.toFixed(2); }).join(' '));
+        var k = 1 / Math.sqrt(z);
+        SCALE_ITEMS.forEach(function (it) {
+          if (one) it[0].removeAttribute('transform');
+          else it[0].setAttribute('transform', 'translate(' + it[1] + ' ' + it[2] + ') scale(' + k.toFixed(4) + ') translate(' + (-it[1]) + ' ' + (-it[2]) + ')');
+        });
+        STROKES.forEach(function (it) { it[0].setAttribute('stroke-width', one ? it[1] : (it[1] * k).toFixed(3)); });
+        // 縮尺バーと方位記号は画面に固定する
+        if (one) gUi.removeAttribute('transform');
+        else gUi.setAttribute('transform', 'translate(' + view.x.toFixed(2) + ' ' + view.y.toFixed(2) + ') scale(' + (1 / z).toFixed(5) + ')');
+        var D = [1000, 500, 200, 100].filter(function (d) { return d * z <= 1050; })[0] || 100;
+        var len = D * S * z;
+        barPlate.setAttribute('width', len + 16);
+        barPath.setAttribute('d', 'M' + bx + ' ' + (by - 8) + ' V' + by + ' H' + (bx + len) + ' V' + (by - 8));
+        lt.textContent = D >= 1000 ? (D / 1000) + ' km' : D + ' m';
+        host.classList.toggle('is-zoomed', !one);
+        if (zoomBox) {
+          zoomBox.querySelector('[data-zoom="in"]').disabled = z >= MAX_ZOOM - 0.001;
+          zoomBox.querySelector('[data-zoom="out"]').disabled = one;
+          zoomBox.querySelector('[data-zoom="reset"]').disabled = one;
+        }
+      }
+      function schedule() { if (!raf) raf = requestAnimationFrame(render); }
+      // 画面上の点 → 地図の座標
+      function toMap(clientX, clientY) {
+        var r = svg.getBoundingClientRect();
+        return {x: view.x + (clientX - r.left) / r.width * view.w,
+                y: view.y + (clientY - r.top) / r.height * view.h, r: r};
+      }
+      function zoomAt(mx, my, factor) {
+        var nw = Math.min(VIEW_W, Math.max(VIEW_W / MAX_ZOOM, view.w / factor));
+        var f = nw / view.w;
+        view.x = mx - (mx - view.x) * f;
+        view.y = my - (my - view.y) * f;
+        view.w = nw;
+        clampView();
+        schedule();
+      }
+      function zoomCenter(factor) { zoomAt(view.x + view.w / 2, view.y + view.h / 2, factor); }
+
+      var fig = host.closest('.bus-map-figure');
+      var zoomBox = fig && fig.querySelector('.bus-map-zoom');
+      if (zoomBox) {
+        zoomBox.hidden = false;
+        zoomBox.addEventListener('click', function (e) {
+          var b = e.target.closest('button[data-zoom]');
+          if (!b) return;
+          var act = b.getAttribute('data-zoom');
+          if (act === 'in') zoomCenter(1.6);
+          else if (act === 'out') zoomCenter(1 / 1.6);
+          else { view = {x: 0, y: 0, w: VIEW_W, h: VIEW_H}; schedule(); }
+        });
+      }
+
+      // マウス・トラックパッド: Ctrl／⌘＋ホイールで拡大縮小（ふつうのホイールはページのスクロールに残す）
+      host.addEventListener('wheel', function (e) {
+        if (!(e.ctrlKey || e.metaKey)) return;
+        e.preventDefault();
+        var p = toMap(e.clientX, e.clientY);
+        zoomAt(p.x, p.y, Math.exp(Math.max(-1, Math.min(1, -e.deltaY * (e.deltaMode ? 0.05 : 0.002)))));
+      }, {passive: false});
+      host.addEventListener('dblclick', function (e) {
+        var p = toMap(e.clientX, e.clientY);
+        zoomAt(p.x, p.y, e.shiftKey ? 1 / 2 : 2);
+      });
+      var drag = null;
+      host.addEventListener('pointerdown', function (e) {
+        if (e.pointerType === 'touch' || e.button !== 0 || zoomOf() < 1.0001) return;
+        drag = {id: e.pointerId, cx: e.clientX, cy: e.clientY, vx: view.x, vy: view.y};
+        try { host.setPointerCapture(e.pointerId); } catch (err) {}
+        host.classList.add('is-dragging');
+      });
+      host.addEventListener('pointermove', function (e) {
+        if (!drag || e.pointerId !== drag.id) return;
+        var r = svg.getBoundingClientRect();
+        view.x = drag.vx - (e.clientX - drag.cx) / r.width * view.w;
+        view.y = drag.vy - (e.clientY - drag.cy) / r.height * view.h;
+        clampView();
+        schedule();
+      });
+      function endDrag(e) {
+        if (!drag || e.pointerId !== drag.id) return;
+        drag = null;
+        host.classList.remove('is-dragging');
+      }
+      host.addEventListener('pointerup', endDrag);
+      host.addEventListener('pointercancel', endDrag);
+
+      // タッチ: 2本指で拡大縮小・移動。拡大中は1本指でも動かす。
+      var touch = null;
+      function touchStart(e) {
+        var t = e.touches;
+        if (t.length >= 2) {
+          var a = t[0], b = t[1];
+          var mid = toMap((a.clientX + b.clientX) / 2, (a.clientY + b.clientY) / 2);
+          touch = {mode: 'pinch', dist: Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY) || 1,
+                   w: view.w, mx: mid.x, my: mid.y};
+          e.preventDefault();
+        } else if (t.length === 1 && zoomOf() > 1.0001) {
+          touch = {mode: 'pan', cx: t[0].clientX, cy: t[0].clientY, vx: view.x, vy: view.y};
+          e.preventDefault();
+        } else {
+          touch = null;
+        }
+      }
+      host.addEventListener('touchstart', touchStart, {passive: false});
+      host.addEventListener('touchmove', function (e) {
+        if (!touch) return;
+        var t = e.touches, r = svg.getBoundingClientRect();
+        e.preventDefault();
+        if (touch.mode === 'pinch' && t.length >= 2) {
+          var a = t[0], b = t[1];
+          var d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY) || 1;
+          view.w = Math.min(VIEW_W, Math.max(VIEW_W / MAX_ZOOM, touch.w * touch.dist / d));
+          view.h = view.w * VIEW_H / VIEW_W;
+          // 指を置いた地点が、2本の指のまん中に来つづけるように動かす
+          var cx = (a.clientX + b.clientX) / 2, cy = (a.clientY + b.clientY) / 2;
+          view.x = touch.mx - (cx - r.left) / r.width * view.w;
+          view.y = touch.my - (cy - r.top) / r.height * view.h;
+        } else if (touch.mode === 'pan' && t.length === 1) {
+          view.x = touch.vx - (t[0].clientX - touch.cx) / r.width * view.w;
+          view.y = touch.vy - (t[0].clientY - touch.cy) / r.height * view.h;
+        }
+        clampView();
+        schedule();
+      }, {passive: false});
+      host.addEventListener('touchend', function (e) {
+        if (!touch) return;
+        // 2本指のうち1本を離したら、残りの1本での移動に切り替える（倍率1なら終わり）
+        if (e.touches.length) touchStart(e); else touch = null;
+      });
+      host.addEventListener('touchcancel', function () { touch = null; });
+      render();
 
       // --- 層の表示切り替え
       var box = document.getElementById('bus-map-layers');
