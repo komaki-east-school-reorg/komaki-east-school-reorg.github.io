@@ -73,6 +73,13 @@
       bsky.app/intent/compose                  Blueskyで投稿
       www.reddit.com/submit                    Redditに投稿
       https://<閲覧者のサーバー>/share          Mastodonで共有
+    スマートフォンでは、アプリが入っていればアプリで開く。Android は intent://
+    （アプリを名指しし、無ければ上の Web の URL に戻る）、iPhone は https の
+    ユニバーサルリンクだけを使う。LINE だけはスマートフォンで
+      line.me/R/share                          LINEで送る（スマートフォン）
+    に切り替える（social-plugins.line.me はアプリを開かないため）。
+    Facebook の「いいね」ボタンは Meta が 2026-02-10 に外部サイト向けを廃止したので
+    置けない（埋め込んでも何も表示されず、閲覧者の訪問が Meta に送られるだけ）。
     Mastodon は分散型で送り先が固定できないため、閲覧者が入力したサーバーの
     ドメインを localStorage（komaki_mastodon）に覚えて使う。第三者のリダイレクト
     サービスは挟まない（外部ホストを増やさないため）。
@@ -84,7 +91,8 @@
       s.hatena.ne.jp/js/HatenaStar.js
     このサイトが読み込む唯一の外部スクリプト。共有欄が画面に入るまで
     読み込まない（IntersectionObserver）ので、最下部まで来なかった閲覧者に
-    はてなへの通信は発生しない。増やすときはこの方針ごと考え直すこと。
+    はてなへの通信は発生しない。画面下の固定バーにも ☆ があるが、こちらは
+    読者がその ☆ に触れたときに初めて読み込む。増やすときはこの方針ごと考え直すこと。
   ・これらは「出典」ではない。事実の根拠に使うことは一切ない（ルール4）。
   ・上記の city.komaki.aichi.jp / mext.go.jp 用チェックには引っかからない。
 

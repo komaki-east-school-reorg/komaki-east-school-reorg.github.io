@@ -1809,6 +1809,30 @@ footer {
 }
 .hatena-star-permalink:hover { color: var(--primary); border-bottom-color: var(--accent); text-decoration: none; }
 .hatena-star-holder img { vertical-align: middle; }
+/* 固定バーの はてなスター。ボタン列（横スクロール）の外に置き、帯の右端に固定する。
+   overflow:hidden を付けないこと — はてな側は色つきスターの選択欄を ☆+ の上に
+   iframe で浮かせるので、切り取ると帯の上にはみ出す部分が欠ける（星が多く付いたときは
+   はてな側が件数表示に畳む）。 */
+.share-sticky-star {
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  gap: .2rem;
+  min-height: 0;
+  white-space: nowrap;
+}
+.share-sticky-star[hidden],
+.share-sticky-star .share-btn[hidden] { display: none; }
+.share-btn--star { --share-color: #d4aa30; --share-color-dark: #9a7a17; }
+.share-sticky-star .hatena-star-holder:empty { display: none; }
+/* 画面には出さず、読み上げとスクリプト（innerText）には読ませる */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
 .share-star-note { font-size: .75rem; color: var(--text-muted); margin-top: .45rem; line-height: 1.65; }
 .share-note { font-size: .73rem; color: var(--text-muted); margin-top: 1rem; line-height: 1.65; }
 
@@ -1819,9 +1843,8 @@ footer {
 
 /* ===== 共有ボタン・固定バー（画面下部に全ページ常時表示）=====
    本文最後の共有欄と同じボタン一式をもう1つ、画面下端に position:fixed で
-   置く（js/main.js の SHARE BUTTONS が組み立てる）。はてなスターはここには
-   出さない — 常に画面内にあると IntersectionObserver が読み込み直後に発火し、
-   「読者が最下部まで来なければ、はてなへの通信は起きない」設計が崩れるため。
+   置く（js/main.js の SHARE BUTTONS が組み立てる）。末尾に はてなスター の ☆ も
+   置く（2026-09-15）。☆ は触れられるまで はてな のスクリプトを読まない。
    横に並べきれない数のボタンがあるので、折り返さず横スクロールにする。 */
 .share-sticky {
   position: fixed;
@@ -2280,6 +2303,9 @@ html.has-share-sticky body {
      ここで除外しておかないと下の position:static が効く前に消える。 */
   html.board-printing body > *:not(#board-sheet) { display: none !important; }
   html.board-printing #board-sheet { position: static; left: auto; width: auto; }
+  /* 固定バーのぶんの body 下余白（html.has-share-sticky body）が紙にも残ると、
+     シートが収まっていても2枚目に押し出される。紙ではシートだけにする。 */
+  html.board-printing body { padding: 0 !important; margin: 0 !important; }
   @page { size: A4 portrait; margin: 16mm; }
 }
 

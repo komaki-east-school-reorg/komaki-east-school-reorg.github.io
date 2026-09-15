@@ -1301,10 +1301,11 @@ window.KomakiGrade = (function () {
    2026-09 に、画面下部に常時追従する固定バー（.share-sticky）を追加した。
    中身は本文最後の共有欄とまったく同じボタン一式（＋index.htmlでは回覧板ボタンも）で、
    ボタンの生成・href の組み直し・タイトル同期はすべて2つの入れ物（boxes）に対して
-   まとめて行う。固定バーには「はてなスター」は入れない — 星は共有ではなくページへの
-   反応であることに加え、常に画面内にあると IntersectionObserver が読み込み直後に
-   発火してしまい、「読者が最下部まで来なければはてなへ通信しない」という設計
-   （下の ===== はてなスター ===== 参照）が崩れるため。
+   まとめて行う。2026-09-15 にユーザー指示で固定バーにも「はてなスター」を置いた。
+   ただし固定バーは常に画面内にあるので、IntersectionObserver では読み込みの合図に
+   ならない。固定バーの ☆ は、読者がそこに触れた（マウスを載せた・押した・フォーカスした）
+   ときに初めて HatenaStar.js を読む。「読者が自分で星の欄に近づかないかぎり、
+   はてなへ通信しない」という設計（下の ===== はてなスター ===== 参照）は保たれる。
 
    固定バーの先頭には「共有」の一語（share_sticky_label）を必ず添える。アイコンだけの
    丸ボタンが横に並ぶだけでは、初見の読者にはこの帯が何のためのものか伝わらない。
@@ -1369,23 +1370,68 @@ window.KomakiGrade = (function () {
   /* url() は生の URL と題名を受け取る（エスケープは各自）。Threads・Bluesky は
      本文欄しか受け取らないので、題名と URL を1つのテキストにまとめて渡す。
      Instagram・TikTok は、リンクを渡せる共有 URL を公開していないためここには
-     並べられない（下のコピー方式のボタンと、端末標準の共有が受け皿）。 */
+     並べられない（下のコピー方式のボタンと、端末標準の共有が受け皿）。
+
+     【アプリが入っていればアプリで開く】（2026-09-15 ユーザー指示）
+     ・Android: intent:// の形にして package（アプリ）を名指しし、
+       S.browser_fallback_url に従来の Web の共有 URL を入れる。アプリが無い・その URL を
+       受け付けないときは Chrome が黙って Web 版を開くので、壊れた状態にはならない。
+       android.url はアプリに渡す URL（https のアプリリンク、または X の twitter:// ）。
+     ・iPhone/iPad: 独自スキーム（twitter:// など）はアプリが無いと「アドレスが無効」の
+       警告が出るので使わない。https のユニバーサルリンクだけを使う — X・Facebook・
+       Threads・Bluesky・Reddit は従来の URL のままでアプリが引き受ける。LINE だけは
+       従来の social-plugins.line.me がアプリの受け皿にならないので、スマートフォンでは
+       LINE 公式の line.me/R/share に切り替える（mobile）。
+     ・はてなブックマークと Mastodon は、アプリを確実に名指しできないので Web のまま。 */
   var SERVICES = [
     {cls: 'line',    icon: 'L',  key: 'share_line',     ja: 'LINEで送る',
-     url: function (u, t) { return 'https://social-plugins.line.me/lineit/share?url=' + enc(u) + '&text=' + enc(t); }},
+     url: function (u, t) { return 'https://social-plugins.line.me/lineit/share?url=' + enc(u) + '&text=' + enc(t); },
+     mobile: function (u, t) { return 'https://line.me/R/share?text=' + enc(t + ' ' + u); },
+     android: {pkg: 'jp.naver.line.android',
+               url: function (u, t) { return 'https://line.me/R/share?text=' + enc(t + ' ' + u); }}},
     {cls: 'x',       icon: 'X',  key: 'share_x',        ja: 'Xでポスト',
-     url: function (u, t) { return 'https://x.com/intent/post?url=' + enc(u) + '&text=' + enc(t); }},
+     url: function (u, t) { return 'https://x.com/intent/post?url=' + enc(u) + '&text=' + enc(t); },
+     android: {pkg: 'com.twitter.android',
+               url: function (u, t) { return 'twitter://post?message=' + enc(t + ' ' + u); }}},
     {cls: 'fb',      icon: 'f',  key: 'share_facebook', ja: 'Facebookでシェア',
-     url: function (u)    { return 'https://www.facebook.com/sharer/sharer.php?u=' + enc(u); }},
+     url: function (u)    { return 'https://www.facebook.com/sharer/sharer.php?u=' + enc(u); },
+     android: {pkg: 'com.facebook.katana',
+               url: function (u) { return 'https://www.facebook.com/sharer/sharer.php?u=' + enc(u); }}},
     {cls: 'hatena',  icon: 'B!', key: 'share_hatena',   ja: 'はてなブックマーク',
      url: function (u, t) { return 'https://b.hatena.ne.jp/entry/panel/?url=' + enc(u) + '&btitle=' + enc(t); }},
     {cls: 'threads', icon: '@',  key: 'share_threads',  ja: 'Threadsで投稿',
-     url: function (u, t) { return 'https://www.threads.net/intent/post?text=' + enc(t + ' ' + u); }},
+     url: function (u, t) { return 'https://www.threads.net/intent/post?text=' + enc(t + ' ' + u); },
+     android: {pkg: 'com.instagram.barcelona',
+               url: function (u, t) { return 'https://www.threads.net/intent/post?text=' + enc(t + ' ' + u); }}},
     {cls: 'bluesky', icon: '🦋', key: 'share_bluesky',  ja: 'Blueskyで投稿',
-     url: function (u, t) { return 'https://bsky.app/intent/compose?text=' + enc(t + ' ' + u); }},
+     url: function (u, t) { return 'https://bsky.app/intent/compose?text=' + enc(t + ' ' + u); },
+     android: {pkg: 'xyz.blueskyweb.app',
+               url: function (u, t) { return 'https://bsky.app/intent/compose?text=' + enc(t + ' ' + u); }}},
     {cls: 'reddit',  icon: 'r',  key: 'share_reddit',   ja: 'Redditに投稿',
-     url: function (u, t) { return 'https://www.reddit.com/submit?url=' + enc(u) + '&title=' + enc(t); }}
+     url: function (u, t) { return 'https://www.reddit.com/submit?url=' + enc(u) + '&title=' + enc(t); },
+     android: {pkg: 'com.reddit.frontpage',
+               url: function (u, t) { return 'https://www.reddit.com/submit?url=' + enc(u) + '&title=' + enc(t); }}}
   ];
+
+  var UA = navigator.userAgent || '';
+  var IS_ANDROID = /Android/i.test(UA);
+  var IS_IOS = /iPhone|iPad|iPod/i.test(UA) || (/Macintosh/.test(UA) && navigator.maxTouchPoints > 1);
+
+  // scheme://rest を intent://rest#Intent;scheme=…;package=…;S.browser_fallback_url=…;end にする。
+  // rest に生の # は入らない（題名・URL は encodeURIComponent 済み）。
+  function androidIntent(appUrl, pkg, fallback) {
+    var m = /^([a-z][a-z0-9+.-]*):\/\/(.*)$/i.exec(appUrl);
+    if (!m) return fallback;
+    return 'intent://' + m[2] + '#Intent;scheme=' + m[1] + ';package=' + pkg +
+           ';S.browser_fallback_url=' + enc(fallback) + ';end';
+  }
+
+  function serviceHref(s) {
+    var u = shareUrl(), t = shareTitle(), web = s.url(u, t);
+    if (IS_ANDROID && s.android) return androidIntent(s.android.url(u, t), s.android.pkg, web);
+    if ((IS_IOS || IS_ANDROID) && s.mobile) return s.mobile(u, t);
+    return web;
+  }
 
   /* ボタンはアイコンだけ。サービス名は aria-label（＝辞書）に持たせ、
      マウスを載せたときだけ title として見せる。10個以上並ぶ列で
@@ -1422,7 +1468,7 @@ window.KomakiGrade = (function () {
       var a = makeBtn('a', s.cls, s.icon, s.key, s.ja);
       a.target = '_blank';
       a.rel = 'noopener';
-      a._build = function () { a.href = s.url(shareUrl(), shareTitle()); };
+      a._build = function () { a.href = serviceHref(s); };
       a._build();
       links.push(a);
       box.appendChild(a);
@@ -1434,9 +1480,9 @@ window.KomakiGrade = (function () {
   function refresh() {
     links.forEach(function (a) { a._build(); });
     syncTitles();
-    if (starPermalink) starPermalink.textContent = shareTitle();
+    starPermalinks.forEach(function (a) { a.textContent = shareTitle(); });
   }
-  var starPermalink = null;   // はてなスターの題名リンク（下で作る。固定バーには無い）
+  var starPermalinks = [];   // はてなスターの題名リンク（共有欄と固定バーに1つずつ。下で作る）
   boxes.forEach(function (box) {
     ['pointerdown', 'focusin', 'touchstart', 'mouseover'].forEach(function (ev) {
       box.addEventListener(ev, refresh, {passive: true});
@@ -1622,7 +1668,7 @@ window.KomakiGrade = (function () {
   permalink.className = 'hatena-star-permalink';
   permalink.href = CANON;
   permalink.textContent = shareTitle();
-  starPermalink = permalink;
+  starPermalinks.push(permalink);
 
   var holder = document.createElement('span');
   holder.className = 'hatena-star-holder';
@@ -1631,6 +1677,28 @@ window.KomakiGrade = (function () {
   entry.appendChild(permalink);
   entry.appendChild(holder);
   starBox.appendChild(entry);
+
+  /* 固定バーの星（2026-09-15 追加）。共有欄と同じ形の entry（題名リンク＋holder）を作る
+     — はてな側は div.hatena-star-entry をすべて拾うので、設定は1つで両方に効く。
+     題名リンクは星の登録先 URL と題名を読ませるためだけのもので、帯の中では見せない
+     （visually-hidden。innerText は読める）。スクリプトを読むまでは holder が空で
+     帯に何も出ないので、代わりに ☆ のボタンを置き、触れられたら読み込む。
+     星が描かれたらボタンは引っ込める。 */
+  var stickyStar = document.createElement('div');
+  stickyStar.className = 'hatena-star-entry share-sticky-star';
+  var stickyPermalink = document.createElement('a');
+  stickyPermalink.className = 'hatena-star-permalink visually-hidden';
+  stickyPermalink.href = CANON;
+  stickyPermalink.tabIndex = -1;
+  stickyPermalink.textContent = shareTitle();
+  starPermalinks.push(stickyPermalink);
+  var stickyHolder = document.createElement('span');
+  stickyHolder.className = 'hatena-star-holder';
+  var stickyStarBtn = makeBtn('button', 'star', '☆', 'share_star_label', 'このページに星をつける');
+  stickyStar.appendChild(stickyPermalink);
+  stickyStar.appendChild(stickyStarBtn);
+  stickyStar.appendChild(stickyHolder);
+  stickyBar.appendChild(stickyStar);
 
   var note = document.createElement('p');
   note.className = 'share-star-note';
@@ -1660,18 +1728,18 @@ window.KomakiGrade = (function () {
   function loadHatenaStar() {
     if (starLoaded) return;
     starLoaded = true;
-    permalink.textContent = shareTitle();   // i18n 適用後の題名で登録する
+    starPermalinks.forEach(function (a) { a.textContent = shareTitle(); });   // i18n 適用後の題名で登録する
 
     var s = document.createElement('script');
     s.src = 'https://s.hatena.ne.jp/js/HatenaStar.js';
     s.async = true;
-    s.onerror = function () { starBox.hidden = true; };
+    s.onerror = function () { starBox.hidden = true; stickyStar.hidden = true; };
     s.onload = function () {
       /* ★ SiteConfig は「読み込んだあと」に入れること。
          HatenaStar.js は  void 0 === window.Hatena.Star && (window.Hatena.Star = {...})
          という書き方なので、先回りして window.Hatena.Star を作っておくと
          本体側の代入がまるごとスキップされ、初期化に必要な中身が入らない。 */
-      if (!window.Hatena || !window.Hatena.Star) { starBox.hidden = true; return; }
+      if (!window.Hatena || !window.Hatena.Star) { starBox.hidden = true; stickyStar.hidden = true; return; }
       window.Hatena.Star.SiteConfig = STAR_CONFIG;
 
       /* ★ 本体の初期化は window の DOMContentLoaded に紐づいている。この欄は
@@ -1685,6 +1753,7 @@ window.KomakiGrade = (function () {
       // 残るのを避けて欄ごと畳む。はてな側は setTimeout(0) で差し込むので4秒あれば足りる。
       setTimeout(function () {
         if (!holder.querySelector('[data-hatena-star]')) starBox.hidden = true;
+        if (!stickyHolder.querySelector('[data-hatena-star]')) stickyStar.hidden = true;
       }, 4000);
     };
     document.body.appendChild(s);
@@ -1699,6 +1768,21 @@ window.KomakiGrade = (function () {
     io.observe(starBox);
   } else {
     starBox.addEventListener('click', loadHatenaStar, {once: true});
+  }
+
+  // 固定バーの ☆：触れたら読み込む。描かれたら ☆ のボタンを引っ込める
+  // （はてな側が holder に差し込むのは setTimeout(0) のあとなので、子の追加を見張る）。
+  ['pointerenter', 'focusin', 'touchstart'].forEach(function (ev) {
+    stickyStar.addEventListener(ev, loadHatenaStar, {once: true, passive: true});
+  });
+  stickyStarBtn.addEventListener('click', loadHatenaStar);
+  if (window.MutationObserver) {
+    new MutationObserver(function (_, mo) {
+      if (stickyHolder.querySelector('[data-hatena-star]')) {
+        stickyStarBtn.hidden = true;
+        mo.disconnect();
+      }
+    }).observe(stickyHolder, {childList: true, subtree: true});
   }
 })();
 
@@ -1726,7 +1810,7 @@ window.KomakiGrade = (function () {
    印刷と同じ幅 178mm（A4 210mm − 左右16mm）で置いてある。だから刷る前に
    実寸で高さを測れる。収まるまで「1行の字数」「1コーナーの行数」を段階的に
    詰め、それでも溢れるときは末尾のコーナーから落とす。
-   高さの上限は 265mm（297mm − 上下16mm）を実測の px に直して使う。
+   高さの上限は 250mm（印刷できる 265mm から 15mm のゆとりを残す）を実測の px に直して使う。
 
    【QR は自前生成しない】
    qr/<pageId>.<lang>.svg を .github/scripts/build_qr.py（segno）で書き出して
@@ -1902,10 +1986,15 @@ window.KomakiGrade = (function () {
     return sheet;
   }
 
-  // 265mm（A4 297mm − 上下16mm）が何 px かを実測する。
+  /* 紙面の高さの上限が何 px かを実測する。印刷できる高さは 265mm（A4 297mm − 上下16mm）
+     だが、上限いっぱいまで詰めると、画面での計測と印刷時の組版のわずかな差（行の折り返し・
+     フォントの丸め）や、@page の余白を大きめに取るブラウザ・プリンタで最後の数行が2枚目に
+     こぼれる。2026-09-15 に実測で979px（上限1002px）のシートが2枚になったので、15mm の
+     ゆとりを残した 250mm を上限にする。 */
+  var SHEET_MAX_MM = 250;
   function targetHeight() {
     var probe = document.createElement('div');
-    probe.style.cssText = 'position:fixed;left:-10000px;top:0;width:1mm;height:265mm;';
+    probe.style.cssText = 'position:fixed;left:-10000px;top:0;width:1mm;height:' + SHEET_MAX_MM + 'mm;';
     document.body.appendChild(probe);
     var h = probe.offsetHeight;
     document.body.removeChild(probe);
@@ -1969,7 +2058,8 @@ window.KomakiGrade = (function () {
     {maxLines: 6, scale: 1},
     {maxLines: 5, scale: .95},
     {maxLines: 4, scale: .9},
-    {maxLines: 3, scale: .85}
+    {maxLines: 3, scale: .85},
+    {maxLines: 2, scale: .85}
   ];
 
   function fit(title, lead, blocks, lang) {
