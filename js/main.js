@@ -882,7 +882,8 @@ window.KomakiGrade = (function () {
         // 本文は 対象言語 → en → ja の順（i18n.js のフォールバックと揃える）
         var text = it[_ul] || it.en || it.ja || '';
         var type = (it.type === 'feature' || it.type === 'fix') ? it.type : 'content';
-        return '<li class="update-item" data-date="' + esc(it.date || '') + '">' +
+        // data-key は SINCE LAST VISIT が「前回見たか」を言語に関係なく照合するための目印
+        return '<li class="update-item" data-date="' + esc(it.date || '') + '" data-key="' + esc((it.date || '') + '|' + (it.ja || '')) + '">' +
                  '<div class="update-meta">' +
                    '<time class="update-date" datetime="' + esc(it.date || '') + '">' + fmtDate(it.date) + '</time>' +
                    '<span class="update-tag update-tag--' + type + '">' + str(type) + '</span>' +
@@ -2838,3 +2839,135 @@ window.KomakiGrade = (function () {
   window.addEventListener('pagehide', function () { try { synth.cancel(); } catch (e) {} });
 })();
 
+/* ===== SINCE LAST VISIT（index.html「最新の動き」）=====
+   2026-09-15 ユーザー採用。前回このページを見たときに無かった項目に「前回から」の印を付ける。
+   毎日のぞきに来る保護者が、30日ぶん並んだ一覧から「何が増えたか」を目で探さずに済むように。
+   読者は何も操作しない（チェックを入れる方式ではない）。
+
+   ・比べるのは日付ではなく「前回表示した項目の目印」の集合。日付だと、同じ日に2回来たとき
+     その日の項目を見たかどうかが分からない。目印は表示言語に左右されないもの
+     （リンク先 URL、見出しの原文 data-hl、更新履歴は data-key）。
+   ・初めて来た人（記録が無い人）には印を付けない。全部に印が付くと意味が無い。
+   ・「前回」の記録はタブを開いている間 sessionStorage に持ち続ける（SNAP_MS まで）。開いた瞬間に
+     「見た」と上書きするので、そうしないと再読み込みで印が消えてしまう。
+   ・印の文字は CSS の ::after { content: attr(data-unseen) } で出す。回覧板シート（BOARD SHEET）は
+     描画済みの一覧の textContent を拾うので、普通の文字で入れると紙に「前回から」と刷られる。
+   ・学校HPのカードの「新着」（7日以内）とは別物。混同しないよう、言葉も色も変えてある。
+   ・記録は端末の localStorage（komaki_seen_items）だけ。どこにも送らない。KEEP_DAYS を過ぎた目印は捨てる。
+   ・各コーナーは非同期に描かれ、見出しの訳でも書き換わるので、MutationObserver で追いかける。
+     コーナーの描画クラス名を変えたら、下の CORNERS も直すこと。 */
+(function () {
+  var latest = document.getElementById('latest');
+  if (!latest) return;
+
+  var STORE = 'komaki_seen_items', SNAP = 'komaki_seen_prev';
+  var SNAP_MS = 60 * 60 * 1000, KEEP_DAYS = 120;
+  var lang = window.KomakiLang();
+  var kids = false;
+  try { kids = lang === 'ja' && localStorage.getItem('komaki_kids') === '1'; } catch (e) {}
+  var LABEL = {ja: '前回から', kids: 'まえに 見たあと', en: 'Since last visit', pt: 'Desde a última visita',
+               vi: 'Mới từ lần trước', tl: 'Bago mula sa huling bisita', es: 'Desde tu última visita',
+               zh: '上次访问后新增', id: 'Baru sejak kunjungan terakhir', tr: 'Son ziyaretten beri',
+               my: 'နောက်ဆုံးလာပြီးနောက် အသစ်'};
+  var SUMMARY = {
+    ja: function (n) { return n ? '前回ご覧になったあとに増えた項目が ' + n + ' 件あります（「前回から」の印）。' : '前回ご覧になったあとに増えた項目はありません。'; },
+    kids: function (n) { return n ? 'まえに 見たあと ふえた ものが ' + n + 'こ あります。' : 'まえに 見たあと ふえた ものは ありません。'; },
+    en: function (n) { return n ? n + (n === 1 ? ' item has' : ' items have') + ' appeared since your last visit (marked "Since last visit").' : 'Nothing new since your last visit.'; },
+    pt: function (n) { return n ? n + (n === 1 ? ' item novo' : ' itens novos') + ' desde a sua última visita (marcados “Desde a última visita”).' : 'Nada de novo desde a sua última visita.'; },
+    vi: function (n) { return n ? 'Có ' + n + ' mục mới kể từ lần bạn xem trước (đánh dấu “Mới từ lần trước”).' : 'Không có gì mới kể từ lần bạn xem trước.'; },
+    tl: function (n) { return n ? n + ' bagong item mula sa iyong huling bisita (may markang “Bago mula sa huling bisita”).' : 'Walang bago mula sa iyong huling bisita.'; },
+    es: function (n) { return n ? n + (n === 1 ? ' elemento nuevo' : ' elementos nuevos') + ' desde tu última visita (marcados «Desde tu última visita»).' : 'Nada nuevo desde tu última visita.'; },
+    zh: function (n) { return n ? '自您上次访问以来新增了 ' + n + ' 项（标有“上次访问后新增”）。' : '自您上次访问以来没有新增内容。'; },
+    id: function (n) { return n ? 'Ada ' + n + ' item baru sejak kunjungan terakhir Anda (bertanda “Baru sejak kunjungan terakhir”).' : 'Tidak ada yang baru sejak kunjungan terakhir Anda.'; },
+    tr: function (n) { return n ? 'Son ziyaretinizden beri ' + n + ' yeni öğe var (“Son ziyaretten beri” işaretli).' : 'Son ziyaretinizden beri yeni bir şey yok.'; },
+    my: function (n) { return n ? 'သင် နောက်ဆုံးလာပြီးနောက် အသစ် ' + n + ' ခု ရှိသည်။' : 'သင် နောက်ဆုံးလာပြီးနောက် အသစ် မရှိပါ။'; }
+  };
+  var which = kids ? 'kids' : lang;
+  var label = LABEL[which] || LABEL.en;
+  var summaryFn = SUMMARY[which] || SUMMARY.en;
+
+  // [コンテナ, 項目, 目印の取り方, 印を付ける要素（null なら項目そのもの）]
+  // 印はリンク（<a>）には付けない。外部リンクの「↗」が同じ ::after を使っていて、印の文字が消える。
+  var CORNERS = [
+    ['official-news-container', '.official-news-item', function (li) { var a = li.querySelector('a[href]'); return a && 'n|' + a.getAttribute('href'); }, '.official-news-item-inner'],
+    ['school-news-container', '.school-items li', function (li) { var a = li.querySelector('a[href]'); return a && 's|' + a.getAttribute('href'); }, null],
+    ['community-actions-container', '.action-item', function (li) { var t = li.querySelector('.action-title'); return t && 'a|' + t.getAttribute('data-hl'); }, '.action-head'],
+    ['tobu-actions-container', '.tobu-item', function (li) { var t = li.querySelector('.tobu-title'); return t && 't|' + (li.getAttribute('data-date') || '') + '|' + t.getAttribute('data-hl'); }, '.tobu-head'],
+    ['press-container', '.press-item', function (li) { var a = li.querySelector('a[href]'); return a && 'p|' + a.getAttribute('href'); }, '.press-date'],
+    ['site-updates-container', '.update-item', function (li) { var k = li.getAttribute('data-key'); return k && 'u|' + k; }, '.update-meta']
+  ];
+
+  function today() {
+    var d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  // localStorage / sessionStorage は参照するだけで例外になる環境がある（保存を禁止したブラウザなど）
+  function readJson(name, key) {
+    try { var v = window[name].getItem(key); return v ? JSON.parse(v) : null; } catch (e) { return null; }
+  }
+  function writeJson(name, key, val) {
+    try { window[name].setItem(key, JSON.stringify(val)); } catch (e) {}
+  }
+
+  // 前回の記録。タブを開いている間は最初に読んだものを使い続ける。
+  var stored = readJson('localStorage', STORE);          // {目印: 最後に見た日}
+  var snap = readJson('sessionStorage', SNAP);           // {at: ms, seen: {…} | null}
+  if (!snap || typeof snap.at !== 'number' || Date.now() - snap.at > SNAP_MS) {
+    snap = {at: Date.now(), seen: (stored && typeof stored === 'object') ? stored : null};
+    writeJson('sessionStorage', SNAP, snap);
+  }
+  var prev = snap.seen;   // null なら初めての訪問
+
+  var summary = document.createElement('p');
+  summary.className = 'since-last-summary';
+  summary.hidden = true;
+  summary.setAttribute('aria-live', 'polite');
+  var lead = latest.querySelector('.school-lead');
+  (lead || latest.querySelector('h2')).insertAdjacentElement('afterend', summary);
+
+  var timer = null;
+  function run() {
+    timer = null;
+    var cur = stored && typeof stored === 'object' ? stored : {};
+    var t = today(), count = 0, any = false;
+    CORNERS.forEach(function (c) {
+      var box = document.getElementById(c[0]);
+      if (!box) return;
+      box.querySelectorAll(c[1]).forEach(function (li) {
+        var key = c[2](li);
+        if (!key) return;
+        any = true;
+        var unseen = !!prev && !Object.prototype.hasOwnProperty.call(prev, key);
+        var target = c[3] ? li.querySelector(c[3]) : li;
+        li.classList.toggle('unseen-item', unseen);
+        if (target) {
+          if (unseen) target.setAttribute('data-unseen', label);
+          else target.removeAttribute('data-unseen');
+        }
+        if (unseen) count++;
+        cur[key] = t;
+      });
+    });
+    // 古い目印を捨てて保存
+    var limit = new Date(Date.now() - KEEP_DAYS * 864e5);
+    var lim = limit.getFullYear() + '-' + String(limit.getMonth() + 1).padStart(2, '0') + '-' + String(limit.getDate()).padStart(2, '0');
+    Object.keys(cur).forEach(function (k) { if (!(cur[k] >= lim)) delete cur[k]; });
+    stored = cur;
+    writeJson('localStorage', STORE, cur);
+    if (prev && any) {
+      summary.textContent = summaryFn(count);
+      summary.classList.toggle('since-last-summary--none', !count);
+      summary.hidden = false;
+    }
+  }
+  function schedule() { if (!timer) timer = setTimeout(run, 120); }
+
+  if (window.MutationObserver) {
+    var mo = new MutationObserver(schedule);
+    CORNERS.forEach(function (c) {
+      var box = document.getElementById(c[0]);
+      if (box) mo.observe(box, {childList: true, subtree: true});
+    });
+  }
+  schedule();
+})();

@@ -4,6 +4,12 @@
     {
       "date": "2026-09-15",
       "type": "feature",
+      "ja": "トップの「最新の動き」に、前回見たあと増えた項目の印を追加",
+      "en": "Home page now marks items added since your last visit"
+    },
+    {
+      "date": "2026-09-15",
+      "type": "feature",
       "ja": "各節に読み上げボタンを追加（表示中の言語の声で読む）",
       "en": "Read-aloud button added to each section, in the language shown"
     },

@@ -2371,8 +2371,38 @@ main section[id], main h2.section-title[id] { scroll-margin-top: 84px; }
 /* いま読んでいるブロック */
 .tts-reading { background: var(--accent-light); box-shadow: 0 0 0 .25rem var(--accent-light); border-radius: 2px; }
 
+/* ===== 「前回から」の印（js/main.js の SINCE LAST VISIT）=====
+   印の文字は ::after で出す（回覧板シートが textContent を拾っても紙に混ざらない）。
+   学校HPの「新着」（黄色）と取り違えないよう、青系にしてある。 */
+[data-unseen]::after {
+  content: attr(data-unseen);
+  display: inline-block;
+  margin-left: .45rem;
+  padding: .05rem .45rem;
+  border-radius: 999px;
+  background: #e4eef9;
+  color: #1f5a96;
+  font-size: .7rem;
+  font-weight: 700;
+  line-height: 1.5;
+  vertical-align: .08em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.since-last-summary {
+  margin: .2rem 0 .6rem;
+  padding: .45rem .8rem;
+  border-left: 3px solid #3b78b8;
+  background: #eef4fb;
+  color: #1f4f82;
+  font-size: .86rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.since-last-summary[hidden] { display: none; }
+.since-last-summary--none { border-left-color: var(--border); background: transparent; color: var(--text-muted); }
 @media print {
-  .tts-row { display: none !important; }
+  .tts-row, .since-last-summary { display: none !important; }
+  [data-unseen]::after { content: none; }
   .tts-reading { background: none; box-shadow: none; }
 }
 

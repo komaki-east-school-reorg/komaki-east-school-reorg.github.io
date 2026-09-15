@@ -78,7 +78,7 @@ Keys that `main.js` attaches at runtime (`status_done`, `event_status_*`) never 
 
 There is also `data/i18n/ja-kids.json`: when the kids-mode toggle is active (Japanese only), it is fetched and merged on top of `ja.json` (`Object.assign({}, ja_dict, kids_dict)`), overriding keys with simpler hiragana/easy-Japanese text.
 
-Language preference and kids-mode state are persisted in `localStorage` under `komaki_lang` and `komaki_kids`.
+Language preference and kids-mode state are persisted in `localStorage` under `komaki_lang` and `komaki_kids`. (Other per-reader keys: `komaki_grade`, `komaki_mastodon`, `komaki_feature_seen`, `komaki_seen_items` — see their sections.)
 
 ### Language in the URL (`?lang=`)
 
@@ -454,6 +454,16 @@ Every HTML page follows the same pattern: `notice-banner` → `<header>` (with `
 - 読まないもの：表示されていない要素（閉じた Q&A の答えは読む）、見出しの `<small>` 副題（英語表示では日本語なので英語の声で日本語を読むことになる）、地図と層の切り替え、ボタン、目次、絵文字。表は行ごと、セルの間に読点。札（`tag`/`badge`/`label`/`date` を含むクラス）のあとにも読点。
 - **日本語の地名の読み替え（`YOMI`）は、公表資料で読みが確かめられたものだけ**（しのおか・おおくさ）。読みは事実なので推測で足さない。
 - こどもむけの切り替えで本文が作り直されると止まる。そのために `i18n.js` は `applyDict` の最後で `komaki:i18n-applied` を `document` に投げる（**本文の DOM を掴んでおく処理を足すときはこれを使う**）。
+
+### 「前回から」の印（index.html「最新の動き」）
+
+2026-09-15 追加（ユーザー採用）。`js/main.js` の SINCE LAST VISIT が、前回このページを見たときに無かった項目に「前回から」の印を付け、`#latest` のリード文の下に「前回ご覧になったあとに増えた項目が N 件」と出す。読者は何も操作しない。
+
+- **比べるのは日付ではなく項目の目印の集合**（リンク先 URL、見出しの原文 `data-hl`、更新履歴は描画時に付ける `data-key`）。表示言語に左右されない。**コーナーの描画クラス名や `data-hl` / `data-key` を変えたら、ブロック冒頭の `CORNERS` も直すこと。**
+- 記録は `localStorage` の `komaki_seen_items`（目印→最後に見た日、120日で捨てる）。「前回」の写しは `sessionStorage` の `komaki_seen_prev` に1時間持つ — 開いた瞬間に「見た」と上書きするので、写しが無いと再読み込みで印が消える。
+- **初めて来た人には印を付けない**（全部に付くと意味が無い）。
+- **印の文字は CSS の `[data-unseen]::after { content: attr(data-unseen) }`。** 回覧板シートは描画済みの一覧の `textContent` を拾うので、文字で入れると紙に刷られる。**リンク（`<a>`）には付けない** — 外部リンクの「↗」が同じ `::after` を使っていて、印が消える。
+- 学校HPの「新着」（7日以内・黄色）とは別物。混同しないよう、言葉も色（青系）も分けてある。
 
 ### 関連するページ（`.related-list`）は各ページ3つ
 
