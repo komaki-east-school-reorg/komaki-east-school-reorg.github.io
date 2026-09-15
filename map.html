@@ -291,15 +291,69 @@
 
       </div>
 
-      <!-- スクールバスの対象エリア地図（bus.html#area-map）への案内。この地図ページに来た人が
-           「うちはどちらの学校か・バスに乗れるか」を探して行き止まらないようにする。 -->
-      <div class="info-box" style="margin-top:1.6rem;">
-        <h4 style="font-family:var(--heading-font); color:var(--primary); margin-bottom:.5rem;" data-i18n="map_busmap_h4">🚌 通学区域とスクールバスの対象エリア</h4>
-        <p style="font-size:.86rem; color:var(--text-muted); margin-bottom:.6rem;" data-i18n="map_busmap_p">新しい2つの小学校の通学区域（桃花台東・桃花台西）の境と、スクールバスの対象エリアは、スクールバスのページの地図で色分けして見られます。</p>
-        <a href="bus.html#area-map" class="card-link" style="margin-top:0;" data-i18n="map_busmap_link">対象エリアの地図を見る →</a>
-      </div>
     </div>
   </section>
+  <!-- ===== スクールバスの対象エリア（bus.html の地図と同じもの）=====
+       2026-09-15 ユーザー指示で bus.html から同じ地図をこのページにも出す。描画は js/main.js の
+       BUS SERVICE AREA MAP（id で探すので、どちらのページでも動く）。
+       【必ずセット】注記 bus_map_caveat を外さないこと（CLAUDE.md「The map on bus.html」）。
+       層の切り替え・凡例・注記は bus.html と同じ内容にそろえる — 片方だけ直すと食い違う。 -->
+  <section class="section" id="bus-area">
+    <div class="container">
+      <h2 class="section-title" data-i18n-html="map_busmap_h2">通学区域とスクールバスの対象エリア<small>School Districts &amp; Bus Service Area</small></h2>
+      <p style="margin-bottom:1rem;" data-i18n="map_busmap_p">新しい2つの小学校の通学区域（桃花台東・桃花台西）の境と、スクールバスの対象エリアです。スクールバスのページと同じ地図で、申請の手続きなどはそちらにまとめています。</p>
+
+      <div class="bus-map-layers" id="bus-map-layers">
+        <span class="bus-map-layers-h" data-i18n="bus_map_layers_h">表示する情報</span>
+        <label><input type="checkbox" data-layer="busarea" checked><span class="bus-map-key bus-map-key--area" aria-hidden="true"></span><span data-i18n="bus_map_legend_area">スクールバス通学 対象エリア</span></label>
+        <label><input type="checkbox" data-layer="district" checked><span class="bus-map-key bus-map-key--line" aria-hidden="true"></span><span data-i18n="bus_map_lyr_district">通学区域（桃花台東・西）</span></label>
+        <label><input type="checkbox" data-layer="road" checked><span class="bus-map-sym-road" aria-hidden="true"></span><span data-i18n="bus_map_lyr_road">主要道路</span></label>
+        <label><input type="checkbox" data-layer="localroad" checked><span class="bus-map-sym-road bus-map-sym-road--local" aria-hidden="true"></span><span data-i18n="bus_map_lyr_localroad">桃花台の主要生活道路</span></label>
+        <label><input type="checkbox" data-layer="place" checked><span data-i18n="bus_map_lyr_place">地区名</span></label>
+        <label><input type="checkbox" data-layer="school" checked><span class="bus-map-sym" style="--c:var(--primary)" aria-hidden="true">学</span><span data-i18n="bus_map_lyr_school">学校</span></label>
+        <label><input type="checkbox" data-layer="kinder"><span class="bus-map-sym" style="--c:#2f8f7a" aria-hidden="true">園</span><span data-i18n="bus_map_lyr_kinder">幼稚園・保育園・児童館</span></label>
+        <label><input type="checkbox" data-layer="facility"><span class="bus-map-sym" style="--c:#587595" aria-hidden="true">公</span><span data-i18n="bus_map_lyr_facility">公共施設・大学</span></label>
+        <label><input type="checkbox" data-layer="shop"><span class="bus-map-sym" style="--c:#b8722a" aria-hidden="true">店</span><span data-i18n="bus_map_lyr_shop">スーパー・商業施設</span></label>
+        <label><input type="checkbox" data-layer="conveni"><span class="bus-map-sym" style="--c:#8a7f2a" aria-hidden="true">C</span><span data-i18n="bus_map_lyr_conveni">コンビニ</span></label>
+        <label><input type="checkbox" data-layer="worship"><span class="bus-map-sym" style="--c:#8a5a8a" aria-hidden="true">神</span><span data-i18n="bus_map_lyr_worship">神社・寺</span></label>
+        <label><input type="checkbox" data-layer="park"><span class="bus-map-sym bus-map-sym--dot" style="--c:#4a8a4a" aria-hidden="true"></span><span data-i18n="bus_map_lyr_park">公園・児童遊園</span></label>
+      </div>
+
+      <figure class="bus-map-figure">
+        <div id="bus-area-map" class="bus-area-map" role="img" data-i18n-aria="bus_map_alt"
+             aria-label="篠岡地区のスクールバス通学対象エリアを示した地図。赤い線が新しい通学区域の境、紫がスクールバスの対象エリア。"></div>
+        <!-- 拡大縮小のボタン。地図が描けたときだけ js/main.js（BUS SERVICE AREA MAP）が出す -->
+        <div class="bus-map-zoom" hidden>
+          <button type="button" data-zoom="in" aria-label="拡大" data-i18n-aria="bus_map_zoom_in">＋</button>
+          <button type="button" data-zoom="out" aria-label="縮小" data-i18n-aria="bus_map_zoom_out">−</button>
+          <button type="button" data-zoom="reset" aria-label="元の範囲に戻す" data-i18n-aria="bus_map_zoom_reset">⟲</button>
+        </div>
+        <figcaption class="bus-map-caption">
+          <p class="bus-map-zoom-hint" data-i18n="bus_map_zoom_hint">地図は拡大できます：＋／−のボタン、スマートフォンは2本指、パソコンは Ctrl（Mac は ⌘）＋ホイールかダブルクリック。拡大中はドラッグで動かせます。</p>
+          <ul class="bus-map-legend">
+            <li><span class="bus-map-key bus-map-key--area" aria-hidden="true"></span><span data-i18n="bus_map_legend_area">スクールバス通学 対象エリア</span></li>
+            <li><span class="bus-map-key bus-map-key--walk" aria-hidden="true"></span><span data-i18n="bus_map_legend_walk">赤線の内側で紫のかかっていない部分（2校のまわり）＝徒歩で通う範囲</span></li>
+            <li><span class="bus-map-key bus-map-key--line" aria-hidden="true"></span><span data-i18n="bus_map_legend_line">赤い線＝新しい通学区域の境（まん中の線は桃花台東・西の分かれ目。桃花台東は図の上端と右端から枠の外へさらに続きます）</span></li>
+            <li><span class="bus-map-key bus-map-key--east" aria-hidden="true"></span><span data-i18n="bus_map_legend_east">うすい黄色＝桃花台東の通学区域</span></li>
+            <li><span class="bus-map-key bus-map-key--west" aria-hidden="true"></span><span data-i18n="bus_map_legend_west">うすい青＝桃花台西の通学区域</span></li>
+            <li><span class="bus-map-key bus-map-key--school" aria-hidden="true"></span><span data-i18n="bus_map_legend_school">新設される2つの小学校</span></li>
+          </ul>
+          <p class="bus-map-osm" data-i18n="bus_map_osm">道路・地区名・施設の位置は OpenStreetMap（&copy; OpenStreetMap contributors, ODbL）、通学区域は国土数値情報「小学校区」（国土交通省）と国勢調査 小地域境界（e-Stat・総務省統計局）によります。</p>
+        </figcaption>
+      </figure>
+
+      <div class="info-box info-box--warn" data-i18n-html="bus_map_caveat">
+        ⚠️
+        <strong>紫（スクールバスの対象エリア）は、市が公表している対象エリア図の色のついた部分を、そのまま写し取ったものです。</strong>この地図の枠と縮尺は原図（1639×1179ピクセル、1ピクセル約3.8m）に合わせてあり、形のずれは原図に対しておおむね4mです。検算として、枠の中の徒歩エリアは8.4km²となり、市の公表値8.7km²とほぼ一致します。ただし原図そのものが縮尺の小さい図なので、番地単位の線引きまでは読み取れません。
+        <strong>赤線（通学区域の境）も正確です。</strong>国土数値情報「小学校区」（国土交通省）と国勢調査の町丁境（総務省統計局）を、『学校再編だより』が示す統合の組合せどおりに合成したもので、町丁の境まで合っています（面積は桃花台東20.3km²・桃花台西6.9km²となり、市の公表値と一致します）。
+        <strong>この図に描いてあるのは、原図に写っている範囲だけです。</strong>桃花台東の通学区域は上（北）と右（東）の枠の外へさらに広がっており（大字大山・野口の山側）、原図もそこで切れています。公表されているバスエリア18.5km²のうち、この図に入っているのは12.3km²で、枠の外の対象エリアは描けていません。
+        <strong>ご自宅が対象かどうかは、市から届いた書類で必ずご確認ください。</strong>この図では判断できません。
+      </div>
+
+      <p style="margin-top:.4rem;"><a href="bus.html#area-map" class="card-link" style="margin-top:0;" data-i18n="map_busmap_link">スクールバスのページで詳しく見る →</a></p>
+    </div>
+  </section>
+
   <!-- 関連ページ：ナビの再掲ではなく、このページを読んだ人が次に必要とする所だけを、
        行き先が分かる文で挙げる。全ページが互いにリンクするナビだけでは「どれが中心か」が
        構造に現れないため、本文側で意図的に偏りを作っている。 -->

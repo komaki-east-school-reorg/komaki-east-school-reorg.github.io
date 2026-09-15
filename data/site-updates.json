@@ -16,8 +16,8 @@
     {
       "date": "2026-09-15",
       "type": "content",
-      "ja": "地図ページからスクールバスの対象エリア地図へ案内を追加",
-      "en": "Map page now links to the school bus service area map"
+      "ja": "地図ページにもスクールバスの対象エリア地図を掲載",
+      "en": "School bus service area map now also on the Map page"
     },
     {
       "date": "2026-09-15",
