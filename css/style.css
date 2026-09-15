@@ -2347,9 +2347,8 @@ html.has-share-sticky body {
 .page-toc-list li { font-size: .88rem; line-height: 1.8; break-inside: avoid; }
 .page-toc-list a { color: var(--primary-dark); }
 /* 目次から飛んだとき、見出しが上の固定ヘッダの下に隠れないようにする */
-main section[id], main h2.section-title[id] { scroll-margin-top: 84px; }
-/* bus.html の地図見出し（map.html から張られている）。ナビが2段になる幅でもヘッダに隠れないよう広めに取る */
-#area-map { scroll-margin-top: 140px; }
+/* --header-h は js/main.js の HEADER HEIGHT が実際のヘッダの高さを入れる（ナビが2段になる幅がある） */
+main section[id], main h2.section-title[id], #area-map { scroll-margin-top: calc(var(--header-h, 84px) + 12px); }
 
 /* ===== 節ごとの読み上げボタン（js/main.js の READ ALOUD）=====
    見出しのすぐ下に小さく置く。見出しの下余白（1.8rem）に食い込ませて、節の間延びを防ぐ。

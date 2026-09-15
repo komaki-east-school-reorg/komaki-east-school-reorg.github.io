@@ -2051,10 +2051,11 @@ window.KomakiGrade = (function () {
   });
 })();
 
-/* ===== PAGE TOC（長いページの「このページの目次」）=====
-   2026-09-14 追加。節（main の h2.section-title）が多いページで、ヒーローの直下に
-   節へのジャンプリンクを置く。対象は TOC_PAGES のページだけ（review.html は手書きの
-   目次を持ち、index.html は各ページへのリンク自体が目次、council.html は節が少ない）。
+/* ===== PAGE TOC（全ページの「このページの目次」）=====
+   2026-09-14 に長いページだけで始め、2026-09-15 にユーザー指示で全11ページに広げた。
+   ヒーローの直下（index.html は「いまの状況」と直近の予定の帯の下）に、節
+   （main の h2.section-title）へのジャンプリンクを置く。review.html の手書きの目次
+   （rev_nav*）はこれに置き換えて廃止した — 目次が2つ並ぶため。
    ・目次は見出しから自動で組むので、節を足しても消しても直す場所は無い。
    ・飛び先は、見出しが属する section の id → 見出しの id → 無ければ見出しの
      data-i18n(-html) のキーを id として付ける。既存のアンカー（#contact など、
@@ -2064,12 +2065,11 @@ window.KomakiGrade = (function () {
    ・スマートフォンでは閉じた状態（details）で出す。10項目を開いたまま置くと本文が
      画面の外へ押し出されるため。 */
 (function () {
-  var TOC_PAGES = ['about', 'bus', 'community', 'nationwide', 'schedule', 'faq'];
-  var page = (location.pathname.match(/([^/]+)\.html$/) || ['', 'index'])[1];
-  if (TOC_PAGES.indexOf(page) === -1) return;
-  var hero = document.querySelector('main > .page-hero');
+  // 目次を差し込む位置。index.html は「いまの状況」を最初に読んでもらいたいので、その帯の下。
+  var anchor = document.querySelector('main > .upcoming-bar') || document.querySelector('main > .now-bar') ||
+               document.querySelector('main > .page-hero') || document.querySelector('main > .hero');
   var heads = [].slice.call(document.querySelectorAll('main h2.section-title'));
-  if (!hero || heads.length < 4) return;
+  if (!anchor || heads.length < 2) return;
 
   function label(h) {
     var c = h.cloneNode(true);
@@ -2123,7 +2123,22 @@ window.KomakiGrade = (function () {
     .observe(sum, {childList: true, characterData: true, subtree: true});
   wrap.appendChild(det);
   nav.appendChild(wrap);
-  hero.parentNode.insertBefore(nav, hero.nextSibling);
+  anchor.parentNode.insertBefore(nav, anchor.nextSibling);
+})();
+
+/* ===== HEADER HEIGHT（全ページ）=====
+   ヘッダは position: sticky で、幅によってナビが1段にも2段にもなる（1000px 前後で2段、約122px）。
+   目次などのアンカーへ飛んだとき見出しがヘッダの下に隠れないよう、実際の高さを
+   --header-h に入れて scroll-margin-top の計算に使う（css/style.css）。 */
+(function () {
+  var header = document.querySelector('body > header, header');
+  if (!header) return;
+  function sync() {
+    document.documentElement.style.setProperty('--header-h', Math.ceil(header.getBoundingClientRect().height) + 'px');
+  }
+  sync();
+  if (window.ResizeObserver) new ResizeObserver(sync).observe(header);
+  else window.addEventListener('resize', sync);
 })();
 
 /* ===== DEADLINE BOX EXPIRY =====

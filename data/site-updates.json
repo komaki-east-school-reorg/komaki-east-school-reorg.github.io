@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-09-15",
+      "type": "feature",
+      "ja": "「このページの目次」を全ページに",
+      "en": "\"On this page\" contents now on every page"
+    },
+    {
+      "date": "2026-09-15",
       "type": "content",
       "ja": "地図ページからスクールバスの対象エリア地図へ案内を追加",
       "en": "Map page now links to the school bus service area map"
