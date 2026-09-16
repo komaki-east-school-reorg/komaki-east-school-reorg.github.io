@@ -1,8 +1,124 @@
 {
-  "fetched_at": "2026-09-15T00:47:42Z",
+  "fetched_at": "2026-09-16T00:31:58Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "hikarigaoka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "光ヶ丘中学校",
+        "ja_kids": "ひかりがおか中学校",
+        "en": "Hikarigaoka Junior High",
+        "zh": "光之丘中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
+      "latest_date": "2026-09-16",
+      "items": [
+        {
+          "title": "学年考案競遊 練習開始！",
+          "date": "2026-09-16",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136103150?tm=20260915150509"
+        },
+        {
+          "title": "歩みたしかに",
+          "date": "2026-09-14",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136097390?tm=20260915072750"
+        },
+        {
+          "title": "１年生 学パ練習始動！",
+          "date": "2026-09-14",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136096891?tm=20260914180935"
+        }
+      ]
+    },
+    {
+      "slug": "sue-e",
+      "level": "elem",
+      "names": {
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-09-15",
+      "items": [
+        {
+          "title": "9/15 今日の給食",
+          "date": "2026-09-15",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136102418?tm=20260915141504"
+        },
+        {
+          "title": "9/15 音楽：レッツゴー ソーレー（３年生）",
+          "date": "2026-09-15",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136102933?tm=20260915144739"
+        },
+        {
+          "title": "9/15 理科：月の形と太陽（６年生）",
+          "date": "2026-09-15",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136102547?tm=20260915142807"
+        }
+      ]
+    },
+    {
+      "slug": "momogaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "桃ヶ丘小学校",
+        "ja_kids": "ももがおか小学校",
+        "en": "Momogaoka Elem. School",
+        "zh": "桃之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
+      "latest_date": "2026-09-15",
+      "items": [
+        {
+          "title": "６年：書写・算数の授業",
+          "date": "2026-09-15",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136103788?tm=20260915155358"
+        },
+        {
+          "title": "３年生：図工「いろいろうつして」",
+          "date": "2026-09-11",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136083720?tm=20260911142155"
+        },
+        {
+          "title": "４年生：体育「アタックプレルボール」",
+          "date": "2026-09-10",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/135819520?tm=20260909151027"
+        }
+      ]
+    },
+    {
+      "slug": "hikarigaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "光ヶ丘小学校",
+        "ja_kids": "ひかりがおか小学校",
+        "en": "Hikarigaoka Elem. School",
+        "zh": "光之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
+      "latest_date": "2026-09-15",
+      "items": [
+        {
+          "title": "３年生 図工競技会",
+          "date": "2026-09-15",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136100899?tm=20260915123256"
+        },
+        {
+          "title": "６年生 ナップサック作り",
+          "date": "2026-09-15",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136099959?tm=20260915113729"
+        },
+        {
+          "title": "第20回アジア競技大会 聖火リレーを応援しました",
+          "date": "2026-09-14",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136095698?tm=20260914162700"
+        }
+      ]
+    },
     {
       "slug": "toryo-j",
       "level": "jhs",
@@ -29,35 +145,6 @@
           "title": "1年生 テスト終了！",
           "date": "2026-09-11",
           "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136080775?tm=20260911113121"
-        }
-      ]
-    },
-    {
-      "slug": "sue-e",
-      "level": "elem",
-      "names": {
-        "ja": "陶小学校",
-        "ja_kids": "すえ小学校",
-        "en": "Sue Elem. School",
-        "zh": "陶小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-09-14",
-      "items": [
-        {
-          "title": "探求が続いております・・・・",
-          "date": "2026-09-14",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136096886?tm=20260915075645"
-        },
-        {
-          "title": "9/14 今日の給食",
-          "date": "2026-09-14",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136093278?tm=20260914132445"
-        },
-        {
-          "title": "9/12 水てっぽう大会：おやじの会主催",
-          "date": "2026-09-12",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136088065?tm=20260912112034"
         }
       ]
     },
@@ -145,93 +232,6 @@
           "title": "5年 福祉実践教室",
           "date": "2026-09-14",
           "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136084823?tm=20260914091946"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "光ヶ丘中学校",
-        "ja_kids": "ひかりがおか中学校",
-        "en": "Hikarigaoka Junior High",
-        "zh": "光之丘中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
-      "latest_date": "2026-09-14",
-      "items": [
-        {
-          "title": "歩みたしかに",
-          "date": "2026-09-14",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136097390?tm=20260915072750"
-        },
-        {
-          "title": "１年生 学パ練習始動！",
-          "date": "2026-09-14",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136096891?tm=20260914180935"
-        },
-        {
-          "title": "学校聖火リレー",
-          "date": "2026-09-14",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136093411?tm=20260914133454"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "光ヶ丘小学校",
-        "ja_kids": "ひかりがおか小学校",
-        "en": "Hikarigaoka Elem. School",
-        "zh": "光之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
-      "latest_date": "2026-09-14",
-      "items": [
-        {
-          "title": "第20回アジア競技大会 聖火リレーを応援しました",
-          "date": "2026-09-14",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136095698?tm=20260914162700"
-        },
-        {
-          "title": "1年生 図工「はじめての絵の具」",
-          "date": "2026-09-11",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136084857?tm=20260911154747"
-        },
-        {
-          "title": "６年「図工」",
-          "date": "2026-09-11",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136080453?tm=20260911105525"
-        }
-      ]
-    },
-    {
-      "slug": "momogaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "桃ヶ丘小学校",
-        "ja_kids": "ももがおか小学校",
-        "en": "Momogaoka Elem. School",
-        "zh": "桃之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
-      "latest_date": "2026-09-11",
-      "items": [
-        {
-          "title": "３年生：図工「いろいろうつして」",
-          "date": "2026-09-11",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136083720?tm=20260911142155"
-        },
-        {
-          "title": "４年生：体育「アタックプレルボール」",
-          "date": "2026-09-10",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/135819520?tm=20260909151027"
-        },
-        {
-          "title": "５年生：国語「新聞を読もう」",
-          "date": "2026-09-10",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/135818330?tm=20260909134427"
         }
       ]
     }
