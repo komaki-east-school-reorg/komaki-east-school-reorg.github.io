@@ -56,6 +56,138 @@
       "tr": "Kitasato bölgesinin okullarını düşünme toplantısı (2.)",
       "my": "Kitasato ဒေသ ကျောင်းများအကြောင်း စဉ်းစားသည့် ဒုတိယအကြိမ် အစည်းအဝေး"
     },
+    "学年考案競遊 練習開始！": {
+      "en": "Grade-designed competition game practice begins!",
+      "pt": "Início dos treinos do jogo competitivo criado pela série!",
+      "vi": "Bắt đầu tập luyện trò chơi thi đấu do khối lớp sáng tạo!",
+      "tl": "Nagsimula na ang pagsasanay para sa larong palakumpitensya na likha ng baitang!",
+      "es": "¡Comienzan los ensayos del juego competitivo creado por el grado!",
+      "zh": "各年级自创竞技游戏 开始练习！",
+      "id": "Latihan permainan kompetisi rancangan tingkat kelas dimulai!",
+      "tr": "Sınıf düzeyinin tasarladığı yarışma oyunu provaları başladı!",
+      "my": "အတန်းအလိုက် ဖန်တီးထားသော ပြိုင်ပွဲကစားနည်း လေ့ကျင့်မှု စတင်!"
+    },
+    "歩みたしかに": {
+      "en": "Steady Steps Forward",
+      "pt": "Passos firmes e seguros",
+      "vi": "Từng bước vững chắc",
+      "tl": "Matatag na mga Hakbang",
+      "es": "Pasos firmes y seguros",
+      "zh": "稳步前行",
+      "id": "Langkah yang Mantap",
+      "tr": "Emin adımlarla ilerleme",
+      "my": "တည်ငြိမ်သော ခြေလှမ်းများ"
+    },
+    "１年生 学パ練習始動！": {
+      "en": "Grade 1: Grade Performance Practice Begins!",
+      "pt": "1º ano: começa o treino da apresentação de série!",
+      "vi": "Lớp 1: Bắt đầu luyện tập biểu diễn khối!",
+      "tl": "Grade 1: Nagsimula na ang Pagsasanay sa Grade Performance!",
+      "es": "1.º grado: ¡comienza el ensayo de la presentación de grado!",
+      "zh": "一年级：年级表演练习启动！",
+      "id": "Kelas 1: Latihan Pertunjukan Tingkat Dimulai!",
+      "tr": "1. sınıf: Sınıf gösterisi provaları başladı!",
+      "my": "ပထမတန်း - အတန်းအကပွဲ လေ့ကျင့်ခန်း စတင်ပြီ!"
+    },
+    "9/15 今日の給食": {
+      "en": "9/15 Today's School Lunch",
+      "pt": "15/9 Almoço escolar de hoje",
+      "vi": "15/9 Bữa trưa học đường hôm nay",
+      "tl": "9/15 Pagkain sa Paaralan Ngayon",
+      "es": "15/9 Almuerzo escolar de hoy",
+      "zh": "9/15 今日校餐",
+      "id": "15/9 Makan Siang Sekolah Hari Ini",
+      "tr": "15/9 Bugünün Okul Yemeği",
+      "my": "၉/၁၅ ယနေ့ကျောင်းထမင်း"
+    },
+    "9/15 音楽：レッツゴー ソーレー（３年生）": {
+      "en": "9/15 Music: Let's Go Sore (Grade 3)",
+      "pt": "15/9 Música: Let's Go Sore (3º ano)",
+      "vi": "15/9 Âm nhạc: Let's Go Sore (Lớp 3)",
+      "tl": "9/15 Musika: Let's Go Sore (Ika-3 Baitang)",
+      "es": "15/9 Música: Let's Go Sore (3.er grado)",
+      "zh": "9/15 音乐：Let's Go Sore（三年级）",
+      "id": "15/9 Musik: Let's Go Sore (Kelas 3)",
+      "tr": "15/9 Müzik: Let's Go Sore (3. Sınıf)",
+      "my": "၉/၁၅ ဂီတ - Let's Go Sore (တတိယတန်း)"
+    },
+    "9/15 理科：月の形と太陽（６年生）": {
+      "en": "9/15 Science: Phases of the Moon and the Sun (Grade 6)",
+      "pt": "15/9 Ciências: As fases da Lua e o Sol (6º ano)",
+      "vi": "15/9 Khoa học: Hình dạng Mặt Trăng và Mặt Trời (Lớp 6)",
+      "tl": "9/15 Agham: Hugis ng Buwan at ang Araw (Ika-6 Baitang)",
+      "es": "15/9 Ciencias: Las fases de la Luna y el Sol (6.º grado)",
+      "zh": "9/15 科学：月相与太阳（六年级）",
+      "id": "15/9 Sains: Bentuk Bulan dan Matahari (Kelas 6)",
+      "tr": "15/9 Fen Bilgisi: Ay'ın Şekli ve Güneş (6. Sınıf)",
+      "my": "၉/၁၅ သိပ္ပံ - လနှင့်နေ၏ပုံသဏ္ဌာန် (ဆဋ္ဌမတန်း)"
+    },
+    "６年：書写・算数の授業": {
+      "en": "Grade 6: Calligraphy and Math Class",
+      "pt": "6º ano: Aula de caligrafia e matemática",
+      "vi": "Lớp 6: Tiết học Thư pháp và Toán",
+      "tl": "Ika-6 Baitang: Klase sa Kaligrapiya at Matematika",
+      "es": "6.º grado: Clase de caligrafía y matemáticas",
+      "zh": "六年级：书法与数学课",
+      "id": "Kelas 6: Pelajaran Kaligrafi dan Matematika",
+      "tr": "6. Sınıf: Hat Sanatı ve Matematik Dersi",
+      "my": "ဆဋ္ဌမတန်း - လက်ရေးလှနှင့် သင်္ချာသင်ခန်းစာ"
+    },
+    "３年生：図工「いろいろうつして」": {
+      "en": "3rd grade art: \"printing all sorts of things\"",
+      "pt": "Artes do 3º ano: \"imprimindo várias coisas\"",
+      "vi": "Mỹ thuật lớp 3: \"in dấu đủ thứ\"",
+      "tl": "Sining ng ika-3 baitang: \"pag-imprenta ng samu't saring bagay\"",
+      "es": "Plástica de 3.º: \"estampamos cosas diversas\"",
+      "zh": "三年级：美术“拓印各种东西”",
+      "id": "Seni rupa kelas 3: \"mencetak bermacam benda\"",
+      "tr": "3. sınıf resim: \"çeşitli şeylerin baskısı\"",
+      "my": "၃ တန်း ပန်းချီ - \"အမျိုးမျိုး ပုံနှိပ်ကြည့်ကြစို့\""
+    },
+    "４年生：体育「アタックプレルボール」": {
+      "en": "4th grade PE: \"attack prellball\"",
+      "pt": "Educação física do 4º ano: \"prellball de ataque\"",
+      "vi": "Thể dục lớp 4: \"bóng prellball tấn công\"",
+      "tl": "PE ng ika-4 baitang: \"attack prellball\"",
+      "es": "Educación física de 4.º: \"prellball de ataque\"",
+      "zh": "四年级：体育“进攻式弹地球”",
+      "id": "Olahraga kelas 4: \"attack prellball\"",
+      "tr": "4. sınıf beden eğitimi: \"atak prellball\"",
+      "my": "၄ တန်း ကာယ - \"attack prellball\""
+    },
+    "３年生 図工競技会": {
+      "en": "Grade 3 Arts and Crafts Competition",
+      "pt": "3º ano: Competição de artes e trabalhos manuais",
+      "vi": "Lớp 3: Cuộc thi Mỹ thuật và Thủ công",
+      "tl": "Ika-3 Baitang: Paligsahan sa Sining at Craft",
+      "es": "3.er grado: Concurso de arte y manualidades",
+      "zh": "三年级 图工比赛",
+      "id": "Kelas 3 Kompetisi Seni dan Kerajinan",
+      "tr": "3. Sınıf Sanat ve El İşi Yarışması",
+      "my": "တတိယတန်း အနုပညာနှင့် လက်မှုပညာ ပြိုင်ပွဲ"
+    },
+    "６年生 ナップサック作り": {
+      "en": "Grade 6: Making a Drawstring Bag",
+      "pt": "6º ano: Confecção de mochila saco",
+      "vi": "Lớp 6: Làm túi rút dây",
+      "tl": "Ika-6 Baitang: Paggawa ng Drawstring Bag",
+      "es": "6.º grado: Confección de una mochila de cordón",
+      "zh": "六年级 制作束口背包",
+      "id": "Kelas 6 Membuat Tas Serut",
+      "tr": "6. Sınıf İp Çekmeli Sırt Çantası Yapımı",
+      "my": "ဆဋ္ဌမတန်း ကြိုးဆွဲအိတ် ပြုလုပ်ခြင်း"
+    },
+    "第20回アジア競技大会 聖火リレーを応援しました": {
+      "en": "We Cheered for the Torch Relay of the 20th Asian Games",
+      "pt": "Torcemos pelo revezamento da tocha dos 20º Jogos Asiáticos",
+      "vi": "Chúng tôi đã cổ vũ cho lễ rước đuốc Đại hội Thể thao châu Á lần thứ 20",
+      "tl": "Nag-cheer Kami para sa Torch Relay ng ika-20 Asian Games",
+      "es": "Animamos el relevo de la antorcha de los XX Juegos Asiáticos",
+      "zh": "为第20届亚运会圣火传递加油",
+      "id": "Kami Memberi Semangat untuk Estafet Obor Asian Games ke-20",
+      "tr": "20. Asya Oyunları meşale yarışını alkışladık",
+      "my": "၂၀ ကြိမ်မြောက် အာရှအားကစားပြိုင်ပွဲ လှုံ့ဆော်မီးတိုင်လွှဲပွဲအား အားပေးခဲ့ကြသည်"
+    },
     "１年生 学年競遊練習": {
       "en": "Grade 1: Grade Games Practice",
       "pt": "1º ano: treino do jogo em grupo",
@@ -88,39 +220,6 @@
       "id": "Kelas 1: ujian selesai!",
       "tr": "1. sınıflar: sınavlar bitti!",
       "my": "ပထမနှစ် - စာမေးပွဲ ပြီးပါပြီ!"
-    },
-    "探求が続いております・・・・": {
-      "en": "The inquiry continues...",
-      "pt": "A pesquisa continua...",
-      "vi": "Việc tìm hiểu vẫn đang tiếp tục...",
-      "tl": "Nagpapatuloy pa rin ang pagsisiyasat...",
-      "es": "La investigación continúa...",
-      "zh": "探究仍在继续……",
-      "id": "Penyelidikan masih berlanjut...",
-      "tr": "Araştırma devam ediyor...",
-      "my": "စူးစမ်းလေ့လာမှု ဆက်လက်လုပ်ဆောင်နေဆဲ..."
-    },
-    "9/14 今日の給食": {
-      "en": "9/14 Today's School Lunch",
-      "pt": "14/9 Almoço escolar de hoje",
-      "vi": "14/9 Bữa trưa học đường hôm nay",
-      "tl": "9/14 Pananghalian sa Paaralan Ngayon",
-      "es": "14/9 Almuerzo escolar de hoy",
-      "zh": "9/14 今日校餐",
-      "id": "14/9 Makan Siang Sekolah Hari Ini",
-      "tr": "14/9 Bugünün okul öğle yemeği",
-      "my": "၉/၁၄ ယနေ့ကျောင်းထမင်းစာ"
-    },
-    "9/12 水てっぽう大会：おやじの会主催": {
-      "en": "Sep 12: water-gun contest, hosted by the fathers' club",
-      "pt": "12/9: competição de pistola d'água, organizada pelo grupo de pais",
-      "vi": "12/9: hội thi súng nước do hội các ông bố tổ chức",
-      "tl": "Set. 12: paligsahan sa water gun, inihanda ng samahan ng mga ama",
-      "es": "12/9: concurso de pistolas de agua, organizado por el grupo de padres",
-      "zh": "9月12日 水枪大会：父亲会主办",
-      "id": "12/9: lomba pistol air, diselenggarakan perkumpulan para ayah",
-      "tr": "12 Eylül: su tabancası yarışması, babalar kulübünün düzenlemesi",
-      "my": "စက်တင်ဘာ ၁၂ - ရေသေနတ် ပြိုင်ပွဲ၊ ဖခင်များအသင်း ကြီးမှူး"
     },
     "２年生 道徳": {
       "en": "Grade 2: Moral Education",
@@ -220,105 +319,6 @@
       "id": "Kelas 5: kelas praktik kesejahteraan sosial",
       "tr": "5. sınıf: uygulamalı sosyal yardım dersi",
       "my": "၅ တန်း - လူမှုဖူလုံရေး လက်တွေ့ သင်ခန်းစာ"
-    },
-    "歩みたしかに": {
-      "en": "Steady Steps Forward",
-      "pt": "Passos firmes e seguros",
-      "vi": "Từng bước vững chắc",
-      "tl": "Matatag na mga Hakbang",
-      "es": "Pasos firmes y seguros",
-      "zh": "稳步前行",
-      "id": "Langkah yang Mantap",
-      "tr": "Emin adımlarla ilerleme",
-      "my": "တည်ငြိမ်သော ခြေလှမ်းများ"
-    },
-    "１年生 学パ練習始動！": {
-      "en": "Grade 1: Grade Performance Practice Begins!",
-      "pt": "1º ano: começa o treino da apresentação de série!",
-      "vi": "Lớp 1: Bắt đầu luyện tập biểu diễn khối!",
-      "tl": "Grade 1: Nagsimula na ang Pagsasanay sa Grade Performance!",
-      "es": "1.º grado: ¡comienza el ensayo de la presentación de grado!",
-      "zh": "一年级：年级表演练习启动！",
-      "id": "Kelas 1: Latihan Pertunjukan Tingkat Dimulai!",
-      "tr": "1. sınıf: Sınıf gösterisi provaları başladı!",
-      "my": "ပထမတန်း - အတန်းအကပွဲ လေ့ကျင့်ခန်း စတင်ပြီ!"
-    },
-    "学校聖火リレー": {
-      "en": "School Torch Relay",
-      "pt": "Revezamento da tocha na escola",
-      "vi": "Rước đuốc tại trường",
-      "tl": "Torch Relay sa Paaralan",
-      "es": "Relevo de la antorcha en la escuela",
-      "zh": "校内圣火传递",
-      "id": "Estafet Obor di Sekolah",
-      "tr": "Okulda meşale yarışı",
-      "my": "ကျောင်းအတွင်း လှုံ့ဆော်မီးတိုင် လွှဲပြောင်းပွဲ"
-    },
-    "第20回アジア競技大会 聖火リレーを応援しました": {
-      "en": "We Cheered for the Torch Relay of the 20th Asian Games",
-      "pt": "Torcemos pelo revezamento da tocha dos 20º Jogos Asiáticos",
-      "vi": "Chúng tôi đã cổ vũ cho lễ rước đuốc Đại hội Thể thao châu Á lần thứ 20",
-      "tl": "Nag-cheer Kami para sa Torch Relay ng ika-20 Asian Games",
-      "es": "Animamos el relevo de la antorcha de los XX Juegos Asiáticos",
-      "zh": "为第20届亚运会圣火传递加油",
-      "id": "Kami Memberi Semangat untuk Estafet Obor Asian Games ke-20",
-      "tr": "20. Asya Oyunları meşale yarışını alkışladık",
-      "my": "၂၀ ကြိမ်မြောက် အာရှအားကစားပြိုင်ပွဲ လှုံ့ဆော်မီးတိုင်လွှဲပွဲအား အားပေးခဲ့ကြသည်"
-    },
-    "1年生 図工「はじめての絵の具」": {
-      "en": "1st grade art: \"our first paints\"",
-      "pt": "Artes do 1º ano: \"nossas primeiras tintas\"",
-      "vi": "Mỹ thuật lớp 1: \"lần đầu dùng màu vẽ\"",
-      "tl": "Sining ng unang baitang: \"ang aming unang pintura\"",
-      "es": "Plástica de 1.º: \"nuestras primeras pinturas\"",
-      "zh": "一年级 美术“第一次用颜料”",
-      "id": "Seni rupa kelas 1: \"cat air pertamaku\"",
-      "tr": "1. sınıf resim: \"ilk boyalarımız\"",
-      "my": "၁ တန်း ပန်းချီ - \"ပထမဆုံး ဆေးရောင်\""
-    },
-    "６年「図工」": {
-      "en": "6th grade: art",
-      "pt": "6º ano: artes",
-      "vi": "Lớp 6: mỹ thuật",
-      "tl": "Ika-6 baitang: sining",
-      "es": "6.º curso: plástica",
-      "zh": "六年级“美术”",
-      "id": "Kelas 6: seni rupa",
-      "tr": "6. sınıf: resim-iş",
-      "my": "၆ တန်း - ပန်းချီလက်မှု"
-    },
-    "３年生：図工「いろいろうつして」": {
-      "en": "3rd grade art: \"printing all sorts of things\"",
-      "pt": "Artes do 3º ano: \"imprimindo várias coisas\"",
-      "vi": "Mỹ thuật lớp 3: \"in dấu đủ thứ\"",
-      "tl": "Sining ng ika-3 baitang: \"pag-imprenta ng samu't saring bagay\"",
-      "es": "Plástica de 3.º: \"estampamos cosas diversas\"",
-      "zh": "三年级：美术“拓印各种东西”",
-      "id": "Seni rupa kelas 3: \"mencetak bermacam benda\"",
-      "tr": "3. sınıf resim: \"çeşitli şeylerin baskısı\"",
-      "my": "၃ တန်း ပန်းချီ - \"အမျိုးမျိုး ပုံနှိပ်ကြည့်ကြစို့\""
-    },
-    "４年生：体育「アタックプレルボール」": {
-      "en": "4th grade PE: \"attack prellball\"",
-      "pt": "Educação física do 4º ano: \"prellball de ataque\"",
-      "vi": "Thể dục lớp 4: \"bóng prellball tấn công\"",
-      "tl": "PE ng ika-4 baitang: \"attack prellball\"",
-      "es": "Educación física de 4.º: \"prellball de ataque\"",
-      "zh": "四年级：体育“进攻式弹地球”",
-      "id": "Olahraga kelas 4: \"attack prellball\"",
-      "tr": "4. sınıf beden eğitimi: \"atak prellball\"",
-      "my": "၄ တန်း ကာယ - \"attack prellball\""
-    },
-    "５年生：国語「新聞を読もう」": {
-      "en": "5th grade Japanese: \"let's read the newspaper\"",
-      "pt": "Japonês do 5º ano: \"vamos ler o jornal\"",
-      "vi": "Quốc ngữ lớp 5: \"cùng đọc báo\"",
-      "tl": "Wikang Hapon ng ika-5 baitang: \"magbasa ng pahayagan\"",
-      "es": "Lengua japonesa de 5.º: \"leamos el periódico\"",
-      "zh": "五年级：语文“读报纸吧”",
-      "id": "Bahasa Jepang kelas 5: \"ayo membaca koran\"",
-      "tr": "5. sınıf Japonca: \"gazete okuyalım\"",
-      "my": "၅ တန်း ဂျပန်စာ - \"သတင်းစာ ဖတ်ကြစို့\""
     },
     "2026年度末で閉校、万感の聖火リレー　小牧市の光ケ丘中学校、16人がトーチつなぐ": {
       "en": "Closing at the End of FY2026: An Emotional Torch Relay — 16 Students Carry the Torch at Komaki's Hikarigaoka Junior High School",
@@ -517,6 +517,17 @@
       "id": "DIY yang menghubungkan generasi pengasuh anak dan lansia",
       "tr": "Çocuk yetiştiren kuşakla yaşlıları buluşturan DIY",
       "my": "ကလေးပြုစုနေသော မျိုးဆက်နှင့် သက်ကြီးရွယ်အိုများကို ချိတ်ဆက်သည့် DIY"
+    },
+    "オープンファクトリー北斗株式会社": {
+      "en": "Open Factory: Hokuto Corporation",
+      "pt": "Fábrica aberta: Hokuto Corporation",
+      "vi": "Nhà máy mở cửa: Công ty Hokuto",
+      "tl": "Open Factory: Hokuto Corporation",
+      "es": "Fábrica abierta: Hokuto Corporation",
+      "zh": "开放工厂：北斗株式会社",
+      "id": "Pabrik Terbuka: Hokuto Corporation",
+      "tr": "Açık Fabrika: Hokuto Corporation",
+      "my": "အိတ်ဖွင့်စက်ရုံ - Hokuto Corporation"
     },
     "オープンファクトリー株式会社エースベーカリー小牧工場": {
       "en": "Open factory: Ace Bakery Co., Ltd. Komaki plant",
