@@ -2,13 +2,13 @@
 (function () {
   'use strict';
 
-  var LANGS = ['ja', 'en', 'pt', 'vi', 'tl', 'es', 'zh', 'id', 'tr', 'my'];
+  var LANGS = ['ja', 'en', 'pt', 'vi', 'tl', 'es', 'zh', 'id', 'ko', 'ne', 'tr', 'my'];
   var DEFAULT = 'ja';
   var BRIDGE = 'en';   // 未翻訳キーの中継言語。ja へ直接落とさず英語を挟む
   // 全キーが揃っていない言語。ページ上部に「一部は英語表示」の断りを出す。
   // 2026-08-13 に tr / my が全キー揃ったため空にした。
-  // 新しく部分翻訳の言語を足したときだけ、ここにコードを入れる。
-  var PARTIAL = [];
+  // 2026-09-17 に ko / ne を追加。全キー訳し終えたらここから外す。
+  var PARTIAL = ['ko', 'ne'];
   var BASE = './data/i18n/';
   var PAGE_BASE = BASE + 'pages/';
   var SAFETY_MS = 1000;
@@ -105,10 +105,12 @@
     es: 'Esta página se muestra en español según la configuración de su navegador.',
     zh: '已根据您的浏览器设置，以中文显示本页。',
     id: 'Halaman ini ditampilkan dalam bahasa Indonesia sesuai pengaturan browser Anda.',
+    ko: '브라우저 설정에 따라 이 페이지를 한국어로 표시하고 있습니다.',
+    ne: 'तपाईंको ब्राउजर सेटिङअनुसार यो पृष्ठ नेपालीमा देखाइएको छ।',
     tr: 'Bu sayfa, tarayıcı ayarlarınıza göre Türkçe gösteriliyor.',
     my: 'သင့်ဘရောက်ဇာ ဆက်တင်အရ ဤစာမျက်နှာကို မြန်မာဘာသာဖြင့် ပြသထားသည်။'
   };
-  var AUTO_CLOSE = {en: 'Close', pt: 'Fechar', vi: 'Đóng', tl: 'Isara', es: 'Cerrar', zh: '关闭', id: 'Tutup', tr: 'Kapat', my: 'ပိတ်ရန်'};
+  var AUTO_CLOSE = {en: 'Close', pt: 'Fechar', vi: 'Đóng', tl: 'Isara', es: 'Cerrar', zh: '关闭', id: 'Tutup', ko: '닫기', ne: 'बन्द गर्नुहोस्', tr: 'Kapat', my: 'ပိတ်ရန်'};
 
   function showAutoLangNotice(lang) {
     if (!_autoLang || lang !== _autoLang || document.getElementById('i18n-auto-notice')) return;
@@ -199,7 +201,7 @@
       sel.value = lang;
     });
 
-    var langAttr = { ja: 'ja', en: 'en', pt: 'pt-BR', vi: 'vi', tl: 'tl', es: 'es', zh: 'zh-Hans', id: 'id', tr: 'tr', my: 'my' };
+    var langAttr = { ja: 'ja', en: 'en', pt: 'pt-BR', vi: 'vi', tl: 'tl', es: 'es-419', zh: 'zh-Hans', id: 'id', ko: 'ko', ne: 'ne', tr: 'tr', my: 'my' };
     document.documentElement.lang = langAttr[lang] || lang;
 
     var pageId = PAGE_ID;
@@ -261,7 +263,7 @@
     }
     if (!items.length) { if (existing) existing.remove(); return; }
 
-    var langAttrMap = { ja: 'ja', en: 'en', pt: 'pt-BR', vi: 'vi', tl: 'tl', es: 'es', zh: 'zh-Hans', id: 'id', tr: 'tr', my: 'my' };
+    var langAttrMap = { ja: 'ja', en: 'en', pt: 'pt-BR', vi: 'vi', tl: 'tl', es: 'es-419', zh: 'zh-Hans', id: 'id', ko: 'ko', ne: 'ne', tr: 'tr', my: 'my' };
     var payload = {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
@@ -299,6 +301,8 @@
   // 翻訳が部分的な言語のとき、「一部は英語表示」であることを断る帯を出す。
   // 黙って英語が混ざるより、理由が分かるほうが親切なため。
   var PARTIAL_MSG = {
+    ko: '이 페이지의 번역은 아직 진행 중입니다. 번역되지 않은 부분은 영어로 표시됩니다.',
+    ne: 'यस पृष्ठको अनुवाद अझै चलिरहेको छ। अनुवाद नभएका भाग अङ्ग्रेजीमा देखिन्छन्।',
     tr: 'Bu sayfanın çevirisi henüz tamamlanmadı. Çevrilmemiş bölümler İngilizce olarak gösterilir.',
     my: 'ဤစာမျက်နှာ၏ ဘာသာပြန်ဆိုမှု မပြီးမြောက်သေးပါ။ ဘာသာမပြန်ရသေးသော အပိုင်းများကို အင်္ဂလိပ်ဘာသာဖြင့် ဖော်ပြထားပါသည်။',
     _: 'Translation of this page is still in progress. Untranslated parts are shown in English.'

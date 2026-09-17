@@ -9,6 +9,8 @@
       "es": "1ª Reunión de Debate Escolar",
       "zh": "第1次学校研讨会",
       "id": "Diskusi Sekolah ke-1",
+      "ko": "제1회 「학교를 생각하는 모임」",
+      "ne": "पहिलो “विद्यालयबारे सोच्ने भेला”",
       "tr": "1. Okul Görüşme Toplantısı",
       "my": "ပထမအကြိမ် ကျောင်းဆွေးနွေးပွဲ"
     },
@@ -21,6 +23,8 @@
       "es": "2ª Reunión de Debate Escolar",
       "zh": "第2次学校研讨会",
       "id": "Diskusi Sekolah ke-2",
+      "ko": "제2회 「학교를 생각하는 모임」",
+      "ne": "दोस्रो “विद्यालयबारे सोच्ने भेला”",
       "tr": "2. Okul Görüşme Toplantısı",
       "my": "ဒုတိယအကြိမ် ကျောင်းဆွေးနွေးပွဲ"
     },
@@ -33,6 +37,8 @@
       "es": "Informe al Consejo Comunitario",
       "zh": "社区委员会报告",
       "id": "Laporan Dewan Komunitas",
+      "ko": "지역 협의회 대표자 보고",
+      "ne": "सामुदायिक परिषद्का प्रतिनिधिलाई प्रतिवेदन",
       "tr": "Mahalle Konseyi raporu",
       "my": "ရပ်ရွာကောင်စီ အစီရင်ခံစာ"
     },
@@ -45,6 +51,8 @@
       "es": "Informe Asoc. Vecinos (1º)",
       "zh": "自治区协会报告（第1次）",
       "id": "Laporan Asosiasi Warga (1)",
+      "ko": "자치회장 회의 보고(1차)",
+      "ne": "टोल अध्यक्ष सभामा प्रतिवेदन (पहिलो)",
       "tr": "Mahalle birliği raporu (1.)",
       "my": "ရပ်ကွက်အသင်း အစီရင်ခံစာ (ပထမ)"
     },
@@ -57,6 +65,8 @@
       "es": "3ª Reunión de Debate Escolar",
       "zh": "第3次学校研讨会",
       "id": "Diskusi Sekolah ke-3",
+      "ko": "제3회 「학교를 생각하는 모임」",
+      "ne": "तेस्रो “विद्यालयबारे सोच्ने भेला”",
       "tr": "3. Okul Görüşme Toplantısı",
       "my": "တတိယအကြိမ် ကျောင်းဆွေးနွေးပွဲ"
     },
@@ -69,6 +79,8 @@
       "es": "Charla Shiroyama 3º y 4º barrios",
       "zh": "城山3&4丁目说明会",
       "id": "Sosialisasi Shiroyama 3&4",
+      "ko": "시로야마 3·4초메 설명회",
+      "ne": "सिरोयामा ३–४ चोमे जानकारी सभा",
       "tr": "Shiroyama 3 ve 4-chome bilgilendirmesi",
       "my": "Shiroyama ၃ နှင့် ၄-chome ရှင်းလင်းပွဲ"
     },
@@ -81,6 +93,8 @@
       "es": "1ª Reunión Intercambio Padres",
       "zh": "第1次家长意见交流会",
       "id": "Pertukaran Pendapat Orang Tua (1)",
+      "ko": "제1회 학부모 등 의견 교환회",
+      "ne": "पहिलो अभिभावक राय आदानप्रदान सभा",
       "tr": "1. veli görüş alışverişi",
       "my": "ပထမအကြိမ် မိဘသဘောထားဖလှယ်ပွဲ"
     },
@@ -93,6 +107,8 @@
       "es": "2ª y 3ª Reuniones Intercambio",
       "zh": "第2次&第3次家长意见交流会",
       "id": "Pertukaran Pendapat Orang Tua (2&3)",
+      "ko": "제2·3회 학부모 등 의견 교환회",
+      "ne": "दोस्रो–तेस्रो अभिभावक राय आदानप्रदान सभा",
       "tr": "2. ve 3. veli görüş alışverişi",
       "my": "ဒုတိယနှင့် တတိယအကြိမ် မိဘသဘောထားဖလှယ်ပွဲ"
     },
@@ -105,6 +121,8 @@
       "es": "Charla Comunitaria",
       "zh": "社区说明会",
       "id": "Sosialisasi Komunitas",
+      "ko": "주민 설명회",
+      "ne": "बासिन्दाका लागि जानकारी सभा",
       "tr": "Mahalle bilgilendirmesi",
       "my": "ရပ်ရွာ ရှင်းလင်းပွဲ"
     },
@@ -117,6 +135,8 @@
       "es": "Informe Asoc. Vecinos (2º)",
       "zh": "自治区协会报告（第2次）",
       "id": "Laporan Asosiasi Warga (2)",
+      "ko": "자치회장 회의 보고(2차)",
+      "ne": "टोल अध्यक्ष सभामा प्रतिवेदन (दोस्रो)",
       "tr": "Mahalle birliği raporu (2.)",
       "my": "ရပ်ကွက်အသင်း အစီရင်ခံစာ (ဒုတိယ)"
     },
@@ -129,6 +149,8 @@
       "es": "4ª Reunión de Debate Escolar",
       "zh": "第4次学校研讨会",
       "id": "Diskusi Sekolah ke-4",
+      "ko": "제4회 「학교를 생각하는 모임」",
+      "ne": "चौथो “विद्यालयबारे सोच्ने भेला”",
       "tr": "4. Okul Görüşme Toplantısı",
       "my": "စတုတ္ထအကြိမ် ကျောင်းဆွေးနွေးပွဲ"
     },
@@ -141,6 +163,8 @@
       "es": "Informe Asoc. Vecinos (3º)",
       "zh": "自治区协会报告（第3次）",
       "id": "Laporan Asosiasi Warga (3)",
+      "ko": "자치회장 회의 보고(3차)",
+      "ne": "टोल अध्यक्ष सभामा प्रतिवेदन (तेस्रो)",
       "tr": "Mahalle birliği raporu (3.)",
       "my": "ရပ်ကွက်အသင်း အစီရင်ခံစာ (တတိယ)"
     },
@@ -153,6 +177,8 @@
       "es": "Com. Público Abre / Encuesta Nombre",
       "zh": "公众意见征集开始·新校名调查",
       "id": "Komentar Publik Dibuka / Survei Nama",
+      "ko": "주민 의견 공모 시작·새 교명 설문 시작",
+      "ne": "सार्वजनिक राय संकलन र नयाँ विद्यालय नाम सर्वेक्षण सुरु",
       "tr": "Kamuoyu görüşü başlar / ad anketi",
       "my": "အများပြည်သူ သဘောထား စတင် / အမည်စစ်တမ်း"
     },
@@ -165,6 +191,8 @@
       "es": "Informe al Consejo Comunitario (2º)",
       "zh": "社区委员会报告（第2次）",
       "id": "Laporan Dewan Komunitas (2)",
+      "ko": "지역 협의회 대표자 보고(2차)",
+      "ne": "सामुदायिक परिषद्का प्रतिनिधिलाई प्रतिवेदन (दोस्रो)",
       "tr": "Mahalle Konseyi raporu (2.)",
       "my": "ရပ်ရွာကောင်စီ အစီရင်ခံစာ (ဒုတိယ)"
     },
@@ -177,6 +205,8 @@
       "es": "Com. Público Cierra (55 envíos)",
       "zh": "公众意见截止（55件）",
       "id": "Komentar Publik Ditutup (55)",
+      "ko": "주민 의견 공모 마감(55건)",
+      "ne": "सार्वजनिक राय संकलन अन्त्य (55 राय)",
       "tr": "Kamuoyu görüşü kapanır (55 görüş)",
       "my": "အများပြည်သူ သဘောထား ပိတ် (၅၅ ခု)"
     },
@@ -189,6 +219,8 @@
       "es": "Comité del Distrito Escolar",
       "zh": "学区审议委员会",
       "id": "Komite Penasehat Distrik Sekolah",
+      "ko": "통학 구역 심의회",
+      "ne": "विद्यालय क्षेत्र समितिको बैठक",
       "tr": "Okul Bölgesi Danışma Komitesi",
       "my": "ကျောင်းနယ်မြေ အကြံပေးကော်မတီ"
     },
@@ -201,6 +233,8 @@
       "es": "5ª Reunión de Debate Escolar",
       "zh": "第5次学校研讨会",
       "id": "Diskusi Sekolah ke-5",
+      "ko": "제5회 「학교를 생각하는 모임」",
+      "ne": "पाँचौँ “विद्यालयबारे सोच्ने भेला”",
       "tr": "5. Okul Görüşme Toplantısı",
       "my": "ပဉ္စမအကြိမ် ကျောင်းဆွေးနွေးပွဲ"
     },
@@ -213,6 +247,8 @@
       "es": "Plazo Diseño Emblema Escolar",
       "zh": "校徽设计截止日期",
       "id": "Batas Desain Lambang Sekolah",
+      "ko": "교표 디자인 공모 마감",
+      "ne": "विद्यालय प्रतीक डिजाइन आवेदन अन्त्य",
       "tr": "Okul arması tasarımı son tarihi",
       "my": "ကျောင်းတံဆိပ် ဒီဇိုင်း နောက်ဆုံးရက်"
     },
@@ -225,6 +261,8 @@
       "es": "Operadora del autobús elegida (Aoi Kotsu)",
       "zh": "校车事业者开标（AOI交通）",
       "id": "Operator bus sekolah ditetapkan (Aoi Kotsu)",
+      "ko": "스쿨버스 사업자 개찰(아오이 교통)",
+      "ne": "विद्यालय बस सञ्चालक छनोट (आओइ कोत्सु)",
       "tr": "Okul servisi işletmecisi belirlendi (Aoi Kotsu)",
       "my": "ကျောင်းဘတ်စ် လုပ်ငန်းရှင် ရွေးချယ် (Aoi Kotsu)"
     },
@@ -237,6 +275,8 @@
       "es": "Sesión Padres (JHS Toryou)",
       "zh": "家长说明会（登竜中）",
       "id": "Sosialisasi Orang Tua (SMP Toryou)",
+      "ko": "학부모 등 설명회(도료 중학교)",
+      "ne": "अभिभावक जानकारी सभा (तोर्यो निम्न मा.वि.)",
       "tr": "Veli bilgilendirmesi (Toryou Ortaokulu)",
       "my": "မိဘရှင်းလင်းပွဲ (Toryou အလယ်တန်း)"
     },
@@ -249,6 +289,8 @@
       "es": "Sesión Padres (JHS Shinooka)",
       "zh": "家长说明会（篠岡中）",
       "id": "Sosialisasi Orang Tua (SMP Shinooka)",
+      "ko": "학부모 등 설명회(시노오카 중학교)",
+      "ne": "अभिभावक जानकारी सभा (सिनोओका निम्न मा.वि.)",
       "tr": "Veli bilgilendirmesi (Shinooka Ortaokulu)",
       "my": "မိဘရှင်းလင်းပွဲ (Shinooka အလယ်တန်း)"
     },
@@ -261,6 +303,8 @@
       "es": "Sesión Padres (Sue Elem.)",
       "zh": "家长说明会（陶小）",
       "id": "Sosialisasi Orang Tua (SD Sue)",
+      "ko": "학부모 등 설명회(스에 초등학교)",
+      "ne": "अभिभावक जानकारी सभा (सुए प्राथमिक)",
       "tr": "Veli bilgilendirmesi (Sue İlkokulu)",
       "my": "မိဘရှင်းလင်းပွဲ (Sue မူလတန်း)"
     },
@@ -273,6 +317,8 @@
       "es": "Sesión Padres (Oshiro Elem.)",
       "zh": "家长说明会（大城小）",
       "id": "Sosialisasi Orang Tua (SD Oshiro)",
+      "ko": "학부모 등 설명회(오시로 초등학교)",
+      "ne": "अभिभावक जानकारी सभा (ओसिरो प्राथमिक)",
       "tr": "Veli bilgilendirmesi (Oshiro İlkokulu)",
       "my": "မိဘရှင်းလင်းပွဲ (Oshiro မူလတန်း)"
     },
@@ -285,6 +331,8 @@
       "es": "Sesión Padres (JHS Hikarigaoka)",
       "zh": "家长说明会（光丘中）",
       "id": "Sosialisasi Orang Tua (SMP Hikarigaoka)",
+      "ko": "학부모 등 설명회(히카리가오카 중학교)",
+      "ne": "अभिभावक जानकारी सभा (हिकारिगाओका निम्न मा.वि.)",
       "tr": "Veli bilgilendirmesi (Hikarigaoka Ortaokulu)",
       "my": "မိဘရှင်းလင်းပွဲ (Hikarigaoka အလယ်တန်း)"
     },
@@ -297,6 +345,8 @@
       "es": "Sesión Padres (Centro Comunit. Este)",
       "zh": "家长说明会（东部市民中心）",
       "id": "Sosialisasi Orang Tua (Pusat Komunitas Timur)",
+      "ko": "학부모 등 설명회(동부 시민센터)",
+      "ne": "अभिभावक जानकारी सभा (पूर्वी नागरिक केन्द्र)",
       "tr": "Veli bilgilendirmesi (Doğu Toplum Merkezi)",
       "my": "မိဘရှင်းလင်းပွဲ (အရှေ့ပိုင်း ရပ်ရွာစင်တာ)"
     },
@@ -309,6 +359,8 @@
       "es": "Encuentro de 5 escuelas (4.º–5.º)",
       "zh": "5所小学联合交流会（4・5年级）",
       "id": "Pertemuan 5 Sekolah (Kelas 4–5)",
+      "ko": "초등학교 5개교 합동 교류회(4·5학년)",
+      "ne": "5 प्राथमिक विद्यालयको संयुक्त भेटघाट (कक्षा 4–5)",
       "tr": "5 okul buluşması (4–5. sınıf)",
       "my": "ကျောင်း ၅ ကျောင်း ပေါင်းစုံတွေ့ဆုံပွဲ (၄–၅ တန်း)"
     },
@@ -321,6 +373,8 @@
       "es": "Preguntas y Respuestas Publicadas",
       "zh": "说明会问答公开",
       "id": "Tanya Jawab Sosialisasi Dipublikasikan",
+      "ko": "설명회 Q&A 공개",
+      "ne": "जानकारी सभाको प्रश्नोत्तर प्रकाशित",
       "tr": "Bilgilendirme soru-cevabı yayımlandı",
       "my": "ရှင်းလင်းပွဲ မေးခွန်း-အဖြေ ထုတ်ပြန်"
     },
@@ -333,6 +387,8 @@
       "es": "Inicio de solicitud del autobús escolar",
       "zh": "校车申请开始受理",
       "id": "Pendaftaran bus sekolah dibuka",
+      "ko": "스쿨버스 신청서 접수 시작",
+      "ne": "विद्यालय बस आवेदन सुरु",
       "tr": "Okul servisi başvurusu başlıyor",
       "my": "ကျောင်းဘတ်စ် လျှောက်လွှာ စတင်လက်ခံ"
     },
@@ -345,6 +401,8 @@
       "es": "Emblema de Shinooka Gakuen decidido",
       "zh": "しのおか学園の校徽确定",
       "id": "Lambang Shinooka Gakuen ditetapkan",
+      "ko": "시노오카 학원 교표 확정",
+      "ne": "सिनोओका गाकुएनको विद्यालय प्रतीक निर्णय",
       "tr": "Shinooka Gakuen arması belirlendi",
       "my": "Shinooka Gakuen ကျောင်းတံဆိပ် ဆုံးဖြတ်ပြီး"
     },
@@ -357,6 +415,8 @@
       "es": "Fecha límite del autobús escolar",
       "zh": "校车申请截止",
       "id": "Batas akhir pendaftaran bus sekolah",
+      "ko": "스쿨버스 신청서 제출 기한",
+      "ne": "विद्यालय बस आवेदनको अन्तिम मिति",
       "tr": "Okul servisi başvuru son günü",
       "my": "ကျောင်းဘတ်စ် လျှောက်လွှာ နောက်ဆုံးရက်"
     },
@@ -370,6 +430,8 @@
         "es": "Reconocimiento previo a la matrícula (5 escuelas)",
         "zh": "就学时健诊（R9新生・5小学）",
         "id": "Pemeriksaan kesehatan pra-masuk (5 sekolah)",
+        "ko": "취학 전 건강검진(5개 초등학교)",
+        "ne": "विद्यालय प्रवेशपूर्व स्वास्थ्य जाँच (5 प्राथमिक विद्यालय)",
         "tr": "Okul öncesi sağlık taraması (5 okul)",
         "my": "ကျောင်းမဝင်မီ ကျန်းမာရေးစစ်ဆေးမှု (ကျောင်း ၅)"
       },
@@ -382,6 +444,8 @@
         "es": "Festival de música del nuevo distrito escolar (consejo)",
         "zh": "新学区交流 音乐节（地区协议会）",
         "id": "Festival musik distrik sekolah baru (dewan komunitas)",
+        "ko": "새 학교구 교류 음악 축제(지역 협의회)",
+        "ne": "नयाँ विद्यालय क्षेत्र सङ्गीत महोत्सव (सामुदायिक परिषद्)",
         "tr": "Yeni okul bölgesi müzik festivali (bölge konseyi)",
         "my": "ကျောင်းနယ်မြေသစ် ဂီတပွဲတော် (ဒေသဆိုင်ရာ ကောင်စီ)"
       }
@@ -395,6 +459,8 @@
       "es": "Viajes de prueba y prueba de la app",
       "zh": "校车体验乘车会・应用试用",
       "id": "Uji coba naik bus & aplikasi",
+      "ko": "스쿨버스 체험 승차·앱 시범 사용",
+      "ne": "विद्यालय बस परीक्षण यात्रा र एप परीक्षण",
       "tr": "Servis deneme yolculuğu ve uygulama denemesi",
       "my": "ဘတ်စ် စမ်းသပ်စီးနင်းခြင်းနှင့် အက်ပ် စမ်းသပ်မှု"
     },
@@ -407,6 +473,8 @@
       "es": "Arigato Oshiro-sho (ciudadanos)",
       "zh": "感谢大城小（市民有志）",
       "id": "Arigato Oshiro-sho (warga)",
+      "ko": "고마워요 오시로 초등학교(시민 주도)",
+      "ne": "धन्यवाद ओसिरो प्राथमिक विद्यालय (नागरिक पहल)",
       "tr": "Arigato Oshiro-sho (vatandaş)",
       "my": "Arigato Oshiro-sho (ပြည်သူ)"
     },
@@ -419,6 +487,8 @@
       "es": "Consejo conjunto de gestión (8 escuelas)",
       "zh": "8校联合学校运营协议会",
       "id": "Dewan pengelolaan gabungan (8 sekolah)",
+      "ko": "8개교 합동 학교운영협의회",
+      "ne": "8 विद्यालयको संयुक्त सञ्चालन परिषद्",
       "tr": "Sekiz okul ortak yönetim kurulu",
       "my": "ကျောင်း ၈ ကျောင်း ပူးတွဲ စီမံခန့်ခွဲရေးကောင်စီ"
     },
@@ -431,6 +501,8 @@
       "es": "Sesión de matrícula y trayecto de prueba",
       "zh": "入学说明会・预备上下学",
       "id": "Sosialisasi pendaftaran & uji perjalanan",
+      "ko": "입학 설명회·사전 등하교 체험",
+      "ne": "भर्ना जानकारी सभा र पूर्व आवतजावत अभ्यास",
       "tr": "Kayıt bilgilendirmesi ve deneme yolculuğu",
       "my": "ကျောင်းအပ် ရှင်းလင်းပွဲနှင့် ကြိုတင် ကျောင်းသွားလာမှု"
     },
@@ -443,6 +515,8 @@
       "es": "Ceremonias de clausura (5+3 escuelas)",
       "zh": "闭校式（5所小学・3所中学）",
       "id": "Upacara penutupan (5 SD + 3 SMP)",
+      "ko": "폐교식(초등 5개교·중학 3개교)",
+      "ne": "विद्यालय समापन समारोह (5 प्राथमिक, 3 निम्न मा.वि.)",
       "tr": "Kapanış törenleri (5 ilkokul + 3 ortaokul)",
       "my": "ကျောင်းပိတ်သိမ်းပွဲ (မူလတန်း ၅ + အလယ်တန်း ၃)"
     },
@@ -455,6 +529,8 @@
       "es": "Fase 1 Reorganización (Shinooka Gakuen)",
       "zh": "第1期整合（篠岡学园）",
       "id": "Reorganisasi Tahap 1 (Shinooka Gakuen)",
+      "ko": "제1기 재편 시행 예정(시노오카 학원)",
+      "ne": "पहिलो चरणको पुनर्गठन सुरु (सिनोओका गाकुएन)",
       "tr": "1. Aşama yeniden yapılandırma (Shinooka Gakuen)",
       "my": "အဆင့် ၁ ပြန်လည်ဖွဲ့စည်းမှု (Shinooka Gakuen)"
     }

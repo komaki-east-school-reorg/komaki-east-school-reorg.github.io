@@ -25,7 +25,7 @@ except ImportError:
 
 BASE = "https://komaki-east-school-reorg.github.io/"
 OUT_DIR = "qr"
-LANGS = ["ja", "en", "pt", "vi", "tl", "es", "zh", "id", "tr", "my"]
+LANGS = ["ja", "en", "pt", "vi", "tl", "es", "zh", "id", "ko", "ne", "tr", "my"]
 # 回覧板シートは index.html の共有欄／「最新の動き」節にしか無いので、QRも index だけでよい。
 # canonical と同じ並び。index は素のディレクトリ URL が正規形。
 PAGES = {

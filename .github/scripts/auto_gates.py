@@ -26,10 +26,10 @@ import sys
 
 # events.json のイベントラベルに必須の言語（この10言語が揃っていないと不合格）。
 # tr / my は 2026-08-13 に全キー翻訳が揃ったので必須に含めた。
-LANGS = ["ja", "en", "pt", "vi", "tl", "es", "zh", "id", "tr", "my"]
-# 翻訳が部分的な言語（現在なし）。新たに部分翻訳の言語を足すときは、
+LANGS = ["ja", "en", "pt", "vi", "tl", "es", "zh", "id", "ko", "ne", "tr", "my"]
+# 翻訳が部分的な言語（2026-09-17 に ko / ne を追加）。新たに部分翻訳の言語を足すときは、
 # i18n.js の PARTIAL と揃えてここに入れ、events.json のラベル必須対象から外す。
-PARTIAL_LANGS = []
+PARTIAL_LANGS = ["ko", "ne"]
 ALLOWED = {"data/events.json", "index.html", "schedule.html", "community.html"} | {
     f"data/i18n/{l}.json" for l in LANGS + PARTIAL_LANGS + ["ja-kids"]
 }

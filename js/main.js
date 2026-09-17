@@ -24,7 +24,7 @@ window.KomakiLang = (function () {
    ・日付も時刻も読めなければ原文を返す（欠測より原文のほうがまし）。 */
 window.KomakiJaWhen = (function () {
   var DOORS = {en: 'doors open', pt: 'abertura', vi: 'mở cửa', tl: 'bukas ang pinto', es: 'apertura de puertas',
-               zh: '入场', id: 'pintu dibuka', tr: 'kapılar açılır', my: 'တံခါးဖွင့်'};
+               zh: '入场', id: 'pintu dibuka', ko: '개장', ne: 'ढोका खुल्ने', tr: 'kapılar açılır', my: 'တံခါးဖွင့်'};
   var LOCALE = {tl: 'fil'};
   function hm(h, m) { return h + ':' + ('0' + (m || 0)).slice(-2); }
   return function (text, lang, opts) {
@@ -511,12 +511,12 @@ window.KomakiGrade = (function () {
     return;
   }
 
-  var LOCALE_MAP = { ja: 'ja-JP', en: 'en-US', pt: 'pt-BR', vi: 'vi-VN', tl: 'fil-PH', es: 'es-ES', zh: 'zh-Hans-CN', id: 'id-ID', tr: 'tr-TR', my: 'my-MM' };
+  var LOCALE_MAP = { ja: 'ja-JP', en: 'en-US', pt: 'pt-BR', vi: 'vi-VN', tl: 'fil-PH', es: 'es-419', zh: 'zh-Hans-CN', id: 'id-ID', ko: 'ko-KR', ne: 'ne-NP', tr: 'tr-TR', my: 'my-MM' };
   // 「最終更新: {date}」のラベル（main.js 内で言語管理：既存カレンダーと同じ方式）
   var LABEL = {
     ja: '最終更新: {d}', en: 'Last updated: {d}', pt: 'Última atualização: {d}', vi: 'Cập nhật lần cuối: {d}',
     tl: 'Huling na-update: {d}', es: 'Última actualización: {d}', zh: '最后更新：{d}', id: 'Terakhir diperbarui: {d}',
-    tr: 'Son güncelleme: {d}', my: 'နောက်ဆုံး ပြင်ဆင်သည့်ရက်- {d}'
+    ko: '최종 업데이트: {d}', ne: 'अन्तिम अद्यावधिक: {d}', tr: 'Son güncelleme: {d}', my: 'နောက်ဆုံး ပြင်ဆင်သည့်ရက်- {d}'
   };
   var KIDS_LABEL_JA = 'さいごに 直した日: {d}';
 
@@ -588,13 +588,13 @@ window.KomakiGrade = (function () {
 
   var _nl = window.KomakiLang();
   var _nt = {
-    no_items: {ja:'直近{d}日以内に更新された情報はありません。', en:'No updates found in the past {d} days.', pt:'Nenhuma atualização nos últimos {d} dias.', vi:'Không có cập nhật trong {d} ngày qua.', tl:'Walang mga update sa nakalipas na {d} araw.', es:'No hay actualizaciones en los últimos {d} días.', zh:'近{d}天内暂无更新。', id:'Tidak ada pembaruan dalam {d} hari terakhir.', tr:'Son {d} günde güncelleme yok.', my:'ပြီးခဲ့သည့် {d} ရက်အတွင်း အပ်ဒိတ် မရှိပါ။'},
-    see_all:  {ja:'公式サイトで全ての情報を確認する →', en:'View all on the official site →', pt:'Ver tudo no site oficial →', vi:'Xem tất cả trên trang chính thức →', tl:'Tingnan ang lahat sa opisyal na site →', es:'Ver todo en el sitio oficial →', zh:'在官方网站查看全部信息 →', id:'Lihat semua di situs resmi →', tr:'Tümünü resmî sitede görün →', my:'တရားဝင်ဆိုက်တွင် အားလုံး ကြည့်ရန် →'},
-    showing:  {ja:'直近{d}日以内に更新されたページを表示しています', en:'Showing pages updated in the past {d} days', pt:'Exibindo páginas atualizadas nos últimos {d} dias', vi:'Hiển thị các trang cập nhật trong {d} ngày qua', tl:'Ipinapakita ang mga pahinang na-update sa nakalipas na {d} araw', es:'Mostrando páginas actualizadas en los últimos {d} días', zh:'显示近{d}天内更新的页面', id:'Menampilkan halaman yang diperbarui dalam {d} hari terakhir', tr:'Son {d} günde güncellenen sayfalar', my:'ပြီးခဲ့သည့် {d} ရက်အတွင်း အပ်ဒိတ်လုပ်ထားသော စာမျက်နှာများ'},
-    updated:  {ja:' 更新', en:' updated', pt:' atualizado', vi:' cập nhật', tl:' na-update', es:' actualizado', zh:' 更新', id:' diperbarui', tr:' güncellendi', my:' အပ်ဒိတ်'},
-    error:    {ja:'情報の取得に失敗しました。', en:'Failed to load information.', pt:'Falha ao carregar as informações.', vi:'Không tải được thông tin.', tl:'Nabigo ang pag-load ng impormasyon.', es:'Error al cargar la información.', zh:'信息加载失败。', id:'Gagal memuat informasi.', tr:'Bilgiler yüklenemedi.', my:'အချက်အလက် မဖွင့်နိုင်ပါ။'},
-    official: {ja:'公式サイト', en:'official website', pt:'site oficial', vi:'trang chính thức', tl:'opisyal na site', es:'sitio oficial', zh:'官方网站', id:'situs resmi', tr:'resmî site', my:'တရားဝင်ဆိုက်'},
-    check:    {ja:'をご確認ください。', en:'.', pt:'.', vi:'.', tl:'.', es:'.', zh:'。', id:'.', tr:'.', my:'။'},
+    no_items: {ja:'直近{d}日以内に更新された情報はありません。', en:'No updates found in the past {d} days.', pt:'Nenhuma atualização nos últimos {d} dias.', vi:'Không có cập nhật trong {d} ngày qua.', tl:'Walang mga update sa nakalipas na {d} araw.', es:'No hay actualizaciones en los últimos {d} días.', zh:'近{d}天内暂无更新。', id:'Tidak ada pembaruan dalam {d} hari terakhir.', ko:'최근 {d}일 이내에 갱신된 정보가 없습니다.', ne:'पछिल्लो {d} दिनमा कुनै अद्यावधिक छैन।', tr:'Son {d} günde güncelleme yok.', my:'ပြီးခဲ့သည့် {d} ရက်အတွင်း အပ်ဒိတ် မရှိပါ။'},
+    see_all:  {ja:'公式サイトで全ての情報を確認する →', en:'View all on the official site →', pt:'Ver tudo no site oficial →', vi:'Xem tất cả trên trang chính thức →', tl:'Tingnan ang lahat sa opisyal na site →', es:'Ver todo en el sitio oficial →', zh:'在官方网站查看全部信息 →', id:'Lihat semua di situs resmi →', ko:'공식 사이트에서 모든 정보 보기 →', ne:'आधिकारिक साइटमा सबै जानकारी हेर्नुहोस् →', tr:'Tümünü resmî sitede görün →', my:'တရားဝင်ဆိုက်တွင် အားလုံး ကြည့်ရန် →'},
+    showing:  {ja:'直近{d}日以内に更新されたページを表示しています', en:'Showing pages updated in the past {d} days', pt:'Exibindo páginas atualizadas nos últimos {d} dias', vi:'Hiển thị các trang cập nhật trong {d} ngày qua', tl:'Ipinapakita ang mga pahinang na-update sa nakalipas na {d} araw', es:'Mostrando páginas actualizadas en los últimos {d} días', zh:'显示近{d}天内更新的页面', id:'Menampilkan halaman yang diperbarui dalam {d} hari terakhir', ko:'최근 {d}일 이내에 갱신된 페이지를 표시하고 있습니다', ne:'पछिल्लो {d} दिनमा अद्यावधिक भएका पृष्ठहरू देखाइँदै छ', tr:'Son {d} günde güncellenen sayfalar', my:'ပြီးခဲ့သည့် {d} ရက်အတွင်း အပ်ဒိတ်လုပ်ထားသော စာမျက်နှာများ'},
+    updated:  {ja:' 更新', en:' updated', pt:' atualizado', vi:' cập nhật', tl:' na-update', es:' actualizado', zh:' 更新', id:' diperbarui', ko:' 갱신', ne:' अद्यावधिक', tr:' güncellendi', my:' အပ်ဒိတ်'},
+    error:    {ja:'情報の取得に失敗しました。', en:'Failed to load information.', pt:'Falha ao carregar as informações.', vi:'Không tải được thông tin.', tl:'Nabigo ang pag-load ng impormasyon.', es:'Error al cargar la información.', zh:'信息加载失败。', id:'Gagal memuat informasi.', ko:'정보를 불러오지 못했습니다.', ne:'जानकारी लोड गर्न सकिएन।', tr:'Bilgiler yüklenemedi.', my:'အချက်အလက် မဖွင့်နိုင်ပါ။'},
+    official: {ja:'公式サイト', en:'official website', pt:'site oficial', vi:'trang chính thức', tl:'opisyal na site', es:'sitio oficial', zh:'官方网站', id:'situs resmi', ko:'공식 사이트', ne:'आधिकारिक साइट', tr:'resmî site', my:'တရားဝင်ဆိုက်'},
+    check:    {ja:'をご確認ください。', en:'.', pt:'.', vi:'.', tl:'.', es:'.', zh:'。', id:'.', ko:'를 확인해 주세요.', ne:' हेर्नुहोस्।', tr:'.', my:'။'},
   };
   function nEsc(s) {
     return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
@@ -685,13 +685,13 @@ window.KomakiGrade = (function () {
   try { _sk = localStorage.getItem('komaki_kids') === '1'; } catch (e) {}
 
   var _st = {
-    elem:    {ja:'小学校', en:'Elementary', pt:'Primária', vi:'Tiểu học', tl:'Elementarya', es:'Primaria', zh:'小学', id:'SD', tr:'İlkokul', my:'မူလတန်း'},
-    jhs:     {ja:'中学校', en:'Junior High', pt:'Ginásio', vi:'THCS', tl:'Junior High', es:'Secundaria', zh:'中学', id:'SMP', tr:'Ortaokul', my:'အလယ်တန်း'},
-    is_new:  {ja:'新着',   en:'NEW', pt:'NOVO', vi:'MỚI', tl:'BAGO', es:'NUEVO', zh:'最新', id:'BARU', tr:'YENİ', my:'အသစ်'},
-    updated: {ja:'最終更新 ', en:'Updated ', pt:'Atualizado ', vi:'Cập nhật ', tl:'Na-update ', es:'Actualizado ', zh:'最后更新 ', id:'Diperbarui ', tr:'Güncellendi ', my:'အပ်ဒိတ် '},
-    visit:   {ja:'学校ホームページを見る →', en:'Visit school website →', pt:'Ver site da escola →', vi:'Xem trang trường →', tl:'Bisitahin ang website →', es:'Ver sitio de la escuela →', zh:'访问学校网站 →', id:'Kunjungi situs sekolah →', tr:'Okul web sitesini ziyaret et →', my:'ကျောင်းဝဘ်ဆိုက်သို့ →'},
-    empty:   {ja:'新着記事を取得できませんでした。', en:'No articles could be retrieved.', pt:'Não foi possível obter artigos.', vi:'Không lấy được bài viết.', tl:'Walang nakuhang artikulo.', es:'No se pudieron obtener artículos.', zh:'未能获取文章。', id:'Tidak ada artikel yang diperoleh.', tr:'Yazı alınamadı.', my:'ဆောင်းပါး မရရှိပါ။'},
-    error:   {ja:'学校ホームページの情報を取得できませんでした。', en:'Could not load school website updates.', pt:'Não foi possível carregar as atualizações.', vi:'Không tải được cập nhật từ trang trường.', tl:'Hindi ma-load ang mga update.', es:'No se pudieron cargar las actualizaciones.', zh:'无法加载学校网站更新。', id:'Gagal memuat pembaruan situs sekolah.', tr:'Okul sitesi güncellemeleri yüklenemedi.', my:'ကျောင်းဝဘ်ဆိုက် အပ်ဒိတ်များ မဖွင့်နိုင်ပါ။'}
+    elem:    {ja:'小学校', en:'Elementary', pt:'Primária', vi:'Tiểu học', tl:'Elementarya', es:'Primaria', zh:'小学', id:'SD', ko:'초등학교', ne:'प्राथमिक विद्यालय', tr:'İlkokul', my:'မူလတန်း'},
+    jhs:     {ja:'中学校', en:'Junior High', pt:'Ginásio', vi:'THCS', tl:'Junior High', es:'Secundaria', zh:'中学', id:'SMP', ko:'중학교', ne:'निम्न माध्यमिक विद्यालय', tr:'Ortaokul', my:'အလယ်တန်း'},
+    is_new:  {ja:'新着',   en:'NEW', pt:'NOVO', vi:'MỚI', tl:'BAGO', es:'NUEVO', zh:'最新', id:'BARU', ko:'새 글', ne:'नयाँ', tr:'YENİ', my:'အသစ်'},
+    updated: {ja:'最終更新 ', en:'Updated ', pt:'Atualizado ', vi:'Cập nhật ', tl:'Na-update ', es:'Actualizado ', zh:'最后更新 ', id:'Diperbarui ', ko:'최종 업데이트 ', ne:'अन्तिम अद्यावधिक ', tr:'Güncellendi ', my:'အပ်ဒိတ် '},
+    visit:   {ja:'学校ホームページを見る →', en:'Visit school website →', pt:'Ver site da escola →', vi:'Xem trang trường →', tl:'Bisitahin ang website →', es:'Ver sitio de la escuela →', zh:'访问学校网站 →', id:'Kunjungi situs sekolah →', ko:'학교 홈페이지 보기 →', ne:'विद्यालयको वेबसाइट हेर्नुहोस् →', tr:'Okul web sitesini ziyaret et →', my:'ကျောင်းဝဘ်ဆိုက်သို့ →'},
+    empty:   {ja:'新着記事を取得できませんでした。', en:'No articles could be retrieved.', pt:'Não foi possível obter artigos.', vi:'Không lấy được bài viết.', tl:'Walang nakuhang artikulo.', es:'No se pudieron obtener artículos.', zh:'未能获取文章。', id:'Tidak ada artikel yang diperoleh.', ko:'새 글을 가져오지 못했습니다.', ne:'नयाँ लेख प्राप्त गर्न सकिएन।', tr:'Yazı alınamadı.', my:'ဆောင်းပါး မရရှိပါ။'},
+    error:   {ja:'学校ホームページの情報を取得できませんでした。', en:'Could not load school website updates.', pt:'Não foi possível carregar as atualizações.', vi:'Không tải được cập nhật từ trang trường.', tl:'Hindi ma-load ang mga update.', es:'No se pudieron cargar las actualizaciones.', zh:'无法加载学校网站更新。', id:'Gagal memuat pembaruan situs sekolah.', ko:'학교 홈페이지 정보를 가져오지 못했습니다.', ne:'विद्यालयको वेबसाइटको जानकारी लोड गर्न सकिएन।', tr:'Okul sitesi güncellemeleri yüklenemedi.', my:'ကျောင်းဝဘ်ဆိုက် အပ်ဒိတ်များ မဖွင့်နိုင်ပါ။'}
   };
   function str(key) { return _st[key][_sl] || _st[key]['en'] || _st[key]['ja']; }
 
@@ -783,9 +783,9 @@ window.KomakiGrade = (function () {
   var _pl = window.KomakiLang();
 
   var _pt = {
-    source: {ja:'出典', en:'Source', pt:'Fonte', vi:'Nguồn', tl:'Pinagmulan', es:'Fuente', zh:'出处', id:'Sumber', tr:'Kaynak', my:'ရင်းမြစ်'},
-    empty:  {ja:'該当する記事はまだありません。', en:'No articles found yet.', pt:'Ainda não há reportagens.', vi:'Chưa có bài báo nào.', tl:'Wala pang artikulong natagpuan.', es:'Aún no hay artículos.', zh:'尚无相关报道。', id:'Belum ada artikel.', tr:'Henüz haber bulunamadı.', my:'သတင်း မတွေ့ရသေးပါ။'},
-    error:  {ja:'報道記事の一覧を取得できませんでした。', en:'Could not load the news coverage list.', pt:'Não foi possível carregar a lista de reportagens.', vi:'Không tải được danh sách bài báo.', tl:'Hindi ma-load ang listahan ng balita.', es:'No se pudo cargar la lista de artículos.', zh:'无法加载报道列表。', id:'Gagal memuat daftar artikel.', tr:'Haber listesi yüklenemedi.', my:'သတင်းစာရင်း မဖွင့်နိုင်ပါ။'}
+    source: {ja:'出典', en:'Source', pt:'Fonte', vi:'Nguồn', tl:'Pinagmulan', es:'Fuente', zh:'出处', id:'Sumber', ko:'출처', ne:'स्रोत', tr:'Kaynak', my:'ရင်းမြစ်'},
+    empty:  {ja:'該当する記事はまだありません。', en:'No articles found yet.', pt:'Ainda não há reportagens.', vi:'Chưa có bài báo nào.', tl:'Wala pang artikulong natagpuan.', es:'Aún no hay artículos.', zh:'尚无相关报道。', id:'Belum ada artikel.', ko:'해당하는 기사가 아직 없습니다.', ne:'सम्बन्धित समाचार अझै छैन।', tr:'Henüz haber bulunamadı.', my:'သတင်း မတွေ့ရသေးပါ။'},
+    error:  {ja:'報道記事の一覧を取得できませんでした。', en:'Could not load the news coverage list.', pt:'Não foi possível carregar a lista de reportagens.', vi:'Không tải được danh sách bài báo.', tl:'Hindi ma-load ang listahan ng balita.', es:'No se pudo cargar la lista de artículos.', zh:'无法加载报道列表。', id:'Gagal memuat daftar artikel.', ko:'보도 기사 목록을 가져오지 못했습니다.', ne:'समाचारको सूची लोड गर्न सकिएन।', tr:'Haber listesi yüklenemedi.', my:'သတင်းစာရင်း မဖွင့်နိုင်ပါ။'}
   };
   function str(key) { return _pt[key][_pl] || _pt[key]['en'] || _pt[key]['ja']; }
 
@@ -844,11 +844,11 @@ window.KomakiGrade = (function () {
   var _ul = window.KomakiLang();
 
   var _ut = {
-    content: {ja:'掲載内容', en:'Content', pt:'Conteúdo', vi:'Nội dung', tl:'Nilalaman', es:'Contenido', zh:'内容', id:'Konten', tr:'İçerik', my:'အကြောင်းအရာ'},
-    feature: {ja:'機能',     en:'Feature', pt:'Recurso',  vi:'Tính năng', tl:'Tampok', es:'Función',   zh:'功能', id:'Fitur',  tr:'Özellik', my:'လုပ်ဆောင်ချက်'},
-    fix:     {ja:'修正',     en:'Fix',     pt:'Correção', vi:'Sửa lỗi',   tl:'Ayos',   es:'Corrección',zh:'修正', id:'Perbaikan', tr:'Düzeltme', my:'ပြင်ဆင်မှု'},
-    empty:   {ja:'更新履歴はまだありません。', en:'No updates recorded yet.', pt:'Ainda não há atualizações.', vi:'Chưa có cập nhật nào.', tl:'Wala pang naitalang update.', es:'Aún no hay actualizaciones.', zh:'尚无更新记录。', id:'Belum ada pembaruan.', tr:'Henüz kayıtlı güncelleme yok.', my:'အပ်ဒိတ် မှတ်တမ်း မရှိသေးပါ။'},
-    error:   {ja:'更新履歴を取得できませんでした。', en:'Could not load the update log.', pt:'Não foi possível carregar o histórico.', vi:'Không tải được nhật ký cập nhật.', tl:'Hindi ma-load ang update log.', es:'No se pudo cargar el historial.', zh:'无法加载更新记录。', id:'Gagal memuat log pembaruan.', tr:'Güncelleme kaydı yüklenemedi.', my:'အပ်ဒိတ် မှတ်တမ်း မဖွင့်နိုင်ပါ။'}
+    content: {ja:'掲載内容', en:'Content', pt:'Conteúdo', vi:'Nội dung', tl:'Nilalaman', es:'Contenido', zh:'内容', id:'Konten', ko:'내용', ne:'सामग्री', tr:'İçerik', my:'အကြောင်းအရာ'},
+    feature: {ja:'機能',     en:'Feature', pt:'Recurso',  vi:'Tính năng', tl:'Tampok', es:'Función',   zh:'功能', id:'Fitur',  ko:'기능', ne:'सुविधा', tr:'Özellik', my:'လုပ်ဆောင်ချက်'},
+    fix:     {ja:'修正',     en:'Fix',     pt:'Correção', vi:'Sửa lỗi',   tl:'Ayos',   es:'Corrección',zh:'修正', id:'Perbaikan', ko:'수정', ne:'सुधार', tr:'Düzeltme', my:'ပြင်ဆင်မှု'},
+    empty:   {ja:'更新履歴はまだありません。', en:'No updates recorded yet.', pt:'Ainda não há atualizações.', vi:'Chưa có cập nhật nào.', tl:'Wala pang naitalang update.', es:'Aún no hay actualizaciones.', zh:'尚无更新记录。', id:'Belum ada pembaruan.', ko:'업데이트 내역이 아직 없습니다.', ne:'अद्यावधिकको विवरण अझै छैन।', tr:'Henüz kayıtlı güncelleme yok.', my:'အပ်ဒိတ် မှတ်တမ်း မရှိသေးပါ။'},
+    error:   {ja:'更新履歴を取得できませんでした。', en:'Could not load the update log.', pt:'Não foi possível carregar o histórico.', vi:'Không tải được nhật ký cập nhật.', tl:'Hindi ma-load ang update log.', es:'No se pudo cargar el historial.', zh:'无法加载更新记录。', id:'Gagal memuat log pembaruan.', ko:'업데이트 내역을 가져오지 못했습니다.', ne:'अद्यावधिकको विवरण लोड गर्न सकिएन।', tr:'Güncelleme kaydı yüklenemedi.', my:'အပ်ဒိတ် မှတ်တမ်း မဖွင့်နိုင်ပါ။'}
   };
   function str(key) { return _ut[key][_ul] || _ut[key]['en'] || _ut[key]['ja']; }
 
@@ -908,11 +908,11 @@ window.KomakiGrade = (function () {
 
   var _cl = window.KomakiLang();
   var _cet = {
-    badge:   {ja:'篠岡地区', en:'Shinooka area', pt:'Área de Shinooka', vi:'Khu vực Shinooka', tl:'Lugar ng Shinooka', es:'Zona de Shinooka', zh:'篠冈地区', id:'Wilayah Shinooka', tr:'Shinooka bölgesi', my:'Shinooka ဒေသ'},
-    when:    {ja:'日時', en:'Date', pt:'Data', vi:'Thời gian', tl:'Petsa', es:'Fecha', zh:'日期', id:'Waktu', tr:'Tarih', my:'ရက်စွဲ'},
-    none:    {ja:'現在、掲載されているイベントはありません。', en:'No events are listed at the moment.', pt:'No momento não há eventos publicados.', vi:'Hiện chưa có sự kiện nào được đăng.', tl:'Wala pang nakalistang kaganapan sa ngayon.', es:'Por ahora no hay eventos publicados.', zh:'目前没有刊登的活动。', id:'Saat ini belum ada acara yang ditampilkan.', tr:'Şu anda yayımlanmış etkinlik yok.', my:'လက်ရှိတွင် ဖော်ပြထားသော ပွဲများ မရှိပါ။'},
-    error:   {ja:'イベント案内を取得できませんでした。', en:'Could not load the event listings.', pt:'Não foi possível carregar os eventos.', vi:'Không tải được danh sách sự kiện.', tl:'Hindi ma-load ang listahan ng kaganapan.', es:'No se pudieron cargar los eventos.', zh:'无法加载活动信息。', id:'Gagal memuat daftar acara.', tr:'Etkinlik listesi yüklenemedi.', my:'ပွဲစာရင်း မဖွင့်နိုင်ပါ။'},
-    see_all: {ja:'市の公式ページで確認する →', en:'Check on the official city page →', pt:'Ver na página oficial da cidade →', vi:'Xem trên trang chính thức của thành phố →', tl:'Tingnan sa opisyal na pahina ng lungsod →', es:'Ver en la página oficial del municipio →', zh:'在市政府官方页面确认 →', id:'Lihat di halaman resmi kota →', tr:'Belediyenin resmî sayfasında görün →', my:'မြို့တော် တရားဝင်စာမျက်နှာတွင် ကြည့်ရန် →'}
+    badge:   {ja:'篠岡地区', en:'Shinooka area', pt:'Área de Shinooka', vi:'Khu vực Shinooka', tl:'Lugar ng Shinooka', es:'Zona de Shinooka', zh:'篠冈地区', id:'Wilayah Shinooka', ko:'시노오카 지구', ne:'सिनोओका क्षेत्र', tr:'Shinooka bölgesi', my:'Shinooka ဒေသ'},
+    when:    {ja:'日時', en:'Date', pt:'Data', vi:'Thời gian', tl:'Petsa', es:'Fecha', zh:'日期', id:'Waktu', ko:'일시', ne:'मिति', tr:'Tarih', my:'ရက်စွဲ'},
+    none:    {ja:'現在、掲載されているイベントはありません。', en:'No events are listed at the moment.', pt:'No momento não há eventos publicados.', vi:'Hiện chưa có sự kiện nào được đăng.', tl:'Wala pang nakalistang kaganapan sa ngayon.', es:'Por ahora no hay eventos publicados.', zh:'目前没有刊登的活动。', id:'Saat ini belum ada acara yang ditampilkan.', ko:'현재 게시된 행사가 없습니다.', ne:'हाल कुनै कार्यक्रम राखिएको छैन।', tr:'Şu anda yayımlanmış etkinlik yok.', my:'လက်ရှိတွင် ဖော်ပြထားသော ပွဲများ မရှိပါ။'},
+    error:   {ja:'イベント案内を取得できませんでした。', en:'Could not load the event listings.', pt:'Não foi possível carregar os eventos.', vi:'Không tải được danh sách sự kiện.', tl:'Hindi ma-load ang listahan ng kaganapan.', es:'No se pudieron cargar los eventos.', zh:'无法加载活动信息。', id:'Gagal memuat daftar acara.', ko:'행사 안내를 가져오지 못했습니다.', ne:'कार्यक्रमको सूचना लोड गर्न सकिएन।', tr:'Etkinlik listesi yüklenemedi.', my:'ပွဲစာရင်း မဖွင့်နိုင်ပါ။'},
+    see_all: {ja:'市の公式ページで確認する →', en:'Check on the official city page →', pt:'Ver na página oficial da cidade →', vi:'Xem trên trang chính thức của thành phố →', tl:'Tingnan sa opisyal na pahina ng lungsod →', es:'Ver en la página oficial del municipio →', zh:'在市政府官方页面确认 →', id:'Lihat di halaman resmi kota →', ko:'시 공식 페이지에서 확인하기 →', ne:'नगरको आधिकारिक पृष्ठमा हेर्नुहोस् →', tr:'Belediyenin resmî sayfasında görün →', my:'မြို့တော် တရားဝင်စာမျက်နှာတွင် ကြည့်ရန် →'}
   };
   function cet(key) { return _cet[key][_cl] || _cet[key]['en'] || _cet[key]['ja']; }
   function esc(s) {
@@ -990,7 +990,7 @@ window.KomakiGrade = (function () {
       }).filter(Boolean);
     }
 
-    const CAL_LOCALE_MAP = {ja:'ja-JP', en:'en-US', pt:'pt-BR', vi:'vi-VN', tl:'fil-PH', es:'es-ES', zh:'zh-Hans-CN', id:'id-ID', tr:'tr-TR', my:'my-MM'};
+    const CAL_LOCALE_MAP = {ja:'ja-JP', en:'en-US', pt:'pt-BR', vi:'vi-VN', tl:'fil-PH', es:'es-419', zh:'zh-Hans-CN', id:'id-ID', ko:'ko-KR', ne:'ne-NP', tr:'tr-TR', my:'my-MM'};
     // 未知の言語は英語に落とす。ja に落としてはいけない
     // （サイト全体が「日本語より英語のほうが読める閲覧者が多い」前提で作られている）。
     function getCalLocale() {
@@ -998,9 +998,9 @@ window.KomakiGrade = (function () {
     }
 
     var _ct = {
-      done_marker: {ja:'済', en:'✓', pt:'✓', vi:'✓', tl:'✓', es:'✓', zh:'✓', id:'✓', tr:'✓', my:'✓'},
-      done_prefix: {ja:'[済] ', en:'[Done] ', pt:'[Concluído] ', vi:'[Xong] ', tl:'[Tapos] ', es:'[Hecho] ', zh:'[已完成] ', id:'[Selesai] ', tr:'[Tamamlandı] ', my:'[ပြီးစီး] '},
-      plan_prefix: {ja:'[予定] ', en:'[Planned] ', pt:'[Previsto] ', vi:'[KH] ', tl:'[Nakatakda] ', es:'[Previsto] ', zh:'[计划] ', id:'[Rencana] ', tr:'[Planlanan] ', my:'[စီစဉ်ထားသည်] '},
+      done_marker: {ja:'済', en:'✓', pt:'✓', vi:'✓', tl:'✓', es:'✓', zh:'✓', id:'✓', ko:'✓', ne:'✓', tr:'✓', my:'✓'},
+      done_prefix: {ja:'[済] ', en:'[Done] ', pt:'[Concluído] ', vi:'[Xong] ', tl:'[Tapos] ', es:'[Hecho] ', zh:'[已完成] ', id:'[Selesai] ', ko:'[완료] ', ne:'[सम्पन्न] ', tr:'[Tamamlandı] ', my:'[ပြီးစီး] '},
+      plan_prefix: {ja:'[予定] ', en:'[Planned] ', pt:'[Previsto] ', vi:'[KH] ', tl:'[Nakatakda] ', es:'[Previsto] ', zh:'[计划] ', id:'[Rencana] ', ko:'[예정] ', ne:'[योजना] ', tr:'[Planlanan] ', my:'[စီစဉ်ထားသည်] '},
     };
     // 未知の言語は ja ではなく en に落とすこと
     // （日本語より英語のほうが読める閲覧者が多い、というサイト全体の方針）。
@@ -2710,13 +2710,13 @@ window.KomakiGrade = (function () {
 
   var _al = window.KomakiLang();
   var _at = {
-    when:   {ja:'日時', en:'Date', pt:'Data', vi:'Thời gian', tl:'Petsa', es:'Fecha', zh:'日期', id:'Waktu', tr:'Tarih', my:'ရက်စွဲ'},
-    place:  {ja:'場所', en:'Place', pt:'Local', vi:'Địa điểm', tl:'Lugar', es:'Lugar', zh:'地点', id:'Tempat', tr:'Yer', my:'နေရာ'},
-    source: {ja:'発信元', en:'Posted by', pt:'Divulgado por', vi:'Nguồn tin', tl:'Mula sa', es:'Publicado por', zh:'发布方', id:'Diposting oleh', tr:'Paylaşan', my:'တင်သူ'},
-    citizen:{ja:'市民有志', en:'Citizen-run', pt:'Iniciativa de cidadãos', vi:'Do người dân tổ chức', tl:'Mamamayan ang nagpapatakbo', es:'Iniciativa ciudadana', zh:'市民自发', id:'Inisiatif warga', tr:'Vatandaş girişimi', my:'ပြည်သူ့ဦးဆောင်'},
-    council:{ja:'地域協議会', en:'Community council', pt:'Conselho comunitário', vi:'Hội đồng cộng đồng', tl:'Konseho ng komunidad', es:'Consejo comunitario', zh:'地区协议会', id:'Dewan komunitas', tr:'Bölge konseyi', my:'ဒေသဆိုင်ရာ ကောင်စီ'},
-    empty:  {ja:'現在、掲載されている取組はありません。', en:'Nothing is listed at the moment.', pt:'No momento não há nada publicado.', vi:'Hiện chưa có nội dung nào.', tl:'Wala pang nakalista sa ngayon.', es:'Por ahora no hay nada publicado.', zh:'目前没有刊登的活动。', id:'Saat ini belum ada yang ditampilkan.', tr:'Şu anda listelenen bir şey yok.', my:'လက်ရှိတွင် ဖော်ပြထားသည် မရှိပါ။'},
-    error:  {ja:'地域の取組を取得できませんでした。', en:'Could not load community efforts.', pt:'Não foi possível carregar.', vi:'Không tải được nội dung.', tl:'Hindi ma-load ang listahan.', es:'No se pudo cargar.', zh:'无法加载地区行动。', id:'Gagal memuat.', tr:'Yüklenemedi.', my:'မဖွင့်နိုင်ပါ။'}
+    when:   {ja:'日時', en:'Date', pt:'Data', vi:'Thời gian', tl:'Petsa', es:'Fecha', zh:'日期', id:'Waktu', ko:'일시', ne:'मिति', tr:'Tarih', my:'ရက်စွဲ'},
+    place:  {ja:'場所', en:'Place', pt:'Local', vi:'Địa điểm', tl:'Lugar', es:'Lugar', zh:'地点', id:'Tempat', ko:'장소', ne:'स्थान', tr:'Yer', my:'နေရာ'},
+    source: {ja:'発信元', en:'Posted by', pt:'Divulgado por', vi:'Nguồn tin', tl:'Mula sa', es:'Publicado por', zh:'发布方', id:'Diposting oleh', ko:'게시 주체', ne:'प्रकाशक', tr:'Paylaşan', my:'တင်သူ'},
+    citizen:{ja:'市民有志', en:'Citizen-run', pt:'Iniciativa de cidadãos', vi:'Do người dân tổ chức', tl:'Mamamayan ang nagpapatakbo', es:'Iniciativa ciudadana', zh:'市民自发', id:'Inisiatif warga', ko:'시민 주도', ne:'नागरिक पहल', tr:'Vatandaş girişimi', my:'ပြည်သူ့ဦးဆောင်'},
+    council:{ja:'地域協議会', en:'Community council', pt:'Conselho comunitário', vi:'Hội đồng cộng đồng', tl:'Konseho ng komunidad', es:'Consejo comunitario', zh:'地区协议会', id:'Dewan komunitas', ko:'지역 협의회', ne:'सामुदायिक परिषद्', tr:'Bölge konseyi', my:'ဒေသဆိုင်ရာ ကောင်စီ'},
+    empty:  {ja:'現在、掲載されている取組はありません。', en:'Nothing is listed at the moment.', pt:'No momento não há nada publicado.', vi:'Hiện chưa có nội dung nào.', tl:'Wala pang nakalista sa ngayon.', es:'Por ahora no hay nada publicado.', zh:'目前没有刊登的活动。', id:'Saat ini belum ada yang ditampilkan.', ko:'현재 게시된 활동이 없습니다.', ne:'हाल कुनै गतिविधि राखिएको छैन।', tr:'Şu anda listelenen bir şey yok.', my:'လက်ရှိတွင် ဖော်ပြထားသည် မရှိပါ။'},
+    error:  {ja:'地域の取組を取得できませんでした。', en:'Could not load community efforts.', pt:'Não foi possível carregar.', vi:'Không tải được nội dung.', tl:'Hindi ma-load ang listahan.', es:'No se pudo cargar.', zh:'无法加载地区行动。', id:'Gagal memuat.', ko:'지역의 활동을 가져오지 못했습니다.', ne:'सामुदायिक गतिविधि लोड गर्न सकिएन।', tr:'Yüklenemedi.', my:'မဖွင့်နိုင်ပါ။'}
   };
   function at(k) { return _at[k][_al] || _at[k]['en'] || _at[k]['ja']; }
   function esc(s) {
@@ -2802,28 +2802,28 @@ window.KomakiGrade = (function () {
 
   var _tl = window.KomakiLang();
   var _tt = {
-    badge:   {ja:'市公式', en:'City official', pt:'Oficial da cidade', vi:'Chính quyền thành phố', tl:'Opisyal ng lungsod', es:'Oficial municipal', zh:'市官方', id:'Resmi kota', tr:'Belediye resmî', my:'မြို့တော် တရားဝင်'},
-    source:  {ja:'出典', en:'Source', pt:'Fonte', vi:'Nguồn', tl:'Pinagkunan', es:'Fuente', zh:'出处', id:'Sumber', tr:'Kaynak', my:'ရင်းမြစ်'},
-    upcoming:{ja:'これからの催し', en:'Coming up', pt:'Próximos eventos', vi:'Sắp diễn ra', tl:'Nalalapit na kaganapan', es:'Próximos actos', zh:'即将举办', tr:'Yaklaşan etkinlikler', id:'Akan datang', my:'လာမည့် ပွဲများ'},
-    recent:  {ja:'さいきんの動き', en:'Recently', pt:'Recentemente', vi:'Gần đây', tl:'Kamakailan', es:'Recientemente', zh:'最近的动态', id:'Belakangan ini', tr:'Son gelişmeler', my:'မကြာသေးမီက'},
-    when:    {ja:'日時', en:'Date', pt:'Data', vi:'Thời gian', tl:'Petsa', es:'Fecha', zh:'日期', id:'Waktu', tr:'Tarih', my:'ရက်စွဲ'},
-    place:   {ja:'場所', en:'Place', pt:'Local', vi:'Địa điểm', tl:'Lugar', es:'Lugar', zh:'地点', id:'Tempat', tr:'Yer', my:'နေရာ'},
-    empty:   {ja:'この2か月に新しい動きはありませんでした。', en:'Nothing new in the last two months.', pt:'Nada novo nos últimos dois meses.', vi:'Không có gì mới trong hai tháng qua.', tl:'Walang bago sa nakalipas na dalawang buwan.', es:'Nada nuevo en los últimos dos meses.', zh:'最近两个月没有新的动态。', id:'Tidak ada yang baru dalam dua bulan terakhir.', tr:'Son iki ayda yeni bir şey yok.', my:'လွန်ခဲ့သော နှစ်လအတွင်း အသစ်မရှိပါ။'},
-    error:   {ja:'東部まちづくりの動きを取得できませんでした。', en:'Could not load the eastern district updates.', pt:'Não foi possível carregar.', vi:'Không tải được nội dung.', tl:'Hindi ma-load ang listahan.', es:'No se pudo cargar.', zh:'无法加载东部城市建设的动态。', id:'Gagal memuat.', tr:'Yüklenemedi.', my:'မဖွင့်နိုင်ပါ။'}
+    badge:   {ja:'市公式', en:'City official', pt:'Oficial da cidade', vi:'Chính quyền thành phố', tl:'Opisyal ng lungsod', es:'Oficial municipal', zh:'市官方', id:'Resmi kota', ko:'시 공식', ne:'नगर आधिकारिक', tr:'Belediye resmî', my:'မြို့တော် တရားဝင်'},
+    source:  {ja:'出典', en:'Source', pt:'Fonte', vi:'Nguồn', tl:'Pinagkunan', es:'Fuente', zh:'出处', id:'Sumber', ko:'출처', ne:'स्रोत', tr:'Kaynak', my:'ရင်းမြစ်'},
+    upcoming:{ja:'これからの催し', en:'Coming up', pt:'Próximos eventos', vi:'Sắp diễn ra', tl:'Nalalapit na kaganapan', es:'Próximos actos', zh:'即将举办', ko:'다가오는 행사', ne:'आउँदा कार्यक्रम', tr:'Yaklaşan etkinlikler', id:'Akan datang', my:'လာမည့် ပွဲများ'},
+    recent:  {ja:'さいきんの動き', en:'Recently', pt:'Recentemente', vi:'Gần đây', tl:'Kamakailan', es:'Recientemente', zh:'最近的动态', id:'Belakangan ini', ko:'최근 소식', ne:'पछिल्ला गतिविधि', tr:'Son gelişmeler', my:'မကြာသေးမီက'},
+    when:    {ja:'日時', en:'Date', pt:'Data', vi:'Thời gian', tl:'Petsa', es:'Fecha', zh:'日期', id:'Waktu', ko:'일시', ne:'मिति', tr:'Tarih', my:'ရက်စွဲ'},
+    place:   {ja:'場所', en:'Place', pt:'Local', vi:'Địa điểm', tl:'Lugar', es:'Lugar', zh:'地点', id:'Tempat', ko:'장소', ne:'स्थान', tr:'Yer', my:'နေရာ'},
+    empty:   {ja:'この2か月に新しい動きはありませんでした。', en:'Nothing new in the last two months.', pt:'Nada novo nos últimos dois meses.', vi:'Không có gì mới trong hai tháng qua.', tl:'Walang bago sa nakalipas na dalawang buwan.', es:'Nada nuevo en los últimos dos meses.', zh:'最近两个月没有新的动态。', id:'Tidak ada yang baru dalam dua bulan terakhir.', ko:'최근 두 달 사이에 새로운 소식은 없었습니다.', ne:'पछिल्लो दुई महिनामा नयाँ केही भएन।', tr:'Son iki ayda yeni bir şey yok.', my:'လွန်ခဲ့သော နှစ်လအတွင်း အသစ်မရှိပါ။'},
+    error:   {ja:'東部まちづくりの動きを取得できませんでした。', en:'Could not load the eastern district updates.', pt:'Não foi possível carregar.', vi:'Không tải được nội dung.', tl:'Hindi ma-load ang listahan.', es:'No se pudo cargar.', zh:'无法加载东部城市建设的动态。', id:'Gagal memuat.', ko:'동부 마을만들기 소식을 가져오지 못했습니다.', ne:'पूर्वी क्षेत्र विकासको जानकारी लोड गर्न सकिएन।', tr:'Yüklenemedi.', my:'မဖွင့်နိုင်ပါ။'}
   };
   function tt(k) { return _tt[k][_tl] || _tt[k]['en'] || _tt[k]['ja']; }
 
   // 「どのページから拾ったか」の分類名。市のページ群の名前で、数が限られた固定の語なので、
   // 表示言語に直す。知らない分類名（市がページ群を増やしたとき）だけは、ここに足すまで原文で出る。
   var _from = {
-    '協働提案事業': {en:'Collaborative proposal project', pt:'Projeto de proposta colaborativa', vi:'Dự án đề xuất hợp tác', tl:'Collaborative proposal project', es:'Proyecto de propuesta colaborativa', zh:'协作提案事业', id:'Proyek usulan kolaboratif', tr:'Ortak öneri projesi', my:'ပူးပေါင်းအဆိုပြု စီမံကိန်း'},
-    '東部地域トライアル活動': {en:'Eastern district trial activity', pt:'Atividade-piloto da zona leste', vi:'Hoạt động thử nghiệm khu vực phía đông', tl:'Trial na aktibidad sa silangang distrito', es:'Actividad piloto de la zona este', zh:'东部地区试行活动', id:'Kegiatan uji coba wilayah timur', tr:'Doğu bölgesi deneme etkinliği', my:'အရှေ့ပိုင်းဒေသ စမ်းသပ်လှုပ်ရှားမှု'},
-    'オープンファクトリー': {en:'Open factory', pt:'Fábrica aberta', vi:'Nhà máy mở cửa', tl:'Open factory', es:'Fábrica abierta', zh:'开放工厂', id:'Pabrik terbuka', tr:'Açık fabrika', my:'စက်ရုံ ဖွင့်လှစ်ပြသပွဲ'},
-    '東部まちづくり': {en:'Eastern district development', pt:'Desenvolvimento da zona leste', vi:'Phát triển khu vực phía đông', tl:'Pagpapaunlad ng silangang distrito', es:'Desarrollo de la zona este', zh:'东部城市建设', id:'Pembangunan wilayah timur', tr:'Doğu bölgesi kalkınması', my:'အရှေ့ပိုင်း မြို့ပြဖွံ့ဖြိုးရေး'},
-    '東部まちづくりニュース': {en:'Eastern District Development News', pt:'Notícias do desenvolvimento da zona leste', vi:'Bản tin phát triển khu vực phía đông', tl:'Balita sa pagpapaunlad ng silangang distrito', es:'Noticias del desarrollo de la zona este', zh:'东部城市建设新闻', id:'Berita pembangunan wilayah timur', tr:'Doğu bölgesi kalkınma haberleri', my:'အရှေ့ပိုင်း မြို့ပြဖွံ့ဖြိုးရေး သတင်း'},
-    '東部まちづくり審議会': {en:'Eastern District Development Council', pt:'Conselho de desenvolvimento da zona leste', vi:'Hội đồng thẩm định phát triển khu vực phía đông', tl:'Konseho sa pagpapaunlad ng silangang distrito', es:'Consejo de desarrollo de la zona este', zh:'东部城市建设审议会', id:'Dewan pembangunan wilayah timur', tr:'Doğu bölgesi kalkınma kurulu', my:'အရှေ့ပိုင်း မြို့ပြဖွံ့ဖြိုးရေး ကောင်စီ'}
+    '協働提案事業': {en:'Collaborative proposal project', pt:'Projeto de proposta colaborativa', vi:'Dự án đề xuất hợp tác', tl:'Collaborative proposal project', es:'Proyecto de propuesta colaborativa', zh:'协作提案事业', id:'Proyek usulan kolaboratif', ko:'협동 제안 사업', ne:'सहकार्य प्रस्ताव परियोजना', tr:'Ortak öneri projesi', my:'ပူးပေါင်းအဆိုပြု စီမံကိန်း'},
+    '東部地域トライアル活動': {en:'Eastern district trial activity', pt:'Atividade-piloto da zona leste', vi:'Hoạt động thử nghiệm khu vực phía đông', tl:'Trial na aktibidad sa silangang distrito', es:'Actividad piloto de la zona este', zh:'东部地区试行活动', id:'Kegiatan uji coba wilayah timur', ko:'동부 지역 시범 활동', ne:'पूर्वी क्षेत्र परीक्षण गतिविधि', tr:'Doğu bölgesi deneme etkinliği', my:'အရှေ့ပိုင်းဒေသ စမ်းသပ်လှုပ်ရှားမှု'},
+    'オープンファクトリー': {en:'Open factory', pt:'Fábrica aberta', vi:'Nhà máy mở cửa', tl:'Open factory', es:'Fábrica abierta', zh:'开放工厂', id:'Pabrik terbuka', ko:'오픈 팩토리', ne:'खुला कारखाना', tr:'Açık fabrika', my:'စက်ရုံ ဖွင့်လှစ်ပြသပွဲ'},
+    '東部まちづくり': {en:'Eastern district development', pt:'Desenvolvimento da zona leste', vi:'Phát triển khu vực phía đông', tl:'Pagpapaunlad ng silangang distrito', es:'Desarrollo de la zona este', zh:'东部城市建设', id:'Pembangunan wilayah timur', ko:'동부 마을만들기', ne:'पूर्वी क्षेत्रको विकास', tr:'Doğu bölgesi kalkınması', my:'အရှေ့ပိုင်း မြို့ပြဖွံ့ဖြိုးရေး'},
+    '東部まちづくりニュース': {en:'Eastern District Development News', pt:'Notícias do desenvolvimento da zona leste', vi:'Bản tin phát triển khu vực phía đông', tl:'Balita sa pagpapaunlad ng silangang distrito', es:'Noticias del desarrollo de la zona este', zh:'东部城市建设新闻', id:'Berita pembangunan wilayah timur', ko:'동부 마을만들기 소식', ne:'पूर्वी क्षेत्र विकास समाचार', tr:'Doğu bölgesi kalkınma haberleri', my:'အရှေ့ပိုင်း မြို့ပြဖွံ့ဖြိုးရေး သတင်း'},
+    '東部まちづくり審議会': {en:'Eastern District Development Council', pt:'Conselho de desenvolvimento da zona leste', vi:'Hội đồng thẩm định phát triển khu vực phía đông', tl:'Konseho sa pagpapaunlad ng silangang distrito', es:'Consejo de desarrollo de la zona este', zh:'东部城市建设审议会', id:'Dewan pembangunan wilayah timur', ko:'동부 마을만들기 심의회', ne:'पूर्वी क्षेत्र विकास परिषद्', tr:'Doğu bölgesi kalkınma kurulu', my:'အရှေ့ပိုင်း မြို့ပြဖွံ့ဖြိုးရေး ကောင်စီ'}
   };
-  var _fy = {en:'FY', pt:'ano fiscal ', vi:'năm tài chính ', tl:'FY', es:'ejercicio ', zh:'', id:'TA ', tr:'mali yıl ', my:'ဘဏ္ဍာနှစ် '};
+  var _fy = {en:'FY', pt:'ano fiscal ', vi:'năm tài chính ', tl:'FY', es:'ejercicio ', zh:'', id:'TA ', ko:'', ne:'आ.व. ', tr:'mali yıl ', my:'ဘဏ္ဍာနှစ် '};
   function fromLabel(s) {
     if (!s || _tl === 'ja') return s || '';
     var fy = '', base = s;
@@ -2831,7 +2831,9 @@ window.KomakiGrade = (function () {
     if (m) { fy = String(2018 + (+m[1])); base = m[2]; }
     var tr = _from[base] && (_from[base][_tl] || _from[base].en);
     if (!tr) return s;
-    if (fy) tr += _tl === 'zh' ? '（' + fy + '年度）' : ' (' + (_fy[_tl] || 'FY') + fy + ')';
+    if (fy) tr += _tl === 'zh' ? '（' + fy + '年度）'
+                : _tl === 'ko' ? ' (' + fy + '년도)'
+                : ' (' + (_fy[_tl] || 'FY') + fy + ')';
     return tr;
   }
   function esc(s) {
@@ -3140,7 +3142,7 @@ window.KomakiGrade = (function () {
   try { kids = lang === 'ja' && localStorage.getItem('komaki_kids') === '1'; } catch (e) {}
   var LABEL = {ja: '前回から', kids: 'まえに 見たあと', en: 'Since last visit', pt: 'Desde a última visita',
                vi: 'Mới từ lần trước', tl: 'Bago mula sa huling bisita', es: 'Desde tu última visita',
-               zh: '上次访问后新增', id: 'Baru sejak kunjungan terakhir', tr: 'Son ziyaretten beri',
+               zh: '上次访问后新增', id: 'Baru sejak kunjungan terakhir', ko: '지난 방문 이후', ne: 'अघिल्लो पटकदेखि', tr: 'Son ziyaretten beri',
                my: 'နောက်ဆုံးလာပြီးနောက် အသစ်'};
   var SUMMARY = {
     ja: function (n) { return n ? '前回ご覧になったあとに増えた項目が ' + n + ' 件あります（「前回から」の印）。' : '前回ご覧になったあとに増えた項目はありません。'; },
@@ -3152,6 +3154,8 @@ window.KomakiGrade = (function () {
     es: function (n) { return n ? n + (n === 1 ? ' elemento nuevo' : ' elementos nuevos') + ' desde tu última visita (marcados «Desde tu última visita»).' : 'Nada nuevo desde tu última visita.'; },
     zh: function (n) { return n ? '自您上次访问以来新增了 ' + n + ' 项（标有“上次访问后新增”）。' : '自您上次访问以来没有新增内容。'; },
     id: function (n) { return n ? 'Ada ' + n + ' item baru sejak kunjungan terakhir Anda (bertanda “Baru sejak kunjungan terakhir”).' : 'Tidak ada yang baru sejak kunjungan terakhir Anda.'; },
+    ko: function (n) { return n ? '지난 방문 이후 ' + n + '건이 새로 올라왔습니다(“지난 방문 이후” 표시).' : '지난 방문 이후 새로 올라온 항목은 없습니다.'; },
+    ne: function (n) { return n ? 'अघिल्लो पटक हेर्नुभएयता ' + n + ' वटा नयाँ कुरा थपिएका छन् (“अघिल्लो पटकदेखि” चिन्ह लगाइएको)।' : 'अघिल्लो पटक हेर्नुभएयता नयाँ केही छैन।'; },
     tr: function (n) { return n ? 'Son ziyaretinizden beri ' + n + ' yeni öğe var (“Son ziyaretten beri” işaretli).' : 'Son ziyaretinizden beri yeni bir şey yok.'; },
     my: function (n) { return n ? 'သင် နောက်ဆုံးလာပြီးနောက် အသစ် ' + n + ' ခု ရှိသည်။' : 'သင် နောက်ဆုံးလာပြီးနောက် အသစ် မရှိပါ။'; }
   };

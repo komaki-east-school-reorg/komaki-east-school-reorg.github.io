@@ -23,7 +23,7 @@ import os
 import re
 import sys
 
-LANGS = ["en", "pt", "vi", "tl", "es", "zh", "id", "tr", "my"]
+LANGS = ["en", "pt", "vi", "tl", "es", "zh", "id", "ko", "ne", "tr", "my"]
 STORE = "data/headline_i18n.json"
 PENDING = "auto_i18n/pending.json"
 DRAFT = "auto_i18n/translations.json"

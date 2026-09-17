@@ -64,7 +64,20 @@ A broken non-`ja` file is easy to miss: `i18n.js` silently falls back, so the pa
 
 ## i18n architecture
 
-Translations live in `data/i18n/<lang>.json` (ja, en, pt, vi, tl, es, zh, id, tr, my). `js/i18n.js` fetches the files at runtime. For Japanese it loads `ja.json` alone; **for every other language it loads only `en.json` and the target language**, merged as `Object.assign({}, en_dict, lang_dict)`, so a key missing from the target language falls back to English. English is the bridge because a reader who chose Turkish or Burmese is far more likely to read English than Japanese. The minimum requirement when adding a new key is entries in `ja` and `en`.
+Translations live in `data/i18n/<lang>.json` (ja, en, pt, vi, tl, es, zh, id, ko, ne, tr, my). `js/i18n.js` fetches the files at runtime. For Japanese it loads `ja.json` alone; **for every other language it loads only `en.json` and the target language**, merged as `Object.assign({}, en_dict, lang_dict)`, so a key missing from the target language falls back to English. English is the bridge because a reader who chose Turkish or Burmese is far more likely to read English than Japanese. The minimum requirement when adding a new key is entries in `ja` and `en`.
+
+### 地域差のある3言語（2026-09-17 ユーザー指示）
+
+`pt` / `es` / `zh` は、読者の出身地に合わせた語をつかう。**見出しの自動翻訳（`data/headline_i18n.json`）も同じ基準**で、`translate-headlines.yml` のプロンプトに同じ規則を書いてある — 片方だけ直すと本文と見出しで語がずれる。
+
+| 辞書 | どの地域向けか | 避ける語 → つかう語 |
+|---|---|---|
+| `pt` | **ブラジル** | autocarro→ônibus、utilizador→usuário、percentagem→porcentagem、facto→fato、sítio→local、「está a + 不定詞」→「está + 動名詞」 |
+| `es` | **中南米** | autobús→bus、ordenador→computadora、móvil→celular、ratón→mouse、aparcamiento→estacionamiento、acto→evento、instituto（＝中学の意味で）→secundaria、vosotros は使わない |
+| `zh` | **中国大陸・簡体字** | 保护者→家长、出处→来源、手引→指南、小学校→小学、中学校→中学、通学区域→学区、通学路→上学路、通学→上下学 |
+
+- **`pt` の `ginásio` は体育館の意味だけにつかう。** 中学校は `escola secundária`。ブラジルでは ginásio が体育館を指すので、両方に使うと読めない（2026-09-17 に統一）。
+- `lang` 属性と `Intl` のロケールは `es-419`（中南米スペイン語）。`hreflang` は `es` のまま（スペイン語圏全体に当てる）。
 
 ### Page-scoped dictionaries
 
@@ -124,7 +137,7 @@ Keys follow the pattern `<page>_<section>_<type>`, e.g., `about_whatis_p1`, `faq
 - **市の資料の文面をそのまま載せない（ユーザー指示 2026-09-13）。** 計画・パブリックコメントの回答・説明会の質疑応答・市議会だよりなどは、読んで理解したうえで**当サイトの言葉で書き直す**。数値・日付・議決結果のような事実はそのまま使ってよい。**書き直していることはページに明記し**（共通キー `recomposed_note`／`council_ref_box`／`voices_pc_note`）、**その理由は書かない**（同指示）。
 - **Header site name is permanently Japanese.** The `<a class="site-title">` element does not get a `data-i18n` attribute. The `<span data-i18n="site_sub">` subtitle inside it is translated, but the main site name text is not.
 - **All facts must come from official sources** — the permitted city URL above, or official printed materials (cite the source inline). Do not add speculative or unconfirmed information. The one place newspaper reporting appears is the 報道 corner on `index.html`, where it is clearly attributed as such; see `data/chunichi_news.json` below. It is never evidence for a claim made elsewhere on the site. **Nationwide figures and national standards come from MEXT** and live on `nationwide.html` only; they are never evidence for a statement about the Komaki plan itself, and the city's information is never used for a nationwide claim.
-- **All ten languages are now fully translated, and `ja-kids` covers every key** (1011/1011 as of 2026-09-02), `review.html` included: its `rev_*` keys plus the twelve review-related keys that appear on other pages (`nav_review`, `ql_review_*`, `rel_*`, `meta_*_review`, `status_digest`) were translated into the remaining eight languages on 2026-09-02. Turkish (`tr`) and Burmese (`my`) reached full key coverage on 2026-08-13, so `PARTIAL` in `i18n.js` is empty and the "parts of this page are in English" notice bar no longer appears. `events.json` labels are a strict **10-language** requirement (`LANGS` in `auto_gates.py`). If a new partially-translated language is ever added, put its code in both `PARTIAL` (`i18n.js`) and `PARTIAL_LANGS` (`auto_gates.py`) so the notice bar shows and its event labels are not demanded.
+- **Korean (`ko`) and Nepali (`ne`) were added on 2026-09-17** (user's instruction), placed before Turkish in every language list. While their dictionaries are incomplete they are listed in `PARTIAL` (`i18n.js`) and `PARTIAL_LANGS` (`auto_gates.py`), so the "parts of this page are in English" bar shows and untranslated keys fall back to English; **take them out of both lists once all 1266 keys are in.** **The other ten languages are fully translated, and `ja-kids` covers every key** (1011/1011 as of 2026-09-02), `review.html` included: its `rev_*` keys plus the twelve review-related keys that appear on other pages (`nav_review`, `ql_review_*`, `rel_*`, `meta_*_review`, `status_digest`) were translated into the remaining eight languages on 2026-09-02. Turkish (`tr`) and Burmese (`my`) reached full key coverage on 2026-08-13, so `PARTIAL` in `i18n.js` is empty and the "parts of this page are in English" notice bar no longer appears. `events.json` labels are a strict **12-language** requirement (`LANGS` in `auto_gates.py`). If a new partially-translated language is ever added, put its code in both `PARTIAL` (`i18n.js`) and `PARTIAL_LANGS` (`auto_gates.py`) so the notice bar shows and its event labels are not demanded.
 
 ## `data/news.json`
 
