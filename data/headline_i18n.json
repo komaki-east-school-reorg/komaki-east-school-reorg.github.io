@@ -56,6 +56,127 @@
       "tr": "Kitasato bölgesinin okullarını düşünme toplantısı (2.)",
       "my": "Kitasato ဒေသ ကျောင်းများအကြောင်း စဉ်းစားသည့် ဒုတိယအကြိမ် အစည်းအဝေး"
     },
+    "9/16 今日の給食": {
+      "en": "9/16 Today's School Lunch",
+      "pt": "16/9 Almoço escolar de hoje",
+      "vi": "16/9 Bữa trưa hôm nay",
+      "tl": "9/16 Pagkain sa Paaralan Ngayon",
+      "es": "16/9 Almuerzo escolar de hoy",
+      "zh": "9月16日 今日校餐",
+      "id": "16/9 Makan Siang Sekolah Hari Ini",
+      "tr": "16/9 Bugünün Okul Öğle Yemeği",
+      "my": "၉/၁၆ ယနေ့ ကျောင်းနေ့လယ်စာ"
+    },
+    "9/16 国語：お手紙（２年生）": {
+      "en": "9/16 Japanese: A Letter (Grade 2)",
+      "pt": "16/9 Língua Japonesa: A Carta (2º ano)",
+      "vi": "16/9 Tiếng Nhật: Lá Thư (Lớp 2)",
+      "tl": "9/16 Wikang Hapon: Ang Liham (Baitang 2)",
+      "es": "16/9 Japonés: La Carta (2.º grado)",
+      "zh": "9月16日 语文：书信（二年级）",
+      "id": "16/9 Bahasa Jepang: Surat (Kelas 2)",
+      "tr": "16/9 Japonca: Mektup (2. Sınıf)",
+      "my": "၉/၁၆ ဂျပန်စာ - စာစောင် (တန်း ၂)"
+    },
+    "３年生 パフォーマンス練習": {
+      "en": "Grade 3 Performance Practice",
+      "pt": "3º ano: Ensaio de apresentação",
+      "vi": "Lớp 3: Luyện tập biểu diễn",
+      "tl": "Baitang 3: Pagsasanay sa Palabas",
+      "es": "3.º grado: Ensayo de la presentación",
+      "zh": "三年级 表演练习",
+      "id": "Kelas 3: Latihan Pertunjukan",
+      "tr": "3. Sınıf Gösteri Provası",
+      "my": "တန်း ၃ - ပြပွဲကျင့်ခန်း"
+    },
+    "２年生 道徳": {
+      "en": "Grade 2: Moral Education",
+      "pt": "2º ano: Educação Moral",
+      "vi": "Lớp 2: Đạo đức",
+      "tl": "Grade 2: Edukasyon sa Pagpapahalaga",
+      "es": "2.º grado: Educación Moral",
+      "zh": "二年级：道德课",
+      "id": "Kelas 2: Pendidikan Moral",
+      "tr": "2. sınıf: Ahlak Eğitimi",
+      "my": "ဒုတိယတန်း - ကျင့်ဝတ်ပညာ"
+    },
+    "２年生 学級運営種目&パフォーマンス練習": {
+      "en": "2nd years: class-run events & performance practice",
+      "pt": "2º ano: provas organizadas pelas turmas e ensaio de apresentação",
+      "vi": "Khối 2: nội dung do lớp tổ chức & luyện tập biểu diễn",
+      "tl": "Ikalawang taon: mga larong inihanda ng klase at pagsasanay sa pagtatanghal",
+      "es": "2.º: pruebas organizadas por la clase y ensayo de la actuación",
+      "zh": "二年级 班级运营项目与表演练习",
+      "id": "Kelas 2: lomba yang dikelola kelas & latihan pertunjukan",
+      "tr": "2. sınıflar: sınıfın yürüttüğü etkinlikler ve gösteri provası",
+      "my": "ဒုတိယနှစ် - အတန်းစီစဉ်သော ပြိုင်ပွဲနှင့် ဖျော်ဖြေမှု လေ့ကျင့်ခြင်း"
+    },
+    "理科：花から実へ": {
+      "en": "Science: From Flower to Fruit",
+      "pt": "Ciências: Da flor ao fruto",
+      "vi": "Khoa học: Từ hoa đến quả",
+      "tl": "Agham: Mula Bulaklak Hanggang Bunga",
+      "es": "Ciencias: De la flor al fruto",
+      "zh": "理科：从花到果实",
+      "id": "IPA: Dari Bunga Menjadi Buah",
+      "tr": "Fen Bilimleri: Çiçekten Meyveye",
+      "my": "သိပ္ပံ - ပန်းမှသီးသို့"
+    },
+    "放課の様子": {
+      "en": "Recess Time",
+      "pt": "Momento do recreio",
+      "vi": "Giờ ra chơi",
+      "tl": "Oras ng Recess",
+      "es": "Momento del recreo",
+      "zh": "课间休息时光",
+      "id": "Waktu Istirahat",
+      "tr": "Teneffüs zamanı",
+      "my": "အားလပ်ချိန်"
+    },
+    "家庭科：ナップサック作り": {
+      "en": "Home Economics: Making a Drawstring Bag",
+      "pt": "Economia Doméstica: fazendo uma mochila saco",
+      "vi": "Kinh tế gia đình: Làm túi rút",
+      "tl": "Home Economics: Paggawa ng Drawstring Bag",
+      "es": "Economía doméstica: cómo hacer una mochila de cordón",
+      "zh": "家政课：制作束口背包",
+      "id": "Tata Busana: Membuat Tas Serut",
+      "tr": "Ev Ekonomisi: İpli sırt çantası yapımı",
+      "my": "အိမ်တွင်းမှုပညာ - ကြိုးတန်းအိတ် ချုပ်ခြင်း"
+    },
+    "本番の歌声をお楽しみに!!": {
+      "en": "Look forward to the real singing performance!!",
+      "pt": "Aguarde o canto do dia da apresentação!!",
+      "vi": "Hãy chờ đón giọng hát trong buổi biểu diễn chính thức!!",
+      "tl": "Abangan ang tunay na pagkanta sa mismong araw!!",
+      "es": "¡Espera el canto del día de la presentación!!",
+      "zh": "敬请期待正式演出的歌声！！",
+      "id": "Nantikan nyanyian pada hari pertunjukan sesungguhnya!!",
+      "tr": "Asıl gösteri günündeki şarkı seslerini merakla bekleyin!!",
+      "my": "စစ်မှန်သောပြပွဲနေ့ သီချင်းသံကို မျှော်လင့်ထားပါ!!"
+    },
+    "６年：書写・算数の授業": {
+      "en": "Grade 6: Calligraphy and Math Class",
+      "pt": "6º ano: Aula de caligrafia e matemática",
+      "vi": "Lớp 6: Tiết học Thư pháp và Toán",
+      "tl": "Ika-6 Baitang: Klase sa Kaligrapiya at Matematika",
+      "es": "6.º grado: Clase de caligrafía y matemáticas",
+      "zh": "六年级：书法与数学课",
+      "id": "Kelas 6: Pelajaran Kaligrafi dan Matematika",
+      "tr": "6. Sınıf: Hat Sanatı ve Matematik Dersi",
+      "my": "ဆဋ္ဌမတန်း - လက်ရေးလှနှင့် သင်္ချာသင်ခန်းစာ"
+    },
+    "３年生：図工「いろいろうつして」": {
+      "en": "3rd grade art: \"printing all sorts of things\"",
+      "pt": "Artes do 3º ano: \"imprimindo várias coisas\"",
+      "vi": "Mỹ thuật lớp 3: \"in dấu đủ thứ\"",
+      "tl": "Sining ng ika-3 baitang: \"pag-imprenta ng samu't saring bagay\"",
+      "es": "Plástica de 3.º: \"estampamos cosas diversas\"",
+      "zh": "三年级：美术“拓印各种东西”",
+      "id": "Seni rupa kelas 3: \"mencetak bermacam benda\"",
+      "tr": "3. sınıf resim: \"çeşitli şeylerin baskısı\"",
+      "my": "၃ တန်း ပန်းချီ - \"အမျိုးမျိုး ပုံနှိပ်ကြည့်ကြစို့\""
+    },
     "学年考案競遊 練習開始！": {
       "en": "Grade-designed competition game practice begins!",
       "pt": "Início dos treinos do jogo competitivo criado pela série!",
@@ -89,104 +210,38 @@
       "tr": "1. sınıf: Sınıf gösterisi provaları başladı!",
       "my": "ပထမတန်း - အတန်းအကပွဲ လေ့ကျင့်ခန်း စတင်ပြီ!"
     },
-    "9/15 今日の給食": {
-      "en": "9/15 Today's School Lunch",
-      "pt": "15/9 Almoço escolar de hoje",
-      "vi": "15/9 Bữa trưa học đường hôm nay",
-      "tl": "9/15 Pagkain sa Paaralan Ngayon",
-      "es": "15/9 Almuerzo escolar de hoy",
-      "zh": "9/15 今日校餐",
-      "id": "15/9 Makan Siang Sekolah Hari Ini",
-      "tr": "15/9 Bugünün Okul Yemeği",
-      "my": "၉/၁၅ ယနေ့ကျောင်းထမင်း"
+    "1年生 図工「絵の具をつかって」": {
+      "en": "Grade 1 Arts and Crafts: \"Using Paints\"",
+      "pt": "1º ano: Artes - \"Usando tintas\"",
+      "vi": "Lớp 1: Mỹ thuật - \"Sử dụng màu vẽ\"",
+      "tl": "Baitang 1: Sining - \"Paggamit ng Pintura\"",
+      "es": "1.º grado: Artes - \"Usando pinturas\"",
+      "zh": "一年级 图工课「使用颜料」",
+      "id": "Kelas 1: Seni - \"Menggunakan Cat\"",
+      "tr": "1. Sınıf Sanat: \"Boya Kullanmak\"",
+      "my": "တန်း ၁ - အနုပညာလက်မှုပညာ - \"ဆေးရောင်သုံးခြင်း\""
     },
-    "9/15 音楽：レッツゴー ソーレー（３年生）": {
-      "en": "9/15 Music: Let's Go Sore (Grade 3)",
-      "pt": "15/9 Música: Let's Go Sore (3º ano)",
-      "vi": "15/9 Âm nhạc: Let's Go Sore (Lớp 3)",
-      "tl": "9/15 Musika: Let's Go Sore (Ika-3 Baitang)",
-      "es": "15/9 Música: Let's Go Sore (3.er grado)",
-      "zh": "9/15 音乐：Let's Go Sore（三年级）",
-      "id": "15/9 Musik: Let's Go Sore (Kelas 3)",
-      "tr": "15/9 Müzik: Let's Go Sore (3. Sınıf)",
-      "my": "၉/၁၅ ဂီတ - Let's Go Sore (တတိယတန်း)"
+    "２年生 体育 運動会練習": {
+      "en": "Grade 2 PE: Sports Day Practice",
+      "pt": "2º ano Educação Física: Ensaio do Undoukai",
+      "vi": "Lớp 2 Thể dục: Luyện tập Ngày hội thể thao",
+      "tl": "Baitang 2 PE: Pagsasanay para sa Palarong Paaralan",
+      "es": "2.º grado Educación Física: Ensayo del festival deportivo",
+      "zh": "二年级 体育课 运动会练习",
+      "id": "Kelas 2 Olahraga: Latihan Festival Olahraga",
+      "tr": "2. Sınıf Beden Eğitimi: Spor Günü Provası",
+      "my": "တန်း ၂ - ကာယပညာ အားကစားပွဲကျင့်ခန်း"
     },
-    "9/15 理科：月の形と太陽（６年生）": {
-      "en": "9/15 Science: Phases of the Moon and the Sun (Grade 6)",
-      "pt": "15/9 Ciências: As fases da Lua e o Sol (6º ano)",
-      "vi": "15/9 Khoa học: Hình dạng Mặt Trăng và Mặt Trời (Lớp 6)",
-      "tl": "9/15 Agham: Hugis ng Buwan at ang Araw (Ika-6 Baitang)",
-      "es": "15/9 Ciencias: Las fases de la Luna y el Sol (6.º grado)",
-      "zh": "9/15 科学：月相与太阳（六年级）",
-      "id": "15/9 Sains: Bentuk Bulan dan Matahari (Kelas 6)",
-      "tr": "15/9 Fen Bilgisi: Ay'ın Şekli ve Güneş (6. Sınıf)",
-      "my": "၉/၁၅ သိပ္ပံ - လနှင့်နေ၏ပုံသဏ္ဌာန် (ဆဋ္ဌမတန်း)"
-    },
-    "６年：書写・算数の授業": {
-      "en": "Grade 6: Calligraphy and Math Class",
-      "pt": "6º ano: Aula de caligrafia e matemática",
-      "vi": "Lớp 6: Tiết học Thư pháp và Toán",
-      "tl": "Ika-6 Baitang: Klase sa Kaligrapiya at Matematika",
-      "es": "6.º grado: Clase de caligrafía y matemáticas",
-      "zh": "六年级：书法与数学课",
-      "id": "Kelas 6: Pelajaran Kaligrafi dan Matematika",
-      "tr": "6. Sınıf: Hat Sanatı ve Matematik Dersi",
-      "my": "ဆဋ္ဌမတန်း - လက်ရေးလှနှင့် သင်္ချာသင်ခန်းစာ"
-    },
-    "３年生：図工「いろいろうつして」": {
-      "en": "3rd grade art: \"printing all sorts of things\"",
-      "pt": "Artes do 3º ano: \"imprimindo várias coisas\"",
-      "vi": "Mỹ thuật lớp 3: \"in dấu đủ thứ\"",
-      "tl": "Sining ng ika-3 baitang: \"pag-imprenta ng samu't saring bagay\"",
-      "es": "Plástica de 3.º: \"estampamos cosas diversas\"",
-      "zh": "三年级：美术“拓印各种东西”",
-      "id": "Seni rupa kelas 3: \"mencetak bermacam benda\"",
-      "tr": "3. sınıf resim: \"çeşitli şeylerin baskısı\"",
-      "my": "၃ တန်း ပန်းချီ - \"အမျိုးမျိုး ပုံနှိပ်ကြည့်ကြစို့\""
-    },
-    "４年生：体育「アタックプレルボール」": {
-      "en": "4th grade PE: \"attack prellball\"",
-      "pt": "Educação física do 4º ano: \"prellball de ataque\"",
-      "vi": "Thể dục lớp 4: \"bóng prellball tấn công\"",
-      "tl": "PE ng ika-4 baitang: \"attack prellball\"",
-      "es": "Educación física de 4.º: \"prellball de ataque\"",
-      "zh": "四年级：体育“进攻式弹地球”",
-      "id": "Olahraga kelas 4: \"attack prellball\"",
-      "tr": "4. sınıf beden eğitimi: \"atak prellball\"",
-      "my": "၄ တန်း ကာယ - \"attack prellball\""
-    },
-    "３年生 図工競技会": {
-      "en": "Grade 3 Arts and Crafts Competition",
-      "pt": "3º ano: Competição de artes e trabalhos manuais",
-      "vi": "Lớp 3: Cuộc thi Mỹ thuật và Thủ công",
-      "tl": "Ika-3 Baitang: Paligsahan sa Sining at Craft",
-      "es": "3.er grado: Concurso de arte y manualidades",
-      "zh": "三年级 图工比赛",
-      "id": "Kelas 3 Kompetisi Seni dan Kerajinan",
-      "tr": "3. Sınıf Sanat ve El İşi Yarışması",
-      "my": "တတိယတန်း အနုပညာနှင့် လက်မှုပညာ ပြိုင်ပွဲ"
-    },
-    "６年生 ナップサック作り": {
-      "en": "Grade 6: Making a Drawstring Bag",
-      "pt": "6º ano: Confecção de mochila saco",
-      "vi": "Lớp 6: Làm túi rút dây",
-      "tl": "Ika-6 Baitang: Paggawa ng Drawstring Bag",
-      "es": "6.º grado: Confección de una mochila de cordón",
-      "zh": "六年级 制作束口背包",
-      "id": "Kelas 6 Membuat Tas Serut",
-      "tr": "6. Sınıf İp Çekmeli Sırt Çantası Yapımı",
-      "my": "ဆဋ္ဌမတန်း ကြိုးဆွဲအိတ် ပြုလုပ်ခြင်း"
-    },
-    "第20回アジア競技大会 聖火リレーを応援しました": {
-      "en": "We Cheered for the Torch Relay of the 20th Asian Games",
-      "pt": "Torcemos pelo revezamento da tocha dos 20º Jogos Asiáticos",
-      "vi": "Chúng tôi đã cổ vũ cho lễ rước đuốc Đại hội Thể thao châu Á lần thứ 20",
-      "tl": "Nag-cheer Kami para sa Torch Relay ng ika-20 Asian Games",
-      "es": "Animamos el relevo de la antorcha de los XX Juegos Asiáticos",
-      "zh": "为第20届亚运会圣火传递加油",
-      "id": "Kami Memberi Semangat untuk Estafet Obor Asian Games ke-20",
-      "tr": "20. Asya Oyunları meşale yarışını alkışladık",
-      "my": "၂၀ ကြိမ်မြောက် အာရှအားကစားပြိုင်ပွဲ လှုံ့ဆော်မီးတိုင်လွှဲပွဲအား အားပေးခဲ့ကြသည်"
+    "６年生 音楽": {
+      "en": "Grade 6 Music",
+      "pt": "6º ano: Música",
+      "vi": "Lớp 6: Âm nhạc",
+      "tl": "Baitang 6: Musika",
+      "es": "6.º grado: Música",
+      "zh": "六年级 音乐",
+      "id": "Kelas 6: Musik",
+      "tr": "6. Sınıf Müzik",
+      "my": "တန်း ၆ - ဂီတ"
     },
     "１年生 学年競遊練習": {
       "en": "Grade 1: Grade Games Practice",
@@ -220,72 +275,6 @@
       "id": "Kelas 1: ujian selesai!",
       "tr": "1. sınıflar: sınavlar bitti!",
       "my": "ပထမနှစ် - စာမေးပွဲ ပြီးပါပြီ!"
-    },
-    "２年生 道徳": {
-      "en": "Grade 2: Moral Education",
-      "pt": "2º ano: Educação Moral",
-      "vi": "Lớp 2: Đạo đức",
-      "tl": "Grade 2: Edukasyon sa Pagpapahalaga",
-      "es": "2.º grado: Educación Moral",
-      "zh": "二年级：道德课",
-      "id": "Kelas 2: Pendidikan Moral",
-      "tr": "2. sınıf: Ahlak Eğitimi",
-      "my": "ဒုတိယတန်း - ကျင့်ဝတ်ပညာ"
-    },
-    "２年生 学級運営種目&パフォーマンス練習": {
-      "en": "2nd years: class-run events & performance practice",
-      "pt": "2º ano: provas organizadas pelas turmas e ensaio de apresentação",
-      "vi": "Khối 2: nội dung do lớp tổ chức & luyện tập biểu diễn",
-      "tl": "Ikalawang taon: mga larong inihanda ng klase at pagsasanay sa pagtatanghal",
-      "es": "2.º: pruebas organizadas por la clase y ensayo de la actuación",
-      "zh": "二年级 班级运营项目与表演练习",
-      "id": "Kelas 2: lomba yang dikelola kelas & latihan pertunjukan",
-      "tr": "2. sınıflar: sınıfın yürüttüğü etkinlikler ve gösteri provası",
-      "my": "ဒုတိယနှစ် - အတန်းစီစဉ်သော ပြိုင်ပွဲနှင့် ဖျော်ဖြေမှု လေ့ကျင့်ခြင်း"
-    },
-    "３年生 パフォーマンス練習が始まりました": {
-      "en": "3rd years: performance practice has begun",
-      "pt": "3º ano: começaram os ensaios da apresentação",
-      "vi": "Khối 3: đã bắt đầu luyện tập biểu diễn",
-      "tl": "Ikatlong taon: nagsimula ang pagsasanay sa pagtatanghal",
-      "es": "3.º: comenzaron los ensayos de la actuación",
-      "zh": "三年级 表演练习开始了",
-      "id": "Kelas 3: latihan pertunjukan telah dimulai",
-      "tr": "3. sınıflar: gösteri provaları başladı",
-      "my": "တတိယနှစ် - ဖျော်ဖြေမှု လေ့ကျင့်ခြင်း စတင်ပါပြီ"
-    },
-    "放課の様子": {
-      "en": "Recess Time",
-      "pt": "Momento do recreio",
-      "vi": "Giờ ra chơi",
-      "tl": "Oras ng Recess",
-      "es": "Momento del recreo",
-      "zh": "课间休息时光",
-      "id": "Waktu Istirahat",
-      "tr": "Teneffüs zamanı",
-      "my": "အားလပ်ချိန်"
-    },
-    "家庭科：ナップサック作り": {
-      "en": "Home Economics: Making a Drawstring Bag",
-      "pt": "Economia Doméstica: fazendo uma mochila saco",
-      "vi": "Kinh tế gia đình: Làm túi rút",
-      "tl": "Home Economics: Paggawa ng Drawstring Bag",
-      "es": "Economía doméstica: cómo hacer una mochila de cordón",
-      "zh": "家政课：制作束口背包",
-      "id": "Tata Busana: Membuat Tas Serut",
-      "tr": "Ev Ekonomisi: İpli sırt çantası yapımı",
-      "my": "အိမ်တွင်းမှုပညာ - ကြိုးတန်းအိတ် ချုပ်ခြင်း"
-    },
-    "防災倉庫には何があるのかな": {
-      "en": "What's Inside the Disaster Supply Storage?",
-      "pt": "O que há no depósito de suprimentos de emergência?",
-      "vi": "Trong kho vật tư phòng chống thiên tai có gì nhỉ?",
-      "tl": "Ano Kaya ang Nasa Loob ng Imbakan ng Gamit Pang-Sakuna?",
-      "es": "¿Qué hay dentro del depósito de suministros para desastres?",
-      "zh": "防灾仓库里有什么呢",
-      "id": "Apa Saja Isi Gudang Perlengkapan Bencana?",
-      "tr": "Afet deposunda neler var acaba?",
-      "my": "ဘေးအန္တရာယ်ကာကွယ်ရေး ပစ္စည်းသိုလှောင်ရုံထဲမှာ ဘာတွေရှိလဲ"
     },
     "放課後子ども教室わくわくっ子⑧": {
       "en": "After-School Children's Class \"Wakuwaku Kids\" #8",
