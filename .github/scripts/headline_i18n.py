@@ -103,7 +103,12 @@ def problems(src, entry):
 
 
 def write_store(items):
-    ordered = {k: {l: items[k][l].strip() for l in LANGS} for k in current_headlines() if k in items}
+    # 言語を足した直後は既存の訳にその言語が無い。欠けている言語だけ落として
+    # 残りは保つ（全部捨てると、翻訳ジョブが回るまで全言語で原文が出てしまう）。
+    def kept(e):
+        return {l: e[l].strip() for l in LANGS if isinstance(e.get(l), str) and e[l].strip()}
+
+    ordered = {k: kept(items[k]) for k in current_headlines() if k in items}
     data = {"description": DESCRIPTION, "items": ordered}
     old = load(STORE, None)
     if old == data:

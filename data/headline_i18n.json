@@ -9,6 +9,8 @@
       "es": "Acciones hacia la reorganización escolar",
       "zh": "关于面向学校重组的各项工作",
       "id": "Upaya menuju penataan ulang sekolah",
+      "ko": "학교 재편을 위한 추진 사항에 대해",
+      "ne": "विद्यालय पुनर्गठनका लागि भइरहेका कामबारे",
       "tr": "Okul yeniden düzenlemesine yönelik çalışmalar",
       "my": "ကျောင်းပြန်လည်ဖွဲ့စည်းရေးဆီသို့ လုပ်ဆောင်ချက်များ"
     },
@@ -20,6 +22,8 @@
       "es": "Decidido el emblema de Shinooka Gakuen",
       "zh": "篠冈学园的校徽已确定",
       "id": "Lambang sekolah Shinooka Gakuen telah ditetapkan",
+      "ko": "시노오카 학원의 교표가 확정되었습니다",
+      "ne": "सिनोओका गाकुएनको विद्यालय प्रतीक निर्णय भयो",
       "tr": "Shinooka Gakuen okul amblemi belirlendi",
       "my": "Shinooka Gakuen ကျောင်းတံဆိပ် ရွေးချယ်ပြီးပါပြီ"
     },
@@ -31,6 +35,8 @@
       "es": "Reorganización escolar en el distrito de Shinooka",
       "zh": "关于篠冈地区的学校重组",
       "id": "Penataan ulang sekolah di kawasan Shinooka",
+      "ko": "시노오카 지구의 학교 재편에 대해",
+      "ne": "सिनोओका क्षेत्रको विद्यालय पुनर्गठनबारे",
       "tr": "Shinooka bölgesinde okul yeniden düzenlemesi",
       "my": "Shinooka ဒေသရှိ ကျောင်းပြန်လည်ဖွဲ့စည်းရေး"
     },
@@ -42,6 +48,8 @@
       "es": "Boletín de la reorganización escolar del distrito de Shinooka",
       "zh": "篠冈地区学校重组通讯",
       "id": "Buletin penataan ulang sekolah kawasan Shinooka",
+      "ko": "시노오카 지구 학교 재편 소식지",
+      "ne": "सिनोओका क्षेत्र विद्यालय पुनर्गठन समाचार",
       "tr": "Shinooka Bölgesi Okul Yeniden Düzenleme Bülteni",
       "my": "Shinooka ဒေသ ကျောင်းပြန်လည်ဖွဲ့စည်းရေး သတင်းလွှာ"
     },
@@ -53,6 +61,8 @@
       "es": "2.ª reunión sobre las escuelas del distrito de Kitasato",
       "zh": "第2次北里地区学校研讨会",
       "id": "Pertemuan ke-2 membahas sekolah di kawasan Kitasato",
+      "ko": "제2회 기타자토 지구의 학교를 생각하는 모임",
+      "ne": "दोस्रो किताजातो क्षेत्रको विद्यालयबारे सोच्ने भेला",
       "tr": "Kitasato bölgesinin okullarını düşünme toplantısı (2.)",
       "my": "Kitasato ဒေသ ကျောင်းများအကြောင်း စဉ်းစားသည့် ဒုတိယအကြိမ် အစည်းအဝေး"
     },
@@ -64,6 +74,8 @@
       "es": "16/9 Almuerzo escolar de hoy",
       "zh": "9月16日 今日校餐",
       "id": "16/9 Makan Siang Sekolah Hari Ini",
+      "ko": "9/16 오늘의 급식",
+      "ne": "9/16 आजको विद्यालय खाजा",
       "tr": "16/9 Bugünün Okul Öğle Yemeği",
       "my": "၉/၁၆ ယနေ့ ကျောင်းနေ့လယ်စာ"
     },
@@ -75,6 +87,8 @@
       "es": "16/9 Japonés: La Carta (2.º grado)",
       "zh": "9月16日 语文：书信（二年级）",
       "id": "16/9 Bahasa Jepang: Surat (Kelas 2)",
+      "ko": "9/16 국어: 편지(2학년)",
+      "ne": "9/16 जापानी भाषा: “चिठी” (कक्षा 2)",
       "tr": "16/9 Japonca: Mektup (2. Sınıf)",
       "my": "၉/၁၆ ဂျပန်စာ - စာစောင် (တန်း ၂)"
     },
@@ -86,6 +100,8 @@
       "es": "3.º grado: Ensayo de la presentación",
       "zh": "三年级 表演练习",
       "id": "Kelas 3: Latihan Pertunjukan",
+      "ko": "3학년 퍼포먼스 연습",
+      "ne": "कक्षा 3 प्रस्तुति अभ्यास",
       "tr": "3. Sınıf Gösteri Provası",
       "my": "တန်း ၃ - ပြပွဲကျင့်ခန်း"
     },
@@ -97,6 +113,8 @@
       "es": "2.º grado: Educación Moral",
       "zh": "二年级：道德课",
       "id": "Kelas 2: Pendidikan Moral",
+      "ko": "2학년 도덕",
+      "ne": "कक्षा 2 नैतिक शिक्षा",
       "tr": "2. sınıf: Ahlak Eğitimi",
       "my": "ဒုတိယတန်း - ကျင့်ဝတ်ပညာ"
     },
@@ -108,6 +126,8 @@
       "es": "2.º: pruebas organizadas por la clase y ensayo de la actuación",
       "zh": "二年级 班级运营项目与表演练习",
       "id": "Kelas 2: lomba yang dikelola kelas & latihan pertunjukan",
+      "ko": "2학년 학급 운영 종목 & 퍼포먼스 연습",
+      "ne": "कक्षा 2 कक्षा सञ्चालन खेल र प्रस्तुति अभ्यास",
       "tr": "2. sınıflar: sınıfın yürüttüğü etkinlikler ve gösteri provası",
       "my": "ဒုတိယနှစ် - အတန်းစီစဉ်သော ပြိုင်ပွဲနှင့် ဖျော်ဖြေမှု လေ့ကျင့်ခြင်း"
     },
@@ -119,6 +139,8 @@
       "es": "Ciencias: De la flor al fruto",
       "zh": "理科：从花到果实",
       "id": "IPA: Dari Bunga Menjadi Buah",
+      "ko": "과학: 꽃에서 열매로",
+      "ne": "विज्ञान: फूलबाट फलसम्म",
       "tr": "Fen Bilimleri: Çiçekten Meyveye",
       "my": "သိပ္ပံ - ပန်းမှသီးသို့"
     },
@@ -130,6 +152,8 @@
       "es": "Momento del recreo",
       "zh": "课间休息时光",
       "id": "Waktu Istirahat",
+      "ko": "쉬는 시간의 모습",
+      "ne": "खाली समयको झलक",
       "tr": "Teneffüs zamanı",
       "my": "အားလပ်ချိန်"
     },
@@ -141,6 +165,8 @@
       "es": "Economía doméstica: cómo hacer una mochila de cordón",
       "zh": "家政课：制作束口背包",
       "id": "Tata Busana: Membuat Tas Serut",
+      "ko": "가정: 냅색 만들기",
+      "ne": "गृहविज्ञान: झोला बनाउने",
       "tr": "Ev Ekonomisi: İpli sırt çantası yapımı",
       "my": "အိမ်တွင်းမှုပညာ - ကြိုးတန်းအိတ် ချုပ်ခြင်း"
     },
@@ -152,6 +178,8 @@
       "es": "¡Espera el canto del día de la presentación!!",
       "zh": "敬请期待正式演出的歌声！！",
       "id": "Nantikan nyanyian pada hari pertunjukan sesungguhnya!!",
+      "ko": "본무대의 노랫소리를 기대해 주세요!!",
+      "ne": "मुख्य प्रस्तुतिको गीत पर्खनुहोस्!!",
       "tr": "Asıl gösteri günündeki şarkı seslerini merakla bekleyin!!",
       "my": "စစ်မှန်သောပြပွဲနေ့ သီချင်းသံကို မျှော်လင့်ထားပါ!!"
     },
@@ -163,6 +191,8 @@
       "es": "6.º grado: Clase de caligrafía y matemáticas",
       "zh": "六年级：书法与数学课",
       "id": "Kelas 6: Pelajaran Kaligrafi dan Matematika",
+      "ko": "6학년: 서예·수학 수업",
+      "ne": "कक्षा 6: सुलेख र गणितको कक्षा",
       "tr": "6. Sınıf: Hat Sanatı ve Matematik Dersi",
       "my": "ဆဋ္ဌမတန်း - လက်ရေးလှနှင့် သင်္ချာသင်ခန်းစာ"
     },
@@ -174,6 +204,8 @@
       "es": "Plástica de 3.º: \"estampamos cosas diversas\"",
       "zh": "三年级：美术“拓印各种东西”",
       "id": "Seni rupa kelas 3: \"mencetak bermacam benda\"",
+      "ko": "3학년: 미술 「여러 가지로 찍어 보기」",
+      "ne": "कक्षा 3: कला “विभिन्न छाप बनाउने”",
       "tr": "3. sınıf resim: \"çeşitli şeylerin baskısı\"",
       "my": "၃ တန်း ပန်းချီ - \"အမျိုးမျိုး ပုံနှိပ်ကြည့်ကြစို့\""
     },
@@ -185,6 +217,8 @@
       "es": "¡Comienzan los ensayos del juego competitivo creado por el grado!",
       "zh": "各年级自创竞技游戏 开始练习！",
       "id": "Latihan permainan kompetisi rancangan tingkat kelas dimulai!",
+      "ko": "학년 창작 경기 연습 시작!",
+      "ne": "कक्षाले आफैँ बनाएको खेलको अभ्यास सुरु!",
       "tr": "Sınıf düzeyinin tasarladığı yarışma oyunu provaları başladı!",
       "my": "အတန်းအလိုက် ဖန်တီးထားသော ပြိုင်ပွဲကစားနည်း လေ့ကျင့်မှု စတင်!"
     },
@@ -196,6 +230,8 @@
       "es": "Pasos firmes y seguros",
       "zh": "稳步前行",
       "id": "Langkah yang Mantap",
+      "ko": "한 걸음 한 걸음 확실하게",
+      "ne": "पाइला पाइला पक्का गर्दै",
       "tr": "Emin adımlarla ilerleme",
       "my": "တည်ငြိမ်သော ခြေလှမ်းများ"
     },
@@ -207,6 +243,8 @@
       "es": "1.º grado: ¡comienza el ensayo de la presentación de grado!",
       "zh": "一年级：年级表演练习启动！",
       "id": "Kelas 1: Latihan Pertunjukan Tingkat Dimulai!",
+      "ko": "1학년 학년 퍼포먼스 연습 시작!",
+      "ne": "कक्षा 1 को सामूहिक प्रस्तुति अभ्यास सुरु!",
       "tr": "1. sınıf: Sınıf gösterisi provaları başladı!",
       "my": "ပထမတန်း - အတန်းအကပွဲ လေ့ကျင့်ခန်း စတင်ပြီ!"
     },
@@ -218,6 +256,8 @@
       "es": "1.º grado: Artes - \"Usando pinturas\"",
       "zh": "一年级 图工课「使用颜料」",
       "id": "Kelas 1: Seni - \"Menggunakan Cat\"",
+      "ko": "1학년 미술 「물감을 사용해서」",
+      "ne": "कक्षा 1 कला “रङ प्रयोग गरेर”",
       "tr": "1. Sınıf Sanat: \"Boya Kullanmak\"",
       "my": "တန်း ၁ - အနုပညာလက်မှုပညာ - \"ဆေးရောင်သုံးခြင်း\""
     },
@@ -229,6 +269,8 @@
       "es": "2.º grado Educación Física: Ensayo del festival deportivo",
       "zh": "二年级 体育课 运动会练习",
       "id": "Kelas 2 Olahraga: Latihan Festival Olahraga",
+      "ko": "2학년 체육 운동회 연습",
+      "ne": "कक्षा 2 शारीरिक शिक्षा: खेलकुद दिवसको अभ्यास",
       "tr": "2. Sınıf Beden Eğitimi: Spor Günü Provası",
       "my": "တန်း ၂ - ကာယပညာ အားကစားပွဲကျင့်ခန်း"
     },
@@ -240,6 +282,8 @@
       "es": "6.º grado: Música",
       "zh": "六年级 音乐",
       "id": "Kelas 6: Musik",
+      "ko": "6학년 음악",
+      "ne": "कक्षा 6 सङ्गीत",
       "tr": "6. Sınıf Müzik",
       "my": "တန်း ၆ - ဂီတ"
     },
@@ -251,6 +295,8 @@
       "es": "1.º grado: práctica de juegos de grado",
       "zh": "一年级：年级竞技游戏练习",
       "id": "Kelas 1: Latihan Permainan Tingkat",
+      "ko": "1학년 학년 경기 연습",
+      "ne": "कक्षा 1 को सामूहिक खेल अभ्यास",
       "tr": "1. sınıf: Sınıf oyunları antrenmanı",
       "my": "ပထမတန်း - အတန်းပြိုင်ပွဲအားကစားလေ့ကျင့်ခန်း"
     },
@@ -262,6 +308,8 @@
       "es": "1.º: preparándose para los juegos por equipos del curso",
       "zh": "一年级 为年级竞技游戏做准备",
       "id": "Kelas 1: persiapan permainan beregu tingkat kelas",
+      "ko": "1학년 학년 경기를 앞두고",
+      "ne": "कक्षा 1 को सामूहिक खेलको तयारी",
       "tr": "1. sınıflar: sınıf takım oyunlarına hazırlık",
       "my": "ပထမနှစ် - အတန်းလိုက် အသင်းကစားပွဲအတွက် ပြင်ဆင်ခြင်း"
     },
@@ -273,6 +321,8 @@
       "es": "1.º: ¡terminaron los exámenes!",
       "zh": "一年级 考试结束！",
       "id": "Kelas 1: ujian selesai!",
+      "ko": "1학년 시험 종료!",
+      "ne": "कक्षा 1 को परीक्षा सकियो!",
       "tr": "1. sınıflar: sınavlar bitti!",
       "my": "ပထမနှစ် - စာမေးပွဲ ပြီးပါပြီ!"
     },
@@ -284,6 +334,8 @@
       "es": "Aula infantil después de clases \"Wakuwaku Kids\" n.º 8",
       "zh": "课后儿童教室「活力孩子」第8期",
       "id": "Kelas Anak Sepulang Sekolah \"Wakuwaku Kids\" #8",
+      "ko": "방과후 어린이 교실 와쿠와쿠코 ⑧",
+      "ne": "विद्यालयपछिको बाल कक्षा “वाकुवाकुक्को” ⑧",
       "tr": "Okul sonrası çocuk sınıfı \"Wakuwaku Kids\" #8",
       "my": "ကျောင်းပြီးနောက် ကလေးသင်တန်း Wakuwaku Kids အမှတ် ၈"
     },
@@ -295,6 +347,8 @@
       "es": "6.º grado Ciencias: Plantas y aire",
       "zh": "六年级理科：植物与空气",
       "id": "Kelas 6 IPA: Tumbuhan dan Udara",
+      "ko": "6학년 과학 식물과 공기",
+      "ne": "कक्षा 6 विज्ञान: बिरुवा र हावा",
       "tr": "6. sınıf Fen: Bitkiler ve Hava",
       "my": "ဆဌမတန်း သိပ္ပံ - အပင်များနှင့် လေ"
     },
@@ -306,6 +360,8 @@
       "es": "5.º curso: clase práctica de bienestar social",
       "zh": "五年级 福利实践课",
       "id": "Kelas 5: kelas praktik kesejahteraan sosial",
+      "ko": "5학년 복지 실천 교실",
+      "ne": "कक्षा 5 समाजसेवा अभ्यास कक्षा",
       "tr": "5. sınıf: uygulamalı sosyal yardım dersi",
       "my": "၅ တန်း - လူမှုဖူလုံရေး လက်တွေ့ သင်ခန်းစာ"
     },
@@ -317,6 +373,8 @@
       "es": "Cierra a fines del año fiscal 2026: un emotivo relevo de la antorcha — 16 estudiantes portan la antorcha en la secundaria Hikarigaoka de Komaki",
       "zh": "2026年度末闭校，感慨万千的圣火传递——小牧市光之丘初中16名学生传递火炬",
       "id": "Ditutup Akhir Tahun Fiskal 2026: Estafet Obor yang Mengharukan — 16 Siswa Membawa Obor di SMP Hikarigaoka, Komaki",
+      "ko": "2026년도 말 폐교, 감회 깊은 성화 봉송 — 고마키시 히카리가오카 중학교, 16명이 토치를 이어받다",
+      "ne": "2026 शैक्षिक वर्षको अन्त्यमा बन्द हुने, भावुक ज्योति दौड — कोमाकीको हिकारिगाओका निम्न मा.वि., 16 जनाले ज्योति हस्तान्तरण गरे",
       "tr": "2026 mali yılı sonunda kapanıyor: Duygusal meşale yarışı — Komaki'deki Hikarigaoka Ortaokulu'nda 16 öğrenci meşaleyi taşıdı",
       "my": "၂၀၂၆ ဘဏ္ဍာရေးနှစ်အကုန်တွင် ကျောင်းပိတ်တော့မည်၊ စိတ်လှုပ်ရှားဖွယ် လှုံ့ဆော်မီးတိုင်လွှဲပွဲ — Komaki မြို့ Hikarigaoka အလယ်တန်းကျောင်းမှ ကျောင်းသား ၁၆ ဦး တိုင်ကို လက်ဆင့်ကမ်းခဲ့ကြသည်"
     },
@@ -328,6 +386,8 @@
       "es": "Lluvias récord en la región de Tokai: 180 personas evacuadas temporalmente en Kasugai e inundaciones en Komaki e Inuyama",
       "zh": "东海地区遭遇创纪录暴雨：爱知县春日井市一度有180人避难，小牧市和犬山市出现浸水灾害",
       "id": "Hujan lebat rekor di wilayah Tokai: 180 orang sempat mengungsi di Kasugai, banjir di Komaki dan Inuyama",
+      "ko": "아이치현 가스가이시에서 한때 180명 대피, 고마키시와 이누야마시에서 침수 피해 — 도카이 지방의 기록적 폭우로",
+      "ne": "आइची प्रान्तको कासुगाइमा एक समय 180 जना विस्थापित, कोमाकी र इनुयामामा डुबान — तोकाइ क्षेत्रको रेकर्ड वर्षाले",
       "tr": "Tokai bölgesinde rekor yağış: Kasugai'de 180 kişi geçici olarak tahliye edildi, Komaki ve İnuyama'da su baskını",
       "my": "Tokai ဒေသ စံချိန်တင် မိုးသည်းထန်မှု - Kasugai တွင် လူ ၁၈၀ ယာယီ ရွှေ့ပြောင်း၊ Komaki နှင့် Inuyama တွင် ရေလွှမ်းမိုး"
     },
@@ -339,6 +399,8 @@
       "es": "\"Una sociedad en la que las madres no renuncien a sus sueños\": la matrona Kondo, de Komaki, ante el concurso Mrs. World",
       "zh": "“建设母亲不放弃梦想的社会”　小牧市助产师近藤女士谈参加世界太太大赛的抱负",
       "id": "\"Masyarakat tempat ibu tak melepas mimpinya\": bidan Komaki, Kondo, soal tekadnya di ajang Mrs. World",
+      "ko": "「어머니가 꿈을 포기하지 않는 사회를」 — 고마키시의 조산사 곤도 씨, 미시즈 세계대회를 앞두고 포부",
+      "ne": "“आमाहरूले सपना नछोड्ने समाज बनोस्” — कोमाकीकी सुँडेनी कोन्दोको मिसेस विश्व प्रतियोगिताअघि अठोट",
       "tr": "\"Annelerin hayallerinden vazgeçmediği bir toplum\": Komakili ebe Kondo'nun Mrs. World yarışması öncesi hedefleri",
       "my": "\"မိခင်များ အိပ်မက်ကို စွန့်လွှတ်စရာမလိုသော လူ့အဖွဲ့အစည်း\" - Komaki မှ သားဖွားဆရာမ Kondo ၏ Mrs. World ပြိုင်ပွဲ ရည်မှန်းချက်"
     },
@@ -350,6 +412,8 @@
       "es": "Campeones del mundo con un baile preciso: el equipo de Hirata, alumna de 6.º de Komaki",
       "zh": "以利落舞姿夺得世界冠军　小牧市小学六年级学生平田所在的队伍",
       "id": "Juara dunia lewat tarian yang tajam: tim tempat Hirata, siswa kelas 6 di Komaki, bergabung",
+      "ko": "절도 있는 댄스로 세계 챔피언 — 고마키시 초등학교 6학년 히라타 씨가 속한 팀",
+      "ne": "तेजिलो नृत्यबाट विश्व च्याम्पियन — कोमाकीका कक्षा 6 का हिरातासहितको टोली",
       "tr": "Keskin danslarıyla dünya şampiyonu: Komakili 6. sınıf öğrencisi Hirata'nın takımı",
       "my": "ထက်မြက်သော အကဖြင့် ကမ္ဘာ့ချန်ပီယံ - Komaki မှ ၆ တန်းကျောင်းသား Hirata ပါဝင်သော အဖွဲ့"
     },
@@ -361,6 +425,8 @@
       "es": "Que se conozcan los \"melocotones de Shinooka\": JA Owari Chuo y estudiantes de la Universidad Meijo se unen para crear la marca del melocotón de Komaki",
       "zh": "让“篠冈桃子”传开　JA尾张中央与名城大学学生联手，打造爱知小牧产桃子品牌",
       "id": "Sebarkan \"persik Shinooka\": JA Owari Chuo dan mahasiswa Universitas Meijo bekerja sama menjadikan persik Komaki merek",
+      "ko": "「시노오카의 복숭아」를 널리 — 아이치·고마키산 복숭아의 브랜드화를 목표로 JA 오와리추오와 메이조대 학생이 손잡다",
+      "ne": "“सिनोओकाको आरु” फैलियोस् — आइची–कोमाकीको आरुलाई ब्रान्ड बनाउन JA ओवारी चुओ र मेइजो विश्वविद्यालयका विद्यार्थी मिले",
       "tr": "\"Shinooka şeftalisi\" yayılsın: JA Owari Chuo ile Meijo Üniversitesi öğrencileri Komaki şeftalisini marka yapmak için el ele",
       "my": "\"Shinooka မက်မွန်သီး\" ပျံ့နှံ့ပါစေ - Komaki ထွက် မက်မွန်ကို အမှတ်တံဆိပ်ဖြစ်စေရန် JA Owari Chuo နှင့် Meijo တက္ကသိုလ် ကျောင်းသားများ ပူးပေါင်း"
     },
@@ -372,6 +438,8 @@
       "es": "Cautivado por el \"poder misterioso\" de la petanca, que conoció hace 30 años: la pasión de un hombre de Kasugai por difundirla",
       "zh": "被30年前邂逅的球类运动法式滚球的“神奇力量”吸引……春日井市男子热心推广",
       "id": "Terpikat \"kekuatan ajaib\" pétanque yang dikenalnya 30 tahun lalu: semangat seorang pria Kasugai memasyarakatkannya",
+      "ko": "30년 전에 만난 구기 페탕크의 「신기한 힘」에 매료되어… 가스가이시 남성이 보급에 열정",
+      "ne": "30 वर्षअघि भेटेको पेतान्क खेलको “अनौठो शक्ति”ले मोहित — कासुगाइका एक पुरुष यसको प्रचारमा लागिपरे",
       "tr": "30 yıl önce tanıştığı petank oyununun \"gizemli gücüne\" kapıldı: Kasugaili bir adamın yayma tutkusu",
       "my": "လွန်ခဲ့သော ၃၀ နှစ်က တွေ့ခဲ့သည့် pétanque ဘောလုံးကစားနည်း၏ \"ထူးဆန်းသော စွမ်းအား\" ကို စွဲလမ်းပြီး... Kasugai မှ အမျိုးသားတစ်ဦး ပျံ့နှံ့ရေးအတွက် စိတ်အားထက်သန်"
     },
@@ -383,6 +451,8 @@
       "es": "Con las dos manos, con suavidad… ¡melocotón cogido! 40 padres e hijos sonríen en una cosecha en Komaki, Aichi",
       "zh": "双手轻轻地……摘到桃子了！　爱知县小牧市举办采摘体验，40名亲子笑容满面",
       "id": "Pelan dengan kedua tangan… persik terpetik! 40 orang tua dan anak tersenyum dalam pengalaman panen di Komaki, Aichi",
+      "ko": "두 손으로 살며시… 복숭아를 땄다! — 아이치현 고마키시에서 수확 체험, 부모와 아이 40명이 웃음",
+      "ne": "दुवै हातले बिस्तारै… आरु टिपियो! — आइची प्रान्तको कोमाकीमा टिप्ने अनुभव, 40 अभिभावक र बालबालिका खुसी",
       "tr": "İki eliyle nazikçe… şeftali koptu! Aichi'nin Komaki kentinde toplama etkinliğinde 40 veli ve çocuk gülümsedi",
       "my": "လက်နှစ်ဖက်နဲ့ ညင်ညင်သာသာ... မက်မွန်သီး ခူးမိပြီ! Aichi ခရိုင် Komaki တွင် ရိတ်သိမ်းအတွေ့အကြုံ၊ မိဘနှင့် ကလေး ၄၀ ပြုံးပျော်"
     },
@@ -394,6 +464,8 @@
       "es": "El emblema escolar formado con personas para recordar el último año: foto aérea en la secundaria Hikarigaoka de Komaki antes de su cierre",
       "zh": "用人体排出校徽　留作最后一年的回忆　小牧光之丘中学在闭校前拍摄航拍照片",
       "id": "Lambang sekolah dari barisan orang untuk mengenang tahun terakhir: foto udara di SMP Hikarigaoka, Komaki, sebelum ditutup",
+      "ko": "사람으로 만든 교표, 마지막 해를 추억으로 — 고마키·히카리가오카 중, 폐교 전에 항공 사진",
+      "ne": "मानिस मिलेर बनाइएको विद्यालय प्रतीक, अन्तिम वर्षको सम्झना — कोमाकीको हिकारिगाओका निम्न मा.वि., बन्द हुनुअघि हवाई तस्बिर",
       "tr": "Son yılın anısına insanlarla oluşturulan okul amblemi: Komaki Hikarigaoka Ortaokulu'nda kapanmadan önce havadan fotoğraf",
       "my": "နောက်ဆုံးနှစ်ကို အမှတ်တရဖြစ်စေရန် လူများဖြင့် ဖွဲ့သော ကျောင်းတံဆိပ် - Komaki Hikarigaoka အလယ်တန်းကျောင်း ပိတ်သိမ်းမီ လေကြောင်းဓာတ်ပုံ"
     },
@@ -405,6 +477,8 @@
       "es": "Un plan de reorganización escolar que llegó \"sin previo aviso\" y padres cada vez más desconfiados: con la natalidad en descenso, ¿cómo lograr la aceptación?",
       "zh": "“晴天霹雳”般的学校重组计划草案，部分家长不信任感加深　少子化持续，如何达成共识",
       "id": "Rencana penataan ulang sekolah yang datang \"tiba-tiba\", sebagian orang tua makin tidak percaya: di tengah turunnya angka kelahiran, bagaimana jalan menuju kesepakatan?",
+      "ko": "「청천벽력」이었던 학교 재편 계획안, 불신을 키우는 학부모도 — 저출산은 진행, 납득에 이르는 길은",
+      "ne": "अचानक थाहा पाइएको विद्यालय पुनर्गठन योजना, अविश्वास बढाउने अभिभावक पनि — बालबालिका घट्दै, सहमतिको बाटो कहाँ",
       "tr": "\"Beklenmedik\" okul yeniden düzenleme planı, bazı velilerde güvensizlik artıyor: doğum oranı düşerken ikna olmanın yolu ne?",
       "my": "\"မမျှော်လင့်ဘဲ\" ပေါ်လာသော ကျောင်းပြန်လည်ဖွဲ့စည်းရေး အစီအစဉ်ကြမ်း၊ ယုံကြည်မှု ကျဆင်းလာသော မိဘများ - မွေးဖွားနှုန်း ကျဆင်းနေချိန်တွင် သဘောတူညီမှုဆီ လမ်းကြောင်း"
     },
@@ -416,6 +490,8 @@
       "es": "\"No sentimos cariño\": padres expresan inquietud por la reorganización de las escuelas de Shinooka en Komaki; el ayuntamiento incorporará opiniones al plan",
       "zh": "“感受不到关爱”家长表达不安　小牧市篠冈地区中小学重组，市方将把意见反映到计划草案中",
       "id": "\"Tidak terasa kepedulian\": orang tua cemas soal penataan ulang SD dan SMP Shinooka, Komaki; kota akan memasukkan pendapat ke rancangan rencana",
+      "ko": "「애정이 느껴지지 않는다」 학부모들의 불안의 목소리 — 고마키시 시노오카 지구 초·중학교 재편, 시는 의견을 계획안에 반영",
+      "ne": "“माया महसुस हुँदैन” — अभिभावकको चिन्ता, कोमाकी सिनोओका क्षेत्रको विद्यालय पुनर्गठन, नगरले राय योजनामा समेट्ने",
       "tr": "\"Hiç sevgi hissetmiyoruz\": Komaki Shinooka okul yeniden düzenlemesinde velilerden endişe; belediye görüşleri plan taslağına yansıtacak",
       "my": "\"ချစ်ခင်မှု မခံစားရ\" - Komaki မြို့ Shinooka ဒေသ မူလတန်းနှင့် အလယ်တန်း ပြန်လည်ဖွဲ့စည်းရေးအပေါ် မိဘများ စိုးရိမ်၊ မြို့တော်က ထင်မြင်ချက်များကို အစီအစဉ်ကြမ်းတွင် ထည့်သွင်းမည်"
     },
@@ -427,6 +503,8 @@
       "es": "El distrito de Shinooka, en Komaki, reorganizará 5 primarias y 3 secundarias en 2 y 2: plan del ayuntamiento que prevé a futuro una de cada",
       "zh": "小牧市篠冈地区将把5所小学和3所初中重组为各2所　市方提出计划草案，将来各合并为1所",
       "id": "Kawasan Shinooka, Komaki, akan menata ulang 5 SD dan 3 SMP menjadi 2 dan 2: rancangan rencana kota, kelak masing-masing 1",
+      "ko": "고마키시 시노오카 지구, 초등학교 5개교와 중학교 3개교 → 각 2개교로 재편 — 시가 계획안, 장래에는 각 1개교로",
+      "ne": "कोमाकीको सिनोओका क्षेत्र: 5 प्राथमिक र 3 निम्न मा.वि. → 2–2 मा पुनर्गठन — नगरको योजना, भविष्यमा 1–1 मा",
       "tr": "Komaki Shinooka bölgesinde 5 ilkokul ve 3 ortaokul 2'ye 2 olacak: belediyenin plan taslağı, ileride her birinden 1 okul",
       "my": "Komaki မြို့ Shinooka ဒေသ - မူလတန်း ၅ ကျောင်းနှင့် အလယ်တန်း ၃ ကျောင်းကို ၂ နှင့် ၂ အဖြစ် ပြန်လည်ဖွဲ့စည်းမည်၊ မြို့တော် အစီအစဉ်ကြမ်း၊ အနာဂတ်တွင် တစ်ကျောင်းစီ"
     },
@@ -438,6 +516,8 @@
       "es": "Consejo comunitario del distrito escolar de Ogi: concierto familiar",
       "zh": "小木小学校区地区协议会 家庭音乐会",
       "id": "Dewan komunitas distrik SD Ogi: konser keluarga",
+      "ko": "오기 초등학교구 지역 협의회 패밀리 콘서트",
+      "ne": "ओगी प्राथमिक विद्यालय क्षेत्र सामुदायिक परिषद् — पारिवारिक कन्सर्ट",
       "tr": "Ogi İlkokulu Bölge Konseyi: aile konseri",
       "my": "Ogi မူလတန်းကျောင်း နယ်မြေ ဒေသဆိုင်ရာ ကောင်စီ - မိသားစု ဂီတဖျော်ဖြေပွဲ"
     },
@@ -449,6 +529,8 @@
       "es": "Consejo comunitario del distrito escolar de Isshiki: fiesta de convivencia de Isshiki",
       "zh": "一色小学校区地区协议会 一色交流节",
       "id": "Dewan komunitas distrik SD Isshiki: festival kebersamaan Isshiki",
+      "ko": "잇시키 초등학교구 지역 협의회 잇시키 후레아이 축제",
+      "ne": "इस्सिकी प्राथमिक विद्यालय क्षेत्र सामुदायिक परिषद् — इस्सिकी भेटघाट मेला",
       "tr": "Isshiki İlkokulu Bölge Konseyi: Isshiki kaynaşma festivali",
       "my": "Isshiki မူလတန်းကျောင်း နယ်မြေ ဒေသဆိုင်ရာ ကောင်စီ - Isshiki ချစ်ကြည်ရေး ပွဲတော်"
     },
@@ -460,6 +542,8 @@
       "es": "11.º Festival de Música de Tokadai",
       "zh": "第11届桃花台音乐节",
       "id": "Festival Musik Tokadai ke-11",
+      "ko": "제11회 도카다이 음악 축제",
+      "ne": "11 औँ तोकादाइ सङ्गीत मेला",
       "tr": "11. Tokadai Müzik Festivali",
       "my": "၁၁ ကြိမ်မြောက် Tokadai ဂီတပွဲတော်"
     },
@@ -471,6 +555,8 @@
       "es": "Centro Cívico Este, auditorio",
       "zh": "东部市民中心 礼堂",
       "id": "Pusat Warga Timur, auditorium",
+      "ko": "동부 시민센터 강당",
+      "ne": "पूर्वी नागरिक केन्द्र सभाहल",
       "tr": "Doğu Halk Merkezi, konferans salonu",
       "my": "အရှေ့ပိုင်း မြို့သူမြို့သားစင်တာ၊ ခန်းမ"
     },
@@ -482,6 +568,8 @@
       "es": "¡Emoción para padres e hijos! Fábrica abierta",
       "zh": "亲子一起兴奋体验！开放工厂",
       "id": "Seru untuk orang tua dan anak! Pabrik terbuka",
+      "ko": "부모와 아이가 함께 두근두근! 오픈 팩토리",
+      "ne": "अभिभावक र बालबालिका मिलेर रमाइलो! खुला कारखाना",
       "tr": "Veli ve çocuklar için heyecan! Açık fabrika",
       "my": "မိဘနှင့် ကလေး စိတ်လှုပ်ရှားဖွယ်! စက်ရုံ ဖွင့်လှစ်ပြသပွဲ"
     },
@@ -493,6 +581,8 @@
       "es": "Shinooka RADIO",
       "zh": "篠冈RADIO",
       "id": "Shinooka RADIO",
+      "ko": "시노오카 RADIO",
+      "ne": "सिनोओका RADIO",
       "tr": "Shinooka RADIO",
       "my": "Shinooka RADIO"
     },
@@ -504,6 +594,8 @@
       "es": "Bricolaje que une a quienes crían hijos con las personas mayores",
       "zh": "连接育儿一代与老年人的DIY活动",
       "id": "DIY yang menghubungkan generasi pengasuh anak dan lansia",
+      "ko": "육아 세대와 고령자를 잇는 DIY",
+      "ne": "बालबच्चा हुर्काउने पुस्ता र ज्येष्ठ नागरिक जोड्ने DIY",
       "tr": "Çocuk yetiştiren kuşakla yaşlıları buluşturan DIY",
       "my": "ကလေးပြုစုနေသော မျိုးဆက်နှင့် သက်ကြီးရွယ်အိုများကို ချိတ်ဆက်သည့် DIY"
     },
@@ -515,6 +607,8 @@
       "es": "Fábrica abierta: Hokuto Corporation",
       "zh": "开放工厂：北斗株式会社",
       "id": "Pabrik Terbuka: Hokuto Corporation",
+      "ko": "오픈 팩토리 호쿠토 주식회사",
+      "ne": "खुला कारखाना — होकुतो कम्पनी",
       "tr": "Açık Fabrika: Hokuto Corporation",
       "my": "အိတ်ဖွင့်စက်ရုံ - Hokuto Corporation"
     },
@@ -526,6 +620,8 @@
       "es": "Fábrica abierta: Ace Bakery Co., Ltd., planta de Komaki",
       "zh": "开放工厂 株式会社Ace Bakery小牧工厂",
       "id": "Pabrik terbuka: Ace Bakery Co., Ltd. pabrik Komaki",
+      "ko": "오픈 팩토리 주식회사 에이스 베이커리 고마키 공장",
+      "ne": "खुला कारखाना — एस बेकरी कम्पनीको कोमाकी कारखाना",
       "tr": "Açık fabrika: Ace Bakery Co., Ltd. Komaki fabrikası",
       "my": "စက်ရုံ ဖွင့်လှစ်ပြသပွဲ - Ace Bakery ကုမ္ပဏီ Komaki စက်ရုံ"
     },
@@ -537,6 +633,8 @@
       "es": "Proyecto Nazo-Tokimeki: redescubrir el encanto de la zona este",
       "zh": "解谜心动项目～重新发现东部地区的魅力～",
       "id": "Proyek Nazo-Tokimeki: menemukan kembali pesona wilayah timur",
+      "ko": "수수께끼 풀이 메키 프로젝트 ~동부 지역의 매력을 재발견~",
+      "ne": "रहस्य समाधान “मेकी” परियोजना ~पूर्वी क्षेत्रको आकर्षण पुनः पत्ता लगाउने~",
       "tr": "Nazo-Tokimeki Projesi: doğu bölgesinin cazibesini yeniden keşfetmek",
       "my": "Nazo-Tokimeki စီမံကိန်း - အရှေ့ပိုင်းဒေသ၏ ဆွဲဆောင်မှုကို ပြန်လည် ရှာဖွေခြင်း"
     },
@@ -548,6 +646,8 @@
       "es": "Resultados del estudio de aguas subterráneas en la zona de Shiroyama, en Tokadai, y otras",
       "zh": "关于桃花台城山地区等的地下水调查结果",
       "id": "Hasil survei air tanah di area Shiroyama, Tokadai, dan sekitarnya",
+      "ko": "도카다이 시로야마 지구 등의 지하수 조사 결과에 대해",
+      "ne": "तोकादाइ र सिरोयामा क्षेत्रको भूमिगत पानी अध्ययनको नतिजाबारे",
       "tr": "Tokadai Shiroyama bölgesi ve diğer yerlerde yeraltı suyu araştırmasının sonuçları",
       "my": "Tokadai Shiroyama ဒေသ စသည်တို့တွင် မြေအောက်ရေ စစ်တမ်း ရလဒ်များ"
     },
@@ -559,6 +659,8 @@
       "es": "Mercado al aire libre Aozora y Proyecto Nazo-Tokimeki",
       "zh": "蓝天集市・解谜心动项目",
       "id": "Pasar terbuka Aozora dan Proyek Nazo-Tokimeki",
+      "ko": "아오조라 마켓·수수께끼 풀이 메키 프로젝트",
+      "ne": "आओजोरा बजार र रहस्य समाधान “मेकी” परियोजना",
       "tr": "Aozora açık hava pazarı ve Nazo-Tokimeki Projesi",
       "my": "Aozora ပြင်ပဈေး နှင့် Nazo-Tokimeki စီမံကိန်း"
     },
@@ -570,6 +672,8 @@
       "es": "Puesto en el 40.º Festival de Tokadai",
       "zh": "参展第40届桃花台节",
       "id": "Stan di Festival Tokadai ke-40",
+      "ko": "제40회 도카다이 축제 출전",
+      "ne": "40 औँ तोकादाइ मेलामा सहभागिता",
       "tr": "40. Tokadai Festivali'nde stant",
       "my": "၄၀ ကြိမ်မြောက် Tokadai ပွဲတော်တွင် ပြသခြင်း"
     },
@@ -581,6 +685,8 @@
       "es": "Gracias, primaria Oshiro",
       "zh": "谢谢你，大城小学",
       "id": "Terima kasih, SD Oshiro",
+      "ko": "고마워요 오시로 초등학교",
+      "ne": "धन्यवाद ओसिरो प्राथमिक विद्यालय",
       "tr": "Teşekkürler, Oshiro İlkokulu",
       "my": "ကျေးဇူးတင်ပါတယ် Oshiro မူလတန်းကျောင်း"
     },
@@ -592,6 +698,8 @@
       "es": "Intercambio del nuevo distrito escolar: festival de música",
       "zh": "新学区交流 音乐节",
       "id": "Pertukaran distrik sekolah baru: festival musik",
+      "ko": "새 학교구 교류 음악 축제",
+      "ne": "नयाँ विद्यालय क्षेत्र भेटघाट सङ्गीत महोत्सव",
       "tr": "Yeni okul bölgesi buluşması: müzik festivali",
       "my": "ကျောင်းနယ်မြေသစ် ဖလှယ်ပွဲ - ဂီတပွဲတော်"
     }
