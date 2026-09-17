@@ -33,7 +33,7 @@ data/official_pages/newsletters/  『篠岡地区学校再編だより』各号�
 data/official_pages/setsumeikai/  保護者等説明会（令和8年6月・6会場）の質疑応答と、意見提出シートの質問と回答・意見と提案のPDF本文（自動生成・手編集不可）。
 data/official_pages/pubcom/       パブリックコメント（令和7年11〜12月・55件）の意見と市の考え方、実施結果概要、計画修正案のPDF本文（自動生成・手編集不可）。
 data/official_pages/gikai/        こまき市議会だよりのPDF本文（自動生成・手編集不可）。紙面が画像のため本文テキストは取り出せず、その旨が記録される。
-data/events.json            カレンダーイベントデータ（日付キー＋10言語ラベル）。schedule.htmlのカレンダーが実行時にfetchして描画。イベントの追加・変更はこのファイルを編集する。
+data/events.json            カレンダーイベントデータ（日付キー＋12言語ラベル）。schedule.htmlのカレンダーが実行時にfetchして描画。イベントの追加・変更はこのファイルを編集する。
 data/site-facts.json        公式ページのスラッグとサイト内反映箇所の対応表（手動管理）。更新検知Issueに「更新候補箇所」を載せるために使用。
 data/school_news.json       再編対象8校の公式ホームページ新着記事（自動生成・手編集不可）。トップページのコーナーが実行時にfetchして描画。
 data/community_events.json  地域協議会イベント案内（自動生成・手編集不可）。community.htmlのコーナーが実行時にfetchして描画。
@@ -77,7 +77,7 @@ data/i18n/pages/            各ページが実際に使うキーだけを切り�
 
 ■ 検索エンジン向け
 robots.txt                  クローラ向けの許可設定とサイトマップの所在。全ページ許可。
-sitemap.xml                 全10ページのサイトマップ。各URLに10言語＋x-defaultのhreflang相互参照を付与。
+sitemap.xml                 全11ページのサイトマップ。各URLに12言語＋x-defaultのhreflang相互参照を付与。
                             手動管理のため、ページを追加・削除したらここも更新すること。
 
 ■ GitHub Actions
