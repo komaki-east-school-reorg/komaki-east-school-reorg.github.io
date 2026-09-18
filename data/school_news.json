@@ -1,8 +1,66 @@
 {
-  "fetched_at": "2026-09-17T00:41:58Z",
+  "fetched_at": "2026-09-18T00:30:35Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "shinooka-e",
+      "level": "elem",
+      "names": {
+        "ja": "篠岡小学校",
+        "ja_kids": "しのおか小学校",
+        "en": "Shinooka Elem. School",
+        "zh": "篠冈小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
+      "latest_date": "2026-09-18",
+      "items": [
+        {
+          "title": "9月17日の読み聞かせは",
+          "date": "2026-09-18",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136125489?tm=20260918075905"
+        },
+        {
+          "title": "理科：花から実へ",
+          "date": "2026-09-16",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136109516?tm=20260916122011"
+        },
+        {
+          "title": "放課の様子",
+          "date": "2026-09-14",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136091212?tm=20260914104846"
+        }
+      ]
+    },
+    {
+      "slug": "hikarigaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "光ヶ丘小学校",
+        "ja_kids": "ひかりがおか小学校",
+        "en": "Hikarigaoka Elem. School",
+        "zh": "光之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
+      "latest_date": "2026-09-18",
+      "items": [
+        {
+          "title": "4年生 音楽",
+          "date": "2026-09-18",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136120399?tm=20260917141140"
+        },
+        {
+          "title": "６年生 英語",
+          "date": "2026-09-18",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136119034?tm=20260917125103"
+        },
+        {
+          "title": "1年生 図工「絵の具をつかって」",
+          "date": "2026-09-16",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136107255?tm=20260916154227"
+        }
+      ]
+    },
     {
       "slug": "sue-e",
       "level": "elem",
@@ -13,22 +71,51 @@
         "zh": "陶小学"
       },
       "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-09-16",
+      "latest_date": "2026-09-17",
       "items": [
+        {
+          "title": "9/17 今日の給食",
+          "date": "2026-09-17",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136119757?tm=20260917133721"
+        },
+        {
+          "title": "9/17 家庭科：ナップサック作り（６年生）",
+          "date": "2026-09-17",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136123358?tm=20260917171550"
+        },
         {
           "title": "9/16 今日の給食",
           "date": "2026-09-16",
           "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136113546?tm=20260916165744"
+        }
+      ]
+    },
+    {
+      "slug": "ohshiro-e",
+      "level": "elem",
+      "names": {
+        "ja": "大城小学校",
+        "ja_kids": "おおしろ小学校",
+        "en": "Oshiro Elem. School",
+        "zh": "大城小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
+      "latest_date": "2026-09-17",
+      "items": [
+        {
+          "title": "４年生 図工競技会に向けて",
+          "date": "2026-09-17",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136109515?tm=20260916122005"
         },
         {
-          "title": "9/16 国語：お手紙（２年生）",
-          "date": "2026-09-16",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136113165?tm=20260916163511"
+          "title": "２年生 国語 「身の回りのものを読もう」",
+          "date": "2026-09-17",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136104076?tm=20260915163638"
         },
         {
-          "title": "9/16 読み聞かせ（１～３年生）",
-          "date": "2026-09-16",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136112280?tm=20260916153205"
+          "title": "２年生 生活 「うごく うごく わたしのおもちゃ」",
+          "date": "2026-09-17",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136104310?tm=20260915163536"
         }
       ]
     },
@@ -58,35 +145,6 @@
           "title": "２年生 学級運営種目&パフォーマンス練習",
           "date": "2026-09-11",
           "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136087169?tm=20260911183531"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-e",
-      "level": "elem",
-      "names": {
-        "ja": "篠岡小学校",
-        "ja_kids": "しのおか小学校",
-        "en": "Shinooka Elem. School",
-        "zh": "篠冈小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
-      "latest_date": "2026-09-16",
-      "items": [
-        {
-          "title": "理科：花から実へ",
-          "date": "2026-09-16",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136109516?tm=20260916122011"
-        },
-        {
-          "title": "放課の様子",
-          "date": "2026-09-14",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136091212?tm=20260914104846"
-        },
-        {
-          "title": "家庭科：ナップサック作り",
-          "date": "2026-09-14",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136090834?tm=20260914101510"
         }
       ]
     },
@@ -149,35 +207,6 @@
       ]
     },
     {
-      "slug": "hikarigaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "光ヶ丘小学校",
-        "ja_kids": "ひかりがおか小学校",
-        "en": "Hikarigaoka Elem. School",
-        "zh": "光之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
-      "latest_date": "2026-09-16",
-      "items": [
-        {
-          "title": "1年生 図工「絵の具をつかって」",
-          "date": "2026-09-16",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136107255?tm=20260916154227"
-        },
-        {
-          "title": "２年生 体育 運動会練習",
-          "date": "2026-09-16",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136107894?tm=20260916154016"
-        },
-        {
-          "title": "６年生 音楽",
-          "date": "2026-09-16",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136110563?tm=20260916133410"
-        }
-      ]
-    },
-    {
       "slug": "toryo-j",
       "level": "jhs",
       "names": {
@@ -203,35 +232,6 @@
           "title": "1年生 テスト終了！",
           "date": "2026-09-11",
           "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136080775?tm=20260911113121"
-        }
-      ]
-    },
-    {
-      "slug": "ohshiro-e",
-      "level": "elem",
-      "names": {
-        "ja": "大城小学校",
-        "ja_kids": "おおしろ小学校",
-        "en": "Oshiro Elem. School",
-        "zh": "大城小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
-      "latest_date": "2026-09-14",
-      "items": [
-        {
-          "title": "放課後子ども教室わくわくっ子⑧",
-          "date": "2026-09-14",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136092440?tm=20260914121726"
-        },
-        {
-          "title": "6年理科 植物と空気",
-          "date": "2026-09-14",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136090477?tm=20260914095117"
-        },
-        {
-          "title": "5年 福祉実践教室",
-          "date": "2026-09-14",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136084823?tm=20260914091946"
         }
       ]
     }
