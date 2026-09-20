@@ -1,8 +1,37 @@
 {
-  "fetched_at": "2026-09-19T00:30:23Z",
+  "fetched_at": "2026-09-20T00:23:34Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "momogaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "桃ヶ丘小学校",
+        "ja_kids": "ももがおか小学校",
+        "en": "Momogaoka Elem. School",
+        "zh": "桃之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
+      "latest_date": "2026-09-19",
+      "items": [
+        {
+          "title": "ピーチフェスタ ～プログラミング～",
+          "date": "2026-09-19",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136135457?tm=20260919154450"
+        },
+        {
+          "title": "ピーチフェスタ：カローリング",
+          "date": "2026-09-19",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136135414?tm=20260919151619"
+        },
+        {
+          "title": "ピーチフェスタ ～スライム～",
+          "date": "2026-09-19",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136135397?tm=20260919151410"
+        }
+      ]
+    },
     {
       "slug": "toryo-j",
       "level": "jhs",
@@ -87,35 +116,6 @@
           "title": "9月17日の読み聞かせは",
           "date": "2026-09-18",
           "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136125489?tm=20260918075905"
-        }
-      ]
-    },
-    {
-      "slug": "momogaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "桃ヶ丘小学校",
-        "ja_kids": "ももがおか小学校",
-        "en": "Momogaoka Elem. School",
-        "zh": "桃之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
-      "latest_date": "2026-09-18",
-      "items": [
-        {
-          "title": "明日は授業参観、ピーチフェスタ!!",
-          "date": "2026-09-18",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136126814?tm=20260918103855"
-        },
-        {
-          "title": "本番の歌声をお楽しみに!!",
-          "date": "2026-09-16",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136114526?tm=20260916182230"
-        },
-        {
-          "title": "６年：書写・算数の授業",
-          "date": "2026-09-15",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136103788?tm=20260915155358"
         }
       ]
     },
