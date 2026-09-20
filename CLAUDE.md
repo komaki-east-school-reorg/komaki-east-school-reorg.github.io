@@ -87,6 +87,13 @@ Those files are **generated**: run `python3 .github/scripts/build_page_dicts.py`
 
 Keys that `main.js` attaches at runtime (`status_done`, `event_status_*`) never appear in the HTML, so they are listed in `RUNTIME_KEYS` in the generator and force-included in every page.
 
+**トップのカードに出す「このページの内容」（2026-09-20 ユーザー指示）。** `index.html` の「各ページへのリンク」の各カードには、そのページの**節見出しを5つまで並べた1行**が入る（`.card-outline`、ラベルは `ql_outline_label`）。中身は手書きではなく、`build_page_dicts.py` が各ページの `main h2.section-title` から組み立てて **`ql_<ページID>_outline`** として `data/i18n/pages/index.<lang>.json` にだけ入れ、あわせて `index.html` に書いてある既定の日本語（辞書が 404 のときに出る文字列）も書き換える。
+
+- **各ページの見出しキーをそのまま流用する**ので、新しい翻訳を書く必要がない。見出しを足す・直す・並べ替えると、生成し直すだけでトップの表示も追従する。
+- 区切りは日本語・中国語が `・`、ほかは ` / `。5つを超えるページは末尾に `…` を付ける（語を足すと翻訳が要るため、記号にしてある）。
+- `ql_<ページID>_outline` は **`data/i18n/*.json` には存在しない合成キー**。`check 3`（ja ⇔ en のキー集合一致）は master 辞書だけを見るので影響しない。`check 5` は生成し直して比較するため、見出しを変えて生成を忘れると `index.html` の既定値も含めて不合格になる。
+- **カードに手で要約を書き足さないこと。** 本文（`ql_*_p`）が「このページは何か」、この行が「いま何が載っているか」で、役割が違う。
+
 **`ja.json` is deliberately not fetched for non-Japanese languages.** It used to be the first of three layers, but `ja` and `en` carry identical key sets, so the `en` layer overwrote every one of its keys — the `ja` layer contributed zero keys to the merged dictionary while costing ~23 KB gzip on every page view, on the critical render path (`body` stays hidden until `.i18n-ready`). If a key were ever missing from `en`, the element simply keeps the Japanese default text already written inline in the HTML, which is the same thing the `ja` layer would have supplied. `check 3` in `.github/scripts/auto_gates.py` machine-verifies the `ja` ⇔ `en` key-set equality this relies on — **do not remove that gate.**
 
 There is also `data/i18n/ja-kids.json`: when the kids-mode toggle is active (Japanese only), it is fetched and merged on top of `ja.json` (`Object.assign({}, ja_dict, kids_dict)`), overriding keys with simpler hiragana/easy-Japanese text.

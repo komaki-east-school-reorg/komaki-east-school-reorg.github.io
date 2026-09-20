@@ -113,6 +113,7 @@
   "ql_nationwide_h": "Tình hình toàn quốc",
   "ql_nationwide_link": "Xem tình hình toàn quốc →",
   "ql_nationwide_p": "Việc sáp nhập trường học vẫn tiếp diễn trên cả nước Nhật. Trang này tổng hợp số liệu của Bộ Giáo dục và bản hướng dẫn quốc gia sửa đổi tháng 8/2026, lần đầu sau mười năm.",
+  "ql_outline_label": "Nội dung trang này",
   "ql_review_h": "Phân tích & đề xuất",
   "ql_review_link": "Xem phân tích và đề xuất →",
   "ql_review_p": "Những gì tài liệu công bố cho thấy và không cho thấy, cùng các phương án để tăng số trẻ em trong khu vực. Bao gồm phần phân tích của trang này.",
@@ -190,5 +191,15 @@
   "upcoming_label": "📅 Lịch sắp tới",
   "upcoming_more": "Chi tiết →",
   "upcoming_name10": "Hạn nộp đơn xe buýt trường",
-  "upcoming_name8": "Bắt đầu Tái tổ chức Giai đoạn 1"
+  "upcoming_name8": "Bắt đầu Tái tổ chức Giai đoạn 1",
+  "ql_about_outline": "Tại sao Cần Tái cơ cấu Ngay Bây giờ? / Lợi Ích Kỳ Vọng từ Tái Cơ Cấu / Kế hoạch Tái cơ cấu Giai đoạn 1 / Vị trí Trường học / Kế hoạch Đi học…",
+  "ql_bus_outline": "Điểm Chính / Tổng quan Dịch vụ / Khu vực Phục vụ / Cách nộp đơn / Điểm dừng…",
+  "ql_community_outline": "Hội đồng Cộng đồng / Trường học &amp; Hội đồng Cộng đồng / Thay đổi Sau Tái cơ cấu / Câu hỏi Thường gặp / Những điều thường được nói về hội đồng cộng đồng…",
+  "ql_council_outline": "Kỳ họp tháng 3 năm 2026 / Kỳ họp tháng 6 năm 2026 / Cách gửi ý kiến tới hội đồng / Liên hệ về hội đồng thành phố",
+  "ql_faq_outline": "Về Kế hoạch Tái cơ cấu / Đi lại &amp; Cuộc sống Hàng ngày / Cộng đồng &amp; Cơ sở vật chất / Ý kiến &amp; Tham gia",
+  "ql_map_outline": "Bản đồ Tổng quan Khu vực / Vị trí Trường học Hiện tại / Vị trí Trường học Mới / Khu vực trường và vùng xe buýt đưa đón",
+  "ql_nationwide_outline": "Cả nước qua các con số / Tiêu chuẩn nhà nước đưa ra / Tháng 8/2026: hướng dẫn quốc gia được sửa đổi sau mười năm / Quy mô trường và số học sinh cả nước / Hình thức trường liên cấp…",
+  "ql_review_outline": "Những con số làm nền cho phân tích này / 🔎 Phân tích: những điều kế hoạch không nói / 📊 Kiểm chứng: các chính sách trước đây có đến được phía đông không? / 🗾 Kiểm chứng: tỉnh và nhà nước đã làm gì / 🏛 Ai quyết định, và thành phố quyết định được đến đâu…",
+  "ql_schedule_outline": "Tổng quan các Giai đoạn Kế hoạch / Lịch theo Tháng / Các Sự kiện Chính (Thông tin Chính thức) / Thông báo chính thức của thành phố",
+  "ql_voices_outline": "Ý kiến ủng hộ, phản đối và trung lập / Ý kiến công chúng đã nói gì"
 }

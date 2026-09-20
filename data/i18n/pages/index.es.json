@@ -113,6 +113,7 @@
   "ql_nationwide_h": "Panorama nacional",
   "ql_nationwide_link": "Ver el panorama nacional →",
   "ql_nationwide_p": "La fusión de escuelas continúa en todo Japón. Reunimos las estadísticas del MEXT y la guía nacional revisada en agosto de 2026, la primera en diez años.",
+  "ql_outline_label": "Qué hay en esta página",
   "ql_review_h": "Análisis y propuestas",
   "ql_review_link": "Ver el análisis y las propuestas →",
   "ql_review_p": "Lo que los documentos publicados muestran y lo que no, y qué haría falta para aumentar el número de niños en el distrito. Incluye el análisis de este sitio.",
@@ -190,5 +191,15 @@
   "upcoming_label": "📅 Próximos Eventos",
   "upcoming_more": "Detalles →",
   "upcoming_name10": "Plazo de solicitud del bus escolar",
-  "upcoming_name8": "Inicio de la Reorganización Fase 1"
+  "upcoming_name8": "Inicio de la Reorganización Fase 1",
+  "ql_about_outline": "¿Por qué se necesita la reorganización ahora? / Beneficios Esperados de la Reorganización / Plan de Reorganización Fase 1 / Ubicación de las Escuelas / Plan de Transporte Escolar…",
+  "ql_bus_outline": "Puntos Clave / Descripción del Servicio / Área de Servicio / Cómo solicitar / Paradas…",
+  "ql_community_outline": "Consejos Comunitarios / Escuelas &amp; Consejos Comunitarios / Cambios Tras la Reorganización / Preguntas Frecuentes / Lo que suele decirse sobre los consejos comunitarios…",
+  "ql_council_outline": "Pleno de marzo de 2026 / Pleno de junio de 2026 / Cómo participar / Contactos sobre el pleno municipal",
+  "ql_faq_outline": "Sobre el Plan de Reorganización / Transporte y Vida Cotidiana / Comunidad e Instalaciones / Opiniones y Participación",
+  "ql_map_outline": "Mapa General del Área / Ubicación de las Escuelas Actuales / Ubicación de las Nuevas Escuelas / Zonas escolares y zona del bus escolar",
+  "ql_nationwide_outline": "El país en cifras / Lo que dicen los parámetros nacionales / Agosto de 2026: la guía nacional se revisa tras diez años / Tamaño de las escuelas y número de alumnos en el país / La opción de la escuela integrada…",
+  "ql_review_outline": "Las cifras en las que se apoya este análisis / 🔎 Análisis: lo que el plan no dice / 📊 Verificación: ¿llegaron las políticas pasadas al este? / 🗾 Verificación: qué han hecho la prefectura y el Estado / 🏛 Quién decide y hasta dónde llegan las competencias municipales…",
+  "ql_schedule_outline": "Fases Generales del Plan / Calendario Mensual / Eventos Principales (Información Oficial) / Anuncios Oficiales de la Ciudad",
+  "ql_voices_outline": "Voces a favor, en contra y neutrales / Qué dijeron los comentarios públicos"
 }

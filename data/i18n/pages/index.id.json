@@ -113,6 +113,7 @@
   "ql_nationwide_h": "Gambaran nasional",
   "ql_nationwide_link": "Lihat gambaran nasional →",
   "ql_nationwide_p": "Penggabungan sekolah terus berlangsung di seluruh Jepang. Halaman ini merangkum statistik MEXT dan pedoman nasional yang direvisi pada Agustus 2026, revisi pertama dalam sepuluh tahun.",
+  "ql_outline_label": "Isi halaman ini",
   "ql_review_h": "Telaah & usulan",
   "ql_review_link": "Lihat telaah dan usulan →",
   "ql_review_p": "Apa yang ditunjukkan dan tidak ditunjukkan oleh dokumen resmi, serta langkah apa yang bisa menambah jumlah anak di distrik ini. Memuat telaah dari situs ini sendiri.",
@@ -190,5 +191,15 @@
   "upcoming_label": "📅 Acara Mendatang",
   "upcoming_more": "Detail →",
   "upcoming_name10": "Batas akhir pendaftaran bus sekolah",
-  "upcoming_name8": "Reorganisasi Tahap 1 Dimulai"
+  "upcoming_name8": "Reorganisasi Tahap 1 Dimulai",
+  "ql_about_outline": "Mengapa Reorganisasi Diperlukan Sekarang? / Manfaat yang Diharapkan dari Reorganisasi / Rencana Reorganisasi Tahap 1 / Lokasi Sekolah / Rencana Perjalanan Sekolah…",
+  "ql_bus_outline": "Poin Utama / Gambaran Umum Layanan / Area Layanan / Cara mendaftar / Halte bus…",
+  "ql_community_outline": "Dewan Komunitas / Sekolah &amp; Dewan Komunitas / Perubahan Setelah Reorganisasi / Pertanyaan Umum / Hal yang umum dikatakan tentang dewan komunitas…",
+  "ql_council_outline": "Sidang Maret 2026 / Sidang Juni 2026 / Cara menyampaikan pendapat ke DPRD / Kontak tentang DPRD kota",
+  "ql_faq_outline": "Tentang Rencana Reorganisasi / Perjalanan Sekolah &amp; Kehidupan Sehari-hari / Komunitas &amp; Fasilitas / Pendapat &amp; Partisipasi",
+  "ql_map_outline": "Peta Gambaran Umum Wilayah / Lokasi Sekolah Saat Ini / Lokasi Sekolah Baru / Wilayah sekolah dan area bus sekolah",
+  "ql_nationwide_outline": "Angka-angka nasional / Standar yang ditetapkan pemerintah pusat / Agustus 2026: pedoman nasional direvisi setelah sepuluh tahun / Ukuran sekolah dan jumlah anak secara nasional / Pilihan sekolah terpadu SD–SMP…",
+  "ql_review_outline": "Angka yang menjadi dasar telaah ini / 🔎 Telaah: yang tidak dijelaskan rencana ini / 📊 Telaah: apakah kebijakan masa lalu sampai ke wilayah timur? / 🗾 Telaah: apa yang telah dilakukan prefektur dan negara / 🏛 Siapa yang memutuskan, dan sejauh mana kewenangan kota…",
+  "ql_schedule_outline": "Fase-Fase Rencana Keseluruhan / Kalender Bulanan / Acara Utama (Informasi Resmi) / Pengumuman Resmi Kota",
+  "ql_voices_outline": "Suara setuju, menolak, dan netral / Apa yang disampaikan komentar publik"
 }

@@ -113,6 +113,7 @@
   "ql_nationwide_h": "Sitwasyon sa buong bansa",
   "ql_nationwide_link": "Tingnan ang sitwasyon sa buong bansa →",
   "ql_nationwide_p": "Nagpapatuloy ang pagsasanib ng mga paaralan sa buong Japan. Narito ang estadistika ng MEXT at ang pambansang gabay na binago noong Agosto 2026, ang una sa loob ng sampung taon.",
+  "ql_outline_label": "Nilalaman ng pahinang ito",
   "ql_review_h": "Pagsusuri at mungkahi",
   "ql_review_link": "Tingnan ang pagsusuri at mga mungkahi →",
   "ql_review_p": "Kung ano ang ipinapakita at hindi ipinapakita ng mga inilathalang dokumento, at kung ano ang kailangan upang dumami ang mga bata sa distrito. Kasama ang sariling pagsusuri ng site na ito.",
@@ -190,5 +191,15 @@
   "upcoming_label": "📅 Mga Darating na Kaganapan",
   "upcoming_more": "Mga Detalye →",
   "upcoming_name10": "Huling araw ng aplikasyon ng school bus",
-  "upcoming_name8": "Simula ng Muling Pagsasaayos Bahagi 1"
+  "upcoming_name8": "Simula ng Muling Pagsasaayos Bahagi 1",
+  "ql_about_outline": "Bakit Kailangan ang Muling Pagsasaayos Ngayon? / Mga Inaasahang Benepisyo ng Muling Pagsasaayos / Plano ng Muling Pagsasaayos Yugto 1 / Lokasyon ng mga Paaralan / Plano ng Pagbiyahe…",
+  "ql_bus_outline": "Mga Pangunahing Punto / Pangkalahatang Ideya ng Serbisyo / Lugar ng Serbisyo / Paano mag-apply / Mga hintuan…",
+  "ql_community_outline": "Mga Konseho ng Komunidad / Mga Paaralan &amp; Konseho ng Komunidad / Mga Pagbabago Pagkatapos ng Muling Pagsasaayos / Mga Madalas Itanong / Ang karaniwang sinasabi tungkol sa community council…",
+  "ql_council_outline": "Sesyon ng Marso 2026 / Sesyon ng Hunyo 2026 / Paano makilahok / Mga kontak tungkol sa konseho ng lungsod",
+  "ql_faq_outline": "Tungkol sa Plano ng Muling Pagsasaayos / Transportasyon at Pang-araw-araw na Buhay / Komunidad at mga Pasilidad / Mga Opinyon at Pakikilahok",
+  "ql_map_outline": "Mapa ng Pangkalahatang-ideya ng Lugar / Lokasyon ng mga Kasalukuyang Paaralan / Lokasyon ng mga Bagong Paaralan / Mga school district at saklaw ng school bus",
+  "ql_nationwide_outline": "Ang bansa sa mga numero / Ano ang sinasabi ng pambansang pamantayan / Agosto 2026: binago ang pambansang gabay matapos ang sampung taon / Laki ng paaralan at bilang ng bata sa buong bansa / Ang pinagsamang elementarya at junior high…",
+  "ql_review_outline": "Ang mga numerong pinagbabatayan ng pagsusuring ito / 🔎 Pagsusuri: ang hindi sinasabi ng plano / 📊 Pagsusuri: nakarating ba sa silangan ang mga dating patakaran? / 🗾 Pagsusuri: ano ang ginawa ng prepektura at ng pamahalaang pambansa / 🏛 Sino ang nagpapasya, at hanggang saan ang kaya ng lungsod…",
+  "ql_schedule_outline": "Pangkalahatang mga Yugto ng Plano / Buwanang Kalendaryo / Mga Pangunahing Kaganapan (Opisyal na Impormasyon) / Mga Opisyal na Anunsyo ng Lungsod",
+  "ql_voices_outline": "Mga tinig na pabor, laban at neutral / Ang sinabi ng mga public comment"
 }

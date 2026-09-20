@@ -113,6 +113,7 @@
   "ql_nationwide_h": "Ülke genelindeki durum",
   "ql_nationwide_link": "Ülke genelindeki duruma bak →",
   "ql_nationwide_p": "Okul birleştirmeleri Japonya'nın her yerinde sürüyor. Bu sayfada MEXT istatistikleri ile Ağustos 2026'da on yıl aradan sonra güncellenen ulusal kılavuz derlendi.",
+  "ql_outline_label": "Bu sayfada neler var",
   "ql_review_h": "İnceleme ve öneriler",
   "ql_review_link": "İncelemeye ve önerilere bak →",
   "ql_review_p": "Yayımlanan belgelerin gösterdikleri ve göstermedikleri, bir de bölgedeki çocuk sayısını artırmak için neler gerektiği. Bu sitenin kendi incelemesini içerir.",
@@ -190,5 +191,15 @@
   "upcoming_label": "📅 Yaklaşan etkinlikler",
   "upcoming_more": "Ayrıntılar →",
   "upcoming_name10": "Okul servisi başvuru son tarihi",
-  "upcoming_name8": "1. Aşama yeniden yapılandırma başlıyor"
+  "upcoming_name8": "1. Aşama yeniden yapılandırma başlıyor",
+  "ql_about_outline": "Yeniden yapılandırma neden şimdi gerekli? / Yeniden yapılandırmadan beklenen yararlar / 1. Aşama yeniden yapılandırma planı / Okulların konumları / Okula gidiş planı…",
+  "ql_bus_outline": "Temel bilgiler / Hizmete genel bakış / Hizmet bölgesi / Nasıl başvurulur / Duraklar…",
+  "ql_community_outline": "Mahalle konseyleri / Okullar ve mahalle konseyleri / Yeniden yapılandırmadan sonraki değişiklikler / Sıkça sorulan sorular / Bölge konseyleri hakkında genel olarak söylenenler…",
+  "ql_council_outline": "Mart 2026 oturumu / Haziran 2026 oturumu / Meclise görüş iletmek / Belediye meclisi için iletişim",
+  "ql_faq_outline": "Yeniden yapılandırma planı hakkında / Okula gidiş ve günlük yaşam / Topluluk ve tesisler / Görüşler ve katılım",
+  "ql_map_outline": "Bölge genel haritası / Mevcut okulların yerleri / Yeni okulların yerleri / Okul bölgeleri ve okul servisi alanı",
+  "ql_nationwide_outline": "Sayılarla ülke geneli / Devletin koyduğu ölçütler / Ağustos 2026: ulusal kılavuz on yıl sonra güncellendi / Ülke genelinde okul büyüklüğü ve öğrenci sayısı / Birleşik ilk–ortaokul seçeneği…",
+  "ql_review_outline": "Bu incelemenin dayandığı sayılar / 🔎 İnceleme: planın söylemedikleri / 📊 İnceleme: geçmiş politikalar doğuya ulaştı mı? / 🗾 İnceleme: vilayet ve devlet ne yaptı / 🏛 Kim karar veriyor ve belediyenin yetkisi nereye kadar…",
+  "ql_schedule_outline": "Planın aşamaları / Aylık takvim / Önemli etkinlikler (resmî bilgi) / Belediyenin resmî duyuruları",
+  "ql_voices_outline": "Destekleyen, karşı çıkan ve tarafsız görüşler / Kamu görüşlerinde ne söylendi"
 }

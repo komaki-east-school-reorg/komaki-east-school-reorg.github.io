@@ -113,6 +113,7 @@
   "ql_nationwide_h": "Panorama nacional",
   "ql_nationwide_link": "Ver o panorama nacional →",
   "ql_nationwide_p": "A fusão de escolas continua em todo o Japão. Reunimos as estatísticas do MEXT e o guia nacional revisado em agosto de 2026, o primeiro em dez anos.",
+  "ql_outline_label": "O que há nesta página",
   "ql_review_h": "Análise e propostas",
   "ql_review_link": "Ver a análise e as propostas →",
   "ql_review_p": "O que os documentos publicados mostram e o que não mostram, e o que seria preciso para aumentar o número de crianças no distrito. Inclui a análise deste site.",
@@ -190,5 +191,15 @@
   "upcoming_label": "📅 Próximos Eventos",
   "upcoming_more": "Detalhes →",
   "upcoming_name10": "Prazo de inscrição do ônibus escolar",
-  "upcoming_name8": "Início da Reorganização Fase 1"
+  "upcoming_name8": "Início da Reorganização Fase 1",
+  "ql_about_outline": "Por que a Reorganização é Necessária Agora? / Benefícios Esperados da Reorganização / Plano de Reorganização Fase 1 / Localização das Escolas / Plano de Transporte Escolar…",
+  "ql_bus_outline": "Pontos-Chave / Visão Geral do Serviço / Área de Atendimento / Como se inscrever / Paradas…",
+  "ql_community_outline": "Conselhos Comunitários / Escolas &amp; Conselhos Comunitários / Mudanças Após a Reorganização / Perguntas Frequentes / O que se costuma dizer sobre os conselhos comunitários…",
+  "ql_council_outline": "Sessão de março de 2026 / Sessão de junho de 2026 / Como participar / Contatos sobre a câmara municipal",
+  "ql_faq_outline": "Sobre o Plano de Reorganização / Transporte e Vida Cotidiana / Comunidade e Instalações / Opiniões e Participação",
+  "ql_map_outline": "Mapa de Visão Geral da Área / Localização das Escolas Atuais / Localização das Novas Escolas / Áreas escolares e área do ônibus escolar",
+  "ql_nationwide_outline": "O país em números / O que dizem os parâmetros nacionais / Agosto de 2026: guia nacional revisado após dez anos / Tamanho das escolas e número de alunos no país / A opção da escola integrada…",
+  "ql_review_outline": "Os números em que esta análise se apoia / 🔎 Análise: o que o plano não diz / 📊 Verificação: as políticas passadas chegaram ao leste? / 🗾 Verificação: o que fizeram a província e o Estado / 🏛 Quem decide e até onde chegam os poderes da cidade…",
+  "ql_schedule_outline": "Fases Gerais do Plano / Calendário Mensal / Principais Eventos (Informações Oficiais) / Avisos Oficiais da Cidade",
+  "ql_voices_outline": "Vozes a favor, contra e neutras / O que disseram os comentários públicos"
 }

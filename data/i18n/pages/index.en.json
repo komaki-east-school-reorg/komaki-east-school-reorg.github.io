@@ -113,6 +113,7 @@
   "ql_nationwide_h": "The Nationwide Picture",
   "ql_nationwide_link": "See the nationwide picture →",
   "ql_nationwide_p": "School consolidation continues across Japan. We summarize MEXT statistics and the national guidance revised in August 2026 for the first time in ten years.",
+  "ql_outline_label": "What's on this page",
   "ql_review_h": "Review & ideas",
   "ql_review_link": "See the review and ideas →",
   "ql_review_p": "What the published material does and does not show, and what it would take to increase the number of children in the district. Includes this site’s own review.",
@@ -190,5 +191,15 @@
   "upcoming_label": "📅 Upcoming Events",
   "upcoming_more": "Details →",
   "upcoming_name10": "School bus application deadline",
-  "upcoming_name8": "Phase 1 Reorganization Begins"
+  "upcoming_name8": "Phase 1 Reorganization Begins",
+  "ql_about_outline": "Why Is Reorganization Needed Now? / Expected Benefits of Reorganization / Phase 1 Reorganization Plan / School Locations / Commuting Plan…",
+  "ql_bus_outline": "Key Facts / Service Overview / Service Area / How to apply / Bus stops…",
+  "ql_community_outline": "Community Councils / Schools &amp; Community Councils / Changes After Reorganization / Frequently Asked Questions / What Is Generally Said About Community Councils…",
+  "ql_council_outline": "The March 2026 Session / The June 2026 Session / Taking Part / Contacts for the City Council",
+  "ql_faq_outline": "About the Reorganization Plan / Commuting &amp; Daily Life / Community &amp; Facilities / Opinions &amp; Participation",
+  "ql_map_outline": "Area Overview Map / Current School Locations / New School Locations / School Districts and the School Bus Service Area",
+  "ql_nationwide_outline": "Nationwide in Numbers / What the National Standards Say / August 2026: National Guidance Revised for the First Time in Ten Years / School Size and Pupil Numbers Nationwide / The Combined Elementary–Junior High Option…",
+  "ql_review_outline": "The numbers this review rests on / 🔎 Review: what the plan does not say / 📊 Review: Did past policies reach the east? / 🗾 Review: what the prefecture and the state have done / 🏛 Who decides, and how far the city’s own powers reach…",
+  "ql_schedule_outline": "Overall Plan Phases / Monthly Calendar / Key Events (Official Information) / Official City Announcements",
+  "ql_voices_outline": "Voices For, Against and Neutral / What the Public Comments Said"
 }

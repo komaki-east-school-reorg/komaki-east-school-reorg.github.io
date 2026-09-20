@@ -93,7 +93,7 @@ sitemap.xml                 全11ページのサイトマップ。各URLに12言
 .github/scripts/check_contacts.py   data/contacts.jsonの連絡先を市・県・国の公表ページと突き合わせるスクリプト。--fixで電話・FAX番号だけ自動修正（部署名は翻訳があるので手で直す）。exit 0=一致/3=食い違い/1=エラー。
 .github/scripts/fetch_chunichi.py   中日新聞Webの小牧市エリア一覧を巡回し、東部（篠岡地区）に関する記事の見出し・日付・冒頭1文をchunichi_news.jsonに保存するスクリプト。地名で判定する。
 .github/scripts/map_targets.py      変更された公式ページのスラッグをsite-facts.jsonで引き、サイト内の更新候補箇所をMarkdown出力するスクリプト（Issue本文生成用）。
-.github/scripts/build_page_dicts.py  data/i18n/pages/ を生成する。辞書やHTMLのdata-i18nを変えたら実行してコミットすること。--check で鮮度検証のみ。
+.github/scripts/build_page_dicts.py  data/i18n/pages/ を生成し、トップのカードに出す「このページの内容」（ql_<ページID>_outline と index.html の既定値）も各ページの節見出しから書き出す。辞書やHTMLのdata-i18n・節見出しを変えたら実行してコミットすること。--check で鮮度検証のみ。
 .github/scripts/build_qr.py         回覧板シート（index.htmlのみ）に載せるQRコード（qr/index.*.svg）を言語ぶん生成する。segnoが必要（pip install segno）。--check で鮮度検証のみ。
 .github/scripts/auto_gates.py       自動更新のガードレール検証（編集範囲・スキーマ・ja/enキー一致・こどもモード1行の長さ・ページ別辞書の鮮度・外部リンク規則・出典実在チェック）。exit 0=合格/3=変更なし/1=不合格。
 .github/scripts/auto_report.py      自動更新のPR本文・事後報告コメントをevidence.json/verdict.jsonから生成するスクリプト。

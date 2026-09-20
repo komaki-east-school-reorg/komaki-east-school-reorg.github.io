@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-09-20",
+      "type": "feature",
+      "ja": "トップの各ページ案内に、そのページの内容を表示",
+      "en": "Each page card on the top page now lists what is on that page"
+    },
+    {
+      "date": "2026-09-20",
       "type": "content",
       "ja": "誉高校の名古屋市への移転を検証ページに追記",
       "en": "Homare High School's move to Nagoya added to the review page"

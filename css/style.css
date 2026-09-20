@@ -765,6 +765,28 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 .card h3 { font-size: 1.05rem; font-weight: 800; color: var(--primary); margin-bottom: .5rem; }
 .card p { font-size: .9rem; color: var(--text-muted); }
 
+/* カードに出す「このページの内容」（2026-09-20 ユーザー指示）。
+   中身は各ページの節見出しそのもので、.github/scripts/build_page_dicts.py が
+   ql_<ページID>_outline として index の辞書と index.html の既定値に書き出す。
+   見出しを直せば生成し直すだけで追従するので、ここに文章を書き足さないこと。 */
+.card-outline {
+  margin-top: .7rem;
+  padding-top: .6rem;
+  border-top: 1px dashed var(--border);
+  font-size: .8rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+.card-outline-label {
+  display: block;
+  font-family: var(--heading-font);
+  font-weight: 800;
+  font-size: .72rem;
+  letter-spacing: .04em;
+  color: var(--primary);
+  margin-bottom: .1rem;
+}
+
 .card-link {
   display: inline-block;
   margin-top: .9rem;
