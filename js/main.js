@@ -124,9 +124,11 @@ window.KomakiGrade = (function () {
   };
 })();
 
-/* ===== TOP CUT-IN（index.html 上部）=====
+/* ===== TOP CUT-IN（全ページ、ヘッダの下）=====
    「このサイトで今何が新しいか」に気づいてもらうための、期間限定の帯。
    WINDOW_DAYS 日以内のものを、ヘッダの下にスライドインさせる。出すのは3種類:
+   （2026-09-20 ユーザー指示で、トップページだけでなく全ページに出すようにした。
+    最初に開いたページがどれであっても新着に気づけるようにするため。）
      ・新機能   … data/site-updates.json の type:"feature"
      ・更新     … data/site-updates.json の type:"content"（掲載内容の追加・修正）
      ・お知らせ … data/news.json（市公式サイトのお知らせ。日本語以外では見出しを訳して出す）
@@ -193,10 +195,16 @@ window.KomakiGrade = (function () {
     return m[1] + '-' + ('0' + m[2]).slice(-2) + '-' + ('0' + m[3]).slice(-2);
   }
 
+  // 飛び先の #site-updates / #news はトップページにしかない。帯はどのページにも出るので、
+  // トップ以外では index.html を前に付ける（2026-09-20 ユーザー指示で全ページ表示に変更）。
+  // トップでは付けない — 同じページ内の移動をページ再読込にしないため。
+  var ON_TOP = /(^|\/)(index\.html)?$/.test(location.pathname);
+  function at(anchor) { return (ON_TOP ? '' : 'index.html') + anchor; }
+
   var KIND = {
-    feature: {labelKey: 'label',        labelJa: '新機能',       href: '#site-updates', moreKey: 'more',      moreJa: '更新履歴を見る'},
-    content: {labelKey: 'label_update', labelJa: '更新',         href: '#site-updates', moreKey: 'more',      moreJa: '更新履歴を見る'},
-    news:    {labelKey: 'label_news',   labelJa: '市からのお知らせ', href: '#news',      moreKey: 'more_news', moreJa: 'お知らせを見る'}
+    feature: {labelKey: 'label',        labelJa: '新機能',       href: at('#site-updates'), moreKey: 'more',      moreJa: '更新履歴を見る'},
+    content: {labelKey: 'label_update', labelJa: '更新',         href: at('#site-updates'), moreKey: 'more',      moreJa: '更新履歴を見る'},
+    news:    {labelKey: 'label_news',   labelJa: '市からのお知らせ', href: at('#news'),      moreKey: 'more_news', moreJa: 'お知らせを見る'}
   };
 
   function inWindow(d) {

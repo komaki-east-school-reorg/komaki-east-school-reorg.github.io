@@ -386,15 +386,17 @@ Every page carries a `<section class="section share" id="share">` just above `</
 - 印刷指定は `@media print` の `html.board-printing`。**ふつうの Ctrl+P はページをそのまま印刷する**（本文を刷りたい読者がいるので既定は変えない）。ボタンを押したときだけシート1枚になる。`body > *:not(#board-sheet)` の `:not()` は必須 — `!important` は詳細度に勝つので、除外しないとシート自身も消える。
 - `board_btn` は実行時に作るボタンの `aria-label` で HTML に現れないため、`build_page_dicts.py` の `RUNTIME_KEYS` に入れてある（他ページでは使われないが、RUNTIME_KEYS は個別ページの実際の使用有無を見ない仕組みなので全ページ辞書に入ったままでよい）。
 
-### トップのカットイン（`index.html` 上部）
+### カットイン（全11ページ、ヘッダの下）
 
-`TOP CUT-IN` in `js/main.js`（2026-09-03 に `NEW FEATURE CUT-IN` から改称・拡張）。ヘッダの下にスライドインする帯で、**今日から14日以内**（`WINDOW_DAYS`）の新しい情報を出す。出すのは3種類：
+`TOP CUT-IN` in `js/main.js`（2026-09-03 に `NEW FEATURE CUT-IN` から改称・拡張）。**2026-09-20 のユーザー指示で、トップページだけでなく全ページに出す**ようにした（読者が最初に開くページはトップとはかぎらないため）。`#feature-cutin` と `#feature-strings` の2つの `div` は11ページすべての `</header>` 直後にあり、同じブロックがそれを見つけて描く。ヘッダの下にスライドインする帯で、**今日から14日以内**（`WINDOW_DAYS`）の新しい情報を出す。出すのは3種類：
 
 | 札 | 元データ | 飛び先 |
 |---|---|---|
 | 新機能 | `data/site-updates.json` の `type: "feature"` | `#site-updates` |
 | 更新 | 同 `type: "content"` | `#site-updates` |
 | 市からのお知らせ | `data/news.json`（日本語以外では見出しを訳して出す） | `#news` |
+
+飛び先の2つのアンカーは `index.html` にしかないので、**トップ以外のページでは `index.html` を前に付ける**（`ON_TOP` / `at()`）。トップでは付けない — 同じページ内の移動をページ再読込にしないため。
 
 `type: "fix"` は出さない（誤字直しや体裁の修正は帯で知らせる話ではない）。市のお知らせでも**飛び先は本文の該当コーナー**にする — 帯から直接市の個別ページへ出すと、読者が説明を読まないまま外へ抜けてしまう。
 
@@ -404,6 +406,7 @@ Every page carries a `<section class="section share" id="share">` just above `</
 - **カットイン専用のお知らせデータを作らないこと。** 文面は更新履歴と市のお知らせ、どちらもサイトが既に持っているデータそのもの。別データにすると元の一覧と食い違ったまま気づけなくなる。**更新履歴に1行足す／市がページを更新する**だけでここは自動的に出て、14日で自動的に消える（消し忘れが起きない）。
 - 閉じるとその項目は二度と出ない（`localStorage: komaki_feature_seen`）。複数あるときは最大3件を7秒ごとに入れ替え、マウスやフォーカスが乗ったら止まる。`prefers-reduced-motion` では動きを出さない。
 - 帯は `position: sticky` のヘッダの**下**（`</header>` の直後、通常フロー）に置く（2026-09-20 ユーザー指示。それまではヘッダの上だった）。ヘッダに重ねると本文が読めなくなるので、重ねない。
+- **帯の色は上下の背景と同じ黒板グリーンの系統でそろえる**（同日ユーザー指示）。上はヘッダ（`--primary-dark`）、下はヒーロー（`135deg` で `#111f14` → `--primary-dark` → `#2e5c3a`）なので、帯も同じ `135deg` で `--primary-dark` → `#24492e`、つまり両隣の値の内側に収める。同系色が続いて境目が消えないよう、上下に細い線（白 .14 / 黒 .25）を入れてある。
 - `.feature-cutin` の `display:flex` は UA の `[hidden]{display:none}` に勝つので、`.feature-cutin[hidden] { display:none; }` が要る。無いと出す前と閉じたあとに padding ぶんの帯が残る。
 - リンク先は `index.html#site-updates`。そのアンカーを外すとカットインの「くわしく」がどこにも飛ばなくなる。
 

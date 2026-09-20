@@ -2322,10 +2322,14 @@ html.has-share-sticky body {
   align-items: center;
   gap: .6rem;
   flex-wrap: wrap;
-  background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+  /* 上はヘッダ（--primary-dark）、下はヒーロー（135deg で #111f14 → --primary-dark →
+     #2e5c3a）。帯はその2つのあいだに入るので、同じ黒板グリーンの系統で、同じ 135deg の
+     向きに、両隣の値の内側（--primary-dark → #24492e）で塗る。上下の細い線は、
+     同系色が続いても帯の位置が分かるようにするためのもの（2026-09-20 ユーザー指示）。 */
+  background: linear-gradient(135deg, var(--primary-dark) 0%, #24492e 100%);
   color: #fff;
-  /* ヘッダのすぐ下に置くので、同系色の地が続いて帯の境目が消えないよう線を1本入れる */
-  border-top: 1px solid rgba(255,255,255,.22);
+  border-top: 1px solid rgba(255,255,255,.14);
+  border-bottom: 1px solid rgba(0,0,0,.25);
   padding: .5rem 1.1rem;
   font-size: .85rem;
   /* 閉じるまでの動き。max-height も動かして、出る瞬間に下の内容が押し下がる

@@ -248,6 +248,21 @@
   </div>
 </header>
 
+<!-- TOP CUT-IN
+     掲載から一定期間内の「新機能」「更新（掲載内容）」「市公式サイトのお知らせ」を
+     ここに出す。中身は js/main.js の TOP CUT-IN が組み立てる（全ページ共通）。
+     札と飛び先は項目の種類ごとに変わるので、札とリンクには data-i18n を付けない
+     （辞書に上書きされると種類と食い違う）。文言は下の隠し要素から読む。 -->
+<div id="feature-cutin" class="feature-cutin" hidden></div>
+<div id="feature-strings" hidden>
+  <span data-fk="label" data-i18n="feature_new_label">新機能</span>
+  <span data-fk="label_update" data-i18n="feature_new_label_update">更新</span>
+  <span data-fk="label_news" data-i18n="feature_new_label_news">市からのお知らせ</span>
+  <span data-fk="more" data-i18n="feature_new_more">更新履歴を見る</span>
+  <span data-fk="more_news" data-i18n="feature_new_more_news">お知らせを見る</span>
+  <span data-fk="close" data-i18n="feature_new_close">閉じる</span>
+</div>
+
 <main>
   <section class="page-hero">
     <div class="container">
