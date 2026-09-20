@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-09-20",
+      "type": "content",
+      "ja": "誉高校の名古屋市への移転を検証ページに追記",
+      "en": "Homare High School's move to Nagoya added to the review page"
+    },
+    {
+      "date": "2026-09-20",
       "type": "fix",
       "ja": "東部まちづくりの動きを地域の取組と同じ体裁に",
       "en": "Eastern district updates now match the community efforts layout"
