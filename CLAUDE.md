@@ -240,7 +240,7 @@ The **地域の取組 section on `community.html`**, sitting directly below the 
 
 ## `data/tobu_actions.json`（東部まちづくりの取組）
 
-2026-09-13 追加（ユーザー指示）。**「地域の取組」欄の下半分**に、市の東部まちづくり推進室が公表している東部地域の取組を並べる。`community.html` と `index.html` の両方に出る（`#tobu-actions-container` を見つけた所に `js/main.js` の TOBU ACTIONS ブロックが描く）。市民有志の取組（`data/community_actions.json`）とは**見出しも行の形も分けてある** — 上は住民自身が始めたもの、下は市の部署が公表したもので、混ぜると「誰が出している情報か」が消えるため。
+2026-09-13 追加（ユーザー指示）。**「地域の取組」欄の下半分**に、市の東部まちづくり推進室が公表している東部地域の取組を並べる。`community.html` と `index.html` の両方に出る（`#tobu-actions-container` を見つけた所に `js/main.js` の TOBU ACTIONS ブロックが描く）。市民有志の取組（`data/community_actions.json`）とは**見出しを分けてある** — 上は住民自身が始めたもの、下は市の部署が公表したもので、混ぜると「誰が出している情報か」が消えるため。ただし**行の形（カード）は 2026-09-20 のユーザー指示で市民有志の取組（`.action-item`）とそろえた**（上下の欄が続いて見えるようにするため）。出どころの違いは **①「市公式」の札 ②カード左帯の色（市公式は `--primary` の緑、市民有志は `--accent` の黄） ③最後の出典行** の3つで示す — この3つは外さないこと。
 
 - **自動生成・手編集不可。** `fetch_news.py` が監視している `data/official_pages/toubumachidukuri-tobumachidukurisingikai-*.txt` から `.github/scripts/build_tobu_actions.py` が組み立てる（市サーバへのアクセスはゼロ。`fetch_news.py` の**あと**に実行すること）。自動更新パイプラインの `ALLOWED` にも入れない。
 - **載せるのは直近2か月ぶんだけ**（`WINDOW_DAYS = 60`、2026-09-13 ユーザー指示）。古い記録が積もると「いま何が起きているか」が読めなくなるため。**ただし、これから開催される催しは日付が未来なので必ず残る** — 参加できる催しを期限切れで落としては、この欄を置く意味がない。画面は「これからの催し」→「さいきんの動き」の順。

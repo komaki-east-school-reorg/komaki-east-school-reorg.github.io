@@ -2784,9 +2784,12 @@ window.KomakiGrade = (function () {
    .github/scripts/build_tobu_actions.py が毎日の取得結果から組み立てる生成物で、
    手編集しない（自動更新パイプラインの ALLOWED にも入れない）。
 
-   【市民有志の取組とは分けて出す】上は住民自身が始めたもの、ここは市の部署が
-   公表したもの。同じ一覧に混ぜると「誰が出している情報か」が消える。だから
-   見出しを分け、行の形（.tobu-item）も市民有志の取組（.action-item）と変えてある。
+   【市民有志の取組とは見出しを分ける】上は住民自身が始めたもの、ここは市の部署が
+   公表したもの。同じ一覧に混ぜると「誰が出している情報か」が消えるので、見出しは分ける。
+   ただし**行の形は市民有志の取組（.action-item）と同じカードにそろえてある**
+   （2026-09-20 ユーザー指示。欄が続いて見えるようにするため）。出どころの違いは
+   「市公式」の札・カード左帯の色（市公式は緑、市民有志は黄）・最後の出典行で示す。
+   この3つは外さないこと。
 
    【これからの催しを先に出す】参加できるものが先、済んだ動きが後。載せるのは
    直近2か月ぶん（絞り込みは build_tobu_actions.py 側。これからの催しは日付が
@@ -2870,10 +2873,12 @@ window.KomakiGrade = (function () {
     var extra = '';
     // 日本語以外では日付を左の欄で出しているので、ここは時刻だけに組み直す（読めなければ原文）。
     var note = it.date_note ? window.KomakiJaWhen(it.date_note, _tl, {timeOnly: true}) : '';
-    var sep = (_tl === 'ja' || _tl === 'zh') ? '：' : ': ';
-    if (note)         extra += '<span class="tobu-from">' + tt('when') + sep + esc(note) + '</span>';
-    if (it.place)     extra += '<span class="tobu-from">' + tt('place') + sep + '<span data-hl="' + esc(it.place) + '">' + esc(it.place) + '</span></span>';
-    if (it.from)      extra += '<span class="tobu-from">' + esc(fromLabel(it.from)) + '</span>';
+    // 行の形は市民有志の取組（.action-row＋.action-label）にそろえてある（2026-09-20 ユーザー指示）。
+    // 出どころの違いは、札（市公式）と左帯の色、そして最後の出典行で示す。
+    if (note)         extra += '<span class="tobu-from"><span class="tobu-label">' + tt('when') + '</span>' + esc(note) + '</span>';
+    if (it.place)     extra += '<span class="tobu-from"><span class="tobu-label">' + tt('place') + '</span><span data-hl="' + esc(it.place) + '">' + esc(it.place) + '</span></span>';
+    // 分類名（協働提案事業など）にはラベルが無いので、値の位置だけラベル幅ぶん下げてそろえる
+    if (it.from)      extra += '<span class="tobu-from tobu-from--tag">' + esc(fromLabel(it.from)) + '</span>';
     return '<li class="tobu-item" data-date="' + esc(it.date || '') + '">' +
              '<div class="tobu-head">' +
                '<span class="tobu-date">' + esc(fmtDate(it.date)) + '</span>' +

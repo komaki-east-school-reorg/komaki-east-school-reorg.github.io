@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-09-20",
+      "type": "fix",
+      "ja": "東部まちづくりの動きを地域の取組と同じ体裁に",
+      "en": "Eastern district updates now match the community efforts layout"
+    },
+    {
+      "date": "2026-09-20",
       "type": "feature",
       "ja": "新着のお知らせ帯を全ページのヘッダ下に表示",
       "en": "The updates bar now appears under the header on every page"

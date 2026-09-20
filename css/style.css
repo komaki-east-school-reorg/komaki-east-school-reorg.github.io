@@ -1670,31 +1670,58 @@ footer {
 /* ===== 東部まちづくりの動き（「地域の取組」欄の中の市公式リスト） =====
    市サイトへのリンクは許可URL以外を張れないので、この一覧だけは
    リンクの無い行リストになる（日付＋見出し）。出典は最後の1行で文字で示す。
-   .ce-* と同じ簡素な行リストにそろえ、市民有志の取組（.action-item）とは
-   見た目を変えて「誰が出している情報か」が版面から分かるようにしている。 */
+   **版面は市民有志の取組（.action-item）と同じカードにそろえてある**
+   （2026-09-20 ユーザー指示。上下の欄が続いて見えるようにするため）。
+   出どころの違いは「市公式」の札・カード左帯の色（ここは緑、市民有志は黄）・
+   最後の出典行の3つで示す — この3つは外さないこと。 */
 .tobu-group-h {
   font-family: var(--heading-font);
   font-size: .82rem;
   font-weight: 800;
   color: var(--primary);
   letter-spacing: .04em;
-  margin: .9rem 0 .3rem;
+  margin: 1.2rem 0 .5rem;
 }
 .tobu-group-h:first-child { margin-top: 0; }
-.tobu-list { list-style: none; padding: 0; margin: 0 0 .8rem; border-top: 1px solid var(--border); }
-.tobu-item { border-bottom: 1px solid var(--border); padding: .6rem 0; }
-.tobu-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem; }
+/* .action-list と同じ間隔のカード並び */
+.tobu-list { list-style: none; display: grid; gap: 1rem; padding: 0; margin: 0 0 .8rem; }
+.tobu-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--primary);   /* 市民有志（--accent）と色だけ変える */
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  box-shadow: var(--shadow);
+}
+.tobu-head { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
 .tobu-date {
   flex-shrink: 0;
   font-size: .75rem;
-  color: var(--white);
-  background: var(--primary);
-  padding: .1em .5em;
+  color: var(--primary-dark);
+  background: var(--primary-light);
+  border: 1px solid var(--border);
+  padding: .1em .55em;
   border-radius: var(--radius-pill);
   white-space: nowrap;
 }
-.tobu-title { font-size: .9rem; color: var(--text); line-height: 1.5; }
-.tobu-from { display: block; margin-top: .25rem; font-size: .78rem; color: var(--text-muted); }
+/* 見出しの字は .action-title と同じ */
+.tobu-title {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--primary);
+  line-height: 1.5;
+}
+/* .action-row ＋ .action-label と同じ形 */
+.tobu-from { display: block; font-size: .9rem; margin-top: .35rem; }
+.tobu-from--tag { padding-left: 3.2rem; color: var(--text-muted); font-size: .82rem; }
+.tobu-label {
+  display: inline-block;
+  min-width: 3.2rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  font-size: .8rem;
+}
 .tobu-source { font-size: .78rem; color: var(--text-muted); margin-top: .6rem; }
 
 /* ===== SHARE / このページを共有する =====
