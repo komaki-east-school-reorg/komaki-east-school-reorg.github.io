@@ -2314,8 +2314,9 @@ html.has-share-sticky body {
    data/site-updates.json の type:"feature" が新しいうちだけ出る。
    出典は更新履歴そのもので、専用のお知らせデータは持たない
    （js/main.js の NEW FEATURE CUT-IN を参照）。
-   ヘッダは position:sticky なので、この帯はその上（通常フロー）に置き、
-   スクロールで一緒に流れて消える。ヘッダに重ねると本文が読めなくなる。 */
+   帯はヘッダの**下**（</header> の直後、通常フロー）に置く（2026-09-20 ユーザー指示）。
+   ヘッダは position:sticky なので、帯はスクロールでヘッダの下へ流れて消える。
+   ヘッダに重ねる（position:fixed 等）ことはしない。本文が読めなくなるため。 */
 .feature-cutin {
   display: flex;
   align-items: center;
@@ -2323,6 +2324,8 @@ html.has-share-sticky body {
   flex-wrap: wrap;
   background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
   color: #fff;
+  /* ヘッダのすぐ下に置くので、同系色の地が続いて帯の境目が消えないよう線を1本入れる */
+  border-top: 1px solid rgba(255,255,255,.22);
   padding: .5rem 1.1rem;
   font-size: .85rem;
   /* 閉じるまでの動き。max-height も動かして、出る瞬間に下の内容が押し下がる

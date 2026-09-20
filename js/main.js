@@ -126,7 +126,7 @@ window.KomakiGrade = (function () {
 
 /* ===== TOP CUT-IN（index.html 上部）=====
    「このサイトで今何が新しいか」に気づいてもらうための、期間限定の帯。
-   WINDOW_DAYS 日以内のものを、ヘッダの上にスライドインさせる。出すのは3種類:
+   WINDOW_DAYS 日以内のものを、ヘッダの下にスライドインさせる。出すのは3種類:
      ・新機能   … data/site-updates.json の type:"feature"
      ・更新     … data/site-updates.json の type:"content"（掲載内容の追加・修正）
      ・お知らせ … data/news.json（市公式サイトのお知らせ。日本語以外では見出しを訳して出す）

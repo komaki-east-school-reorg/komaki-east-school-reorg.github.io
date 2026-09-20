@@ -388,7 +388,7 @@ Every page carries a `<section class="section share" id="share">` just above `</
 
 ### トップのカットイン（`index.html` 上部）
 
-`TOP CUT-IN` in `js/main.js`（2026-09-03 に `NEW FEATURE CUT-IN` から改称・拡張）。ヘッダの上にスライドインする帯で、**今日から14日以内**（`WINDOW_DAYS`）の新しい情報を出す。出すのは3種類：
+`TOP CUT-IN` in `js/main.js`（2026-09-03 に `NEW FEATURE CUT-IN` から改称・拡張）。ヘッダの下にスライドインする帯で、**今日から14日以内**（`WINDOW_DAYS`）の新しい情報を出す。出すのは3種類：
 
 | 札 | 元データ | 飛び先 |
 |---|---|---|
@@ -403,7 +403,7 @@ Every page carries a `<section class="section share" id="share">` just above `</
 
 - **カットイン専用のお知らせデータを作らないこと。** 文面は更新履歴と市のお知らせ、どちらもサイトが既に持っているデータそのもの。別データにすると元の一覧と食い違ったまま気づけなくなる。**更新履歴に1行足す／市がページを更新する**だけでここは自動的に出て、14日で自動的に消える（消し忘れが起きない）。
 - 閉じるとその項目は二度と出ない（`localStorage: komaki_feature_seen`）。複数あるときは最大3件を7秒ごとに入れ替え、マウスやフォーカスが乗ったら止まる。`prefers-reduced-motion` では動きを出さない。
-- 帯は `position: sticky` のヘッダの**上**（通常フロー）に置く。ヘッダに重ねると本文が読めなくなる。
+- 帯は `position: sticky` のヘッダの**下**（`</header>` の直後、通常フロー）に置く（2026-09-20 ユーザー指示。それまではヘッダの上だった）。ヘッダに重ねると本文が読めなくなるので、重ねない。
 - `.feature-cutin` の `display:flex` は UA の `[hidden]{display:none}` に勝つので、`.feature-cutin[hidden] { display:none; }` が要る。無いと出す前と閉じたあとに padding ぶんの帯が残る。
 - リンク先は `index.html#site-updates`。そのアンカーを外すとカットインの「くわしく」がどこにも飛ばなくなる。
 
