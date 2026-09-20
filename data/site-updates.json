@@ -3,9 +3,9 @@
   "updates": [
     {
       "date": "2026-09-20",
-      "type": "feature",
-      "ja": "トップの各ページ案内に、そのページの内容を表示",
-      "en": "Each page card on the top page now lists what is on that page"
+      "type": "content",
+      "ja": "トップの各ページ案内の説明文を最新の内容に更新",
+      "en": "Page summaries on the top page brought up to date"
     },
     {
       "date": "2026-09-20",
