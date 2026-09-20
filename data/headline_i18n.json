@@ -53,6 +53,45 @@
       "tr": "Kitasato bölgesinin okullarını düşünme toplantısı (2.)",
       "my": "Kitasato ဒေသ ကျောင်းများအကြောင်း စဉ်းစားသည့် ဒုတိယအကြိမ် အစည်းအဝေး"
     },
+    "ピーチフェスタ ～プログラミング～": {
+      "en": "Peach Festa – Programming",
+      "pt": "Peach Festa – Programação",
+      "vi": "Peach Festa – Lập trình",
+      "tl": "Peach Festa – Programming",
+      "es": "Peach Festa – Programación",
+      "zh": "桃子嘉年华——编程",
+      "id": "Peach Festa – Pemrograman",
+      "ko": "피치 페스타 – 프로그래밍",
+      "ne": "पीच फेस्टा – प्रोग्रामिङ",
+      "tr": "Peach Festa – Programlama",
+      "my": "ပီချ်ဖက်စ်တာ – ပရိုဂရမ်းမင်း"
+    },
+    "ピーチフェスタ：カローリング": {
+      "en": "Peach Festa: Karoling",
+      "pt": "Peach Festa: Karoling",
+      "vi": "Peach Festa: Karoling",
+      "tl": "Peach Festa: Karoling",
+      "es": "Peach Festa: Karoling",
+      "zh": "桃子嘉年华：卡罗灵",
+      "id": "Peach Festa: Karoling",
+      "ko": "피치 페스타: 카롤링",
+      "ne": "पीच फेस्टा: कारोलिङ्ग",
+      "tr": "Peach Festa: Karoling",
+      "my": "ပီချ်ဖက်စ်တာ – ကာရိုလင်း"
+    },
+    "ピーチフェスタ ～スライム～": {
+      "en": "Peach Festa – Slime",
+      "pt": "Peach Festa – Slime",
+      "vi": "Peach Festa – Slime",
+      "tl": "Peach Festa – Slime",
+      "es": "Peach Festa – Slime",
+      "zh": "桃子嘉年华——史莱姆",
+      "id": "Peach Festa – Slime",
+      "ko": "피치 페스타 – 슬라임",
+      "ne": "पीच फेस्टा – स्लाइम",
+      "tr": "Peach Festa – Slime",
+      "my": "ပီချ်ဖက်စ်တာ – စလိုင်မ်"
+    },
     "マナー講座": {
       "en": "Manners Seminar",
       "pt": "Palestra de Etiqueta",
@@ -169,45 +208,6 @@
       "ne": "सेप्टेम्बर १७ को कथा वाचन",
       "tr": "17 Eylül Hikaye Saati",
       "my": "စက်တင်ဘာ ၁၇ ရက် ပုံပြင်ဖတ်ပြချိန်"
-    },
-    "明日は授業参観、ピーチフェスタ!!": {
-      "en": "Tomorrow: Class Observation Day, Peach Festa!!",
-      "pt": "Amanhã: Dia de Observação de Aulas, Peach Festa!!",
-      "vi": "Ngày mai: Ngày dự giờ, Peach Festa!!",
-      "tl": "Bukas: Araw ng Pagmamasid sa Klase, Peach Festa!!",
-      "es": "Mañana: Día de observación de clases, ¡Peach Festa!!",
-      "zh": "明天是公开课观摩日，Peach Festa！！",
-      "id": "Besok: Hari Observasi Kelas, Peach Festa!!",
-      "ko": "내일은 수업 참관일, Peach Festa!!",
-      "ne": "भोलि: कक्षा अवलोकन दिन, Peach Festa!!",
-      "tr": "Yarın: Ders Gözlem Günü, Peach Festa!!",
-      "my": "မနက်ဖြန် - စာသင်ခန်းလေ့လာကြည့်ရှုရက်၊ Peach Festa!!"
-    },
-    "本番の歌声をお楽しみに!!": {
-      "en": "Look forward to the real singing performance!!",
-      "pt": "Aguarde o canto do dia da apresentação!!",
-      "vi": "Hãy chờ đón giọng hát trong buổi biểu diễn chính thức!!",
-      "tl": "Abangan ang tunay na pagkanta sa mismong araw!!",
-      "es": "¡Espera el canto del día de la presentación!!",
-      "zh": "敬请期待正式演出的歌声！！",
-      "id": "Nantikan nyanyian pada hari pertunjukan sesungguhnya!!",
-      "ko": "본무대의 노랫소리를 기대해 주세요!!",
-      "ne": "मुख्य प्रस्तुतिको गीत पर्खनुहोस्!!",
-      "tr": "Asıl gösteri günündeki şarkı seslerini merakla bekleyin!!",
-      "my": "စစ်မှန်သောပြပွဲနေ့ သီချင်းသံကို မျှော်လင့်ထားပါ!!"
-    },
-    "６年：書写・算数の授業": {
-      "en": "Grade 6: Calligraphy and Math Class",
-      "pt": "6º ano: Aula de caligrafia e matemática",
-      "vi": "Lớp 6: Tiết học Thư pháp và Toán",
-      "tl": "Ika-6 Baitang: Klase sa Kaligrapiya at Matematika",
-      "es": "6.º grado: Clase de caligrafía y matemáticas",
-      "zh": "六年级：书法与数学课",
-      "id": "Kelas 6: Pelajaran Kaligrafi dan Matematika",
-      "ko": "6학년: 서예·수학 수업",
-      "ne": "कक्षा 6: सुलेख र गणितको कक्षा",
-      "tr": "6. Sınıf: Hat Sanatı ve Matematik Dersi",
-      "my": "ဆဋ္ဌမတန်း - လက်ရေးလှနှင့် သင်္ချာသင်ခန်းစာ"
     },
     "水筒は語る": {
       "en": "The Water Bottle Speaks",
