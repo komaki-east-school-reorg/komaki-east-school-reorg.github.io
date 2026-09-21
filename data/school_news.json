@@ -1,8 +1,37 @@
 {
-  "fetched_at": "2026-09-20T00:23:34Z",
+  "fetched_at": "2026-09-21T00:24:24Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "toryo-j",
+      "level": "jhs",
+      "names": {
+        "ja": "桃陵中学校",
+        "ja_kids": "とうりょう中学校",
+        "en": "Toryo Junior High",
+        "zh": "桃陵中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
+      "latest_date": "2026-09-21",
+      "items": [
+        {
+          "title": "0920 吹奏楽部 お月見コンサート",
+          "date": "2026-09-21",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136135911?tm=20260920114403"
+        },
+        {
+          "title": "【サッカー部】 新チーム初陣",
+          "date": "2026-09-21",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136135296?tm=20260919141508"
+        },
+        {
+          "title": "マナー講座",
+          "date": "2026-09-18",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136131565?tm=20260918154513"
+        }
+      ]
+    },
     {
       "slug": "momogaoka-e",
       "level": "elem",
@@ -29,35 +58,6 @@
           "title": "ピーチフェスタ ～スライム～",
           "date": "2026-09-19",
           "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136135397?tm=20260919151410"
-        }
-      ]
-    },
-    {
-      "slug": "toryo-j",
-      "level": "jhs",
-      "names": {
-        "ja": "桃陵中学校",
-        "ja_kids": "とうりょう中学校",
-        "en": "Toryo Junior High",
-        "zh": "桃陵中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
-      "latest_date": "2026-09-18",
-      "items": [
-        {
-          "title": "マナー講座",
-          "date": "2026-09-18",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136131565?tm=20260918154513"
-        },
-        {
-          "title": "生徒会役員選挙",
-          "date": "2026-09-18",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136103772?tm=20260915155311"
-        },
-        {
-          "title": "１年生 学年競遊練習",
-          "date": "2026-09-14",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136095511?tm=20260914161914"
         }
       ]
     },
