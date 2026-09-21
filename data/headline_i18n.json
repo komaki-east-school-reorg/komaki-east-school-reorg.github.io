@@ -53,6 +53,45 @@
       "tr": "Kitasato bölgesinin okullarını düşünme toplantısı (2.)",
       "my": "Kitasato ဒေသ ကျောင်းများအကြောင်း စဉ်းစားသည့် ဒုတိယအကြိမ် အစည်းအဝေး"
     },
+    "0920 吹奏楽部 お月見コンサート": {
+      "en": "9/20 Brass Band Club: Moon-Viewing Concert",
+      "pt": "20/09 Clube de Banda Marcial: Concerto de Contemplação da Lua",
+      "vi": "20/9 Câu lạc bộ kèn đồng: Buổi hòa nhạc ngắm trăng",
+      "tl": "9/20 Brass Band Club: Konsyerto sa Pagmamasid ng Buwan",
+      "es": "20/9 Club de Banda: Concierto de Contemplación de la Luna",
+      "zh": "9月20日 管乐部 赏月音乐会",
+      "id": "20/9 Klub Marching Band: Konser Menikmati Bulan",
+      "ko": "9/20 취주악부 달맞이 콘서트",
+      "ne": "9/20 ब्रास ब्यान्ड क्लब: चन्द्र दर्शन कन्सर्ट",
+      "tr": "20/9 Bando Kulübü: Ay Seyretme Konseri",
+      "my": "9/20 ပေါင်းစပ်တီးဝိုင်းအသင်း - လမင်းကြည့်ဂီတဖျော်ဖြေပွဲ"
+    },
+    "【サッカー部】 新チーム初陣": {
+      "en": "[Soccer Club] New Team's First Match",
+      "pt": "[Clube de Futebol] Primeira Partida do Novo Time",
+      "vi": "[CLB Bóng đá] Trận đấu đầu tiên của đội mới",
+      "tl": "[Soccer Club] Unang Laban ng Bagong Koponan",
+      "es": "[Club de Fútbol] Primer Partido del Nuevo Equipo",
+      "zh": "【足球部】新队伍首战",
+      "id": "[Klub Sepak Bola] Pertandingan Pertama Tim Baru",
+      "ko": "[축구부] 새 팀의 첫 경기",
+      "ne": "[फुटबल क्लब] नयाँ टोलीको पहिलो खेल",
+      "tr": "[Futbol Kulübü] Yeni Takımın İlk Maçı",
+      "my": "[ဘောလုံးအသင်း] အသင်းသစ်ရဲ့ ပထမဆုံးပွဲစဉ်"
+    },
+    "マナー講座": {
+      "en": "Manners Seminar",
+      "pt": "Palestra de Etiqueta",
+      "vi": "Buổi học về phép ứng xử",
+      "tl": "Seminar sa Asal",
+      "es": "Charla de Etiqueta",
+      "zh": "礼仪讲座",
+      "id": "Seminar Sopan Santun",
+      "ko": "매너 강좌",
+      "ne": "शिष्टाचार पाठ",
+      "tr": "Görgü Kuralları Semineri",
+      "my": "ကျင့်ဝတ် သင်တန်း"
+    },
     "ピーチフェスタ ～プログラミング～": {
       "en": "Peach Festa – Programming",
       "pt": "Peach Festa – Programação",
@@ -91,45 +130,6 @@
       "ne": "पीच फेस्टा – स्लाइम",
       "tr": "Peach Festa – Slime",
       "my": "ပီချ်ဖက်စ်တာ – စလိုင်မ်"
-    },
-    "マナー講座": {
-      "en": "Manners Seminar",
-      "pt": "Palestra de Etiqueta",
-      "vi": "Buổi học về phép ứng xử",
-      "tl": "Seminar sa Asal",
-      "es": "Charla de Etiqueta",
-      "zh": "礼仪讲座",
-      "id": "Seminar Sopan Santun",
-      "ko": "매너 강좌",
-      "ne": "शिष्टाचार पाठ",
-      "tr": "Görgü Kuralları Semineri",
-      "my": "ကျင့်ဝတ် သင်တန်း"
-    },
-    "生徒会役員選挙": {
-      "en": "Student Council Election",
-      "pt": "Eleição do Conselho Estudantil",
-      "vi": "Bầu cử Ban đại diện học sinh",
-      "tl": "Halalan ng Konseho ng Mag-aaral",
-      "es": "Elección del Consejo Estudiantil",
-      "zh": "学生会干部选举",
-      "id": "Pemilihan Pengurus OSIS",
-      "ko": "학생회 임원 선거",
-      "ne": "विद्यार्थी परिषद् पदाधिकारी चुनाव",
-      "tr": "Öğrenci Konseyi Seçimi",
-      "my": "ကျောင်းသားကောင်စီ အရာရှိရွေးကောက်ပွဲ"
-    },
-    "１年生 学年競遊練習": {
-      "en": "Grade 1: Grade Games Practice",
-      "pt": "1º ano: treino do jogo em grupo",
-      "vi": "Lớp 1: Luyện tập trò chơi khối",
-      "tl": "Grade 1: Pagsasanay sa Grade Games",
-      "es": "1.º grado: práctica de juegos de grado",
-      "zh": "一年级：年级竞技游戏练习",
-      "id": "Kelas 1: Latihan Permainan Tingkat",
-      "ko": "1학년 학년 경기 연습",
-      "ne": "कक्षा 1 को सामूहिक खेल अभ्यास",
-      "tr": "1. sınıf: Sınıf oyunları antrenmanı",
-      "my": "ပထမတန်း - အတန်းပြိုင်ပွဲအားကစားလေ့ကျင့်ခန်း"
     },
     "9/18 草取り集会：環境委員会主催": {
       "en": "Sep 18 Weeding Gathering: Hosted by the Environment Committee",
