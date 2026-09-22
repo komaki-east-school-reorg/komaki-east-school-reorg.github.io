@@ -3167,41 +3167,132 @@ window.KomakiGrade = (function () {
       var b = pe.closest(BLOCK) || pe;
       var cell = pe.closest('td,th');
       var tag = pe.closest(TAGLIKE);
-      if (!cur || cur.el !== b) { cur = {el: b, text: '', cell: cell}; out.push(cur); }
-      else if (cell && cell !== cur.cell) { cur.text += COMMA; cur.cell = cell; }
-      else if (prevTag && prevTag !== tag) cur.text += COMMA;
+      function padMap(k) { while (cur.map.length < cur.text.length) cur.map.push(k); }
+      if (!cur || cur.el !== b) { cur = {el: b, text: '', cell: cell, map: []}; out.push(cur); }
+      else if (cell && cell !== cur.cell) { cur.text += COMMA; padMap(null); cur.cell = cell; }
+      else if (prevTag && prevTag !== tag) { cur.text += COMMA; padMap(null); }
       prevTag = tag;
-      cur.text += t;
+      // 連結後の1文字ずつに「どのテキストノードの何文字目か」を控える。
+      // 文単位のハイライト（下の rangeOf）がこの対応表を使う。空白の潰し方が
+      // ここと食い違うと範囲がずれるので、正規化はこのループの中だけで行う。
+      var prevSpace = /\s$/.test(cur.text);
+      for (var x = 0; x < n.nodeValue.length; x++) {
+        var ch = n.nodeValue[x];
+        if (/\s/.test(ch)) {
+          if (prevSpace) continue;
+          cur.text += ' '; cur.map.push({node: n, off: x}); prevSpace = true;
+        } else {
+          cur.text += ch; cur.map.push({node: n, off: x}); prevSpace = false;
+        }
+      }
     }
     return out;
   }
 
-  function sentences(text) {
-    if (EMOJI) text = text.replace(EMOJI, '');
-    (YOMI[lang] || []).forEach(function (p) { text = text.split(p[0]).join(p[1]); });
-    text = text.replace(/\s+/g, ' ').trim();
-    if (!text) return [];
-    var out = [];
-    text.replace(/([。！？!?။]|\.(?=\s))\s*/g, '$1\n').split('\n').forEach(function (s) {
-      s = s.trim();
-      while (s.length > MAX) {
-        var cut = Math.max(s.lastIndexOf('、', MAX), s.lastIndexOf('，', MAX), s.lastIndexOf(',', MAX), s.lastIndexOf(' ', MAX));
+  /* 文に切る。**切るのは元のテキストのままの位置**で、読み上げ用の加工（絵文字を外す・
+     地名の読みを置き換える）は切ったあとに1文ずつ行う。こうしておくと、文の範囲が
+     元の文字位置のままなので、その範囲をそのまま画面のハイライトに使える
+     （2026-09-22 に文単位のハイライトを入れたときにこの形へ変えた）。
+     戻り値は [開始, 終了] の配列。 */
+  function sentenceRanges(text) {
+    var out = [], re = /([。！？!?။]|\.(?=\s))\s*/g, m, last = 0;
+    while ((m = re.exec(text))) {
+      out.push([last, m.index + m[1].length]);
+      last = re.lastIndex;
+    }
+    if (last < text.length) out.push([last, text.length]);
+    // 長すぎる文は読点・空白でさらに分ける（Chrome は長い発話を黙って止めることがある）
+    var fine = [];
+    out.forEach(function (r) {
+      var a = r[0], b = r[1];
+      while (b - a > MAX) {
+        var seg = text.slice(a, a + MAX);
+        var cut = Math.max(seg.lastIndexOf('、'), seg.lastIndexOf('，'), seg.lastIndexOf(','), seg.lastIndexOf(' '));
         if (cut < MAX / 3) cut = MAX - 1;
-        out.push(s.slice(0, cut + 1));
-        s = s.slice(cut + 1).trim();
+        fine.push([a, a + cut + 1]);
+        a = a + cut + 1;
       }
-      if (s && (!LETTER || LETTER.test(s))) out.push(s);
+      if (b > a) fine.push([a, b]);
     });
-    return out;
+    return fine;
+  }
+
+  // 読み上げる文字列にする。絵文字を外し、読みの分かっている地名を置き換える
+  function speakable(t) {
+    if (EMOJI) t = t.replace(EMOJI, '');
+    (YOMI[lang] || []).forEach(function (p) { t = t.split(p[0]).join(p[1]); });
+    t = t.replace(/\s+/g, ' ').trim();
+    if (!t || (LETTER && !LETTER.test(t))) return '';
+    return t;
+  }
+
+  /* 文の範囲（連結テキスト上の位置）から DOM の Range を作る。
+     CSS Custom Highlight API があれば DOM を書き換えずに色を付けられるので、
+     i18n.js の textContent 差し替えともぶつからない。非対応のブラウザでは
+     null を返し、従来どおり段落ごとのハイライトだけが残る。 */
+  function rangeOf(b, from, to) {
+    if (!b.map || !b.map.length) return null;
+    var a = null, z = null;
+    for (var i = from; i < to && i < b.map.length; i++) { if (b.map[i]) { a = b.map[i]; break; } }
+    for (var j = Math.min(to, b.map.length) - 1; j >= from; j--) { if (b.map[j]) { z = b.map[j]; break; } }
+    if (!a || !z) return null;
+    try {
+      var r = document.createRange();
+      r.setStart(a.node, a.off);
+      r.setEnd(z.node, z.off + 1);
+      return r;
+    } catch (e) { return null; }
   }
 
   // --- 再生
   var token = 0, current = null, activeBtn = null, lit = null;
-  function highlight(el) {
-    if (lit === el) return;
-    if (lit) lit.classList.remove('tts-reading');
-    lit = el;
-    if (el) el.classList.add('tts-reading');
+
+  /* いま読んでいる文だけを濃く光らせる（2026-09-22 追加）。音だけでは文章のどこを
+     読んでいるか分からず、漢字が読めない子や日本語を学んでいる読者が文字を目で
+     追えない。CSS Custom Highlight API を使うので **DOM は一切書き換えない** —
+     span で包む実装にすると i18n.js の textContent 差し替えと毎回ぶつかる。
+     非対応のブラウザでは段落ごとの .tts-reading だけが残り、従来と同じ見え方になる。 */
+  var SENT_HL = (window.CSS && window.CSS.highlights && window.Highlight) ? new window.Highlight() : null;
+  if (SENT_HL) { try { window.CSS.highlights.set('tts-sentence', SENT_HL); } catch (e) { SENT_HL = null; } }
+
+  /* 畳まれている所を読むときは開く。閉じたままだと、光らせても読者には見えない。
+     ⚠️ 関数名に reveal は使わないこと — 同じブロックの下に、読み上げボタン自体の
+     表示を切り替える reveal() が既にある（同名だと後の定義が勝って無効化される）。 */
+  function openIfFolded(el) {
+    if (!el || !el.closest) return;
+    var a = el.closest('.faq-a');
+    if (a && !a.classList.contains('open')) {
+      var q = a.previousElementSibling;
+      if (q && q.classList.contains('faq-q')) q.click();   // 既存のアコーディオン処理に任せる
+    }
+    var col = el.closest('.voices-col.is-collapsed');
+    if (col) {
+      var head = col.querySelector('.voices-col-header');
+      if (head) head.click();
+    }
+  }
+
+  function highlight(item) {
+    var el = item && item.el;
+    if (lit !== el) {
+      if (lit) lit.classList.remove('tts-reading');
+      lit = el;
+      if (el) {
+        openIfFolded(el);
+        el.classList.add('tts-reading');
+        try {
+          el.scrollIntoView({
+            block: 'center',
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+          });
+        } catch (e) { }
+      }
+    }
+    if (!SENT_HL) return;
+    SENT_HL.clear();
+    if (!item || !item.b) return;
+    var r = rangeOf(item.b, item.from, item.to);
+    if (r) SENT_HL.add(r);
   }
   function setActive(btn) {
     if (activeBtn) {
@@ -3229,7 +3320,10 @@ window.KomakiGrade = (function () {
     if (!voice) return;
     var queue = [];
     blocksOf(h).forEach(function (b) {
-      sentences(b.text).forEach(function (s) { queue.push({el: b.el, s: s}); });
+      sentenceRanges(b.text).forEach(function (r) {
+        var say = speakable(b.text.slice(r[0], r[1]));
+        if (say) queue.push({el: b.el, s: say, b: b, from: r[0], to: r[1]});
+      });
     });
     if (!queue.length) return;
     var my = token;
@@ -3238,7 +3332,7 @@ window.KomakiGrade = (function () {
       if (my !== token) return;
       var item = queue.shift();
       if (!item) { stop(); return; }
-      highlight(item.el);
+      highlight(item);
       var u = new SpeechSynthesisUtterance(item.s);
       u.voice = voice;
       u.lang = voice.lang;

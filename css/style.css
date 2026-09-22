@@ -2573,6 +2573,10 @@ main section[id], main h2.section-title[id], #area-map { scroll-margin-top: calc
 .tts-btn[aria-pressed="true"] { background: var(--primary); border-color: var(--primary); color: #fff; }
 /* いま読んでいるブロック */
 .tts-reading { background: var(--accent-light); box-shadow: 0 0 0 .25rem var(--accent-light); border-radius: 2px; }
+/* いま読んでいる**文**だけを濃く光らせる（2026-09-22 追加）。段落の .tts-reading は
+   薄く残したまま、その中の1文をこちらで強める。CSS Custom Highlight API に対応して
+   いないブラウザではこの規則が効かないだけで、段落のハイライトは従来どおり出る。 */
+::highlight(tts-sentence) { background: var(--accent); color: #1c2e20; }
 
 /* ===== 「前回から」の印（js/main.js の SINCE LAST VISIT）=====
    印の文字は ::after で出す（回覧板シートが textContent を拾っても紙に混ざらない）。
@@ -2607,6 +2611,7 @@ main section[id], main h2.section-title[id], #area-map { scroll-margin-top: calc
   .tts-row, .since-last-summary { display: none !important; }
   [data-unseen]::after { content: none; }
   .tts-reading { background: none; box-shadow: none; }
+  ::highlight(tts-sentence) { background: none; color: inherit; }
 }
 
 /* ===== ふつうの印刷（Ctrl+P・共有欄の🖨）の共通スタイル（2026-09-14）=====
