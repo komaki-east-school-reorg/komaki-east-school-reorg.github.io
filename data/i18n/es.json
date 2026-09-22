@@ -175,7 +175,7 @@
   "faq_more_h": "También hay preguntas frecuentes en otras páginas",
   "faq_more_bus": "Preguntas sobre el bus escolar (solicitud, paradas, seguridad) →",
   "faq_more_community": "Preguntas sobre los consejos comunitarios (qué pasa con ellos tras la reorganización) →",
-  "faq_contact_h": "Contactar con el Ayuntamiento<small>Contact the City</small>",
+  "faq_contact_h": "Contactar con el Ayuntamiento<small>Who to Contact</small>",
   "bus_contact_h": "Contactos sobre el bus escolar<small>Who to Contact</small>",
   "bus_contact_lead": "Las zonas escolares, el área cubierta, las solicitudes y la ubicación de las paradas los decide el ayuntamiento, así que la ventanilla es la Sección General de Educación. Los buses en sí (objetos olvidados, por ejemplo) los opera por contrato Aoi Kotsu Co., Ltd.",
   "bus_c1_w": "Área cubierta, solicitudes, ubicación de las paradas, zonas escolares",
@@ -1298,5 +1298,7 @@
   "moved_link": "Abrir Preguntas Frecuentes y Voces de la Comunidad →",
   "rel_council_review": "Ver el análisis del plan y las propuestas",
   "faq_qa_h": "Preguntas Frecuentes<small>Frequently Asked Questions</small>",
-  "footer_local": "Enlaces de referencia (vecinos)"
+  "footer_local": "Enlaces de referencia (vecinos)",
+  "faq_qa_intro": "Veinte preguntas respondidas con el material oficial del Ayuntamiento, en cuatro grupos: el plan, el trayecto y la vida diaria, la zona y los edificios, y cómo opinar. Pulse la pregunta para abrir la respuesta.",
+  "voices_intro": "Opiniones realmente expresadas en la zona, en tres columnas: a favor, en contra y neutrales. La cantidad de fichas de cada columna no indica cómo se divide el vecindario."
 }

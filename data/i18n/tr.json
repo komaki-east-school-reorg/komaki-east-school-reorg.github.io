@@ -355,7 +355,7 @@
   "faq_more_h": "Diğer sayfalarda da soru-cevap bölümleri var",
   "faq_more_bus": "Okul servisi hakkında sık sorulanlar (başvuru, duraklar, güvenlik) →",
   "faq_more_community": "Bölge konseyleri hakkında sorular (yeniden yapılandırmadan sonra ne olacak) →",
-  "faq_contact_h": "Belediyeye ulaşın<small>Contact the City</small>",
+  "faq_contact_h": "Belediyeye ulaşın<small>Who to Contact</small>",
   "bus_contact_h": "Okul servisi için iletişim<small>Who to Contact</small>",
   "bus_contact_lead": "Okul bölgeleri, kapsanan alan, başvurular ve durak yerleri belediyece belirlenir; bu nedenle muhatap Eğitim Genel İşler Müdürlüğü'dür. Otobüslerin kendisi (örneğin araçta unutulan eşya) sözleşmeyle Aoi Kotsu A.Ş. tarafından işletilir.",
   "bus_c1_w": "Kapsanan alan, başvurular, durak yerleri, okul bölgeleri",
@@ -1298,5 +1298,7 @@
   "moved_link": "Sıkça Sorulan Sorular ve Sakinlerin Görüşleri sayfasını aç →",
   "rel_council_review": "Planın incelemesine ve önerilere bak",
   "faq_qa_h": "Sıkça sorulan sorular<small>Frequently Asked Questions</small>",
-  "footer_local": "Başvuru bağlantıları (sakinler)"
+  "footer_local": "Başvuru bağlantıları (sakinler)",
+  "faq_qa_intro": "Belediyenin resmî belgelerine dayanarak yirmi soru; dört başlıkta toplanıyor: planın kendisi, okula gidiş geliş ve günlük yaşam, bölge ve binalar, görüş bildirme yolları. Cevabı açmak için soruya dokunun.",
+  "voices_intro": "Mahallede gerçekten dile getirilen görüşler; lehte, aleyhte ve tarafsız olmak üzere üç sütunda. Her sütundaki görüş sayısı, mahallenin nasıl bölündüğünü göstermez."
 }

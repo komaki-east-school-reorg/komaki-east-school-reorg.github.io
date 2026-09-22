@@ -736,6 +736,27 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 .group-head + .section { padding-top: 1.2rem; }
 .section-title.sub { font-size: 1.18rem; border-left-width: 4px; }
 
+/* faq.html の Q&A カテゴリ（再編計画の概要について／通学・生活について…）。
+   節見出し（h2）のすぐ下に来るので、同じ「左に黄色い帯」の形のままだと
+   h2 と見分けがつかず、見出しが二重に出ているように見えた（2026-09-22 ユーザー指摘）。
+   下線の小見出しにして階層を分ける。**`sub` は外さないこと** — 読み上げ（READ ALOUD）は
+   `h2.section-title, h3.section-title.sub` を対象にしているので、外すとカテゴリ単位の
+   読み上げボタンが消える。 */
+.section-title.faq-cat {
+  font-size: 1.08rem;
+  color: var(--text);
+  border-left: 0;
+  padding-left: 0;
+  padding-bottom: .45rem;
+  border-bottom: 2px solid var(--border);
+  margin: 2.6rem 0 1rem;
+}
+.section-title.faq-cat:first-of-type { margin-top: 1.4rem; }
+.section-title.faq-cat small { color: var(--text-muted); margin-top: .1rem; }
+
+/* 節見出しの下に置く説明文。他ページが style 属性で書いていた形を1つにまとめたもの。 */
+.section-lead { font-size: .95rem; color: var(--text-muted); max-width: 760px; margin-bottom: 1.5rem; }
+
 .section-updated { font-size: .8rem; color: var(--text-muted); margin: -1.4rem 0 1.6rem; padding-left: 1rem; }
 .section-updated:empty { display: none; }
 

@@ -175,7 +175,7 @@
   "faq_more_h": "Các trang khác cũng có phần hỏi đáp",
   "faq_more_bus": "Hỏi đáp về xe buýt học đường (đăng ký, điểm dừng, an toàn) →",
   "faq_more_community": "Hỏi đáp về hội đồng cộng đồng (sau tái cơ cấu sẽ ra sao) →",
-  "faq_contact_h": "Liên hệ với thành phố<small>Contact the City</small>",
+  "faq_contact_h": "Liên hệ với thành phố<small>Who to Contact</small>",
   "bus_contact_h": "Liên hệ về xe buýt đưa đón<small>Who to Contact</small>",
   "bus_contact_lead": "Khu vực tuyển sinh, vùng phục vụ, việc đăng ký và vị trí điểm dừng đều do thành phố quyết định, nên đầu mối là Phòng Tổng vụ Giáo dục. Còn bản thân xe buýt (ví dụ đồ để quên trên xe) do công ty Aoi Kotsu vận hành theo hợp đồng.",
   "bus_c1_w": "Vùng phục vụ, đăng ký, vị trí điểm dừng, khu vực tuyển sinh",
@@ -1298,5 +1298,7 @@
   "moved_link": "Mở Câu hỏi thường gặp và tiếng nói cộng đồng →",
   "rel_council_review": "Xem phân tích kế hoạch và các đề xuất",
   "faq_qa_h": "Câu hỏi thường gặp<small>Frequently Asked Questions</small>",
-  "footer_local": "Liên kết tham khảo (người dân)"
+  "footer_local": "Liên kết tham khảo (người dân)",
+  "faq_qa_intro": "Hai mươi câu hỏi được giải đáp theo tài liệu chính thức của thành phố, chia làm bốn nhóm: bản kế hoạch, việc đi học và sinh hoạt, khu dân cư và các tòa nhà, và cách nêu ý kiến. Nhấn vào câu hỏi để xem câu trả lời.",
+  "voices_intro": "Các ý kiến thực sự được nêu ra trong khu dân cư, xếp thành ba cột: ủng hộ, phản đối và trung lập. Số lượng ý kiến trong mỗi cột không phản ánh tỷ lệ tán thành hay phản đối."
 }

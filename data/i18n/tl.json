@@ -175,7 +175,7 @@
   "faq_more_h": "May Q&A rin sa ibang pahina",
   "faq_more_bus": "Q&A tungkol sa school bus (aplikasyon, hintuan, kaligtasan) →",
   "faq_more_community": "Q&A tungkol sa konseho ng komunidad (ano ang mangyayari pagkatapos ng muling pagsasaayos) →",
-  "faq_contact_h": "Makipag-ugnayan sa lungsod<small>Contact the City</small>",
+  "faq_contact_h": "Makipag-ugnayan sa lungsod<small>Who to Contact</small>",
   "bus_contact_h": "Mga kontak tungkol sa school bus<small>Who to Contact</small>",
   "bus_contact_lead": "Ang mga school district, saklaw na lugar, aplikasyon at lokasyon ng hintuan ay pawang pasya ng lungsod, kaya ang Education General Affairs Division ang tanggapan para rito. Ang mismong mga bus — halimbawa ang naiwang gamit — ay pinapatakbo sa ilalim ng kontrata ng Aoi Kotsu Co., Ltd.",
   "bus_c1_w": "Saklaw na lugar, aplikasyon, lokasyon ng hintuan, school district",
@@ -1298,5 +1298,7 @@
   "moved_link": "Buksan ang Mga Madalas na Tanong at Boses ng Komunidad →",
   "rel_council_review": "Tingnan ang pagsusuri sa plano at mga mungkahi",
   "faq_qa_h": "Mga Madalas na Tanong<small>Frequently Asked Questions</small>",
-  "footer_local": "Mga reference link (mga residente)"
+  "footer_local": "Mga reference link (mga residente)",
+  "faq_qa_intro": "Dalawampung tanong na sinagot batay sa opisyal na materyal ng lungsod, sa apat na pangkat: ang plano, ang pagpasok at pang-araw-araw na buhay, ang komunidad at mga gusali, at ang paraan ng pagbibigay ng opinyon. Pindutin ang tanong upang buksan ang sagot.",
+  "voices_intro": "Mga opinyong talagang narinig sa komunidad, nakahanay sa tatlong hanay: sang-ayon, tutol at neutral. Ang dami ng kard sa bawat hanay ay hindi nagpapakita kung paano nahahati ang komunidad."
 }

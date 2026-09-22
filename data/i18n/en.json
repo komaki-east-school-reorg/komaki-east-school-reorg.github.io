@@ -1298,5 +1298,7 @@
   "moved_link": "Open FAQ and Community Voices →",
   "rel_council_review": "See the review of the plan and the ideas",
   "faq_qa_h": "Frequently Asked Questions<small>よくある質問</small>",
-  "footer_local": "Reference Links (Residents)"
+  "footer_local": "Reference Links (Residents)",
+  "faq_qa_intro": "Twenty questions answered from the city's official material, in four groups: the plan itself, commuting and daily life, the district and its buildings, and how to have your say. Tap a question to open its answer.",
+  "voices_intro": "Opinions actually voiced in the district, arranged in three columns: in support, in opposition, and neutral. The number of cards in each column does not show how the district divides."
 }

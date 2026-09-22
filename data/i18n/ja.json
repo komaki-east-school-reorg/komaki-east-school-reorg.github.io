@@ -145,7 +145,7 @@
   "faq_more_h": "ほかのページにもＱ＆Ａがあります",
   "faq_more_bus": "スクールバスのよくある質問（申請・停留所・安全対策）→",
   "faq_more_community": "地域協議会のよくある疑問（再編後の協議会はどうなる）→",
-  "faq_contact_h": "市へのお問い合わせ<small>Contact the City</small>",
+  "faq_contact_h": "市へのお問い合わせ<small>Who to Contact</small>",
   "bus_contact_h": "スクールバスの問い合わせ先<small>Who to Contact</small>",
   "bus_contact_lead": "通学区域・対象エリア・申請・バス停の場所は市が決めているので、市の教育総務課が窓口です。走っているバスそのもの（車内の忘れ物など）は、運行を受託しているあおい交通株式会社になります。",
   "bus_c1_w": "対象エリア、申請、バス停の場所、通学区域",
@@ -1298,5 +1298,7 @@
   "moved_link": "よくある質問と賛否の声を開く →",
   "rel_council_review": "計画の検証と提案を見る",
   "faq_qa_h": "よくある質問<small>Frequently Asked Questions</small>",
-  "footer_local": "参考リンク（住民有志）"
+  "footer_local": "参考リンク（住民有志）",
+  "faq_qa_intro": "再編計画の概要、通学と生活、地域と施設、意見の出し方の4つに分けて、市の公式資料をもとに20問に答えます。質問を押すと答えが開きます。",
+  "voices_intro": "賛成・反対・中立の3つの立場に分けて、地域で実際に出ている意見を並べています。ここに並ぶ件数は、地域の賛否の割合を示すものではありません。"
 }

@@ -175,7 +175,7 @@
   "faq_more_h": "Há perguntas frequentes em outras páginas",
   "faq_more_bus": "Perguntas sobre o ônibus escolar (inscrição, pontos, segurança) →",
   "faq_more_community": "Perguntas sobre os conselhos comunitários (o que acontece com eles após a reorganização) →",
-  "faq_contact_h": "Contato com a prefeitura<small>Contact the City</small>",
+  "faq_contact_h": "Contato com a prefeitura<small>Who to Contact</small>",
   "bus_contact_h": "Contatos sobre o ônibus escolar<small>Who to Contact</small>",
   "bus_contact_lead": "As zonas escolares, a área atendida, as inscrições e os pontos de parada são definidos pela prefeitura, então o setor responsável é a Seção Geral de Educação. Os ônibus em si (objetos esquecidos, por exemplo) são operados sob contrato pela Aoi Kotsu Co., Ltd.",
   "bus_c1_w": "Área atendida, inscrições, pontos de parada, zonas escolares",
@@ -1298,5 +1298,7 @@
   "moved_link": "Abrir Perguntas Frequentes e Opiniões da Comunidade →",
   "rel_council_review": "Ver a análise do plano e as propostas",
   "faq_qa_h": "Perguntas Frequentes<small>Frequently Asked Questions</small>",
-  "footer_local": "Links de referência (moradores)"
+  "footer_local": "Links de referência (moradores)",
+  "faq_qa_intro": "Vinte perguntas respondidas com base no material oficial da prefeitura, em quatro grupos: o plano, o trajeto e o dia a dia, o bairro e os prédios, e como opinar. Toque na pergunta para abrir a resposta.",
+  "voices_intro": "Opiniões realmente manifestadas no bairro, em três colunas: a favor, contra e neutras. A quantidade de cartões em cada coluna não indica como o bairro se divide."
 }

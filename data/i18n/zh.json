@@ -175,7 +175,7 @@
   "faq_more_h": "其他页面也有问答",
   "faq_more_bus": "校车常见问题（申请・站点・安全措施）→",
   "faq_more_community": "地区协议会常见疑问（重组后协议会将如何）→",
-  "faq_contact_h": "联系市政府<small>Contact the City</small>",
+  "faq_contact_h": "联系市政府<small>Who to Contact</small>",
   "bus_contact_h": "校车的咨询处<small>Who to Contact</small>",
   "bus_contact_lead": "学区、对象区域、申请与站点位置均由市方决定，窗口是市教育总务课。至于正在行驶的校车本身（例如车内遗失物），则由受托运营的あおい交通株式会社负责。",
   "bus_c1_w": "对象区域、申请、站点位置、学区",
@@ -1298,5 +1298,7 @@
   "moved_link": "打开常见问题与社区声音 →",
   "rel_council_review": "查看计划的检验与建议",
   "faq_qa_h": "常见问题<small>Frequently Asked Questions</small>",
-  "footer_local": "参考链接（居民自发）"
+  "footer_local": "参考链接（居民自发）",
+  "faq_qa_intro": "依据市的官方资料，分为计划概要、上下学与生活、地区与设施、如何提出意见四类，解答20个问题。点击问题即可展开回答。",
+  "voices_intro": "按赞成、反对、中立三种立场，列出地区内实际提出的意见。各栏的条数并不代表地区内赞成与反对的比例。"
 }

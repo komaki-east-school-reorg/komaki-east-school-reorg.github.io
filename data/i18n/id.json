@@ -175,7 +175,7 @@
   "faq_more_h": "Ada tanya jawab di halaman lain juga",
   "faq_more_bus": "Tanya jawab bus sekolah (pendaftaran, halte, keselamatan) →",
   "faq_more_community": "Tanya jawab dewan komunitas (bagaimana nasibnya setelah reorganisasi) →",
-  "faq_contact_h": "Hubungi pemerintah kota<small>Contact the City</small>",
+  "faq_contact_h": "Hubungi pemerintah kota<small>Who to Contact</small>",
   "bus_contact_h": "Kontak tentang bus sekolah<small>Who to Contact</small>",
   "bus_contact_lead": "Zona sekolah, area layanan, pendaftaran, dan lokasi halte semuanya ditentukan kota, jadi loketnya adalah Divisi Umum Pendidikan. Bus-nya sendiri (misalnya barang tertinggal) dioperasikan berdasarkan kontrak oleh Aoi Kotsu Co., Ltd.",
   "bus_c1_w": "Area layanan, pendaftaran, lokasi halte, zona sekolah",
@@ -1298,5 +1298,7 @@
   "moved_link": "Buka Pertanyaan Umum dan Suara Komunitas →",
   "rel_council_review": "Lihat telaah rencana dan usulannya",
   "faq_qa_h": "Pertanyaan yang Sering Diajukan<small>Frequently Asked Questions</small>",
-  "footer_local": "Tautan referensi (warga)"
+  "footer_local": "Tautan referensi (warga)",
+  "faq_qa_intro": "Dua puluh pertanyaan yang dijawab berdasarkan materi resmi kota, dalam empat kelompok: rencananya, perjalanan ke sekolah dan keseharian, kawasan dan gedung, serta cara menyampaikan pendapat. Ketuk pertanyaan untuk membuka jawabannya.",
+  "voices_intro": "Pendapat yang benar-benar muncul di kawasan ini, disusun dalam tiga kolom: setuju, menolak, dan netral. Banyaknya kartu di tiap kolom tidak menunjukkan bagaimana warga terbagi."
 }

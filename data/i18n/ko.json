@@ -145,7 +145,7 @@
   "faq_more_h": "다른 페이지에도 Q&A가 있습니다",
   "faq_more_bus": "스쿨버스의 자주 묻는 질문(신청·정류장·안전 대책) →",
   "faq_more_community": "지역 협의회의 자주 묻는 질문(재편 후 협의회는 어떻게 되나) →",
-  "faq_contact_h": "시에 문의하기<small>Contact the City</small>",
+  "faq_contact_h": "시에 문의하기<small>Who to Contact</small>",
   "bus_contact_h": "스쿨버스 문의처<small>Who to Contact</small>",
   "bus_contact_lead": "통학 구역·대상 구역·신청·정류장 위치는 시가 정하므로 시 교육총무과가 창구입니다. 실제로 달리는 버스 자체(차내 분실물 등)는 운행을 위탁받은 아오이 교통 주식회사가 담당합니다.",
   "bus_c1_w": "대상 구역, 신청, 정류장 위치, 통학 구역",
@@ -1298,5 +1298,7 @@
   "moved_link": "자주 묻는 질문과 찬반 의견 열기 →",
   "rel_council_review": "계획의 검증과 제안을 보기",
   "faq_qa_h": "자주 묻는 질문<small>Frequently Asked Questions</small>",
-  "footer_local": "참고 링크(주민)"
+  "footer_local": "참고 링크(주민)",
+  "faq_qa_intro": "시의 공식 자료를 바탕으로, 재편 계획의 개요, 통학과 생활, 지역과 시설, 의견을 내는 방법의 네 가지로 나누어 20개 질문에 답합니다. 질문을 누르면 답변이 열립니다.",
+  "voices_intro": "찬성·반대·중립의 세 가지 입장으로 나누어, 지역에서 실제로 나온 의견을 싣고 있습니다. 각 칸의 건수는 지역의 찬반 비율을 나타내는 것이 아닙니다."
 }
