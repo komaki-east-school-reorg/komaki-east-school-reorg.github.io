@@ -184,7 +184,7 @@
   "event_status_upcoming": "စီစဉ်ထား",
   "faq_contact_dept_label": "ဌာန",
   "faq_contact_dept_val": "ပညာရေးဘုတ်အဖွဲ့ ပညာရေးအထွေထွေရေးရာဌာန ကျောင်းပြန်လည်ဖွဲ့စည်းရေး မြှင့်တင်မှုဌာနခွဲ",
-  "faq_contact_h": "မြို့တော်သို့ ဆက်သွယ်ရန် (တရားဝင်)",
+  "faq_contact_h": "မြို့တော်သို့ ဆက်သွယ်ရန်<small>Contact the City</small>",
   "faq_contact_loc_label": "တည်နေရာ",
   "faq_contact_loc_val": "Komaki မြို့တော်ခန်းမ၊ ပင်မအဆောက်အအုံ ၃ လွှာ",
   "faq_contact_tel_label": "ဖုန်း",

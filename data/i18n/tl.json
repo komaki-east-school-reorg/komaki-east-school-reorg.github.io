@@ -125,7 +125,7 @@
   "status_done": "Tapos na",
   "status_current": "Isinasagawa",
   "status_upcoming": "Nakatakda",
-  "voices_about": "<strong>Tungkol sa pahinang ito:</strong> Ang mga opinyon dito ay mga buod ng mga tinig na nakolekta sa mga briefing ng komunidad, pulong ng palitan ng opinyon at public comment, na kumakatawan sa mga pananaw na pabor, laban at neutral. Ang pahinang ito ay hindi nagtataguyod ng anumang posisyon; layunin nitong iparating nang patas ang pagkakaiba-iba ng mga pananaw ng komunidad.",
+  "voices_about": "<strong>Tungkol sa bahaging ito:</strong> Ang mga opinyon dito ay mga buod ng mga tinig na nakolekta sa mga briefing ng komunidad, pulong ng palitan ng opinyon at public comment, na kumakatawan sa mga pananaw na pabor, laban at neutral. Ang pahinang ito ay hindi nagtataguyod ng anumang posisyon; layunin nitong iparating nang patas ang pagkakaiba-iba ng mga pananaw ng komunidad.",
   "voices_cols_h": "Mga tinig na pabor, laban at neutral<small>Voices For, Against and Neutral</small>",
   "pubcom_title": "Mga Resulta ng Public Comment (Nob–Dis 2025)",
   "stat_total": "Kabuuan",
@@ -175,7 +175,7 @@
   "faq_more_h": "May Q&A rin sa ibang pahina",
   "faq_more_bus": "Q&A tungkol sa school bus (aplikasyon, hintuan, kaligtasan) →",
   "faq_more_community": "Q&A tungkol sa konseho ng komunidad (ano ang mangyayari pagkatapos ng muling pagsasaayos) →",
-  "faq_contact_h": "Makipag-ugnayan sa Lungsod (Opisyal)",
+  "faq_contact_h": "Makipag-ugnayan sa lungsod<small>Contact the City</small>",
   "bus_contact_h": "Mga kontak tungkol sa school bus<small>Who to Contact</small>",
   "bus_contact_lead": "Ang mga school district, saklaw na lugar, aplikasyon at lokasyon ng hintuan ay pawang pasya ng lungsod, kaya ang Education General Affairs Division ang tanggapan para rito. Ang mismong mga bus — halimbawa ang naiwang gamit — ay pinapatakbo sa ilalim ng kontrata ng Aoi Kotsu Co., Ltd.",
   "bus_c1_w": "Saklaw na lugar, aplikasyon, lokasyon ng hintuan, school district",
@@ -493,7 +493,7 @@
   "council_contact_note": "Ang sekretariat ng konseho ay nasa ika-3 palapag ng East Building, ang Education General Affairs Division sa ika-3 palapag ng Main Building. Ang switchboard ng lungsod ay 0568-72-2101. Iniwan sa Hapones ang pangalan ng mga tanggapan dahil iyon ang ipapakita o babanggitin mo. Hindi naglalathala ang site na ito ng pangalan o kontak ng mga konsehal. Ang iba pang tanggapan ng lungsod at prepektura ay nasa <a href=\"review.html#rev-contact\">Pagsusuri at mungkahi</a>.",
   "pubcom_desc": "Sa panahon ng public comment (Nobyembre 10 – Disyembre 9, 2025), kabuuang <strong>55 na pahayag</strong> ang natanggap. Inilathala ng lungsod ang mga tugon nito at isang binagong plano sa opisyal na website.",
   "voices_pc_h": "Ang sinabi ng mga public comment<small>What the Comments Said</small>",
-  "voices_pc_lead": "Mula rito, ang nilalaman ay batay sa mga komentong talagang inilathala ng lungsod. Ang public comment mula 10 Nobyembre hanggang 9 Disyembre 2025 ay nakatanggap ng 55 komento, at inilathala ng lungsod ang bawat isa kasama ang sagot nito. Binasa at binuod ito ng site na ito ayon sa paksa.",
+  "voices_pc_lead": "Ang nilalaman ng bahaging ito ay batay sa mga komentong talagang inilathala ng lungsod. Ang public comment mula 10 Nobyembre hanggang 9 Disyembre 2025 ay nakatanggap ng 55 komento, at inilathala ng lungsod ang bawat isa kasama ang sagot nito. Binasa at binuod ito ng site na ito ayon sa paksa.",
   "voices_pc_themes": "Sa bilang ng mga pamagat na inilagay ng lungsod sa mga sagot nito: panahon ng unang yugto, 18; pagpapaliwanag sa komunidad, 16; pangangailangan ng reorganisasyon, 8; pagtingin sa maliliit na paaralan, 8; pangalan ng paaralan, 7; laki ng klase, 6; hakbang laban sa pagbaba ng populasyon, 6; reorganisasyon at pagpaplano ng bayan, 5 (binilang ng site na ito).",
   "voices_pc_alabel": "Sagot ng lungsod (buod)",
   "voices_pc_q1": "\"Masyadong maaga ang FY2027. Mas mahalaga ang masusing pag-uusap kaysa sa takdang petsa.\"",
@@ -1296,5 +1296,6 @@
   "moved_h": "Inilipat na ang pahinang ito",
   "moved_p": "Ang Boses ng Komunidad ay bahagi na ng Mga Madalas na Tanong at Boses ng Komunidad. Dadalhin ka roon sa ilang sandali.",
   "moved_link": "Buksan ang Mga Madalas na Tanong at Boses ng Komunidad →",
-  "rel_council_review": "Tingnan ang pagsusuri sa plano at mga mungkahi"
+  "rel_council_review": "Tingnan ang pagsusuri sa plano at mga mungkahi",
+  "faq_qa_h": "Mga Madalas na Tanong<small>Frequently Asked Questions</small>"
 }

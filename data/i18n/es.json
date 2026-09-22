@@ -125,7 +125,7 @@
   "status_done": "Completado",
   "status_current": "En progreso",
   "status_upcoming": "Previsto",
-  "voices_about": "<strong>Acerca de esta página:</strong> Las opiniones aquí son resúmenes de voces recopiladas en presentaciones comunitarias, reuniones de intercambio y comentarios públicos, representando perspectivas a favor, en contra y neutras. Esta página no respalda ninguna postura; su objetivo es transmitir de forma justa la diversidad de opiniones de la comunidad.",
+  "voices_about": "<strong>Acerca de esta sección:</strong> Las opiniones aquí son resúmenes de voces recopiladas en presentaciones comunitarias, reuniones de intercambio y comentarios públicos, representando perspectivas a favor, en contra y neutras. Esta página no respalda ninguna postura; su objetivo es transmitir de forma justa la diversidad de opiniones de la comunidad.",
   "voices_cols_h": "Voces a favor, en contra y neutrales<small>Voices For, Against and Neutral</small>",
   "pubcom_title": "Resultados del Comentario Público (Nov–Dic 2025)",
   "stat_total": "Total",
@@ -175,7 +175,7 @@
   "faq_more_h": "También hay preguntas frecuentes en otras páginas",
   "faq_more_bus": "Preguntas sobre el bus escolar (solicitud, paradas, seguridad) →",
   "faq_more_community": "Preguntas sobre los consejos comunitarios (qué pasa con ellos tras la reorganización) →",
-  "faq_contact_h": "Contactar con el Ayuntamiento (Oficial)",
+  "faq_contact_h": "Contactar con el Ayuntamiento<small>Contact the City</small>",
   "bus_contact_h": "Contactos sobre el bus escolar<small>Who to Contact</small>",
   "bus_contact_lead": "Las zonas escolares, el área cubierta, las solicitudes y la ubicación de las paradas los decide el ayuntamiento, así que la ventanilla es la Sección General de Educación. Los buses en sí (objetos olvidados, por ejemplo) los opera por contrato Aoi Kotsu Co., Ltd.",
   "bus_c1_w": "Área cubierta, solicitudes, ubicación de las paradas, zonas escolares",
@@ -493,7 +493,7 @@
   "council_contact_note": "La secretaría del pleno está en la 3ª planta del Edificio Este y la Sección General de Educación en la 3ª del Edificio Principal. La centralita municipal es 0568-72-2101. Los nombres de los departamentos se dejan en japonés, porque es lo que mostrará en la ventanilla o dirá por teléfono. Este sitio no publica nombres ni contactos de concejales. Otros órganos municipales y provinciales están en <a href=\"review.html#rev-contact\">Análisis y propuestas</a>.",
   "pubcom_desc": "Durante el período de comentarios públicos (10 de noviembre – 9 de diciembre de 2025), se recibieron un total de <strong>55 presentaciones</strong>. La ciudad ha publicado sus respuestas y un plan revisado en el sitio web oficial.",
   "voices_pc_h": "Qué dijeron los comentarios públicos<small>What the Comments Said</small>",
-  "voices_pc_lead": "A partir de aquí, el contenido procede de los comentarios que el ayuntamiento publicó realmente. La consulta pública del 10 de noviembre al 9 de diciembre de 2025 recibió 55 aportaciones, y el ayuntamiento publicó cada una con su respuesta. Este sitio las leyó y las resumió por temas.",
+  "voices_pc_lead": "El contenido de esta sección procede de los comentarios que el ayuntamiento publicó realmente. La consulta pública del 10 de noviembre al 9 de diciembre de 2025 recibió 55 aportaciones, y el ayuntamiento publicó cada una con su respuesta. Este sitio las leyó y las resumió por temas.",
   "voices_pc_themes": "Contando los títulos que el ayuntamiento puso a sus respuestas: el calendario de la primera fase, 18; la explicación a la comunidad, 16; la necesidad de la reorganización, 8; cómo se valoran las escuelas pequeñas, 8; los nombres de las escuelas, 7; el tamaño de las clases, 6; medidas ante la caída demográfica, 6; reorganización y urbanismo, 5 (recuento de este sitio).",
   "voices_pc_alabel": "Respuesta del ayuntamiento (resumen)",
   "voices_pc_q1": "\"Empezar en el año fiscal 2027 es demasiado pronto. Hablarlo importa más que cumplir un plazo.\"",
@@ -1296,5 +1296,6 @@
   "moved_h": "Esta página se ha movido",
   "moved_p": "Voces de la Comunidad ahora forma parte de Preguntas Frecuentes y Voces de la Comunidad. Se le llevará allí en un momento.",
   "moved_link": "Abrir Preguntas Frecuentes y Voces de la Comunidad →",
-  "rel_council_review": "Ver el análisis del plan y las propuestas"
+  "rel_council_review": "Ver el análisis del plan y las propuestas",
+  "faq_qa_h": "Preguntas Frecuentes<small>Frequently Asked Questions</small>"
 }

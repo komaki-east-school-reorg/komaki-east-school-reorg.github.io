@@ -184,7 +184,7 @@
   "event_status_upcoming": "Planned",
   "faq_contact_dept_label": "Department",
   "faq_contact_dept_val": "School Reorganization Promotion Division, Education General Affairs Section, Board of Education",
-  "faq_contact_h": "Contact the City (Official)",
+  "faq_contact_h": "Contact the City<small>市へのお問い合わせ</small>",
   "faq_contact_loc_label": "Location",
   "faq_contact_loc_val": "Komaki City Hall, Main Building 3F",
   "faq_contact_tel_label": "Phone",

@@ -125,7 +125,7 @@
   "status_done": "Concluído",
   "status_current": "Em andamento",
   "status_upcoming": "Previsto",
-  "voices_about": "<strong>Sobre esta página:</strong> As opiniões aqui são resumos de vozes coletadas em briefings, reuniões de troca de opiniões e comentários públicos, representando perspectivas favoráveis, contrárias e neutras. Esta página não endossa nenhuma posição; visa transmitir de forma justa a diversidade de opiniões da comunidade.",
+  "voices_about": "<strong>Sobre esta seção:</strong> As opiniões aqui são resumos de vozes coletadas em briefings, reuniões de troca de opiniões e comentários públicos, representando perspectivas favoráveis, contrárias e neutras. Esta página não endossa nenhuma posição; visa transmitir de forma justa a diversidade de opiniões da comunidade.",
   "voices_cols_h": "Vozes a favor, contra e neutras<small>Voices For, Against and Neutral</small>",
   "pubcom_title": "Resultados do Comentário Público (Nov–Dez 2025)",
   "stat_total": "Total",
@@ -175,7 +175,7 @@
   "faq_more_h": "Há perguntas frequentes em outras páginas",
   "faq_more_bus": "Perguntas sobre o ônibus escolar (inscrição, pontos, segurança) →",
   "faq_more_community": "Perguntas sobre os conselhos comunitários (o que acontece com eles após a reorganização) →",
-  "faq_contact_h": "Contato com a Cidade (Oficial)",
+  "faq_contact_h": "Contato com a prefeitura<small>Contact the City</small>",
   "bus_contact_h": "Contatos sobre o ônibus escolar<small>Who to Contact</small>",
   "bus_contact_lead": "As zonas escolares, a área atendida, as inscrições e os pontos de parada são definidos pela prefeitura, então o setor responsável é a Seção Geral de Educação. Os ônibus em si (objetos esquecidos, por exemplo) são operados sob contrato pela Aoi Kotsu Co., Ltd.",
   "bus_c1_w": "Área atendida, inscrições, pontos de parada, zonas escolares",
@@ -493,7 +493,7 @@
   "council_contact_note": "A secretaria da câmara fica no 3º andar do Edifício Leste e a Seção Geral de Educação no 3º andar do Edifício Principal. O telefone geral é 0568-72-2101. Os nomes dos órgãos ficam em japonês, pois é o que você mostrará no balcão ou dirá ao telefone. Este site não divulga nomes nem contatos de vereadores. Outros órgãos da cidade e da província estão em <a href=\"review.html#rev-contact\">Análise e propostas</a>.",
   "pubcom_desc": "Durante o período de comentários públicos (10 de novembro – 9 de dezembro de 2025), foram recebidas <strong>55 submissões</strong>. A cidade publicou suas respostas e um plano revisado no site oficial.",
   "voices_pc_h": "O que disseram os comentários públicos<small>What the Comments Said</small>",
-  "voices_pc_lead": "Daqui em diante, o conteúdo vem dos comentários que a prefeitura realmente publicou. A consulta pública de 10 de novembro a 9 de dezembro de 2025 recebeu 55 manifestações, e a prefeitura publicou cada uma com sua resposta. Este site as leu e resumiu por tema.",
+  "voices_pc_lead": "O conteúdo desta seção vem dos comentários que a prefeitura realmente publicou. A consulta pública de 10 de novembro a 9 de dezembro de 2025 recebeu 55 manifestações, e a prefeitura publicou cada uma com sua resposta. Este site as leu e resumiu por tema.",
   "voices_pc_themes": "Contando os títulos que a prefeitura deu às suas respostas: prazo da 1ª fase, 18; explicação à comunidade, 16; necessidade da reorganização, 8; avaliação das escolas pequenas, 8; nomes das escolas, 7; tamanho das turmas, 6; medidas contra o declínio populacional, 6; reorganização e urbanismo, 5 (contagem deste site).",
   "voices_pc_alabel": "Resposta da prefeitura (resumo)",
   "voices_pc_q1": "\"Começar no ano fiscal de 2027 é cedo demais. Conversar importa mais do que cumprir um prazo.\"",
@@ -1296,5 +1296,6 @@
   "moved_h": "Esta página foi movida",
   "moved_p": "As Opiniões da Comunidade agora fazem parte de Perguntas Frequentes e Opiniões da Comunidade. Você será levado até lá em instantes.",
   "moved_link": "Abrir Perguntas Frequentes e Opiniões da Comunidade →",
-  "rel_council_review": "Ver a análise do plano e as propostas"
+  "rel_council_review": "Ver a análise do plano e as propostas",
+  "faq_qa_h": "Perguntas Frequentes<small>Frequently Asked Questions</small>"
 }

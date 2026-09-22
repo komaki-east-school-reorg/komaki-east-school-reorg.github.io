@@ -252,7 +252,7 @@
   "voice_for6": "\"Bu bölgede yabancı kökenli aileler çok olduğundan, çok dilli bültenler olumlu bir adım. Uygun büyüklükte bir okul, farklı geçmişlerden gelen çocukları bir araya getirir ve daha iyi bir eğitim ortamı oluşturur.\"",
   "voice_neutral3": "\"Belediyenin 55 kamuoyu görüşüne verdiği yanıtların daha anlaşılır biçimde yayımlanmasını isterim. PDF okumak sıradan vatandaş için zor. Gözden geçirilmiş planın sade bir dille açıklanması memnuniyet verici olurdu.\"",
   "voice_neutral4": "\"2. Aşamada 1 ilkokul ve 1 ortaokula inilerek bütünleşik eğitim öngörülüyor. 2. Aşamaya karar vermeden önce 1. Aşamanın eğitim ortamını gerçekten iyileştirip iyileştirmediğini doğrulayın.\"",
-  "voices_about": "<strong>Bu sayfa hakkında:</strong> Burada yer alan görüşler; sakin bilgilendirmeleri, görüş alışverişleri ve kamuoyu görüşleri yoluyla toplanan lehte, aleyhte ve tarafsız seslerin özetidir. Bu sayfa herhangi bir tutumu savunmaz; toplumdaki görüş çeşitliliğini adil biçimde aktarmayı amaçlar.",
+  "voices_about": "<strong>Bu bölüm hakkında:</strong> Burada yer alan görüşler; sakin bilgilendirmeleri, görüş alışverişleri ve kamuoyu görüşleri yoluyla toplanan lehte, aleyhte ve tarafsız seslerin özetidir. Bu sayfa herhangi bir tutumu savunmaz; toplumdaki görüş çeşitliliğini adil biçimde aktarmayı amaçlar.",
   "voices_cols_h": "Destekleyen, karşı çıkan ve tarafsız görüşler<small>Voices For, Against and Neutral</small>",
   "related_h": "İlgili sayfalar",
   "nationwide_h1": "Japonya genelinde okul yeniden yapılandırması",
@@ -355,7 +355,7 @@
   "faq_more_h": "Diğer sayfalarda da soru-cevap bölümleri var",
   "faq_more_bus": "Okul servisi hakkında sık sorulanlar (başvuru, duraklar, güvenlik) →",
   "faq_more_community": "Bölge konseyleri hakkında sorular (yeniden yapılandırmadan sonra ne olacak) →",
-  "faq_contact_h": "Belediyeye ulaşın (resmî)",
+  "faq_contact_h": "Belediyeye ulaşın<small>Contact the City</small>",
   "bus_contact_h": "Okul servisi için iletişim<small>Who to Contact</small>",
   "bus_contact_lead": "Okul bölgeleri, kapsanan alan, başvurular ve durak yerleri belediyece belirlenir; bu nedenle muhatap Eğitim Genel İşler Müdürlüğü'dür. Otobüslerin kendisi (örneğin araçta unutulan eşya) sözleşmeyle Aoi Kotsu A.Ş. tarafından işletilir.",
   "bus_c1_w": "Kapsanan alan, başvurular, durak yerleri, okul bölgeleri",
@@ -486,7 +486,7 @@
   "stat_post": "Posta / Elden",
   "pubcom_desc": "Kamuoyu görüşü döneminde (10 Kasım – 9 Aralık 2025) toplam <strong>55 görüş</strong> alındı. Belediye yanıtlarını ve gözden geçirilmiş planı resmî sitesinde yayımladı.",
   "voices_pc_h": "Kamu görüşlerinde ne söylendi<small>What the Comments Said</small>",
-  "voices_pc_lead": "Buradan itibaren içerik, belediyenin gerçekten yayımladığı görüşlere dayanıyor. 10 Kasım–9 Aralık 2025 kamu görüşü döneminde 55 görüş geldi; belediye her görüşü kendi yanıtıyla birlikte yayımladı. Bu site onları okuyup konu başlıklarına göre özetledi.",
+  "voices_pc_lead": "Bu bölümdeki içerik, belediyenin gerçekten yayımladığı görüşlere dayanıyor. 10 Kasım–9 Aralık 2025 kamu görüşü döneminde 55 görüş geldi; belediye her görüşü kendi yanıtıyla birlikte yayımladı. Bu site onları okuyup konu başlıklarına göre özetledi.",
   "voices_pc_themes": "Belediyenin yanıtlarına koyduğu başlıklar sayıldığında: birinci aşamanın zamanlaması 18; bölgeye yapılan bilgilendirme 16; yeniden düzenlemenin gerekliliği 8; küçük okulların değerlendirilmesi 8; okul adları 7; sınıf mevcudu 6; nüfus azalmasına karşı önlemler 6; yeniden düzenleme ve kentleşme 5 (bu sitenin sayımı).",
   "voices_pc_alabel": "Belediyenin yanıtı (özet)",
   "voices_pc_q1": "\"2027 mali yılında başlamak çok erken. Süre koymaktan çok, konuşmak önemli.\"",
@@ -1296,5 +1296,6 @@
   "moved_h": "Bu sayfa taşındı",
   "moved_p": "Sakinlerin Görüşleri artık Sıkça Sorulan Sorular ve Sakinlerin Görüşleri sayfasının bir parçası. Birazdan oraya yönlendirileceksiniz.",
   "moved_link": "Sıkça Sorulan Sorular ve Sakinlerin Görüşleri sayfasını aç →",
-  "rel_council_review": "Planın incelemesine ve önerilere bak"
+  "rel_council_review": "Planın incelemesine ve önerilere bak",
+  "faq_qa_h": "Sıkça sorulan sorular<small>Frequently Asked Questions</small>"
 }

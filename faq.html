@@ -118,7 +118,9 @@
   <section class="section section-alt" id="qa">
     <div class="container" style="max-width:800px;">
 
-      <h2 class="section-title" style="margin-bottom:1.2rem;" data-i18n-html="faq_cat1">再編計画の概要について<small>About the Plan</small></h2>
+      <h2 class="section-title" style="margin-bottom:1.2rem;" data-i18n-html="faq_qa_h">よくある質問<small>Frequently Asked Questions</small></h2>
+
+      <h3 class="section-title sub" style="margin-bottom:1.2rem;" data-i18n-html="faq_cat1">再編計画の概要について<small>About the Plan</small></h3>
       <div class="faq-list">
 
         <div class="faq-item">
@@ -173,7 +175,7 @@
 
       </div>
 
-      <h2 class="section-title" style="margin-bottom:1.2rem; margin-top:2rem;" data-i18n-html="faq_cat2">通学・生活について<small>Daily Life</small></h2>
+      <h3 class="section-title sub" style="margin-bottom:1.2rem; margin-top:2rem;" data-i18n-html="faq_cat2">通学・生活について<small>Daily Life</small></h3>
       <div class="faq-list">
 
         <div class="faq-item">
@@ -274,7 +276,7 @@
         </div>
       </div>
 
-      <h2 class="section-title" style="margin-bottom:1.2rem; margin-top:2rem;" data-i18n-html="faq_cat3">地域・施設について<small>Community &amp; Facilities</small></h2>
+      <h3 class="section-title sub" style="margin-bottom:1.2rem; margin-top:2rem;" data-i18n-html="faq_cat3">地域・施設について<small>Community &amp; Facilities</small></h3>
       <div class="faq-list">
 
         <div class="faq-item">
@@ -315,7 +317,7 @@
 
       </div>
 
-      <h2 class="section-title" style="margin-bottom:1.2rem; margin-top:2rem;" data-i18n-html="faq_cat4">意見・参加について<small>Participation</small></h2>
+      <h3 class="section-title sub" style="margin-bottom:1.2rem; margin-top:2rem;" data-i18n-html="faq_cat4">意見・参加について<small>Participation</small></h3>
       <div class="faq-list">
 
         <div class="faq-item">
@@ -377,6 +379,15 @@
           </div>
         </div>
       </div>
+
+      <!-- ほかのページのQ&A：このサイトのQ&Aは3か所に分かれている（このページ／
+           スクールバス／地域協議会）。文脈のある場所に置く方針は変えず、
+           「質問はここ」と思って来た読者が残り2つに行けるよう導線だけを置く。 -->
+      <div class="faq-more" style="margin-top:2rem;">
+        <div class="faq-more-h" data-i18n="faq_more_h">ほかのページにもＱ＆Ａがあります</div>
+        <a href="bus.html#faq" data-i18n="faq_more_bus">スクールバスのよくある質問（申請・停留所・安全対策）→</a>
+        <a href="community.html#qa" data-i18n="faq_more_community">地域協議会のよくある疑問（再編後の協議会はどうなる）→</a>
+      </div>
     </div>
   </section>
 
@@ -389,7 +400,7 @@
   <section class="section" id="voices">
     <div class="container">
       <div class="info-box" data-i18n-html="voices_about">
-        <strong>このページについて：</strong>
+        <strong>この欄について：</strong>
         掲載している意見は、地域説明会・意見交換会・パブリックコメント等で寄せられた声をもとに、
         賛成・反対・中立の立場から代表的な意見を要約・再構成したものです。
         特定の立場を推奨するものではなく、地域の多様な意見を公平に伝えることを目的としています。
@@ -516,7 +527,7 @@
   <section class="section section-alt" id="pubcom">
     <div class="container" style="max-width:900px;">
       <h2 class="section-title" data-i18n-html="voices_pc_h">パブリックコメントで実際に言われたこと<small>What the Comments Said</small></h2>
-      <p style="margin-bottom:1rem;" data-i18n="voices_pc_lead">ここから下は、市が公表した実際の意見にもとづきます。令和7年（2025年）11月10日〜12月9日のパブリックコメントには55件の意見が寄せられ、市は意見の原文と「市の考え方」を公表しています。当サイトがそれを読み、論点ごとに要約しました。</p>
+      <p style="margin-bottom:1rem;" data-i18n="voices_pc_lead">この欄は、市が公表した実際の意見にもとづきます。令和7年（2025年）11月10日〜12月9日のパブリックコメントには55件の意見が寄せられ、市は意見の原文と「市の考え方」を公表しています。当サイトがそれを読み、論点ごとに要約しました。</p>
 
       <!-- PUBLIC COMMENT RESULT -->
       <div style="background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:1.2rem 1.4rem; margin-bottom:1.5rem; border-left:5px solid var(--accent);">
@@ -587,19 +598,13 @@
     </div>
   </section>
 
-  <section class="section">
+  <!-- 問い合わせ先：他ページ（about.html / bus.html / community.html など）と同じく
+       id="contact" を振ってある。data/contacts.json の週次照合もこの並びを見る。 -->
+  <section class="section" id="contact">
     <div class="container" style="max-width:800px;">
-      <!-- ほかのページのQ&A：このサイトのQ&Aは3か所に分かれている（このページ／
-           スクールバス／地域協議会）。文脈のある場所に置く方針は変えず、
-           「質問はここ」と思って来た読者が残り2つに行けるよう導線だけを置く。 -->
-      <div class="faq-more" style="margin-top:2rem;">
-        <div class="faq-more-h" data-i18n="faq_more_h">ほかのページにもＱ＆Ａがあります</div>
-        <a href="bus.html#faq" data-i18n="faq_more_bus">スクールバスのよくある質問（申請・停留所・安全対策）→</a>
-        <a href="community.html#qa" data-i18n="faq_more_community">地域協議会のよくある疑問（再編後の協議会はどうなる）→</a>
-      </div>
+      <h2 class="section-title" data-i18n-html="faq_contact_h">市へのお問い合わせ<small>Contact the City</small></h2>
 
-      <div class="contact-box" style="margin-top:2rem;">
-        <div style="font-weight:700; font-size:1rem; color:var(--primary); margin-bottom:.8rem;" data-i18n="faq_contact_h">市へのお問い合わせ（公式）</div>
+      <div class="contact-box">
         <div class="contact-row">
           <span class="contact-label" data-i18n="faq_contact_dept_label">担当課</span>
           <span data-i18n="faq_contact_dept_val">教育委員会事務局 教育総務課 学校再編推進係</span>

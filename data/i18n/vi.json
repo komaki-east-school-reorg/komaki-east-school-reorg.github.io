@@ -125,7 +125,7 @@
   "status_done": "Hoàn thành",
   "status_current": "Đang tiến hành",
   "status_upcoming": "Đã lên kế hoạch",
-  "voices_about": "<strong>Về trang này:</strong> Các ý kiến ở đây là tóm tắt từ các tiếng nói thu thập qua các buổi thông báo cộng đồng, cuộc họp trao đổi và ý kiến công cộng, đại diện cho quan điểm ủng hộ, phản đối và trung lập. Trang này không ủng hộ bất kỳ lập trường nào; mục đích là truyền đạt công bằng sự đa dạng quan điểm của cộng đồng.",
+  "voices_about": "<strong>Về mục này:</strong> Các ý kiến ở đây là tóm tắt từ các tiếng nói thu thập qua các buổi thông báo cộng đồng, cuộc họp trao đổi và ý kiến công cộng, đại diện cho quan điểm ủng hộ, phản đối và trung lập. Trang này không ủng hộ bất kỳ lập trường nào; mục đích là truyền đạt công bằng sự đa dạng quan điểm của cộng đồng.",
   "voices_cols_h": "Ý kiến ủng hộ, phản đối và trung lập<small>Voices For, Against and Neutral</small>",
   "pubcom_title": "Kết quả Lấy ý kiến Công cộng (Tháng 11–12/2025)",
   "stat_total": "Tổng cộng",
@@ -175,7 +175,7 @@
   "faq_more_h": "Các trang khác cũng có phần hỏi đáp",
   "faq_more_bus": "Hỏi đáp về xe buýt học đường (đăng ký, điểm dừng, an toàn) →",
   "faq_more_community": "Hỏi đáp về hội đồng cộng đồng (sau tái cơ cấu sẽ ra sao) →",
-  "faq_contact_h": "Liên hệ với Thành phố (Chính thức)",
+  "faq_contact_h": "Liên hệ với thành phố<small>Contact the City</small>",
   "bus_contact_h": "Liên hệ về xe buýt đưa đón<small>Who to Contact</small>",
   "bus_contact_lead": "Khu vực tuyển sinh, vùng phục vụ, việc đăng ký và vị trí điểm dừng đều do thành phố quyết định, nên đầu mối là Phòng Tổng vụ Giáo dục. Còn bản thân xe buýt (ví dụ đồ để quên trên xe) do công ty Aoi Kotsu vận hành theo hợp đồng.",
   "bus_c1_w": "Vùng phục vụ, đăng ký, vị trí điểm dừng, khu vực tuyển sinh",
@@ -493,7 +493,7 @@
   "council_contact_note": "Văn phòng hội đồng ở tầng 3 Tòa nhà Đông, Phòng Tổng vụ Giáo dục ở tầng 3 Tòa nhà Chính. Tổng đài thành phố: 0568-72-2101. Tên các bộ phận giữ nguyên tiếng Nhật vì đó là thứ bạn đưa ra ở quầy hoặc đọc qua điện thoại. Trang này không đăng tên hay liên hệ của từng đại biểu. Các cơ quan khác của thành phố và tỉnh có ở <a href=\"review.html#rev-contact\">Phân tích và đề xuất</a>.",
   "pubcom_desc": "Trong thời gian lấy ý kiến công chúng (10 tháng 11 – 9 tháng 12 năm 2025), đã nhận được tổng cộng <strong>55 ý kiến</strong>. Thành phố đã công bố phản hồi và kế hoạch sửa đổi trên trang web chính thức.",
   "voices_pc_h": "Ý kiến công chúng đã nói gì<small>What the Comments Said</small>",
-  "voices_pc_lead": "Từ đây trở xuống là dựa trên các ý kiến mà thành phố đã công bố. Đợt lấy ý kiến từ 10/11 đến 9/12/2025 nhận được 55 ý kiến, và thành phố đã công bố nguyên văn từng ý kiến kèm quan điểm của mình. Trang này đã đọc và tóm tắt theo chủ đề.",
+  "voices_pc_lead": "Mục này dựa trên các ý kiến mà thành phố đã công bố. Đợt lấy ý kiến từ 10/11 đến 9/12/2025 nhận được 55 ý kiến, và thành phố đã công bố nguyên văn từng ý kiến kèm quan điểm của mình. Trang này đã đọc và tóm tắt theo chủ đề.",
   "voices_pc_themes": "Đếm các tiêu đề mà thành phố đặt cho phần trả lời: thời điểm giai đoạn 1 là 18; việc giải thích với cộng đồng 16; sự cần thiết của tái tổ chức 8; cách nhìn về trường quy mô nhỏ 8; tên trường 7; sĩ số lớp 6; biện pháp đối phó giảm dân số 6; tái tổ chức và phát triển đô thị 5 (do trang này thống kê).",
   "voices_pc_alabel": "Quan điểm của thành phố (tóm tắt)",
   "voices_pc_q1": "\"Thực hiện từ năm học 2027 là quá sớm. Bàn bạc kỹ quan trọng hơn là chạy theo thời hạn.\"",
@@ -1296,5 +1296,6 @@
   "moved_h": "Trang này đã được chuyển",
   "moved_p": "Tiếng nói cộng đồng nay nằm trong Câu hỏi thường gặp và tiếng nói cộng đồng. Bạn sẽ được chuyển đến đó trong giây lát.",
   "moved_link": "Mở Câu hỏi thường gặp và tiếng nói cộng đồng →",
-  "rel_council_review": "Xem phân tích kế hoạch và các đề xuất"
+  "rel_council_review": "Xem phân tích kế hoạch và các đề xuất",
+  "faq_qa_h": "Câu hỏi thường gặp<small>Frequently Asked Questions</small>"
 }

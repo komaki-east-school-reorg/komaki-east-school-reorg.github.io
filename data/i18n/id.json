@@ -125,7 +125,7 @@
   "status_done": "Selesai",
   "status_current": "Sedang Berjalan",
   "status_upcoming": "Direncanakan",
-  "voices_about": "<strong>Tentang halaman ini:</strong> Pendapat yang ditampilkan di sini adalah rangkuman suara yang dikumpulkan melalui sosialisasi, pertemuan pertukaran pendapat, dan komentar publik, mewakili perspektif pro, kontra, dan netral. Halaman ini tidak mendukung posisi tertentu; tujuannya adalah menyampaikan keragaman pandangan komunitas secara adil.",
+  "voices_about": "<strong>Tentang bagian ini:</strong> Pendapat yang ditampilkan di sini adalah rangkuman suara yang dikumpulkan melalui sosialisasi, pertemuan pertukaran pendapat, dan komentar publik, mewakili perspektif pro, kontra, dan netral. Halaman ini tidak mendukung posisi tertentu; tujuannya adalah menyampaikan keragaman pandangan komunitas secara adil.",
   "voices_cols_h": "Suara setuju, menolak, dan netral<small>Voices For, Against and Neutral</small>",
   "pubcom_title": "Hasil Komentar Publik (Nov–Des 2025)",
   "stat_total": "Total",
@@ -175,7 +175,7 @@
   "faq_more_h": "Ada tanya jawab di halaman lain juga",
   "faq_more_bus": "Tanya jawab bus sekolah (pendaftaran, halte, keselamatan) →",
   "faq_more_community": "Tanya jawab dewan komunitas (bagaimana nasibnya setelah reorganisasi) →",
-  "faq_contact_h": "Hubungi Kota (Resmi)",
+  "faq_contact_h": "Hubungi pemerintah kota<small>Contact the City</small>",
   "bus_contact_h": "Kontak tentang bus sekolah<small>Who to Contact</small>",
   "bus_contact_lead": "Zona sekolah, area layanan, pendaftaran, dan lokasi halte semuanya ditentukan kota, jadi loketnya adalah Divisi Umum Pendidikan. Bus-nya sendiri (misalnya barang tertinggal) dioperasikan berdasarkan kontrak oleh Aoi Kotsu Co., Ltd.",
   "bus_c1_w": "Area layanan, pendaftaran, lokasi halte, zona sekolah",
@@ -522,7 +522,7 @@
   "council_contact_note": "Sekretariat DPRD ada di lantai 3 Gedung Timur, Divisi Umum Pendidikan di lantai 3 Gedung Utama. Nomor sentral kota 0568-72-2101. Nama instansi dibiarkan dalam bahasa Jepang karena itulah yang Anda tunjukkan di loket atau sebutkan lewat telepon. Situs ini tidak memuat nama atau kontak anggota dewan. Instansi kota dan prefektur lainnya ada di <a href=\"review.html#rev-contact\">Telaah dan usulan</a>.",
   "pubcom_desc": "Selama periode komentar publik (10 November – 9 Desember 2025), total <strong>55 kiriman</strong> diterima. Kota telah menerbitkan tanggapan dan rencana yang direvisi di situs resmi.",
   "voices_pc_h": "Apa yang disampaikan komentar publik<small>What the Comments Said</small>",
-  "voices_pc_lead": "Mulai dari sini, isinya berdasarkan komentar yang benar-benar dipublikasikan kota. Masa komentar publik 10 November–9 Desember 2025 menerima 55 masukan, dan kota mempublikasikan setiap komentar beserta tanggapannya. Situs ini membacanya dan merangkumnya per topik.",
+  "voices_pc_lead": "Isi bagian ini berdasarkan komentar yang benar-benar dipublikasikan kota. Masa komentar publik 10 November–9 Desember 2025 menerima 55 masukan, dan kota mempublikasikan setiap komentar beserta tanggapannya. Situs ini membacanya dan merangkumnya per topik.",
   "voices_pc_themes": "Menghitung judul yang diberikan kota pada tanggapannya: waktu tahap pertama 18; penjelasan kepada warga 16; perlunya penataan ulang 8; cara menilai sekolah kecil 8; nama sekolah 7; jumlah murid per kelas 6; langkah menghadapi penurunan penduduk 6; penataan ulang dan penataan kota 5 (dihitung situs ini).",
   "voices_pc_alabel": "Tanggapan kota (ringkasan)",
   "voices_pc_q1": "\"Mulai tahun ajaran 2027 terlalu cepat. Berdiskusi lebih penting daripada mengejar tenggat.\"",
@@ -1296,5 +1296,6 @@
   "moved_h": "Halaman ini telah dipindahkan",
   "moved_p": "Suara Komunitas kini menjadi bagian dari Pertanyaan Umum dan Suara Komunitas. Anda akan diarahkan ke sana sebentar lagi.",
   "moved_link": "Buka Pertanyaan Umum dan Suara Komunitas →",
-  "rel_council_review": "Lihat telaah rencana dan usulannya"
+  "rel_council_review": "Lihat telaah rencana dan usulannya",
+  "faq_qa_h": "Pertanyaan yang Sering Diajukan<small>Frequently Asked Questions</small>"
 }

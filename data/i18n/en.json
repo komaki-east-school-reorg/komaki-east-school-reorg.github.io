@@ -125,7 +125,7 @@
   "status_done": "Done",
   "status_current": "In Progress",
   "status_upcoming": "Planned",
-  "voices_about": "<strong>About this page:</strong> The opinions shown here are summaries of voices gathered through community briefings, opinion exchanges, and public comments, representing pro, con, and neutral perspectives. This page does not endorse any particular stance; it aims to fairly convey the diversity of community views.",
+  "voices_about": "<strong>About this section:</strong> The opinions shown here are summaries of voices gathered through community briefings, opinion exchanges, and public comments, representing pro, con, and neutral perspectives. This page does not endorse any particular stance; it aims to fairly convey the diversity of community views.",
   "voices_cols_h": "Voices For, Against and Neutral<small>賛成・反対・中立の声</small>",
   "pubcom_title": "Public Comment Results (Nov–Dec 2025)",
   "stat_total": "Total",
@@ -175,7 +175,7 @@
   "faq_more_h": "There are Q&As on other pages too",
   "faq_more_bus": "School bus FAQ (applying, stops, safety) →",
   "faq_more_community": "Community council Q&A (what happens to the councils after reorganization) →",
-  "faq_contact_h": "Contact the City (Official)",
+  "faq_contact_h": "Contact the City<small>市へのお問い合わせ</small>",
   "bus_contact_h": "Contacts for the School Bus<small>スクールバスの問い合わせ先</small>",
   "bus_contact_lead": "School districts, the covered area, applications and stop locations are all decided by the city, so the Education General Affairs Division is the desk for them. The buses themselves — lost property on board, for instance — are run under contract by Aoi Kotsu Co., Ltd.",
   "bus_c1_w": "The covered area, applications, stop locations, school districts",
@@ -522,7 +522,7 @@
   "council_contact_note": "The council secretariat is on the 3rd floor of the East Building, the Education General Affairs Division on the 3rd floor of the Main Building. The city switchboard is 0568-72-2101. Department names are left in Japanese, because that is what you will show at the counter or read out on the phone. This site does not carry the names or contact details of individual council members. Other city and prefectural offices are listed on <a href=\"review.html#rev-contact\">Review and Proposals</a>.",
   "pubcom_desc": "During the public comment period (November 10 – December 9, 2025), a total of <strong>55 submissions</strong> were received. The city has published its responses and a revised plan on the official website.",
   "voices_pc_h": "What the Public Comments Said<small>パブリックコメントで実際に言われたこと</small>",
-  "voices_pc_lead": "From here on, the material comes from the comments the city actually published. The public comment period of 10 November to 9 December 2025 drew 55 submissions, and the city published each comment together with its own response. This site read them and summarized them by topic.",
+  "voices_pc_lead": "The material in this section comes from the comments the city actually published. The public comment period of 10 November to 9 December 2025 drew 55 submissions, and the city published each comment together with its own response. This site read them and summarized them by topic.",
   "voices_pc_themes": "Counting the headings the city put on its responses: the timing of the first phase, 18; explanation to the community, 16; why the reorganization is needed, 8; how small schools are judged, 8; the school names, 7; class sizes, 6; measures against population decline, 6; reorganization and town planning, 5 (counted by this site).",
   "voices_pc_alabel": "The city's response (summary)",
   "voices_pc_q1": "\"Starting in FY2027 is too soon. Talking it through matters more than meeting a deadline.\"",
@@ -1296,5 +1296,6 @@
   "moved_h": "This page has moved",
   "moved_p": "Community Voices is now part of FAQ and Community Voices. You will be taken there in a moment.",
   "moved_link": "Open FAQ and Community Voices →",
-  "rel_council_review": "See the review of the plan and the ideas"
+  "rel_council_review": "See the review of the plan and the ideas",
+  "faq_qa_h": "Frequently Asked Questions<small>よくある質問</small>"
 }
