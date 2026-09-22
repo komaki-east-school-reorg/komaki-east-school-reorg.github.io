@@ -64,10 +64,30 @@ MEXT_PAGES = ("nationwide.html",)
 # これは市の公式情報でも報道でもなく【市民有志の発信】であり、
 # 計画の内容・数値の根拠には決して使わない（報道コーナーと同じ扱い）。
 # 増やすときは CLAUDE.md・CONTRIBUTING.txt 規則1・README.md も同時に更新すること。
-PERMITTED_INSTAGRAM = (
-    "instagram.com/arigato.ohshirosho",   # ありがとう大城小
-)
-INSTAGRAM_PAGES = ("community.html", "index.html")   # index は「最新の動き」に同じ一覧を出すため（2026-09-03）
+# 値は「そのアカウントを張ってよいページ」。None はサイト全体（＝フッタに出るもの）。
+PERMITTED_INSTAGRAM = {
+    # 閉校を惜しむ市民有志。「地域の取組」欄を描くページだけ
+    # （index は「最新の動き」に同じ一覧を出すため。2026-09-03）
+    "instagram.com/arigato.ohshirosho": ("community.html", "index.html"),
+    # 桃花台を考える会【新しいまちづくり】。フッタの「参考リンク（市民団体）」に
+    # 全ページで出る（2026-09-22 ユーザー指示）
+    "instagram.com/tokadai_komaki": None,
+}
+
+# X と Facebook。**共有ボタンの送信先と、住民有志の発信の2種類しかない。**
+# 共有ボタンの URL は出典ではなく、サイトのどこからも引用してはいけない。
+# 住民有志の発信も、計画の内容・数値の根拠には決して使わない（報道コーナーと同じ扱い）。
+# 増やすときは CLAUDE.md・CONTRIBUTING.txt 規則1・README.md も同時に更新すること。
+PERMITTED_SNS = {
+    "x.com": (
+        "x.com/intent/post",         # 共有ボタン（出典ではない）
+        "x.com/tokadai_komaki",      # 桃花台を考える会【新しいまちづくり】
+    ),
+    "facebook.com": (
+        "facebook.com/sharer/sharer.php",   # 共有ボタン（出典ではない）
+        "facebook.com/TokadaiNT",           # 桃花台を考える会【新しいまちづくり】
+    ),
+}
 MIN_QUOTE_LEN = 10
 
 fails = []
@@ -246,10 +266,20 @@ def main():
                     elif not any(allowed in m.group(0) for allowed in PERMITTED_MEXT_LINKS):
                         link_violations.append(f"{p}:{i} 許可外の文科省URL {m.group(0)[:80]}")
                 for m in re.finditer(r"instagram\.com[^\s\"'<)\\]*", line):
-                    if not (is_dict or p in INSTAGRAM_PAGES):
-                        link_violations.append(f"{p}:{i} Instagram リンクは {'/'.join(INSTAGRAM_PAGES)} のみ可 {m.group(0)[:60]}")
-                    elif not any(allowed in m.group(0) for allowed in PERMITTED_INSTAGRAM):
-                        link_violations.append(f"{p}:{i} 許可外の Instagram アカウント {m.group(0)[:80]}")
+                    url = m.group(0)
+                    hit = [a for a in PERMITTED_INSTAGRAM if a in url]
+                    if not hit:
+                        link_violations.append(f"{p}:{i} 許可外の Instagram アカウント {url[:80]}")
+                        continue
+                    pages = PERMITTED_INSTAGRAM[hit[0]]
+                    # pages が None のアカウントはサイト全体で可（フッタに出るもの）
+                    if pages and not (is_dict or p in pages):
+                        link_violations.append(
+                            f"{p}:{i} このアカウントは {'/'.join(pages)} のみ可 {url[:60]}")
+                for host, allowed in PERMITTED_SNS.items():
+                    for m in re.finditer(re.escape(host) + r"[^\s\"'<)\\]*", line):
+                        if not any(a in m.group(0) for a in allowed):
+                            link_violations.append(f"{p}:{i} 許可外の {host} URL {m.group(0)[:80]}")
     if link_violations:
         for v in link_violations:
             fail(f"許可外の外部URL: {v}")

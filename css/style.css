@@ -1237,6 +1237,10 @@ footer {
 .footer-links li { margin-bottom: .4rem; }
 .footer-links a { color: rgba(255,255,255,.6); font-size: .85rem; }
 .footer-links a:hover { color: #fff; text-decoration: none; }
+/* フッタの市民団体欄：団体名を1行出し、その下にサービス名のリンクを並べる。
+   同じ団体の発信が3つあるので、団体名を3回繰り返さずに済ませるための形。 */
+.footer-group { display: block; color: rgba(255,255,255,.82); font-size: .85rem; margin-bottom: .3rem; }
+.footer-sns { display: flex; flex-wrap: wrap; gap: .15rem .8rem; }
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,.12);
   padding-top: 1rem;
