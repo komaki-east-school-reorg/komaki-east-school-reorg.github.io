@@ -1345,7 +1345,7 @@
   "clubs_s1_src": "Nguồn: Cơ quan Thể thao Nhật Bản / MEXT, “Hướng dẫn tổng hợp về cải cách hoạt động câu lạc bộ và thúc đẩy câu lạc bộ cộng đồng” (22/12/2025)",
   "clubs_s2_lead": "Phân theo tên trường hiện nay. Chúng tôi sẽ giữ cách phân này cả sau khi tái cơ cấu. Câu lạc bộ của trường lấy từ trang của từng trường; câu lạc bộ cộng đồng từ bài đăng của từng câu lạc bộ.",
   "clubs_s2_note": "* Ít trường công bố danh sách đầy đủ. Chỉ những gì xác nhận được trên trang hoặc nhật ký trường mới được nêu, nên còn thiếu.",
-  "clubs_s3_lead": "Các hoạt động không giới hạn ở một khu vực trường, mở cho trẻ em toàn thành phố.",
+  "clubs_s3_lead": "Các hoạt động không giới hạn ở một khu vực trường, mở cho trẻ em toàn thành phố. Một số ở thành phố lân cận nhưng vẫn trong tầm đi lại của khu này.",
   "clubs_s4_box": "<strong>Nguồn gốc:</strong> thông tin câu lạc bộ lấy từ chính những gì mỗi câu lạc bộ công bố (Instagram, trang web), trong phạm vi đọc được. Câu lạc bộ của trường được xác nhận trên trang và nhật ký trường. Các lớp của Hiệp hội Thể thao Komaki lấy từ hiệp hội.",
   "clubs_s4_n1": "Khối lớp, ngày và chi phí khác nhau theo từng câu lạc bộ. Hãy xác nhận điều kiện mới nhất với câu lạc bộ.",
   "clubs_s4_n2": "Trang này không giới thiệu câu lạc bộ nào. Thứ tự liệt kê không mang ý nghĩa.",
@@ -1353,5 +1353,6 @@
   "clubs_bukatsu_none": "Trang trường không công bố danh sách câu lạc bộ. Xem nhật ký trường để biết hoạt động gần đây.",
   "clubs_bukatsu_partial": "Chỉ những gì xác nhận được trên trang của trường. Còn có câu lạc bộ khác.",
   "clubs_club_none": "Chúng tôi chưa tìm thấy câu lạc bộ hoạt động trong khu vực trường này.",
-  "clubs_sp_taiko": "Trống taiko"
+  "clubs_sp_taiko": "Trống taiko",
+  "clubs_tg_pre_jhs": "Từ mầm non đến THCS"
 }

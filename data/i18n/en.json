@@ -1345,7 +1345,7 @@
   "clubs_s1_src": "Source: Japan Sports Agency / MEXT, “Comprehensive Guidelines on Club Activity Reform and the Promotion of Community Club Activities” (adopted and published 22 December 2025)",
   "clubs_s2_lead": "Grouped by the schools as they are named today. We will keep using this grouping even after the reorganisation. School clubs come from each school’s own pages; community clubs from each club’s own posts.",
   "clubs_s2_note": "* Few schools publish a full list of their clubs. Only those we could confirm on each school’s pages or school diary are shown, so clubs are missing.",
-  "clubs_s3_lead": "Activities not tied to one school district, open to children from across the city.",
+  "clubs_s3_lead": "Activities not tied to one school district, open to children from across the city. Some are based in a neighbouring city but within reach of this district.",
   "clubs_s4_box": "<strong>Where this comes from:</strong> Club details are taken from what each club publishes itself (Instagram, websites), as far as we could read them. School clubs were confirmed on each school’s pages and school diary. The Komaki City Sports Association classes come from the association’s own listing.",
   "clubs_s4_n1": "Eligible school years, days and fees differ by club. Always confirm the current terms with the club.",
   "clubs_s4_n2": "This site does not recommend any club. The order of listing has no meaning.",
@@ -1353,5 +1353,6 @@
   "clubs_bukatsu_none": "No list of clubs is published on the school’s pages. See the school diary for recent activity.",
   "clubs_bukatsu_partial": "Only those we could confirm on the school’s pages. There are other clubs.",
   "clubs_club_none": "We have not yet found a club active in this school district.",
-  "clubs_sp_taiko": "Taiko drums"
+  "clubs_sp_taiko": "Taiko drums",
+  "clubs_tg_pre_jhs": "Preschool to junior high"
 }

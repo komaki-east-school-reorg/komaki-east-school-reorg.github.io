@@ -1345,7 +1345,7 @@
   "clubs_s1_src": "Pinagkunan: Japan Sports Agency / MEXT, “Komprehensibong Patnubay sa Reporma ng mga Club at Pagsulong ng mga Community Club” (22 Disyembre 2025)",
   "clubs_s2_lead": "Nakagrupo ayon sa kasalukuyang pangalan ng mga paaralan. Gagamitin pa rin namin ito pagkatapos ng muling pagsasaayos. Ang mga club ng paaralan ay mula sa sariling pahina ng bawat paaralan; ang mga club ng komunidad ay mula sa sariling post ng bawat club.",
   "clubs_s2_note": "* Kakaunti ang paaralang naglalathala ng buong listahan. Nakalista lang ang nakumpirma sa pahina o talaarawan, kaya may mga kulang.",
-  "clubs_s3_lead": "Mga aktibidad na hindi nakatali sa isang distrito, bukas sa mga bata sa buong lungsod.",
+  "clubs_s3_lead": "Mga aktibidad na hindi nakatali sa isang distrito, bukas sa mga bata sa buong lungsod. May ilang nasa katabing lungsod ngunit maaabot mula rito.",
   "clubs_s4_box": "<strong>Saan ito galing:</strong> ang detalye ng mga club ay mula sa sariling paglalathala ng bawat club (Instagram, website), hangga’t nabasa namin. Ang mga club ng paaralan ay nakumpirma sa pahina at talaarawan. Ang mga klase ng Komaki City Sports Association ay mula sa asosasyon mismo.",
   "clubs_s4_n1": "Iba-iba ang baitang, araw at bayad sa bawat club. Kumpirmahin ang kasalukuyang kondisyon sa club.",
   "clubs_s4_n2": "Hindi nagrerekomenda ang site na ito ng alinmang club. Walang kahulugan ang pagkakasunod-sunod.",
@@ -1353,5 +1353,6 @@
   "clubs_bukatsu_none": "Walang nakalathalang listahan ng club sa pahina ng paaralan. Tingnan ang talaarawan para sa mga aktibidad.",
   "clubs_bukatsu_partial": "Ang mga nakumpirma lang sa pahina ng paaralan. May iba pang club.",
   "clubs_club_none": "Wala pa kaming nakikitang club na aktibo sa distritong ito.",
-  "clubs_sp_taiko": "Taiko (tambol)"
+  "clubs_sp_taiko": "Taiko (tambol)",
+  "clubs_tg_pre_jhs": "Preschool hanggang hayskul"
 }

@@ -83,6 +83,7 @@ PERMITTED_INSTAGRAM = {
     "instagram.com/yogosports_komaki": ("clubs.html",),
     "instagram.com/twins.toukadai": ("clubs.html",),
     "instagram.com/waiwaidaiko": ("clubs.html",),          # 和祝太鼓（拠点は小牧市二重堀）
+    "instagram.com/fc.fervor_official": ("clubs.html",),   # FC.FERVOR（春日井市。この地区から通える）
 }
 
 # 地域クラブ・スポーツ団体の公式サイト。clubs.html でだけ張ってよい（2026-09-22 追加）。
@@ -93,6 +94,7 @@ PERMITTED_CLUB_SITES = (
     "acmilansoccerschool-aichi.jp",  # ACミランアカデミー愛知
     "seigakan.net",                  # 聖雅館
     "komaki-kendo.jp",               # 小牧市剣道連盟
+    "fc-fervor.net",                 # FC.FERVOR
 )
 CLUB_PAGES = ("clubs.html",)
 

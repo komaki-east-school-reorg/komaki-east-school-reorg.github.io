@@ -1345,7 +1345,7 @@
   "clubs_s1_src": "Sumber: Japan Sports Agency / MEXT, “Pedoman Komprehensif Reformasi Kegiatan Klub dan Promosi Klub Komunitas” (22 Desember 2025)",
   "clubs_s2_lead": "Dikelompokkan menurut nama sekolah saat ini. Pengelompokan ini tetap kami pakai setelah reorganisasi. Klub sekolah berasal dari halaman masing-masing sekolah; klub komunitas dari unggahan masing-masing klub.",
   "clubs_s2_note": "* Sedikit sekolah yang menerbitkan daftar lengkap. Hanya yang dapat kami pastikan dari halaman atau buku harian sekolah, jadi ada yang belum tercantum.",
-  "clubs_s3_lead": "Kegiatan yang tidak terikat pada satu kawasan sekolah, terbuka bagi anak-anak se-kota.",
+  "clubs_s3_lead": "Kegiatan yang tidak terikat pada satu kawasan sekolah, terbuka bagi anak-anak se-kota. Sebagian berbasis di kota tetangga namun terjangkau dari kawasan ini.",
   "clubs_s4_box": "<strong>Asal informasi:</strong> detail klub diambil dari yang dipublikasikan tiap klub sendiri (Instagram, situs web), sejauh dapat kami baca. Klub sekolah dipastikan dari halaman dan buku harian sekolah. Kelas Asosiasi Olahraga Kota Komaki berasal dari asosiasi itu sendiri.",
   "clubs_s4_n1": "Kelas, hari, dan biaya berbeda tiap klub. Selalu pastikan syarat terbaru ke klubnya.",
   "clubs_s4_n2": "Situs ini tidak merekomendasikan klub mana pun. Urutan daftar tidak bermakna.",
@@ -1353,5 +1353,6 @@
   "clubs_bukatsu_none": "Daftar klub tidak dipublikasikan di halaman sekolah. Lihat buku harian sekolah untuk kegiatan terbaru.",
   "clubs_bukatsu_partial": "Hanya yang dapat kami pastikan di halaman sekolah. Masih ada klub lain.",
   "clubs_club_none": "Kami belum menemukan klub yang aktif di kawasan sekolah ini.",
-  "clubs_sp_taiko": "Taiko (drum)"
+  "clubs_sp_taiko": "Taiko (drum)",
+  "clubs_tg_pre_jhs": "Prasekolah hingga SMP"
 }

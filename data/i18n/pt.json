@@ -1345,7 +1345,7 @@
   "clubs_s1_src": "Fonte: Agência de Esportes do Japão / MEXT, “Diretrizes abrangentes sobre a reforma dos clubes e a promoção dos clubes comunitários” (22 de dezembro de 2025)",
   "clubs_s2_lead": "Agrupado pelas escolas com os nomes atuais. Manteremos este agrupamento mesmo após a reorganização. Os clubes escolares vêm das páginas de cada escola; os comunitários, das publicações de cada clube.",
   "clubs_s2_note": "* Poucas escolas publicam a lista completa de clubes. Só constam os que pudemos confirmar nas páginas ou no diário da escola, portanto faltam clubes.",
-  "clubs_s3_lead": "Atividades que não se limitam a uma área escolar, abertas a crianças de toda a cidade.",
+  "clubs_s3_lead": "Atividades que não se limitam a uma área escolar, abertas a crianças de toda a cidade. Algumas ficam em uma cidade vizinha, mas ao alcance deste bairro.",
   "clubs_s4_box": "<strong>De onde vem:</strong> os dados dos clubes vêm do que cada clube publica (Instagram, sites), até onde conseguimos ler. Os clubes escolares foram confirmados nas páginas e no diário de cada escola. As aulas da Associação Esportiva de Komaki vêm da própria associação.",
   "clubs_s4_n1": "Séries, dias e custos variam por clube. Confirme sempre as condições atuais com o clube.",
   "clubs_s4_n2": "Este site não recomenda nenhum clube. A ordem da lista não tem significado.",
@@ -1353,5 +1353,6 @@
   "clubs_bukatsu_none": "A escola não publica a lista de clubes. Veja o diário da escola para as atividades recentes.",
   "clubs_bukatsu_partial": "Apenas os que pudemos confirmar nas páginas da escola. Há outros clubes.",
   "clubs_club_none": "Ainda não encontramos um clube ativo nesta área escolar.",
-  "clubs_sp_taiko": "Taiko (tambores)"
+  "clubs_sp_taiko": "Taiko (tambores)",
+  "clubs_tg_pre_jhs": "Da pré-escola ao ginásio"
 }

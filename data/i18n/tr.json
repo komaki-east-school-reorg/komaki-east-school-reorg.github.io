@@ -1345,7 +1345,7 @@
   "clubs_s1_src": "Kaynak: Japonya Spor Ajansı / MEXT, “Kulüp Reformu ve Mahalle Kulüplerinin Teşvikine İlişkin Kapsamlı Kılavuz” (22 Aralık 2025)",
   "clubs_s2_lead": "Okulların bugünkü adlarına göre gruplandı. Yeniden yapılandırmadan sonra da bu gruplamayı kullanmayı sürdüreceğiz. Okul kulüpleri her okulun kendi sayfalarından, mahalle kulüpleri her kulübün kendi paylaşımlarından alındı.",
   "clubs_s2_note": "* Kulüplerinin tam listesini yayımlayan okul azdır. Yalnızca okul sayfalarında veya günlüğünde doğrulayabildiklerimiz yer alıyor; eksikler var.",
-  "clubs_s3_lead": "Tek bir okul bölgesine bağlı olmayan, şehrin her yerinden çocuklara açık etkinlikler.",
+  "clubs_s3_lead": "Tek bir okul bölgesine bağlı olmayan, şehrin her yerinden çocuklara açık etkinlikler. Bazıları komşu ilçede ama buradan ulaşılabilir.",
   "clubs_s4_box": "<strong>Kaynağı:</strong> kulüp bilgileri, okuyabildiğimiz kadarıyla her kulübün kendi yayımladıklarından (Instagram, web siteleri) alındı. Okul kulüpleri okul sayfalarından ve günlüğünden doğrulandı. Komaki Spor Derneği kursları derneğin kendi duyurularından alındı.",
   "clubs_s4_n1": "Katılabilecek sınıflar, günler ve ücretler kulübe göre değişir. Güncel koşulları kulüpten teyit edin.",
   "clubs_s4_n2": "Bu site hiçbir kulübü tavsiye etmez. Listeleme sırasının bir anlamı yoktur.",
@@ -1353,5 +1353,6 @@
   "clubs_bukatsu_none": "Okulun sayfasında kulüp listesi yayımlanmıyor. Son etkinlikler için okul günlüğüne bakın.",
   "clubs_bukatsu_partial": "Yalnızca okulun sayfalarında doğrulayabildiklerimiz. Başka kulüpler de var.",
   "clubs_club_none": "Bu okul bölgesinde etkin bir kulüp henüz bulamadık.",
-  "clubs_sp_taiko": "Taiko davulu"
+  "clubs_sp_taiko": "Taiko davulu",
+  "clubs_tg_pre_jhs": "Okul öncesinden ortaokula"
 }
