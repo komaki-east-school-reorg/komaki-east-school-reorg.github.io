@@ -212,6 +212,59 @@ window.KomakiGrade = (function () {
     return age >= 0 && age <= WINDOW_DAYS;
   }
 
+  /* ===== 並び順：新しいかつ重要度が高い順（2026-09-22 ユーザー指示）=====
+     「新しい順」だけだと、締切や手続きのある市のお知らせが、同じ日に入れた
+     体裁の直しに押し出される。逆に「重要度順」だけにすると、14日の窓の端に
+     いる古い項目がいつまでも先頭に居座る。そこで**新しさと重要度を足した点**
+     の高いものから出す。どちらか一方だけが高いものは中位に落ち、両方が高い
+     ものが上に来る。
+
+       重要度（importance）… ふだんの幅は 2〜10
+         ① 種類      … 市のお知らせ > 新機能 > 掲載内容の更新
+         ② 言葉      … 締切・申請・中止など、読者が「動かないと困る」語を含むか。
+                        **市のお知らせにだけ効かせる** — 更新履歴の文面は
+                        「説明会の質疑からQ&Aを追加」のように市の催しに言及する
+                        だけのことが多く、読者に締切があるわけではないため。
+                        更新履歴を上げ下げしたいときは ③ を使う。
+         ③ 手の指定  … data/site-updates.json の任意の priority（"high" / "low"）
+       新しさ（freshness）… 今日 = 1、WINDOW_DAYS 日前 = 0 の線形
+
+     RECENCY_WEIGHT は重要度のふだんの幅とほぼ同じ 8。**どちらか片方を
+     支配的にしないための値**なので、重要度側の点を動かしたらこの重みも
+     見直すこと（たとえば種類の点を倍にすると、新しさは同点の並べ替え程度に
+     しか効かなくなる）。
+
+     語の判定は**日本語の原文**で行う（訳文は言語ごとに言い回しが変わるため、
+     表示言語によって順番が入れ替わってはいけない）。語を足すときは、
+     「読者が何かをする必要がある言葉」だけにすること — 「開始」「公開」のような
+     ただの告知を入れると、全部が重要になって順位が意味を失う。 */
+  var URGENT_RE = /締切|締め切り|期限|〆切|申請|申込|申し込み|受付|募集|中止|延期|変更|休校|臨時|説明会|意見募集|パブリックコメント|決定/;
+  var KIND_SCORE = {news: 6, feature: 3, content: 2};
+  var RECENCY_WEIGHT = 8;
+
+  function importance(it) {
+    var score = KIND_SCORE[it.kind] || 0;
+    if (it.kind === 'news' && URGENT_RE.test(it.ja || '')) score += 4;
+    if (it.priority === 'high') score += 6;
+    if (it.priority === 'low') score -= 4;
+    return score;
+  }
+
+  // 今日 = 1、WINDOW_DAYS 日前 = 0。先の日付（予告）は今日と同じ 1 として扱う。
+  function freshness(it) {
+    var age = Math.max(daysSince(it.date), 0);
+    return (WINDOW_DAYS - Math.min(age, WINDOW_DAYS)) / WINDOW_DAYS;
+  }
+
+  function rank(it) {
+    return importance(it) + RECENCY_WEIGHT * freshness(it);
+  }
+
+  // 点の高い順。点が同じなら新しいほうを先に（日付も同じなら元の順を保つ）。
+  function byScore(a, b) {
+    return (b.score - a.score) || ((a.date < b.date) - (a.date > b.date));
+  }
+
   function get(url) {
     return fetch(url)
       .then(function (r) { return r.ok ? r.json() : null; })
@@ -232,6 +285,8 @@ window.KomakiGrade = (function () {
           kind: u.type,
           date: u.date,
           id: u.type + '|' + u.date + '|' + (u.ja || ''),
+          ja: u.ja || '',                 // 重要度の判定は日本語の原文で行う
+          priority: u.priority || '',     // 任意。'high' / 'low' で手で上げ下げできる
           text: u[_fl] || u.en || u.ja || ''
         });
       });
@@ -245,33 +300,30 @@ window.KomakiGrade = (function () {
           kind: 'news',
           date: d,
           id: 'news|' + d + '|' + (it.title || ''),
+          ja: it.title || '',
+          priority: '',
           text: window.KomakiHeadline.text(res[2] || {}, it.title || '')
         });
       });
 
-      var items = pool
-        .filter(function (u) { return u.text && done.indexOf(u.id) === -1; })
-        .sort(function (a, b) { return (a.date < b.date) - (a.date > b.date); });
+      var items = pool.filter(function (u) { return u.text && done.indexOf(u.id) === -1; });
       if (!items.length) return;
+      items.forEach(function (it) { it.score = rank(it); });
+      // 同点のときは新しいほうを先に（日付まで同じなら元の順を保つ＝安定ソート）
+      items.sort(byScore);
       // 閉じたときは「期間内の項目ぜんぶ」を見たことにする。表示した3件だけを
       // 記録すると、次に開いたときに少し前の項目が繰り上がって出てきてしまう。
       var all = items;
 
-      /* 3つの枠を種類で取り合わせない。まず種類ごとの最新を1件ずつ確保し、
-         余った枠を日付順で埋める。単純に日付順で上から3件にすると、
-         サイトを続けて更新した日には市のお知らせが押し出され、
-         いちばん知らせたい公式の新着が一度も出ないまま期間が過ぎてしまう。
-         枠を取る順は お知らせ → 新機能 → 更新（公式の情報がいちばん強い）。 */
-      var firstOf = {};
-      items.forEach(function (it) { if (!firstOf[it.kind]) firstOf[it.kind] = it; });
-      var picked = [];
-      ['news', 'feature', 'content'].forEach(function (k) {
-        if (firstOf[k] && picked.length < MAX_ITEMS) picked.push(firstOf[k]);
-      });
-      items.forEach(function (it) {
-        if (picked.length < MAX_ITEMS && picked.indexOf(it) === -1) picked.push(it);
-      });
-      items = picked.sort(function (a, b) { return (a.date < b.date) - (a.date > b.date); });
+      /* 点の高いものから最大 MAX_ITEMS 件。ただし市のお知らせが1件も
+         入らなかったときだけ、いちばん点の高いお知らせを末尾と入れ替える。
+         公式の新着が、サイト側の更新に押し出されて一度も出ないのを防ぐため。 */
+      var picked = items.slice(0, MAX_ITEMS);
+      if (picked.every(function (it) { return it.kind !== 'news'; })) {
+        var topNews = items.filter(function (it) { return it.kind === 'news'; })[0];
+        if (topNews) picked[picked.length - 1] = topNews;
+      }
+      items = picked.sort(byScore);
 
       // ラベルと飛び先は項目ごとに変わるので、data-i18n は付けない
       // （i18n.js に上書きされると、種類と食い違った札が出てしまう）。
