@@ -296,6 +296,19 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 - **議員個人の氏名・連絡先は載せない**（[[個人名は書かない]]の方針）。`council.html` は職と部署だけを書く。**政党名・会派名・議員団名も書かない**（2026-09-14 ユーザー指示）— 一般質問も「だれが聞いたか」ではなく「何が問われ、市がどう答えたか」だけを書く。定例会の本文（質問・答弁の要約を含む）は「です・ます」でそろえる（同指示）。
 - 組織改編は4月1日付が多い。**4月の第1週は結果を必ず見ること。**
 
+## `clubs.html`（地域クラブ・課外活動）
+
+2026-09-22 追加（ユーザー指示）。**部活動の地域移行を見越して、校区内で活動している地域クラブと各校の部活動を1ページに並べる。**ナビは「スクールバス」の次。静的な手書きページで、日次の更新も JSON もない（`nationwide.html` と同じ扱い）。
+
+- **節の順は「部活動の地域移行とは（`#transition`）→ 校区をまたぐ・市内全域（`#wide`）→ 学校ごと（`#schools`）→ このページの情報について（`#clubs-note`）」**（2026-09-22 ユーザー指示で `#wide` を `#schools` の上にした）。背景は `section-alt` → `section` → `section-alt` → `section` の交互。
+- **分類は「いまの学校名」で、再編後も永続的にこの分け方を使う**（ユーザー指示）。学校名の中はさらに種目で分ける。活動場所が特定の校区に結びつかないものだけ `#wide` に置く。**校区が確認できないものを推測で学校に割り当てないこと** — 例えば光ヶ丘チェリーズは名称に「光ヶ丘」を含むが活動場所を確認できていないので `#wide` にある。
+- **出典は「その主体自身の公表」**。地域クラブは各クラブの Instagram・ホームページ、学校の部活動は各校のページと学校日記、教室は小牧市スポーツ協会の公表。2026-09-20 のユーザー指示（行政以外の主体はその主体自身の公表を出典にしてよい）に沿う。**ここに載る情報は、計画の内容・数値・日程の根拠には決して使わない**（報道コーナー・地域の取組と同じ扱い）。
+- **部活動の一覧は3中学校とも公表されていない**（2026-09-22 に調査）。光ヶ丘中は部活動ページがあるが理念のみ、篠岡中・桃陵中は専用ページなし。そこで **① 各校の部活動ページ・学校日記へリンクする ② 学校日記などで確認できた部名だけ載せる ③ 網羅的でないと明記する** の3つで扱っている（`clubs_bukatsu_none` / `clubs_bukatsu_partial`）。**部名を推測で補わないこと。**
+- **国の方針は本文に文字で出典を書き、リンクは張らない**（`clubs_s1_src`）。文科省サイトへのリンクは `nationwide.html` 限定のままで、`review.html` と同じ方式。⚠️ **ドメイン名は HTML コメントにも書かない** — `auto_gates.py` check 6 は文字列で検査するので、コメントであっても違反として止まる（実際に一度止まった）。
+- **リンク規則**：Instagram 9アカウントは `PERMITTED_INSTAGRAM` に `("clubs.html",)` 付きで登録。クラブ・団体の公式サイト4ドメイン（`komaki-sports.or.jp` / `acmilansoccerschool-aichi.jp` / `seigakan.net` / `komaki-kendo.jp`）は `PERMITTED_CLUB_SITES` で `clubs.html` 限定。学校サイト（`komaki-aic.ed.jp`）はもともとゲートの検査対象外。増やすときは `CONTRIBUTING.txt` 規則1・`README.md` も同時に更新すること。
+- **クラブ名・学校名・会場名は翻訳しない**（固有名詞。部署名・学校名と同じ扱い）。訳すのは種目（`clubs_sp_*`）・対象（`clubs_tg_*`）・ラベルだけ。種目を増やすときは13辞書に `clubs_sp_<種目>` を足す。
+- **学校名の見出し（`.clubs-school-h`）は `section-title sub` に独自クラスを重ねている。** `sub` だけだと節見出し（h2）と同じ見た目になって階層が消える。`sub` は外さないこと（READ ALOUD が `h3.section-title.sub` を対象にしている）。読み上げボタンが帯に食い込まないよう `.section-title.clubs-school-h + .tts-row` で余白を取り直してある — **`.section-title.sub + .tts-row` と詳細度を揃えないと効かない**。
+
 ## `faq.html`（よくある質問と賛否の声）
 
 2026-09-22 に**`voices.html`（賛否の声）を統合**した（ユーザー指示）。もともと「よくある疑問 → 市の答え」と「住民の声」は、`faq_cat4`（意見・参加について）と `voices.html#pubcom` で主題が重なっていた。いまは1ページに3つの節が**この順で**並ぶ。
@@ -320,7 +333,7 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 - **スマートフォンでは声を列ごとに畳む**（`VOICES COLLAPSE` in `js/main.js`、2026-09-22 ユーザー指示）。Q&A 20問はアコーディオンで畳まれているのに声18枚が開いたままだと、狭い画面では声が本文の大半を占めるため。**PC 幅では件数も ＋/− の記号も外す**（指示は「スマートフォンだけ畳む」であって PC の見た目を変える話ではない）。見出しに足すのは数字と記号だけなので、辞書にキーは増えていない。
   - 畳みは **`display:none`（`.voices-col.is-collapsed .voice-card`）で行う。** `hidden` 属性や `aria-hidden` にすると READ ALOUD の `SKIP` に当たり、畳んだ声が読み上げから丸ごと落ちる。`blocksOf()` の可視判定の例外は `.faq-a, .voice-card` の2つ — **この2つは対で維持すること**。
   - 見出し（`.voices-col-header`）の中身は `i18n.js` が `textContent` ごと書き換えるので、件数と記号は `komaki:i18n-applied` のたびに付け直している。
-- **旧 `voices.html` は削除せず、移動案内の1枚として残してある。** GitHub Pages は静的で 301 を返せず、このサイトは共有ボタンを前面に出しているので `voices.html?lang=xx` が LINE などに出回っている。`noindex`、`canonical` は `faq.html`、`meta refresh`（JS 無効時の保険）に加えて、**JS が `?lang=` を引き継いで `faq.html?lang=xx#voices` へ送る**。`sitemap.xml` と `hreflang` からは外し、ヘッダのナビからも外した（サイトは**10ページ**）。`meta_title_voices` / `meta_desc_voices` は移動案内の文言として残っている。
+- **旧 `voices.html` は削除せず、移動案内の1枚として残してある。** GitHub Pages は静的で 301 を返せず、このサイトは共有ボタンを前面に出しているので `voices.html?lang=xx` が LINE などに出回っている。`noindex`、`canonical` は `faq.html`、`meta refresh`（JS 無効時の保険）に加えて、**JS が `?lang=` を引き継いで `faq.html?lang=xx#voices` へ送る**。`sitemap.xml` と `hreflang` からは外し、ヘッダのナビからも外した（`clubs.html` を足して、サイトは**11ページ**）。`meta_title_voices` / `meta_desc_voices` は移動案内の文言として残っている。
 - 他ページからの導線は `faq.html#voices`（`community.html`・`review.html`）と `faq.html#pubcom`（`council.html` の `council_warn_link`）。`council.html` は統合前に faq と voices の両方を「関連するページ」に挙げていたので、3つのうち1つを `review.html`（`rel_council_review`）に差し替えてある。
 - **ヘッダとフッタのナビだけは短い名前**（`nav_faq`＝「質問・賛否の声」）で、ページ名（`faq_h1` / `ql_faq_h`＝「よくある質問と賛否の声」）とは**わざと違う**（2026-09-22 ユーザー指示）。ナビは9項目が並ぶ場所なので、正式名をそのまま置くと長すぎる。**他のページは `nav_*` と `h1` が一致しているので、ここだけが例外**だと覚えておくこと。中点は全角「・」（サイトの他の表記にそろえる）。
 - サイトの Q&A が3か所（`faq.html` / `bus.html#faq` / `community.html#qa`）に分かれている方針は統合後も変わらない。`faq_more_*` の箱がその導線。
@@ -421,9 +434,9 @@ Every page carries a `<section class="section share" id="share">` just above `</
 - 印刷指定は `@media print` の `html.board-printing`。**ふつうの Ctrl+P はページをそのまま印刷する**（本文を刷りたい読者がいるので既定は変えない）。ボタンを押したときだけシート1枚になる。`body > *:not(#board-sheet)` の `:not()` は必須 — `!important` は詳細度に勝つので、除外しないとシート自身も消える。
 - `board_btn` は実行時に作るボタンの `aria-label` で HTML に現れないため、`build_page_dicts.py` の `RUNTIME_KEYS` に入れてある（他ページでは使われないが、RUNTIME_KEYS は個別ページの実際の使用有無を見ない仕組みなので全ページ辞書に入ったままでよい）。
 
-### カットイン（全10ページ、ヘッダの下）
+### カットイン（全11ページ、ヘッダの下）
 
-`TOP CUT-IN` in `js/main.js`（2026-09-03 に `NEW FEATURE CUT-IN` から改称・拡張）。**2026-09-20 のユーザー指示で、トップページだけでなく全ページに出す**ようにした（読者が最初に開くページはトップとはかぎらないため）。`#feature-cutin` と `#feature-strings` の2つの `div` は10ページすべての `</header>` 直後にあり、同じブロックがそれを見つけて描く。ヘッダの下にスライドインする帯で、**今日から14日以内**（`WINDOW_DAYS`）の新しい情報を出す。出すのは3種類：
+`TOP CUT-IN` in `js/main.js`（2026-09-03 に `NEW FEATURE CUT-IN` から改称・拡張）。**2026-09-20 のユーザー指示で、トップページだけでなく全ページに出す**ようにした（読者が最初に開くページはトップとはかぎらないため）。`#feature-cutin` と `#feature-strings` の2つの `div` は11ページすべての `</header>` 直後にあり、同じブロックがそれを見つけて描く。ヘッダの下にスライドインする帯で、**今日から14日以内**（`WINDOW_DAYS`）の新しい情報を出す。出すのは3種類：
 
 | 札 | 元データ | 飛び先 |
 |---|---|---|
@@ -500,7 +513,7 @@ Every HTML page follows the same pattern: `notice-banner` → `<header>` (with `
 
 ### このページの目次（`.page-toc`）— 全ページ
 
-2026-09-14 に長いページで始め、**2026-09-15 にユーザー指示で全10ページに広げた**。`js/main.js` の PAGE TOC が、ヒーロー直下（`index.html` だけは「いまの状況」と直近の予定の帯の下）に「このページの目次」（`page_toc_h`、`RUNTIME_KEYS` 入り）を組み立てる。**中身は `main h2.section-title` から自動で作る**ので、節を足しても目次を直す必要はない。飛び先は「その見出しが先頭の section の id → 見出しの id → 無ければ `toc-<見出しのキー>`」の順で決め、他ページからリンクされている既存のアンカー（`#contact`・`#qa` など）は変えない。スマートフォン幅では閉じた状態で出す。**`<nav>` にしないこと** — ヘッダ用の `nav a` のスタイル（白文字）がかかって文字が見えなくなる。
+2026-09-14 に長いページで始め、**2026-09-15 にユーザー指示で全11ページに広げた**。`js/main.js` の PAGE TOC が、ヒーロー直下（`index.html` だけは「いまの状況」と直近の予定の帯の下）に「このページの目次」（`page_toc_h`、`RUNTIME_KEYS` 入り）を組み立てる。**中身は `main h2.section-title` から自動で作る**ので、節を足しても目次を直す必要はない。飛び先は「その見出しが先頭の section の id → 見出しの id → 無ければ `toc-<見出しのキー>`」の順で決め、他ページからリンクされている既存のアンカー（`#contact`・`#qa` など）は変えない。スマートフォン幅では閉じた状態で出す。**`<nav>` にしないこと** — ヘッダ用の `nav a` のスタイル（白文字）がかかって文字が見えなくなる。
 
 - `review.html` の手書きの目次（`rev_toc_h` / `rev_nav1`〜`rev_nav9`）はこれに置き換えて**廃止**した（目次が2つ並ぶため）。キーも辞書から消してある。
 - ヘッダはナビが1段にも2段にもなる（1000px 前後で約122px）ので、アンカーの `scroll-margin-top` は固定値ではなく、HEADER HEIGHT ブロックが入れる実測値 `--header-h` から計算する。
@@ -582,7 +595,7 @@ The 対象エリアの地図 draws **three sources with different accuracy** —
 | Piece | Where | Notes |
 |---|---|---|
 | `robots.txt` | repo root | Allows everything; points at the sitemap. Kids mode is excluded via a JS-injected `noindex` (`applyKidsSeoMeta`), not here. |
-| `sitemap.xml` | repo root | Hand-maintained, one `<url>` per page (10 — `voices.html` was merged into `faq.html` on 2026-09-22 and is excluded), each carrying the full `xhtml:link` alternate set. No `lastmod` — a stale date is worse than none. |
+| `sitemap.xml` | repo root | Hand-maintained, one `<url>` per page (11 — `voices.html` was merged into `faq.html` on 2026-09-22 and is excluded; `clubs.html` was added the same day), each carrying the full `xhtml:link` alternate set. No `lastmod` — a stale date is worse than none. |
 | `<link rel="canonical">` | every page `<head>` | Static value is the bare (Japanese) URL. `i18n.js` rewrites it to the `?lang=` URL of the language actually being shown. |
 | `hreflang` | every page `<head>` | 10 languages + `x-default`, each pointing at a **distinct** `?lang=` URL. They previously all pointed at the same URL, which is an error Search Console reports. |
 | JSON-LD `WebSite` | `index.html` only | Static. Deliberately carries **no `publisher`/`Organization`** — inventing one would imply this site is official, which it is not. `citation` points at the permitted city URL. |

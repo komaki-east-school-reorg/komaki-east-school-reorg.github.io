@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-09-22",
+      "type": "feature",
+      "ja": "地域クラブ・課外活動のページを新設",
+      "en": "New page: community clubs and after-school activities"
+    },
+    {
+      "date": "2026-09-22",
       "type": "content",
       "ja": "フッタに桃花台を考える会のSNSを追加",
       "en": "Links to a local residents' group added to the footer"

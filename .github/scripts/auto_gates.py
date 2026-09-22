@@ -72,7 +72,29 @@ PERMITTED_INSTAGRAM = {
     # 桃花台を考える会【新しいまちづくり】。フッタの「参考リンク（市民団体）」に
     # 全ページで出る（2026-09-22 ユーザー指示）
     "instagram.com/tokadai_komaki": None,
+    # 校区内で活動している地域クラブ（clubs.html のみ。2026-09-22 ユーザー指示）。
+    # いずれもクラブ自身の発信で、計画の内容・数値・日程の根拠には決して使わない。
+    "instagram.com/rikimaru_sport_club": ("clubs.html",),
+    "instagram.com/toubukan": ("clubs.html",),
+    "instagram.com/hikarigaoka_cherrys": ("clubs.html",),
+    "instagram.com/sue_basketball_komaki": ("clubs.html",),
+    "instagram.com/seigakan.karate": ("clubs.html",),
+    "instagram.com/acmilansoccerschoolaichi": ("clubs.html",),
+    "instagram.com/yogosports_komaki": ("clubs.html",),
+    "instagram.com/twins.toukadai": ("clubs.html",),
+    "instagram.com/waiwaidaiko": ("clubs.html",),          # 和祝太鼓（拠点は小牧市二重堀）
 }
+
+# 地域クラブ・スポーツ団体の公式サイト。clubs.html でだけ張ってよい（2026-09-22 追加）。
+# 行政の資料ではないので、計画の内容・数値・日程の根拠には使わない。
+# 増やすときは CLAUDE.md・CONTRIBUTING.txt 規則1・README.md も同時に更新すること。
+PERMITTED_CLUB_SITES = (
+    "komaki-sports.or.jp",           # 公益財団法人 小牧市スポーツ協会
+    "acmilansoccerschool-aichi.jp",  # ACミランアカデミー愛知
+    "seigakan.net",                  # 聖雅館
+    "komaki-kendo.jp",               # 小牧市剣道連盟
+)
+CLUB_PAGES = ("clubs.html",)
 
 # X と Facebook。**共有ボタンの送信先と、住民有志の発信の2種類しかない。**
 # 共有ボタンの URL は出典ではなく、サイトのどこからも引用してはいけない。
@@ -276,6 +298,10 @@ def main():
                     if pages and not (is_dict or p in pages):
                         link_violations.append(
                             f"{p}:{i} このアカウントは {'/'.join(pages)} のみ可 {url[:60]}")
+                for host in PERMITTED_CLUB_SITES:
+                    if host in line and not (is_dict or p in CLUB_PAGES):
+                        link_violations.append(
+                            f"{p}:{i} 地域クラブのサイトは {'/'.join(CLUB_PAGES)} のみ可 {host}")
                 for host, allowed in PERMITTED_SNS.items():
                     for m in re.finditer(re.escape(host) + r"[^\s\"'<)\\]*", line):
                         if not any(a in m.group(0) for a in allowed):

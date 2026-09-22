@@ -100,6 +100,22 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/bus.html"/>
   </url>
   <url>
+    <loc>https://komaki-east-school-reorg.github.io/clubs.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/clubs.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/clubs.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/clubs.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/clubs.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/clubs.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/clubs.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/clubs.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/clubs.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/clubs.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/clubs.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/clubs.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/clubs.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/clubs.html"/>
+  </url>
+  <url>
     <loc>https://komaki-east-school-reorg.github.io/community.html</loc>
     <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/community.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/community.html?lang=en"/>

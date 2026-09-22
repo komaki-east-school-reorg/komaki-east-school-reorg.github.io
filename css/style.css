@@ -755,6 +755,62 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 .section-title.faq-cat small { color: var(--text-muted); margin-top: .1rem; }
 
 /* 節見出しの下に置く説明文。他ページが style 属性で書いていた形を1つにまとめたもの。 */
+
+/* ===== 地域クラブ・課外活動（clubs.html）=====
+   学校ごとに「学校の部活動」と「地域のクラブ」を並べる。学校名・クラブ名・会場名は
+   固有名詞なので翻訳しない（部署名・学校名と同じ扱い）。訳すのは種目・対象・ラベルだけ。 */
+.club-school { margin-bottom: 2.4rem; }
+/* 学校名の見出し。節見出し（h2）のすぐ下に並ぶので、同じ「左に黄色い帯・緑の太字」
+   だと見分けがつかない（faq.html のカテゴリ見出しと同じ問題）。学校名は区切りとして
+   強くしたいので、帯は残しつつ色と太さを変えて別物にする。 */
+.clubs-school-h {
+  margin: 0 0 .9rem;
+  font-size: 1.12rem;
+  color: var(--text);
+  border-left-color: var(--primary);
+  border-left-width: 5px;
+  background: linear-gradient(90deg, rgba(46,92,58,.07), transparent 60%);
+  padding: .35rem .9rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.club-group { margin: 0 0 1rem; padding-left: .2rem; }
+.club-group-h {
+  font-weight: 700; font-size: .88rem; color: var(--primary);
+  margin-bottom: .45rem; letter-spacing: .02em;
+}
+.club-item {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem .7rem;
+  background: var(--white); border: 1px solid var(--border);
+  border-left: 4px solid var(--accent); border-radius: var(--radius-sm);
+  padding: .6rem .85rem; margin-bottom: .45rem;
+}
+.club-sport {
+  font-weight: 700; font-size: .78rem; color: #fff; background: var(--primary);
+  border-radius: 999px; padding: .12rem .6rem; white-space: nowrap;
+}
+.club-name { font-weight: 700; font-size: .95rem; color: var(--text); }
+.club-target, .club-place { font-size: .8rem; color: var(--text-muted); }
+.club-place::before { content: "📍 "; }
+.club-links { margin-left: auto; display: flex; flex-wrap: wrap; gap: .1rem .7rem; }
+.club-links a { font-size: .82rem; }
+.club-note { font-size: .85rem; color: var(--text-muted); margin: 0 0 .4rem; }
+
+/* 「確認できていないこと」と出典。review.html の同種の囲みはあちらのページ内
+   <style> で定義されているので、clubs.html はこちらを使う。 */
+.clubs-open-box {
+  border: 1px dashed var(--border); border-radius: var(--radius-sm);
+  padding: 1rem 1.2rem; margin: 1.4rem 0 1rem; background: transparent;
+}
+.clubs-open-h { font-weight: 700; font-size: .92rem; color: var(--primary); margin-bottom: .5rem; }
+.clubs-list { margin: 0; padding-left: 1.2rem; }
+.clubs-list li { font-size: .92rem; line-height: 1.85; margin-bottom: .3rem; color: var(--text-muted); }
+.clubs-src { font-size: .82rem; color: var(--text-muted); margin-top: 1rem; }
+
+@media (max-width: 560px) {
+  .club-links { margin-left: 0; width: 100%; }
+  .club-item { gap: .25rem .6rem; }
+}
+
 .section-lead { font-size: .95rem; color: var(--text-muted); max-width: 760px; margin-bottom: 1.5rem; }
 
 .section-updated { font-size: .8rem; color: var(--text-muted); margin: -1.4rem 0 1.6rem; padding-left: 1rem; }
@@ -2500,6 +2556,8 @@ main section[id], main h2.section-title[id], #area-map { scroll-margin-top: calc
 /* faq.html のカテゴリ見出しは下線を持つので、上の負マージンのままだと
    読み上げボタンが線に食い込む（2026-09-22 ユーザー指摘）。線の下に置き直す。 */
 .section-title.faq-cat + .tts-row { margin-top: .4rem; margin-bottom: 1.1rem; }
+/* 同じ理由で、clubs.html の学校名の見出し（背景色の帯）にもボタンを食い込ませない。 */
+.section-title.clubs-school-h + .tts-row { margin-top: .4rem; margin-bottom: 1rem; }
 .tts-btn {
   font: inherit;
   font-size: .8rem;

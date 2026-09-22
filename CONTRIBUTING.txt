@@ -126,6 +126,14 @@
     auto_gates.py の PERMITTED_INSTAGRAM は「アカウント → 出してよいページ」の
     対応表で、値が None のものは全ページ可。
 
+  地域クラブの公式サイト（clubs.html のみ）：
+  grep -rn -e "komaki-sports\.or\.jp" -e "acmilansoccerschool-aichi\.jp" \
+           -e "seigakan\.net" -e "komaki-kendo\.jp" *.html js/*.js data/i18n/*.json
+  → clubs.html と翻訳辞書の外に出ていれば違反。auto_gates.py の
+    PERMITTED_CLUB_SITES / CLUB_PAGES が同じものを機械検査する。
+    Instagram の地域クラブ9アカウントも clubs.html 限定（PERMITTED_INSTAGRAM の
+    値がそのページ一覧。None は全ページ可）。
+
   X・Facebook（共有ボタンの送り先と、住民有志の発信だけ）：
   grep -rn -e "x\.com" -e "facebook\.com" *.html js/*.js data/i18n/*.json \
     | grep -v -e "x\.com/intent/post" -e "facebook\.com/sharer/sharer\.php" \
@@ -226,7 +234,7 @@
     auto_gates.py の PARTIAL_LANGS の両方にコードを入れること。
   ★ 言語を増やすときに直す場所：
       data/i18n/<lang>.json 新規作成 / i18n.js の LANGS・langAttr・PARTIAL /
-      全10ページの <option> と hreflang（?lang=<コード> 付きの実URL）/ sitemap.xml /
+      全11ページの <option> と hreflang（?lang=<コード> 付きの実URL）/ sitemap.xml /
       footer_langs（全言語）/ auto_gates.py の PARTIAL_LANGS /
       main.js の KomakiLang の LANGS・CAL_LOCALE_MAP・各インラインラベル辞書
   ★ events.json のイベントラベルは【12言語必須】（auto_gates.py の LANGS）。
