@@ -314,6 +314,7 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
   - 見出し（`.voices-col-header`）の中身は `i18n.js` が `textContent` ごと書き換えるので、件数と記号は `komaki:i18n-applied` のたびに付け直している。
 - **旧 `voices.html` は削除せず、移動案内の1枚として残してある。** GitHub Pages は静的で 301 を返せず、このサイトは共有ボタンを前面に出しているので `voices.html?lang=xx` が LINE などに出回っている。`noindex`、`canonical` は `faq.html`、`meta refresh`（JS 無効時の保険）に加えて、**JS が `?lang=` を引き継いで `faq.html?lang=xx#voices` へ送る**。`sitemap.xml` と `hreflang` からは外し、ヘッダのナビからも外した（サイトは**10ページ**）。`meta_title_voices` / `meta_desc_voices` は移動案内の文言として残っている。
 - 他ページからの導線は `faq.html#voices`（`community.html`・`review.html`）と `faq.html#pubcom`（`council.html` の `council_warn_link`）。`council.html` は統合前に faq と voices の両方を「関連するページ」に挙げていたので、3つのうち1つを `review.html`（`rel_council_review`）に差し替えてある。
+- **ヘッダとフッタのナビだけは短い名前**（`nav_faq`＝「質問・賛否の声」）で、ページ名（`faq_h1` / `ql_faq_h`＝「よくある質問と賛否の声」）とは**わざと違う**（2026-09-22 ユーザー指示）。ナビは9項目が並ぶ場所なので、正式名をそのまま置くと長すぎる。**他のページは `nav_*` と `h1` が一致しているので、ここだけが例外**だと覚えておくこと。中点は全角「・」（サイトの他の表記にそろえる）。
 - サイトの Q&A が3か所（`faq.html` / `bus.html#faq` / `community.html#qa`）に分かれている方針は統合後も変わらない。`faq_more_*` の箱がその導線。
 
 ## `review.html`（計画の検証と提案のページ）
