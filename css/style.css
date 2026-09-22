@@ -2497,6 +2497,9 @@ main section[id], main h2.section-title[id], #area-map { scroll-margin-top: calc
 .tts-row { margin: -1rem 0 1.2rem; }
 .tts-row[hidden] { display: none; }
 .section-title.sub + .tts-row { margin-top: -1.4rem; }
+/* faq.html のカテゴリ見出しは下線を持つので、上の負マージンのままだと
+   読み上げボタンが線に食い込む（2026-09-22 ユーザー指摘）。線の下に置き直す。 */
+.section-title.faq-cat + .tts-row { margin-top: .4rem; margin-bottom: 1.1rem; }
 .tts-btn {
   font: inherit;
   font-size: .8rem;

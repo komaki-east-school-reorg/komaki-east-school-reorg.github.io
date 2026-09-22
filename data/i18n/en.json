@@ -125,7 +125,7 @@
   "status_done": "Done",
   "status_current": "In Progress",
   "status_upcoming": "Planned",
-  "voices_about": "<strong>About this section:</strong> The opinions shown here are summaries of voices gathered through community briefings, opinion exchanges, and public comments, representing pro, con, and neutral perspectives. This page does not endorse any particular stance; it aims to fairly convey the diversity of community views.",
+  "voices_about": "<strong>About this section:</strong> Representative opinions voiced at community briefings, opinion exchanges and the public comment period, summarised and rewritten by this site under three headings — in support, in opposition, and neutral. It does not endorse any stance; it aims to convey the range of views fairly. The number of cards in each column does not show how the district divides.",
   "voices_cols_h": "Voices For, Against and Neutral<small>賛成・反対・中立の声</small>",
   "pubcom_title": "Public Comment Results (Nov–Dec 2025)",
   "stat_total": "Total",
@@ -1299,6 +1299,5 @@
   "rel_council_review": "See the review of the plan and the ideas",
   "faq_qa_h": "Frequently Asked Questions<small>よくある質問</small>",
   "footer_local": "Reference Links (Residents)",
-  "faq_qa_intro": "Twenty questions answered from the city's official material, in four groups: the plan itself, commuting and daily life, the district and its buildings, and how to have your say. Tap a question to open its answer.",
-  "voices_intro": "Opinions actually voiced in the district, arranged in three columns: in support, in opposition, and neutral. The number of cards in each column does not show how the district divides."
+  "faq_qa_intro": "Twenty questions answered from the city's official material, in four groups: the plan itself, commuting and daily life, the district and its buildings, and how to have your say. Tap a question to open its answer."
 }

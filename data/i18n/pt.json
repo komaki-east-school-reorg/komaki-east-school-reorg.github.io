@@ -125,7 +125,7 @@
   "status_done": "Concluído",
   "status_current": "Em andamento",
   "status_upcoming": "Previsto",
-  "voices_about": "<strong>Sobre esta seção:</strong> As opiniões aqui são resumos de vozes coletadas em briefings, reuniões de troca de opiniões e comentários públicos, representando perspectivas favoráveis, contrárias e neutras. Esta página não endossa nenhuma posição; visa transmitir de forma justa a diversidade de opiniões da comunidade.",
+  "voices_about": "<strong>Sobre esta seção:</strong> Opiniões representativas manifestadas em reuniões do bairro, encontros de troca de opiniões e na consulta pública, resumidas e reescritas por este site em três colunas — a favor, contra e neutras. Não defendemos nenhuma posição; o objetivo é transmitir de forma justa a variedade de opiniões. A quantidade de fichas em cada coluna não indica como o bairro se divide.",
   "voices_cols_h": "Vozes a favor, contra e neutras<small>Voices For, Against and Neutral</small>",
   "pubcom_title": "Resultados do Comentário Público (Nov–Dez 2025)",
   "stat_total": "Total",
@@ -1299,6 +1299,5 @@
   "rel_council_review": "Ver a análise do plano e as propostas",
   "faq_qa_h": "Perguntas Frequentes<small>Frequently Asked Questions</small>",
   "footer_local": "Links de referência (moradores)",
-  "faq_qa_intro": "Vinte perguntas respondidas com base no material oficial da prefeitura, em quatro grupos: o plano, o trajeto e o dia a dia, o bairro e os prédios, e como opinar. Toque na pergunta para abrir a resposta.",
-  "voices_intro": "Opiniões realmente manifestadas no bairro, em três colunas: a favor, contra e neutras. A quantidade de cartões em cada coluna não indica como o bairro se divide."
+  "faq_qa_intro": "Vinte perguntas respondidas com base no material oficial da prefeitura, em quatro grupos: o plano, o trajeto e o dia a dia, o bairro e os prédios, e como opinar. Toque na pergunta para abrir a resposta."
 }

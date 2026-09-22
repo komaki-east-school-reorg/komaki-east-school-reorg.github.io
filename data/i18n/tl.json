@@ -125,7 +125,7 @@
   "status_done": "Tapos na",
   "status_current": "Isinasagawa",
   "status_upcoming": "Nakatakda",
-  "voices_about": "<strong>Tungkol sa bahaging ito:</strong> Ang mga opinyon dito ay mga buod ng mga tinig na nakolekta sa mga briefing ng komunidad, pulong ng palitan ng opinyon at public comment, na kumakatawan sa mga pananaw na pabor, laban at neutral. Ang pahinang ito ay hindi nagtataguyod ng anumang posisyon; layunin nitong iparating nang patas ang pagkakaiba-iba ng mga pananaw ng komunidad.",
+  "voices_about": "<strong>Tungkol sa bahaging ito:</strong> Mga kinatawang opinyon na narinig sa mga pulong ng komunidad, palitan ng opinyon at public comment, binuod at muling isinulat ng site na ito sa tatlong hanay — sang-ayon, tutol at neutral. Hindi ito kumakampi sa kahit anong panig; layunin nitong ipahatid nang patas ang pagkakaiba-iba ng mga pananaw. Ang dami ng kard sa bawat hanay ay hindi nagpapakita kung paano nahahati ang komunidad.",
   "voices_cols_h": "Mga tinig na pabor, laban at neutral<small>Voices For, Against and Neutral</small>",
   "pubcom_title": "Mga Resulta ng Public Comment (Nob–Dis 2025)",
   "stat_total": "Kabuuan",
@@ -1299,6 +1299,5 @@
   "rel_council_review": "Tingnan ang pagsusuri sa plano at mga mungkahi",
   "faq_qa_h": "Mga Madalas na Tanong<small>Frequently Asked Questions</small>",
   "footer_local": "Mga reference link (mga residente)",
-  "faq_qa_intro": "Dalawampung tanong na sinagot batay sa opisyal na materyal ng lungsod, sa apat na pangkat: ang plano, ang pagpasok at pang-araw-araw na buhay, ang komunidad at mga gusali, at ang paraan ng pagbibigay ng opinyon. Pindutin ang tanong upang buksan ang sagot.",
-  "voices_intro": "Mga opinyong talagang narinig sa komunidad, nakahanay sa tatlong hanay: sang-ayon, tutol at neutral. Ang dami ng kard sa bawat hanay ay hindi nagpapakita kung paano nahahati ang komunidad."
+  "faq_qa_intro": "Dalawampung tanong na sinagot batay sa opisyal na materyal ng lungsod, sa apat na pangkat: ang plano, ang pagpasok at pang-araw-araw na buhay, ang komunidad at mga gusali, at ang paraan ng pagbibigay ng opinyon. Pindutin ang tanong upang buksan ang sagot."
 }

@@ -125,7 +125,7 @@
   "status_done": "Hoàn thành",
   "status_current": "Đang tiến hành",
   "status_upcoming": "Đã lên kế hoạch",
-  "voices_about": "<strong>Về mục này:</strong> Các ý kiến ở đây là tóm tắt từ các tiếng nói thu thập qua các buổi thông báo cộng đồng, cuộc họp trao đổi và ý kiến công cộng, đại diện cho quan điểm ủng hộ, phản đối và trung lập. Trang này không ủng hộ bất kỳ lập trường nào; mục đích là truyền đạt công bằng sự đa dạng quan điểm của cộng đồng.",
+  "voices_about": "<strong>Về mục này:</strong> Những ý kiến tiêu biểu được nêu tại các buổi họp dân, các cuộc trao đổi ý kiến và đợt lấy ý kiến công khai, do trang này tóm tắt và viết lại theo ba cột — ủng hộ, phản đối và trung lập. Trang không ủng hộ lập trường nào; mục đích là truyền đạt công bằng sự đa dạng của các ý kiến. Số lượng ý kiến trong mỗi cột không phản ánh tỷ lệ tán thành hay phản đối của khu dân cư.",
   "voices_cols_h": "Ý kiến ủng hộ, phản đối và trung lập<small>Voices For, Against and Neutral</small>",
   "pubcom_title": "Kết quả Lấy ý kiến Công cộng (Tháng 11–12/2025)",
   "stat_total": "Tổng cộng",
@@ -1299,6 +1299,5 @@
   "rel_council_review": "Xem phân tích kế hoạch và các đề xuất",
   "faq_qa_h": "Câu hỏi thường gặp<small>Frequently Asked Questions</small>",
   "footer_local": "Liên kết tham khảo (người dân)",
-  "faq_qa_intro": "Hai mươi câu hỏi được giải đáp theo tài liệu chính thức của thành phố, chia làm bốn nhóm: bản kế hoạch, việc đi học và sinh hoạt, khu dân cư và các tòa nhà, và cách nêu ý kiến. Nhấn vào câu hỏi để xem câu trả lời.",
-  "voices_intro": "Các ý kiến thực sự được nêu ra trong khu dân cư, xếp thành ba cột: ủng hộ, phản đối và trung lập. Số lượng ý kiến trong mỗi cột không phản ánh tỷ lệ tán thành hay phản đối."
+  "faq_qa_intro": "Hai mươi câu hỏi được giải đáp theo tài liệu chính thức của thành phố, chia làm bốn nhóm: bản kế hoạch, việc đi học và sinh hoạt, khu dân cư và các tòa nhà, và cách nêu ý kiến. Nhấn vào câu hỏi để xem câu trả lời."
 }

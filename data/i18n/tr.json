@@ -252,7 +252,7 @@
   "voice_for6": "\"Bu bölgede yabancı kökenli aileler çok olduğundan, çok dilli bültenler olumlu bir adım. Uygun büyüklükte bir okul, farklı geçmişlerden gelen çocukları bir araya getirir ve daha iyi bir eğitim ortamı oluşturur.\"",
   "voice_neutral3": "\"Belediyenin 55 kamuoyu görüşüne verdiği yanıtların daha anlaşılır biçimde yayımlanmasını isterim. PDF okumak sıradan vatandaş için zor. Gözden geçirilmiş planın sade bir dille açıklanması memnuniyet verici olurdu.\"",
   "voice_neutral4": "\"2. Aşamada 1 ilkokul ve 1 ortaokula inilerek bütünleşik eğitim öngörülüyor. 2. Aşamaya karar vermeden önce 1. Aşamanın eğitim ortamını gerçekten iyileştirip iyileştirmediğini doğrulayın.\"",
-  "voices_about": "<strong>Bu bölüm hakkında:</strong> Burada yer alan görüşler; sakin bilgilendirmeleri, görüş alışverişleri ve kamuoyu görüşleri yoluyla toplanan lehte, aleyhte ve tarafsız seslerin özetidir. Bu sayfa herhangi bir tutumu savunmaz; toplumdaki görüş çeşitliliğini adil biçimde aktarmayı amaçlar.",
+  "voices_about": "<strong>Bu bölüm hakkında:</strong> Mahalle bilgilendirmelerinde, görüş alışverişlerinde ve kamu görüşü döneminde dile getirilen temsili görüşler; bu site tarafından lehte, aleyhte ve tarafsız olmak üzere üç sütunda özetlenip yeniden yazılmıştır. Herhangi bir tutumu savunmaz; görüşlerin çeşitliliğini adil biçimde aktarmayı amaçlar. Her sütundaki görüş sayısı, mahallenin nasıl bölündüğünü göstermez.",
   "voices_cols_h": "Destekleyen, karşı çıkan ve tarafsız görüşler<small>Voices For, Against and Neutral</small>",
   "related_h": "İlgili sayfalar",
   "nationwide_h1": "Japonya genelinde okul yeniden yapılandırması",
@@ -1299,6 +1299,5 @@
   "rel_council_review": "Planın incelemesine ve önerilere bak",
   "faq_qa_h": "Sıkça sorulan sorular<small>Frequently Asked Questions</small>",
   "footer_local": "Başvuru bağlantıları (sakinler)",
-  "faq_qa_intro": "Belediyenin resmî belgelerine dayanarak yirmi soru; dört başlıkta toplanıyor: planın kendisi, okula gidiş geliş ve günlük yaşam, bölge ve binalar, görüş bildirme yolları. Cevabı açmak için soruya dokunun.",
-  "voices_intro": "Mahallede gerçekten dile getirilen görüşler; lehte, aleyhte ve tarafsız olmak üzere üç sütunda. Her sütundaki görüş sayısı, mahallenin nasıl bölündüğünü göstermez."
+  "faq_qa_intro": "Belediyenin resmî belgelerine dayanarak yirmi soru; dört başlıkta toplanıyor: planın kendisi, okula gidiş geliş ve günlük yaşam, bölge ve binalar, görüş bildirme yolları. Cevabı açmak için soruya dokunun."
 }
