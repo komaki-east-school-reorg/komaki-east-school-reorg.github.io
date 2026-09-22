@@ -989,6 +989,29 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 .voices-col-header.against { background: var(--against-color); }
 .voices-col-header.neutral { background: var(--neutral-color); }
 
+/* 賛否の声を列ごとに畳む（スマートフォンのみ。2026-09-22 ユーザー指示）。
+   faq.html に統合した結果、Q&A 20問がアコーディオンで畳まれているのに対して
+   声のカード18枚が開いたままだと、狭い画面では声が本文の大半を占めてしまう。
+   畳むのは display:none で行うこと。READ ALOUD 側では .voice-card を
+   .faq-a と並ぶ例外にしてあるので、畳んでいても声は読み上げられる
+   （閉じた Q&A の答えを読むのと同じ扱い）。hidden 属性や aria-hidden に
+   変えると SKIP に当たって、その例外ごと効かなくなる。
+   PC 幅では JS が is-collapsible ごと外すので、見た目も挙動も従来どおり。 */
+.voices-col-header.is-collapsible {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  width: 100%;
+}
+.voices-col-header.is-collapsible:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.voices-col-count { font-weight: 700; font-size: .85em; opacity: .9; }
+.voices-col-toggle { margin-left: auto; font-size: 1.1em; line-height: 1; }
+.voices-col.is-collapsed .voice-card { display: none; }
+/* 紙には全部載せる（Q&A の答えを開いて刷るのと同じ考え方） */
+@media print { .voices-col.is-collapsed .voice-card { display: block !important; } }
+
 .voice-card {
   background: #fff;
   border-radius: var(--radius);

@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-09-22",
+      "type": "content",
+      "ja": "「賛否の声」を「よくある質問」に統合し1ページに",
+      "en": "Community Voices merged into the FAQ page"
+    },
+    {
+      "date": "2026-09-22",
       "type": "fix",
       "ja": "新着の帯を、新しいかつ重要度が高い順に並べ替え",
       "en": "Cut-in bar reordered by recency and importance"

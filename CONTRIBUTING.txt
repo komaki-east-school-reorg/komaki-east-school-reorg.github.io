@@ -214,7 +214,7 @@
     auto_gates.py の PARTIAL_LANGS の両方にコードを入れること。
   ★ 言語を増やすときに直す場所：
       data/i18n/<lang>.json 新規作成 / i18n.js の LANGS・langAttr・PARTIAL /
-      全11ページの <option> と hreflang（?lang=<コード> 付きの実URL）/ sitemap.xml /
+      全10ページの <option> と hreflang（?lang=<コード> 付きの実URL）/ sitemap.xml /
       footer_langs（全言語）/ auto_gates.py の PARTIAL_LANGS /
       main.js の KomakiLang の LANGS・CAL_LOCALE_MAP・各インラインラベル辞書
   ★ events.json のイベントラベルは【12言語必須】（auto_gates.py の LANGS）。

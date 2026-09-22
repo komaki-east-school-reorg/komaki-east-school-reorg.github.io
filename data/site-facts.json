@@ -31,11 +31,7 @@
     },
     "faq": {
       "file": "faq.html / data/i18n/*.json",
-      "notes": "よくある質問"
-    },
-    "voices": {
-      "file": "voices.html / data/i18n/*.json",
-      "notes": "住民の声（賛成・反対・中立）"
+      "notes": "よくある質問と賛否の声（Q&A・住民の声・パブリックコメントの論点。2026-09-22 に voices.html を統合）"
     },
     "community": {
       "file": "community.html / data/i18n/*.json",
@@ -93,7 +89,7 @@
         "calendar",
         "key_events",
         "community",
-        "voices"
+        "faq"
       ]
     },
     {
@@ -110,9 +106,8 @@
       "slug_prefix": "303-718-49313",
       "topic": "アンケート調査結果",
       "targets": [
-        "voices",
-        "community",
-        "faq"
+        "faq",
+        "community"
       ]
     },
     {
@@ -173,7 +168,7 @@
         "calendar",
         "key_events",
         "community",
-        "voices"
+        "faq"
       ]
     },
     {
@@ -231,7 +226,7 @@
       "slug_prefix": "303-shinooka_gsaihen-49700",
       "topic": "意見募集（パブリックコメント・終了）",
       "targets": [
-        "voices",
+        "faq",
         "schedule_timeline"
       ]
     },

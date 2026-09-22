@@ -641,6 +641,93 @@ window.KomakiGrade = (function () {
   });
 })();
 
+/* ===== VOICES COLLAPSE（賛否の声・スマートフォンのみ）=====
+   2026-09-22 のユーザー指示。voices.html を faq.html に統合した結果、Q&A 20問は
+   アコーディオンで畳まれているのに声のカードは18枚が開いたままで、狭い画面では
+   声が本文の大半を占めてしまう。そこで **スマートフォン幅のときだけ** 列ごとに
+   畳み、見出しを押すと開くようにする。PC 幅では属性ごと外すので従来と同じ。
+
+   ・畳みは CSS の display:none（.voices-col.is-collapsed .voice-card）で行う。
+     hidden 属性や aria-hidden にしないこと — READ ALOUD がその2つを読み飛ばすため、
+     畳んだ声が読み上げから丸ごと落ちてしまう（閉じた Q&A の答えは読む、と同じ扱い）。
+   ・見出しに足すのは件数と ＋/− の記号だけで、文字を増やさない。だから辞書に
+     キーを足さずに済む（13言語ぶんの訳を増やさないための選択）。
+   ・PC 幅では件数も記号も外す。指示は「スマートフォンだけ畳む」であって、
+     PC の見た目を変える話ではない。 */
+(function () {
+  var cols = [].slice.call(document.querySelectorAll('.voices-col'))
+    .filter(function (c) { return c.querySelector('.voices-col-header'); });
+  if (!cols.length || !window.matchMedia) return;
+  var mq = window.matchMedia('(max-width: 768px)');
+
+  function setOpen(col, open) {
+    col.classList.toggle('is-collapsed', !open);
+    col._head.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (col._mark) col._mark.textContent = open ? '\u2212' : '\uff0b';
+  }
+
+  /* 見出しの中身は i18n.js が textContent ごと書き換える（col_for など）ので、
+     ここで足した件数と ＋/− は辞書の適用やこどもむけ切り替えのたびに消える。
+     だから付け足しは関数にして、komaki:i18n-applied のたびにやり直す。 */
+  function undecorate(col) {
+    var old = col._head.querySelectorAll('.voices-col-count, .voices-col-toggle');
+    [].forEach.call(old, function (e) { e.remove(); });
+    col._mark = null;
+  }
+
+  function decorate(col) {
+    var head = col._head;
+    undecorate(col);
+    var count = document.createElement('span');
+    count.className = 'voices-col-count';
+    count.textContent = '(' + col.querySelectorAll('.voice-card').length + ')';
+    var mark = document.createElement('span');
+    mark.className = 'voices-col-toggle';
+    mark.setAttribute('aria-hidden', 'true');
+    head.appendChild(count);
+    head.appendChild(mark);
+    col._mark = mark;
+  }
+
+  cols.forEach(function (col) {
+    col._head = col.querySelector('.voices-col-header');
+    var head = col._head;
+
+    function toggle() {
+      if (!mq.matches) return;                       // PC 幅では押しても何も起きない
+      setOpen(col, col.classList.contains('is-collapsed'));
+    }
+    head.addEventListener('click', toggle);
+    head.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); toggle(); }
+    });
+  });
+
+  function apply() {
+    cols.forEach(function (col) {
+      if (mq.matches) {
+        decorate(col);
+        col._head.classList.add('is-collapsible');
+        col._head.setAttribute('role', 'button');
+        col._head.setAttribute('tabindex', '0');
+        setOpen(col, false);                         // スマートフォンでは既定で畳む
+      } else {
+        col._head.classList.remove('is-collapsible');
+        col._head.removeAttribute('role');
+        col._head.removeAttribute('tabindex');
+        col._head.removeAttribute('aria-expanded');
+        undecorate(col);
+        col.classList.remove('is-collapsed');
+      }
+    });
+  }
+  apply();
+  if (mq.addEventListener) mq.addEventListener('change', apply);
+  else if (mq.addListener) mq.addListener(apply);
+  // 辞書の適用・こどもむけ切り替えで見出しが作り直されたら、開閉の状態ごと付け直す
+  document.addEventListener('komaki:i18n-applied', apply);
+})();
+
 /* ===== OFFICIAL NEWS ===== */
 (function () {
   const container = document.getElementById('official-news-container');
@@ -3055,7 +3142,10 @@ window.KomakiGrade = (function () {
       if (!(h.compareDocumentPosition(n) & FOLLOW)) continue;          // 見出しより前
       if (stop && (stop.compareDocumentPosition(n) & FOLLOW)) break;   // 次の見出しから先
       if (pe.closest(SKIP)) continue;
-      if (!pe.closest('.faq-a') && !pe.getClientRects().length) continue;   // 表示されていない
+      // 表示されていないものは読まない。ただし畳まれている Q&A の答え（.faq-a）と、
+      // スマートフォンで列ごと畳んだ賛否の声（.voice-card）は読む — 読み上げは
+      // 画面の狭い端末でこそ使われるので、畳んだせいで声が丸ごと落ちては困る。
+      if (!pe.closest('.faq-a, .voice-card') && !pe.getClientRects().length) continue;
       var t = n.nodeValue.replace(/\s+/g, ' ');
       if (!t.trim()) continue;
       var b = pe.closest(BLOCK) || pe;

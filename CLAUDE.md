@@ -160,8 +160,8 @@ The same script also saves a normalized body-text snapshot of every item page to
 | 群 | 中身 | 主な使い道 |
 |---|---|---|
 | `newsletters/` | 『篠岡地区学校再編だより』各号 | 全般（日程・新校名・通学区域など） |
-| `setsumeikai/` | 保護者等説明会6会場の質疑応答、意見提出シートの質問と回答・意見と提案 | `faq.html`・`bus.html` のQ&A、`voices.html` |
-| `pubcom/` | パブリックコメント55件の意見と市の考え方、実施結果概要、計画修正案 | `voices.html` の「実際に言われたこと」、`faq.html` |
+| `setsumeikai/` | 保護者等説明会6会場の質疑応答、意見提出シートの質問と回答・意見と提案 | `faq.html` のQ&Aと賛否の声、`bus.html` のQ&A |
+| `pubcom/` | パブリックコメント55件の意見と市の考え方、実施結果概要、計画修正案 | `faq.html#pubcom` の「実際に言われたこと」 |
 | `gikai/` | こまき市議会だより | `council.html` |
 
 - **⛔ 市の資料の文面をそのままページに貼らないこと（ユーザー指示 2026-09-13）。** ここに取り込むのは**出典であって原稿ではない**。読んで理解し、当サイトの言葉で書き直す。数値・日付・議決結果のような事実そのものはもちろんそのまま使ってよい。**書き直していることはページに明記する**（共通キー `recomposed_note`、`council_ref_box`、`voices_pc_note`）。ただし**その理由はページに書かない**（同指示）。
@@ -266,7 +266,7 @@ The **last section of `index.html`** shows a changelog of changes made to this s
 Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics and the standards the national government sets, so that a reader can judge the Komaki plan against something. It is **static hand-written content** — no JSON feed, no script, nothing on the daily workflow.
 
 - **Every fact on it must come from MEXT**, and the four permitted `mext.go.jp` URLs are its bibliography. Numbers currently on the page: 8,850 closures FY2004–FY2023 and 298 in FY2023 (191/82/25), 92 in Aichi (62/14/16), 74.4% of 7,612 surviving buildings reused, ~2,000 fewer public schools and ~850,000 fewer pupils in ten years, standards of 12–18 classes (18–27 for compulsory education schools), 4 km / 6 km, "about one hour", the 2026-08-05 revision (notice 8文科初第1125号) and its 広域化 / 総合化 / 現代化 pillars, ~40% / ~50% below 12 classes, ~16% one-elementary-one-JHS municipalities, 5,812,000 / 3,105,000 pupils, 232 public compulsory education schools with 75,828 pupils (FY2024).
-- **No 賛否 content, and no citizen-run events.** The page deliberately carries no pro/con framing — that belongs on `voices.html` — and does not advertise meetings or lectures held by any group, whichever side they are on. A neutral-looking national page is the easiest place on this site to smuggle in a position, so keep it descriptive.
+- **No 賛否 content, and no citizen-run events.** The page deliberately carries no pro/con framing — that belongs in the 賛否の声 section of `faq.html` — and does not advertise meetings or lectures held by any group, whichever side they are on. A neutral-looking national page is the easiest place on this site to smuggle in a position, so keep it descriptive.
 - The 国の基準 ⇔ 小牧の計画 table is the point of the page. Its right-hand column restates facts that already exist elsewhere on this site (令和15年に各学年1学級, 2km でスクールバス, ガイドラインは未定) — when those change, change them here too.
 - The 手引 was revised in August 2026 and will be revised again. When it is, the numeric standards must be re-checked against the new 改訂版 rather than assumed to carry over.
 - Not in the auto-update pipeline's `ALLOWED` set: the city's page changes do not move national statistics.
@@ -295,6 +295,26 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 - **運行事業者のような民間の連絡先も同じ扱い。** 出所はその会社が自社サイトで公表しているページで、**サイトからリンクはしない**（許可外部リンクを増やせない）。`bus_contact_note` に「制度のことを会社にたずねても答えは出ない」と書いてあるのは、市の窓口へ行くべき問い合わせが会社に流れるのを防ぐため — 外さないこと。
 - **議員個人の氏名・連絡先は載せない**（[[個人名は書かない]]の方針）。`council.html` は職と部署だけを書く。**政党名・会派名・議員団名も書かない**（2026-09-14 ユーザー指示）— 一般質問も「だれが聞いたか」ではなく「何が問われ、市がどう答えたか」だけを書く。定例会の本文（質問・答弁の要約を含む）は「です・ます」でそろえる（同指示）。
 - 組織改編は4月1日付が多い。**4月の第1週は結果を必ず見ること。**
+
+## `faq.html`（よくある質問と賛否の声）
+
+2026-09-22 に**`voices.html`（賛否の声）を統合**した（ユーザー指示）。もともと「よくある疑問 → 市の答え」と「住民の声」は、`faq_cat4`（意見・参加について）と `voices.html#pubcom` で主題が重なっていた。いまは1ページに3つの節が**この順で**並ぶ。
+
+| 節 | 中身 | 性格 |
+|---|---|---|
+| `#qa` | よくある質問 20問（4カテゴリ・アコーディオン） | 答えが公表されていること |
+| `#voices` | 賛成・反対・中立の声 18件（3列） | 意見が割れていること。**当サイトによる要約・再構成**で市の見解ではない（`voices_about`） |
+| `#pubcom` | パブリックコメント55件の実施結果・論点5件・計画が変わったところ | 市が公表した意見と「市の考え方」にもとづく（`voices_pc_note`） |
+
+- **順番と節の区切りを崩さないこと。** 「答えが出ている問い」→「答えが割れている問い」という流れで、背景色も `section-alt` → `section` → `section-alt` と交互にしてある。声を先に置いたり、Q&A と声を同じ節に混ぜたりすると、**住民の声が市の答えに読めてしまう**。`review.html` の【事実】と 🔎 を版面で分けるのと同じ考え方。
+- **`FAQPage` 構造化データに入るのは `#qa` だけ。** `i18n.js` の `applyFaqJsonLd` が `faq_q<N>`/`faq_a<N>` の連番から組み立てる（`pageId === 'faq'` 判定、最初の欠番で止まる）ので、**番号を飛ばさないこと**。声もパブコメも質問でも答えでもないので、構造化データには入れない。
+- **キー名は統合前のまま**（`voice_*` / `voices_*` / `col_*` / `pubcom_*` / `stat_*`）。付け替えると12言語＋こどもむけ13辞書の訳をすべて作り直すことになるため、`faq_*` に寄せていない。`voices_` で始まるキーが `faq.html` にあるのは統合の名残で、誤りではない。
+- **スマートフォンでは声を列ごとに畳む**（`VOICES COLLAPSE` in `js/main.js`、2026-09-22 ユーザー指示）。Q&A 20問はアコーディオンで畳まれているのに声18枚が開いたままだと、狭い画面では声が本文の大半を占めるため。**PC 幅では件数も ＋/− の記号も外す**（指示は「スマートフォンだけ畳む」であって PC の見た目を変える話ではない）。見出しに足すのは数字と記号だけなので、辞書にキーは増えていない。
+  - 畳みは **`display:none`（`.voices-col.is-collapsed .voice-card`）で行う。** `hidden` 属性や `aria-hidden` にすると READ ALOUD の `SKIP` に当たり、畳んだ声が読み上げから丸ごと落ちる。`blocksOf()` の可視判定の例外は `.faq-a, .voice-card` の2つ — **この2つは対で維持すること**。
+  - 見出し（`.voices-col-header`）の中身は `i18n.js` が `textContent` ごと書き換えるので、件数と記号は `komaki:i18n-applied` のたびに付け直している。
+- **旧 `voices.html` は削除せず、移動案内の1枚として残してある。** GitHub Pages は静的で 301 を返せず、このサイトは共有ボタンを前面に出しているので `voices.html?lang=xx` が LINE などに出回っている。`noindex`、`canonical` は `faq.html`、`meta refresh`（JS 無効時の保険）に加えて、**JS が `?lang=` を引き継いで `faq.html?lang=xx#voices` へ送る**。`sitemap.xml` と `hreflang` からは外し、ヘッダのナビからも外した（サイトは**10ページ**）。`meta_title_voices` / `meta_desc_voices` は移動案内の文言として残っている。
+- 他ページからの導線は `faq.html#voices`（`community.html`・`review.html`）と `faq.html#pubcom`（`council.html` の `council_warn_link`）。`council.html` は統合前に faq と voices の両方を「関連するページ」に挙げていたので、3つのうち1つを `review.html`（`rel_council_review`）に差し替えてある。
+- サイトの Q&A が3か所（`faq.html` / `bus.html#faq` / `community.html#qa`）に分かれている方針は統合後も変わらない。`faq_more_*` の箱がその導線。
 
 ## `review.html`（計画の検証と提案のページ）
 
@@ -392,9 +412,9 @@ Every page carries a `<section class="section share" id="share">` just above `</
 - 印刷指定は `@media print` の `html.board-printing`。**ふつうの Ctrl+P はページをそのまま印刷する**（本文を刷りたい読者がいるので既定は変えない）。ボタンを押したときだけシート1枚になる。`body > *:not(#board-sheet)` の `:not()` は必須 — `!important` は詳細度に勝つので、除外しないとシート自身も消える。
 - `board_btn` は実行時に作るボタンの `aria-label` で HTML に現れないため、`build_page_dicts.py` の `RUNTIME_KEYS` に入れてある（他ページでは使われないが、RUNTIME_KEYS は個別ページの実際の使用有無を見ない仕組みなので全ページ辞書に入ったままでよい）。
 
-### カットイン（全11ページ、ヘッダの下）
+### カットイン（全10ページ、ヘッダの下）
 
-`TOP CUT-IN` in `js/main.js`（2026-09-03 に `NEW FEATURE CUT-IN` から改称・拡張）。**2026-09-20 のユーザー指示で、トップページだけでなく全ページに出す**ようにした（読者が最初に開くページはトップとはかぎらないため）。`#feature-cutin` と `#feature-strings` の2つの `div` は11ページすべての `</header>` 直後にあり、同じブロックがそれを見つけて描く。ヘッダの下にスライドインする帯で、**今日から14日以内**（`WINDOW_DAYS`）の新しい情報を出す。出すのは3種類：
+`TOP CUT-IN` in `js/main.js`（2026-09-03 に `NEW FEATURE CUT-IN` から改称・拡張）。**2026-09-20 のユーザー指示で、トップページだけでなく全ページに出す**ようにした（読者が最初に開くページはトップとはかぎらないため）。`#feature-cutin` と `#feature-strings` の2つの `div` は10ページすべての `</header>` 直後にあり、同じブロックがそれを見つけて描く。ヘッダの下にスライドインする帯で、**今日から14日以内**（`WINDOW_DAYS`）の新しい情報を出す。出すのは3種類：
 
 | 札 | 元データ | 飛び先 |
 |---|---|---|
@@ -471,7 +491,7 @@ Every HTML page follows the same pattern: `notice-banner` → `<header>` (with `
 
 ### このページの目次（`.page-toc`）— 全ページ
 
-2026-09-14 に長いページで始め、**2026-09-15 にユーザー指示で全11ページに広げた**。`js/main.js` の PAGE TOC が、ヒーロー直下（`index.html` だけは「いまの状況」と直近の予定の帯の下）に「このページの目次」（`page_toc_h`、`RUNTIME_KEYS` 入り）を組み立てる。**中身は `main h2.section-title` から自動で作る**ので、節を足しても目次を直す必要はない。飛び先は「その見出しが先頭の section の id → 見出しの id → 無ければ `toc-<見出しのキー>`」の順で決め、他ページからリンクされている既存のアンカー（`#contact`・`#qa` など）は変えない。スマートフォン幅では閉じた状態で出す。**`<nav>` にしないこと** — ヘッダ用の `nav a` のスタイル（白文字）がかかって文字が見えなくなる。
+2026-09-14 に長いページで始め、**2026-09-15 にユーザー指示で全10ページに広げた**。`js/main.js` の PAGE TOC が、ヒーロー直下（`index.html` だけは「いまの状況」と直近の予定の帯の下）に「このページの目次」（`page_toc_h`、`RUNTIME_KEYS` 入り）を組み立てる。**中身は `main h2.section-title` から自動で作る**ので、節を足しても目次を直す必要はない。飛び先は「その見出しが先頭の section の id → 見出しの id → 無ければ `toc-<見出しのキー>`」の順で決め、他ページからリンクされている既存のアンカー（`#contact`・`#qa` など）は変えない。スマートフォン幅では閉じた状態で出す。**`<nav>` にしないこと** — ヘッダ用の `nav a` のスタイル（白文字）がかかって文字が見えなくなる。
 
 - `review.html` の手書きの目次（`rev_toc_h` / `rev_nav1`〜`rev_nav9`）はこれに置き換えて**廃止**した（目次が2つ並ぶため）。キーも辞書から消してある。
 - ヘッダはナビが1段にも2段にもなる（1000px 前後で約122px）ので、アンカーの `scroll-margin-top` は固定値ではなく、HEADER HEIGHT ブロックが入れる実測値 `--header-h` から計算する。
@@ -545,7 +565,7 @@ The 対象エリアの地図 draws **three sources with different accuracy** —
 - **Zoom and pan were added on 2026-09-15 at the user's explicit instruction** — the one change to the frozen map's *display* so far. Only the SVG `viewBox` moves; no coordinate, colour or frame changes, and **at zoom 1 the rendering is pixel-identical to the frozen map** (checked by screenshot diff against the previous commit — keep it that way). Range is confined to the original frame, zoom 1–`MAX_ZOOM` (6). Labels, marks and line widths are redrawn at 1/√z (`SCALE_ITEMS` / `STROKES`) so they grow only √z on screen; the scale bar and north arrow stay screen-fixed and the bar switches 1 km → 500 m → 200 m → 100 m. Controls: the `.bus-map-zoom` buttons (`bus_map_zoom_in/out/reset`), Ctrl/⌘ + wheel, double-click, drag while zoomed; on touch, two fingers pinch, and one finger pans only while zoomed — at zoom 1 a single finger still scrolls the page, so the map never traps a phone reader. A plain wheel is left to page scrolling. `bus_map_zoom_hint` explains this under the map.
 - **`cls: 'local'` roads are the 桃花台 main local streets (OSM `tertiary`) plus 桃花台鳥居松線** (named 桃花台・春日井線 in OSM). They live in the `localroad` layer so a reader can switch them off; the 幹線 keep the `road` layer and are drawn above them.
 
-- **Three anchors are linked from other pages and must not be removed**: `index.html#news` (from `actions_note` on `community.html`), `community.html#qa` (from the 「ほかのページにもQ&A」 box on `faq.html`), and `bus.html#area-map` (the 対象エリアの地図 heading, linked from the 通学区域とスクールバスの対象エリア section on `map.html`, added 2026-09-15). Both carry an HTML comment saying so.
+- **Five anchors are linked from other pages and must not be removed**: `index.html#news` (from `actions_note` on `community.html`), `community.html#qa` (from the 「ほかのページにもQ&A」 box on `faq.html`), `bus.html#area-map` (the 対象エリアの地図 heading, linked from the 通学区域とスクールバスの対象エリア section on `map.html`, added 2026-09-15), and — since the 2026-09-22 merge — `faq.html#voices` (from `community.html`, `review.html` and the `voices.html` redirect) and `faq.html#pubcom` (from `council_warn_link` on `council.html`). They carry an HTML comment saying so.
 - The site's Q&A deliberately lives in three places — `faq.html`, the FAQ section of `bus.html` (`#faq`), and the よくある疑問 section of `community.html` (`#qa`). Keeping each next to its context is the point; the box at the bottom of `faq.html` (`faq_more_*`) is what stops the other two from being unreachable for a reader who treats `faq.html` as the index of questions.
 
 ## SEO
@@ -553,7 +573,7 @@ The 対象エリアの地図 draws **three sources with different accuracy** —
 | Piece | Where | Notes |
 |---|---|---|
 | `robots.txt` | repo root | Allows everything; points at the sitemap. Kids mode is excluded via a JS-injected `noindex` (`applyKidsSeoMeta`), not here. |
-| `sitemap.xml` | repo root | Hand-maintained, one `<url>` per page (11), each carrying the full `xhtml:link` alternate set. No `lastmod` — a stale date is worse than none. |
+| `sitemap.xml` | repo root | Hand-maintained, one `<url>` per page (10 — `voices.html` was merged into `faq.html` on 2026-09-22 and is excluded), each carrying the full `xhtml:link` alternate set. No `lastmod` — a stale date is worse than none. |
 | `<link rel="canonical">` | every page `<head>` | Static value is the bare (Japanese) URL. `i18n.js` rewrites it to the `?lang=` URL of the language actually being shown. |
 | `hreflang` | every page `<head>` | 10 languages + `x-default`, each pointing at a **distinct** `?lang=` URL. They previously all pointed at the same URL, which is an error Search Console reports. |
 | JSON-LD `WebSite` | `index.html` only | Static. Deliberately carries **no `publisher`/`Organization`** — inventing one would imply this site is official, which it is not. `citation` points at the permitted city URL. |
@@ -563,7 +583,7 @@ Google has restricted `FAQPage` rich results to authoritative government and hea
 
 ## CSS design tokens
 
-All colours and radii are defined as CSS custom properties on `:root` in `css/style.css`. The theme is a blackboard/school aesthetic: `--primary` (#2e5c3a blackboard green), `--accent` (#d4aa30 chalk yellow), `--for-color` / `--against-color` / `--neutral-color` for the voices page. FOUC is prevented by hiding `body` until `js/i18n.js` adds `.i18n-ready` to `<html>`.
+All colours and radii are defined as CSS custom properties on `:root` in `css/style.css`. The theme is a blackboard/school aesthetic: `--primary` (#2e5c3a blackboard green), `--accent` (#d4aa30 chalk yellow), `--for-color` / `--against-color` / `--neutral-color` for the 賛否の声 section of `faq.html`. FOUC is prevented by hiding `body` until `js/i18n.js` adds `.i18n-ready` to `<html>`.
 
 ## `files.txt`
 
