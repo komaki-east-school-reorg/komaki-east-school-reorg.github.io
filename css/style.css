@@ -806,6 +806,17 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 .clubs-list li { font-size: .92rem; line-height: 1.85; margin-bottom: .3rem; color: var(--text-muted); }
 .clubs-src { font-size: .82rem; color: var(--text-muted); margin-top: 1rem; }
 
+/* ことばメモ（about.html #glossary）。こどもむけ表示にしても残る言葉を、
+   子どもが自分で確かめられるようにする欄。dl > div > dt/dd の形。 */
+.gloss-list { margin: 0; }
+.gloss-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-left: 4px solid var(--primary); border-radius: var(--radius-sm);
+  padding: .8rem 1rem; margin-bottom: .6rem;
+}
+.gloss-t { font-weight: 800; color: var(--primary); font-size: .98rem; margin: 0 0 .3rem; }
+.gloss-d { margin: 0; font-size: .92rem; line-height: 1.85; color: var(--text); }
+
 @media (max-width: 560px) {
   .club-links { margin-left: 0; width: 100%; }
   .club-item { gap: .25rem .6rem; }

@@ -4,6 +4,12 @@
     {
       "date": "2026-09-22",
       "type": "feature",
+      "ja": "読み上げ中の文を光らせ、計画概要に「ことばメモ」を追加",
+      "en": "Sentence highlighting while reading aloud, and a plain-language glossary"
+    },
+    {
+      "date": "2026-09-22",
+      "type": "feature",
       "ja": "地域クラブ・課外活動のページを新設",
       "en": "New page: community clubs and after-school activities"
     },
