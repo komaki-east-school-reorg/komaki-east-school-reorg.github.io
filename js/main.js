@@ -428,6 +428,24 @@ window.KomakiGrade = (function () {
 
   function pad(fs) { return (fs >= 12 ? 0.42 : fs >= 10 ? 0.3 : 0.2) + 'rem'; }
 
+  /* 溢れているか。**ul 全体だけでなく、セル1つ1つの中も見ること。**
+     グリッドの列は `auto` だが li に min-width:0 が効いているので、列が内容より
+     狭くなることがある。そのとき ul 全体は収まったままリンクの文字だけが
+     セルからはみ出し、**隣のリンクの文字に重なって描画される**（2026-09-22 に
+     ja・id・tr など 189通り中46通りで発生。矩形は重ならないので、要素の
+     当たり判定では見つからない）。ここを ul だけで判定していたのが原因だった。
+
+     ul 側は端数の切り上げで 1px 溢れることがあるので余裕を見ない。
+     セル側は丸めの誤差が出やすいので 1px だけ見る。 */
+  function overflows() {
+    if (ul.scrollWidth > ul.clientWidth) return true;
+    var as = ul.getElementsByTagName('a');
+    for (var i = 0; i < as.length; i++) {
+      if (as[i].scrollWidth > as[i].clientWidth + 1) return true;
+    }
+    return false;
+  }
+
   function fit() {
     // 768px 以下はハンバーガーの縦並び。ここで付けた値は邪魔になるので外す
     if (!mq.matches) {
@@ -440,9 +458,7 @@ window.KomakiGrade = (function () {
     for (var fs = MAX; fs >= MIN; fs -= STEP) {
       ul.style.fontSize = fs + 'px';
       ul.style.setProperty('--nav-pad', pad(fs));
-      // scrollWidth は overflow:hidden でも溢れたぶんを含む。
-      // 端数の切り上げで 1px 溢れることがあるので、余裕は見ない
-      if (ul.scrollWidth <= ul.clientWidth) return;
+      if (!overflows()) return;
     }
     // 最小でも1行に収まらないほど狭いとき（ビルマ語×狭い PC 窓など）。
     // セル内で折り返させる。行数は2行のままで、切れて読めなくなるよりよい
