@@ -53,6 +53,45 @@
       "tr": "Kitasato bölgesinin okullarını düşünme toplantısı (2.)",
       "my": "Kitasato ဒေသ ကျောင်းများအကြောင်း စဉ်းစားသည့် ဒုတိယအကြိမ် အစည်းအဝေး"
     },
+    "学校公開日": {
+      "en": "School Open Day",
+      "pt": "Dia de Portas Abertas da Escola",
+      "vi": "Ngày mở cửa trường học",
+      "tl": "Araw ng Pagbubukas ng Paaralan",
+      "es": "Día de Puertas Abiertas de la Escuela",
+      "zh": "学校公开日",
+      "id": "Hari Sekolah Terbuka",
+      "ko": "학교 공개일",
+      "ne": "विद्यालय खुला दिन",
+      "tr": "Okul Açık Gün",
+      "my": "ကျောင်းဖွင့်ပြသနေ့"
+    },
+    "体育：できる技に挑戦": {
+      "en": "PE: Trying Skills You Can Do",
+      "pt": "Educação Física: desafiando habilidades que conseguem fazer",
+      "vi": "Thể dục: Thử thách với các kỹ năng có thể làm được",
+      "tl": "PE: Sinusubukan ang mga Kakayahang Kaya Nilang Gawin",
+      "es": "Educación física: desafío con habilidades que pueden hacer",
+      "zh": "体育课：挑战力所能及的技巧",
+      "id": "PJOK: Menantang Keterampilan yang Bisa Dilakukan",
+      "ko": "체육: 할 수 있는 기술에 도전",
+      "ne": "शारीरिक शिक्षा: सक्ने सीपहरूमा चुनौती",
+      "tr": "Beden Eğitimi: Yapabildikleri Becerilere Meydan Okuma",
+      "my": "အားကစား - လုပ်နိုင်သောကျွမ်းကျင်မှုများကို စိန်ခေါ်ခြင်း"
+    },
+    "運動会にむけた全体練習": {
+      "en": "Whole-School Practice for Sports Day",
+      "pt": "Ensaio geral para o Festival Esportivo",
+      "vi": "Buổi tập luyện toàn trường cho ngày hội thể thao",
+      "tl": "Pangkalahatang Pagsasanay para sa Sports Festival",
+      "es": "Práctica general para el Festival Deportivo",
+      "zh": "为运动会进行的全校集体练习",
+      "id": "Latihan Bersama Seluruh Sekolah untuk Hari Olahraga",
+      "ko": "운동회를 위한 전체 연습",
+      "ne": "खेलकुद महोत्सवका लागि सम्पूर्ण विद्यालयको अभ्यास",
+      "tr": "Spor Günü İçin Tüm Okul Provası",
+      "my": "အားကစားပွဲအတွက် ကျောင်းလုံးကျွမ်းကျင်မှုလေ့ကျင့်ခန်း"
+    },
     "0920 吹奏楽部 お月見コンサート": {
       "en": "9/20 Brass Band Club: Moon-Viewing Concert",
       "pt": "20/09 Clube de Banda Marcial: Concerto de Contemplação da Lua",
@@ -169,45 +208,6 @@
       "ne": "९/१७ आजको स्कुल खाजा",
       "tr": "17/9 Bugünün Okul Yemeği",
       "my": "၉/၁၇ ယနေ့ကျောင်းထမင်း"
-    },
-    "体育：できる技に挑戦": {
-      "en": "PE: Trying Skills You Can Do",
-      "pt": "Educação Física: desafiando habilidades que conseguem fazer",
-      "vi": "Thể dục: Thử thách với các kỹ năng có thể làm được",
-      "tl": "PE: Sinusubukan ang mga Kakayahang Kaya Nilang Gawin",
-      "es": "Educación física: desafío con habilidades que pueden hacer",
-      "zh": "体育课：挑战力所能及的技巧",
-      "id": "PJOK: Menantang Keterampilan yang Bisa Dilakukan",
-      "ko": "체육: 할 수 있는 기술에 도전",
-      "ne": "शारीरिक शिक्षा: सक्ने सीपहरूमा चुनौती",
-      "tr": "Beden Eğitimi: Yapabildikleri Becerilere Meydan Okuma",
-      "my": "အားကစား - လုပ်နိုင်သောကျွမ်းကျင်မှုများကို စိန်ခေါ်ခြင်း"
-    },
-    "運動会にむけた全体練習": {
-      "en": "Whole-School Practice for Sports Day",
-      "pt": "Ensaio geral para o Festival Esportivo",
-      "vi": "Buổi tập luyện toàn trường cho ngày hội thể thao",
-      "tl": "Pangkalahatang Pagsasanay para sa Sports Festival",
-      "es": "Práctica general para el Festival Deportivo",
-      "zh": "为运动会进行的全校集体练习",
-      "id": "Latihan Bersama Seluruh Sekolah untuk Hari Olahraga",
-      "ko": "운동회를 위한 전체 연습",
-      "ne": "खेलकुद महोत्सवका लागि सम्पूर्ण विद्यालयको अभ्यास",
-      "tr": "Spor Günü İçin Tüm Okul Provası",
-      "my": "အားကစားပွဲအတွက် ကျောင်းလုံးကျွမ်းကျင်မှုလေ့ကျင့်ခန်း"
-    },
-    "9月17日の読み聞かせは": {
-      "en": "September 17 Story Time",
-      "pt": "Contação de histórias de 17 de setembro",
-      "vi": "Buổi đọc truyện ngày 17 tháng 9",
-      "tl": "Pagbasa ng Kuwento noong Setyembre 17",
-      "es": "Cuentacuentos del 17 de septiembre",
-      "zh": "9月17日的绘本朗读",
-      "id": "Sesi mendongeng 17 September",
-      "ko": "9월 17일 그림책 읽어주기",
-      "ne": "सेप्टेम्बर १७ को कथा वाचन",
-      "tr": "17 Eylül Hikaye Saati",
-      "my": "စက်တင်ဘာ ၁၇ ရက် ပုံပြင်ဖတ်ပြချိန်"
     },
     "水筒は語る": {
       "en": "The Water Bottle Speaks",
@@ -364,6 +364,19 @@
       "ne": "कक्षा 2 कक्षा सञ्चालन खेल र प्रस्तुति अभ्यास",
       "tr": "2. sınıflar: sınıfın yürüttüğü etkinlikler ve gösteri provası",
       "my": "ဒုတိယနှစ် - အတန်းစီစဉ်သော ပြိုင်ပွဲနှင့် ဖျော်ဖြေမှု လေ့ကျင့်ခြင်း"
+    },
+    "“信長の宴”と薪能に酔う　小牧市・小牧山史跡公園で夜の2イベント": {
+      "en": "Enthralled by 'Nobunaga's Banquet' and torchlit Noh: two nighttime events at Mt. Komaki Historic Site Park in Komaki City",
+      "pt": "Encantados com o 'Banquete de Nobunaga' e o Noh à luz de tochas: dois eventos noturnos no Parque Histórico do Monte Komaki, na cidade de Komaki",
+      "vi": "Say mê 'Bữa tiệc của Nobunaga' và kịch Noh dưới ánh đuốc: hai sự kiện buổi tối tại Công viên Di tích Lịch sử núi Komaki, thành phố Komaki",
+      "tl": "Nabighani sa 'Piging ni Nobunaga' at Noh sa liwanag ng sulo: dalawang gabing kaganapan sa Komakiyama Historic Site Park, Lungsod ng Komaki",
+      "es": "Cautivados por el 'Banquete de Nobunaga' y el Noh a la luz de antorchas: dos eventos nocturnos en el Parque Histórico del Monte Komaki, ciudad de Komaki",
+      "zh": "沉醉于“信长之宴”与篝火能剧：小牧市小牧山史迹公园的两场夜间活动",
+      "id": "Terpukau oleh 'Perjamuan Nobunaga' dan Noh cahaya obor: dua acara malam di Taman Situs Bersejarah Gunung Komaki, Kota Komaki",
+      "ko": "'노부나가의 연회'와 다키기노(횃불 노)에 취하다: 고마키시 고마키야마 사적공원에서 열리는 밤의 행사 2건",
+      "ne": "'नोबुनागाको भोज' र दीप ज्वालामा नोह नाटकमा मोहित: कोमाकी सहरको कोमाकीयामा ऐतिहासिक स्थल पार्कमा दुई साँझका कार्यक्रम",
+      "tr": "'Nobunaga'nın Ziyafeti' ve meşale ışığında Noh tiyatrosuyla büyülenmek: Komaki şehri Komakiyama Tarihi Alan Parkı'nda iki akşam etkinliği",
+      "my": "'Nobunaga ၏ ညစာစားပွဲ' နှင့် မီးရှူးအလင်းရောင်ဖြင့် Noh ပြဇာတ်တို့ဖြင့် ဖမ်းစားခံရသော Komaki မြို့ Komakiyama သမိုင်းဝင်နေရာဥယျာဉ်ရှိ ညနေပိုင်း ပွဲစဉ် ၂ ခု"
     },
     "2026年度末で閉校、万感の聖火リレー　小牧市の光ケ丘中学校、16人がトーチつなぐ": {
       "en": "Closing at the End of FY2026: An Emotional Torch Relay — 16 Students Carry the Torch at Komaki's Hikarigaoka Junior High School",
