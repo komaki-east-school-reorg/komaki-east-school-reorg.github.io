@@ -2876,6 +2876,7 @@ window.KomakiGrade = (function () {
     when:   {ja:'日時', en:'Date', pt:'Data', vi:'Thời gian', tl:'Petsa', es:'Fecha', zh:'日期', id:'Waktu', ko:'일시', ne:'मिति', tr:'Tarih', my:'ရက်စွဲ'},
     place:  {ja:'場所', en:'Place', pt:'Local', vi:'Địa điểm', tl:'Lugar', es:'Lugar', zh:'地点', id:'Tempat', ko:'장소', ne:'स्थान', tr:'Yer', my:'နေရာ'},
     source: {ja:'発信元', en:'Posted by', pt:'Divulgado por', vi:'Nguồn tin', tl:'Mula sa', es:'Publicado por', zh:'发布方', id:'Diposting oleh', ko:'게시 주체', ne:'प्रकाशक', tr:'Paylaşan', my:'တင်သူ'},
+    ref:    {ja:'参考', en:'Reference', pt:'Referência', vi:'Tham khảo', tl:'Sanggunian', es:'Referencia', zh:'参考', id:'Rujukan', ko:'참고', ne:'सन्दर्भ', tr:'Referans', my:'ကိုးကား'},
     citizen:{ja:'市民有志', en:'Citizen-run', pt:'Iniciativa de cidadãos', vi:'Do người dân tổ chức', tl:'Mamamayan ang nagpapatakbo', es:'Iniciativa ciudadana', zh:'市民自发', id:'Inisiatif warga', ko:'시민 주도', ne:'नागरिक पहल', tr:'Vatandaş girişimi', my:'ပြည်သူ့ဦးဆောင်'},
     council:{ja:'地域協議会', en:'Community council', pt:'Conselho comunitário', vi:'Hội đồng cộng đồng', tl:'Konseho ng komunidad', es:'Consejo comunitario', zh:'地区协议会', id:'Dewan komunitas', ko:'지역 협의회', ne:'सामुदायिक परिषद्', tr:'Bölge konseyi', my:'ဒေသဆိုင်ရာ ကောင်စီ'},
     empty:  {ja:'現在、掲載されている取組はありません。', en:'Nothing is listed at the moment.', pt:'No momento não há nada publicado.', vi:'Hiện chưa có nội dung nào.', tl:'Wala pang nakalista sa ngayon.', es:'Por ahora no hay nada publicado.', zh:'目前没有刊登的活动。', id:'Saat ini belum ada yang ditampilkan.', ko:'현재 게시된 활동이 없습니다.', ne:'हाल कुनै गतिविधि राखिएको छैन।', tr:'Şu anda listelenen bir şey yok.', my:'လက်ရှိတွင် ဖော်ပြထားသည် မရှိပါ။'},
@@ -2915,6 +2916,13 @@ window.KomakiGrade = (function () {
         var src = it.source_url
           ? '<a href="' + esc(it.source_url) + '" target="_blank" rel="noopener">' + esc(it.source_label || it.source_url) + '</a>'
           : esc(it.source_label || '');
+        // 任意の「参考」行。発信元（主催者自身の発信）とは別に、
+        // 本文で触れた事実の出どころを1本だけ示す枠（2026-09-24 ユーザー指示で追加）。
+        // 発信元の行とまとめないこと — 主催者の発信と第三者の公表は別物。
+        var ref = it.ref_url
+          ? '<div class="action-source">' + at('ref') + '：<a href="' + esc(it.ref_url) + '" target="_blank" rel="noopener">' +
+            esc(pick(it, 'ref_label') || it.ref_url) + '</a></div>'
+          : '';
         return '<li class="action-item">' +
                  '<div class="action-head">' +
                    '<span class="action-title" data-hl="' + esc(it.title_ja || '') + '">' + esc(it.title_ja || '') + '</span>' +
@@ -2924,6 +2932,7 @@ window.KomakiGrade = (function () {
                  rows +
                  (body ? '<p class="action-body">' + esc(body) + '</p>' : '') +
                  '<div class="action-source">' + at('source') + '：' + src + '</div>' +
+                 ref +
                '</li>';
       }).join('') + '</ul>';
       window.KomakiHeadline.apply(container);   // 取組名を表示言語に

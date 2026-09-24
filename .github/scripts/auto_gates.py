@@ -69,6 +69,9 @@ PERMITTED_INSTAGRAM = {
     # 閉校を惜しむ市民有志。「地域の取組」欄を描くページだけ
     # （index は「最新の動き」に同じ一覧を出すため。2026-09-03）
     "instagram.com/arigato.ohshirosho": ("community.html", "index.html"),
+    # TOKADAI DANCE FESTIVAL（主催：株式会社iサポート）。同じく「地域の取組」欄を描く
+    # ページだけ（2026-09-24 ユーザー指示）
+    "instagram.com/tokadaidancefestival": ("community.html", "index.html"),
     # 桃花台を考える会【新しいまちづくり】。フッタの「参考リンク（市民団体）」に
     # 全ページで出る（2026-09-22 ユーザー指示）
     "instagram.com/tokadai_komaki": None,
@@ -110,6 +113,11 @@ PERMITTED_SNS = {
     "facebook.com": (
         "facebook.com/sharer/sharer.php",   # 共有ボタン（出典ではない）
         "facebook.com/TokadaiNT",           # 桃花台を考える会【新しいまちづくり】
+        # 小牧市公式 Facebook の投稿。「地域の取組」欄の項目が本文で触れた事実の
+        # 出どころとして1本だけ張る（2026-09-24 ユーザー指示。読者が本文を見て
+        # 確かめられるため許可）。市の公表なので事実の根拠に使ってよいが、
+        # 張れるのは data/community_actions.json の ref_url だけに留めること。
+        "facebook.com/city.komaki",
     ),
 }
 MIN_QUOTE_LEN = 10

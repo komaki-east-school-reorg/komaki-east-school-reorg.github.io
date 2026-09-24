@@ -1,19 +1,22 @@
 {
-  "note": "地域で行われている取組。手動管理。市の公式情報でも報道でもない。計画の内容・数値の根拠には決して使わない。badge は citizen（市民有志・既定）か council（地域協議会）。主催がどちらかで必ず使い分けること — 協議会の催しを市民有志と書くと主催者を偽ることになる。source_url は auto_gates.py の PERMITTED_INSTAGRAM に載っているアカウントのみ。紙の回覧板が出どころのときは source_url を空にし、source_label に発行元と『回覧板』と書く。",
+  "note": "地域で行われている取組。手動管理。市の公式情報でも報道でもない。計画の内容・数値の根拠には決して使わない。badge は citizen（市民有志・既定）か council（地域協議会）。主催がどちらかで必ず使い分けること — 協議会の催しを市民有志と書くと主催者を偽ることになる。source_url は auto_gates.py の PERMITTED_INSTAGRAM に載っているアカウントのみ。ref_url（任意）は本文で触れた事実の出どころで、発信元とは別の行に出る — PERMITTED_SNS に載っている宛先のみ。紙の回覧板が出どころのときは source_url を空にし、source_label に発行元と『回覧板』と書く。",
   "actions": [
     {
-      "school_ja": "大城小学校",
-      "school_en": "Oshiro Elementary School",
-      "title_ja": "ありがとう大城小",
-      "date": "2026-12-13",
-      "date_note_ja": "2026年12月13日（日）日中",
-      "date_note_en": "Sunday 13 December 2026, daytime",
-      "place_ja": "大城小学校",
-      "place_en": "Oshiro Elementary School",
-      "body_ja": "体育館でお祭りマルシェ、校庭で野球などを予定。キッチンカーの出店も予定されています。実行委員と当日ボランティアを募集中です。",
-      "body_en": "A festival market in the gym and baseball on the school ground are planned, with food trucks. The group is recruiting committee members and volunteers for the day.",
-      "source_label": "Instagram @arigato.ohshirosho",
-      "source_url": "https://www.instagram.com/arigato.ohshirosho/"
+      "school_ja": "光ヶ丘小学校区",
+      "school_en": "Hikarigaoka elementary school district",
+      "title_ja": "TOKADAI DANCE FESTIVAL",
+      "date": "2026-10-12",
+      "date_note_ja": "2026年10月12日（月・祝）11時〜19時",
+      "date_note_en": "Monday 12 October 2026 (public holiday), 11:00–19:00",
+      "place_ja": "ピアーレ桃花台 2階 ピアーレ広場",
+      "place_en": "Peare Tokadai, 2F Peare Plaza",
+      "body_ja": "ダンスの競技会です。U15部門とOPEN部門に分かれて行われ、観覧は無料です。出場のエントリーは事前申込2,500円・当日申込3,000円で、申込方法は主催者のInstagramで案内されています。主催は株式会社iサポート（ピアーレ桃花台3階）で、代表者は光ヶ丘の住民です。出場者には、ストリートダンスの世界大会「UDO World Street Dance Championships 2026」に出場した光ヶ丘小学校の児童も含まれます（世界大会への出場と2026年8月27日の市長表敬訪問は小牧市が公表）。",
+      "body_en": "A dance battle competition, split into a U15 division and an OPEN division. Watching is free. Entry to compete costs 2,500 yen in advance or 3,000 yen on the day; the organiser’s Instagram explains how to apply. It is organised by i-Support Co., Ltd. (3F of Peare Tokadai), whose head lives in Hikarigaoka. Among those taking part are pupils of Hikarigaoka Elementary School who competed at the UDO World Street Dance Championships 2026 (their appearance there, and their courtesy visit to the mayor on 27 August 2026, were announced by Komaki City).",
+      "source_label": "Instagram @tokadaidancefestival",
+      "source_url": "https://www.instagram.com/tokadaidancefestival/",
+      "ref_label_ja": "小牧市公式Facebook（2026年8月27日 市長表敬訪問）",
+      "ref_label_en": "Komaki City official Facebook (courtesy visit to the mayor, 27 August 2026)",
+      "ref_url": "https://www.facebook.com/city.komaki/posts/udo-world-street-dance-championships-2026%E5%87%BA%E5%A0%B4%E8%80%85%E3%81%8C%E5%B8%82%E9%95%B7%E3%82%92%E8%A1%A8%E6%95%AC%E8%A8%AA%E5%95%8F%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F8%E6%9C%8827%E6%97%A5%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%88%E3%83%80%E3%83%B3%E3%82%B9%E3%81%AE%E4%B8%96%E7%95%8C%E5%A4%A7%E4%BC%9Audo-wo/1488142726683617/"
     },
     {
       "school_ja": "光ヶ丘・篠岡・大城 小学校区",
@@ -29,6 +32,20 @@
       "body_en": "Held under the banner “let music and dance widen the ties across the new school district”. Performers were invited to apply, but applications closed on 30 August 2026 (a draw was to be held if oversubscribed). Each act had to include at least one resident of the Hikarigaoka, Shinooka or Oshiro elementary school district; any genre was welcome. Enquiries: Komaki City Mutual Support and Collaboration Division, tel. 0568-76-1149.",
       "source_label": "光ヶ丘小学校区地域協議会 音楽部会（回覧板）",
       "source_url": ""
+    },
+    {
+      "school_ja": "大城小学校",
+      "school_en": "Oshiro Elementary School",
+      "title_ja": "ありがとう大城小",
+      "date": "2026-12-13",
+      "date_note_ja": "2026年12月13日（日）日中",
+      "date_note_en": "Sunday 13 December 2026, daytime",
+      "place_ja": "大城小学校",
+      "place_en": "Oshiro Elementary School",
+      "body_ja": "体育館でお祭りマルシェ、校庭で野球などを予定。キッチンカーの出店も予定されています。実行委員と当日ボランティアを募集中です。",
+      "body_en": "A festival market in the gym and baseball on the school ground are planned, with food trucks. The group is recruiting committee members and volunteers for the day.",
+      "source_label": "Instagram @arigato.ohshirosho",
+      "source_url": "https://www.instagram.com/arigato.ohshirosho/"
     }
   ]
 }

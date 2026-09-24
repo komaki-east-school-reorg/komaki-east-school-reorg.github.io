@@ -119,9 +119,10 @@
 
   Instagram（許可アカウントのみ。アカウントごとに出せるページが決まっている）：
   grep -rn "instagram\.com" *.html js/*.js data/i18n/*.json \
-    | grep -v -e "arigato\.ohshirosho" -e "tokadai_komaki"
+    | grep -v -e "arigato\.ohshirosho" -e "tokadaidancefestival" -e "tokadai_komaki"
   → 出力があれば違反箇所。
     ・arigato.ohshirosho …「地域の取組」欄を描く community.html・index.html のみ
+    ・tokadaidancefestival … 同じく community.html・index.html のみ
     ・tokadai_komaki    … フッタの「参考リンク（住民有志）」なので全ページ可
     auto_gates.py の PERMITTED_INSTAGRAM は「アカウント → 出してよいページ」の
     対応表で、値が None のものは全ページ可。
@@ -137,7 +138,8 @@
   X・Facebook（共有ボタンの送り先と、住民有志の発信だけ）：
   grep -rn -e "x\.com" -e "facebook\.com" *.html js/*.js data/i18n/*.json \
     | grep -v -e "x\.com/intent/post" -e "facebook\.com/sharer/sharer\.php" \
-             -e "x\.com/tokadai_komaki" -e "facebook\.com/TokadaiNT"
+             -e "x\.com/tokadai_komaki" -e "facebook\.com/TokadaiNT" \
+             -e "facebook\.com/city\.komaki"
   → 出力があれば違反箇所。auto_gates.py の PERMITTED_SNS が同じものを機械検査する。
 
   ★ これらはいずれも市の公式情報でも報道でもなく【住民有志の発信】。
