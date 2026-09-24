@@ -1,8 +1,95 @@
 {
-  "fetched_at": "2026-09-23T00:44:53Z",
+  "fetched_at": "2026-09-24T00:38:32Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "ohshiro-e",
+      "level": "elem",
+      "names": {
+        "ja": "大城小学校",
+        "ja_kids": "おおしろ小学校",
+        "en": "Oshiro Elem. School",
+        "zh": "大城小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
+      "latest_date": "2026-09-24",
+      "items": [
+        {
+          "title": "図工競技会に向けて",
+          "date": "2026-09-24",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136132657?tm=20260918165148"
+        },
+        {
+          "title": "よむよむをしたよ",
+          "date": "2026-09-24",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136127928?tm=20260918115610"
+        },
+        {
+          "title": "2学期も頑張っています！",
+          "date": "2026-09-24",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136124009?tm=20260917180555"
+        }
+      ]
+    },
+    {
+      "slug": "hikarigaoka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "光ヶ丘中学校",
+        "ja_kids": "ひかりがおか中学校",
+        "en": "Hikarigaoka Junior High",
+        "zh": "光之丘中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
+      "latest_date": "2026-09-24",
+      "items": [
+        {
+          "title": "アジアの頂点を決めろ！",
+          "date": "2026-09-24",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136137067?tm=20260924070546"
+        },
+        {
+          "title": "水筒は語る",
+          "date": "2026-09-18",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136133638?tm=20260918180407"
+        },
+        {
+          "title": "答え合わせは９月３０日",
+          "date": "2026-09-18",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136133494?tm=20260918174908"
+        }
+      ]
+    },
+    {
+      "slug": "hikarigaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "光ヶ丘小学校",
+        "ja_kids": "ひかりがおか小学校",
+        "en": "Hikarigaoka Elem. School",
+        "zh": "光之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
+      "latest_date": "2026-09-24",
+      "items": [
+        {
+          "title": "１年生 国語 漢字の練習",
+          "date": "2026-09-24",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136132087?tm=20260918161657"
+        },
+        {
+          "title": "１年生 体育 運動会練習",
+          "date": "2026-09-24",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136132011?tm=20260918161152"
+        },
+        {
+          "title": "１年生 生活 秋の生き物探し",
+          "date": "2026-09-24",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136131938?tm=20260918160713"
+        }
+      ]
+    },
     {
       "slug": "shinooka-e",
       "level": "elem",
@@ -116,93 +203,6 @@
           "title": "9/17 今日の給食",
           "date": "2026-09-17",
           "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136119757?tm=20260917133721"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "光ヶ丘中学校",
-        "ja_kids": "ひかりがおか中学校",
-        "en": "Hikarigaoka Junior High",
-        "zh": "光之丘中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
-      "latest_date": "2026-09-18",
-      "items": [
-        {
-          "title": "水筒は語る",
-          "date": "2026-09-18",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136133638?tm=20260918180407"
-        },
-        {
-          "title": "答え合わせは９月３０日",
-          "date": "2026-09-18",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136133494?tm=20260918174908"
-        },
-        {
-          "title": "この時間が好き",
-          "date": "2026-09-18",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136133195?tm=20260918172652"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "光ヶ丘小学校",
-        "ja_kids": "ひかりがおか小学校",
-        "en": "Hikarigaoka Elem. School",
-        "zh": "光之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
-      "latest_date": "2026-09-18",
-      "items": [
-        {
-          "title": "６年生 英語",
-          "date": "2026-09-18",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136127457?tm=20260918112418"
-        },
-        {
-          "title": "６年生 音楽",
-          "date": "2026-09-18",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136126868?tm=20260918103717"
-        },
-        {
-          "title": "4年生 音楽",
-          "date": "2026-09-18",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136120399?tm=20260917141140"
-        }
-      ]
-    },
-    {
-      "slug": "ohshiro-e",
-      "level": "elem",
-      "names": {
-        "ja": "大城小学校",
-        "ja_kids": "おおしろ小学校",
-        "en": "Oshiro Elem. School",
-        "zh": "大城小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
-      "latest_date": "2026-09-17",
-      "items": [
-        {
-          "title": "４年生 図工競技会に向けて",
-          "date": "2026-09-17",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136109515?tm=20260916122005"
-        },
-        {
-          "title": "２年生 国語 「身の回りのものを読もう」",
-          "date": "2026-09-17",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136104076?tm=20260915163638"
-        },
-        {
-          "title": "２年生 生活 「うごく うごく わたしのおもちゃ」",
-          "date": "2026-09-17",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136104310?tm=20260915163536"
         }
       ]
     },
