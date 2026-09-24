@@ -44,6 +44,8 @@
   var _safetyTimer = null;
   var _currentLang = DEFAULT;
   var _kidsMode = false;
+  var _origMode = false;   // 日本語の原文を並べて出すか（日本語表示では使わない）
+  var _jaDictPromise = null;
 
   // ===== 言語つき URL（?lang=xx） =====
   // 言語の選択を localStorage だけに持たせていたため、どの言語で読んでも URL が
@@ -184,6 +186,76 @@
     document.documentElement.classList.add('i18n-ready');
   }
 
+  /* ===== 原文（日本語）併記 =====
+     2026-09-24 追加。このサイトの外国語表示は「市の資料を当サイトの言葉に書き直した
+     日本語」をさらに訳したものなので、窓口や市の資料と突き合わせたい読者のために、
+     押したときだけ日本語の原文を並べる。
+
+     ・日本語（こどもむけを含む）では出さない。原文そのものを読んでいるため。
+     ・ja の辞書は押されたときに初めて取る。ふだんは取らない方針（約23KB・
+       本文が隠れたままになる経路）を崩さないための opt-in。
+     ・付けるのは <main> の中だけ。ヘッダ・フッタ・目次・共有欄に足しても照合の役に立たない。
+     ・翻訳が無くて日本語のまま出ている要素には付けない（同じ文が二度出るため）。
+     ・READ ALOUD は .orig-ja を読まない（SKIP に入れてある）。回覧板シートと
+       ページ目次も .orig-ja を外してから文字を取る。表示を変えたらその3か所も見ること。 */
+  var ORIG_SKIP = '.page-toc,.tts-row,.share,.notice-banner,.lang-switcher,.breadcrumb';
+
+  function jaDict() {
+    if (!_jaDictPromise) _jaDictPromise = fetchDict(DEFAULT).then(applyTemporal);
+    return _jaDictPromise;
+  }
+
+  function clearOrig() {
+    document.querySelectorAll('.orig-ja').forEach(function (n) { n.remove(); });
+  }
+
+  function applyOrig(ja) {
+    var main = document.querySelector('main');
+    if (!main) return;
+    main.querySelectorAll('[data-i18n], [data-i18n-html]').forEach(function (el) {
+      if (el.closest(ORIG_SKIP)) return;
+      var key = el.getAttribute('data-i18n') || el.getAttribute('data-i18n-html');
+      var src = ja[key];
+      if (src == null) return;
+      // 見出しの <small> 副題は落とす。副題の言語は表示言語で決まっており
+      //（en は日本語・他は英語）、原文として並べるのは見出し本文だけでよい。
+      var txt = stripTags(String(src).replace(/<small\b[\s\S]*?<\/small>/gi, '')).replace(/\s+/g, ' ').trim();
+      if (!txt) return;
+      var cur = (el.textContent || '').replace(/\s+/g, ' ').trim();
+      // 訳が無くて日本語のまま出ている要素と、すでに同じ日本語が見えている要素
+      //（en の見出しは <small> が日本語なので、ここで落ちる）には付けない。
+      if (!cur || cur.indexOf(txt) !== -1) return;
+      var sp = document.createElement('span');
+      sp.className = 'orig-ja';
+      sp.lang = 'ja';
+      sp.textContent = txt;
+      el.appendChild(sp);
+    });
+  }
+
+  function renderOrig() {
+    clearOrig();
+    if (!_origMode || _currentLang === DEFAULT) return;
+    jaDict().then(applyOrig).catch(function () {});
+  }
+
+  function updateOrigToggleUI() {
+    var show = _currentLang !== DEFAULT;
+    document.querySelectorAll('.orig-toggle').forEach(function (btn) {
+      btn.style.display = show ? '' : 'none';
+      var active = _origMode && show;
+      btn.classList.toggle('orig-toggle--active', active);
+      btn.setAttribute('aria-pressed', String(active));
+    });
+  }
+
+  function setOrigMode(on) {
+    _origMode = on;
+    try { localStorage.setItem('komaki_orig', on ? '1' : '0'); } catch (e) {}
+    updateOrigToggleUI();
+    renderOrig();
+  }
+
   function applyDict(dict, lang) {
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       var key = el.dataset.i18n;
@@ -229,6 +301,9 @@
 
     try { localStorage.setItem('komaki_lang', lang); } catch (e) {}
     showPage();
+
+    updateOrigToggleUI();
+    renderOrig();   // applyDict は textContent/innerHTML ごと差し替えるので、毎回貼り直す
 
     // 辞書を流し込み終えた合図。data-i18n-html の要素は中身ごと作り直されるので、
     // 本文の DOM を掴んでいる処理（js/main.js の READ ALOUD など）はこれを見て手を離す。
@@ -429,6 +504,10 @@
     try { savedKids = localStorage.getItem('komaki_kids'); } catch (e) {}
     _kidsMode = savedKids === '1';
 
+    var savedOrig;
+    try { savedOrig = localStorage.getItem('komaki_orig'); } catch (e) {}
+    _origMode = savedOrig === '1';
+
     // 言語を変えたら、その言語の URL で読み直す（2026-09-14）。
     // 辞書で差し替わるのは data-i18n の付いた要素だけで、js/main.js が読み込み時の言語で
     // 組み立てる部分（自動取得コーナーの見出しの訳・日付・ラベル、カレンダー、帯など）は
@@ -451,6 +530,10 @@
 
     document.querySelectorAll('.kids-toggle').forEach(function (btn) {
       btn.addEventListener('click', function () { setKidsMode(!_kidsMode); });
+    });
+
+    document.querySelectorAll('.orig-toggle').forEach(function (btn) {
+      btn.addEventListener('click', function () { setOrigMode(!_origMode); });
     });
 
     loadAndApply(lang);

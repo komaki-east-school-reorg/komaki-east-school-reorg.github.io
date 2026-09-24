@@ -1,6 +1,7 @@
 {
   "aria_lang": "选择语言",
   "aria_menu": "菜单",
+  "aria_orig": "并列显示日文原文",
   "board_btn": "打印一页用于传阅或张贴",
   "contact_tbl_dept": "部门",
   "contact_tbl_scope": "本页涉及的事项",
@@ -99,6 +100,7 @@
   "nw_c1_w": "适宜规模·适宜配置指南，以及令和8年（2026年）8月5日的修订通知",
   "nw_c2_w": "废校设施利用状况实态调查",
   "nw_c3_w": "学校基本调查",
+  "orig_toggle": "🇯🇵 日文原文",
   "page_toc_h": "本页目录",
   "rel_nationwide_about": "查看小牧市东部的计划本身",
   "rel_nationwide_bus": "查看上下学与校车的计划",

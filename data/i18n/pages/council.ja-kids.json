@@ -1,6 +1,7 @@
 {
   "aria_lang": "ことばを えらぶ",
   "aria_menu": "メニュー",
+  "aria_orig": "日本語の 原文を ならべて 出す",
   "badge_fail": "不採択（とおらなかった）",
   "badge_pass_majority": "さんせい多数でとおった",
   "board_btn": "いんさつして 回覧・けいじする",
@@ -132,6 +133,7 @@
   "nav_review": "しらべて 考えた こと",
   "nav_schedule": "よてい",
   "notice": "⚠️ このサイトは まちの人が つくった サイトです。こまき市が つくった サイトでは ありません。ほんとうの ことは <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\" style=\"color:#5a4000;font-weight:700;\">こまき市 きょういくいいんかいの ページ</a> で 見てください。",
+  "orig_toggle": "🇯🇵 原文",
   "page_toc_h": "この ページの もくじ",
   "rel_council_faq": "話し合いで 出た ぎもんを しつもんの かたちで 見る",
   "rel_council_review": "計画を しらべて 考えた ことを 見る",

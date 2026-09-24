@@ -1,6 +1,7 @@
 {
   "aria_lang": "言語を選択",
   "aria_menu": "メニュー",
+  "aria_orig": "日本語の原文を並べて表示する",
   "board_btn": "印刷して回覧・掲示する",
   "bus_apply_consult_h": "相談会",
   "bus_apply_consult_p": "説明会のなかで、バス利用について気になることや不安なことを相談できる「相談会」も実施される予定です。",
@@ -218,6 +219,7 @@
   "nav_review": "検証と提案",
   "nav_schedule": "スケジュール",
   "notice": "⚠️ このサイトは市民有志による情報提供サイトです。小牧市の公式サイトではありません。公式情報は <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\" style=\"color:#5a4000;font-weight:700;\">小牧市教育委員会のページ</a> をご確認ください。",
+  "orig_toggle": "🇯🇵 原文",
   "page_toc_h": "このページの目次",
   "recomposed_note": "※ このページの説明は、市が公表した資料（計画、パブリックコメントへの回答、説明会の質疑応答の記録など）を当サイトが読んで書き直したものです。市の文面そのままではありません。",
   "rel_bus_about": "再編される8校と新しい学校を見る",

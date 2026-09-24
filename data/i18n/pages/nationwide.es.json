@@ -1,6 +1,7 @@
 {
   "aria_lang": "Seleccionar idioma",
   "aria_menu": "Menú",
+  "aria_orig": "Mostrar el original en japonés al lado",
   "board_btn": "Imprimir una hoja para exponer o repartir",
   "contact_tbl_dept": "Departamento",
   "contact_tbl_scope": "Asunto tratado en esta página",
@@ -99,6 +100,7 @@
   "nw_c1_w": "La guía sobre tamaño y ubicación adecuados de las escuelas y el aviso de revisión del 5 de agosto de 2026",
   "nw_c2_w": "Encuesta sobre el reaprovechamiento de los edificios de escuelas cerradas",
   "nw_c3_w": "Encuesta Básica de Escuelas",
+  "orig_toggle": "🇯🇵 Japonés",
   "page_toc_h": "En esta página",
   "rel_nationwide_about": "Ver el plan del este de Komaki",
   "rel_nationwide_bus": "Ver el plan de desplazamiento y bus escolar",

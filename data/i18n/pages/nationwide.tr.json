@@ -1,6 +1,7 @@
 {
   "aria_lang": "Dil seçin",
   "aria_menu": "Menü",
+  "aria_orig": "Japonca aslını yanında göster",
   "board_btn": "Asmak veya elden dağıtmak için bir sayfa yazdır",
   "contact_tbl_dept": "Birim",
   "contact_tbl_scope": "Bu sayfada ele alınan konu",
@@ -99,6 +100,7 @@
   "nw_c1_w": "Uygun okul büyüklüğü ve yerleşimine ilişkin kılavuz ve 5 Ağustos 2026 tarihli revizyon genelgesi",
   "nw_c2_w": "Kapanan okul binalarının yeniden kullanımına ilişkin araştırma",
   "nw_c3_w": "Temel Okul Araştırması",
+  "orig_toggle": "🇯🇵 Japonca",
   "page_toc_h": "Bu sayfada",
   "rel_nationwide_about": "Komaki doğu planının kendisine bak",
   "rel_nationwide_bus": "Ulaşım ve okul servisi planına bak",

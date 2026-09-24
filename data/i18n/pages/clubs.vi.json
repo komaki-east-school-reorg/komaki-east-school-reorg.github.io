@@ -1,6 +1,7 @@
 {
   "aria_lang": "Chọn ngôn ngữ",
   "aria_menu": "Menu",
+  "aria_orig": "Hiển thị kèm nguyên văn tiếng Nhật",
   "board_btn": "In một tờ để dán hoặc chuyền tay",
   "clubs_bukatsu_h": "Câu lạc bộ của trường",
   "clubs_bukatsu_none": "Trang trường không công bố danh sách câu lạc bộ. Xem nhật ký trường để biết hoạt động gần đây.",
@@ -80,6 +81,7 @@
   "nav_review": "Phân tích & đề xuất",
   "nav_schedule": "Lịch trình",
   "notice": "⚠️ Đây là trang web cộng đồng không chính thức, không phải trang web chính thức của Thành phố Komaki. Để biết thông tin chính thức, vui lòng truy cập <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\" style=\"color:#5a4000;font-weight:700;\">Ban Giáo dục Thành phố Komaki</a>.",
+  "orig_toggle": "🇯🇵 Tiếng Nhật",
   "page_toc_h": "Mục lục trang này",
   "rel_clubs_about": "Xem các trường sau tái cơ cấu",
   "rel_clubs_community": "Xem hội đồng cộng đồng và hoạt động địa phương",

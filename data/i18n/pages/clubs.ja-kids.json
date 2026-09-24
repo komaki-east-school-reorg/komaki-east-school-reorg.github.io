@@ -1,6 +1,7 @@
 {
   "aria_lang": "ことばを えらぶ",
   "aria_menu": "メニュー",
+  "aria_orig": "日本語の 原文を ならべて 出す",
   "board_btn": "いんさつして 回覧・けいじする",
   "clubs_bukatsu_h": "学校の ぶかつ",
   "clubs_bukatsu_none": "ぶかつの ぜんぶは 学校の ページに ありません。学校の にっきを 見て ください。",
@@ -80,6 +81,7 @@
   "nav_review": "しらべて 考えた こと",
   "nav_schedule": "よてい",
   "notice": "⚠️ このサイトは まちの人が つくった サイトです。こまき市が つくった サイトでは ありません。ほんとうの ことは <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\" style=\"color:#5a4000;font-weight:700;\">こまき市 きょういくいいんかいの ページ</a> で 見てください。",
+  "orig_toggle": "🇯🇵 原文",
   "page_toc_h": "この ページの もくじ",
   "rel_clubs_about": "あたらしい 学校の ことを 見る",
   "rel_clubs_community": "ちいきの かつどうを 見る",

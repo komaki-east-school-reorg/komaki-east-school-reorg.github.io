@@ -1,6 +1,7 @@
 {
   "aria_lang": "选择语言",
   "aria_menu": "菜单",
+  "aria_orig": "并列显示日文原文",
   "board_btn": "打印一页用于传阅或张贴",
   "clubs_bukatsu_h": "学校的社团活动",
   "clubs_bukatsu_none": "学校页面未公布社团名单，最新活动请查看学校日记。",
@@ -80,6 +81,7 @@
   "nav_review": "检验与建议",
   "nav_schedule": "日程安排",
   "notice": "⚠️ 本网站是非官方的市民信息网站，并非小牧市的官方网站。如需官方信息，请访问<a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\" style=\"color:#5a4000;font-weight:700;\">小牧市教育委员会页面</a>。",
+  "orig_toggle": "🇯🇵 日文原文",
   "page_toc_h": "本页目录",
   "rel_clubs_about": "查看整合后的学校",
   "rel_clubs_community": "查看地区协议会与地区活动",

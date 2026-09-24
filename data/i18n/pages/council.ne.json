@@ -1,6 +1,7 @@
 {
   "aria_lang": "भाषा छान्नुहोस्",
   "aria_menu": "मेनु",
+  "aria_orig": "जापानी मूल पाठ सँगै देखाउनुहोस्",
   "badge_fail": "अस्वीकृत",
   "badge_pass_majority": "बहुमतले पारित",
   "board_btn": "टाँस्न वा बाँड्न प्रिन्ट गर्नुहोस्",
@@ -132,6 +133,7 @@
   "nav_review": "समीक्षा र सुझाव",
   "nav_schedule": "तालिका",
   "notice": "⚠️ यो साइट स्वयंसेवी नागरिकहरूले चलाएको जानकारीमूलक साइट हो। यो कोमाकी नगरको आधिकारिक साइट होइन। आधिकारिक जानकारीका लागि <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\" style=\"color:#5a4000;font-weight:700;\">कोमाकी नगर शिक्षा समितिको पृष्ठ</a> हेर्नुहोस्।",
+  "orig_toggle": "🇯🇵 जापानी",
   "page_toc_h": "यस पृष्ठमा",
   "rel_council_faq": "बहसमा उठेका कुरा प्रश्नोत्तरका रूपमा हेर्नुहोस्",
   "rel_council_review": "योजनाको समीक्षा र सुझाव हेर्नुहोस्",

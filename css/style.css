@@ -263,6 +263,45 @@ nav ul {
   box-shadow: 0 1px 2px rgba(0,0,0,.25);
 }
 .kids-toggle--active .kids-switch { background: rgba(72,200,80,.85); }
+
+/* 原文（日本語）併記のトグル。こどもむけと同じ形（切替スイッチ付き）にそろえる。
+   日本語表示では i18n.js が display:none にする。 */
+.orig-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,.85);
+  font-size: .72rem;
+  font-weight: 700;
+  padding: .15rem .25rem;
+  cursor: pointer;
+  font-family: var(--heading-font);
+  letter-spacing: .03em;
+}
+.orig-toggle:hover, .orig-toggle--active { color: #fff; }
+.orig-toggle--active .kids-switch { background: rgba(72,200,80,.85); }
+
+/* 原文そのもの。訳の下に、細い縦線付きの一段小さい字で置く。
+   ⚠️ display:none にしないこと — READ ALOUD の SKIP は .orig-ja を名指ししており、
+   [hidden] / aria-hidden で隠すと閉じた Q&A と同じ扱いになって挙動が読みにくくなる。 */
+.orig-ja {
+  display: block;
+  margin-top: .35rem;
+  padding-left: .6rem;
+  border-left: 2px solid var(--border);
+  font-size: .86em;
+  line-height: 1.8;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+.section-title .orig-ja, .hero h1 .orig-ja { font-size: .62em; }
+.hero .orig-ja, .page-hero .orig-ja {
+  color: rgba(255,255,255,.72);
+  border-left-color: rgba(255,255,255,.35);
+}
+
 .kids-toggle--active .kids-switch::after { transform: translateX(13px); }
 .kids-mode .section-title small { display: none; }
 .lang-select {
@@ -1685,6 +1724,43 @@ footer {
   color: var(--primary);
   letter-spacing: .04em;
   margin-bottom: .2rem;
+}
+
+/* ===== パブリックコメントの論点グラフ（faq.html #pubcom） =====
+   市が「市の考え方」に付けた論点見出しを数えただけの図。数値は HTML に直書きで、
+   外部ライブラリは使わない。棒の長さは最多（18）を 100% とした相対値で、
+   数字そのものを .pc-bar-n に出すので、棒だけで読ませない。
+   賛否の色（--for-color 等）は使わない ——「意見が多い＝反対が多い」と読めるため。 */
+.pc-bars { list-style: none; padding: 0; margin: .8rem 0 .6rem; }
+.pc-bar-row {
+  display: grid;
+  grid-template-columns: minmax(7.5rem, 15rem) 1fr 2.4rem;
+  align-items: center;
+  gap: .6rem;
+  padding: .22rem 0;
+}
+.pc-bar-label { font-size: .86rem; color: var(--text); line-height: 1.5; }
+.pc-bar {
+  display: block;
+  background: var(--primary-light);
+  border-radius: 999px;
+  height: .72rem;
+  overflow: hidden;
+}
+.pc-bar-fill { display: block; height: 100%; background: var(--primary); border-radius: 999px; }
+.pc-bar-n {
+  font-family: var(--heading-font);
+  font-weight: 800;
+  font-size: .9rem;
+  color: var(--primary);
+  text-align: right;
+}
+.pc-bars-other { font-size: .86rem; color: var(--text-muted); margin-bottom: .4rem; }
+.pc-bars-note { font-size: .8rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.4rem; }
+@media (max-width: 560px) {
+  /* 狭い画面では論点名を棒の上に置く。横3列のままだと論点名が1文字ずつ折り返す。 */
+  .pc-bar-row { grid-template-columns: 1fr 2.4rem; gap: .3rem .6rem; padding: .35rem 0; }
+  .pc-bar-label { grid-column: 1 / -1; }
 }
 
 /* ===== RELATED PAGES ===== */

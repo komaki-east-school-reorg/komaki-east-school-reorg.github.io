@@ -1,6 +1,7 @@
 {
   "aria_lang": "Pilih bahasa",
   "aria_menu": "Menu",
+  "aria_orig": "Tampilkan naskah asli bahasa Jepang",
   "board_btn": "Cetak selembar untuk ditempel atau diedarkan",
   "contact_tbl_dept": "Bagian",
   "contact_tbl_scope": "Hal yang dibahas di halaman ini",
@@ -99,6 +100,7 @@
   "nw_c1_w": "Panduan ukuran dan penempatan sekolah yang layak, serta pemberitahuan revisi 5 Agustus 2026",
   "nw_c2_w": "Survei pemanfaatan bangunan sekolah yang ditutup",
   "nw_c3_w": "Survei Dasar Sekolah",
+  "orig_toggle": "🇯🇵 Bahasa Jepang",
   "page_toc_h": "Daftar isi halaman ini",
   "rel_nationwide_about": "Lihat rencana Komaki timur itu sendiri",
   "rel_nationwide_bus": "Lihat rencana perjalanan sekolah dan bus",

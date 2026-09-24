@@ -1,6 +1,7 @@
 {
   "aria_lang": "언어를 선택",
   "aria_menu": "메뉴",
+  "aria_orig": "일본어 원문을 함께 표시",
   "board_btn": "인쇄해서 회람·게시하기",
   "contact_tbl_dept": "부서",
   "contact_tbl_scope": "이 페이지에서 다룬 사항",
@@ -99,6 +100,7 @@
   "nw_c1_w": "적정 규모·적정 배치의 지침, 2026년 8월 5일의 개정 통지",
   "nw_c2_w": "폐교 시설 활용 상황 실태 조사",
   "nw_c3_w": "학교 기본 조사",
+  "orig_toggle": "🇯🇵 일본어 원문",
   "page_toc_h": "이 페이지의 목차",
   "rel_nationwide_about": "고마키시 동부의 계획 그 자체를 보기",
   "rel_nationwide_bus": "통학과 스쿨버스의 계획을 보기",

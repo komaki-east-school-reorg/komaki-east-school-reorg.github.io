@@ -2008,10 +2008,19 @@ window.KomakiGrade = (function () {
   // 見出しの <small>（英語併記）は紙では冗長なので落とす
   function headText(h) {
     var c = h.cloneNode(true);
-    c.querySelectorAll('small').forEach(function (s) { s.remove(); });
+    c.querySelectorAll('small, .orig-ja').forEach(function (s) { s.remove(); });
     return (c.textContent || '').replace(/\s+/g, ' ').trim();
   }
-  function clean(el) { return ((el && el.textContent) || '').replace(/\s+/g, ' ').trim(); }
+  // 原文併記（.orig-ja）は画面だけのもの。紙に日本語と訳文が二重に出ないよう落とす。
+  function clean(el) {
+    if (!el) return '';
+    if (el.querySelector && el.querySelector('.orig-ja')) {
+      var c = el.cloneNode(true);
+      c.querySelectorAll('.orig-ja').forEach(function (s) { s.remove(); });
+      el = c;
+    }
+    return ((el && el.textContent) || '').replace(/\s+/g, ' ').trim();
+  }
   // 場所の括弧は日本語・中国語では全角、ほかの言語では半角（英文に全角括弧が混ざらないように）
   function paren(v) {
     var l = window.KomakiLang();
@@ -2326,7 +2335,7 @@ window.KomakiGrade = (function () {
 
   function label(h) {
     var c = h.cloneNode(true);
-    c.querySelectorAll('small').forEach(function (s) { s.remove(); });
+    c.querySelectorAll('small, .orig-ja').forEach(function (s) { s.remove(); });
     return (c.textContent || '').replace(/\s+/g, ' ').trim();
   }
   function targetId(h) {
@@ -3121,7 +3130,7 @@ window.KomakiGrade = (function () {
 
   var SKIP = 'script,style,noscript,svg,rt,select,input,textarea,button:not(.faq-q),' +
              '.tts-row,.page-toc,.faq-q-icon,.section-updated,.bus-map-layers,.bus-area-map,' +
-             '[hidden],[aria-hidden="true"],.section-title small';
+             '[hidden],[aria-hidden="true"],.section-title small,.orig-ja';
   var BLOCK = 'h2,h3,h4,h5,p,li,dt,dd,tr,caption,figcaption,blockquote,summary,.faq-q,div';
   // 札（「概要」などの分類ラベル）は直後の文とつなげて読むと意味が崩れるので、あとに読点を挟む
   var TAGLIKE = '[class*="tag"],[class*="badge"],[class*="label"],[class*="date"],[class*="cite"],time';

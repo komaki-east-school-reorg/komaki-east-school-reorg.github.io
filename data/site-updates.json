@@ -3,6 +3,18 @@
   "updates": [
     {
       "date": "2026-09-24",
+      "type": "feature",
+      "ja": "外国語表示で日本語の原文を並べる切り替えを追加",
+      "en": "Toggle to show the Japanese original alongside translations"
+    },
+    {
+      "date": "2026-09-24",
+      "type": "content",
+      "ja": "パブリックコメントの論点を図で表示、件数表記も訂正",
+      "en": "Public comment topics shown as a chart; comment count corrected"
+    },
+    {
+      "date": "2026-09-24",
       "type": "content",
       "ja": "地域の取組にTOKADAI DANCE FESTIVALを追加",
       "en": "TOKADAI DANCE FESTIVAL added to community efforts"

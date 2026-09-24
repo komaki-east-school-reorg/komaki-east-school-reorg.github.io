@@ -1,6 +1,7 @@
 {
   "aria_lang": "言語を選択",
   "aria_menu": "メニュー",
+  "aria_orig": "日本語の原文を並べて表示する",
   "board_btn": "印刷して回覧・掲示する",
   "contact_tbl_dept": "部署",
   "contact_tbl_scope": "このページで触れた事柄",
@@ -99,6 +100,7 @@
   "nw_c1_w": "適正規模・適正配置の手引、令和8年8月5日の改訂通知",
   "nw_c2_w": "廃校施設活用状況実態調査",
   "nw_c3_w": "学校基本調査",
+  "orig_toggle": "🇯🇵 原文",
   "page_toc_h": "このページの目次",
   "rel_nationwide_about": "小牧市東部の計画そのものを見る",
   "rel_nationwide_bus": "通学とスクールバスの計画を見る",

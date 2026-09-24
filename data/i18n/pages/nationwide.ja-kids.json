@@ -1,6 +1,7 @@
 {
   "aria_lang": "ことばを えらぶ",
   "aria_menu": "メニュー",
+  "aria_orig": "日本語の 原文を ならべて 出す",
   "board_btn": "いんさつして 回覧・けいじする",
   "contact_tbl_dept": "たんとうする ところ",
   "contact_tbl_scope": "この ページに 出て きた こと",
@@ -99,6 +100,7 @@
   "nw_c1_w": "がっこうの 大きさの てびき、2026年8月の あたらしい しらせ",
   "nw_c2_w": "なくなった がっこうを どう つかって いるかの しらべ",
   "nw_c3_w": "がっこうの きほんの しらべ",
+  "orig_toggle": "🇯🇵 原文",
   "page_toc_h": "この ページの もくじ",
   "rel_nationwide_about": "こまき市の 計画を 見る",
   "rel_nationwide_bus": "スクールバスの ことを 見る",

@@ -1,6 +1,7 @@
 {
   "aria_lang": "Chọn ngôn ngữ",
   "aria_menu": "Menu",
+  "aria_orig": "Hiển thị kèm nguyên văn tiếng Nhật",
   "board_btn": "In một tờ để dán hoặc chuyền tay",
   "bus_apply_consult_h": "Bàn tư vấn",
   "bus_apply_consult_p": "Trong buổi thông tin cũng sẽ có phần tư vấn để nêu thắc mắc hay lo lắng về việc đi xe buýt.",
@@ -218,6 +219,7 @@
   "nav_review": "Phân tích & đề xuất",
   "nav_schedule": "Lịch trình",
   "notice": "⚠️ Đây là trang web cộng đồng không chính thức, không phải trang web chính thức của Thành phố Komaki. Để biết thông tin chính thức, vui lòng truy cập <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\" style=\"color:#5a4000;font-weight:700;\">Ban Giáo dục Thành phố Komaki</a>.",
+  "orig_toggle": "🇯🇵 Tiếng Nhật",
   "page_toc_h": "Mục lục trang này",
   "recomposed_note": "Các phần giải thích trên trang này do trang này viết lại sau khi đọc tài liệu thành phố công bố (kế hoạch, phần trả lời ý kiến công chúng, biên bản các buổi họp…). Đây không phải nguyên văn của thành phố.",
   "rel_bus_about": "Xem 8 trường và các trường mới hình thành",

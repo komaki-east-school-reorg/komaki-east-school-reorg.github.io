@@ -1,6 +1,7 @@
 {
   "aria_lang": "Pilih bahasa",
   "aria_menu": "Menu",
+  "aria_orig": "Tampilkan naskah asli bahasa Jepang",
   "board_btn": "Cetak selembar untuk ditempel atau diedarkan",
   "bus_apply_consult_h": "Meja konsultasi",
   "bus_apply_consult_p": "Sosialisasi juga akan menyertakan sesi konsultasi untuk menanyakan keraguan atau kekhawatiran soal naik bus.",
@@ -218,6 +219,7 @@
   "nav_review": "Telaah & usulan",
   "nav_schedule": "Jadwal",
   "notice": "⚠️ Ini adalah situs informasi komunitas tidak resmi, bukan situs resmi Kota Komaki. Untuk informasi resmi, silakan kunjungi <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\" style=\"color:#5a4000;font-weight:700;\">Dinas Pendidikan Kota Komaki</a>.",
+  "orig_toggle": "🇯🇵 Bahasa Jepang",
   "page_toc_h": "Daftar isi halaman ini",
   "recomposed_note": "Penjelasan di halaman ini ditulis ulang oleh situs ini setelah membaca materi yang dipublikasikan kota (rencana, jawaban atas komentar publik, catatan penjelasan, dan lain-lain). Ini bukan kata-kata asli kota.",
   "rel_bus_about": "Lihat delapan sekolah dan sekolah baru yang terbentuk",

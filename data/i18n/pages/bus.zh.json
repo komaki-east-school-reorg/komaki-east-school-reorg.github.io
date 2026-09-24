@@ -1,6 +1,7 @@
 {
   "aria_lang": "选择语言",
   "aria_menu": "菜单",
+  "aria_orig": "并列显示日文原文",
   "board_btn": "打印一页用于传阅或张贴",
   "bus_apply_consult_h": "咨询会",
   "bus_apply_consult_p": "说明会中还将设置“咨询会”，可就校车利用方面的疑问与不安进行咨询。",
@@ -218,6 +219,7 @@
   "nav_review": "检验与建议",
   "nav_schedule": "日程安排",
   "notice": "⚠️ 本网站是非官方的市民信息网站，并非小牧市的官方网站。如需官方信息，请访问<a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\" style=\"color:#5a4000;font-weight:700;\">小牧市教育委员会页面</a>。",
+  "orig_toggle": "🇯🇵 日文原文",
   "page_toc_h": "本页目录",
   "recomposed_note": "※ 本页的说明是本站阅读市方公开的资料（计划、对公众意见的回答、说明会问答记录等）后重新撰写的，并非市方的原文。",
   "rel_bus_about": "查看被重组的8所学校与新学校",

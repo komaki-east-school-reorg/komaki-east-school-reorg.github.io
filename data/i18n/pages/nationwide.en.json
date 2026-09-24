@@ -1,6 +1,7 @@
 {
   "aria_lang": "Select language",
   "aria_menu": "Menu",
+  "aria_orig": "Show the Japanese original alongside",
   "board_btn": "Print a sheet to post or circulate",
   "contact_tbl_dept": "Department",
   "contact_tbl_scope": "What it covers on this page",
@@ -99,6 +100,7 @@
   "nw_c1_w": "The guidance on appropriate school size and placement, and the revision notice of 5 August 2026",
   "nw_c2_w": "The survey on how closed school buildings are being reused",
   "nw_c3_w": "The Basic School Survey",
+  "orig_toggle": "🇯🇵 Japanese",
   "page_toc_h": "On this page",
   "rel_nationwide_about": "See the eastern Komaki plan itself",
   "rel_nationwide_bus": "See the commuting and school bus plan",

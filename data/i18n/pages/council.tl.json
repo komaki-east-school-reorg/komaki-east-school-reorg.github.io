@@ -1,6 +1,7 @@
 {
   "aria_lang": "Pumili ng wika",
   "aria_menu": "Menu",
+  "aria_orig": "Ipakita ang orihinal na Hapon sa tabi",
   "badge_fail": "Hindi Tinanggap",
   "badge_pass_majority": "Naipasa ng mayorya",
   "board_btn": "Mag-print ng isang sheet para ipaskil o ipasa",
@@ -132,6 +133,7 @@
   "nav_review": "Pagsusuri at mungkahi",
   "nav_schedule": "Iskedyul",
   "notice": "⚠️ Ito ay isang di-opisyal na site ng komunidad at hindi ito ang opisyal na website ng Lungsod ng Komaki. Para sa opisyal na impormasyon, bisitahin ang <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\" style=\"color:#5a4000;font-weight:700;\">Lupon ng Edukasyon ng Lungsod ng Komaki</a>.",
+  "orig_toggle": "🇯🇵 Hapon",
   "page_toc_h": "Sa pahinang ito",
   "rel_council_faq": "Tingnan bilang tanong-sagot ang mga puntong itinaas sa debate",
   "rel_council_review": "Tingnan ang pagsusuri sa plano at mga mungkahi",

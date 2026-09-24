@@ -66,6 +66,7 @@
       </ul>
       <div class="lang-switcher">
         <button class="kids-toggle" aria-pressed="false" title="こどもむけのよみやすい文章にきりかえる">🧒 こどもむけ<span class="kids-switch" aria-hidden="true"></span></button>
+        <button class="orig-toggle" aria-pressed="false" data-i18n="orig_toggle" data-i18n-aria="aria_orig" aria-label="日本語の原文を並べて表示する">🇯🇵 原文<span class="kids-switch" aria-hidden="true"></span></button>
         <span class="lang-pick">
           <span class="lang-label" title="言語 / Language" aria-hidden="true">🌐</span>
           <select class="lang-select" aria-label="言語を選択 / Language" data-i18n-aria="aria_lang">
@@ -537,17 +538,63 @@
           市は提出された意見への回答と計画修正案を公式サイトで公表しています。
         </p>
         <div class="stat-grid" style="margin:0;">
-          <div class="stat-box"><div class="num">55</div><div class="unit" data-i18n="stat_unit">件</div><div class="label" data-i18n="stat_total">意見合計</div></div>
-          <div class="stat-box"><div class="num">39</div><div class="unit" data-i18n="stat_unit">件</div><div class="label" data-i18n="stat_email">メール</div></div>
-          <div class="stat-box"><div class="num">13</div><div class="unit" data-i18n="stat_unit">件</div><div class="label" data-i18n="stat_fax">FAX</div></div>
-          <div class="stat-box"><div class="num">3</div><div class="unit" data-i18n="stat_unit">件</div><div class="label" data-i18n="stat_post">郵送・持参</div></div>
+          <div class="stat-box"><div class="num">142</div><div class="unit" data-i18n="stat_unit">件</div><div class="label" data-i18n="stat_total">意見合計</div></div>
+          <div class="stat-box"><div class="num">55</div><div class="unit" data-i18n="stat_unit_person">人</div><div class="label" data-i18n="stat_people">提出した人</div></div>
+          <div class="stat-box"><div class="num">39</div><div class="unit" data-i18n="stat_unit_person">人</div><div class="label" data-i18n="stat_email">メール</div></div>
+          <div class="stat-box"><div class="num">13</div><div class="unit" data-i18n="stat_unit_person">人</div><div class="label" data-i18n="stat_fax">FAX</div></div>
+          <div class="stat-box"><div class="num">3</div><div class="unit" data-i18n="stat_unit_person">人</div><div class="label" data-i18n="stat_post">郵送・持参</div></div>
         </div>
         <div style="margin-top:.8rem;">
           <a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener" class="card-link" data-i18n="pubcom_link">市公式ページでパブリックコメント結果を見る →</a>
         </div>
       </div>
 
-      <p style="font-size:.9rem; color:var(--text-muted); margin-bottom:1.4rem;" data-i18n="voices_pc_themes">市の回答に付けられた見出しを論点別に数えると、多い順に「第1期再編の時期」18、「地域への説明」16、「学校再編の必要性」8、「学校規模の小規模化」8、「学校名」7、「1学級あたりの児童生徒数」6、「人口減少対策」6、「学校再編とまちづくり」5でした（当サイト集計）。</p>
+      <h3 class="section-title sub" style="margin-top:2rem;" data-i18n-html="voices_pc_themes_h">寄せられた意見の論点<small>What Was Raised</small></h3>
+      <p class="section-lead" data-i18n="voices_pc_themes_lead">市は意見の一つひとつに「市の考え方」を書き、そのすべてに論点の見出しを付けています。その見出しを当サイトが数えました（全143個・53論点。市の公表は計142件）。多い順に8つを示します。</p>
+      <ul class="pc-bars">
+        <li class="pc-bar-row">
+          <span class="pc-bar-label" data-i18n="pc_th1">第1期再編の時期</span>
+          <span class="pc-bar"><span class="pc-bar-fill" style="width:100%"></span></span>
+          <span class="pc-bar-n">18</span>
+        </li>
+        <li class="pc-bar-row">
+          <span class="pc-bar-label" data-i18n="pc_th2">地域への説明</span>
+          <span class="pc-bar"><span class="pc-bar-fill" style="width:89%"></span></span>
+          <span class="pc-bar-n">16</span>
+        </li>
+        <li class="pc-bar-row">
+          <span class="pc-bar-label" data-i18n="pc_th3">学校再編の必要性</span>
+          <span class="pc-bar"><span class="pc-bar-fill" style="width:44%"></span></span>
+          <span class="pc-bar-n">8</span>
+        </li>
+        <li class="pc-bar-row">
+          <span class="pc-bar-label" data-i18n="pc_th4">学校規模の小規模化</span>
+          <span class="pc-bar"><span class="pc-bar-fill" style="width:44%"></span></span>
+          <span class="pc-bar-n">8</span>
+        </li>
+        <li class="pc-bar-row">
+          <span class="pc-bar-label" data-i18n="pc_th5">学校名</span>
+          <span class="pc-bar"><span class="pc-bar-fill" style="width:39%"></span></span>
+          <span class="pc-bar-n">7</span>
+        </li>
+        <li class="pc-bar-row">
+          <span class="pc-bar-label" data-i18n="pc_th6">1学級あたりの児童生徒数</span>
+          <span class="pc-bar"><span class="pc-bar-fill" style="width:33%"></span></span>
+          <span class="pc-bar-n">6</span>
+        </li>
+        <li class="pc-bar-row">
+          <span class="pc-bar-label" data-i18n="pc_th7">人口減少対策</span>
+          <span class="pc-bar"><span class="pc-bar-fill" style="width:33%"></span></span>
+          <span class="pc-bar-n">6</span>
+        </li>
+        <li class="pc-bar-row">
+          <span class="pc-bar-label" data-i18n="pc_th8">学校再編とまちづくり</span>
+          <span class="pc-bar"><span class="pc-bar-fill" style="width:28%"></span></span>
+          <span class="pc-bar-n">5</span>
+        </li>
+      </ul>
+      <p class="pc-bars-other" data-i18n="pc_th_other">このほか45の論点に計69件（各1〜4件）。</p>
+      <p class="pc-bars-note" data-i18n="voices_pc_themes_note">※ 件数は賛成・反対の強さを表すものではありません。1人が複数の論点に触れた分もそれぞれ数えています。分類は市が付けた見出しそのままで、当サイトは数えただけです。</p>
 
         <div class="pc-card">
           <p class="pc-q" data-i18n="voices_pc_q1">「令和9年度の実施は早すぎる。期限を切るより、話し合いを重ねるほうが大事だ」</p>

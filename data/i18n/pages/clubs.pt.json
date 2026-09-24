@@ -1,6 +1,7 @@
 {
   "aria_lang": "Selecionar idioma",
   "aria_menu": "Menu",
+  "aria_orig": "Mostrar o original em japonês ao lado",
   "board_btn": "Imprimir uma folha para afixar ou circular",
   "clubs_bukatsu_h": "Atividades do clube escolar",
   "clubs_bukatsu_none": "A escola não publica a lista de clubes. Veja o diário da escola para as atividades recentes.",
@@ -80,6 +81,7 @@
   "nav_review": "Análise e propostas",
   "nav_schedule": "Cronograma",
   "notice": "⚠️ Este é um site comunitário não oficial. Não é o site oficial da Cidade de Komaki. Para informações oficiais, acesse o <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\" style=\"color:#5a4000;font-weight:700;\">Conselho de Educação de Komaki</a>.",
+  "orig_toggle": "🇯🇵 Japonês",
   "page_toc_h": "Nesta página",
   "rel_clubs_about": "Ver as escolas após a reorganização",
   "rel_clubs_community": "Ver os conselhos comunitários e as iniciativas locais",

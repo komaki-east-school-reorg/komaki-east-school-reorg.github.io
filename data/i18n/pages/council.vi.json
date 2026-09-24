@@ -1,6 +1,7 @@
 {
   "aria_lang": "Chọn ngôn ngữ",
   "aria_menu": "Menu",
+  "aria_orig": "Hiển thị kèm nguyên văn tiếng Nhật",
   "badge_fail": "Không được chấp thuận",
   "badge_pass_majority": "Thông qua bằng đa số",
   "board_btn": "In một tờ để dán hoặc chuyền tay",
@@ -132,6 +133,7 @@
   "nav_review": "Phân tích & đề xuất",
   "nav_schedule": "Lịch trình",
   "notice": "⚠️ Đây là trang web cộng đồng không chính thức, không phải trang web chính thức của Thành phố Komaki. Để biết thông tin chính thức, vui lòng truy cập <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\" style=\"color:#5a4000;font-weight:700;\">Ban Giáo dục Thành phố Komaki</a>.",
+  "orig_toggle": "🇯🇵 Tiếng Nhật",
   "page_toc_h": "Mục lục trang này",
   "rel_council_faq": "Xem các vấn đề được nêu ra dưới dạng hỏi đáp",
   "rel_council_review": "Xem phân tích kế hoạch và các đề xuất",

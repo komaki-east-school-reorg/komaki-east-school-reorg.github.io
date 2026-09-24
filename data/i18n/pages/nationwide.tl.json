@@ -1,6 +1,7 @@
 {
   "aria_lang": "Pumili ng wika",
   "aria_menu": "Menu",
+  "aria_orig": "Ipakita ang orihinal na Hapon sa tabi",
   "board_btn": "Mag-print ng isang sheet para ipaskil o ipasa",
   "contact_tbl_dept": "Tanggapan",
   "contact_tbl_scope": "Paksang tinalakay sa pahinang ito",
@@ -99,6 +100,7 @@
   "nw_c1_w": "Ang gabay sa angkop na laki at lokasyon ng paaralan, at ang abiso ng rebisyon noong 5 Agosto 2026",
   "nw_c2_w": "Ang survey kung paano muling ginagamit ang mga saradong gusali ng paaralan",
   "nw_c3_w": "Ang Basic School Survey",
+  "orig_toggle": "🇯🇵 Hapon",
   "page_toc_h": "Sa pahinang ito",
   "rel_nationwide_about": "Tingnan ang mismong plano ng silangang Komaki",
   "rel_nationwide_bus": "Tingnan ang plano sa pagpasok at school bus",
