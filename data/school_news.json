@@ -1,8 +1,66 @@
 {
-  "fetched_at": "2026-09-24T00:38:32Z",
+  "fetched_at": "2026-09-25T00:41:05Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "toryo-j",
+      "level": "jhs",
+      "names": {
+        "ja": "桃陵中学校",
+        "ja_kids": "とうりょう中学校",
+        "en": "Toryo Junior High",
+        "zh": "桃陵中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
+      "latest_date": "2026-09-24",
+      "items": [
+        {
+          "title": "１年生 ２回目の学年競遊練習",
+          "date": "2026-09-24",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136142745?tm=20260924164639"
+        },
+        {
+          "title": "体育祭全体練習２",
+          "date": "2026-09-24",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136141440?tm=20260924162826"
+        },
+        {
+          "title": "体育祭全体練習",
+          "date": "2026-09-24",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136142499?tm=20260924161629"
+        }
+      ]
+    },
+    {
+      "slug": "sue-e",
+      "level": "elem",
+      "names": {
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-09-24",
+      "items": [
+        {
+          "title": "教職員研修 ～防火研修～",
+          "date": "2026-09-24",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136143082?tm=20260924171422"
+        },
+        {
+          "title": "9/24 今日の給食",
+          "date": "2026-09-24",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136141190?tm=20260924142456"
+        },
+        {
+          "title": "9/24 朝会",
+          "date": "2026-09-24",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136138473?tm=20260924105822"
+        }
+      ]
+    },
     {
       "slug": "ohshiro-e",
       "level": "elem",
@@ -16,19 +74,19 @@
       "latest_date": "2026-09-24",
       "items": [
         {
-          "title": "図工競技会に向けて",
+          "title": "5・6年運動会練習（綱取り）",
           "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136132657?tm=20260918165148"
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136143851?tm=20260924182929"
         },
         {
-          "title": "よむよむをしたよ",
+          "title": "図書館見学に行ったよ！",
           "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136127928?tm=20260918115610"
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136141988?tm=20260924153336"
         },
         {
-          "title": "2学期も頑張っています！",
+          "title": "第116回バスケットボール教室",
           "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136124009?tm=20260917180555"
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136141819?tm=20260924152156"
         }
       ]
     },
@@ -74,19 +132,19 @@
       "latest_date": "2026-09-24",
       "items": [
         {
+          "title": "【やまももクラブ】やまさんももさん作り",
+          "date": "2026-09-24",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136143848?tm=20260924182642"
+        },
+        {
+          "title": "4年生 学級レクリ",
+          "date": "2026-09-24",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136141793?tm=20260924151900"
+        },
+        {
           "title": "１年生 国語 漢字の練習",
           "date": "2026-09-24",
           "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136132087?tm=20260918161657"
-        },
-        {
-          "title": "１年生 体育 運動会練習",
-          "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136132011?tm=20260918161152"
-        },
-        {
-          "title": "１年生 生活 秋の生き物探し",
-          "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136131938?tm=20260918160713"
         }
       ]
     },
@@ -120,35 +178,6 @@
       ]
     },
     {
-      "slug": "toryo-j",
-      "level": "jhs",
-      "names": {
-        "ja": "桃陵中学校",
-        "ja_kids": "とうりょう中学校",
-        "en": "Toryo Junior High",
-        "zh": "桃陵中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
-      "latest_date": "2026-09-21",
-      "items": [
-        {
-          "title": "0920 吹奏楽部 お月見コンサート",
-          "date": "2026-09-21",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136135911?tm=20260920114403"
-        },
-        {
-          "title": "【サッカー部】 新チーム初陣",
-          "date": "2026-09-21",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136135296?tm=20260919141508"
-        },
-        {
-          "title": "マナー講座",
-          "date": "2026-09-18",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136131565?tm=20260918154513"
-        }
-      ]
-    },
-    {
       "slug": "momogaoka-e",
       "level": "elem",
       "names": {
@@ -174,35 +203,6 @@
           "title": "ピーチフェスタ ～スライム～",
           "date": "2026-09-19",
           "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136135397?tm=20260919151410"
-        }
-      ]
-    },
-    {
-      "slug": "sue-e",
-      "level": "elem",
-      "names": {
-        "ja": "陶小学校",
-        "ja_kids": "すえ小学校",
-        "en": "Sue Elem. School",
-        "zh": "陶小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-09-18",
-      "items": [
-        {
-          "title": "9/18 草取り集会：環境委員会主催",
-          "date": "2026-09-18",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136132258?tm=20260918162703"
-        },
-        {
-          "title": "9/17 国語：お手紙（２年生）",
-          "date": "2026-09-18",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136132176?tm=20260918162214"
-        },
-        {
-          "title": "9/17 今日の給食",
-          "date": "2026-09-17",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136119757?tm=20260917133721"
         }
       ]
     },
