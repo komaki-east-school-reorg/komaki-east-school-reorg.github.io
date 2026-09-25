@@ -40,44 +40,122 @@
       "tr": "Kitasato bölgesinin okullarını düşünme toplantısı (2.)",
       "my": "Kitasato ဒေသ ကျောင်းများအကြောင်း စဉ်းစားသည့် ဒုတိယအကြိမ် အစည်းအဝေး"
     },
-    "図工競技会に向けて": {
-      "en": "Toward the Arts and Crafts Competition",
-      "pt": "Rumo ao Concurso de Arte e Trabalhos Manuais",
-      "vi": "Hướng tới Cuộc thi Mỹ thuật và Thủ công",
-      "tl": "Patungo sa Paligsahan sa Sining at Gawaing-Kamay",
-      "es": "Hacia el Concurso de Arte y Manualidades",
-      "zh": "迎接图工竞赛",
-      "id": "Menuju Kompetisi Seni dan Kerajinan",
-      "ko": "미술공작 경연대회를 향해",
-      "ne": "चित्रकला तथा हस्तकला प्रतियोगिताको लागि",
-      "tr": "Sanat ve El Sanatları Yarışmasına Doğru",
-      "my": "အနုပညာနှင့် လက်မှုပညာ ပြိုင်ပွဲအတွက်"
+    "１年生 ２回目の学年競遊練習": {
+      "en": "Grade 1: 2nd grade-wide games practice",
+      "pt": "1º ano: 2ª prática de jogos da série",
+      "vi": "Lớp 1: Buổi luyện tập trò chơi thi đua khối lớp lần 2",
+      "tl": "Baitang 1: Ika-2 na pagsasanay sa laro ng buong baitang",
+      "es": "1.º grado: 2.ª práctica de juegos de grado",
+      "zh": "一年级：第2次年级游戏比赛练习",
+      "id": "Kelas 1: Latihan permainan lintas kelas ke-2",
+      "ko": "1학년: 학년 대항 놀이 2차 연습",
+      "ne": "कक्षा 1: कक्षा खेल प्रतियोगिताको 2 औं अभ्यास",
+      "tr": "1. sınıf: Sınıf düzeyi oyun yarışması 2. pratiği",
+      "my": "အတန်း 1 - အတန်းအဆင့် ကစားပြိုင်ပွဲ 2 ကြိမ်မြောက် လေ့ကျင့်မှု"
     },
-    "よむよむをしたよ": {
-      "en": "We Did Our Reading Time (Yomu-Yomu)",
-      "pt": "Fizemos Nossa Hora de Leitura (Yomu-Yomu)",
-      "vi": "Chúng Em Đã Đọc Sách (Yomu-Yomu)",
-      "tl": "Nagbasa Kami (Yomu-Yomu)",
-      "es": "Hicimos Nuestra Hora de Lectura (Yomu-Yomu)",
-      "zh": "我们做了阅读活动(Yomu-Yomu)",
-      "id": "Kami Melakukan Waktu Membaca (Yomu-Yomu)",
-      "ko": "요무요무(독서 활동)를 했어요",
-      "ne": "योमु-योमु (पठन समय) गर्यौं",
-      "tr": "Okuma Zamanımızı Yaptık (Yomu-Yomu)",
-      "my": "ဖတ်စာအချိန် (Yomu-Yomu) လုပ်ခဲ့ကြပါသည်"
+    "体育祭全体練習２": {
+      "en": "Sports Festival whole-school practice 2",
+      "pt": "Prática geral do festival esportivo 2",
+      "vi": "Buổi luyện tập toàn trường cho hội thao lần 2",
+      "tl": "Pangkalahatang pagsasanay para sa Sports Festival 2",
+      "es": "Segunda práctica general del festival deportivo",
+      "zh": "运动会全体练习2",
+      "id": "Latihan gabungan festival olahraga 2",
+      "ko": "체육대회 전체 연습 2",
+      "ne": "खेलकुद महोत्सव समग्र अभ्यास 2",
+      "tr": "Spor Festivali genel provası 2",
+      "my": "အားကစားပွဲတော် အားလုံးပါ လေ့ကျင့်မှု 2"
     },
-    "2学期も頑張っています！": {
-      "en": "Doing Our Best in the 2nd Semester Too!",
-      "pt": "Também Estamos nos Esforçando no 2º Semestre!",
-      "vi": "Chúng Em Cũng Đang Cố Gắng Trong Học Kỳ 2!",
-      "tl": "Nagsusumikap din Kami sa 2nd Semester!",
-      "es": "¡También Nos Esforzamos en el Segundo Semestre!",
-      "zh": "第二学期也在努力!",
-      "id": "Kami Juga Berusaha Keras di Semester 2!",
-      "ko": "2학기도 열심히 하고 있어요!",
-      "ne": "दोस्रो सेमेस्टरमा पनि मिहिनेत गर्दैछौं!",
-      "tr": "2. Dönemde de Elimizden Geleni Yapıyoruz!",
-      "my": "ဒုတိယနှစ်ဝက်မှာလည်း ကြိုးစားနေကြပါသည်!"
+    "体育祭全体練習": {
+      "en": "Sports Festival whole-school practice",
+      "pt": "Prática geral do festival esportivo",
+      "vi": "Buổi luyện tập toàn trường cho hội thao",
+      "tl": "Pangkalahatang pagsasanay para sa Sports Festival",
+      "es": "Práctica general del festival deportivo",
+      "zh": "运动会全体练习",
+      "id": "Latihan gabungan festival olahraga",
+      "ko": "체육대회 전체 연습",
+      "ne": "खेलकुद महोत्सव समग्र अभ्यास",
+      "tr": "Spor Festivali genel provası",
+      "my": "အားကစားပွဲတော် အားလုံးပါ လေ့ကျင့်မှု"
+    },
+    "教職員研修 ～防火研修～": {
+      "en": "Staff training – Fire prevention training",
+      "pt": "Treinamento de funcionários – Treinamento de prevenção de incêndio",
+      "vi": "Tập huấn giáo viên và nhân viên – Tập huấn phòng cháy chữa cháy",
+      "tl": "Pagsasanay ng kawani – Pagsasanay sa pag-iwas sa sunog",
+      "es": "Capacitación del personal escolar – Capacitación en prevención de incendios",
+      "zh": "教职工研修～消防安全研修～",
+      "id": "Pelatihan staf – Pelatihan pencegahan kebakaran",
+      "ko": "교직원 연수 ~소방 연수~",
+      "ne": "शिक्षक तथा कर्मचारी तालिम ~अग्निशमन तालिम~",
+      "tr": "Öğretmen ve personel eğitimi – Yangın önleme eğitimi",
+      "my": "ဆရာ/ဆရာမ နှင့် ဝန်ထမ်း လေ့ကျင့်ရေး - မီးဘေးကာကွယ်ရေး လေ့ကျင့်ရေး"
+    },
+    "9/24 今日の給食": {
+      "en": "9/24 Today's school lunch",
+      "pt": "9/24 Merenda escolar de hoje",
+      "vi": "9/24 Bữa trưa học đường hôm nay",
+      "tl": "9/24 Baon sa paaralan ngayon",
+      "es": "9/24 Almuerzo escolar de hoy",
+      "zh": "9/24 今日午餐",
+      "id": "9/24 Makan siang sekolah hari ini",
+      "ko": "9/24 오늘의 급식",
+      "ne": "9/24 आजको विद्यालय खाना",
+      "tr": "9/24 Bugünün okul yemeği",
+      "my": "9/24 ယနေ့ကျောင်းထမင်း"
+    },
+    "9/24 朝会": {
+      "en": "9/24 Morning assembly",
+      "pt": "9/24 Reunião matinal",
+      "vi": "9/24 Buổi họp buổi sáng",
+      "tl": "9/24 Pagtitipon sa umaga",
+      "es": "9/24 Reunión matutina",
+      "zh": "9/24 晨会",
+      "id": "9/24 Apel pagi",
+      "ko": "9/24 조회",
+      "ne": "9/24 बिहानको सभा",
+      "tr": "9/24 Sabah toplantısı",
+      "my": "9/24 မနက်ခင်း စည်းဝေးပွဲ"
+    },
+    "5・6年運動会練習（綱取り）": {
+      "en": "Grades 5–6 Sports Day practice (rope-pulling game)",
+      "pt": "Prática do dia esportivo dos 5º e 6º anos (jogo de puxar corda)",
+      "vi": "Buổi luyện tập ngày hội thể thao khối lớp 5–6 (trò kéo dây)",
+      "tl": "Pagsasanay sa Sports Day ng baitang 5–6 (larong hilahan ng lubid)",
+      "es": "Práctica del día deportivo de 5.º y 6.º grado (juego de tira y afloja)",
+      "zh": "5、6年级运动会练习(拔河游戏)",
+      "id": "Latihan Hari Olahraga kelas 5–6 (permainan tarik tambang)",
+      "ko": "5·6학년 운동회 연습(줄다리기)",
+      "ne": "कक्षा 5–6 खेलकुद दिवस अभ्यास (डोरी तान्ने खेल)",
+      "tr": "5-6. sınıflar Spor Günü provası (ip çekme oyunu)",
+      "my": "အတန်း 5-6 အားကစားနေ့ လေ့ကျင့်မှု (ကြိုးဆွဲပွဲ)"
+    },
+    "図書館見学に行ったよ！": {
+      "en": "We went on a library tour!",
+      "pt": "Fomos visitar a biblioteca!",
+      "vi": "Chúng em đã đi tham quan thư viện!",
+      "tl": "Nagpunta kami sa library tour!",
+      "es": "¡Fuimos de visita a la biblioteca!",
+      "zh": "我们去参观图书馆啦！",
+      "id": "Kami pergi tur perpustakaan!",
+      "ko": "도서관 견학을 다녀왔어요!",
+      "ne": "हामी पुस्तकालय भ्रमणमा गयौं!",
+      "tr": "Kütüphane gezisine gittik!",
+      "my": "စာကြည့်တိုက် လေ့လာရေးခရီး သွားခဲ့ကြပါတယ်!"
+    },
+    "第116回バスケットボール教室": {
+      "en": "116th Basketball Class",
+      "pt": "116ª Aula de Basquete",
+      "vi": "Lớp học bóng rổ lần thứ 116",
+      "tl": "Ika-116 na Klase ng Basketball",
+      "es": "116.ª Clase de Baloncesto",
+      "zh": "第116届篮球教室",
+      "id": "Kelas Basket ke-116",
+      "ko": "제116회 농구 교실",
+      "ne": "116 औं बास्केटबल कक्षा",
+      "tr": "116. Basketbol Kursu",
+      "my": "အကြိမ် 116 ဘတ်စကက်ဘော လေ့ကျင့်ရေးအတန်း"
     },
     "アジアの頂点を決めろ！": {
       "en": "Decide the Top of Asia!",
@@ -118,6 +196,32 @@
       "tr": "Cevapların Kontrolü 30 Eylül'de",
       "my": "အဖြေများကို စက်တင်ဘာ ၃၀ ရက်တွင် စစ်ဆေးမည်"
     },
+    "【やまももクラブ】やまさんももさん作り": {
+      "en": "[Yamamomo Club] Making Yama-san and Momo-san",
+      "pt": "[Clube Yamamomo] Fazendo Yama-san e Momo-san",
+      "vi": "[Câu lạc bộ Yamamomo] Làm Yama-san và Momo-san",
+      "tl": "[Yamamomo Club] Paggawa ng Yama-san at Momo-san",
+      "es": "[Club Yamamomo] Elaboración de Yama-san y Momo-san",
+      "zh": "【山桃俱乐部】制作「山桑」和「桃桑」",
+      "id": "[Klub Yamamomo] Membuat Yama-san dan Momo-san",
+      "ko": "[야마모모 클럽] 야마상과 모모상 만들기",
+      "ne": "[यामामोमो क्लब] याम-सान र मोमो-सान बनाउने",
+      "tr": "[Yamamomo Kulübü] Yama-san ve Momo-san yapımı",
+      "my": "[ယာမမိုမို ကလပ်] ယာမ-ဆန် နှင့် မိုမို-ဆန် ပြုလုပ်ခြင်း"
+    },
+    "4年生 学級レクリ": {
+      "en": "Grade 4 class recreation",
+      "pt": "Recreação da turma do 4º ano",
+      "vi": "Hoạt động giải trí lớp khối 4",
+      "tl": "Recreation ng klase sa Baitang 4",
+      "es": "Actividad recreativa de la clase de 4.º grado",
+      "zh": "四年级 班级联欢会",
+      "id": "Kegiatan rekreasi kelas 4",
+      "ko": "4학년 학급 레크리에이션",
+      "ne": "कक्षा 4 कक्षा मनोरञ्जन कार्यक्रम",
+      "tr": "4. sınıf şube eğlence etkinliği",
+      "my": "အတန်း 4 စု အပန်းဖြေရေးလုပ်ငန်း"
+    },
     "１年生 国語 漢字の練習": {
       "en": "1st Grade Japanese: Kanji Practice",
       "pt": "1º Ano - Japonês: Prática de Kanji",
@@ -130,32 +234,6 @@
       "ne": "कक्षा १ जापानी भाषा: कान्जी अभ्यास",
       "tr": "1. Sınıf Japonca: Kanji Alıştırması",
       "my": "ပထမတန်း ဂျပန်စာ - ခန်းဂျီး လေ့ကျင့်ခန်း"
-    },
-    "１年生 体育 運動会練習": {
-      "en": "1st Grade P.E.: Sports Day Practice",
-      "pt": "1º Ano - Educação Física: Prática do Dia Esportivo",
-      "vi": "Lớp 1 - Thể Dục: Luyện Tập Ngày Hội Thể Thao",
-      "tl": "Grade 1 P.E.: Pagsasanay para sa Sports Day",
-      "es": "1.º Grado - Educación Física: Práctica del Día Deportivo",
-      "zh": "一年级 体育:运动会练习",
-      "id": "Kelas 1 Penjas: Latihan Hari Olahraga",
-      "ko": "1학년 체육: 운동회 연습",
-      "ne": "कक्षा १ शारीरिक शिक्षा: खेलकुद दिवस अभ्यास",
-      "tr": "1. Sınıf Beden Eğitimi: Spor Günü Provası",
-      "my": "ပထမတန်း အားကစား - အားကစားနေ့ လေ့ကျင့်ခန်း"
-    },
-    "１年生 生活 秋の生き物探し": {
-      "en": "1st Grade Life Studies: Autumn Creature Hunt",
-      "pt": "1º Ano - Estudos da Vida: Busca por Criaturas de Outono",
-      "vi": "Lớp 1 - Cuộc Sống: Tìm Kiếm Sinh Vật Mùa Thu",
-      "tl": "Grade 1 Life Studies: Paghahanap ng mga Nilalang sa Taglagas",
-      "es": "1.º Grado - Estudios de Vida: Búsqueda de Criaturas de Otoño",
-      "zh": "一年级 生活:秋天生物探寻",
-      "id": "Kelas 1 Studi Kehidupan: Mencari Makhluk Musim Gugur",
-      "ko": "1학년 생활: 가을 생물 찾기",
-      "ne": "कक्षा १ जीवन अध्ययन: शरद ऋतुका जीवजन्तु खोजी",
-      "tr": "1. Sınıf Yaşam Bilgisi: Sonbahar Canlı Arayışı",
-      "my": "ပထမတန်း နေထိုင်မှုပညာ - ဆောင်းဦးရာသီ သတ္တဝါရှာဖွေခြင်း"
     },
     "学校公開日": {
       "en": "School Open Day",
@@ -196,45 +274,6 @@
       "tr": "Spor Günü İçin Tüm Okul Provası",
       "my": "အားကစားပွဲအတွက် ကျောင်းလုံးကျွမ်းကျင်မှုလေ့ကျင့်ခန်း"
     },
-    "0920 吹奏楽部 お月見コンサート": {
-      "en": "9/20 Brass Band Club: Moon-Viewing Concert",
-      "pt": "20/09 Clube de Banda Marcial: Concerto de Contemplação da Lua",
-      "vi": "20/9 Câu lạc bộ kèn đồng: Buổi hòa nhạc ngắm trăng",
-      "tl": "9/20 Brass Band Club: Konsyerto sa Pagmamasid ng Buwan",
-      "es": "20/9 Club de Banda: Concierto de Contemplación de la Luna",
-      "zh": "9月20日 管乐部 赏月音乐会",
-      "id": "20/9 Klub Marching Band: Konser Menikmati Bulan",
-      "ko": "9/20 취주악부 달맞이 콘서트",
-      "ne": "9/20 ब्रास ब्यान्ड क्लब: चन्द्र दर्शन कन्सर्ट",
-      "tr": "20/9 Bando Kulübü: Ay Seyretme Konseri",
-      "my": "9/20 ပေါင်းစပ်တီးဝိုင်းအသင်း - လမင်းကြည့်ဂီတဖျော်ဖြေပွဲ"
-    },
-    "【サッカー部】 新チーム初陣": {
-      "en": "[Soccer Club] New Team's First Match",
-      "pt": "[Clube de Futebol] Primeira Partida do Novo Time",
-      "vi": "[CLB Bóng đá] Trận đấu đầu tiên của đội mới",
-      "tl": "[Soccer Club] Unang Laban ng Bagong Koponan",
-      "es": "[Club de Fútbol] Primer Partido del Nuevo Equipo",
-      "zh": "【足球部】新队伍首战",
-      "id": "[Klub Sepak Bola] Pertandingan Pertama Tim Baru",
-      "ko": "[축구부] 새 팀의 첫 경기",
-      "ne": "[फुटबल क्लब] नयाँ टोलीको पहिलो खेल",
-      "tr": "[Futbol Kulübü] Yeni Takımın İlk Maçı",
-      "my": "[ဘောလုံးအသင်း] အသင်းသစ်ရဲ့ ပထမဆုံးပွဲစဉ်"
-    },
-    "マナー講座": {
-      "en": "Manners Seminar",
-      "pt": "Palestra de Etiqueta",
-      "vi": "Buổi học về phép ứng xử",
-      "tl": "Seminar sa Asal",
-      "es": "Charla de Etiqueta",
-      "zh": "礼仪讲座",
-      "id": "Seminar Sopan Santun",
-      "ko": "매너 강좌",
-      "ne": "शिष्टाचार पाठ",
-      "tr": "Görgü Kuralları Semineri",
-      "my": "ကျင့်ဝတ် သင်တန်း"
-    },
     "ピーチフェスタ ～プログラミング～": {
       "en": "Peach Festa – Programming",
       "pt": "Peach Festa – Programação",
@@ -273,45 +312,6 @@
       "ne": "पीच फेस्टा – स्लाइम",
       "tr": "Peach Festa – Slime",
       "my": "ပီချ်ဖက်စ်တာ – စလိုင်မ်"
-    },
-    "9/18 草取り集会：環境委員会主催": {
-      "en": "Sep 18 Weeding Gathering: Hosted by the Environment Committee",
-      "pt": "18/09 Mutirão de capina: organizado pelo Comitê do Meio Ambiente",
-      "vi": "18/9 Buổi nhổ cỏ: do Ủy ban Môi trường tổ chức",
-      "tl": "9/18 Pagtitipon sa Pagbunot ng Damo: Inorganisa ng Komite sa Kapaligiran",
-      "es": "18/9 Jornada de desmalezado: organizada por el Comité de Medio Ambiente",
-      "zh": "9月18日 拔草集会：环境委员会主办",
-      "id": "18/9 Kumpul Bersih Rumput: Diselenggarakan oleh Komite Lingkungan",
-      "ko": "9/18 풀뽑기 모임: 환경위원회 주최",
-      "ne": "९/१८ झारपात उखेल्ने भेला: वातावरण समितिद्वारा आयोजित",
-      "tr": "18/9 Ot Temizleme Toplantısı: Çevre Komitesi Tarafından Düzenlendi",
-      "my": "၉/၁၈ မြက်ရိတ်စုဝေးပွဲ - သဘာဝပတ်ဝန်းကျင်ကော်မတီစီစဉ်"
-    },
-    "9/17 国語：お手紙（２年生）": {
-      "en": "Sep 17 Japanese: \"The Letter\" (Grade 2)",
-      "pt": "17/09 Língua Japonesa: \"A Carta\" (2º ano)",
-      "vi": "17/9 Ngữ văn: \"Bức thư\" (Lớp 2)",
-      "tl": "9/17 Wikang Hapon: \"Ang Sulat\" (Baitang 2)",
-      "es": "17/9 Lengua japonesa: \"La carta\" (2.º grado)",
-      "zh": "9月17日 语文：《一封信》（二年级）",
-      "id": "17/9 Bahasa Jepang: \"Surat\" (Kelas 2)",
-      "ko": "9/17 국어: '편지' (2학년)",
-      "ne": "९/१७ जापानी भाषा: \"चिठी\" (कक्षा २)",
-      "tr": "17/9 Japonca: \"Mektup\" (2. Sınıf)",
-      "my": "၉/၁၇ ဂျပန်စာ - \"စာစောင်\" (တန်း ၂)"
-    },
-    "9/17 今日の給食": {
-      "en": "9/17 Today's School Lunch",
-      "pt": "17/9 Almoço escolar de hoje",
-      "vi": "17/9 Bữa trưa hôm nay",
-      "tl": "9/17 Pananghalian Ngayong Araw",
-      "es": "17/9 Almuerzo escolar de hoy",
-      "zh": "9/17 今日午餐",
-      "id": "17/9 Makan siang sekolah hari ini",
-      "ko": "9/17 오늘의 급식",
-      "ne": "९/१७ आजको स्कुल खाजा",
-      "tr": "17/9 Bugünün Okul Yemeği",
-      "my": "၉/၁၇ ယနေ့ကျောင်းထမင်း"
     },
     "３年生 パフォーマンス練習": {
       "en": "Grade 3 Performance Practice",
@@ -651,19 +651,6 @@
       "tr": "Aozora açık hava pazarı ve Nazo-Tokimeki Projesi",
       "my": "Aozora ပြင်ပဈေး နှင့် Nazo-Tokimeki စီမံကိန်း"
     },
-    "ありがとう大城小": {
-      "en": "Thank you, Oshiro Elementary",
-      "pt": "Obrigado, Escola Primária Oshiro",
-      "vi": "Cảm ơn trường tiểu học Oshiro",
-      "tl": "Salamat, Oshiro Elementary",
-      "es": "Gracias, primaria Oshiro",
-      "zh": "谢谢你，大城小学",
-      "id": "Terima kasih, SD Oshiro",
-      "ko": "고마워요 오시로 초등학교",
-      "ne": "धन्यवाद ओसिरो प्राथमिक विद्यालय",
-      "tr": "Teşekkürler, Oshiro İlkokulu",
-      "my": "ကျေးဇူးတင်ပါတယ် Oshiro မူလတန်းကျောင်း"
-    },
     "新学校区交流 ミュージックフェスティバル": {
       "en": "New school district exchange: music festival",
       "pt": "Intercâmbio do novo distrito escolar: festival de música",
@@ -676,6 +663,19 @@
       "ne": "नयाँ विद्यालय क्षेत्र भेटघाट सङ्गीत महोत्सव",
       "tr": "Yeni okul bölgesi buluşması: müzik festivali",
       "my": "ကျောင်းနယ်မြေသစ် ဖလှယ်ပွဲ - ဂီတပွဲတော်"
+    },
+    "ありがとう大城小": {
+      "en": "Thank you, Oshiro Elementary",
+      "pt": "Obrigado, Escola Primária Oshiro",
+      "vi": "Cảm ơn trường tiểu học Oshiro",
+      "tl": "Salamat, Oshiro Elementary",
+      "es": "Gracias, primaria Oshiro",
+      "zh": "谢谢你，大城小学",
+      "id": "Terima kasih, SD Oshiro",
+      "ko": "고마워요 오시로 초등학교",
+      "ne": "धन्यवाद ओसिरो प्राथमिक विद्यालय",
+      "tr": "Teşekkürler, Oshiro İlkokulu",
+      "my": "ကျေးဇူးတင်ပါတယ် Oshiro မူလတန်းကျောင်း"
     }
   }
 }
