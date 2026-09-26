@@ -1,8 +1,66 @@
 {
-  "fetched_at": "2026-09-25T00:41:05Z",
+  "fetched_at": "2026-09-26T00:45:49Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "sue-e",
+      "level": "elem",
+      "names": {
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-09-25",
+      "items": [
+        {
+          "title": "9/25 租税教室（６年生）",
+          "date": "2026-09-25",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136146747?tm=20260925113745"
+        },
+        {
+          "title": "教職員研修 ～防火研修～",
+          "date": "2026-09-24",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136143082?tm=20260924171422"
+        },
+        {
+          "title": "9/24 今日の給食",
+          "date": "2026-09-24",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136141190?tm=20260924142456"
+        }
+      ]
+    },
+    {
+      "slug": "shinooka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "篠岡中学校",
+        "ja_kids": "しのおか中学校",
+        "en": "Shinooka Junior High",
+        "zh": "篠冈中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
+      "latest_date": "2026-09-25",
+      "items": [
+        {
+          "title": "シノッチュウ祭体育祭全体練習",
+          "date": "2026-09-25",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136145628?tm=20260925095348"
+        },
+        {
+          "title": "３年生 パフォーマンス練習",
+          "date": "2026-09-16",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136112488?tm=20260916154637"
+        },
+        {
+          "title": "２年生 道徳",
+          "date": "2026-09-14",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136094752?tm=20260914151004"
+        }
+      ]
+    },
     {
       "slug": "toryo-j",
       "level": "jhs",
@@ -29,35 +87,6 @@
           "title": "体育祭全体練習",
           "date": "2026-09-24",
           "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136142499?tm=20260924161629"
-        }
-      ]
-    },
-    {
-      "slug": "sue-e",
-      "level": "elem",
-      "names": {
-        "ja": "陶小学校",
-        "ja_kids": "すえ小学校",
-        "en": "Sue Elem. School",
-        "zh": "陶小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-09-24",
-      "items": [
-        {
-          "title": "教職員研修 ～防火研修～",
-          "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136143082?tm=20260924171422"
-        },
-        {
-          "title": "9/24 今日の給食",
-          "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136141190?tm=20260924142456"
-        },
-        {
-          "title": "9/24 朝会",
-          "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136138473?tm=20260924105822"
         }
       ]
     },
@@ -203,35 +232,6 @@
           "title": "ピーチフェスタ ～スライム～",
           "date": "2026-09-19",
           "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136135397?tm=20260919151410"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "篠岡中学校",
-        "ja_kids": "しのおか中学校",
-        "en": "Shinooka Junior High",
-        "zh": "篠冈中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-09-16",
-      "items": [
-        {
-          "title": "３年生 パフォーマンス練習",
-          "date": "2026-09-16",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136112488?tm=20260916154637"
-        },
-        {
-          "title": "２年生 道徳",
-          "date": "2026-09-14",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136094752?tm=20260914151004"
-        },
-        {
-          "title": "２年生 学級運営種目&パフォーマンス練習",
-          "date": "2026-09-11",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136087169?tm=20260911183531"
         }
       ]
     }
