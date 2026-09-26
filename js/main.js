@@ -103,6 +103,59 @@ window.KomakiHeadline = (function () {
   return {load: load, apply: apply, text: text};
 })();
 
+/* ===== 桃花台を考える会の催し（このファイル共通） =====
+   2026-09-26 ユーザー指示：同会の新しい催しはスケジュールに自動で載せる。
+   data/tobu_actions.json（毎日自動生成）のうち organizer 付きの催しを、events.json と
+   同じ形（12言語のラベル＋ "day": true）に直して返す。ラベルは見出しの訳
+   （data/headline_i18n.json、毎日自動更新）に「（市民有志）」を足したもの。
+   KomakiEvents() は events.json にこれを足したもの。events.json にすでに同じ催しが
+   あれば（ja のラベルが題名で始まるもの）足さない — 手で書いた項目が優先。
+   カレンダー・.ics・「あと◯日」・スケジュール一覧・トップの件数がこれを使う。 */
+window.KomakiTokadaiEvents = (function () {
+  var TAG = {ja:'（市民有志）', en:' (citizen-run)', pt:' (iniciativa de cidadãos)', vi:' (do người dân tổ chức)', tl:' (mamamayan ang nagpapatakbo)', es:' (iniciativa ciudadana)', zh:'（市民自发）', id:' (inisiatif warga)', ko:'(시민 주도)', ne:' (नागरिक पहल)', tr:' (vatandaş girişimi)', my:' (ပြည်သူ့ဦးဆောင်)'};
+  var p = null;
+  function get() {
+    if (!p) {
+      p = Promise.all([
+        fetch('./data/tobu_actions.json').then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; }),
+        window.KomakiHeadline.load()
+      ]).then(function (res) {
+        var map = res[1] || {};
+        return ((res[0] && res[0].items) || []).filter(function (t) {
+          return t.organizer && t.kind === 'event' && /^\d{4}-\d{2}-\d{2}$/.test(t.date || '');
+        }).map(function (t) {
+          var ev = {day: true};
+          Object.keys(TAG).forEach(function (l) {
+            var h = map[t.title];
+            ev[l] = (l === 'ja' ? t.title : ((h && h[l]) || t.title)) + TAG[l];
+          });
+          return {key: t.date, ev: ev, src: t};
+        });
+      });
+    }
+    return p;
+  }
+  get.TAG = TAG;
+  return get;
+})();
+window.KomakiEvents = function () {
+  return Promise.all([
+    fetch('./data/events.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }),
+    window.KomakiTokadaiEvents().catch(function () { return []; })
+  ]).then(function (res) {
+    var events = {}, base = (res[0] && res[0].events) || {}, extra = [];
+    Object.keys(base).forEach(function (k) { events[k] = base[k]; });
+    res[1].forEach(function (x) {
+      var list = events[x.key] ? (Array.isArray(events[x.key]) ? events[x.key].slice() : [events[x.key]]) : [];
+      if (list.some(function (e) { return e && e.ja && e.ja.indexOf(x.src.title) === 0; })) return;
+      list.push(x.ev);
+      events[x.key] = list.length === 1 ? list[0] : list;
+      extra.push(x);
+    });
+    return {events: events, extra: extra};
+  });
+};
+
 /* ===== 学年の解決（このファイル共通） =====
    URL の ?grade=xx を最優先し、次に localStorage。指定が無ければ空文字。
    ?lang= と同じ考え方で、共有されたリンクを開いた人にもその学年で見せる。
@@ -535,8 +588,20 @@ window.KomakiGrade = (function () {
   });
 
   // schedule.html: 各イベントに状態ラベル（完了/進行中/予定）を付与する。
-  // 上の処理で done クラスが確定した後に実行。data-i18n を付けるので
-  // 全言語・こどもモードへの翻訳・言語切替への追従は i18n.js が自動で行う。
+  // 上の処理で done クラスが確定した後に実行。
+  // 札は .event-date の中に入るが、.event-date には data-i18n があり、i18n.js が辞書を当てるたびに
+  // textContent ごと書き換えて札を消してしまう（2026-09-26 まで札がどの項目にも出ていなかった原因）。
+  // そこで、辞書が当たるたび（komaki:i18n-applied）に付け直す。
+  // 札の文言。辞書（event_status_*）と同じ値。main.js からは辞書を読めないのでここに持つ —
+  // 辞書を直したらここも直すこと。
+  var ST = {ja:['完了','進行中','予定'], kids:['おわった','じゅんびちゅう','予定'], en:['Done','In progress','Planned'], pt:['Concluído','Em andamento','Previsto'], vi:['Hoàn thành','Đang tiến hành','Dự kiến'], tl:['Tapos','Isinasagawa','Nakatakda'], es:['Hecho','En curso','Previsto'], zh:['已完成','进行中','计划'], id:['Selesai','Berlangsung','Rencana'], ko:['완료','진행 중','예정'], ne:['सम्पन्न','चलिरहेको','योजनामा'], tr:['Tamamlandı','Devam ediyor','Planlanan'], my:['ပြီးစီး','ဆောင်ရွက်ဆဲ','စီစဉ်ထား']};
+  window.KomakiEventStatus = function (state) {
+    var lang = window.KomakiLang();
+    var kids = lang === 'ja' && document.documentElement.classList.contains('kids-mode');
+    var row = kids ? ST.kids : (ST[lang] || ST.en);
+    return row[{done: 0, current: 1, upcoming: 2}[state]];
+  };
+  function badges() {
   document.querySelectorAll('.event-list .event-item').forEach(function (item) {
     var state = item.classList.contains('done') ? 'done'
       : item.classList.contains('current') ? 'current' : 'upcoming';
@@ -550,8 +615,116 @@ window.KomakiGrade = (function () {
     }
     badge.className = 'event-status ' + state;
     badge.setAttribute('data-i18n', 'event_status_' + state);
-    badge.textContent = fallback[state];
+    badge.textContent = window.KomakiEventStatus(state) || fallback[state];
   });
+  }
+  badges();
+  document.addEventListener('komaki:i18n-applied', badges);
+})();
+
+/* ===== TOKADAI SCHEDULE（桃花台を考える会の催しをスケジュールへ自動で足す） =====
+   2026-09-26 ユーザー指示。KomakiEvents() が events.json に無い同会の催し（extra）を返すので、
+   ・schedule.html：その年の「主要イベント」一覧に .event-item を data-start の順で差し込む
+   ・index.html：「現在の状況」の注記（status_digest）の「全 N 件」に件数を足す
+   手で書いた項目（events.json と schedule.html にあるもの）は extra に入らないので二重にならない。
+   文言は表示言語で組み立て直すので、辞書が差し替わるたび（komaki:i18n-applied）描き直す。 */
+(function () {
+  var hasList = !!document.querySelector('.event-list');
+  var digest = document.querySelector('[data-i18n-html="status_digest"]');
+  if (!hasList && !digest) return;
+  var LOCALE = {ja:'ja-JP', en:'en-US', pt:'pt-BR', vi:'vi-VN', tl:'fil-PH', es:'es-419', zh:'zh-Hans-CN', id:'id-ID', ko:'ko-KR', ne:'ne-NP', tr:'tr-TR', my:'my-MM'};
+  var BODY = {
+    ja:'桃花台を考える会（市民活動団体）が、市の東部まちづくり推進室との協働提案事業として開く催しです。詳しくは{a}地域の取組{/a}をご覧ください。',
+    en:'Run by 桃花台を考える会, a citizens’ group, as a joint proposal project with the city’s Eastern District Development Office. See {a}community efforts{/a}.',
+    pt:'Organizado pelo grupo de cidadãos 桃花台を考える会, em projeto colaborativo com o Escritório de Desenvolvimento da Zona Leste da prefeitura. Ver {a}iniciativas locais{/a}.',
+    vi:'Do nhóm công dân 桃花台を考える会 tổ chức, là dự án đề xuất hợp tác với Phòng Xúc tiến Phát triển khu vực phía Đông của thành phố. Xem {a}hoạt động của khu dân cư{/a}.',
+    tl:'Isinasagawa ng grupo ng mamamayang 桃花台を考える会 bilang collaborative proposal project kasama ang Eastern District Development Office ng lungsod. Tingnan ang {a}mga gawain sa komunidad{/a}.',
+    es:'Lo organiza el grupo ciudadano 桃花台を考える会 como proyecto de propuesta colaborativa con la Oficina de Desarrollo de la Zona Este de la ciudad. Véase {a}iniciativas vecinales{/a}.',
+    zh:'由市民活动团体“桃花台を考える会”作为与市东部城市建设推进室的协作提案事业举办。详情请见{a}地区行动{/a}。',
+    id:'Diselenggarakan kelompok warga 桃花台を考える会 sebagai proyek usulan kolaboratif bersama Kantor Pembangunan Wilayah Timur kota. Lihat {a}kegiatan warga{/a}.',
+    ko:'시민 활동 단체 「桃花台を考える会」가 시의 동부 마을만들기 추진실과의 협동 제안 사업으로 여는 행사입니다. 자세한 내용은 {a}지역의 활동{/a}을 참고해 주세요.',
+    ne:'नागरिक समूह “桃花台を考える会” ले नगरको पूर्वी क्षेत्र विकास कार्यालयसँगको सहकार्य प्रस्ताव परियोजनाका रूपमा गर्ने कार्यक्रम। हेर्नुहोस् {a}सामुदायिक गतिविधि{/a}।',
+    tr:'Vatandaş grubu “桃花台を考える会” tarafından, belediyenin Doğu Bölgesi Kalkınma Ofisi ile ortak öneri projesi olarak düzenlenir. Bkz. {a}bölgedeki girişimler{/a}.',
+    my:'ပြည်သူ့အဖွဲ့ “桃花台を考える会” က မြို့တော်၏ အရှေ့ပိုင်း မြို့ပြဖွံ့ဖြိုးရေးရုံးနှင့် ပူးပေါင်းအဆိုပြု စီမံကိန်းအဖြစ် ကျင်းပသည်။ {a}ဒေသတွင်း လှုပ်ရှားမှုများ{/a} ကြည့်ပါ။'
+  };
+  var MY_DIGITS = '၀၁၂၃၄၅၆၇၈၉';
+  var extra = null;
+  function esc(v) { return String(v == null ? '' : v).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function todayIso() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+
+  function listFor(year) {
+    var h = document.querySelector('[data-i18n="schedule_' + year + '_h3"]');
+    var el = h && h.nextElementSibling;
+    while (el && !(el.classList && el.classList.contains('event-list'))) el = el.nextElementSibling;
+    if (el) return el;
+    var all = document.querySelectorAll('.event-list');
+    return all.length ? all[all.length - 1] : null;
+  }
+
+  var gen = 0;
+  function renderSchedule() {
+    var my = ++gen;   // 描き直しが重なったら古いほうは捨てる（二重に差し込まない）
+    if (!hasList || !extra || !extra.length) return;
+    var lang = window.KomakiLang();
+    var today = todayIso();
+    window.KomakiHeadline.load().then(function (map) {
+      if (my !== gen) return;
+      document.querySelectorAll('.event-item[data-auto="tokadai"]').forEach(function (n) { n.remove(); });
+      extra.forEach(function (x) {
+        var t = x.src, key = x.key;
+        var list = listFor(key.slice(0, 4));
+        if (!list) return;
+        var p = key.split('-');
+        var d = new Date(+p[0], +p[1] - 1, +p[2]);
+        var date;
+        try { date = new Intl.DateTimeFormat(LOCALE[lang] || 'en-US', {year:'numeric', month:'long', day:'numeric', weekday:'short'}).format(d); } catch (e) { date = key; }
+        var state = key <= today ? 'done' : 'upcoming';
+        var badge = window.KomakiEventStatus(state);
+        var title = window.KomakiHeadline.text(map, t.title);
+        var place = t.place ? window.KomakiHeadline.text(map, t.place) : '';
+        var when = lang === 'ja' ? (t.date_note || '') : window.KomakiJaWhen(t.date_note || '', lang, {timeOnly: true});
+        var line = [place, when].filter(Boolean).join(lang === 'ja' || lang === 'zh' ? '　' : ' · ');
+        var body = (BODY[lang] || BODY.en).replace('{a}', '<a href="community.html#community-actions">').replace('{/a}', '</a>');
+        var tag = window.KomakiTokadaiEvents.TAG[lang] || window.KomakiTokadaiEvents.TAG.en;
+        var item = document.createElement('div');
+        item.className = 'event-item ' + state;
+        item.setAttribute('data-start', key);
+        item.setAttribute('data-event-date', key);
+        item.setAttribute('data-auto', 'tokadai');
+        item.innerHTML = '<div class="event-date">' + esc(date) +
+            '<span class="event-status ' + state + '" data-i18n="event_status_' + state + '">' + esc(badge) + '</span></div>' +
+          '<div class="event-desc"><strong>' + esc(title) + esc(tag) + '</strong><br>' +
+            (line ? esc(line) + '<br>' : '') + body + '</div>';
+        var before = null;
+        list.querySelectorAll('.event-item').forEach(function (it) {
+          if (!before && (it.getAttribute('data-start') || '') > key) before = it;
+        });
+        list.insertBefore(item, before);
+      });
+    });
+  }
+
+  function renderDigest() {
+    if (!digest || !extra || !extra.length) return;
+    if (digest.getAttribute('data-cd-done') === digest.innerHTML) return;   // すでに足してある
+    var done = false;
+    var html = digest.innerHTML.replace(/[0-9]+|[၀-၉]+/, function (m) {
+      done = true;
+      if (/^[0-9]+$/.test(m)) return String(+m + extra.length);
+      var n = +m.split('').map(function (c) { return MY_DIGITS.indexOf(c); }).join('') + extra.length;
+      return String(n).split('').map(function (c) { return MY_DIGITS[+c]; }).join('');
+    });
+    if (!done) return;
+    digest.innerHTML = html;
+    digest.setAttribute('data-cd-done', html);
+  }
+
+  window.KomakiEvents().then(function (r) {
+    extra = r.extra || [];
+    renderSchedule();
+    renderDigest();
+  }).catch(function () {});
+  document.addEventListener('komaki:i18n-applied', function () { renderSchedule(); renderDigest(); });
 })();
 
 /* ===== UPCOMING SCHEDULE EXPIRY ===== */
@@ -629,8 +802,7 @@ window.KomakiGrade = (function () {
     if (bar) bar.style.display = '';
   }
 
-  fetch('./data/events.json')
-    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+  window.KomakiEvents()
     .then(function (data) {
       var events = data.events || {};
       var t = new Date(); t.setHours(0, 0, 0, 0);
@@ -1209,8 +1381,7 @@ window.KomakiGrade = (function () {
   if (!calContainer) return;
 
   // カレンダーイベントは data/events.json で管理する（編集・自動更新の対象はそちら）
-  fetch('./data/events.json')
-    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  window.KomakiEvents()
     .then(function (data) { initCalendar(data.events || {}); })
     .catch(function () { calContainer.style.display = 'none'; });
 
@@ -1506,8 +1677,7 @@ window.KomakiGrade = (function () {
     icsBtn.addEventListener('click', function () {
       var lang = window.KomakiLang(), code = sel.value;
       icsBtn.disabled = true;
-      fetch('./data/events.json')
-        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      window.KomakiEvents()
         .then(function (data) {
           var text = buildIcs(data.events || {}, lang, code);
           var blob = new Blob([text], {type: 'text/calendar;charset=utf-8'});

@@ -268,7 +268,7 @@ The **地域の取組 section on `community.html`**, sitting directly below the 
 - **リンクは「出典」の1本だけ。** 2026-09-13 にユーザーが `.../toubumachidukuri/tobumachidukurisingikai/index.html` を許可したので、コーナーの出典だけそこへリンクする。**URL は `js/main.js` の TOBU ACTIONS ブロックに置く** — ゲートの検査対象（`js/*.js`）に入れて機械で守らせるため。JSON に持たせると検査をすり抜ける。配下の個別記事ページは今までどおり不可なので、項目ごとのリンクは張らない。見出し・会場名は日本語以外の表示で `data/headline_i18n.json` の訳に置き換え、「どのページ群から拾ったか」の分類名（協働提案事業など）は TOBU ACTIONS ブロックの `_from` で訳す。市がページ群を増やしたら `_from` に足すこと（足すまでは原文で出る）。
 - 監視対象は `TOBU_BASE` 配下。ディレクトリが入れ子なので `fetch_news.py` の watch は `<li class="dir">` も辿るが、**過去年度の記録まで含めると110ページ規模**あるため、ふだんは直下まで（`WATCH_DIR_MAX_DEPTH = 1`）。**日曜だけ `WATCH_DEEP=1` で全階層**を回る（`fetch-news.yml` の "Decide crawl depth" ステップ）。浅い巡回の日は下位ページのスナップショットを `keep_slugs` で守る — 守らないと毎日消えて毎週復活し、差分が無意味に膨らむ。
 - **深いところにある2つだけは毎日見る**（2026-09-13 ユーザー指示）：協働提案事業（これからの催しが載る）と東部地域トライアル活動（年度ごとの認定活動）。`WATCH_INDEXES` に直接足してあるが、配下に過去分が数十ページ積もっているので、浅い巡回の日は**末尾（＝新しいほう）だけ**を取る（`WATCH_TAIL_INDEXES` / `WATCH_TAIL_PAGES = 8` / `WATCH_TAIL_DIRS = 1`）。市のインデックスは古い順に並んでいるため末尾が最新。これで毎日の取得は東部まちづくり全体で 40ページ弱に収まる。
-- **桃花台を考える会の催しは「地域の取組」（住民側）に出す**（2026-09-26 ユーザー指示）。`build_tobu_actions.py` が催し（`kind: "event"`）に `organizer: "桃花台を考える会"` を付け、TOBU ACTIONS はそれを外し、COMMUNITY ACTIONS が `data/tobu_actions.json` からそれを拾って市民有志の札で並べる。判定は「本文に団体名がある」か「協働提案事業のページで題名が同会の続き物（`TOKADAI_SERIES`：桃花台音楽まつり・我が家の相続セミナー・桃花台を考える講演会・住まいの相談会）」— 第11回桃花台音楽まつりのページには団体名が無いため（第3〜10回はすべて同会との協働提案事業）。本文は「同会が市の東部まちづくり推進室との協働提案事業として開く催し」と書き、発信元は東部まちづくりの索引（掲載しているのが市のページのため）。**地域の取組に載る以上スケジュールにも入れる**：自動では入らないので、新しい催しが増えたら `schedule.html`・`events.json`・`status_digest` を手で足すこと。記録（ニュースの〈桃花台を考える会〉行）は市の記録として東部まちづくりの欄に残る。
+- **桃花台を考える会の催しは「地域の取組」（住民側）に出す**（2026-09-26 ユーザー指示）。`build_tobu_actions.py` が催し（`kind: "event"`）に `organizer: "桃花台を考える会"` を付け、TOBU ACTIONS はそれを外し、COMMUNITY ACTIONS が `data/tobu_actions.json` からそれを拾って市民有志の札で並べる。判定は「本文に団体名がある」か「協働提案事業のページで題名が同会の続き物（`TOKADAI_SERIES`：桃花台音楽まつり・我が家の相続セミナー・桃花台を考える講演会・住まいの相談会）」— 第11回桃花台音楽まつりのページには団体名が無いため（第3〜10回はすべて同会との協働提案事業）。本文は「同会が市の東部まちづくり推進室との協働提案事業として開く催し」と書き、発信元は東部まちづくりの索引（掲載しているのが市のページのため）。**スケジュールにも自動で載る**（同日ユーザー指示）。`js/main.js` の `KomakiTokadaiEvents()` がこれを events.json と同じ形（12言語ラベル＝見出しの訳＋「（市民有志）」、`day: true`）に直し、`KomakiEvents()` が events.json に足す。カレンダー・`.ics`・「あと◯日」はこれを読み、TOKADAI SCHEDULE ブロックが `schedule.html` のその年の一覧に `.event-item[data-auto="tokadai"]` を `data-start` 順に差し込み、`index.html` の `status_digest` の件数に足す。**events.json に同じ催し（ja ラベルが題名で始まるもの）があれば足さない**ので、手で丁寧に書いた項目（第11回桃花台音楽まつりの `sched_*44`）が優先される。年表に残すため、`TOKADAI_SINCE`（2026-09-26）以降の同会の催しは `build_tobu_actions.py` で60日の窓・件数上限にかけない。記録（ニュースの〈桃花台を考える会〉行）は市の記録として東部まちづくりの欄に残る。
 - `site-facts.json` ではこの接頭辞の `targets` を空にしてある。**一覧は自動で入れ替わるので、検知 Issue を見た人やAIが手でページを直す必要はない。**
 ## `data/site-updates.json` (this site's own changelog)
 
@@ -301,15 +301,15 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 | `bus.html#contact` | スクールバス。市の窓口と、**運行事業者**（あおい交通株式会社・本社と野口営業所）。`bus_contact_*` / `bus_c*_w` キー |
 | `council.html#contact` | 市議会。傍聴・請願・会議録は議会事務局 議事課、条例の中身は教育総務課。`council_contact_*` / `council_c*_w` キー |
 | `community.html#contact` | 地域協議会（支え合い協働推進課）。`comm_contact_*` キー |
-| `review.html#rev-contact` | このページで触れた事柄の市8部署・県5部署。`rev_c_*` / `rev_s9_*` キー |
-| `nationwide.html#contact` | 全国の統計と国の基準を所管する文科省3部署。`nw_c*_w` ほか |
+| `review.html#rev-contact` | このページで触れた事柄の市8部署・県5部署・国3部署（文部科学省。2026-09-26 追加）。`rev_c_*` / `rev_s9_*` キー |
+| `nationwide.html#contact` | 全国の統計と国の基準を所管する文科省4部署（中高一貫の高等学校振興課を 2026-09-26 に追加）。`nw_c*_w` ほか |
 
 トップページの「各ページへのリンク」の下に、この4か所への案内（`contacts_guide_*`）を置いてある。**番号そのものをトップに書かない** — 直す場所が増えると必ず食い違うため。
 
 - **部署名は日本語のまま**（表の「部署」欄に `data-i18n` を付けない）。窓口で見せたり電話で伝えたりするのは日本語の名称そのもので、訳すと用を成さないため。訳すのは「このページで触れた事柄」の欄とラベルだけ。年表の西暦欄と同じ考え方。ただし `about.html`・`faq.html`・`community.html` の `.contact-box` は従来どおり部署名も翻訳する（1部署だけなので窓口で示す用途より読みやすさを優先）。
 - **番号は HTML と辞書に直接書く。** `tel:` リンクの数字だけの形と、表示用のハイフン入りの形の2つが本文中にある。
 - **出典は「その部署の公表ページ」**。市・県・国のどのページから写したかは `data/contacts.json` の `source` にある。**このURLはサイトからはリンクしない**（許可外部リンクを増やせないため）。
-- **週1回、機械で見張る。** `.github/workflows/check-contacts.yml`（日曜 21:50 UTC＝月曜 6:50 JST）が `.github/scripts/check_contacts.py` を回し、17件の連絡先を公表ページと突き合わせる。**電話・FAX番号の変更は `--fix` がそのまま `*.html` と `data/i18n/*.json` を書き換えてコミットし、ページ別辞書も作り直す**（番号は翻訳されないので機械で直せる）。**部署名・所在地の変更は直さず Issue（☎️）で知らせるだけ** — 部署名は12言語＋こどもむけに訳してあるので、人（かAI）が文面を書き直す必要がある。
+- **週1回、機械で見張る。** `.github/workflows/check-contacts.yml`（日曜 21:50 UTC＝月曜 6:50 JST）が `.github/scripts/check_contacts.py` を回し、22件の連絡先を公表ページと突き合わせる。**電話・FAX番号の変更は `--fix` がそのまま `*.html` と `data/i18n/*.json` を書き換えてコミットし、ページ別辞書も作り直す**（番号は翻訳されないので機械で直せる）。**部署名・所在地の変更は直さず Issue（☎️）で知らせるだけ** — 部署名は12言語＋こどもむけに訳してあるので、人（かAI）が文面を書き直す必要がある。
 - 照合のしかたは `probe.kind`（`article_contact` / `kakari` / `pref_group` / `text`）で切り替える。市の記事ページの「この記事に関するお問い合わせ先」、係の一覧表、愛知県の「連絡先」欄、文科省の「お問合せ先」で構造が違うため。**係名はページ上部の目次にも出るので、`kakari` は「次の行が『電話番号』」のものだけを本文の表とみなす** — ここを緩めると隣の係の番号を読む。
 - **運行事業者のような民間の連絡先も同じ扱い。** 出所はその会社が自社サイトで公表しているページで、**サイトからリンクはしない**（許可外部リンクを増やせない）。`bus_contact_note` に「制度のことを会社にたずねても答えは出ない」と書いてあるのは、市の窓口へ行くべき問い合わせが会社に流れるのを防ぐため — 外さないこと。
 - **議員個人の氏名・連絡先は載せない**（[[個人名は書かない]]の方針）。`council.html` は職と部署だけを書く。**政党名・会派名・議員団名も書かない**（2026-09-14 ユーザー指示）— 一般質問も「だれが聞いたか」ではなく「何が問われ、市がどう答えたか」だけを書く。定例会の本文（質問・答弁の要約を含む）は「です・ます」でそろえる（同指示）。
@@ -397,7 +397,7 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 | `rev-ideas` | 💡 地区全体の子どもを増やすには（7提案。7番目は高校段階の話で、次の節へ送る） | `rev_p1`〜`rev_p7` |
 | `rev-highschool` | 🏫 高校段階をこの地区に置けるか（事実5＋提案3。2026-09-20 ユーザー指示で追加） | `rev_s10_*`、`rev_h1`〜`rev_h8` |
 | `rev-open` | 確認できなかったこと | `rev_o1`〜`rev_o12` |
-| `rev-contact` | 関係する部署の連絡先（市8・県5） | `rev_s9_*`、`rev_c_c1_w`〜`rev_c_c8_w`、`rev_c_p1_w`〜`rev_c_p5_w` |
+| `rev-contact` | 関係する部署の連絡先（市8・県5・国3） | `rev_s9_*`、`rev_c_c1_w`〜`rev_c_c8_w`、`rev_c_p1_w`〜`rev_c_p5_w`、`rev_c_nat_h`・`rev_c_n1_w`〜`rev_c_n3_w` |
 
 - **背景色は `section` / `section-alt` の交互**。節を挿入したら、以降のクラスをずらして交互を保つこと。
 - **年表（`rev_y*`）の年の欄は翻訳しない。** `<td>` に西暦の数字をそのまま書いてあり `data-i18n` を付けていない。数字は言語に依存せず、これで 15キー分の翻訳を節約している。出典の欄は `rev_src_sangyo` / `rev_src_tobu` / `rev_src_toshi` / `rev_src_komaki` の4つを使い回す。
@@ -508,6 +508,7 @@ Several things reflect the current date automatically — no manual edits needed
 | 「あと◯日」の札（`index.html` 今後のスケジュールの帯） | Every page load | NEXT COUNTDOWN — `data/events.json` の `"day": true` の予定のうちいちばん近いもの。同じ日付の `.upcoming-item` があればそこに札だけ付け、無ければ `#next-countdown` の行を出す。どの予定が大事かはサイトが選ばない（近い順に1日ぶん） |
 
 Notes:
+- **The 完了／進行中／予定 badges on `schedule.html` are re-attached on every `komaki:i18n-applied`.** They sit inside `.event-date`, which carries `data-i18n`, so every dictionary application wiped them — until 2026-09-26 no badge was visible anywhere. Their text comes from `window.KomakiEventStatus()`, which holds the same strings as `event_status_*` (main.js cannot read the dictionary); change both together.
 - "Last updated" is the site's **last deploy date**, not the editing date of that specific section (≈ most recent push). Do **not** hardcode a date into the heading text (e.g. the old `現在の状況（2026年5月時点）` was removed in favour of this auto-display).
 - When adding schedule/status items, set `data-event-date="YYYY-MM-DD"` (use the end date for multi-day events); permanently-past or in-progress items get a hand-written `done`/`current` class instead.
 - **Three date attributes, three jobs — do not conflate them.** `data-start` (**required on every** `.status-item` and `.event-item`) is the item's *start* date and is **only** used to keep the list in chronological order; `data-event-date` is the *end* date and drives the 完了 badge; `data-expires` hides an `.upcoming-item` once past. List the bar's near-term items individually, mirroring `schedule.html`/the calendar (text via `upcoming_dateN`/`upcoming_nameN` keys).

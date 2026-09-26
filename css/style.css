@@ -1565,12 +1565,12 @@ footer {
 .event-item.done { opacity: .6; border-left-color: #aab4c0; }
 .event-item.done .event-date { color: #aab4c0; }
 .event-item.current { border-left-color: var(--accent); background: var(--accent-light); }
-.event-item.upcoming { border-left-color: var(--green); background: #f0fff7; }
-.event-item.upcoming .event-date { color: var(--green); }
+.event-item.upcoming { border-left-color: var(--primary); background: #f0fff7; }
+.event-item.upcoming .event-date { color: var(--primary); }
 .event-status { display: inline-block; margin-top: .3rem; padding: .08rem .5rem; border-radius: 999px; font-size: .7rem; font-weight: 700; color: #fff; white-space: nowrap; }
 .event-status.done { background: #aab4c0; }
 .event-status.current { background: var(--accent); }
-.event-status.upcoming { background: var(--green); }
+.event-status.upcoming { background: var(--primary); }
 
 /* ===== CONTACT BOX ===== */
 .contact-box {

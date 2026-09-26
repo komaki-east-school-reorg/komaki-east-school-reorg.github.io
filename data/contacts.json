@@ -225,7 +225,8 @@
         "check_tel": false
       },
       "shown_in": [
-        "nationwide.html"
+        "nationwide.html",
+        "review.html"
       ]
     },
     {
@@ -239,7 +240,8 @@
         "check_tel": true
       },
       "shown_in": [
-        "nationwide.html"
+        "nationwide.html",
+        "review.html"
       ]
     },
     {
@@ -315,6 +317,21 @@
       },
       "shown_in": [
         "bus.html"
+      ]
+    },
+    {
+      "id": "mext-koukoushinkou",
+      "level": "mext",
+      "name": "初等中等教育局高等学校振興課",
+      "tel": "03-5253-4111",
+      "source": "https://www.mext.go.jp/a_menu/shotou/ikkan/2/1316125.htm",
+      "probe": {
+        "kind": "text",
+        "check_tel": false
+      },
+      "shown_in": [
+        "nationwide.html",
+        "review.html"
       ]
     }
   ]

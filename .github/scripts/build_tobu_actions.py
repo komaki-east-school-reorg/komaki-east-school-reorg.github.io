@@ -40,6 +40,9 @@
    ページのように団体名を書かず問い合わせ先も推進室になっている回があるため
    （第3回〜第10回はいずれも「協働提案事業 桃花台を考える会×東部まちづくり推進室」）。
    同会が新しい続き物を始めたら TOKADAI_SERIES に足すこと。
+   同会の催しは**スケジュールにも自動で載る**（js/main.js の KomakiTokadaiEvents）。
+   スケジュールは過去の予定も残す年表なので、TOKADAI_SINCE 以降の同会の催しは
+   直近2か月の窓・MAX_ITEMS の上限にかけず、終わったあとも残す。
 
 ■ 出力は生成物。手で編集しないこと（次回実行で上書きされる）。
 
@@ -70,6 +73,9 @@ SKIP_WORDS = ("更新日", "ページID", "詳しくはこちら", "お問い合
 
 TOKADAI_GROUP = "桃花台を考える会"
 TOKADAI_SERIES = ("桃花台音楽まつり", "我が家の相続セミナー", "桃花台を考える講演会", "住まいの相談会")
+# この日以降の同会の催しをスケジュールに自動で載せる（2026-09-26 ユーザー指示）。
+# それより前の回（第3〜10回の音楽まつりなど）を今になって年表に並べることはしない。
+TOKADAI_SINCE = "2026-09-26"
 
 # スラッグの一部 → 画面に出す「どこの話か」。市の書いた名称なので翻訳しない。
 SECTIONS = [
@@ -202,7 +208,9 @@ def main():
             if not it.get("date"):
                 continue
             # 直近2か月ぶんだけ。ただしこれからの催しは未来の日付なので必ず残る。
-            if it["date"] < cutoff:
+            # 桃花台を考える会の催しは、スケジュールの年表に残すため窓にかけない。
+            keep_group = it.get("organizer") and it["date"] >= TOKADAI_SINCE
+            if it["date"] < cutoff and not keep_group:
                 continue
             key = (it["title"], it["date"])
             if key in seen:
@@ -210,11 +218,14 @@ def main():
             seen.add(key)
             items.append(it)
 
+    # 桃花台を考える会の催しは上限の外で持つ（市の欄には出ないので画面の件数には効かない）
+    group = sorted([i for i in items if i.get("organizer")], key=lambda i: i["date"])
+    items = [i for i in items if not i.get("organizer")]
     upcoming = sorted([i for i in items if i["kind"] == "event" and i["date"] >= today_s],
                       key=lambda i: i["date"])
     recent = sorted([i for i in items if i not in upcoming],
                     key=lambda i: i["date"], reverse=True)
-    items = (upcoming + recent)[:MAX_ITEMS]
+    items = (upcoming + recent)[:MAX_ITEMS] + group
 
     data = {
         "description": ("東部まちづくりの取組（自動生成・手編集不可）。"
