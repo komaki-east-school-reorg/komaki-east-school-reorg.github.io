@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-09-26",
+      "type": "content",
+      "ja": "地域の取組に大草のバンブーインスタレーションと児童館2館を追加",
+      "en": "Okusa Bamboo Installation and two children’s centres added"
+    },
+    {
+      "date": "2026-09-26",
       "type": "feature",
       "ja": "トップに次の予定まで「あと◯日」を表示",
       "en": "Top page shows how many days until the next event"

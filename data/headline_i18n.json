@@ -676,6 +676,45 @@
       "ne": "धन्यवाद ओसिरो प्राथमिक विद्यालय",
       "tr": "Teşekkürler, Oshiro İlkokulu",
       "my": "ကျေးဇူးတင်ပါတယ် Oshiro မူလတန်းကျောင်း"
+    },
+    "バンブーインスタレーション in おおくさ": {
+      "en": "Bamboo Installation in Okusa",
+      "pt": "Bamboo Installation em Okusa",
+      "vi": "Bamboo Installation tại Okusa",
+      "tl": "Bamboo Installation sa Okusa",
+      "es": "Bamboo Installation en Okusa",
+      "zh": "大草竹子装置艺术展",
+      "id": "Bamboo Installation di Okusa",
+      "ko": "오쿠사 뱀부 인스털레이션",
+      "ne": "ओकुसा बाँस कला प्रदर्शनी",
+      "tr": "Okusa'da Bambu Enstalasyonu",
+      "my": "Okusa ဝါးအနုပညာပြပွဲ"
+    },
+    "篠岡児童館": {
+      "en": "Shinooka Children’s Centre",
+      "pt": "Centro Infantil de Shinooka",
+      "vi": "Nhà thiếu nhi Shinooka",
+      "tl": "Children’s Center ng Shinooka",
+      "es": "Centro Infantil de Shinooka",
+      "zh": "篠冈儿童馆",
+      "id": "Pusat Anak Shinooka",
+      "ko": "시노오카 아동관",
+      "ne": "सिनोओका बाल केन्द्र",
+      "tr": "Shinooka Çocuk Merkezi",
+      "my": "Shinooka ကလေးစင်တာ"
+    },
+    "大城児童館（わらべかん）": {
+      "en": "Oshiro Children’s Centre (Warabekan)",
+      "pt": "Centro Infantil de Oshiro (Warabekan)",
+      "vi": "Nhà thiếu nhi Oshiro (Warabekan)",
+      "tl": "Children’s Center ng Oshiro (Warabekan)",
+      "es": "Centro Infantil de Oshiro (Warabekan)",
+      "zh": "大城儿童馆（Warabekan）",
+      "id": "Pusat Anak Oshiro (Warabekan)",
+      "ko": "오시로 아동관(와라베칸)",
+      "ne": "ओसिरो बाल केन्द्र (वाराबेकान)",
+      "tr": "Oshiro Çocuk Merkezi (Warabekan)",
+      "my": "Oshiro ကလေးစင်တာ (Warabekan)"
     }
   }
 }

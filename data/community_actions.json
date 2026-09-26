@@ -1,5 +1,5 @@
 {
-  "note": "地域で行われている取組。手動管理。市の公式情報でも報道でもない。計画の内容・数値の根拠には決して使わない。badge は citizen（市民有志・既定）か council（地域協議会）。主催がどちらかで必ず使い分けること — 協議会の催しを市民有志と書くと主催者を偽ることになる。source_url は auto_gates.py の PERMITTED_INSTAGRAM に載っているアカウントのみ。ref_url（任意）は本文で触れた事実の出どころで、発信元とは別の行に出る — PERMITTED_SNS に載っている宛先のみ。紙の回覧板が出どころのときは source_url を空にし、source_label に発行元と『回覧板』と書く。",
+  "note": "地域で行われている取組。手動管理。市の公式情報でも報道でもない。計画の内容・数値の根拠には決して使わない。badge は citizen（市民有志・既定）か council（地域協議会）か facility（児童館などの公共施設。市民有志の札を付けると主催者を偽ることになる）。date の無い項目は日付の決まっていない常設の取組で、日付のある催しのあとに並び、回覧板の「これからの催し」には載らない。主催がどちらかで必ず使い分けること — 協議会の催しを市民有志と書くと主催者を偽ることになる。source_url は auto_gates.py の PERMITTED_INSTAGRAM に載っているアカウントのみ。ref_url（任意）は本文で触れた事実の出どころで、発信元とは別の行に出る — PERMITTED_SNS に載っている宛先のみ。紙の回覧板が出どころのときは source_url を空にし、source_label に発行元と『回覧板』と書く。",
   "actions": [
     {
       "school_ja": "ALL",
@@ -46,6 +46,41 @@
       "body_en": "A festival market in the gym and baseball on the school ground are planned, with food trucks. The group is recruiting committee members and volunteers for the day.",
       "source_label": "Instagram @arigato.ohshirosho",
       "source_url": "https://www.instagram.com/arigato.ohshirosho/"
+    },
+    {
+      "school_ja": "大草（桃花台東小学校区）",
+      "school_en": "Okusa (Tokadai-higashi Elementary School district)",
+      "title_ja": "バンブーインスタレーション in おおくさ",
+      "place_ja": "小牧市大草の田んぼ",
+      "place_en": "Rice paddies in Okusa, Komaki",
+      "body_ja": "大草の田んぼを会場にした田んぼアートです。主催者はInstagramで「田んぼは美術館だ！」と紹介しています。2026年の開催日はまだ確認できていません。日程が分かりしだい、スケジュールにも載せます。",
+      "body_en": "Rice-paddy art held in the paddies of Okusa. The organisers describe it on Instagram as “the rice paddy is an art museum!”. The 2026 dates have not yet been confirmed; they will be added to the schedule once known.",
+      "source_label": "Instagram @bamboo_installation_ookusa",
+      "source_url": "https://www.instagram.com/bamboo_installation_ookusa/"
+    },
+    {
+      "school_ja": "池之内（桃花台東小学校区）",
+      "school_en": "Ikenouchi (Tokadai-higashi Elementary School district)",
+      "badge": "facility",
+      "title_ja": "篠岡児童館",
+      "place_ja": "小牧市池之内3428番地2",
+      "place_en": "3428-2 Ikenouchi, Komaki",
+      "body_ja": "桃花台にある児童館で、赤ちゃんから高校生まで利用できます。広い館庭には遊具や砂場があり、ボール・なわとび・三輪車・竹馬などを借りられます。赤ちゃんサロンでは、生年月日や生まれたときの体重・身長を書き込む「成長タペストリー」をみんなで作れます。",
+      "body_en": "A children’s centre in Tokadai, open to everyone from babies to high-school students. Its large yard has play equipment and a sandpit, and balls, skipping ropes, tricycles and stilts can be borrowed. At the baby salon, families can make a “growth tapestry” together, recording the baby’s birth date, birth weight and length.",
+      "source_label": "Instagram @shinookajidoukan",
+      "source_url": "https://www.instagram.com/shinookajidoukan/"
+    },
+    {
+      "school_ja": "城山三丁目（桃花台東小学校区）",
+      "school_en": "Shiroyama 3-chome (Tokadai-higashi Elementary School district)",
+      "badge": "facility",
+      "title_ja": "大城児童館（わらべかん）",
+      "place_ja": "小牧市城山三丁目2-4",
+      "place_en": "3-2-4 Shiroyama, Komaki",
+      "body_ja": "城山三丁目にある児童館で、「わらべかん」の愛称で親しまれています。行事や子育て支援の案内は、館のInstagramで発信されています。",
+      "body_en": "A children’s centre in Shiroyama 3-chome, known by its nickname “Warabekan”. Its events and parenting-support programmes are announced on the centre’s Instagram.",
+      "source_label": "Instagram @warabekan",
+      "source_url": "https://www.instagram.com/warabekan/"
     }
   ]
 }

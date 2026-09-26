@@ -119,10 +119,12 @@
 
   Instagram（許可アカウントのみ。アカウントごとに出せるページが決まっている）：
   grep -rn "instagram\.com" *.html js/*.js data/i18n/*.json \
-    | grep -v -e "arigato\.ohshirosho" -e "tokadaidancefestival" -e "tokadai_komaki"
+    | grep -v -e "arigato\.ohshirosho" -e "tokadaidancefestival" -e "tokadai_komaki" \
+           -e "bamboo_installation_ookusa" -e "shinookajidoukan" -e "warabekan"
   → 出力があれば違反箇所。
     ・arigato.ohshirosho …「地域の取組」欄を描く community.html・index.html のみ
     ・tokadaidancefestival … 同じく community.html・index.html のみ
+    ・bamboo_installation_ookusa / shinookajidoukan / warabekan … 同じく community.html・index.html のみ
     ・tokadai_komaki    … フッタの「参考リンク（住民有志）」なので全ページ可
     auto_gates.py の PERMITTED_INSTAGRAM は「アカウント → 出してよいページ」の
     対応表で、値が None のものは全ページ可。

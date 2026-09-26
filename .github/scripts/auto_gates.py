@@ -72,6 +72,11 @@ PERMITTED_INSTAGRAM = {
     # TOKADAI DANCE FESTIVAL（主催：株式会社iサポート）。同じく「地域の取組」欄を描く
     # ページだけ（2026-09-24 ユーザー指示）
     "instagram.com/tokadaidancefestival": ("community.html", "index.html"),
+    # バンブーインスタレーション in おおくさ（住民の取組）と、市の児童館2館。
+    # 同じく「地域の取組」欄を描くページだけ（2026-09-26 ユーザー指示）
+    "instagram.com/bamboo_installation_ookusa": ("community.html", "index.html"),
+    "instagram.com/shinookajidoukan": ("community.html", "index.html"),
+    "instagram.com/warabekan": ("community.html", "index.html"),
     # 桃花台を考える会【新しいまちづくり】。フッタの「参考リンク（市民団体）」に
     # 全ページで出る（2026-09-22 ユーザー指示）
     "instagram.com/tokadai_komaki": None,

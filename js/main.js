@@ -2123,7 +2123,8 @@ window.KomakiGrade = (function () {
     return (c.textContent || '').replace(/\s+/g, ' ').trim();
   }
   function upcomingActionsBlock() {
-    var items = document.querySelectorAll('#community-actions-container .action-item');
+    // 日付の無い常設の取組（児童館など）は「これからの催し」ではないので載せない
+    var items = document.querySelectorAll('#community-actions-container .action-item:not([data-standing])');
     if (!items.length) return null;
     var lines = [];
     [].forEach.call(items, function (it) {
@@ -2966,6 +2967,7 @@ window.KomakiGrade = (function () {
     source: {ja:'発信元', en:'Posted by', pt:'Divulgado por', vi:'Nguồn tin', tl:'Mula sa', es:'Publicado por', zh:'发布方', id:'Diposting oleh', ko:'게시 주체', ne:'प्रकाशक', tr:'Paylaşan', my:'တင်သူ'},
     ref:    {ja:'参考', en:'Reference', pt:'Referência', vi:'Tham khảo', tl:'Sanggunian', es:'Referencia', zh:'参考', id:'Rujukan', ko:'참고', ne:'सन्दर्भ', tr:'Referans', my:'ကိုးကား'},
     citizen:{ja:'市民有志', en:'Citizen-run', pt:'Iniciativa de cidadãos', vi:'Do người dân tổ chức', tl:'Mamamayan ang nagpapatakbo', es:'Iniciativa ciudadana', zh:'市民自发', id:'Inisiatif warga', ko:'시민 주도', ne:'नागरिक पहल', tr:'Vatandaş girişimi', my:'ပြည်သူ့ဦးဆောင်'},
+    facility:{ja:'児童館', en:'Children\'s centre', pt:'Centro infantil', vi:'Nhà thiếu nhi', tl:'Children\'s center', es:'Centro infantil', zh:'儿童馆', id:'Pusat anak', ko:'아동관', ne:'बाल केन्द्र', tr:'Çocuk merkezi', my:'ကလေးစင်တာ'},
     council:{ja:'地域協議会', en:'Community council', pt:'Conselho comunitário', vi:'Hội đồng cộng đồng', tl:'Konseho ng komunidad', es:'Consejo comunitario', zh:'地区协议会', id:'Dewan komunitas', ko:'지역 협의회', ne:'सामुदायिक परिषद्', tr:'Bölge konseyi', my:'ဒေသဆိုင်ရာ ကောင်စီ'},
     empty:  {ja:'現在、掲載されている取組はありません。', en:'Nothing is listed at the moment.', pt:'No momento não há nada publicado.', vi:'Hiện chưa có nội dung nào.', tl:'Wala pang nakalista sa ngayon.', es:'Por ahora no hay nada publicado.', zh:'目前没有刊登的活动。', id:'Saat ini belum ada yang ditampilkan.', ko:'현재 게시된 활동이 없습니다.', ne:'हाल कुनै गतिविधि राखिएको छैन।', tr:'Şu anda listelenen bir şey yok.', my:'လက်ရှိတွင် ဖော်ပြထားသည် မရှိပါ။'},
     error:  {ja:'地域の取組を取得できませんでした。', en:'Could not load community efforts.', pt:'Não foi possível carregar.', vi:'Không tải được nội dung.', tl:'Hindi ma-load ang listahan.', es:'No se pudo cargar.', zh:'无法加载地区行动。', id:'Gagal memuat.', ko:'지역의 활동을 가져오지 못했습니다.', ne:'सामुदायिक गतिविधि लोड गर्न सकिएन।', tr:'Yüklenemedi.', my:'မဖွင့်နိုင်ပါ။'}
@@ -2991,7 +2993,11 @@ window.KomakiGrade = (function () {
     .then(function (data) {
       var items = (data.actions || []).filter(notPast);
       if (!items.length) { container.innerHTML = '<p class="school-empty">' + at('empty') + '</p>'; return; }
-      items.sort(function (a, b) { return (a.date || '').localeCompare(b.date || ''); });
+      // 日付のある催しを日付順に先へ、日付の無い常設の取組（児童館など）はそのあとに元の順で
+      items.sort(function (a, b) {
+        if (!a.date !== !b.date) return a.date ? -1 : 1;
+        return (a.date || '').localeCompare(b.date || '');
+      });
 
       container.innerHTML = '<ul class="action-list">' + items.map(function (it) {
         // 取組名は data/headline_i18n.json の訳に、学校名は school_<言語>（無ければ英語）に置き換える
@@ -3011,10 +3017,10 @@ window.KomakiGrade = (function () {
           ? '<div class="action-source">' + at('ref') + '：<a href="' + esc(it.ref_url) + '" target="_blank" rel="noopener">' +
             esc(pick(it, 'ref_label') || it.ref_url) + '</a></div>'
           : '';
-        return '<li class="action-item">' +
+        return '<li class="action-item"' + (it.date ? '' : ' data-standing="1"') + '>' +
                  '<div class="action-head">' +
                    '<span class="action-title" data-hl="' + esc(it.title_ja || '') + '">' + esc(it.title_ja || '') + '</span>' +
-                   '<span class="action-badge">' + at(it.badge === 'council' ? 'council' : 'citizen') + '</span>' +
+                   '<span class="action-badge">' + at(it.badge === 'council' || it.badge === 'facility' ? it.badge : 'citizen') + '</span>' +
                  '</div>' +
                  '<div class="action-school">' + esc(pick(it, 'school')) + '</div>' +
                  rows +
