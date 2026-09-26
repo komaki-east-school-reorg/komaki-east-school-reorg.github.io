@@ -32,6 +32,15 @@
    そこへリンクする（リンクの文字列は js/main.js が持つ＝機械検査の対象になる）。
    個々の記事ページは許可されていないので、項目ごとのリンクは持たない。
 
+■ 桃花台を考える会の催しには organizer を付ける（2026-09-26 ユーザー指示）
+   市民活動団体「桃花台を考える会」が開く催しは、市の欄（東部まちづくりの動き）ではなく
+   住民側の欄（地域の取組）に出す。振り分けは js/main.js が organizer を見て行う。
+   判定は ①ページ本文に団体名がある ②協働提案事業のページで、題名が同会の続き物
+   （TOKADAI_SERIES）に当たる、のどちらか。②が要るのは、第11回桃花台音楽まつりの
+   ページのように団体名を書かず問い合わせ先も推進室になっている回があるため
+   （第3回〜第10回はいずれも「協働提案事業 桃花台を考える会×東部まちづくり推進室」）。
+   同会が新しい続き物を始めたら TOKADAI_SERIES に足すこと。
+
 ■ 出力は生成物。手で編集しないこと（次回実行で上書きされる）。
 
 終了コード: 0 = 生成した（変化の有無は問わない）, 1 = 致命的エラー
@@ -58,6 +67,9 @@ REIWA_RE = re.compile(r"令和(\d{1,2})年(\d{1,2})月(\d{1,2})日")
 UPDATED_RE = re.compile(r"^更新日：\s*(\d{4})年(\d{1,2})月(\d{1,2})日")
 # 見出しではない行（ページの meta 行や本文の途中）を落とす
 SKIP_WORDS = ("更新日", "ページID", "詳しくはこちら", "お問い合わせ", "電話番号")
+
+TOKADAI_GROUP = "桃花台を考える会"
+TOKADAI_SERIES = ("桃花台音楽まつり", "我が家の相続セミナー", "桃花台を考える講演会", "住まいの相談会")
 
 # スラッグの一部 → 画面に出す「どこの話か」。市の書いた名称なので翻訳しない。
 SECTIONS = [
@@ -120,6 +132,9 @@ def parse_page(path):
     when = field_value(lines, "開催日・期間")
     if when is not None:
         m = REIWA_RE.search(when)
+        by_group = TOKADAI_GROUP in "\n".join(lines) or (
+            "kyoudouteianjigyou" in os.path.basename(path)
+            and any(s in page_title for s in TOKADAI_SERIES))
         out.append({
             "kind": "event",
             "title": page_title,
@@ -128,6 +143,8 @@ def parse_page(path):
             "place": field_value(lines, "開催場所・会場") or "",
             "from": section_of(path, "東部まちづくり"),
         })
+        if by_group:
+            out[-1]["organizer"] = TOKADAI_GROUP
         return out
 
     # 2. 記録（本文に並ぶ〈見出し（令和○年○月○日）〉）

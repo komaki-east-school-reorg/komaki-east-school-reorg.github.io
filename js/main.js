@@ -2940,6 +2940,10 @@ window.KomakiGrade = (function () {
     });
 })();
 
+/* 東部まちづくりの許可された索引ページ（出典リンク）。COMMUNITY ACTIONS と TOBU ACTIONS の両方が使う。
+   増やすときは CLAUDE.md・CONTRIBUTING.txt 規則1・README.md・auto_gates.py の PERMITTED_LINKS を同時に直すこと。 */
+window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/index.html';
+
 /* ===== COMMUNITY ACTIONS（community.html「地域の取組」）=====
    地域で行われている取組。data/community_actions.json は手動管理。
 
@@ -2969,6 +2973,19 @@ window.KomakiGrade = (function () {
     citizen:{ja:'市民有志', en:'Citizen-run', pt:'Iniciativa de cidadãos', vi:'Do người dân tổ chức', tl:'Mamamayan ang nagpapatakbo', es:'Iniciativa ciudadana', zh:'市民自发', id:'Inisiatif warga', ko:'시민 주도', ne:'नागरिक पहल', tr:'Vatandaş girişimi', my:'ပြည်သူ့ဦးဆောင်'},
     facility:{ja:'児童館', en:'Children\'s centre', pt:'Centro infantil', vi:'Nhà thiếu nhi', tl:'Children\'s center', es:'Centro infantil', zh:'儿童馆', id:'Pusat anak', ko:'아동관', ne:'बाल केन्द्र', tr:'Çocuk merkezi', my:'ကလေးစင်တာ'},
     council:{ja:'地域協議会', en:'Community council', pt:'Conselho comunitário', vi:'Hội đồng cộng đồng', tl:'Konseho ng komunidad', es:'Consejo comunitario', zh:'地区协议会', id:'Dewan komunitas', ko:'지역 협의회', ne:'सामुदायिक परिषद्', tr:'Bölge konseyi', my:'ဒေသဆိုင်ရာ ကောင်စီ'},
+    tokadai_body:{ja:'桃花台を考える会（市民活動団体）が、市の東部まちづくり推進室との協働提案事業として開く催しです。',
+             en:'Run by “桃花台を考える会”, a citizens’ group, as a joint proposal project with the city’s Eastern District Development Office.',
+             pt:'Organizado pelo “桃花台を考える会”, um grupo de cidadãos, como projeto de proposta colaborativa com o Escritório de Desenvolvimento da Zona Leste da prefeitura.',
+             vi:'Do nhóm công dân “桃花台を考える会” tổ chức, trong khuôn khổ dự án đề xuất hợp tác với Phòng Xúc tiến Phát triển khu vực phía Đông của thành phố.',
+             tl:'Isinasagawa ng “桃花台を考える会”, isang grupo ng mamamayan, bilang collaborative proposal project kasama ang Eastern District Development Office ng lungsod.',
+             es:'Lo organiza “桃花台を考える会”, un grupo ciudadano, como proyecto de propuesta colaborativa con la Oficina de Desarrollo de la Zona Este de la ciudad.',
+             zh:'由市民活动团体“桃花台を考える会”作为与市东部城市建设推进室的协作提案事业举办的活动。',
+             id:'Diselenggarakan oleh “桃花台を考える会”, kelompok warga, sebagai proyek usulan kolaboratif bersama Kantor Pembangunan Wilayah Timur kota.',
+             ko:'시민 활동 단체 「桃花台を考える会」가 시의 동부 마을만들기 추진실과의 협동 제안 사업으로 여는 행사입니다.',
+             ne:'नागरिक समूह “桃花台を考える会” ले नगरको पूर्वी क्षेत्र विकास कार्यालयसँगको सहकार्य प्रस्ताव परियोजनाका रूपमा गर्ने कार्यक्रम।',
+             tr:'Bir vatandaş grubu olan “桃花台を考える会” tarafından, belediyenin Doğu Bölgesi Kalkınma Ofisi ile ortak öneri projesi olarak düzenlenir.',
+             my:'ပြည်သူ့အဖွဲ့ “桃花台を考える会” က မြို့တော်၏ အရှေ့ပိုင်း မြို့ပြဖွံ့ဖြိုးရေးရုံးနှင့် ပူးပေါင်းအဆိုပြု စီမံကိန်းအဖြစ် ကျင်းပသည့် ပွဲ။'},
+    tokadai_src:{ja:'小牧市 東部まちづくり推進室（協働提案事業）', en:'Komaki City Eastern District Development Office (joint proposal project)'},
     empty:  {ja:'現在、掲載されている取組はありません。', en:'Nothing is listed at the moment.', pt:'No momento não há nada publicado.', vi:'Hiện chưa có nội dung nào.', tl:'Wala pang nakalista sa ngayon.', es:'Por ahora no hay nada publicado.', zh:'目前没有刊登的活动。', id:'Saat ini belum ada yang ditampilkan.', ko:'현재 게시된 활동이 없습니다.', ne:'हाल कुनै गतिविधि राखिएको छैन।', tr:'Şu anda listelenen bir şey yok.', my:'လက်ရှိတွင် ဖော်ပြထားသည် မရှိပါ။'},
     error:  {ja:'地域の取組を取得できませんでした。', en:'Could not load community efforts.', pt:'Não foi possível carregar.', vi:'Không tải được nội dung.', tl:'Hindi ma-load ang listahan.', es:'No se pudo cargar.', zh:'无法加载地区行动。', id:'Gagal memuat.', ko:'지역의 활동을 가져오지 못했습니다.', ne:'सामुदायिक गतिविधि लोड गर्न सकिएन।', tr:'Yüklenemedi.', my:'မဖွင့်နိုင်ပါ။'}
   };
@@ -2988,8 +3005,28 @@ window.KomakiGrade = (function () {
     return it.date >= today;
   }
 
+  /* 桃花台を考える会の催し（2026-09-26 ユーザー指示）。data/tobu_actions.json（自動生成）のうち
+     organizer 付きの催しをここに足す。市の欄からは TOBU ACTIONS が外している。
+     発信元は市の東部まちづくりの索引（その催しを載せているのは市のページのため）。 */
+  function fromTobu(t) {
+    var it = {title_ja: t.title, date: t.date, badge: 'citizen', _placeHl: true,
+              place_ja: t.place || '', date_note_ja: t.date_note || '',
+              source_label: pick({x_ja: _at.tokadai_src.ja, x_en: _at.tokadai_src.en}, 'x'),
+              source_url: window.KomakiTobuSourceUrl};
+    it['body_' + _al] = at('tokadai_body');
+    if (_al !== 'ja' && t.date_note) it['date_note_' + _al] = window.KomakiJaWhen(t.date_note, _al);
+    return it;
+  }
+  var tobuP = fetch('./data/tobu_actions.json')
+    .then(function (r) { return r.ok ? r.json() : {items: []}; })
+    .then(function (d) {
+      return (d.items || []).filter(function (t) { return t.organizer && t.kind === 'event'; }).map(fromTobu);
+    })
+    .catch(function () { return []; });
+
   fetch('./data/community_actions.json')
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) { return tobuP.then(function (extra) { return {actions: (data.actions || []).concat(extra)}; }); })
     .then(function (data) {
       var items = (data.actions || []).filter(notPast);
       if (!items.length) { container.innerHTML = '<p class="school-empty">' + at('empty') + '</p>'; return; }
@@ -3005,7 +3042,9 @@ window.KomakiGrade = (function () {
         var when = pick(it, 'date_note');
         var place = pick(it, 'place');
         if (when)  rows += '<div class="action-row"><span class="action-label">' + at('when') + '</span>' + esc(when) + '</div>';
-        if (place) rows += '<div class="action-row"><span class="action-label">' + at('place') + '</span>' + esc(place) + '</div>';
+        // 自動取得の会場名（桃花台を考える会の催し）は見出しと同じく訳に置き換える
+        if (place) rows += '<div class="action-row"><span class="action-label">' + at('place') + '</span>' +
+                           (it._placeHl ? '<span data-hl="' + esc(place) + '">' + esc(place) + '</span>' : esc(place)) + '</div>';
         var body = pick(it, 'body');
         var src = it.source_url
           ? '<a href="' + esc(it.source_url) + '" target="_blank" rel="noopener">' + esc(it.source_label || it.source_url) + '</a>'
@@ -3065,9 +3104,7 @@ window.KomakiGrade = (function () {
   var container = document.getElementById('tobu-actions-container');
   if (!container) return;
 
-  // 許可された索引ページ（出典リンク）。増やすときは CLAUDE.md・CONTRIBUTING.txt 規則1・
-  // README.md・auto_gates.py の PERMITTED_LINKS を同時に直すこと。
-  var SOURCE_URL = 'https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/index.html';
+  var SOURCE_URL = window.KomakiTobuSourceUrl;
 
   var _tl = window.KomakiLang();
   var _tt = {
@@ -3149,7 +3186,8 @@ window.KomakiGrade = (function () {
   fetch('./data/tobu_actions.json')
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(function (data) {
-      var all = data.items || [];
+      // 桃花台を考える会の催し（organizer 付き）は住民側の「地域の取組」に出すので、ここでは外す
+      var all = (data.items || []).filter(function (it) { return !it.organizer; });
       var today = todayIso();
       var up = all.filter(function (it) { return it.kind === 'event' && (it.date || '') >= today; }).slice(0, MAX_UPCOMING);
       var rest = all.filter(function (it) { return up.indexOf(it) === -1; }).slice(0, MAX_RECENT);
