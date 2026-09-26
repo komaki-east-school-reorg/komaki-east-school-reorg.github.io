@@ -221,7 +221,7 @@ nav ul {
 }
 
 /* ===== KIDS MODE TOGGLE ===== */
-.kids-toggle {
+.kids-toggle, .orig-toggle {
   display: inline-flex;
   align-items: center;
   gap: .35rem;
@@ -238,8 +238,8 @@ nav ul {
   white-space: nowrap;
   transition: color .15s;
 }
-.kids-toggle:hover { color: #fff; }
-.kids-toggle--active { color: #fff; }
+.kids-toggle:hover, .orig-toggle:hover { color: #fff; }
+.kids-toggle--active, .orig-toggle--active { color: #fff; }
 .kids-switch {
   display: inline-block;
   width: 28px;
@@ -262,26 +262,15 @@ nav ul {
   transition: transform .2s;
   box-shadow: 0 1px 2px rgba(0,0,0,.25);
 }
-.kids-toggle--active .kids-switch { background: rgba(72,200,80,.85); }
-
-/* 原文（日本語）併記のトグル。こどもむけと同じ形（切替スイッチ付き）にそろえる。
-   日本語表示では i18n.js が display:none にする。 */
-.orig-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: .35rem;
-  background: none;
-  border: none;
-  color: rgba(255,255,255,.85);
-  font-size: .72rem;
-  font-weight: 700;
-  padding: .15rem .25rem;
-  cursor: pointer;
-  font-family: var(--heading-font);
-  letter-spacing: .03em;
-}
-.orig-toggle:hover, .orig-toggle--active { color: #fff; }
+.kids-toggle--active .kids-switch,
 .orig-toggle--active .kids-switch { background: rgba(72,200,80,.85); }
+
+/* 原文（日本語）併記のトグル（.orig-toggle）は、こどもむけと同じ見た目・同じ置き方にする。
+   上の .kids-toggle の規則はすべて .orig-toggle にも当ててあり、ここに独自の見た目は置かない。
+   2つは同時には出ない（日本語表示では原文トグルを、外国語表示ではこどもむけを i18n.js が隠す）ので、
+   ヘッダの同じ位置に同じ形のスイッチが出ることになる。
+   ラベルは内側の <span data-i18n="orig_toggle"> に入れてある — ボタン自体に data-i18n を
+   付けると textContent ごと差し替わってスイッチの <span> が消える。 */
 
 /* 原文そのもの。訳の下に、細い縦線付きの一段小さい字で置く。
    ⚠️ display:none にしないこと — READ ALOUD の SKIP は .orig-ja を名指ししており、
@@ -302,7 +291,8 @@ nav ul {
   border-left-color: rgba(255,255,255,.35);
 }
 
-.kids-toggle--active .kids-switch::after { transform: translateX(13px); }
+.kids-toggle--active .kids-switch::after,
+.orig-toggle--active .kids-switch::after { transform: translateX(13px); }
 .kids-mode .section-title small { display: none; }
 .lang-select {
   background: rgba(255,255,255,.12);
@@ -1622,7 +1612,7 @@ footer {
   .lang-switcher > * { width: 7.4rem; }
   .lang-select { width: auto; flex: 1; min-width: 0; order: 1; }
   .lang-pick { justify-content: space-between; order: 1; }
-  .kids-toggle { font-size: .68rem; padding: .1rem .2rem; order: 2; justify-content: space-between; }
+  .kids-toggle, .orig-toggle { font-size: .68rem; padding: .1rem .2rem; order: 2; justify-content: space-between; }
   header { position: sticky; }
   .site-title { font-size: .88rem; white-space: normal; flex-shrink: 1; min-width: 0; margin-top: 0; }
   .site-title span { font-size: .65rem; }
