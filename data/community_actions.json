@@ -2,8 +2,8 @@
   "note": "地域で行われている取組。手動管理。市の公式情報でも報道でもない。計画の内容・数値の根拠には決して使わない。badge は citizen（市民有志・既定）か council（地域協議会）。主催がどちらかで必ず使い分けること — 協議会の催しを市民有志と書くと主催者を偽ることになる。source_url は auto_gates.py の PERMITTED_INSTAGRAM に載っているアカウントのみ。ref_url（任意）は本文で触れた事実の出どころで、発信元とは別の行に出る — PERMITTED_SNS に載っている宛先のみ。紙の回覧板が出どころのときは source_url を空にし、source_label に発行元と『回覧板』と書く。",
   "actions": [
     {
-      "school_ja": "光ヶ丘小学校区",
-      "school_en": "Hikarigaoka elementary school district",
+      "school_ja": "ALL",
+      "school_en": "ALL",
       "title_ja": "TOKADAI DANCE FESTIVAL",
       "date": "2026-10-12",
       "date_note_ja": "2026年10月12日（月・祝）11時〜19時",
