@@ -51,11 +51,12 @@
 ■ 別枠：文部科学省の資料ページ（mext.go.jp）
   nationwide.html（全国の動き）でのみ使用する。全国の統計や国が示す基準は
   市の公式情報では賄えないため、国の一次資料を出典にする。
-  ・許可するのは次の4URLのみ（いずれも索引・通知ページ。PDF直リンクは不可）：
+  ・許可するのは次の5URLのみ（いずれも索引・通知ページ。PDF直リンクは不可）：
       /a_menu/shotou/tekisei/index.htm            適正規模・適正配置（索引）
       /a_menu/shotou/tekisei/1413885_00007.htm    手引の改訂等について（通知）
       /a_menu/shotou/zyosei/yoyuu_00002.htm       廃校施設活用状況実態調査
       /b_menu/toukei/chousa01/kihon/1267995.htm   学校基本調査
+      /a_menu/shotou/ikkan/2/1316125.htm          中高一貫教育の概要と設置状況
   ・翻訳辞書（data/i18n/*.json）にも同じURLが入る。ここも検査対象。
   ・auto_gates.py の PERMITTED_MEXT_LINKS / MEXT_PAGES が機械で守っている。
   ・国の資料は全国の話の根拠であって、小牧市の計画に関する事実の根拠には
@@ -114,7 +115,8 @@
   文科省URL（nationwide.html と翻訳辞書のみ許可）：
   grep -rn "mext\.go\.jp" *.html js/*.js data/i18n/*.json \
     | grep -v -e "tekisei/index\.htm" -e "tekisei/1413885_00007\.htm" \
-             -e "zyosei/yoyuu_00002\.htm" -e "kihon/1267995\.htm"
+             -e "zyosei/yoyuu_00002\.htm" -e "kihon/1267995\.htm" \
+             -e "ikkan/2/1316125\.htm"
   → 出力があれば違反箇所。nationwide.html 以外のページに出た場合も違反。
 
   Instagram（許可アカウントのみ。アカウントごとに出せるページが決まっている）：

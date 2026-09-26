@@ -56,6 +56,7 @@ PERMITTED_MEXT_LINKS = (
     "shotou/tekisei/1413885_00007.htm",  # 手引の改訂等について（通知・令和8年8月5日）
     "shotou/zyosei/yoyuu_00002.htm",     # 廃校施設活用状況実態調査
     "kihon/1267995.htm",                 # 学校基本調査
+    "shotou/ikkan/2/1316125.htm",        # 中高一貫教育の概要と設置状況（2026-09-26）
 )
 MEXT_PAGES = ("nationwide.html",)
 # 閉校を惜しむ市民有志の Instagram アカウント。「地域の取組」欄（community.html と、
