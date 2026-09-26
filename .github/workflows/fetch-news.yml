@@ -305,6 +305,8 @@ jobs:
             5. サイトのデータを更新すべきか判断し、必要な場合のみ次のファイルだけを編集する:
                - data/events.json … カレンダー。日付キー YYYY-MM-DD、10言語（ja,en,pt,vi,tl,es,zh,id,tr,my）すべて必須
                  （1日に複数の予定があるときは、その日付の値をオブジェクトの配列にする）
+                 （その日に行われると決まっている予定だけ "day": true を足す。月単位・期間の予定には付けない。
+                   トップの「次の予定まであと◯日」はこの印の予定だけを数える）
                - data/i18n/*.json … 最低 ja と en。既存キーの命名規則に従う
                - index.html … 「今後のスケジュール」バーの .upcoming-item（data-expires="YYYY-MM-DD" と upcoming_dateN/upcoming_nameN キー）
                - schedule.html … 主要イベント一覧の項目（data-event-date="YYYY-MM-DD"、複数日イベントは終了日）

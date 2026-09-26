@@ -4,7 +4,7 @@
    i18n.js が localStorage を書き終える前にこのファイルの各ブロック
    （公式ニュース・学校HP更新・更新履歴・カレンダー）が正しい言語で描けるようにするため。 */
 window.KomakiLang = (function () {
-  const LANGS = ['ja', 'en', 'pt', 'vi', 'tl', 'es', 'zh', 'id', 'tr', 'my'];
+  const LANGS = ['ja', 'en', 'pt', 'vi', 'tl', 'es', 'zh', 'id', 'ko', 'ne', 'tr', 'my'];
   return function getLang() {
     try {
       const q = new URLSearchParams(location.search).get('lang');
@@ -570,6 +570,85 @@ window.KomakiGrade = (function () {
     }
   });
   if (visible === 0) bar.style.display = 'none';
+})();
+
+/* ===== NEXT COUNTDOWN（index.html「今後のスケジュール」の帯） =====
+   いちばん近い予定までの日数を「あと◯日」の札で出す。
+   ・数えるのは data/events.json のうち "day": true の予定だけ。月単位・期間の予定は
+     月末の日付で置いてあるので、印の無いものを数えると実在しない日を指してしまう。
+   ・どれが大事な予定かはサイトが選ばない。日付が近い順にいちばん近いものを出すだけ
+     （学年ビューで予定を選り分けないのと同じ理由）。同じ日に複数あれば全部並べる。
+   ・同じ日付の .upcoming-item が帯にすでにあれば、行を増やさずその項目に札だけ付ける。
+   ・文言は #countdown-strings の隠し要素（data-i18n）から読むので、辞書が差し替わる
+     たびに（komaki:i18n-applied）描き直す。 */
+(function () {
+  var row = document.getElementById('next-countdown');
+  var strings = document.getElementById('countdown-strings');
+  if (!row || !strings) return;
+  var bar = row.closest('.upcoming-bar');
+  var LOCALE_MAP = { ja: 'ja-JP', en: 'en-US', pt: 'pt-BR', vi: 'vi-VN', tl: 'fil-PH', es: 'es-419', zh: 'zh-Hans-CN', id: 'id-ID', ko: 'ko-KR', ne: 'ne-NP', tr: 'tr-TR', my: 'my-MM' };
+  var next = null;   // { key: 'YYYY-MM-DD', days: n, list: [ev, …] }
+
+  function str(k) {
+    var n = strings.querySelector('[data-ck="' + k + '"]');
+    return n ? n.textContent : '';
+  }
+  function chipText(days) {
+    if (days === 0) return str('today');
+    if (days === 1) return str('tomorrow');
+    return str('days').replace('{n}', String(days));
+  }
+
+  function render() {
+    document.querySelectorAll('.upcoming-countdown--on-item').forEach(function (n) { n.remove(); });
+    row.hidden = true;
+    if (!next) return;
+    var lang = window.KomakiLang();
+    var chip = chipText(next.days);
+    var host = next.list.length === 1 &&
+      bar.querySelector('.upcoming-item[data-expires="' + next.key + '"]:not(.upcoming-next)');
+    if (host) {
+      var c = document.createElement('span');
+      c.className = 'upcoming-countdown upcoming-countdown--on-item';
+      c.textContent = chip;
+      host.insertBefore(c, host.firstChild);
+    } else {
+      var p = next.key.split('-');
+      var d = new Date(+p[0], +p[1] - 1, +p[2]);
+      var date = '';
+      try {
+        date = new Intl.DateTimeFormat(LOCALE_MAP[lang] || 'en-US', { month: 'short', day: 'numeric', weekday: 'short' }).format(d);
+      } catch (e) { date = next.key; }
+      row.querySelector('.upcoming-countdown').textContent = chip;
+      row.querySelector('.upcoming-date').textContent = date;
+      row.querySelector('.upcoming-name').textContent = next.list.map(function (ev) {
+        return ev[lang] || ev.en || ev.ja || '';
+      }).filter(Boolean).join(' ／ ');
+      row.hidden = false;
+    }
+    if (bar) bar.style.display = '';
+  }
+
+  fetch('./data/events.json')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) {
+      var events = data.events || {};
+      var t = new Date(); t.setHours(0, 0, 0, 0);
+      Object.keys(events).sort().some(function (key) {
+        var p = key.split('-');
+        var d = new Date(+p[0], +p[1] - 1, +p[2]);
+        var days = Math.round((d - t) / 86400000);
+        if (days < 0) return false;
+        var list = (Array.isArray(events[key]) ? events[key] : [events[key]])
+          .filter(function (ev) { return ev && ev.day === true; });
+        if (!list.length) return false;
+        next = { key: key, days: days, list: list };
+        return true;
+      });
+      render();
+    })
+    .catch(function () {});
+  document.addEventListener('komaki:i18n-applied', render);
 })();
 
 /* ===== SECTION LAST UPDATED (auto) ===== */

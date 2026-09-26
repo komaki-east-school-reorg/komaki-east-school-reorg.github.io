@@ -180,15 +180,20 @@ def main():
                     fail(f"events.json: 不正な日付キー: {date}")
                 # 1日に複数の予定が入ることがある。値は「1件ならオブジェクト、
                 # 複数なら配列」のどちらでもよい（js/main.js のカレンダーと .ics が両方を受ける）。
+                # "day": true は任意で、「その日に行われると決まっている予定」の印。トップの
+                # 「次の予定まであと◯日」はこの印の付いた予定だけを数える。月単位の予定は
+                # 月末の日付で置いてあるので、印が無いものを数えると実在しない日を指してしまう。
                 items = entry if isinstance(entry, list) else [entry]
                 if not items:
                     fail(f"events.json: {date} の予定が空")
                 for labels in items:
                     if not isinstance(labels, dict):
                         fail(f"events.json: {date} の要素がオブジェクトでない")
-                    elif sorted(labels) != sorted(LANGS):
+                    elif "day" in labels and labels["day"] is not True:
+                        fail(f"events.json: {date} の day は true だけを書く（日が決まっていない予定には付けない）")
+                    elif sorted(k for k in labels if k != "day") != sorted(LANGS):
                         fail(f"events.json: {date} の言語キーが{len(LANGS)}言語と一致しない: {sorted(labels)}")
-                    elif not all(isinstance(v, str) and v.strip() for v in labels.values()):
+                    elif not all(isinstance(v, str) and v.strip() for k, v in labels.items() if k != "day"):
                         fail(f"events.json: {date} に空のラベルがある")
             if len(fails) == n_before:
                 ok(f"events.json スキーマ（{len(events)}件）")

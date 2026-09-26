@@ -404,6 +404,8 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 
 Self-contained IIFE blocks handling: hamburger nav, active nav link highlighting, auto-date status, "last updated" display, upcoming schedule expiry (`data-expires`), FAQ accordion, voice filter, official news rendering, target-school website updates, the share buttons at the bottom of every page, and the interactive calendar on `schedule.html`. Calendar events live in `data/events.json` (`{"events": {"YYYY-MM-DD": {ja, en, pt, vi, tl, es, zh, id, tr, my}}}`), fetched at runtime by the calendar block — edit that file, not `main.js`, to add/change events. All 10 language labels are required per event. **A date may hold more than one event: the value is either that object or an array of them** (added 2026-09-03, when the 就学時健診 and the district music festival both fell on 10/31). The calendar draws one dot per event and the `.ics` writer emits one VEVENT per event — its UID gets a `-2`, `-3` … suffix from the second entry on, so the first event's UID never changes and already-imported calendars do not duplicate it. `check 2` in `auto_gates.py` validates both shapes. If the fetch fails or the file is empty, the calendar section hides itself.
 
+**`"day": true`（任意）は「その日に行われると決まっている予定」の印**（2026-09-26 追加）。月単位・期間の予定（「2026年10月」「11月〜12月頃」）は月末などの日付で置いてあるので、この印を付けない。`check 2` は言語キー以外に `day` だけを認め、値は `true` のみ。トップの「次の予定まであと◯日」（NEXT COUNTDOWN）は**この印の予定だけを数える** — 付け忘れても数えないだけで、存在しない日を数えることはない。予定を足すときは schedule.html の `data-start` と `data-event-date` が同じ日（＝1日の予定）かどうかで判断する。
+
 ### SHARE BUTTONS (every page)
 
 Every page carries a `<section class="section share" id="share">` just above `</main>`: the heading, lead and closing note are in the HTML with `data-i18n`, and the buttons themselves are built by the SHARE BUTTONS block in `js/main.js` into `#share-buttons` / `#share-star`.
@@ -499,6 +501,7 @@ Several things reflect the current date automatically — no manual edits needed
 | "完了" labels in *Current Status* (`index.html`) | Every page load (today ≥ `data-event-date`) | AUTO DATE STATUS |
 | Event status badges 完了/進行中/予定 (`schedule.html`, keys `event_status_*`) | Every page load (same) | AUTO DATE STATUS |
 | "Upcoming" bar items | Every page load (hidden once past `data-expires`) | UPCOMING SCHEDULE EXPIRY |
+| 「あと◯日」の札（`index.html` 今後のスケジュールの帯） | Every page load | NEXT COUNTDOWN — `data/events.json` の `"day": true` の予定のうちいちばん近いもの。同じ日付の `.upcoming-item` があればそこに札だけ付け、無ければ `#next-countdown` の行を出す。どの予定が大事かはサイトが選ばない（近い順に1日ぶん） |
 
 Notes:
 - "Last updated" is the site's **last deploy date**, not the editing date of that specific section (≈ most recent push). Do **not** hardcode a date into the heading text (e.g. the old `現在の状況（2026年5月時点）` was removed in favour of this auto-display).

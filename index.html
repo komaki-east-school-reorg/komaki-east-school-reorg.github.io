@@ -157,6 +157,15 @@
       <div class="upcoming-inner">
         <div class="upcoming-label" data-i18n="upcoming_label">📅 今後のスケジュール</div>
         <div class="upcoming-list">
+          <!-- 次の予定まであと◯日（NEXT COUNTDOWN in js/main.js）。data/events.json のうち
+               "day": true（その日に行われると決まっている予定）だけを数える。
+               同じ日付の .upcoming-item があればそこに札を付け、無ければこの行を出す。 -->
+          <div class="upcoming-item upcoming-next" id="next-countdown" hidden>
+            <span class="upcoming-countdown"></span>
+            <span class="upcoming-date"></span>
+            <span class="upcoming-name"></span>
+          </div>
+          <span id="countdown-strings" hidden><span data-ck="days" data-i18n="cd_days">あと{n}日</span><span data-ck="today" data-i18n="cd_today">今日</span><span data-ck="tomorrow" data-i18n="cd_tomorrow">明日</span></span>
           <!-- 2026年6月までの説明会・校章募集は終了（data-expires 経過により恒久非表示だったため削除）。
                経緯は schedule.html の主要イベント一覧と index の「現在の状況」に残しています。 -->
           <div class="upcoming-item" data-expires="2026-09-30">

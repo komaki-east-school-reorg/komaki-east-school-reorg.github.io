@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-09-26",
+      "type": "feature",
+      "ja": "トップに次の予定まで「あと◯日」を表示",
+      "en": "Top page shows how many days until the next event"
+    },
+    {
+      "date": "2026-09-26",
       "type": "content",
       "ja": "再編前の学校間交流の具体例をよくある質問に追記",
       "en": "Examples of pre-merger school exchanges added to the FAQ"
