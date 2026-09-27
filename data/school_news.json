@@ -1,8 +1,37 @@
 {
-  "fetched_at": "2026-09-26T00:45:49Z",
+  "fetched_at": "2026-09-27T00:53:24Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "hikarigaoka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "光ヶ丘中学校",
+        "ja_kids": "ひかりがおか中学校",
+        "en": "Hikarigaoka Junior High",
+        "zh": "光之丘中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
+      "latest_date": "2026-09-26",
+      "items": [
+        {
+          "title": "PTA全委員会",
+          "date": "2026-09-26",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136154019?tm=20260926143909"
+        },
+        {
+          "title": "体育祭の成功を願って！",
+          "date": "2026-09-26",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136154026?tm=20260926120621"
+        },
+        {
+          "title": "アジアの頂点を決めろ！",
+          "date": "2026-09-24",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136137067?tm=20260924070546"
+        }
+      ]
+    },
     {
       "slug": "sue-e",
       "level": "elem",
@@ -116,35 +145,6 @@
           "title": "第116回バスケットボール教室",
           "date": "2026-09-24",
           "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136141819?tm=20260924152156"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "光ヶ丘中学校",
-        "ja_kids": "ひかりがおか中学校",
-        "en": "Hikarigaoka Junior High",
-        "zh": "光之丘中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
-      "latest_date": "2026-09-24",
-      "items": [
-        {
-          "title": "アジアの頂点を決めろ！",
-          "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136137067?tm=20260924070546"
-        },
-        {
-          "title": "水筒は語る",
-          "date": "2026-09-18",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136133638?tm=20260918180407"
-        },
-        {
-          "title": "答え合わせは９月３０日",
-          "date": "2026-09-18",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136133494?tm=20260918174908"
         }
       ]
     },
