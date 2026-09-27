@@ -40,6 +40,45 @@
       "tr": "Kitasato bölgesinin okullarını düşünme toplantısı (2.)",
       "my": "Kitasato ဒေသ ကျောင်းများအကြောင်း စဉ်းစားသည့် ဒုတိယအကြိမ် အစည်းအဝေး"
     },
+    "PTA全委員会": {
+      "en": "PTA All-Committee Meeting",
+      "pt": "Reunião de Todos os Comitês do PTA",
+      "vi": "Cuộc họp toàn ủy ban PTA",
+      "tl": "Pagpupulong ng Lahat ng Komite ng PTA",
+      "es": "Reunión de Todos los Comités de la PTA",
+      "zh": "PTA全体委员会",
+      "id": "Rapat Seluruh Komite PTA",
+      "ko": "PTA 전체 위원회",
+      "ne": "PTA सम्पूर्ण समिति",
+      "tr": "PTA Tüm Komiteler Toplantısı",
+      "my": "PTA ကော်မတီအားလုံး အစည်းအဝေး"
+    },
+    "体育祭の成功を願って！": {
+      "en": "Wishing for a Successful Sports Festival!",
+      "pt": "Torcendo pelo sucesso do festival esportivo!",
+      "vi": "Cầu chúc lễ hội thể thao thành công!",
+      "tl": "Nawa'y Magtagumpay ang Palarong Pampalakasan!",
+      "es": "¡Deseando el éxito del festival deportivo!",
+      "zh": "祝体育节圆满成功！",
+      "id": "Semoga Festival Olahraga Sukses!",
+      "ko": "체육대회의 성공을 기원하며!",
+      "ne": "खेलकुद उत्सवको सफलताको कामना!",
+      "tr": "Spor Festivalinin Başarılı Geçmesini Diliyoruz!",
+      "my": "အားကစားပွဲတော် အောင်မြင်ပါစေ!"
+    },
+    "アジアの頂点を決めろ！": {
+      "en": "Decide the Top of Asia!",
+      "pt": "Decida o Topo da Ásia!",
+      "vi": "Hãy Quyết Định Đỉnh Cao Châu Á!",
+      "tl": "Piliin ang Nangunguna sa Asya!",
+      "es": "¡Decide la Cima de Asia!",
+      "zh": "决出亚洲之巅!",
+      "id": "Tentukan Puncak Asia!",
+      "ko": "아시아의 정점을 가려라!",
+      "ne": "एसियाको शिखर निर्णय गर!",
+      "tr": "Asya'nın Zirvesini Belirle!",
+      "my": "အာရှ၏ထိပ်ဆုံးကိုဆုံးဖြတ်လော့!"
+    },
     "9/25 租税教室（６年生）": {
       "en": "9/25 Tax Class (Grade 6)",
       "pt": "25/9 Aula de Impostos (6º ano)",
@@ -195,45 +234,6 @@
       "ne": "116 औं बास्केटबल कक्षा",
       "tr": "116. Basketbol Kursu",
       "my": "အကြိမ် 116 ဘတ်စကက်ဘော လေ့ကျင့်ရေးအတန်း"
-    },
-    "アジアの頂点を決めろ！": {
-      "en": "Decide the Top of Asia!",
-      "pt": "Decida o Topo da Ásia!",
-      "vi": "Hãy Quyết Định Đỉnh Cao Châu Á!",
-      "tl": "Piliin ang Nangunguna sa Asya!",
-      "es": "¡Decide la Cima de Asia!",
-      "zh": "决出亚洲之巅!",
-      "id": "Tentukan Puncak Asia!",
-      "ko": "아시아의 정점을 가려라!",
-      "ne": "एसियाको शिखर निर्णय गर!",
-      "tr": "Asya'nın Zirvesini Belirle!",
-      "my": "အာရှ၏ထိပ်ဆုံးကိုဆုံးဖြတ်လော့!"
-    },
-    "水筒は語る": {
-      "en": "The Water Bottle Speaks",
-      "pt": "A Garrafinha Conta uma História",
-      "vi": "Bình nước kể chuyện",
-      "tl": "Ang Kuwento ng Tumbler",
-      "es": "La botella de agua cuenta su historia",
-      "zh": "水壶诉说的故事",
-      "id": "Kisah dari Botol Minum",
-      "ko": "물통이 말하다",
-      "ne": "पानीको बोतलले भन्छ",
-      "tr": "Su Matarası Anlatıyor",
-      "my": "ရေဗူးက ပြောပြသည်"
-    },
-    "答え合わせは９月３０日": {
-      "en": "Answer Check on September 30",
-      "pt": "Correção das respostas em 30 de setembro",
-      "vi": "Đối chiếu đáp án vào ngày 30 tháng 9",
-      "tl": "Pagsusuri ng mga Sagot sa Setyembre 30",
-      "es": "Revisión de respuestas el 30 de septiembre",
-      "zh": "对答案时间是9月30日",
-      "id": "Pencocokan Jawaban pada 30 September",
-      "ko": "정답 확인은 9월 30일",
-      "ne": "उत्तर जाँच सेप्टेम्बर ३० मा",
-      "tr": "Cevapların Kontrolü 30 Eylül'de",
-      "my": "အဖြေများကို စက်တင်ဘာ ၃၀ ရက်တွင် စစ်ဆေးမည်"
     },
     "【やまももクラブ】やまさんももさん作り": {
       "en": "[Yamamomo Club] Making Yama-san and Momo-san",
@@ -521,32 +521,6 @@
       "tr": "Isshiki İlkokulu Bölge Konseyi: Isshiki kaynaşma festivali",
       "my": "Isshiki မူလတန်းကျောင်း နယ်မြေ ဒေသဆိုင်ရာ ကောင်စီ - Isshiki ချစ်ကြည်ရေး ပွဲတော်"
     },
-    "第11回桃花台音楽まつり": {
-      "en": "11th Tokadai Music Festival",
-      "pt": "11º Festival de Música de Tokadai",
-      "vi": "Lễ hội âm nhạc Tokadai lần thứ 11",
-      "tl": "Ika-11 Tokadai Music Festival",
-      "es": "11.º Festival de Música de Tokadai",
-      "zh": "第11届桃花台音乐节",
-      "id": "Festival Musik Tokadai ke-11",
-      "ko": "제11회 도카다이 음악 축제",
-      "ne": "11 औँ तोकादाइ सङ्गीत मेला",
-      "tr": "11. Tokadai Müzik Festivali",
-      "my": "၁၁ ကြိမ်မြောက် Tokadai ဂီတပွဲတော်"
-    },
-    "東部市民センター  講堂": {
-      "en": "Eastern Civic Center, auditorium",
-      "pt": "Centro Cívico Leste, auditório",
-      "vi": "Trung tâm Thị dân phía Đông, hội trường",
-      "tl": "Eastern Civic Center, awditoryum",
-      "es": "Centro Cívico Este, auditorio",
-      "zh": "东部市民中心 礼堂",
-      "id": "Pusat Warga Timur, auditorium",
-      "ko": "동부 시민센터 강당",
-      "ne": "पूर्वी नागरिक केन्द्र सभाहल",
-      "tr": "Doğu Halk Merkezi, konferans salonu",
-      "my": "အရှေ့ပိုင်း မြို့သူမြို့သားစင်တာ၊ ခန်းမ"
-    },
     "親子でワクワク!オープンファクトリー": {
       "en": "Exciting for parents and kids! Open factory",
       "pt": "Diversão para pais e filhos! Fábrica aberta",
@@ -650,6 +624,32 @@
       "ne": "आओजोरा बजार र रहस्य समाधान “मेकी” परियोजना",
       "tr": "Aozora açık hava pazarı ve Nazo-Tokimeki Projesi",
       "my": "Aozora ပြင်ပဈေး နှင့် Nazo-Tokimeki စီမံကိန်း"
+    },
+    "第11回桃花台音楽まつり": {
+      "en": "11th Tokadai Music Festival",
+      "pt": "11º Festival de Música de Tokadai",
+      "vi": "Lễ hội âm nhạc Tokadai lần thứ 11",
+      "tl": "Ika-11 Tokadai Music Festival",
+      "es": "11.º Festival de Música de Tokadai",
+      "zh": "第11届桃花台音乐节",
+      "id": "Festival Musik Tokadai ke-11",
+      "ko": "제11회 도카다이 음악 축제",
+      "ne": "11 औँ तोकादाइ सङ्गीत मेला",
+      "tr": "11. Tokadai Müzik Festivali",
+      "my": "၁၁ ကြိမ်မြောက် Tokadai ဂီတပွဲတော်"
+    },
+    "東部市民センター  講堂": {
+      "en": "Eastern Civic Center, auditorium",
+      "pt": "Centro Cívico Leste, auditório",
+      "vi": "Trung tâm Thị dân phía Đông, hội trường",
+      "tl": "Eastern Civic Center, awditoryum",
+      "es": "Centro Cívico Este, auditorio",
+      "zh": "东部市民中心 礼堂",
+      "id": "Pusat Warga Timur, auditorium",
+      "ko": "동부 시민센터 강당",
+      "ne": "पूर्वी नागरिक केन्द्र सभाहल",
+      "tr": "Doğu Halk Merkezi, konferans salonu",
+      "my": "အရှေ့ပိုင်း မြို့သူမြို့သားစင်တာ၊ ခန်းမ"
     },
     "新学校区交流 ミュージックフェスティバル": {
       "en": "New school district exchange: music festival",
