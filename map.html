@@ -59,7 +59,7 @@
         <li><a href="clubs.html" data-i18n="nav_clubs">地域クラブ</a></li>
         <li class="nav-break" aria-hidden="true"></li>
         <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
-        <li><a href="community.html" data-i18n="nav_community">地域協議会</a></li>
+        <li><a href="community.html" data-i18n="nav_community">地域とまちづくり</a></li>
         <li><a href="map.html" data-i18n="nav_map">地図</a></li>
         <li><a href="nationwide.html" data-i18n="nav_nationwide">全国の動き</a></li>
         <li><a href="review.html" data-i18n="nav_review">検証と提案</a></li>
@@ -374,6 +374,65 @@
     </div>
   </section>
 
+  <!-- 関係する部署の問い合わせ先（2026-09-27 ユーザー指示：トップ以外の全ページに、そのページの内容に関係する
+       市・県・国の窓口を載せる）。番号は data/contacts.json に登録してあり、週1回の照合（check_contacts.py）の対象。
+       ページを更新したら、ここに載せる部署も見直すこと。部署名は窓口で使う日本語のまま（data-i18n を付けない）。 -->
+  <section class="section section-alt" id="contact">
+    <div class="container">
+      <h2 class="section-title" data-i18n-html="contact_rel_h">関係する部署の問い合わせ先<small>Who to Contact</small></h2>
+      <p class="section-lead" data-i18n="contact_rel_lead">このページの内容に関係する市・県・国の部署です。番号は各部署が公表しているものです（2026年9月現在）。</p>
+      <h4 class="contact-level-h" data-i18n="rev_c_city_h">小牧市</h4>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th data-i18n="contact_tbl_dept">部署</th>
+              <th data-i18n="contact_tbl_scope">このページで触れた事柄</th>
+              <th data-i18n="contact_tbl_tel">電話</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>教育委員会事務局 教育総務課 学校再編推進係</td><td data-i18n="rev_c_c1_w">学校再編計画、通学区域、スクールバス</td><td><a href="tel:0568395261">0568-39-5261</a></td></tr>
+            <tr><td>教育委員会事務局 学校教育課 学校教育係</td><td data-i18n="ct_w_gakkoukyouiku">就学・転学、学校の教育課程と生徒指導、いじめ・不登校、就学援助</td><td><a href="tel:0568761165">0568-76-1165</a></td></tr>
+            <tr><td>都市政策部 都市計画課 都市計画係</td><td data-i18n="rev_c_c3_w">都市計画の決定・変更、地区計画、立地適正化計画、土地利用</td><td><a href="tel:0568761155">0568-76-1155</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="contact-level-h" data-i18n="rev_c_pref_h">愛知県</h4>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th data-i18n="contact_tbl_dept">部署</th>
+              <th data-i18n="contact_tbl_scope">このページで触れた事柄</th>
+              <th data-i18n="contact_tbl_tel">電話</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>都市・交通局 都市基盤部 都市計画課 土地利用計画グループ</td><td data-i18n="rev_c_p1_w">区域区分（市街化区域と市街化調整区域の線引き）の都市計画決定</td><td><a href="tel:0529546518">052-954-6518</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="contact-level-h" data-i18n="contact_lv_nat">国</h4>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th data-i18n="contact_tbl_dept">部署</th>
+              <th data-i18n="contact_tbl_scope">このページで触れた事柄</th>
+              <th data-i18n="contact_tbl_tel">電話</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>国土交通省 国土数値情報ダウンロードサイト運営事務局</td><td data-i18n="ct_w_ksj">国土数値情報「小学校区」（この地図の通学区域の元データ）</td><td><a href="tel:0352590015">03-5259-0015</a></td></tr>
+            <tr><td>総務省 統計局</td><td data-i18n="ct_w_estat">国勢調査の小地域（町丁）の境界（この地図の通学区域の元データ、e-Stat）</td><td><a href="tel:0352732020">03-5273-2020</a><span data-i18n="contact_tel_main">（代表）</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="contact-rel-note" data-i18n="contact_rel_note">※ 部署名は日本語のまま載せています。窓口で示したり電話で伝えたりするには、そのほうが確実なためです。組織改編で名称や番号が変わることがあります。当サイトはいずれの部署とも関係がなく、問い合わせのときに当サイトの名前を出す必要はありません。</p>
+    </div>
+  </section>
+
   <!-- 関連ページ：ナビの再掲ではなく、このページを読んだ人が次に必要とする所だけを、
        行き先が分かる文で挙げる。全ページが互いにリンクするナビだけでは「どれが中心か」が
        構造に現れないため、本文側で意図的に偏りを作っている。 -->
@@ -421,7 +480,7 @@
           <li><a href="bus.html" data-i18n="nav_bus">スクールバス</a></li>
           <li><a href="clubs.html" data-i18n="nav_clubs">地域クラブ</a></li>
           <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
-          <li><a href="community.html" data-i18n="nav_community">地域協議会</a></li>
+          <li><a href="community.html" data-i18n="nav_community">地域とまちづくり</a></li>
           <li><a href="map.html" data-i18n="nav_map">地図</a></li>
           <li><a href="nationwide.html" data-i18n="nav_nationwide">全国の動き</a></li>
           <li><a href="review.html" data-i18n="nav_review">検証と提案</a></li>

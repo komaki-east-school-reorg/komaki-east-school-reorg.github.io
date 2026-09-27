@@ -45,8 +45,17 @@ EVIDENCE = "auto_update/evidence.json"
 # 推進室、「地域の取組」欄の出典として 2026-09-13 にユーザーが許可）。
 # 3つ目は末尾まで含めて照合するので、配下の個別ページ（.../tobumachidukurisingikai/34277.html や
 # .../toubumatidukurinyu-su/index.html）は今までどおり不可のまま。
+# 4つ目＝東部まちづくりプラットフォームの説明ページ（2026-09-27 ユーザー指示）。索引ではなく
+# 個別記事だが、ユーザーが明示して許可した。community.html の #platform でだけ張ってよい
+# （CITY_PAGE_ONLY で機械的に縛る）。
 PERMITTED_LINKS = ("303/index.html", "sasaeai/3/3_2/index.html",
-                   "tobumachidukurisingikai/index.html")
+                   "tobumachidukurisingikai/index.html",
+                   "purattofo-mu/38222.html")
+CITY_PAGE_ONLY = {"purattofo-mu/38222.html": ("community.html",)}
+# 東部まちづくりプラットフォームの登録フォーム（市が案内している logoform）。
+# community.html の #platform でだけ、この1本に限って張ってよい（2026-09-27 ユーザー指示）。
+PERMITTED_FORM_LINKS = ("logoform.jp/form/uSYk/80018",)
+FORM_PAGES = ("community.html",)
 # 文部科学省へのリンク。全国の動向を扱う nationwide.html でのみ、この4つに限って
 # 張ってよい（2026-08-22 追加）。全国の数値・基準は市の公式情報では賄えないため
 # 国の一次資料を出典にするが、市サイトと同じく「索引ページのみ・PDF直リンク不可」
@@ -91,6 +100,8 @@ PERMITTED_INSTAGRAM = {
     "instagram.com/acmilansoccerschoolaichi": ("clubs.html",),
     "instagram.com/yogosports_komaki": ("clubs.html",),
     "instagram.com/twins.toukadai": ("clubs.html",),
+    "instagram.com/legame.esports": ("clubs.html",),      # Legame（小牧市岩崎。地域のeスポーツ大会。2026-09-27）
+    "instagram.com/dance_school_dreamvivace": ("clubs.html",),  # ダンススクールD☆vivace（2026-09-27）
     "instagram.com/waiwaidaiko": ("clubs.html",),          # 和祝太鼓（拠点は小牧市二重堀）
     "instagram.com/fc.fervor_official": ("clubs.html",),   # FC.FERVOR（春日井市。この地区から通える）
 }
@@ -104,6 +115,11 @@ PERMITTED_CLUB_SITES = (
     "seigakan.net",                  # 聖雅館
     "komaki-kendo.jp",               # 小牧市剣道連盟
     "fc-fervor.net",                 # FC.FERVOR
+    "komakishion.com",               # 小牧市音楽連盟（小牧少年少女合唱団の紹介。2026-09-27）
+    "pc-bitz.jp",                    # パソコンスクールビッツ（ロボットプログラミング。2026-09-27）
+    "encourage-toukadai.com",        # プログラミング教室エンカレッジ小牧（2026-09-27）
+    "legameinc.com",                 # Legame（eスポーツ。2026-09-27）
+    "white700957.studio.site",       # ダンススクールD☆vivace（2026-09-27）
 )
 CLUB_PAGES = ("clubs.html",)
 
@@ -303,6 +319,14 @@ def main():
                 for m in re.finditer(r"city\.komaki\.aichi\.jp[^\s\"'<)\\]*", line):
                     if not any(allowed in m.group(0) for allowed in PERMITTED_LINKS):
                         link_violations.append(f"{p}:{i} {m.group(0)[:80]}")
+                    for key, pages in CITY_PAGE_ONLY.items():
+                        if key in m.group(0) and not (is_dict or p in pages):
+                            link_violations.append(f"{p}:{i} この市のページは {'/'.join(pages)} のみ可 {m.group(0)[:60]}")
+                for m in re.finditer(r"logoform\.jp[^\s\"'<)\\]*", line):
+                    if not any(a in m.group(0) for a in PERMITTED_FORM_LINKS):
+                        link_violations.append(f"{p}:{i} 許可外のフォームURL {m.group(0)[:80]}")
+                    elif not (is_dict or p in FORM_PAGES):
+                        link_violations.append(f"{p}:{i} 登録フォームは {'/'.join(FORM_PAGES)} のみ可")
                 for m in re.finditer(r"mext\.go\.jp[^\s\"'<)\\]*", line):
                     if not (is_dict or p in MEXT_PAGES):
                         link_violations.append(f"{p}:{i} 文科省リンクは {'/'.join(MEXT_PAGES)} のみ可 {m.group(0)[:60]}")

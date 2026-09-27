@@ -21,7 +21,8 @@
         "index.html",
         "schedule.html",
         "nationwide.html",
-        "community.html"
+        "community.html",
+        "map.html"
       ]
     },
     {
@@ -36,7 +37,8 @@
         "kind": "article_contact"
       },
       "shown_in": [
-        "community.html"
+        "community.html",
+        "schedule.html"
       ]
     },
     {
@@ -51,7 +53,9 @@
         "kind": "article_contact"
       },
       "shown_in": [
-        "review.html"
+        "review.html",
+        "schedule.html",
+        "community.html"
       ]
     },
     {
@@ -66,7 +70,8 @@
         "label": "都市計画係"
       },
       "shown_in": [
-        "review.html"
+        "review.html",
+        "map.html"
       ]
     },
     {
@@ -96,7 +101,9 @@
         "kind": "article_contact"
       },
       "shown_in": [
-        "review.html"
+        "review.html",
+        "faq.html",
+        "community.html"
       ]
     },
     {
@@ -155,7 +162,8 @@
         "label": "土地利用計画グループ"
       },
       "shown_in": [
-        "review.html"
+        "review.html",
+        "map.html"
       ]
     },
     {
@@ -211,7 +219,9 @@
         "label": "振興・管財グループ"
       },
       "shown_in": [
-        "review.html"
+        "review.html",
+        "about.html",
+        "faq.html"
       ]
     },
     {
@@ -226,7 +236,9 @@
       },
       "shown_in": [
         "nationwide.html",
-        "review.html"
+        "review.html",
+        "about.html",
+        "faq.html"
       ]
     },
     {
@@ -241,7 +253,8 @@
       },
       "shown_in": [
         "nationwide.html",
-        "review.html"
+        "review.html",
+        "about.html"
       ]
     },
     {
@@ -332,6 +345,129 @@
       "shown_in": [
         "nationwide.html",
         "review.html"
+      ]
+    },
+    {
+      "id": "city-gakkoukyouiku",
+      "level": "city",
+      "name": "教育委員会事務局　学校教育課　学校教育係",
+      "location": "本庁舎3階",
+      "tel": "0568-76-1165",
+      "source": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouiku/5030.html",
+      "probe": {
+        "kind": "kakari",
+        "label": "学校教育係"
+      },
+      "shown_in": [
+        "about.html",
+        "faq.html",
+        "map.html",
+        "clubs.html"
+      ]
+    },
+    {
+      "id": "city-bunkasports",
+      "level": "city",
+      "name": "健康生きがい支え合い推進部　文化・スポーツ課　事業推進係",
+      "location": "本庁舎3階",
+      "tel": "0568-76-1166",
+      "source": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/bunkasports/28871.html",
+      "probe": {
+        "kind": "kakari",
+        "label": "事業推進係"
+      },
+      "shown_in": [
+        "clubs.html"
+      ]
+    },
+    {
+      "id": "pref-hokentaiiku",
+      "level": "pref",
+      "name": "教育委員会事務局　保健体育課　学校体育グループ",
+      "tel": "052-954-6825",
+      "source": "https://www.pref.aichi.jp/soshiki/hoken-taiiku/bukatsudou-181019.html",
+      "probe": {
+        "kind": "text",
+        "check_tel": true,
+        "match": "学校体育グループ"
+      },
+      "shown_in": [
+        "clubs.html"
+      ]
+    },
+    {
+      "id": "pref-manabi",
+      "level": "pref",
+      "name": "教育委員会事務局　あいちの学び推進課　家庭教育・地域連携支援グループ",
+      "tel": "052-954-6780",
+      "fax": "052-954-6962",
+      "source": "https://www.pref.aichi.jp/soshiki/aichi-manabi/chiikiiko-bunkabukatsudo.html",
+      "probe": {
+        "kind": "pref_group",
+        "label": "家庭教育・地域連携支援グループ"
+      },
+      "shown_in": [
+        "clubs.html"
+      ]
+    },
+    {
+      "id": "jsa-chiikisports",
+      "level": "mext",
+      "name": "スポーツ庁　地域スポーツ課　企画係",
+      "tel": "03-5253-4111",
+      "source": "https://www.mext.go.jp/sports/b_menu/houdou/jsa_00220.html",
+      "probe": {
+        "kind": "text",
+        "check_tel": false,
+        "match": "地域スポーツ課"
+      },
+      "shown_in": [
+        "clubs.html"
+      ]
+    },
+    {
+      "id": "komaki-sports",
+      "level": "company",
+      "name": "公益財団法人 小牧市スポーツ協会",
+      "tel": "0568-73-3330",
+      "source": "https://komaki-sports.or.jp/class/",
+      "probe": {
+        "kind": "text",
+        "check_tel": true,
+        "match": "スポーツ協会"
+      },
+      "shown_in": [
+        "clubs.html"
+      ]
+    },
+    {
+      "id": "mlit-ksj",
+      "level": "nat",
+      "name": "国土交通省 国土数値情報ダウンロードサイト運営事務局",
+      "tel": "03-5259-0015",
+      "source": "https://nlftp.mlit.go.jp/ksj/inquiry.html",
+      "probe": {
+        "kind": "text",
+        "check_tel": true,
+        "match": "国土数値情報ダウンロードサイト運営事務局"
+      },
+      "shown_in": [
+        "map.html"
+      ]
+    },
+    {
+      "id": "soumu-stat",
+      "level": "nat",
+      "name": "総務省 統計局",
+      "tel": "03-5273-2020",
+      "source": "https://www.stat.go.jp/data/chiri/1-3.htm",
+      "probe": {
+        "kind": "text",
+        "check_tel": true,
+        "match": "統計局"
+      },
+      "shown_in": [
+        "map.html"
       ]
     }
   ]

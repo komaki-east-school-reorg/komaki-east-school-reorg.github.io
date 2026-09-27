@@ -2,6 +2,36 @@
   "description": "このサイト自身の更新履歴。トップページ最下部の「サイトの更新履歴」コーナーが実行時に fetch して描画する（表示は新しい順に6件まで。このファイルには全履歴を残す）。手動管理。新しいものを配列の先頭に足す。type は content（掲載内容）/ feature（機能追加）/ fix（修正）のいずれか。ja は必須、en は推奨（未記載なら ja が出る）。他言語は en → ja の順にフォールバックする。文体は体言止めの短い一行にすること（ja は30〜40字を目安に、長くても45字まで。入りきらない詳細はコミットメッセージへ）（「〜しました。」と文章にしない。コミットメッセージの貼り付けもしない）。読者が画面上で気づかない内部改修（表示の高速化・リファクタ・SEO の内部設定・ドキュメント修正など）は載せない。priority は任意で、high なら上げ、low なら下げる — ヘッダ下のカットイン帯（js/main.js の TOP CUT-IN）の並び順にだけ効く。帯はふだん「新しいかつ重要度が高い順」に自動で並ぶので、ふつうは書かなくてよい。関連する小さな修正はまとめて1件にする。",
   "updates": [
     {
+      "date": "2026-09-28",
+      "type": "feature",
+      "ja": "日付の決まった予定すべてに「あと◯日」を表示（全ページ）",
+      "en": "“Days to go” shown for every dated event, on every page"
+    },
+    {
+      "date": "2026-09-27",
+      "type": "content",
+      "ja": "「地域協議会と地域のまちづくり」に改名、東部まちづくりプラットフォームを紹介",
+      "en": "Page renamed; Eastern District Town Development Platform introduced"
+    },
+    {
+      "date": "2026-09-27",
+      "type": "content",
+      "ja": "全ページに関係する市・県・国の問い合わせ先を掲載",
+      "en": "City, prefectural and national contacts added to every page"
+    },
+    {
+      "date": "2026-09-27",
+      "type": "content",
+      "ja": "地域クラブに合唱・プログラミングと各中学校の部活動を追加",
+      "en": "Choir, programming and more school clubs added to Local Clubs"
+    },
+    {
+      "date": "2026-09-27",
+      "type": "content",
+      "ja": "Q&Aに児童クラブ・スマホの持ち込み・バス停の目印を追加",
+      "en": "Q&A on after-school clubs, smartphones and bus stop signs added"
+    },
+    {
       "date": "2026-09-26",
       "type": "content",
       "ja": "サイトの呼び名を「地域情報メディア」に変更",

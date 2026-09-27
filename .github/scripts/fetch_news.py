@@ -146,8 +146,14 @@ def _curl_get(url):
         status = proc.stdout.strip()
         if status != "200":
             raise RuntimeError(f"HTTP {status}")
-        with open(body_path, encoding="utf-8") as f:
-            return f.read()
+        with open(body_path, "rb") as f:
+            raw = f.read()
+        # 市のページは UTF-8。連絡先の照合（check_contacts.py）で読む総務省統計局の
+        # ページは Shift_JIS なので、UTF-8 で読めなければ cp932 で読み直す。
+        try:
+            return raw.decode("utf-8")
+        except UnicodeDecodeError:
+            return raw.decode("cp932", errors="replace")
     finally:
         os.remove(body_path)
 

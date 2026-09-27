@@ -2729,3 +2729,34 @@ main section[id], main h2.section-title[id], #area-map { scroll-margin-top: calc
   html:not(.board-printing) .qa-block,
   html:not(.board-printing) .contact-box { break-inside: avoid; }
 }
+
+/* ===== 関係する部署の問い合わせ先（トップ以外の全ページ。2026-09-27）=====
+   市・県・国・その他の区分の小見出し。h4 にしてあるのは、節見出し（h2.section-title /
+   h3.section-title.sub）にすると目次と読み上げボタンが区分ごとに増えてしまうため。 */
+.contact-level-h { font-size: 1rem; font-weight: 700; color: var(--primary); margin: 1.6rem 0 .6rem; }
+.contact-level-h:first-of-type { margin-top: .4rem; }
+.contact-rel-note { font-size: .82rem; color: var(--text-muted); margin-top: 1rem; }
+
+/* 東部まちづくりプラットフォーム（community.html #platform）のリンク2本 */
+.pf-links { margin: .9rem 0 0 1.2rem; }
+.pf-links li { margin: .3rem 0; }
+
+/* ===== DATE COUNTDOWN（全ページの「あと◯日」の札。2026-09-28）=====
+   文字は ::after で出す（js/main.js の DATE COUNTDOWN を参照）。見た目はトップの帯の札
+   （.upcoming-countdown）とそろえる。印刷では出さない — 紙は日がたつと数字が古くなるため。 */
+.countdown-chip { display: inline-block; vertical-align: .1em; margin: 0 .45rem; }
+.countdown-chip::after {
+  content: attr(data-cd);
+  display: inline-block;
+  background: var(--accent);
+  color: var(--primary-dark);
+  font-family: var(--heading-font);
+  font-weight: 800;
+  font-size: .74rem;
+  line-height: 1.5;
+  padding: 0 .55rem;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+.upcoming-item > .countdown-chip { margin-left: 0; }
+@media print { .countdown-chip { display: none !important; } }

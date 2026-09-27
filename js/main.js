@@ -781,10 +781,7 @@ window.KomakiGrade = (function () {
     var host = next.list.length === 1 &&
       bar.querySelector('.upcoming-item[data-expires="' + next.key + '"]:not(.upcoming-next)');
     if (host) {
-      var c = document.createElement('span');
-      c.className = 'upcoming-countdown upcoming-countdown--on-item';
-      c.textContent = chip;
-      host.insertBefore(c, host.firstChild);
+      // 帯にその日の項目があれば、札は DATE COUNTDOWN（全ページ共通）が付けるのでここでは何もしない
     } else {
       var p = next.key.split('-');
       var d = new Date(+p[0], +p[1] - 1, +p[2]);
@@ -821,6 +818,119 @@ window.KomakiGrade = (function () {
     })
     .catch(function () {});
   document.addEventListener('komaki:i18n-applied', render);
+})();
+
+/* ===== DATE COUNTDOWN（全ページ）=====
+   2026-09-28 ユーザー指示。「あと◯日」をトップだけでなく、全ページの「日付の決まっているもの」
+   すべてに付ける。対象は次の2種類：
+   ・スケジュールの項目（.event-item / .status-item / .upcoming-item）。data-start（と data-event-date）が
+     data/events.json（と桃花台を考える会の催し）の "day": true の日に当たるものだけ。月単位の予定は月末などの仮の日付で置いてあるので、
+     印の無いものを数えると実在しない日を指してしまう（NEXT COUNTDOWN と同じ考え方）。
+     .upcoming-item は data-expires をその日とみなす。
+   ・自動で描かれる一覧のうち、描画側が data-countdown="YYYY-MM-DD" を付けたもの
+     （地域の取組・東部まちづくりの「これからの催し」・地域協議会のイベント案内）。
+   今日より前の日には付けない。文字は CSS の ::after（attr(data-cd)）で出す — 回覧板シート・
+   読み上げ・原文併記は textContent を拾うので、文字で入れると「あと◯日」が紙に刷られてしまう。
+   文言は辞書の cd_days / cd_today / cd_tomorrow と同じ値。main.js は辞書を読めないのでここに持つ —
+   辞書を直したらここも直すこと。 */
+(function () {
+  var CD = {
+    ja: ['あと{n}日', '今日', '明日'], kids: ['あと{n}日', 'きょう', 'あした'],
+    en: ['in {n} days', 'today', 'tomorrow'], pt: ['em {n} dias', 'hoje', 'amanhã'],
+    vi: ['còn {n} ngày', 'hôm nay', 'ngày mai'], tl: ['{n} araw na lang', 'ngayon', 'bukas'],
+    es: ['en {n} días', 'hoy', 'mañana'], zh: ['还有{n}天', '今天', '明天'],
+    id: ['{n} hari lagi', 'hari ini', 'besok'], ko: ['{n}일 남음', '오늘', '내일'],
+    ne: ['{n} दिन बाँकी', 'आज', 'भोलि'], tr: ['{n} gün kaldı', 'bugün', 'yarın'],
+    my: ['နောက် {n} ရက်', 'ယနေ့', 'မနက်ဖြန်']
+  };
+  // 札を入れる場所。.event-date / .status-content は辞書が当たるたびに中身ごと書き換わるので、
+  // komaki:i18n-applied のたびに付け直す。
+  var HOSTS = [
+    ['.event-item', '.event-date'], ['.status-item', '.status-content'], ['.upcoming-item', null],
+    ['.action-item', '.action-head'], ['.tobu-item', '.tobu-head'], ['.ce-item', '.ce-head']
+  ];
+  var dayset = null;
+
+  function text(days) {
+    var lang = window.KomakiLang();
+    var kids = lang === 'ja' && document.documentElement.classList.contains('kids-mode');
+    var row = kids ? CD.kids : (CD[lang] || CD.en);
+    if (days === 0) return row[1];
+    if (days === 1) return row[2];
+    return row[0].replace('{n}', String(days));
+  }
+  function iso(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  // 期間の予定（開始日・終了日とも "day": true のもの。例：申請書類の提出期間、11/13〜15 の催し）は、
+  // 始まる前は開始日まで、期間中は終了日まで（締切まで）を数える。月単位の予定は開始日に
+  // "day": true が無いので、ここで拾われることはない。
+  function dateOf(el, today) {
+    var c = el.getAttribute('data-countdown');
+    if (c) return c;
+    if (!dayset) return '';
+    if (el.classList.contains('upcoming-item')) {
+      var x = el.getAttribute('data-expires') || '';
+      return x && dayset[x] ? x : '';
+    }
+    var s = el.getAttribute('data-start') || '', e = el.getAttribute('data-event-date') || s;
+    if (!s || !dayset[s] || !dayset[e]) return '';
+    return s >= today ? s : e;
+  }
+
+  var busy = false;
+  function render() {
+    if (busy) return;
+    busy = true;
+    try {
+      var t = new Date(); t.setHours(0, 0, 0, 0);
+      var today = iso(t);
+      HOSTS.forEach(function (h) {
+        document.querySelectorAll(h[0]).forEach(function (el) {
+          var d = dateOf(el, today);
+          var old = el.querySelector(':scope > .countdown-chip, :scope ' + (h[1] || '') + ' > .countdown-chip');
+          if (!d || d < today) { if (old) old.remove(); return; }
+          var p = d.split('-');
+          var days = Math.round((new Date(+p[0], +p[1] - 1, +p[2]) - t) / 86400000);
+          var label = text(days);
+          if (old && old.getAttribute('data-cd') === label) return;
+          if (old) old.remove();
+          var host = (h[1] && el.querySelector(h[1])) || el;
+          var chip = document.createElement('span');
+          chip.className = 'countdown-chip';
+          chip.setAttribute('data-cd', label);
+          if (host === el) host.insertBefore(chip, host.firstChild); else host.appendChild(chip);
+        });
+      });
+    } finally { busy = false; }
+  }
+
+  var timer = null;
+  function soon() { clearTimeout(timer); timer = setTimeout(render, 60); }
+  window.KomakiEvents()
+    .then(function (data) {
+      dayset = {};
+      var ev = data.events || {};
+      Object.keys(ev).forEach(function (k) {
+        var list = Array.isArray(ev[k]) ? ev[k] : [ev[k]];
+        if (list.some(function (x) { return x && x.day === true; })) dayset[k] = true;
+      });
+      render();
+    })
+    .catch(function () { dayset = {}; render(); });
+  document.addEventListener('komaki:i18n-applied', soon);
+  // 自動取得の一覧はあとから描かれるので、main の中身が増えたら付け直す
+  var main = document.querySelector('main');
+  if (main && window.MutationObserver) {
+    new MutationObserver(function (ms) {
+      if (busy) return;
+      for (var i = 0; i < ms.length; i++) {
+        for (var j = 0; j < ms[i].addedNodes.length; j++) {
+          var n = ms[i].addedNodes[j];
+          if (n.nodeType === 1 && !(n.classList && n.classList.contains('countdown-chip'))) { soon(); return; }
+        }
+      }
+    }).observe(main, {childList: true, subtree: true});
+  }
+  render();
 })();
 
 /* ===== SECTION LAST UPDATED (auto) ===== */
@@ -1357,7 +1467,18 @@ window.KomakiGrade = (function () {
         // 日時は表示言語の書式に組み直す（イベント名は下の apply で訳に置き換える）
         const when = ev.when
           ? `<span class="ce-when">${cet('when')} ${esc(window.KomakiJaWhen(ev.when, _cl))}</span>` : '';
-        return `<li class="ce-item${ev.shinooka ? ' ce-item--shinooka' : ''}">` +
+        // 「あと◯日」用の日付。when は「10月10日 11時…」と年が無いので、掲載ページの
+        // 更新日（updated_at）の年に置き、それより2か月以上前になるなら翌年とみなす。
+        const cd = (function () {
+          const m = /(\d{1,2})月(\d{1,2})日/.exec(ev.when || '');
+          const u = /(\d{4})年(\d{1,2})月(\d{1,2})日/.exec(ev.updated_at || '');
+          if (!m || !u) return '';
+          let y = +u[1];
+          const upd = new Date(y, +u[2] - 1, +u[3]);
+          if (new Date(y, +m[1] - 1, +m[2]) < new Date(upd.getTime() - 60 * 86400000)) y += 1;
+          return y + '-' + String(+m[1]).padStart(2, '0') + '-' + String(+m[2]).padStart(2, '0');
+        })();
+        return `<li class="ce-item${ev.shinooka ? ' ce-item--shinooka' : ''}"${cd ? ` data-countdown="${cd}"` : ''}>` +
                  `<div class="ce-head">${badge}` +
                    `<a href="${esc(ev.url)}" target="_blank" rel="noopener" data-hl="${esc(ev.title)}">${esc(ev.title)}</a>` +
                  `</div>` +
@@ -3139,6 +3260,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     when:   {ja:'日時', en:'Date', pt:'Data', vi:'Thời gian', tl:'Petsa', es:'Fecha', zh:'日期', id:'Waktu', ko:'일시', ne:'मिति', tr:'Tarih', my:'ရက်စွဲ'},
     place:  {ja:'場所', en:'Place', pt:'Local', vi:'Địa điểm', tl:'Lugar', es:'Lugar', zh:'地点', id:'Tempat', ko:'장소', ne:'स्थान', tr:'Yer', my:'နေရာ'},
     source: {ja:'発信元', en:'Posted by', pt:'Divulgado por', vi:'Nguồn tin', tl:'Mula sa', es:'Publicado por', zh:'发布方', id:'Diposting oleh', ko:'게시 주체', ne:'प्रकाशक', tr:'Paylaşan', my:'တင်သူ'},
+    venue:  {ja:'会場の案内', en:'Venue notice', pt:'Aviso do local', vi:'Thông báo của địa điểm', tl:'Anunsyo ng venue', es:'Aviso del lugar', zh:'场地公告', id:'Info tempat acara', ko:'행사장 안내', ne:'स्थलको सूचना', tr:'Mekân duyurusu', my:'ပွဲနေရာ၏ ကြေညာချက်'},
     ref:    {ja:'参考', en:'Reference', pt:'Referência', vi:'Tham khảo', tl:'Sanggunian', es:'Referencia', zh:'参考', id:'Rujukan', ko:'참고', ne:'सन्दर्भ', tr:'Referans', my:'ကိုးကား'},
     citizen:{ja:'市民有志', en:'Citizen-run', pt:'Iniciativa de cidadãos', vi:'Do người dân tổ chức', tl:'Mamamayan ang nagpapatakbo', es:'Iniciativa ciudadana', zh:'市民自发', id:'Inisiatif warga', ko:'시민 주도', ne:'नागरिक पहल', tr:'Vatandaş girişimi', my:'ပြည်သူ့ဦးဆောင်'},
     facility:{ja:'児童館', en:'Children\'s centre', pt:'Centro infantil', vi:'Nhà thiếu nhi', tl:'Children\'s center', es:'Centro infantil', zh:'儿童馆', id:'Pusat anak', ko:'아동관', ne:'बाल केन्द्र', tr:'Çocuk merkezi', my:'ကလေးစင်တာ'},
@@ -3226,7 +3348,15 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
           ? '<div class="action-source">' + at('ref') + '：<a href="' + esc(it.ref_url) + '" target="_blank" rel="noopener">' +
             esc(pick(it, 'ref_label') || it.ref_url) + '</a></div>'
           : '';
-        return '<li class="action-item"' + (it.date ? '' : ' data-standing="1"') + '>' +
+        // 任意の「会場の案内」行。会場になる施設自身の告知ページ（2026-09-27 追加）。
+        // 主催者でも事実の出どころでもないので、発信元・参考とは別の行にする。
+        var venue = it.venue_url
+          ? '<div class="action-source">' + at('venue') + '：<a href="' + esc(it.venue_url) + '" target="_blank" rel="noopener">' +
+            esc(pick(it, 'venue_label') || it.venue_url) + '</a></div>'
+          : '';
+        // data-countdown は DATE COUNTDOWN が「あと◯日」の札を付ける日。複数日の催しは
+        // date が最終日（掲載期限）なので、始まる日 date_start があればそちらまでを数える。
+        return '<li class="action-item"' + (it.date ? ' data-countdown="' + esc(it.date_start || it.date) + '"' : ' data-standing="1"') + '>' +
                  '<div class="action-head">' +
                    '<span class="action-title" data-hl="' + esc(it.title_ja || '') + '">' + esc(it.title_ja || '') + '</span>' +
                    '<span class="action-badge">' + at(it.badge === 'council' || it.badge === 'facility' ? it.badge : 'citizen') + '</span>' +
@@ -3235,6 +3365,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
                  rows +
                  (body ? '<p class="action-body">' + esc(body) + '</p>' : '') +
                  '<div class="action-source">' + at('source') + '：' + src + '</div>' +
+                 venue +
                  ref +
                '</li>';
       }).join('') + '</ul>';
@@ -3344,7 +3475,8 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     if (it.place)     extra += '<span class="tobu-from"><span class="tobu-label">' + tt('place') + '</span><span data-hl="' + esc(it.place) + '">' + esc(it.place) + '</span></span>';
     // 分類名（協働提案事業など）にはラベルが無いので、値の位置だけラベル幅ぶん下げてそろえる
     if (it.from)      extra += '<span class="tobu-from tobu-from--tag">' + esc(fromLabel(it.from)) + '</span>';
-    return '<li class="tobu-item" data-date="' + esc(it.date || '') + '">' +
+    return '<li class="tobu-item" data-date="' + esc(it.date || '') + '"' +
+           (it.kind === 'event' && it.date ? ' data-countdown="' + esc(it.date) + '"' : '') + '>' +
              '<div class="tobu-head">' +
                '<span class="tobu-date">' + esc(fmtDate(it.date)) + '</span>' +
                '<span class="tobu-title" data-hl="' + esc(it.title || '') + '">' + esc(it.title || '') + '</span>' +
@@ -3389,7 +3521,8 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
    日本語の読み書きが難しい住民・高齢者・目の不自由な人に、耳で届けるため。
 
    ・ボタンはページ全体ではなく節ごと。review.html などは全文を一気に読むと長すぎて使えない。
-     対象は main 内の h2.section-title と、index の「最新の動き」の各コーナー（h3.section-title.sub）。
+     対象は main 内の h2.section-title と、index の「最新の動き」の各コーナー（h3.section-title.sub）、
+     その「地域の取組」の下半分「東部まちづくりの動き」（h4.section-title.sub）。
    ・表示中の言語の声が端末に無ければ、ボタン自体を出さない（押しても無音、がいちばんまずい）。
      ビルマ語の声はほとんどの端末に無く、タガログ語も端末しだい。声の一覧は非同期に届くので
      voiceschanged と数回の再確認で待つ。
@@ -3432,7 +3565,9 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   try { LETTER = new RegExp('[\\p{L}\\p{N}]', 'u'); } catch (e) {}
 
   var heads = Array.prototype.filter.call(
-    main.querySelectorAll('h2.section-title, h3.section-title.sub'),
+    // h4 はトップの「地域の取組」の下半分（東部まちづくりの動き）だけ。見出しが別なので
+    // 読み上げも別にする（2026-09-27 ユーザー指示）。含めないと上の取組と続けて読んでしまう。
+    main.querySelectorAll('h2.section-title, h3.section-title.sub, h4.section-title.sub'),
     function (h) { return !h.closest('.group-head, .share, .related, #board-sheet'); });
   if (!heads.length) return;
 

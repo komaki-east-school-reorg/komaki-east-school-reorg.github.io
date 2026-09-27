@@ -15,22 +15,23 @@ python3 -m http.server 8000
 
 ## Validation checks (run before every commit)
 
-**1. Illegal external links** — exactly **three** city URLs are permitted, all index pages. No PDF direct links, no article subpages.
+**1. Illegal external links** — exactly **four** city URLs are permitted: three index pages, plus one article page that the user explicitly allowed (2026-09-27). No PDF direct links, no other article subpages.
 
 | Permitted URL | Used by |
 |---|---|
 | `.../kyoiku/kyouikusoumu/303/index.html` | school reorganization (Education General Affairs Div.) — site-wide |
 | `.../kenkouikigai/sasaeai/3/3_2/index.html` | community councils (Mutual Support Div.) — `community.html` only |
 | `.../toubumachidukuri/tobumachidukurisingikai/index.html` | eastern-district development (Eastern District Office) — the 出典 line of the 地域の取組 corner, built in `js/main.js` (added 2026-09-13 on the user's say-so) |
+| `.../tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/38222.html` | 東部まちづくりプラットフォームの説明 — `community.html` `#platform` **only** (added 2026-09-27 on the user's instruction; the one article page allowed). The same block links the city's registration form `logoform.jp/form/uSYk/80018`, also `community.html` only. Both are pinned by `CITY_PAGE_ONLY` / `PERMITTED_FORM_LINKS` in `auto_gates.py` |
 
 ```bash
 grep -rn "city\.komaki\.aichi\.jp" *.html js/*.js \
   | grep -v -e "303/index\.html" -e "sasaeai/3/3_2/index\.html" \
-           -e "tobumachidukurisingikai/index\.html"
+           -e "tobumachidukurisingikai/index\.html" -e "purattofo-mu/38222\.html"
 # Any output = violation. Replace with one of the permitted URLs.
 ```
 
-The same three URLs are encoded in `PERMITTED_LINKS` in `.github/scripts/auto_gates.py` — keep them in sync. The third one is matched with its `index.html` suffix on purpose, so the pages **under** it (`.../tobumachidukurisingikai/34277.html`, `.../toubumatidukurinyu-su/index.html`) stay forbidden. Adding a fourth requires updating this file, `CONTRIBUTING.txt` rule 1, `README.md`, and that gate together.
+The same four URLs are encoded in `PERMITTED_LINKS` in `.github/scripts/auto_gates.py` — keep them in sync. The third one is matched with its `index.html` suffix on purpose, so the pages **under** it (`.../tobumachidukurisingikai/34277.html`, `.../toubumatidukurinyu-su/index.html`) stay forbidden. Adding a fifth requires updating this file, `CONTRIBUTING.txt` rule 1, `README.md`, and that gate together.
 
 Several other domains are permitted and are outside this grep. **Chunichi Shimbun Web article URLs** (`chunichi.co.jp/article/<id>`) appear in the 報道 corner on `index.html` via `data/chunichi_news.json`, where each headline must link to its source — see that file's section below. And the **eight target schools' own homepages** (`komaki-aic.ed.jp/<slug>/`) may be linked: they are a different domain run by the schools, and the URLs are stable. They appear in `map.html` (the 各校ホームページ block) and, via `data/school_news.json`, in the bottom section of `index.html`. The grep above does not cover them — when the set of schools changes, keep `SCHOOLS` in `fetch_schools.py` and the `map.html` block in sync. And **five MEXT pages** (`mext.go.jp`) are linked from `nationwide.html` only, as the sources for the nationwide figures and the national standards — see that page's section below. And **five Instagram accounts** — three citizen-run (`instagram.com/arigato.ohshirosho`, `instagram.com/tokadaidancefestival`, `instagram.com/bamboo_installation_ookusa`) and two of the city's children's centres (`instagram.com/shinookajidoukan`, `instagram.com/warabekan`, added 2026-09-26) — are linked from the 地域の取組 corner, which appears on `community.html` and — as the same list inside the 最新の動き group — on `index.html` — see `data/community_actions.json` below. And the **three SNS accounts of 桃花台を考える会【新しいまちづくり】** (`instagram.com/tokadai_komaki`, `x.com/tokadai_komaki`, `facebook.com/TokadaiNT`) are linked from the footer of **every** page, under a heading of their own — 「参考リンク（住民有志）」, separate from 「参考リンク（公式）」 (added 2026-09-22 on the user's instruction). **Keep the two headings separate**: the footer's other reference link is the city's own page, and merging them would present a residents' group as an official source. Like the 報道 corner and 地域の取組, these are never evidence for anything on the site. `PERMITTED_SNS` in `auto_gates.py` confines `x.com` and `facebook.com` to these two accounts, the share endpoints, and **one more: `facebook.com/city.komaki`** — the city's own Facebook, allowed on 2026-09-24 on the user's instruction so that a 地域の取組 item can link the city post its text relies on (the reader can then read that post themselves). That one **is** a city publication and may be cited; it is only ever the `ref_url` of an entry in `data/community_actions.json`. the group's name is a proper noun and is **not** translated (same rule as department and school names). Finally, the **share buttons** at the bottom of every page point at seven sharing endpoints (`social-plugins.line.me` — `line.me/R/share` on phones, see below —, `x.com/intent/post`, `www.facebook.com/sharer/sharer.php`, `b.hatena.ne.jp/entry/panel/`, `www.threads.net/intent/post`, `bsky.app/intent/compose`, `www.reddit.com/submit`), at whatever Mastodon server the reader names (`https://<host>/share`), and load one external script (`s.hatena.ne.jp/js/HatenaStar.js`) — see the SHARE BUTTONS section below. Those URLs are built in `js/main.js`, never written into HTML or a dictionary, and are **not sources**: nothing on the site may cite them.
 
@@ -250,6 +251,7 @@ The **地域の取組 section on `community.html`**, sitting directly below the 
 - **Everything listed here must also be reflected in the schedule** — an `.event-item` in `schedule.html` (in `data-start` order, with `sched_date<N>`/`sched_desc<N>` keys in all 10 languages plus `ja-kids`) and an entry in `data/events.json` for the calendar. A reader who only looks at スケジュール must not miss an event that the 地域の取組 corner announces. When adding one, bump the count in `status_digest` (「全 N 件」) in every dictionary too. Standing instruction from the user (2026-09-03): check this every time this file changes.
 - **This is neither official information nor reporting — it is what residents themselves have posted.** Like the 報道 corner, it is never evidence for a claim made elsewhere on the site, and never a source for the plan's contents, figures or dates.
 - An entry may also carry an optional **`ref_url` / `ref_label_<lang>`**, rendered as a separate 参考 line under 発信元 (added 2026-09-24). 発信元 is the organiser's own posting; 参考 is where a fact stated in the body comes from — **keep them on separate lines**, merging them would make a third party look like the organiser. The only target allowed there today is the city's Facebook post (`PERMITTED_SNS`).
+- An entry may also carry an optional **`venue_url` / `venue_label_<lang>`**, rendered as a 会場の案内 line (added 2026-09-27 on the user's instruction). It is the **venue's own notice** of the event — today only ピアーレ桃花台's page for TOKADAI DANCE FESTIVAL (`peare-toukadai.jp/event_campaign/tokadai-dance-festival/`). It is neither the organiser (発信元) nor a source (参考), so it gets a line of its own; never evidence for anything. Adding another venue domain requires updating this file, `CONTRIBUTING.txt` rule 1 and `README.md` together.
 - Every entry carries a badge and a 発信元 line linking the source. **Do not strip either** — they are what stops the corner reading as a city announcement. The badge follows who runs it: `citizen`（市民有志・既定）, `council`（地域協議会）, `facility`（児童館 — 2026-09-26 に篠岡児童館・大城児童館を載せたときに追加。市の施設に「市民有志」を付けると主催者を偽ることになる）.
 - **An entry without `date` is a standing effort, not an event** (the two 児童館 — 2026-09-26). It never expires, is listed after the dated events, carries `data-standing` on its `.action-item`, and is **left out of the 回覧板 sheet's 「これからの催し」**. Nothing goes on the schedule for it; the schedule rule above applies as soon as a date is known. バンブーインスタレーション in おおくさ was added undated and got its dates the same day (2026-11-13〜15, marché 11/14) — `date` is the **last** day, so the entry stays up until the event ends.
 - **⛔ Instagram prohibits automated collection** (its `robots.txt`: no collection by automated means without written permission, and `ClaudeBot` is disallowed outright). Do not fetch Instagram with AI browsing tools or scripts, and do not build a workflow that scrapes these accounts. Their content is checked by a person: the user passes on what they see, and it is reflected by hand (2026-09-26 — the user chose not to add even a reminder workflow).
@@ -303,13 +305,16 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 | `community.html#contact` | 地域協議会（支え合い協働推進課）。`comm_contact_*` キー |
 | `review.html#rev-contact` | このページで触れた事柄の市8部署・県5部署・国3部署（文部科学省。2026-09-26 追加）。`rev_c_*` / `rev_s9_*` キー |
 | `nationwide.html#contact` | 全国の統計と国の基準を所管する文科省4部署（中高一貫の高等学校振興課を 2026-09-26 に追加）。`nw_c*_w` ほか |
+| `schedule.html#contact` / `map.html#contact` / `clubs.html#contact`（新設）、`about`・`faq`・`community` の #contact の下の「関係するほかの部署」 | 2026-09-27 ユーザー指示で**トップ以外の全ページ**に広げた分。共通キー `contact_rel_*`・`contact_lv_other`・`ct_w_*`（所管の説明）と、review の `rev_c_*_w` を使い回す。区分の小見出しは `h4.contact-level-h`（節見出しにすると目次と読み上げボタンが区分ごとに増えるため）。clubs は市（学校教育課・文化・スポーツ課）・県（保健体育課・あいちの学び推進課）・国（スポーツ庁 地域スポーツ課）・その他（小牧市スポーツ協会）。map は地図と都市計画の窓口も載せる（ユーザー指示）：市 都市計画係、県 土地利用計画グループ、国＝地図の元データの所管（国土数値情報の運営事務局・総務省統計局。区分見出しは `contact_lv_nat`「国」）。統計局のサイトは Shift_JIS なので、`fetch_news.py` の `_curl_get` は UTF-8 で読めなければ cp932 で読み直す |
+
+**ページを更新するたびに、そのページの問い合わせ先も見直す**（2026-09-27 ユーザー指示）。話題を足したら所管部署を足し、`data/contacts.json` に `source`・`probe`・`shown_in` つきで登録する。
 
 トップページの「各ページへのリンク」の下に、この4か所への案内（`contacts_guide_*`）を置いてある。**番号そのものをトップに書かない** — 直す場所が増えると必ず食い違うため。
 
 - **部署名は日本語のまま**（表の「部署」欄に `data-i18n` を付けない）。窓口で見せたり電話で伝えたりするのは日本語の名称そのもので、訳すと用を成さないため。訳すのは「このページで触れた事柄」の欄とラベルだけ。年表の西暦欄と同じ考え方。ただし `about.html`・`faq.html`・`community.html` の `.contact-box` は従来どおり部署名も翻訳する（1部署だけなので窓口で示す用途より読みやすさを優先）。
 - **番号は HTML と辞書に直接書く。** `tel:` リンクの数字だけの形と、表示用のハイフン入りの形の2つが本文中にある。
 - **出典は「その部署の公表ページ」**。市・県・国のどのページから写したかは `data/contacts.json` の `source` にある。**このURLはサイトからはリンクしない**（許可外部リンクを増やせないため）。
-- **週1回、機械で見張る。** `.github/workflows/check-contacts.yml`（日曜 21:50 UTC＝月曜 6:50 JST）が `.github/scripts/check_contacts.py` を回し、22件の連絡先を公表ページと突き合わせる。**電話・FAX番号の変更は `--fix` がそのまま `*.html` と `data/i18n/*.json` を書き換えてコミットし、ページ別辞書も作り直す**（番号は翻訳されないので機械で直せる）。**部署名・所在地の変更は直さず Issue（☎️）で知らせるだけ** — 部署名は12言語＋こどもむけに訳してあるので、人（かAI）が文面を書き直す必要がある。
+- **週1回、機械で見張る。** `.github/workflows/check-contacts.yml`（日曜 21:50 UTC＝月曜 6:50 JST）が `.github/scripts/check_contacts.py` を回し、30件の連絡先を公表ページと突き合わせる。**電話・FAX番号の変更は `--fix` がそのまま `*.html` と `data/i18n/*.json` を書き換えてコミットし、ページ別辞書も作り直す**（番号は翻訳されないので機械で直せる）。**部署名・所在地の変更は直さず Issue（☎️）で知らせるだけ** — 部署名は12言語＋こどもむけに訳してあるので、人（かAI）が文面を書き直す必要がある。
 - 照合のしかたは `probe.kind`（`article_contact` / `kakari` / `pref_group` / `text`）で切り替える。市の記事ページの「この記事に関するお問い合わせ先」、係の一覧表、愛知県の「連絡先」欄、文科省の「お問合せ先」で構造が違うため。**係名はページ上部の目次にも出るので、`kakari` は「次の行が『電話番号』」のものだけを本文の表とみなす** — ここを緩めると隣の係の番号を読む。
 - **運行事業者のような民間の連絡先も同じ扱い。** 出所はその会社が自社サイトで公表しているページで、**サイトからリンクはしない**（許可外部リンクを増やせない）。`bus_contact_note` に「制度のことを会社にたずねても答えは出ない」と書いてあるのは、市の窓口へ行くべき問い合わせが会社に流れるのを防ぐため — 外さないこと。
 - **議員個人の氏名・連絡先は載せない**（[[個人名は書かない]]の方針）。`council.html` は職と部署だけを書く。**政党名・会派名・議員団名も書かない**（2026-09-14 ユーザー指示）— 一般質問も「だれが聞いたか」ではなく「何が問われ、市がどう答えたか」だけを書く。定例会の本文（質問・答弁の要約を含む）は「です・ます」でそろえる（同指示）。
@@ -332,8 +337,9 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 - **分類は「いまの学校名」で、再編後も永続的にこの分け方を使う**（ユーザー指示）。学校名の中はさらに種目で分ける。活動場所が特定の校区に結びつかないものだけ `#wide` に置く。**近隣市（春日井市など）に拠点があって、この地区から通えるもの**も `#wide` に入れ、場所を明記する（`clubs_s3_lead` がその旨を断っている）。**校区が確認できないものを推測で学校に割り当てないこと。** 光ヶ丘チェリーズは当初、名称に「光ヶ丘」を含むだけでは根拠にならないとして `#wide` に置いていたが、2026-09-22 にユーザーから活動場所が光ヶ丘小学校だと示され、光ヶ丘小学校の欄へ移した。**裏づけが得られたら移す、得られないうちは `#wide` に置く**、という順でよい。
 - **出典は「その主体自身の公表」**。地域クラブは各クラブの Instagram・ホームページ、学校の部活動は各校のページと学校日記、教室は小牧市スポーツ協会の公表。2026-09-20 のユーザー指示（行政以外の主体はその主体自身の公表を出典にしてよい）に沿う。**ここに載る情報は、計画の内容・数値・日程の根拠には決して使わない**（報道コーナー・地域の取組と同じ扱い）。
 - **部活動の一覧は3中学校とも公表されていない**（2026-09-22 に調査）。光ヶ丘中は部活動ページがあるが理念のみ、篠岡中・桃陵中は専用ページなし。そこで **① 各校の部活動ページ・学校日記へリンクする ② 学校日記などで確認できた部名だけ載せる ③ 網羅的でないと明記する** の3つで扱っている（`clubs_bukatsu_none` / `clubs_bukatsu_partial`）。**部名を推測で補わないこと。**
+- **文化系・コンピュータ系も載せる**（2026-09-27 ユーザー指示）。合唱（小牧少年少女合唱団＝小牧市音楽連盟の団体紹介）、プログラミング（エンカレッジ小牧＝所在地は高根2丁目だが、通う子は校区に関係ないので `#wide`〈ユーザー指示。教室・塾のように校区を問わず通うものは所在地で学校に割り当てない〉、パソコンスクールビッツ＝小牧市小牧）。**eスポーツ**は Legame（小牧市岩崎の会社。まなび創造館・勤労センターで地域大会「LegameCup」、オンラインのeスポーツ英会話。ユーザー提示。Instagram は取得せず会社サイトで確認）を `#wide` に載せた。校区内で子ども向けに定期活動するクラブは見つかっていない（`clubs_esports_none`）。小牧市スポーツ協会の**ジュニア育成活動**（市内の小中学生）は、チラシ PDF の会場表で東部の会場を確かめて学校の欄に置いた（桃陵中武道館の剣道・光ヶ丘中グラウンドのサッカー・光ヶ丘中武道館の合気道）。陶運動場のサッカーは校区が未確認なので `#wide`。部名は3中学校の学校日記「部活動」カテゴリから拾い、あいまいな略称（桃陵中の「ソフト部」）は載せていない。野球は学校日記で「桃花台」の合同チーム名で出場している（`clubs_tokadai_bb`）。
 - **国の方針は本文に文字で出典を書き、リンクは張らない**（`clubs_s1_src`）。文科省サイトへのリンクは `nationwide.html` 限定のままで、`review.html` と同じ方式。⚠️ **ドメイン名は HTML コメントにも書かない** — `auto_gates.py` check 6 は文字列で検査するので、コメントであっても違反として止まる（実際に一度止まった）。
-- **リンク規則**：Instagram 9アカウントは `PERMITTED_INSTAGRAM` に `("clubs.html",)` 付きで登録。クラブ・団体の公式サイト5ドメイン（`komaki-sports.or.jp` / `acmilansoccerschool-aichi.jp` / `seigakan.net` / `komaki-kendo.jp` / `fc-fervor.net`）は `PERMITTED_CLUB_SITES` で `clubs.html` 限定。学校サイト（`komaki-aic.ed.jp`）はもともとゲートの検査対象外。増やすときは `CONTRIBUTING.txt` 規則1・`README.md` も同時に更新すること。
+- **リンク規則**：Instagram 11アカウントは `PERMITTED_INSTAGRAM` に `("clubs.html",)` 付きで登録。クラブ・団体の公式サイト10ドメイン（`komaki-sports.or.jp` / `acmilansoccerschool-aichi.jp` / `seigakan.net` / `komaki-kendo.jp` / `fc-fervor.net` / `komakishion.com`（小牧市音楽連盟）/ `pc-bitz.jp` / `encourage-toukadai.com` / `legameinc.com` / `white700957.studio.site`（ダンススクールD☆vivace））は `PERMITTED_CLUB_SITES` で `clubs.html` 限定。学校サイト（`komaki-aic.ed.jp`）はもともとゲートの検査対象外。増やすときは `CONTRIBUTING.txt` 規則1・`README.md` も同時に更新すること。
 - **クラブ名・学校名・会場名は翻訳しない**（固有名詞。部署名・学校名と同じ扱い）。訳すのは種目（`clubs_sp_*`）・対象（`clubs_tg_*`）・ラベルだけ。種目を増やすときは13辞書に `clubs_sp_<種目>` を足す。
 - **学校名の見出し（`.clubs-school-h`）は `section-title sub` に独自クラスを重ねている。** `sub` だけだと節見出し（h2）と同じ見た目になって階層が消える。`sub` は外さないこと（READ ALOUD が `h3.section-title.sub` を対象にしている）。読み上げボタンが帯に食い込まないよう `.section-title.clubs-school-h + .tts-row` で余白を取り直してある — **`.section-title.sub + .tts-row` と詳細度を揃えないと効かない**。
 
@@ -343,7 +349,7 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 
 | 節 | 見出し | 中身 | 性格 |
 |---|---|---|---|
-| `#qa` | `faq_qa_h`（h2） | よくある質問 20問。カテゴリ4つ（`faq_cat1`〜`4`）は **`h3.section-title.sub`** | 答えが公表されていること |
+| `#qa` | `faq_qa_h`（h2） | よくある質問 22問。カテゴリ4つ（`faq_cat1`〜`4`）は **`h3.section-title.sub`** | 答えが公表されていること |
 | `#voices` | `voices_cols_h`（h2） | 賛成・反対・中立の声 18件（3列） | 意見が割れていること。**当サイトによる要約・再構成**で市の見解ではない（`voices_about`） |
 | `#pubcom` | `voices_pc_h`（h2） | パブリックコメントの実施結果・論点の横棒グラフ・論点5件・計画が変わったところ | 市が公表した意見と「市の考え方」にもとづく（`voices_pc_note`） |
 | `#contact` | `faq_contact_h`（h2） | 教育総務課 学校再編推進係の連絡先 | 他ページの `#contact` と同じ位置づけ |
@@ -360,12 +366,12 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 - **順番と節の区切りを崩さないこと。** 「答えが出ている問い」→「答えが割れている問い」という流れで、背景色も `section-alt` → `section` → `section-alt` → `section` と交互にしてある。声を先に置いたり、Q&A と声を同じ節に混ぜたりすると、**住民の声が市の答えに読めてしまう**。`review.html` の【事実】と 🔎 を版面で分けるのと同じ考え方。
 - **`FAQPage` 構造化データに入るのは `#qa` だけ。** `i18n.js` の `applyFaqJsonLd` が `faq_q<N>`/`faq_a<N>` の連番から組み立てる（`pageId === 'faq'` 判定、最初の欠番で止まる）ので、**番号を飛ばさないこと**。声もパブコメも質問でも答えでもないので、構造化データには入れない。
 - **キー名は統合前のまま**（`voice_*` / `voices_*` / `col_*` / `pubcom_*` / `stat_*`）。付け替えると12言語＋こどもむけ13辞書の訳をすべて作り直すことになるため、`faq_*` に寄せていない。`voices_` で始まるキーが `faq.html` にあるのは統合の名残で、誤りではない。
-- **スマートフォンでは声を列ごとに畳む**（`VOICES COLLAPSE` in `js/main.js`、2026-09-22 ユーザー指示）。Q&A 20問はアコーディオンで畳まれているのに声18枚が開いたままだと、狭い画面では声が本文の大半を占めるため。**PC 幅では件数も ＋/− の記号も外す**（指示は「スマートフォンだけ畳む」であって PC の見た目を変える話ではない）。見出しに足すのは数字と記号だけなので、辞書にキーは増えていない。
+- **スマートフォンでは声を列ごとに畳む**（`VOICES COLLAPSE` in `js/main.js`、2026-09-22 ユーザー指示）。Q&A 22問はアコーディオンで畳まれているのに声18枚が開いたままだと、狭い画面では声が本文の大半を占めるため。**PC 幅では件数も ＋/− の記号も外す**（指示は「スマートフォンだけ畳む」であって PC の見た目を変える話ではない）。見出しに足すのは数字と記号だけなので、辞書にキーは増えていない。
   - 畳みは **`display:none`（`.voices-col.is-collapsed .voice-card`）で行う。** `hidden` 属性や `aria-hidden` にすると READ ALOUD の `SKIP` に当たり、畳んだ声が読み上げから丸ごと落ちる。`blocksOf()` の可視判定の例外は `.faq-a, .voice-card` の2つ — **この2つは対で維持すること**。
   - 見出し（`.voices-col-header`）の中身は `i18n.js` が `textContent` ごと書き換えるので、件数と記号は `komaki:i18n-applied` のたびに付け直している。
 - **旧 `voices.html` は削除せず、移動案内の1枚として残してある。** GitHub Pages は静的で 301 を返せず、このサイトは共有ボタンを前面に出しているので `voices.html?lang=xx` が LINE などに出回っている。`noindex`、`canonical` は `faq.html`、`meta refresh`（JS 無効時の保険）に加えて、**JS が `?lang=` を引き継いで `faq.html?lang=xx#voices` へ送る**。`sitemap.xml` と `hreflang` からは外し、ヘッダのナビからも外した（`clubs.html` を足して、サイトは**11ページ**）。`meta_title_voices` / `meta_desc_voices` は移動案内の文言として残っている。
 - 他ページからの導線は `faq.html#voices`（`community.html`・`review.html`）と `faq.html#pubcom`（`council.html` の `council_warn_link`）。`council.html` は統合前に faq と voices の両方を「関連するページ」に挙げていたので、3つのうち1つを `review.html`（`rel_council_review`）に差し替えてある。
-- **ヘッダとフッタのナビだけは短い名前**（`nav_faq`＝「質問・賛否の声」）で、ページ名（`faq_h1` / `ql_faq_h`＝「よくある質問と賛否の声」）とは**わざと違う**（2026-09-22 ユーザー指示）。ナビは9項目が並ぶ場所なので、正式名をそのまま置くと長すぎる。**他のページは `nav_*` と `h1` が一致しているので、ここだけが例外**だと覚えておくこと。中点は全角「・」（サイトの他の表記にそろえる）。
+- **ヘッダとフッタのナビだけは短い名前**（`nav_faq`＝「質問・賛否の声」）で、ページ名（`faq_h1` / `ql_faq_h`＝「よくある質問と賛否の声」）とは**わざと違う**（2026-09-22 ユーザー指示）。ナビは9項目が並ぶ場所なので、正式名をそのまま置くと長すぎる。**`community.html` も同じ例外**：ページ名（`community_h1`）は「地域協議会と地域のまちづくり」、ナビ（`nav_community`）は「地域とまちづくり」（2026-09-27 ユーザー指示。旧名「地域協議会と学校再編」／ナビ「地域協議会」）。**ほかのページは `nav_*` と `h1` が一致している。**中点は全角「・」（サイトの他の表記にそろえる）。
 - サイトの Q&A が3か所（`faq.html` / `bus.html#faq` / `community.html#qa`）に分かれている方針は統合後も変わらない。`faq_more_*` の箱がその導線。
 
 ## `review.html`（計画の検証と提案のページ）
@@ -506,6 +512,7 @@ Several things reflect the current date automatically — no manual edits needed
 | Event status badges 完了/進行中/予定 (`schedule.html`, keys `event_status_*`) | Every page load (same) | AUTO DATE STATUS |
 | "Upcoming" bar items | Every page load (hidden once past `data-expires`) | UPCOMING SCHEDULE EXPIRY |
 | 「あと◯日」の札（`index.html` 今後のスケジュールの帯） | Every page load | NEXT COUNTDOWN — `data/events.json` の `"day": true` の予定のうちいちばん近いもの。同じ日付の `.upcoming-item` があればそこに札だけ付け、無ければ `#next-countdown` の行を出す。どの予定が大事かはサイトが選ばない（近い順に1日ぶん） |
+| 「あと◯日」の札（**全ページ**。2026-09-28 ユーザー指示） | Every page load | DATE COUNTDOWN — 日付の決まっているものすべてに付ける。スケジュールの項目（`.event-item` / `.status-item` / `.upcoming-item`）は1日の予定で、かつ events.json の `"day": true` があるものだけ。自動描画の一覧は描画側が付ける `data-countdown="YYYY-MM-DD"`（地域の取組＝`date_start` があればそれ・無ければ `date`、東部まちづくりの催し、協議会イベント＝`when` の月日と `updated_at` の年）。文字は `::after`（`attr(data-cd)`）で出し、回覧板・読み上げ・原文併記に混ぜない。印刷では隠す。複数日の地域の取組には `data/community_actions.json` に `date_start`（初日）を書くこと |
 
 Notes:
 - **The 完了／進行中／予定 badges on `schedule.html` are re-attached on every `komaki:i18n-applied`.** They sit inside `.event-date`, which carries `data-i18n`, so every dictionary application wiped them — until 2026-09-26 no badge was visible anywhere. Their text comes from `window.KomakiEventStatus()`, which holds the same strings as `event_status_*` (main.js cannot read the dictionary); change both together.
@@ -554,7 +561,7 @@ Every HTML page follows the same pattern: `notice-banner` → `<header>` (with `
 
 ### 節ごとの読み上げ（`.tts-row`）
 
-2026-09-15 追加（ユーザー採用）。`js/main.js` の READ ALOUD が、全ページの `main h2.section-title`（と index の「最新の動き」各コーナーの `h3.section-title.sub`）の下に「🔊 読み上げる」を置き、その節の本文をブラウザ内蔵の `speechSynthesis` で**表示中の言語のまま**読む。ボタンの文言は `tts_play` / `tts_stop`（`RUNTIME_KEYS` 入り）。
+2026-09-15 追加（ユーザー採用）。`js/main.js` の READ ALOUD が、全ページの `main h2.section-title`（と index の「最新の動き」各コーナーの `h3.section-title.sub`、その「地域の取組」の下半分「東部まちづくりの動き」の `h4.section-title.sub` — 見出しが別なので読み上げも別、2026-09-27 ユーザー指示）の下に「🔊 読み上げる」を置き、その節の本文をブラウザ内蔵の `speechSynthesis` で**表示中の言語のまま**読む。ボタンの文言は `tts_play` / `tts_stop`（`RUNTIME_KEYS` 入り）。
 
 - **声が端末に無い言語ではボタンを出さない。** 注記で断るより、押して無音のほうがまずい。ビルマ語はほぼ出ない。声は端末内（`localService`）を優先する。
 - **1文ずつ区切って渡す**（日本語・中国語は70字、他は180字で読点・空白で切る）。Chrome は長い発話を黙って止めることがある。

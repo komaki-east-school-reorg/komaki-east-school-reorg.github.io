@@ -67,6 +67,7 @@ jobs:
             1. CLAUDE.md … このサイトの規則。特に「Important constraints」「Machine-checked invariants」
             2. files.txt … ファイル構成の一覧
             3. auto_ideas/history.json … **過去に出した提案の見出し。ここにある案は二度出さない**
+               `implemented` の付いた案はサイトに実装済み（日付と commit つき）。その実装を前提に、重ならない案を考える
             4. data/site-updates.json … 最近ここで何を作ってきたか（読者向けの更新履歴）
             5. `git log --oneline -30` … 直近の作業
             6. 気になったページの HTML と js/main.js の該当ブロック

@@ -59,7 +59,7 @@
         <li><a href="clubs.html" data-i18n="nav_clubs">地域クラブ</a></li>
         <li class="nav-break" aria-hidden="true"></li>
         <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
-        <li><a href="community.html" data-i18n="nav_community">地域協議会</a></li>
+        <li><a href="community.html" data-i18n="nav_community">地域とまちづくり</a></li>
         <li><a href="map.html" data-i18n="nav_map">地図</a></li>
         <li><a href="nationwide.html" data-i18n="nav_nationwide">全国の動き</a></li>
         <li><a href="review.html" data-i18n="nav_review">検証と提案</a></li>
@@ -595,6 +595,34 @@
       <p class="school-note" data-i18n="news_note">※ 小牧市の公式サイトから1日1回自動で取得しています。見出しは市が公開している原文です。日本語以外の表示では自動翻訳した見出しを出しています。リンク先は市の日本語のページです。</p>
     </div>
   </section>
+  <!-- 関係する部署の問い合わせ先（2026-09-27 ユーザー指示：トップ以外の全ページに、そのページの内容に関係する
+       市・県・国の窓口を載せる）。番号は data/contacts.json に登録してあり、週1回の照合（check_contacts.py）の対象。
+       ページを更新したら、ここに載せる部署も見直すこと。部署名は窓口で使う日本語のまま（data-i18n を付けない）。 -->
+  <section class="section section-alt" id="contact">
+    <div class="container">
+      <h2 class="section-title" data-i18n-html="contact_rel_h">関係する部署の問い合わせ先<small>Who to Contact</small></h2>
+      <p class="section-lead" data-i18n="contact_rel_lead">このページの内容に関係する市・県・国の部署です。番号は各部署が公表しているものです（2026年9月現在）。</p>
+      <h4 class="contact-level-h" data-i18n="rev_c_city_h">小牧市</h4>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th data-i18n="contact_tbl_dept">部署</th>
+              <th data-i18n="contact_tbl_scope">このページで触れた事柄</th>
+              <th data-i18n="contact_tbl_tel">電話</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>教育委員会事務局 教育総務課 学校再編推進係</td><td data-i18n="rev_c_c1_w">学校再編計画、通学区域、スクールバス</td><td><a href="tel:0568395261">0568-39-5261</a></td></tr>
+            <tr><td>都市政策部 東部まちづくり推進室</td><td data-i18n="rev_c_c2_w">東部振興構想、桃花台ニュータウン、東部のまちづくり</td><td><a href="tel:0568395229">0568-39-5229</a></td></tr>
+            <tr><td>健康生きがい支え合い推進部 支え合い協働推進課 支え合い協働推進係</td><td data-i18n="ct_w_sasaeai">地域協議会</td><td><a href="tel:0568761629">0568-76-1629</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="contact-rel-note" data-i18n="contact_rel_note">※ 部署名は日本語のまま載せています。窓口で示したり電話で伝えたりするには、そのほうが確実なためです。組織改編で名称や番号が変わることがあります。当サイトはいずれの部署とも関係がなく、問い合わせのときに当サイトの名前を出す必要はありません。</p>
+    </div>
+  </section>
+
   <!-- 関連ページ：ナビの再掲ではなく、このページを読んだ人が次に必要とする所だけを、
        行き先が分かる文で挙げる。全ページが互いにリンクするナビだけでは「どれが中心か」が
        構造に現れないため、本文側で意図的に偏りを作っている。 -->
@@ -642,7 +670,7 @@
           <li><a href="bus.html" data-i18n="nav_bus">スクールバス</a></li>
           <li><a href="clubs.html" data-i18n="nav_clubs">地域クラブ</a></li>
           <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
-          <li><a href="community.html" data-i18n="nav_community">地域協議会</a></li>
+          <li><a href="community.html" data-i18n="nav_community">地域とまちづくり</a></li>
           <li><a href="map.html" data-i18n="nav_map">地図</a></li>
           <li><a href="nationwide.html" data-i18n="nav_nationwide">全国の動き</a></li>
           <li><a href="review.html" data-i18n="nav_review">検証と提案</a></li>
