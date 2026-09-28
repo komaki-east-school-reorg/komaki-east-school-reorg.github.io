@@ -1,8 +1,66 @@
 {
-  "fetched_at": "2026-09-27T00:53:24Z",
+  "fetched_at": "2026-09-28T00:56:21Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "momogaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "桃ヶ丘小学校",
+        "ja_kids": "ももがおか小学校",
+        "en": "Momogaoka Elem. School",
+        "zh": "桃之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
+      "latest_date": "2026-09-28",
+      "items": [
+        {
+          "title": "ピーチフェスタ ～ペットボトルロケット～",
+          "date": "2026-09-28",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136135335?tm=20260928064439"
+        },
+        {
+          "title": "ピーチフェスタ ～プログラミング～",
+          "date": "2026-09-19",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136135457?tm=20260919154450"
+        },
+        {
+          "title": "ピーチフェスタ：カローリング",
+          "date": "2026-09-19",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136135414?tm=20260919151619"
+        }
+      ]
+    },
+    {
+      "slug": "hikarigaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "光ヶ丘小学校",
+        "ja_kids": "ひかりがおか小学校",
+        "en": "Hikarigaoka Elem. School",
+        "zh": "光之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
+      "latest_date": "2026-09-28",
+      "items": [
+        {
+          "title": "６年 図工",
+          "date": "2026-09-28",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136147795?tm=20260925124702"
+        },
+        {
+          "title": "１年生 国語 「やくそく」",
+          "date": "2026-09-28",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136150909?tm=20260925162455"
+        },
+        {
+          "title": "【やまももクラブ】やまさんももさん作り",
+          "date": "2026-09-24",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136143848?tm=20260924182642"
+        }
+      ]
+    },
     {
       "slug": "hikarigaoka-j",
       "level": "jhs",
@@ -149,35 +207,6 @@
       ]
     },
     {
-      "slug": "hikarigaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "光ヶ丘小学校",
-        "ja_kids": "ひかりがおか小学校",
-        "en": "Hikarigaoka Elem. School",
-        "zh": "光之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
-      "latest_date": "2026-09-24",
-      "items": [
-        {
-          "title": "【やまももクラブ】やまさんももさん作り",
-          "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136143848?tm=20260924182642"
-        },
-        {
-          "title": "4年生 学級レクリ",
-          "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136141793?tm=20260924151900"
-        },
-        {
-          "title": "１年生 国語 漢字の練習",
-          "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136132087?tm=20260918161657"
-        }
-      ]
-    },
-    {
       "slug": "shinooka-e",
       "level": "elem",
       "names": {
@@ -203,35 +232,6 @@
           "title": "運動会にむけた全体練習",
           "date": "2026-09-18",
           "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136127671?tm=20260918114058"
-        }
-      ]
-    },
-    {
-      "slug": "momogaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "桃ヶ丘小学校",
-        "ja_kids": "ももがおか小学校",
-        "en": "Momogaoka Elem. School",
-        "zh": "桃之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
-      "latest_date": "2026-09-19",
-      "items": [
-        {
-          "title": "ピーチフェスタ ～プログラミング～",
-          "date": "2026-09-19",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136135457?tm=20260919154450"
-        },
-        {
-          "title": "ピーチフェスタ：カローリング",
-          "date": "2026-09-19",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136135414?tm=20260919151619"
-        },
-        {
-          "title": "ピーチフェスタ ～スライム～",
-          "date": "2026-09-19",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136135397?tm=20260919151410"
         }
       ]
     }
