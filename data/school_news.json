@@ -1,34 +1,63 @@
 {
-  "fetched_at": "2026-09-28T00:56:21Z",
+  "fetched_at": "2026-09-29T02:07:48Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
     {
-      "slug": "momogaoka-e",
+      "slug": "sue-e",
       "level": "elem",
       "names": {
-        "ja": "桃ヶ丘小学校",
-        "ja_kids": "ももがおか小学校",
-        "en": "Momogaoka Elem. School",
-        "zh": "桃之丘小学"
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
       },
-      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
-      "latest_date": "2026-09-28",
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-09-29",
       "items": [
         {
-          "title": "ピーチフェスタ ～ペットボトルロケット～",
+          "title": "9/28 音楽：『♪もみじ』（４年生）",
+          "date": "2026-09-29",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136165350?tm=20260929110713"
+        },
+        {
+          "title": "9/29 体育：マット運動（５年生）",
+          "date": "2026-09-29",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136165291?tm=20260929110212"
+        },
+        {
+          "title": "9/28 体育：ボールゲーム（１年生）",
           "date": "2026-09-28",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136135335?tm=20260928064439"
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136161811?tm=20260928170629"
+        }
+      ]
+    },
+    {
+      "slug": "ohshiro-e",
+      "level": "elem",
+      "names": {
+        "ja": "大城小学校",
+        "ja_kids": "おおしろ小学校",
+        "en": "Oshiro Elem. School",
+        "zh": "大城小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
+      "latest_date": "2026-09-29",
+      "items": [
+        {
+          "title": "にじっこたいきゅうしき",
+          "date": "2026-09-29",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136158287?tm=20260928121218"
         },
         {
-          "title": "ピーチフェスタ ～プログラミング～",
-          "date": "2026-09-19",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136135457?tm=20260919154450"
+          "title": "４年生 学級レクリの時間",
+          "date": "2026-09-29",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136151702?tm=20260925170918"
         },
         {
-          "title": "ピーチフェスタ：カローリング",
-          "date": "2026-09-19",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136135414?tm=20260919151619"
+          "title": "5・6年運動会練習（綱取り）",
+          "date": "2026-09-24",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136143851?tm=20260924182929"
         }
       ]
     },
@@ -42,22 +71,80 @@
         "zh": "光之丘小学"
       },
       "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
+      "latest_date": "2026-09-29",
+      "items": [
+        {
+          "title": "5年生 福祉実践教室",
+          "date": "2026-09-29",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136164293?tm=20260929092046"
+        },
+        {
+          "title": "5年生 図工競技会",
+          "date": "2026-09-29",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136164259?tm=20260929091553"
+        },
+        {
+          "title": "5年生 福祉実践教室",
+          "date": "2026-09-29",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136162449?tm=20260928181130"
+        }
+      ]
+    },
+    {
+      "slug": "toryo-j",
+      "level": "jhs",
+      "names": {
+        "ja": "桃陵中学校",
+        "ja_kids": "とうりょう中学校",
+        "en": "Toryo Junior High",
+        "zh": "桃陵中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
       "latest_date": "2026-09-28",
       "items": [
         {
-          "title": "６年 図工",
+          "title": "0927 女子バスケ部 「伸びしろしかないわ」",
           "date": "2026-09-28",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136147795?tm=20260925124702"
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136163210?tm=20260928202337"
         },
         {
-          "title": "１年生 国語 「やくそく」",
+          "title": "0927 ソフト部 新人戦市内大会",
           "date": "2026-09-28",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136150909?tm=20260925162455"
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136163201?tm=20260928202003"
         },
         {
-          "title": "【やまももクラブ】やまさんももさん作り",
-          "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136143848?tm=20260924182642"
+          "title": "【サッカー部】 練習試合",
+          "date": "2026-09-28",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136155915?tm=20260928072640"
+        }
+      ]
+    },
+    {
+      "slug": "momogaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "桃ヶ丘小学校",
+        "ja_kids": "ももがおか小学校",
+        "en": "Momogaoka Elem. School",
+        "zh": "桃之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
+      "latest_date": "2026-09-28",
+      "items": [
+        {
+          "title": "今週は「アイ（目）アイ（愛）週間」",
+          "date": "2026-09-28",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136156213?tm=20260928104734"
+        },
+        {
+          "title": "ピーチフェスタ ～ペットボトルロケット～",
+          "date": "2026-09-28",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136135335?tm=20260928064439"
+        },
+        {
+          "title": "ピーチフェスタ ～プログラミング～",
+          "date": "2026-09-19",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136135457?tm=20260919154450"
         }
       ]
     },
@@ -71,8 +158,13 @@
         "zh": "光之丘中学"
       },
       "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
-      "latest_date": "2026-09-26",
+      "latest_date": "2026-09-28",
       "items": [
+        {
+          "title": "改めて、ありがとうございました",
+          "date": "2026-09-28",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136163088?tm=20260928194838"
+        },
         {
           "title": "PTA全委員会",
           "date": "2026-09-26",
@@ -82,40 +174,6 @@
           "title": "体育祭の成功を願って！",
           "date": "2026-09-26",
           "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136154026?tm=20260926120621"
-        },
-        {
-          "title": "アジアの頂点を決めろ！",
-          "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136137067?tm=20260924070546"
-        }
-      ]
-    },
-    {
-      "slug": "sue-e",
-      "level": "elem",
-      "names": {
-        "ja": "陶小学校",
-        "ja_kids": "すえ小学校",
-        "en": "Sue Elem. School",
-        "zh": "陶小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-09-25",
-      "items": [
-        {
-          "title": "9/25 租税教室（６年生）",
-          "date": "2026-09-25",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136146747?tm=20260925113745"
-        },
-        {
-          "title": "教職員研修 ～防火研修～",
-          "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136143082?tm=20260924171422"
-        },
-        {
-          "title": "9/24 今日の給食",
-          "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136141190?tm=20260924142456"
         }
       ]
     },
@@ -145,64 +203,6 @@
           "title": "２年生 道徳",
           "date": "2026-09-14",
           "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136094752?tm=20260914151004"
-        }
-      ]
-    },
-    {
-      "slug": "toryo-j",
-      "level": "jhs",
-      "names": {
-        "ja": "桃陵中学校",
-        "ja_kids": "とうりょう中学校",
-        "en": "Toryo Junior High",
-        "zh": "桃陵中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
-      "latest_date": "2026-09-24",
-      "items": [
-        {
-          "title": "１年生 ２回目の学年競遊練習",
-          "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136142745?tm=20260924164639"
-        },
-        {
-          "title": "体育祭全体練習２",
-          "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136141440?tm=20260924162826"
-        },
-        {
-          "title": "体育祭全体練習",
-          "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136142499?tm=20260924161629"
-        }
-      ]
-    },
-    {
-      "slug": "ohshiro-e",
-      "level": "elem",
-      "names": {
-        "ja": "大城小学校",
-        "ja_kids": "おおしろ小学校",
-        "en": "Oshiro Elem. School",
-        "zh": "大城小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
-      "latest_date": "2026-09-24",
-      "items": [
-        {
-          "title": "5・6年運動会練習（綱取り）",
-          "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136143851?tm=20260924182929"
-        },
-        {
-          "title": "図書館見学に行ったよ！",
-          "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136141988?tm=20260924153336"
-        },
-        {
-          "title": "第116回バスケットボール教室",
-          "date": "2026-09-24",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136141819?tm=20260924152156"
         }
       ]
     },
