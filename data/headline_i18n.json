@@ -1,19 +1,6 @@
 {
   "description": "自動取得した見出しの訳（日本語以外の表示で見出しを置き換える）。.github/scripts/headline_i18n.py と .github/workflows/translate-headlines.yml が毎日更新する。キーは見出しの原文。いま表示されない見出しの訳は自動で落ちる。訳の誤りは手で直してよい（見出しが変わらないかぎり上書きされない）。",
   "items": {
-    "しのおか学園の校章が決定しました": {
-      "en": "Shinooka Gakuen school emblem decided",
-      "pt": "Definido o emblema da Shinooka Gakuen",
-      "vi": "Đã quyết định huy hiệu trường Shinooka Gakuen",
-      "tl": "Napili ang sagisag ng Shinooka Gakuen",
-      "es": "Decidido el emblema de Shinooka Gakuen",
-      "zh": "篠冈学园的校徽已确定",
-      "id": "Lambang sekolah Shinooka Gakuen telah ditetapkan",
-      "ko": "시노오카 학원의 교표가 확정되었습니다",
-      "ne": "सिनोओका गाकुएनको विद्यालय प्रतीक निर्णय भयो",
-      "tr": "Shinooka Gakuen okul amblemi belirlendi",
-      "my": "Shinooka Gakuen ကျောင်းတံဆိပ် ရွေးချယ်ပြီးပါပြီ"
-    },
     "第2回北里地区の学校を考える会": {
       "en": "2nd meeting on the schools of the Kitasato district",
       "pt": "2º encontro sobre as escolas do distrito de Kitasato",
@@ -26,6 +13,45 @@
       "ne": "दोस्रो किताजातो क्षेत्रको विद्यालयबारे सोच्ने भेला",
       "tr": "Kitasato bölgesinin okullarını düşünme toplantısı (2.)",
       "my": "Kitasato ဒေသ ကျောင်းများအကြောင်း စဉ်းစားသည့် ဒုတိယအကြိမ် အစည်းအဝေး"
+    },
+    "《桃花台野球部》小牧市民スポーツ大会１回戦突破！": {
+      "en": "[Tokadai Baseball Club] Advances past the first round of the Komaki Citizens' Sports Tournament!",
+      "pt": "[Clube de Beisebol de Tokadai] Passa da primeira rodada do Torneio Esportivo dos Cidadãos de Komaki!",
+      "vi": "[Câu lạc bộ bóng chày Tokadai] Vượt qua vòng 1 Đại hội thể thao người dân thành phố Komaki!",
+      "tl": "[Baseball Club ng Tokadai] Nakapasa sa unang round ng Komaki Citizens' Sports Tournament!",
+      "es": "[Club de béisbol de Tokadai] ¡Supera la primera ronda del Torneo Deportivo de los Ciudadanos de Komaki!",
+      "zh": "【桃花台棒球部】晋级小牧市民运动会第一轮！",
+      "id": "[Klub Bisbol Tokadai] Lolos babak pertama Turnamen Olahraga Warga Komaki!",
+      "ko": "[도카다이 야구부] 고마키 시민 스포츠 대회 1회전 통과!",
+      "ne": "[तोकादाइ बेसबल क्लब] कोमाकी नागरिक खेलकुद प्रतियोगिताको पहिलो चरण पार!",
+      "tr": "[Tokadai Beyzbol Kulübü] Komaki Vatandaşlar Spor Turnuvası'nda ilk turu geçti!",
+      "my": "[Tokadai ဘေ့စ်ဘော ကလပ်] Komaki မြို့သူမြို့သား အားကစားပြိုင်ပွဲ ပထမအဆင့် ကျော်လွှားပြီ!"
+    },
+    "１年生 合唱練習が始まりました": {
+      "en": "1st Grade Chorus Practice Has Begun",
+      "pt": "O ensaio de coral do 1º ano começou",
+      "vi": "Lớp 1 bắt đầu tập hợp xướng",
+      "tl": "Nagsimula na ang Praktis sa Koro ng Grade 1",
+      "es": "Comenzó la práctica de coro del 1.er grado",
+      "zh": "1年级合唱练习开始了",
+      "id": "Latihan Paduan Suara Kelas 1 Telah Dimulai",
+      "ko": "1학년 합창 연습이 시작되었습니다",
+      "ne": "कक्षा 1 को सामूहिक गायनको अभ्यास सुरु भयो",
+      "tr": "1. Sınıf Koro Provaları Başladı",
+      "my": "ပထမတန်း ဂီတအဖွဲ့ဆိုလေ့ကျင့်မှု စတင်ပါပြီ"
+    },
+    "【PTA】シノッチュウ祭体躯祭": {
+      "en": "PTA: Shinotchu Festival sports festival",
+      "pt": "APM: festival esportivo Shinotchu",
+      "vi": "PTA: Lễ hội thể thao Shinotchu",
+      "tl": "PTA: Shinotchu Festival na pista at palakasan",
+      "es": "APA: festival deportivo Shinotchu",
+      "zh": "PTA：Shinotchu 体育节",
+      "id": "PTA: Festival olahraga Shinotchu",
+      "ko": "PTA: 시노춧 축제 체육 대회",
+      "ne": "PTA: सिनोच्चु महोत्सव खेलकुद दिवस",
+      "tr": "PTA: Shinotchu Festivali spor şenliği",
+      "my": "PTA: Shinotchu ပွဲတော် အားကစားပွဲ"
     },
     "第二回おやじの会草刈り": {
       "en": "2nd Fathers' Association Weeding Day",
@@ -143,45 +169,6 @@
       "ne": "उद्धार अभ्यास",
       "tr": "Tahliye Tatbikatı",
       "my": "ပြေးလွှားခိုလှုံရေး လေ့ကျင့်မှု"
-    },
-    "１年生 合唱練習が始まりました": {
-      "en": "1st Grade Chorus Practice Has Begun",
-      "pt": "O ensaio de coral do 1º ano começou",
-      "vi": "Lớp 1 bắt đầu tập hợp xướng",
-      "tl": "Nagsimula na ang Praktis sa Koro ng Grade 1",
-      "es": "Comenzó la práctica de coro del 1.er grado",
-      "zh": "1年级合唱练习开始了",
-      "id": "Latihan Paduan Suara Kelas 1 Telah Dimulai",
-      "ko": "1학년 합창 연습이 시작되었습니다",
-      "ne": "कक्षा 1 को सामूहिक गायनको अभ्यास सुरु भयो",
-      "tr": "1. Sınıf Koro Provaları Başladı",
-      "my": "ပထမတန်း ဂီတအဖွဲ့ဆိုလေ့ကျင့်မှု စတင်ပါပြီ"
-    },
-    "【PTA】シノッチュウ祭体躯祭": {
-      "en": "PTA: Shinotchu Festival sports festival",
-      "pt": "APM: festival esportivo Shinotchu",
-      "vi": "PTA: Lễ hội thể thao Shinotchu",
-      "tl": "PTA: Shinotchu Festival na pista at palakasan",
-      "es": "APA: festival deportivo Shinotchu",
-      "zh": "PTA：Shinotchu 体育节",
-      "id": "PTA: Festival olahraga Shinotchu",
-      "ko": "PTA: 시노춧 축제 체육 대회",
-      "ne": "PTA: सिनोच्चु महोत्सव खेलकुद दिवस",
-      "tr": "PTA: Shinotchu Festivali spor şenliği",
-      "my": "PTA: Shinotchu ပွဲတော် အားကစားပွဲ"
-    },
-    "１年生 後期組織づくりなど": {
-      "en": "1st grade: second-term organization building and more",
-      "pt": "1º ano: organização do segundo semestre e outras atividades",
-      "vi": "Lớp 1: xây dựng tổ chức học kỳ 2 và các hoạt động khác",
-      "tl": "Grade 1: pagbuo ng organisasyon para sa ikalawang termino at iba pa",
-      "es": "1.er grado: organización del segundo semestre y otras actividades",
-      "zh": "一年级：后期班级组织建设等",
-      "id": "Kelas 1: pembentukan organisasi semester kedua dan lainnya",
-      "ko": "1학년 후기 조직 만들기 등",
-      "ne": "कक्षा 1: दोस्रो सत्रको संगठन निर्माण आदि",
-      "tr": "1. sınıf: ikinci dönem örgütlenme çalışmaları vb.",
-      "my": "ပထမနှစ်: နောက်ပိုင်းကာလ အဖွဲ့အစည်းဖွဲ့စည်းခြင်း စသည်"
     },
     "３年生:「ソ・ラ・シ・ド♬」": {
       "en": "3rd Grade: \"Sol, La, Ti, Do ♬\"",
