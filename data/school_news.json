@@ -1,8 +1,37 @@
 {
-  "fetched_at": "2026-10-03T01:20:16Z",
+  "fetched_at": "2026-10-04T00:54:47Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "shinooka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "篠岡中学校",
+        "ja_kids": "しのおか中学校",
+        "en": "Shinooka Junior High",
+        "zh": "篠冈中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
+      "latest_date": "2026-10-03",
+      "items": [
+        {
+          "title": "《桃花台野球部》小牧市民スポーツ大会１回戦突破！",
+          "date": "2026-10-03",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136200616?tm=20261003131314"
+        },
+        {
+          "title": "１年生 合唱練習が始まりました",
+          "date": "2026-10-02",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136198990?tm=20261002184150"
+        },
+        {
+          "title": "【PTA】シノッチュウ祭体躯祭",
+          "date": "2026-10-02",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136190945?tm=20261002090849"
+        }
+      ]
+    },
     {
       "slug": "shinooka-e",
       "level": "elem",
@@ -87,35 +116,6 @@
           "title": "避難訓練",
           "date": "2026-10-02",
           "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136193713?tm=20261002130908"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "篠岡中学校",
-        "ja_kids": "しのおか中学校",
-        "en": "Shinooka Junior High",
-        "zh": "篠冈中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-10-02",
-      "items": [
-        {
-          "title": "１年生 合唱練習が始まりました",
-          "date": "2026-10-02",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136198990?tm=20261002184150"
-        },
-        {
-          "title": "【PTA】シノッチュウ祭体躯祭",
-          "date": "2026-10-02",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136190945?tm=20261002090849"
-        },
-        {
-          "title": "１年生 後期組織づくりなど",
-          "date": "2026-10-01",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136186128?tm=20261001141922"
         }
       ]
     },
