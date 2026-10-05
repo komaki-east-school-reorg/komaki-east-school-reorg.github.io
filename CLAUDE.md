@@ -224,12 +224,13 @@ The bottom of **`community.html`** lists the city's community-council event anno
 - Event titles are **translated for non-Japanese readers** via `data/headline_i18n.json`, and the 日時 text is re-formatted into the reader's language by `window.KomakiJaWhen()` in `js/main.js`. Labels use an inline dict.
 - The corner is rendered as **the same plain row list as the 市公式サイト お知らせ block**: the linked title plus 日時, nothing else. `place` and `updated_at` are still collected in the JSON but not displayed — the linked article carries them.
 - The parser stops at 関連イベント / 関連ファイル / この記事に関するお問い合わせ先, because after those headings the page lists unrelated city-wide events.
+- **東部地域の催しは「地域の取組」・スケジュール・更新履歴へ自動で載る**（2026-10-05 ユーザー指示）。`shinooka: true` は「題名に篠岡地区5協議会の名前がある」**または**「会場（`place`）に東部の地名がある」（`EAST_PLACE_KEYWORDS`＝`fetch_chunichi.py` の `AREA_KEYWORDS` と同じ基準＋東部市民センター）。各イベントの `date`（ISO）は `when` の月日に `updated_at` の年を補ったもの（更新日より2か月以上前なら翌年）。`shinooka` かつ `date` のある催しは、`window.KomakiTokadaiEvents()`（桃花台を考える会の催しと同じ仕組み。ラベルは見出しの訳＋「（地域協議会）」）を通って、カレンダー・`.ics`・あと◯日・schedule.html の一覧（`.event-item[data-auto="council"]`）・トップの帯と `status_digest` の件数・「地域の取組」（札は `council`、発信元はサイト内の `community.html#council-events` — sasaeai の索引は community.html 限定なので index にも出るこの欄から外へは張らない）に出る。`events.json` / `community_actions.json` に同じ催しを手で書けばそちらが優先され、二重にはならない。更新履歴へはこのスクリプトが1行足す（`auto_key` = 記事 URL。終わった催しはさかのぼって足さない）。東部の催しは会場名も `headline_i18n.json` で訳す。
 
 ## `data/chunichi_news.json` (newspaper coverage)
 
 The **「報道でみる東部地域」 section near the bottom of `index.html`** lists Chunichi Shimbun Web articles about eastern Komaki (the Shinooka district) — **not only the school reorganization**, but local news in general. `.github/scripts/fetch_chunichi.py` crawls the paper's Komaki-city area index once a day and stores, per article, **only the headline, the publication date, the article URL, and one quoted sentence from the opening**. The body is never copied — the articles are paywalled part-way through.
 
-**The corner displays headlines only** — the headline, its date, and the 出典 line. The stored `quote` is deliberately not rendered (it made the section long enough to bury the site's own content); it stays in the JSON so it can be brought back without re-fetching.
+**The corner displays headlines only, newest 3** (`MAX_ITEMS = 3`, 2026-10-05 user's instruction) — the headline, its date, and the 出典 line. The stored `quote` is deliberately not rendered (it made the section long enough to bury the site's own content); it stays in the JSON so it can be brought back without re-fetching.
 
 - **Never hand-edit** it, and never add it to the auto-update pipeline's `ALLOWED` set — it is regenerated daily.
 - **This is reporting, not a primary source.** Facts on the rest of the site (figures, dates, plan contents) must still come only from the city's official information. Never cite a newspaper article as the evidence for a site edit. Because the corner now covers the district generally, most entries are not about the reorganization at all — that is intended.
@@ -265,7 +266,7 @@ The **地域の取組 section on `community.html`**, sitting directly below the 
 2026-09-13 追加（ユーザー指示）。**「地域の取組」欄の下半分**に、市の東部まちづくり推進室が公表している東部地域の取組を並べる。`community.html` と `index.html` の両方に出る（`#tobu-actions-container` を見つけた所に `js/main.js` の TOBU ACTIONS ブロックが描く）。市民有志の取組（`data/community_actions.json`）とは**見出しを分けてある** — 上は住民自身が始めたもの、下は市の部署が公表したもので、混ぜると「誰が出している情報か」が消えるため。ただし**行の形（カード）は 2026-09-20 のユーザー指示で市民有志の取組（`.action-item`）とそろえた**（上下の欄が続いて見えるようにするため）。出どころの違いは **①「市公式」の札 ②カード左帯の色（市公式は `--primary` の緑、市民有志は `--accent` の黄） ③最後の出典行** の3つで示す — この3つは外さないこと。
 
 - **自動生成・手編集不可。** `fetch_news.py` が監視している `data/official_pages/toubumachidukuri-tobumachidukurisingikai-*.txt` から `.github/scripts/build_tobu_actions.py` が組み立てる（市サーバへのアクセスはゼロ。`fetch_news.py` の**あと**に実行すること）。自動更新パイプラインの `ALLOWED` にも入れない。
-- **載せるのは直近2か月ぶんだけ**（`WINDOW_DAYS = 60`、2026-09-13 ユーザー指示）。古い記録が積もると「いま何が起きているか」が読めなくなるため。**ただし、これから開催される催しは日付が未来なので必ず残る** — 参加できる催しを期限切れで落としては、この欄を置く意味がない。画面は「これからの催し」→「さいきんの動き」の順。
+- **載せるのは直近2か月ぶんだけ**（`WINDOW_DAYS = 60`、2026-09-13 ユーザー指示）。古い記録が積もると「いま何が起きているか」が読めなくなるため。**ただし、これから開催される催しは日付が未来なので必ず残る** — 参加できる催しを期限切れで落としては、この欄を置く意味がない。画面は「これからの催し」（最大3件）→「最近の動き」（**最大3件**、2026-10-05 ユーザー指示。表記は「さいきん」ではなく「最近」）の順。
 - **拾い方は3通り。** ①「開催場所・会場」「開催日・期間」を持つページ＝催し（協働提案事業・団体等のイベント情報）。②年度別『東部まちづくりニュース』と『東部まちづくり審議会』の本文に〈見出し（令和8年8月24日）〉の形で並ぶ行＝記録。③それ以外のページ（トライアル活動の紹介など）はそのページの更新日を日付として扱う。**図やPDFの中は読めないので、載っていない＝存在しない ではない。**
 - **リンクは「出典」の1本だけ。** 2026-09-13 にユーザーが `.../toubumachidukuri/tobumachidukurisingikai/index.html` を許可したので、コーナーの出典だけそこへリンクする。**URL は `js/main.js` の TOBU ACTIONS ブロックに置く** — ゲートの検査対象（`js/*.js`）に入れて機械で守らせるため。JSON に持たせると検査をすり抜ける。配下の個別記事ページは今までどおり不可なので、項目ごとのリンクは張らない。見出し・会場名は日本語以外の表示で `data/headline_i18n.json` の訳に置き換え、「どのページ群から拾ったか」の分類名（協働提案事業など）は TOBU ACTIONS ブロックの `_from` で訳す。市がページ群を増やしたら `_from` に足すこと（足すまでは原文で出る）。
 - 監視対象は `TOBU_BASE` 配下。ディレクトリが入れ子なので `fetch_news.py` の watch は `<li class="dir">` も辿るが、**過去年度の記録まで含めると110ページ規模**あるため、ふだんは直下まで（`WATCH_DIR_MAX_DEPTH = 1`）。**日曜だけ `WATCH_DEEP=1` で全階層**を回る（`fetch-news.yml` の "Decide crawl depth" ステップ）。浅い巡回の日は下位ページのスナップショットを `keep_slugs` で守る — 守らないと毎日消えて毎週復活し、差分が無意味に膨らむ。
@@ -274,7 +275,7 @@ The **地域の取組 section on `community.html`**, sitting directly below the 
 - `site-facts.json` ではこの接頭辞の `targets` を空にしてある。**一覧は自動で入れ替わるので、検知 Issue を見た人やAIが手でページを直す必要はない。**
 ## `data/site-updates.json` (this site's own changelog)
 
-The **last section of `index.html`** shows a changelog of changes made to this site itself. Unlike `news.json` and `school_news.json`, this one is **hand-maintained** — add a new entry at the top of the `updates` array when you ship something a reader would notice.
+The **last section of `index.html`** shows a changelog of changes made to this site itself. Unlike `news.json` and `school_news.json`, this one is **hand-maintained** — add a new entry at the top of the `updates` array when you ship something a reader would notice. **One exception** (2026-10-05): when an eastern-district community council event is picked up, `build_community_events.py` prepends an entry carrying `auto_key` (the article URL). Do not delete `auto_key` — it is what stops the same event being added twice. The daily workflow commits this file along with the official news data.
 
 - Each entry: `date` (`YYYY-MM-DD`), `type` (`content` / `feature` / `fix`), `ja` (required), `en` (recommended). Other languages fall back `en` → `ja`, matching the i18n chain.
 - **Length: 30–40 Japanese characters, 45 at the very most.** The corner shows six entries at once; anything longer turns it into a wall of text. Detail that does not fit belongs in the commit message, not here.
@@ -414,6 +415,8 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 
 Self-contained IIFE blocks handling: hamburger nav, active nav link highlighting, auto-date status, "last updated" display, upcoming schedule expiry (`data-expires`), FAQ accordion, voice filter, official news rendering, target-school website updates, the share buttons at the bottom of every page, and the interactive calendar on `schedule.html`. Calendar events live in `data/events.json` (`{"events": {"YYYY-MM-DD": {ja, en, pt, vi, tl, es, zh, id, tr, my}}}`), fetched at runtime by the calendar block — edit that file, not `main.js`, to add/change events. All 10 language labels are required per event. **A date may hold more than one event: the value is either that object or an array of them** (added 2026-09-03, when the 就学時健診 and the district music festival both fell on 10/31). The calendar draws one dot per event and the `.ics` writer emits one VEVENT per event — its UID gets a `-2`, `-3` … suffix from the second entry on, so the first event's UID never changes and already-imported calendars do not duplicate it. `check 2` in `auto_gates.py` validates both shapes. If the fetch fails or the file is empty, the calendar section hides itself.
 
+**`"start": "YYYY-MM-DD"`（任意）は月単位・期間の予定の始まり**（2026-10-05 追加）。キーは終わり（月末など）、`start` は始まり（schedule.html の `data-start` と同じ日）。トップの帯が「11月〜12月」と出すのに使う。`"day": true` の予定には付けない。`check 2` は言語キー以外に `day` と `start`（`EVENT_META`）を認める。**schedule.html の一覧と events.json は check 9 が突き合わせる**ので、予定を足すときは両方に書くこと。
+
 **`"day": true`（任意）は「その日に行われると決まっている予定」の印**（2026-09-26 追加）。月単位・期間の予定（「2026年10月」「11月〜12月頃」）は月末などの日付で置いてあるので、この印を付けない。`check 2` は言語キー以外に `day` だけを認め、値は `true` のみ。トップの「次の予定まであと◯日」（NEXT COUNTDOWN）は**この印の予定だけを数える** — 付け忘れても数えないだけで、存在しない日を数えることはない。予定を足すときは schedule.html の `data-start` と `data-event-date` が同じ日（＝1日の予定）かどうかで判断する。
 
 ### SHARE BUTTONS (every page)
@@ -462,7 +465,7 @@ Every page carries a `<section class="section share" id="share">` just above `</
 - **2026-09 に「ページ要約シート」（各ページの共有欄の「回」ボタンが、そのページの見出しと代表文を集めて刷っていたもの）をユーザーの指示で廃止し、最新の動きシートを `index.html` の共有欄に一本化した。** そのため `js/main.js` の当該 IIFE は `#latest-print-btn`（＝`index.html`）が無いページでは何もしない。`pageBlocks()` / `scopeOf()` / `pick()` / `urgentBlock()` / `sentencesOf()` / `leadSentences()` と、抽出除外用の `data-board="skip"` 属性（HTML 側）はこの廃止に伴って削除済み — 復活させないこと。
 - **シートの文章はページ内の既存要素からしか取らない。** `h3.section-title.sub` と各コーナーの描画済み一覧（`.official-news-item` / `.school-card` / `.press-item` / `.update-item`）から `latestBlocks()` が拾う。ここで独自の要約を書き起こすと、出典のない二次情報が紙になって出て行く。コーナーの描画クラス名を変えたら、この抽出も直すこと。
 - **直近7日ぶんだけ**（`LATEST_DAYS`）。画面のコーナーは30日ぶんを出すが、紙は「いまどうなっているか」を短く伝えるためのもので、1か月ぶんを刷ると読み飛ばされる。絞り込みは各コーナーが描画時に付ける **`data-date="YYYY-MM-DD"`**（`.official-news-item` / `.school-items li` / `.press-item` / `.update-item`）で行う。**コーナーの描画を書き換えるときは `data-date` を落とさないこと** — 日付が無い項目は「直近1週間」として配れないので黙って落ちる。紙の説明文は画面の `latest_lead` ではなく、`board_latest_range` で「いつからいつまでの分か」を出す（該当なしのときは `board_latest_none`）。
-- **東部まちづくりの動きは「これからの催し」のすぐ前**（`tobuBlock()`、2026-09-14 ユーザー指示）。市の記録は月に数件しか増えず7日の窓ではほぼ空になるので、これから開かれる催しぜんぶ＋さいきんの動きの新しい3件（`TOBU_RECENT_ON_SHEET`）を、どの行にも日付を付けて載せる。出どころが市なので、住民・協議会の催しとは塊を分けたままにすること。
+- **東部まちづくりの動きは「これからの催し」のすぐ前**（`tobuBlock()`、2026-09-14 ユーザー指示）。市の記録は月に数件しか増えず7日の窓ではほぼ空になるので、これから開かれる催しぜんぶ＋最近の動きの新しい3件（`TOBU_RECENT_ON_SHEET`）を、どの行にも日付を付けて載せる。出どころが市なので、住民・協議会の催しとは塊を分けたままにすること。
 - **これからの催し（地域の取組）は紙のいちばん最後**（`upcomingActionsBlock()`）。7日の窓とは別枠で、終わった催しは COMMUNITY ACTIONS が描画時に落としているのでここで日付を見る必要はない。詳細は「トップの『最新の動き』グループ」節を参照。
 - **回覧板の体裁**：左肩に「回覧」の枠（`board_stamp`）、その横に発行元と非公式である旨。発行元を枠のすぐ横に置くのは、自治会や市が出した回覧と取り違えられないようにするため — **この並びを崩さないこと**。回し読みを促す文や確認欄のマスは置かない。
 - **A4 1枚に収める仕掛けが `#board-sheet` を `display:none` にできない理由。** シートは常に DOM にあり、印刷と同じ幅 178mm（A4 210mm − 左右16mm）で画面外（`position:fixed; left:-10000px`）に置いてある。だから刷る前に実寸で高さを測れる。`fit()` が上限 **250mm**（`SHEET_MAX_MM`。印刷できる 265mm＝297mm − 上下16mm から 15mm のゆとりを残す。実測 px に換算）に収まるまで「1コーナーの行数」「文字の倍率」を `LADDER` の順に詰め、それでも溢れたら**末尾のコーナーから落とす**（先頭ほど重要なため）。`display:none` に戻すと高さが 0 になり、常に最も詰めた版が刷られる。
@@ -511,7 +514,8 @@ Several things reflect the current date automatically — no manual edits needed
 | "完了" labels in *Current Status* (`index.html`) | Every page load (today ≥ `data-event-date`) | AUTO DATE STATUS |
 | Event status badges 完了/進行中/予定 (`schedule.html`, keys `event_status_*`) | Every page load (same) | AUTO DATE STATUS |
 | "Upcoming" bar items | Every page load (hidden once past `data-expires`) | UPCOMING SCHEDULE EXPIRY |
-| 「あと◯日」の札（`index.html` 今後のスケジュールの帯） | Every page load | NEXT COUNTDOWN — `data/events.json` の `"day": true` の予定のうちいちばん近いもの。同じ日付の `.upcoming-item` があればそこに札だけ付け、無ければ `#next-countdown` の行を出す。どの予定が大事かはサイトが選ばない（近い順に1日ぶん） |
+| 「今後のスケジュール」の帯（`index.html`） | Every page load | UPCOMING BAR（2026-10-05 ユーザー指示。**随時更新される欄**）— カレンダーと同じ `KomakiEvents()`（`data/events.json`＋自動で足す催し）から、終わっていない予定を始まる日（`start`）の順に5件まで `#upcoming-auto` に描く。いちばん近い `"day": true` の予定は必ず入れる。日付は ja で **「10月12日（月）」**、他言語は Intl で同等。月単位の予定は「10月」「11月〜12月」と月だけ（曜日を作らない）。帯の最後の第1期再編は手書き（`data-event-key` と同じ日の予定は描かない）。**帯に予定を手で書かないこと** — events.json と schedule.html に書けば出る。`upcoming_date8`/`upcoming_name8` 以外の `upcoming_date*` キーは廃止 |
+| 「あと◯日」の札（`index.html` 今後のスケジュールの帯） | Every page load | 帯のうち `"day": true` の予定にだけ DATE COUNTDOWN が付ける（UPCOMING BAR が `data-countdown` を付けたもの。月単位の予定には付けない）。帯を UPCOMING BAR が描くページでは、NEXT COUNTDOWN の `#next-countdown` 行は出さない（いちばん近い予定が必ず帯に入るため） |
 | 「あと◯日」の札（**全ページ**。2026-09-28 ユーザー指示） | Every page load | DATE COUNTDOWN — 日付の決まっているものすべてに付ける。スケジュールの項目（`.event-item` / `.status-item` / `.upcoming-item`）は1日の予定で、かつ events.json の `"day": true` があるものだけ。自動描画の一覧は描画側が付ける `data-countdown="YYYY-MM-DD"`（地域の取組＝`date_start` があればそれ・無ければ `date`、東部まちづくりの催し、協議会イベント＝`when` の月日と `updated_at` の年）。文字は `::after`（`attr(data-cd)`）で出し、回覧板・読み上げ・原文併記に混ぜない。印刷では隠す。複数日の地域の取組には `data/community_actions.json` に `date_start`（初日）を書くこと |
 
 Notes:
@@ -533,20 +537,28 @@ The *Current Status* list (`index.html`) and the *Key Events* list (`schedule.ht
 - Items whose date has definitively passed carry a hand-written `done` class **and** the 完了 label in the HTML, so the list reads correctly with JavaScript disabled; the script then just re-applies the same state.
 - `check 8` in `.github/scripts/auto_gates.py` fails the build on a missing `data-start`, a reversed pair, **or a reordering call reappearing in AUTO DATE STATUS** — so this survives the auto-update pipeline's edits too.
 
-### The "いまの状況" box (`.now-bar`) — the one thing that is NOT automatic
+### The "いまの状況" box (`.now-bar`) — hand-written, **updated continually**
 
-`index.html` opens with a `.now-bar` box that states the current situation in **a single sentence**, sitting between the hero and the upcoming bar. It is driven by four i18n keys:
+`index.html` opens with a `.now-bar` box that states the current situation, sitting between the hero and the upcoming bar. It is driven by four i18n keys:
 
 | Key | Content |
 |---|---|
 | `now_label` | Box label ("📌 いまの状況") — rarely changes |
-| `now_text` | **One sentence** summarizing where things stand. `data-i18n-html`, so `<strong>` is allowed |
-| `now_asof` | The month that sentence describes ("2026年8月時点") |
+| `now_text` | Where things stand. `data-i18n-html`, so `<strong>` and the date marks below are allowed |
+| `now_asof` | The month the text describes ("2026年10月時点") |
 | `now_more` | Link text to the `#status` anchor (the *Current Status* section) |
 
-Unlike the completion badges, the calendar month, and the "last updated" line, **nothing about this box updates itself** — it is hand-written prose, which makes it the fastest part of the site to go stale and the most visible when it does. Whenever the situation actually moves (an event finishes, new material is published, a decision is made), update `now_text` **and** `now_asof` **in all 10 languages plus `ja-kids`**. Do not touch it for changes that don't move the situation (typo fixes, layout changes on the city site).
+**この欄は随時更新する**（2026-10-05 ユーザー指示。「今後のスケジュール」の帯と同じ扱い）。書く順は次の3つ：
 
-`data/site-facts.json` lists this as the `now_bar` target and includes it in `default_targets`, so the auto-update pipeline is prompted to maintain it on every detected change; the verifier AI checks it too.
+1. **済んだこと** — 日付を確かめ、**過去だとはっきり分かる書き方**で（「9月30日で締め切られました」）。`<span data-past="YYYY-MM-DD">…</span>` で囲む。
+2. **いまどんな状態で、何をしているのか** — 日付を含めない一文。印は付けない（ずっと残る部分）。
+3. **近い先の予定** — `<span data-until="YYYY-MM-DD">…</span>` で囲む。その日を過ぎると NOW BAR（`js/main.js`）が画面から外す（書き直しが間に合わなかったときの保険で、外れたら文面を書き直すこと）。
+
+- **過ぎた日付の内容を「これから」のように残さない。** 2026-10-05 に、9/4 の校章決定と「9/30 まで受付」が10月になっても残っていたことから決めた規則。
+- `check 10`（`auto_gates.py`）が守らせる：ja / ja-kids で月・日が印の外にあれば不合格、`data-past` が未来の日付なら不合格、他言語の印の並び（種類と日付）が ja と違えば不合格。期限切れの `data-until` は警告だけ（日付の経過でゲートが落ちないように）。
+- Nothing about the wording updates itself. Whenever the situation actually moves (an event finishes, new material is published, a decision is made) — **and whenever a date in it has passed** — update `now_text` **and** `now_asof` **in all 12 languages plus `ja-kids`**.
+
+`data/site-facts.json` lists this as the `now_bar` target and includes it in `default_targets`, so the auto-update pipeline is prompted to maintain it on every detected change; the drafter prompt carries the same three-part rule and the verifier AI checks it too.
 
 ## Page structure
 
@@ -663,3 +675,5 @@ Beyond the auto-update pipeline's scope and evidence checks, these run site-wide
 | 5 | `data/i18n/pages/` is up to date | A stale page dictionary serves old text with a 200 and cannot be caught at runtime |
 | 6 | External links (city / MEXT / Instagram) | Each domain is confined to its permitted URLs, and MEXT/Instagram additionally to their permitted pages |
 | 8 | Timelines are in ascending `data-start` order | Both lists are append-targets; an out-of-order entry silently misstates when things happened |
+| 9 | schedule.html ⇔ events.json agree for every event not yet over | The top-page bar and the calendar are drawn from events.json; the schedule list is hand-written HTML. Each list item's `data-start`〜`data-event-date` must contain an events.json date and vice versa |
+| 10 | `now_text` marks every date with `data-past` / `data-until` | The いまの状況 box is prose; without the marks a passed date silently stays on the top page |

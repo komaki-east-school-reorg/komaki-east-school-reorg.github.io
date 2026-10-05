@@ -135,15 +135,18 @@
     </div>
   </section>
 
-  <!-- NOW STATUS（いまの状況を一文で。内容が動いたら now_text と now_asof を更新する） -->
+  <!-- NOW STATUS（いまの状況。随時更新する欄 — 内容が動いたら now_text と now_asof を13辞書で更新する。
+       書き方は「済んだこと（日付を確かめ、過去と分かる形で）→ いまの状態 → 近い先の予定」。
+       日付に触れる部分は <span data-past="…"> / <span data-until="…"> で囲む（auto_gates check 10）。
+       data-until の期限が過ぎた部分は js/main.js の NOW BAR が画面から外す） -->
   <section class="now-bar">
     <div class="container">
       <div class="now-inner">
         <span class="now-label" data-i18n="now_label">📌 いまの状況</span>
         <div class="now-body">
-          <span class="now-text" data-i18n-html="now_text">9月4日に「しのおか学園」の校章が決定しました。スクールバスの申請書類は<strong>9月30日まで</strong>受け付けており、対象エリア内の児童の保護者は希望の有無に関わらず返送が必要です。</span>
+          <span class="now-text" data-i18n-html="now_text"><span data-past="2026-09-30">スクールバスの申請書類の受付は、9月30日で締め切られました。</span>いまは<strong>第1期再編（しのおか学園の開校）に向けた準備</strong>の段階です。<span data-until="2026-10-31">10月中に、5小学校で令和9年度新入生の就学時健診と、全学年が参加する5校合同の交流会が予定されています。</span><span data-until="2026-12-31">11〜12月頃には、スクールバスの体験乗車会が予定されています。</span></span>
           <span class="now-meta">
-            <span data-i18n="now_asof">2026年9月時点</span>
+            <span data-i18n="now_asof">2026年10月時点</span>
             ・<a href="#status" class="now-more" data-i18n="now_more">現在の状況をくわしく見る →</a>
           </span>
         </div>
@@ -166,17 +169,11 @@
             <span class="upcoming-name"></span>
           </div>
           <span id="countdown-strings" hidden><span data-ck="days" data-i18n="cd_days">あと{n}日</span><span data-ck="today" data-i18n="cd_today">今日</span><span data-ck="tomorrow" data-i18n="cd_tomorrow">明日</span></span>
-          <!-- 2026年6月までの説明会・校章募集は終了（data-expires 経過により恒久非表示だったため削除）。
-               経緯は schedule.html の主要イベント一覧と index の「現在の状況」に残しています。 -->
-          <div class="upcoming-item" data-expires="2026-09-30">
-            <span class="upcoming-date" data-i18n="upcoming_date10">9月30日まで</span>
-            <span class="upcoming-name" data-i18n="upcoming_name10">スクールバス 申請書類の提出期限</span>
-          </div>
-          <div class="upcoming-item" data-expires="2026-10-21">
-            <span class="upcoming-date" data-i18n="upcoming_date11">10月21日</span>
-            <span class="upcoming-name" data-i18n="upcoming_name11">篠岡学区 しのおかさわやかウォーキング</span>
-          </div>
-          <div class="upcoming-item upcoming-item--future" data-expires="2027-04-30">
+          <!-- ここに js/main.js の UPCOMING BAR が data/events.json（＋自動で足す催し）から
+               近い予定を描く。スケジュールページ・カレンダーと同じ元データなので、ここに予定を手で書かないこと。
+               JavaScript が動かないときは下の第1期再編だけが出る。 -->
+          <div id="upcoming-auto" class="upcoming-auto"></div>
+          <div class="upcoming-item upcoming-item--future" data-expires="2027-04-30" data-event-key="2027-04-01">
             <span class="upcoming-date" data-i18n="upcoming_date8">2027年4月</span>
             <span class="upcoming-name" data-i18n="upcoming_name8">第1期再編 実施</span>
           </div>
@@ -334,7 +331,7 @@
     <div class="container">
       <h2 class="section-title" data-i18n-html="section_status">現在の状況<small>Current Status</small></h2>
       <p class="section-updated" id="status-last-updated"></p>
-      <p style="font-size:.88rem; color:var(--text-muted); margin:-.6rem 0 1.4rem;" data-i18n-html="status_digest">節目になった出来事だけを抜き出しています。全 44 件の一覧は <a href="schedule.html">スケジュール</a> にあります。</p>
+      <p style="font-size:.88rem; color:var(--text-muted); margin:-.6rem 0 1.4rem;" data-i18n-html="status_digest">節目になった出来事だけを抜き出しています。全 45 件の一覧は <a href="schedule.html">スケジュール</a> にあります。</p>
       <div class="status-timeline">
         <div class="status-item done" data-start="2025-05-01">
           <div class="status-label" data-i18n="status_done">完了</div>

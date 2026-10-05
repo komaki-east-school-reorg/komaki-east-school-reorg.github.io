@@ -163,7 +163,7 @@ jobs:
         id: report
         if: steps.fetch.outputs.changed == 'true' || steps.newsletters.outputs.changed == 'true'
         run: |
-          git add data/news.json data/official_pages data/community_events.json data/tobu_actions.json
+          git add data/news.json data/official_pages data/community_events.json data/tobu_actions.json data/site-updates.json
           if git diff --staged --quiet -- data/official_pages; then
             echo "pages_changed=false" >> "$GITHUB_OUTPUT"
           else
@@ -308,20 +308,24 @@ jobs:
                  （その日に行われると決まっている予定だけ "day": true を足す。月単位・期間の予定には付けない。
                    トップの「次の予定まであと◯日」はこの印の予定だけを数える）
                - data/i18n/*.json … 最低 ja と en。既存キーの命名規則に従う
-               - index.html … 「今後のスケジュール」バーの .upcoming-item（data-expires="YYYY-MM-DD" と upcoming_dateN/upcoming_nameN キー）
+                 （月単位・期間の予定には始まりの日を "start": "YYYY-MM-DD" で足す。トップの帯が「11月〜12月」と出すため）
+               - index.html … 「今後のスケジュール」バーは data/events.json から自動で描かれるので、予定を手で書き足さない
+                 （events.json と schedule.html の両方に書けば帯にも出る。両者の食い違いは検証 check 9 で不合格になる）
                - schedule.html … 主要イベント一覧の項目（data-event-date="YYYY-MM-DD"、複数日イベントは終了日）
                - community.html … 地域協議会ページ。スナップショットが sasaeai-3-3_2-* のとき
                  （所管は支え合い協働推進課）はここが主対象。篠岡地区5協議会（陶・篠岡学区・
                  大城・光ヶ丘・桃ヶ丘）に関わる記述のみ扱い、他学区の話題は追加しない
-               - **地域協議会のイベントは日程が分かればスケジュールにも入れる**：
-                 sasaeai-3-3_2-chiikikyougikaievent-* に篠岡地区5校区（陶・篠岡学区・大城・
-                 光ヶ丘・桃ヶ丘）の催しが載ったら、community.html だけで終わらせず
-                 data/events.json（10言語ラベル）と schedule.html の主要イベント一覧、
-                 開催前なら index.html の「今後のスケジュール」バーにも追加する。
-                 他学区（小牧小・本庄小・小木小など）のイベントは対象外なので追加しない
+               - **地域協議会のイベント（sasaeai-3-3_2-chiikikyougikaievent-*）は手で足さない**：
+                 東部地域（篠岡地区5校区の協議会、または会場が東部）の催しは、build_community_events.py と
+                 js/main.js が「地域の取組」・スケジュール・カレンダー・トップの帯・更新履歴へ自動で載せる。
+                 events.json や schedule.html に同じ催しを書くと二重になるので書かないこと
             6. **サイトの状況が動く変更なら、トップ冒頭「いまの状況」枠を必ず更新する**
-               - data/i18n/*.json の now_text … 現況を **1文** で要約。全10言語＋ja-kids を更新する
+               - data/i18n/*.json の now_text … 全12言語＋ja-kids を更新する。書く順は
+                 「済んだこと（日付を確かめ、過去だと分かる書き方で）→ いまの状態・何をしているか → 近い先の予定」
                  （ja-kids は小学3年生レベルのやさしい日本語。CONTRIBUTING.txt 5・6 参照）
+                 **日付に触れる部分は必ず印で囲む**：済んだことは <span data-past="YYYY-MM-DD">…</span>、
+                 これからのこと・続いていることは <span data-until="YYYY-MM-DD">…</span>（その日を過ぎると画面から消える）。
+                 印の並びと日付は全言語で ja と同じにする（検証 check 10）。過ぎた予定を「これから」のように残さない
                - data/i18n/*.json の now_asof … その基準月（例「2026年8月時点」）を今日の日付に合わせて更新
                - この枠は自動計算ではなく手書きの一文なので、放置すると最も古びやすい。
                  逆に、日程の追加・終了や新資料の公開など状況が動かない変更（誤字修正等）では触らないこと
@@ -440,6 +444,7 @@ jobs:
             4. サイトの規約に沿うか（外部リンク制限、キー命名 upcoming_dateN 等、data-expires と data-event-date の使い分け、複数日イベントは終了日）
             5. 過去の記述が不当に書き換え・削除されていないか
             6. 状況が動く変更なのに「いまの状況」枠（now_text / now_asof）が古いまま放置されていないか。
+               過ぎた日付の内容が「これから」のように書かれていないか（済んだことは過去形＋data-past）。
                逆に now_text が原文にない推測を含んでいないか。更新するなら全10言語＋ja-kids が揃っているか
 
             ## 出力（必須）

@@ -492,7 +492,8 @@
         "ko": "취학 전 건강검진(5개 초등학교)",
         "ne": "विद्यालय प्रवेशपूर्व स्वास्थ्य जाँच (5 प्राथमिक विद्यालय)",
         "tr": "Okul öncesi sağlık taraması (5 okul)",
-        "my": "ကျောင်းမဝင်မီ ကျန်းမာရေးစစ်ဆေးမှု (ကျောင်း ၅)"
+        "my": "ကျောင်းမဝင်မီ ကျန်းမာရေးစစ်ဆေးမှု (ကျောင်း ၅)",
+        "start": "2026-10-01"
       },
       {
         "ja": "新学校区交流 ミュージックフェスティバル（地域協議会）",
@@ -508,6 +509,21 @@
         "tr": "Yeni okul bölgesi müzik festivali (bölge konseyi)",
         "my": "ကျောင်းနယ်မြေသစ် ဂီတပွဲတော် (ဒေသဆိုင်ရာ ကောင်စီ)",
         "day": true
+      },
+      {
+        "ja": "小学校5校合同の交流会（全学年）",
+        "en": "Joint exchange event of the five elementary schools (all years)",
+        "pt": "Encontro conjunto das cinco escolas primárias (todos os anos)",
+        "vi": "Buổi giao lưu chung của năm trường tiểu học (toàn khối)",
+        "tl": "Magkasanib na palitan ng limang elementarya (lahat ng baitang)",
+        "es": "Encuentro conjunto de las cinco escuelas primarias (todos los cursos)",
+        "zh": "5所小学联合交流会（全年级）",
+        "id": "Pertemuan bersama lima sekolah dasar (semua tingkat)",
+        "ko": "초등학교 5개교 합동 교류회(전 학년)",
+        "ne": "5 प्राथमिक विद्यालयको संयुक्त भेटघाट (सबै कक्षा)",
+        "tr": "Beş ilkokulun ortak buluşması (tüm sınıflar)",
+        "my": "မူလတန်းကျောင်း ၅ ကျောင်း ပေါင်းစုံတွေ့ဆုံပွဲ (တန်းအားလုံး)",
+        "start": "2026-10-01"
       }
     ],
     "2026-11-13": {
@@ -555,20 +571,6 @@
       "my": "၁၁ ကြိမ်မြောက် Tokadai ဂီတပွဲတော် (ပြည်သူ့ဦးဆောင်)",
       "day": true
     },
-    "2026-11-30": {
-      "ja": "スクールバス体験乗車会・アプリ試用",
-      "en": "School Bus Trial Rides & App Test",
-      "pt": "Viagens experimentais e teste do app",
-      "vi": "Đi thử xe buýt & thử ứng dụng",
-      "tl": "Pagsubok na pagsakay at app",
-      "es": "Viajes de prueba y prueba de la app",
-      "zh": "校车体验乘车会・应用试用",
-      "id": "Uji coba naik bus & aplikasi",
-      "ko": "스쿨버스 체험 승차·앱 시범 사용",
-      "ne": "विद्यालय बस परीक्षण यात्रा र एप परीक्षण",
-      "tr": "Servis deneme yolculuğu ve uygulama denemesi",
-      "my": "ဘတ်စ် စမ်းသပ်စီးနင်းခြင်းနှင့် အက်ပ် စမ်းသပ်မှု"
-    },
     "2026-12-13": {
       "ja": "ありがとう大城小（市民有志）",
       "en": "Arigato Oshiro-sho (citizen-run)",
@@ -584,20 +586,38 @@
       "my": "Arigato Oshiro-sho (ပြည်သူ)",
       "day": true
     },
-    "2026-12-31": {
-      "ja": "8校合同学校運営協議会",
-      "en": "Joint School Management Council (8 schools)",
-      "pt": "Conselho conjunto de gestão (8 escolas)",
-      "vi": "Hội đồng quản lý chung (8 trường)",
-      "tl": "Pinagsamang konseho ng pamamahala (8 paaralan)",
-      "es": "Consejo conjunto de gestión (8 escuelas)",
-      "zh": "8校联合学校运营协议会",
-      "id": "Dewan pengelolaan gabungan (8 sekolah)",
-      "ko": "8개교 합동 학교운영협의회",
-      "ne": "8 विद्यालयको संयुक्त सञ्चालन परिषद्",
-      "tr": "Sekiz okul ortak yönetim kurulu",
-      "my": "ကျောင်း ၈ ကျောင်း ပူးတွဲ စီမံခန့်ခွဲရေးကောင်စီ"
-    },
+    "2026-12-31": [
+      {
+        "ja": "8校合同学校運営協議会",
+        "en": "Joint School Management Council (8 schools)",
+        "pt": "Conselho conjunto de gestão (8 escolas)",
+        "vi": "Hội đồng quản lý chung (8 trường)",
+        "tl": "Pinagsamang konseho ng pamamahala (8 paaralan)",
+        "es": "Consejo conjunto de gestión (8 escuelas)",
+        "zh": "8校联合学校运营协议会",
+        "id": "Dewan pengelolaan gabungan (8 sekolah)",
+        "ko": "8개교 합동 학교운영협의회",
+        "ne": "8 विद्यालयको संयुक्त सञ्चालन परिषद्",
+        "tr": "Sekiz okul ortak yönetim kurulu",
+        "my": "ကျောင်း ၈ ကျောင်း ပူးတွဲ စီမံခန့်ခွဲရေးကောင်စီ",
+        "start": "2026-12-01"
+      },
+      {
+        "ja": "スクールバス体験乗車会・アプリ試用",
+        "en": "School Bus Trial Rides & App Test",
+        "pt": "Viagens experimentais e teste do app",
+        "vi": "Đi thử xe buýt & thử ứng dụng",
+        "tl": "Pagsubok na pagsakay at app",
+        "es": "Viajes de prueba y prueba de la app",
+        "zh": "校车体验乘车会・应用试用",
+        "id": "Uji coba naik bus & aplikasi",
+        "ko": "스쿨버스 체험 승차·앱 시범 사용",
+        "ne": "विद्यालय बस परीक्षण यात्रा र एप परीक्षण",
+        "tr": "Servis deneme yolculuğu ve uygulama denemesi",
+        "my": "ဘတ်စ် စမ်းသပ်စီးနင်းခြင်းနှင့် အက်ပ် စမ်းသပ်မှု",
+        "start": "2026-11-01"
+      }
+    ],
     "2027-02-28": {
       "ja": "入学説明会・プレ登下校",
       "en": "Enrolment Briefing & Pre-commute Trial",
@@ -610,7 +630,8 @@
       "ko": "입학 설명회·사전 등하교 체험",
       "ne": "भर्ना जानकारी सभा र पूर्व आवतजावत अभ्यास",
       "tr": "Kayıt bilgilendirmesi ve deneme yolculuğu",
-      "my": "ကျောင်းအပ် ရှင်းလင်းပွဲနှင့် ကြိုတင် ကျောင်းသွားလာမှု"
+      "my": "ကျောင်းအပ် ရှင်းလင်းပွဲနှင့် ကြိုတင် ကျောင်းသွားလာမှု",
+      "start": "2027-02-01"
     },
     "2027-03-31": {
       "ja": "閉校式（5小学校・3中学校）",
@@ -624,7 +645,8 @@
       "ko": "폐교식(초등 5개교·중학 3개교)",
       "ne": "विद्यालय समापन समारोह (5 प्राथमिक, 3 निम्न मा.वि.)",
       "tr": "Kapanış törenleri (5 ilkokul + 3 ortaokul)",
-      "my": "ကျောင်းပိတ်သိမ်းပွဲ (မူလတန်း ၅ + အလယ်တန်း ၃)"
+      "my": "ကျောင်းပိတ်သိမ်းပွဲ (မူလတန်း ၅ + အလယ်တန်း ၃)",
+      "start": "2027-03-01"
     },
     "2027-04-01": {
       "ja": "第1期再編 実施予定（しのおか学園）",

@@ -30,6 +30,9 @@ LANGS = ["ja", "en", "pt", "vi", "tl", "es", "zh", "id", "ko", "ne", "tr", "my"]
 # 翻訳が部分的な言語（現在なし。2026-09-18 に ko / ne の全キー翻訳が揃った）。新たに部分翻訳の言語を足すときは、
 # i18n.js の PARTIAL と揃えてここに入れ、events.json のラベル必須対象から外す。
 PARTIAL_LANGS = []
+
+# events.json の各予定に、言語ラベル以外に書いてよいキー（check 2）。
+EVENT_META = ("day", "start")
 ALLOWED = {"data/events.json", "index.html", "schedule.html", "community.html"} | {
     f"data/i18n/{l}.json" for l in LANGS + PARTIAL_LANGS + ["ja-kids"]
 }
@@ -213,9 +216,14 @@ def main():
                         fail(f"events.json: {date} の要素がオブジェクトでない")
                     elif "day" in labels and labels["day"] is not True:
                         fail(f"events.json: {date} の day は true だけを書く（日が決まっていない予定には付けない）")
-                    elif sorted(k for k in labels if k != "day") != sorted(LANGS):
+                    # "start" は任意で、月単位・期間の予定の始まり（トップの帯が「11月〜12月」と出すため）。
+                    elif "start" in labels and not (isinstance(labels["start"], str)
+                                                    and re.match(r"^\d{4}-\d{2}-\d{2}$", labels["start"])
+                                                    and labels["start"] <= date):
+                        fail(f"events.json: {date} の start は YYYY-MM-DD で、キーの日付以前にする: {labels.get('start')}")
+                    elif sorted(k for k in labels if k not in EVENT_META) != sorted(LANGS):
                         fail(f"events.json: {date} の言語キーが{len(LANGS)}言語と一致しない: {sorted(labels)}")
-                    elif not all(isinstance(v, str) and v.strip() for k, v in labels.items() if k != "day"):
+                    elif not all(isinstance(v, str) and v.strip() for k, v in labels.items() if k not in EVENT_META):
                         fail(f"events.json: {date} に空のラベルがある")
             if len(fails) == n_before:
                 ok(f"events.json スキーマ（{len(events)}件）")
@@ -412,6 +420,93 @@ def main():
             fail(f"年表の並び: {v}")
     else:
         ok("年表の並び（data-start 昇順）")
+
+    # --- 9. スケジュール一覧と events.json の連動（サイト全体を検査） ---
+    # 2026-10-05 ユーザー指示：トップの帯・スケジュール一覧・カレンダーを正しく連動させる。
+    # 帯とカレンダーは events.json から描くので、schedule.html の一覧と events.json が
+    # 食い違わないことをここで守る。見るのは「終わっていない予定」だけ
+    # （日が過ぎれば対象が減るだけなので、日付の経過でこの検査が急に落ちることはない）。
+    #   ・一覧の各項目（data-start〜data-event-date）の期間内に events.json の予定がある
+    #   ・events.json の各予定の日付が、一覧のどれかの項目の期間に入っている
+    # 桃花台を考える会・地域協議会の自動で足す催しは、どちらにも書かれていないので対象外。
+    import datetime as _dt
+    today = _dt.date.today().isoformat()
+    sync_problems = []
+    try:
+        with open("schedule.html", encoding="utf-8") as f:
+            sched = f.read()
+        with open("data/events.json", encoding="utf-8") as f:
+            ev_keys = sorted(json.load(f)["events"])
+        ranges = []
+        for attrs in re.findall(r'<div class="event-item\b[^"]*"([^>]*)>', sched):
+            st = re.search(r'data-start="([\d-]+)"', attrs)
+            en = re.search(r'data-event-date="([\d-]+)"', attrs)
+            if not st:
+                continue
+            ranges.append((st.group(1), en.group(1) if en else st.group(1)))
+        for st, en in ranges:
+            if en < today:
+                continue
+            if not any(st <= k <= en for k in ev_keys):
+                sync_problems.append(f"schedule.html の {st}〜{en} の予定が events.json に無い")
+        for k in ev_keys:
+            if k < today:
+                continue
+            if not any(st <= k <= en for st, en in ranges):
+                sync_problems.append(f"events.json の {k} が schedule.html の一覧に無い")
+    except (FileNotFoundError, KeyError, ValueError) as e:
+        sync_problems.append(f"読めない: {e}")
+    if sync_problems:
+        for v in sync_problems:
+            fail(f"予定の連動: {v}")
+    else:
+        ok("予定の連動（schedule.html ⇔ events.json）")
+
+    # --- 10. 「いまの状況」の日付の書き方（サイト全体を検査） ---
+    # 2026-10-05 ユーザー指示。「いまの状況」は随時更新する欄で、
+    #   過ぎたこと（日付を確かめ、過去だと分かる書き方で）→ いまの状態 → 近い先の予定
+    # の順に書く。now_text の中で日付に触れる部分は必ずどちらかの印で囲む：
+    #   <span data-past="YYYY-MM-DD">…</span>  … すでに済んだこと（日付は今日以前でなければならない）
+    #   <span data-until="YYYY-MM-DD">…</span> … これからのこと・続いていること。期限が過ぎると
+    #                                              js/main.js（NOW BAR）が画面から外す
+    # ① ja / ja-kids で、月・日が印の外に書かれていないこと ② data-past が未来でないこと
+    # ③ どの言語も印の並び（種類と日付）が ja と同じであることを確かめる。
+    # 期限切れの data-until は画面では消えるので失敗にはせず、書き直しを促す警告だけ出す
+    # （日付の経過で自動更新パイプラインのゲートが落ちないように）。
+    now_problems = []
+    mark_re = re.compile(r'<span data-(past|until)="([\d-]+)">.*?</span>', re.S)
+    try:
+        with open("data/i18n/ja.json", encoding="utf-8") as f:
+            ja_marks = mark_re.findall(json.load(f).get("now_text", ""))
+    except (FileNotFoundError, ValueError):
+        ja_marks = []
+    for path in sorted(glob.glob("data/i18n/*.json")):
+        name = os.path.basename(path)[:-5]
+        try:
+            with open(path, encoding="utf-8") as f:
+                v = json.load(f).get("now_text")
+        except ValueError:
+            continue
+        if v is None:
+            continue
+        marks = mark_re.findall(v)
+        if name in ("ja", "ja-kids"):
+            outside = mark_re.sub("", v)
+            m = re.search(r"\d{1,2}\s*(月|日|がつ|にち)", outside)
+            if m:
+                now_problems.append(f"{name}: 日付「{m.group(0)}」が data-past / data-until の外にある")
+        if name != "ja" and marks != ja_marks:
+            now_problems.append(f"{name}: 日付の印 {marks} が ja {ja_marks} と違う")
+        for kind, d in marks:
+            if kind == "past" and d > today:
+                now_problems.append(f"{name}: data-past={d} が未来の日付（済んだことだけに付ける）")
+            if kind == "until" and d < today:
+                print(f"WARN: now_text（{name}）の data-until={d} は期限切れ。画面では消えている。文面を書き直すこと")
+    if now_problems:
+        for v in now_problems:
+            fail(f"いまの状況: {v}")
+    else:
+        ok("いまの状況（日付は data-past / data-until つき）")
 
     # --- 7. 出典実在チェック ---
     if not os.path.exists(EVIDENCE):

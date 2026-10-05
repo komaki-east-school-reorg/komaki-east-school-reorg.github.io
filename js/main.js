@@ -103,7 +103,10 @@ window.KomakiHeadline = (function () {
   return {load: load, apply: apply, text: text};
 })();
 
-/* ===== 桃花台を考える会の催し（このファイル共通） =====
+/* ===== 自動でスケジュールに足す催し（このファイル共通） =====
+   ①桃花台を考える会の催し（2026-09-26 ユーザー指示）と ②東部地域の地域協議会の催し
+   （2026-10-05 ユーザー指示。data/community_events.json の shinooka かつ date 付き）。
+   関数名は①だけだった頃のまま。以下は①の説明で、②も同じ扱い（タグが「（地域協議会）」）。
    2026-09-26 ユーザー指示：同会の新しい催しはスケジュールに自動で載せる。
    data/tobu_actions.json（毎日自動生成）のうち organizer 付きの催しを、events.json と
    同じ形（12言語のラベル＋ "day": true）に直して返す。ラベルは見出しの訳
@@ -113,21 +116,38 @@ window.KomakiHeadline = (function () {
    カレンダー・.ics・「あと◯日」・スケジュール一覧・トップの件数がこれを使う。 */
 window.KomakiTokadaiEvents = (function () {
   var TAG = {ja:'（市民有志）', en:' (citizen-run)', pt:' (iniciativa de cidadãos)', vi:' (do người dân tổ chức)', tl:' (mamamayan ang nagpapatakbo)', es:' (iniciativa ciudadana)', zh:'（市民自发）', id:' (inisiatif warga)', ko:'(시민 주도)', ne:' (नागरिक पहल)', tr:' (vatandaş girişimi)', my:' (ပြည်သူ့ဦးဆောင်)'};
+  /* 地域協議会の催し（2026-10-05 ユーザー指示）。data/community_events.json（毎日自動生成）のうち
+     東部地域（shinooka: true）で日付の読めたものも、同じ形でスケジュールへ足す。src.kind が 'council'。 */
+  var TAG_COUNCIL = {ja:'（地域協議会）', en:' (community council)', pt:' (conselho comunitário)', vi:' (hội đồng cộng đồng)', tl:' (konseho ng komunidad)', es:' (consejo comunitario)', zh:'（地区协议会）', id:' (dewan komunitas)', ko:'(지역 협의회)', ne:' (सामुदायिक परिषद्)', tr:' (bölge konseyi)', my:' (ဒေသဆိုင်ရာ ကောင်စီ)'};
+  var ISO = /^\d{4}-\d{2}-\d{2}$/;
   var p = null;
+  function getJson(url) {
+    return fetch(url).then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; });
+  }
   function get() {
     if (!p) {
       p = Promise.all([
-        fetch('./data/tobu_actions.json').then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; }),
+        getJson('./data/tobu_actions.json'),
+        getJson('./data/community_events.json'),
         window.KomakiHeadline.load()
       ]).then(function (res) {
-        var map = res[1] || {};
-        return ((res[0] && res[0].items) || []).filter(function (t) {
-          return t.organizer && t.kind === 'event' && /^\d{4}-\d{2}-\d{2}$/.test(t.date || '');
+        var map = res[2] || {};
+        var tokadai = ((res[0] && res[0].items) || []).filter(function (t) {
+          return t.organizer && t.kind === 'event' && ISO.test(t.date || '');
         }).map(function (t) {
+          return {title: t.title, place: t.place || '', date_note: t.date_note || '', date: t.date, kind: 'tokadai'};
+        });
+        var council = ((res[1] && res[1].events) || []).filter(function (e) {
+          return e.shinooka && ISO.test(e.date || '');
+        }).map(function (e) {
+          return {title: e.title, place: e.place || '', date_note: e.when || '', date: e.date, kind: 'council'};
+        });
+        return tokadai.concat(council).map(function (t) {
+          var tags = t.kind === 'council' ? TAG_COUNCIL : TAG;
           var ev = {day: true};
-          Object.keys(TAG).forEach(function (l) {
+          Object.keys(tags).forEach(function (l) {
             var h = map[t.title];
-            ev[l] = (l === 'ja' ? t.title : ((h && h[l]) || t.title)) + TAG[l];
+            ev[l] = (l === 'ja' ? t.title : ((h && h[l]) || t.title)) + tags[l];
           });
           return {key: t.date, ev: ev, src: t};
         });
@@ -136,6 +156,12 @@ window.KomakiTokadaiEvents = (function () {
     return p;
   }
   get.TAG = TAG;
+  get.TAG_COUNCIL = TAG_COUNCIL;
+  // 照合用の題名の候補：そのまま／先頭の「◯◯地域協議会 」を外したもの
+  get.names = function (title) {
+    var t = String(title || ''), short = t.replace(/^\S*地域協議会\s+/, '');
+    return short && short !== t ? [t, short] : [t];
+  };
   return get;
 })();
 window.KomakiEvents = function () {
@@ -147,7 +173,10 @@ window.KomakiEvents = function () {
     Object.keys(base).forEach(function (k) { events[k] = base[k]; });
     res[1].forEach(function (x) {
       var list = events[x.key] ? (Array.isArray(events[x.key]) ? events[x.key].slice() : [events[x.key]]) : [];
-      if (list.some(function (e) { return e && e.ja && e.ja.indexOf(x.src.title) === 0; })) return;
+      // 協議会の催しは、手書き側が協議会名の前置きを外した題名で書いていることがある
+      // （「光ヶ丘小学校区地域協議会 新学校区交流 …」→「新学校区交流 …（地域協議会）」）ので両方で照らす
+      var names = window.KomakiTokadaiEvents.names(x.src.title);
+      if (list.some(function (e) { return e && e.ja && names.some(function (n) { return e.ja.indexOf(n) === 0; }); })) return;
       list.push(x.ev);
       events[x.key] = list.length === 1 ? list[0] : list;
       extra.push(x);
@@ -622,7 +651,7 @@ window.KomakiGrade = (function () {
   document.addEventListener('komaki:i18n-applied', badges);
 })();
 
-/* ===== TOKADAI SCHEDULE（桃花台を考える会の催しをスケジュールへ自動で足す） =====
+/* ===== TOKADAI SCHEDULE（桃花台を考える会と東部の地域協議会の催しをスケジュールへ自動で足す） =====
    2026-09-26 ユーザー指示。KomakiEvents() が events.json に無い同会の催し（extra）を返すので、
    ・schedule.html：その年の「主要イベント」一覧に .event-item を data-start の順で差し込む
    ・index.html：「現在の状況」の注記（status_digest）の「全 N 件」に件数を足す
@@ -647,6 +676,21 @@ window.KomakiGrade = (function () {
     tr:'Vatandaş grubu “桃花台を考える会” tarafından, belediyenin Doğu Bölgesi Kalkınma Ofisi ile ortak öneri projesi olarak düzenlenir. Bkz. {a}bölgedeki girişimler{/a}.',
     my:'ပြည်သူ့အဖွဲ့ “桃花台を考える会” က မြို့တော်၏ အရှေ့ပိုင်း မြို့ပြဖွံ့ဖြိုးရေးရုံးနှင့် ပူးပေါင်းအဆိုပြု စီမံကိန်းအဖြစ် ကျင်းပသည်။ {a}ဒေသတွင်း လှုပ်ရှားမှုများ{/a} ကြည့်ပါ။'
   };
+  // 地域協議会の催し（2026-10-05 追加）の本文。
+  var BODY_COUNCIL = {
+    ja:'地域協議会が開く催しです。市の地域協議会イベント案内に載っています。詳しくは{a}地域の取組{/a}をご覧ください。',
+    en:'Held by a community council and listed in the city’s community council event guide. See {a}community efforts{/a}.',
+    pt:'Organizado por um conselho comunitário e divulgado no guia de eventos dos conselhos comunitários da prefeitura. Ver {a}iniciativas locais{/a}.',
+    vi:'Do hội đồng cộng đồng tổ chức, được đăng trong mục giới thiệu sự kiện của các hội đồng cộng đồng trên trang của thành phố. Xem {a}hoạt động của khu dân cư{/a}.',
+    tl:'Isinasagawa ng isang konseho ng komunidad at nakalista sa gabay ng lungsod sa mga kaganapan ng mga konseho. Tingnan ang {a}mga gawain sa komunidad{/a}.',
+    es:'Lo organiza un consejo comunitario y figura en la guía de eventos de los consejos comunitarios del municipio. Véase {a}iniciativas vecinales{/a}.',
+    zh:'由地区协议会举办，刊登在市政府的地区协议会活动指南中。详情请见{a}地区行动{/a}。',
+    id:'Diselenggarakan dewan komunitas dan tercantum di panduan acara dewan komunitas milik kota. Lihat {a}kegiatan warga{/a}.',
+    ko:'지역 협의회가 여는 행사로, 시의 지역 협의회 행사 안내에 실려 있습니다. 자세한 내용은 {a}지역의 활동{/a}을 참고해 주세요.',
+    ne:'सामुदायिक परिषद्ले गर्ने कार्यक्रम, नगरको सामुदायिक परिषद् कार्यक्रम सूचनामा राखिएको। हेर्नुहोस् {a}सामुदायिक गतिविधि{/a}।',
+    tr:'Bir bölge konseyi tarafından düzenlenir ve belediyenin bölge konseyi etkinlik rehberinde yer alır. Bkz. {a}bölgedeki girişimler{/a}.',
+    my:'ဒေသဆိုင်ရာ ကောင်စီက ကျင်းပပြီး မြို့တော်၏ ဒေသဆိုင်ရာ ကောင်စီ ပွဲလမ်းသတင်းတွင် ဖော်ပြထားသည်။ {a}ဒေသတွင်း လှုပ်ရှားမှုများ{/a} ကြည့်ပါ။'
+  };
   var MY_DIGITS = '၀၁၂၃၄၅၆၇၈၉';
   var extra = null;
   function esc(v) { return String(v == null ? '' : v).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
@@ -669,7 +713,7 @@ window.KomakiGrade = (function () {
     var today = todayIso();
     window.KomakiHeadline.load().then(function (map) {
       if (my !== gen) return;
-      document.querySelectorAll('.event-item[data-auto="tokadai"]').forEach(function (n) { n.remove(); });
+      document.querySelectorAll('.event-item[data-auto]').forEach(function (n) { n.remove(); });
       extra.forEach(function (x) {
         var t = x.src, key = x.key;
         var list = listFor(key.slice(0, 4));
@@ -684,13 +728,16 @@ window.KomakiGrade = (function () {
         var place = t.place ? window.KomakiHeadline.text(map, t.place) : '';
         var when = lang === 'ja' ? (t.date_note || '') : window.KomakiJaWhen(t.date_note || '', lang, {timeOnly: true});
         var line = [place, when].filter(Boolean).join(lang === 'ja' || lang === 'zh' ? '　' : ' · ');
-        var body = (BODY[lang] || BODY.en).replace('{a}', '<a href="community.html#community-actions">').replace('{/a}', '</a>');
-        var tag = window.KomakiTokadaiEvents.TAG[lang] || window.KomakiTokadaiEvents.TAG.en;
+        var isCouncil = t.kind === 'council';
+        var bodies = isCouncil ? BODY_COUNCIL : BODY;
+        var body = (bodies[lang] || bodies.en).replace('{a}', '<a href="community.html#community-actions">').replace('{/a}', '</a>');
+        var tags = isCouncil ? window.KomakiTokadaiEvents.TAG_COUNCIL : window.KomakiTokadaiEvents.TAG;
+        var tag = tags[lang] || tags.en;
         var item = document.createElement('div');
         item.className = 'event-item ' + state;
         item.setAttribute('data-start', key);
         item.setAttribute('data-event-date', key);
-        item.setAttribute('data-auto', 'tokadai');
+        item.setAttribute('data-auto', isCouncil ? 'council' : 'tokadai');
         item.innerHTML = '<div class="event-date">' + esc(date) +
             '<span class="event-status ' + state + '" data-i18n="event_status_' + state + '">' + esc(badge) + '</span></div>' +
           '<div class="event-desc"><strong>' + esc(title) + esc(tag) + '</strong><br>' +
@@ -758,6 +805,8 @@ window.KomakiGrade = (function () {
   var row = document.getElementById('next-countdown');
   var strings = document.getElementById('countdown-strings');
   if (!row || !strings) return;
+  // 帯を UPCOMING BAR が予定データから描くときは、いちばん近い予定が必ず帯に入るので、この行は出さない
+  if (document.getElementById('upcoming-auto')) return;
   var bar = row.closest('.upcoming-bar');
   var LOCALE_MAP = { ja: 'ja-JP', en: 'en-US', pt: 'pt-BR', vi: 'vi-VN', tl: 'fil-PH', es: 'es-419', zh: 'zh-Hans-CN', id: 'id-ID', ko: 'ko-KR', ne: 'ne-NP', tr: 'tr-TR', my: 'my-MM' };
   var next = null;   // { key: 'YYYY-MM-DD', days: n, list: [ev, …] }
@@ -818,6 +867,113 @@ window.KomakiGrade = (function () {
     })
     .catch(function () {});
   document.addEventListener('komaki:i18n-applied', render);
+})();
+
+/* ===== UPCOMING BAR（index.html「今後のスケジュール」の帯を予定データから描く） =====
+   2026-10-05 ユーザー指示：帯はスケジュールページ・カレンダーと正しく連動させ、随時更新されるようにする。
+   元データはカレンダーと同じ KomakiEvents()（data/events.json＋自動で足す催し）。schedule.html の一覧と
+   events.json の食い違いは auto_gates.py の check 9 が止める。
+   ・終わっていない予定（キーの日付が今日以降）を、始まる日（"start" があればそれ）の順に MAX 件まで。
+     いちばん近い "day": true の予定は、MAX からはみ出しても必ず入れる（「あと◯日」の札が付く先）。
+   ・日付は ja で「10月12日（月）」。他の言語は Intl で同じ情報（月・日・曜日）を出す。
+     月単位・期間の予定（"day" の無いもの）は曜日を作らず「10月」「11月〜12月」と月だけを出す。
+     今年でない日付には年を付ける。
+   ・帯の最後の第1期再編（手書き。data-event-key）と同じ日の予定は描かない（二重になるため）。
+   ・札「あと◯日」は日の決まった予定にだけ、DATE COUNTDOWN が data-countdown を見て付ける。 */
+(function () {
+  var box = document.getElementById('upcoming-auto');
+  if (!box) return;
+  var MAX = 5;
+  var LOCALE = {ja:'ja-JP', en:'en-US', pt:'pt-BR', vi:'vi-VN', tl:'fil-PH', es:'es-419', zh:'zh-Hans-CN', id:'id-ID', ko:'ko-KR', ne:'ne-NP', tr:'tr-TR', my:'my-MM'};
+  var WD = '日月火水木金土';
+  var skip = {};
+  document.querySelectorAll('.upcoming-item[data-event-key]').forEach(function (n) { skip[n.getAttribute('data-event-key')] = true; });
+  var items = null;
+
+  function esc(v) { return String(v == null ? '' : v).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function iso(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  function toDate(k) { var p = k.split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function fmt(d, lang, opt) {
+    try { return new Intl.DateTimeFormat(LOCALE[lang] || 'en-US', opt).format(d); } catch (e) { return iso(d); }
+  }
+  function dayLabel(k, lang, thisYear) {
+    var d = toDate(k), y = d.getFullYear() !== thisYear;
+    if (lang === 'ja') return (y ? d.getFullYear() + '年' : '') + (d.getMonth() + 1) + '月' + d.getDate() + '日（' + WD[d.getDay()] + '）';
+    var o = {month: 'short', day: 'numeric', weekday: 'short'};
+    if (y) o.year = 'numeric';
+    return fmt(d, lang, o);
+  }
+  function monthLabel(a, b, lang, thisYear) {
+    var s = toDate(a), e = toDate(b);
+    var same = s.getFullYear() === e.getFullYear() && s.getMonth() === e.getMonth();
+    var ys = s.getFullYear() !== thisYear, ye = e.getFullYear() !== thisYear || s.getFullYear() !== e.getFullYear();
+    if (lang === 'ja') {
+      var one = function (d, y) { return (y ? d.getFullYear() + '年' : '') + (d.getMonth() + 1) + '月'; };
+      return same ? one(e, ys) : one(s, ys) + '〜' + one(e, ye && e.getFullYear() !== s.getFullYear());
+    }
+    // 中国語・韓国語は 'long' だと「十月」になるので数字の月にする（日付の表記「10月12日」とそろえる）
+    var opt = function (y) { var o = {month: (lang === 'zh' || lang === 'ko') ? 'numeric' : 'long'}; if (y) o.year = 'numeric'; return o; };
+    return same ? fmt(e, lang, opt(ys)) : fmt(s, lang, opt(ys && s.getFullYear() !== e.getFullYear())) + ' – ' + fmt(e, lang, opt(ys || ye));
+  }
+
+  function render() {
+    if (!items) return;
+    var lang = window.KomakiLang();
+    var kids = lang === 'ja' && document.documentElement.classList.contains('kids-mode');
+    var thisYear = new Date().getFullYear();
+    box.innerHTML = items.map(function (it) {
+      var ev = it.ev;
+      var name = kids ? ev.ja : (ev[lang] || ev.en || ev.ja || '');
+      var date = ev.day === true ? dayLabel(it.key, lang, thisYear) : monthLabel(ev.start || it.key, it.key, lang, thisYear);
+      // 「あと◯日」は日の決まった予定だけ（data-countdown）。月単位の予定に data-expires を付けると、
+      // 同じ日付キーに "day": true の予定があるとき DATE COUNTDOWN が札を付けてしまう。
+      return '<div class="upcoming-item"' + (ev.day === true ? ' data-countdown="' + esc(it.key) + '"' : ' data-key="' + esc(it.key) + '"') + '>' +
+               '<span class="upcoming-date">' + esc(date) + '</span>' +
+               '<span class="upcoming-name">' + esc(name) + '</span>' +
+             '</div>';
+    }).join('');
+    var bar = box.closest('.upcoming-bar');
+    if (bar && items.length) bar.style.display = '';
+  }
+
+  window.KomakiEvents().then(function (data) {
+    var events = data.events || {};
+    var today = iso(new Date());
+    var all = [];
+    Object.keys(events).forEach(function (k) {
+      if (k < today || skip[k]) return;
+      (Array.isArray(events[k]) ? events[k] : [events[k]]).forEach(function (ev) {
+        if (ev) all.push({key: k, ev: ev, sort: (ev.day === true ? k : (ev.start || k))});
+      });
+    });
+    all.sort(function (a, b) { return a.sort < b.sort ? -1 : a.sort > b.sort ? 1 : (a.key < b.key ? -1 : a.key > b.key ? 1 : 0); });
+    var pick = all.slice(0, MAX);
+    var nextDay = all.filter(function (x) { return x.ev.day === true; })[0];
+    if (nextDay && pick.indexOf(nextDay) === -1) pick.push(nextDay);
+    items = pick;
+    render();
+  }).catch(function () {});
+  document.addEventListener('komaki:i18n-applied', render);
+})();
+
+/* ===== NOW BAR（index.html「いまの状況」） =====
+   2026-10-05 ユーザー指示：過ぎた日付の内容を「これから」のように残さない。now_text の中で
+   これからの予定・続いていることは <span data-until="YYYY-MM-DD"> で囲んであり、その日を過ぎたら
+   ここで画面から外す（済んだことは data-past で、過去形で書いてあるので残す）。
+   辞書が当たるたびに中身ごと書き換わるので、komaki:i18n-applied のたびに外し直す。
+   文面そのものは手書きで随時更新する欄（外すのは書き直しが間に合わなかったときの保険）。 */
+(function () {
+  var el = document.querySelector('.now-text');
+  if (!el) return;
+  function prune() {
+    var d = new Date();
+    var today = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    el.querySelectorAll('[data-until]').forEach(function (n) {
+      if ((n.getAttribute('data-until') || '') < today) n.remove();
+    });
+  }
+  prune();
+  document.addEventListener('komaki:i18n-applied', prune);
 })();
 
 /* ===== DATE COUNTDOWN（全ページ）=====
@@ -1302,7 +1458,7 @@ window.KomakiGrade = (function () {
   const container = document.getElementById('press-container');
   if (!container) return;
 
-  var MAX_ITEMS = 6;   // 表示件数。data/chunichi_news.json 側は全件を保持する
+  var MAX_ITEMS = 3;   // 表示件数。data/chunichi_news.json 側は全件を保持する
 
   var _pl = window.KomakiLang();
 
@@ -1469,7 +1625,8 @@ window.KomakiGrade = (function () {
           ? `<span class="ce-when">${cet('when')} ${esc(window.KomakiJaWhen(ev.when, _cl))}</span>` : '';
         // 「あと◯日」用の日付。when は「10月10日 11時…」と年が無いので、掲載ページの
         // 更新日（updated_at）の年に置き、それより2か月以上前になるなら翌年とみなす。
-        const cd = (function () {
+        // data/community_events.json の date（build_community_events.py が同じ規則で付ける）を優先する。
+        const cd = ev.date || (function () {
           const m = /(\d{1,2})月(\d{1,2})日/.exec(ev.when || '');
           const u = /(\d{4})年(\d{1,2})月(\d{1,2})日/.exec(ev.updated_at || '');
           if (!m || !u) return '';
@@ -2489,7 +2646,7 @@ window.KomakiGrade = (function () {
      市の東部まちづくり推進室が公表したもので、すぐ下の「これからの催し」（住民・協議会の催し）とは
      出どころが違うので、見出しを分けた別の塊にする（画面と同じ分け方）。
      市の記録は月に数件しか増えず、7日の窓で絞るとほぼ毎回空になるため、この塊だけは
-     「これから開かれる催し」ぜんぶ＋「さいきんの動き」の新しい3件を載せる。どの行にも日付を
+     「これから開かれる催し」ぜんぶ＋「最近の動き」の新しい3件を載せる。どの行にも日付を
      付けるので、古い記録を新着と取り違えることはない。文面は画面に描かれた要素から取る
      （日本語以外の表示なら、見出しはすでに訳に置き換わっている）。 */
   var TOBU_RECENT_ON_SHEET = 3;
@@ -3278,6 +3435,19 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
              tr:'Bir vatandaş grubu olan “桃花台を考える会” tarafından, belediyenin Doğu Bölgesi Kalkınma Ofisi ile ortak öneri projesi olarak düzenlenir.',
              my:'ပြည်သူ့အဖွဲ့ “桃花台を考える会” က မြို့တော်၏ အရှေ့ပိုင်း မြို့ပြဖွံ့ဖြိုးရေးရုံးနှင့် ပူးပေါင်းအဆိုပြု စီမံကိန်းအဖြစ် ကျင်းပသည့် ပွဲ။'},
     tokadai_src:{ja:'小牧市 東部まちづくり推進室（協働提案事業）', en:'Komaki City Eastern District Development Office (joint proposal project)'},
+    council_body:{ja:'地域協議会が開く催しです。市の地域協議会イベント案内に載っています。',
+             en:'Held by a community council and listed in the city’s community council event guide.',
+             pt:'Organizado por um conselho comunitário e divulgado no guia de eventos dos conselhos comunitários da prefeitura.',
+             vi:'Do hội đồng cộng đồng tổ chức, được đăng trong mục giới thiệu sự kiện của các hội đồng cộng đồng trên trang của thành phố.',
+             tl:'Isinasagawa ng isang konseho ng komunidad at nakalista sa gabay ng lungsod sa mga kaganapan ng mga konseho.',
+             es:'Lo organiza un consejo comunitario y figura en la guía de eventos de los consejos comunitarios del municipio.',
+             zh:'由地区协议会举办，刊登在市政府的地区协议会活动指南中。',
+             id:'Diselenggarakan dewan komunitas dan tercantum di panduan acara dewan komunitas milik kota.',
+             ko:'지역 협의회가 여는 행사로, 시의 지역 협의회 행사 안내에 실려 있습니다.',
+             ne:'सामुदायिक परिषद्ले गर्ने कार्यक्रम, नगरको सामुदायिक परिषद् कार्यक्रम सूचनामा राखिएको।',
+             tr:'Bir bölge konseyi tarafından düzenlenir ve belediyenin bölge konseyi etkinlik rehberinde yer alır.',
+             my:'ဒေသဆိုင်ရာ ကောင်စီက ကျင်းပပြီး မြို့တော်၏ ဒေသဆိုင်ရာ ကောင်စီ ပွဲလမ်းသတင်းတွင် ဖော်ပြထားသည်။'},
+    council_src:{ja:'小牧市 地域協議会イベント案内', en:'Komaki City community council event guide', pt:'Guia de eventos dos conselhos comunitários (prefeitura de Komaki)', vi:'Thông tin sự kiện hội đồng cộng đồng (TP Komaki)', tl:'Gabay sa kaganapan ng mga konseho (Lungsod ng Komaki)', es:'Guía de eventos de los consejos comunitarios (municipio de Komaki)', zh:'小牧市 地区协议会活动指南', id:'Panduan acara dewan komunitas (Kota Komaki)', ko:'고마키시 지역 협의회 행사 안내', ne:'कोमाकी नगर सामुदायिक परिषद् कार्यक्रम सूचना', tr:'Komaki Belediyesi bölge konseyi etkinlik rehberi', my:'Komaki မြို့ ဒေသဆိုင်ရာ ကောင်စီ ပွဲလမ်းသတင်း'},
     empty:  {ja:'現在、掲載されている取組はありません。', en:'Nothing is listed at the moment.', pt:'No momento não há nada publicado.', vi:'Hiện chưa có nội dung nào.', tl:'Wala pang nakalista sa ngayon.', es:'Por ahora no hay nada publicado.', zh:'目前没有刊登的活动。', id:'Saat ini belum ada yang ditampilkan.', ko:'현재 게시된 활동이 없습니다.', ne:'हाल कुनै गतिविधि राखिएको छैन।', tr:'Şu anda listelenen bir şey yok.', my:'လက်ရှိတွင် ဖော်ပြထားသည် မရှိပါ။'},
     error:  {ja:'地域の取組を取得できませんでした。', en:'Could not load community efforts.', pt:'Não foi possível carregar.', vi:'Không tải được nội dung.', tl:'Hindi ma-load ang listahan.', es:'No se pudo cargar.', zh:'无法加载地区行动。', id:'Gagal memuat.', ko:'지역의 활동을 가져오지 못했습니다.', ne:'सामुदायिक गतिविधि लोड गर्न सकिएन।', tr:'Yüklenemedi.', my:'မဖွင့်နိုင်ပါ။'}
   };
@@ -3309,16 +3479,38 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     if (_al !== 'ja' && t.date_note) it['date_note_' + _al] = window.KomakiJaWhen(t.date_note, _al);
     return it;
   }
-  var tobuP = fetch('./data/tobu_actions.json')
-    .then(function (r) { return r.ok ? r.json() : {items: []}; })
-    .then(function (d) {
-      return (d.items || []).filter(function (t) { return t.organizer && t.kind === 'event'; }).map(fromTobu);
+  /* 東部地域の地域協議会の催し（2026-10-05 ユーザー指示）。data/community_events.json（自動生成）の
+     shinooka かつ日付の読めたもの。発信元は市の地域協議会イベント案内だが、その索引ページへの
+     リンクは community.html 限定の規則なので、この欄（index.html にも出る）からはサイト内の
+     community.html#council-events（市の案内を並べた欄）へ張る。 */
+  function fromCouncil(t) {
+    var it = {title_ja: t.title, date: t.date, badge: 'council', _placeHl: true,
+              place_ja: t.place || '', date_note_ja: t.date_note || '',
+              source_label: at('council_src'),
+              source_url: 'community.html#council-events', _internal: true};
+    it['body_' + _al] = at('council_body');
+    if (_al !== 'ja' && t.date_note) it['date_note_' + _al] = window.KomakiJaWhen(t.date_note, _al);
+    return it;
+  }
+  // 自動で足す催しは KomakiTokadaiEvents()（スケジュールと同じ元）から取る。終わったものは notPast が落とす。
+  var tobuP = window.KomakiTokadaiEvents()
+    .then(function (list) {
+      return list.map(function (x) { return x.src.kind === 'council' ? fromCouncil(x.src) : fromTobu(x.src); });
     })
     .catch(function () { return []; });
 
   fetch('./data/community_actions.json')
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function (data) { return tobuP.then(function (extra) { return {actions: (data.actions || []).concat(extra)}; }); })
+    .then(function (data) {
+      return tobuP.then(function (extra) {
+        // 手で書いた項目と同じ催し（題名が一致）は足さない — 手書きが優先
+        var mine = (data.actions || []).map(function (a) { return a.title_ja || ''; });
+        extra = extra.filter(function (e) {
+          return !window.KomakiTokadaiEvents.names(e.title_ja).some(function (n) { return mine.indexOf(n) !== -1; });
+        });
+        return {actions: (data.actions || []).concat(extra)};
+      });
+    })
     .then(function (data) {
       var items = (data.actions || []).filter(notPast);
       if (!items.length) { container.innerHTML = '<p class="school-empty">' + at('empty') + '</p>'; return; }
@@ -3339,7 +3531,9 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
                            (it._placeHl ? '<span data-hl="' + esc(place) + '">' + esc(place) + '</span>' : esc(place)) + '</div>';
         var body = pick(it, 'body');
         var src = it.source_url
-          ? '<a href="' + esc(it.source_url) + '" target="_blank" rel="noopener">' + esc(it.source_label || it.source_url) + '</a>'
+          ? (it._internal
+              ? '<a href="' + esc(it.source_url) + '">' + esc(it.source_label || it.source_url) + '</a>'
+              : '<a href="' + esc(it.source_url) + '" target="_blank" rel="noopener">' + esc(it.source_label || it.source_url) + '</a>')
           : esc(it.source_label || '');
         // 任意の「参考」行。発信元（主催者自身の発信）とは別に、
         // 本文で触れた事実の出どころを1本だけ示す枠（2026-09-24 ユーザー指示で追加）。
@@ -3412,7 +3606,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     badge:   {ja:'市公式', en:'City official', pt:'Oficial da cidade', vi:'Chính quyền thành phố', tl:'Opisyal ng lungsod', es:'Oficial municipal', zh:'市官方', id:'Resmi kota', ko:'시 공식', ne:'नगर आधिकारिक', tr:'Belediye resmî', my:'မြို့တော် တရားဝင်'},
     source:  {ja:'出典', en:'Source', pt:'Fonte', vi:'Nguồn', tl:'Pinagkunan', es:'Fuente', zh:'出处', id:'Sumber', ko:'출처', ne:'स्रोत', tr:'Kaynak', my:'ရင်းမြစ်'},
     upcoming:{ja:'これからの催し', en:'Coming up', pt:'Próximos eventos', vi:'Sắp diễn ra', tl:'Nalalapit na kaganapan', es:'Próximos actos', zh:'即将举办', ko:'다가오는 행사', ne:'आउँदा कार्यक्रम', tr:'Yaklaşan etkinlikler', id:'Akan datang', my:'လာမည့် ပွဲများ'},
-    recent:  {ja:'さいきんの動き', en:'Recently', pt:'Recentemente', vi:'Gần đây', tl:'Kamakailan', es:'Recientemente', zh:'最近的动态', id:'Belakangan ini', ko:'최근 소식', ne:'पछिल्ला गतिविधि', tr:'Son gelişmeler', my:'မကြာသေးမီက'},
+    recent:  {ja:'最近の動き', en:'Recently', pt:'Recentemente', vi:'Gần đây', tl:'Kamakailan', es:'Recientemente', zh:'最近的动态', id:'Belakangan ini', ko:'최근 소식', ne:'पछिल्ला गतिविधि', tr:'Son gelişmeler', my:'မကြာသေးမီက'},
     when:    {ja:'日時', en:'Date', pt:'Data', vi:'Thời gian', tl:'Petsa', es:'Fecha', zh:'日期', id:'Waktu', ko:'일시', ne:'मिति', tr:'Tarih', my:'ရက်စွဲ'},
     place:   {ja:'場所', en:'Place', pt:'Local', vi:'Địa điểm', tl:'Lugar', es:'Lugar', zh:'地点', id:'Tempat', ko:'장소', ne:'स्थान', tr:'Yer', my:'နေရာ'},
     empty:   {ja:'この2か月に新しい動きはありませんでした。', en:'Nothing new in the last two months.', pt:'Nada novo nos últimos dois meses.', vi:'Không có gì mới trong hai tháng qua.', tl:'Walang bago sa nakalipas na dalawang buwan.', es:'Nada nuevo en los últimos dos meses.', zh:'最近两个月没有新的动态。', id:'Tidak ada yang baru dalam dua bulan terakhir.', ko:'최근 두 달 사이에 새로운 소식은 없었습니다.', ne:'पछिल्लो दुई महिनामा नयाँ केही भएन।', tr:'Son iki ayda yeni bir şey yok.', my:'လွန်ခဲ့သော နှစ်လအတွင်း အသစ်မရှိပါ။'},
@@ -3462,7 +3656,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   }
 
   var MAX_UPCOMING = 3;
-  var MAX_RECENT = 5;
+  var MAX_RECENT = 3;   // 最近の動きは3件まで（2026-10-05 ユーザー指示）
 
   function row(it) {
     // 開催日が分かる催しは「日時」欄に市の原文（例: 令和8年11月15日(日曜日)14時から）を添える。

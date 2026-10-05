@@ -731,6 +731,7 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   flex-shrink: 0;
 }
 .upcoming-next[hidden] { display: none; }
+.upcoming-auto { display: contents; }   /* UPCOMING BAR が描く項目を .upcoming-list の flex 子として並べる */
 .upcoming-more {
   font-family: var(--heading-font);
   font-weight: 700;

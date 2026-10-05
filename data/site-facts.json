@@ -3,7 +3,7 @@
   "site_targets": {
     "now_bar": {
       "file": "index.html / data/i18n/*.json",
-      "notes": "トップ冒頭「いまの状況」枠。現況を一文で示す now_text と、その基準月 now_asof。状況が動いたら必ず更新する（全言語）"
+      "notes": "トップ冒頭「いまの状況」枠。随時更新する。now_text は「済んだこと（過去と分かる書き方・data-past）→ いまの状態 → 近い先の予定（data-until）」の順、now_asof はその基準月。状況が動いたら必ず更新する（全言語）"
     },
     "calendar": {
       "file": "data/events.json",

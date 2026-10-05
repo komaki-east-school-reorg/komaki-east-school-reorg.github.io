@@ -1,5 +1,5 @@
 {
-  "description": "地域協議会イベント案内（自動生成・手編集不可）。.github/scripts/build_community_events.py が data/official_pages/ のスナップショットから組み立てる。shinooka=true は篠岡地区5協議会のイベント。",
+  "description": "地域協議会イベント案内（自動生成・手編集不可）。.github/scripts/build_community_events.py が data/official_pages/ のスナップショットから組み立てる。shinooka=true は東部地域（篠岡地区5協議会、または会場が東部）のイベント。date は when の月日に updated_at から年を補ったもの。",
   "source_url": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/index.html",
   "events": [
     {
@@ -8,7 +8,8 @@
       "updated_at": "2026年09月28日",
       "when": "10月21日 10時～12時",
       "category": "イベント / 催し",
-      "shinooka": true
+      "shinooka": true,
+      "date": "2026-10-21"
     },
     {
       "title": "光ヶ丘小学校区地域協議会 新学校区交流 ミュージックフェスティバル",
@@ -17,7 +18,8 @@
       "place": "光ヶ丘中学校",
       "when": "10月31日 13時00分～",
       "category": "イベント / 催し",
-      "shinooka": true
+      "shinooka": true,
+      "date": "2026-10-31"
     },
     {
       "title": "一色小学校区地域協議会 一色ふれあいまつり",
@@ -26,7 +28,8 @@
       "place": "一色小学校",
       "when": "10月10日 11時00分～16時00分",
       "category": "イベント / 催し",
-      "shinooka": false
+      "shinooka": false,
+      "date": "2026-10-10"
     }
   ]
 }

@@ -65,6 +65,8 @@ def current_headlines():
         add(it.get("title"))
     for ev in load("data/community_events.json", {}).get("events", []):
         add(ev.get("title"))
+        if ev.get("shinooka"):   # 東部の催しは「地域の取組」に会場名つきで出る
+            add(ev.get("place"))
     for it in load("data/tobu_actions.json", {}).get("items", []):
         add(it.get("title"))
         add(it.get("place"))

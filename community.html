@@ -537,8 +537,9 @@
        中身は data/community_events.json（自動生成・手編集不可）。描画は js/main.js。
        市の案内は市内16の小学校区ぜんぶが対象なので、篠岡地区5協議会のものだけ
        バッジを付けて先頭に出す。よその地区のイベントも「協議会が実際に何をしているか」
-       の具体例として役に立つため、あえて隠さず載せている。 -->
-  <section class="section">
+       の具体例として役に立つため、あえて隠さず載せている。
+       id="council-events" は「地域の取組」に自動で出る協議会の催しの発信元リンク（js/main.js）の飛び先。外さないこと。 -->
+  <section class="section" id="council-events">
     <div class="container">
       <h2 class="section-title" data-i18n-html="comm_events_h2">地域協議会のイベント案内<small>Community Council Events</small></h2>
       <p class="section-lead" data-i18n="comm_events_lead">

@@ -19,8 +19,15 @@
 
 ■ 出力は生成物。手で編集しないこと（次回実行で上書きされる）。
 
+■ 東部地域の催しは「地域の取組」・スケジュール・更新履歴へ（2026-10-05 ユーザー指示）
+   shinooka=true（題名が篠岡地区5協議会の名前を含む、または会場が東部の地名を含む）で
+   日付の読み取れた催しは、js/main.js が「地域の取組」とスケジュール・カレンダーへ足す。
+   更新履歴（data/site-updates.json）にはこのスクリプトが1行足す。記事 URL を auto_key に
+   残すので、同じ催しが二度足されることはない。
+
 終了コード: 0 = 生成した（変化の有無は問わない）, 1 = 致命的エラー
 """
+import datetime
 import glob
 import json
 import os
@@ -45,6 +52,19 @@ SHINOOKA_COUNCILS = [
     "桃ヶ丘小学校区",
     "陶小学校区",
 ]
+
+# 会場がこの地名を含めば、どの協議会の催しでも東部地域で開かれるものとみなす。
+# fetch_chunichi.py の AREA_KEYWORDS と同じ基準（「陶」単独は陶芸・陶器と紛れるので学校名の形のみ）。
+EAST_PLACE_KEYWORDS = (
+    "篠岡", "しのおか",
+    "桃花台", "光ケ丘", "光ヶ丘", "桃ケ丘", "桃ヶ丘", "桃陵",
+    "大城", "陶小",
+    "城山", "大草", "上末", "下末", "高根", "大山", "池之内", "野口",
+    "東部市民センター",
+)
+
+SITE_UPDATES = "data/site-updates.json"
+UPDATE_MAX_CHARS = 45   # 更新履歴の ja は長くても45字（CLAUDE.md）
 
 # 本文のうち、ここから先は市内の他イベントの羅列や問い合わせ先なので読まない。
 STOP_LABELS = ("関連イベント", "関連ファイル", "この記事に関するお問い合わせ先")
@@ -92,8 +112,79 @@ def parse_event(path):
 
     if not ev.get("title"):
         return None
-    ev["shinooka"] = any(c in ev["title"] for c in SHINOOKA_COUNCILS)
+    ev["shinooka"] = (any(c in ev["title"] for c in SHINOOKA_COUNCILS)
+                      or any(k in ev.get("place", "") for k in EAST_PLACE_KEYWORDS))
+    d = event_date(ev.get("when", ""), ev.get("updated_at", ""))
+    if d:
+        ev["date"] = d
     return ev
+
+
+def event_date(when, updated_at):
+    """「10月10日 11時…」に年を補って YYYY-MM-DD にする。年は掲載ページの更新日の年で、
+    それより2か月以上前になるなら翌年とみなす（年末に翌年1月の催しを載せる場合）。"""
+    m = re.search(r"(\d{1,2})月(\d{1,2})日", when)
+    u = re.search(r"(\d{4})年(\d{1,2})月(\d{1,2})日", updated_at)
+    if not m or not u:
+        return ""
+    y = int(u.group(1))
+    try:
+        upd = datetime.date(y, int(u.group(2)), int(u.group(3)))
+        d = datetime.date(y, int(m.group(1)), int(m.group(2)))
+        if d < upd - datetime.timedelta(days=60):
+            d = datetime.date(y + 1, d.month, d.day)
+    except ValueError:
+        return ""
+    return d.isoformat()
+
+
+def add_site_updates(events):
+    """東部の催しで、まだ更新履歴に載せていないものを先頭に1件ずつ足す。"""
+    if not os.path.exists(SITE_UPDATES):
+        return 0
+    with open(SITE_UPDATES, encoding="utf-8") as f:
+        old = f.read()
+    data = json.loads(old)
+    ups = data.get("updates", [])
+    seen = {u.get("auto_key") for u in ups if u.get("auto_key")}
+    # 「地域の取組」に手で書いてある催し（data/community_actions.json）は、すでに載っているので足さない。
+    # 手書き側は協議会名の前置きを外した題名のことがあるので、両方で照らす。
+    try:
+        with open("data/community_actions.json", encoding="utf-8") as f:
+            hand = {a.get("title_ja", "") for a in json.load(f).get("actions", [])}
+    except (OSError, ValueError):
+        hand = set()
+    today = datetime.date.today().isoformat()
+    added = []
+    for ev in events:
+        if not ev.get("shinooka") or not ev.get("date") or ev["url"] in seen:
+            continue
+        if ev["date"] < today:   # 終わった催しはさかのぼって載せない
+            continue
+        short = re.sub(r"^\S*地域協議会\s+", "", ev["title"])
+        if ev["title"] in hand or short in hand:
+            continue
+        title = ev["title"]
+        # 題名がたいてい「◯◯小学校区地域協議会 …」なので、そのときは前置きを省く
+        head = "「" if "協議会" in title else "地域協議会の催し「"
+        tail = "」を地域の取組と予定に掲載"
+        room = UPDATE_MAX_CHARS - len(head) - len(tail)
+        if len(title) > room:
+            title = title[:room - 1] + "…"
+        added.append({
+            "date": today,
+            "type": "content",
+            "ja": head + title + tail,
+            "en": "Community council event added to community efforts and the schedule",
+            "auto_key": ev["url"],
+        })
+        seen.add(ev["url"])
+    if not added:
+        return 0
+    data["updates"] = added + ups
+    with open(SITE_UPDATES, "w", encoding="utf-8") as f:
+        f.write(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
+    return len(added)
 
 
 def index_order():
@@ -144,7 +235,8 @@ def main():
         "description": ("地域協議会イベント案内（自動生成・手編集不可）。"
                         ".github/scripts/build_community_events.py が "
                         "data/official_pages/ のスナップショットから組み立てる。"
-                        "shinooka=true は篠岡地区5協議会のイベント。"),
+                        "shinooka=true は東部地域（篠岡地区5協議会、または会場が東部）のイベント。"
+                        "date は when の月日に updated_at から年を補ったもの。"),
         "source_url": SOURCE_URL,
         "events": events,
     }
@@ -157,6 +249,9 @@ def main():
               f"{sum(1 for e in events if e['shinooka'])}件）")
     else:
         print(f"変化なし: {OUTPUT}（{len(events)}件）")
+    n = add_site_updates(events)
+    if n:
+        print(f"更新履歴に {n} 件追加: {SITE_UPDATES}")
     return 0
 
 

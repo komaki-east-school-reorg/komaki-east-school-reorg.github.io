@@ -1,6 +1,25 @@
 {
-  "description": "このサイト自身の更新履歴。トップページ最下部の「サイトの更新履歴」コーナーが実行時に fetch して描画する（表示は新しい順に6件まで。このファイルには全履歴を残す）。手動管理。新しいものを配列の先頭に足す。type は content（掲載内容）/ feature（機能追加）/ fix（修正）のいずれか。ja は必須、en は推奨（未記載なら ja が出る）。他言語は en → ja の順にフォールバックする。文体は体言止めの短い一行にすること（ja は30〜40字を目安に、長くても45字まで。入りきらない詳細はコミットメッセージへ）（「〜しました。」と文章にしない。コミットメッセージの貼り付けもしない）。読者が画面上で気づかない内部改修（表示の高速化・リファクタ・SEO の内部設定・ドキュメント修正など）は載せない。priority は任意で、high なら上げ、low なら下げる — ヘッダ下のカットイン帯（js/main.js の TOP CUT-IN）の並び順にだけ効く。帯はふだん「新しいかつ重要度が高い順」に自動で並ぶので、ふつうは書かなくてよい。関連する小さな修正はまとめて1件にする。",
+  "description": "このサイト自身の更新履歴。トップページ最下部の「サイトの更新履歴」コーナーが実行時に fetch して描画する（表示は新しい順に6件まで。このファイルには全履歴を残す）。手動管理（例外：東部地域の地域協議会の催しが自動取得されたときは、.github/scripts/build_community_events.py が1行足す。その行は auto_key に記事 URL を持ち、同じ催しを二度足さないための目印なので消さないこと）。新しいものを配列の先頭に足す。type は content（掲載内容）/ feature（機能追加）/ fix（修正）のいずれか。ja は必須、en は推奨（未記載なら ja が出る）。他言語は en → ja の順にフォールバックする。文体は体言止めの短い一行にすること（ja は30〜40字を目安に、長くても45字まで。入りきらない詳細はコミットメッセージへ）（「〜しました。」と文章にしない。コミットメッセージの貼り付けもしない）。読者が画面上で気づかない内部改修（表示の高速化・リファクタ・SEO の内部設定・ドキュメント修正など）は載せない。priority は任意で、high なら上げ、low なら下げる — ヘッダ下のカットイン帯（js/main.js の TOP CUT-IN）の並び順にだけ効く。帯はふだん「新しいかつ重要度が高い順」に自動で並ぶので、ふつうは書かなくてよい。関連する小さな修正はまとめて1件にする。",
   "updates": [
+    {
+      "date": "2026-10-05",
+      "type": "content",
+      "ja": "「篠岡学区地域協議会 しのおかさわやかウォーキング」を地域の取組と予定に掲載",
+      "en": "Community council event added to community efforts and the schedule",
+      "auto_key": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/chiikikyougikaievent/52531.html"
+    },
+    {
+      "date": "2026-10-05",
+      "type": "feature",
+      "ja": "トップの今後の予定をスケジュール・カレンダーと連動",
+      "en": "Upcoming events on the top page now match the schedule and calendar"
+    },
+    {
+      "date": "2026-10-05",
+      "type": "feature",
+      "ja": "東部の地域協議会の催しを地域の取組と予定に自動掲載",
+      "en": "Eastern district community council events now listed automatically"
+    },
     {
       "date": "2026-09-28",
       "type": "feature",
