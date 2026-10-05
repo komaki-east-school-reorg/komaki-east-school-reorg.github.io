@@ -1,8 +1,66 @@
 {
-  "fetched_at": "2026-10-04T00:54:47Z",
+  "fetched_at": "2026-10-05T01:06:14Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "hikarigaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "光ヶ丘小学校",
+        "ja_kids": "ひかりがおか小学校",
+        "en": "Hikarigaoka Elem. School",
+        "zh": "光之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
+      "latest_date": "2026-10-05",
+      "items": [
+        {
+          "title": "１年生 生活 おもちゃパーティーに参加",
+          "date": "2026-10-05",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136198191?tm=20261002173428"
+        },
+        {
+          "title": "１年生 生活 あきみつけ",
+          "date": "2026-10-05",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136197972?tm=20261002172212"
+        },
+        {
+          "title": "２年生 生活 おもちゃパーティーを開催しました。",
+          "date": "2026-10-02",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136197474?tm=20261002170200"
+        }
+      ]
+    },
+    {
+      "slug": "sue-e",
+      "level": "elem",
+      "names": {
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-10-04",
+      "items": [
+        {
+          "title": "みんなで使うものはどうすべき？",
+          "date": "2026-10-04",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136202446?tm=20261004194902"
+        },
+        {
+          "title": "10/2 今日の給食",
+          "date": "2026-10-02",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136193874?tm=20261002130950"
+        },
+        {
+          "title": "図書室が大変身！",
+          "date": "2026-10-02",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136193826?tm=20261002130648"
+        }
+      ]
+    },
     {
       "slug": "shinooka-j",
       "level": "jhs",
@@ -91,35 +149,6 @@
       ]
     },
     {
-      "slug": "sue-e",
-      "level": "elem",
-      "names": {
-        "ja": "陶小学校",
-        "ja_kids": "すえ小学校",
-        "en": "Sue Elem. School",
-        "zh": "陶小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-10-02",
-      "items": [
-        {
-          "title": "10/2 今日の給食",
-          "date": "2026-10-02",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136193874?tm=20261002130950"
-        },
-        {
-          "title": "図書室が大変身！",
-          "date": "2026-10-02",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136193826?tm=20261002130648"
-        },
-        {
-          "title": "避難訓練",
-          "date": "2026-10-02",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136193713?tm=20261002130908"
-        }
-      ]
-    },
-    {
       "slug": "momogaoka-e",
       "level": "elem",
       "names": {
@@ -145,35 +174,6 @@
           "title": "久しぶりの青空",
           "date": "2026-09-30",
           "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136177855?tm=20260930150010"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "光ヶ丘小学校",
-        "ja_kids": "ひかりがおか小学校",
-        "en": "Hikarigaoka Elem. School",
-        "zh": "光之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
-      "latest_date": "2026-10-02",
-      "items": [
-        {
-          "title": "２年生 生活 おもちゃパーティーを開催しました。",
-          "date": "2026-10-02",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136197474?tm=20261002170200"
-        },
-        {
-          "title": "３年生 菜の花プロジェクト 種まき②",
-          "date": "2026-10-02",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136195326?tm=20261002143614"
-        },
-        {
-          "title": "３年生 菜の花プロジェクト 種まき①",
-          "date": "2026-10-02",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136195276?tm=20261002143249"
         }
       ]
     },
