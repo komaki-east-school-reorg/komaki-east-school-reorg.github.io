@@ -2645,6 +2645,10 @@ main section[id], main h2.section-title[id], #area-map { scroll-margin-top: calc
    声が端末に無い言語では JS が .tts-row を hidden のままにする。 */
 .tts-row { margin: -1rem 0 1.2rem; }
 .tts-row[hidden] { display: none; }
+/* 見出しの無い小さなコーナー（「いまの状況」「今後のスケジュール」）。見出し下用の負マージンを打ち消す */
+.tts-row.tts-row--corner { margin: 0; }
+.now-body > .tts-row--corner { margin-top: .55rem; }
+.upcoming-inner > .tts-row--corner { flex-shrink: 0; }
 .section-title.sub + .tts-row { margin-top: -1.4rem; }
 /* faq.html のカテゴリ見出しは下線を持つので、上の負マージンのままだと
    読み上げボタンが線に食い込む（2026-09-22 ユーザー指摘）。線の下に置き直す。 */

@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-10-05",
+      "type": "feature",
+      "ja": "「いまの状況」「今後のスケジュール」にも読み上げを追加",
+      "en": "Read-aloud added to “Right Now” and “Upcoming Events”"
+    },
+    {
+      "date": "2026-10-05",
       "type": "content",
       "ja": "「篠岡学区地域協議会 しのおかさわやかウォーキング」を地域の取組と予定に掲載",
       "en": "Community council event added to community efforts and the schedule",

@@ -3717,6 +3717,8 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
    ・ボタンはページ全体ではなく節ごと。review.html などは全文を一気に読むと長すぎて使えない。
      対象は main 内の h2.section-title と、index の「最新の動き」の各コーナー（h3.section-title.sub）、
      その「地域の取組」の下半分「東部まちづくりの動き」（h4.section-title.sub）。
+     見出しの無い小さなコーナー（トップの「いまの状況」「今後のスケジュール」）は、そのラベル
+     （.now-label / .upcoming-label）を見出しの代わりにする（2026-10-05 ユーザー指示）。
    ・表示中の言語の声が端末に無ければ、ボタン自体を出さない（押しても無音、がいちばんまずい）。
      ビルマ語の声はほとんどの端末に無く、タガログ語も端末しだい。声の一覧は非同期に届くので
      voiceschanged と数回の再確認で待つ。
@@ -3750,7 +3752,8 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
 
   var SKIP = 'script,style,noscript,svg,rt,select,input,textarea,button:not(.faq-q),' +
              '.tts-row,.page-toc,.faq-q-icon,.section-updated,.bus-map-layers,.bus-area-map,' +
-             '[hidden],[aria-hidden="true"],.section-title small,.orig-ja';
+             '[hidden],[aria-hidden="true"],.section-title small,.orig-ja,' +
+             '.now-more,.upcoming-more';   // 「くわしく見る →」などの案内リンクは読まない
   var BLOCK = 'h2,h3,h4,h5,p,li,dt,dd,tr,caption,figcaption,blockquote,summary,.faq-q,div';
   // 札（「概要」などの分類ラベル）は直後の文とつなげて読むと意味が崩れるので、あとに読点を挟む
   var TAGLIKE = '[class*="tag"],[class*="badge"],[class*="label"],[class*="date"],[class*="cite"],time';
@@ -3761,7 +3764,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   var heads = Array.prototype.filter.call(
     // h4 はトップの「地域の取組」の下半分（東部まちづくりの動き）だけ。見出しが別なので
     // 読み上げも別にする（2026-09-27 ユーザー指示）。含めないと上の取組と続けて読んでしまう。
-    main.querySelectorAll('h2.section-title, h3.section-title.sub, h4.section-title.sub'),
+    main.querySelectorAll('h2.section-title, h3.section-title.sub, h4.section-title.sub, .now-label, .upcoming-label'),
     function (h) { return !h.closest('.group-head, .share, .related, #board-sheet'); });
   if (!heads.length) return;
 
@@ -3803,8 +3806,13 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
       // 画面の狭い端末でこそ使われるので、畳んだせいで声が丸ごと落ちては困る。
       if (!pe.closest('.faq-a, .voice-card') && !pe.getClientRects().length) continue;
       var t = n.nodeValue.replace(/\s+/g, ' ');
-      if (!t.trim()) continue;
       var b = pe.closest(BLOCK) || pe;
+      if (!t.trim()) {
+        // 空白だけの文字（<span>文。</span> <span>文。</span> の間など）も1つの空白として残す。
+        // 捨てると英語などで「grades.School」とつながり、文の区切り（". "）が見つからない。
+        if (cur && cur.el === b && !/\s$/.test(cur.text)) { cur.text += ' '; cur.map.push({node: n, off: 0}); }
+        continue;
+      }
       var cell = pe.closest('td,th');
       var tag = pe.closest(TAGLIKE);
       function padMap(k) { while (cur.map.length < cur.text.length) cur.map.push(k); }
@@ -3861,7 +3869,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   function speakable(t) {
     if (EMOJI) t = t.replace(EMOJI, '');
     (YOMI[lang] || []).forEach(function (p) { t = t.split(p[0]).join(p[1]); });
-    t = t.replace(/\s+/g, ' ').trim();
+    t = t.replace(/\s+/g, ' ').replace(/^[・\s]+|[・\s]+$/g, '');   // 区切りの「・」だけが端に残ることがある
     if (!t || (LETTER && !LETTER.test(t))) return '';
     return t;
   }
@@ -4000,8 +4008,14 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
       if (activeBtn === btn) stop(); else play(h, btn);
     });
     row.appendChild(btn);
-    var after = h.nextElementSibling;
-    (after && after.classList.contains('section-updated') ? after : h).insertAdjacentElement('afterend', row);
+    // 小さなコーナー：「いまの状況」は本文の下、「今後のスケジュール」はラベルのすぐ後（横並びの帯の中）
+    var nowBody = h.classList.contains('now-label') && h.parentNode.querySelector('.now-body');
+    if (nowBody) { row.classList.add('tts-row--corner'); nowBody.appendChild(row); }
+    else if (h.classList.contains('upcoming-label')) { row.classList.add('tts-row--corner'); h.insertAdjacentElement('afterend', row); }
+    else {
+      var after = h.nextElementSibling;
+      (after && after.classList.contains('section-updated') ? after : h).insertAdjacentElement('afterend', row);
+    }
     rows.push(row);
   });
 
