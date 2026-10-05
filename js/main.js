@@ -597,8 +597,11 @@ window.KomakiGrade = (function () {
   var todayStr = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
 
   // index.html 「現在の状況」ステータス項目
+  // 手書きで current（準備中）にした項目も、終わりの日を過ぎたら完了にする（schedule 側と同じ扱い）。
+  // 以前は current を除外していたため、9/30 に終わった受付が10月になっても「準備中」のままだった。
   document.querySelectorAll('.status-item[data-event-date]').forEach(function (item) {
-    if (item.dataset.eventDate <= todayStr && !item.classList.contains('done') && !item.classList.contains('current')) {
+    if (item.dataset.eventDate <= todayStr && !item.classList.contains('done')) {
+      item.classList.remove('current');
       item.classList.add('done');
       var label = item.querySelector('.status-label');
       if (label) {
@@ -2089,6 +2092,12 @@ window.KomakiGrade = (function () {
                url: function (u) { return 'https://www.facebook.com/sharer/sharer.php?u=' + enc(u); }}},
     {cls: 'hatena',  icon: 'B!', key: 'share_hatena',   ja: 'はてなブックマーク',
      url: function (u, t) { return 'https://b.hatena.ne.jp/entry/panel/?url=' + enc(u) + '&btitle=' + enc(t); }},
+    // note（2026-10-06 ユーザー指示）。note が公表しているカスタムボタン用の URL を使う
+    // （https://note.com/intent/post?url=…）。公式ボタンの外部スクリプト（cdn.st-note.com）は
+    // 読み込まない — 自動で読む第三者スクリプトははてなスターだけ、という方針のため。
+    // アプリを名指しできる仕組みは公表されていないので、はてなと同じく web の URL だけ。
+    {cls: 'note',    icon: 'n',  key: 'share_notecom',  ja: 'noteで紹介',
+     url: function (u)    { return 'https://note.com/intent/post?url=' + enc(u); }},
     {cls: 'threads', icon: '@',  key: 'share_threads',  ja: 'Threadsで投稿',
      url: function (u, t) { return 'https://www.threads.net/intent/post?text=' + enc(t + ' ' + u); },
      android: {pkg: 'com.instagram.barcelona',

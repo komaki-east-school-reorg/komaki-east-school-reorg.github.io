@@ -4,7 +4,7 @@
 
 起案AIが作業ツリーに加えた変更を機械的に検査する：
   1. 編集範囲チェック  — 許可ファイル以外の変更・新規ファイル作成を拒否
-  2. スキーマチェック  — events.json の日付キー・10言語ラベル、i18n の JSON 構文
+  2. スキーマチェック  — events.json の日付キー・12言語ラベル、i18n の JSON 構文
   3. ja/en キー一致    — i18n.js が非日本語表示で ja.json を取らない前提を守る
   4. こどもモード      — ja-kids.json の1行がモーラ換算で長すぎないか
   5. ページ別辞書      — data/i18n/pages/ が data/i18n/ と HTML に対して最新か
@@ -24,7 +24,7 @@ import re
 import subprocess
 import sys
 
-# events.json のイベントラベルに必須の言語（この10言語が揃っていないと不合格）。
+# events.json のイベントラベルに必須の言語（この12言語が揃っていないと不合格）。
 # tr / my は 2026-08-13 に全キー翻訳が揃ったので必須に含めた。
 LANGS = ["ja", "en", "pt", "vi", "tl", "es", "zh", "id", "ko", "ne", "tr", "my"]
 # 翻訳が部分的な言語（現在なし。2026-09-18 に ko / ne の全キー翻訳が揃った）。新たに部分翻訳の言語を足すときは、
@@ -507,6 +507,24 @@ def main():
             fail(f"いまの状況: {v}")
     else:
         ok("いまの状況（日付は data-past / data-until つき）")
+
+    # --- 11. 全ページに共有欄がある（サイト全体を検査） ---
+    # 2026-10-05 に clubs.html だけ共有欄（#share）が抜けていて、共有ボタンも画面下の固定バーも
+    # 出ていなかった。共有ボタンは main.js がこの欄を見つけて組み立てるので、欄が無いと黙って消える。
+    # 移動案内だけの voices.html は対象外。
+    share_missing = []
+    for page in sorted(glob.glob("*.html")):
+        if page == "voices.html":
+            continue
+        with open(page, encoding="utf-8") as f:
+            h = f.read()
+        if 'id="share"' not in h or 'id="share-buttons"' not in h:
+            share_missing.append(page)
+    if share_missing:
+        for p_ in share_missing:
+            fail(f"共有欄（#share / #share-buttons）が無い: {p_}")
+    else:
+        ok("全ページに共有欄")
 
     # --- 7. 出典実在チェック ---
     if not os.path.exists(EVIDENCE):

@@ -414,6 +414,7 @@
         以下は小牧市が公式に示している方針です。詳細については現在も検討が続いています。
       </p>
 
+      <div class="table-wrap table-wrap--fit">
       <table class="change-table">
         <thead>
           <tr>
@@ -465,6 +466,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
   </section>
 
@@ -583,13 +585,26 @@
            登録フォーム（logoform）へのリンクは、ユーザーの指示でこの節に限って許可したもの。
            auto_gates.py の PERMITTED_LINKS / PERMITTED_FORM_LINKS が community.html 限定で守っている。 -->
       <h3 class="section-title sub" id="platform" style="margin-top:2.2rem;" data-i18n-html="comm_pf_h">東部まちづくりプラットフォーム<small>Eastern District Platform</small></h3>
-      <p data-i18n="comm_pf_p1">市が令和4年3月にまとめた「東部振興構想」にもとづいて開いた、東部のまちづくりに関わる人どうしがつながるための場です。住民、事業者、学校などの教育機関、市が登録し、情報を出し合ったり、いっしょに動く相手を見つけたりすることをねらっています。駅のホームのように、ここで出会って次の行動に向かう「通過点」というたとえで説明されています。</p>
-      <p style="margin-top:.8rem;" data-i18n="comm_pf_p2">東部地域に住む人だけでなく、関心のある人ならだれでも登録できます。規約に同意して登録すると、市の東部まちづくり推進室から、LINEのオープンチャットを使ったオンラインの交流の場への案内と、意見交流会・ワークショップ・まちづくりのセミナーなど顔を合わせる場の知らせが届きます。</p>
-      <ul class="pf-links">
-        <li><a href="https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/38222.html" target="_blank" rel="noopener" data-i18n="comm_pf_link_about">東部まちづくりプラットフォームとは（小牧市）</a></li>
-        <li><a href="https://logoform.jp/form/uSYk/80018" target="_blank" rel="noopener" data-i18n="comm_pf_link_form">登録フォーム（市が案内している logoフォーム）</a></li>
-      </ul>
-      <p style="font-size:.8rem; color:var(--text-muted); margin-top:.6rem;" data-i18n="comm_pf_src">出典：小牧市「東部まちづくりプラットフォームとは？」。市の文面を当サイトが読んで書き直したものです。</p>
+      <!-- 市の説明にある「駅のホーム＝通過点」のたとえに合わせ、線路と駅の意匠のカードにしてある（2026-10-06 ユーザー指示）。
+           線路・駅の飾りは aria-hidden の装飾だけで、文字は増やしていない。 -->
+      <div class="pf-card">
+        <div class="pf-track" aria-hidden="true"><span class="pf-stop"></span><span class="pf-stop pf-stop--here"></span><span class="pf-stop"></span></div>
+        <div class="pf-grid">
+          <div class="pf-col">
+            <h4 class="pf-col-h" data-i18n="comm_pf_what_h">どんな場？</h4>
+            <p data-i18n="comm_pf_p1">市が令和4年3月にまとめた「東部振興構想」にもとづいて開いた、東部のまちづくりに関わる人どうしがつながるための場です。住民、事業者、学校などの教育機関、市が登録し、情報を出し合ったり、いっしょに動く相手を見つけたりすることをねらっています。駅のホームのように、ここで出会って次の行動に向かう「通過点」というたとえで説明されています。</p>
+          </div>
+          <div class="pf-col pf-col--join">
+            <h4 class="pf-col-h" data-i18n="comm_pf_join_h">参加するには</h4>
+            <p data-i18n="comm_pf_p2">東部地域に住む人だけでなく、関心のある人ならだれでも登録できます。規約に同意して登録すると、市の東部まちづくり推進室から、LINEのオープンチャットを使ったオンラインの交流の場への案内と、意見交流会・ワークショップ・まちづくりのセミナーなど顔を合わせる場の知らせが届きます。</p>
+            <div class="pf-actions">
+              <a class="pf-btn pf-btn--primary" href="https://logoform.jp/form/uSYk/80018" target="_blank" rel="noopener" data-i18n="comm_pf_link_form">登録フォーム（市が案内している logoフォーム）</a>
+              <a class="pf-btn" href="https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/38222.html" target="_blank" rel="noopener" data-i18n="comm_pf_link_about">東部まちづくりプラットフォームとは（小牧市）</a>
+            </div>
+          </div>
+        </div>
+        <p class="pf-src" data-i18n="comm_pf_src">出典：小牧市「東部まちづくりプラットフォームとは？」。市の文面を当サイトが読んで書き直したものです。</p>
+      </div>
     </div>
   </section>
 

@@ -53,6 +53,7 @@ RUNTIME_KEYS = [
     "share_threads",
     "share_bluesky",
     "share_reddit",
+    "share_notecom",
     "share_mastodon",
     "share_mastodon_prompt",
     "share_mastodon_invalid",

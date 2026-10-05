@@ -378,6 +378,13 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   text-shadow: 0 2px 10px rgba(0,0,0,.2);
   position: relative;
 }
+/* トップの題名（hero_title）は、横幅が足りるときは改行を消して1行にする（2026-10-06 ユーザー指示）。
+   モバイルは辞書の <br> どおり2行。日本語・中国語以外の辞書は <br> の前に空白を入れてあるので、
+   改行を消しても語がくっつかない。日本語は折り返させず1行に保つ（769px 以上なら収まる）。 */
+@media (min-width: 769px) {
+  .hero h1[data-i18n-html="hero_title"] br { display: none; }
+  html[lang="ja"] .hero h1[data-i18n-html="hero_title"] { white-space: nowrap; }
+}
 .hero p {
   font-size: clamp(.95rem, 2vw, 1.15rem);
   opacity: .92;
@@ -450,6 +457,10 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   .now-inner { flex-direction: column; gap: .55rem; padding: .9rem 1rem; }
   .now-label { margin-top: 0; }
   .now-text { font-size: .9rem; }
+  /* 縦並びのとき本文を枠の幅に収める。「くわしく見る →」は折り返してよい
+     （タガログ語などで長く、320px 幅で枠の外へはみ出していた。2026-10-05） */
+  .now-body { width: 100%; }
+  .now-more { white-space: normal; }
 }
 
 /* ===== SCHOOL WEBSITE UPDATES（対象8校ホームページの更新コーナー） ===== */
@@ -1338,12 +1349,14 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   font-size: .9rem;
 }
 .process-num { font-size: 1.6rem; font-weight: 800; color: var(--primary); font-family: var(--heading-font); }
-.process-label { font-size: .82rem; color: var(--text-muted); margin-top: .2rem; }
+.process-label { font-size: .82rem; color: var(--text-muted); margin-top: .2rem; overflow-wrap: anywhere; min-width: 0; }
 
 /* ===== TABLE ===== */
 /* 横に広い表は、ページ本体ではなくこの箱の中だけを横スクロールさせる */
 .table-wrap { overflow-x: auto; margin-bottom: 1rem; }
 .table-wrap .data-table { min-width: 32rem; }
+/* 幅の決まった表（地域協議会の拠点・議会の採決）を、はみ出したときだけ横スクロールにする枠 */
+.table-wrap--fit { margin-bottom: 0; }
 .data-table { width: 100%; border-collapse: collapse; font-size: .9rem; background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
 .data-table th {
   background: var(--primary);
@@ -1986,6 +1999,7 @@ footer {
 .share-btn--x        { --share-color: #333333; --share-color-dark: #000000; }
 .share-btn--fb       { --share-color: #1877f2; --share-color-dark: #145dbf; }
 .share-btn--hatena   { --share-color: #00a4de; --share-color-dark: #00749e; }
+.share-btn--note     { --share-color: #2cb696; --share-color-dark: #1d7d67; }
 .share-btn--threads  { --share-color: #101010; --share-color-dark: #000000; }
 .share-btn--bluesky  { --share-color: #0085ff; --share-color-dark: #0060bd; }
 .share-btn--reddit   { --share-color: #ff4500; --share-color-dark: #b83200; }
@@ -2327,6 +2341,12 @@ html.has-share-sticky body {
   gap: .3rem;
   cursor: pointer;
   white-space: nowrap;
+}
+/* ビルマ語・ネパール語などで項目名が長いと、折り返さないまま画面の横にはみ出していた（2026-10-05）。
+   狭い画面では折り返す。地図そのもの（凍結）には関係しない、切り替え欄の文字だけの指定。 */
+@media (max-width: 768px) {
+  .bus-map-layers label { white-space: normal; max-width: 100%; }
+  .bus-map-layers label > :not(span) { flex-shrink: 0; }
 }
 .bus-map-layers input { accent-color: var(--primary); cursor: pointer; }
 .bus-map-key--line { background: #d32f2f; border: none; height: .3rem; border-radius: 2px; }
@@ -2742,9 +2762,92 @@ main section[id], main h2.section-title[id], #area-map { scroll-margin-top: calc
 .contact-level-h:first-of-type { margin-top: .4rem; }
 .contact-rel-note { font-size: .82rem; color: var(--text-muted); margin-top: 1rem; }
 
-/* 東部まちづくりプラットフォーム（community.html #platform）のリンク2本 */
-.pf-links { margin: .9rem 0 0 1.2rem; }
-.pf-links li { margin: .3rem 0; }
+/* 東部まちづくりプラットフォーム（community.html #platform）。2026-10-06 ユーザー指示で作り直した。
+   市の説明の「駅のホームのような通過点」というたとえに合わせ、上辺に線路と3つの駅（まん中が「ここ」）を
+   描いたカードにしている。飾りは CSS だけで、文字や外部の画像は増やしていない。 */
+.pf-card {
+  position: relative;
+  margin-top: 1rem;
+  background: linear-gradient(180deg, #f4faf5 0%, var(--white) 55%);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2.4rem 1.4rem 1.1rem;
+  overflow: hidden;
+}
+/* 線路：枕木（灰の短い線）の上にレール（緑の太線）。左右いっぱいに走る */
+.pf-track {
+  position: absolute;
+  left: 0; right: 0; top: .95rem;
+  height: 10px;
+  background:
+    linear-gradient(var(--primary), var(--primary)) center / 100% 4px no-repeat,
+    repeating-linear-gradient(90deg, #c9d3cb 0 3px, transparent 3px 16px);
+}
+.pf-stop {
+  position: absolute;
+  top: 50%;
+  width: 14px; height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 3px solid var(--primary);
+}
+.pf-stop:nth-child(1) { left: 12%; }
+.pf-stop:nth-child(2) { left: 50%; }
+.pf-stop:nth-child(3) { left: 88%; }
+.pf-stop--here {
+  width: 22px; height: 22px;
+  margin: -11px 0 0 -11px;
+  background: var(--accent);
+  border-color: var(--primary-dark);
+  box-shadow: 0 0 0 4px rgba(212,170,48,.25);
+}
+.pf-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem 2rem; }
+.pf-col-h {
+  display: inline-block;
+  font-family: var(--heading-font);
+  font-size: .9rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  background: var(--primary-light);
+  border-radius: var(--radius-pill);
+  padding: .2rem .9rem;
+  margin-bottom: .6rem;
+  letter-spacing: .04em;
+}
+.pf-col p { font-size: .95rem; line-height: 1.8; }
+.pf-col--join { border-left: 2px dashed var(--border); padding-left: 2rem; }
+.pf-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+.pf-btn {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: .86rem;
+  line-height: 1.4;
+  padding: .55rem 1.1rem;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  background: var(--white);
+  text-decoration: none;
+  transition: background .18s, color .18s;
+}
+.pf-btn:hover, .pf-btn:focus-visible { background: var(--primary-light); text-decoration: none; }
+.pf-btn--primary { background: var(--primary); color: #fff; }
+.pf-btn--primary:hover, .pf-btn--primary:focus-visible { background: var(--primary-dark); color: #fff; }
+.pf-src { font-size: .78rem; color: var(--text-muted); margin-top: 1.1rem; padding-top: .7rem; border-top: 1px solid var(--border); }
+@media (max-width: 768px) {
+  .pf-card { padding: 2.2rem 1rem 1rem; }
+  .pf-grid { grid-template-columns: minmax(0, 1fr); }
+  .pf-col--join { border-left: none; padding-left: 0; border-top: 2px dashed var(--border); padding-top: 1.1rem; }
+  .pf-btn { width: 100%; justify-content: center; text-align: center; }
+}
+@media print {
+  .pf-track { display: none; }
+  .pf-card { box-shadow: none; padding-top: 1rem; }
+}
 
 /* ===== DATE COUNTDOWN（全ページの「あと◯日」の札。2026-09-28）=====
    文字は ::after で出す（js/main.js の DATE COUNTDOWN を参照）。見た目はトップの帯の札
@@ -2765,3 +2868,20 @@ main section[id], main h2.section-title[id], #area-map { scroll-margin-top: calc
 }
 .upcoming-item > .countdown-chip { margin-left: 0; }
 @media print { .countdown-chip { display: none !important; } }
+
+/* 節見出しのキー（<small> 副題つき）を小見出しに使い回すとき、副題は出さない（bus.html の問い合わせ枠） */
+.contact-mini-h small { display: none; }
+
+/* 長い語（ネパール語など）が折り返さず、画面の横にはみ出すのを防ぐ（2026-10-05） */
+.event-desc, .status-content { overflow-wrap: anywhere; }
+
+/* 学校の一覧（map.html）。狭い画面では列を内容の幅で広げず、学校名の札も折り返す
+   （タガログ語・トルコ語・ビルマ語などの長い校名が 320px 幅ではみ出していた。2026-10-05） */
+.school-map-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 640px) {
+  .school-map-cols { grid-template-columns: minmax(0, 1fr); }
+  .school-map-tag { white-space: normal; overflow-wrap: anywhere; }
+}
+/* 本文の段落・項目は、切れ目の無い長い文字列（ビルマ語の長い語・長い英数字など）でも画面の横にはみ出さないよう、
+   必要なときだけ語の途中で折り返す（review.html のビルマ語で 320px 幅のはみ出しがあった。2026-10-06） */
+main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }

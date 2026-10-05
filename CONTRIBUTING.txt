@@ -79,11 +79,12 @@
 ■ 別枠：共有ボタンの送り先（SNS・はてな）
   全ページ最下部の「このページを共有する」欄でのみ使用する。リンク先は
   js/main.js の SHARE BUTTONS ブロックが組み立てる（HTMLには書かれていない）。
-  ・送り先は次の7つ＋Mastodon だけ：
+  ・送り先は次の8つ＋Mastodon だけ：
       social-plugins.line.me/lineit/share      LINEで送る
       x.com/intent/post                        Xでポスト
       www.facebook.com/sharer/sharer.php       Facebookでシェア
       b.hatena.ne.jp/entry/panel/              はてなブックマーク
+      note.com/intent/post                     noteで紹介（2026-10-06 追加。公式ボタンのスクリプトは読まない）
       www.threads.net/intent/post              Threadsで投稿
       bsky.app/intent/compose                  Blueskyで投稿
       www.reddit.com/submit                    Redditに投稿
