@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-08T02:06:35Z",
+  "fetched_at": "2026-10-09T02:20:52Z",
   "source_name": "中日新聞Web",
   "source_url": "https://www.chunichi.co.jp/aichi_news/owari_area/komaki/",
   "items": [
@@ -137,6 +137,8 @@
     "1319049",
     "1321248",
     "1322218",
-    "1321965"
+    "1321965",
+    "1322718",
+    "1322466"
   ]
 }
