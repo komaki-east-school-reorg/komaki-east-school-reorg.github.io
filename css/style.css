@@ -573,50 +573,6 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 .school-empty { font-size: .84rem; color: var(--text-muted); }
 .school-note { font-size: .78rem; color: var(--text-muted); margin-top: 1.2rem; line-height: 1.6; }
 
-/* ===== PRESS COVERAGE（報道コーナー。見出し＋日付＋出典のみ） ===== */
-.press-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: .9rem;
-}
-.press-item {
-  background: var(--white);
-  border: 1.5px solid var(--border);
-  border-left: 4px solid var(--accent);
-  border-radius: var(--radius);
-  padding: .9rem 1.1rem;
-  box-shadow: var(--shadow);
-}
-.press-date {
-  display: block;
-  font-family: var(--heading-font);
-  font-size: .76rem;
-  color: var(--text-muted);
-}
-.press-title {
-  display: inline-block;
-  margin-top: .1rem;
-  font-family: var(--heading-font);
-  font-weight: 800;
-  font-size: .98rem;
-  line-height: 1.5;
-  color: var(--primary);
-  text-decoration: none;
-  border-bottom: 1.5px solid transparent;
-}
-.press-title::after { content: ' ↗'; font-size: .72rem; font-weight: 400; opacity: .6; }
-.press-title:hover { color: var(--primary-dark); border-bottom-color: var(--accent); text-decoration: none; }
-.press-cite {
-  display: block;
-  margin-top: .35rem;
-  font-size: .72rem;
-  font-style: normal;
-  color: var(--text-muted);
-}
-.press-empty { font-size: .84rem; color: var(--text-muted); }
-
 /* ===== SITE UPDATE LOG（このサイト自身の更新履歴） ===== */
 .update-list {
   list-style: none;

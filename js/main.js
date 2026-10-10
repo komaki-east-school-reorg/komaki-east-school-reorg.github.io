@@ -1289,7 +1289,7 @@ window.KomakiGrade = (function () {
     return d !== undefined ? s.replace('{d}', d) : s;
   }
   // 市の updated_at は「YYYY年MM月DD日」という日本語表記のまま届く。見出し（市の原文）
-  // とちがって日付は表記の問題でしかないので、他の3コーナー（学校HP・報道・更新履歴）と
+  // とちがって日付は表記の問題でしかないので、他のコーナー（学校HP・更新履歴）と
   // 同じく表示言語の書式に直す。読めない文字列はそのまま出す（欠測より原文のほうがまし）。
   function nIso(t) {
     var m = /^(\d{4})年(\d{1,2})月(\d{1,2})日/.exec(t || '');
@@ -1447,69 +1447,6 @@ window.KomakiGrade = (function () {
                '</div>';
       }).join('') + '</div>';
       window.KomakiHeadline.apply(container);   // 記事の見出しを表示言語に
-    })
-    .catch(function () {
-      container.innerHTML = '<p class="official-news-error">' + str('error') + '</p>';
-    });
-})();
-
-/* ===== PRESS COVERAGE ===== */
-/* 中日新聞Webが報じた学校再編の記事。data/chunichi_news.json は
-   .github/scripts/fetch_chunichi.py が毎日更新する（手編集しない）。
-   見出しは日本語以外の表示で data/headline_i18n.json の訳に置き換える（2026-09-14 ユーザー指示）。 */
-(function () {
-  const container = document.getElementById('press-container');
-  if (!container) return;
-
-  var MAX_ITEMS = 3;   // 表示件数。data/chunichi_news.json 側は全件を保持する
-
-  var _pl = window.KomakiLang();
-
-  var _pt = {
-    source: {ja:'出典', en:'Source', pt:'Fonte', vi:'Nguồn', tl:'Pinagmulan', es:'Fuente', zh:'出处', id:'Sumber', ko:'출처', ne:'स्रोत', tr:'Kaynak', my:'ရင်းမြစ်'},
-    empty:  {ja:'該当する記事はまだありません。', en:'No articles found yet.', pt:'Ainda não há reportagens.', vi:'Chưa có bài báo nào.', tl:'Wala pang artikulong natagpuan.', es:'Aún no hay artículos.', zh:'尚无相关报道。', id:'Belum ada artikel.', ko:'해당하는 기사가 아직 없습니다.', ne:'सम्बन्धित समाचार अझै छैन।', tr:'Henüz haber bulunamadı.', my:'သတင်း မတွေ့ရသေးပါ။'},
-    error:  {ja:'報道記事の一覧を取得できませんでした。', en:'Could not load the news coverage list.', pt:'Não foi possível carregar a lista de reportagens.', vi:'Không tải được danh sách bài báo.', tl:'Hindi ma-load ang listahan ng balita.', es:'No se pudo cargar la lista de artículos.', zh:'无法加载报道列表。', id:'Gagal memuat daftar artikel.', ko:'보도 기사 목록을 가져오지 못했습니다.', ne:'समाचारको सूची लोड गर्न सकिएन।', tr:'Haber listesi yüklenemedi.', my:'သတင်းစာရင်း မဖွင့်နိုင်ပါ။'}
-  };
-  function str(key) { return _pt[key][_pl] || _pt[key]['en'] || _pt[key]['ja']; }
-
-  function fmtDate(iso) {
-    var p = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
-    if (!p) return iso || '';
-    try {
-      return new Date(+p[1], +p[2] - 1, +p[3])
-        .toLocaleDateString(_pl === 'ja' ? 'ja-JP' : _pl, {year: 'numeric', month: 'short', day: 'numeric'});
-    } catch (e) { return iso; }
-  }
-
-  function esc(s) {
-    return String(s).replace(/[&<>"]/g, function (c) {
-      return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c];
-    });
-  }
-
-  fetch('./data/chunichi_news.json')
-    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function (data) {
-      var items = (data.items || []).slice()
-        .sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); })
-        .slice(0, MAX_ITEMS);
-      if (!items.length) {
-        container.innerHTML = '<p class="press-empty">' + str('empty') + '</p>';
-        return;
-      }
-
-      // 見出し・掲載日・出典だけを出す（本文の引用は載せない）。
-      var source = data.source_name || '中日新聞Web';
-      container.innerHTML = '<ul class="press-list">' + items.map(function (it) {
-        return '<li class="press-item" data-date="' + esc(it.date || '') + '">' +
-                 '<span class="press-date">' + fmtDate(it.date) + '</span>' +
-                 '<a class="press-title" href="' + esc(it.url) + '" target="_blank" rel="noopener" data-hl="' + esc(it.title) + '">' +
-                   esc(it.title) +
-                 '</a>' +
-                 '<span class="press-cite">' + str('source') + '：' + esc(source) + '</span>' +
-               '</li>';
-      }).join('') + '</ul>';
-      window.KomakiHeadline.apply(container);   // 見出しを表示言語に
     })
     .catch(function () {
       container.innerHTML = '<p class="official-news-error">' + str('error') + '</p>';
@@ -2486,7 +2423,7 @@ window.KomakiGrade = (function () {
 })();
 
 /* ===== BOARD SHEET（回覧板・掲示用のA4 1枚印刷）=====
-   index.html 専用。「最新の動き」4コーナーの新着一覧を、共有欄の「回」ボタンと、
+   index.html 専用。「最新の動き」各コーナーの新着一覧を、共有欄の「回」ボタンと、
    「最新の動き」節内の専用ボタン（#latest-print-btn）のどちらからでも同じ内容で刷る。
 
    【ほかのページには置かない】
@@ -2635,9 +2572,6 @@ window.KomakiGrade = (function () {
       take('.school-items li', function (li) {
         var card = li.closest('.school-card');
         return clean(card && card.querySelector('.school-name')) + '｜' + clean(li);
-      });
-      take('.press-item', function (li) {
-        return clean(li.querySelector('.press-date')) + ' ' + clean(li.querySelector('.press-title'));
       });
       take('.update-item', function (li) {
         return clean(li.querySelector('.update-date')) + ' ' + clean(li.querySelector('.update-text'));
@@ -2811,7 +2745,7 @@ window.KomakiGrade = (function () {
   }
 
   /* ---- 印刷実行と、ボタン2つ（共有欄の「回」＋「最新の動き」節内の専用ボタン） ----
-     両方とも同じ内容（「最新の動き」4コーナーの新着一覧）を刷る。 */
+     両方とも同じ内容（「最新の動き」各コーナーの新着一覧）を刷る。 */
 
   function printLatest() {
     var h2 = document.querySelector('#latest h2.section-title');
@@ -3405,7 +3339,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
    地域で行われている取組。data/community_actions.json は手動管理。
 
    【このコーナーだけ出典の性格が違う】市の公式情報でも報道でもなく、
-   主催者自身の発信（Instagram や紙の回覧板）。報道コーナーと同じく、
+   主催者自身の発信（Instagram や紙の回覧板）。報道と同じく、
    計画の内容・数値の根拠には決して使わない。発信元の表示が
    「誰の発信か」を示す唯一の手がかりなので、外さないこと。
 
@@ -4098,7 +4032,6 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     ['school-news-container', '.school-items li', function (li) { var a = li.querySelector('a[href]'); return a && 's|' + a.getAttribute('href'); }, null],
     ['community-actions-container', '.action-item', function (li) { var t = li.querySelector('.action-title'); return t && 'a|' + t.getAttribute('data-hl'); }, '.action-head'],
     ['tobu-actions-container', '.tobu-item', function (li) { var t = li.querySelector('.tobu-title'); return t && 't|' + (li.getAttribute('data-date') || '') + '|' + t.getAttribute('data-hl'); }, '.tobu-head'],
-    ['press-container', '.press-item', function (li) { var a = li.querySelector('a[href]'); return a && 'p|' + a.getAttribute('href'); }, '.press-date'],
     ['site-updates-container', '.update-item', function (li) { var k = li.getAttribute('data-key'); return k && 'u|' + k; }, '.update-meta']
   ];
 

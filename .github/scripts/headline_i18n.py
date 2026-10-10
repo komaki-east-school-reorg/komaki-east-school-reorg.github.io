@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """自動取得した見出しの多言語化（2026-09-14 ユーザー指示：見出しを原文のまま残さない）。
 
-市のお知らせ・対象校ホームページ・報道・地域協議会のイベント・東部まちづくり・
+市のお知らせ・対象校ホームページ・地域協議会のイベント・東部まちづくり・
 地域の取組の見出し（と東部まちづくりの会場名）は日本語で届く。日本語以外の表示では
 これを訳した見出しに置き換えるため、訳を data/headline_i18n.json に持つ。
 
@@ -61,8 +61,6 @@ def current_headlines():
     for s in load("data/school_news.json", {}).get("schools", []):
         for it in s.get("items", []):
             add(it.get("title"))
-    for it in load("data/chunichi_news.json", {}).get("items", []):
-        add(it.get("title"))
     for ev in load("data/community_events.json", {}).get("events", []):
         add(ev.get("title"))
         if ev.get("shinooka"):   # 東部の催しは「地域の取組」に会場名つきで出る

@@ -449,17 +449,17 @@
 
 
   <!-- ===== 最新の動き =====
-       ここから下の5コーナー（お知らせ・対象校HP更新・報道・地域の取組・サイトの更新履歴）が
+       ここから下の4コーナー（お知らせ・対象校HP更新・地域の取組・サイトの更新履歴）が
        「いま何が起きたか」。上の「現在の状況」までがこのサイト自身の静的な解説で、
        読者が両者を取り違えないよう帯で区切っている。
-       うち4つは毎日自動で更新されるが、【地域の取組だけは手で足す】。
+       うち3つは毎日自動で更新されるが、【地域の取組は手で足す分が混じる】。
        自動と手動が混じっているので、latest_lead でその旨を断っている。
        各コーナーの見出しは h3。この帯の h2 が束ねる関係なので、h2 に戻さないこと。 -->
   <section class="section section-alt group-head" id="latest">
     <div class="container">
       <h2 class="section-title" data-i18n-html="section_latest">最新の動き<small>Latest Updates</small></h2>
-      <p class="school-lead" data-i18n="latest_lead">ここから下のコーナーでは、市の公式サイト・対象校のホームページ・新聞報道を毎日自動で取得して表示しています。「地域の取組」は手で集めたものと、市の東部まちづくりのページから自動で取り込んだものが並びます。いちばん下はこのサイト自身の更新履歴です。</p>
-      <!-- 4コーナーの新着をA4 1枚にまとめて印刷する。処理は js/main.js の BOARD SHEET。 -->
+      <p class="school-lead" data-i18n="latest_lead">ここから下のコーナーでは、市の公式サイトと対象校のホームページを毎日自動で取得して表示しています。「地域の取組」は手で集めたものと、市の東部まちづくりのページから自動で取り込んだものが並びます。いちばん下はこのサイト自身の更新履歴です。</p>
+      <!-- 各コーナーの新着をA4 1枚にまとめて印刷する。処理は js/main.js の BOARD SHEET。 -->
       <p class="latest-print">
         <button type="button" id="latest-print-btn" data-i18n="board_latest_btn">最新の動きを印刷して回覧する</button>
       </p>
@@ -518,25 +518,10 @@
     </div>
   </section>
 
-  <!-- PRESS COVERAGE（報道。data/chunichi_news.json は fetch_chunichi.py が毎日更新する） -->
-  <section class="section">
-    <div class="container">
-      <h3 class="section-title sub" data-i18n-html="section_press">報道でみる東部地域<small>News Coverage</small></h3>
-      <p class="school-lead" data-i18n="press_lead">
-        中日新聞Webが報じた小牧市東部（篠岡地区）の記事です。学校再編に限らず、地域の話題を集めています。
-        見出しと掲載日だけを掲載しています。
-      </p>
-      <div id="press-container">
-        <p class="official-news-loading" data-i18n="news_loading">読み込み中…</p>
-      </div>
-      <p class="school-note" data-i18n="press_note">※ 中日新聞Webの小牧市エリアの記事から、東部（篠岡地区）に関するものを1日1回自動で探しています。地名で拾っているため、関連の薄い記事が混じることがあります。見出しは中日新聞社の記事によるもので、日本語以外の表示では自動翻訳しています。記事の全文は有料会員向けです。学校再編の公式情報は、上の「市公式サイト お知らせ」をご確認ください。</p>
-    </div>
-  </section>
-
   <!-- SITE UPDATE LOG（このサイト自身の更新履歴。トップページ最下部）
        id="site-updates" はトップのカットイン（js/main.js の TOP CUT-IN）の
        リンク先。外すとカットインの「くわしく」がどこにも飛ばなくなる。 -->
-  <section class="section section-alt" id="site-updates">
+  <section class="section" id="site-updates">
     <div class="container">
       <h3 class="section-title sub" data-i18n-html="section_site_updates">サイトの更新履歴<small>Site Update Log</small></h3>
       <p class="school-lead" data-i18n="site_updates_lead">

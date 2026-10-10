@@ -96,7 +96,8 @@ jobs:
               自動で読み込む第三者スクリプトを増やす提案もしない（現在はてなスター1本のみ）
             - **`bus.html` の対象エリア地図は完成・凍結**。図形・枠・縮尺・色・線を変える提案はしない
             - **`council.html` は対象外**。このページの更新・改修は提案しない
-            - `data/` 配下の自動生成ファイル（news.json, school_news.json, chunichi_news.json,
+            - **新聞報道のコーナーは 2026-10-10 に廃止した**。新聞記事を載せる・取り込む案は出さない
+            - `data/` 配下の自動生成ファイル（news.json, school_news.json,
               community_events.json, tobu_actions.json, i18n/pages/, official_pages/）を
               手編集する前提の案は出さない
             - 市・県・国の担当部署の連絡先（data/contacts.json）は毎週 check_contacts.py が
