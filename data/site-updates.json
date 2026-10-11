@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-10-11",
+      "type": "content",
+      "ja": "各ページの問い合わせ先に市・県・国の関係部署と図書館を追加",
+      "en": "City, prefectural, national and library contacts added to every page"
+    },
+    {
+      "date": "2026-10-11",
       "type": "feature",
       "ja": "予定ごとの固有ページを追加（スケジュールの🔗から）",
       "en": "A page for each scheduled event (🔗 in the schedule)"
@@ -84,7 +90,7 @@
       "date": "2026-09-27",
       "type": "content",
       "ja": "全ページに関係する市・県・国の問い合わせ先を掲載",
-      "en": "City, prefectural and national contacts added to every page"
+      "en": "City, prefectural, national and library contacts added to every page"
     },
     {
       "date": "2026-09-27",

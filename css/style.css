@@ -2891,3 +2891,4 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
 .qr-actions { display: flex; gap: .6rem; justify-content: center; }
 .qr-actions a, .qr-actions button { padding: .45rem 1rem; border-radius: var(--radius-pill, 999px); border: 1.5px solid var(--primary); background: #fff; color: var(--primary); font-weight: 700; font-size: .85rem; cursor: pointer; text-decoration: none; }
 .qr-actions a { background: var(--primary); color: #fff; }
+.contact-library-lead { font-size: .88rem; color: var(--text-muted); margin: -.2rem 0 .6rem; }

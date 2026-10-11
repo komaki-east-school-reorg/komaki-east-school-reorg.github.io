@@ -297,12 +297,29 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 
 **ページを更新するたびに、そのページの問い合わせ先も見直す**（2026-09-27 ユーザー指示）。話題を足したら所管部署を足し、`data/contacts.json` に `source`・`probe`・`shown_in` つきで登録する。
 
+**トップ以外の各ページに、市・県・国の部署をそれぞれ最低1件**（2026-10-11 ユーザー指示。`auto_gates.py` check 15 が `contacts.json` の `shown_in` から検査し、番号がページに本当にあるかも見る）。選び方は「ページの内容に関係する、または本文の言葉から引ける所管部署」。**広い観点で選んでよい**（例：バス＝国交省 中部運輸局 愛知運輸支局、議会＝選挙管理委員会と政治資金の所管）。2026-10-11 に足したもの：
+
+| ページ | 市 | 県 | 国 |
+|---|---|---|---|
+| `schedule` | （既存） | 財務施設課 | 文科省 教育制度改革室 |
+| `bus` | （既存） | 保健体育課 安全グループ（学校安全・通学） | 文科省 教育制度改革室（通学距離とスクールバスの手引）、中部運輸局 愛知運輸支局 輸送担当 |
+| `council` | 選挙管理委員会事務局 | 市町村課 行政グループ、同 選挙グループ（政治団体の届出・政治資金収支報告書） | 総務省 自治行政局 行政課（地方議会制度）、同 選挙部 政治資金課 |
+| `community` | （既存） | 市町村課 地域振興室 市町村行政支援グループ | 総務省 地域振興室（地域運営組織） |
+| `faq` | 広報広聴課 広報広聴係（パブリックコメント制度・市民の要望と意見） | 政策企画局 広報広聴課 広報・広聴グループ（県のパブリック・コメント） | 総務省 行政管理局（行政手続法の意見公募手続） |
+| `nationwide` | 教育総務課、秘書政策課 市政戦略係（国とのやり取りを含む重要施策の総合調整） | 財務施設課、政策企画局 政策調整課（国への要請の取りまとめ） | （既存の文科省4部署） |
+| `about` | （既存） | ＋義務教育課 振興・調整グループ | （既存） |
+
+- **番号は必ずその部署の公表ページで確かめ、`contacts.json` に照合できる `probe` を付ける**（週1回の照合で読めることを確かめてから載せる）。国の部署で直通番号が公表されていなければ代表番号＋（代表）。照合元に無い FAX や所在地は登録しない（照合が毎週「見当たらない」と報告するため）。
+- **各ページに「図書館で調べる」も置く**（2026-10-11 ユーザー指示。図書館で調べることも有意義なため）。小牧市立図書館（教育委員会事務局 図書館、0568-73-9951）・愛知県図書館の調査相談専用（052-212-3200）・国立国会図書館 東京本館（代表）の3つ。キーは `contact_lv_library` / `contact_library_lead` / `ct_w_lib_*`、`contacts.json` の `level: "library"`。check 15 が各ページにあることも見る。
+- **確かめられなかった候補は載せない**（2026-10-11 は東部市民センター、国土地理院 中部地方測量部、小牧警察署を見送った）。
+- 区分の見出しは、文科省だけの表は `rev_c_nat_h`（国（文部科学省））、他省庁を含む表は `contact_lv_nat`（国）。文科省の表に他省庁の行を混ぜない。
+
 トップページの「各ページへのリンク」の下に、この4か所への案内（`contacts_guide_*`）を置いてある。**番号そのものをトップに書かない** — 直す場所が増えると必ず食い違うため。
 
 - **部署名は日本語のまま**（表の「部署」欄に `data-i18n` を付けない）。窓口で見せたり電話で伝えたりするのは日本語の名称そのもので、訳すと用を成さないため。訳すのは「このページで触れた事柄」の欄とラベルだけ。年表の西暦欄と同じ考え方。ただし `about.html`・`faq.html`・`community.html` の `.contact-box` は従来どおり部署名も翻訳する（1部署だけなので窓口で示す用途より読みやすさを優先）。
 - **番号は HTML と辞書に直接書く。** `tel:` リンクの数字だけの形と、表示用のハイフン入りの形の2つが本文中にある。
 - **出典は「その部署の公表ページ」**。市・県・国のどのページから写したかは `data/contacts.json` の `source` にある。**このURLはサイトからはリンクしない**（許可外部リンクを増やせないため）。
-- **週1回、機械で見張る。** `.github/workflows/check-contacts.yml`（日曜 21:50 UTC＝月曜 6:50 JST）が `.github/scripts/check_contacts.py` を回し、30件の連絡先を公表ページと突き合わせる。**電話・FAX番号の変更は `--fix` がそのまま `*.html` と `data/i18n/*.json` を書き換えてコミットし、ページ別辞書も作り直す**（番号は翻訳されないので機械で直せる）。**部署名・所在地の変更は直さず Issue（☎️）で知らせるだけ** — 部署名は12言語＋こどもむけに訳してあるので、人（かAI）が文面を書き直す必要がある。
+- **週1回、機械で見張る。** `.github/workflows/check-contacts.yml`（日曜 21:50 UTC＝月曜 6:50 JST）が `.github/scripts/check_contacts.py` を回し、45件の連絡先を公表ページと突き合わせる。**電話・FAX番号の変更は `--fix` がそのまま `*.html` と `data/i18n/*.json` を書き換えてコミットし、ページ別辞書も作り直す**（番号は翻訳されないので機械で直せる）。**部署名・所在地の変更は直さず Issue（☎️）で知らせるだけ** — 部署名は12言語＋こどもむけに訳してあるので、人（かAI）が文面を書き直す必要がある。
 - 照合のしかたは `probe.kind`（`article_contact` / `kakari` / `pref_group` / `text`）で切り替える。市の記事ページの「この記事に関するお問い合わせ先」、係の一覧表、愛知県の「連絡先」欄、文科省の「お問合せ先」で構造が違うため。**係名はページ上部の目次にも出るので、`kakari` は「次の行が『電話番号』」のものだけを本文の表とみなす** — ここを緩めると隣の係の番号を読む。
 - **運行事業者のような民間の連絡先も同じ扱い。** 出所はその会社が自社サイトで公表しているページで、**サイトからリンクはしない**（許可外部リンクを増やせない）。`bus_contact_note` に「制度のことを会社にたずねても答えは出ない」と書いてあるのは、市の窓口へ行くべき問い合わせが会社に流れるのを防ぐため — 外さないこと。
 - **議員個人の氏名・連絡先は載せない**（[[個人名は書かない]]の方針）。`council.html` は職と部署だけを書く。**政党名・会派名・議員団名も書かない**（2026-09-14 ユーザー指示）— 一般質問も「だれが聞いたか」ではなく「何が問われ、市がどう答えたか」だけを書く。定例会の本文（質問・答弁の要約を含む）は「です・ます」でそろえる（同指示）。
@@ -684,3 +701,4 @@ Beyond the auto-update pipeline's scope and evidence checks, these run site-wide
 | 12 | Every root `*.html` is in `files.txt`, and every page except `voices.html` / `404.html` is in `sitemap.xml` with the 13 hreflang links in the `?lang=` form | Both files are hand-maintained; a page missing from the sitemap (or a broken hreflang) silently drops it — and its 11 translations — from search |
 | 13 | `events/*.html`, the `id`/🔗 on each schedule item, and the sitemap's EVENTS block match `schedule.html` (`build_event_pages.py --check`) | A stale event page keeps a changed date in search results |
 | 14 | `feed.xml` matches its data (`build_feed.py --check`) | Adding a changelog line by hand without rebuilding leaves the feed behind |
+| 15 | Every page except `index` / `voices` / `404` lists at least one city, one prefecture and one national department plus the library block, and every number `contacts.json` says is shown on a page is really there | The user asked for all three levels on every page (2026-10-11); a department added to the HTML but not to `contacts.json` would escape the weekly number check |

@@ -27,6 +27,14 @@
     <summary>サイトの更新履歴｜最新の動きをRSSリーダーで読めるフィードを公開</summary>
   </entry>
   <entry>
+    <title>各ページの問い合わせ先に市・県・国の関係部署と図書館を追加</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:013c716496ffe01d</id>
+    <updated>2026-10-11T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜各ページの問い合わせ先に市・県・国の関係部署と図書館を追加</summary>
+  </entry>
+  <entry>
     <title>共有欄にページごとのQRコードを追加</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
     <id>tag:komaki-east-school-reorg.github.io,2026:86980ab77aed0fc0</id>
@@ -321,13 +329,5 @@
     <updated>2026-09-16T00:00:00+09:00</updated>
     <category term="東部まちづくりの動き"/>
     <summary>東部まちづくりの動き｜東部まちづくり：親子でワクワク!オープンファクトリー</summary>
-  </entry>
-  <entry>
-    <title>共有ボタンからスマートフォンのアプリを直接起動、画面下の帯にはてなスターも</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:87b3c5a8afb68ea2</id>
-    <updated>2026-09-16T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜共有ボタンからスマートフォンのアプリを直接起動、画面下の帯にはてなスターも</summary>
   </entry>
 </feed>

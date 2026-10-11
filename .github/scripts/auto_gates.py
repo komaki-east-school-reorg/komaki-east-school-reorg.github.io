@@ -607,6 +607,36 @@ def main():
     else:
         ok("Atom フィード（feed.xml）は最新")
 
+    # --- 15. トップ以外の各ページの問い合わせ先に、市・県・国がそれぞれ1件以上（サイト全体を検査） ---
+    # 2026-10-11 ユーザー指示。data/contacts.json の shown_in を正として、ページごとに
+    # （図書館＝level "library" も「図書館で調べる」として各ページに要る。同日指示）
+    # 市（city）・県（pref）・国（nat / mext）がそろっているか、載せたはずの番号が本当に
+    # そのページにあるかを見る。ページを足したら contacts.json にも登録すること。
+    CONTACT_PAGES = sorted(p for p in glob.glob("*.html") if p not in ("index.html", "voices.html", "404.html"))
+    with open("data/contacts.json", encoding="utf-8") as f:
+        _contacts = json.load(f)["contacts"]
+    ct_problems = []
+    for page in CONTACT_PAGES:
+        with open(page, encoding="utf-8") as f:
+            h = f.read()
+        levels = set()
+        for c in _contacts:
+            if page not in c.get("shown_in", []):
+                continue
+            lv = {"mext": "nat"}.get(c["level"], c["level"])
+            levels.add(lv)
+            tel = c.get("tel", "")
+            if tel and tel not in h and tel.replace("-", "") not in h:
+                ct_problems.append(f"{page}: {c['id']} の番号 {tel} がページに無い（shown_in と食い違い）")
+        for need, ja in (("city", "市"), ("pref", "県"), ("nat", "国"), ("library", "図書館")):
+            if need not in levels:
+                ct_problems.append(f"{page}: 問い合わせ先に{ja}の部署が無い")
+    if ct_problems:
+        for v in ct_problems:
+            fail(f"問い合わせ先: {v}")
+    else:
+        ok("各ページの問い合わせ先に市・県・国・図書館")
+
     # --- 7. 出典実在チェック ---
     if not os.path.exists(EVIDENCE):
         fail(f"{EVIDENCE} がない（変更には出典が必須）")

@@ -221,7 +221,9 @@
       "shown_in": [
         "review.html",
         "about.html",
-        "faq.html"
+        "faq.html",
+        "schedule.html",
+        "nationwide.html"
       ]
     },
     {
@@ -238,7 +240,9 @@
         "nationwide.html",
         "review.html",
         "about.html",
-        "faq.html"
+        "faq.html",
+        "schedule.html",
+        "bus.html"
       ]
     },
     {
@@ -468,6 +472,299 @@
       },
       "shown_in": [
         "map.html"
+      ]
+    },
+    {
+      "id": "pref-anzen",
+      "level": "pref",
+      "name": "教育委員会事務局　保健体育課　安全グループ",
+      "tel": "052-954-6829",
+      "source": "https://www.pref.aichi.jp/soshiki/hoken-taiiku/",
+      "probe": {
+        "kind": "pref_group",
+        "label": "安全グループ"
+      },
+      "shown_in": [
+        "bus.html"
+      ]
+    },
+    {
+      "id": "pref-shichoson-gyosei",
+      "level": "pref",
+      "name": "総務局　総務部　市町村課　行政グループ",
+      "tel": "052-954-6065",
+      "source": "https://www.pref.aichi.jp/soshiki/shichoson/",
+      "probe": {
+        "kind": "pref_group",
+        "label": "行政グループ"
+      },
+      "shown_in": [
+        "council.html"
+      ]
+    },
+    {
+      "id": "pref-chiikishinko",
+      "level": "pref",
+      "name": "総務局　総務部　市町村課　地域振興室　市町村行政支援グループ",
+      "tel": "052-954-6066",
+      "source": "https://www.pref.aichi.jp/soshiki/shichoson/",
+      "probe": {
+        "kind": "pref_group",
+        "label": "地域振興室市町村行政支援グループ"
+      },
+      "shown_in": [
+        "community.html"
+      ]
+    },
+    {
+      "id": "soumu-gyosei",
+      "level": "nat",
+      "name": "総務省　自治行政局　行政課",
+      "tel": "03-5253-5111",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_gyousei/bunken/chihogikai.html",
+      "probe": {
+        "kind": "text",
+        "check_tel": true,
+        "match": "行政課"
+      },
+      "shown_in": [
+        "council.html"
+      ]
+    },
+    {
+      "id": "soumu-rmo",
+      "level": "nat",
+      "name": "総務省　地域力創造グループ　地域振興室",
+      "tel": "03-5253-5111",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_gyousei/c-gyousei/chiiki_unneisosiki.html",
+      "probe": {
+        "kind": "text",
+        "check_tel": true,
+        "match": "地域振興室"
+      },
+      "shown_in": [
+        "community.html"
+      ]
+    },
+    {
+      "id": "city-kouchou",
+      "level": "city",
+      "name": "市長公室　広報広聴課　広報広聴係",
+      "location": "本庁舎4階",
+      "tel": "0568-76-1101",
+      "source": "https://www.city.komaki.aichi.jp/admin/soshiki/shicokoshitsu/kouhou/2892.html",
+      "probe": {
+        "kind": "kakari",
+        "label": "広報広聴係"
+      },
+      "shown_in": [
+        "faq.html"
+      ]
+    },
+    {
+      "id": "pref-kouchou",
+      "level": "pref",
+      "name": "政策企画局　広報広聴課　広報・広聴グループ",
+      "tel": "052-954-6169",
+      "fax": "052-961-4016",
+      "source": "https://www.pref.aichi.jp/soshiki/koho/",
+      "probe": {
+        "kind": "pref_group",
+        "label": "広報・広聴グループ"
+      },
+      "shown_in": [
+        "faq.html"
+      ]
+    },
+    {
+      "id": "soumu-gyokan",
+      "level": "nat",
+      "name": "総務省　行政管理局",
+      "tel": "03-5253-5111",
+      "source": "https://www.soumu.go.jp/main_sosiki/gyoukan/kanri/tetsuzuki/tetsuzuki_tyousa.html",
+      "probe": {
+        "kind": "text",
+        "check_tel": true,
+        "match": "行政管理局"
+      },
+      "shown_in": [
+        "faq.html"
+      ]
+    },
+    {
+      "id": "city-senkyo",
+      "level": "city",
+      "name": "選挙管理委員会事務局",
+      "location": "小牧市役所　本庁舎4階",
+      "tel": "0568-76-1104",
+      "fax": "0568-75-5714",
+      "source": "http://www.city.komaki.aichi.jp/admin/soshiki/senkyo/senkyo/29319.html",
+      "probe": {
+        "kind": "article_contact"
+      },
+      "shown_in": [
+        "council.html"
+      ]
+    },
+    {
+      "id": "pref-senkyo",
+      "level": "pref",
+      "name": "総務局　総務部　市町村課　選挙グループ",
+      "tel": "052-954-6069",
+      "source": "https://www.pref.aichi.jp/soshiki/shichoson/",
+      "probe": {
+        "kind": "pref_group",
+        "label": "選挙グループ"
+      },
+      "shown_in": [
+        "council.html"
+      ]
+    },
+    {
+      "id": "soumu-seijishikin",
+      "level": "nat",
+      "name": "総務省　自治行政局　選挙部　政治資金課",
+      "tel": "03-5253-5578",
+      "fax": "03-5253-5583",
+      "source": "https://www.soumu.go.jp/menu_news/s-news/01gyosei17_02000146.html",
+      "probe": {
+        "kind": "text",
+        "check_tel": true,
+        "match": "政治資金課"
+      },
+      "shown_in": [
+        "council.html"
+      ]
+    },
+    {
+      "id": "city-shiseisenryaku",
+      "level": "city",
+      "name": "市長公室　秘書政策課　市政戦略係",
+      "location": "本庁舎5階",
+      "tel": "0568-76-1105",
+      "source": "https://www.city.komaki.aichi.jp/admin/soshiki/shicokoshitsu/hisyo/7211.html",
+      "probe": {
+        "kind": "kakari",
+        "label": "市政戦略係"
+      },
+      "shown_in": [
+        "nationwide.html"
+      ]
+    },
+    {
+      "id": "pref-seisakuchosei",
+      "level": "pref",
+      "name": "政策企画局　企画調整部　政策調整課",
+      "tel": "052-961-2111",
+      "source": "https://www.pref.aichi.jp/soshiki/seisaku/0000065580.html",
+      "probe": {
+        "kind": "text",
+        "check_tel": true,
+        "match": "政策調整課"
+      },
+      "shown_in": [
+        "nationwide.html"
+      ]
+    },
+    {
+      "id": "mlit-aichi-unyu",
+      "level": "nat",
+      "name": "国土交通省　中部運輸局　愛知運輸支局　輸送担当",
+      "tel": "052-351-5313",
+      "source": "https://wwwtb.mlit.go.jp/chubu/aichi/",
+      "probe": {
+        "kind": "text",
+        "check_tel": true,
+        "match": "輸送担当"
+      },
+      "shown_in": [
+        "bus.html"
+      ]
+    },
+    {
+      "id": "pref-gimukyoiku",
+      "level": "pref",
+      "name": "教育委員会事務局　義務教育課　振興・調整グループ",
+      "tel": "052-954-6789",
+      "fax": "052-954-6963",
+      "source": "https://www.pref.aichi.jp/soshiki/gimukyoiku/",
+      "probe": {
+        "kind": "pref_group",
+        "label": "振興・調整グループ"
+      },
+      "shown_in": [
+        "about.html"
+      ]
+    },
+    {
+      "id": "lib-komaki",
+      "level": "library",
+      "name": "教育委員会事務局　図書館",
+      "tel": "0568-73-9951",
+      "fax": "0568-73-7772",
+      "source": "http://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/7/7210.html",
+      "probe": {
+        "kind": "article_contact"
+      },
+      "shown_in": [
+        "about.html",
+        "schedule.html",
+        "faq.html",
+        "bus.html",
+        "clubs.html",
+        "council.html",
+        "community.html",
+        "map.html",
+        "nationwide.html",
+        "review.html"
+      ]
+    },
+    {
+      "id": "lib-aichi",
+      "level": "library",
+      "name": "愛知県図書館　調査相談",
+      "tel": "052-212-3200",
+      "source": "https://www.aichi-pref-library.jp/",
+      "probe": {
+        "kind": "text",
+        "check_tel": true,
+        "match": "調査相談"
+      },
+      "shown_in": [
+        "about.html",
+        "schedule.html",
+        "faq.html",
+        "bus.html",
+        "clubs.html",
+        "council.html",
+        "community.html",
+        "map.html",
+        "nationwide.html",
+        "review.html"
+      ]
+    },
+    {
+      "id": "lib-ndl",
+      "level": "library",
+      "name": "国立国会図書館　東京本館",
+      "tel": "03-3581-2331",
+      "source": "https://www.ndl.go.jp/jp/tokyo/index.html",
+      "probe": {
+        "kind": "text",
+        "check_tel": true,
+        "match": "東京本館"
+      },
+      "shown_in": [
+        "about.html",
+        "schedule.html",
+        "faq.html",
+        "bus.html",
+        "clubs.html",
+        "council.html",
+        "community.html",
+        "map.html",
+        "nationwide.html",
+        "review.html"
       ]
     }
   ]
