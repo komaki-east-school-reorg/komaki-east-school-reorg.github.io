@@ -2505,7 +2505,7 @@ window.KomakiGrade = (function () {
   /* これからの催し（地域の取組）。
      「最新の動き」は起きたことを配る紙なので直近7日の data-date で絞るが、
      地域の催しはこれから開かれるもので、回覧板でこそ知らせる値打ちがある。
-     だから7日の窓とは別枠にして、紙のいちばん最後に置く。
+     だから7日の窓とは別枠にして、画面と同じ「地域の取組」の位置に置く。
      文面は画面に描かれた要素からそのまま取る。終わった催しは COMMUNITY ACTIONS が
      描画時に落としているので、ここで日付を見る必要はない。 */
   function actionRowValue(item, idx) {
@@ -2577,16 +2577,21 @@ window.KomakiGrade = (function () {
         return clean(li.querySelector('.update-date')) + ' ' + clean(li.querySelector('.update-text'));
       });
       if (lines.length) out.push({h: headText(h), kind: 'list', lines: lines});
+      // 地域の取組は画面と同じ位置（学校HPの次・サイトの更新履歴の前）に、画面と同じ
+      // 上下の順（これからの催し → 東部まちづくりの動き）で置く（2026-10-11 ユーザー指示：
+      // 紙の並びはトップページの表示順に合わせ、サイトの更新履歴をいちばん下にする）。
+      if (box.querySelector('#community-actions-container, #tobu-actions-container')) {
+        var acts = upcomingActionsBlock();
+        if (acts) out.push(acts);
+        var tobu = tobuBlock();
+        if (tobu) out.push(tobu);
+      }
     });
-    var tobu = tobuBlock();
-    if (tobu) out.push(tobu);
-    var acts = upcomingActionsBlock();
-    if (acts) out.push(acts);
     return out;
   }
 
   /* 東部まちづくりの動き（2026-09-14 ユーザー指示で紙に追加）。
-     市の東部まちづくり推進室が公表したもので、すぐ下の「これからの催し」（住民・協議会の催し）とは
+     市の東部まちづくり推進室が公表したもので、すぐ上の「これからの催し」（住民・協議会の催し）とは
      出どころが違うので、見出しを分けた別の塊にする（画面と同じ分け方）。
      市の記録は月に数件しか増えず、7日の窓で絞るとほぼ毎回空になるため、この塊だけは
      「これから開かれる催し」ぜんぶ＋「最近の動き」の新しい3件を載せる。どの行にも日付を
@@ -2663,7 +2668,7 @@ window.KomakiGrade = (function () {
       '<div class="board-head">' +
         '<div class="board-stamp">' + esc(t('stamp', '回 覧')) + '</div>' +
         '<div class="board-head-text">' +
-          '<div class="board-site">小牧市東部（篠岡地区）学校再編計画</div>' +
+          '<div class="board-site">小牧市東部（篠岡地区）学校再編ナビ</div>' +
           '<div class="board-unofficial">' + esc(t('unofficial',
             '市民有志による非公式の情報サイトです。公式情報は小牧市教育委員会のページをご確認ください。')) + '</div>' +
         '</div>' +
@@ -2687,7 +2692,7 @@ window.KomakiGrade = (function () {
                         .replace('{date}', ymd)) + '</div>' +
         '<div>' + esc(t('excerpt', '紙面の都合で要点だけを載せています。')) + '</div>' +
         '<div>' + esc(t('contact', '計画そのものについての公式の問い合わせ先：小牧市教育委員会事務局 教育総務課 学校再編推進係（電話 0568-39-5261）')) + '</div>' +
-        '<div>' + esc(t('issuer', '発行：小牧市東部（篠岡地区）学校再編計画 地域情報メディア（市民有志・非公式）')) + '</div>' +
+        '<div>' + esc(t('issuer', '発行：小牧市東部（篠岡地区）学校再編ナビ（市民有志・非公式）')) + '</div>' +
       '</div>';
     return el;
   }

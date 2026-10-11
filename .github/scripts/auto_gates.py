@@ -144,6 +144,11 @@ PERMITTED_SNS = {
         # 張れるのは data/community_actions.json の ref_url だけに留めること。
         "facebook.com/city.komaki",
     ),
+    # 桃花台を考える会【新しいまちづくり】の TikTok。フッタの「参考リンク（住民有志）」だけ
+    # （2026-10-11 ユーザー指示）。共有ボタンの TikTok はコピーのみで URL を持たない。
+    "tiktok.com": (
+        "tiktok.com/@tokadai_komaki",
+    ),
 }
 MIN_QUOTE_LEN = 10
 

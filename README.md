@@ -1,11 +1,11 @@
-# 小牧市東部（篠岡地区）学校再編計画 地域情報メディア
+# 小牧市東部（篠岡地区）学校再編ナビ｜桃花台エリアの非公式でもわかりやすい地域情報メディア
 
 > **このサイトは市民有志による情報提供サイトです。小牧市の公式サイトではありません。**
 > 公式情報は [小牧市教育委員会のページ](https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html) をご確認ください。
 
 ## サイト概要
 
-令和9年度（2027年度）実施予定の小牧市東部（篠岡地区）学校再編計画について、公式情報をもとにわかりやすく解説する地域情報メディアです。
+令和9年度（2027年度）実施予定の小牧市東部（篠岡地区）学校再編計画について、公式情報をもとにわかりやすく解説する、桃花台エリアの非公式の地域情報メディアです。
 
 - **対象地区**: 小牧市東部（篠岡地区）
 - **再編内容**: 小学校5校・中学校3校 → 東西各2校（しのおか学園）
@@ -49,7 +49,7 @@ python3 -m http.server 8000
 
 詳細は [CONTRIBUTING.txt](CONTRIBUTING.txt) を参照してください。主なルール：
 
-1. **外部リンクは公式市ページの4つのURLのみ** — 学校再編 `.../kyoiku/kyouikusoumu/303/index.html`（サイト全体）、地域協議会 `.../kenkouikigai/sasaeai/3/3_2/index.html`（community.html のみ）、東部まちづくり `.../toubumachidukuri/tobumachidukurisingikai/index.html`（「地域の取組」欄の出典）、東部まちづくりプラットフォームの説明 `.../purattofo-mu/38222.html`（community.html の #platform のみ。同じ節で登録フォーム `logoform.jp/form/uSYk/80018` にもリンク）。それ以外の city.komaki.aichi.jp URL は禁止。別枠として、再編対象8校のホームページ（`komaki-aic.ed.jp`）、nationwide.html が出典として張る文部科学省の5つの資料ページ（`mext.go.jp`）、「地域の取組」（community.html と、同じ一覧を出す index.html）が発信元として張る市民有志の許可アカウント（`instagram.com/arigato.ohshirosho`・`instagram.com/tokadaidancefestival`・`instagram.com/bamboo_installation_ookusa`）と、同じ欄が載せる市の児童館2館のアカウント（`instagram.com/shinookajidoukan`・`instagram.com/warabekan`）、全ページのフッタ「参考リンク（住民有志）」が張る桃花台を考える会【新しいまちづくり】の3つのSNS（`instagram.com/tokadai_komaki`・`x.com/tokadai_komaki`・`facebook.com/TokadaiNT`）、「地域の取組」が事実の出どころとして張る小牧市公式Facebookの投稿（`facebook.com/city.komaki`）、「地域の取組」欄の「会場の案内」行にだけ置く会場施設の告知ページ（`peare-toukadai.jp/event_campaign/tokadai-dance-festival/`）、そして全ページ下部の共有ボタンの送り先（LINE・X・Facebook・はてなブックマーク・note・Threads・Bluesky・Reddit・Mastodon／はてなスター。スマートフォンではアプリが入っていればアプリを開く）は可。いずれも `auto_gates.py` が機械検査する
+1. **外部リンクは公式市ページの4つのURLのみ** — 学校再編 `.../kyoiku/kyouikusoumu/303/index.html`（サイト全体）、地域協議会 `.../kenkouikigai/sasaeai/3/3_2/index.html`（community.html のみ）、東部まちづくり `.../toubumachidukuri/tobumachidukurisingikai/index.html`（「地域の取組」欄の出典）、東部まちづくりプラットフォームの説明 `.../purattofo-mu/38222.html`（community.html の #platform のみ。同じ節で登録フォーム `logoform.jp/form/uSYk/80018` にもリンク）。それ以外の city.komaki.aichi.jp URL は禁止。別枠として、再編対象8校のホームページ（`komaki-aic.ed.jp`）、nationwide.html が出典として張る文部科学省の5つの資料ページ（`mext.go.jp`）、「地域の取組」（community.html と、同じ一覧を出す index.html）が発信元として張る市民有志の許可アカウント（`instagram.com/arigato.ohshirosho`・`instagram.com/tokadaidancefestival`・`instagram.com/bamboo_installation_ookusa`）と、同じ欄が載せる市の児童館2館のアカウント（`instagram.com/shinookajidoukan`・`instagram.com/warabekan`）、全ページのフッタ「参考リンク（住民有志）」が張る桃花台を考える会【新しいまちづくり】の4つのSNS（`instagram.com/tokadai_komaki`・`x.com/tokadai_komaki`・`facebook.com/TokadaiNT`・`tiktok.com/@tokadai_komaki`）、「地域の取組」が事実の出どころとして張る小牧市公式Facebookの投稿（`facebook.com/city.komaki`）、「地域の取組」欄の「会場の案内」行にだけ置く会場施設の告知ページ（`peare-toukadai.jp/event_campaign/tokadai-dance-festival/`）、そして全ページ下部の共有ボタンの送り先（LINE・X・Facebook・はてなブックマーク・note・Threads・Bluesky・Reddit・Mastodon／はてなスター。スマートフォンではアプリが入っていればアプリを開く）は可。いずれも `auto_gates.py` が機械検査する
 2. **翻訳ファイルの構文** — `data/i18n/*.json` はコミット前に全ファイルを JSON パースして確認（アポストロフィのエスケープは不要。`\'` と書くと逆に壊れる）
 3. **新しい翻訳キー** — `ja`（日本語）と `en`（英語）への記載が必須。他の言語は未記載でも英語→日本語の順にフォールバック
 4. **事実確認** — 掲載する数値・日付は必ず公式情報源に基づく
