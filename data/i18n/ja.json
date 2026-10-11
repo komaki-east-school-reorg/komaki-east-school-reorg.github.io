@@ -1318,6 +1318,7 @@
   "feature_new_more": "更新履歴を見る",
   "feature_new_more_news": "お知らせを見る",
   "feature_new_close": "閉じる",
+  "feature_new_news_fmt": "市が「{title}」のページを更新",
   "board_stamp": "回 覧",
   "board_scan": "スマートフォンのカメラで読み取れます。",
   "board_asof": "この紙は{date}時点の内容です。計画は今後も動きます。最新の情報はサイトでご確認ください。",

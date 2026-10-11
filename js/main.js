@@ -237,6 +237,7 @@ window.KomakiGrade = (function () {
 
   var WINDOW_DAYS = 14;      // 掲載から何日出すか
   var MAX_ITEMS = 3;         // 入れ替えで見せる最大件数
+  var SLOTS = {news: 1, log: 2};  // 3件の内訳：市のお知らせ1・更新履歴2（2026-10-11 ユーザー指示）
   var ROTATE_MS = 7000;      // 入れ替えの間隔
   var APPEAR_MS = 900;       // 表示を始めるまでの間
 
@@ -384,6 +385,7 @@ window.KomakiGrade = (function () {
           id: 'news|' + d + '|' + (it.title || ''),
           ja: it.title || '',
           priority: '',
+          // 文にするのは show() で（下の news_fmt を参照）。ここでは訳した見出しだけを持つ。
           text: window.KomakiHeadline.text(res[2] || {}, it.title || '')
         });
       });
@@ -397,14 +399,20 @@ window.KomakiGrade = (function () {
       // 記録すると、次に開いたときに少し前の項目が繰り上がって出てきてしまう。
       var all = items;
 
-      /* 点の高いものから最大 MAX_ITEMS 件。ただし市のお知らせが1件も
-         入らなかったときだけ、いちばん点の高いお知らせを末尾と入れ替える。
-         公式の新着が、サイト側の更新に押し出されて一度も出ないのを防ぐため。 */
-      var picked = items.slice(0, MAX_ITEMS);
-      if (picked.every(function (it) { return it.kind !== 'news'; })) {
-        var topNews = items.filter(function (it) { return it.kind === 'news'; })[0];
-        if (topNews) picked[picked.length - 1] = topNews;
+      /* 割合は「市からのお知らせ」1 : 更新履歴（新機能・更新）2（2026-10-11 ユーザー指示）。
+         それぞれの枠の中では点の高いものから取る。片方に期間内の項目が足りない
+         ときは、空いた枠をもう片方の点の高いもので埋める（帯を空けないため）。 */
+      var picked = [];
+      function take(test, n) {
+        items.forEach(function (it) {
+          if (n > 0 && picked.length < MAX_ITEMS && test(it) && picked.indexOf(it) === -1) {
+            picked.push(it); n--;
+          }
+        });
       }
+      take(function (it) { return it.kind === 'news'; }, SLOTS.news);
+      take(function (it) { return it.kind !== 'news'; }, SLOTS.log);
+      take(function () { return true; }, MAX_ITEMS);
       items = picked.sort(byScore);
 
       // ラベルと飛び先は項目ごとに変わるので、data-i18n は付けない
@@ -439,7 +447,12 @@ window.KomakiGrade = (function () {
         label.className = 'feature-cutin-label is-' + items[i].kind;
         more.href = k.href;
         more.textContent = t(k.moreKey, k.moreJa);
-        text.textContent = items[i].text;
+        // 市のお知らせは見出しだけを置かず、更新履歴と同じ「〜を更新」の一行にする
+        // （2026-10-11 ユーザー指示）。型は辞書の feature_new_news_fmt。札と同じく
+        // 表示のたびに読む — 帯を組み立てた時点では辞書がまだ当たっていないことがあるため。
+        text.textContent = items[i].kind === 'news'
+          ? t('news_fmt', '市が「{title}」のページを更新').replace('{title}', items[i].text)
+          : items[i].text;
         host.classList.remove('is-swap');
         // 入れ替えを1回のリフローで確実に走らせる
         void host.offsetWidth;

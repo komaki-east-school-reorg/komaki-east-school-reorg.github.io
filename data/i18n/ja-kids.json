@@ -1318,6 +1318,7 @@
   "feature_new_more": "こうしんの きろくを 見る",
   "feature_new_more_news": "おしらせを 見る",
   "feature_new_close": "とじる",
+  "feature_new_news_fmt": "市の「{title}」の ページが あたらしく なりました",
   "board_stamp": "かいらん",
   "board_scan": "スマホの カメラで よみとれます。",
   "board_asof": "この 紙は {date}の ときの ないようです。これからも かわります。あたらしい ことは サイトで たしかめて ください。",

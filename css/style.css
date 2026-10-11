@@ -1955,7 +1955,7 @@ footer {
 .share-btn--x        { --share-color: #333333; --share-color-dark: #000000; }
 .share-btn--fb       { --share-color: #1877f2; --share-color-dark: #145dbf; }
 .share-btn--hatena   { --share-color: #00a4de; --share-color-dark: #00749e; }
-.share-btn--note     { --share-color: #2cb696; --share-color-dark: #1d7d67; }
+.share-btn--note     { --share-color: #1a1a1a; --share-color-dark: #000000; }  /* note の公式ボタンに合わせた黒（2026-10-11 ユーザー指示） */
 .share-btn--threads  { --share-color: #101010; --share-color-dark: #000000; }
 .share-btn--bluesky  { --share-color: #0085ff; --share-color-dark: #0060bd; }
 .share-btn--reddit   { --share-color: #ff4500; --share-color-dark: #b83200; }

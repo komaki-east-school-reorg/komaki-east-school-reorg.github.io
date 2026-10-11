@@ -11,6 +11,7 @@
   "feature_new_label_update": "Actualización",
   "feature_new_more": "Ver el historial de cambios",
   "feature_new_more_news": "Ver los avisos",
+  "feature_new_news_fmt": "Página del ayuntamiento “{title}” actualizada",
   "footer_copyright": "© 2026 Medio de Información Local sobre la Reorganización Escolar del Este de Komaki (No Oficial) | Este sitio es operado por voluntarios de la comunidad y no está afiliado a la Ciudad de Komaki ni a su Consejo de Educación.",
   "footer_credit": "Este sitio se crea y mantiene con Claude Code y GitHub.",
   "footer_langs": "Idiomas: 日本語・English・Português・Tiếng Việt・Filipino・Español・中文・Bahasa Indonesia・한국어・नेपाली・Türkçe・မြန်မာ",
@@ -60,7 +61,7 @@
   "share_threads": "Publicar en Threads",
   "share_tiktok": "TikTok (copiar enlace)",
   "share_x": "Publicar en X",
-  "site_sub": "Medio de Información Local (No Oficial)",
+  "site_sub": "Medio de Información Local del Área de Tokadai (No Oficial)",
   "status_done": "Completado",
   "tts_play": "🔊 Escuchar",
   "tts_stop": "■ Detener"

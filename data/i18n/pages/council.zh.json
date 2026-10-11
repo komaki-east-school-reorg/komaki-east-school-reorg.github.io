@@ -110,6 +110,7 @@
   "feature_new_label_update": "更新",
   "feature_new_more": "查看更新记录",
   "feature_new_more_news": "查看通知",
+  "feature_new_news_fmt": "市里的“{title}”页面已更新",
   "footer_copyright": "© 2026 小牧市东部（篠冈地区）学校重组计划 地区信息媒体（非官方）｜本网站由市民志愿者运营，与小牧市及教育委员会无关。",
   "footer_credit": "本网站使用 Claude Code 和 GitHub 制作与运营。",
   "footer_langs": "支持语言：日本語・English・Português・Tiếng Việt・Filipino・Español・中文・Bahasa Indonesia・한국어・नेपाली・Türkçe・မြန်မာ",
@@ -164,7 +165,7 @@
   "share_threads": "发布到Threads",
   "share_tiktok": "TikTok（复制链接）",
   "share_x": "在X上发布",
-  "site_sub": "地区信息媒体（非官方）",
+  "site_sub": "桃花台地区信息媒体（非官方）",
   "status_done": "已完成",
   "tts_play": "🔊 朗读",
   "tts_stop": "■ 停止"
