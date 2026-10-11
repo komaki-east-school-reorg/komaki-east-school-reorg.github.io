@@ -1,8 +1,37 @@
 {
-  "fetched_at": "2026-10-10T01:52:56Z",
+  "fetched_at": "2026-10-11T01:14:59Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "shinooka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "篠岡中学校",
+        "ja_kids": "しのおか中学校",
+        "en": "Shinooka Junior High",
+        "zh": "篠冈中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
+      "latest_date": "2026-10-10",
+      "items": [
+        {
+          "title": "《桃花台野球部》悲願の初優勝！",
+          "date": "2026-10-10",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136246281?tm=20261010123424"
+        },
+        {
+          "title": "１年生 書写競技会 その２",
+          "date": "2026-10-10",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136245776?tm=20261010063758"
+        },
+        {
+          "title": "１年生 書写競技会 その１",
+          "date": "2026-10-10",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136245774?tm=20261010063411"
+        }
+      ]
+    },
     {
       "slug": "ohshiro-e",
       "level": "elem",
@@ -29,6 +58,35 @@
           "title": "1 年算数 ながさくらべ",
           "date": "2026-10-08",
           "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136232563?tm=20261008141931"
+        }
+      ]
+    },
+    {
+      "slug": "hikarigaoka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "光ヶ丘中学校",
+        "ja_kids": "ひかりがおか中学校",
+        "en": "Hikarigaoka Junior High",
+        "zh": "光之丘中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
+      "latest_date": "2026-10-10",
+      "items": [
+        {
+          "title": "小牧市民スポーツ大会 軟式野球",
+          "date": "2026-10-10",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136246385?tm=20261010132006"
+        },
+        {
+          "title": "美術競技会 （3年生）",
+          "date": "2026-10-08",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136231212?tm=20261008124427"
+        },
+        {
+          "title": "極上の「謎」、ただいま試作中！",
+          "date": "2026-10-05",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136209328?tm=20261005174104"
         }
       ]
     },
@@ -174,64 +232,6 @@
           "title": "5年生 書写競技会",
           "date": "2026-10-08",
           "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136229569?tm=20261008103919"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "篠岡中学校",
-        "ja_kids": "しのおか中学校",
-        "en": "Shinooka Junior High",
-        "zh": "篠冈中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-10-08",
-      "items": [
-        {
-          "title": "美術競技会・書写競技会",
-          "date": "2026-10-08",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136236478?tm=20261008202252"
-        },
-        {
-          "title": "ソフトテニス 新人戦団体",
-          "date": "2026-10-08",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136228476?tm=20261008085316"
-        },
-        {
-          "title": "１年生 合唱練習",
-          "date": "2026-10-08",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136228499?tm=20261008085637"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "光ヶ丘中学校",
-        "ja_kids": "ひかりがおか中学校",
-        "en": "Hikarigaoka Junior High",
-        "zh": "光之丘中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
-      "latest_date": "2026-10-08",
-      "items": [
-        {
-          "title": "美術競技会 （3年生）",
-          "date": "2026-10-08",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136231212?tm=20261008124427"
-        },
-        {
-          "title": "極上の「謎」、ただいま試作中！",
-          "date": "2026-10-05",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136209328?tm=20261005174104"
-        },
-        {
-          "title": "体育祭は９時０５分開会！",
-          "date": "2026-09-30",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136154418?tm=20260930062726"
         }
       ]
     }
