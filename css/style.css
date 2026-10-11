@@ -1576,13 +1576,15 @@ footer {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .header-inner { height: 64px; padding: 0 1rem; position: relative; align-items: center; gap: .9rem; }
+  /* 高さは固定しない（2026-10-11）。サイト名が「…学校再編ナビ｜桃花台エリアの…」になって
+     4行になり、64px 固定・上下余白0では文字が上下の端に張り付いてはみ出したため。 */
+  .header-inner { height: auto; min-height: 64px; padding: .6rem 1rem; position: relative; align-items: center; gap: .9rem; }
   nav ul { display: none; }
   nav ul.open {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 64px;
+    top: 100%;   /* ヘッダの実際の高さの真下に開く */
     left: 0; right: 0;
     background: var(--primary-dark);
     padding: .5rem 0;
