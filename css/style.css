@@ -2841,3 +2841,53 @@ main section[id], main h2.section-title[id], #area-map { scroll-margin-top: calc
 /* 本文の段落・項目は、切れ目の無い長い文字列（ビルマ語の長い語・長い英数字など）でも画面の横にはみ出さないよう、
    必要なときだけ語の途中で折り返す（review.html のビルマ語で 320px 幅のはみ出しがあった。2026-10-06） */
 main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
+
+/* ===== 404.html の入口一覧（2026-10-11） ===== */
+.nf-links { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: .5rem; margin-top: 1rem; }
+.nf-links a { display: block; padding: .6rem .8rem; border: 1px solid var(--border); border-radius: var(--radius, 8px); background: #fff; font-weight: 700; color: var(--primary); text-decoration: none; }
+.nf-links a:hover { border-color: var(--primary); }
+
+/* ===== 節・質問への直リンク（SECTION LINKS、2026-10-11） =====
+   ボタンは文字を持たず、記号は ::before で出す（目次・読み上げ・回覧板が見出しの文字を拾うため）。 */
+.sec-link, .faq-link {
+  border: 0; background: none; cursor: pointer; padding: 0 .2rem; margin-left: .35rem;
+  font: 700 .95rem/1 var(--heading-font); color: var(--text-muted); opacity: .45;
+  vertical-align: middle; border-radius: 4px;
+}
+.sec-link::before { content: "#"; }
+.sec-link:hover, .sec-link:focus-visible, .faq-link:hover, .faq-link:focus-visible { opacity: 1; color: var(--primary); }
+.sec-link.is-copied::before, .faq-link.is-copied::before { content: "✓"; }
+.sec-link.is-copied, .faq-link.is-copied { opacity: 1; color: var(--primary); }
+@media (hover: none) { .sec-link { opacity: .7; } }
+/* Q&A は開いた答えの下に「🔗」を出す。閉じているあいだは出さない。 */
+.faq-link { display: none; margin: .1rem 0 .6rem auto; font-size: .82rem; }
+.faq-link::before { content: "🔗"; }
+.faq-q.open ~ .faq-link { display: block; }
+.faq-item[id] { scroll-margin-top: calc(var(--header-h, 80px) + 12px); }
+@media print { .sec-link, .faq-link { display: none !important; } }
+
+/* ===== 予定ごとの固有ページ（events/*.html、2026-10-11）と一覧からのリンク ===== */
+.event-item { position: relative; }
+.event-item:has(> .event-permalink) { padding-right: 2.4rem; }
+.event-permalink { position: absolute; top: .55rem; right: .6rem; font-size: .85rem; text-decoration: none; opacity: .5; }
+.event-permalink::before { content: "🔗"; }
+.event-permalink:hover, .event-permalink:focus-visible { opacity: 1; }
+.event-single .event-permalink { display: none; }
+.event-page-note { font-size: .85rem; color: var(--text-muted); margin: 1rem 0 .6rem; }
+.event-nav { display: flex; justify-content: space-between; gap: .8rem; margin-top: 1.6rem; flex-wrap: wrap; }
+.event-nav a { display: flex; flex-direction: column; gap: .15rem; padding: .6rem .9rem; border: 1px solid var(--border); border-radius: var(--radius-sm, 6px); text-decoration: none; color: var(--primary); max-width: 48%; }
+.event-nav-next { margin-left: auto; text-align: right; }
+.event-nav-label { font-size: .75rem; color: var(--text-muted); }
+.event-nav-date { font-weight: 700; font-size: .9rem; }
+@media print { .event-permalink, .event-nav { display: none !important; } }
+
+/* ===== 共有欄の QR（2026-10-11） ===== */
+.share-btn--qr { --share-color: #2e5c3a; --share-color-dark: #1b3826; }
+.qr-dialog { margin: auto; inset: 0; height: fit-content; border: 0; border-radius: var(--radius, 10px); padding: 1.4rem 1.4rem 1.1rem; max-width: min(92vw, 360px); text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,.3); }
+.qr-dialog::backdrop { background: rgba(0,0,0,.45); }
+.qr-img { width: 240px; height: 240px; max-width: 100%; image-rendering: pixelated; background: #fff; }
+.qr-url { font-size: .75rem; color: var(--text-muted); word-break: break-all; margin: .6rem 0 .3rem; }
+.qr-note { font-size: .85rem; margin-bottom: .9rem; }
+.qr-actions { display: flex; gap: .6rem; justify-content: center; }
+.qr-actions a, .qr-actions button { padding: .45rem 1rem; border-radius: var(--radius-pill, 999px); border: 1.5px solid var(--primary); background: #fff; color: var(--primary); font-weight: 700; font-size: .85rem; cursor: pointer; text-decoration: none; }
+.qr-actions a { background: var(--primary); color: #fff; }

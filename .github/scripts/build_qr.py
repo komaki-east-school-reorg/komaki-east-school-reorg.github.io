@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
-回覧板シート（index.html の共有欄「回」ボタンと「最新の動き」節内の専用ボタン）に
-載せる QR コードを、言語ぶん SVG で書き出す。回覧板シートは index.html にしか無いので
-PAGES は index 1件のみ。
+回覧板シート（index.html）と、全ページの共有欄の「QR」ボタン（2026-10-11 追加）で使う
+QR コードを、ページ×言語ぶん SVG で書き出す。
 
 なぜ静的生成なのか:
   このサイトが自動で読み込む外部スクリプトは、はてなスターの1本だけという方針
@@ -26,10 +25,21 @@ except ImportError:
 BASE = "https://komaki-east-school-reorg.github.io/"
 OUT_DIR = "qr"
 LANGS = ["ja", "en", "pt", "vi", "tl", "es", "zh", "id", "ko", "ne", "tr", "my"]
-# 回覧板シートは index.html の共有欄／「最新の動き」節にしか無いので、QRも index だけでよい。
-# canonical と同じ並び。index は素のディレクトリ URL が正規形。
+# 回覧板シート（index）に加え、2026-10-11 から全11ページの共有欄の「QR」ボタンでも使う
+# （チラシ・掲示・発表スライドに貼れるように）。canonical と同じ並び。index は素のディレクトリ URL が正規形。
+# ページを足したら、ここと js/main.js SHARE BUTTONS の QR_PAGES の両方に足すこと。
 PAGES = {
     "index": "",
+    "about": "about.html",
+    "schedule": "schedule.html",
+    "faq": "faq.html",
+    "bus": "bus.html",
+    "clubs": "clubs.html",
+    "council": "council.html",
+    "community": "community.html",
+    "map": "map.html",
+    "nationwide": "nationwide.html",
+    "review": "review.html",
 }
 
 # 紙に印刷して読むので、誤り訂正は高め（H）にしておく。折り目や汚れに強い。

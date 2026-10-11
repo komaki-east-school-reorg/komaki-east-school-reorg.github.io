@@ -3,7 +3,9 @@
   "ideas": [
     {
       "date": "2026-10-11",
-      "title": "[機能] sitemap.xml・files.txt とページの食い違いを検査"
+      "title": "[機能] sitemap.xml・files.txt とページの食い違いを検査",
+      "implemented": "2026-10-11",
+      "note": "auto_gates.py check 12"
     },
     {
       "date": "2026-10-11",
@@ -19,7 +21,9 @@
     },
     {
       "date": "2026-10-09",
-      "title": "[機能] スケジュールの各予定に固有リンクと強調表示"
+      "title": "[機能] スケジュールの各予定に固有リンクと強調表示",
+      "implemented": "2026-10-11",
+      "note": "build_event_pages.py（events/*.html と schedule.html の #ev-*）"
     },
     {
       "date": "2026-10-09",
@@ -43,7 +47,9 @@
     },
     {
       "date": "2026-10-06",
-      "title": "[機能] 全ページの節見出しに「この節へのリンクをコピー」"
+      "title": "[機能] 全ページの節見出しに「この節へのリンクをコピー」",
+      "implemented": "2026-10-11",
+      "note": "main.js SECTION LINKS"
     },
     {
       "date": "2026-10-06",
@@ -83,7 +89,9 @@
     },
     {
       "date": "2026-10-02",
-      "title": "[機能] 存在しないURLに案内を出す 404.html"
+      "title": "[機能] 存在しないURLに案内を出す 404.html",
+      "implemented": "2026-10-11",
+      "note": "404.html（<base href=\"/\">、12言語の入口）"
     },
     {
       "date": "2026-10-01",
@@ -307,7 +315,9 @@
     },
     {
       "date": "2026-09-13",
-      "title": "全ページの共有欄に「このページのQRコードを表示」ボタンを追加"
+      "title": "全ページの共有欄に「このページのQRコードを表示」ボタンを追加",
+      "implemented": "2026-10-11",
+      "note": "build_qr.py を11ページ×12言語に、共有欄の QR ボタン"
     },
     {
       "date": "2026-09-12",
@@ -360,7 +370,9 @@
     },
     {
       "date": "2026-09-08",
-      "title": "review.html の各節見出しに「この節へのリンクをコピー」ボタンを追加"
+      "title": "review.html の各節見出しに「この節へのリンクをコピー」ボタンを追加",
+      "implemented": "2026-10-11",
+      "note": "main.js SECTION LINKS（全ページ共通）"
     },
     {
       "date": "2026-09-07",
@@ -392,7 +404,9 @@
     },
     {
       "date": "2026-09-05",
-      "title": "FAQの各質問に固有リンク＋コピー ボタンを追加"
+      "title": "FAQの各質問に固有リンク＋コピー ボタンを追加",
+      "implemented": "2026-10-11",
+      "note": "main.js SECTION LINKS（#faq-qN で開いて着地）"
     },
     {
       "date": "2026-09-05",
@@ -429,7 +443,9 @@
     },
     {
       "date": "2026-09-03",
-      "title": "パンくずに BreadcrumbList の構造化データ（JSON-LD）を追加"
+      "title": "パンくずに BreadcrumbList の構造化データ（JSON-LD）を追加",
+      "implemented": "2026-10-11",
+      "note": "i18n.js applyBreadcrumbJsonLd（表示言語で実行時に生成）"
     },
     {
       "date": "2026-09-02",
@@ -441,7 +457,9 @@
     },
     {
       "date": "2026-09-02",
-      "title": "「最新の動き」のRSS/Atomフィード配信"
+      "title": "「最新の動き」のRSS/Atomフィード配信",
+      "implemented": "2026-10-11",
+      "note": "build_feed.py → feed.xml"
     },
     {
       "date": "2026-09-02",

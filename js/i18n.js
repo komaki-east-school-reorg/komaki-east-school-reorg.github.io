@@ -15,7 +15,10 @@
 
   // ページID（ファイル名から .html を除いたもの）。meta_title_<ページID> の組み立てと、
   // ページ別辞書の取得の両方で使う。
-  var PAGE_ID = (window.location.pathname.match(/([^/]+)\.html$/) || ['', 'index'])[1] || 'index';
+  // 404.html は「見つからなかった URL」のまま表示されるので、パスからは決められない。
+  // <html data-page="404"> で名指しする（2026-10-11）。
+  var PAGE_ID = document.documentElement.getAttribute('data-page') ||
+    (window.location.pathname.match(/([^/]+)\.html$/) || ['', 'index'])[1] || 'index';
 
   // ===== 第1期再編の実施後への文面切替 =====
   // 「<キー>__after」を用意しておくと、このフラグが true のときだけ
@@ -298,6 +301,7 @@
     applyFaqJsonLd(dict, pageId, lang);
     syncUrl(lang);
     updateSeoUrls(lang);
+    applyBreadcrumbJsonLd(lang);
 
     try { localStorage.setItem('komaki_lang', lang); } catch (e) {}
     showPage();
@@ -309,6 +313,44 @@
     // 本文の DOM を掴んでいる処理（js/main.js の READ ALOUD など）はこれを見て手を離す。
     // 言語の切り替えはページの読み直しになるが、こどもむけの切り替えはここを通る。
     try { document.dispatchEvent(new CustomEvent('komaki:i18n-applied', { detail: { lang: lang } })); } catch (e) {}
+  }
+
+  // ===== パンくずの構造化データ（schema.org BreadcrumbList） =====
+  // 2026-10-11 追加。検索結果にパンくず（サイト名 › ページ名）を出してもらうため。
+  // FAQPage と同じく静的に書かず、辞書を流し込んだあとの .breadcrumb の文字から
+  // 表示中の言語のまま組み立てる（手書きすると辞書と黙って食い違うため）。
+  // URL は canonical と同じ規則（日本語は素の URL、他は ?lang=）。
+  function applyBreadcrumbJsonLd(lang) {
+    var existing = document.getElementById('breadcrumb-jsonld');
+    var bc = document.querySelector('.breadcrumb');
+    var links = bc ? bc.querySelectorAll('a[href]') : [];
+    var last = bc ? bc.querySelector(':scope > span:last-child') : null;
+    if (!bc || !links.length || !last) { if (existing) existing.remove(); return; }
+    var origin;
+    try { origin = new URL(_canonicalBase).origin + '/'; } catch (e) { return; }
+    var q = lang === DEFAULT ? '' : '?' + LANG_PARAM + '=' + lang;
+    var items = [];
+    [].forEach.call(links, function (a) {
+      var href = a.getAttribute('href') || '';
+      var url = origin + (href === 'index.html' ? '' : href.replace(/^\.?\//, '')) + q;
+      items.push({ name: a.textContent.replace(/\s+/g, ' ').trim(), item: url });
+    });
+    items.push({ name: last.textContent.replace(/\s+/g, ' ').trim(), item: seoUrlForLang(lang) });
+    var payload = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: items.map(function (it, i) {
+        return { '@type': 'ListItem', position: i + 1, name: it.name, item: it.item };
+      })
+    };
+    var el = existing;
+    if (!el) {
+      el = document.createElement('script');
+      el.id = 'breadcrumb-jsonld';
+      el.type = 'application/ld+json';
+      document.head.appendChild(el);
+    }
+    el.textContent = JSON.stringify(payload);
   }
 
   // ===== FAQ ページの構造化データ（schema.org FAQPage） =====

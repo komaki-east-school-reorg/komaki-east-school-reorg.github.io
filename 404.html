@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja" data-page="404">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 404.html（2026-10-11 追加）。GitHub Pages は存在しない URL にこのファイルの中身を
+       その URL のまま返す。/foo/bar.html のような深いパスでも css・js・data・リンクが
+       解決できるよう、<base href="/"> でサイトの根を基準にする。外すと深いパスで崩れる。
+       ページ ID はパスから決められないので <html data-page="404"> で名指しする（js/i18n.js）。
+       検索結果に出すページではないので noindex・sitemap には載せない（auto_gates.py check 12）。
+       共有するものでもないので共有欄は置かない（check 11 の対象外）。 -->
+  <base href="/">
+  <title>ページが見つかりません – 小牧市東部（篠岡地区）学校再編ナビ</title>
+  <meta name="description" content="お探しのページは見つかりませんでした。小牧市東部（篠岡地区）学校再編ナビの主なページへの入口です。">
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="notice-banner" data-i18n-html="notice">
+  ⚠️ このサイトは市民有志による情報提供サイトです。小牧市の公式サイトではありません。
+  公式情報は <a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener" style="color:#5a4000; font-weight:700;">小牧市教育委員会のページ</a> をご確認ください。
+</div>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="site-title">
+      小牧市東部（篠岡地区）学校再編ナビ
+      <span data-i18n="site_sub">桃花台エリアの非公式でもわかりやすい地域情報メディア</span>
+    </a>
+    <nav>
+      <button class="hamburger" aria-label="メニュー" data-i18n-aria="aria_menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul>
+        <li><a href="about.html" data-i18n="nav_about">計画概要</a></li>
+        <li><a href="schedule.html" data-i18n="nav_schedule">スケジュール</a></li>
+        <li><a href="faq.html" data-i18n="nav_faq">質問・賛否の声</a></li>
+        <li><a href="bus.html" data-i18n="nav_bus">スクールバス</a></li>
+        <li><a href="clubs.html" data-i18n="nav_clubs">地域クラブ</a></li>
+        <li class="nav-break" aria-hidden="true"></li>
+        <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
+        <li><a href="community.html" data-i18n="nav_community">地域とまちづくり</a></li>
+        <li><a href="map.html" data-i18n="nav_map">地図</a></li>
+        <li><a href="nationwide.html" data-i18n="nav_nationwide">全国の動き</a></li>
+        <li><a href="review.html" data-i18n="nav_review">検証と提案</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <button class="kids-toggle" aria-pressed="false" title="こどもむけのよみやすい文章にきりかえる">🧒 こどもむけ<span class="kids-switch" aria-hidden="true"></span></button>
+        <span class="lang-pick">
+          <span class="lang-label" title="言語 / Language" aria-hidden="true">🌐</span>
+          <select class="lang-select" aria-label="言語を選択 / Language" data-i18n-aria="aria_lang">
+          <option value="ja">🇯🇵 日本語</option>
+          <option value="en">🇺🇸 English</option>
+          <option value="pt">🇧🇷 Português</option>
+          <option value="vi">🇻🇳 Tiếng Việt</option>
+          <option value="tl">🇵🇭 Filipino</option>
+          <option value="es">🌎 Español</option>
+          <option value="zh">🇨🇳 中文</option>
+          <option value="id">🇮🇩 Bahasa Indonesia</option>
+          <option value="ko">🇰🇷 한국어</option>
+          <option value="ne">🇳🇵 नेपाली</option>
+          <option value="tr">🇹🇷 Türkçe</option>
+          <option value="my">🇲🇲 မြန်မာ</option>
+        </select>
+        </span>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- TOP CUT-IN
+     掲載から一定期間内の「新機能」「更新（掲載内容）」「市公式サイトのお知らせ」を
+     ここに出す。中身は js/main.js の TOP CUT-IN が組み立てる（全ページ共通）。
+     札と飛び先は項目の種類ごとに変わるので、札とリンクには data-i18n を付けない
+     （辞書に上書きされると種類と食い違う）。文言は下の隠し要素から読む。 -->
+<div id="feature-cutin" class="feature-cutin" hidden></div>
+<div id="feature-strings" hidden>
+  <span data-fk="label" data-i18n="feature_new_label">新機能</span>
+  <span data-fk="label_update" data-i18n="feature_new_label_update">更新</span>
+  <span data-fk="label_news" data-i18n="feature_new_label_news">市からのお知らせ</span>
+  <span data-fk="more" data-i18n="feature_new_more">更新履歴を見る</span>
+  <span data-fk="more_news" data-i18n="feature_new_more_news">お知らせを見る</span>
+  <span data-fk="close" data-i18n="feature_new_close">閉じる</span>
+  <span data-fk="news_fmt" data-i18n="feature_new_news_fmt">市が「{title}」のページを更新</span>
+</div>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1 data-i18n="nf_h1">ページが見つかりません</h1>
+      <p data-i18n="nf_p">お探しのページは、移動したか、なくなった可能性があります。小牧市東部（篠岡地区）学校再編ナビは、桃花台エリアの学校再編を公式情報をもとにわかりやすく伝える、非公式の地域情報メディアです。下の入口からお進みください。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:760px;">
+      <h2 class="section-title" data-i18n-html="nf_pages_h">主なページ<small>Pages</small></h2>
+      <ul class="nf-links">
+          <li><a href="index.html" data-i18n="nav_home">ホーム</a></li>
+          <li><a href="about.html" data-i18n="nav_about">計画概要</a></li>
+          <li><a href="schedule.html" data-i18n="nav_schedule">スケジュール</a></li>
+          <li><a href="faq.html" data-i18n="nav_faq">質問・賛否の声</a></li>
+          <li><a href="bus.html" data-i18n="nav_bus">スクールバス</a></li>
+          <li><a href="clubs.html" data-i18n="nav_clubs">地域クラブ</a></li>
+          <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
+          <li><a href="community.html" data-i18n="nav_community">地域とまちづくり</a></li>
+          <li><a href="map.html" data-i18n="nav_map">地図</a></li>
+          <li><a href="nationwide.html" data-i18n="nav_nationwide">全国の動き</a></li>
+          <li><a href="review.html" data-i18n="nav_review">検証と提案</a></li>
+      </ul>
+      <h2 class="section-title" style="margin-top:2.2rem;" data-i18n-html="nf_lang_h">ほかの言語で読む<small>Other Languages</small></h2>
+      <!-- 言語名はそれぞれの言語で書いた固有の表記なので訳さない（言語の選択肢と同じ）。 -->
+      <ul class="nf-links nf-langs">
+          <li><a href="index.html" lang="ja">🇯🇵 日本語</a></li>
+          <li><a href="index.html?lang=en" lang="en">🇺🇸 English</a></li>
+          <li><a href="index.html?lang=pt" lang="pt">🇧🇷 Português</a></li>
+          <li><a href="index.html?lang=vi" lang="vi">🇻🇳 Tiếng Việt</a></li>
+          <li><a href="index.html?lang=tl" lang="tl">🇵🇭 Filipino</a></li>
+          <li><a href="index.html?lang=es" lang="es">🌎 Español</a></li>
+          <li><a href="index.html?lang=zh" lang="zh">🇨🇳 中文</a></li>
+          <li><a href="index.html?lang=id" lang="id">🇮🇩 Bahasa Indonesia</a></li>
+          <li><a href="index.html?lang=ko" lang="ko">🇰🇷 한국어</a></li>
+          <li><a href="index.html?lang=ne" lang="ne">🇳🇵 नेपाली</a></li>
+          <li><a href="index.html?lang=tr" lang="tr">🇹🇷 Türkçe</a></li>
+          <li><a href="index.html?lang=my" lang="my">🇲🇲 မြန်မာ</a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-title" data-i18n="footer_title">小牧市東部（篠岡地区）学校再編ナビ</div>
+        <p style="font-size:.82rem;" data-i18n="footer_tagline">篠岡地区の学校再編計画について、小牧市公式情報をもとにわかりやすく情報提供することを目的とした市民有志サイトです。</p>
+      <p style="font-size:.78rem;margin-top:.4rem;" data-i18n="footer_langs">対応言語：日本語・English・Português・Tiếng Việt・Filipino・Español・中文・Bahasa Indonesia・한국어・नेपाली・Türkçe・မြန်မာ</p>
+      </div>
+      <div>
+        <div class="footer-title" data-i18n="footer_pages">ページ一覧</div>
+        <ul class="footer-links">
+          <li><a href="index.html" data-i18n="nav_home">ホーム</a></li>
+          <li><a href="about.html" data-i18n="nav_about">計画概要</a></li>
+          <li><a href="schedule.html" data-i18n="nav_schedule">スケジュール</a></li>
+          <li><a href="faq.html" data-i18n="nav_faq">質問・賛否の声</a></li>
+          <li class="nav-break" aria-hidden="true"></li>
+          <li><a href="bus.html" data-i18n="nav_bus">スクールバス</a></li>
+          <li><a href="clubs.html" data-i18n="nav_clubs">地域クラブ</a></li>
+          <li><a href="council.html" data-i18n="nav_council">議会審議</a></li>
+          <li><a href="community.html" data-i18n="nav_community">地域とまちづくり</a></li>
+          <li><a href="map.html" data-i18n="nav_map">地図</a></li>
+          <li><a href="nationwide.html" data-i18n="nav_nationwide">全国の動き</a></li>
+          <li><a href="review.html" data-i18n="nav_review">検証と提案</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-title" data-i18n="footer_official">参考リンク（公式）</div>
+        <ul class="footer-links">
+          <li><a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html" target="_blank" rel="noopener" data-i18n="footer_official_link">小牧市 学校再編計画（市公式）</a></li>
+        </ul>
+
+        <!-- 住民有志の発信（2026-09-22 ユーザー指示で追加）。市の公式情報ではないので、
+             「参考リンク（公式）」とは見出しを分けてある。この区別を消さないこと。
+             団体名は固有名詞なので翻訳しない（部署名・学校名と同じ扱い）。
+             4つとも同じ団体の発信なので、団体名は1行だけ出してサービス名を並べる。 -->
+        <div class="footer-title" style="margin-top:1.4rem;" data-i18n="footer_local">参考リンク（住民有志）</div>
+        <ul class="footer-links">
+          <li>
+            <span class="footer-group">桃花台を考える会【新しいまちづくり】</span>
+            <span class="footer-sns">
+              <a href="https://www.instagram.com/tokadai_komaki/" target="_blank" rel="noopener">Instagram</a>
+              <a href="https://x.com/tokadai_komaki" target="_blank" rel="noopener">X</a>
+              <a href="https://www.facebook.com/TokadaiNT/" target="_blank" rel="noopener">Facebook</a>
+              <a href="https://www.tiktok.com/@tokadai_komaki" target="_blank" rel="noopener">TikTok</a>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom" data-i18n-html="footer_copyright">© 2026 小牧市東部（篠岡地区）学校再編ナビ（非公式）｜このサイトは市民有志が運営しており、小牧市・教育委員会とは無関係です。</div>
+    <p class="site-credit" data-i18n="footer_credit">このサイトは Claude Code と GitHub で作成・運用しています。</p>
+  </div>
+</footer>
+
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

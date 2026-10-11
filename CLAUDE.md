@@ -200,6 +200,7 @@ When a content change is detected, a second job drafts site updates fully automa
 - **本文はリポジトリに残さない。** 残るのは `auto_ideas/history.json`（過去に出した見出し）だけで、`ideas.md` は `.gitignore` 済み。起案AIはこの履歴を読んで**同じ案を二度出さない**。本文はメールと Actions のアーティファクト（30日）にある。
 - **通知は SMTP → だめなら Issue。** `.github/scripts/send_mail.py` は設定が無ければ exit 2 を返し、ワークフローは `gh issue create` に切り替える（Issue を立てれば GitHub の通知メールが届く）。必要な Secrets は `SMTP_HOST` / `SMTP_USER` / `SMTP_PASS`（任意で `MAIL_TO`＝未指定なら `SMTP_USER` 宛て、`SMTP_PORT`＝既定 587・465 なら SMTP_SSL、`MAIL_FROM`）。**未設定でも壊れない**のが設計で、設定を促す警告だけが出る。**宛先は1件だけ**で、カンマ区切りで複数渡すと送らずに失敗する（自分宛ての通知がいつのまにか同報配信になる事故を機械で止めるため）。**このリポジトリは公開なので、宛先のアドレスはワークフローにもスクリプトにも書かない** — Secrets に置くか、`SMTP_USER` と同じにする。
 - 見出しの抽出・履歴の更新・件名の組み立ては `.github/scripts/ideas_digest.py` が決定的に行う。**AI に JSON を直接書かせない** — 壊れていても気づけないため。件名はシェルの `"..."` を通るので、`"` `` ` `` `$` `\` は見出しから落としてある。
+- **SEO・SNS 対策の観点も出させる**（2026-10-11 ユーザー指示）。「桃花台」「Tokadai」の名前で外から検索・共有・引用されたときに見つかり広がるための案（構造化データ、hreflang、SNS カード、直リンク、フィード、QR など）。禁止事項（外部ドメイン・トラッキング・第三者スクリプトを増やさない、宣伝文にしない）はそのまま。
 - 起案プロンプトには、この CLAUDE.md の禁止事項（外部ドメインを増やさない／自動読み込みの第三者スクリプトを増やさない／`bus.html` の地図は凍結／`council.html` は対象外／自動生成ファイルを手編集する案を出さない）を明記してある。**規則を増やしたらこのプロンプトにも書き足すこと。**
 - 「今日は出すに値する案が無い」日は `## ` 見出しを1つも書かせない。その日はメールも Issue も出ず、履歴も増えない。
 
@@ -637,13 +638,26 @@ The 対象エリアの地図 draws **three sources with different accuracy** —
 |---|---|---|
 | OGP image | `img/og-image.png` | 1200×630, the blackboard design with the site name in three lines (「小牧市東部（篠岡地区）」/「学校再編ナビ」/ the subtitle), redrawn 2026-10-11 for the rename. Every page references it as `og-image.png?v=YYYYMMDD` — **bump `v` on all 12 pages whenever the image changes**, or LINE / X / Facebook keep showing the cached old one. The image was rendered from an HTML mock-up with Playwright; that mock-up is not in the repo. |
 | `robots.txt` | repo root | Allows everything; points at the sitemap. Kids mode is excluded via a JS-injected `noindex` (`applyKidsSeoMeta`), not here. |
-| `sitemap.xml` | repo root | Hand-maintained, one `<url>` per page (11 — `voices.html` was merged into `faq.html` on 2026-09-22 and is excluded; `clubs.html` was added the same day), each carrying the full `xhtml:link` alternate set. No `lastmod` — a stale date is worse than none. |
+| `sitemap.xml` | repo root | Hand-maintained, one `<url>` per page — except the `EVENTS:BEGIN〜END` block, which `build_event_pages.py` rewrites (one `<url>` per event page) — (11 — `voices.html` was merged into `faq.html` on 2026-09-22 and is excluded; `clubs.html` was added the same day), each carrying the full `xhtml:link` alternate set. No `lastmod` — a stale date is worse than none. |
 | `<link rel="canonical">` | every page `<head>` | Static value is the bare (Japanese) URL. `i18n.js` rewrites it to the `?lang=` URL of the language actually being shown. |
 | `hreflang` | every page `<head>` | 12 languages + `x-default`, each pointing at a **distinct** `?lang=` URL. They previously all pointed at the same URL, which is an error Search Console reports. |
 | JSON-LD `WebSite` | `index.html` only | Static. Deliberately carries **no `publisher`/`Organization`** — inventing one would imply this site is official, which it is not. `citation` points at the permitted city URL. |
 | JSON-LD `FAQPage` | `faq.html`, generated at runtime | Built by `applyFaqJsonLd` in `i18n.js` from the loaded dictionary's `faq_q<N>`/`faq_a<N>` pairs. **Do not hand-write it into `faq.html`** — that would duplicate `data/i18n/` and silently drift. The loop stops at the first missing `faq_q<N>`, so FAQ keys must stay contiguously numbered. |
+| JSON-LD `BreadcrumbList` | every page with a `.breadcrumb`, generated at runtime | `applyBreadcrumbJsonLd` in `i18n.js` builds it from the translated breadcrumb text, in the reader's language, with URLs in the canonical `?lang=` form (2026-10-11). Same reason as FAQPage: never hand-write it |
+| Atom feed | `feed.xml` (generated) | See 「外から見つけてもらう仕組み」 below. Linked from every page's `<head>` with `rel="alternate"` |
 
 Google has restricted `FAQPage` rich results to authoritative government and health sites, so this markup will most likely not produce rich results here. It is still valid, accurate structured data and costs nothing to keep.
+
+## 外から見つけてもらう仕組み（2026-10-11 ユーザー指示）
+
+「桃花台」「Tokadai」の名前で検索・共有・引用されたときに見つかり、正しく読まれ、広がるための5つ。日次アイデアの起案プロンプトにも SEO・SNS の観点を足してある。**どれも外部ドメイン・第三者スクリプトを増やさず、中身を宣伝文にしない**（非公式・中立が引用される理由）。
+
+- **節・質問への直リンク（SECTION LINKS in `js/main.js`）** — `main h2.section-title` の右の「#」でその節の URL（canonical＝表示言語の `?lang=` 付き＋`#id`）をコピー。id は PAGE TOC が決めたもの（**SECTION LINKS は PAGE TOC より後に置く**）。Q&A（`.faq-item`）は質問のキーから id（`faq_q3`→`faq-q3`、`bus_faq_q2`→`bus-faq-q2`）を付け、開いた答えの下に🔗。その id で開かれたら答えを開いて着地する。**ボタンは文字を持たない**（記号は CSS の `::before`）— 目次・読み上げ・原文併記・回覧板が見出しの textContent を拾うため。見出しは辞書で作り直されるので `komaki:i18n-applied` のたびに付け直す。キーは `sec_link_copy` / `faq_link_copy` / `sec_link_copied`（`RUNTIME_KEYS`）。**Q&A のキー名を変えると共有済みのリンクが切れる。**
+- **予定ごとの固有ページ（`events/<開始日>-<N>.html`）** — `.github/scripts/build_event_pages.py` が schedule.html の手書きの予定（`sched_date<N>` / `sched_desc<N>`）1件ずつに生成する。**手編集不可。schedule.html の予定を足したり直したりしたら必ず実行**（自動更新ジョブも起案のあとに回す。check 13 が古さを止める）。同じスクリプトが schedule.html の各予定に `id="ev-…"` と🔗（`a.event-permalink`、`event_permalink`）を書き込み、sitemap.xml の `EVENTS:BEGIN〜END` を作り直し、消えた予定のページを消す（消えた URL は 404.html が受ける）。ページは `<html data-page="event">` で、45枚が1つのページ別辞書 `event.<lang>.json` を共有する（`build_page_dicts.py`）。静的な title・og・大見出しは日本語で、EVENT PAGE（`js/main.js`）が表示言語の予定名（本文の `<strong>`）に書き換える。本文はキーで流すので訳は既存の13辞書がそのまま使われる。**自動で足される催し（`data-auto`）は対象外**（辞書キーを持たない）。ページは `events/` の下なので `<base href="/">` を持つ。TOKADAI SCHEDULE は `data-page="event"` では催しを足さない。
+- **404.html** — GitHub Pages が存在しない URL にそのまま返す。**`<base href="/">` を外さないこと**（深いパスで css・js・data・リンクが壊れる）。ページ ID はパスから決められないので `<html data-page="404">`（`i18n.js` の `PAGE_ID` がこれを優先）。`noindex`、sitemap 対象外（check 12）、共有欄なし（check 11 の対象外）。キーは `nf_*` と `meta_*_404`。
+- **ページごとの QR** — `build_qr.py` が11ページ×12言語＝132枚（`qr/<ページ>.<言語>.svg`）。共有欄の「▣」（`share_qr*`、`RUNTIME_KEYS`）が `<dialog>` で表示・保存させる。QR に入るのは canonical（表示言語の URL）。**ページを足したら `build_qr.py` の `PAGES` と `js/main.js` の `QR_PAGES` の両方に足す。** JS で QR を作らない方針はそのまま。予定ページ・404 には出さない。
+- **Atom フィード（`feed.xml`）** — `.github/scripts/build_feed.py` が `news.json`・`community_events.json`（東部のみ）・`tobu_actions.json`（催しを除く — 開催日は公表日ではないため）・`site-updates.json`（fix を除く）から作る。**リンクはこのサイトの該当コーナーだけ**で、市の個別ページへは張らない。見出しはカットインと同じ一行（「市が「…」のページを更新」）。出力は入力だけで決まる（`--check` のため）。毎日のワークフローが作り直し、更新履歴を手で足したときは手で回す（check 14）。
+- **パンくずの構造化データ** — SEO の表を参照。
 
 ## CSS design tokens
 
@@ -667,3 +681,6 @@ Beyond the auto-update pipeline's scope and evidence checks, these run site-wide
 | 9 | schedule.html ⇔ events.json agree for every event not yet over | The top-page bar and the calendar are drawn from events.json; the schedule list is hand-written HTML. Each list item's `data-start`〜`data-event-date` must contain an events.json date and vice versa |
 | 10 | `now_text` marks every date with `data-past` / `data-until` | The いまの状況 box is prose; without the marks a passed date silently stays on the top page |
 | 11 | Every page (except the `voices.html` redirect) carries `#share` / `#share-buttons` | The share buttons and the sticky bar are built only where that section exists; `clubs.html` shipped without it and nobody noticed until a reader did (2026-10-05) |
+| 12 | Every root `*.html` is in `files.txt`, and every page except `voices.html` / `404.html` is in `sitemap.xml` with the 13 hreflang links in the `?lang=` form | Both files are hand-maintained; a page missing from the sitemap (or a broken hreflang) silently drops it — and its 11 translations — from search |
+| 13 | `events/*.html`, the `id`/🔗 on each schedule item, and the sitemap's EVENTS block match `schedule.html` (`build_event_pages.py --check`) | A stale event page keeps a changed date in search results |
+| 14 | `feed.xml` matches its data (`build_feed.py --check`) | Adding a changelog line by hand without rebuilding leaves the feed behind |

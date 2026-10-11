@@ -92,6 +92,11 @@ jobs:
       - name: Build eastern-district action list
         run: python3 .github/scripts/build_tobu_actions.py
 
+      # 「最新の動き」の Atom フィード（feed.xml）。上で作ったデータと更新履歴から決定的に作る。
+      # 市サーバへは行かない。これらのデータの【あと】に置くこと（2026-10-11）。
+      - name: Build Atom feed
+        run: python3 .github/scripts/build_feed.py
+
       # 再編対象8校のホームページ新着記事（別ドメイン・各校が更新）
       # 学校再編の一次情報ではないため、変化しても Issue や自動更新ジョブは動かさない。
       # data/school_news.json を差し替えるだけ。失敗してもワークフローは止めない。
@@ -130,7 +135,7 @@ jobs:
         id: report
         if: steps.fetch.outputs.changed == 'true' || steps.newsletters.outputs.changed == 'true'
         run: |
-          git add data/news.json data/official_pages data/community_events.json data/tobu_actions.json data/site-updates.json
+          git add data/news.json data/official_pages data/community_events.json data/tobu_actions.json data/site-updates.json feed.xml
           if git diff --staged --quiet -- data/official_pages; then
             echo "pages_changed=false" >> "$GITHUB_OUTPUT"
           else
@@ -332,6 +337,14 @@ jobs:
       # i18n.js の 404 フォールバックでは救えない。ここで必ず作り直す。
       # 起案AIに生成させないのは、生成物は決定的に作れるべきで、
       # AI の手作業に依存させる理由がないため。
+      # ---------- 予定ごとの固有ページの再生成 ----------
+      # 起案AIが schedule.html に予定を足す・直すと、events/*.html と sitemap.xml が古くなる。
+      # build_event_pages.py が決定的に作り直す（schedule.html の id とリンクも書き込む）。
+      # ページ別辞書は events/*.html も読むので、この順（予定ページ → ページ別辞書）で回す。
+      - name: Rebuild event pages
+        if: steps.token.outputs.available == 'true'
+        run: python3 .github/scripts/build_event_pages.py
+
       - name: Rebuild page dictionaries
         if: steps.token.outputs.available == 'true'
         run: python3 .github/scripts/build_page_dicts.py
@@ -377,7 +390,8 @@ jobs:
           # auto_gates.py の ALLOWED と同じ集合を並べること。ここに書き漏らすと、
           # 起案AIの編集が commit されず PR にも proposed.diff にも現れないまま消える
           # （community.html が長らくそうなっていた）。
-          git add data/events.json data/i18n index.html schedule.html community.html
+          # events/ と sitemap.xml は build_event_pages.py の生成物（schedule.html の予定から作る）
+          git add data/events.json data/i18n index.html schedule.html community.html events sitemap.xml
           git commit -m "auto: 公式ページ更新の自動反映 ${TODAY}"
           git diff origin/main..HEAD > auto_update/proposed.diff
           echo "--- proposed diff ---"

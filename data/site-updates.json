@@ -3,6 +3,30 @@
   "updates": [
     {
       "date": "2026-10-11",
+      "type": "feature",
+      "ja": "予定ごとの固有ページを追加（スケジュールの🔗から）",
+      "en": "A page for each scheduled event (🔗 in the schedule)"
+    },
+    {
+      "date": "2026-10-11",
+      "type": "feature",
+      "ja": "節・質問ごとのリンクをコピーできる「#」ボタン",
+      "en": "Copy a link to any section or question with the # button"
+    },
+    {
+      "date": "2026-10-11",
+      "type": "feature",
+      "ja": "共有欄にページごとのQRコードを追加",
+      "en": "QR code for each page in the share buttons"
+    },
+    {
+      "date": "2026-10-11",
+      "type": "feature",
+      "ja": "最新の動きをRSSリーダーで読めるフィードを公開",
+      "en": "Feed of the latest updates for RSS readers"
+    },
+    {
+      "date": "2026-10-11",
       "type": "content",
       "ja": "サイト名を「小牧市東部（篠岡地区）学校再編ナビ」に変更",
       "en": "Site renamed in Japanese to 学校再編ナビ (School Reorganization Navi)"

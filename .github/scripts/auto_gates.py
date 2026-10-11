@@ -38,7 +38,12 @@ ALLOWED = {"data/events.json", "index.html", "schedule.html", "community.html"} 
 }
 # ページ別辞書は build_page_dicts.py が決定的に生成する。起案AIは触らないが、
 # ワークフローが辞書編集のあとに再生成するので、変更ファイルとして現れる。
-ALLOWED_PREFIXES = ("data/i18n/pages/",)
+ALLOWED_PREFIXES = ("data/i18n/pages/",
+                    # 予定ごとの固有ページと sitemap の EVENTS ブロックは build_event_pages.py が
+                    # schedule.html から決定的に生成する（2026-10-11）。ワークフローが作り直す。
+                    "events/", "sitemap.xml",
+                    # feed.xml は build_feed.py の生成物（毎日のワークフローが作り直す）
+                    "feed.xml")
 # 自動化の作業ファイル置き場（検査対象外）
 IGNORE_PREFIXES = ("auto_update/", "report/")
 EVIDENCE = "auto_update/evidence.json"
@@ -519,7 +524,7 @@ def main():
     # 移動案内だけの voices.html は対象外。
     share_missing = []
     for page in sorted(glob.glob("*.html")):
-        if page == "voices.html":
+        if page in ("voices.html", "404.html"):   # 404 は共有するページではない
             continue
         with open(page, encoding="utf-8") as f:
             h = f.read()
@@ -530,6 +535,77 @@ def main():
             fail(f"共有欄（#share / #share-buttons）が無い: {p_}")
     else:
         ok("全ページに共有欄")
+
+    # --- 12. ページ ⇔ sitemap.xml ⇔ files.txt（サイト全体を検査） ---
+    # 2026-10-11 追加。sitemap.xml と files.txt は手で保守していて、ページを足したときに
+    # 片方だけ忘れると、検索エンジンにそのページ（と12言語の版）が伝わらない。
+    # sitemap に載せないのは移動案内の voices.html と 404.html だけ。
+    # 各 <url> の hreflang は12言語＋x-default の13本で、URL は ?lang= の規則どおりか。
+    SITEMAP_EXCLUDE = {"voices.html", "404.html"}
+    HREFLANG = {"ja": "", "en": "en", "pt-BR": "pt", "vi": "vi", "tl": "tl", "es": "es",
+                "zh-Hans": "zh", "id": "id", "ko": "ko", "ne": "ne", "tr": "tr", "my": "my",
+                "x-default": ""}
+    SITE = "https://komaki-east-school-reorg.github.io/"
+    sm_problems = []
+    pages_ = set(glob.glob("*.html"))
+    with open("files.txt", encoding="utf-8") as f:
+        listed = set(re.findall(r"^([A-Za-z0-9_-]+\.html)\s", f.read(), re.M))
+    for p_ in sorted(pages_ - listed):
+        sm_problems.append(f"files.txt に無いページ: {p_}")
+    for p_ in sorted(listed - pages_):
+        sm_problems.append(f"files.txt にあるが存在しないページ: {p_}")
+    with open("sitemap.xml", encoding="utf-8") as f:
+        sm = f.read()
+    blocks = re.findall(r"<url>(.*?)</url>", sm, re.S)
+    in_sitemap = set()
+    for b in blocks:
+        m = re.search(r"<loc>([^<]+)</loc>", b)
+        if not m:
+            sm_problems.append("sitemap.xml に <loc> の無い <url> がある")
+            continue
+        loc = m.group(1)
+        page = loc[len(SITE):] or "index.html"
+        if page.startswith("events/"):
+            continue   # 予定ごとのページは check 13（build_event_pages.py --check）が見る
+        in_sitemap.add(page)
+        links = dict(re.findall(r'hreflang="([^"]+)" href="([^"]+)"', b))
+        for hl, code in HREFLANG.items():
+            want = loc + ("?lang=" + code if code else "")
+            if links.get(hl) != want:
+                sm_problems.append(f"sitemap.xml {page}: hreflang={hl} が {links.get(hl)!r}（期待 {want}）")
+        for hl in set(links) - set(HREFLANG):
+            sm_problems.append(f"sitemap.xml {page}: 知らない hreflang={hl}")
+    for p_ in sorted(pages_ - SITEMAP_EXCLUDE - in_sitemap):
+        sm_problems.append(f"sitemap.xml に無いページ: {p_}")
+    for p_ in sorted(in_sitemap - pages_):
+        sm_problems.append(f"sitemap.xml にあるが存在しないページ: {p_}")
+    for p_ in sorted(in_sitemap & SITEMAP_EXCLUDE):
+        sm_problems.append(f"sitemap.xml に載せないページが載っている: {p_}")
+    if sm_problems:
+        for v in sm_problems:
+            fail(f"sitemap / files.txt: {v}")
+    else:
+        ok("ページ ⇔ sitemap.xml ⇔ files.txt")
+
+    # --- 13. 予定ごとの固有ページが schedule.html と一致（サイト全体を検査） ---
+    # events/*.html・schedule.html の id とリンク・sitemap.xml の EVENTS ブロックは
+    # build_event_pages.py が生成する。古いまま公開すると、変わった日時が検索結果に残る。
+    r = subprocess.run([sys.executable, ".github/scripts/build_event_pages.py", "--check"],
+                       capture_output=True, text=True)
+    if r.returncode != 0:
+        for line in (r.stdout + r.stderr).strip().splitlines()[:10]:
+            fail(f"予定ページ: {line}")
+    else:
+        ok("予定ごとの固有ページは最新")
+
+    # --- 14. Atom フィード（feed.xml）が最新（サイト全体を検査） ---
+    # build_feed.py がデータと更新履歴から決定的に作る。更新履歴を手で足したら作り直すこと。
+    r = subprocess.run([sys.executable, ".github/scripts/build_feed.py", "--check"],
+                       capture_output=True, text=True)
+    if r.returncode != 0:
+        fail("feed.xml: " + (r.stdout + r.stderr).strip().splitlines()[0])
+    else:
+        ok("Atom フィード（feed.xml）は最新")
 
     # --- 7. 出典実在チェック ---
     if not os.path.exists(EVIDENCE):

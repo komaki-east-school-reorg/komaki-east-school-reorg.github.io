@@ -42,6 +42,13 @@ AFTER_SUFFIX = "__after"
 #   event_status_*     … schedule.html の 完了/進行中/予定 バッジ
 #   share_*            … 全ページ共通の共有ボタン（main.js が組み立てる）
 RUNTIME_KEYS = [
+    "share_qr",           # SHARE BUTTONS の QR（main.js）
+    "share_qr_note",
+    "share_qr_save",
+    "share_qr_close",
+    "sec_link_copy",      # SECTION LINKS（main.js）
+    "faq_link_copy",
+    "sec_link_copied",
     "status_done",
     "event_status_done",
     "event_status_current",
@@ -109,6 +116,16 @@ def build():
         for lang, d in dicts.items():
             sub = {k: d[k] for k in sorted(keys) if k in d}
             out[f"{pid}.{lang}.json"] = sub
+    # 予定ごとの固有ページ（events/*.html、build_event_pages.py が生成）は <html data-page="event">
+    # で、45枚が1つの辞書 event.<lang>.json を共有する（2026-10-11）。
+    ev_pages = sorted(glob.glob("events/*.html"))
+    if ev_pages:
+        keys = set()
+        for path in ev_pages:
+            keys |= keys_for_page(path, all_keys)
+        keys |= {k for k in ("meta_title_event", "meta_desc_event") if k in all_keys}
+        for lang, d in dicts.items():
+            out[f"event.{lang}.json"] = {k: d[k] for k in sorted(keys) if k in d}
     return out
 
 

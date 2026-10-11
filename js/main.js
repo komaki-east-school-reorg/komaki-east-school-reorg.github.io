@@ -674,6 +674,8 @@ window.KomakiGrade = (function () {
    手で書いた項目（events.json と schedule.html にあるもの）は extra に入らないので二重にならない。
    文言は表示言語で組み立て直すので、辞書が差し替わるたび（komaki:i18n-applied）描き直す。 */
 (function () {
+  // 予定ごとの固有ページ（events/*.html）の .event-list には1件だけを置く。ここで催しを足さない。
+  if (document.documentElement.getAttribute('data-page') === 'event') return;
   var hasList = !!document.querySelector('.event-list');
   var digest = document.querySelector('[data-i18n-html="status_digest"]');
   if (!hasList && !digest) return;
@@ -2167,6 +2169,42 @@ window.KomakiGrade = (function () {
   var pasteTpl = tplSpan('share_copied_paste', 'リンクをコピーしました。{app} に貼り付けてください');
   var hostPromptTpl = tplSpan('share_mastodon_prompt', '使っている Mastodon サーバーのドメインを入力してください（例：mstdn.jp）');
 
+  var qrNoteTpl = tplSpan('share_qr_note', '読み取ると、このページを表示中の言語で開きます。チラシや掲示にお使いください。');
+  var qrSaveTpl = tplSpan('share_qr_save', '画像を保存');
+  var qrCloseTpl = tplSpan('share_qr_close', '閉じる');
+  var QR_PAGES = ['index', 'about', 'schedule', 'faq', 'bus', 'clubs', 'council', 'community', 'map', 'nationwide', 'review'];
+  var PAGE_ID_SB = document.documentElement.getAttribute('data-page') ||
+    (location.pathname.match(/([^/]+)\.html$/) || ['', 'index'])[1] || 'index';
+  var qrDlg = null;
+  function openQr() {
+    var lang = window.KomakiLang();
+    var src = 'qr/' + PAGE_ID_SB + '.' + lang + '.svg';
+    if (!qrDlg) {
+      qrDlg = document.createElement('dialog');
+      qrDlg.className = 'qr-dialog';
+      qrDlg.innerHTML = '<img class="qr-img" alt="" width="240" height="240">' +
+        '<p class="qr-url"></p><p class="qr-note"></p>' +
+        '<div class="qr-actions"><a class="qr-save" download></a><button type="button" class="qr-close"></button></div>';
+      qrDlg.addEventListener('click', function (e) { if (e.target === qrDlg) qrDlg.close(); });
+      qrDlg.querySelector('.qr-close').addEventListener('click', function () { qrDlg.close(); });
+      document.body.appendChild(qrDlg);
+    }
+    // QR に入っているのは canonical（表示言語の ?lang= 付き）。学年などの付加パラメータは入らない。
+    var c = document.querySelector('link[rel="canonical"]');
+    var qrUrl = (c && c.getAttribute('href')) || shareUrl();
+    var img = qrDlg.querySelector('.qr-img');
+    img.src = src;
+    img.alt = 'QR: ' + qrUrl;
+    qrDlg.querySelector('.qr-url').textContent = qrUrl;
+    qrDlg.querySelector('.qr-note').textContent = qrNoteTpl.textContent;
+    var save = qrDlg.querySelector('.qr-save');
+    save.href = src;
+    save.setAttribute('download', 'qr-' + PAGE_ID_SB + '-' + lang + '.svg');
+    save.textContent = qrSaveTpl.textContent;
+    qrDlg.querySelector('.qr-close').textContent = qrCloseTpl.textContent;
+    if (qrDlg.showModal) qrDlg.showModal(); else qrDlg.setAttribute('open', '');
+  }
+
   // トースト本体は入れ物ごとに1つ。結果表示はボタンの行の外（下）に置く。
   // 行の中に空の要素を混ぜると flex の gap ぶんだけ最後のボタンの右に隙間が残るため。
   function makeToast(box) {
@@ -2282,6 +2320,17 @@ window.KomakiGrade = (function () {
     var printBtn = makeBtn('button', 'print', '🖨', 'share_print', 'このページを印刷する');
     printBtn.addEventListener('click', function () { window.print(); });
     box.appendChild(printBtn);
+
+    /* --- このページの QR コード（2026-10-11 追加）---
+       チラシ・掲示・発表スライドに貼って、紙から表示中の言語のこのページへ来てもらうため。
+       QR は自前で作らず、.github/scripts/build_qr.py（segno）が書き出した qr/<ページ>.<言語>.svg を
+       表示するだけ（自動で読む外部スクリプトを増やさない・壊れた QR を出さないため）。
+       QR を作ってあるページ（QR_PAGES）でだけボタンを出す。 */
+    if (QR_PAGES.indexOf(PAGE_ID_SB) !== -1) {
+      var qrBtn = makeBtn('button', 'qr', '▣', 'share_qr', 'QRコードを表示');
+      qrBtn.addEventListener('click', openQr);
+      box.appendChild(qrBtn);
+    }
 
     /* --- 端末標準の共有（スマートフォン）---
        WhatsApp・Zalo・Messenger など、ここに並べきれない共有先の受け皿。
@@ -2875,6 +2924,154 @@ window.KomakiGrade = (function () {
   wrap.appendChild(det);
   nav.appendChild(wrap);
   anchor.parentNode.insertBefore(nav, anchor.nextSibling);
+})();
+
+/* ===== SECTION LINKS（節・質問への直リンク、全ページ）=====
+   2026-10-11 ユーザー採用（「桃花台」の名前で外から引用・共有されやすくするための案の1つ）。
+   SNS やブログに貼られるのは「この質問の答え」「この節」への直リンクなので、
+   ・main の h2.section-title の右に「#」を置き、押すとその節への URL をコピーする。
+     飛び先の id は PAGE TOC が決めたもの（section の id → 見出しの id → toc-<キー>）を使う。
+     PAGE TOC より後に置くこと。
+   ・Q&A（.faq-item）には、質問のキーから id（faq_q3 → faq-q3、bus_faq_q2 → bus-faq-q2）を付け、
+     開いた答えの下に「この質問へのリンクをコピー」を置く。その id で開かれたら答えを開いて着地する。
+   ・URL は canonical（i18n.js が表示言語の ?lang= 付きに書き換え済み）＋ #id。
+   ・見出しは i18n.js が辞書で中身ごと書き換えるので、komaki:i18n-applied のたびに付け直す。
+     ボタン自体は文字を持たない（記号は CSS の ::before）— 目次・読み上げ・原文併記・回覧板は
+     見出しの textContent を拾うので、文字を入れると混ざる。文言は aria-label と title だけ。
+   ・文言は下の隠し要素（data-i18n）から読む。キーは build_page_dicts.py の RUNTIME_KEYS。 */
+(function () {
+  var main = document.querySelector('main');
+  if (!main) return;
+  var tpl = document.createElement('div');
+  tpl.hidden = true;
+  tpl.innerHTML = '<span data-k="sec" data-i18n="sec_link_copy">この節へのリンクをコピー</span>' +
+                  '<span data-k="faq" data-i18n="faq_link_copy">この質問へのリンクをコピー</span>' +
+                  '<span data-k="done" data-i18n="sec_link_copied">リンクをコピーしました</span>';
+  document.body.appendChild(tpl);
+  function t(k) { var e = tpl.querySelector('[data-k="' + k + '"]'); return e ? e.textContent.trim() : ''; }
+
+  function urlFor(id) {
+    var c = document.querySelector('link[rel="canonical"]');
+    var base = (c && c.getAttribute('href')) || location.href.split('#')[0];
+    return base.split('#')[0] + '#' + id;
+  }
+  function copy(text) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    return new Promise(function (ok, ng) {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;left:-9999px;';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy') ? ok() : ng(); } catch (e) { ng(e); }
+      document.body.removeChild(ta);
+    });
+  }
+  function onCopy(btn, id, kind) {
+    copy(urlFor(id)).then(function () {
+      try { history.replaceState(null, '', '#' + id); } catch (e) {}
+      btn.classList.add('is-copied');
+      btn.setAttribute('aria-label', t('done'));
+      btn.title = t('done');
+      setTimeout(function () {
+        btn.classList.remove('is-copied');
+        btn.setAttribute('aria-label', t(kind)); btn.title = t(kind);
+      }, 1800);
+    }).catch(function () {});
+  }
+  function makeBtn(id, kind, cls) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = cls;
+    b.setAttribute('aria-label', t(kind));
+    b.title = t(kind);
+    b.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); onCopy(b, id, kind); });
+    return b;
+  }
+
+  function headId(h) {
+    var sec = h.closest('section');
+    if (sec && sec.id && sec.querySelector('h2.section-title') === h) return sec.id;
+    return h.id || '';
+  }
+  function decorateHeads() {
+    main.querySelectorAll('h2.section-title').forEach(function (h) {
+      if (h.closest('.share')) return;
+      var id = headId(h);
+      if (!id || h.querySelector('.sec-link')) return;
+      var b = makeBtn(id, 'sec', 'sec-link');
+      var small = h.querySelector(':scope > small');
+      h.insertBefore(b, small || null);
+    });
+  }
+
+  var faqItems = [].slice.call(document.querySelectorAll('.faq-item'));
+  faqItems.forEach(function (it) {
+    var k = it.querySelector('.faq-q [data-i18n-html], .faq-q [data-i18n]');
+    var key = k && (k.getAttribute('data-i18n-html') || k.getAttribute('data-i18n'));
+    if (!key || it.id) return;
+    var id = key.replace(/_/g, '-');
+    if (!document.getElementById(id)) it.id = id;
+  });
+  function decorateFaq() {
+    faqItems.forEach(function (it) {
+      if (!it.id || it.querySelector(':scope > .faq-link')) return;
+      it.appendChild(makeBtn(it.id, 'faq', 'faq-link'));
+    });
+  }
+  function relabel() {
+    document.querySelectorAll('.sec-link').forEach(function (b) { if (!b.classList.contains('is-copied')) { b.setAttribute('aria-label', t('sec')); b.title = t('sec'); } });
+    document.querySelectorAll('.faq-link').forEach(function (b) { if (!b.classList.contains('is-copied')) { b.setAttribute('aria-label', t('faq')); b.title = t('faq'); } });
+  }
+
+  // #faq-q3 のように質問を指して開かれたら、その答えを開いて着地する
+  var landed = false;
+  function land() {
+    if (landed) return;
+    var id = decodeURIComponent((location.hash || '').slice(1));
+    var it = id && document.getElementById(id);
+    if (!it || !it.classList.contains('faq-item')) { landed = true; return; }
+    var q = it.querySelector('.faq-q');
+    if (q && !q.classList.contains('open')) q.click();
+    landed = true;
+    setTimeout(function () { it.scrollIntoView({block: 'start'}); }, 60);
+  }
+
+  decorateHeads(); decorateFaq();
+  document.addEventListener('komaki:i18n-applied', function () {
+    decorateHeads(); decorateFaq(); relabel(); land();
+  });
+  window.addEventListener('hashchange', function () { landed = false; land(); });
+})();
+
+/* ===== EVENT PAGE（予定ごとの固有ページ、events/*.html）=====
+   2026-10-11 ユーザー指示。ページは .github/scripts/build_event_pages.py が schedule.html から作る。
+   静的な <title>・og・大見出し（h1.event-h1）は日本語なので、表示言語に合わせて書き換える
+   （title は「予定名（日時） – サイト名」、大見出しは予定名）。
+   予定名は本文（sched_desc<N>）の <strong>、無ければ本文の頭。サイト名はフッタの footer_title。 */
+(function () {
+  if (document.documentElement.getAttribute('data-page') !== 'event') return;
+  function txt(el) { return el ? (el.textContent || '').replace(/\s+/g, ' ').trim() : ''; }
+  function apply() {
+    var desc = document.querySelector('.event-single .event-desc');
+    var dateEl = document.querySelector('.event-single .event-date');
+    var strong = desc && desc.querySelector('strong');
+    var name = txt(strong) || txt(desc).slice(0, 40);
+    var dc = dateEl && dateEl.cloneNode(true);
+    if (dc) dc.querySelectorAll('.event-status').forEach(function (b) { b.remove(); });
+    var date = txt(dc);
+    var site = txt(document.querySelector('.footer-title[data-i18n="footer_title"]'));
+    if (!name) return;
+    // 大見出しは辞書キーを持たない（予定名は本文の <strong> の中にしか無い）ので、ここで訳に合わせる
+    var h1 = document.querySelector('h1.event-h1');
+    if (h1) h1.textContent = name;
+    var t = name + (date ? '（' + date + '）' : '') + (site ? ' – ' + site : '');
+    if (!/^(ja|zh)$/.test(window.KomakiLang())) t = name + (date ? ' (' + date + ')' : '') + (site ? ' – ' + site : '');
+    document.title = t;
+    ['meta[property="og:title"]', 'meta[name="twitter:title"]'].forEach(function (sel) {
+      var m = document.querySelector(sel);
+      if (m) m.setAttribute('content', t);
+    });
+  }
+  document.addEventListener('komaki:i18n-applied', apply);
 })();
 
 /* ===== HEADER HEIGHT（全ページ）=====

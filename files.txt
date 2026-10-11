@@ -16,10 +16,15 @@ clubs.html          校区内の地域クラブ・課外活動と各校の部活
 map.html            再編対象の各学校の位置を地図で確認できる学校マップページ。
 nationwide.html     全国の廃校数・国が示す学校規模と通学の基準・2026年8月の手引改訂を整理した「全国の動き」ページ。
 review.html         計画の検証と提案のページ。公表資料から確認できること・できないことを整理し、地区全体の児童生徒数を増やす方策を検討する。当サイトの見解を含む唯一のページ。
+404.html            存在しない URL を開いたときに GitHub Pages が返すページ。主なページと12言語への入口（noindex・sitemap 対象外・共有欄なし）。深いパスでも崩れないよう <base href="/"> を持つ。
 
 ■ スタイル
 css/style.css       サイト全体のデザイン・レイアウト・カラー・レスポンシブ対応を定義するスタイルシート。共有ボタン（.share-*）・学年ビュー（.grade-*）・回覧板シートの印刷指定（@media print の #board-sheet）もここ。
-qr/                 回覧板シート用のQRコード。index.<言語>.svg の10枚（回覧板はindex.htmlにしか無い）。.github/scripts/build_qr.py が生成する。手編集不可。
+qr/                 QRコード。<ページ>.<言語>.svg の132枚（11ページ×12言語）。回覧板シートと全ページの共有欄「QR」ボタンが使う。.github/scripts/build_qr.py が生成する。手編集不可。
+.github/scripts/build_event_pages.py 予定ごとの固有ページ（events/*.html）を schedule.html から生成し、各予定に id と固有ページへのリンク、sitemap.xml の EVENTS ブロックを書き込む。--check で鮮度検証（auto_gates.py check 13）。
+.github/scripts/build_feed.py       「最新の動き」の Atom フィード（feed.xml）を生成する。--check で鮮度検証（auto_gates.py check 14）。
+events/             予定ごとの固有ページ（<開始日>-<N>.html、schedule.html の手書きの予定1件ずつ）。.github/scripts/build_event_pages.py が生成する。手編集不可。
+feed.xml            「最新の動き」の Atom フィード（市のお知らせ・東部の地域協議会の催し・東部まちづくり・更新履歴）。.github/scripts/build_feed.py が生成する。手編集不可。
 
 ■ JavaScript
 js/i18n.js          言語JSONファイルを非同期取得してページ内テキストを多言語に切り替える国際化スクリプト。
@@ -93,7 +98,7 @@ sitemap.xml                 全11ページのサイトマップ。各URLに12言
 .github/scripts/check_contacts.py   data/contacts.jsonの連絡先を市・県・国の公表ページと突き合わせるスクリプト。--fixで電話・FAX番号だけ自動修正（部署名は翻訳があるので手で直す）。exit 0=一致/3=食い違い/1=エラー。
 .github/scripts/map_targets.py      変更された公式ページのスラッグをsite-facts.jsonで引き、サイト内の更新候補箇所をMarkdown出力するスクリプト（Issue本文生成用）。
 .github/scripts/build_page_dicts.py  data/i18n/pages/ を生成する。辞書やHTMLのdata-i18nを変えたら実行してコミットすること。--check で鮮度検証のみ。
-.github/scripts/build_qr.py         回覧板シート（index.htmlのみ）に載せるQRコード（qr/index.*.svg）を言語ぶん生成する。segnoが必要（pip install segno）。--check で鮮度検証のみ。
+.github/scripts/build_qr.py         回覧板シートと共有欄の「QR」ボタンが使うQRコード（qr/<ページ>.<言語>.svg）を生成する。segnoが必要（pip install segno）。--check で鮮度検証のみ。
 .github/scripts/auto_gates.py       自動更新のガードレール検証（編集範囲・スキーマ・ja/enキー一致・こどもモード1行の長さ・ページ別辞書の鮮度・外部リンク規則・出典実在チェック）。exit 0=合格/3=変更なし/1=不合格。
 .github/scripts/auto_report.py      自動更新のPR本文・事後報告コメントをevidence.json/verdict.jsonから生成するスクリプト。
 .github/workflows/check-contacts.yml 毎週1回、担当部署の連絡先を公表ページと照合するワークフロー定義。番号の変更は自動コミット、部署名の変更はIssueで知らせる。
