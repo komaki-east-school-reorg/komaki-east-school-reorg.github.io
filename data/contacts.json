@@ -766,6 +766,78 @@
         "nationwide.html",
         "review.html"
       ]
+    },
+    {
+      "id": "lib-toubu",
+      "level": "library",
+      "name": "東部市民センター　図書室",
+      "tel": "0568-79-0012",
+      "source": "https://www.city.komaki.aichi.jp/admin/shisetsu/geijyutsu/2/41695.html",
+      "probe": {
+        "kind": "text",
+        "check_tel": true,
+        "match": "図書室"
+      },
+      "shown_in": [
+        "about.html",
+        "schedule.html",
+        "faq.html",
+        "bus.html",
+        "clubs.html",
+        "council.html",
+        "community.html",
+        "map.html",
+        "nationwide.html",
+        "review.html"
+      ]
+    },
+    {
+      "id": "city-toubu-komin",
+      "level": "city",
+      "name": "東部市民センター　公民館",
+      "tel": "0568-79-0011",
+      "fax": "0568-79-0013",
+      "source": "https://www.city.komaki.aichi.jp/admin/shisetsu/geijyutsu/2/41695.html",
+      "probe": {
+        "kind": "text",
+        "check_tel": true,
+        "match": "公民館"
+      },
+      "shown_in": [
+        "community.html",
+        "schedule.html"
+      ]
+    },
+    {
+      "id": "gsi-chubu",
+      "level": "nat",
+      "name": "国土交通省　国土地理院　中部地方測量部",
+      "tel": "052-961-5638",
+      "source": "https://www.gsi.go.jp/chubu/room-room.html",
+      "probe": {
+        "kind": "text",
+        "check_tel": true,
+        "match": "中部地方測量部"
+      },
+      "shown_in": [
+        "map.html"
+      ]
+    },
+    {
+      "id": "police-komaki",
+      "level": "pref",
+      "name": "愛知県警察　小牧警察署",
+      "tel": "0568-72-0110",
+      "fax": "0568-76-9453",
+      "source": "https://www.pref.aichi.jp/police/syokai/shozaichi/keisatsusho.html",
+      "probe": {
+        "kind": "text",
+        "check_tel": true,
+        "match": "小牧警察署"
+      },
+      "shown_in": [
+        "bus.html"
+      ]
     }
   ]
 }

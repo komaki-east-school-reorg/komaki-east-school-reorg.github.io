@@ -35,6 +35,7 @@ import json
 import os
 import re
 import sys
+import unicodedata
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import fetch_news as F   # noqa: E402  （curl 取得・polite_wait を共有する）
@@ -133,7 +134,8 @@ def check_one(entry, lines):
         found = {"name": entry["name"] if norm(needle) in text else "(見つからない)"}
         # 電話番号は「(0568) 79-6464」のような書き方もあるので、括弧・空白・
         # ハイフンを落とした数字の並びで照合する。
-        flat = re.sub(r"[()（）\s\-‐-―ー]", "", "".join(lines))
+        # 全角数字（「０５２－９６１－５６３８」、国土地理院など）も半角にそろえてから比べる。
+        flat = re.sub(r"[()（）\s\-‐-―ー]", "", unicodedata.normalize("NFKC", "".join(lines)))
         if entry["probe"].get("check_tel") and entry.get("tel"):
             digits = entry["tel"].replace("-", "")
             found["tel"] = entry["tel"] if digits in flat else "(見つからない)"

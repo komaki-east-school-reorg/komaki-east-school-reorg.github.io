@@ -1483,5 +1483,9 @@
   "contact_library_lead": "Jika ingin memeriksa sendiri dari sumbernya, Anda juga bisa meminta bantuan layanan referensi perpustakaan.",
   "ct_w_lib_city": "Bantuan penelusuran (panduan bahan pustaka), bahan sejarah lokal",
   "ct_w_lib_pref": "Telepon khusus layanan referensi, untuk penelusuran dengan bahan prefektur dan koleksi perpustakaan lain",
-  "ct_w_lib_ndl": "Terbitan dalam negeri, serta dokumen parlemen dan instansi pemerintah"
+  "ct_w_lib_ndl": "Terbitan dalam negeri, serta dokumen parlemen dan instansi pemerintah",
+  "ct_w_lib_toubu": "Ruang baca kota di distrik Shinooka: peminjaman buku dan pemesanan bahan dari perpustakaan pusat",
+  "ct_w_toubu_komin": "Tempat pertemuan penjelasan dan acara warga; pemesanan ruangan",
+  "ct_w_gsi": "Melihat peta nasional seperti peta topografi dan foto udara (ruang baca dengan janji)",
+  "ct_w_police": "Keselamatan lalu lintas setempat, laporan kejadian atau kecelakaan (darurat: 110)"
 }

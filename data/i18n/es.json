@@ -1483,5 +1483,9 @@
   "contact_library_lead": "Si quieres comprobarlo tú mismo en las fuentes, también puedes pedir ayuda al servicio de referencia de una biblioteca.",
   "ct_w_lib_city": "Ayuda con investigaciones (orientación sobre el acervo), materiales de historia local",
   "ct_w_lib_pref": "Teléfono exclusivo de referencia, para investigar con materiales de la prefectura y fondos de otras bibliotecas",
-  "ct_w_lib_ndl": "Materiales publicados en Japón y documentos de la Dieta y del gobierno"
+  "ct_w_lib_ndl": "Materiales publicados en Japón y documentos de la Dieta y del gobierno",
+  "ct_w_lib_toubu": "Sala de lectura municipal en el distrito de Shinooka: préstamo de libros y pedido de materiales de la biblioteca central",
+  "ct_w_toubu_komin": "Lugar de las reuniones informativas y eventos locales; reserva de salas",
+  "ct_w_gsi": "Consulta de mapas nacionales como mapas topográficos y fotos aéreas (sala de consulta con cita previa)",
+  "ct_w_police": "Seguridad vial local y denuncia de incidentes o accidentes (en emergencia, llama al 110)"
 }

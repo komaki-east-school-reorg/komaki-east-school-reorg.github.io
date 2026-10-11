@@ -128,6 +128,28 @@ def polite_wait():
     time.sleep(random.uniform(REQUEST_WAIT_MIN, REQUEST_WAIT_MAX))
 
 
+# 古い TLS 再ネゴシエーションしか話せないサーバ（国土地理院 gsi.go.jp など）向けの
+# OpenSSL 設定。OpenSSL 3 は既定でこれを拒み、curl が exit 35「unsafe legacy
+# renegotiation disabled」で落ちる。そのエラーのときだけ、この設定で1回取り直す
+# （2026-10-11、check_contacts.py の照合のため。市のサイトの取得には影響しない）。
+_LEGACY_OSSL_CONF = None
+
+
+def _legacy_ossl_env():
+    global _LEGACY_OSSL_CONF
+    if _LEGACY_OSSL_CONF is None:
+        fd, path = tempfile.mkstemp(prefix="komaki_ossl_", suffix=".cnf")
+        with os.fdopen(fd, "w") as f:
+            f.write("openssl_conf = openssl_init\n[openssl_init]\nssl_conf = ssl_sect\n"
+                    "[ssl_sect]\nsystem_default = sys_default\n"
+                    "[sys_default]\nOptions = UnsafeLegacyRenegotiation\n")
+        atexit.register(lambda p=path: os.path.exists(p) and os.remove(p))
+        _LEGACY_OSSL_CONF = path
+    env = dict(os.environ)
+    env["OPENSSL_CONF"] = _LEGACY_OSSL_CONF
+    return env
+
+
 def _curl_get(url):
     """curl で1回だけ取得する。200 以外・curl 失敗はすべて例外。"""
     fd, body_path = tempfile.mkstemp(prefix="komaki_body_", suffix=".html")
@@ -140,6 +162,9 @@ def _curl_get(url):
     cmd.append(url)
     try:
         proc = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
+        if proc.returncode == 35 and "legacy renegotiation" in proc.stderr:
+            proc = subprocess.run(cmd, capture_output=True, text=True, timeout=90,
+                                  env=_legacy_ossl_env())
         if proc.returncode != 0:
             raise RuntimeError(
                 f"curl exited {proc.returncode}: {proc.stderr.strip()}")
