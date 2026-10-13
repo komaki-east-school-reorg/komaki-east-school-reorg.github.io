@@ -1,8 +1,66 @@
 {
-  "fetched_at": "2026-10-12T01:28:53Z",
+  "fetched_at": "2026-10-13T03:10:29Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "toryo-j",
+      "level": "jhs",
+      "names": {
+        "ja": "桃陵中学校",
+        "ja_kids": "とうりょう中学校",
+        "en": "Toryo Junior High",
+        "zh": "桃陵中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
+      "latest_date": "2026-10-13",
+      "items": [
+        {
+          "title": "女子テニス部 秋の新人戦",
+          "date": "2026-10-13",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136249554?tm=20261013112457"
+        },
+        {
+          "title": "新人戦初戦、快勝発進！",
+          "date": "2026-10-13",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136248534?tm=20261013064500"
+        },
+        {
+          "title": "後期認証式",
+          "date": "2026-10-09",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136243675?tm=20261013094656"
+        }
+      ]
+    },
+    {
+      "slug": "hikarigaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "光ヶ丘小学校",
+        "ja_kids": "ひかりがおか小学校",
+        "en": "Hikarigaoka Elem. School",
+        "zh": "光之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
+      "latest_date": "2026-10-13",
+      "items": [
+        {
+          "title": "【ちごの森クラブ】森の手入れと山頂ハンモック体験",
+          "date": "2026-10-13",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136248716?tm=20261013081137"
+        },
+        {
+          "title": "4年生 6年生との合同練習",
+          "date": "2026-10-13",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136243873?tm=20261009170200"
+        },
+        {
+          "title": "4年生 プラネタリウム学習",
+          "date": "2026-10-13",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136243826?tm=20261009165856"
+        }
+      ]
+    },
     {
       "slug": "shinooka-j",
       "level": "jhs",
@@ -33,6 +91,35 @@
       ]
     },
     {
+      "slug": "hikarigaoka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "光ヶ丘中学校",
+        "ja_kids": "ひかりがおか中学校",
+        "en": "Hikarigaoka Junior High",
+        "zh": "光之丘中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
+      "latest_date": "2026-10-12",
+      "items": [
+        {
+          "title": "あと一歩の壁を越えていけ！",
+          "date": "2026-10-12",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136248228?tm=20261012141018"
+        },
+        {
+          "title": "ジュニア奉仕団 赤い羽根募金活動",
+          "date": "2026-10-12",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136246956?tm=20261010163452"
+        },
+        {
+          "title": "小牧市民スポーツ大会 軟式野球",
+          "date": "2026-10-10",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136246385?tm=20261010132006"
+        }
+      ]
+    },
+    {
       "slug": "ohshiro-e",
       "level": "elem",
       "names": {
@@ -58,64 +145,6 @@
           "title": "1 年算数 ながさくらべ",
           "date": "2026-10-08",
           "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136232563?tm=20261008141931"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "光ヶ丘中学校",
-        "ja_kids": "ひかりがおか中学校",
-        "en": "Hikarigaoka Junior High",
-        "zh": "光之丘中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
-      "latest_date": "2026-10-10",
-      "items": [
-        {
-          "title": "小牧市民スポーツ大会 軟式野球",
-          "date": "2026-10-10",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136246385?tm=20261010132006"
-        },
-        {
-          "title": "美術競技会 （3年生）",
-          "date": "2026-10-08",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136231212?tm=20261008124427"
-        },
-        {
-          "title": "極上の「謎」、ただいま試作中！",
-          "date": "2026-10-05",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136209328?tm=20261005174104"
-        }
-      ]
-    },
-    {
-      "slug": "toryo-j",
-      "level": "jhs",
-      "names": {
-        "ja": "桃陵中学校",
-        "ja_kids": "とうりょう中学校",
-        "en": "Toryo Junior High",
-        "zh": "桃陵中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
-      "latest_date": "2026-10-09",
-      "items": [
-        {
-          "title": "後期認証式",
-          "date": "2026-10-09",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136243675?tm=20261009183631"
-        },
-        {
-          "title": "My探究中間報告会",
-          "date": "2026-10-09",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136243238?tm=20261009183402"
-        },
-        {
-          "title": "３年生美術競技会",
-          "date": "2026-10-09",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136244944?tm=20261009182518"
         }
       ]
     },
@@ -203,35 +232,6 @@
           "title": "書写競技会を行いました。",
           "date": "2026-10-08",
           "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136236263?tm=20261008193046"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "光ヶ丘小学校",
-        "ja_kids": "ひかりがおか小学校",
-        "en": "Hikarigaoka Elem. School",
-        "zh": "光之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
-      "latest_date": "2026-10-09",
-      "items": [
-        {
-          "title": "３年生 理科 こん虫のからだの観察",
-          "date": "2026-10-09",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136237820?tm=20261009094625"
-        },
-        {
-          "title": "5年生 書写競技会",
-          "date": "2026-10-08",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136230110?tm=20261008112655"
-        },
-        {
-          "title": "5年生 書写競技会",
-          "date": "2026-10-08",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136229569?tm=20261008103919"
         }
       ]
     }
