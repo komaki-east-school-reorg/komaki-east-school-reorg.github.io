@@ -108,7 +108,7 @@ Keys that `main.js` attaches at runtime (`status_done`, `event_status_*`) never 
 
 There is also `data/i18n/ja-kids.json`: when the kids-mode toggle is active (Japanese only), it is fetched and merged on top of `ja.json` (`Object.assign({}, ja_dict, kids_dict)`), overriding keys with simpler hiragana/easy-Japanese text.
 
-Language preference and kids-mode state are persisted in `localStorage` under `komaki_lang` and `komaki_kids`. (Other per-reader keys: `komaki_grade`, `komaki_mastodon`, `komaki_feature_seen`, `komaki_seen_items` — see their sections.)
+Language preference and kids-mode state are persisted in `localStorage` under `komaki_lang` and `komaki_kids`. (Other per-reader keys: `komaki_orig`, `komaki_fs`, `komaki_grade`, `komaki_mastodon`, `komaki_feature_seen`, `komaki_seen_items` — see their sections.)
 
 ### Language in the URL (`?lang=`)
 
@@ -355,7 +355,7 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 
 | 節 | 見出し | 中身 | 性格 |
 |---|---|---|---|
-| `#qa` | `faq_qa_h`（h2） | よくある質問 22問。カテゴリ4つ（`faq_cat1`〜`4`）は **`h3.section-title.sub`** | 答えが公表されていること |
+| `#qa` | `faq_qa_h`（h2） | よくある質問 24問。カテゴリ4つ（`faq_cat1`〜`4`）は **`h3.section-title.sub`** | 答えが公表されていること |
 | `#voices` | `voices_cols_h`（h2） | 賛成・反対・中立の声 18件（3列） | 意見が割れていること。**当サイトによる要約・再構成**で市の見解ではない（`voices_about`） |
 | `#pubcom` | `voices_pc_h`（h2） | パブリックコメントの実施結果・論点の横棒グラフ・論点5件・計画が変わったところ | 市が公表した意見と「市の考え方」にもとづく（`voices_pc_note`） |
 | `#contact` | `faq_contact_h`（h2） | 教育総務課 学校再編推進係の連絡先 | 他ページの `#contact` と同じ位置づけ |
@@ -372,7 +372,7 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 - **順番と節の区切りを崩さないこと。** 「答えが出ている問い」→「答えが割れている問い」という流れで、背景色も `section-alt` → `section` → `section-alt` → `section` と交互にしてある。声を先に置いたり、Q&A と声を同じ節に混ぜたりすると、**住民の声が市の答えに読めてしまう**。`review.html` の【事実】と 🔎 を版面で分けるのと同じ考え方。
 - **`FAQPage` 構造化データに入るのは `#qa` だけ。** `i18n.js` の `applyFaqJsonLd` が `faq_q<N>`/`faq_a<N>` の連番から組み立てる（`pageId === 'faq'` 判定、最初の欠番で止まる）ので、**番号を飛ばさないこと**。声もパブコメも質問でも答えでもないので、構造化データには入れない。
 - **キー名は統合前のまま**（`voice_*` / `voices_*` / `col_*` / `pubcom_*` / `stat_*`）。付け替えると12言語＋こどもむけ13辞書の訳をすべて作り直すことになるため、`faq_*` に寄せていない。`voices_` で始まるキーが `faq.html` にあるのは統合の名残で、誤りではない。
-- **スマートフォンでは声を列ごとに畳む**（`VOICES COLLAPSE` in `js/main.js`、2026-09-22 ユーザー指示）。Q&A 22問はアコーディオンで畳まれているのに声18枚が開いたままだと、狭い画面では声が本文の大半を占めるため。**PC 幅では件数も ＋/− の記号も外す**（指示は「スマートフォンだけ畳む」であって PC の見た目を変える話ではない）。見出しに足すのは数字と記号だけなので、辞書にキーは増えていない。
+- **スマートフォンでは声を列ごとに畳む**（`VOICES COLLAPSE` in `js/main.js`、2026-09-22 ユーザー指示）。Q&A 24問はアコーディオンで畳まれているのに声18枚が開いたままだと、狭い画面では声が本文の大半を占めるため。**PC 幅では件数も ＋/− の記号も外す**（指示は「スマートフォンだけ畳む」であって PC の見た目を変える話ではない）。見出しに足すのは数字と記号だけなので、辞書にキーは増えていない。
   - 畳みは **`display:none`（`.voices-col.is-collapsed .voice-card`）で行う。** `hidden` 属性や `aria-hidden` にすると READ ALOUD の `SKIP` に当たり、畳んだ声が読み上げから丸ごと落ちる。`blocksOf()` の可視判定の例外は `.faq-a, .voice-card` の2つ — **この2つは対で維持すること**。
   - 見出し（`.voices-col-header`）の中身は `i18n.js` が `textContent` ごと書き換えるので、件数と記号は `komaki:i18n-applied` のたびに付け直している。
 - **旧 `voices.html` は削除せず、移動案内の1枚として残してある。** GitHub Pages は静的で 301 を返せず、このサイトは共有ボタンを前面に出しているので `voices.html?lang=xx` が LINE などに出回っている。`noindex`、`canonical` は `faq.html`、`meta refresh`（JS 無効時の保険）に加えて、**JS が `?lang=` を引き継いで `faq.html?lang=xx#voices` へ送る**。`sitemap.xml` と `hreflang` からは外し、ヘッダのナビからも外した（`clubs.html` を足して、サイトは**11ページ**）。`meta_title_voices` / `meta_desc_voices` は移動案内の文言として残っている。
@@ -453,6 +453,22 @@ Every page carries a `<section class="section share" id="share">` just above `</
   2. Its initializer is registered as `window.addEventListener("DOMContentLoaded", …)`, which has long since fired by the time the section scrolls into view, so it must be re-triggered with `window.dispatchEvent(new Event('DOMContentLoaded'))`. There is no public entry point for this — `Hatena.Star.EntryLoader.loadEntries()` does not exist in the current build. Double-firing is safe: it skips any entry node that already contains `[data-hatena-star]`.
 - In the current build **both the star's URL and its displayed title are read from the `uri` node** (the title comes from that element's `innerText`, not from the `title` selector). The permalink's text is the page title, so both readings give the right answer — keep it that way rather than moving the title into a separate node.
 - If nothing renders within 4 s the whole star row hides itself, so a broken widget never leaves a label with no star beside it.
+
+### 文字の大きさ（全ページ、2026-10-13）
+
+「このページの目次」（PAGE TOC）の横、`<details>` の外に「文字の大きさ [A][A][A]」（小・中・大）を置く（置き場所はユーザー指定。ヘッダには置かない）。状態は `localStorage` の `komaki_fs`（`s` / `l`、無し＝中）で、`i18n.js` の冒頭が同期的に `<html>` へ `fs-s` / `fs-l` を付け、CSS が `:root` の font-size を 14px / 18px にする。本文の字はほぼすべて rem なので一律に効く。
+
+- **ヘッダは大きくしない。** ヘッダの寸法は rem ではなく `:root` の `--hr: 16px`（`calc(X * var(--hr))`）で書いてあり、`header { font-size: var(--hr) }`。既定の 16px では 1rem と同じなので見た目は変わらない（2026-10-13 に変更前とスクリーンショットで一致を確認）。**ヘッダに規則を足すときも rem ではなく `--hr` を使うこと** — rem で書くと「大」でヘッダが膨らみ、ナビが重なる。
+- **回覧板シートは標準の大きさで組む。** シートの余白は rem なので、BOARD SHEET の `printSheet()` が `fit()` の前に `fs-*` を外し、刷り終えたら戻す。ふつうの印刷は選んだ大きさのまま。
+- ボタンの「A」は px 固定（押しても跳ねない）。文言は `fs_label` / `aria_fs_*`（`RUNTIME_KEYS`）。目次を作らないページ（見出しが2つ未満：予定ページ・404）にはボタンが無いが、設定は効く。
+
+### `.ics` の共通部品（`window.KomakiIcs`）
+
+2026-10-13 に GRADE VIEW から切り出した。使うのは、schedule.html の一括書き出し（GRADE VIEW）、**カレンダーの日カード**（予定のある日を押すと `#cal-day-card` にその日の予定と「この日の予定をカレンダーに追加」。文言は `#cal-strings` の `cal_day_*`）、**community.html の地域協議会イベントの各行の「📅 カレンダーに追加」**（これから開かれる催しのみ。文言はブロックの埋め込み辞書 `_cet`）。
+
+- **日カードの .ics に入れるのは `"day": true` の予定だけ。** 月単位・期間の予定はキーが月末などの日付なので、1日の予定として渡すと誤った日に入る。そういう日はカードに注記（`cal_day_note`）を出す。
+- **UID は `KomakiIcs.schedule()` が作る「日付[-n]-komaki-saihen@…」で、一括と日ごとで同じ。** 両方を取り込んでも二重にならない。この形を変えないこと。
+- 協議会の催しは `KomakiJaWhen.times()` で時刻を読み、日本時間を UTC（`…Z`）に直して書く。**終わりの時刻が公表されていなければ `DTEND` を書かない**（推測で作らない）。読めなければ終日。UID は記事 URL のハッシュから作る。
 
 ### 学年ビュー（`schedule.html`）と回覧板シート（`index.html` のみ）
 
@@ -654,7 +670,7 @@ The 対象エリアの地図 draws **three sources with different accuracy** —
 
 | Piece | Where | Notes |
 |---|---|---|
-| OGP image | `img/og-image.png` | 1200×630, the blackboard design with the site name in three lines (「小牧市東部（篠岡地区）」/「学校再編ナビ」/ the subtitle), redrawn 2026-10-11 for the rename. Every page references it as `og-image.png?v=YYYYMMDD` — **bump `v` on all 12 pages whenever the image changes**, or LINE / X / Facebook keep showing the cached old one. The image was rendered from an HTML mock-up with Playwright; that mock-up is not in the repo. |
+| OGP image | `img/og-image.png` | 1200×630, the blackboard design with the site name in three lines (「小牧市東部（篠岡地区）」/「学校再編ナビ」/ the subtitle), redrawn 2026-10-11 for the rename. Every page references it as `og-image.png?v=YYYYMMDD` — **bump `v` on all 12 pages whenever the image changes**, or LINE / X / Facebook keep showing the cached old one. Since 2026-10-13 the same image is also **shown inside the site** with the same `?v=` — the footer of every page (`.footer-logo`, so also `events/*.html` via `build_event_pages.py`), the share section's 「共有するとこう見える」 card (built in SHARE BUTTONS), `about.html#site-intro` (with a download link) and `404.html`; bump those too. The image was rendered from an HTML mock-up with Playwright; that mock-up is not in the repo. |
 | `robots.txt` | repo root | Allows everything; points at the sitemap. Kids mode is excluded via a JS-injected `noindex` (`applyKidsSeoMeta`), not here. |
 | `sitemap.xml` | repo root | Hand-maintained, one `<url>` per page — except the `EVENTS:BEGIN〜END` block, which `build_event_pages.py` rewrites (one `<url>` per event page) — (11 — `voices.html` was merged into `faq.html` on 2026-09-22 and is excluded; `clubs.html` was added the same day), each carrying the full `xhtml:link` alternate set. No `lastmod` — a stale date is worse than none. |
 | `<link rel="canonical">` | every page `<head>` | Static value is the bare (Japanese) URL. `i18n.js` rewrites it to the `?lang=` URL of the language actually being shown. |
@@ -674,7 +690,7 @@ Google has restricted `FAQPage` rich results to authoritative government and hea
 - **予定ごとの固有ページ（`events/<開始日>-<N>.html`）** — `.github/scripts/build_event_pages.py` が schedule.html の手書きの予定（`sched_date<N>` / `sched_desc<N>`）1件ずつに生成する。**手編集不可。schedule.html の予定を足したり直したりしたら必ず実行**（自動更新ジョブも起案のあとに回す。check 13 が古さを止める）。同じスクリプトが schedule.html の各予定に `id="ev-…"` と🔗（`a.event-permalink`、`event_permalink`）を書き込み、sitemap.xml の `EVENTS:BEGIN〜END` を作り直し、消えた予定のページを消す（消えた URL は 404.html が受ける）。ページは `<html data-page="event">` で、45枚が1つのページ別辞書 `event.<lang>.json` を共有する（`build_page_dicts.py`）。静的な title・og・大見出しは日本語で、EVENT PAGE（`js/main.js`）が表示言語の予定名（本文の `<strong>`）に書き換える。本文はキーで流すので訳は既存の13辞書がそのまま使われる。**自動で足される催し（`data-auto`）は対象外**（辞書キーを持たない）。ページは `events/` の下なので `<base href="/">` を持つ。TOKADAI SCHEDULE は `data-page="event"` では催しを足さない。
 - **404.html** — GitHub Pages が存在しない URL にそのまま返す。**`<base href="/">` を外さないこと**（深いパスで css・js・data・リンクが壊れる）。ページ ID はパスから決められないので `<html data-page="404">`（`i18n.js` の `PAGE_ID` がこれを優先）。`noindex`、sitemap 対象外（check 12）、共有欄なし（check 11 の対象外）。キーは `nf_*` と `meta_*_404`。
 - **ページごとの QR** — `build_qr.py` が11ページ×12言語＝132枚（`qr/<ページ>.<言語>.svg`）。共有欄の「▣」（`share_qr*`、`RUNTIME_KEYS`）が `<dialog>` で表示・保存させる。QR に入るのは canonical（表示言語の URL）。**ページを足したら `build_qr.py` の `PAGES` と `js/main.js` の `QR_PAGES` の両方に足す。** JS で QR を作らない方針はそのまま。予定ページ・404 には出さない。
-- **Atom フィード（`feed.xml`）** — `.github/scripts/build_feed.py` が `news.json`・`community_events.json`（東部のみ）・`tobu_actions.json`（催しを除く — 開催日は公表日ではないため）・`site-updates.json`（fix を除く）から作る。**リンクはこのサイトの該当コーナーだけ**で、市の個別ページへは張らない。見出しはカットインと同じ一行（「市が「…」のページを更新」）。出力は入力だけで決まる（`--check` のため）。毎日のワークフローが作り直し、更新履歴を手で足したときは手で回す（check 14）。
+- **Atom フィード（`feed.xml`）** — `.github/scripts/build_feed.py` が `news.json`・`community_events.json`（東部のみ）・`tobu_actions.json`（催しを除く — 開催日は公表日ではないため）・`site-updates.json`（fix を除く）から作る。**リンクはこのサイトの該当コーナーだけ**で、市の個別ページへは張らない。見出しはカットインと同じ一行（「市が「…」のページを更新」）。出力は入力だけで決まる（`--check` のため）。毎日のワークフローが作り直し、更新履歴を手で足したときは手で回す（check 14）。**配信していることは画面にも出す**（2026-10-13 ユーザー指示）：全ページのフッタの `.footer-feed`（`feed_link`）と、トップ「最新の動き」の見出し下の `.feed-box`（`feed_link` / `feed_note`・URL）。外国語の `feed_note` には「フィードは日本語」と書いてある — フィードを多言語にしたらそこも直す。
 - **パンくずの構造化データ** — SEO の表を参照。
 
 ## CSS design tokens

@@ -12,7 +12,7 @@
   data/i18n/pages/<ページID>.<言語>.json   （生成物。手で編集しないこと）
 
 含めるキー：
-  - そのページの HTML に data-i18n / -html / -aria で書かれているキー
+  - そのページの HTML に data-i18n / -html / -aria / -alt で書かれているキー
   - meta_title_<ページID> / meta_desc_<ページID>（i18n.js が動的に組み立てる）
   - RUNTIME_KEYS（main.js が実行時に data-i18n を付けるので HTML には現れない）
   - 上記すべての「<キー>__after」（第1期再編後への文面切替。applyTemporal 用）
@@ -42,6 +42,11 @@ AFTER_SUFFIX = "__after"
 #   event_status_*     … schedule.html の 完了/進行中/予定 バッジ
 #   share_*            … 全ページ共通の共有ボタン（main.js が組み立てる）
 RUNTIME_KEYS = [
+    "share_preview_note", # SHARE BUTTONS の「共有するとこう見える」カード（main.js）
+    "fs_label",           # FONT SIZE（PAGE TOC の横、main.js）
+    "aria_fs_s",
+    "aria_fs_m",
+    "aria_fs_l",
     "share_qr",           # SHARE BUTTONS の QR（main.js）
     "share_qr_note",
     "share_qr_save",
@@ -83,7 +88,7 @@ RUNTIME_KEYS = [
     "page_toc_h",
 ]
 
-KEY_RE = re.compile(r'data-i18n(?:-html|-aria)?="([^"]+)"')
+KEY_RE = re.compile(r'data-i18n(?:-html|-aria|-alt)?="([^"]+)"')
 
 
 def page_id(path):

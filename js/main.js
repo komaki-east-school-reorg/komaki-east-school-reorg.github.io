@@ -57,6 +57,104 @@ window.KomakiJaWhen = (function () {
   };
 })();
 
+// 日時の文字列から時刻だけを数値で取り出す（.ics 用、2026-10-13）。読み取りの規則は
+// KomakiJaWhen と同じ。読めなければ null、終わりの時刻が無ければ eh / em は null。
+window.KomakiJaWhen.times = function (text) {
+  if (!text) return null;
+  var t = String(text).replace(/[０-９]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0xFEE0); })
+                      .replace(/開場\s*(\d{1,2})時(?:(\d{1,2})分)?/, '');
+  var rm = /(\d{1,2})時(?:(\d{1,2})分)?\s*[～〜~\-－ー]\s*(\d{1,2})時(?:(\d{1,2})分)?/.exec(t);
+  if (rm) return {sh: +rm[1], sm: +(rm[2] || 0), eh: +rm[3], em: +(rm[4] || 0)};
+  var sm = /(\d{1,2})時(?:(\d{1,2})分)?/.exec(t);
+  if (sm) return {sh: +sm[1], sm: +(sm[2] || 0), eh: null, em: null};
+  return null;
+};
+
+/* ===== .ics の書き出し（このファイル共通、2026-10-13 に GRADE VIEW から切り出した） =====
+   使うのは3か所：schedule.html の一括書き出し（GRADE VIEW）と、カレンダーの日カード、
+   community.html の地域協議会イベントの各行。
+   ・RFC 5545 の折り返しは「75オクテット」。日本語は1文字3バイトなので文字数では数えない。
+   ・schedule() が作る予定の UID は「日付[-n]-komaki-saihen@…」。n は同じ日の何件目か
+     （1件目は付けない）。一括でも日ごとでも同じ UID になるので、両方を取り込んでも
+     カレンダー側で二重にならない。この形を変えると、取り込み済みの予定が二重に増える。
+   ・時刻つきの予定（timed）は日本時間を UTC に直して ...Z で書く（VTIMEZONE を持たずに済む）。 */
+window.KomakiIcs = (function () {
+  var HOST = 'komaki-east-school-reorg.github.io';
+  function esc(v) {
+    return String(v).replace(/\\/g, '\\\\').replace(/;/g, '\\;')
+                    .replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+  }
+  function fold(line) {
+    var out = '', len = 0, i, ch, b;
+    for (i = 0; i < line.length; i++) {
+      ch = line[i];
+      b = encodeURIComponent(ch).replace(/%../g, 'x').length;
+      if (len + b > 73) { out += '\r\n '; len = 1; }
+      out += ch; len += b;
+    }
+    return out;
+  }
+  function stamp() {
+    return new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
+  }
+  function ymd(d) { return d.replace(/-/g, ''); }
+  function nextDay(d) {
+    var t2 = new Date(d + 'T00:00:00Z');
+    t2.setUTCDate(t2.getUTCDate() + 1);
+    return t2.toISOString().slice(0, 10).replace(/-/g, '');
+  }
+  // 日本時間の日付と時・分 → UTC の YYYYMMDDTHHMMSSZ
+  function jstUtc(d, h, m) {
+    var t2 = new Date(d + 'T00:00:00Z');
+    t2.setUTCMinutes(t2.getUTCMinutes() + h * 60 + m - 9 * 60);
+    return t2.toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
+  }
+  // スケジュールの予定1件（events.json の d 日の idx 件目）
+  function schedule(d, idx, summary, desc) {
+    return {uid: d + (idx ? '-' + (idx + 1) : '') + '-komaki-saihen@' + HOST,
+            date: d, summary: summary, description: desc,
+            url: 'https://' + HOST + '/schedule.html'};
+  }
+  // ev: {uid, date, summary, description?, location?, url?, times?: {sh, sm, eh, em}}
+  function calendar(lang, calname, evs) {
+    var L = ['BEGIN:VCALENDAR', 'VERSION:2.0',
+             'PRODID:-//komaki-east-school-reorg//schedule//' + lang.toUpperCase(),
+             'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+             'X-WR-CALNAME:' + esc(calname)];
+    evs.forEach(function (e) {
+      L.push('BEGIN:VEVENT');
+      L.push('UID:' + e.uid);
+      L.push('DTSTAMP:' + stamp());
+      if (e.times) {
+        L.push('DTSTART:' + jstUtc(e.date, e.times.sh, e.times.sm));
+        // 終わりの時刻が公表されていないときは書かない（推測で作らない）
+        if (e.times.eh != null) L.push('DTEND:' + jstUtc(e.date, e.times.eh, e.times.em));
+      } else {
+        L.push('DTSTART;VALUE=DATE:' + ymd(e.date));
+        L.push('DTEND;VALUE=DATE:' + nextDay(e.date));
+      }
+      L.push(fold('SUMMARY:' + esc(e.summary)));
+      if (e.description) L.push(fold('DESCRIPTION:' + esc(e.description)));
+      if (e.location) L.push(fold('LOCATION:' + esc(e.location)));
+      if (e.url) L.push(fold('URL:' + e.url));
+      L.push('END:VEVENT');
+    });
+    L.push('END:VCALENDAR');
+    return L.join('\r\n') + '\r\n';
+  }
+  function download(text, filename) {
+    var blob = new Blob([text], {type: 'text/calendar;charset=utf-8'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  }
+  return {schedule: schedule, calendar: calendar, download: download};
+})();
+
 /* ===== 自動取得した見出しの訳（このファイル共通） =====
    2026-09-14 ユーザー指示：自動取得した見出しを原文のまま残さず、表示言語に訳す。
    訳は data/headline_i18n.json（.github/workflows/translate-headlines.yml が毎日更新）に
@@ -521,7 +619,9 @@ window.KomakiGrade = (function () {
   var mq = window.matchMedia('(min-width: 769px)');
   var busy = false;
 
-  function pad(fs) { return (fs >= 12 ? 0.42 : fs >= 10 ? 0.3 : 0.2) + 'rem'; }
+  // 余白は css のヘッダと同じ --hr（16px 固定）を基準にする。rem にすると、文字の大きさを
+  // 「大」「小」にしたときナビの余白だけが変わり、詰め方の結果（＝ヘッダの見た目）がずれる。
+  function pad(fs) { return 'calc(' + (fs >= 12 ? 0.42 : fs >= 10 ? 0.3 : 0.2) + ' * var(--hr))'; }
 
   /* 溢れているか。**ul 全体だけでなく、セル1つ1つの中も見ること。**
      グリッドの列は `auto` だが li に min-width:0 が効いているので、列が内容より
@@ -1547,6 +1647,10 @@ window.KomakiGrade = (function () {
     when:    {ja:'日時', en:'Date', pt:'Data', vi:'Thời gian', tl:'Petsa', es:'Fecha', zh:'日期', id:'Waktu', ko:'일시', ne:'मिति', tr:'Tarih', my:'ရက်စွဲ'},
     none:    {ja:'現在、掲載されているイベントはありません。', en:'No events are listed at the moment.', pt:'No momento não há eventos publicados.', vi:'Hiện chưa có sự kiện nào được đăng.', tl:'Wala pang nakalistang kaganapan sa ngayon.', es:'Por ahora no hay eventos publicados.', zh:'目前没有刊登的活动。', id:'Saat ini belum ada acara yang ditampilkan.', ko:'현재 게시된 행사가 없습니다.', ne:'हाल कुनै कार्यक्रम राखिएको छैन।', tr:'Şu anda yayımlanmış etkinlik yok.', my:'လက်ရှိတွင် ဖော်ပြထားသော ပွဲများ မရှိပါ။'},
     error:   {ja:'イベント案内を取得できませんでした。', en:'Could not load the event listings.', pt:'Não foi possível carregar os eventos.', vi:'Không tải được danh sách sự kiện.', tl:'Hindi ma-load ang listahan ng kaganapan.', es:'No se pudieron cargar los eventos.', zh:'无法加载活动信息。', id:'Gagal memuat daftar acara.', ko:'행사 안내를 가져오지 못했습니다.', ne:'कार्यक्रमको सूचना लोड गर्न सकिएन।', tr:'Etkinlik listesi yüklenemedi.', my:'ပွဲစာရင်း မဖွင့်နိုင်ပါ။'},
+    // 各行の「カレンダーに追加」（2026-10-13）。文字はボタン内に持つ（このブロックは辞書より先に描くため埋め込み辞書）
+    ics:     {ja:'📅 カレンダーに追加', en:'📅 Add to calendar', pt:'📅 Adicionar à agenda', vi:'📅 Thêm vào lịch', tl:'📅 Idagdag sa kalendaryo', es:'📅 Agregar al calendario', zh:'📅 加入日历', id:'📅 Tambah ke kalender', ko:'📅 캘린더에 추가', ne:'📅 क्यालेन्डरमा थप्नुहोस्', tr:'📅 Takvime ekle', my:'📅 ပြက္ခဒိန်သို့ ထည့်ရန်'},
+    calname: {ja:'小牧市 地域協議会の催し', en:'Komaki community council events', pt:'Eventos dos conselhos comunitários de Komaki', vi:'Sự kiện hội đồng khu vực Komaki', tl:'Mga kaganapan ng community council ng Komaki', es:'Eventos de los consejos comunitarios de Komaki', zh:'小牧市地区协议会活动', id:'Acara dewan komunitas Komaki', ko:'고마키시 지역협의회 행사', ne:'कोमाकी सामुदायिक परिषद्का कार्यक्रम', tr:'Komaki mahalle konseyi etkinlikleri', my:'Komaki ရပ်ရွာကောင်စီ ပွဲများ'},
+    icsdesc: {ja:'市の公式ページの案内を、市民有志のサイトがカレンダー用にまとめたものです。内容・変更は記事でご確認ください。', en:'Compiled for calendars by a citizen-run site from the city\'s official listing. Check the article for details and changes.', pt:'Organizado para agendas por um site de cidadãos a partir do aviso oficial da prefeitura. Confira detalhes e mudanças no artigo.', vi:'Trang do người dân vận hành tổng hợp từ thông báo chính thức của thành phố để đưa vào lịch. Hãy xem bài viết để biết chi tiết và thay đổi.', tl:'Tinipon para sa kalendaryo ng site na pinapatakbo ng mamamayan mula sa opisyal na abiso ng lungsod. Tingnan ang artikulo para sa detalye at pagbabago.', es:'Preparado para calendarios por un sitio ciudadano a partir del aviso oficial del municipio. Consulte el artículo para detalles y cambios.', zh:'由市民自发运营的网站根据市官方公告整理成日历用信息。详情和变更请查看原文。', id:'Disusun untuk kalender oleh situs warga dari pengumuman resmi kota. Periksa artikelnya untuk detail dan perubahan.', ko:'시민이 운영하는 사이트가 시 공식 안내를 캘린더용으로 정리한 것입니다. 자세한 내용과 변경은 기사에서 확인하세요.', ne:'नागरिकले चलाएको साइटले नगरको आधिकारिक सूचनाबाट क्यालेन्डरका लागि तयार पारेको। विवरण र परिवर्तन लेखमा हेर्नुहोस्।', tr:'Vatandaşların yürüttüğü bir site, belediyenin resmî duyurusundan takvim için derledi. Ayrıntılar ve değişiklikler için habere bakın.', my:'ပြည်သူများ လုပ်ဆောင်သော ဝဘ်ဆိုက်က မြို့တော်၏ တရားဝင်ကြေညာချက်မှ ပြက္ခဒိန်အတွက် စုစည်းထားသည်။ အသေးစိတ်နှင့် ပြောင်းလဲမှုများကို ဆောင်းပါးတွင် ကြည့်ပါ။'},
     see_all: {ja:'市の公式ページで確認する →', en:'Check on the official city page →', pt:'Ver na página oficial da cidade →', vi:'Xem trên trang chính thức của thành phố →', tl:'Tingnan sa opisyal na pahina ng lungsod →', es:'Ver en la página oficial del municipio →', zh:'在市政府官方页面确认 →', id:'Lihat di halaman resmi kota →', ko:'시 공식 페이지에서 확인하기 →', ne:'नगरको आधिकारिक पृष्ठमा हेर्नुहोस् →', tr:'Belediyenin resmî sayfasında görün →', my:'မြို့တော် တရားဝင်စာမျက်နှာတွင် ကြည့်ရန် →'}
   };
   function cet(key) { return _cet[key][_cl] || _cet[key]['en'] || _cet[key]['ja']; }
@@ -1572,7 +1676,10 @@ window.KomakiGrade = (function () {
 
       // 「市公式サイト お知らせ」と同じ見た目にそろえる：見出しのリンク＋日時の1行だけ。
       // 会場・更新日は記事側にあるので、ここでは出さない。
-      const rows = events.map(ev => {
+      const icsEvs = {};
+      const _t = new Date();
+      const todayKey = _t.getFullYear() + '-' + String(_t.getMonth() + 1).padStart(2, '0') + '-' + String(_t.getDate()).padStart(2, '0');
+      const rows = events.map((ev, idx) => {
         const badge = ev.shinooka
           ? `<span class="ce-badge">${cet('badge')}</span>` : '';
         // 日時は表示言語の書式に組み直す（イベント名は下の apply で訳に置き換える）
@@ -1590,16 +1697,44 @@ window.KomakiGrade = (function () {
           if (new Date(y, +m[1] - 1, +m[2]) < new Date(upd.getTime() - 60 * 86400000)) y += 1;
           return y + '-' + String(+m[1]).padStart(2, '0') + '-' + String(+m[2]).padStart(2, '0');
         })();
+        // これから開かれる催しには「カレンダーに追加」（2026-10-13）。時刻が読めれば時刻つき、
+        // 読めなければ終日。終わった催しには付けない。
+        const ics = (cd && cd >= todayKey)
+          ? `<button type="button" class="ce-ics" data-ce="${idx}">${cet('ics')}</button>` : '';
+        if (ics) icsEvs[idx] = {ev: ev, date: cd};
         return `<li class="ce-item${ev.shinooka ? ' ce-item--shinooka' : ''}"${cd ? ` data-countdown="${cd}"` : ''}>` +
                  `<div class="ce-head">${badge}` +
                    `<a href="${esc(ev.url)}" target="_blank" rel="noopener" data-hl="${esc(ev.title)}">${esc(ev.title)}</a>` +
                  `</div>` +
-                 when +
+                 when + ics +
                `</li>`;
       }).join('');
 
       container.innerHTML = `<ul class="ce-list">${rows}</ul>` + seeAll;
       window.KomakiHeadline.apply(container);   // イベント名を表示言語に
+
+      container.addEventListener('click', function (e) {
+        const b = e.target.closest('.ce-ics');
+        if (!b) return;
+        const x = icsEvs[+b.getAttribute('data-ce')];
+        if (!x) return;
+        window.KomakiHeadline.load().then(function (map) {
+          const lang = window.KomakiLang();
+          // UID は記事の URL から作る（同じ催しを何度取り込んでも1件のまま）
+          let h = 0;
+          const key = x.ev.url || x.ev.title;
+          for (let i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) >>> 0;
+          window.KomakiIcs.download(window.KomakiIcs.calendar(lang, cet('calname'), [{
+            uid: 'council-' + h.toString(36) + '-' + x.date + '@komaki-east-school-reorg.github.io',
+            date: x.date,
+            times: window.KomakiJaWhen.times(x.ev.when),
+            summary: window.KomakiHeadline.text(map, x.ev.title),
+            description: cet('icsdesc') + (x.ev.when ? '\n' + x.ev.when : ''),
+            location: x.ev.place ? window.KomakiHeadline.text(map, x.ev.place) : '',
+            url: x.ev.url || ''
+          }]), 'komaki-council-' + x.date + '.ics');
+        });
+      });
     })
     .catch(() => {
       container.innerHTML =
@@ -1715,18 +1850,143 @@ window.KomakiGrade = (function () {
             cell.appendChild(dot);
           });
           cell.title = (isPast ? ctr('done_prefix') : ctr('plan_prefix')) + labels.join(' / ');
+          // 押すとその日の予定を下のカードに出す（キーボードでも開けるよう button の役割を持たせる）
+          cell.setAttribute('data-date', key);
+          cell.setAttribute('role', 'button');
+          cell.setAttribute('tabindex', '0');
+          cell.setAttribute('aria-label', fmtDay(key) + ' ' + cell.title);
+          cell.setAttribute('aria-controls', 'cal-day-card');
+          if (key === openKey) cell.classList.add('selected');
         }
 
         grid.appendChild(cell);
       }
     }
 
+    /* ---- 日カード（2026-10-13） ----
+       予定のある日を押すと、その日の予定を一覧にして「この日の予定をカレンダーに追加」を出す。
+       .ics に入れるのは "day": true の予定（その日に行われると決まっているもの）だけ。
+       月単位・期間の予定はキーが月末などの日付なので、1日の予定として渡すと誤った日に
+       入ってしまう。UID は一括書き出しと同じ（KomakiIcs.schedule）。 */
+    const card = document.getElementById('cal-day-card');
+    const strings = document.getElementById('cal-strings');
+    const gradeStr = document.getElementById('grade-strings');
+    let openKey = null;
+    function cs(k, fb) {
+      const el = strings && strings.querySelector('[data-ck="' + k + '"]');
+      return (el && el.textContent.trim()) || fb;
+    }
+    function gs(k, fb) {
+      const el = gradeStr && gradeStr.querySelector('[data-gk="' + k + '"]');
+      return (el && el.textContent.trim()) || fb;
+    }
+    function fmtDay(key) {
+      const p = key.split('-');
+      try {
+        return new Intl.DateTimeFormat(getCalLocale(), {year: 'numeric', month: 'long', day: 'numeric', weekday: 'short'})
+          .format(new Date(+p[0], +p[1] - 1, +p[2]));
+      } catch (e) { return key; }
+    }
+    function closeCard() {
+      openKey = null;
+      if (card) { card.hidden = true; card.innerHTML = ''; }
+      document.querySelectorAll('#cal-grid .cal-day.selected').forEach(function (c) { c.classList.remove('selected'); });
+    }
+    function openCard(key) {
+      if (!card) return;
+      openKey = key;
+      document.querySelectorAll('#cal-grid .cal-day').forEach(function (c) {
+        c.classList.toggle('selected', c.getAttribute('data-date') === key);
+      });
+      const l = window.KomakiLang();
+      const list = eventsAt(key);
+      const isPast = key <= todayKey;
+      card.innerHTML = '';
+      const head = document.createElement('div');
+      head.className = 'cal-day-card-head';
+      const h = document.createElement('strong');
+      h.textContent = cs('h', '{date}の予定').replace('{date}', fmtDay(key));
+      const x = document.createElement('button');
+      x.type = 'button';
+      x.className = 'cal-day-card-close';
+      x.textContent = cs('close', '閉じる');
+      x.addEventListener('click', function () {
+        const cell = document.querySelector('#cal-grid .cal-day[data-date="' + key + '"]');
+        closeCard();
+        if (cell) cell.focus();
+      });
+      head.appendChild(h);
+      head.appendChild(x);
+      card.appendChild(head);
+      const ul = document.createElement('ul');
+      ul.className = 'cal-day-card-list';
+      const dayEvs = [];
+      const desc = gs('icsdesc', 'この予定は市民有志のサイトがまとめたものです。正式な案内は市から届く書類でご確認ください。');
+      list.forEach(function (ev, idx) {
+        const label = (ev && (ev[l] || ev.en || ev.ja)) || '';
+        if (!label) return;
+        const li = document.createElement('li');
+        if (isPast) li.className = 'past';
+        li.textContent = (isPast ? ctr('done_prefix') : ctr('plan_prefix')) + label;
+        ul.appendChild(li);
+        if (ev.day === true) dayEvs.push(window.KomakiIcs.schedule(key, idx, label, desc));
+      });
+      card.appendChild(ul);
+      if (dayEvs.length) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'grade-ics cal-day-ics';
+        b.textContent = cs('ics', 'この日の予定をカレンダーに追加（.ics）');
+        b.addEventListener('click', function () {
+          try {
+            window.KomakiIcs.download(
+              window.KomakiIcs.calendar(l, gs('calname', '小牧市東部 学校再編の予定'), dayEvs),
+              'komaki-saihen-' + key + '.ics');
+          } catch (e) {
+            const keep = b.textContent;
+            b.textContent = gs('icsfail', 'カレンダーの書き出しに失敗しました');
+            window.setTimeout(function () { b.textContent = keep; }, 4000);
+          }
+        });
+        card.appendChild(b);
+      }
+      // 期間・月単位の予定が混ざる日は、それが .ics に入らない理由を添える
+      if (list.some(function (ev) { return ev && ev.day !== true; })) {
+        const n = document.createElement('p');
+        n.className = 'cal-day-card-note';
+        n.textContent = cs('note', '時期だけが決まっている予定は、日ごとのカレンダー追加の対象外です。');
+        card.appendChild(n);
+      }
+      card.hidden = false;
+    }
+    const grid = document.getElementById('cal-grid');
+    grid.addEventListener('click', function (e) {
+      const cell = e.target.closest('.cal-day[data-date]');
+      if (!cell) return;
+      const key = cell.getAttribute('data-date');
+      if (key === openKey) closeCard(); else openCard(key);
+    });
+    grid.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      const cell = e.target.closest('.cal-day[data-date]');
+      if (!cell) return;
+      e.preventDefault();
+      cell.click();
+    });
+    // 言語を切り替えたら、開いているカードを新しい言語で組み直す（辞書は非同期に入るので文言の到着を待つ）
+    if (strings && window.MutationObserver) {
+      new MutationObserver(function () { if (openKey) openCard(openKey); })
+        .observe(strings, {childList: true, subtree: true, characterData: true});
+    }
+
     document.getElementById('cal-prev').addEventListener('click', () => {
+      closeCard();
       currentMonth--;
       if (currentMonth < 0) { currentMonth = 11; currentYear--; }
       renderCalendar(currentYear, currentMonth);
     });
     document.getElementById('cal-next').addEventListener('click', () => {
+      closeCard();
       currentMonth++;
       if (currentMonth > 11) { currentMonth = 0; currentYear++; }
       renderCalendar(currentYear, currentMonth);
@@ -1737,6 +1997,7 @@ window.KomakiGrade = (function () {
     document.querySelectorAll('.lang-select').forEach(function(sel) {
       sel.addEventListener('change', function() {
         renderCalendar(currentYear, currentMonth);
+        if (openKey) openCard(openKey);
       });
     });
   }
@@ -1850,37 +2111,10 @@ window.KomakiGrade = (function () {
     new MutationObserver(apply).observe(dict, {childList: true, subtree: true, characterData: true});
   }
 
-  /* ---- .ics の書き出し ---- */
-  function esc(v) {
-    return String(v).replace(/\\/g, '\\\\').replace(/;/g, '\\;')
-                    .replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
-  }
-  // RFC 5545 の折り返しは「75オクテット」。日本語は1文字3バイトなので文字数では数えない。
-  function fold(line) {
-    var out = '', len = 0, i, ch, b;
-    for (i = 0; i < line.length; i++) {
-      ch = line[i];
-      b = encodeURIComponent(ch).replace(/%../g, 'x').length;
-      if (len + b > 73) { out += '\r\n '; len = 1; }
-      out += ch; len += b;
-    }
-    return out;
-  }
-  function stamp() {
-    return new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
-  }
-  function ymd(d) { return d.replace(/-/g, ''); }
-  function nextDay(d) {
-    var t2 = new Date(d + 'T00:00:00Z');
-    t2.setUTCDate(t2.getUTCDate() + 1);
-    return t2.toISOString().slice(0, 10).replace(/-/g, '');
-  }
-
+  /* ---- .ics の書き出し（組み立ては共通の window.KomakiIcs） ---- */
   function buildIcs(events, lang, code) {
-    var L = ['BEGIN:VCALENDAR', 'VERSION:2.0',
-             'PRODID:-//komaki-east-school-reorg//schedule//' + lang.toUpperCase(),
-             'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
-             'X-WR-CALNAME:' + esc(t('calname', '小牧市東部 学校再編の予定'))];
+    var evs = [];
+    var desc = t('icsdesc', 'この予定は市民有志のサイトがまとめたものです。正式な案内は市から届く書類でご確認ください。');
     Object.keys(events).sort().forEach(function (d) {
       // 1日に複数件のことがある（カレンダーと同じく、オブジェクトと配列の両方を受ける）
       var list = Array.isArray(events[d]) ? events[d] : [events[d]];
@@ -1888,22 +2122,10 @@ window.KomakiGrade = (function () {
         var title = (e && (e[lang] || e.en || e.ja)) || '';
         if (!title) return;
         var lab = code ? labelAt(d, code) : '';
-        var sum = lab ? title + '（' + lab + '）' : title;
-        L.push('BEGIN:VEVENT');
-        // 2件目以降だけ連番を足す。既存の予定の UID を変えると、
-        // 取り込み済みのカレンダー側で別の予定として二重に増える。
-        L.push('UID:' + d + (idx ? '-' + (idx + 1) : '') + '-komaki-saihen@komaki-east-school-reorg.github.io');
-        L.push('DTSTAMP:' + stamp());
-        L.push('DTSTART;VALUE=DATE:' + ymd(d));
-        L.push('DTEND;VALUE=DATE:' + nextDay(d));
-        L.push(fold('SUMMARY:' + esc(sum)));
-        L.push(fold('DESCRIPTION:' + esc(t('icsdesc', 'この予定は市民有志のサイトがまとめたものです。正式な案内は市から届く書類でご確認ください。'))));
-        L.push('URL:https://komaki-east-school-reorg.github.io/schedule.html');
-        L.push('END:VEVENT');
+        evs.push(window.KomakiIcs.schedule(d, idx, lab ? title + '（' + lab + '）' : title, desc));
       });
     });
-    L.push('END:VCALENDAR');
-    return L.join('\r\n') + '\r\n';
+    return window.KomakiIcs.calendar(lang, t('calname', '小牧市東部 学校再編の予定'), evs);
   }
 
   if (icsBtn) {
@@ -1912,15 +2134,8 @@ window.KomakiGrade = (function () {
       icsBtn.disabled = true;
       window.KomakiEvents()
         .then(function (data) {
-          var text = buildIcs(data.events || {}, lang, code);
-          var blob = new Blob([text], {type: 'text/calendar;charset=utf-8'});
-          var a = document.createElement('a');
-          a.href = URL.createObjectURL(blob);
-          a.download = 'komaki-saihen' + (code ? '-' + code : '') + '.ics';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+          window.KomakiIcs.download(buildIcs(data.events || {}, lang, code),
+                                    'komaki-saihen' + (code ? '-' + code : '') + '.ics');
         })
         .catch(function () {
           // ラベルは data-i18n 管理なので、書き換えたら必ず戻す。
@@ -1979,7 +2194,7 @@ window.KomakiGrade = (function () {
 
   var boxes = [mainBox, stickyBox];
 
-  var LANGS = ['ja', 'en', 'pt', 'vi', 'tl', 'es', 'zh', 'id', 'tr', 'my'];
+  var LANGS = ['ja', 'en', 'pt', 'vi', 'tl', 'es', 'zh', 'id', 'ko', 'ne', 'tr', 'my'];
 
   /* 共有する URL は「アドレスバーの URL」ではなく canonical から組み立てる。
      i18n.js が ?lang= を replaceState で書き足すのは辞書取得のあとなので、
@@ -2132,7 +2347,9 @@ window.KomakiGrade = (function () {
     links.forEach(function (a) { a._build(); });
     syncTitles();
     starPermalinks.forEach(function (a) { a.textContent = shareTitle(); });
+    if (previewTitle) previewTitle.textContent = shareTitle();
   }
+  var previewTitle = null;   // 「共有するとこう見える」カードの題名（下で作る）
   var starPermalinks = [];   // はてなスターの題名リンク（共有欄と固定バーに1つずつ。下で作る）
   boxes.forEach(function (box) {
     ['pointerdown', 'focusin', 'touchstart', 'mouseover'].forEach(function (ev) {
@@ -2344,6 +2561,44 @@ window.KomakiGrade = (function () {
       box.appendChild(nativeBtn);
     }
   });
+
+  /* ===== 共有するとこう見える（2026-10-13 ユーザー指示：OGP 画像をページ内にも出す） =====
+     LINE・X などに送ったときに相手に届くカードの見本。画像は og:image と同じファイル
+     （差し替えたら ?v= を og:image と一緒に上げる）。題名は共有される題名そのもの
+     （shareTitle）で、言語切替・辞書の適用のたびに refresh() が直す。画像は飾りなので
+     alt は空（題名の文字がすぐ下にある）。固定バーには出さない。 */
+  (function () {
+    var fig = document.createElement('figure');
+    fig.className = 'share-preview';
+    var card = document.createElement('div');
+    card.className = 'share-preview-card';
+    var img = document.createElement('img');
+    img.src = 'img/og-image.png?v=20261011';
+    img.width = 1200; img.height = 630;
+    img.alt = '';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    var meta = document.createElement('div');
+    meta.className = 'share-preview-meta';
+    var host = document.createElement('span');
+    host.className = 'share-preview-host';
+    host.textContent = location.host || 'komaki-east-school-reorg.github.io';
+    previewTitle = document.createElement('span');
+    previewTitle.className = 'share-preview-title';
+    previewTitle.textContent = shareTitle();
+    meta.appendChild(host);
+    meta.appendChild(previewTitle);
+    card.appendChild(img);
+    card.appendChild(meta);
+    var cap = document.createElement('figcaption');
+    cap.setAttribute('data-i18n', 'share_preview_note');
+    cap.textContent = 'LINE や X などで送ると、相手にはこのようなカードが表示されます。';
+    fig.appendChild(card);
+    fig.appendChild(cap);
+    var after = document.getElementById('share-star') || mainBox;
+    after.parentNode.insertBefore(fig, after.nextSibling);
+    document.addEventListener('komaki:i18n-applied', refresh);
+  })();
 
   /* ===== はてなスター ===== */
   /* 星は「共有」ではなくページへの反応なので、URL は言語を付けない canonical に
@@ -2792,12 +3047,20 @@ window.KomakiGrade = (function () {
 
   function printSheet(title, lead, blocks) {
     var lang = window.KomakiLang();
+    var root = document.documentElement;
+    // 文字の大きさ（html.fs-s / fs-l）はシートの余白（rem）も動かすので、測る前に外して
+    // 標準の大きさで組む。A4 1枚に収める保証を、読者の設定で崩さないため。刷り終えたら戻す。
+    var fsKeep = ['fs-s', 'fs-l'].filter(function (c) { return root.classList.contains(c); });
+    fsKeep.forEach(function (c) { root.classList.remove(c); });
     var el = fit(title, lead, blocks, lang);
     var img = el.querySelector('#board-qr-img');
-    var root = document.documentElement;
     var go = function () {
       root.classList.add('board-printing');
-      var done = function () { root.classList.remove('board-printing'); };
+      var done = function () {
+        root.classList.remove('board-printing');
+        fsKeep.forEach(function (c) { root.classList.add(c); });
+        fsKeep = [];
+      };
       window.addEventListener('afterprint', done, {once: true});
       window.setTimeout(done, 8000);   // afterprint を出さないブラウザ向けの保険
       window.print();
@@ -2922,6 +3185,56 @@ window.KomakiGrade = (function () {
   new MutationObserver(function () { nav.setAttribute('aria-label', sum.textContent); })
     .observe(sum, {childList: true, characterData: true, subtree: true});
   wrap.appendChild(det);
+
+  /* 文字の大きさ（小・中・大、2026-10-13 ユーザー指示で目次の横に置いた）。
+     <details> の外に置くのは、スマートフォンで目次が閉じていても押せるようにするため。
+     状態は localStorage の komaki_fs（s / l、無し＝中）で、i18n.js が読み込み時に <html> へ
+     fs-s / fs-l を付ける。ボタンは文字を持たず「A」の大きさの違いだけで示し、意味は
+     aria-label（辞書）で伝える。ヘッダは css の --hr で固定してあるので大きくならない。 */
+  var fs = document.createElement('div');
+  fs.className = 'fs-ctrl';
+  fs.setAttribute('role', 'group');
+  var fsLabel = document.createElement('span');
+  fsLabel.className = 'fs-label';
+  fsLabel.id = 'fs-label';
+  fsLabel.setAttribute('data-i18n', 'fs_label');
+  fsLabel.textContent = '文字の大きさ';
+  fs.setAttribute('aria-labelledby', 'fs-label');
+  fs.appendChild(fsLabel);
+  var FS_ARIA = {s: ['aria_fs_s', '文字を小さくする'], m: ['aria_fs_m', '文字を標準の大きさにする'], l: ['aria_fs_l', '文字を大きくする']};
+  var fsBtns = [];
+  function fsNow() {
+    var c = document.documentElement.classList;
+    return c.contains('fs-s') ? 's' : c.contains('fs-l') ? 'l' : 'm';
+  }
+  function fsSync() {
+    var now = fsNow();
+    fsBtns.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-fs') === now ? 'true' : 'false'); });
+  }
+  ['s', 'm', 'l'].forEach(function (k) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'fs-btn fs-btn--' + k;
+    b.setAttribute('data-fs', k);
+    b.setAttribute('data-i18n-aria', FS_ARIA[k][0]);
+    b.setAttribute('aria-label', FS_ARIA[k][1]);
+    b.textContent = 'A';
+    b.addEventListener('click', function () {
+      var c = document.documentElement.classList;
+      c.remove('fs-s', 'fs-l');
+      if (k !== 'm') c.add('fs-' + k);
+      try {
+        if (k === 'm') localStorage.removeItem('komaki_fs');
+        else localStorage.setItem('komaki_fs', k);
+      } catch (e) {}
+      fsSync();
+    });
+    fsBtns.push(b);
+    fs.appendChild(b);
+  });
+  fsSync();
+  wrap.appendChild(fs);
+
   nav.appendChild(wrap);
   anchor.parentNode.insertBefore(nav, anchor.nextSibling);
 })();

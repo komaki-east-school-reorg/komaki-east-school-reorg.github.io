@@ -29,7 +29,18 @@ html.i18n-ready body { opacity: 1; transition: opacity .12s ease; }
   --shadow-lg: 0 6px 28px rgba(29,56,38,.18);
   --heading-font: "M PLUS Rounded 1c", "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
   font-size: 16px;
+  /* ヘッダ専用の 1rem。文字の大きさの切り替え（html.fs-s / fs-l）は :root の font-size を
+     変えるので、ヘッダまで大きくなるとナビが重なる（[[ヘッダのナビは重ねない]]）。ヘッダの
+     寸法はこの固定値を基準にして、切り替えの影響を受けないようにしてある（2026-10-13）。
+     既定の 16px のときは 1rem と同じなので、見た目は1pxも変わらない。 */
+  --hr: 16px;
 }
+
+/* 文字の大きさ（小・中・大）。i18n.js が localStorage の komaki_fs から <html> に付け、
+   main.js の PAGE TOC が「このページの目次」の横に切り替えボタンを置く（2026-10-13）。
+   本文の字はほぼすべて rem なので、ここを変えるだけで一律に効く。ヘッダは --hr で固定。 */
+html.fs-s { font-size: 14px; }
+html.fs-l { font-size: 18px; }
 
 body {
   font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3",
@@ -90,6 +101,7 @@ img { max-width: 100%; }
 header {
   background: var(--primary-dark);
   color: #fff;
+  font-size: var(--hr);   /* 文字の大きさの切り替えをヘッダに波及させない（:root の --hr を参照） */
   position: sticky;
   top: 0;
   z-index: 100;
@@ -99,16 +111,16 @@ header {
 .header-inner {
   max-width: 1100px;
   margin: 0 auto;
-  padding: .55rem 1.2rem .45rem;
+  padding: calc(.55 * var(--hr)) calc(1.2 * var(--hr)) calc(.45 * var(--hr));
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: calc(2 * var(--hr));
   height: auto;
 }
 
 .site-title {
-  font-size: 1rem;
+  font-size: calc(1 * var(--hr));
   font-weight: 800;
   color: #fff;
   line-height: 1.3;
@@ -120,19 +132,19 @@ header {
   margin-top: -18px;
 }
 a.site-title:hover { opacity: .85; }
-.site-title span { display: block; font-size: .72rem; font-weight: 500; opacity: .85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.site-title span { display: block; font-size: calc(.72 * var(--hr)); font-weight: 500; opacity: .85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 nav {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1rem;
+  gap: calc(1 * var(--hr));
 }
 nav ul {
   display: flex;
   list-style: none;
   flex-wrap: wrap;
-  gap: .18rem .12rem;
+  gap: calc(.18 * var(--hr)) calc(.12 * var(--hr));
 }
 .nav-break { display: none; }
 
@@ -158,18 +170,18 @@ nav ul {
     display: grid;
     grid-template-columns: repeat(5, auto);
     justify-items: stretch;
-    gap: .12rem;
+    gap: calc(.12 * var(--hr));
     min-width: 0;
     margin-left: auto;   /* 余白があるときは右に寄せる。justify-content: end と
                             ちがい、溢れたときに左端が切れることがない */
     overflow: hidden;    /* JS が効かない環境で溢れても、ヘッダの外には出さない */
-    font-size: clamp(.5rem, .8vw, .68rem);
+    font-size: clamp(calc(.5 * var(--hr)), .8vw, calc(.68 * var(--hr)));
   }
   header nav ul li.nav-break { display: none; }
   header nav ul li { min-width: 0; }
   header nav a {
     font-size: 1em;
-    padding: .3rem var(--nav-pad, .42rem);
+    padding: calc(.3 * var(--hr)) var(--nav-pad, calc(.42 * var(--hr)));
     text-align: center;
     /* セルからはみ出した文字が隣のリンクに重なって描画されるのを防ぐ最後の砦。
        ふだんは JS（HEADER NAV FIT）がセル内の溢れも見て文字を詰めるので
@@ -188,9 +200,9 @@ nav ul {
    行を分ければメニューに 450px 前後を渡せるので、文字を小さくしすぎずに済む。
    1100px 以上（＝版面が max-width に達して以降）は1行に戻す。 */
 @media (min-width: 769px) and (max-width: 1099px) {
-  .header-inner { flex-wrap: wrap; gap: .2rem 1rem; padding-bottom: .35rem; }
+  .header-inner { flex-wrap: wrap; gap: calc(.2 * var(--hr)) calc(1 * var(--hr)); padding-bottom: calc(.35 * var(--hr)); }
   .site-title { margin-top: 0; }
-  header nav { flex: 0 0 100%; order: 3; gap: .6rem; }
+  header nav { flex: 0 0 100%; order: 3; gap: calc(.6 * var(--hr)); }
   header nav ul { margin-left: 0; flex: 1 1 auto; }
   header .lang-switcher { margin-top: 0; margin-left: auto; }
 }
@@ -198,7 +210,7 @@ nav ul {
 .lang-switcher {
   display: flex;
   align-items: center;
-  gap: .4rem;
+  gap: calc(.4 * var(--hr));
   margin-top: -18px;
 }
 
@@ -210,10 +222,10 @@ nav ul {
 .lang-pick {
   display: inline-flex;
   align-items: center;
-  gap: .28rem;
+  gap: calc(.28 * var(--hr));
 }
 .lang-label {
-  font-size: .82rem;
+  font-size: calc(.82 * var(--hr));
   line-height: 1;
   opacity: .8;
   cursor: help;
@@ -224,13 +236,13 @@ nav ul {
 .kids-toggle, .orig-toggle {
   display: inline-flex;
   align-items: center;
-  gap: .35rem;
+  gap: calc(.35 * var(--hr));
   background: none;
   border: none;
   color: rgba(255,255,255,.85);
-  font-size: .72rem;
+  font-size: calc(.72 * var(--hr));
   font-weight: 700;
-  padding: .15rem .25rem;
+  padding: calc(.15 * var(--hr)) calc(.25 * var(--hr));
   cursor: pointer;
   font-family: var(--heading-font);
   letter-spacing: .03em;
@@ -299,9 +311,9 @@ nav ul {
   border: 1px solid rgba(255,255,255,.35);
   color: rgba(255,255,255,.9);
   border-radius: 4px;
-  font-size: .72rem;
+  font-size: calc(.72 * var(--hr));
   font-weight: 700;
-  padding: .22rem 1.5rem .22rem .5rem;
+  padding: calc(.22 * var(--hr)) calc(1.5 * var(--hr)) calc(.22 * var(--hr)) calc(.5 * var(--hr));
   cursor: pointer;
   font-family: var(--heading-font);
   letter-spacing: .03em;
@@ -310,7 +322,7 @@ nav ul {
   -webkit-appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='rgba(255,255,255,0.65)'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right .45rem center;
+  background-position: right calc(.45 * var(--hr)) center;
   transition: border-color .15s, background-color .15s;
 }
 .lang-select:hover { border-color: rgba(255,255,255,.75); background-color: rgba(255,255,255,.18); }
@@ -319,9 +331,9 @@ nav ul {
 
 nav a {
   color: rgba(255,255,255,.9);
-  font-size: .82rem;
+  font-size: calc(.82 * var(--hr));
   font-weight: 700;
-  padding: .35rem .72rem;
+  padding: calc(.35 * var(--hr)) calc(.72 * var(--hr));
   border-radius: var(--radius-pill);
   transition: background .18s, color .18s;
   display: block;
@@ -335,7 +347,7 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
-  padding: .5rem;
+  padding: calc(.5 * var(--hr));
   background: none;
   border: none;
 }
@@ -1037,6 +1049,18 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   word-break: break-all;
 }
 .cal-event-dot.past { background: #aab4c0; }
+/* 日カード（予定のある日を押すと開く。js/main.js の CALENDAR、2026-10-13） */
+.cal-day.has-event:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+.cal-day.selected { box-shadow: inset 0 0 0 2px var(--primary); }
+.cal-day-card { margin-top: .8rem; padding: .8rem 1rem; background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: var(--radius-sm); }
+.cal-day-card[hidden] { display: none; }
+.cal-day-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: .6rem; margin-bottom: .4rem; }
+.cal-day-card-head strong { font-family: var(--heading-font); color: var(--primary-dark); }
+.cal-day-card-close { background: none; border: 1px solid var(--border); border-radius: var(--radius-pill); padding: .15rem .7rem; font-size: .8rem; cursor: pointer; color: var(--text-muted); }
+.cal-day-card-list { list-style: none; margin: 0 0 .6rem; padding: 0; }
+.cal-day-card-list li { font-size: .9rem; line-height: 1.6; padding: .15rem 0; }
+.cal-day-card-list li.past { color: var(--text-muted); }
+.cal-day-card-note { font-size: .8rem; color: var(--text-muted); margin-top: .5rem; }
 
 .event-list { margin-top: 1.5rem; }
 .event-item {
@@ -1335,6 +1359,29 @@ footer {
 .footer-inner { max-width: 1100px; margin: 0 auto; }
 .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
 .footer-title { color: #fff; font-weight: 800; font-size: .95rem; margin-bottom: .8rem; font-family: var(--heading-font); }
+/* フッタのサイト名の上の看板画像（OGP 画像と同じもの、2026-10-13）。サイト名の文字は残すので alt="" */
+.footer-logo { display: block; width: 100%; max-width: 240px; height: auto; border-radius: 6px; margin-bottom: .8rem; }
+/* フィードの案内（全ページのフッタ、2026-10-13）。配信していることが一目で分かるよう、ほかの淡いリンクより明るく */
+.footer-feed { margin-top: .7rem; font-size: .82rem; }
+.footer-feed a { color: var(--accent); font-weight: 700; }
+/* 共有欄の「共有するとこう見える」カード（SHARE BUTTONS が作る） */
+.share-preview { margin: 1.2rem auto 0; max-width: 340px; text-align: left; }
+.share-preview-card { border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; background: var(--white); box-shadow: var(--shadow); }
+.share-preview-card img { display: block; width: 100%; height: auto; }
+.share-preview-meta { display: flex; flex-direction: column; gap: .1rem; padding: .45rem .7rem .55rem; }
+.share-preview-host { font-size: .72rem; color: var(--text-muted); }
+.share-preview-title { font-size: .85rem; font-weight: 700; line-height: 1.4; color: var(--text); }
+.share-preview figcaption { font-size: .78rem; color: var(--text-muted); margin-top: .4rem; text-align: center; }
+/* about.html「このサイトを紹介する」と 404.html の看板画像（OGP 画像そのもの） */
+.site-intro-fig { margin: 0 0 1rem; }
+.site-intro-fig img, .nf-logo { display: block; width: 100%; max-width: 480px; height: auto; border-radius: var(--radius-sm); box-shadow: var(--shadow); }
+.site-intro-dl { font-weight: 700; }
+.nf-logo { max-width: 360px; margin: 0 auto 1.2rem; }
+/* トップ「最新の動き」の見出し下のフィードの案内 */
+.feed-box { margin-top: 1rem; padding: .8rem 1rem; background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: var(--radius-sm); }
+.feed-box-link { font-weight: 800; font-family: var(--heading-font); }
+.feed-box-note { font-size: .85rem; margin: .3rem 0 .4rem; color: var(--text-muted); }
+.feed-box-url { display: inline-block; font-size: .8rem; padding: .1rem .4rem; background: var(--bg); border-radius: 4px; word-break: break-all; user-select: all; }
 .footer-links { list-style: none; }
 .footer-links li { margin-bottom: .4rem; }
 .footer-links a { color: rgba(255,255,255,.6); font-size: .85rem; }
@@ -1578,7 +1625,7 @@ footer {
 @media (max-width: 768px) {
   /* 高さは固定しない（2026-10-11）。サイト名が「…学校再編ナビ｜桃花台エリアの…」になって
      4行になり、64px 固定・上下余白0では文字が上下の端に張り付いてはみ出したため。 */
-  .header-inner { height: auto; min-height: 64px; padding: .6rem 1rem; position: relative; align-items: center; gap: .9rem; }
+  .header-inner { height: auto; min-height: 64px; padding: calc(.6 * var(--hr)) calc(1 * var(--hr)); position: relative; align-items: center; gap: calc(.9 * var(--hr)); }
   nav ul { display: none; }
   nav ul.open {
     display: flex;
@@ -1587,22 +1634,22 @@ footer {
     top: 100%;   /* ヘッダの実際の高さの真下に開く */
     left: 0; right: 0;
     background: var(--primary-dark);
-    padding: .5rem 0;
+    padding: calc(.5 * var(--hr)) 0;
     box-shadow: 0 4px 16px rgba(0,0,0,.2);
   }
-  nav ul.open li a { padding: .8rem 1.5rem; border-radius: 0; }
+  nav ul.open li a { padding: calc(.8 * var(--hr)) calc(1.5 * var(--hr)); border-radius: 0; }
   .hamburger { display: flex; order: 2; }
   /* 縦積みになるので、こどもむけトグルと言語切替の幅・左右端を揃える。
      align-items:stretch で両方を同じ幅にし、space-between で
      先頭アイコン（🧒 / 🌐）を左端、操作部（スイッチ / セレクト）を右端に置く。 */
-  .lang-switcher { order: 1; flex-direction: column; align-items: stretch; gap: .22rem; margin-top: 0; }
-  .lang-switcher > * { width: 7.4rem; }
+  .lang-switcher { order: 1; flex-direction: column; align-items: stretch; gap: calc(.22 * var(--hr)); margin-top: 0; }
+  .lang-switcher > * { width: calc(7.4 * var(--hr)); }
   .lang-select { width: auto; flex: 1; min-width: 0; order: 1; }
   .lang-pick { justify-content: space-between; order: 1; }
-  .kids-toggle, .orig-toggle { font-size: .68rem; padding: .1rem .2rem; order: 2; justify-content: space-between; }
+  .kids-toggle, .orig-toggle { font-size: calc(.68 * var(--hr)); padding: calc(.1 * var(--hr)) calc(.2 * var(--hr)); order: 2; justify-content: space-between; }
   header { position: sticky; }
-  .site-title { font-size: .88rem; white-space: normal; flex-shrink: 1; min-width: 0; margin-top: 0; }
-  .site-title span { font-size: .65rem; white-space: normal; overflow: visible; text-overflow: clip; }  /* 副題「桃花台エリアの…」は長いので、狭い幅では … で切らずに折り返す（2026-10-11） */
+  .site-title { font-size: calc(.88 * var(--hr)); white-space: normal; flex-shrink: 1; min-width: 0; margin-top: 0; }
+  .site-title span { font-size: calc(.65 * var(--hr)); white-space: normal; overflow: visible; text-overflow: clip; }  /* 副題「桃花台エリアの…」は長いので、狭い幅では … で切らずに折り返す（2026-10-11） */
   .notice-banner { font-size: .72rem; padding: .45rem .8rem; }
 
   .hero { padding: 2.8rem 1rem 2.2rem; }
@@ -1837,6 +1884,10 @@ footer {
   padding: .12rem .6rem;
 }
 .ce-when { display: block; margin-top: .25rem; font-size: .78rem; color: var(--text-muted); }
+/* 各行の「カレンダーに追加」（2026-10-13） */
+.ce-ics { display: inline-block; margin-top: .3rem; padding: .15rem .65rem; font-size: .78rem; font-weight: 700; color: var(--primary-dark); background: var(--white); border: 1px solid var(--primary); border-radius: var(--radius-pill); cursor: pointer; }
+.ce-ics:hover { background: var(--primary); color: #fff; }
+@media print { .ce-ics { display: none !important; } }
 
 /* ===== 東部まちづくりの動き（「地域の取組」欄の中の市公式リスト） =====
    市サイトへのリンクは許可URL以外を張れないので、この一覧だけは
@@ -2598,7 +2649,23 @@ html.has-share-sticky body {
 /* ===== PAGE TOC（長いページの「このページの目次」。js/main.js の PAGE TOC が作る）===== */
 /* 左右の余白はヒーロー（.page-hero の padding 1.2rem ＋ .container の 1.2rem）とそろえる */
 .page-toc { background: var(--white); border-bottom: 1px solid var(--border); text-align: left; padding: 0 1.2rem; }
-.page-toc .container { padding-top: .7rem; padding-bottom: .7rem; }
+.page-toc .container { padding-top: .7rem; padding-bottom: .7rem; display: flex; flex-wrap: wrap; align-items: flex-start; gap: .6rem 1.2rem; }
+.page-toc details { flex: 1 1 auto; min-width: 0; }
+/* 文字の大きさの切り替え（PAGE TOC が作る）。ボタンの「A」は px で固定し、切り替えても
+   ボタン自体の大きさが跳ねないようにする。 */
+.fs-ctrl { flex: 0 0 auto; display: flex; align-items: center; gap: .25rem; }
+.fs-label { font-family: var(--heading-font); font-size: 12px; font-weight: 700; color: var(--text-muted); margin-right: .2rem; white-space: nowrap; }
+.fs-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; padding: 0; line-height: 1;
+  font-family: var(--heading-font); font-weight: 800; color: var(--primary-dark);
+  background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-sm); cursor: pointer;
+}
+.fs-btn--s { font-size: 12px; }
+.fs-btn--m { font-size: 15px; }
+.fs-btn--l { font-size: 19px; }
+.fs-btn:hover { border-color: var(--primary); }
+.fs-btn[aria-pressed="true"] { background: var(--primary); border-color: var(--primary); color: #fff; }
 .page-toc-h {
   font-family: var(--heading-font);
   font-size: .92rem;
@@ -2703,6 +2770,9 @@ main section[id], main h2.section-title[id], #area-map { scroll-margin-top: calc
   html:not(.board-printing) .section.related,
   html:not(.board-printing) .page-toc,
   html:not(.board-printing) #latest-print-btn,
+  html:not(.board-printing) .footer-logo,
+  html:not(.board-printing) .footer-feed,
+  html:not(.board-printing) .feed-box,
   html:not(.board-printing) .footer-grid > div:not(:first-child) { display: none !important; }
   html.has-share-sticky:not(.board-printing) body { padding-bottom: 0 !important; }
 

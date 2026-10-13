@@ -13,6 +13,17 @@
   var PAGE_BASE = BASE + 'pages/';
   var SAFETY_MS = 1000;
 
+  // ===== 文字の大きさ（2026-10-13） =====
+  // 本文の字は rem 指定なので、<html> のクラスで :root の font-size を 14px / 18px に
+  // 替えるだけで一律に効く（css/style.css の html.fs-s / html.fs-l）。ボタンは main.js の
+  // PAGE TOC が「このページの目次」の横に置く。ここで同期的に付けるのは、body が
+  // .i18n-ready まで見えないうちに大きさを確定させ、読者に字の大きさの切り替わりを
+  // 見せないため。目次の無いページ（予定ページ・404）にも設定は引き継がれる。
+  try {
+    var _fs = localStorage.getItem('komaki_fs');
+    if (_fs === 's' || _fs === 'l') document.documentElement.classList.add('fs-' + _fs);
+  } catch (e) {}
+
   // ページID（ファイル名から .html を除いたもの）。meta_title_<ページID> の組み立てと、
   // ページ別辞書の取得の両方で使う。
   // 404.html は「見つからなかった URL」のまま表示されるので、パスからは決められない。
@@ -271,6 +282,11 @@
     document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
       var key = el.dataset.i18nAria;
       if (dict[key] != null) el.setAttribute('aria-label', dict[key]);
+    });
+    // 画像の代替テキスト（about.html の紹介画像・404.html の看板画像。2026-10-13）
+    document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+      var key = el.dataset.i18nAlt;
+      if (dict[key] != null) el.setAttribute('alt', dict[key]);
     });
     document.querySelectorAll('.lang-select').forEach(function (sel) {
       sel.value = lang;

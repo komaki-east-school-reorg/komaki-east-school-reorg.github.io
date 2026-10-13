@@ -630,6 +630,19 @@
       <p class="contact-rel-note" data-i18n="contact_rel_note">※ 部署名は日本語のまま載せています。窓口で示したり電話で伝えたりするには、そのほうが確実なためです。組織改編で名称や番号が変わることがあります。当サイトはいずれの部署とも関係がなく、問い合わせのときに当サイトの名前を出す必要はありません。</p>
     </div>
   </section>
+
+  <!-- このサイトを紹介する（2026-10-13 ユーザー指示：OGP 画像をページ内にも出す）。
+       画像は OGP と同じファイル。差し替えたら ?v= を全ページの og:image と一緒に上げること。 -->
+  <section class="section" id="site-intro">
+    <div class="container">
+      <h2 class="section-title" data-i18n-html="intro_h">このサイトを紹介する<small>Introduce This Site</small></h2>
+      <figure class="site-intro-fig">
+        <img src="img/og-image.png?v=20261011" width="1200" height="630" alt="小牧市東部（篠岡地区）学校再編ナビ｜桃花台エリアの非公式でもわかりやすい地域情報メディア" data-i18n-alt="og_img_alt" loading="lazy" decoding="async">
+      </figure>
+      <p class="section-lead" data-i18n="intro_p">自治会や子ども会の配布物、SNS などでこのサイトを紹介するときは、この画像をお使いください。サイトのアドレス（https://komaki-east-school-reorg.github.io/）を一緒に載せると、読んだ人がたどり着けます。</p>
+      <p><a class="site-intro-dl" href="img/og-image.png" download="komaki-saihen-navi.png" data-i18n="intro_dl">画像を保存する（PNG・1200×630）</a></p>
+    </div>
+  </section>
   <!-- 関連ページ：ナビの再掲ではなく、このページを読んだ人が次に必要とする所だけを、
        行き先が分かる文で挙げる。全ページが互いにリンクするナビだけでは「どれが中心か」が
        構造に現れないため、本文側で意図的に偏りを作っている。 -->
@@ -662,9 +675,11 @@
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
+        <img class="footer-logo" src="img/og-image.png?v=20261011" width="1200" height="630" alt="" loading="lazy" decoding="async">
         <div class="footer-title" data-i18n="footer_title">小牧市東部（篠岡地区）学校再編ナビ</div>
         <p style="font-size:.82rem;" data-i18n="footer_tagline">篠岡地区の学校再編計画について、小牧市公式情報をもとにわかりやすく情報提供することを目的とした市民有志サイトです。</p>
       <p style="font-size:.78rem;margin-top:.4rem;" data-i18n="footer_langs">対応言語：日本語・English・Português・Tiếng Việt・Filipino・Español・中文・Bahasa Indonesia・한국어・नेपाली・Türkçe・မြန်မာ</p>
+      <p class="footer-feed"><a href="feed.xml" type="application/atom+xml" data-i18n="feed_link">📡 更新情報をフィード（RSS）で受け取る</a></p>
       </div>
       <div>
         <div class="footer-title" data-i18n="footer_pages">ページ一覧</div>

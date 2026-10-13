@@ -6,10 +6,42 @@
   <link rel="self" type="application/atom+xml" href="https://komaki-east-school-reorg.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/"/>
   <id>https://komaki-east-school-reorg.github.io/</id>
-  <updated>2026-10-11T00:00:00+09:00</updated>
+  <updated>2026-10-13T00:00:00+09:00</updated>
   <author><name>小牧市東部（篠岡地区）学校再編ナビ（市民有志・非公式）</name></author>
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
   <rights>このサイトは市民有志が運営しており、小牧市・教育委員会とは無関係です。</rights>
+  <entry>
+    <title>通学帽子と、閉校後の避難所についてのQ&amp;Aを追加</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:5efa22fa24d99551</id>
+    <updated>2026-10-13T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜通学帽子と、閉校後の避難所についてのQ&amp;Aを追加</summary>
+  </entry>
+  <entry>
+    <title>更新情報のフィード（RSS）の案内を全ページのフッタに</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:64913b00f8ee1bac</id>
+    <updated>2026-10-13T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜更新情報のフィード（RSS）の案内を全ページのフッタに</summary>
+  </entry>
+  <entry>
+    <title>文字の大きさを3段階で切り替え（各ページの目次の横）</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:d63065c6c8e75dfd</id>
+    <updated>2026-10-13T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜文字の大きさを3段階で切り替え（各ページの目次の横）</summary>
+  </entry>
+  <entry>
+    <title>カレンダーの日を押すと予定を表示、その日だけ取り込み</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:d92a451b93a9a493</id>
+    <updated>2026-10-13T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜カレンダーの日を押すと予定を表示、その日だけ取り込み</summary>
+  </entry>
   <entry>
     <title>節・質問ごとのリンクをコピーできる「#」ボタン</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
@@ -297,37 +329,5 @@
     <updated>2026-09-20T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜新着のお知らせ帯を全ページのヘッダ下に表示</summary>
-  </entry>
-  <entry>
-    <title>トップの各ページ案内の説明文を最新の内容に更新</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:cfd1711c22e7fb3a</id>
-    <updated>2026-09-20T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜トップの各ページ案内の説明文を最新の内容に更新</summary>
-  </entry>
-  <entry>
-    <title>韓国語・ネパール語を追加し、対応12言語に</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:f723e1d0776ad0c6</id>
-    <updated>2026-09-18T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜韓国語・ネパール語を追加し、対応12言語に</summary>
-  </entry>
-  <entry>
-    <title>ポルトガル語・スペイン語・中国語を読者の地域に合わせて見直し</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:94e678de5b6c7bcb</id>
-    <updated>2026-09-18T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜ポルトガル語・スペイン語・中国語を読者の地域に合わせて見直し</summary>
-  </entry>
-  <entry>
-    <title>東部まちづくり：親子でワクワク!オープンファクトリー</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#community-actions"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:3f7a225c106b9517</id>
-    <updated>2026-09-16T00:00:00+09:00</updated>
-    <category term="東部まちづくりの動き"/>
-    <summary>東部まちづくりの動き｜東部まちづくり：親子でワクワク!オープンファクトリー</summary>
   </entry>
 </feed>
