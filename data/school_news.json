@@ -1,8 +1,66 @@
 {
-  "fetched_at": "2026-10-13T03:10:29Z",
+  "fetched_at": "2026-10-14T01:21:49Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "shinooka-e",
+      "level": "elem",
+      "names": {
+        "ja": "篠岡小学校",
+        "ja_kids": "しのおか小学校",
+        "en": "Shinooka Elem. School",
+        "zh": "篠冈小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
+      "latest_date": "2026-10-14",
+      "items": [
+        {
+          "title": "4年生：書写競技会「平和」",
+          "date": "2026-10-14",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136256850?tm=20261014091137"
+        },
+        {
+          "title": "2年生：図工競技会「ふしぎな たまご」",
+          "date": "2026-10-14",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136256760?tm=20261014090129"
+        },
+        {
+          "title": "放課後こども教室",
+          "date": "2026-10-14",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136256398?tm=20261014074238"
+        }
+      ]
+    },
+    {
+      "slug": "ohshiro-e",
+      "level": "elem",
+      "names": {
+        "ja": "大城小学校",
+        "ja_kids": "おおしろ小学校",
+        "en": "Oshiro Elem. School",
+        "zh": "大城小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
+      "latest_date": "2026-10-14",
+      "items": [
+        {
+          "title": "３年生と運動会の歌をうたったよ",
+          "date": "2026-10-14",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136252319?tm=20261013140651"
+        },
+        {
+          "title": "放課後子ども教室わくわくっ子⑨",
+          "date": "2026-10-13",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136251062?tm=20261013122622"
+        },
+        {
+          "title": "除草作業②",
+          "date": "2026-10-10",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136246012?tm=20261010095414"
+        }
+      ]
+    },
     {
       "slug": "toryo-j",
       "level": "jhs",
@@ -29,6 +87,93 @@
           "title": "後期認証式",
           "date": "2026-10-09",
           "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136243675?tm=20261013094656"
+        }
+      ]
+    },
+    {
+      "slug": "sue-e",
+      "level": "elem",
+      "names": {
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-10-13",
+      "items": [
+        {
+          "title": "10/13 今日の給食",
+          "date": "2026-10-13",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136251983?tm=20261013133933"
+        },
+        {
+          "title": "10/13 体育：リレー（５年生）",
+          "date": "2026-10-13",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136252049?tm=20261013134800"
+        },
+        {
+          "title": "10月8日放課後子ども教室『バルーンアート』",
+          "date": "2026-10-13",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136251378?tm=20261013125348"
+        }
+      ]
+    },
+    {
+      "slug": "shinooka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "篠岡中学校",
+        "ja_kids": "しのおか中学校",
+        "en": "Shinooka Junior High",
+        "zh": "篠冈中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
+      "latest_date": "2026-10-13",
+      "items": [
+        {
+          "title": "【Ｊｒ奉仕団】赤い羽根共同募金の活動を行いました",
+          "date": "2026-10-13",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136251191?tm=20261014083843"
+        },
+        {
+          "title": "ソフトテニス部 新人戦個人の部 女子準優勝",
+          "date": "2026-10-12",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136248086?tm=20261012081200"
+        },
+        {
+          "title": "《桃花台野球部》悲願の初優勝！",
+          "date": "2026-10-10",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136246281?tm=20261010123424"
+        }
+      ]
+    },
+    {
+      "slug": "momogaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "桃ヶ丘小学校",
+        "ja_kids": "ももがおか小学校",
+        "en": "Momogaoka Elem. School",
+        "zh": "桃之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
+      "latest_date": "2026-10-13",
+      "items": [
+        {
+          "title": "４年生：運動会の練習",
+          "date": "2026-10-13",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136252659?tm=20261013143427"
+        },
+        {
+          "title": "２年生：図工競技会「ふしぎなたまご」",
+          "date": "2026-10-09",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136238787?tm=20261009135502"
+        },
+        {
+          "title": "４年生 書写競技会",
+          "date": "2026-10-09",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136238165?tm=20261009101732"
         }
       ]
     },
@@ -62,35 +207,6 @@
       ]
     },
     {
-      "slug": "shinooka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "篠岡中学校",
-        "ja_kids": "しのおか中学校",
-        "en": "Shinooka Junior High",
-        "zh": "篠冈中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-10-12",
-      "items": [
-        {
-          "title": "ソフトテニス部 新人戦個人の部 女子準優勝",
-          "date": "2026-10-12",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136248086?tm=20261012081200"
-        },
-        {
-          "title": "《桃花台野球部》悲願の初優勝！",
-          "date": "2026-10-10",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136246281?tm=20261010123424"
-        },
-        {
-          "title": "１年生 書写競技会 その２",
-          "date": "2026-10-10",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136245776?tm=20261010063758"
-        }
-      ]
-    },
-    {
       "slug": "hikarigaoka-j",
       "level": "jhs",
       "names": {
@@ -116,122 +232,6 @@
           "title": "小牧市民スポーツ大会 軟式野球",
           "date": "2026-10-10",
           "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136246385?tm=20261010132006"
-        }
-      ]
-    },
-    {
-      "slug": "ohshiro-e",
-      "level": "elem",
-      "names": {
-        "ja": "大城小学校",
-        "ja_kids": "おおしろ小学校",
-        "en": "Oshiro Elem. School",
-        "zh": "大城小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
-      "latest_date": "2026-10-10",
-      "items": [
-        {
-          "title": "除草作業②",
-          "date": "2026-10-10",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136246012?tm=20261010095414"
-        },
-        {
-          "title": "４年 プラネタリウム学習",
-          "date": "2026-10-10",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136244136?tm=20261009171720"
-        },
-        {
-          "title": "1 年算数 ながさくらべ",
-          "date": "2026-10-08",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136232563?tm=20261008141931"
-        }
-      ]
-    },
-    {
-      "slug": "sue-e",
-      "level": "elem",
-      "names": {
-        "ja": "陶小学校",
-        "ja_kids": "すえ小学校",
-        "en": "Sue Elem. School",
-        "zh": "陶小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-10-09",
-      "items": [
-        {
-          "title": "10/9 通学路パトロールボランティア懇談会",
-          "date": "2026-10-09",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136243151?tm=20261009162310"
-        },
-        {
-          "title": "10/9 今日の給食",
-          "date": "2026-10-09",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136242389?tm=20261009153021"
-        },
-        {
-          "title": "10/9 図工競技会（３年生）",
-          "date": "2026-10-09",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136243082?tm=20261009161803"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-e",
-      "level": "elem",
-      "names": {
-        "ja": "篠岡小学校",
-        "ja_kids": "しのおか小学校",
-        "en": "Shinooka Elem. School",
-        "zh": "篠冈小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
-      "latest_date": "2026-10-09",
-      "items": [
-        {
-          "title": "今日の給食は",
-          "date": "2026-10-09",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136243391?tm=20261009163452"
-        },
-        {
-          "title": "５年生 図工競技会 開催",
-          "date": "2026-10-09",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136229230?tm=20261008100744"
-        },
-        {
-          "title": "運動会に向けた委員会活動",
-          "date": "2026-10-09",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136243137?tm=20261009162131"
-        }
-      ]
-    },
-    {
-      "slug": "momogaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "桃ヶ丘小学校",
-        "ja_kids": "ももがおか小学校",
-        "en": "Momogaoka Elem. School",
-        "zh": "桃之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
-      "latest_date": "2026-10-09",
-      "items": [
-        {
-          "title": "２年生：図工競技会「ふしぎなたまご」",
-          "date": "2026-10-09",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136238787?tm=20261009135502"
-        },
-        {
-          "title": "４年生 書写競技会",
-          "date": "2026-10-09",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136238165?tm=20261009101732"
-        },
-        {
-          "title": "書写競技会を行いました。",
-          "date": "2026-10-08",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136236263?tm=20261008193046"
         }
       ]
     }
