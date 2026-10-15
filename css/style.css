@@ -119,20 +119,52 @@ header {
   height: auto;
 }
 
-.site-title {
-  font-size: calc(1 * var(--hr));
-  font-weight: 800;
-  color: #fff;
-  line-height: 1.3;
-  letter-spacing: .02em;
-  font-family: var(--heading-font);
-  text-decoration: none;
-  white-space: nowrap;
-  flex-shrink: 0;
-  margin-top: -18px;
-}
+/* ===== タイトルロゴ（文字組） =====
+   2026-10-15 ユーザー指示：OGP 画像のデザインを正式なタイトルロゴにし、ヘッダの文字のサイト名は外した。
+   同日、画像から文字組（HTML＋CSS）に替えた — 画像だとスマホで副題が約9pxの「文字の絵」になってにじみ、
+   大きさの調整のたびに作り直しが要るため。見た目は OGP 画像と同じ：黄色の枠・濃い緑の帯・黒板の緑・
+   チョークの点・M PLUS Rounded 1c・「地域名／メインタイトル（ナビは黄）／下線／副題」の3段。
+   外国語ではメインタイトルも各言語で出す（logo_area / logo_main / site_sub。同日ユーザー指示）。
+   ロゴの中は em で組み、.logo の font-size（＝1段目の字の大きさ）だけで全体が伸び縮みする。
+   その font-size は rem ではなく --hr で決める（文字サイズ切り替えでヘッダを膨らませない）。
+   横幅は言語によらず固定（2行版 17.4em・横長版 32.6em）。長い言語は中で折り返して縦に伸びる。 */
+.site-title { display: block; flex-shrink: 0; text-decoration: none; color: #fff; }
 a.site-title:hover { opacity: .85; }
-.site-title span { display: block; font-size: calc(.72 * var(--hr)); font-weight: 500; opacity: .85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.logo { display: block; font-size: calc(.5625 * var(--hr)); width: 17.4em; box-sizing: border-box; background: var(--accent); padding: .2em; font-family: var(--heading-font); line-height: 1; text-align: center; }
+.logo-fr { display: block; background: var(--primary-dark); padding: .3em; }
+.logo-bd { display: block; position: relative; background: var(--primary); padding: .6em .7em; }
+.logo-l1 { display: block; font-weight: 800; font-size: 1em; letter-spacing: .04em; line-height: 1.15; text-wrap: balance; }
+.logo-mn { display: block; font-weight: 800; font-size: 2.1em; letter-spacing: .1em; margin: .1em -.1em .12em 0; line-height: 1.1; text-wrap: balance; }
+.logo-mn b { color: var(--accent); font-weight: 800; }
+.logo-ru { display: block; height: .15em; background: var(--accent); width: 68%; margin: 0 auto .4em; }
+.logo-sb { display: block; font-weight: 700; font-size: 1.05em; letter-spacing: .02em; line-height: 1.3; word-break: keep-all; overflow-wrap: anywhere; text-wrap: balance; }
+.logo-dots i { position: absolute; border-radius: 50%; background: var(--accent); }
+.logo-dots i:nth-child(1) { left: .4em; top: .4em; width: .4em; height: .4em; }
+.logo-dots i:nth-child(2) { left: 1em; top: .8em; width: .25em; height: .25em; }
+.logo-dots i:nth-child(3) { left: 1.4em; top: .3em; width: .25em; height: .25em; }
+.logo-dots i:nth-child(4) { right: .5em; bottom: 3.1em; width: .4em; height: .4em; }
+.logo-dots i:nth-child(5) { right: 1.2em; bottom: 3.3em; width: .25em; height: .25em; }
+.logo-dots i:nth-child(6) { right: .8em; bottom: 3.8em; width: .25em; height: .25em; }
+/* 日本語・中国語・韓国語以外は各段が長いので、字を小さくし字間を詰めて行数を減らす（ヘッダを厚くしすぎない） */
+html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-l1 { font-size: .85em; letter-spacing: 0; }
+html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-mn { font-size: 1.3em; letter-spacing: 0; margin-right: 0; }
+html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-sb { font-size: .88em; letter-spacing: 0; line-height: 1.2; }
+/* PC 1100px 以上は副題1行の横長版 */
+@media (min-width: 1100px) {
+  .logo { font-size: calc(.57 * var(--hr)); width: 32.6em; }
+  .logo-fr { padding: .4em; }
+  .logo-bd { padding: .5em 1.1em; }
+  .logo-l1 { font-size: 1.05em; }
+  .logo-mn { font-size: 2.3em; margin: .1em -.1em .15em 0; }
+  .logo-sb { font-size: 1.1em; }
+  .logo-dots i:nth-child(4) { right: .8em; bottom: 1.9em; }
+  .logo-dots i:nth-child(5) { right: 1.6em; bottom: 2.1em; }
+  .logo-dots i:nth-child(6) { right: 1.2em; bottom: 2.7em; }
+  /* 横長版は幅に余裕があるので、日本語・中国語・韓国語以外もメインタイトルを大きく戻す */
+  html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-l1 { font-size: 1em; }
+  html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-mn { font-size: 1.6em; }
+  html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-sb { font-size: 1.05em; }
+}
 
 nav {
   display: flex;
@@ -193,18 +225,17 @@ nav ul {
   header nav ul.nav-fit-tight a { white-space: normal; line-height: 1.15; }
 }
 
-/* 狭い PC 幅ではメニューをタイトルの下の行に落とす。
-   769px のとき、サイト名 277px と言語切替 304px で版面を使い切り、
-   メニューに残る幅は 101px しかない。同じ行に並べたままだと、2段は保てても
-   セル内で何度も折り返してヘッダが 138px の厚みになる（実測）。
-   行を分ければメニューに 450px 前後を渡せるので、文字を小さくしすぎずに済む。
-   1100px 以上（＝版面が max-width に達して以降）は1行に戻す。 */
+/* 狭い PC 幅（769〜1099px）では、ロゴを左に置き、右側にメニュー2段と言語切替を縦に積む
+   （2026-10-15 にタイトルを文字からロゴ画像に替えたときに組み直した）。
+   文字のサイト名（277px）の時代は、ロゴと同じ行に並べるとメニューに 101px しか残らず、
+   メニューを次の行に落としていた。ロゴは 769px で幅 148px なので、右側に 560px 前後が残り、
+   メニューを同じ列に収められる。ロゴの段を別に取らないぶん、ヘッダが薄くなる（実測）。
+   1100px 以上（＝版面が max-width に達して以降）は言語切替もメニューの横に並ぶ1行。 */
 @media (min-width: 769px) and (max-width: 1099px) {
-  .header-inner { flex-wrap: wrap; gap: calc(.2 * var(--hr)) calc(1 * var(--hr)); padding-bottom: calc(.35 * var(--hr)); }
-  .site-title { margin-top: 0; }
-  header nav { flex: 0 0 100%; order: 3; gap: calc(.6 * var(--hr)); }
-  header nav ul { margin-left: 0; flex: 1 1 auto; }
-  header .lang-switcher { margin-top: 0; margin-left: auto; }
+  .header-inner { gap: calc(1 * var(--hr)); padding-bottom: calc(.45 * var(--hr)); }
+  header nav { flex-direction: column; align-items: flex-end; gap: calc(.3 * var(--hr)); }
+  header nav ul { margin-left: auto; max-width: 100%; }
+  header .lang-switcher { margin-top: 0; }
 }
 /* ===== LANGUAGE SWITCHER ===== */
 .lang-switcher {
@@ -1648,8 +1679,14 @@ footer {
   .lang-pick { justify-content: space-between; order: 1; }
   .kids-toggle, .orig-toggle { font-size: calc(.68 * var(--hr)); padding: calc(.1 * var(--hr)) calc(.2 * var(--hr)); order: 2; justify-content: space-between; }
   header { position: sticky; }
-  .site-title { font-size: calc(.88 * var(--hr)); white-space: normal; flex-shrink: 1; min-width: 0; margin-top: 0; }
-  .site-title span { font-size: calc(.65 * var(--hr)); white-space: normal; overflow: visible; text-overflow: clip; }  /* 副題「桃花台エリアの…」は長いので、狭い幅では … で切らずに折り返す（2026-10-11） */
+  /* モバイルではロゴを「言語切替とメニューボタンを除いた残りの幅」いっぱいに広げる（右に空きを作らない。
+     2026-10-15 ユーザー指摘）。.site-title をコンテナにし、ロゴは常にその幅いっぱい（width:100%）。
+     字の大きさは「幅いっぱいに 17.4em が収まる大きさ」と上限 9.4px の小さいほう。上限に達したあとは
+     字はそのままでロゴだけ横に広がる（同日ユーザー指示「文字は一回り小さくてよいので幅を広げて」。
+     上限 9.4px で「学校再編ナビ」は約20px、ヒーローの見出し 27.2px より小さい）。
+     container-type: inline-size にすると中身が幅に効かなくなるので、flex: 1 で残りの幅をそのまま受け取る。 */
+  .site-title { flex: 1 1 auto; min-width: 0; container-type: inline-size; }
+  .logo { width: 100%; font-size: min(9.4px, 100cqi / 17.4); }
   .notice-banner { font-size: .72rem; padding: .45rem .8rem; }
 
   .hero { padding: 2.8rem 1rem 2.2rem; }
@@ -2085,6 +2122,10 @@ footer {
 }
 .share-star-note { font-size: .75rem; color: var(--text-muted); margin-top: .45rem; line-height: 1.65; }
 .share-note { font-size: .73rem; color: var(--text-muted); margin-top: 1rem; line-height: 1.65; }
+/* ★の説明と末尾の注記を1つに並べる（main.js SHARE BUTTONS が組む）。1行に収まれば1行、収まらなければ1文ずつ2行 */
+.share-notes { display: flex; flex-wrap: wrap; column-gap: .6em; margin-top: 1rem; }
+.share-notes .share-star-note, .share-notes .share-note { font-size: .73rem; margin: 0; line-height: 1.65; }
+.share-notes .share-star-note[hidden] { display: none; }
 
 @media (max-width: 480px) {
   .share-buttons { gap: .45rem; }
@@ -2964,3 +3005,9 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
 .qr-actions a, .qr-actions button { padding: .45rem 1rem; border-radius: var(--radius-pill, 999px); border: 1.5px solid var(--primary); background: #fff; color: var(--primary); font-weight: 700; font-size: .85rem; cursor: pointer; text-decoration: none; }
 .qr-actions a { background: var(--primary); color: #fff; }
 .contact-library-lead { font-size: .88rem; color: var(--text-muted); margin: -.2rem 0 .6rem; }
+@media (max-width: 400px) { header .header-inner { gap: calc(.5 * var(--hr)); padding-left: calc(.75 * var(--hr)); padding-right: calc(.75 * var(--hr)); } }
+/* モバイルでもロゴの幅が十分あれば（タブレット縦など）副題を1行にする（<wbr> の改行を使わない） */
+@container (min-width: 300px) {
+  .logo-sb { white-space: nowrap; }
+  .logo-sb wbr { display: none; }
+}

@@ -2657,7 +2657,20 @@ window.KomakiGrade = (function () {
   note.className = 'share-star-note';
   note.setAttribute('data-i18n', 'share_star_note');
   note.textContent = '★は「はてなスター」。はてなのアカウントで「読んだよ」の印を残せます。';
-  starBox.appendChild(note);
+  /* ★の説明は、共有欄の末尾の注記（.share-note）と並べて1つの注記にする（2026-10-15 ユーザー指示）。
+     .share-notes は折り返しのある flex で、2文が1行に収まる幅なら1行、収まらなければ1文ずつの2行になる。
+     はてなスターが出なかったときは★の説明だけ隠す（hideStar）。 */
+  var shareNote = starBox.closest('section') && starBox.closest('section').querySelector('.share-note');
+  if (shareNote) {
+    var notes = document.createElement('div');
+    notes.className = 'share-notes';
+    shareNote.parentNode.insertBefore(notes, shareNote);
+    notes.appendChild(note);
+    notes.appendChild(shareNote);
+  } else {
+    starBox.appendChild(note);
+  }
+  function hideStar() { starBox.hidden = true; note.hidden = true; }
 
   /* セレクタは entryNode（div.hatena-star-entry）の中を querySelector する。
      ★ 現行の HatenaStar.js は登録先 URL も表示題名も uri のノードから読む
@@ -2686,13 +2699,13 @@ window.KomakiGrade = (function () {
     var s = document.createElement('script');
     s.src = 'https://s.hatena.ne.jp/js/HatenaStar.js';
     s.async = true;
-    s.onerror = function () { starBox.hidden = true; stickyStar.hidden = true; };
+    s.onerror = function () { hideStar(); stickyStar.hidden = true; };
     s.onload = function () {
       /* ★ SiteConfig は「読み込んだあと」に入れること。
          HatenaStar.js は  void 0 === window.Hatena.Star && (window.Hatena.Star = {...})
          という書き方なので、先回りして window.Hatena.Star を作っておくと
          本体側の代入がまるごとスキップされ、初期化に必要な中身が入らない。 */
-      if (!window.Hatena || !window.Hatena.Star) { starBox.hidden = true; stickyStar.hidden = true; return; }
+      if (!window.Hatena || !window.Hatena.Star) { hideStar(); stickyStar.hidden = true; return; }
       window.Hatena.Star.SiteConfig = STAR_CONFIG;
 
       /* ★ 本体の初期化は window の DOMContentLoaded に紐づいている。この欄は
@@ -2705,7 +2718,7 @@ window.KomakiGrade = (function () {
       // 描画されなかったとき（読み込み失敗・仕様変更）は、星の出ないラベルだけが
       // 残るのを避けて欄ごと畳む。はてな側は setTimeout(0) で差し込むので4秒あれば足りる。
       setTimeout(function () {
-        if (!holder.querySelector('[data-hatena-star]')) starBox.hidden = true;
+        if (!holder.querySelector('[data-hatena-star]')) hideStar();
         if (!stickyHolder.querySelector('[data-hatena-star]')) stickyStar.hidden = true;
       }, 4000);
     };

@@ -76,6 +76,8 @@
   "gmap_open": "Googleマップで開く →",
   "group_east": "東グループ",
   "group_west": "西グループ",
+  "logo_area": "小牧市東部（篠岡地区）",
+  "logo_main": "学校再編<b>ナビ</b>",
   "map_after_h2": "再編後の4校の位置<small>New School Locations (from April 2027)</small>",
   "map_after_p": "令和9年（2027年）4月からスタートする4校の校舎位置です。現在の光ヶ丘小・桃ヶ丘小・光ヶ丘中・桃陵中の建物をそのまま使用します。<strong>「東グループ」と「西グループ」の2グループに分かれます。</strong>",
   "map_before_h2": "再編前の学校の場所<small>Current School Locations</small>",
@@ -178,7 +180,7 @@
   "share_threads": "Threadsで投稿",
   "share_tiktok": "TikTok（リンクをコピー）",
   "share_x": "Xでポスト",
-  "site_sub": "桃花台エリアの非公式でもわかりやすい地域情報メディア",
+  "site_sub": "桃花台エリアの非公式でも<wbr>わかりやすい地域情報メディア",
   "status_done": "完了",
   "tts_play": "🔊 読み上げる",
   "tts_stop": "■ 止める"

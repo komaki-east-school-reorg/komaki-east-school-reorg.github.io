@@ -76,6 +76,8 @@
   "gmap_open": "在Google地图中打开 →",
   "group_east": "东组",
   "group_west": "西组",
+  "logo_area": "小牧市东部（篠冈地区）",
+  "logo_main": "学校重组<b>导航</b>",
   "map_after_h2": "重组后4所学校的位置<small>New School Locations (from April 2027)</small>",
   "map_after_p": "这是2027年（令和9年）4月起启用的4所学校的校舍位置。将直接使用现有同名校舍（桃花台东小、桃花台西小、桃花台东中、桃花台西中）的建筑。<strong>分为「东组」和「西组」两个组别。</strong>",
   "map_before_h2": "重组前学校位置<small>Current School Locations</small>",
@@ -178,7 +180,7 @@
   "share_threads": "发布到Threads",
   "share_tiktok": "TikTok（复制链接）",
   "share_x": "在X上发布",
-  "site_sub": "桃花台地区信息媒体（非官方）",
+  "site_sub": "桃花台地区信息媒体<wbr>（非官方）",
   "status_done": "已完成",
   "tts_play": "🔊 朗读",
   "tts_stop": "■ 停止"
