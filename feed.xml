@@ -6,10 +6,34 @@
   <link rel="self" type="application/atom+xml" href="https://komaki-east-school-reorg.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/"/>
   <id>https://komaki-east-school-reorg.github.io/</id>
-  <updated>2026-10-13T00:00:00+09:00</updated>
+  <updated>2026-10-15T00:00:00+09:00</updated>
   <author><name>小牧市東部（篠岡地区）学校再編ナビ（市民有志・非公式）</name></author>
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
   <rights>このサイトは市民有志が運営しており、小牧市・教育委員会とは無関係です。</rights>
+  <entry>
+    <title>「桃ヶ丘小学校区地域協議会 あおぞら市場」を地域の取組と予定に掲載</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:0c6e06d08b3b603d</id>
+    <updated>2026-10-15T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜「桃ヶ丘小学校区地域協議会 あおぞら市場」を地域の取組と予定に掲載</summary>
+  </entry>
+  <entry>
+    <title>「大城小学校区地域協議会 宝さがしオリエンテーリング大会」を地域の取組と予定に掲載</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:67dd7474a96c42de</id>
+    <updated>2026-10-15T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜「大城小学校区地域協議会 宝さがしオリエンテーリング大会」を地域の取組と予定に掲載</summary>
+  </entry>
+  <entry>
+    <title>「大城小学校区地域協議会 シニアのためのスマホ使い方相談会」を地域の取組と予定に掲載</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:1ea357ebe50517f0</id>
+    <updated>2026-10-15T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜「大城小学校区地域協議会 シニアのためのスマホ使い方相談会」を地域の取組と予定に掲載</summary>
+  </entry>
   <entry>
     <title>通学帽子と、閉校後の避難所についてのQ&amp;Aを追加</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
@@ -163,6 +187,22 @@
     <summary>市公式サイトのお知らせ｜市が「第2回北里地区の学校を考える会」のページを更新</summary>
   </entry>
   <entry>
+    <title>地域協議会の催し：大城小学校区地域協議会 宝さがしオリエンテーリング大会（11月29日 14時00分～15時30分）</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#council-events"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:a93185a224cf5059</id>
+    <updated>2026-10-01T00:00:00+09:00</updated>
+    <category term="地域協議会のイベント案内"/>
+    <summary>地域協議会のイベント案内｜地域協議会の催し：大城小学校区地域協議会 宝さがしオリエンテーリング大会（11月29日 14時00分～15時30分）</summary>
+  </entry>
+  <entry>
+    <title>地域協議会の催し：大城小学校区地域協議会 シニアのためのスマホ使い方相談会（11月15日 13時00分～16時00分）</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#council-events"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:0052691625bad192</id>
+    <updated>2026-10-01T00:00:00+09:00</updated>
+    <category term="地域協議会のイベント案内"/>
+    <summary>地域協議会のイベント案内｜地域協議会の催し：大城小学校区地域協議会 シニアのためのスマホ使い方相談会（11月15日 13時00分～16時00分）</summary>
+  </entry>
+  <entry>
     <title>地域協議会の催し：篠岡学区地域協議会 しのおかさわやかウォーキング（10月21日 10時～12時）</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#council-events"/>
     <id>tag:komaki-east-school-reorg.github.io,2026:a9b1a6a3d96574f0</id>
@@ -289,45 +329,5 @@
     <updated>2026-09-22T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜地域クラブ・課外活動のページを新設</summary>
-  </entry>
-  <entry>
-    <title>フッタに桃花台を考える会のSNSを追加</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:0e52ec5fe6e3072e</id>
-    <updated>2026-09-22T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜フッタに桃花台を考える会のSNSを追加</summary>
-  </entry>
-  <entry>
-    <title>「賛否の声」を「よくある質問」に統合し1ページに</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:5b1a578c5abd9f2a</id>
-    <updated>2026-09-22T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜「賛否の声」を「よくある質問」に統合し1ページに</summary>
-  </entry>
-  <entry>
-    <title>誉高校の名古屋市への移転を検証ページに追記</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:792ded1a9d2c6df4</id>
-    <updated>2026-09-20T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜誉高校の名古屋市への移転を検証ページに追記</summary>
-  </entry>
-  <entry>
-    <title>検証と提案に「高校段階を地区に置けるか」を追加</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:a54d8612753c5ff3</id>
-    <updated>2026-09-20T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜検証と提案に「高校段階を地区に置けるか」を追加</summary>
-  </entry>
-  <entry>
-    <title>新着のお知らせ帯を全ページのヘッダ下に表示</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:3ed865ef0883dd58</id>
-    <updated>2026-09-20T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜新着のお知らせ帯を全ページのヘッダ下に表示</summary>
   </entry>
 </feed>

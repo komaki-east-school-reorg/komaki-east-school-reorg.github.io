@@ -3,6 +3,16 @@
   "source_url": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/index.html",
   "events": [
     {
+      "title": "桃ヶ丘小学校区地域協議会 あおぞら市場",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/chiikikyougikaievent/52067.html",
+      "updated_at": "2026年07月01日",
+      "place": "桃ヶ丘小学校及び緑道",
+      "when": "11月29日 9時00分～正午",
+      "category": "イベント / 催し",
+      "shinooka": true,
+      "date": "2026-11-29"
+    },
+    {
       "title": "篠岡学区地域協議会 しのおかさわやかウォーキング",
       "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/chiikikyougikaievent/52531.html",
       "updated_at": "2026年09月28日",
@@ -20,6 +30,76 @@
       "category": "イベント / 催し",
       "shinooka": true,
       "date": "2026-10-31"
+    },
+    {
+      "title": "大城小学校区地域協議会 宝さがしオリエンテーリング大会",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/chiikikyougikaievent/52814.html",
+      "updated_at": "2026年10月01日",
+      "place": "大城小学校とその周辺地域及び緑道（受付は大城小学校）",
+      "when": "11月29日 14時00分～15時30分",
+      "category": "イベント / 催し",
+      "shinooka": true,
+      "date": "2026-11-29"
+    },
+    {
+      "title": "大城小学校区地域協議会 シニアのためのスマホ使い方相談会",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/chiikikyougikaievent/52817.html",
+      "updated_at": "2026年10月01日",
+      "place": "城山会館",
+      "when": "11月15日 13時00分～16時00分",
+      "category": "イベント / 催し",
+      "shinooka": true,
+      "date": "2026-11-15"
+    },
+    {
+      "title": "小牧原小学校区地域協議会 三世代交流会",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/chiikikyougikaievent/50442.html",
+      "updated_at": "2026年10月01日",
+      "place": "小牧原小学校",
+      "when": "11月7日 9時00分～11時30分",
+      "category": "イベント / 催し",
+      "shinooka": false,
+      "date": "2026-11-07"
+    },
+    {
+      "title": "味岡小学校区地域協議会 芸能発表会",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/chiikikyougikaievent/52732.html",
+      "updated_at": "2026年10月01日",
+      "place": "味岡市民センター",
+      "when": "11月1日 10時00分～16時00分",
+      "category": "イベント / 催し",
+      "shinooka": false,
+      "date": "2026-11-01"
+    },
+    {
+      "title": "本庄小学校区地域協議会 ほっとすぽっと＆ふれ愛コンサート",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/chiikikyougikaievent/52733.html",
+      "updated_at": "2026年10月01日",
+      "place": "本庄小学校",
+      "when": "11月8日 9時00分～正午",
+      "category": "イベント / 催し",
+      "shinooka": false,
+      "date": "2026-11-08"
+    },
+    {
+      "title": "小木小学校区地域協議会 健康まつり",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/chiikikyougikaievent/52734.html",
+      "updated_at": "2026年10月01日",
+      "place": "小木小学校 体育館",
+      "when": "11月14日 13時00分～16時00分",
+      "category": "イベント / 催し",
+      "shinooka": false,
+      "date": "2026-11-14"
+    },
+    {
+      "title": "小牧小学校区地域協議会 三世代交流会 ハッピーフェスタ",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/chiikikyougikaievent/52735.html",
+      "updated_at": "2026年10月01日",
+      "place": "小牧小学校",
+      "when": "11月29日 13時30分～16時00分",
+      "category": "イベント / 催し",
+      "shinooka": false,
+      "date": "2026-11-29"
     }
   ]
 }
