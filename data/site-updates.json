@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-10-15",
+      "type": "feature",
+      "ja": "ヘッダのタイトルを黒板デザインのロゴに（外国語は各言語で表示）",
+      "en": "Blackboard-style title logo in the header, shown in each language"
+    },
+    {
+      "date": "2026-10-15",
       "type": "content",
       "ja": "「桃ヶ丘小学校区地域協議会 あおぞら市場」を地域の取組と予定に掲載",
       "en": "Community council event added to community efforts and the schedule",

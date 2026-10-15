@@ -149,6 +149,9 @@ a.site-title:hover { opacity: .85; }
 html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-l1 { font-size: .85em; letter-spacing: 0; }
 html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-mn { font-size: 1.3em; letter-spacing: 0; margin-right: 0; }
 html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-sb { font-size: .88em; letter-spacing: 0; line-height: 1.2; }
+/* こどもむけは「学校さいへんナビ」が8文字・地域名もひらがなで長いので、1行に収まる大きさにする（左上の点にも重ねない） */
+.kids-mode .logo-l1 { font-size: .9em; letter-spacing: 0; }
+.kids-mode .logo-mn { font-size: 1.75em; letter-spacing: .05em; margin-right: -.05em; }
 /* PC 1100px 以上は副題1行の横長版 */
 @media (min-width: 1100px) {
   .logo { font-size: calc(.57 * var(--hr)); width: 32.6em; }
@@ -157,6 +160,8 @@ html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-sb { font-size: .88em; l
   .logo-l1 { font-size: 1.05em; }
   .logo-mn { font-size: 2.3em; margin: .1em -.1em .15em 0; }
   .logo-sb { font-size: 1.1em; }
+  .kids-mode .logo-l1 { font-size: 1.05em; letter-spacing: .04em; }
+  .kids-mode .logo-mn { font-size: 2.3em; letter-spacing: .1em; margin-right: -.1em; }
   .logo-dots i:nth-child(4) { right: .8em; bottom: 1.9em; }
   .logo-dots i:nth-child(5) { right: 1.6em; bottom: 2.1em; }
   .logo-dots i:nth-child(6) { right: 1.2em; bottom: 2.7em; }

@@ -11,6 +11,14 @@
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
   <rights>このサイトは市民有志が運営しており、小牧市・教育委員会とは無関係です。</rights>
   <entry>
+    <title>ヘッダのタイトルを黒板デザインのロゴに（外国語は各言語で表示）</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:b91ecabdb394ad1e</id>
+    <updated>2026-10-15T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜ヘッダのタイトルを黒板デザインのロゴに（外国語は各言語で表示）</summary>
+  </entry>
+  <entry>
     <title>「桃ヶ丘小学校区地域協議会 あおぞら市場」を地域の取組と予定に掲載</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
     <id>tag:komaki-east-school-reorg.github.io,2026:0c6e06d08b3b603d</id>
@@ -321,13 +329,5 @@
     <updated>2026-09-22T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜読み上げ中の文を光らせ、計画概要に「ことばメモ」を追加</summary>
-  </entry>
-  <entry>
-    <title>地域クラブ・課外活動のページを新設</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:7b74adde5cf2f742</id>
-    <updated>2026-09-22T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜地域クラブ・課外活動のページを新設</summary>
   </entry>
 </feed>

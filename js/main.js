@@ -335,7 +335,7 @@ window.KomakiGrade = (function () {
 
   var WINDOW_DAYS = 14;      // 掲載から何日出すか
   var MAX_ITEMS = 3;         // 入れ替えで見せる最大件数
-  var SLOTS = {news: 1, log: 2};  // 3件の内訳：市のお知らせ1・更新履歴2（2026-10-11 ユーザー指示）
+  var SLOTS = {news: 1, content: 1, feature: 1};  // 3件の内訳：市のお知らせ1・更新1・新機能1（2026-10-15 ユーザー指示）
   var ROTATE_MS = 7000;      // 入れ替えの間隔
   var APPEAR_MS = 900;       // 表示を始めるまでの間
 
@@ -497,9 +497,9 @@ window.KomakiGrade = (function () {
       // 記録すると、次に開いたときに少し前の項目が繰り上がって出てきてしまう。
       var all = items;
 
-      /* 割合は「市からのお知らせ」1 : 更新履歴（新機能・更新）2（2026-10-11 ユーザー指示）。
-         それぞれの枠の中では点の高いものから取る。片方に期間内の項目が足りない
-         ときは、空いた枠をもう片方の点の高いもので埋める（帯を空けないため）。 */
+      /* 割合は「市からのお知らせ」1 : 「更新」1 : 「新機能」1（2026-10-15 ユーザー指示。
+         それまでは お知らせ1 : 更新履歴2）。それぞれの枠の中では点の高いものから取る。
+         ある種類に期間内の項目が無いときは、空いた枠を残りの点の高いもので埋める（帯を空けないため）。 */
       var picked = [];
       function take(test, n) {
         items.forEach(function (it) {
@@ -508,8 +508,9 @@ window.KomakiGrade = (function () {
           }
         });
       }
-      take(function (it) { return it.kind === 'news'; }, SLOTS.news);
-      take(function (it) { return it.kind !== 'news'; }, SLOTS.log);
+      Object.keys(SLOTS).forEach(function (k) {
+        take(function (it) { return it.kind === k; }, SLOTS[k]);
+      });
       take(function () { return true; }, MAX_ITEMS);
       items = picked.sort(byScore);
 
