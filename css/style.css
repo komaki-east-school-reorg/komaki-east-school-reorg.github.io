@@ -123,11 +123,12 @@ header {
    2026-10-15 ユーザー指示：OGP 画像のデザインを正式なタイトルロゴにし、ヘッダの文字のサイト名は外した。
    同日、画像から文字組（HTML＋CSS）に替えた — 画像だとスマホで副題が約9pxの「文字の絵」になってにじみ、
    大きさの調整のたびに作り直しが要るため。見た目は OGP 画像と同じ：黄色の枠・濃い緑の帯・黒板の緑・
-   チョークの点・M PLUS Rounded 1c・「地域名／メインタイトル（ナビは黄）／下線／副題」の3段。
+   チョークの点・M PLUS Rounded 1c・「地域名とメインタイトル（ナビは黄）を横並び／下線／副題」。
    外国語ではメインタイトルも各言語で出す（logo_area / logo_main / site_sub。同日ユーザー指示）。
    ロゴの中は em で組み、.logo の font-size（＝1段目の字の大きさ）だけで全体が伸び縮みする。
    その font-size は rem ではなく --hr で決める（文字サイズ切り替えでヘッダを膨らませない）。
-   横幅は言語によらず固定（2行版 17.4em・横長版 32.6em）。長い言語は中で折り返して縦に伸びる。 */
+   横幅は言語によらず固定（幅ごとに決める）。長い言語は中で折り返して縦に伸びる。
+   ロゴの高さは、その幅でヘッダに並ぶ右側（モバイル＝言語切替、PC＝ナビ2段）とそろえる（2026-10-16）。 */
 .site-title { display: block; flex-shrink: 0; text-decoration: none; color: #fff; }
 a.site-title:hover { opacity: .85; }
 .logo { display: block; font-size: calc(.5625 * var(--hr)); width: 17.4em; box-sizing: border-box; background: var(--accent); padding: .2em; font-family: var(--heading-font); line-height: 1; text-align: center; }
@@ -138,10 +139,23 @@ a.site-title:hover { opacity: .85; }
 .logo-mn b { color: var(--accent); font-weight: 800; }
 .logo-ru { display: block; height: .15em; background: var(--accent); width: 68%; margin: 0 auto .4em; }
 .logo-sb { display: block; font-weight: 700; font-size: 1.05em; letter-spacing: .02em; line-height: 1.3; word-break: keep-all; overflow-wrap: anywhere; text-wrap: balance; }
+/* 地域名（logo_area）とメインタイトル（logo_main）は横に並べる（2026-10-16 ユーザー指示）。
+   HTML は変えずにグリッドで組む。列は「余白 | 地域名 | メインタイトル | 余白」で、左右の 1fr が上の段を
+   中央に寄せ、罫と副題は4列ぶん（全幅）を使う。幅が足りないときは地域名の列が縮んで中で折り返す
+   （モバイルでは「小牧市東部／（篠岡地区）」の2行）。 */
+.logo-bd { display: grid; grid-template-columns: 1fr minmax(0, max-content) max-content 1fr; align-items: center; }
+html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-bd { grid-template-columns: 1fr fit-content(11em) minmax(min-content, max-content) 1fr; }   /* 外国語は1段目を先に折り返し、メインタイトルを優先 */
+.logo-dots { display: contents; }   /* 点の入れ物がグリッドの1マスを取らないように */
+.logo-l1 { grid-column: 2; padding-right: .55em; }
+.logo-mn { grid-column: 3; }
+.logo-l1, .logo-mn { min-width: 0; }
+.logo-ru, .logo-sb { grid-column: 1 / -1; }
+.logo-ru { justify-self: center; }
+.logo-sb { width: 0; min-width: 100%; }   /* 副題の長さで上の段の列幅を決めさせない（全幅にはなる） */
 .logo-dots i { position: absolute; border-radius: 50%; background: var(--accent); }
-.logo-dots i:nth-child(1) { left: .4em; top: .4em; width: .4em; height: .4em; }
-.logo-dots i:nth-child(2) { left: 1em; top: .8em; width: .25em; height: .25em; }
-.logo-dots i:nth-child(3) { left: 1.4em; top: .3em; width: .25em; height: .25em; }
+.logo-dots i:nth-child(1) { left: .25em; top: .25em; width: .4em; height: .4em; }
+.logo-dots i:nth-child(2) { left: .3em; top: .85em; width: .25em; height: .25em; }
+.logo-dots i:nth-child(3) { left: .9em; top: .2em; width: .25em; height: .25em; }
 .logo-dots i:nth-child(4) { right: .5em; bottom: 3.1em; width: .4em; height: .4em; }
 .logo-dots i:nth-child(5) { right: 1.2em; bottom: 3.3em; width: .25em; height: .25em; }
 .logo-dots i:nth-child(6) { right: .8em; bottom: 3.8em; width: .25em; height: .25em; }
@@ -154,21 +168,25 @@ html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-sb { font-size: .88em; l
 .kids-mode .logo-mn { font-size: 1.75em; letter-spacing: .05em; margin-right: -.05em; }
 /* PC 1100px 以上は副題1行の横長版 */
 @media (min-width: 1100px) {
-  .logo { font-size: calc(.57 * var(--hr)); width: 32.6em; }
-  .logo-fr { padding: .4em; }
-  .logo-bd { padding: .5em 1.1em; }
-  .logo-l1 { font-size: 1.05em; }
-  .logo-mn { font-size: 2.3em; margin: .1em -.1em .15em 0; }
-  .logo-sb { font-size: 1.1em; }
+  /* ロゴの高さはナビ2段とほぼ同じにそろえる（2026-10-16 ユーザー指示。ja でロゴ 58px・ナビ 61px）。
+     横幅は約300px（変更前とほぼ同じ）に保つ — 広げるとナビの文字が詰まって折り返す（pt・es・こどもむけで実測）。
+     副題は1行に収まる大きさ（1em）にしてある。 */
+  .logo { font-size: calc(.64 * var(--hr)); width: 29.5em; padding: .12em; }
+  .logo-fr { padding: .2em .4em; }
+  .logo-bd { padding: .55em .7em; }
+  .logo-l1 { font-size: 1.05em; line-height: 1.1; }
+  .logo-mn { font-size: 2.05em; line-height: 1.05; margin: .02em -.1em .05em 0; }
+  .logo-ru { margin-bottom: .22em; }
+  .logo-sb { font-size: 1em; letter-spacing: .01em; line-height: 1.3; }
   .kids-mode .logo-l1 { font-size: 1.05em; letter-spacing: .04em; }
-  .kids-mode .logo-mn { font-size: 2.3em; letter-spacing: .1em; margin-right: -.1em; }
-  .logo-dots i:nth-child(4) { right: .8em; bottom: 1.9em; }
-  .logo-dots i:nth-child(5) { right: 1.6em; bottom: 2.1em; }
-  .logo-dots i:nth-child(6) { right: 1.2em; bottom: 2.7em; }
-  /* 横長版は幅に余裕があるので、日本語・中国語・韓国語以外もメインタイトルを大きく戻す */
-  html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-l1 { font-size: 1em; }
-  html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-mn { font-size: 1.6em; }
-  html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-sb { font-size: 1.05em; }
+  .kids-mode .logo-mn { font-size: 2.05em; letter-spacing: .1em; margin-right: -.1em; }
+  .logo-dots i:nth-child(4) { right: .8em; bottom: 1.6em; }
+  .logo-dots i:nth-child(5) { right: 1.6em; bottom: 1.8em; }
+  .logo-dots i:nth-child(6) { right: 1.2em; bottom: 2.3em; }
+  /* 日本語・中国語・韓国語以外は地域名・メインタイトルとも折り返すので、少し小さめにして高さを抑える */
+  html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-l1 { font-size: .9em; }
+  html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-mn { font-size: 1.35em; }
+  html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-sb { font-size: .95em; }
 }
 
 nav {
@@ -241,6 +259,18 @@ nav ul {
   header nav { flex-direction: column; align-items: flex-end; gap: calc(.3 * var(--hr)); }
   header nav ul { margin-left: auto; max-width: 100%; }
   header .lang-switcher { margin-top: 0; }
+  /* ロゴは平たく（2026-10-16 ユーザー指示）。地域名とメインタイトルを横に並べるため横幅を 17.4em→23em に広げ、縦の余白を詰める。
+     ここでは右の列（ナビ2段＋言語切替、約97px）がヘッダの高さを決めるので、ロゴはそれより低くてよい */
+  .logo { font-size: calc(.66 * var(--hr)); width: 23em; padding: .12em; }
+  .logo-fr { padding: .2em; }
+  .logo-bd { padding: .25em .6em; }
+  .logo-l1 { line-height: 1.05; }
+  .logo-mn { line-height: 1.05; margin: .02em -.1em .04em 0; }
+  .logo-ru { margin-bottom: .22em; }
+  .logo-sb { line-height: 1.18; }
+  .logo-dots i:nth-child(4) { bottom: 2.6em; }
+  .logo-dots i:nth-child(5) { bottom: 2.8em; }
+  .logo-dots i:nth-child(6) { bottom: 3.2em; }
 }
 /* ===== LANGUAGE SWITCHER ===== */
 .lang-switcher {
@@ -1661,7 +1691,7 @@ footer {
 @media (max-width: 768px) {
   /* 高さは固定しない（2026-10-11）。サイト名が「…学校再編ナビ｜桃花台エリアの…」になって
      4行になり、64px 固定・上下余白0では文字が上下の端に張り付いてはみ出したため。 */
-  .header-inner { height: auto; min-height: 64px; padding: calc(.6 * var(--hr)) calc(1 * var(--hr)); position: relative; align-items: center; gap: calc(.9 * var(--hr)); }
+  .header-inner { height: auto; min-height: 64px; padding: calc(.6 * var(--hr)) calc(1 * var(--hr)); position: relative; align-items: center; gap: calc(.7 * var(--hr)); }
   nav ul { display: none; }
   nav ul.open {
     display: flex;
@@ -1691,7 +1721,25 @@ footer {
      上限 9.4px で「学校再編ナビ」は約20px、ヒーローの見出し 27.2px より小さい）。
      container-type: inline-size にすると中身が幅に効かなくなるので、flex: 1 で残りの幅をそのまま受け取る。 */
   .site-title { flex: 1 1 auto; min-width: 0; container-type: inline-size; }
-  .logo { width: 100%; font-size: min(9.4px, 100cqi / 17.4); }
+  /* ロゴの高さは右の言語切替（2段・約46px）と同じくらいにする（2026-10-16 ユーザー指示「上下を二回り小さく」。
+     それまでは約89px で、ロゴだけがヘッダを押し広げていた。ja 390px でロゴ 48px）。地域名とメインタイトルを
+     横に並べ、枠・段の間の縦の余白と副題の行間を詰める。字の上限は 8.8px、狭い幅では 100cqi / 19.5。 */
+  .logo { width: 100%; font-size: min(8.8px, 100cqi / 19.5); padding: .12em; }
+  .logo-fr { padding: .18em; }
+  .logo-bd { padding: .2em .45em; }
+  .logo-l1 { line-height: 1.05; }
+  .logo-mn { font-size: 1.85em; line-height: 1.05; margin: .02em -.1em .04em 0; }
+  .kids-mode .logo-mn { font-size: 1.6em; }
+  .logo-ru { margin-bottom: .2em; }
+  .logo-sb { font-size: .88em; line-height: 1.12; }
+  .logo-dots i:nth-child(4) { bottom: 2.4em; }
+  .logo-dots i:nth-child(5) { bottom: 2.6em; }
+  .logo-dots i:nth-child(6) { bottom: 3em; }
+  /* ハンバーガーも少しだけ大きくし、ロゴ・言語切替と並べたときに小さく見えないようにする */
+  .hamburger { gap: 6px; }
+  .hamburger span { width: 26px; }
+  .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
   .notice-banner { font-size: .72rem; padding: .45rem .8rem; }
 
   .hero { padding: 2.8rem 1rem 2.2rem; }
