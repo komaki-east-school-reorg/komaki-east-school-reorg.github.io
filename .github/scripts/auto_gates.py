@@ -95,9 +95,6 @@ PERMITTED_INSTAGRAM = {
     "instagram.com/bamboo_installation_ookusa": ("community.html", "index.html"),
     "instagram.com/shinookajidoukan": ("community.html", "index.html"),
     "instagram.com/warabekan": ("community.html", "index.html"),
-    # 桃花台を考える会【新しいまちづくり】。フッタの「参考リンク（市民団体）」に
-    # 全ページで出る（2026-09-22 ユーザー指示）
-    "instagram.com/tokadai_komaki": None,
     # 校区内で活動している地域クラブ（clubs.html のみ。2026-09-22 ユーザー指示）。
     # いずれもクラブ自身の発信で、計画の内容・数値・日程の根拠には決して使わない。
     "instagram.com/rikimaru_sport_club": ("clubs.html",),
@@ -131,29 +128,25 @@ PERMITTED_CLUB_SITES = (
 )
 CLUB_PAGES = ("clubs.html",)
 
-# X と Facebook。**共有ボタンの送信先と、住民有志の発信の2種類しかない。**
+# X・Facebook・TikTok。**共有ボタンの送信先（と市公式 Facebook の1本）しかない。**
 # 共有ボタンの URL は出典ではなく、サイトのどこからも引用してはいけない。
-# 住民有志の発信も、計画の内容・数値の根拠には決して使わない（報道と同じ扱い）。
+# フッタの「参考リンク（住民有志）」（桃花台を考える会の4アカウント）は
+# 2026-10-17 のユーザー指示で削除した。
 # 増やすときは CLAUDE.md・CONTRIBUTING.txt 規則1・README.md も同時に更新すること。
 PERMITTED_SNS = {
     "x.com": (
         "x.com/intent/post",         # 共有ボタン（出典ではない）
-        "x.com/tokadai_komaki",      # 桃花台を考える会【新しいまちづくり】
     ),
     "facebook.com": (
         "facebook.com/sharer/sharer.php",   # 共有ボタン（出典ではない）
-        "facebook.com/TokadaiNT",           # 桃花台を考える会【新しいまちづくり】
         # 小牧市公式 Facebook の投稿。「地域の取組」欄の項目が本文で触れた事実の
         # 出どころとして1本だけ張る（2026-09-24 ユーザー指示。読者が本文を見て
         # 確かめられるため許可）。市の公表なので事実の根拠に使ってよいが、
         # 張れるのは data/community_actions.json の ref_url だけに留めること。
         "facebook.com/city.komaki",
     ),
-    # 桃花台を考える会【新しいまちづくり】の TikTok。フッタの「参考リンク（住民有志）」だけ
-    # （2026-10-11 ユーザー指示）。共有ボタンの TikTok はコピーのみで URL を持たない。
-    "tiktok.com": (
-        "tiktok.com/@tokadai_komaki",
-    ),
+    # 共有ボタンの TikTok はコピーのみで URL を持たないので、tiktok.com はどこにも張れない。
+    "tiktok.com": (),
 }
 MIN_QUOTE_LEN = 10
 

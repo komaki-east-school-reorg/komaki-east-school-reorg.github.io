@@ -153,12 +153,15 @@ html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-bd { grid-template-colum
 .logo-ru { justify-self: center; }
 .logo-sb { width: 0; min-width: 100%; }   /* 副題の長さで上の段の列幅を決めさせない（全幅にはなる） */
 .logo-dots i { position: absolute; border-radius: 50%; background: var(--accent); }
-.logo-dots i:nth-child(1) { left: .25em; top: .25em; width: .4em; height: .4em; }
-.logo-dots i:nth-child(2) { left: .3em; top: .85em; width: .25em; height: .25em; }
-.logo-dots i:nth-child(3) { left: .9em; top: .2em; width: .25em; height: .25em; }
-.logo-dots i:nth-child(4) { right: .5em; bottom: 3.1em; width: .4em; height: .4em; }
-.logo-dots i:nth-child(5) { right: 1.2em; bottom: 3.3em; width: .25em; height: .25em; }
-.logo-dots i:nth-child(6) { right: .8em; bottom: 3.8em; width: .25em; height: .25em; }
+/* チョークの点は左上と右下の隅に、黒板の左右の余白（.logo-bd の左右 padding）の中だけに置く。
+   文字の段に食い込ませると、言語や幅によって字と点が重なる（2026-10-17 ユーザー指摘・右の点は右下隅へ）。
+   点は端から .62em 以内に収めてあるので、左右の padding を .65em より狭くしないこと。 */
+.logo-dots i:nth-child(1) { left: .1em; top: .15em; width: .35em; height: .35em; }
+.logo-dots i:nth-child(2) { left: .15em; top: .65em; width: .22em; height: .22em; }
+.logo-dots i:nth-child(3) { left: .42em; top: .1em; width: .2em; height: .2em; }
+.logo-dots i:nth-child(4) { right: .1em; bottom: .15em; width: .35em; height: .35em; }
+.logo-dots i:nth-child(5) { right: .42em; bottom: .1em; width: .2em; height: .2em; }
+.logo-dots i:nth-child(6) { right: .15em; bottom: .65em; width: .22em; height: .22em; }
 /* 日本語・中国語・韓国語以外は各段が長いので、字を小さくし字間を詰めて行数を減らす（ヘッダを厚くしすぎない） */
 html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-l1 { font-size: .85em; letter-spacing: 0; }
 html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-mn { font-size: 1.3em; letter-spacing: 0; margin-right: 0; }
@@ -180,9 +183,6 @@ html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-sb { font-size: .88em; l
   .logo-sb { font-size: 1em; letter-spacing: .01em; line-height: 1.3; }
   .kids-mode .logo-l1 { font-size: 1.05em; letter-spacing: .04em; }
   .kids-mode .logo-mn { font-size: 2.05em; letter-spacing: .1em; margin-right: -.1em; }
-  .logo-dots i:nth-child(4) { right: .8em; bottom: 1.6em; }
-  .logo-dots i:nth-child(5) { right: 1.6em; bottom: 1.8em; }
-  .logo-dots i:nth-child(6) { right: 1.2em; bottom: 2.3em; }
   /* 日本語・中国語・韓国語以外は地域名・メインタイトルとも折り返すので、少し小さめにして高さを抑える */
   html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-l1 { font-size: .9em; }
   html:not(:lang(ja)):not(:lang(zh)):not(:lang(ko)) .logo-mn { font-size: 1.35em; }
@@ -263,14 +263,11 @@ nav ul {
      ここでは右の列（ナビ2段＋言語切替、約97px）がヘッダの高さを決めるので、ロゴはそれより低くてよい */
   .logo { font-size: calc(.66 * var(--hr)); width: 23em; padding: .12em; }
   .logo-fr { padding: .2em; }
-  .logo-bd { padding: .25em .6em; }
+  .logo-bd { padding: .25em .65em; }
   .logo-l1 { line-height: 1.05; }
   .logo-mn { line-height: 1.05; margin: .02em -.1em .04em 0; }
   .logo-ru { margin-bottom: .22em; }
   .logo-sb { line-height: 1.18; }
-  .logo-dots i:nth-child(4) { bottom: 2.6em; }
-  .logo-dots i:nth-child(5) { bottom: 2.8em; }
-  .logo-dots i:nth-child(6) { bottom: 3.2em; }
 }
 /* ===== LANGUAGE SWITCHER ===== */
 .lang-switcher {
@@ -1454,8 +1451,6 @@ footer {
 .footer-links a:hover { color: #fff; text-decoration: none; }
 /* フッタの市民団体欄：団体名を1行出し、その下にサービス名のリンクを並べる。
    同じ団体の発信が3つあるので、団体名を3回繰り返さずに済ませるための形。 */
-.footer-group { display: block; color: rgba(255,255,255,.82); font-size: .85rem; margin-bottom: .3rem; }
-.footer-sns { display: flex; flex-wrap: wrap; gap: .15rem .8rem; }
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,.12);
   padding-top: 1rem;
@@ -1726,15 +1721,15 @@ footer {
      横に並べ、枠・段の間の縦の余白と副題の行間を詰める。字の上限は 8.8px、狭い幅では 100cqi / 19.5。 */
   .logo { width: 100%; font-size: min(8.8px, 100cqi / 19.5); padding: .12em; }
   .logo-fr { padding: .18em; }
-  .logo-bd { padding: .2em .45em; }
+  .logo-bd { padding: .2em .55em; }
+  .logo-dots i:nth-child(3) { left: .33em; }   /* 余白を .55em にしたので、点も端から .53em 以内へ */
+  .logo-dots i:nth-child(5) { right: .33em; }
+  .logo-l1 { padding-right: .35em; }   /* 点の余白で狭くなったぶんを、地域名とメインタイトルの間で取り戻す（390px の ja で地域名が3行にならないように） */
   .logo-l1 { line-height: 1.05; }
   .logo-mn { font-size: 1.85em; line-height: 1.05; margin: .02em -.1em .04em 0; }
   .kids-mode .logo-mn { font-size: 1.6em; }
   .logo-ru { margin-bottom: .2em; }
   .logo-sb { font-size: .88em; line-height: 1.12; }
-  .logo-dots i:nth-child(4) { bottom: 2.4em; }
-  .logo-dots i:nth-child(5) { bottom: 2.6em; }
-  .logo-dots i:nth-child(6) { bottom: 3em; }
   /* ハンバーガーも少しだけ大きくし、ロゴ・言語切替と並べたときに小さく見えないようにする */
   .hamburger { gap: 6px; }
   .hamburger span { width: 26px; }
