@@ -47,7 +47,7 @@ ALLOWED_PREFIXES = ("data/i18n/pages/",
 # 自動化の作業ファイル置き場（検査対象外）
 IGNORE_PREFIXES = ("auto_update/", "report/")
 EVIDENCE = "auto_update/evidence.json"
-# 市サイトへのリンクを張ってよいページ（この3つのインデックスのみ。PDF直リンク・
+# 市サイトへのリンクを張ってよいページ（下の5つのみ。PDF直リンク・
 # 個別記事ページは不可）。1つ目＝学校再編（教育総務課）、2つ目＝地域協議会（支え合い
 # 協働推進課、community.html 用に 2026-08-12 追加）、3つ目＝東部まちづくり（東部まちづくり
 # 推進室、「地域の取組」欄の出典として 2026-09-13 にユーザーが許可）。
@@ -56,10 +56,16 @@ EVIDENCE = "auto_update/evidence.json"
 # 4つ目＝東部まちづくりプラットフォームの説明ページ（2026-09-27 ユーザー指示）。索引ではなく
 # 個別記事だが、ユーザーが明示して許可した。community.html の #platform でだけ張ってよい
 # （CITY_PAGE_ONLY で機械的に縛る）。
+# 5つ目＝都市計画課の索引（2026-10-17 ユーザー指示）。review.html の「都市計画の動き
+# （東部地域）」の出典行だけに使う。URL は js/main.js の TOSHIKEIKAKU EAST ブロックにあり、
+# 描画されるのは review.html だけ。末尾まで含めて照合するので、配下の個別ページや
+# 下位の索引（.../toshikeikaku/1/2_1/index.html など）は不可のまま。
 PERMITTED_LINKS = ("303/index.html", "sasaeai/3/3_2/index.html",
                    "tobumachidukurisingikai/index.html",
-                   "purattofo-mu/38222.html")
-CITY_PAGE_ONLY = {"purattofo-mu/38222.html": ("community.html",)}
+                   "purattofo-mu/38222.html",
+                   "toshikeikaku/1/index.html")
+CITY_PAGE_ONLY = {"purattofo-mu/38222.html": ("community.html",),
+                  "toshikeikaku/1/index.html": ("review.html", "js/main.js")}
 # 東部まちづくりプラットフォームの登録フォーム（市が案内している logoform）。
 # community.html の #platform でだけ、この1本に限って張ってよい（2026-09-27 ユーザー指示）。
 PERMITTED_FORM_LINKS = ("logoform.jp/form/uSYk/80018",)

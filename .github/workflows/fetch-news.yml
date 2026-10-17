@@ -92,6 +92,11 @@ jobs:
       - name: Build eastern-district action list
         run: python3 .github/scripts/build_tobu_actions.py
 
+      # 都市計画課の掲載のうち東部に関係するもの（review.html「都市計画の動き（東部地域）」）。
+      # これも市サーバへは行かず、直前の fetch_news.py のスナップショットを読むだけ（2026-10-17）。
+      - name: Build eastern-district city-planning list
+        run: python3 .github/scripts/build_toshikeikaku.py
+
       # 「最新の動き」の Atom フィード（feed.xml）。上で作ったデータと更新履歴から決定的に作る。
       # 市サーバへは行かない。これらのデータの【あと】に置くこと（2026-10-11）。
       - name: Build Atom feed
@@ -135,7 +140,7 @@ jobs:
         id: report
         if: steps.fetch.outputs.changed == 'true' || steps.newsletters.outputs.changed == 'true'
         run: |
-          git add data/news.json data/official_pages data/community_events.json data/tobu_actions.json data/site-updates.json feed.xml
+          git add data/news.json data/official_pages data/community_events.json data/tobu_actions.json data/toshikeikaku_east.json data/site-updates.json feed.xml
           if git diff --staged --quiet -- data/official_pages; then
             echo "pages_changed=false" >> "$GITHUB_OUTPUT"
           else
@@ -272,6 +277,10 @@ jobs:
                ページ（監視のみ）**。取組の一覧は build_tobu_actions.py が data/tobu_actions.json に
                自動で反映するので、「地域の取組」欄を手で書き足してはいけない。学校再編そのものの
                事実（日程・対象校・通学区域など）が書かれていた場合にかぎり、通常どおり扱う
+            2-d. **変更が data/official_pages/toshikeikaku-* なら、それは都市計画課のページ（監視のみ）**。
+               東部に関係する掲載は build_toshikeikaku.py が data/toshikeikaku_east.json に自動で反映し
+               review.html に出るので、手で書き足してはいけない。学校再編そのものの事実が書かれていた
+               場合にかぎり、通常どおり扱う
             3. data/site-facts.json で影響しうるサイト内の箇所を確認する
             4. CLAUDE.md のルール（特に日付連動の自動表示・属性の使い分け）を読む
             5. サイトのデータを更新すべきか判断し、必要な場合のみ次のファイルだけを編集する:

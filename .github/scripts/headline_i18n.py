@@ -70,6 +70,12 @@ def current_headlines():
         add(it.get("place"))
     for it in load("data/community_actions.json", {}).get("actions", []):
         add(it.get("title_ja"))
+    for it in load("data/toshikeikaku_east.json", {}).get("items", []):
+        add(it.get("title"))     # review.html「都市計画の動き（東部地域）」
+        for h in it.get("hits", []):
+            add(h)               # 該当した地名
+    for ev in load("data/toshikeikaku_east.json", {}).get("events", []):
+        add(ev.get("title"))     # スケジュールに自動で載る日程
     return out
 
 

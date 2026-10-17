@@ -15,7 +15,7 @@ python3 -m http.server 8000
 
 ## Validation checks (run before every commit)
 
-**1. Illegal external links** — exactly **four** city URLs are permitted: three index pages, plus one article page that the user explicitly allowed (2026-09-27). No PDF direct links, no other article subpages.
+**1. Illegal external links** — exactly **five** city URLs are permitted: four index pages, plus one article page that the user explicitly allowed (2026-09-27). No PDF direct links, no other article subpages.
 
 | Permitted URL | Used by |
 |---|---|
@@ -23,15 +23,17 @@ python3 -m http.server 8000
 | `.../kenkouikigai/sasaeai/3/3_2/index.html` | community councils (Mutual Support Div.) — `community.html` only |
 | `.../toubumachidukuri/tobumachidukurisingikai/index.html` | eastern-district development (Eastern District Office) — the 出典 line of the 地域の取組 corner, built in `js/main.js` (added 2026-09-13 on the user's say-so) |
 | `.../tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/38222.html` | 東部まちづくりプラットフォームの説明 — `community.html` `#platform` **only** (added 2026-09-27 on the user's instruction; the one article page allowed). The same block links the city's registration form `logoform.jp/form/uSYk/80018`, also `community.html` only. Both are pinned by `CITY_PAGE_ONLY` / `PERMITTED_FORM_LINKS` in `auto_gates.py` |
+| `.../toshiseisakubu/toshikeikaku/1/index.html` | city planning (Urban Planning Division) — the 出典 line of the 都市計画の動き（東部地域） corner on `review.html`, built in `js/main.js` (added 2026-10-17 on the user's say-so; confined to `review.html` / `js/main.js` by `CITY_PAGE_ONLY`). Matched with its `index.html` suffix, so the lower indexes and article pages under it stay forbidden |
 
 ```bash
 grep -rn "city\.komaki\.aichi\.jp" *.html js/*.js \
   | grep -v -e "303/index\.html" -e "sasaeai/3/3_2/index\.html" \
-           -e "tobumachidukurisingikai/index\.html" -e "purattofo-mu/38222\.html"
+           -e "tobumachidukurisingikai/index\.html" -e "purattofo-mu/38222\.html" \
+           -e "toshikeikaku/1/index\.html"
 # Any output = violation. Replace with one of the permitted URLs.
 ```
 
-The same four URLs are encoded in `PERMITTED_LINKS` in `.github/scripts/auto_gates.py` — keep them in sync. The third one is matched with its `index.html` suffix on purpose, so the pages **under** it (`.../tobumachidukurisingikai/34277.html`, `.../toubumatidukurinyu-su/index.html`) stay forbidden. Adding a fifth requires updating this file, `CONTRIBUTING.txt` rule 1, `README.md`, and that gate together.
+The same five URLs are encoded in `PERMITTED_LINKS` in `.github/scripts/auto_gates.py` — keep them in sync. The third one is matched with its `index.html` suffix on purpose, so the pages **under** it (`.../tobumachidukurisingikai/34277.html`, `.../toubumatidukurinyu-su/index.html`) stay forbidden. Adding a sixth requires updating this file, `CONTRIBUTING.txt` rule 1, `README.md`, and that gate together.
 
 Several other domains are permitted and are outside this grep. The **eight target schools' own homepages** (`komaki-aic.ed.jp/<slug>/`) may be linked: they are a different domain run by the schools, and the URLs are stable. They appear in `map.html` (the 各校ホームページ block) and, via `data/school_news.json`, in the bottom section of `index.html`. The grep above does not cover them — when the set of schools changes, keep `SCHOOLS` in `fetch_schools.py` and the `map.html` block in sync. And **five MEXT pages** (`mext.go.jp`) are linked from `nationwide.html` only, as the sources for the nationwide figures and the national standards — see that page's section below. And **five Instagram accounts** — three citizen-run (`instagram.com/arigato.ohshirosho`, `instagram.com/tokadaidancefestival`, `instagram.com/bamboo_installation_ookusa`) and two of the city's children's centres (`instagram.com/shinookajidoukan`, `instagram.com/warabekan`, added 2026-09-26) — are linked from the 地域の取組 corner, which appears on `community.html` and — as the same list inside the 最新の動き group — on `index.html` — see `data/community_actions.json` below. The footer's 「参考リンク（住民有志）」 block (the four SNS accounts of 桃花台を考える会【新しいまちづくり】) was **removed on 2026-10-17** on the user's instruction; the footer now carries only 「参考リンク（公式）」. `PERMITTED_SNS` in `auto_gates.py` confines `x.com`, `facebook.com` and `tiktok.com` to the share endpoints (TikTok: nothing at all) and **one more: `facebook.com/city.komaki`** — the city's own Facebook, allowed on 2026-09-24 on the user's instruction so that a 地域の取組 item can link the city post its text relies on (the reader can then read that post themselves). That one **is** a city publication and may be cited; it is only ever the `ref_url` of an entry in `data/community_actions.json`. Finally, the **share buttons** at the bottom of every page point at eight sharing endpoints (`social-plugins.line.me` — `line.me/R/share` on phones, see below —, `x.com/intent/post`, `www.facebook.com/sharer/sharer.php`, `b.hatena.ne.jp/entry/panel/`, `note.com/intent/post` (added 2026-10-06; the official button script `cdn.st-note.com` is **not** loaded), `www.threads.net/intent/post`, `bsky.app/intent/compose`, `www.reddit.com/submit`), at whatever Mastodon server the reader names (`https://<host>/share`), and load one external script (`s.hatena.ne.jp/js/HatenaStar.js`) — see the SHARE BUTTONS section below. Those URLs are built in `js/main.js`, never written into HTML or a dictionary, and are **not sources**: nothing on the site may cite them.
 
@@ -261,6 +263,17 @@ The **地域の取組 section on `community.html`**, sitting directly below the 
 - **深いところにある2つだけは毎日見る**（2026-09-13 ユーザー指示）：協働提案事業（これからの催しが載る）と東部地域トライアル活動（年度ごとの認定活動）。`WATCH_INDEXES` に直接足してあるが、配下に過去分が数十ページ積もっているので、浅い巡回の日は**末尾（＝新しいほう）だけ**を取る（`WATCH_TAIL_INDEXES` / `WATCH_TAIL_PAGES = 8` / `WATCH_TAIL_DIRS = 1`）。市のインデックスは古い順に並んでいるため末尾が最新。これで毎日の取得は東部まちづくり全体で 40ページ弱に収まる。
 - **桃花台を考える会の催しは「地域の取組」（住民側）に出す**（2026-09-26 ユーザー指示）。`build_tobu_actions.py` が催し（`kind: "event"`）に `organizer: "桃花台を考える会"` を付け、TOBU ACTIONS はそれを外し、COMMUNITY ACTIONS が `data/tobu_actions.json` からそれを拾って市民有志の札で並べる。判定は「本文に団体名がある」か「協働提案事業のページで題名が同会の続き物（`TOKADAI_SERIES`：桃花台音楽まつり・我が家の相続セミナー・桃花台を考える講演会・住まいの相談会）」— 第11回桃花台音楽まつりのページには団体名が無いため（第3〜10回はすべて同会との協働提案事業）。本文は「同会が市の東部まちづくり推進室との協働提案事業として開く催し」と書き、発信元は東部まちづくりの索引（掲載しているのが市のページのため）。**スケジュールにも自動で載る**（同日ユーザー指示）。`js/main.js` の `KomakiTokadaiEvents()` がこれを events.json と同じ形（12言語ラベル＝見出しの訳＋「（市民有志）」、`day: true`）に直し、`KomakiEvents()` が events.json に足す。カレンダー・`.ics`・「あと◯日」はこれを読み、TOKADAI SCHEDULE ブロックが `schedule.html` のその年の一覧に `.event-item[data-auto="tokadai"]` を `data-start` 順に差し込み、`index.html` の `status_digest` の件数に足す。**events.json に同じ催し（ja ラベルが題名で始まるもの）があれば足さない**ので、手で丁寧に書いた項目（第11回桃花台音楽まつりの `sched_*44`）が優先される。年表に残すため、`TOKADAI_SINCE`（2026-09-26）以降の同会の催しは `build_tobu_actions.py` で60日の窓・件数上限にかけない。記録（ニュースの〈桃花台を考える会〉行）は市の記録として東部まちづくりの欄に残る。
 - `site-facts.json` ではこの接頭辞の `targets` を空にしてある。**一覧は自動で入れ替わるので、検知 Issue を見た人やAIが手でページを直す必要はない。**
+## `data/toshikeikaku_east.json`（都市計画の動き・東部地域）
+
+2026-10-17 追加（ユーザー指示）。**`review.html` の `#rev-toshikeikaku`**（「確認できなかったこと」の直前）に、市の都市計画課の配下（`.../toshiseisakubu/toshikeikaku/1/`：都市計画審議会・景観審議会の会議録、地区計画、公聴会、電子告示、マスタープラン・立地適正化計画、パブコメ）のうち、**題名か本文に東部の地名があるページを更新日の新しい順に5件**（ユーザー指定）並べる。14日以内の更新には「新着」。
+
+- **自動生成・手編集不可。** `fetch_news.py` が保存する `data/official_pages/toshikeikaku-1-*.txt` から `.github/scripts/build_toshikeikaku.py` が組み立てる（市サーバへのアクセスはゼロ。`fetch_news.py` の**あと**に実行。`--check` あり）。`ALLOWED` にも入れない。`site-facts.json` の `targets` は空。
+- **東部の判定は `build_community_events.py` の `EAST_PLACE_KEYWORDS` を import して使う**（地名の一覧は1か所）。索引ページと申請書の様式集（`toshikeikaku-1-1-1-*`）は拾わない。図・PDF の中は読めないので、載っていない＝無い ではない（`rev_tk_note` に明記）。
+- **巡回の負荷**：配下は索引37・記事約125ページ。ふだんは動きのある索引（`TOSHI_DAILY`：告示・公聴会・パブコメ・地区計画・都市計画審議会・会議の開催案内の最新年度）の**末尾だけ**を見て、最上位の索引からは降りない（`TOSHI_NO_DESCEND`）。全階層は日曜の `WATCH_DEEP`。浅い日は `toshikeikaku-1-` のスナップショットを `keep_slugs` で守る。`WATCH_TAIL_INDEXES` は「索引 → (末尾の記事数, 末尾の下位索引数)」の dict。
+- **リンクは出典の1本だけ**（5本目の許可URL、`js/main.js` の TOSHIKEIKAKU EAST ブロックに置く）。項目ごとのリンクは張らない。題名と「該当した地名」は日本語以外で `headline_i18n.json` の訳に置き換える（`current_headlines()` に追加済み）。
+- **決まった日程はスケジュールへ自動で載る**（2026-10-18 ユーザー指示）。東部に関係するページ（表示の5件に限らない）の「開催日時」「開催期日」「閲覧期間」「縦覧期間」「意見募集期間」の次の行から日付を読み、`events`（`role`：`day`＝1日の予定／`viewing`＝案の閲覧・縦覧／`pubcom`＝意見募集、期間は `start`〜`date`）に入れる。`KomakiTokadaiEvents()` が `kind: 'toshi'` として予定の形（ラベル＝見出しの訳＋`TAG_TOSHI[role]`「（都市計画）」など。1日なら `"day": true`、期間は `start` と `span: true`）に直し、カレンダー・`.ics`・schedule.html の一覧（`.event-item[data-auto="toshi"]`、本文は `review.html#rev-toshikeikaku` へ）・トップの帯（`span` は「10月15日（木）〜11月12日（木）」と日付まで）・`status_digest` の件数に出る。**「地域の取組」には出さない**（地域の催しではないため）。`SCHEDULE_SINCE`（2026-10-17）より前に終わった日程はさかのぼって足さない。題名に「中止」「延期」があるページは日程を拾わず、「は開催しません」とあるページは開催日だけ落とす（閲覧期間は行われたので残す）。市の「開催予定の審議会等」の索引（`4/2/kaigikaisai_r*`）は議題が無く東部との関係が読めないので拾わない — 会議ページに議題が載り東部の地名が出た時点で載る。
+- **review.html で唯一の自動で入れ替わる欄で、【事実】の側。** 札（市公式）・緑の左帯・出典行は東部まちづくりの動きと同じ形（`.tobu-*` を再利用）。🔎・💡 はこの欄に書かない。
+
 ## `data/site-updates.json` (this site's own changelog)
 
 The **last section of `index.html`** shows a changelog of changes made to this site itself. Unlike `news.json` and `school_news.json`, this one is **hand-maintained** — add a new entry at the top of the `updates` array when you ship something a reader would notice. **One exception** (2026-10-05): when an eastern-district community council event is picked up, `build_community_events.py` prepends an entry carrying `auto_key` (the article URL). Do not delete `auto_key` — it is what stops the same event being added twice. The daily workflow commits this file along with the official news data.
@@ -410,6 +423,7 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 | `rev-should` | 💡 本来どうすべきだったか（10提案） | `rev_q1`〜`rev_q10` |
 | `rev-ideas` | 💡 地区全体の子どもを増やすには（7提案。7番目は高校段階の話で、次の節へ送る） | `rev_p1`〜`rev_p7` |
 | `rev-highschool` | 🏫 高校段階をこの地区に置けるか（事実5＋提案3。2026-09-20 ユーザー指示で追加） | `rev_s10_*`、`rev_h1`〜`rev_h8` |
+| `rev-toshikeikaku` | 📡 都市計画の動き（東部地域）。自動で入れ替わる5件（2026-10-17 追加） | `rev_s11_h`・`rev_tk_lead`・`rev_tk_note` |
 | `rev-open` | 確認できなかったこと | `rev_o1`〜`rev_o12` |
 | `rev-contact` | 関係する部署の連絡先（市8・県5・国3） | `rev_s9_*`、`rev_c_c1_w`〜`rev_c_c8_w`、`rev_c_p1_w`〜`rev_c_p5_w`、`rev_c_nat_h`・`rev_c_n1_w`〜`rev_c_n3_w` |
 

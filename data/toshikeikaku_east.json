@@ -1,0 +1,61 @@
+{
+  "description": "都市計画課の掲載のうち東部地域に関係するもの（自動生成・手編集不可）。.github/scripts/build_toshikeikaku.py が data/official_pages/toshikeikaku-1-*.txt から組み立てる。更新日の新しい順に5件。個々の記事ページへのリンクは許可されていないので url は持たない。events は東部に関係するページの決まった日程（スケジュールに自動で載る）。",
+  "source_label": "小牧市 都市政策部 都市計画課",
+  "matched": 17,
+  "items": [
+    {
+      "title": "【開催中止】尾張都市計画（用途地域及び桃花台地区計画の変更）に関する公聴会の開催",
+      "updated_at": "2026-09-29",
+      "kind": "hearing",
+      "in_title": true,
+      "hits": [
+        "桃花台"
+      ],
+      "slug": "toshikeikaku-1-kouchoukai-49694"
+    },
+    {
+      "title": "本庄・池之内地区計画",
+      "updated_at": "2026-08-18",
+      "kind": "landuse",
+      "in_title": true,
+      "hits": [
+        "上末",
+        "池之内"
+      ],
+      "slug": "toshikeikaku-1-2_1-tochiriyou-1-47692"
+    },
+    {
+      "title": "大草年上坂地区計画",
+      "updated_at": "2026-07-01",
+      "kind": "landuse",
+      "in_title": true,
+      "hits": [
+        "大草"
+      ],
+      "slug": "toshikeikaku-1-2_1-tochiriyou-1-51943"
+    },
+    {
+      "title": "地区計画とは",
+      "updated_at": "2026-07-01",
+      "kind": "landuse",
+      "in_title": false,
+      "hits": [
+        "桃花台",
+        "大草",
+        "池之内"
+      ],
+      "slug": "toshikeikaku-1-2_1-tochiriyou-1-5945"
+    },
+    {
+      "title": "令和8年度第1回小牧市都市計画審議会",
+      "updated_at": "2026-06-18",
+      "kind": "meeting",
+      "in_title": false,
+      "hits": [
+        "桃花台"
+      ],
+      "slug": "toshikeikaku-1-4-1-3-52009"
+    }
+  ],
+  "events": []
+}

@@ -267,6 +267,11 @@
       "slug_prefix": "toubumachidukuri-tobumachidukurisingikai-",
       "topic": "東部まちづくり（東部まちづくり推進室・監視のみ）。取組一覧は data/tobu_actions.json に自動反映されるので手編集は不要",
       "targets": []
+    },
+    {
+      "slug_prefix": "toshikeikaku-1-",
+      "topic": "都市計画（都市計画課・監視のみ）。東部に関係する掲載は data/toshikeikaku_east.json に自動反映され review.html に出るので手編集は不要",
+      "targets": []
     }
   ]
 }

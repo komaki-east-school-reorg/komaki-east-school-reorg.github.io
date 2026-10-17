@@ -217,6 +217,16 @@ window.KomakiTokadaiEvents = (function () {
   /* 地域協議会の催し（2026-10-05 ユーザー指示）。data/community_events.json（毎日自動生成）のうち
      東部地域（shinooka: true）で日付の読めたものも、同じ形でスケジュールへ足す。src.kind が 'council'。 */
   var TAG_COUNCIL = {ja:'（地域協議会）', en:' (community council)', pt:' (conselho comunitário)', vi:' (hội đồng cộng đồng)', tl:' (konseho ng komunidad)', es:' (consejo comunitario)', zh:'（地区协议会）', id:' (dewan komunitas)', ko:'(지역 협의회)', ne:' (सामुदायिक परिषद्)', tr:' (bölge konseyi)', my:' (ဒေသဆိုင်ရာ ကောင်စီ)'};
+  /* 都市計画の動き（東部地域）の決まった日程（2026-10-18 ユーザー指示）。data/toshikeikaku_east.json の
+     events（毎日自動生成）。src.kind が 'toshi'。role が day＝1日の予定（審議会・公聴会の開催日）、
+     viewing＝案の閲覧・縦覧期間、pubcom＝意見募集期間。期間は events.json の月単位の予定と同じく
+     キー＝終わりの日・start＝始まりの日で、"day" を付けない（.ics の日カード・「あと◯日」には入らない）。
+     span: true は「始まりと終わりの日が決まった期間」の印で、帯と一覧が日付まで出すのに使う。 */
+  var TAG_TOSHI = {
+    day:     {ja:'（都市計画）', en:' (city planning)', pt:' (planejamento urbano)', vi:' (quy hoạch đô thị)', tl:' (pagpaplano ng lungsod)', es:' (planificación urbana)', zh:'（城市规划）', id:' (tata kota)', ko:'(도시계획)', ne:' (सहरी योजना)', tr:' (şehir planlaması)', my:' (မြို့ပြစီမံကိန်း)'},
+    viewing: {ja:'（都市計画・案の閲覧）', en:' (city planning: draft open for viewing)', pt:' (planejamento urbano: consulta à proposta)', vi:' (quy hoạch đô thị: công khai dự thảo)', tl:' (pagpaplano ng lungsod: pagtingin sa draft)', es:' (planificación urbana: consulta del borrador)', zh:'（城市规划・草案公开查阅）', id:' (tata kota: draf dapat dilihat)', ko:'(도시계획・안 열람)', ne:' (सहरी योजना: मस्यौदा अवलोकन)', tr:' (şehir planlaması: taslak incelemeye açık)', my:' (မြို့ပြစီမံကိန်း: မူကြမ်း ကြည့်ရှုခြင်း)'},
+    pubcom:  {ja:'（都市計画・意見募集）', en:' (city planning: public comments)', pt:' (planejamento urbano: consulta pública)', vi:' (quy hoạch đô thị: lấy ý kiến)', tl:' (pagpaplano ng lungsod: pagtanggap ng opinyon)', es:' (planificación urbana: consulta pública)', zh:'（城市规划・征求意见）', id:' (tata kota: konsultasi publik)', ko:'(도시계획・의견 모집)', ne:' (सहरी योजना: राय सङ्कलन)', tr:' (şehir planlaması: görüş toplama)', my:' (မြို့ပြစီမံကိန်း: အကြံပြုချက် ကောက်ခံခြင်း)'}
+  };
   var ISO = /^\d{4}-\d{2}-\d{2}$/;
   var p = null;
   function getJson(url) {
@@ -227,7 +237,8 @@ window.KomakiTokadaiEvents = (function () {
       p = Promise.all([
         getJson('./data/tobu_actions.json'),
         getJson('./data/community_events.json'),
-        window.KomakiHeadline.load()
+        window.KomakiHeadline.load(),
+        getJson('./data/toshikeikaku_east.json')
       ]).then(function (res) {
         var map = res[2] || {};
         var tokadai = ((res[0] && res[0].items) || []).filter(function (t) {
@@ -240,9 +251,14 @@ window.KomakiTokadaiEvents = (function () {
         }).map(function (e) {
           return {title: e.title, place: e.place || '', date_note: e.when || '', date: e.date, kind: 'council'};
         });
-        return tokadai.concat(council).map(function (t) {
-          var tags = t.kind === 'council' ? TAG_COUNCIL : TAG;
-          var ev = {day: true};
+        var toshi = ((res[3] && res[3].events) || []).filter(function (e) {
+          return TAG_TOSHI[e.role] && ISO.test(e.date || '') && (e.role === 'day' || ISO.test(e.start || ''));
+        }).map(function (e) {
+          return {title: e.title, place: '', date_note: e.date_note || '', date: e.date, start: e.start || '', role: e.role, kind: 'toshi'};
+        });
+        return tokadai.concat(council, toshi).map(function (t) {
+          var tags = t.kind === 'council' ? TAG_COUNCIL : t.kind === 'toshi' ? TAG_TOSHI[t.role] : TAG;
+          var ev = t.kind === 'toshi' && t.role !== 'day' ? {start: t.start, span: true} : {day: true};
           Object.keys(tags).forEach(function (l) {
             var h = map[t.title];
             ev[l] = (l === 'ja' ? t.title : ((h && h[l]) || t.title)) + tags[l];
@@ -255,6 +271,7 @@ window.KomakiTokadaiEvents = (function () {
   }
   get.TAG = TAG;
   get.TAG_COUNCIL = TAG_COUNCIL;
+  get.TAG_TOSHI = TAG_TOSHI;
   // 照合用の題名の候補：そのまま／先頭の「◯◯地域協議会 」を外したもの
   get.names = function (title) {
     var t = String(title || ''), short = t.replace(/^\S*地域協議会\s+/, '');
@@ -810,8 +827,27 @@ window.KomakiGrade = (function () {
     tr:'Bir bölge konseyi tarafından düzenlenir ve belediyenin bölge konseyi etkinlik rehberinde yer alır. Bkz. {a}bölgedeki girişimler{/a}.',
     my:'ဒေသဆိုင်ရာ ကောင်စီက ကျင်းပပြီး မြို့တော်၏ ဒေသဆိုင်ရာ ကောင်စီ ပွဲလမ်းသတင်းတွင် ဖော်ပြထားသည်။ {a}ဒေသတွင်း လှုပ်ရှားမှုများ{/a} ကြည့်ပါ။'
   };
+  // 都市計画の動き（東部地域）の日程（2026-10-18 追加）の本文。
+  var BODY_TOSHI = {
+    ja:'市の都市計画課が公表している、東部地域に関係する日程です。詳しくは{a}都市計画の動き（東部地域）{/a}をご覧ください。',
+    en:'A date published by the city’s Urban Planning Division for a matter concerning the eastern district. See {a}city planning updates (eastern district){/a}.',
+    pt:'Data divulgada pela Divisão de Planejamento Urbano da prefeitura, sobre um assunto da zona leste. Ver {a}planejamento urbano (zona leste){/a}.',
+    vi:'Lịch do Phòng Quy hoạch đô thị của thành phố công bố, liên quan đến khu vực phía Đông. Xem {a}động thái quy hoạch đô thị (khu vực phía Đông){/a}.',
+    tl:'Petsang inilathala ng Urban Planning Division ng lungsod tungkol sa silangang distrito. Tingnan ang {a}pagpaplano ng lungsod (silangang distrito){/a}.',
+    es:'Fecha publicada por la División de Planificación Urbana del municipio sobre un asunto de la zona este. Véase {a}planificación urbana (zona este){/a}.',
+    zh:'市城市规划课公布的、与东部地区有关的日程。详情请见{a}城市规划动态（东部地区）{/a}。',
+    id:'Jadwal yang diumumkan Divisi Tata Kota pemerintah kota, terkait wilayah timur. Lihat {a}perkembangan tata kota (wilayah timur){/a}.',
+    ko:'시의 도시계획과가 공표한, 동부 지역과 관련된 일정입니다. 자세한 내용은 {a}도시계획 동향(동부 지역){/a}을 참고해 주세요.',
+    ne:'नगरको सहरी योजना शाखाले सार्वजनिक गरेको, पूर्वी क्षेत्रसँग सम्बन्धित मिति। हेर्नुहोस् {a}सहरी योजनाका गतिविधि (पूर्वी क्षेत्र){/a}।',
+    tr:'Belediyenin Şehir Planlama Bölümü’nün doğu bölgesiyle ilgili duyurduğu tarih. Bkz. {a}şehir planlaması gelişmeleri (doğu bölgesi){/a}.',
+    my:'မြို့တော်၏ မြို့ပြစီမံကိန်းဌာနက ထုတ်ပြန်ထားသော အရှေ့ပိုင်းဒေသနှင့် သက်ဆိုင်သည့် ရက်စွဲ။ {a}မြို့ပြစီမံကိန်း လှုပ်ရှားမှုများ (အရှေ့ပိုင်း){/a} ကြည့်ပါ။'
+  };
   var MY_DIGITS = '၀၁၂၃၄၅၆၇၈၉';
   var extra = null;
+  function fmtDay(k, lang) {
+    var p = k.split('-');
+    try { return new Intl.DateTimeFormat(LOCALE[lang] || 'en-US', {year:'numeric', month:'long', day:'numeric', weekday:'short'}).format(new Date(+p[0], +p[1] - 1, +p[2])); } catch (e) { return k; }
+  }
   function esc(v) { return String(v == null ? '' : v).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   function todayIso() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
 
@@ -837,33 +873,32 @@ window.KomakiGrade = (function () {
         var t = x.src, key = x.key;
         var list = listFor(key.slice(0, 4));
         if (!list) return;
-        var p = key.split('-');
-        var d = new Date(+p[0], +p[1] - 1, +p[2]);
-        var date;
-        try { date = new Intl.DateTimeFormat(LOCALE[lang] || 'en-US', {year:'numeric', month:'long', day:'numeric', weekday:'short'}).format(d); } catch (e) { date = key; }
-        var state = key <= today ? 'done' : 'upcoming';
+        var start = t.start || key;   // 期間（都市計画の閲覧・意見募集）は始まりの日から
+        var date = fmtDay(start, lang) + (start !== key ? (lang === 'ja' || lang === 'zh' ? ' 〜 ' : ' – ') + fmtDay(key, lang) : '');
+        var state = key < today || (start === key && key <= today) ? 'done' : start <= today ? 'current' : 'upcoming';
         var badge = window.KomakiEventStatus(state);
         var title = window.KomakiHeadline.text(map, t.title);
         var place = t.place ? window.KomakiHeadline.text(map, t.place) : '';
         var when = lang === 'ja' ? (t.date_note || '') : window.KomakiJaWhen(t.date_note || '', lang, {timeOnly: true});
         var line = [place, when].filter(Boolean).join(lang === 'ja' || lang === 'zh' ? '　' : ' · ');
-        var isCouncil = t.kind === 'council';
-        var bodies = isCouncil ? BODY_COUNCIL : BODY;
-        var body = (bodies[lang] || bodies.en).replace('{a}', '<a href="community.html#community-actions">').replace('{/a}', '</a>');
-        var tags = isCouncil ? window.KomakiTokadaiEvents.TAG_COUNCIL : window.KomakiTokadaiEvents.TAG;
+        var isCouncil = t.kind === 'council', isToshi = t.kind === 'toshi';
+        var bodies = isCouncil ? BODY_COUNCIL : isToshi ? BODY_TOSHI : BODY;
+        var href = isToshi ? 'review.html#rev-toshikeikaku' : 'community.html#community-actions';
+        var body = (bodies[lang] || bodies.en).replace('{a}', '<a href="' + href + '">').replace('{/a}', '</a>');
+        var tags = isCouncil ? window.KomakiTokadaiEvents.TAG_COUNCIL : isToshi ? window.KomakiTokadaiEvents.TAG_TOSHI[t.role] : window.KomakiTokadaiEvents.TAG;
         var tag = tags[lang] || tags.en;
         var item = document.createElement('div');
         item.className = 'event-item ' + state;
-        item.setAttribute('data-start', key);
+        item.setAttribute('data-start', start);
         item.setAttribute('data-event-date', key);
-        item.setAttribute('data-auto', isCouncil ? 'council' : 'tokadai');
+        item.setAttribute('data-auto', isCouncil ? 'council' : isToshi ? 'toshi' : 'tokadai');
         item.innerHTML = '<div class="event-date">' + esc(date) +
             '<span class="event-status ' + state + '" data-i18n="event_status_' + state + '">' + esc(badge) + '</span></div>' +
           '<div class="event-desc"><strong>' + esc(title) + esc(tag) + '</strong><br>' +
             (line ? esc(line) + '<br>' : '') + body + '</div>';
         var before = null;
         list.querySelectorAll('.event-item').forEach(function (it) {
-          if (!before && (it.getAttribute('data-start') || '') > key) before = it;
+          if (!before && (it.getAttribute('data-start') || '') > start) before = it;
         });
         list.insertBefore(item, before);
       });
@@ -1043,7 +1078,10 @@ window.KomakiGrade = (function () {
     box.innerHTML = items.map(function (it) {
       var ev = it.ev;
       var name = kids ? ev.ja : (ev[lang] || ev.en || ev.ja || '');
-      var date = ev.day === true ? dayLabel(it.key, lang, thisYear) : monthLabel(ev.start || it.key, it.key, lang, thisYear);
+      // span: true（都市計画の閲覧・意見募集の期間）は始まりと終わりの日が決まっているので日付まで出す
+      var date = ev.day === true ? dayLabel(it.key, lang, thisYear)
+        : ev.span === true ? dayLabel(ev.start, lang, thisYear) + (lang === 'ja' || lang === 'zh' ? '〜' : ' – ') + dayLabel(it.key, lang, thisYear)
+        : monthLabel(ev.start || it.key, it.key, lang, thisYear);
       // 「あと◯日」は日の決まった予定だけ（data-countdown）。月単位の予定に data-expires を付けると、
       // 同じ日付キーに "day": true の予定があるとき DATE COUNTDOWN が札を付けてしまう。
       return '<div class="upcoming-item"' + (ev.day === true ? ' data-countdown="' + esc(it.key) + '"' : ' data-key="' + esc(it.key) + '"') + '>' +
@@ -4165,7 +4203,9 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   // 自動で足す催しは KomakiTokadaiEvents()（スケジュールと同じ元）から取る。終わったものは notPast が落とす。
   var tobuP = window.KomakiTokadaiEvents()
     .then(function (list) {
-      return list.map(function (x) { return x.src.kind === 'council' ? fromCouncil(x.src) : fromTobu(x.src); });
+      // 都市計画の日程（kind 'toshi'）は地域の催しではないので、この欄には出さない（review.html に出る）
+      return list.filter(function (x) { return x.src.kind !== 'toshi'; })
+        .map(function (x) { return x.src.kind === 'council' ? fromCouncil(x.src) : fromTobu(x.src); });
     })
     .catch(function () { return []; });
 
@@ -4373,6 +4413,103 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
               esc(data.source_label || '') + '</a></div>';
       container.innerHTML = html;
       window.KomakiHeadline.apply(container);   // 取組の名称・会場名を表示言語に
+    })
+    .catch(function () {
+      container.innerHTML = '<p class="official-news-error">' + tt('error') + '</p>';
+    });
+})();
+
+/* ===== TOSHIKEIKAKU EAST（review.html「都市計画の動き（東部地域）」）=====
+   2026-10-17 追加（ユーザー指示）。市の都市計画課の配下（審議会・地区計画・公聴会・告示など）
+   のうち、題名か本文に東部の地名があるページを、更新日の新しい順に5件出す。
+   data/toshikeikaku_east.json は .github/scripts/build_toshikeikaku.py が毎日の取得結果から
+   組み立てる生成物で、手編集しない（自動更新パイプラインの ALLOWED にも入れない）。
+
+   【事実の欄】review.html で唯一、自動で入れ替わる欄。並べるのは市が掲載したページの題名と
+   更新日だけで、当サイトの見方（🔎・💡）は書かない。札（市公式）・左帯の色・出典行は
+   東部まちづくりの動き（TOBU ACTIONS）と同じ形で、外さないこと。
+
+   【出典だけリンクする】市サイトへのリンクは許可された索引ページのみ
+   （CLAUDE.md／auto_gates.py check 6）。2026-10-17 に都市計画課の索引が許可されたので、
+   出典の行だけそこへリンクする。URL をこのファイルに置くのはゲートの検査対象に入れるため。
+   増やすときは CLAUDE.md・CONTRIBUTING.txt 規則1・README.md・auto_gates.py を同時に直すこと。
+
+   題名と「該当した地名」は日本語以外の表示で data/headline_i18n.json の訳に置き換える。 */
+(function () {
+  var container = document.getElementById('toshikeikaku-container');
+  if (!container) return;
+
+  var SOURCE_URL = 'https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toshikeikaku/1/index.html';
+  var NEW_DAYS = 14;   // この日数以内に更新されたものに「新着」
+
+  var _tl = window.KomakiLang();
+  var _tt = {
+    badge:  {ja:'市公式', en:'City official', pt:'Oficial da cidade', vi:'Chính quyền thành phố', tl:'Opisyal ng lungsod', es:'Oficial municipal', zh:'市官方', id:'Resmi kota', ko:'시 공식', ne:'नगर आधिकारिक', tr:'Belediye resmî', my:'မြို့တော် တရားဝင်'},
+    fresh:  {ja:'新着', en:'NEW', pt:'NOVO', vi:'MỚI', tl:'BAGO', es:'NUEVO', zh:'最新', id:'BARU', ko:'새 글', ne:'नयाँ', tr:'YENİ', my:'အသစ်'},
+    updated:{ja:'更新', en:'Updated', pt:'Atualizado', vi:'Cập nhật', tl:'Na-update', es:'Actualizado', zh:'更新', id:'Diperbarui', ko:'갱신', ne:'अद्यावधिक', tr:'Güncellendi', my:'အပ်ဒိတ်'},
+    hits:   {ja:'地名', en:'Places', pt:'Locais', vi:'Địa danh', tl:'Lugar', es:'Lugares', zh:'地名', id:'Tempat', ko:'지명', ne:'स्थान', tr:'Yerler', my:'နေရာ'},
+    source: {ja:'出典', en:'Source', pt:'Fonte', vi:'Nguồn', tl:'Pinagkunan', es:'Fuente', zh:'来源', id:'Sumber', ko:'출처', ne:'स्रोत', tr:'Kaynak', my:'ရင်းမြစ်'},
+    empty:  {ja:'いま、東部地域に関係する掲載は見つかっていません。', en:'No pages related to the eastern district are listed at the moment.', pt:'No momento, não há páginas relacionadas à zona leste.', vi:'Hiện chưa có trang nào liên quan đến khu vực phía đông.', tl:'Wala pang pahinang may kinalaman sa silangang distrito sa ngayon.', es:'Por ahora no hay páginas relacionadas con la zona este.', zh:'目前没有与东部地区相关的内容。', id:'Saat ini belum ada halaman terkait wilayah timur.', ko:'지금은 동부 지역과 관련된 게시물이 없습니다.', ne:'अहिले पूर्वी क्षेत्रसँग सम्बन्धित कुनै पृष्ठ छैन।', tr:'Şu anda doğu bölgesiyle ilgili bir sayfa yok.', my:'ယခု အရှေ့ပိုင်းဒေသနှင့် သက်ဆိုင်သော စာမျက်နှာ မရှိသေးပါ။'},
+    error:  {ja:'都市計画の動きを取得できませんでした。', en:'Could not load the city planning updates.', pt:'Não foi possível carregar.', vi:'Không tải được nội dung.', tl:'Hindi ma-load ang listahan.', es:'No se pudo cargar.', zh:'无法加载城市规划的动态。', id:'Gagal memuat.', ko:'도시계획 소식을 가져오지 못했습니다.', ne:'सहरी योजनाको जानकारी लोड गर्न सकिएन।', tr:'Yüklenemedi.', my:'မဖွင့်နိုင်ပါ။'}
+  };
+  // 種類（build_toshikeikaku.py の KINDS が所属の索引から決める）
+  var _kind = {
+    notice:   {ja:'告示', en:'Public notice', pt:'Aviso público', vi:'Công bố', tl:'Pampublikong abiso', es:'Aviso público', zh:'公告', id:'Pengumuman resmi', ko:'고시', ne:'सार्वजनिक सूचना', tr:'Resmî ilan', my:'ကြေညာချက်'},
+    hearing:  {ja:'公聴会', en:'Public hearing', pt:'Audiência pública', vi:'Phiên điều trần công khai', tl:'Pampublikong pagdinig', es:'Audiencia pública', zh:'听证会', id:'Dengar pendapat publik', ko:'공청회', ne:'सार्वजनिक सुनुवाइ', tr:'Kamu dinlemesi', my:'အများပြည်သူ ကြားနာပွဲ'},
+    pubcom:   {ja:'パブリックコメント', en:'Public comment', pt:'Consulta pública', vi:'Lấy ý kiến công chúng', tl:'Pampublikong komento', es:'Consulta pública', zh:'公众意见征集', id:'Konsultasi publik', ko:'퍼블릭 코멘트', ne:'सार्वजनिक टिप्पणी', tr:'Kamuoyu görüşü', my:'အများပြည်သူ အကြံပြုချက်'},
+    meeting:  {ja:'審議会・会議', en:'Councils and meetings', pt:'Conselhos e reuniões', vi:'Hội đồng và cuộc họp', tl:'Konseho at pulong', es:'Consejos y reuniones', zh:'审议会・会议', id:'Dewan dan rapat', ko:'심의회・회의', ne:'परिषद् र बैठक', tr:'Kurullar ve toplantılar', my:'ကောင်စီနှင့် အစည်းအဝေး'},
+    landuse:  {ja:'土地利用・地区計画', en:'Land use and district plans', pt:'Uso do solo e planos distritais', vi:'Sử dụng đất và quy hoạch khu vực', tl:'Paggamit ng lupa at plano ng distrito', es:'Uso del suelo y planes de distrito', zh:'土地利用・地区规划', id:'Tata guna lahan dan rencana kawasan', ko:'토지이용・지구계획', ne:'भू-उपयोग र क्षेत्र योजना', tr:'Arazi kullanımı ve bölge planları', my:'မြေအသုံးချမှုနှင့် ဒေသစီမံကိန်း'},
+    plan:     {ja:'都市計画の方針', en:'City planning policy', pt:'Política de planejamento urbano', vi:'Định hướng quy hoạch đô thị', tl:'Patakaran sa pagpaplano ng lungsod', es:'Política de planificación urbana', zh:'城市规划方针', id:'Kebijakan perencanaan kota', ko:'도시계획 방침', ne:'सहरी योजना नीति', tr:'Kent planlama politikası', my:'မြို့ပြစီမံကိန်း မူဝါဒ'},
+    landscape:{ja:'景観・屋外広告物', en:'Townscape and outdoor ads', pt:'Paisagem urbana e anúncios', vi:'Cảnh quan và quảng cáo ngoài trời', tl:'Tanawin at panlabas na anunsiyo', es:'Paisaje urbano y anuncios', zh:'景观・户外广告', id:'Lanskap dan iklan luar ruang', ko:'경관・옥외광고물', ne:'सहरी दृश्य र बाहिरी विज्ञापन', tr:'Kent görünümü ve açık hava reklamları', my:'မြို့ရှုခင်းနှင့် ပြင်ပကြော်ငြာ'},
+    other:    {ja:'都市計画', en:'City planning', pt:'Planejamento urbano', vi:'Quy hoạch đô thị', tl:'Pagpaplano ng lungsod', es:'Planificación urbana', zh:'城市规划', id:'Perencanaan kota', ko:'도시계획', ne:'सहरी योजना', tr:'Kent planlaması', my:'မြို့ပြစီမံကိန်း'}
+  };
+  function pick(d) { return d[_tl] || d.en || d.ja; }
+  function tt(k) { return pick(_tt[k]); }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c];
+    });
+  }
+  function fmtDate(iso) {
+    var d = new Date(iso + 'T00:00:00');
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(iso || '') || isNaN(d)) return iso || '';
+    return d.toLocaleDateString(_tl === 'ja' ? 'ja-JP' : (_tl === 'es' ? 'es-419' : _tl),
+      {year: 'numeric', month: _tl === 'ja' ? 'long' : 'short', day: 'numeric'});
+  }
+  function isFresh(iso) {
+    var d = new Date(iso + 'T00:00:00');
+    return !isNaN(d) && (Date.now() - d.getTime()) / 864e5 <= NEW_DAYS;
+  }
+  var sep = (_tl === 'ja' || _tl === 'zh') ? '、' : ', ';
+
+  function row(it) {
+    var hits = (it.hits || []).map(function (h) {
+      return '<span data-hl="' + esc(h) + '">' + esc(h) + '</span>';
+    }).join(sep);
+    return '<li class="tobu-item" data-date="' + esc(it.updated_at || '') + '">' +
+             '<div class="tobu-head">' +
+               '<span class="tobu-date">' + tt('updated') + ' ' + esc(fmtDate(it.updated_at)) + '</span>' +
+               '<span class="tobu-title" data-hl="' + esc(it.title || '') + '">' + esc(it.title || '') + '</span>' +
+               '<span class="ce-badge">' + tt('badge') + '</span>' +
+               (isFresh(it.updated_at) ? '<span class="school-badge school-badge--new">' + tt('fresh') + '</span>' : '') +
+             '</div>' +
+             (hits ? '<span class="tobu-from"><span class="tobu-label">' + tt('hits') + '</span>' + hits + '</span>' : '') +
+             '<span class="tobu-from tobu-from--tag">' + esc(pick(_kind[it.kind] || _kind.other)) + '</span>' +
+           '</li>';
+  }
+
+  fetch('./data/toshikeikaku_east.json')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) {
+      var items = data.items || [];
+      var html = items.length
+        ? '<ul class="tobu-list">' + items.map(row).join('') + '</ul>'
+        : '<p class="school-empty">' + tt('empty') + '</p>';
+      html += '<div class="tobu-source">' + tt('source') + ((_tl === 'ja' || _tl === 'zh') ? '：' : ': ') +
+              '<a href="' + SOURCE_URL + '" target="_blank" rel="noopener">' +
+              esc(data.source_label || '') + '</a></div>';
+      container.innerHTML = html;
+      window.KomakiHeadline.apply(container);   // 題名・地名を表示言語に
     })
     .catch(function () {
       container.innerHTML = '<p class="official-news-error">' + tt('error') + '</p>';

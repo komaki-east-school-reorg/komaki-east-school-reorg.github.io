@@ -81,9 +81,32 @@ WATCH_INDEXES += [
 # ただし、この2つは配下に過去の分が数十ページ積もっている。毎日その全部を取るのは
 # 市サーバに対して過剰なので、**末尾（＝新しいほう）だけ**を毎日見る。
 # 市のインデックスは古い順に並んでいるため、末尾が最新。過去分は日曜の WATCH_DEEP で拾う。
-WATCH_TAIL_INDEXES = set(WATCH_INDEXES[-2:])
 WATCH_TAIL_PAGES = 8   # 末尾から何件の記事ページを毎日取るか
 WATCH_TAIL_DIRS = 1    # 末尾から何件の下位インデックス（＝最新年度）を毎日辿るか
+# インデックス → (末尾から取る記事ページ数, 末尾から辿る下位インデックス数)
+WATCH_TAIL_INDEXES = {u: (WATCH_TAIL_PAGES, WATCH_TAIL_DIRS) for u in WATCH_INDEXES[-2:]}
+
+# --- 監視のみ行うページ（都市計画：都市計画課の所管） ---
+# 2026-10-17 追加（ユーザー指示）。review.html の「都市計画の動き（東部地域）」の元。
+# 本文スナップショットから build_toshikeikaku.py が東部に関係するページだけを拾う。
+# 配下は索引37・記事約125ページ（審議会の会議録が平成29年度から積もっている）ので、
+# ふだんは**動きのある索引の末尾（＝新しいほう）だけ**を見て、最上位の索引からは
+# 下へ降りない（TOSHI_NO_DESCEND）。全階層は日曜の WATCH_DEEP で回る。
+TOSHI_BASE = BASE_DOMAIN + "/admin/soshiki/toshiseisakubu/toshikeikaku/1/"
+WATCH_INDEXES.append(TOSHI_BASE + "index.html")
+TOSHI_NO_DESCEND = {TOSHI_BASE + "index.html"}
+TOSHI_DAILY = [
+    (TOSHI_BASE + "denshikokuji/index.html", 3, 0),        # 電子告示
+    (TOSHI_BASE + "kouchoukai/index.html", 3, 0),          # 公聴会
+    (TOSHI_BASE + "3/index.html", 3, 0),                   # パブリックコメント
+    (TOSHI_BASE + "2_1/tochiriyou/1/index.html", 3, 0),    # 地区計画
+    (TOSHI_BASE + "4/1/3/index.html", 3, 0),               # 都市計画審議会（会議録）
+    (TOSHI_BASE + "4/2/index.html", 0, 1),                 # 会議の開催案内（最新年度だけ辿る）
+]
+for _u, _p, _d in TOSHI_DAILY:
+    WATCH_INDEXES.append(_u)
+    WATCH_TAIL_INDEXES[_u] = (_p, _d)
+WATCH_SUBTREES += (TOSHI_BASE,)
 
 # 市サーバへの負荷配慮: リクエスト間に必ずこの秒数（＋ゆらぎ）待つ
 REQUEST_WAIT_MIN = 3.0
@@ -376,7 +399,8 @@ def main():
     # （消して翌週また作る、を繰り返すと差分が毎週まるごと出てしまう）。
     if not WATCH_DEEP:
         keep_slugs |= {f for f in os.listdir(SNAPSHOT_DIR)
-                       if f.startswith(url_to_slug(TOBU_BASE + "x").rsplit("-", 1)[0] + "-")}
+                       if f.startswith(tuple(url_to_slug(b + "x").rsplit("-", 1)[0] + "-"
+                                             for b in (TOBU_BASE, TOSHI_BASE)))}
     while watch_indexes:
         index_url, depth = watch_indexes.pop(0)
         watch_urls.add(index_url)
@@ -398,8 +422,11 @@ def main():
                 re.finditer(r'<li class="dir">\s*<a href="([^"]+)">', index_html)]
         # 過去分が積もっているインデックスは、浅い巡回の日は末尾（新しいほう）だけ見る
         if not WATCH_DEEP and index_url in WATCH_TAIL_INDEXES:
-            pages = pages[-WATCH_TAIL_PAGES:]
-            subs = subs[-WATCH_TAIL_DIRS:]
+            n_pages, n_dirs = WATCH_TAIL_INDEXES[index_url]
+            pages = pages[-n_pages:] if n_pages else []
+            subs = subs[-n_dirs:] if n_dirs else []
+        if not WATCH_DEEP and index_url in TOSHI_NO_DESCEND:
+            subs = []
         watch_urls.update(pages)
         # 下位インデックス（<li class="dir">）も同じ木の中なら辿る。
         # 市がフォルダを増やしても取りこぼさないため、URL は決め打ちしない。

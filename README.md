@@ -49,7 +49,7 @@ python3 -m http.server 8000
 
 詳細は [CONTRIBUTING.txt](CONTRIBUTING.txt) を参照してください。主なルール：
 
-1. **外部リンクは公式市ページの4つのURLのみ** — 学校再編 `.../kyoiku/kyouikusoumu/303/index.html`（サイト全体）、地域協議会 `.../kenkouikigai/sasaeai/3/3_2/index.html`（community.html のみ）、東部まちづくり `.../toubumachidukuri/tobumachidukurisingikai/index.html`（「地域の取組」欄の出典）、東部まちづくりプラットフォームの説明 `.../purattofo-mu/38222.html`（community.html の #platform のみ。同じ節で登録フォーム `logoform.jp/form/uSYk/80018` にもリンク）。それ以外の city.komaki.aichi.jp URL は禁止。別枠として、再編対象8校のホームページ（`komaki-aic.ed.jp`）、nationwide.html が出典として張る文部科学省の5つの資料ページ（`mext.go.jp`）、「地域の取組」（community.html と、同じ一覧を出す index.html）が発信元として張る市民有志の許可アカウント（`instagram.com/arigato.ohshirosho`・`instagram.com/tokadaidancefestival`・`instagram.com/bamboo_installation_ookusa`）と、同じ欄が載せる市の児童館2館のアカウント（`instagram.com/shinookajidoukan`・`instagram.com/warabekan`）、「地域の取組」が事実の出どころとして張る小牧市公式Facebookの投稿（`facebook.com/city.komaki`）、「地域の取組」欄の「会場の案内」行にだけ置く会場施設の告知ページ（`peare-toukadai.jp/event_campaign/tokadai-dance-festival/`）、そして全ページ下部の共有ボタンの送り先（LINE・X・Facebook・はてなブックマーク・note・Threads・Bluesky・Reddit・Mastodon／はてなスター。スマートフォンではアプリが入っていればアプリを開く）は可。いずれも `auto_gates.py` が機械検査する
+1. **外部リンクは公式市ページの5つのURLのみ** — 学校再編 `.../kyoiku/kyouikusoumu/303/index.html`（サイト全体）、地域協議会 `.../kenkouikigai/sasaeai/3/3_2/index.html`（community.html のみ）、東部まちづくり `.../toubumachidukuri/tobumachidukurisingikai/index.html`（「地域の取組」欄の出典）、東部まちづくりプラットフォームの説明 `.../purattofo-mu/38222.html`（community.html の #platform のみ。同じ節で登録フォーム `logoform.jp/form/uSYk/80018` にもリンク）、都市計画 `.../toshiseisakubu/toshikeikaku/1/index.html`（review.html「都市計画の動き（東部地域）」の出典のみ）。それ以外の city.komaki.aichi.jp URL は禁止。別枠として、再編対象8校のホームページ（`komaki-aic.ed.jp`）、nationwide.html が出典として張る文部科学省の5つの資料ページ（`mext.go.jp`）、「地域の取組」（community.html と、同じ一覧を出す index.html）が発信元として張る市民有志の許可アカウント（`instagram.com/arigato.ohshirosho`・`instagram.com/tokadaidancefestival`・`instagram.com/bamboo_installation_ookusa`）と、同じ欄が載せる市の児童館2館のアカウント（`instagram.com/shinookajidoukan`・`instagram.com/warabekan`）、「地域の取組」が事実の出どころとして張る小牧市公式Facebookの投稿（`facebook.com/city.komaki`）、「地域の取組」欄の「会場の案内」行にだけ置く会場施設の告知ページ（`peare-toukadai.jp/event_campaign/tokadai-dance-festival/`）、そして全ページ下部の共有ボタンの送り先（LINE・X・Facebook・はてなブックマーク・note・Threads・Bluesky・Reddit・Mastodon／はてなスター。スマートフォンではアプリが入っていればアプリを開く）は可。いずれも `auto_gates.py` が機械検査する
 2. **翻訳ファイルの構文** — `data/i18n/*.json` はコミット前に全ファイルを JSON パースして確認（アポストロフィのエスケープは不要。`\'` と書くと逆に壊れる）
 3. **新しい翻訳キー** — `ja`（日本語）と `en`（英語）への記載が必須。他の言語は未記載でも英語→日本語の順にフォールバック
 4. **事実確認** — 掲載する数値・日付は必ず公式情報源に基づく
@@ -67,6 +67,7 @@ python3 -m http.server 8000
 | 「現在の状況」の完了表示・イベント状態バッジ（完了/進行中/予定） | ページを開くたび（予定日を過ぎると自動的に「完了」へ） |
 | トップページ「今後のスケジュール」バーの各項目 | ページを開くたび（予定日を過ぎた項目から自動的に非表示。直近の個別日程を表示） |
 | `data/tobu_actions.json`（東部まちづくりの取組） | 毎日（GitHub Actions）。市の東部まちづくりのページのスナップショットから組み立て、「地域の取組」欄の下半分に表示 |
+| `data/toshikeikaku_east.json`（都市計画の動き・東部地域） | 毎日（GitHub Actions）。市の都市計画課のページのスナップショットから東部の地名があるものを新しい順に5件組み立て、review.html に表示 |
 | 市・県・国の担当部署の連絡先 | 毎週月曜 6:50 JST に公表ページと照合（GitHub Actions "Check Department Contacts"）。電話番号の変更は自動修正、部署名の変更は Issue で通知 |
 
 スケジュールやイベントを追加・編集する際の運用ルールは [CONTRIBUTING.txt](CONTRIBUTING.txt) の【ルール5】（`data-event-date` などの日付属性）と【ルール7】（`data-start` による時系列の並べ方）を参照してください。

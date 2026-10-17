@@ -554,8 +554,23 @@
     </div>
   </section>
 
+  <!-- ===== 都市計画の動き（東部地域）=====
+       2026-10-17 追加（ユーザー指示）。市の都市計画課の配下を毎日見て（全階層は週1回）、
+       題名か本文に東部の地名があるページを更新日の新しい順に5件出す。一覧は
+       data/toshikeikaku_east.json（build_toshikeikaku.py の生成物）から js/main.js の
+       TOSHIKEIKAKU EAST が描く。このページで唯一の自動で入れ替わる欄で、中身は市の掲載の
+       題名と更新日だけ（【事実】の側）。🔎・💡 は書かない。 -->
+  <section class="section" id="rev-toshikeikaku">
+    <div class="container" style="max-width:900px;">
+      <h2 class="section-title" data-i18n-html="rev_s11_h">📡 都市計画の動き（東部地域）<small>City Planning Updates</small></h2>
+      <p class="section-lead" data-i18n="rev_tk_lead">市の都市計画課が掲載しているページ（都市計画審議会、地区計画、公聴会、告示など）を毎日（全体は週に1回）確かめ、題名か本文に東部地域の地名があるものを、更新日の新しい順に5件まで自動で並べています。</p>
+      <div id="toshikeikaku-container" aria-live="polite"></div>
+      <p style="margin-top:1rem; font-size:.9rem; color:var(--text-muted);" data-i18n="rev_tk_note">読み取っているのはページの本文だけで、添付のPDFや図の中の文字は読めません。ここに無いことは「掲載が無い」という意味ではありません。題名は市の掲載のままで、日本語以外の表示では自動翻訳です。くわしい内容は出典の索引からたどってください。会議の開催日や案の閲覧・意見募集の期間のように日にちの決まった日程は、スケジュールにも自動で載ります。</p>
+    </div>
+  </section>
+
   <!-- ===== 限界の明示 ===== -->
-  <section class="section" id="rev-open">
+  <section class="section section-alt" id="rev-open">
     <div class="container" style="max-width:900px;">
       <h2 class="section-title" data-i18n-html="rev_s4_h">このページで確認できなかったこと<small>Open Questions</small></h2>
       <p style="margin-bottom:1rem;" data-i18n="rev_s4_lead">検証の限界をそのまま書いておきます。以下は当サイトが公表資料の中に見つけられなかったもので、「存在しない」という意味ではありません。</p>
@@ -580,7 +595,7 @@
        日本語の部署名そのものなので、訳すと用を成さないため（年表の西暦欄と同じ考え方）。
        電話番号も言語に依存しないので翻訳対象外。番号はいずれも市・県が公表している
        ページの写しで、当サイトが調べ出した番号ではない。 -->
-  <section class="section section-alt" id="rev-contact">
+  <section class="section" id="rev-contact">
     <div class="container">
       <h2 class="section-title" data-i18n-html="rev_s9_h">関係する部署の問い合わせ先<small>Who to Contact</small></h2>
       <p style="margin-bottom:1.2rem;" data-i18n="rev_s9_lead">このページで取り上げた事柄の所管です。検証や提案の当否は、最後は担当する部署に直接たずねるのが確かです。連絡先は各機関が公表しているものをそのまま書き写しています（2026年9月現在）。</p>

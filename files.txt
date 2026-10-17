@@ -56,6 +56,7 @@ data/bus_map.geojson        bus.htmlの地図が描画する全データ（手�
 data/community_actions.json 地域で行われている催し・取組（手動管理）。community.html「地域の取組」（地域協議会イベント案内の直下）と、index.html「最新の動き」の同名コーナーが実行時にfetchして描画。市の公式情報でも報道でもなく主催者自身の発信であり、計画の内容・数値の根拠には使わない。badgeで市民有志（citizen）と地域協議会（council）を書き分ける。source_urlはauto_gates.pyのPERMITTED_INSTAGRAMにあるアカウントのみ。
 data/i18n/ja.json           日本語（デフォルト言語）の翻訳テキストをすべて格納する言語ファイル。
 data/tobu_actions.json      東部まちづくりの取組（自動生成・手編集不可）。community.htmlとindex.htmlの「地域の取組」欄の下半分が実行時にfetchして描画。
+data/toshikeikaku_east.json 都市計画課の掲載のうち東部に関係するもの（自動生成・手編集不可）。review.htmlの「都市計画の動き（東部地域）」が実行時にfetchして描画。決まった日程（events）はスケジュール・カレンダー・トップの帯にも自動で載る。
 data/headline_i18n.json     自動取得した見出しの9言語訳（translate-headlines.yml が毎日更新）。日本語以外の表示で見出しを置き換える。キーは見出しの原文。
                             市サーバへは行かず、official_pages/のtoubumachidukuri-*スナップショットから組み立てる。載せるのは直近2か月ぶん（これからの催しは日付が未来なので残る）。
                             個別記事ページへのリンクは許可されていないのでurlは持たず、出典の索引ページへのリンクだけをjs/main.jsが持つ。
@@ -99,6 +100,7 @@ sitemap.xml                 全11ページのサイトマップ。各URLに12言
 .github/scripts/fetch_schools.py    再編対象8校のホームページ（komaki-aic.ed.jp）を巡回し、各校の最新記事をschool_news.jsonに保存するスクリプト。
 .github/scripts/build_community_events.py 地域協議会イベント案内をスナップショットから抽出してcommunity_events.jsonを生成するスクリプト。市サーバへのアクセスなし。fetch_news.pyの【あと】に実行すること。
 .github/scripts/build_tobu_actions.py 東部まちづくりの取組一覧（tobu_actions.json）をスナップショットから組み立てるスクリプト。市サーバへのアクセスなし。fetch_news.pyの【あと】に実行すること。
+.github/scripts/build_toshikeikaku.py 都市計画課のスナップショットから東部に関係する掲載（toshikeikaku_east.json）を組み立てるスクリプト。市サーバへのアクセスなし。fetch_news.pyの【あと】に実行すること。
 .github/scripts/check_contacts.py   data/contacts.jsonの連絡先を市・県・国の公表ページと突き合わせるスクリプト。--fixで電話・FAX番号だけ自動修正（部署名は翻訳があるので手で直す）。exit 0=一致/3=食い違い/1=エラー。
 .github/scripts/map_targets.py      変更された公式ページのスラッグをsite-facts.jsonで引き、サイト内の更新候補箇所をMarkdown出力するスクリプト（Issue本文生成用）。
 .github/scripts/build_page_dicts.py  data/i18n/pages/ を生成する。辞書やHTMLのdata-i18nを変えたら実行してコミットすること。--check で鮮度検証のみ。
