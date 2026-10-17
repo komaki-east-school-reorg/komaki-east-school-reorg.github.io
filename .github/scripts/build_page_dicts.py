@@ -77,6 +77,13 @@ RUNTIME_KEYS = [
     "share_copy_failed",
     "share_native",
     "share_print",
+    "share_app",          # INSTALL APP（ウェブアプリ化。main.js）
+    "app_install_h",
+    "app_ios_steps",
+    "app_other_steps",
+    "app_note",
+    "app_offline",
+    "app_cta",            # フッタ・ハンバーガーメニューの「📲 アプリにする」（main.js）
     "tts_play",
     "tts_stop",
     "share_star_label",

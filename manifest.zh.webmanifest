@@ -1,0 +1,33 @@
+{
+  "name": "小牧市东部学校整合计划 – 地区信息媒体（非官方）",
+  "short_name": "学校重组导航",
+  "description": "地区信息媒体，基于官方信息，以通俗易懂的方式介绍预定于2027年度实施的小牧市东部（篠冈地区）学校整合计划。",
+  "lang": "zh-Hans",
+  "dir": "ltr",
+  "start_url": "/?lang=zh",
+  "scope": "/",
+  "id": "/",
+  "display": "standalone",
+  "theme_color": "#1b3826",
+  "background_color": "#2e5c3a",
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

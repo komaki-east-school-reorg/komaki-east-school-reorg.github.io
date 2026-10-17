@@ -1,4 +1,10 @@
 {
+  "app_cta": "📲 Use as an app",
+  "app_install_h": "Add to your Home Screen and use it as an app",
+  "app_ios_steps": "Tap the Share button (a square with an upward arrow) at the bottom of the screen (top right on iPad), then choose \"Add to Home Screen\".",
+  "app_note": "Opens full-screen from the icon. Pages you have opened before can be read without a connection. No notifications, no usage tracking.",
+  "app_offline": "You are offline, so this shows the content from the last time you opened this page.",
+  "app_other_steps": "From the browser menu (︙ or …), choose \"Install app\" or \"Add to Home Screen\".",
   "aria_fs_l": "Larger text",
   "aria_fs_m": "Standard text size",
   "aria_fs_s": "Smaller text",
@@ -284,6 +290,7 @@
   "rev_y9": "Establishments in the eastern district rise from 917 to 1,095 and employees from 12,388 to 20,671. Over the same period the city as a whole falls from 6,970 to 6,654 and from 103,591 to 100,228",
   "sec_link_copied": "Link copied",
   "sec_link_copy": "Copy link to this section",
+  "share_app": "Use as an app (add to Home Screen)",
   "share_bluesky": "Post on Bluesky",
   "share_copied": "Link copied",
   "share_copied_paste": "Link copied. Paste it into {app}.",

@@ -118,7 +118,7 @@
   "point4_h": "Benefícios Esperados",
   "point4_link": "Ver benefícios esperados →",
   "point4_p": "Mudanças anuais de turma, atividades extracurriculares diversificadas e educação contínua do 1º ao 9º ano — a reorganização abre experiências escolares mais ricas para cada criança.",
-  "ql_about_p": "Por que a reorganização é necessária, o que faz a 1ª fase (5 primárias e 3 escolas secundárias viram 2 e 2), onde ficam as escolas e como as crianças chegarão, o estudo da 2ª fase, os prédios que fecham, como se decide, explicações simples das palavras difíceis e a quem recorrer.",
+  "ql_about_p": "Por que a reorganização é necessária, o que faz a 1ª fase (5 primárias e 3 escolas secundárias viram 2 e 2), onde ficam as escolas e como as crianças chegarão, o estudo da 2ª fase, os prédios que fecham, como se decide, explicações simples das palavras difíceis e a quem recorrer. Também explica como usar este site como app.",
   "ql_schedule_p": "As fases do plano, um calendário mês a mês e a lista dos principais eventos. Dá para ver pela série do seu filho e adicionar as datas à sua agenda. Os eventos com data mostram quantos dias faltam, e os órgãos responsáveis da prefeitura estão listados.",
   "ql_faq_p": "Respostas sobre o plano, sobre o trajeto e o dia a dia, sobre o bairro e os prédios, e sobre como opinar — além de opiniões a favor, contra e neutras e os pontos levantados na consulta pública.",
   "ql_council_p": "Reúne a 1ª Sessão Regular de 2026 (março) — a alteração da portaria das escolas e a petição — e a 2ª (junho): perguntas gerais sobre manter escolas pequenas e reaproveitar prédios fechados, além de uma visita de estudo da comissão. Inclui como levar sua opinião à câmara e os contatos.",
@@ -1507,5 +1507,17 @@
   "intro_p": "Para divulgar o site em avisos da associação de moradores, redes sociais etc., use esta imagem. Coloque junto o endereço (https://komaki-east-school-reorg.github.io/) para que os leitores cheguem até aqui.",
   "intro_dl": "Salvar a imagem (PNG, 1200×630)",
   "feed_link": "📡 Acompanhe as atualizações por feed (RSS)",
-  "feed_note": "Cadastre este endereço em um leitor de feeds (Feedly, Inoreader etc.) para receber avisos da prefeitura, eventos da região leste e atualizações do site. O feed é em japonês."
+  "feed_note": "Cadastre este endereço em um leitor de feeds (Feedly, Inoreader etc.) para receber avisos da prefeitura, eventos da região leste e atualizações do site. O feed é em japonês.",
+  "share_app": "Usar como app (adicionar à tela inicial)",
+  "app_install_h": "Adicione à tela inicial e use como app",
+  "app_ios_steps": "Toque no botão Compartilhar (um quadrado com uma seta para cima) na parte de baixo da tela (no iPad, no canto superior direito) e escolha \"Adicionar à Tela de Início\".",
+  "app_other_steps": "No menu do navegador (︙ ou …), escolha \"Instalar app\" ou \"Adicionar à tela inicial\".",
+  "app_note": "Abre em tela cheia pelo ícone. As páginas que você já abriu podem ser lidas sem conexão. Sem notificações e sem registro de uso.",
+  "app_offline": "Você está sem internet, por isso esta página mostra o conteúdo da última vez que você a abriu.",
+  "app_h": "Usar como app<small>Use as an App</small>",
+  "app_lead": "Você pode colocar este site na tela inicial do celular ou do computador e usá-lo como um app. Toque no botão 📲 (ao lado do seletor de idioma no topo e na área de compartilhar no fim da página).",
+  "app_li1": "Abre em tela cheia pelo ícone, sem a barra de endereço.",
+  "app_li2": "Sempre carrega o conteúdo mais recente da internet. Sem conexão, mostra apenas as páginas que você já abriu, avisando que é assim.",
+  "app_li3": "Não envia notificações nem registra o uso. Para parar de usar, apague como qualquer outro app.",
+  "app_cta": "📲 Usar como app"
 }

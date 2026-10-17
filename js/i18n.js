@@ -195,6 +195,16 @@
     if (ogUrl) ogUrl.setAttribute('content', href);
   }
 
+  // ウェブアプリ化（2026-10-17）：ホーム画面に追加したときのアプリ名を表示言語にする。
+  // マニフェストは言語ごとに1枚（.github/scripts/build_manifest.py が書き出す）。
+  // iPhone はマニフェストより apple-mobile-web-app-title を見るので、そちらも直す。
+  function updateAppMeta(dict, lang) {
+    var m = document.querySelector('link[rel="manifest"]');
+    if (m) m.setAttribute('href', 'manifest.' + lang + '.webmanifest');
+    var t = document.querySelector('meta[name="apple-mobile-web-app-title"]');
+    if (t && dict.logo_main) t.setAttribute('content', String(dict.logo_main).replace(/<[^>]+>/g, '').trim());
+  }
+
   function showPage() {
     clearTimeout(_safetyTimer);
     document.documentElement.classList.add('i18n-ready');
@@ -317,6 +327,7 @@
     applyFaqJsonLd(dict, pageId, lang);
     syncUrl(lang);
     updateSeoUrls(lang);
+    updateAppMeta(dict, lang);
     applyBreadcrumbJsonLd(lang);
 
     try { localStorage.setItem('komaki_lang', lang); } catch (e) {}

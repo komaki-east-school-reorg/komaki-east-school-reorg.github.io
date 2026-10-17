@@ -1,0 +1,33 @@
+{
+  "name": "Komaki East School Reorganization Plan – Community Info Media (Unofficial)",
+  "short_name": "School Reorganization Guide",
+  "description": "A community info media outlet providing easy-to-understand information on the Komaki East (Shinooka) school reorganization plan, planned for FY2027, based on official sources.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "/?lang=en",
+  "scope": "/",
+  "id": "/",
+  "display": "standalone",
+  "theme_color": "#1b3826",
+  "background_color": "#2e5c3a",
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

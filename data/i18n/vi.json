@@ -118,7 +118,7 @@
   "point4_h": "Lợi ích Kỳ vọng",
   "point4_link": "Xem các lợi ích kỳ vọng →",
   "point4_p": "Thay đổi lớp học hàng năm, hoạt động ngoại khóa đa dạng và giáo dục liên tục từ lớp 1 đến lớp 9 — tái cơ cấu mang lại trải nghiệm học đường phong phú hơn cho mọi trẻ em.",
-  "ql_about_p": "Vì sao cần tái cơ cấu, nội dung giai đoạn 1 (5 tiểu học và 3 THCS thành 2 và 2), vị trí trường và kế hoạch đi học, nghiên cứu giai đoạn 2, các cơ sở đóng cửa, cách ra quyết định, giải thích dễ hiểu các từ khó, và nơi liên hệ.",
+  "ql_about_p": "Vì sao cần tái cơ cấu, nội dung giai đoạn 1 (5 tiểu học và 3 THCS thành 2 và 2), vị trí trường và kế hoạch đi học, nghiên cứu giai đoạn 2, các cơ sở đóng cửa, cách ra quyết định, giải thích dễ hiểu các từ khó, và nơi liên hệ. Ngoài ra còn hướng dẫn cách dùng trang này như một ứng dụng.",
   "ql_schedule_p": "Các giai đoạn của kế hoạch, lịch theo từng tháng và danh sách sự kiện chính. Bạn cũng có thể xem theo khối lớp của con và thêm lịch vào ứng dụng của mình. Các sự kiện có ngày cụ thể hiển thị số ngày còn lại, kèm các cơ quan phụ trách của thành phố.",
   "ql_faq_p": "Giải đáp về bản kế hoạch, về việc đi học và sinh hoạt, về khu dân cư và các tòa nhà, và về cách nêu ý kiến — cùng ý kiến ủng hộ, phản đối, trung lập và các vấn đề nêu trong đợt lấy ý kiến.",
   "ql_council_p": "Tổng hợp Kỳ họp thường kỳ lần 1 năm 2026 (tháng 3) — sửa đổi quy định về trường học và kiến nghị — và lần 2 (tháng 6): chất vấn về việc giữ trường nhỏ và tận dụng trường đã đóng, cùng chuyến khảo sát của ủy ban. Có cả cách gửi ý kiến tới hội đồng và thông tin liên hệ.",
@@ -1507,5 +1507,17 @@
   "intro_p": "Khi giới thiệu trang trên tờ thông báo của hội khu phố, mạng xã hội…, hãy dùng hình này. Ghi kèm địa chỉ (https://komaki-east-school-reorg.github.io/) để người đọc tìm đến được.",
   "intro_dl": "Lưu hình (PNG, 1200×630)",
   "feed_link": "📡 Nhận cập nhật qua feed (RSS)",
-  "feed_note": "Đăng ký địa chỉ này vào trình đọc feed (Feedly, Inoreader…) để nhận thông báo của thành phố, sự kiện khu phía đông và cập nhật của trang. Nội dung feed bằng tiếng Nhật."
+  "feed_note": "Đăng ký địa chỉ này vào trình đọc feed (Feedly, Inoreader…) để nhận thông báo của thành phố, sự kiện khu phía đông và cập nhật của trang. Nội dung feed bằng tiếng Nhật.",
+  "share_app": "Dùng như ứng dụng (thêm vào Màn hình chính)",
+  "app_install_h": "Thêm vào Màn hình chính và dùng như một ứng dụng",
+  "app_ios_steps": "Nhấn nút Chia sẻ (hình vuông có mũi tên hướng lên) ở cuối màn hình (trên iPad là góc trên bên phải), rồi chọn \"Thêm vào MH chính\".",
+  "app_other_steps": "Từ menu của trình duyệt (︙ hoặc …), chọn \"Cài đặt ứng dụng\" hoặc \"Thêm vào Màn hình chính\".",
+  "app_note": "Mở toàn màn hình từ biểu tượng. Các trang bạn đã mở trước đây có thể đọc khi không có mạng. Không gửi thông báo, không ghi lại việc sử dụng.",
+  "app_offline": "Bạn đang ngoại tuyến nên trang này hiển thị nội dung từ lần cuối bạn mở.",
+  "app_h": "Dùng như ứng dụng<small>Use as an App</small>",
+  "app_lead": "Bạn có thể đặt trang này lên Màn hình chính của điện thoại hoặc máy tính và dùng như một ứng dụng. Hãy nhấn nút 📲 (bên cạnh chọn ngôn ngữ ở đầu trang và trong mục chia sẻ ở cuối trang).",
+  "app_li1": "Mở toàn màn hình từ biểu tượng, không có thanh địa chỉ.",
+  "app_li2": "Mỗi lần mở đều tải nội dung mới nhất từ mạng. Khi không có mạng, chỉ hiển thị các trang bạn đã mở trước đây và có ghi chú như vậy.",
+  "app_li3": "Không gửi thông báo, không ghi lại việc sử dụng. Muốn ngừng dùng thì xóa như các ứng dụng khác.",
+  "app_cta": "📲 Dùng như ứng dụng"
 }

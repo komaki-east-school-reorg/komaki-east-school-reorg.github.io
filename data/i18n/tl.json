@@ -118,7 +118,7 @@
   "point4_h": "Mga Inaasahang Benepisyo",
   "point4_link": "Tingnan ang mga inaasahang benepisyo →",
   "point4_p": "Taunang pagbabago ng klase, iba't ibang aktibidad sa club, at tuluy-tuloy na edukasyon mula K hanggang 9 — ang muling pagsasaayos ay nagbubukas ng mas mayamang karanasan sa paaralan para sa bawat bata.",
-  "ql_about_p": "Bakit kailangan ang muling pagsasaayos, ang Phase 1 (5 elementarya at 3 hayskul tungo sa 2 at 2), nasaan ang mga paaralan at paano makakarating ang mga bata, ang pag-aaral sa Phase 2, ang mga gusaling isasara, paano nagdedesisyon, simpleng paliwanag sa mahihirap na salita, at kung kanino lalapit.",
+  "ql_about_p": "Bakit kailangan ang muling pagsasaayos, ang Phase 1 (5 elementarya at 3 hayskul tungo sa 2 at 2), nasaan ang mga paaralan at paano makakarating ang mga bata, ang pag-aaral sa Phase 2, ang mga gusaling isasara, paano nagdedesisyon, simpleng paliwanag sa mahihirap na salita, at kung kanino lalapit. Ipinapaliwanag din kung paano gamitin ang site na ito bilang app.",
   "ql_schedule_p": "Ang mga yugto ng plano, kalendaryo buwan-buwan at listahan ng mahahalagang kaganapan. Maaari ring tingnan ayon sa baitang ng anak at idagdag ang mga petsa sa sariling kalendaryo. Ipinapakita sa mga may petsang event kung ilang araw pa, at nakalista ang mga tanggapan ng lungsod na may hawak.",
   "ql_faq_p": "Mga sagot tungkol sa plano, sa pagpasok at pang-araw-araw na buhay, sa komunidad at mga gusali, at sa paraan ng pagbibigay ng opinyon — kasama ang mga boses na sang-ayon, tutol at neutral at ang mga puntong lumabas sa public comment.",
   "ql_council_p": "Sinasaklaw ang ika-1 Regular na Sesyon ng 2026 (Marso) — ang pagbabago sa ordinansa ng paaralan at ang petisyon — at ang ika-2 (Hunyo): mga tanong tungkol sa pagpapanatili ng maliliit na paaralan at paggamit ng saradong gusali, at study visit ng komite. Kasama ang paraan ng pagpapahayag sa konseho at mga kontak.",
@@ -1507,5 +1507,17 @@
   "intro_p": "Gamitin ang larawang ito kapag ipinakikilala ang site sa abiso ng samahan ng kapitbahayan, sa social media at iba pa. Isama ang address (https://komaki-east-school-reorg.github.io/) para makarating dito ang mga mambabasa.",
   "intro_dl": "I-save ang larawan (PNG, 1200×630)",
   "feed_link": "📡 Tumanggap ng update sa feed (RSS)",
-  "feed_note": "Irehistro ang address na ito sa feed reader (Feedly, Inoreader at iba pa) para matanggap ang abiso ng lungsod, mga kaganapan sa silangang distrito at mga update ng site. Nasa wikang Hapon ang feed."
+  "feed_note": "Irehistro ang address na ito sa feed reader (Feedly, Inoreader at iba pa) para matanggap ang abiso ng lungsod, mga kaganapan sa silangang distrito at mga update ng site. Nasa wikang Hapon ang feed.",
+  "share_app": "Gamitin bilang app (idagdag sa Home Screen)",
+  "app_install_h": "Idagdag sa Home Screen at gamitin bilang app",
+  "app_ios_steps": "Pindutin ang Share button (kahon na may pataas na arrow) sa ibaba ng screen (sa iPad, sa kanang itaas), saka piliin ang \"Add to Home Screen\".",
+  "app_other_steps": "Mula sa menu ng browser (︙ o …), piliin ang \"Install app\" o \"Add to Home screen\".",
+  "app_note": "Bubukas nang full-screen mula sa icon. Mababasa kahit walang koneksyon ang mga pahinang nabuksan mo na. Walang notification at walang pagtatala ng paggamit.",
+  "app_offline": "Offline ka, kaya ipinapakita nito ang nilalaman noong huling beses mong binuksan ang pahinang ito.",
+  "app_h": "Gamitin bilang App<small>Use as an App</small>",
+  "app_lead": "Puwede mong ilagay ang site na ito sa Home Screen ng iyong phone o computer at gamitin na parang app. Pindutin ang 📲 na button (katabi ng pagpili ng wika sa itaas, at sa share box sa ibaba ng pahina).",
+  "app_li1": "Bubukas nang full-screen mula sa icon, walang address bar.",
+  "app_li2": "Bawat bukas, binabasa nito ang pinakabagong nilalaman mula sa internet. Kapag walang koneksyon, ang mga pahinang nabuksan mo na lang ang ipinapakita, at sinasabi nito iyon.",
+  "app_li3": "Hindi ito nagpapadala ng notification at hindi nagtatala ng paggamit. Para tumigil, burahin ito gaya ng ibang app.",
+  "app_cta": "📲 Gamitin bilang app"
 }

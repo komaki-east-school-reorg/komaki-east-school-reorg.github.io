@@ -2150,6 +2150,186 @@ window.KomakiGrade = (function () {
   }
 })();
 
+/* ===== INSTALL APP（ウェブアプリ化。2026-10-17 ユーザー指示「ボタン一つで、本サイトをウェブアプリ化」） =====
+   ホーム画面に置けるアプリにする。仕組みは3つ：
+   - マニフェスト（manifest.<言語>.webmanifest。build_manifest.py が書き出し、i18n.js が表示言語に差し替える）
+   - service worker（/sw.js。いつもネットの最新を先に取り、つながらないときだけ前に開いた内容を出す）
+   - 「アプリにする」📲 ボタン（ヘッダの言語切替の横と、共有欄・固定バー。共有欄の分は SHARE BUTTONS が
+     window.KomakiApp.button() で作る）
+   ボタンの動き：
+   - Android・PC の Chrome / Edge … ブラウザの「インストール」画面をそのまま出す（beforeinstallprompt）
+   - iPhone・iPad … その API が無いので、「共有 → ホーム画面に追加」の手順を小窓で案内する
+   - それ以外・条件がそろわないとき … ブラウザのメニューから追加する手順を案内する
+   すでにアプリとして開いているとき（display-mode: standalone）と、インストールし終えたときは出さない。
+   オフラインで開いたときは、ヘッダの下に「前に開いたときの内容」である旨を1行出す（古い内容を
+   最新に見せないため。外さないこと）。通知・追跡はしない。 */
+(function () {
+  var APP_ICON = '📲';
+  var buttons = [];
+  var deferred = null;
+
+  function isStandalone() {
+    try {
+      if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) return true;
+    } catch (e) {}
+    return window.navigator.standalone === true;
+  }
+  var installed = isStandalone();
+
+  // service worker はアプリとして入れる前から登録しておく（インストールの条件の1つで、
+  // 前に開いたページをオフラインで読めるようにするため）。https か localhost のときだけ。
+  if ('serviceWorker' in navigator &&
+      (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js').catch(function () {});
+    });
+  }
+
+  // 文言は辞書が流し込むので、隠したテンプレートを最初から DOM に置いておく（SHARE BUTTONS と同じ）。
+  var tpl = document.createElement('div');
+  tpl.hidden = true;
+  document.body.appendChild(tpl);
+  function tplSpan(key, ja) {
+    var el = document.createElement('span');
+    el.setAttribute('data-i18n', key);
+    el.textContent = ja;
+    tpl.appendChild(el);
+    return el;
+  }
+  var hTpl = tplSpan('app_install_h', 'ホーム画面に追加して、アプリとして使う');
+  var iosTpl = tplSpan('app_ios_steps', '画面下（iPad は右上）の共有ボタン（四角から上向きの矢印）を押し、「ホーム画面に追加」を選んでください。');
+  var otherTpl = tplSpan('app_other_steps', 'ブラウザのメニュー（︙ や …）から「アプリをインストール」または「ホーム画面に追加」を選んでください。');
+  var noteTpl = tplSpan('app_note', 'アイコンから全画面で開けます。前に開いたページは、電波のない所でも読めます。通知や利用状況の記録はしません。');
+  var closeTpl = tplSpan('share_qr_close', '閉じる');
+
+  function isIos() {
+    var ua = navigator.userAgent || '';
+    return /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  }
+
+  var dlg = null;
+  function openGuide() {
+    if (!dlg) {
+      dlg = document.createElement('dialog');
+      dlg.className = 'qr-dialog app-dialog';
+      dlg.innerHTML = '<img class="app-dialog-icon" src="img/icon-192.png" alt="" width="64" height="64">' +
+        '<p class="app-dialog-h"></p><p class="app-dialog-steps"></p><p class="app-dialog-note"></p>' +
+        '<div class="qr-actions"><button type="button" class="qr-close"></button></div>';
+      dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+      dlg.querySelector('.qr-close').addEventListener('click', function () { dlg.close(); });
+      document.body.appendChild(dlg);
+    }
+    dlg.querySelector('.app-dialog-h').textContent = hTpl.textContent;
+    dlg.querySelector('.app-dialog-steps').textContent = (isIos() ? iosTpl : otherTpl).textContent;
+    dlg.querySelector('.app-dialog-note').textContent = noteTpl.textContent;
+    dlg.querySelector('.qr-close').textContent = closeTpl.textContent;
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+  }
+
+  function onPress(e) {
+    if (e && e.preventDefault) e.preventDefault();   // フッタ・メニューのリンク（about.html#app）は飛ばずにここで扱う
+    if (deferred) {
+      var p = deferred;
+      deferred = null;   // prompt() は1回しか使えない
+      p.prompt();
+      if (p.userChoice) {
+        p.userChoice.then(function (c) { if (c && c.outcome === 'accepted') markInstalled(); }).catch(function () {});
+      }
+      return;
+    }
+    openGuide();
+  }
+
+  function markInstalled() {
+    installed = true;
+    buttons.forEach(function (b) { b.hidden = true; });
+  }
+
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();   // ブラウザ任せの表示は出さず、📲 を押したときに出す
+    deferred = e;
+  });
+  window.addEventListener('appinstalled', markInstalled);
+
+  // 共有欄・固定バーのボタンは SHARE BUTTONS がこれで作る（見た目はほかの共有ボタンと同じ）。
+  window.KomakiApp = {
+    installed: function () { return installed; },
+    track: function (btn) {
+      btn.addEventListener('click', onPress);
+      if (installed) btn.hidden = true;
+      buttons.push(btn);
+      return btn;
+    }
+  };
+
+  // ヘッダ：言語切替の 🌐＋セレクトの行の右端に小さく置く（行を増やさない。寸法は --hr）。
+  if (!installed) {
+    document.querySelectorAll('header .lang-pick').forEach(function (row) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'app-install-btn';
+      b.setAttribute('data-i18n-aria', 'share_app');
+      b.setAttribute('aria-label', 'アプリにする（ホーム画面に追加）');
+      b.textContent = APP_ICON;
+      // title は辞書が入れた aria-label を使う直前に写す
+      ['pointerenter', 'focus'].forEach(function (ev) {
+        b.addEventListener(ev, function () { b.title = b.getAttribute('aria-label') || ''; });
+      });
+      row.appendChild(window.KomakiApp.track(b));
+    });
+  }
+
+  // フッタ（フィードの行の下）とモバイルのハンバーガーメニュー（2026-10-17 ユーザー指示）。
+  // どちらも about.html#app へのリンクの形にしておき、押したらここで扱う。メニューの項目は
+  // CSS でモバイル幅だけ出す（PC のナビは2段に収めてあり、項目を増やすと折り返すため）。
+  function appLink(cls) {
+    var a = document.createElement('a');
+    a.href = 'about.html#app';
+    a.className = cls;
+    a.setAttribute('data-i18n', 'app_cta');
+    a.textContent = '📲 アプリにする';
+    return window.KomakiApp.track(a);
+  }
+  if (!installed) {
+    var feed = document.querySelector('footer .footer-feed');
+    if (feed) {
+      var fp = document.createElement('p');
+      fp.className = 'footer-app';
+      fp.appendChild(appLink('footer-app-link'));
+      feed.parentNode.insertBefore(fp, feed.nextSibling);
+    }
+    var navUl = document.querySelector('header nav ul');
+    if (navUl) {
+      var li = document.createElement('li');
+      li.className = 'nav-app';
+      li.appendChild(appLink('nav-app-link'));
+      navUl.appendChild(li);
+    }
+  }
+
+  // about.html#app の大きなボタン（JS が無効だと動かないので HTML では hidden。ここで出す）
+  var cta = document.getElementById('app-install-cta');
+  if (cta && !installed) { cta.hidden = false; window.KomakiApp.track(cta); }
+
+  // オフラインの断り書き（ヘッダの直下）
+  var header = document.querySelector('header');
+  if (header) {
+    var bar = document.createElement('div');
+    bar.className = 'partial-notice app-offline-notice';
+    bar.setAttribute('role', 'status');
+    var msg = document.createElement('span');
+    msg.setAttribute('data-i18n', 'app_offline');
+    msg.textContent = 'インターネットにつながっていないため、前に開いたときの内容を表示しています。';
+    bar.appendChild(msg);
+    bar.hidden = true;
+    header.parentNode.insertBefore(bar, header.nextSibling);
+    var sync = function () { bar.hidden = navigator.onLine !== false; };
+    sync();
+    window.addEventListener('online', sync);
+    window.addEventListener('offline', sync);
+  }
+})();
+
 /* ===== SHARE BUTTONS ===== */
 /* 全ページ共通の「このページを共有する」欄。HTML 側には見出しと空の入れ物だけがあり、
    ボタンはここで組み立てる（共有先URLに表示中の言語を載せるため、静的に書けない）。
@@ -2544,6 +2724,11 @@ window.KomakiGrade = (function () {
        QR は自前で作らず、.github/scripts/build_qr.py（segno）が書き出した qr/<ページ>.<言語>.svg を
        表示するだけ（自動で読む外部スクリプトを増やさない・壊れた QR を出さないため）。
        QR を作ってあるページ（QR_PAGES）でだけボタンを出す。 */
+    /* --- アプリにする（2026-10-17 追加）--- 動きは INSTALL APP ブロック。アプリとして開いているときは隠れる。 */
+    if (window.KomakiApp) {
+      box.appendChild(window.KomakiApp.track(makeBtn('button', 'app', '📲', 'share_app', 'アプリにする（ホーム画面に追加）')));
+    }
+
     if (QR_PAGES.indexOf(PAGE_ID_SB) !== -1) {
       var qrBtn = makeBtn('button', 'qr', '▣', 'share_qr', 'QRコードを表示');
       qrBtn.addEventListener('click', openQr);

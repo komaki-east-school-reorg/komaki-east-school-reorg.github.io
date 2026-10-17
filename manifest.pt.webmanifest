@@ -1,0 +1,33 @@
+{
+  "name": "Plano de Reorganização Escolar do Leste de Komaki – Mídia de Informação Local (Não Oficial)",
+  "short_name": "Guia da Reorganização Escolar",
+  "description": "Mídia de informação local com informações claras sobre o plano de reorganização escolar do Leste de Komaki (Shinooka), previsto para o ano fiscal de 2027.",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "start_url": "/?lang=pt",
+  "scope": "/",
+  "id": "/",
+  "display": "standalone",
+  "theme_color": "#1b3826",
+  "background_color": "#2e5c3a",
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

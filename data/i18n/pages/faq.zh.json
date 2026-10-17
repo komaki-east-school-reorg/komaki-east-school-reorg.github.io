@@ -1,4 +1,10 @@
 {
+  "app_cta": "📲 作为应用使用",
+  "app_install_h": "添加到主屏幕，作为应用使用",
+  "app_ios_steps": "点击屏幕底部（iPad 为右上角）的分享按钮（方框加向上箭头），然后选择“添加到主屏幕”。",
+  "app_note": "可从图标全屏打开。以前打开过的页面在没有网络时也能阅读。不发送通知，也不记录使用情况。",
+  "app_offline": "当前没有网络连接，显示的是您上次打开本页时的内容。",
+  "app_other_steps": "在浏览器菜单（︙ 或 …）中选择“安装应用”或“添加到主屏幕”。",
   "aria_fs_l": "放大文字",
   "aria_fs_m": "标准文字大小",
   "aria_fs_s": "缩小文字",
@@ -158,6 +164,7 @@
   "rev_c_pref_h": "爱知县",
   "sec_link_copied": "链接已复制",
   "sec_link_copy": "复制本节链接",
+  "share_app": "作为应用使用（添加到主屏幕）",
   "share_bluesky": "发布到Bluesky",
   "share_copied": "已复制链接",
   "share_copied_paste": "已复制链接。请粘贴到{app}。",

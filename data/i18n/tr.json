@@ -608,7 +608,7 @@
   "point2_p": "2027 mali yılında 5 ilkokul ve 3 ortaokul, ikişer okula birleştirilecek. Kapsamdaki bölgelerin ilkokul öğrencileri için ücretsiz okul servisi (tamamı belediye tarafından karşılanır), ortaokul öğrencileri için bisikletle okula gidiş planlanıyor.",
   "point3_p": "2025 yılında \"Okulları Düşünelim\" toplantılarının beş oturumu, mahalle bilgilendirmeleri, veli görüş alışverişleri ve bir kamuoyu görüşü süreci (55 kişiden 142 görüş) gerçekleştirildi.",
   "point4_p": "Her yıl sınıfların yeniden karılması, çeşitli kulüp etkinlikleri ve kesintisiz 9 yıllık eğitim — yeniden yapılandırma her çocuk için daha zengin bir okul deneyiminin önünü açıyor.",
-  "ql_about_p": "Yeniden yapılandırma neden gerekli, 1. aşama ne yapıyor (5 ilkokul ve 3 ortaokul, 2 ve 2 oluyor), okullar nerede ve çocuklar nasıl gidecek, 2. aşama incelemesi, kapanacak binalar, kararların nasıl alındığı, zor sözcüklerin sade açıklaması ve kime başvurulacağı.",
+  "ql_about_p": "Yeniden yapılandırma neden gerekli, 1. aşama ne yapıyor (5 ilkokul ve 3 ortaokul, 2 ve 2 oluyor), okullar nerede ve çocuklar nasıl gidecek, 2. aşama incelemesi, kapanacak binalar, kararların nasıl alındığı, zor sözcüklerin sade açıklaması ve kime başvurulacağı. Bu siteyi uygulama olarak kullanmanın yolunu da anlatır.",
   "ql_schedule_p": "Planın aşamaları, ay ay takvim ve önemli etkinliklerin listesi. Çocuğunuzun sınıfına göre de görebilir, tarihleri kendi takviminize ekleyebilirsiniz. Tarihi belli etkinliklerde kalan gün gösterilir ve sorumlu belediye birimleri listelenir.",
   "ql_faq_p": "Planın kendisi, okula gidiş geliş ve günlük yaşam, bölge ve binalar, görüş bildirme yolları hakkında yanıtlar — ayrıca lehte, aleyhte ve tarafsız görüşler ile halk görüşlerinde öne çıkan başlıklar.",
   "ql_council_p": "2026 yılı 1. Olağan Oturumu (Mart) — okul yönetmeliği değişikliği ve dilekçe — ile 2. Oturumu (Haziran): küçük okulların korunması ve kapanan okul binalarının kullanımı üzerine genel sorular ve komisyonun inceleme gezisi. Meclise görüş iletme yolları ve iletişim bilgileri de yer alıyor.",
@@ -1507,5 +1507,17 @@
   "intro_p": "Siteyi mahalle derneği duyurularında, sosyal medyada vb. tanıtırken bu görseli kullanabilirsiniz. Okurların buraya ulaşabilmesi için adresi (https://komaki-east-school-reorg.github.io/) de yanına ekleyin.",
   "intro_dl": "Görseli kaydet (PNG, 1200×630)",
   "feed_link": "📡 Güncellemeleri akışla (RSS) takip edin",
-  "feed_note": "Bu adresi bir akış okuyucuya (Feedly, Inoreader vb.) eklerseniz belediye duyuruları, doğu bölgesi etkinlikleri ve site güncellemeleri size ulaşır. Akış Japoncadır."
+  "feed_note": "Bu adresi bir akış okuyucuya (Feedly, Inoreader vb.) eklerseniz belediye duyuruları, doğu bölgesi etkinlikleri ve site güncellemeleri size ulaşır. Akış Japoncadır.",
+  "share_app": "Uygulama olarak kullan (Ana Ekrana ekle)",
+  "app_install_h": "Ana Ekrana ekleyip uygulama olarak kullanın",
+  "app_ios_steps": "Ekranın altındaki (iPad’de sağ üstteki) Paylaş düğmesine (yukarı oklu kare) dokunun, ardından \"Ana Ekrana Ekle\"yi seçin.",
+  "app_other_steps": "Tarayıcı menüsünden (︙ veya …) \"Uygulamayı yükle\" veya \"Ana ekrana ekle\"yi seçin.",
+  "app_note": "Simgeden tam ekran açılır. Daha önce açtığınız sayfalar bağlantı olmadan da okunabilir. Bildirim gönderilmez, kullanım kaydedilmez.",
+  "app_offline": "Çevrimdışısınız; bu sayfayı en son açtığınızdaki içerik gösteriliyor.",
+  "app_h": "Uygulama Olarak Kullanın<small>Use as an App</small>",
+  "app_lead": "Bu siteyi telefonunuzun veya bilgisayarınızın ana ekranına koyup bir uygulama gibi kullanabilirsiniz. 📲 düğmesine basın (üstte dil seçiminin yanında ve sayfanın altındaki paylaşım bölümünde).",
+  "app_li1": "Simgeden adres çubuğu olmadan tam ekran açılır.",
+  "app_li2": "Her açılışta en güncel içeriği internetten yükler. Bağlantı yoksa yalnızca daha önce açtığınız sayfaları, bunu belirterek gösterir.",
+  "app_li3": "Bildirim göndermez, kullanımı kaydetmez. Kullanmayı bırakmak için diğer uygulamalar gibi silin.",
+  "app_cta": "📲 Uygulama olarak kullan"
 }

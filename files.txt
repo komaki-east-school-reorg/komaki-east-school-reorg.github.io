@@ -25,6 +25,9 @@ qr/                 QRコード。<ページ>.<言語>.svg の132枚（11ペー�
 .github/scripts/build_feed.py       「最新の動き」の Atom フィード（feed.xml）を生成する。--check で鮮度検証（auto_gates.py check 14）。
 events/             予定ごとの固有ページ（<開始日>-<N>.html、schedule.html の手書きの予定1件ずつ）。.github/scripts/build_event_pages.py が生成する。手編集不可。
 feed.xml            「最新の動き」の Atom フィード（市のお知らせ・東部の地域協議会の催し・東部まちづくり・更新履歴）。.github/scripts/build_feed.py が生成する。手編集不可。
+sw.js               ウェブアプリ化（ホーム画面に追加）の service worker。同じオリジンの GET だけを network-first で扱い、つながらないときだけ前に開いた内容を返す。
+manifest.<言語>.webmanifest  ウェブアプリのマニフェスト（12言語）。.github/scripts/build_manifest.py が辞書から生成する。手編集不可。
+.github/scripts/build_manifest.py   マニフェスト12枚を生成する。--check で鮮度検証（auto_gates.py check 16）。
 
 ■ JavaScript
 js/i18n.js          言語JSONファイルを非同期取得してページ内テキストを多言語に切り替える国際化スクリプト。
@@ -74,6 +77,7 @@ data/i18n/ja-kids.json      「こどもむけ」モード用の上書き辞書�
 ■ 画像・アイコン
 favicon.svg                 ブラウザタブに表示されるサイトアイコン（SVG形式）。
 img/og-image.png            SNSシェア時に表示されるOGP用サムネイル画像。
+img/icon-192.png / icon-512.png / icon-maskable-512.png / icon-180.png  ウェブアプリのアイコン（favicon.svg の桃の花を描き直したもの。180 は iPhone のホーム画面用）。
 
 ■ ページ別辞書（自動生成）
 data/i18n/pages/            各ページが実際に使うキーだけを切り出した辞書（<ページID>.<言語>.json、143ファイル）。

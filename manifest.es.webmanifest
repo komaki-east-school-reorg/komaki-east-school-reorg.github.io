@@ -1,0 +1,33 @@
+{
+  "name": "Plan de Reorganización Escolar del Este de Komaki – Medio de Información Local (No Oficial)",
+  "short_name": "Guía de la Reorganización Escolar",
+  "description": "Medio de información local que proporciona información clara sobre el plan de reorganización escolar del Este de Komaki (Shinooka), previsto para el año fiscal 2027.",
+  "lang": "es-419",
+  "dir": "ltr",
+  "start_url": "/?lang=es",
+  "scope": "/",
+  "id": "/",
+  "display": "standalone",
+  "theme_color": "#1b3826",
+  "background_color": "#2e5c3a",
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

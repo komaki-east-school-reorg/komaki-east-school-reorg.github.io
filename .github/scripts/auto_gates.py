@@ -630,6 +630,39 @@ def main():
     else:
         ok("各ページの問い合わせ先に市・県・国・図書館")
 
+    # --- 16. ウェブアプリ化（2026-10-17）：マニフェスト・アイコンのリンクと service worker（サイト全体を検査） ---
+    # 全ページ（予定ページ・voices・404 を含む）がマニフェストとアイコンを指していること、
+    # マニフェストが辞書から作り直されていること、sw.js が同じオリジンだけを扱い
+    # network-first（ネットを先に取り、つながらないときだけキャッシュ）のままであること。
+    app_problems = []
+    for page in sorted(glob.glob("*.html") + glob.glob("events/*.html")):
+        with open(page, encoding="utf-8") as f:
+            head = f.read().split("</head>", 1)[0]
+        for need in ('rel="manifest" href="manifest.ja.webmanifest"', 'rel="apple-touch-icon"', 'name="theme-color"'):
+            if need not in head:
+                app_problems.append(f"{page}: <head> に {need} がない")
+    for icon in ("img/icon-192.png", "img/icon-512.png", "img/icon-maskable-512.png", "img/icon-180.png"):
+        if not os.path.exists(icon):
+            app_problems.append(f"{icon} がない")
+    r = subprocess.run([sys.executable, ".github/scripts/build_manifest.py", "--check"],
+                       capture_output=True, text=True)
+    if r.returncode != 0:
+        app_problems.append("マニフェストが古い（build_manifest.py を実行）: " + (r.stdout + r.stderr).strip()[:120])
+    try:
+        with open("sw.js", encoding="utf-8") as f:
+            sw = f.read()
+        if "url.origin !== self.location.origin" not in sw:
+            app_problems.append("sw.js: 外部オリジンを除く判定（url.origin !== self.location.origin）がない")
+        if not re.search(r"respondWith\(\s*fetch\(req\)", sw):
+            app_problems.append("sw.js: network-first（respondWith(fetch(req)…)）になっていない")
+    except FileNotFoundError:
+        app_problems.append("sw.js がない")
+    if app_problems:
+        for v in app_problems:
+            fail(f"ウェブアプリ化: {v}")
+    else:
+        ok("ウェブアプリ化（マニフェスト・アイコン・service worker）")
+
     # --- 7. 出典実在チェック ---
     if not os.path.exists(EVIDENCE):
         fail(f"{EVIDENCE} がない（変更には出典が必須）")

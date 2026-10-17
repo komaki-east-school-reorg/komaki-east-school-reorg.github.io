@@ -1,0 +1,33 @@
+{
+  "name": "Kế hoạch Tái cơ cấu Trường học phía Đông Komaki – Kênh Thông tin Địa phương (Không chính thức)",
+  "short_name": "Cẩm nang Tái cơ cấu Trường học",
+  "description": "Kênh thông tin địa phương cung cấp thông tin dễ hiểu về kế hoạch tái cơ cấu trường học phía Đông Komaki (Shinooka), dự kiến thực hiện năm học 2027.",
+  "lang": "vi",
+  "dir": "ltr",
+  "start_url": "/?lang=vi",
+  "scope": "/",
+  "id": "/",
+  "display": "standalone",
+  "theme_color": "#1b3826",
+  "background_color": "#2e5c3a",
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

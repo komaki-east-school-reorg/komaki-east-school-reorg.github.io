@@ -1,0 +1,33 @@
+{
+  "name": "고마키시 동부(시노오카 지구) 학교 재편 계획 – 지역 정보 미디어(비공식)",
+  "short_name": "학교 재편 내비",
+  "description": "2027년도 시행 예정인 고마키시 동부(시노오카 지구) 학교 재편 계획에 대해, 공식 정보를 바탕으로 알기 쉽게 해설하는 지역 정보 미디어입니다.",
+  "lang": "ko",
+  "dir": "ltr",
+  "start_url": "/?lang=ko",
+  "scope": "/",
+  "id": "/",
+  "display": "standalone",
+  "theme_color": "#1b3826",
+  "background_color": "#2e5c3a",
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -1,4 +1,10 @@
 {
+  "app_cta": "📲 Usar como app",
+  "app_install_h": "Adicione à tela inicial e use como app",
+  "app_ios_steps": "Toque no botão Compartilhar (um quadrado com uma seta para cima) na parte de baixo da tela (no iPad, no canto superior direito) e escolha \"Adicionar à Tela de Início\".",
+  "app_note": "Abre em tela cheia pelo ícone. As páginas que você já abriu podem ser lidas sem conexão. Sem notificações e sem registro de uso.",
+  "app_offline": "Você está sem internet, por isso esta página mostra o conteúdo da última vez que você a abriu.",
+  "app_other_steps": "No menu do navegador (︙ ou …), escolha \"Instalar app\" ou \"Adicionar à tela inicial\".",
   "aria_fs_l": "Texto maior",
   "aria_fs_m": "Texto no tamanho padrão",
   "aria_fs_s": "Texto menor",
@@ -50,6 +56,7 @@
   "page_toc_h": "Nesta página",
   "sec_link_copied": "Link copiado",
   "sec_link_copy": "Copiar link desta seção",
+  "share_app": "Usar como app (adicionar à tela inicial)",
   "share_bluesky": "Publicar no Bluesky",
   "share_copied": "Link copiado",
   "share_copied_paste": "Link copiado. Cole no {app}.",

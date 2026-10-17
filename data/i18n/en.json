@@ -120,7 +120,7 @@
   "point2_p": "In FY2027, 5 elementary and 3 junior high schools will be consolidated into 2 of each. Free school bus service (fully city-funded) for eligible-area elementary students, and bicycle commuting for junior high students.",
   "point3_p": "In 2025, five sessions of the \"Think About Schools\" meetings, community briefings, parent opinion exchanges, and a public comment process (142 submissions from 55 people) were held.",
   "point4_p": "Yearly class reshuffles, diverse club activities, and seamless K–9 education — reorganization opens up richer school experiences for every child.",
-  "ql_about_p": "Why the reorganization is needed, what Phase 1 does (5 elementary and 3 junior high schools become 2 and 2), where the schools are and how children will get there, the Phase 2 study, the closing buildings, how decisions are made, plain-language notes on the difficult words, and who to contact.",
+  "ql_about_p": "Why the reorganization is needed, what Phase 1 does (5 elementary and 3 junior high schools become 2 and 2), where the schools are and how children will get there, the Phase 2 study, the closing buildings, how decisions are made, plain-language notes on the difficult words, who to contact, and how to use this site as an app.",
   "ql_schedule_p": "The phases of the plan, a month-by-month calendar and the list of key events. You can also view it by your child's school year and add the dates to your own calendar. Dated events show “days to go”, and the city offices in charge are listed.",
   "ql_faq_p": "Answers on the plan itself, on commuting and daily life, on the district and the buildings, and on how to have your say — plus voices for, against and neutral and the points raised in the public comments.",
   "ql_council_p": "Covers the 1st Regular Session of 2026 (March) — the school ordinance amendment and the petition — and the 2nd (June): general questions on keeping small schools and reusing closed school buildings, plus a committee study visit. How to put your views to the council, and who to contact, are included.",
@@ -1507,5 +1507,17 @@
   "intro_p": "You are welcome to use this image when introducing the site in a neighbourhood association handout, on social media or elsewhere. Print the address (https://komaki-east-school-reorg.github.io/) with it so readers can find their way here.",
   "intro_dl": "Save the image (PNG, 1200×630)",
   "feed_link": "📡 Follow updates by feed (RSS)",
-  "feed_note": "Add this address to a feed reader (Feedly, Inoreader and so on) to receive city notices, eastern-district events and this site's updates. The feed is in Japanese."
+  "feed_note": "Add this address to a feed reader (Feedly, Inoreader and so on) to receive city notices, eastern-district events and this site's updates. The feed is in Japanese.",
+  "share_app": "Use as an app (add to Home Screen)",
+  "app_install_h": "Add to your Home Screen and use it as an app",
+  "app_ios_steps": "Tap the Share button (a square with an upward arrow) at the bottom of the screen (top right on iPad), then choose \"Add to Home Screen\".",
+  "app_other_steps": "From the browser menu (︙ or …), choose \"Install app\" or \"Add to Home Screen\".",
+  "app_note": "Opens full-screen from the icon. Pages you have opened before can be read without a connection. No notifications, no usage tracking.",
+  "app_offline": "You are offline, so this shows the content from the last time you opened this page.",
+  "app_h": "Use as an App<small>アプリとして使う</small>",
+  "app_lead": "You can put this site on the Home Screen of your phone or computer and use it like an app. Press the 📲 button (next to the language switcher in the header, and in the share box at the bottom of the page).",
+  "app_li1": "It opens full-screen from the icon, without the address bar.",
+  "app_li2": "It loads the latest content from the internet each time. With no connection, it shows only pages you have opened before, and says so.",
+  "app_li3": "It sends no notifications and records no usage. To stop using it, delete it like any other app.",
+  "app_cta": "📲 Use as an app"
 }

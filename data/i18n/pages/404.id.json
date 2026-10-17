@@ -1,4 +1,10 @@
 {
+  "app_cta": "📲 Pakai sebagai aplikasi",
+  "app_install_h": "Tambahkan ke Layar Utama dan pakai sebagai aplikasi",
+  "app_ios_steps": "Ketuk tombol Bagikan (kotak dengan panah ke atas) di bagian bawah layar (di iPad, kanan atas), lalu pilih \"Tambah ke Layar Utama\".",
+  "app_note": "Terbuka layar penuh dari ikon. Halaman yang pernah Anda buka bisa dibaca tanpa koneksi. Tanpa notifikasi dan tanpa pencatatan penggunaan.",
+  "app_offline": "Anda sedang offline, jadi yang ditampilkan adalah isi saat terakhir Anda membuka halaman ini.",
+  "app_other_steps": "Dari menu browser (︙ atau …), pilih \"Instal aplikasi\" atau \"Tambahkan ke Layar utama\".",
   "aria_fs_l": "Teks lebih besar",
   "aria_fs_m": "Ukuran teks standar",
   "aria_fs_s": "Teks lebih kecil",
@@ -50,6 +56,7 @@
   "page_toc_h": "Daftar isi halaman ini",
   "sec_link_copied": "Tautan disalin",
   "sec_link_copy": "Salin tautan ke bagian ini",
+  "share_app": "Pakai sebagai aplikasi (tambahkan ke Layar Utama)",
   "share_bluesky": "Posting di Bluesky",
   "share_copied": "Tautan disalin",
   "share_copied_paste": "Tautan disalin. Tempelkan ke {app}.",

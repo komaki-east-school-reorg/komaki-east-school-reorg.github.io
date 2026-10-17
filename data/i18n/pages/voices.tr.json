@@ -1,4 +1,10 @@
 {
+  "app_cta": "📲 Uygulama olarak kullan",
+  "app_install_h": "Ana Ekrana ekleyip uygulama olarak kullanın",
+  "app_ios_steps": "Ekranın altındaki (iPad’de sağ üstteki) Paylaş düğmesine (yukarı oklu kare) dokunun, ardından \"Ana Ekrana Ekle\"yi seçin.",
+  "app_note": "Simgeden tam ekran açılır. Daha önce açtığınız sayfalar bağlantı olmadan da okunabilir. Bildirim gönderilmez, kullanım kaydedilmez.",
+  "app_offline": "Çevrimdışısınız; bu sayfayı en son açtığınızdaki içerik gösteriliyor.",
+  "app_other_steps": "Tarayıcı menüsünden (︙ veya …) \"Uygulamayı yükle\" veya \"Ana ekrana ekle\"yi seçin.",
   "aria_fs_l": "Daha büyük yazı",
   "aria_fs_m": "Standart yazı boyutu",
   "aria_fs_s": "Daha küçük yazı",
@@ -48,6 +54,7 @@
   "page_toc_h": "Bu sayfada",
   "sec_link_copied": "Bağlantı kopyalandı",
   "sec_link_copy": "Bu bölümün bağlantısını kopyala",
+  "share_app": "Uygulama olarak kullan (Ana Ekrana ekle)",
   "share_bluesky": "Bluesky'da paylaş",
   "share_copied": "Bağlantı kopyalandı",
   "share_copied_paste": "Bağlantı kopyalandı. {app} uygulamasına yapıştırın.",

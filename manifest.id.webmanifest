@@ -1,0 +1,33 @@
+{
+  "name": "Rencana Reorganisasi Sekolah Komaki Timur – Media Informasi Lokal (Tidak Resmi)",
+  "short_name": "Panduan Reorganisasi Sekolah",
+  "description": "Media informasi lokal yang menyediakan informasi mudah dipahami tentang rencana reorganisasi sekolah Komaki Timur (Shinooka), direncanakan untuk TA2027, berdasarkan sumber resmi.",
+  "lang": "id",
+  "dir": "ltr",
+  "start_url": "/?lang=id",
+  "scope": "/",
+  "id": "/",
+  "display": "standalone",
+  "theme_color": "#1b3826",
+  "background_color": "#2e5c3a",
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

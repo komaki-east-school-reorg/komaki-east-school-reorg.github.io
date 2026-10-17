@@ -18,6 +18,10 @@
   <meta name="twitter:description" content="小学校5校・中学校3校を令和9年度に4校へ再編する計画の背景・内容・通学区域を詳しく解説します。">
   <meta name="twitter:image" content="https://komaki-east-school-reorg.github.io/img/og-image.png?v=20261011">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.ja.webmanifest">
+  <link rel="apple-touch-icon" href="img/icon-180.png">
+  <meta name="theme-color" content="#1b3826">
+  <meta name="apple-mobile-web-app-title" content="学校再編ナビ">
   <link rel="stylesheet" href="css/style.css">
   <link rel="alternate" type="application/atom+xml" title="小牧市東部（篠岡地区）学校再編ナビ｜最新の動き" href="https://komaki-east-school-reorg.github.io/feed.xml">
   <link rel="canonical" href="https://komaki-east-school-reorg.github.io/about.html">
@@ -646,6 +650,20 @@
       </figure>
       <p class="section-lead" data-i18n="intro_p">自治会や子ども会の配布物、SNS などでこのサイトを紹介するときは、この画像をお使いください。サイトのアドレス（https://komaki-east-school-reorg.github.io/）を一緒に載せると、読んだ人がたどり着けます。</p>
       <p><a class="site-intro-dl" href="img/og-image.png" download="komaki-saihen-navi.png" data-i18n="intro_dl">画像を保存する（PNG・1200×630）</a></p>
+    </div>
+  </section>
+  <!-- アプリとして使う（ウェブアプリ化。2026-10-17 ユーザー指示）。ボタンの動きは js/main.js の INSTALL APP。
+       ボタンは JS が無効だと動かないので hidden で置き、INSTALL APP が出す（アプリで開いているときは出さない）。 -->
+  <section class="section section-alt" id="app">
+    <div class="container">
+      <h2 class="section-title" data-i18n-html="app_h">アプリとして使う<small>Use as an App</small></h2>
+      <p class="section-lead" data-i18n="app_lead">このサイトはスマートフォンやパソコンのホーム画面に置いて、アプリのように使えます。📲 のボタン（ヘッダの言語切替の横と、ページ下の共有欄）を押してください。</p>
+      <ul class="app-points">
+        <li data-i18n="app_li1">アイコンから、アドレスバーの無い全画面で開けます。</li>
+        <li data-i18n="app_li2">開くたびにネットから最新の内容を読みます。電波のない所では、前に開いたことのあるページだけを、そう断ったうえで表示します。</li>
+        <li data-i18n="app_li3">通知を送ったり、利用状況を記録したりはしません。やめるときは、ふつうのアプリと同じように削除できます。</li>
+      </ul>
+      <p><button type="button" class="app-install-cta" id="app-install-cta" hidden data-i18n="app_cta">📲 アプリにする</button></p>
     </div>
   </section>
   <!-- 関連ページ：ナビの再掲ではなく、このページを読んだ人が次に必要とする所だけを、

@@ -1,0 +1,33 @@
+{
+  "name": "Plano ng Muling Pagsasaayos ng Paaralan sa Silangan ng Komaki – Lokal na Media ng Impormasyon (Hindi Opisyal)",
+  "short_name": "Gabay sa Pagsasaayos ng Paaralan",
+  "description": "Isang lokal na media ng impormasyon na nagbibigay ng malinaw na impormasyon tungkol sa plano ng muling pagsasaayos ng paaralan sa Silangan ng Komaki (Shinooka), nakaplanong isagawa sa taong paaralan 2027.",
+  "lang": "tl",
+  "dir": "ltr",
+  "start_url": "/?lang=tl",
+  "scope": "/",
+  "id": "/",
+  "display": "standalone",
+  "theme_color": "#1b3826",
+  "background_color": "#2e5c3a",
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

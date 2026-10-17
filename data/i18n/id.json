@@ -118,7 +118,7 @@
   "point4_h": "Manfaat yang Diharapkan",
   "point4_link": "Lihat manfaat yang diharapkan →",
   "point4_p": "Pergantian kelas tahunan, berbagai kegiatan ekstrakurikuler, dan pendidikan K-9 yang berkesinambungan — reorganisasi membuka pengalaman sekolah yang lebih kaya bagi setiap anak.",
-  "ql_about_p": "Mengapa reorganisasi diperlukan, isi Tahap 1 (5 SD dan 3 SMP menjadi 2 dan 2), lokasi sekolah dan rencana perjalanan, kajian Tahap 2, gedung yang ditutup, cara pengambilan keputusan, penjelasan sederhana kata-kata sulit, dan ke mana bertanya.",
+  "ql_about_p": "Mengapa reorganisasi diperlukan, isi Tahap 1 (5 SD dan 3 SMP menjadi 2 dan 2), lokasi sekolah dan rencana perjalanan, kajian Tahap 2, gedung yang ditutup, cara pengambilan keputusan, penjelasan sederhana kata-kata sulit, dan ke mana bertanya. Juga menjelaskan cara memakai situs ini sebagai aplikasi.",
   "ql_schedule_p": "Tahapan seluruh rencana, kalender bulanan, dan daftar acara penting. Bisa juga dilihat menurut kelas anak Anda dan ditambahkan ke kalender sendiri. Acara bertanggal menampilkan sisa hari, dan instansi kota yang bertanggung jawab dicantumkan.",
   "ql_faq_p": "Jawaban tentang rencananya, tentang perjalanan ke sekolah dan keseharian, tentang kawasan dan gedung, serta cara menyampaikan pendapat — ditambah suara setuju, menolak, netral dan pokok bahasan dalam konsultasi publik.",
   "ql_council_p": "Merangkum Sidang Reguler Ke-1 tahun 2026 (Maret) — amendemen peraturan sekolah dan petisi — serta Ke-2 (Juni): pertanyaan umum soal mempertahankan sekolah kecil dan pemanfaatan gedung sekolah yang ditutup, ditambah kunjungan studi komisi. Termasuk cara menyampaikan pendapat ke dewan dan kontaknya.",
@@ -1507,5 +1507,17 @@
   "intro_p": "Gunakan gambar ini saat memperkenalkan situs di edaran rukun warga, media sosial, dan lainnya. Sertakan alamatnya (https://komaki-east-school-reorg.github.io/) agar pembaca bisa sampai ke sini.",
   "intro_dl": "Simpan gambar (PNG, 1200×630)",
   "feed_link": "📡 Ikuti pembaruan lewat feed (RSS)",
-  "feed_note": "Daftarkan alamat ini di pembaca feed (Feedly, Inoreader, dll.) untuk menerima pengumuman kota, acara wilayah timur, dan pembaruan situs. Isi feed dalam bahasa Jepang."
+  "feed_note": "Daftarkan alamat ini di pembaca feed (Feedly, Inoreader, dll.) untuk menerima pengumuman kota, acara wilayah timur, dan pembaruan situs. Isi feed dalam bahasa Jepang.",
+  "share_app": "Pakai sebagai aplikasi (tambahkan ke Layar Utama)",
+  "app_install_h": "Tambahkan ke Layar Utama dan pakai sebagai aplikasi",
+  "app_ios_steps": "Ketuk tombol Bagikan (kotak dengan panah ke atas) di bagian bawah layar (di iPad, kanan atas), lalu pilih \"Tambah ke Layar Utama\".",
+  "app_other_steps": "Dari menu browser (︙ atau …), pilih \"Instal aplikasi\" atau \"Tambahkan ke Layar utama\".",
+  "app_note": "Terbuka layar penuh dari ikon. Halaman yang pernah Anda buka bisa dibaca tanpa koneksi. Tanpa notifikasi dan tanpa pencatatan penggunaan.",
+  "app_offline": "Anda sedang offline, jadi yang ditampilkan adalah isi saat terakhir Anda membuka halaman ini.",
+  "app_h": "Pakai sebagai Aplikasi<small>Use as an App</small>",
+  "app_lead": "Situs ini bisa ditaruh di Layar Utama ponsel atau komputer dan dipakai seperti aplikasi. Tekan tombol 📲 (di samping pilihan bahasa di bagian atas, dan di kotak bagikan di bawah halaman).",
+  "app_li1": "Terbuka layar penuh dari ikon, tanpa bilah alamat.",
+  "app_li2": "Setiap kali dibuka, isi terbaru dimuat dari internet. Tanpa koneksi, hanya halaman yang pernah Anda buka yang ditampilkan, dengan keterangan demikian.",
+  "app_li3": "Tidak mengirim notifikasi dan tidak mencatat penggunaan. Untuk berhenti, hapus seperti aplikasi lain.",
+  "app_cta": "📲 Pakai sebagai aplikasi"
 }

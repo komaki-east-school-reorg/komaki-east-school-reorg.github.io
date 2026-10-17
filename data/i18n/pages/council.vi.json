@@ -1,4 +1,10 @@
 {
+  "app_cta": "📲 Dùng như ứng dụng",
+  "app_install_h": "Thêm vào Màn hình chính và dùng như một ứng dụng",
+  "app_ios_steps": "Nhấn nút Chia sẻ (hình vuông có mũi tên hướng lên) ở cuối màn hình (trên iPad là góc trên bên phải), rồi chọn \"Thêm vào MH chính\".",
+  "app_note": "Mở toàn màn hình từ biểu tượng. Các trang bạn đã mở trước đây có thể đọc khi không có mạng. Không gửi thông báo, không ghi lại việc sử dụng.",
+  "app_offline": "Bạn đang ngoại tuyến nên trang này hiển thị nội dung từ lần cuối bạn mở.",
+  "app_other_steps": "Từ menu của trình duyệt (︙ hoặc …), chọn \"Cài đặt ứng dụng\" hoặc \"Thêm vào Màn hình chính\".",
   "aria_fs_l": "Chữ lớn hơn",
   "aria_fs_m": "Cỡ chữ tiêu chuẩn",
   "aria_fs_s": "Chữ nhỏ hơn",
@@ -168,6 +174,7 @@
   "rev_c_pref_h": "Tỉnh Aichi",
   "sec_link_copied": "Đã sao chép liên kết",
   "sec_link_copy": "Sao chép liên kết đến mục này",
+  "share_app": "Dùng như ứng dụng (thêm vào Màn hình chính)",
   "share_bluesky": "Đăng lên Bluesky",
   "share_copied": "Đã sao chép liên kết",
   "share_copied_paste": "Đã sao chép liên kết. Hãy dán vào {app}.",

@@ -127,6 +127,10 @@ def page(it, prev, nxt, header, share, footer):
   <meta name="twitter:description" content="{htmlmod.escape(d)}">
   <meta name="twitter:image" content="{SITE}img/og-image.png?v=20261011">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.ja.webmanifest">
+  <link rel="apple-touch-icon" href="img/icon-180.png">
+  <meta name="theme-color" content="#1b3826">
+  <meta name="apple-mobile-web-app-title" content="学校再編ナビ">
   <link rel="stylesheet" href="css/style.css">
   <link rel="alternate" type="application/atom+xml" title="{SITE_NAME}｜最新の動き" href="{SITE}feed.xml">
   <link rel="canonical" href="{url}">

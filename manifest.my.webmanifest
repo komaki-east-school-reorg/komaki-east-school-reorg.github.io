@@ -1,0 +1,33 @@
+{
+  "name": "Komaki အရှေ့ပိုင်း ကျောင်းပြန်လည်ဖွဲ့စည်းရေး အစီအစဉ် – ဒေသသတင်း မီဒီယာ (တရားဝင်မဟုတ်)",
+  "short_name": "ကျောင်းပြန်လည်ဖွဲ့စည်းရေး လမ်းညွှန်",
+  "description": "၂၀၂၇ ဘဏ္ဍာနှစ်တွင် စတင်ရန် စီစဉ်ထားသော Komaki အရှေ့ပိုင်း (Shinooka) ကျောင်းပြန်လည်ဖွဲ့စည်းရေး အစီအစဉ်အကြောင်း တရားဝင်အရင်းအမြစ်များအပေါ် အခြေခံ၍ နားလည်လွယ်စွာ ဖော်ပြသည့် ဒေသသတင်း မီဒီယာ။",
+  "lang": "my",
+  "dir": "ltr",
+  "start_url": "/?lang=my",
+  "scope": "/",
+  "id": "/",
+  "display": "standalone",
+  "theme_color": "#1b3826",
+  "background_color": "#2e5c3a",
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
