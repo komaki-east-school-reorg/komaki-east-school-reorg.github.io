@@ -330,6 +330,8 @@ window.KomakiGrade = (function () {
      ・更新     … data/site-updates.json の type:"content"（掲載内容の追加・修正）
      ・お知らせ … data/news.json（市公式サイトのお知らせ。日本語以外では見出しを訳して出す）
    type:"fix" は出さない。誤字直しや体裁の修正は、帯で知らせる話ではない。
+   都市計画関連の行も出さない（2026-10-18 ユーザー指示）。ただし都市計画の日程が
+   スケジュールに載ったときの自動の行（auto_key が toshikeikaku: 始まり）は出す。
 
    【新しい情報源を作らない】
    文面は更新履歴と市のお知らせ、どちらも既にサイトが持っているデータそのもの。
@@ -479,6 +481,9 @@ window.KomakiGrade = (function () {
       ((res[0] && res[0].updates) || []).forEach(function (u) {
         if (u.type !== 'feature' && u.type !== 'content') return;
         if (!inWindow(u.date)) return;
+        // 都市計画関連は帯に出さない（2026-10-18 ユーザー指示）。例外は、都市計画の日程が
+        // スケジュールに載ったときに build_toshikeikaku.py が足す行（auto_key が toshikeikaku: 始まり）。
+        if (/都市計画/.test(u.ja || '') && String(u.auto_key || '').indexOf('toshikeikaku:') !== 0) return;
         pool.push({
           kind: u.type,
           date: u.date,

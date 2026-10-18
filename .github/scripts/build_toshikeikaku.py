@@ -33,6 +33,10 @@
    ・題名に「中止」「延期」があるページは日程を入れない。「は開催しません」とあるページは
      開催日（1日の予定）を入れない（閲覧期間は実際に行われたので残す）。
    ・日付が読めない書き方・図やPDFの中の日程は拾えない。推測で補わない。
+   ・新しい日程が載ったら、更新履歴（data/site-updates.json）に1行足す（2026-10-18 ユーザー指示）。
+     カットインは都市計画関連の行を出さないが、この行（auto_key が toshikeikaku: 始まり）だけは出す。
+     auto_key は同じ日程を二度足さないための目印なので消さないこと。終わった日程はさかのぼって足さない。
+     更新履歴を書くのは生成モードだけ（--check では書かない）。
 
 ■ 出力は入力だけで決まる（実行時刻を入れない）。生成物なので手で編集しないこと。
 
@@ -42,6 +46,7 @@
 
 終了コード: 0 = 生成した／最新, 1 = 致命的エラー・古い（--check）
 """
+import datetime
 import glob
 import json
 import os
@@ -49,7 +54,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build_community_events import EAST_PLACE_KEYWORDS  # noqa: E402
+from build_community_events import EAST_PLACE_KEYWORDS, SITE_UPDATES, UPDATE_MAX_CHARS  # noqa: E402
 
 SNAPSHOT_DIR = "data/official_pages"
 PREFIX = "toshikeikaku-1-"
@@ -203,6 +208,45 @@ def build():
     return json.dumps(data, ensure_ascii=False, indent=2) + "\n", total
 
 
+ROLE_JA = {"day": "開催日", "viewing": "閲覧期間", "pubcom": "意見募集期間"}
+
+
+def add_site_updates(events):
+    """スケジュールに載る都市計画の日程で、まだ更新履歴に載せていないものを先頭に1件ずつ足す。"""
+    if not os.path.exists(SITE_UPDATES):
+        return 0
+    with open(SITE_UPDATES, encoding="utf-8") as f:
+        data = json.load(f)
+    ups = data.get("updates", [])
+    seen = {u.get("auto_key") for u in ups if u.get("auto_key")}
+    today = datetime.date.today().isoformat()
+    added = []
+    for ev in events:
+        key = "toshikeikaku:" + "|".join((ev["slug"], ev["role"], ev.get("start", ""), ev["date"]))
+        if key in seen or ev["date"] < today:   # 終わった日程はさかのぼって載せない
+            continue
+        head = "都市計画「"
+        tail = "」の" + ROLE_JA.get(ev["role"], "日程") + "を予定に掲載"
+        title = ev["title"]
+        room = UPDATE_MAX_CHARS - len(head) - len(tail)
+        if len(title) > room:
+            title = title[:room - 1] + "…"
+        added.append({
+            "date": today,
+            "type": "content",
+            "ja": head + title + tail,
+            "en": "City planning date for the eastern district added to the schedule",
+            "auto_key": key,
+        })
+        seen.add(key)
+    if not added:
+        return 0
+    data["updates"] = added + ups
+    with open(SITE_UPDATES, "w", encoding="utf-8") as f:
+        f.write(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
+    return len(added)
+
+
 def main():
     if not os.path.isdir(SNAPSHOT_DIR):
         print(f"ERROR: {SNAPSHOT_DIR} がない", file=sys.stderr)
@@ -222,6 +266,9 @@ def main():
         print(f"更新: {OUTPUT}（東部に関係する掲載 {total}件のうち {min(total, MAX_ITEMS)}件）")
     else:
         print(f"変化なし: {OUTPUT}")
+    n = add_site_updates(json.loads(text)["events"])
+    if n:
+        print(f"更新履歴に {n}件 追加: {SITE_UPDATES}")
     return 0
 
 
