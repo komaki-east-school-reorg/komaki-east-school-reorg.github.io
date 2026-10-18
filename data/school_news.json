@@ -1,8 +1,37 @@
 {
-  "fetched_at": "2026-10-17T00:38:50Z",
+  "fetched_at": "2026-10-18T00:30:18Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "ohshiro-e",
+      "level": "elem",
+      "names": {
+        "ja": "大城小学校",
+        "ja_kids": "おおしろ小学校",
+        "en": "Oshiro Elem. School",
+        "zh": "大城小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
+      "latest_date": "2026-10-17",
+      "items": [
+        {
+          "title": "運動会",
+          "date": "2026-10-17",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136284233?tm=20261017151324"
+        },
+        {
+          "title": "いよいよ明日が運動会！",
+          "date": "2026-10-16",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136281308?tm=20261016175403"
+        },
+        {
+          "title": "6年家庭科 ナップサックつくり②",
+          "date": "2026-10-15",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136266884?tm=20261015123141"
+        }
+      ]
+    },
     {
       "slug": "momogaoka-e",
       "level": "elem",
@@ -16,19 +45,48 @@
       "latest_date": "2026-10-17",
       "items": [
         {
-          "title": "令和８年度運動会 予定通り開催します！",
+          "title": "２年生：「えがおでゴール」「デカパン競争」",
           "date": "2026-10-17",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136282605?tm=20261017071340"
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136283873?tm=20261017141055"
         },
         {
-          "title": "明日はいよいよ運動会!!",
+          "title": "４年生 運動会",
+          "date": "2026-10-17",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136283607?tm=20261017133401"
+        },
+        {
+          "title": "５年生：運動会「綱引き」",
+          "date": "2026-10-17",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136283515?tm=20261017131952"
+        }
+      ]
+    },
+    {
+      "slug": "hikarigaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "光ヶ丘小学校",
+        "ja_kids": "ひかりがおか小学校",
+        "en": "Hikarigaoka Elem. School",
+        "zh": "光之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
+      "latest_date": "2026-10-17",
+      "items": [
+        {
+          "title": "秋晴れの下、光ヶ丘小学校「最後の運動会」を開催しました",
+          "date": "2026-10-17",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136283324?tm=20261017122546"
+        },
+        {
+          "title": "６年生",
           "date": "2026-10-16",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136274161?tm=20261016190538"
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136277493?tm=20261016135626"
         },
         {
-          "title": "運動会、迫る…",
-          "date": "2026-10-15",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136269486?tm=20261015152049"
+          "title": "６年生 外国語",
+          "date": "2026-10-16",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136274943?tm=20261016105520"
         }
       ]
     },
@@ -116,64 +174,6 @@
           "title": "1年：図工競技会",
           "date": "2026-10-16",
           "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136281616?tm=20261016181535"
-        }
-      ]
-    },
-    {
-      "slug": "ohshiro-e",
-      "level": "elem",
-      "names": {
-        "ja": "大城小学校",
-        "ja_kids": "おおしろ小学校",
-        "en": "Oshiro Elem. School",
-        "zh": "大城小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
-      "latest_date": "2026-10-16",
-      "items": [
-        {
-          "title": "いよいよ明日が運動会！",
-          "date": "2026-10-16",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136281308?tm=20261016175403"
-        },
-        {
-          "title": "6年家庭科 ナップサックつくり②",
-          "date": "2026-10-15",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136266884?tm=20261015123141"
-        },
-        {
-          "title": "もうすぐ運動会！～紅白リレーの練習～",
-          "date": "2026-10-15",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136265130?tm=20261015100531"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "光ヶ丘小学校",
-        "ja_kids": "ひかりがおか小学校",
-        "en": "Hikarigaoka Elem. School",
-        "zh": "光之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
-      "latest_date": "2026-10-16",
-      "items": [
-        {
-          "title": "６年生",
-          "date": "2026-10-16",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136277493?tm=20261016135626"
-        },
-        {
-          "title": "６年生 外国語",
-          "date": "2026-10-16",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136274943?tm=20261016105520"
-        },
-        {
-          "title": "３年生 図工「うごいて楽しいわりピンワールド」",
-          "date": "2026-10-16",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136269608?tm=20261015152639"
         }
       ]
     },
