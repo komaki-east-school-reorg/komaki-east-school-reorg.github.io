@@ -1,8 +1,37 @@
 {
-  "fetched_at": "2026-10-19T00:21:46Z",
+  "fetched_at": "2026-10-20T01:15:15Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "shinooka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "篠岡中学校",
+        "ja_kids": "しのおか中学校",
+        "en": "Shinooka Junior High",
+        "zh": "篠冈中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
+      "latest_date": "2026-10-20",
+      "items": [
+        {
+          "title": "２年生 合唱練習 後半戦",
+          "date": "2026-10-20",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136293917?tm=20261020080042"
+        },
+        {
+          "title": "１年生 教育実習生 道徳",
+          "date": "2026-10-19",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136288079?tm=20261019105902"
+        },
+        {
+          "title": "ソフトテニス部新人戦愛日大会個人の部 女子",
+          "date": "2026-10-18",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136285772?tm=20261018125457"
+        }
+      ]
+    },
     {
       "slug": "toryo-j",
       "level": "jhs",
@@ -42,8 +71,13 @@
         "zh": "陶小学"
       },
       "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-10-18",
+      "latest_date": "2026-10-19",
       "items": [
+        {
+          "title": "10/19 外国語活動（４年生）",
+          "date": "2026-10-19",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136289721?tm=20261019131751"
+        },
         {
           "title": "10/18 陶地域防災訓練",
           "date": "2026-10-18",
@@ -53,40 +87,6 @@
           "title": "10/16 国語：ことばあそびをしよう（２年生）",
           "date": "2026-10-18",
           "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136285712?tm=20261018121041"
-        },
-        {
-          "title": "10/16 図工競技会（６年生）",
-          "date": "2026-10-18",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136285702?tm=20261018120055"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "篠岡中学校",
-        "ja_kids": "しのおか中学校",
-        "en": "Shinooka Junior High",
-        "zh": "篠冈中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-10-18",
-      "items": [
-        {
-          "title": "ソフトテニス部新人戦愛日大会個人の部 女子",
-          "date": "2026-10-18",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136285772?tm=20261018125457"
-        },
-        {
-          "title": "ソフトテニス新人戦愛日大会団体 男子",
-          "date": "2026-10-18",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136285764?tm=20261018124534"
-        },
-        {
-          "title": "【Ｓクルー】地域防災訓練",
-          "date": "2026-10-18",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136285704?tm=20261018120047"
         }
       ]
     },
