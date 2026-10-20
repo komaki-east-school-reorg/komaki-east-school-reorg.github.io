@@ -27,6 +27,45 @@
       "tr": "Kitasato bölgesinin okullarını düşünme toplantısı (2.)",
       "my": "Kitasato ဒေသ ကျောင်းများအကြောင်း စဉ်းစားသည့် ဒုတိယအကြိမ် အစည်းအဝေး"
     },
+    "２年生 合唱練習 後半戦": {
+      "en": "2nd Grade Choir Practice: Second Half",
+      "pt": "2º ano: ensaio de coral, segunda metade",
+      "vi": "Lớp 2: Luyện tập hợp xướng, giai đoạn sau",
+      "tl": "Ika-2 Baitang: Praktis ng Koro, Ikalawang Bahagi",
+      "es": "2.º grado: ensayo de coro, segunda mitad",
+      "zh": "二年级 合唱练习 后半阶段",
+      "id": "Kelas 2: Latihan Paduan Suara, Tahap Akhir",
+      "ko": "2학년 합창 연습 후반전",
+      "ne": "कक्षा 2: कोरस अभ्यास, उत्तरार्ध",
+      "tr": "2. Sınıf: Koro Çalışması, İkinci Yarı",
+      "my": "ဒုတိယတန်း ကျောင်းသား/သူများ သံပြိုင်သီဆိုမှု လေ့ကျင့်ခန်း နောက်ပိုင်း"
+    },
+    "１年生 教育実習生 道徳": {
+      "en": "1st Grade: Student Teacher, Moral Education",
+      "pt": "1º ano: estagiário de docência, educação moral",
+      "vi": "Lớp 1: Giáo sinh thực tập, giờ đạo đức",
+      "tl": "Ika-1 Baitang: Student Teacher, Edukasyon sa Moral",
+      "es": "1.er grado: docente en prácticas, educación moral",
+      "zh": "一年级 教育实习生 道德课",
+      "id": "Kelas 1: Guru Praktik, Pendidikan Moral",
+      "ko": "1학년 교육실습생 도덕",
+      "ne": "कक्षा 1: प्रशिक्षार्थी शिक्षक, नैतिक शिक्षा",
+      "tr": "1. Sınıf: Stajyer Öğretmen, Ahlak Eğitimi",
+      "my": "ပထမတန်း သင်တန်းသင်ကြားရေးကျောင်းသား ကျင့်ဝတ်သင်ခန်းစာ"
+    },
+    "ソフトテニス部新人戦愛日大会個人の部 女子": {
+      "en": "Soft Tennis Club Rookie Tournament (Aichi-Nichi Cup), Individual – Girls",
+      "pt": "Clube de tênis suave, torneio de novatos Aichi-Nichi, individual feminino",
+      "vi": "Câu lạc bộ quần vợt mềm, giải tân binh Aichi-Nichi, nội dung cá nhân nữ",
+      "tl": "Soft Tennis Club, Aichi-Nichi Rookie Tournament, Individual – Mga Babae",
+      "es": "Club de tenis suave, torneo de novatos Aichi-Nichi, individual femenino",
+      "zh": "软式网球部 新人赛爱日大会 个人赛 女子",
+      "id": "Klub tenis lunak, turnamen pemula Aichi-Nichi, perorangan putri",
+      "ko": "소프트테니스부 신인전 아이니치 대회 개인전 여자",
+      "ne": "सफ्ट टेनिस क्लब, आइनिची नयाँ खेलाडी प्रतियोगिता, व्यक्तिगत – महिला",
+      "tr": "Yumuşak tenis kulübü, Aichi-Nichi yeni oyuncular turnuvası, bireysel – kadınlar",
+      "my": "Soft Tennis အသင်း၊ Aichi-Nichi အသစ်ကစားသမားပွဲ၊ တစ်ဦးချင်း – အမျိုးသမီး"
+    },
     "1017 女バス1.2年生チーム 市民スポーツ大会": {
       "en": "10/17 Girls' Basketball 1st/2nd-Year Team – Citizens' Sports Tournament",
       "pt": "17/10 Basquete feminino, equipe do 1º e 2º ano – Torneio Esportivo dos Cidadãos",
@@ -66,6 +105,19 @@
       "tr": "MY Araştırması",
       "my": "MY လေ့လာစူးစမ်းမှု"
     },
+    "10/19 外国語活動（４年生）": {
+      "en": "10/19 Foreign Language Activities (4th Grade)",
+      "pt": "19/10 Atividades de língua estrangeira (4º ano)",
+      "vi": "19/10 Hoạt động ngoại ngữ (Lớp 4)",
+      "tl": "10/19 Gawaing Banyagang Wika (Ika-4 Baitang)",
+      "es": "19/10 Actividades de lengua extranjera (4.º grado)",
+      "zh": "10/19 外语活动（四年级）",
+      "id": "19/10 Kegiatan Bahasa Asing (Kelas 4)",
+      "ko": "10/19 외국어 활동 (4학년)",
+      "ne": "10/19 विदेशी भाषा गतिविधि (कक्षा 4)",
+      "tr": "19/10 Yabancı Dil Etkinliği (4. Sınıf)",
+      "my": "၁၉/၁၀ နိုင်ငံခြားဘာသာစကား လှုပ်ရှားမှု (စတုတ္ထတန်း)"
+    },
     "10/18 陶地域防災訓練": {
       "en": "10/18 Sue Community Disaster Drill",
       "pt": "18/10 Treinamento de prevenção de desastres da comunidade de Sue",
@@ -91,58 +143,6 @@
       "ne": "10/16 जापानी भाषा: शब्दसँग खेलौँ (कक्षा 2)",
       "tr": "16/10 Japonca: Sözcüklerle oynayalım (2. sınıf)",
       "my": "10/16 ဂျပန်ဘာသာ – စကားလုံးများဖြင့် ဆော့ကစားကြစို့ (အတန်း ၂)"
-    },
-    "10/16 図工競技会（６年生）": {
-      "en": "10/16 Art and Craft Competition (Grade 6)",
-      "pt": "16/10 Competição de artes e trabalhos manuais (6º ano)",
-      "vi": "16/10 Cuộc thi mỹ thuật và thủ công (lớp 6)",
-      "tl": "10/16 Paligsahan sa Sining at Gawaing-kamay (Grade 6)",
-      "es": "16/10 Competencia de arte y manualidades (6.º grado)",
-      "zh": "10/16 手工美术比赛（6年级）",
-      "id": "16/10 Lomba seni dan kerajinan (kelas 6)",
-      "ko": "10/16 미술·공작 경기회 (6학년)",
-      "ne": "10/16 चित्रकला र शिल्प प्रतियोगिता (कक्षा 6)",
-      "tr": "16/10 Resim ve el sanatları yarışması (6. sınıf)",
-      "my": "10/16 ပန်းချီနှင့် လက်မှုပြိုင်ပွဲ (အတန်း ၆)"
-    },
-    "ソフトテニス部新人戦愛日大会個人の部 女子": {
-      "en": "Soft Tennis Club Rookie Tournament (Aichi-Nichi Cup), Individual – Girls",
-      "pt": "Clube de tênis suave, torneio de novatos Aichi-Nichi, individual feminino",
-      "vi": "Câu lạc bộ quần vợt mềm, giải tân binh Aichi-Nichi, nội dung cá nhân nữ",
-      "tl": "Soft Tennis Club, Aichi-Nichi Rookie Tournament, Individual – Mga Babae",
-      "es": "Club de tenis suave, torneo de novatos Aichi-Nichi, individual femenino",
-      "zh": "软式网球部 新人赛爱日大会 个人赛 女子",
-      "id": "Klub tenis lunak, turnamen pemula Aichi-Nichi, perorangan putri",
-      "ko": "소프트테니스부 신인전 아이니치 대회 개인전 여자",
-      "ne": "सफ्ट टेनिस क्लब, आइनिची नयाँ खेलाडी प्रतियोगिता, व्यक्तिगत – महिला",
-      "tr": "Yumuşak tenis kulübü, Aichi-Nichi yeni oyuncular turnuvası, bireysel – kadınlar",
-      "my": "Soft Tennis အသင်း၊ Aichi-Nichi အသစ်ကစားသမားပွဲ၊ တစ်ဦးချင်း – အမျိုးသမီး"
-    },
-    "ソフトテニス新人戦愛日大会団体 男子": {
-      "en": "Soft Tennis Rookie Tournament (Aichi-Nichi Cup), Team – Boys",
-      "pt": "Tênis suave, torneio de novatos Aichi-Nichi, por equipes masculino",
-      "vi": "Quần vợt mềm, giải tân binh Aichi-Nichi, nội dung đồng đội nam",
-      "tl": "Soft Tennis, Aichi-Nichi Rookie Tournament, Team – Mga Lalaki",
-      "es": "Tenis suave, torneo de novatos Aichi-Nichi, por equipos masculino",
-      "zh": "软式网球 新人赛爱日大会 团体赛 男子",
-      "id": "Tenis lunak, turnamen pemula Aichi-Nichi, beregu putra",
-      "ko": "소프트테니스 신인전 아이니치 대회 단체전 남자",
-      "ne": "सफ्ट टेनिस, आइनिची नयाँ खेलाडी प्रतियोगिता, टोली – पुरुष",
-      "tr": "Yumuşak tenis, Aichi-Nichi yeni oyuncular turnuvası, takım – erkekler",
-      "my": "Soft Tennis၊ Aichi-Nichi အသစ်ကစားသမားပွဲ၊ အဖွဲ့လိုက် – အမျိုးသား"
-    },
-    "【Ｓクルー】地域防災訓練": {
-      "en": "[S Crew] Community Disaster Drill",
-      "pt": "[S Crew] Treinamento de prevenção de desastres da comunidade",
-      "vi": "[S Crew] Diễn tập phòng chống thiên tai khu vực",
-      "tl": "[S Crew] Pagsasanay sa Pagtugon sa Sakuna ng Komunidad",
-      "es": "[S Crew] Simulacro comunitario de prevención de desastres",
-      "zh": "【S Crew】地区防灾演练",
-      "id": "[S Crew] Latihan penanggulangan bencana wilayah",
-      "ko": "[S Crew] 지역 방재 훈련",
-      "ne": "[S Crew] सामुदायिक विपद् रोकथाम अभ्यास",
-      "tr": "[S Crew] Bölge Afet Tatbikatı",
-      "my": "[S Crew] ဒေသ သဘာဝဘေးအန္တရာယ်ကာကွယ်ရေး လေ့ကျင့်ခန်း"
     },
     "運動会「笑顔いっぱい 最後の運動会」": {
       "en": "Sports Day \"Full of Smiles – The Last Sports Day\"",
