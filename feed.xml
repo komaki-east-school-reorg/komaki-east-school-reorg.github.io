@@ -6,10 +6,18 @@
   <link rel="self" type="application/atom+xml" href="https://komaki-east-school-reorg.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/"/>
   <id>https://komaki-east-school-reorg.github.io/</id>
-  <updated>2026-10-18T00:00:00+09:00</updated>
+  <updated>2026-10-22T00:00:00+09:00</updated>
   <author><name>小牧市東部（篠岡地区）学校再編ナビ（市民有志・非公式）</name></author>
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
   <rights>このサイトは市民有志が運営しており、小牧市・教育委員会とは無関係です。</rights>
+  <entry>
+    <title>トップに東部の0〜17歳の子どもの数（推定）を毎日表示</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:558d8016b2f057da</id>
+    <updated>2026-10-22T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜トップに東部の0〜17歳の子どもの数（推定）を毎日表示</summary>
+  </entry>
   <entry>
     <title>東部に関係する都市計画の日程を、スケジュールにも自動で掲載</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
@@ -321,13 +329,5 @@
     <updated>2026-09-24T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜外国語表示で日本語の原文を並べる切り替えを追加</summary>
-  </entry>
-  <entry>
-    <title>地域の取組にTOKADAI DANCE FESTIVALを追加</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:2644b6a29110fab1</id>
-    <updated>2026-09-24T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜地域の取組にTOKADAI DANCE FESTIVALを追加</summary>
   </entry>
 </feed>

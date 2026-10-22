@@ -1,0 +1,35 @@
+{
+  "_comment": "build_child_estimate.py が生成。手編集不可。推定値 = base_value × exp(daily_rate × (今日 − base_date の日数))。",
+  "area": "東部地域（篠岡地区）",
+  "ages": "0〜17歳",
+  "base_date": "2026-10-01",
+  "base_value": 3370.7565,
+  "daily_rate": -0.000168825,
+  "official": {
+    "date": "2025-10-01",
+    "children": 3585,
+    "source": "指定区別年齢別男女別人口統計表（令和7年10月1日現在）"
+  },
+  "inputs": {
+    "annual": [
+      {
+        "date": "2024-10-01",
+        "children": 3827,
+        "population": 30695,
+        "source": "指定区別年齢別男女別人口統計表（令和6年10月1日現在）"
+      },
+      {
+        "date": "2025-10-01",
+        "children": 3585,
+        "population": 30168,
+        "source": "指定区別年齢別男女別人口統計表（令和7年10月1日現在）"
+      }
+    ],
+    "monthly": {
+      "date": "2026-10-01",
+      "population": 29760,
+      "source": "人口世帯表（令和8年10月1日現在）"
+    },
+    "population_trend_from": "人口世帯表（令和7年10月1日現在）"
+  }
+}

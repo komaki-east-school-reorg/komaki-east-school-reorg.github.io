@@ -1138,6 +1138,69 @@ window.KomakiGrade = (function () {
   document.addEventListener('komaki:i18n-applied', prune);
 })();
 
+/* ===== CHILD ESTIMATE（index.html のヒーロー、東部地域の0〜17歳・当サイトの推定） =====
+   2026-10-22 ユーザー指示（ヒーローに大きく）。data/child_estimate.json（build_child_estimate.py が市の人口統計から生成）の
+   base_value × exp(daily_rate × 経過日数) を、日本時間の今日の日付で計算する。ワークフローが止まっても
+   日付が変われば数字は変わる。小数第1位まで出すのは毎日必ず数字が切り替わるようにするため（一の位だと
+   1日の動きが1人未満で変わらない日が出る）。増減は出さない（同日ユーザー指示）。
+   文言は辞書の child_est_num / child_est_asof / child_est_official（隠し要素 [data-ce] から読む）。
+   読み込みに失敗したら枠ごと出さない。 */
+(function () {
+  var box = document.getElementById('child-estimate');
+  if (!box) return;
+  var LOCALE = {ja:'ja-JP', en:'en-US', pt:'pt-BR', vi:'vi-VN', tl:'fil-PH', es:'es-419', zh:'zh-Hans-CN', id:'id-ID', ko:'ko-KR', ne:'ne-NP', tr:'tr-TR', my:'my-MM'};
+  var data = null;
+  function tpl(k) {
+    var n = box.querySelector('[data-ce="' + k + '"]');
+    return n ? n.textContent : '';
+  }
+  function utc(iso) {
+    var p = iso.split('-');
+    return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2]));
+  }
+  function todayJst() {
+    // 'en-CA' は YYYY-MM-DD で出る
+    try { return new Intl.DateTimeFormat('en-CA', {timeZone: 'Asia/Tokyo'}).format(new Date()); }
+    catch (e) { var d = new Date(Date.now() + 9 * 3600e3); return d.toISOString().slice(0, 10); }
+  }
+  function render() {
+    if (!data) return;
+    var lang = window.KomakiLang();
+    var loc = LOCALE[lang] || 'ja-JP';
+    var today = todayJst();
+    var days = Math.round((utc(today) - utc(data.base_date)) / 864e5);
+    var v = data.base_value * Math.exp(data.daily_rate * days);
+    function num(x, digits) {
+      return new Intl.NumberFormat(loc, {minimumFractionDigits: digits, maximumFractionDigits: digits}).format(x);
+    }
+    function day(iso) {
+      return utc(iso).toLocaleDateString(loc, {year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC'});
+    }
+    // 数字だけを大きく出すため、雛形の {n} の前後（「人」など）は別の文字として置く
+    var parts = tpl('num').split('{n}'), out = document.getElementById('child-est-num');
+    var big = document.createElement('span');
+    big.className = 'n';
+    big.textContent = num(v, 1);
+    out.textContent = '';
+    out.appendChild(document.createTextNode(parts[0] || ''));
+    out.appendChild(big);
+    out.appendChild(document.createTextNode(parts.slice(1).join('') || ''));
+    document.getElementById('child-est-asof').textContent = tpl('asof').replace('{date}', day(today));
+    document.getElementById('child-est-official').textContent =
+      tpl('official').replace('{date}', day(data.official.date)).replace('{n}', num(data.official.children, 0));
+    box.hidden = false;
+  }
+  fetch('data/child_estimate.json', {cache: 'no-cache'}).then(function (r) {
+    if (!r.ok) throw new Error(r.status);
+    return r.json();
+  }).then(function (d) {
+    if (typeof d.base_value !== 'number' || typeof d.daily_rate !== 'number' || !d.base_date || !d.official) return;
+    data = d;
+    render();
+  }).catch(function () {});
+  document.addEventListener('komaki:i18n-applied', render);
+})();
+
 /* ===== DATE COUNTDOWN（全ページ）=====
    2026-09-28 ユーザー指示。「あと◯日」をトップだけでなく、全ページの「日付の決まっているもの」
    すべてに付ける。対象は次の2種類：

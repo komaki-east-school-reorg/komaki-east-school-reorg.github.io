@@ -144,6 +144,27 @@
       <span class="badge" data-i18n="hero_badge2">🏫 小学校5校・中学校3校 → 東西各2校</span>
       <span class="badge" data-i18n="hero_badge3">📅 令和9年度（2027年度）実施予定</span>
     </div>
+    <!-- 東部地域の0〜17歳（当サイトの推定）。2026-10-22 ユーザー指示：トップのヒーローに、誰の目にも
+         明らかなよう大きく出す。数字は js/main.js の CHILD ESTIMATE が data/child_estimate.json
+         （build_child_estimate.py が生成）から閲覧日の分を計算して入れる。小数第1位まで出すのは毎日必ず
+         数字が変わるようにするため。増減は出さない（同日ユーザー指示）。市の統計ページは許可外の URL なので
+         リンクしない。「当サイトの推定」と推定のしかたは外さないこと。data-ce の隠し要素は書式の雛形
+         （main.js は辞書を読めないため）。 -->
+    <div class="hero-count" id="child-estimate" hidden>
+      <span class="hero-count-kicker" data-i18n="child_est_label">👧 東部の子ども</span>
+      <p class="hero-count-lead" data-i18n="child_est_lead">小牧市東部（篠岡地区）に住む0〜17歳の子どもの数（当サイトの推定）</p>
+      <p class="hero-count-num" id="child-est-num"></p>
+      <p class="hero-count-meta"><span id="child-est-asof"></span>・<span id="child-est-official"></span></p>
+      <details class="hero-count-method">
+        <summary data-i18n="child_est_method_h">推定のしかた</summary>
+        <p data-i18n="child_est_method">市が公表している「指定区別年齢別男女別人口統計表」（年1回・10月1日現在）と「人口世帯表」（毎月1日現在）のうち、東部地域の町字（大山〜城山五丁目）の数字から当サイトが計算した推定値です。子どもの割合の移り変わりと総人口の移り変わりを日割りでのばしているので、毎日少しずつ変わります。市が公表した数ではありません。</p>
+      </details>
+      <span class="child-est-tpl" hidden>
+        <span data-ce="num" data-i18n="child_est_num">{n}人</span>
+        <span data-ce="asof" data-i18n="child_est_asof">{date}時点の推定</span>
+        <span data-ce="official" data-i18n="child_est_official">市の公表値は{date}現在で{n}人</span>
+      </span>
+    </div>
   </section>
 
   <!-- NOW STATUS（いまの状況。随時更新する欄 — 内容が動いたら now_text と now_asof を13辞書で更新する。

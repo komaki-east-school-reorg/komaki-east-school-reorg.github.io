@@ -669,6 +669,33 @@ def main():
     else:
         ok("ウェブアプリ化（マニフェスト・アイコン・service worker）")
 
+    # --- 17. 東部地域の0〜17歳（当サイトの推定）（サイト全体を検査） ---
+    # 2026-10-22 ユーザー指示。data/child_estimate.json は build_child_estimate.py が
+    # data/official_pages/population/ から決定的に作る。--check は「古い」に加えて、
+    # 1日の動きが 0.1 人未満（小数第1位が変わらない日が出る）になった係数も落とす。
+    # 材料の取得元は市の人口統計（市民窓口課）の配下だけ。
+    r = subprocess.run([sys.executable, ".github/scripts/build_child_estimate.py", "--check"],
+                       capture_output=True, text=True)
+    child_problems = []
+    if r.returncode != 0:
+        child_problems.append((r.stdout + r.stderr).strip().splitlines()[-1])
+    pop_dir = "data/official_pages/population"
+    pop_base = "https://www.city.komaki.aichi.jp/admin/soshiki/fukushi/shimin/3/2/1/"
+    for name in sorted(os.listdir(pop_dir)) if os.path.isdir(pop_dir) else []:
+        with open(os.path.join(pop_dir, name), encoding="utf-8") as f:
+            head = f.read().split("\n---", 1)[0]
+        m = re.search(r"^掲載ページ: (\S+)", head, re.M)
+        if not m or not m.group(1).startswith(pop_base):
+            child_problems.append(f"{name}: 掲載ページが市の人口統計の配下でない")
+    with open("index.html", encoding="utf-8") as f:
+        if 'id="child-estimate"' not in f.read():
+            child_problems.append("index.html に #child-estimate がない")
+    if child_problems:
+        for v in child_problems:
+            fail(f"子どもの数の推定: {v}")
+    else:
+        ok("東部地域の0〜17歳の推定（child_estimate.json）は最新")
+
     # --- 7. 出典実在チェック ---
     if not os.path.exists(EVIDENCE):
         fail(f"{EVIDENCE} がない（変更には出典が必須）")

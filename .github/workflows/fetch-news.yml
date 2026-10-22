@@ -102,6 +102,37 @@ jobs:
       - name: Build Atom feed
         run: python3 .github/scripts/build_feed.py
 
+      # 東部地域の0〜17歳（当サイトの推定）の材料：市の人口統計（指定区別年齢別男女別人口統計表・
+      # 人口世帯表）の東部の行（2026-10-22）。ふだんは索引3枚だけを見て、新しい表が出た月だけ
+      # ダウンロードする。学校再編の一次情報ではないので、Issue や自動更新ジョブは動かさず
+      # 単独でコミットする（このあとの「変更レポート」の差分に混ざらないよう、その前に置く）。
+      # 失敗してもワークフローは止めない（推定値は前の係数のまま、日付で動き続ける）。
+      - name: Fetch population statistics and build child estimate
+        id: population
+        continue-on-error: true
+        run: |
+          set +e
+          python3 .github/scripts/fetch_population.py
+          code=$?
+          set -e
+          if [ "$code" -eq 1 ]; then
+            echo "::warning::人口統計の取得に失敗しました（掲載ページの構成変更か、東部の町字の変更の可能性）"
+          fi
+          python3 .github/scripts/build_child_estimate.py
+
+      - name: Commit population statistics
+        if: steps.population.outcome == 'success'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/official_pages/population data/child_estimate.json
+          if git diff --staged --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "chore: update population statistics for the child estimate [skip ci]"
+            git push
+          fi
+
       # 再編対象8校のホームページ新着記事（別ドメイン・各校が更新）
       # 学校再編の一次情報ではないため、変化しても Issue や自動更新ジョブは動かさない。
       # data/school_news.json を差し替えるだけ。失敗してもワークフローは止めない。

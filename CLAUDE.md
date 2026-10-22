@@ -274,6 +274,18 @@ The **地域の取組 section on `community.html`**, sitting directly below the 
 - **決まった日程はスケジュールへ自動で載る**（2026-10-18 ユーザー指示）。東部に関係するページ（表示の5件に限らない）の「開催日時」「開催期日」「閲覧期間」「縦覧期間」「意見募集期間」の次の行から日付を読み、`events`（`role`：`day`＝1日の予定／`viewing`＝案の閲覧・縦覧／`pubcom`＝意見募集、期間は `start`〜`date`）に入れる。`KomakiTokadaiEvents()` が `kind: 'toshi'` として予定の形（ラベル＝見出しの訳＋`TAG_TOSHI[role]`「（都市計画）」など。1日なら `"day": true`、期間は `start` と `span: true`）に直し、カレンダー・`.ics`・schedule.html の一覧（`.event-item[data-auto="toshi"]`、本文は `review.html#rev-toshikeikaku` へ）・トップの帯（`span` は「10月15日（木）〜11月12日（木）」と日付まで）・`status_digest` の件数に出る。**「地域の取組」には出さない**（地域の催しではないため）。`SCHEDULE_SINCE`（2026-10-17）より前に終わった日程はさかのぼって足さない。**新しい日程が載ったら更新履歴に1行足す**（2026-10-18 ユーザー指示。「都市計画「…」の閲覧期間を予定に掲載」、`auto_key` は `toshikeikaku:` 始まり。カットインに出る都市計画の行はこれだけ。生成モードのときだけ書き、`--check` では書かない）。題名に「中止」「延期」があるページは日程を拾わず、「は開催しません」とあるページは開催日だけ落とす（閲覧期間は行われたので残す）。市の「開催予定の審議会等」の索引（`4/2/kaigikaisai_r*`）は議題が無く東部との関係が読めないので拾わない — 会議ページに議題が載り東部の地名が出た時点で載る。
 - **review.html で唯一の自動で入れ替わる欄で、【事実】の側。** 札（市公式）・緑の左帯・出典行は東部まちづくりの動きと同じ形（`.tobu-*` を再利用）。🔎・💡 はこの欄に書かない。
 
+## `data/child_estimate.json`（東部地域の0〜17歳・当サイトの推定）
+
+2026-10-22 追加（ユーザー指示）。`index.html` の**トップのヒーローの中**（`.hero-count#child-estimate`。誰の目にも明らかなよう数字を大きく — 同日ユーザー指示）に、**東部地域（篠岡地区）に住む0〜17歳の子どもの数を当サイトの推定で、小数第1位まで**出す。
+
+- **材料は市の人口統計（市民窓口課 住民登録係）だけ**：「指定区別年齢別男女別人口統計表」（年1回・10月1日現在、町字×1歳刻みの xlsx。約5か月遅れで出る）と「人口世帯表」（毎月1日現在、町字別の総人口の csv）。`.github/scripts/fetch_population.py` が索引3枚を見て、**新しい表が出たときだけ**ダウンロードし、東部の行を `data/official_pages/population/` に保存する（手編集不可・古いものも消さない）。**市の統計ページへはリンクしない**（許可外の URL）。出典は `child_est_method` に文字で書いてある。
+- **東部＝表の「小針二丁目」の次の「大山」から「城山五丁目」までの連続した塊**（`EAST_TOWNS` の32町字＋塊の中に新設された町字。令和8年の人口世帯表には工業地の長治町・郷西町が入っている）。表の先頭近くの「大山（小牧）」は小牧地区の別の町字。既知の町字が1つでも欠けたら取得を失敗させる（黙って小さくならないように）。
+- **推定のしかた**（`build_child_estimate.py`、市サーバへのアクセスなし、`--check` あり）：年次表の新しい2時点から子どもの割合とその変化の速さ、月次表の最新月と1年前から総人口の変化の速さを出し、`base_value`（最新月の1日の推定）× `exp(daily_rate × 経過日数)`。**今日の値はブラウザが日本時間の日付で計算する**（CHILD ESTIMATE in `js/main.js`）ので、ワークフローが止まっても日付が変われば数字は変わる。
+- **小数第1位まで出すのは「毎日必ず数字が切り替わる」ため**（ユーザー指示）。一の位だと1日の動き（いまは約0.57人）で変わらない日が出る。1日の動きが 0.1 人を下回る係数になると `build_child_estimate.py` が失敗する（check 17）。**一の位で毎日±1を強制する形は採らない** — 1年で公表値から100人以上ずれるため。
+- **増減は画面に出さない**（同日ユーザー指示）。出すのは推定値・その日付・市の公表値（年次表の最新時点）・推定のしかた（`<details>`）だけ。「当サイトの推定」「市が公表した数ではありません」は外さないこと。読み上げ（READ ALOUD）の対象外（ヒーローの題名と同じ扱い）。
+- 人口統計の取り込みは学校再編の一次情報ではないので、`fetch-news.yml` では**単独でコミット**し、Issue も自動更新ジョブも動かさない。`ALLOWED` にも `site-facts.json` にも入れない。
+- 文言キーは `child_est_*`（12言語＋こどもむけ）。書式（`{n}` / `{date}`）は隠し要素 `[data-ce]` から読む。
+
 ## `data/site-updates.json` (this site's own changelog)
 
 The **last section of `index.html`** shows a changelog of changes made to this site itself. Unlike `news.json` and `school_news.json`, this one is **hand-maintained** — add a new entry at the top of the `updates` array when you ship something a reader would notice. **One exception** (2026-10-05): when an eastern-district community council event is picked up, `build_community_events.py` prepends an entry carrying `auto_key` (the article URL). Likewise (2026-10-18), when a new eastern city-planning date goes onto the schedule, `build_toshikeikaku.py` prepends one carrying `auto_key: "toshikeikaku:<slug>|<role>|<start>|<date>"` — the only city-planning line the cut-in shows. Do not delete `auto_key` — it is what stops the same event being added twice. The daily workflow commits this file along with the official news data.
@@ -747,3 +759,4 @@ Beyond the auto-update pipeline's scope and evidence checks, these run site-wide
 | 13 | `events/*.html`, the `id`/🔗 on each schedule item, and the sitemap's EVENTS block match `schedule.html` (`build_event_pages.py --check`) | A stale event page keeps a changed date in search results |
 | 14 | `feed.xml` matches its data (`build_feed.py --check`) | Adding a changelog line by hand without rebuilding leaves the feed behind |
 | 15 | Every page except `index` / `voices` / `404` lists at least one city, one prefecture and one national department plus the library block, and every number `contacts.json` says is shown on a page is really there | The user asked for all three levels on every page (2026-10-11); a department added to the HTML but not to `contacts.json` would escape the weekly number check |
+| 17 | `data/child_estimate.json` matches `data/official_pages/population/` (`build_child_estimate.py --check`), its daily movement is at least 0.1, and the population files come only from the city's population-statistics pages | The top page shows the estimate to one decimal place so that it changes every day (2026-10-22); a stale or flat estimate would silently break that |
