@@ -117,7 +117,9 @@
     },
     {
       "date": "2026-10-11",
-      "title": "[機能] ホーム画面に追加できる Web App Manifest とテーマ色"
+      "title": "[機能] ホーム画面に追加できる Web App Manifest とテーマ色",
+      "implemented": "2026-10-17",
+      "note": "manifest.<lang>.webmanifest（build_manifest.py）"
     },
     {
       "date": "2026-10-10",
@@ -231,7 +233,9 @@
     },
     {
       "date": "2026-09-28",
-      "title": "[内容] パブコメ「55件」の古い表記をfaq.htmlのHTMLから除く"
+      "title": "[内容] パブコメ「55件」の古い表記をfaq.htmlのHTMLから除く",
+      "implemented": "2026-10-23",
+      "note": "faq 以外も含め5ページのHTML初期値・events.json の予定名・予定ページを「55名から142件」に"
     },
     {
       "date": "2026-09-27",
@@ -510,7 +514,9 @@
     },
     {
       "date": "2026-09-06",
-      "title": "直前に見たページをオフラインでも開けるようにする（Service Worker）"
+      "title": "直前に見たページをオフラインでも開けるようにする（Service Worker）",
+      "implemented": "2026-10-17",
+      "note": "sw.js（network-first）"
     },
     {
       "date": "2026-09-05",
