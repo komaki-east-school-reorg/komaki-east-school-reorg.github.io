@@ -2,6 +2,14 @@
   "description": "毎日の新機能アイデア（.github/workflows/feature-ideas.yml）が過去に出した見出しの記録。同じ案を繰り返さないために起案AIが読む。実装済みの案には implemented（実装日）・commit・note（任意）を付ける。手編集可（消せばまた提案されうる）。",
   "ideas": [
     {
+      "date": "2026-10-24",
+      "title": "[機能] ことばメモを DefinedTermSet の構造化データにする"
+    },
+    {
+      "date": "2026-10-24",
+      "title": "[機能] 検索結果・共有時の抜粋を広く許す robots メタを全ページに入れる"
+    },
+    {
       "date": "2026-10-23",
       "title": "[機能] index.html の WebSite 構造化データを12言語・現行名称に直す"
     },
