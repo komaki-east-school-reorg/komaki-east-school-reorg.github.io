@@ -137,6 +137,7 @@
   "phase6_date": "April 2027",
   "phase6_label": "Fase 6 / Direncanakan",
   "phase6_title": "Reorganisasi Tahap 1",
+  "print_stamp": "Halaman ini: {url} / Dicetak: {date} / Isi sesuai tanggal cetak. Lihat situs untuk informasi terbaru.",
   "rel_schedule_about": "Lihat sekolah mana yang digabung dan bagaimana caranya",
   "rel_schedule_council": "Lihat bagaimana DPRD kota membahas rencana ini",
   "rel_schedule_faq": "Lihat pertanyaan umum tentang jadwal",

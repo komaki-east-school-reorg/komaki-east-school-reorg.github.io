@@ -170,6 +170,7 @@
   "notice": "⚠️ このサイトは まちの人が つくった サイトです。こまき市が つくった サイトでは ありません。ほんとうの ことは <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\" style=\"color:#5a4000;font-weight:700;\">こまき市 きょういくいいんかいの ページ</a> で 見てください。",
   "orig_toggle": "🇯🇵 原文",
   "page_toc_h": "この ページの もくじ",
+  "print_stamp": "この ページ：{url} ／ いんさつした 日：{date} ／ いんさつした 日の ないようです。あたらしい ことは サイトで たしかめて ください。",
   "rel_community_about": "がっこうの けいかくそのものを 見る",
   "rel_community_nationwide": "日本ぜんたいの ようすと 国の きまりを 見る",
   "rel_community_voices": "まちの 人たちの さんせい・はんたいの こえを 見る",

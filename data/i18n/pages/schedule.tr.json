@@ -137,6 +137,7 @@
   "phase6_date": "Nisan 2027",
   "phase6_label": "6. Aşama / Planlanan",
   "phase6_title": "1. Aşama yeniden yapılandırma",
+  "print_stamp": "Bu sayfa: {url} / Yazdırma tarihi: {date} / İçerik yazdırma tarihine aittir. En güncel bilgi için siteye bakın.",
   "rel_schedule_about": "Hangi okulların nasıl birleştirileceğini görün",
   "rel_schedule_council": "Belediye meclisinin planı nasıl görüştüğünü görün",
   "rel_schedule_faq": "Tarihlerle ilgili sık sorulan soruları görün",

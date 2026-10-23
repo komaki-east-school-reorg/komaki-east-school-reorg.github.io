@@ -166,6 +166,7 @@
   "notice": "⚠️ このサイトは市民有志による情報提供サイトです。小牧市の公式サイトではありません。公式情報は <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\" style=\"color:#5a4000;font-weight:700;\">小牧市教育委員会のページ</a> をご確認ください。",
   "orig_toggle": "🇯🇵 原文",
   "page_toc_h": "このページの目次",
+  "print_stamp": "このページ：{url} ／ 印刷日：{date} ／ 印刷した日の内容です。最新の情報はサイトでご確認ください。",
   "rel_council_faq": "審議で出た論点を質問形式で見る",
   "rel_council_review": "計画の検証と提案を見る",
   "rel_council_schedule": "審議をふまえた今後の予定を見る",

@@ -137,6 +137,7 @@
   "phase6_date": "Tháng 4/2027",
   "phase6_label": "Giai đoạn 6 / Đã lên kế hoạch",
   "phase6_title": "Thực hiện Tái cơ cấu Giai đoạn 1",
+  "print_stamp": "Trang này: {url} / Ngày in: {date} / Nội dung tại ngày in. Vui lòng xem trang web để biết thông tin mới nhất.",
   "rel_schedule_about": "Xem trường nào sẽ sáp nhập và sáp nhập ra sao",
   "rel_schedule_council": "Xem quá trình hội đồng thành phố thảo luận về kế hoạch",
   "rel_schedule_faq": "Xem câu hỏi thường gặp về lịch trình",

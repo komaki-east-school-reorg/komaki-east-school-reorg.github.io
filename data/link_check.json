@@ -1,0 +1,15 @@
+{
+  "description": "外部リンクの死活確認の記録（自動生成・手編集不可）。.github/scripts/check_links.py が週1回書く。failing は直近の確認で取れなかった URL。2回続けて取れないと Issue になる。",
+  "checked_at": "2026-10-23T14:33:36Z",
+  "checked": 31,
+  "failing": {
+    "https://komaki-sports.or.jp/class/": {
+      "since": "2026-10-23T14:33:36Z",
+      "count": 1,
+      "error": "HTTP 503",
+      "found_in": [
+        "clubs.html"
+      ]
+    }
+  }
+}

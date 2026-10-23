@@ -1,0 +1,17 @@
+{
+  "description": "自動取得の確認記録（自動生成・手編集不可）。.github/scripts/record_fetch_status.py が毎日の巡回の最後に書く。checked_at = 最後に取りに行った日時、ok = そのとき取れたか、last_ok_at = 最後に取れた日時（いずれも UTC）。",
+  "sources": {
+    "city": {
+      "label": "小牧市の公式ページ（市のお知らせ・地域協議会のイベント・東部まちづくり・都市計画）",
+      "checked_at": "2026-10-23T00:42:54Z",
+      "ok": true,
+      "last_ok_at": "2026-10-23T00:42:54Z"
+    },
+    "schools": {
+      "label": "対象8校のホームページ",
+      "checked_at": "2026-10-23T00:51:24Z",
+      "ok": true,
+      "last_ok_at": "2026-10-23T00:51:24Z"
+    }
+  }
+}

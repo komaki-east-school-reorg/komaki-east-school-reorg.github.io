@@ -109,7 +109,10 @@ jobs:
             - **新聞報道のコーナーは 2026-10-10 に廃止した**。新聞記事を載せる・取り込む案は出さない
             - `data/` 配下の自動生成ファイル（news.json, school_news.json,
               community_events.json, tobu_actions.json, toshikeikaku_east.json, i18n/pages/, official_pages/）を
-              手編集する前提の案は出さない
+              手編集する前提の案は出さない。link_check.json・fetch_status.json も自動生成
+            - 外部リンクの死活確認（check-links.yml、週1回）・訳語のゆれの検査（data/term_rules.json と
+              auto_gates.py check 18）・各コーナーの「最後に確かめた日時」・印刷の末尾の URL と印刷日は
+              2026-10-23 に実装済み。Instagram・Facebook を機械で確かめる案は出さない（規約で禁止）
             - 市・県・国の担当部署の連絡先（data/contacts.json）は毎週 check_contacts.py が
               公表ページと照合している。番号を別の場所にも書き写す案は出さない（食い違う）
             - 実装が12言語に波及するものは、その手間も書く（辞書キー追加＋build_page_dicts.py の再生成）

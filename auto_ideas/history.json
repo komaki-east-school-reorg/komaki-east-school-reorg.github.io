@@ -19,7 +19,9 @@
     },
     {
       "date": "2026-10-21",
-      "title": "[機能] 許可済み外部リンクの死活を週1で確かめる"
+      "title": "[機能] 許可済み外部リンクの死活を週1で確かめる",
+      "implemented": "2026-10-23",
+      "note": "check_links.py＋check-links.yml（Instagram・Facebook は対象外、2週続けて失敗で Issue）"
     },
     {
       "date": "2026-10-21",
@@ -31,7 +33,9 @@
     },
     {
       "date": "2026-10-20",
-      "title": "[機能] 新校名・用語の訳語ゆれを機械で検査するゲート"
+      "title": "[機能] 新校名・用語の訳語ゆれを機械で検査するゲート",
+      "implemented": "2026-10-23",
+      "note": "data/term_rules.json＋auto_gates.py check 18（headline_i18n.py apply も同じ規則）。既存のゆれ約150か所を統一"
     },
     {
       "date": "2026-10-19",
@@ -217,7 +221,9 @@
     },
     {
       "date": "2026-09-29",
-      "title": "[機能] 印刷した紙に元のURLと印刷日を自動で入れる"
+      "title": "[機能] 印刷した紙に元のURLと印刷日を自動で入れる",
+      "implemented": "2026-10-23",
+      "note": "main.js PRINT STAMP（ふつうの印刷のみ、辞書 print_stamp）"
     },
     {
       "date": "2026-09-29",
@@ -496,7 +502,9 @@
     },
     {
       "date": "2026-09-07",
-      "title": "自動取得コーナーに「最終確認」時刻を表示"
+      "title": "自動取得コーナーに「最終確認」時刻を表示",
+      "implemented": "2026-10-23",
+      "note": "data/fetch_status.json（record_fetch_status.py が毎回書く）＋main.js FETCH STATUS"
     },
     {
       "date": "2026-09-07",

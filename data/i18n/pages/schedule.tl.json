@@ -137,6 +137,7 @@
   "phase6_date": "Abril 2027",
   "phase6_label": "Yugto 6 / Nakatakda",
   "phase6_title": "Pagpapatupad ng Unang Yugto ng Muling Pagsasaayos",
+  "print_stamp": "Ang pahinang ito: {url} / Petsa ng pag-print: {date} / Nilalaman noong araw ng pag-print. Tingnan ang site para sa pinakabagong impormasyon.",
   "rel_schedule_about": "Tingnan kung aling mga paaralan ang pagsasamahin at paano",
   "rel_schedule_council": "Tingnan kung paano tinalakay ng konseho ng lungsod ang plano",
   "rel_schedule_faq": "Tingnan ang mga karaniwang tanong tungkol sa mga petsa",

@@ -77,6 +77,7 @@ RUNTIME_KEYS = [
     "share_copy_failed",
     "share_native",
     "share_print",
+    "print_stamp",   # ふつうの印刷の末尾の1行（PRINT STAMP in js/main.js）
     "share_app",          # INSTALL APP（ウェブアプリ化。main.js）
     "app_install_h",
     "app_ios_steps",

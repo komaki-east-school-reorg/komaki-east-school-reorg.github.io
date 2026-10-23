@@ -54,6 +54,7 @@
   "notice": "⚠️ 本网站是非官方的市民信息网站，并非小牧市的官方网站。如需官方信息，请访问<a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\" style=\"color:#5a4000;font-weight:700;\">小牧市教育委员会页面</a>。",
   "og_img_alt": "印有日文网站名的图片：小牧市東部（篠岡地区）学校再編ナビ",
   "page_toc_h": "本页目录",
+  "print_stamp": "本页：{url} ／ 打印日期：{date} ／ 内容为打印当天的信息，最新信息请访问本网站。",
   "sec_link_copied": "链接已复制",
   "sec_link_copy": "复制本节链接",
   "share_app": "作为应用使用（添加到主屏幕）",

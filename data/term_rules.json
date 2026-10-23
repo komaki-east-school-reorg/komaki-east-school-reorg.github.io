@@ -1,0 +1,54 @@
+{
+  "description": "訳語のゆれを止める規則（手で保守）。avoid（正規表現）に当たる表記が、その言語の辞書・見出しの訳・予定の名前・地域の取組に出たら auto_gates.py check 18 と headline_i18n.py apply が落とす。新校名は ラテン文字の言語と my が Higashi / Nishi、zh・ko・ne はそれぞれの訳（东・동・पूर्व）で一定。2026-10-23 ユーザー決定。",
+  "rules": [
+    {
+      "id": "new-school-latin",
+      "langs": ["en", "tl", "pt", "es", "vi", "id", "tr", "my"],
+      "avoid": "Tokadai[ -](East|West|Leste|Oeste|Este|Đông|Tây|Silangan|Kanluran|Timur|Barat|Doğu|Batı|အရှေ့|အနောက်)",
+      "use": "Tokadai Higashi / Tokadai Nishi",
+      "note": "桃花台東・桃花台西（新校名と学校区）。方角を訳すと、Higashi と書いた箇所と同じ学校だと読めない"
+    },
+    {
+      "id": "new-school-latin-reversed",
+      "langs": ["vi", "id"],
+      "avoid": "(phía Đông|phía Tây|Timur|Barat) Tokadai",
+      "use": "Tokadai Higashi / Tokadai Nishi",
+      "note": "語順を入れ替えた形（Tiểu học phía Đông Tokadai、SD Timur Tokadai）"
+    },
+    {
+      "id": "new-school-hyphen",
+      "langs": ["en", "tl", "pt", "es", "vi", "id", "tr", "my"],
+      "avoid": "Tokadai-(Higashi|Nishi)",
+      "use": "Tokadai Higashi / Tokadai Nishi",
+      "note": "ハイフンでつながない"
+    },
+    {
+      "id": "zh-junior-high",
+      "langs": ["zh"],
+      "avoid": "(桃花台[东西]|篠冈|光之丘|桃陵)初中",
+      "use": "〇〇中学（桃花台东中学・篠冈中学）",
+      "note": "学校名は「中学」。「初中」は学校の種類を言うときだけ（【初中：2所】など）"
+    },
+    {
+      "id": "ko-new-school",
+      "langs": ["ko"],
+      "avoid": "도카다이 ?(히가시|니시)",
+      "use": "도카다이 동 / 도카다이 서",
+      "note": "ko は方角を訳した形で一定"
+    },
+    {
+      "id": "en-ize",
+      "langs": ["en"],
+      "avoid": "\\b[Rr]eorganis(e|ed|es|ing|ation|ations)\\b",
+      "use": "reorganize / reorganization",
+      "note": "英語は -ize（米国式）にそろえる"
+    },
+    {
+      "id": "newsletter-title",
+      "langs": ["en", "tl", "pt", "es", "vi", "id", "tr", "my", "zh", "ko", "ne"],
+      "avoid": "Reorganisation News",
+      "use": "“Shinooka School Reorganization News”",
+      "note": "『篠岡地区 学校再編だより』の英訳名"
+    }
+  ]
+}

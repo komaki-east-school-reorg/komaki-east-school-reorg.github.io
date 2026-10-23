@@ -104,6 +104,11 @@ jobs:
               桃ヶ丘 Momogaoka / 陶 Sue / 大城 Oshiro / 桃陵 Toryo / 城山 Shiroyama / 大草 Okusa /
               しのおか学園 Shinooka Gakuen / 東部市民センター Eastern Civic Center /
               地域協議会 community council / 学校再編 school reorganization。
+              新校名・学校区の 桃花台東 / 桃花台西 は、ラテン文字の言語と my では方角を訳さず
+              Tokadai Higashi / Tokadai Nishi（ハイフンなし。East・Leste・Doğu などにしない）、
+              zh は 桃花台东 / 桃花台西（中学校は「〇〇中学」で「初中」にしない）、
+              ko は 도카다이 동 / 도카다이 서、ne は तोकादाइ पूर्व / तोकादाइ पश्चिम。
+              英語は -ize の綴り（reorganization）。data/term_rules.json に反する訳は取り込まれない。
               zh では 篠冈、桃花台、光之丘、桃之丘、陶、大城、桃陵、篠冈学园、学校重组 と書く。
               ko ではハングル音写：고마키 / 시노오카 / 도카다이 / 히카리가오카 / 모모가오카 / 스에 /
               오시로 / 도료 / 시로야마 / 오쿠사 / 시노오카 학원 / 동부 시민센터 / 지역 협의회 / 학교 재편。

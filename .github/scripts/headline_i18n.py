@@ -23,6 +23,10 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import term_rules  # noqa: E402  訳語のゆれの規則（data/term_rules.json）
+
+TERM_RULES = term_rules.load_rules()
 LANGS = ["en", "pt", "vi", "tl", "es", "zh", "id", "ko", "ne", "tr", "my"]
 STORE = "data/headline_i18n.json"
 PENDING = "auto_i18n/pending.json"
@@ -105,6 +109,8 @@ def problems(src, entry):
             errs.append(f"{l}: かなが残っている（訳されていない）")
         if l != "zh" and JA.search(v):
             errs.append(f"{l}: 漢字が残っている（訳されていない）")
+        for r, hit in term_rules.violations(l, v, TERM_RULES):
+            errs.append(f"{l}: 「{hit}」は使わない表記（{r['use']}）")
     return errs
 
 

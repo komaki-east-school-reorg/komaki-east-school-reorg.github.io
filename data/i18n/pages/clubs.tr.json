@@ -129,6 +129,7 @@
   "notice": "⚠️ Bu site gönüllü vatandaşlar tarafından hazırlanmıştır; Komaki Belediyesi'nin resmî sitesi değildir. Resmî bilgiler için <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html\" target=\"_blank\" rel=\"noopener\" style=\"color:#5a4000;font-weight:700;\">Komaki Belediyesi Eğitim Kurulu sayfasını</a> ziyaret edin.",
   "orig_toggle": "🇯🇵 Japonca",
   "page_toc_h": "Bu sayfada",
+  "print_stamp": "Bu sayfa: {url} / Yazdırma tarihi: {date} / İçerik yazdırma tarihine aittir. En güncel bilgi için siteye bakın.",
   "rel_clubs_about": "Yeniden yapılandırma sonrası okullara bak",
   "rel_clubs_community": "Mahalle konseylerine ve yerel kalkınmaya bakın",
   "rel_clubs_faq": "Kulüpler hakkındaki sorulara bak",

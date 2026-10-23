@@ -2,6 +2,24 @@
   "description": "このサイト自身の更新履歴。トップページ最下部の「サイトの更新履歴」コーナーが実行時に fetch して描画する（表示は新しい順に6件まで。このファイルには全履歴を残す）。手動管理（例外：東部地域の地域協議会の催しが自動取得されたときは、.github/scripts/build_community_events.py が1行足す。その行は auto_key に記事 URL を持ち、同じ催しを二度足さないための目印なので消さないこと。東部に関係する都市計画の日程がスケジュールに載ったときも、.github/scripts/build_toshikeikaku.py が auto_key「toshikeikaku:…」付きの1行を足す）。新しいものを配列の先頭に足す。type は content（掲載内容）/ feature（機能追加）/ fix（修正）のいずれか。ja は必須、en は推奨（未記載なら ja が出る）。他言語は en → ja の順にフォールバックする。文体は体言止めの短い一行にすること（ja は30〜40字を目安に、長くても45字まで。入りきらない詳細はコミットメッセージへ）（「〜しました。」と文章にしない。コミットメッセージの貼り付けもしない）。読者が画面上で気づかない内部改修（表示の高速化・リファクタ・SEO の内部設定・ドキュメント修正など）は載せない。priority は任意で、high なら上げ、low なら下げる — ヘッダ下のカットイン帯（js/main.js の TOP CUT-IN）の並び順にだけ効く。帯はふだん「新しいかつ重要度が高い順」に自動で並ぶので、ふつうは書かなくてよい。ja に「都市計画」を含む行は帯に出ない（auto_key が toshikeikaku: で始まる自動の行だけは出る。2026-10-18 ユーザー指示）。関連する小さな修正はまとめて1件にする。機能や内容を廃止したことは載せない（2026-10-11 ユーザー指示）。",
   "updates": [
     {
+      "date": "2026-10-23",
+      "type": "feature",
+      "ja": "自動で集めた各コーナーに、元のページを確かめた日時を表示",
+      "en": "Auto-collected lists now show when their source pages were last checked"
+    },
+    {
+      "date": "2026-10-23",
+      "type": "feature",
+      "ja": "印刷した紙の末尾に、ページのURLと印刷日を記載",
+      "en": "Printed pages now end with the page URL and the printing date"
+    },
+    {
+      "date": "2026-10-23",
+      "type": "fix",
+      "ja": "外国語表示の新校名の表記を統一（Tokadai Higashi／Nishi など）",
+      "en": "New school names now spelled the same way throughout (Tokadai Higashi / Nishi)"
+    },
+    {
       "date": "2026-10-22",
       "type": "feature",
       "ja": "トップに東部の0〜17歳の子どもの数（推定）を毎日表示",

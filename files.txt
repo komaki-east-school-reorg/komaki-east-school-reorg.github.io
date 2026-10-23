@@ -63,6 +63,9 @@ data/headline_i18n.json     自動取得した見出しの9言語訳（translate
                             市サーバへは行かず、official_pages/のtoubumachidukuri-*スナップショットから組み立てる。載せるのは直近2か月ぶん（これからの催しは日付が未来なので残る）。
                             個別記事ページへのリンクは許可されていないのでurlは持たず、出典の索引ページへのリンクだけをjs/main.jsが持つ。
 data/contacts.json          サイトに載せている市・県・国の担当部署の連絡先と出所ページの対応表（手動管理）。check_contacts.pyが毎週これと公表ページを突き合わせる。
+data/term_rules.json        訳語のゆれを止める規則（手動管理）。新校名は Higashi / Nishi（zh・ko・ne は各言語の訳で一定）、英語は -ize。
+data/link_check.json        外部リンクの死活確認の記録（自動生成・手編集不可）。check_links.py が週1回書く。
+data/fetch_status.json      自動取得の確認記録（自動生成・手編集不可）。各コーナーの下の「最後に確かめた日時」の元。
                             sourceは照合専用のURLで、サイトからはリンクしない。部署名を直したらshown_inの各ページとdata/i18n/*.jsonも直すこと。
 data/i18n/en.json           英語の翻訳テキストを格納する言語ファイル。
 data/i18n/pt.json           ポルトガル語（ブラジル）の翻訳テキストを格納する言語ファイル。ヨーロッパ・ポルトガルの語は使わない。
@@ -106,12 +109,16 @@ sitemap.xml                 全11ページのサイトマップ。各URLに12言
 .github/scripts/build_child_estimate.py population/ の保存データから child_estimate.json を作るスクリプト（市サーバへのアクセスなし、--check あり）。fetch_population.pyの【あと】に実行すること。
 .github/scripts/build_toshikeikaku.py 都市計画課のスナップショットから東部に関係する掲載（toshikeikaku_east.json）を組み立てるスクリプト。市サーバへのアクセスなし。fetch_news.pyの【あと】に実行すること。
 .github/scripts/check_contacts.py   data/contacts.jsonの連絡先を市・県・国の公表ページと突き合わせるスクリプト。--fixで電話・FAX番号だけ自動修正（部署名は翻訳があるので手で直す）。exit 0=一致/3=食い違い/1=エラー。
+.github/scripts/check_links.py      外部リンクの死活確認。Instagram・Facebook・共有ボタンの送り先・Googleマップは見ない。記録は data/link_check.json。exit 0=問題なし/3=切れあり/1=エラー。
+.github/scripts/term_rules.py       訳語のゆれの検査（data/term_rules.json の規則で辞書・見出しの訳・予定の名前・地域の取組を照合）。auto_gates.py check 18 と headline_i18n.py が使う。
+.github/scripts/record_fetch_status.py 毎日の巡回の最後に、取得元ごとの確認日時と成否を data/fetch_status.json に書く。
 .github/scripts/map_targets.py      変更された公式ページのスラッグをsite-facts.jsonで引き、サイト内の更新候補箇所をMarkdown出力するスクリプト（Issue本文生成用）。
 .github/scripts/build_page_dicts.py  data/i18n/pages/ を生成する。辞書やHTMLのdata-i18nを変えたら実行してコミットすること。--check で鮮度検証のみ。
 .github/scripts/build_qr.py         回覧板シートと共有欄の「QR」ボタンが使うQRコード（qr/<ページ>.<言語>.svg）を生成する。segnoが必要（pip install segno）。--check で鮮度検証のみ。
 .github/scripts/auto_gates.py       自動更新のガードレール検証（編集範囲・スキーマ・ja/enキー一致・こどもモード1行の長さ・ページ別辞書の鮮度・外部リンク規則・出典実在チェック）。exit 0=合格/3=変更なし/1=不合格。
 .github/scripts/auto_report.py      自動更新のPR本文・事後報告コメントをevidence.json/verdict.jsonから生成するスクリプト。
 .github/workflows/check-contacts.yml 毎週1回、担当部署の連絡先を公表ページと照合するワークフロー定義。番号の変更は自動コミット、部署名の変更はIssueで知らせる。
+.github/workflows/check-links.yml    毎週1回、サイトが張っている外部リンクが開けるかを確かめるワークフロー定義。2週続けて開けないURLをIssue（🔗）で知らせる。自動では直さない。
 .github/workflows/feature-ideas.yml 毎朝1回、このサイトに足すとよさそうな機能をAIに考えさせてメールで届けるワークフロー定義。サイトのファイルは変更しない。
 .github/workflows/translate-headlines.yml 取得ワークフローの完了後、新しく入った見出しだけをAIで9言語に訳し、機械検証してheadline_i18n.jsonに取り込むワークフロー定義。
 .github/scripts/headline_i18n.py    見出し翻訳の下ごしらえと検証（pending＝訳の無い見出しを書き出す／apply＝AIの下書きを検証して取り込む／prune＝古い訳を落とす）。

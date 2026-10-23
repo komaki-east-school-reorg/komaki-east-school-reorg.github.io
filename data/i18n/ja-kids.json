@@ -888,6 +888,7 @@
   "share_copy_failed": "コピーできませんでした",
   "share_native": "ほかの アプリで おくる",
   "share_print": "この ページを いんさつする",
+  "print_stamp": "この ページ：{url} ／ いんさつした 日：{date} ／ いんさつした 日の ないようです。あたらしい ことは サイトで たしかめて ください。",
   "tts_play": "🔊 よみあげる",
   "tts_stop": "■ とめる",
   "share_star_label": "このページに ほしを つける",

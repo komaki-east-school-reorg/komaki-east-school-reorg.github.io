@@ -147,10 +147,13 @@ jobs:
           if [ "$code" -eq 1 ]; then
             echo "::warning::学校ホームページの取得に失敗しました（サイトの構成変更の可能性）"
             echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "status=failure" >> "$GITHUB_OUTPUT"
           elif [ "$code" -eq 0 ]; then
             echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "status=success" >> "$GITHUB_OUTPUT"
           else
             echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "status=success" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Commit school updates
@@ -229,6 +232,27 @@ jobs:
             --title "📡 公式ページ更新検知 $(TZ=Asia/Tokyo date +%Y-%m-%d)" \
             --body-file /tmp/issue_body.md)
           echo "number=${url##*/}" >> "$GITHUB_OUTPUT"
+
+      # 取得元ごとに「いつ確かめたか・取れたか」を残す（2026-10-23 ユーザー指示）。
+      # 内容に変化が無い日は news.json などがコミットされず、fetched_at では「最後に確かめた日時」が
+      # 分からないため。成否にかかわらず毎回書くので if: always()。画面の各コーナーの下に出る
+      # （js/main.js の FETCH STATUS）。他の変更が作業ツリーに残っていても、このファイルだけを入れる。
+      - name: Record fetch status
+        if: always()
+        run: |
+          python3 .github/scripts/record_fetch_status.py \
+            city=${{ steps.fetch.outcome }} \
+            schools=${{ steps.schools.outputs.status || steps.schools.outcome }}
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/fetch_status.json
+          if git diff --staged --quiet -- data/fetch_status.json; then
+            echo "Nothing to commit"
+          else
+            git commit -m "chore: record fetch status [skip ci]" -- data/fetch_status.json
+            git pull --rebase --autostash
+            git push
+          fi
 
   # ============================================================
   # Job 2: AIによる修正案の起案 → 機械検証 → 監査AI → 自動マージ

@@ -1,0 +1,71 @@
+name: Check External Links
+
+# サイトが張っている外部リンク（市の許可URL・文科省・対象8校・クラブや団体のサイトなど）が
+# 生きているかを週1回確かめる。Instagram・Facebook は規約により機械で見ない。
+# 1本ごとに3〜5秒あけるので、各サーバへのアクセスは週に数回で済む。
+# 2週続けて開けない URL だけを Issue（🔗）で知らせる。自動では直さない
+# （移転先は発信元の公表で確かめてから人が差し替える）。
+
+on:
+  schedule:
+    - cron: '40 20 * * 0'   # 毎週日曜 20:40 UTC（＝月曜 5:40 JST）。連絡先の照合・毎日の巡回と時間をずらす
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: check-links
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Check external links
+        id: check
+        run: |
+          set +e
+          python3 .github/scripts/check_links.py --report /tmp/links.md
+          code=$?
+          set -e
+          if [ "$code" -eq 1 ]; then
+            echo "Link check failed" >&2
+            exit 1
+          fi
+          if [ "$code" -eq 3 ]; then
+            echo "broken=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "broken=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit check record
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/link_check.json
+          if git diff --staged --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "chore: record external link check [skip ci]"
+            git pull --rebase
+            git push
+          fi
+
+      # 同じ切れを毎週新しい Issue にしない：開いている 🔗 Issue があればそこへ追記する。
+      - name: Report broken links
+        if: steps.check.outputs.broken == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          open=$(gh issue list --state open --search "🔗 外部リンク切れ in:title" --json number --jq '.[0].number')
+          if [ -n "$open" ]; then
+            gh issue comment "$open" --body-file /tmp/links.md
+          else
+            gh issue create \
+              --title "🔗 外部リンク切れ $(TZ=Asia/Tokyo date +%Y-%m-%d)" \
+              --body-file /tmp/links.md
+          fi

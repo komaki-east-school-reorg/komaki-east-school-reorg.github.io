@@ -1906,6 +1906,9 @@ footer {
 }
 .official-news-loading,
 .official-news-error { font-size: .9rem; color: var(--text-muted); }
+/* 自動取得コーナーの「最後に確かめた日時」（FETCH STATUS in js/main.js、2026-10-23） */
+.fetch-checked { font-size: .75rem; color: var(--text-muted); margin: .5rem 0 0; }
+.fetch-checked--warn { color: var(--against-color); font-weight: 700; }
 
 /* ===== パブリックコメントの論点（voices.html） =====
    左が住民の意見、右（下）が市の考え方。どちらも当サイトの要約なので、
@@ -2984,6 +2987,16 @@ main section[id], main h2.section-title[id], #area-map { scroll-margin-top: calc
   html:not(.board-printing) .faq-item,
   html:not(.board-printing) .qa-block,
   html:not(.board-printing) .contact-box { break-inside: avoid; }
+}
+
+/* ふつうの印刷の末尾の「このページの URL・印刷日」（PRINT STAMP in js/main.js、2026-10-23）。
+   画面には出さない。回覧板シートの印刷では body > *:not(#board-sheet) で消える。 */
+.print-stamp { display: none; }
+@media print {
+  html:not(.board-printing) .print-stamp {
+    display: block; margin-top: 6mm; padding-top: 2mm; border-top: 1px solid #999;
+    font-size: 8.5pt; line-height: 1.5; color: #333; word-break: break-all; break-inside: avoid;
+  }
 }
 
 /* ===== 関係する部署の問い合わせ先（トップ以外の全ページ。2026-09-27）=====

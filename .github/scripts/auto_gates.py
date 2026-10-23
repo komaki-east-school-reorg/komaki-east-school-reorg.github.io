@@ -696,6 +696,21 @@ def main():
     else:
         ok("東部地域の0〜17歳の推定（child_estimate.json）は最新")
 
+    # --- 18. 訳語のゆれ（サイト全体を検査） ---
+    # 2026-10-23 ユーザー決定。英語で Tokadai East と Tokadai Higashi が混ざると、同じ学校だと
+    # 読めない。使わない表記は data/term_rules.json に置き、辞書・見出しの訳・予定の名前・
+    # 地域の取組のどこに出ても落とす（照合は term_rules.py。headline_i18n.py apply も同じ規則）。
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import term_rules
+    term_found = term_rules.check_site()
+    if term_found:
+        for v in term_found[:30]:
+            fail(f"訳語のゆれ: {v}")
+        if len(term_found) > 30:
+            fail(f"訳語のゆれ: ほか {len(term_found) - 30}件")
+    else:
+        ok("訳語のゆれなし（data/term_rules.json）")
+
     # --- 7. 出典実在チェック ---
     if not os.path.exists(EVIDENCE):
         fail(f"{EVIDENCE} がない（変更には出典が必須）")

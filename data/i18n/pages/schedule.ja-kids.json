@@ -137,6 +137,7 @@
   "phase6_date": "2027年4月",
   "phase6_label": "ステップ 6 ／ 予定",
   "phase6_title": "学校をまとめてスタート",
+  "print_stamp": "この ページ：{url} ／ いんさつした 日：{date} ／ いんさつした 日の ないようです。あたらしい ことは サイトで たしかめて ください。",
   "rel_schedule_about": "どの がっこうが どうなるのかを 見る",
   "rel_schedule_council": "市ぎかいで どんな 話し合いが あったかを 見る",
   "rel_schedule_faq": "いつに ついての しつもんを 見る",

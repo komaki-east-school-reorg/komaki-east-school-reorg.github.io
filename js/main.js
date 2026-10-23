@@ -4584,6 +4584,118 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     });
 })();
 
+/* ===== FETCH STATUS（自動取得の各コーナーの「最後に確かめた日時」）=====
+   2026-10-23 ユーザー指示。data/fetch_status.json は毎日の巡回の最後に
+   record_fetch_status.py が成否にかかわらず書く（news.json などの fetched_at は変化の無い日に
+   コミットされないので使えない）。取れなかった日・巡回が止まった日（36時間以上確かめていない）は、
+   一覧が古いことをそのまま書く。各コーナーは innerHTML ごと描き直すので、行はその箱のすぐ後ろに置く。 */
+(function () {
+  var MAP = {
+    'official-news-container': 'city',
+    'community-events-container': 'city',
+    'tobu-actions-container': 'city',
+    'toshikeikaku-container': 'city',
+    'school-news-container': 'schools'
+  };
+  var boxes = Object.keys(MAP).map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  if (!boxes.length) return;
+
+  var STALE_MS = 36 * 3600 * 1000;
+  var _fl = window.KomakiLang();
+  var _ft = {
+    city:    {ja:'市の公式ページ', en:'city’s official pages', pt:'páginas oficiais da prefeitura', vi:'trang chính thức của thành phố', tl:'opisyal na mga pahina ng lungsod', es:'páginas oficiales de la ciudad', zh:'市政府官方网页', id:'halaman resmi kota', ko:'시 공식 페이지', ne:'नगरका आधिकारिक पृष्ठहरू', tr:'belediyenin resmî sayfaları', my:'မြို့တော် တရားဝင် စာမျက်နှာများ'},
+    schools: {ja:'各校のホームページ', en:'school websites', pt:'sites das escolas', vi:'trang web của các trường', tl:'website ng mga paaralan', es:'sitios web de las escuelas', zh:'各校网站', id:'situs web sekolah', ko:'각 학교 홈페이지', ne:'विद्यालयका वेबसाइटहरू', tr:'okul web siteleri', my:'ကျောင်းဝဘ်ဆိုက်များ'},
+    ok:      {ja:'{src}を最後に確かめた日時：{t}', en:'Last checked ({src}): {t}', pt:'Última verificação ({src}): {t}', vi:'Kiểm tra lần cuối ({src}): {t}', tl:'Huling sinuri ({src}): {t}', es:'Última verificación ({src}): {t}', zh:'最后确认时间（{src}）：{t}', id:'Terakhir diperiksa ({src}): {t}', ko:'마지막 확인({src}): {t}', ne:'अन्तिम जाँच ({src}): {t}', tr:'Son kontrol ({src}): {t}', my:'နောက်ဆုံး စစ်ဆေးချိန် ({src}): {t}'},
+    fail:    {ja:'{t1}に{src}を確かめに行きましたが、取得できませんでした。この一覧は{t2}に確かめた時点の内容です。', en:'The check at {t1} failed ({src}). This list is as of {t2}.', pt:'A verificação de {t1} falhou ({src}). Esta lista corresponde a {t2}.', vi:'Lần kiểm tra lúc {t1} không thành công ({src}). Danh sách này là nội dung tại {t2}.', tl:'Hindi nagtagumpay ang pagsuri noong {t1} ({src}). Ang listahang ito ay mula sa {t2}.', es:'La verificación de {t1} falló ({src}). Esta lista corresponde a {t2}.', zh:'{t1}的确认未能获取内容（{src}）。此列表为{t2}确认时的内容。', id:'Pemeriksaan pada {t1} gagal ({src}). Daftar ini sesuai keadaan {t2}.', ko:'{t1} 확인에 실패했습니다({src}). 이 목록은 {t2} 기준입니다.', ne:'{t1} को जाँच असफल भयो ({src})। यो सूची {t2} को अवस्थाअनुसार हो।', tr:'{t1} tarihindeki kontrol başarısız oldu ({src}). Bu liste {t2} itibarıyladır.', my:'{t1} တွင် စစ်ဆေးမှု မအောင်မြင်ပါ ({src})။ ဤစာရင်းသည် {t2} အချိန်က အကြောင်းအရာ ဖြစ်သည်။'},
+    stale:   {ja:'{src}を{t}から確かめられていません。この一覧はその時点の内容です。', en:'Not checked since {t} ({src}). This list is as of then.', pt:'Sem verificação desde {t} ({src}). Esta lista corresponde àquele momento.', vi:'Chưa kiểm tra từ {t} ({src}). Danh sách này là nội dung tại thời điểm đó.', tl:'Hindi pa nasusuri mula {t} ({src}). Ang listahang ito ay mula sa panahong iyon.', es:'Sin verificar desde {t} ({src}). Esta lista corresponde a ese momento.', zh:'自{t}起未能确认（{src}）。此列表为当时的内容。', id:'Belum diperiksa sejak {t} ({src}). Daftar ini sesuai keadaan saat itu.', ko:'{t} 이후 확인하지 못했습니다({src}). 이 목록은 그 시점 기준입니다.', ne:'{t} देखि जाँच हुन सकेको छैन ({src})। यो सूची त्यस बेलाको अवस्थाअनुसार हो।', tr:'{t} tarihinden beri kontrol edilemedi ({src}). Bu liste o tarih itibarıyladır.', my:'{t} ကတည်းက မစစ်ဆေးနိုင်ပါ ({src})။ ဤစာရင်းသည် ထိုအချိန်က အကြောင်းအရာ ဖြစ်သည်။'}
+  };
+  function ft(k) { return _ft[k][_fl] || _ft[k].en; }
+  var LOCALE = {es: 'es-419', tl: 'fil'};
+
+  // 日時は日本時間で出す（市・学校のページも日本時間で動くため）。日本語以外は (JST) を添える。
+  function when(iso) {
+    var d = new Date(iso);
+    if (isNaN(d)) return '';
+    if (_fl === 'ja') {
+      var p = {};
+      new Intl.DateTimeFormat('en-US', {timeZone: 'Asia/Tokyo', month: 'numeric', day: 'numeric', hour: 'numeric', minute: '2-digit', hourCycle: 'h23'})
+        .formatToParts(d).forEach(function (x) { p[x.type] = x.value; });
+      return p.month + '月' + p.day + '日 ' + (+p.hour) + '時' + p.minute + '分';
+    }
+    try {
+      return d.toLocaleString(LOCALE[_fl] || _fl, {timeZone: 'Asia/Tokyo', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'}) + ' (JST)';
+    } catch (e) { return iso; }
+  }
+
+  fetch('./data/fetch_status.json')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) {
+      var sources = data.sources || {};
+      boxes.forEach(function (box) {
+        var s = sources[MAP[box.id]];
+        if (!s || !s.checked_at) return;
+        var text, warn = false;
+        if (!s.ok && s.last_ok_at) {
+          text = ft('fail').replace('{t1}', when(s.checked_at)).replace('{t2}', when(s.last_ok_at));
+          warn = true;
+        } else if (Date.now() - new Date(s.checked_at).getTime() > STALE_MS) {
+          text = ft('stale').replace('{t}', when(s.last_ok_at || s.checked_at));
+          warn = true;
+        } else {
+          text = ft('ok').replace('{t}', when(s.checked_at));
+        }
+        var p = document.createElement('p');
+        p.className = 'fetch-checked' + (warn ? ' fetch-checked--warn' : '');
+        p.textContent = (warn ? '⚠️ ' : '') + text.replace('{src}', ft(MAP[box.id]));
+        box.parentNode.insertBefore(p, box.nextSibling);
+      });
+    })
+    .catch(function () { /* 記録が読めなければ何も出さない（推測の日時は出さない） */ });
+})();
+
+/* ===== PRINT STAMP（ふつうの印刷の末尾に「このページの URL・印刷日」）=====
+   2026-10-23 ユーザー指示。紙だけが回っても、どこの何をいつ刷ったものか分かるように。
+   画面には出さず、@media print の html:not(.board-printing) でだけ見せる（回覧板シートには
+   board_asof と QR がすでにある）。文言は辞書の print_stamp（RUNTIME_KEYS）を隠し要素で受け取り、
+   印刷の直前に {url}（表示言語の canonical）と {date}（日本時間の今日）を入れる。 */
+(function () {
+  var box = document.createElement('div');
+  box.className = 'print-stamp';
+  var tpl = document.createElement('span');
+  tpl.hidden = true;
+  tpl.setAttribute('data-i18n', 'print_stamp');
+  tpl.textContent = 'このページ：{url} ／ 印刷日：{date} ／ 印刷した日の内容です。最新の情報はサイトでご確認ください。';
+  var out = document.createElement('span');
+  box.appendChild(tpl);
+  box.appendChild(out);
+  document.body.appendChild(box);
+
+  function today() {
+    var lang = window.KomakiLang();
+    var d = new Date();
+    if (lang === 'ja') {
+      var p = {};
+      new Intl.DateTimeFormat('en-US', {timeZone: 'Asia/Tokyo', year: 'numeric', month: 'numeric', day: 'numeric'})
+        .formatToParts(d).forEach(function (x) { p[x.type] = x.value; });
+      return p.year + '年' + p.month + '月' + p.day + '日';
+    }
+    try {
+      return d.toLocaleDateString({es: 'es-419', tl: 'fil'}[lang] || lang, {timeZone: 'Asia/Tokyo', year: 'numeric', month: 'long', day: 'numeric'});
+    } catch (e) { return d.toISOString().slice(0, 10); }
+  }
+  function fill() {
+    var c = document.querySelector('link[rel="canonical"]');
+    var url = c ? c.href : location.href.split('#')[0];
+    out.textContent = tpl.textContent.replace('{url}', url).replace('{date}', today());
+  }
+  window.addEventListener('beforeprint', fill);
+  if (window.matchMedia) {   // beforeprint を出さないブラウザ向け
+    var mq = window.matchMedia('print');
+    if (mq.addEventListener) mq.addEventListener('change', function (e) { if (e.matches) fill(); });
+  }
+  fill();
+})();
+
 /* ===== READ ALOUD（全ページ）=====
    2026-09-15 ユーザー採用。節の見出しの下に「🔊 読み上げる」を置き、その節の本文を
    ブラウザに内蔵された音声合成（speechSynthesis）で、表示中の言語のまま読み上げる。

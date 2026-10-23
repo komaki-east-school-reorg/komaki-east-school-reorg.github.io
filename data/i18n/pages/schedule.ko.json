@@ -137,6 +137,7 @@
   "phase6_date": "2027년 4월",
   "phase6_label": "단계 6 ／ 예정",
   "phase6_title": "제1기 재편 시행",
+  "print_stamp": "이 페이지: {url} / 인쇄일: {date} / 인쇄한 날의 내용입니다. 최신 정보는 사이트에서 확인해 주세요.",
   "rel_schedule_about": "어느 학교가 어떻게 재편되는지를 보기",
   "rel_schedule_council": "시의회에서의 심의 경과를 보기",
   "rel_schedule_faq": "일정에 대한 자주 묻는 질문을 보기",
