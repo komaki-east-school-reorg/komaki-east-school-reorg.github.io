@@ -10,6 +10,11 @@ schedule.html の「主要イベント一覧」にある手書きの予定（.ev
     12言語＋こどもむけがそのまま使われる。ページ側に訳を書き写さない。
   ・schedule.html の各予定には、id="ev-<開始日>-<N>" と固有ページへのリンクを書き込む
     （冪等。2回走らせても変わらない）。リンクは静的に書く — 検索エンジンがたどれるように。
+  ・各予定に data-ev="<日付>|<その日の何件目>" を書き込む（2026-10-23）。data/events.json のどの予定に
+    あたるかの印で、「📅 カレンダーに追加」（js/main.js の KomakiIcs.attach）がこれを読んで .ics を作る。
+    期間が重なるだけでは決まらない（10/1〜10/31 の項目は 10/31 の予定3件と重なる）ので、日本語の
+    予定名（events.json の ja から括弧書きを除いたもの）が本文に最も長く一致するものを選ぶ。
+    一致しない（終わった予定で events.json に無い）項目には付けない。
   ・sitemap.xml の EVENTS:BEGIN〜END の間を作り直す。
   ・予定が schedule.html から消えたら、そのページも消す（古い予定を残すと、変わった日付が
     検索結果に残り続けるため）。消えた URL は 404.html が受ける。
@@ -81,6 +86,38 @@ def items_of(sched):
     return out
 
 
+def flat_events():
+    with open("data/events.json", encoding="utf-8") as f:
+        evs = json.load(f)["events"]
+    out = []
+    for k in sorted(evs):
+        for i, e in enumerate(evs[k] if isinstance(evs[k], list) else [evs[k]]):
+            out.append((k, i, e))
+    return out
+
+
+def match_event(it, flat):
+    """予定1件に対応する events.json の (日付, 何件目) を返す。無ければ None。"""
+    st, en = it["start"], it["end"] or it["start"]
+    text = it["desc_plain"]
+
+    def score(e):
+        core = re.sub(r"（[^）]*）|\([^)]*\)", "", e.get("ja", "")).strip()
+        for n in range(len(core), 1, -1):
+            if any(core[i:i + n] in text for i in range(len(core) - n + 1)):
+                return n
+        return 0
+
+    cands = [(k, i, e) for k, i, e in flat
+             if st <= k <= en and (e.get("day") or e.get("start", k) == st or k == en)]
+    best = None
+    for k, i, e in cands:
+        key = (score(e), k == st)   # 同点なら始まりの日の予定（バンブーと同じ期間の11/14のマルシェなど）
+        if key[0] and (best is None or key > best[0]):
+            best = (key, k, i)
+    return (best[1], best[2]) if best else None
+
+
 def chunk(sched, start_marker, end_marker):
     i = sched.index(start_marker)
     j = sched.index(end_marker, i)
@@ -94,6 +131,8 @@ def page(it, prev, nxt, header, share, footer):
     alt = "\n".join(
         f'  <link rel="alternate" hreflang="{hl}" href="{url}{"?lang=" + c if c else ""}">' for hl, c in HREFLANG)
     end_attr = f' data-event-date="{it["end"]}"' if it["end"] else ""
+    if it.get("ev"):
+        end_attr += f' data-ev="{it["ev"]}"'
     cls = (" " + it["cls"]) if it["cls"] else ""
 
     def nav(x, key, label):
@@ -176,6 +215,10 @@ def build():
     with open("schedule.html", encoding="utf-8") as f:
         sched = f.read()
     items = items_of(sched)
+    flat = flat_events()
+    for it in items:
+        m = match_event(it, flat)
+        it["ev"] = f"{m[0]}|{m[1]}" if m else ""
     header = chunk(sched, '<div class="notice-banner"', "<main>")
     share = chunk(sched, '  <section class="section share"', "</main>")
     footer = sched[sched.index("<footer>"):]
@@ -187,8 +230,8 @@ def build():
         m = it["m"]
         new_sched.append(sched[pos:m.start("open")])
         op = m.group("open")
-        op = re.sub(r'\s+id="ev-[^"]*"', "", op)
-        op = op[:-1] + f' id="ev-{it["id"]}">'
+        op = re.sub(r'\s+(id|data-ev)="[^"]*"', "", op)
+        op = op[:-1] + f' id="ev-{it["id"]}"' + (f' data-ev="{it["ev"]}"' if it["ev"] else "") + ">"
         body = re.sub(r'\n[ \t]*<a class="event-permalink"[^>]*></a>', "", m.group("body"))
         indent = m.group("indent")
         body = body + f"\n{indent}  {permalink(it)}"

@@ -78,6 +78,10 @@ RUNTIME_KEYS = [
     "share_native",
     "share_print",
     "print_stamp",   # ふつうの印刷の末尾の1行（PRINT STAMP in js/main.js）
+    # 「📅 カレンダーに追加」（KomakiIcs in js/main.js）。予定が出るどのページでも使うので、
+    # .ics の名前・説明・失敗の文言（もとは schedule.html の学年ビュー用）も全ページに入れる。
+    "ics_add", "ics_tbd", "ics_tbd_desc",
+    "grade_ics_calname", "grade_ics_desc", "grade_ics_fail",
     "share_app",          # INSTALL APP（ウェブアプリ化。main.js）
     "app_install_h",
     "app_ios_steps",

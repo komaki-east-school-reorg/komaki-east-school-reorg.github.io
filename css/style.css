@@ -1235,7 +1235,6 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 .cal-day-card-list { list-style: none; margin: 0 0 .6rem; padding: 0; }
 .cal-day-card-list li { font-size: .9rem; line-height: 1.6; padding: .15rem 0; }
 .cal-day-card-list li.past { color: var(--text-muted); }
-.cal-day-card-note { font-size: .8rem; color: var(--text-muted); margin-top: .5rem; }
 
 .event-list { margin-top: 1.5rem; }
 .event-item {
@@ -2087,7 +2086,19 @@ footer {
 /* 各行の「カレンダーに追加」（2026-10-13） */
 .ce-ics { display: inline-block; margin-top: .3rem; padding: .15rem .65rem; font-size: .78rem; font-weight: 700; color: var(--primary-dark); background: var(--white); border: 1px solid var(--primary); border-radius: var(--radius-pill); cursor: pointer; }
 .ce-ics:hover { background: var(--primary); color: #fff; }
-@media print { .ce-ics { display: none !important; } }
+@media print { .ce-ics, .ics-add { display: none !important; } }
+
+/* 「📅 カレンダーに追加」（KomakiIcs.attach in js/main.js、2026-10-23）。見た目は .ce-ics と同じ。
+   スケジュールの各予定では行の右下に置き、そのぶん下に余白を取る。行を flex-wrap にすると、
+   スマートフォンで日付が1行を占め、本文がボタンと横幅を取り合って1文字幅に潰れた（実測）。 */
+.ics-add { display: inline-block; padding: .15rem .65rem; font-size: .78rem; font-weight: 700; color: var(--primary-dark); background: var(--white); border: 1px solid var(--primary); border-radius: var(--radius-pill); cursor: pointer; font-family: inherit; line-height: 1.5; }
+.ics-add:hover, .ics-add:focus-visible { background: var(--primary); color: #fff; }
+.event-item:has(> .ics-add) { padding-bottom: 2.7rem; }
+.event-item > .ics-add { position: absolute; right: .7rem; bottom: .65rem; }
+/* 帯（トップの今後のスケジュール）と日カードではアイコンだけ */
+.ics-add--compact { padding: 0 .35rem; font-size: .8rem; line-height: 1.4; margin-left: .3rem; vertical-align: middle; }
+.upcoming-item .ics-add--compact { background: transparent; border-color: rgba(240,232,192,.45); color: #f0e8c0; }
+.upcoming-item .ics-add--compact:hover, .upcoming-item .ics-add--compact:focus-visible { background: rgba(240,232,192,.18); color: #fff; }
 
 /* ===== 東部まちづくりの動き（「地域の取組」欄の中の市公式リスト） =====
    市サイトへのリンクは許可URL以外を張れないので、この一覧だけは

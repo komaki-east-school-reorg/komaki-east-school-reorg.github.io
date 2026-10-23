@@ -130,8 +130,9 @@ window.KomakiIcs = (function () {
         // 終わりの時刻が公表されていないときは書かない（推測で作らない）
         if (e.times.eh != null) L.push('DTEND:' + jstUtc(e.date, e.times.eh, e.times.em));
       } else {
+        // 終日。何日か続く予定・期間（e.end）は、DTEND に最終日の翌日を書く（RFC 5545 の終日の書き方）
         L.push('DTSTART;VALUE=DATE:' + ymd(e.date));
-        L.push('DTEND;VALUE=DATE:' + nextDay(e.date));
+        L.push('DTEND;VALUE=DATE:' + nextDay(e.end || e.date));
       }
       L.push(fold('SUMMARY:' + esc(e.summary)));
       if (e.description) L.push(fold('DESCRIPTION:' + esc(e.description)));
@@ -152,7 +153,152 @@ window.KomakiIcs = (function () {
     document.body.removeChild(a);
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
   }
-  return {schedule: schedule, calendar: calendar, download: download};
+  // 地域協議会の催しの UID（community.html の各行と、スケジュールに自動で足した同じ催しで共通）。
+  // 記事の URL から作るので、どちらから何度取り込んでも1件のまま。
+  function councilUid(key, date) {
+    var h = 0;
+    for (var i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) >>> 0;
+    return 'council-' + h.toString(36) + '-' + date + '@' + HOST;
+  }
+
+  /* ---- 「📅 カレンダーに追加」（2026-10-23 ユーザー指示：カレンダーとスケジュールのすべての予定に） ----
+     文言は辞書のキーを隠し要素で受け取る（RUNTIME_KEYS）。main.js は辞書を直接読めないため。 */
+  var holder = document.createElement('div');
+  holder.hidden = true;
+  holder.id = 'ics-strings';
+  [['add', 'ics_add', '📅 カレンダーに追加'],
+   ['tbd', 'ics_tbd', '（日程未定・{p}）'],
+   ['tbd_desc', 'ics_tbd_desc', '日付はまだ公表されていません。公表された時期（{p}）を期間として登録しています。日程が分かったら、この予定を直してください。'],
+   ['calname', 'grade_ics_calname', '小牧市東部 学校再編の予定'],
+   ['desc', 'grade_ics_desc', 'この予定は市民有志のサイトがまとめたものです。正式な案内は市から届く書類でご確認ください。'],
+   ['fail', 'grade_ics_fail', 'カレンダーの書き出しに失敗しました']].forEach(function (x) {
+    var s = document.createElement('span');
+    s.setAttribute('data-ik', x[0]);
+    s.setAttribute('data-i18n', x[1]);
+    s.textContent = x[2];
+    holder.appendChild(s);
+  });
+  document.body.appendChild(holder);
+  function str(k) {
+    var el = holder.querySelector('[data-ik="' + k + '"]');
+    return el ? el.textContent.trim() : '';
+  }
+
+  function iso(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  function monthEnd(k) { var p = k.split('-'); return iso(new Date(+p[0], +p[1], 0)); }
+  // 公表された時期の言い方（「2026年11月〜12月」「Nov – Dec 2026」）。月単位の予定にだけ使う。
+  function period(a, b, lang) {
+    var pa = a.split('-'), pb = b.split('-');
+    var sameY = pa[0] === pb[0], sameM = sameY && pa[1] === pb[1];
+    if (lang === 'ja' || lang === 'zh') {   // zh も「2026年11月〜12月」（Intl だと「2026/12」になる）
+      return pa[0] + '年' + (+pa[1]) + '月' + (sameM ? '' : '〜' + (sameY ? '' : pb[0] + '年') + (+pb[1]) + '月');
+    }
+    var loc = {es: 'es-419', tl: 'fil'}[lang] || lang;
+    function f(p, y) {
+      // ko は long で「2026년 12월」（numeric だと「2026. 12.」になる）
+      var o = {month: lang === 'ko' ? 'long' : 'short'};
+      if (y) o.year = 'numeric';
+      try { return new Intl.DateTimeFormat(loc, o).format(new Date(+p[0], +p[1] - 1, 1)); } catch (e) { return p[0] + '-' + p[1]; }
+    }
+    return sameM ? f(pa, true) : f(pa, !sameY) + ' – ' + f(pb, true);
+  }
+
+  // 予定1件（KomakiEvents() の key 日の idx 件目）→ .ics の1件。
+  //   "day": true … その日の終日（"until" があればその日まで）。地域協議会の催しは時刻つき（ev.ics）
+  //   "span": true … 始まりと終わりの日が決まった期間（都市計画の閲覧・意見募集）
+  //   それ以外   … 月単位の予定。公表された時期を期間として入れ、名前と説明に「日程未定」と書く
+  //               （2026-10-23 ユーザー決定。日付を作らずに済み、その期間中ずっとカレンダーに見える）
+  function entry(key, idx, ev, lang, map) {
+    var label = (ev && (ev[lang] || ev.en || ev.ja)) || '';
+    var e = schedule(key, idx, label, str('desc'));
+    if (ev.day === true) {
+      if (ev.until) e.end = ev.until;
+    } else {
+      var start = ev.start || key.slice(0, 8) + '01';
+      var end = ev.start ? key : monthEnd(key);
+      e.date = start;
+      e.end = end;
+      if (ev.span !== true) {
+        var p = period(start, end, lang);
+        e.summary += str('tbd').replace('{p}', p);
+        e.description = str('tbd_desc').replace('{p}', p) + '\n' + e.description;
+      }
+    }
+    var x = ev.ics;   // 自動で足した催しの付帯情報（KomakiTokadaiEvents）
+    if (x) {
+      if (x.uid) e.uid = x.uid;
+      if (x.times) e.times = x.times;
+      if (x.when) e.description += '\n' + x.when;
+      if (x.place) e.location = map ? window.KomakiHeadline.text(map, x.place) : x.place;
+      if (x.url) e.url = x.url;
+    }
+    return e;
+  }
+  function lastDay(key, ev) {
+    return ev.day === true ? (ev.until || key) : ev.start ? key : monthEnd(key);
+  }
+
+  // [data-ev="key|idx"] の要素に「📅 カレンダーに追加」を付ける。終わった予定には付けない。
+  // 一覧を描き直すブロックは、描いたあとに attach(その箱) を呼ぶ。compact は帯（アイコンだけ）。
+  var evP = null;
+  function events() {
+    if (!evP) evP = window.KomakiEvents().then(function (d) { return d.events || {}; });
+    return evP;
+  }
+  function find(evs, key, idx) {
+    var list = evs[key];
+    list = Array.isArray(list) ? list : list ? [list] : [];
+    return list[idx] || null;
+  }
+  function label(b) {
+    var t = str('add');
+    if (b.classList.contains('ics-add--compact')) {
+      b.textContent = '📅';
+      b.setAttribute('aria-label', t.replace(/^📅\s*/, ''));
+      b.title = b.getAttribute('aria-label');
+    } else {
+      b.textContent = t;
+    }
+  }
+  function attach(root) {
+    var nodes = Array.prototype.slice.call((root || document).querySelectorAll('[data-ev]'));
+    if (root && root.hasAttribute && root.hasAttribute('data-ev')) nodes.push(root);
+    nodes = nodes.filter(function (n) { return !n.querySelector(':scope > .ics-add'); });
+    if (!nodes.length) return;
+    events().then(function (evs) {
+      var today = iso(new Date());
+      nodes.forEach(function (n) {
+        if (n.querySelector(':scope > .ics-add')) return;
+        var v = (n.getAttribute('data-ev') || '').split('|');
+        var key = v[0], idx = +v[1] || 0;
+        var ev = find(evs, key, idx);
+        if (!ev || lastDay(key, ev) < today) return;
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'ics-add' + (n.classList.contains('upcoming-item') || n.hasAttribute('data-ics-compact') ? ' ics-add--compact' : '');
+        label(b);
+        b.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var lang = window.KomakiLang();
+          window.KomakiHeadline.load().then(function (map) {
+            window.KomakiIcs.download(calendar(lang, str('calname'), [entry(key, idx, ev, lang, map)]),
+                                      'komaki-saihen-' + key + (idx ? '-' + (idx + 1) : '') + '.ics');
+          }).catch(function () {
+            b.textContent = str('fail');
+            window.setTimeout(function () { label(b); }, 4000);
+          });
+        });
+        n.appendChild(b);
+      });
+    }).catch(function () {});
+  }
+  document.addEventListener('komaki:i18n-applied', function () {
+    document.querySelectorAll('.ics-add').forEach(label);
+  });
+
+  return {schedule: schedule, calendar: calendar, download: download,
+          councilUid: councilUid, entry: entry, lastDay: lastDay, attach: attach, str: str};
 })();
 
 /* ===== 自動取得した見出しの訳（このファイル共通） =====
@@ -249,7 +395,7 @@ window.KomakiTokadaiEvents = (function () {
         var council = ((res[1] && res[1].events) || []).filter(function (e) {
           return e.shinooka && ISO.test(e.date || '');
         }).map(function (e) {
-          return {title: e.title, place: e.place || '', date_note: e.when || '', date: e.date, kind: 'council'};
+          return {title: e.title, place: e.place || '', date_note: e.when || '', date: e.date, url: e.url || '', kind: 'council'};
         });
         var toshi = ((res[3] && res[3].events) || []).filter(function (e) {
           return TAG_TOSHI[e.role] && ISO.test(e.date || '') && (e.role === 'day' || ISO.test(e.start || ''));
@@ -259,6 +405,15 @@ window.KomakiTokadaiEvents = (function () {
         return tokadai.concat(council, toshi).map(function (t) {
           var tags = t.kind === 'council' ? TAG_COUNCIL : t.kind === 'toshi' ? TAG_TOSHI[t.role] : TAG;
           var ev = t.kind === 'toshi' && t.role !== 'day' ? {start: t.start, span: true} : {day: true};
+          // 「📅 カレンダーに追加」（KomakiIcs.entry）用の付帯情報。地域協議会の催しは community.html の
+          // 各行と同じ UID にして、どちらから取り込んでも二重にならないようにする。時刻は読めたときだけ。
+          if (t.kind !== 'toshi') {
+            ev.ics = {times: window.KomakiJaWhen.times(t.date_note), when: t.date_note, place: t.place};
+            if (t.kind === 'council') {
+              ev.ics.uid = window.KomakiIcs.councilUid(t.url || t.title, t.date);
+              ev.ics.url = t.url;
+            }
+          }
           Object.keys(tags).forEach(function (l) {
             var h = map[t.title];
             ev[l] = (l === 'ja' ? t.title : ((h && h[l]) || t.title)) + tags[l];
@@ -299,6 +454,12 @@ window.KomakiEvents = function () {
     return {events: events, extra: extra};
   });
 };
+
+/* ===== 「📅 カレンダーに追加」を静的な予定に付ける（2026-10-23）=====
+   schedule.html の手書きの予定と予定ページ（data-ev は build_event_pages.py が書く）、トップの帯の
+   第1期再編。自動で描く一覧（TOKADAI SCHEDULE・UPCOMING BAR・カレンダーの日カード）は描いたあとに
+   それぞれ KomakiIcs.attach を呼ぶ。 */
+window.KomakiIcs.attach(document);
 
 /* ===== 学年の解決（このファイル共通） =====
    URL の ?grade=xx を最優先し、次に localStorage。指定が無ければ空文字。
@@ -897,6 +1058,10 @@ window.KomakiGrade = (function () {
         item.setAttribute('data-start', start);
         item.setAttribute('data-event-date', key);
         item.setAttribute('data-auto', isCouncil ? 'council' : isToshi ? 'toshi' : 'tokadai');
+        // 「📅 カレンダーに追加」（KomakiIcs.attach）が読む印。何件目かはその日の予定の並びで決まる
+        var same = allEvents[key];
+        var at = (Array.isArray(same) ? same : [same]).indexOf(x.ev);
+        if (at >= 0) item.setAttribute('data-ev', key + '|' + at);
         item.innerHTML = '<div class="event-date">' + esc(date) +
             '<span class="event-status ' + state + '" data-i18n="event_status_' + state + '">' + esc(badge) + '</span></div>' +
           '<div class="event-desc"><strong>' + esc(title) + esc(tag) + '</strong><br>' +
@@ -907,6 +1072,7 @@ window.KomakiGrade = (function () {
         });
         list.insertBefore(item, before);
       });
+      document.querySelectorAll('.event-list').forEach(function (l) { window.KomakiIcs.attach(l); });
     });
   }
 
@@ -925,8 +1091,10 @@ window.KomakiGrade = (function () {
     digest.setAttribute('data-cd-done', html);
   }
 
+  var allEvents = {};
   window.KomakiEvents().then(function (r) {
     extra = r.extra || [];
+    allEvents = r.events || {};
     renderSchedule();
     renderDigest();
   }).catch(function () {});
@@ -1089,13 +1257,15 @@ window.KomakiGrade = (function () {
         : monthLabel(ev.start || it.key, it.key, lang, thisYear);
       // 「あと◯日」は日の決まった予定だけ（data-countdown）。月単位の予定に data-expires を付けると、
       // 同じ日付キーに "day": true の予定があるとき DATE COUNTDOWN が札を付けてしまう。
-      return '<div class="upcoming-item"' + (ev.day === true ? ' data-countdown="' + esc(it.key) + '"' : ' data-key="' + esc(it.key) + '"') + '>' +
+      return '<div class="upcoming-item"' + (ev.day === true ? ' data-countdown="' + esc(it.key) + '"' : ' data-key="' + esc(it.key) + '"') +
+               ' data-ev="' + esc(it.key + '|' + it.idx) + '">' +
                '<span class="upcoming-date">' + esc(date) + '</span>' +
                '<span class="upcoming-name">' + esc(name) + '</span>' +
              '</div>';
     }).join('');
     var bar = box.closest('.upcoming-bar');
     if (bar && items.length) bar.style.display = '';
+    window.KomakiIcs.attach(box);   // 「📅」（帯ではアイコンだけ）
   }
 
   window.KomakiEvents().then(function (data) {
@@ -1105,7 +1275,7 @@ window.KomakiGrade = (function () {
     Object.keys(events).forEach(function (k) {
       if (k < today || skip[k]) return;
       (Array.isArray(events[k]) ? events[k] : [events[k]]).forEach(function (ev) {
-        if (ev) all.push({key: k, ev: ev, sort: (ev.day === true ? k : (ev.start || k))});
+        if (ev) all.push({key: k, ev: ev, idx: (Array.isArray(events[k]) ? events[k].indexOf(ev) : 0), sort: (ev.day === true ? k : (ev.start || k))});
       });
     });
     all.sort(function (a, b) { return a.sort < b.sort ? -1 : a.sort > b.sort ? 1 : (a.key < b.key ? -1 : a.key > b.key ? 1 : 0); });
@@ -1827,12 +1997,10 @@ window.KomakiGrade = (function () {
         if (!x) return;
         window.KomakiHeadline.load().then(function (map) {
           const lang = window.KomakiLang();
-          // UID は記事の URL から作る（同じ催しを何度取り込んでも1件のまま）
-          let h = 0;
-          const key = x.ev.url || x.ev.title;
-          for (let i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) >>> 0;
+          // UID は記事の URL から作る（同じ催しを何度取り込んでも1件のまま。スケジュールに自動で
+          // 足した同じ催しの「📅 カレンダーに追加」とも同じ UID — KomakiIcs.councilUid）
           window.KomakiIcs.download(window.KomakiIcs.calendar(lang, cet('calname'), [{
-            uid: 'council-' + h.toString(36) + '-' + x.date + '@komaki-east-school-reorg.github.io',
+            uid: window.KomakiIcs.councilUid(x.ev.url || x.ev.title, x.date),
             date: x.date,
             times: window.KomakiJaWhen.times(x.ev.when),
             summary: window.KomakiHeadline.text(map, x.ev.title),
@@ -1971,10 +2139,10 @@ window.KomakiGrade = (function () {
     }
 
     /* ---- 日カード（2026-10-13） ----
-       予定のある日を押すと、その日の予定を一覧にして「この日の予定をカレンダーに追加」を出す。
-       .ics に入れるのは "day": true の予定（その日に行われると決まっているもの）だけ。
-       月単位・期間の予定はキーが月末などの日付なので、1日の予定として渡すと誤った日に
-       入ってしまう。UID は一括書き出しと同じ（KomakiIcs.schedule）。 */
+       予定のある日を押すと、その日の予定を一覧にして、予定ごとの「📅 カレンダーに追加」と
+       「この日の予定をカレンダーに追加」を出す（2026-10-23 からは月単位・期間の予定も入る。
+       組み立ては KomakiIcs.entry で、月単位の予定は公表された時期を期間として「日程未定」と添える）。
+       UID は一括書き出しと同じ。終わった予定には付けない。 */
     const card = document.getElementById('cal-day-card');
     const strings = document.getElementById('cal-strings');
     const gradeStr = document.getElementById('grade-strings');
@@ -2028,18 +2196,22 @@ window.KomakiGrade = (function () {
       const ul = document.createElement('ul');
       ul.className = 'cal-day-card-list';
       const dayEvs = [];
-      const desc = gs('icsdesc', 'この予定は市民有志のサイトがまとめたものです。正式な案内は市から届く書類でご確認ください。');
       list.forEach(function (ev, idx) {
         const label = (ev && (ev[l] || ev.en || ev.ja)) || '';
         if (!label) return;
         const li = document.createElement('li');
         if (isPast) li.className = 'past';
-        li.textContent = (isPast ? ctr('done_prefix') : ctr('plan_prefix')) + label;
+        const tx = document.createElement('span');
+        tx.textContent = (isPast ? ctr('done_prefix') : ctr('plan_prefix')) + label;
+        li.appendChild(tx);
+        li.setAttribute('data-ev', key + '|' + idx);
+        li.setAttribute('data-ics-compact', '');
         ul.appendChild(li);
-        if (ev.day === true) dayEvs.push(window.KomakiIcs.schedule(key, idx, label, desc));
+        if (window.KomakiIcs.lastDay(key, ev) >= todayKey) dayEvs.push(window.KomakiIcs.entry(key, idx, ev, l));
       });
       card.appendChild(ul);
-      if (dayEvs.length) {
+      window.KomakiIcs.attach(ul);
+      if (dayEvs.length > 1) {
         const b = document.createElement('button');
         b.type = 'button';
         b.className = 'grade-ics cal-day-ics';
@@ -2056,13 +2228,6 @@ window.KomakiGrade = (function () {
           }
         });
         card.appendChild(b);
-      }
-      // 期間・月単位の予定が混ざる日は、それが .ics に入らない理由を添える
-      if (list.some(function (ev) { return ev && ev.day !== true; })) {
-        const n = document.createElement('p');
-        n.className = 'cal-day-card-note';
-        n.textContent = cs('note', '時期だけが決まっている予定は、日ごとのカレンダー追加の対象外です。');
-        card.appendChild(n);
       }
       card.hidden = false;
     }
@@ -2221,15 +2386,17 @@ window.KomakiGrade = (function () {
   /* ---- .ics の書き出し（組み立ては共通の window.KomakiIcs） ---- */
   function buildIcs(events, lang, code) {
     var evs = [];
-    var desc = t('icsdesc', 'この予定は市民有志のサイトがまとめたものです。正式な案内は市から届く書類でご確認ください。');
     Object.keys(events).sort().forEach(function (d) {
       // 1日に複数件のことがある（カレンダーと同じく、オブジェクトと配列の両方を受ける）
       var list = Array.isArray(events[d]) ? events[d] : [events[d]];
       list.forEach(function (e, idx) {
         var title = (e && (e[lang] || e.en || e.ja)) || '';
         if (!title) return;
+        // 組み立ては予定ごとの「📅 カレンダーに追加」と同じ（月単位の予定は期間として「日程未定」と添える）
+        var x = window.KomakiIcs.entry(d, idx, e, lang);
         var lab = code ? labelAt(d, code) : '';
-        evs.push(window.KomakiIcs.schedule(d, idx, lab ? title + '（' + lab + '）' : title, desc));
+        if (lab) x.summary += '（' + lab + '）';
+        evs.push(x);
       });
     });
     return window.KomakiIcs.calendar(lang, t('calname', '小牧市東部 学校再編の予定'), evs);

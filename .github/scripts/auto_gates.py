@@ -32,7 +32,7 @@ LANGS = ["ja", "en", "pt", "vi", "tl", "es", "zh", "id", "ko", "ne", "tr", "my"]
 PARTIAL_LANGS = []
 
 # events.json の各予定に、言語ラベル以外に書いてよいキー（check 2）。
-EVENT_META = ("day", "start")
+EVENT_META = ("day", "start", "until")
 ALLOWED = {"data/events.json", "index.html", "schedule.html", "community.html"} | {
     f"data/i18n/{l}.json" for l in LANGS + PARTIAL_LANGS + ["ja-kids"]
 }
@@ -230,6 +230,13 @@ def main():
                                                     and re.match(r"^\d{4}-\d{2}-\d{2}$", labels["start"])
                                                     and labels["start"] <= date):
                         fail(f"events.json: {date} の start は YYYY-MM-DD で、キーの日付以前にする: {labels.get('start')}")
+                    # "until" は任意で、日の決まった予定（"day": true）が何日か続くときの最終日（2026-10-23）。
+                    # 「カレンダーに追加」がその日まで続く終日予定として書き出す。
+                    elif "until" in labels and not (labels.get("day") is True
+                                                    and isinstance(labels["until"], str)
+                                                    and re.match(r"^\d{4}-\d{2}-\d{2}$", labels["until"])
+                                                    and labels["until"] > date):
+                        fail(f"events.json: {date} の until は \"day\": true の予定にだけ、キーより後の YYYY-MM-DD で書く: {labels.get('until')}")
                     elif sorted(k for k in labels if k not in EVENT_META) != sorted(LANGS):
                         fail(f"events.json: {date} の言語キーが{len(LANGS)}言語と一致しない: {sorted(labels)}")
                     elif not all(isinstance(v, str) and v.strip() for k, v in labels.items() if k not in EVENT_META):
