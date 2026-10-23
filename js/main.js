@@ -43,7 +43,7 @@ window.KomakiJaWhen = (function () {
     var doors = '';
     t = t.replace(/開場\s*(\d{1,2})時(?:(\d{1,2})分)?/, function (_, h, m) { doors = hm(h, m); return ''; });
     var time = '';
-    var rm = /(\d{1,2})時(?:(\d{1,2})分)?\s*[～〜~\-－ー]\s*(\d{1,2})時(?:(\d{1,2})分)?/.exec(t);
+    var rm = /(\d{1,2})時(?:(\d{1,2})分)?\s*(?:から|[～〜~\-－ー])\s*(\d{1,2})時(?:(\d{1,2})分)?/.exec(t);
     if (rm) {
       time = hm(rm[1], rm[2]) + '–' + hm(rm[3], rm[4]);
     } else {
@@ -63,7 +63,7 @@ window.KomakiJaWhen.times = function (text) {
   if (!text) return null;
   var t = String(text).replace(/[０-９]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0xFEE0); })
                       .replace(/開場\s*(\d{1,2})時(?:(\d{1,2})分)?/, '');
-  var rm = /(\d{1,2})時(?:(\d{1,2})分)?\s*[～〜~\-－ー]\s*(\d{1,2})時(?:(\d{1,2})分)?/.exec(t);
+  var rm = /(\d{1,2})時(?:(\d{1,2})分)?\s*(?:から|[～〜~\-－ー])\s*(\d{1,2})時(?:(\d{1,2})分)?/.exec(t);
   if (rm) return {sh: +rm[1], sm: +(rm[2] || 0), eh: +rm[3], em: +(rm[4] || 0)};
   var sm = /(\d{1,2})時(?:(\d{1,2})分)?/.exec(t);
   if (sm) return {sh: +sm[1], sm: +(sm[2] || 0), eh: null, em: null};
@@ -260,6 +260,43 @@ window.KomakiIcs = (function () {
       b.textContent = t;
     }
   }
+  // n の末尾に「📅」ボタンを1つ付ける。make(lang, map) が .ics の1件を返す。
+  function addButton(n, make, file) {
+    if (n.querySelector(':scope > .ics-add')) return;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'ics-add' + (n.classList.contains('upcoming-item') || n.hasAttribute('data-ics-compact') ? ' ics-add--compact' : '');
+    label(b);
+    b.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var lang = window.KomakiLang();
+      window.KomakiHeadline.load().then(function (map) {
+        download(calendar(lang, str('calname'), [make(lang, map)]), file);
+      }).catch(function () {
+        b.textContent = str('fail');
+        window.setTimeout(function () { label(b); }, 4000);
+      });
+    });
+    n.appendChild(b);
+  }
+  // スケジュールの予定を題名で探す（地域の取組の各行用）。from〜to の日付にある予定のうち、
+  // 名前（括弧書きと「」を除く）が題名と同じ・どちらかがもう一方を含むものの "key|idx"。無ければ ''。
+  function findEv(evs, from, to, title) {
+    function core(t) { return String(t || '').replace(/（[^）]*）|\([^)]*\)|[「」『』]/g, '').replace(/\s+/g, '').trim(); }
+    var want = core(title), hit = '';
+    if (!want) return '';
+    Object.keys(evs).sort().some(function (k) {
+      if (k < from || k > to) return false;
+      var list = Array.isArray(evs[k]) ? evs[k] : [evs[k]];
+      return list.some(function (ev, i) {
+        var c = core(ev && ev.ja);
+        if (c && (c === want || c.indexOf(want) !== -1 || want.indexOf(c) !== -1)) { hit = k + '|' + i; return true; }
+        return false;
+      });
+    });
+    return hit;
+  }
   function attach(root) {
     var nodes = Array.prototype.slice.call((root || document).querySelectorAll('[data-ev]'));
     if (root && root.hasAttribute && root.hasAttribute('data-ev')) nodes.push(root);
@@ -273,23 +310,8 @@ window.KomakiIcs = (function () {
         var key = v[0], idx = +v[1] || 0;
         var ev = find(evs, key, idx);
         if (!ev || lastDay(key, ev) < today) return;
-        var b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'ics-add' + (n.classList.contains('upcoming-item') || n.hasAttribute('data-ics-compact') ? ' ics-add--compact' : '');
-        label(b);
-        b.addEventListener('click', function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-          var lang = window.KomakiLang();
-          window.KomakiHeadline.load().then(function (map) {
-            window.KomakiIcs.download(calendar(lang, str('calname'), [entry(key, idx, ev, lang, map)]),
-                                      'komaki-saihen-' + key + (idx ? '-' + (idx + 1) : '') + '.ics');
-          }).catch(function () {
-            b.textContent = str('fail');
-            window.setTimeout(function () { label(b); }, 4000);
-          });
-        });
-        n.appendChild(b);
+        addButton(n, function (lang, map) { return entry(key, idx, ev, lang, map); },
+                  'komaki-saihen-' + key + (idx ? '-' + (idx + 1) : '') + '.ics');
       });
     }).catch(function () {});
   }
@@ -298,7 +320,8 @@ window.KomakiIcs = (function () {
   });
 
   return {schedule: schedule, calendar: calendar, download: download,
-          councilUid: councilUid, entry: entry, lastDay: lastDay, attach: attach, str: str};
+          councilUid: councilUid, entry: entry, lastDay: lastDay, attach: attach, str: str,
+          addButton: addButton, findEv: findEv, events: events};
 })();
 
 /* ===== 自動取得した見出しの訳（このファイル共通） =====
@@ -4459,6 +4482,13 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     .then(function (data) {
       var items = (data.actions || []).filter(notPast);
       if (!items.length) { container.innerHTML = '<p class="school-empty">' + at('empty') + '</p>'; return; }
+      return window.KomakiIcs.events().catch(function () { return {}; }).then(function (evs) {
+      // 「📅 カレンダーに追加」（2026-10-24 ユーザー指示）。取組はすべてスケジュールにも載せる決まりなので、
+      // スケジュールの同じ予定（期間 date_start〜date の中で名前が一致するもの）に結びつけ、UID をそろえる。
+      // 見つからない取組（常設の取組など）には付けない。
+      items.forEach(function (it) {
+        if (it.date) it._ev = window.KomakiIcs.findEv(evs, it.date_start || it.date, it.date, it.title_ja);
+      });
       // 日付のある催しを日付順に先へ、日付の無い常設の取組（児童館など）はそのあとに元の順で
       items.sort(function (a, b) {
         if (!a.date !== !b.date) return a.date ? -1 : 1;
@@ -4495,7 +4525,8 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
           : '';
         // data-countdown は DATE COUNTDOWN が「あと◯日」の札を付ける日。複数日の催しは
         // date が最終日（掲載期限）なので、始まる日 date_start があればそちらまでを数える。
-        return '<li class="action-item"' + (it.date ? ' data-countdown="' + esc(it.date_start || it.date) + '"' : ' data-standing="1"') + '>' +
+        return '<li class="action-item"' + (it.date ? ' data-countdown="' + esc(it.date_start || it.date) + '"' : ' data-standing="1"') +
+                 (it._ev ? ' data-ev="' + esc(it._ev) + '"' : '') + '>' +
                  '<div class="action-head">' +
                    '<span class="action-title" data-hl="' + esc(it.title_ja || '') + '">' + esc(it.title_ja || '') + '</span>' +
                    '<span class="action-badge">' + at(it.badge === 'council' || it.badge === 'facility' ? it.badge : 'citizen') + '</span>' +
@@ -4509,6 +4540,8 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
                '</li>';
       }).join('') + '</ul>';
       window.KomakiHeadline.apply(container);   // 取組名を表示言語に
+      window.KomakiIcs.attach(container);
+      });
     })
     .catch(function () {
       container.innerHTML = '<p class="official-news-error">' + at('error') + '</p>';
@@ -4648,6 +4681,21 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
               esc(data.source_label || '') + '</a></div>';
       container.innerHTML = html;
       window.KomakiHeadline.apply(container);   // 取組の名称・会場名を表示言語に
+      // これからの催しに「📅 カレンダーに追加」（2026-10-24 ユーザー指示）。市の東部まちづくりの催しは
+      // スケジュールに載らないので、単独の予定として書き出す（UID は題名と日付から作る）。
+      container.querySelectorAll('.tobu-list:first-of-type .tobu-item').forEach(function (li, i) {
+        var it = up[i];
+        if (!it || !it.date) return;
+        window.KomakiIcs.addButton(li, function (lang, map) {
+          return {uid: window.KomakiIcs.councilUid(it.title || '', it.date).replace(/^council-/, 'tobu-'),
+                  date: it.date,
+                  times: window.KomakiJaWhen.times(it.date_note || ''),
+                  summary: window.KomakiHeadline.text(map, it.title || ''),
+                  description: window.KomakiIcs.str('desc') + (it.date_note ? '\n' + it.date_note : ''),
+                  location: it.place ? window.KomakiHeadline.text(map, it.place) : '',
+                  url: SOURCE_URL};
+        }, 'komaki-tobu-' + it.date + '.ics');
+      });
     })
     .catch(function () {
       container.innerHTML = '<p class="official-news-error">' + tt('error') + '</p>';

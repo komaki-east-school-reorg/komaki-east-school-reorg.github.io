@@ -4,6 +4,12 @@
     {
       "date": "2026-10-24",
       "type": "feature",
+      "ja": "地域の取組の催しにも「カレンダーに追加」",
+      "en": "“Add to calendar” buttons on community events too"
+    },
+    {
+      "date": "2026-10-24",
+      "type": "feature",
       "ja": "スケジュールとカレンダーのすべての予定に「カレンダーに追加」",
       "en": "“Add to calendar” buttons on every upcoming event in the schedule and calendar"
     },
