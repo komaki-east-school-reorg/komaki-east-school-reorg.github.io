@@ -26,6 +26,7 @@ import json
 import os
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -41,8 +42,13 @@ def get_json(url, token=None):
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/json"})
     if token:
         req.add_header("Authorization", "Bearer " + token)
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.loads(r.read().decode("utf-8"))
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return json.loads(r.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        # 失敗の理由（API のエラーメッセージ）を報告に出す。トークンは含まれない
+        body = e.read().decode("utf-8", "replace")[:200].replace("\n", " ")
+        raise RuntimeError(f"HTTP {e.code} {url.split('?')[0]} {body}") from None
 
 
 def week_range():
