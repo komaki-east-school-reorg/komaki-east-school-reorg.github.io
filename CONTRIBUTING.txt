@@ -106,11 +106,11 @@
   ・閲覧数の集計（2026-10-24 ユーザー指示）：GoatCounter へ画像1枚ぶんの GET を送るだけで、
     外部スクリプトは読まない。送り先は https://komaki-saihen.goatcounter.com/count の1つで、
     js/main.js の COUNTER ブロックにだけ書く（auto_gates.py の PERMITTED_COUNTER）。
-    Cookie・識別子は作らない。DNT / GPC・「この端末では数えない」（about.html#privacy）・
-    ロボット・手元のサーバーでは送らない。数え方を変えたら about.html#privacy（privacy_*）も直す。
+    Cookie・識別子は作らない。DNT / GPC・「この端末では数えない」（index.html#privacy）・
+    ロボット・手元のサーバーでは送らない。数え方を変えたら index.html#privacy（privacy_*）も直す。
   ・読者の声の窓口（2026-10-24 ユーザー指示）：GitHub の Issue フォーム
     https://github.com/komaki-east-school-reorg/komaki-east-school-reorg.github.io/issues/new?template=feedback.yml
-    を about.html#feedback にだけ置く（auto_gates.py の PERMITTED_GITHUB）。
+    を index.html#feedback にだけ置く（auto_gates.py の PERMITTED_GITHUB）。
   ・これらは「出典」ではない。事実の根拠に使うことは一切ない（ルール4）。
   ・上記の city.komaki.aichi.jp / mext.go.jp 用チェックには引っかからない。
 

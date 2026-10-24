@@ -510,7 +510,7 @@ notice-banner（非公式サイト注意書き）
 | `hreflang` | 全ページの `<head>` | 12言語＋`x-default`。それぞれ**別々の** `?lang=` URL を指す。以前は11本すべてが同一 URL を指しており、これは Search Console がエラーとして報告する状態だった。 |
 | JSON-LD `WebSite` | `index.html` のみ | 静的。**`publisher` / `Organization` は意図的に書いていない**。組織名を作ると公式サイトだと誤解させるため。`citation` は許可された市の URL を指す。 |
 | JSON-LD `FAQPage` | `faq.html`・実行時生成 | `i18n.js` の `applyFaqJsonLd` が、読み込んだ辞書の `faq_q<N>`/`faq_a<N>` から組み立てる。**`faq.html` に直接書き写さないこと** — `data/i18n/` との二重管理になり黙って食い違う。`faq_q<N>` が欠けた時点でループを止めるので、FAQ のキー番号は連番を保つこと。 |
-| OGP 画像 | `img/og-image.png?v=…` | 2026-10-13 からページ内にも表示：全ページのフッタ（`.footer-logo`）、共有欄の「共有するとこう見える」カード、`about.html#site-intro`（保存リンクつき）、`404.html`。画像を差し替えたら og:image と一緒にこれらの `?v=` も上げる |
+| OGP 画像 | `img/og-image.png?v=…` | 2026-10-13 からページ内にも表示：全ページのフッタ（`.footer-logo`）、共有欄の「共有するとこう見える」カード、`index.html#site-intro`（保存リンクつき）、`404.html`。画像を差し替えたら og:image と一緒にこれらの `?v=` も上げる |
 | フィードの案内 | 全ページのフッタ・トップ「最新の動き」 | 2026-10-13 ユーザー指示「配信していることをわかりやすく」。`feed_link` / `feed_note`。外国語の `feed_note` は「フィードは日本語」と断っている |
 
 Google は `FAQPage` のリッチリザルトを政府・医療などの権威あるサイトに限定しているため、

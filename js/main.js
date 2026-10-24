@@ -22,15 +22,15 @@ window.KomakiLang = (function () {
      入力された文字・共有した URL・Mastodon のサーバー名・学年などは送らない。
    ・Cookie も localStorage の識別子も作らない。
    ・送らないとき：Do Not Track・Global Privacy Control、この端末で「数えない」を選んだとき
-     （localStorage の komaki_nocount、about.html#privacy のボタン）、ロボット・自動ツール、
+     （localStorage の komaki_nocount、index.html#privacy のボタン）、ロボット・自動ツール、
      手元のサーバー（localhost など）。
    ・機能の使われ方は、各ブロックを触らずに document のクリックを1か所で見て名前を付ける
      （EVENTS）。ボタンのクラス名を変えたらここも直すこと。
    集計先のドメインは auto_gates.py の PERMITTED_COUNTER でこのファイル限定にしてある。
-   読者への説明は about.html#privacy（キー privacy_*）。数え方を変えたらそこも直す。 */
+   読者への説明は index.html#privacy（キー privacy_*）。数え方を変えたらそこも直す。 */
 /* SNS で使ってもらうハッシュタグ（2026-10-24 ユーザー指示）。どの言語でも日本語のまま。
-   共有ボタンの投稿文（SHARE BUTTONS の withTags）と、共有欄・about.html#spread の案内（HASHTAGS）が使う。
-   変えるときは about.html#spread・辞書の board_tags・check_reach.py の TAGS もそろえる。 */
+   共有ボタンの投稿文（SHARE BUTTONS の withTags）と、共有欄・index.html#spread の案内（HASHTAGS）が使う。
+   変えるときは index.html#spread・辞書の board_tags・check_reach.py の TAGS もそろえる。 */
 window.KomakiTags = '#学校再編ナビ #桃花台 #小牧 #小牧市東部 #篠岡地区';
 
 window.KomakiCount = (function () {
@@ -2651,7 +2651,7 @@ window.KomakiGrade = (function () {
   }
 
   function onPress(e) {
-    if (e && e.preventDefault) e.preventDefault();   // フッタ・メニューのリンク（about.html#app）は飛ばずにここで扱う
+    if (e && e.preventDefault) e.preventDefault();   // フッタ・メニューのリンク（index.html#app）は飛ばずにここで扱う
     if (deferred) {
       var p = deferred;
       deferred = null;   // prompt() は1回しか使えない
@@ -2704,11 +2704,11 @@ window.KomakiGrade = (function () {
   }
 
   // フッタ（フィードの行の下）とモバイルのハンバーガーメニュー（2026-10-17 ユーザー指示）。
-  // どちらも about.html#app へのリンクの形にしておき、押したらここで扱う。メニューの項目は
+  // どちらも index.html#app へのリンクの形にしておき、押したらここで扱う。メニューの項目は
   // CSS でモバイル幅だけ出す（PC のナビは2段に収めてあり、項目を増やすと折り返すため）。
   function appLink(cls) {
     var a = document.createElement('a');
-    a.href = 'about.html#app';
+    a.href = 'index.html#app';
     a.className = cls;
     a.setAttribute('data-i18n', 'app_cta');
     a.textContent = '📲 アプリにする';
@@ -2731,7 +2731,7 @@ window.KomakiGrade = (function () {
     }
   }
 
-  // about.html#app の大きなボタン（JS が無効だと動かないので HTML では hidden。ここで出す）
+  // index.html#app の大きなボタン（JS が無効だと動かないので HTML では hidden。ここで出す）
   var cta = document.getElementById('app-install-cta');
   if (cta && !installed) { cta.hidden = false; window.KomakiApp.track(cta); }
 
@@ -3628,7 +3628,7 @@ window.KomakiGrade = (function () {
           '<div class="board-cta">' + esc(t('cta', 'この紙に載せきれなかったことは、サイトにすべて載っています。')) + '</div>' +
           '<div class="board-url">' + esc(pageUrl(lang)) + '</div>' +
           '<div class="board-scan">' + esc(t('scan', 'スマートフォンのカメラで読み取れます。')) + '</div>' +
-          // SNS で話題にするときのハッシュタグ（2026-10-24 ユーザー指示。about.html#spread と同じ5つ）
+          // SNS で話題にするときのハッシュタグ（2026-10-24 ユーザー指示。index.html#spread と同じ5つ）
           '<div class="board-scan">' + esc(t('tags', 'SNSでは #学校再編ナビ #桃花台 #小牧 #小牧市東部 #篠岡地区')) + '</div>' +
         '</div>' +
       '</div>' +
@@ -5508,12 +5508,12 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
 /* ===== HASHTAGS / PRIVACY TOGGLE（2026-10-24 ユーザー指示） =====
    ・SNS で触れてもらうときのハッシュタグ5つを、全ページの共有欄（#share）の説明文の下に出し、
      まとめてコピーできるようにする。共有ボタンの投稿文にも SHARE BUTTONS（withTags）が添える。
-     タグは固有名なので、どの言語でも日本語のまま（about.html#spread の各言語の説明にもそう書いてある）。
-   ・about.html#spread の投稿の例文（.spread-ex）にも「コピー」ボタンを付ける。
-   ・about.html#privacy の「この端末では数えない」ボタン（#nocount-btn）。COUNTER（ファイル冒頭）が読む
+     タグは固有名なので、どの言語でも日本語のまま（index.html#spread の各言語の説明にもそう書いてある）。
+   ・index.html#spread の投稿の例文（.spread-ex）にも「コピー」ボタンを付ける。
+   ・index.html#privacy の「この端末では数えない」ボタン（#nocount-btn）。COUNTER（ファイル冒頭）が読む
      localStorage の komaki_nocount を出し入れする。
    文言は辞書（share_tags_* / spread_copy / privacy_*、RUNTIME_KEYS）を隠し要素で受け取る。
-   タグを変えるときは TAGS と、about.html#spread・辞書の board_tags を一緒に直すこと。 */
+   タグを変えるときは TAGS と、index.html#spread・辞書の board_tags を一緒に直すこと。 */
 (function () {
   var TAGS = window.KomakiTags;
 
@@ -5596,7 +5596,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     lead.parentNode.insertBefore(row, lead.nextSibling);
   }
 
-  // --- about.html#spread：タグと例文のコピー ---
+  // --- index.html#spread：タグと例文のコピー ---
   document.querySelectorAll('.spread-copy').forEach(function (btn) {
     var msg = document.createElement('span');
     msg.className = 'share-tags-msg';
@@ -5610,7 +5610,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     });
   });
 
-  // --- about.html#privacy：この端末では数えない ---
+  // --- index.html#privacy：この端末では数えない ---
   var nc = document.getElementById('nocount-btn');
   var state = document.getElementById('nocount-state');
   if (nc && state && window.KomakiCount) {

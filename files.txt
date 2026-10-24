@@ -120,7 +120,7 @@ sitemap.xml                 全11ページのサイトマップ。各URLに12言
 .github/scripts/auto_report.py      自動更新のPR本文・事後報告コメントをevidence.json/verdict.jsonから生成するスクリプト。
 .github/workflows/check-contacts.yml 毎週1回、担当部署の連絡先を公表ページと照合するワークフロー定義。番号の変更は自動コミット、部署名の変更はIssueで知らせる。
 .github/workflows/check-reach.yml    毎週月曜 7:10 JST に check_reach.py を回し、メール（だめなら Issue）で届けるワークフロー定義。Secret GOATCOUNTER_TOKEN が無ければ閲覧数は省く。
-.github/ISSUE_TEMPLATE/feedback.yml  読者の声の窓口（about.html#feedback）の Issue フォーム。公開されること・個人情報を書かないことを冒頭に明記。
+.github/ISSUE_TEMPLATE/feedback.yml  読者の声の窓口（index.html#feedback）の Issue フォーム。公開されること・個人情報を書かないことを冒頭に明記。
 .github/workflows/check-links.yml    毎週1回、サイトが張っている外部リンクが開けるかを確かめるワークフロー定義。2週続けて開けないURLをIssue（🔗）で知らせる。自動では直さない。
 .github/workflows/feature-ideas.yml 毎朝1回、このサイトに足すとよさそうな機能をAIに考えさせてメールで届けるワークフロー定義。サイトのファイルは変更しない。
 .github/workflows/translate-headlines.yml 取得ワークフローの完了後、新しく入った見出しだけをAIで9言語に訳し、機械検証してheadline_i18n.jsonに取り込むワークフロー定義。

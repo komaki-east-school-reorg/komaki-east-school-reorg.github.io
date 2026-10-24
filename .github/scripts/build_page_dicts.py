@@ -45,7 +45,7 @@ RUNTIME_KEYS = [
     "share_tags_lead",    # HASHTAGS（共有欄のハッシュタグ、main.js。2026-10-24）
     "share_tags_copy",
     "share_tags_copied",
-    "privacy_btn_stop",   # about.html#privacy の「この端末では数えない」（HASHTAGS / PRIVACY TOGGLE、main.js）
+    "privacy_btn_stop",   # index.html#privacy の「この端末では数えない」（HASHTAGS / PRIVACY TOGGLE、main.js）
     "privacy_btn_resume",
     "privacy_state_on",
     "privacy_state_off",

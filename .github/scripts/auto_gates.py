@@ -157,15 +157,15 @@ PERMITTED_SNS = {
 
 # Cookie を使わない閲覧数の集計（GoatCounter。2026-10-24 ユーザー指示）。
 # 送り先は js/main.js の COUNTER ブロックに置いた1つだけ。外部スクリプトは読まない。
-# 増やす・移すときは CLAUDE.md・CONTRIBUTING.txt 規則1・README.md・about.html#privacy も同時に更新すること。
+# 増やす・移すときは CLAUDE.md・CONTRIBUTING.txt 規則1・README.md・index.html#privacy も同時に更新すること。
 PERMITTED_COUNTER = ("komaki-saihen.goatcounter.com/count",)
 COUNTER_FILES = ("js/main.js",)
 
-# 読者の声の窓口（GitHub の Issue フォーム。2026-10-24 ユーザー指示）。about.html#feedback だけ。
+# 読者の声の窓口（GitHub の Issue フォーム。2026-10-24 ユーザー指示）。index.html#feedback だけ。
 PERMITTED_GITHUB = (
     "github.com/komaki-east-school-reorg/komaki-east-school-reorg.github.io/issues/new?template=feedback.yml",
 )
-GITHUB_PAGES = ("about.html",)
+GITHUB_PAGES = ("index.html",)
 MIN_QUOTE_LEN = 10
 
 fails = []
