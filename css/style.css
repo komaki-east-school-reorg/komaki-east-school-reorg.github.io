@@ -2900,6 +2900,8 @@ html.has-share-sticky body {
 /* 目次から飛んだとき、見出しが上の固定ヘッダの下に隠れないようにする */
 /* --header-h は js/main.js の HEADER HEIGHT が実際のヘッダの高さを入れる（ナビが2段になる幅がある） */
 main section[id], main h2.section-title[id], #area-map { scroll-margin-top: calc(var(--header-h, 84px) + 12px); }
+/* 議会ページの「教育の質に関わる答弁」からページ内リンクで飛ぶ先（2026-10-24） */
+.qa-block[id], h3.section-title[id] { scroll-margin-top: calc(var(--header-h, 84px) + 12px); }
 
 /* ===== 節ごとの読み上げボタン（js/main.js の READ ALOUD）=====
    見出しのすぐ下に小さく置く。見出しの下余白（1.8rem）に食い込ませて、節の間延びを防ぐ。
@@ -3018,8 +3020,7 @@ main section[id], main h2.section-title[id], #area-map { scroll-margin-top: calc
 .contact-rel-note { font-size: .82rem; color: var(--text-muted); margin-top: 1rem; }
 
 /* 東部まちづくりプラットフォーム（community.html #platform）。2026-10-06 ユーザー指示で作り直した。
-   市の説明の「駅のホームのような通過点」というたとえに合わせ、上辺に線路と3つの駅（まん中が「ここ」）を
-   描いたカードにしている。飾りは CSS だけで、文字や外部の画像は増やしていない。 */
+   上辺の線路と駅の飾り（.pf-track / .pf-stop）は 2026-10-24 のユーザー指示で外した。戻さないこと。 */
 .pf-card {
   position: relative;
   margin-top: 1rem;
@@ -3027,36 +3028,8 @@ main section[id], main h2.section-title[id], #area-map { scroll-margin-top: calc
   border: 1.5px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 2.4rem 1.4rem 1.1rem;
+  padding: 1.4rem 1.4rem 1.1rem;
   overflow: hidden;
-}
-/* 線路：枕木（灰の短い線）の上にレール（緑の太線）。左右いっぱいに走る */
-.pf-track {
-  position: absolute;
-  left: 0; right: 0; top: .95rem;
-  height: 10px;
-  background:
-    linear-gradient(var(--primary), var(--primary)) center / 100% 4px no-repeat,
-    repeating-linear-gradient(90deg, #c9d3cb 0 3px, transparent 3px 16px);
-}
-.pf-stop {
-  position: absolute;
-  top: 50%;
-  width: 14px; height: 14px;
-  margin: -7px 0 0 -7px;
-  border-radius: 50%;
-  background: var(--white);
-  border: 3px solid var(--primary);
-}
-.pf-stop:nth-child(1) { left: 12%; }
-.pf-stop:nth-child(2) { left: 50%; }
-.pf-stop:nth-child(3) { left: 88%; }
-.pf-stop--here {
-  width: 22px; height: 22px;
-  margin: -11px 0 0 -11px;
-  background: var(--accent);
-  border-color: var(--primary-dark);
-  box-shadow: 0 0 0 4px rgba(212,170,48,.25);
 }
 .pf-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem 2rem; }
 .pf-col-h {
@@ -3094,13 +3067,12 @@ main section[id], main h2.section-title[id], #area-map { scroll-margin-top: calc
 .pf-btn--primary:hover, .pf-btn--primary:focus-visible { background: var(--primary-dark); color: #fff; }
 .pf-src { font-size: .78rem; color: var(--text-muted); margin-top: 1.1rem; padding-top: .7rem; border-top: 1px solid var(--border); }
 @media (max-width: 768px) {
-  .pf-card { padding: 2.2rem 1rem 1rem; }
+  .pf-card { padding: 1.2rem 1rem 1rem; }
   .pf-grid { grid-template-columns: minmax(0, 1fr); }
   .pf-col--join { border-left: none; padding-left: 0; border-top: 2px dashed var(--border); padding-top: 1.1rem; }
   .pf-btn { width: 100%; justify-content: center; text-align: center; }
 }
 @media print {
-  .pf-track { display: none; }
   .pf-card { box-shadow: none; padding-top: 1rem; }
 }
 

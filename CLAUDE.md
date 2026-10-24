@@ -312,6 +312,7 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 
 - **Every fact on it must come from MEXT**, and the five permitted `mext.go.jp` URLs are its bibliography. Numbers currently on the page: 8,850 closures FY2004–FY2023 and 298 in FY2023 (191/82/25), 92 in Aichi (62/14/16), 74.4% of 7,612 surviving buildings reused, ~2,000 fewer public schools and ~850,000 fewer pupils in ten years, standards of 12–18 classes (18–27 for compulsory education schools), 4 km / 6 km, "about one hour", the 2026-08-05 revision (notice 8文科初第1125号) and its 広域化 / 総合化 / 現代化 pillars, ~40% / ~50% below 12 classes, ~16% one-elementary-one-JHS municipalities, 5,812,000 / 3,105,000 pupils, 232 public compulsory education schools with 75,828 pupils (FY2024); and, in the 中高一貫 section added 2026-09-26 on the user's instruction, 678 combined junior–senior high schools in FY2023 — 中等教育学校 57 (4/35/18), 併設型 537 (1/105/431), 連携型 84 (0/79/5), system started April 1999 (MEXT「中高一貫教育の概要と設置状況」, the 5th permitted link, plus the 高等学校教育の在り方WG 参考資料5 of 2024-09-12, cited in text only).
 - **No 賛否 content, and no citizen-run events.** The page deliberately carries no pro/con framing — that belongs in the 賛否の声 section of `faq.html` — and does not advertise meetings or lectures held by any group, whichever side they are on. A neutral-looking national page is the easiest place on this site to smuggle in a position, so keep it descriptive.
+- **Class size and teacher numbers (added 2026-10-24)**: the comparison table also has rows for the maximum class size (elementary 35; junior high also 35 under Act No. 7 of 2026, phased in until FY2027 by the supplementary provisions) and teacher numbers (calculated from the number of classes, Art. 7). These cite the Act on Standards for Class Formation and Staff Numbers in text — a national law administered by MEXT — with no new link. The same 2026 amendment is reflected in `rev_n4_f`, `rev_k4_f`, `about_learn_c2_p` and `faq_a25`; if the phase-in changes, change all of them.
 - The 国の基準 ⇔ 小牧の計画 table is the point of the page. Its right-hand column restates facts that already exist elsewhere on this site (令和15年に各学年1学級, 2km でスクールバス, ガイドラインは未定) — when those change, change them here too.
 - The 手引 was revised in August 2026 and will be revised again. When it is, the numeric standards must be re-checked against the new 改訂版 rather than assumed to carry over.
 - Not in the auto-update pipeline's `ALLOWED` set: the city's page changes do not move national statistics.
@@ -391,7 +392,7 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 
 | 節 | 見出し | 中身 | 性格 |
 |---|---|---|---|
-| `#qa` | `faq_qa_h`（h2） | よくある質問 24問。カテゴリ4つ（`faq_cat1`〜`4`）は **`h3.section-title.sub`** | 答えが公表されていること |
+| `#qa` | `faq_qa_h`（h2） | よくある質問 27問（2026-10-24 に学級・心のケア・教育内容を決める場の3問を追加）。カテゴリ4つ（`faq_cat1`〜`4`）は **`h3.section-title.sub`** | 答えが公表されていること |
 | `#voices` | `voices_cols_h`（h2） | 賛成・反対・中立の声 18件（3列） | 意見が割れていること。**当サイトによる要約・再構成**で市の見解ではない（`voices_about`） |
 | `#pubcom` | `voices_pc_h`（h2） | パブリックコメントの実施結果・論点の横棒グラフ・論点5件・計画が変わったところ | 市が公表した意見と「市の考え方」にもとづく（`voices_pc_note`） |
 | `#contact` | `faq_contact_h`（h2） | 教育総務課 学校再編推進係の連絡先 | 他ページの `#contact` と同じ位置づけ |
@@ -415,6 +416,10 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 - 他ページからの導線は `faq.html#voices`（`community.html`・`review.html`）と `faq.html#pubcom`（`council.html` の `council_warn_link`）。`council.html` は統合前に faq と voices の両方を「関連するページ」に挙げていたので、3つのうち1つを `review.html`（`rel_council_review`）に差し替えてある。
 - **ヘッダとフッタのナビだけは短い名前**（`nav_faq`＝「質問・賛否の声」）で、ページ名（`faq_h1` / `ql_faq_h`＝「よくある質問と賛否の声」）とは**わざと違う**（2026-09-22 ユーザー指示）。ナビは9項目が並ぶ場所なので、正式名をそのまま置くと長すぎる。**`community.html` も同じ例外**：ページ名（`community_h1`）は「地域協議会と地域のまちづくり」、ナビ（`nav_community`）は「地域とまちづくり」（2026-09-27 ユーザー指示。旧名「地域協議会と学校再編」／ナビ「地域協議会」）。**ほかのページは `nav_*` と `h1` が一致している。**中点は全角「・」（サイトの他の表記にそろえる）。
 - サイトの Q&A が3か所（`faq.html` / `bus.html#faq` / `community.html#qa`）に分かれている方針は統合後も変わらない。`faq_more_*` の箱がその導線。
+
+## 教育の質の観点（2026-10-24、サイト全体）
+
+ユーザー指示で、サイト全体を教育の質（学力・人間力・教科ごとの力・生き抜く力・健康）の観点で見直した。**見解は review.html（`#rev-quality` / `#rev-skills`）だけ**、事実ページは市・国の公表事実だけ：about.html `#learning`、faq.html q25〜q27、nationwide.html の比較表（1学級の人数・教職員の数）、council.html `#council-quality`（このページに既にある答弁をページ内リンクで整理。答弁の位置には `#council-gq2` / `#council-r2q3` / `#council-visit`）、clubs.html `clubs_s1_p3`、community.html `comm_qa3_a`。市議会の答弁「21〜25人程度のクラス替えが可能な学級規模」「総合教育支援センター（閉校後の校舎も候補・未定）」は about・faq・review にも引いてある — council.html の答弁を直したらそれらも直す。トップの「ポイント」④は「少人数学級の解消」ではなく「単学級（1学年1学級）の解消」（市は少人数学級を否定していない）。
 
 ## `review.html`（計画の検証と提案のページ）
 
