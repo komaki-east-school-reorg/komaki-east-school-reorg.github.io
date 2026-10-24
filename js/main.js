@@ -28,6 +28,11 @@ window.KomakiLang = (function () {
      （EVENTS）。ボタンのクラス名を変えたらここも直すこと。
    集計先のドメインは auto_gates.py の PERMITTED_COUNTER でこのファイル限定にしてある。
    読者への説明は about.html#privacy（キー privacy_*）。数え方を変えたらそこも直す。 */
+/* SNS で使ってもらうハッシュタグ（2026-10-24 ユーザー指示）。どの言語でも日本語のまま。
+   共有ボタンの投稿文（SHARE BUTTONS の withTags）と、共有欄・about.html#spread の案内（HASHTAGS）が使う。
+   変えるときは about.html#spread・辞書の board_tags・check_reach.py の TAGS もそろえる。 */
+window.KomakiTags = '#学校再編ナビ #桃花台 #小牧 #小牧市東部 #篠岡地区';
+
 window.KomakiCount = (function () {
   var ENDPOINT = 'https://komaki-saihen.goatcounter.com/count';
   var NOCOUNT_KEY = 'komaki_nocount';
@@ -2825,6 +2830,12 @@ window.KomakiGrade = (function () {
 
   function shareTitle() { return document.title || CANON; }
 
+  /* 投稿文にハッシュタグを添える（2026-10-24 ユーザー指示で「案内とコピーだけ」から変更）。
+     本文を渡せるサービス（LINE・X・Threads・Bluesky・Mastodon・端末の共有）だけ。
+     Facebook・note は URL しか受け取らず、はてなブックマークと Reddit は「題名」欄なので付けない。
+     Instagram・TikTok はリンクを貼る使い方（プロフィール・リンクスタンプ）なので URL だけをコピーする。 */
+  function withTags(t) { return t + ' ' + window.KomakiTags; }
+
   function enc(v) { return encodeURIComponent(v); }
 
   /* url() は生の URL と題名を受け取る（エスケープは各自）。Threads・Bluesky は
@@ -2844,12 +2855,12 @@ window.KomakiGrade = (function () {
        LINE 公式の line.me/R/share に切り替える（mobile）。
      ・はてなブックマークと Mastodon は、アプリを確実に名指しできないので Web のまま。 */
   var SERVICES = [
-    {cls: 'line',    icon: 'L',  key: 'share_line',     ja: 'LINEで送る',
+    {cls: 'line',    icon: 'L',  key: 'share_line',     ja: 'LINEで送る', tags: true,
      url: function (u, t) { return 'https://social-plugins.line.me/lineit/share?url=' + enc(u) + '&text=' + enc(t); },
      mobile: function (u, t) { return 'https://line.me/R/share?text=' + enc(t + ' ' + u); },
      android: {pkg: 'jp.naver.line.android',
                url: function (u, t) { return 'https://line.me/R/share?text=' + enc(t + ' ' + u); }}},
-    {cls: 'x',       icon: 'X',  key: 'share_x',        ja: 'Xでポスト',
+    {cls: 'x',       icon: 'X',  key: 'share_x',        ja: 'Xでポスト', tags: true,
      url: function (u, t) { return 'https://x.com/intent/post?url=' + enc(u) + '&text=' + enc(t); },
      android: {pkg: 'com.twitter.android',
                url: function (u, t) { return 'twitter://post?message=' + enc(t + ' ' + u); }}},
@@ -2865,11 +2876,11 @@ window.KomakiGrade = (function () {
     // アプリを名指しできる仕組みは公表されていないので、はてなと同じく web の URL だけ。
     {cls: 'note',    icon: 'n',  key: 'share_notecom',  ja: 'noteで紹介',
      url: function (u)    { return 'https://note.com/intent/post?url=' + enc(u); }},
-    {cls: 'threads', icon: '@',  key: 'share_threads',  ja: 'Threadsで投稿',
+    {cls: 'threads', icon: '@',  key: 'share_threads',  ja: 'Threadsで投稿', tags: true,
      url: function (u, t) { return 'https://www.threads.net/intent/post?text=' + enc(t + ' ' + u); },
      android: {pkg: 'com.instagram.barcelona',
                url: function (u, t) { return 'https://www.threads.net/intent/post?text=' + enc(t + ' ' + u); }}},
-    {cls: 'bluesky', icon: '🦋', key: 'share_bluesky',  ja: 'Blueskyで投稿',
+    {cls: 'bluesky', icon: '🦋', key: 'share_bluesky',  ja: 'Blueskyで投稿', tags: true,
      url: function (u, t) { return 'https://bsky.app/intent/compose?text=' + enc(t + ' ' + u); },
      android: {pkg: 'xyz.blueskyweb.app',
                url: function (u, t) { return 'https://bsky.app/intent/compose?text=' + enc(t + ' ' + u); }}},
@@ -2893,7 +2904,7 @@ window.KomakiGrade = (function () {
   }
 
   function serviceHref(s) {
-    var u = shareUrl(), t = shareTitle(), web = s.url(u, t);
+    var u = shareUrl(), t = s.tags ? withTags(shareTitle()) : shareTitle(), web = s.url(u, t);
     if (IS_ANDROID && s.android) return androidIntent(s.android.url(u, t), s.android.pkg, web);
     if ((IS_IOS || IS_ANDROID) && s.mobile) return s.mobile(u, t);
     return web;
@@ -3099,7 +3110,7 @@ window.KomakiGrade = (function () {
         if (!host) { showMsg(toast, msgHostNgTpl.textContent); return; }
         try { localStorage.setItem(MASTODON_KEY, host); } catch (e) {}
       }
-      window.open('https://' + host + '/share?text=' + enc(shareTitle() + ' ' + shareUrl()),
+      window.open('https://' + host + '/share?text=' + enc(withTags(shareTitle()) + ' ' + shareUrl()),
                   '_blank', 'noopener');
     });
     box.appendChild(mastodonBtn);
@@ -3161,7 +3172,7 @@ window.KomakiGrade = (function () {
     if (hasNative) {
       var nativeBtn = makeBtn('button', 'native', '↗', 'share_native', 'ほかのアプリで共有');
       nativeBtn.addEventListener('click', function () {
-        navigator.share({title: shareTitle(), url: shareUrl()}).catch(function () {});
+        navigator.share({title: shareTitle(), text: withTags(shareTitle()), url: shareUrl()}).catch(function () {});
       });
       box.appendChild(nativeBtn);
     }
@@ -5496,7 +5507,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
 
 /* ===== HASHTAGS / PRIVACY TOGGLE（2026-10-24 ユーザー指示） =====
    ・SNS で触れてもらうときのハッシュタグ5つを、全ページの共有欄（#share）の説明文の下に出し、
-     まとめてコピーできるようにする。共有ボタンの投稿文には入れない（ユーザー決定：案内とコピーだけ）。
+     まとめてコピーできるようにする。共有ボタンの投稿文にも SHARE BUTTONS（withTags）が添える。
      タグは固有名なので、どの言語でも日本語のまま（about.html#spread の各言語の説明にもそう書いてある）。
    ・about.html#spread の投稿の例文（.spread-ex）にも「コピー」ボタンを付ける。
    ・about.html#privacy の「この端末では数えない」ボタン（#nocount-btn）。COUNTER（ファイル冒頭）が読む
@@ -5504,7 +5515,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
    文言は辞書（share_tags_* / spread_copy / privacy_*、RUNTIME_KEYS）を隠し要素で受け取る。
    タグを変えるときは TAGS と、about.html#spread・辞書の board_tags を一緒に直すこと。 */
 (function () {
-  var TAGS = '#学校再編ナビ #桃花台 #小牧 #小牧市東部 #篠岡地区';
+  var TAGS = window.KomakiTags;
 
   var tpl = document.createElement('div');
   tpl.hidden = true;
