@@ -1,0 +1,67 @@
+name: Weekly Reach Report
+
+# 週1回、このサイトがどう読まれ・どう話題にされているかを集めて運営者に届ける（2026-10-24 ユーザー指示）。
+#   ・GoatCounter（Cookie なしの閲覧数。Secret GOATCOUNTER_TOKEN が無ければ省く）
+#   ・はてなブックマーク数、Bluesky の公開検索（5つのハッシュタグとサイトのドメイン）
+#   ・X・Instagram・Facebook・Threads・TikTok は robots.txt が機械での収集を禁じているので取りに行かない
+#     （報告にタグ検索ページへのリンクだけを載せ、人が見る）
+# 数字はリポジトリにコミットしない（公開リポジトリのため）。メール → だめなら Issue、本文はアーティファクトにも残す。
+on:
+  schedule:
+    - cron: '10 22 * * 0'   # 毎週日曜 22:10 UTC（＝月曜 7:10 JST）。リンク・連絡先の照合と時間をずらす
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build report
+        env:
+          GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
+        run: |
+          python3 .github/scripts/check_reach.py /tmp/reach.md
+          echo "subject=📈 学校再編ナビ 利用状況 $(TZ=Asia/Tokyo date +%Y-%m-%d)" >> "$GITHUB_ENV"
+
+      # 宛先は1件だけ。アドレスはここに書かず Secrets に置く（feature-ideas.yml と同じ）。
+      - name: Send mail
+        id: mail
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          MAIL_TO:   ${{ secrets.MAIL_TO }}
+        run: |
+          set +e
+          python3 .github/scripts/send_mail.py --subject "$subject" --body-file /tmp/reach.md
+          code=$?
+          set -e
+          case "$code" in
+            0) echo "sent=true"  >> "$GITHUB_OUTPUT" ;;
+            2) echo "sent=false" >> "$GITHUB_OUTPUT"
+               echo "::notice::SMTP 未設定のため Issue で通知します" ;;
+            *) echo "sent=false" >> "$GITHUB_OUTPUT"
+               echo "::warning::メール送信に失敗したため Issue で通知します" ;;
+          esac
+
+      - name: Open issue instead
+        if: steps.mail.outputs.sent != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue create --title "$subject" --body-file /tmp/reach.md
+
+      - name: Upload report as artifact
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: reach-report
+          path: /tmp/reach.md
+          retention-days: 90
+          if-no-files-found: ignore

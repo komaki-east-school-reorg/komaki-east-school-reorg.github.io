@@ -49,6 +49,7 @@ SKIP_HOSTS = (
     "threads.net", "bsky.app", "reddit.com", "tiktok.com",
     "maps.google.co.jp", "google.com",
     "schema.org", "w3.org", "ogp.me",
+    "goatcounter.com",   # 閲覧数の集計の送り先（リンクではない。js/main.js の COUNTER）
 )
 JST = timezone(timedelta(hours=9))
 CONFIRM_AFTER = 2   # この回数続けて失敗したら「切れている」

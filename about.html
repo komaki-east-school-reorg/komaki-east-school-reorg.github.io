@@ -708,9 +708,72 @@
       <ul class="app-points">
         <li data-i18n="app_li1">アイコンから、アドレスバーの無い全画面で開けます。</li>
         <li data-i18n="app_li2">開くたびにネットから最新の内容を読みます。電波のない所では、前に開いたことのあるページだけを、そう断ったうえで表示します。</li>
-        <li data-i18n="app_li3">通知を送ったり、利用状況を記録したりはしません。やめるときは、ふつうのアプリと同じように削除できます。</li>
+        <li data-i18n="app_li3">通知は送りません。閲覧数は Cookie を使わず、個人を特定しない形で数えます（このページの「閲覧数の集計について」）。やめるときは、ふつうのアプリと同じように削除できます。</li>
       </ul>
       <p><button type="button" class="app-install-cta" id="app-install-cta" hidden data-i18n="app_cta">📲 アプリにする</button></p>
+    </div>
+  </section>
+  <!-- 使い方を広める・応援する（2026-10-24 ユーザー指示）。ハッシュタグは5つで、どの言語でも日本語のまま。
+       タグを変えるときは js/main.js の HASHTAGS（TAGS）と辞書の board_tags も直す。
+       使い方の例は既存の機能への案内だけで、新しい事実は書かない。SNS の投稿をこのサイトに
+       転載・埋め込みはしない（spread_ask_p に明記）。 -->
+  <section class="section" id="spread">
+    <div class="container">
+      <h2 class="section-title" data-i18n-html="spread_h">使い方を広める・応援する<small>Spread the Word</small></h2>
+      <p class="section-lead" data-i18n="spread_lead">このサイトの使い方や感想を SNS で伝えるときは、次のハッシュタグを付けてください。同じタグが集まると、地域の人が情報を見つけやすくなります。</p>
+      <div class="spread-tags-box">
+        <p class="spread-tags" lang="ja"><span class="tag-one">#学校再編ナビ</span> <span class="tag-one">#桃花台</span> <span class="tag-one">#小牧</span> <span class="tag-one">#小牧市東部</span> <span class="tag-one">#篠岡地区</span></p>
+        <p><button type="button" class="spread-copy" data-copy="tags" hidden data-i18n="share_tags_copy">タグをコピー</button></p>
+        <p class="spread-tags-note" data-i18n="spread_tags_note">「#学校再編ナビ」はこのサイトの使い方や感想に、地名のタグは地域の話題として届けるために使います。タグは日本語のままお使いください。</p>
+      </div>
+
+      <h3 class="spread-subh" data-i18n="spread_use_h">こんな使い方ができます</h3>
+      <ul class="spread-uses">
+        <li><a href="index.html" data-i18n="spread_use1">言語を選んでから共有すると、相手もその言語で開けます（12言語）</a></li>
+        <li><a href="index.html#latest" data-i18n="spread_use2">「最新の動き」を A4 1枚の回覧板にして、自治会や子ども会で回す</a></li>
+        <li><a href="#share" data-i18n="spread_use3">ページの QR コードを、掲示板やチラシに貼る</a></li>
+        <li><a href="schedule.html" data-i18n="spread_use4">学年を選んで、お子さんが何年生のときに何があるかを同じ学年の保護者に送る</a></li>
+        <li><a href="schedule.html" data-i18n="spread_use5">予定を「📅 カレンダーに追加」で、スマートフォンのカレンダーに入れる</a></li>
+        <li><a href="index.html" data-i18n="spread_use6">「こどもむけ」や「🔊 読み上げる」で、子どもと一緒に読む</a></li>
+        <li><a href="about.html#app" data-i18n="spread_use7">ホーム画面に置いてアプリのように使い、フィードで新しい動きを追う</a></li>
+      </ul>
+
+      <h3 class="spread-subh" data-i18n="spread_ex_h">投稿の例</h3>
+      <div class="spread-ex"><p class="spread-ex-text" data-i18n="spread_ex1">#学校再編ナビ で説明会の日程を確認して、スマホのカレンダーに入れておきました。 #桃花台 #篠岡地区</p><button type="button" class="spread-copy" hidden data-i18n="spread_copy">コピー</button></div>
+      <div class="spread-ex"><p class="spread-ex-text" data-i18n="spread_ex2">学校再編のことが、ポルトガル語や英語でも読めます。外国にルーツのある家庭にも送れます。 #学校再編ナビ #小牧 #小牧市東部</p><button type="button" class="spread-copy" hidden data-i18n="spread_copy">コピー</button></div>
+      <div class="spread-ex"><p class="spread-ex-text" data-i18n="spread_ex3">「最新の動き」を回覧板1枚にして、子ども会で回しました。 #学校再編ナビ #桃花台</p><button type="button" class="spread-copy" hidden data-i18n="spread_copy">コピー</button></div>
+
+      <h3 class="spread-subh" data-i18n="spread_ask_h">お願い</h3>
+      <p data-i18n="spread_ask_p">子ども・学校・個人が特定できる写真や名前は載せないでください。このサイトは非公式で、SNS の投稿を転載したり紹介したりはしません。このサイトへのご意見は、下の「ご意見の送り先」から送れます。</p>
+    </div>
+  </section>
+  <!-- ご意見・誤りの報告（2026-10-24 ユーザー指示）。窓口は GitHub の Issue フォームだけ。
+       リンク先は auto_gates.py の PERMITTED_GITHUB でこのページ限定。公開されること・アカウントが要ることを必ず書く。 -->
+  <section class="section section-alt" id="feedback">
+    <div class="container">
+      <h2 class="section-title" data-i18n-html="fb_h">ご意見の送り先<small>Feedback</small></h2>
+      <p class="section-lead" data-i18n="fb_lead">このサイトの使い方や感想などのご意見を、このサイトの運営者に送れます。</p>
+      <ul class="app-points">
+        <li data-i18n="fb_li1">送った内容はインターネット上に公開されます。送るには GitHub（無料）のアカウントが要ります。</li>
+        <li data-i18n="fb_li2">お名前・ご住所・お子さんの名前や学校など、個人が分かることは書かないでください。</li>
+        <li data-i18n="fb_li3">学校再編の計画そのものへの意見や質問は、市の窓口（上の「学校再編の問い合わせ先」）へお寄せください。このサイトは市に取り次ぎません。</li>
+      </ul>
+      <p><a class="app-install-cta fb-open" href="https://github.com/komaki-east-school-reorg/komaki-east-school-reorg.github.io/issues/new?template=feedback.yml" target="_blank" rel="noopener" data-i18n="fb_open">✉ ご意見を送る</a></p>
+    </div>
+  </section>
+  <!-- 閲覧数の集計について（2026-10-24 ユーザー指示）。js/main.js の COUNTER と同じ中身を書く。
+       数え方を変えたらここ（privacy_*）も直すこと。 -->
+  <section class="section" id="privacy">
+    <div class="container">
+      <h2 class="section-title" data-i18n-html="privacy_h">閲覧数の集計について<small>About Visit Counts</small></h2>
+      <p class="section-lead" data-i18n="privacy_lead">このサイトがどう読まれているかを確かめ、より使いやすくするために、Cookie を使わない方法で閲覧数を数えています。</p>
+      <ul class="app-points">
+        <li data-i18n="privacy_li1">数えるもの：開いたページと表示言語、どのサイトから来たか（ドメインだけ）、画面の大きさ、どの機能のボタンが押されたか（共有・印刷・読み上げなど）、QR コードから来たかどうか。</li>
+        <li data-i18n="privacy_li2">数えないもの：お名前やメールアドレス、入力した文字、選んだ学年、共有した相手。Cookie や、あなたを見分けるための番号はつくりません。</li>
+        <li data-i18n="privacy_li3">集計には GoatCounter（オープンソースの集計サービス）を使っています。読み込む外部のスクリプトはありません。どの通信でも同じですが、送信元の IP アドレスは集計先に届きます。</li>
+        <li data-i18n="privacy_li4">ブラウザが「追跡しない」（Do Not Track・Global Privacy Control）設定のときは数えません。下のボタンで、この端末だけ数えないようにもできます。</li>
+      </ul>
+      <p class="nocount-row"><button type="button" class="app-install-cta" id="nocount-btn" hidden aria-pressed="false">この端末では数えない</button> <span id="nocount-state" role="status"></span></p>
     </div>
   </section>
   <!-- 関連ページ：ナビの再掲ではなく、このページを読んだ人が次に必要とする所だけを、
@@ -736,7 +799,7 @@
       <p class="share-lead" data-i18n="share_lead">リンクを送るだけでも、知る人は増えます。</p>
       <div class="share-buttons" id="share-buttons"></div>
       <div class="share-star" id="share-star"></div>
-      <p class="share-note" data-i18n="share_note">Instagram・TikTok はリンクのコピーのみ。自動の外部通信ははてなスターの表示だけです。</p>
+      <p class="share-note" data-i18n="share_note">Instagram・TikTok はリンクのコピーのみ。自動の外部通信は、はてなスターの表示と、Cookie を使わない閲覧数の集計だけです。</p>
     </div>
   </section>
 </main>

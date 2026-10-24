@@ -42,6 +42,14 @@ AFTER_SUFFIX = "__after"
 #   event_status_*     … schedule.html の 完了/進行中/予定 バッジ
 #   share_*            … 全ページ共通の共有ボタン（main.js が組み立てる）
 RUNTIME_KEYS = [
+    "share_tags_lead",    # HASHTAGS（共有欄のハッシュタグ、main.js。2026-10-24）
+    "share_tags_copy",
+    "share_tags_copied",
+    "privacy_btn_stop",   # about.html#privacy の「この端末では数えない」（HASHTAGS / PRIVACY TOGGLE、main.js）
+    "privacy_btn_resume",
+    "privacy_state_on",
+    "privacy_state_off",
+    "privacy_state_dnt",
     "share_preview_note", # SHARE BUTTONS の「共有するとこう見える」カード（main.js）
     "fs_label",           # FONT SIZE（PAGE TOC の横、main.js）
     "aria_fs_s",

@@ -14,6 +14,129 @@ window.KomakiLang = (function () {
   };
 })();
 
+/* ===== COUNTER：Cookie を使わない閲覧数の集計（2026-10-24 ユーザー指示） =====
+   サイトがどう読まれているか（ページ・表示言語・参照元・機能の使われ方・紙の QR からの来訪）を
+   運営者が確かめるため、GoatCounter（下の ENDPOINT）へ数を送る。
+   ・外部スクリプトは読まない。送るのは画像1枚ぶんの GET だけ（GoatCounter の /count）。
+   ・送るのは パス（＋表示言語・こどもむけ）／参照元のドメインだけ／機能の名前だけ。
+     入力された文字・共有した URL・Mastodon のサーバー名・学年などは送らない。
+   ・Cookie も localStorage の識別子も作らない。
+   ・送らないとき：Do Not Track・Global Privacy Control、この端末で「数えない」を選んだとき
+     （localStorage の komaki_nocount、about.html#privacy のボタン）、ロボット・自動ツール、
+     手元のサーバー（localhost など）。
+   ・機能の使われ方は、各ブロックを触らずに document のクリックを1か所で見て名前を付ける
+     （EVENTS）。ボタンのクラス名を変えたらここも直すこと。
+   集計先のドメインは auto_gates.py の PERMITTED_COUNTER でこのファイル限定にしてある。
+   読者への説明は about.html#privacy（キー privacy_*）。数え方を変えたらそこも直す。 */
+window.KomakiCount = (function () {
+  var ENDPOINT = 'https://komaki-saihen.goatcounter.com/count';
+  var NOCOUNT_KEY = 'komaki_nocount';
+  function optedOut() {
+    try { if (localStorage.getItem(NOCOUNT_KEY) === '1') return true; } catch (e) {}
+    return false;
+  }
+  function blocked() {
+    if (optedOut()) return true;
+    if (navigator.doNotTrack === '1' || window.doNotTrack === '1' || navigator.globalPrivacyControl === true) return true;
+    if (navigator.webdriver) return true;
+    if (/bot|crawl|spider|slurp|lighthouse|headless|inspectiontool|facebookexternalhit|bingpreview|embedly|preview/i.test(navigator.userAgent || '')) return true;
+    var h = location.hostname;
+    if (location.protocol !== 'https:' || h === 'localhost' || /^(127\.|10\.|192\.168\.|\[?::1)/.test(h)) return true;
+    return false;
+  }
+  function send(params) {
+    if (blocked()) return;
+    params.rnd = Math.random().toString(36).slice(2, 8);
+    var q = Object.keys(params).map(function (k) {
+      return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
+    }).join('&');
+    try { var img = new Image(); img.src = ENDPOINT + '?' + q; } catch (e) {}
+  }
+  // 1件の機能の利用を数える。name は 'share/x' のような短い英字の名前だけ。
+  function event(name) {
+    if (!/^[a-z0-9][a-z0-9/_.-]{0,60}$/.test(name)) return;
+    send({p: name, e: 'true'});
+  }
+  event.optedOut = optedOut;
+  event.setOptOut = function (on) {
+    try { if (on) localStorage.setItem(NOCOUNT_KEY, '1'); else localStorage.removeItem(NOCOUNT_KEY); } catch (e) {}
+  };
+  event.blocked = blocked;
+
+  // --- ページの閲覧（1回の表示につき1件）---
+  function pagePath() {
+    var path = location.pathname.replace(/\/$/, '/index.html');
+    if (document.documentElement.getAttribute('data-page') === '404') path = '/404.html';
+    var lang = window.KomakiLang();
+    var kids = false;
+    try { kids = lang === 'ja' && localStorage.getItem('komaki_kids') === '1'; } catch (e) {}
+    return path + (lang !== 'ja' ? '?lang=' + lang : (kids ? '?kids=1' : ''));
+  }
+  function referrerHost() {
+    try {
+      if (!document.referrer) return '';
+      var r = new URL(document.referrer);
+      return r.origin === location.origin ? '' : r.origin;   // パスや検索語は送らない
+    } catch (e) { return ''; }
+  }
+  function countPage() {
+    send({p: pagePath(), r: referrerHost(), s: (screen.width || 0) + ',' + (screen.height || 0) + ',' + (window.devicePixelRatio || 1)});
+    if (window.KomakiEntrySrc === 'qr') event('entry/qr');
+    var standalone = false;
+    try { standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true; } catch (e) {}
+    if (standalone) {
+      try {
+        if (!sessionStorage.getItem('komaki_app_counted')) { sessionStorage.setItem('komaki_app_counted', '1'); event('open/app'); }
+      } catch (e) {}
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', countPage);
+  else countPage();
+
+  // --- 機能の使われ方 ---
+  // [セレクタ, 名前（関数なら押された要素から作る）]。上から最初に当たったものだけを数える。
+  var EVENTS = [
+    ['.share-btn', function (el) {
+      var m = /share-btn--([a-z0-9]+)/.exec(el.className) || [];
+      if (!m[1]) return '';
+      return (el.closest('.share-sticky') ? 'share-bar/' : 'share/') + m[1];
+    }],
+    ['.share-tags-copy', 'tags/copy'],
+    ['.spread-copy', 'tags/example-copy'],
+    ['#latest-print-btn', 'board/print'],
+    ['.qr-save', 'qr/save'],
+    ['.ics-add, .grade-ics, #grade-ics', 'calendar/add'],
+    ['.tts-btn', 'tts/play'],
+    ['.kids-toggle', 'toggle/kids'],
+    ['.orig-toggle', 'toggle/orig'],
+    ['.fs-btn', function (el) { var m = /fs-btn--([a-z]+)/.exec(el.className) || []; return 'font/' + (m[1] || 'x'); }],
+    ['.sec-link', 'link/section'],
+    ['.faq-link', 'link/faq'],
+    ['.event-permalink', 'link/event'],
+    ['.footer-feed a, .feed-box a', 'feed/open'],
+    ['.fb-open', 'feedback/open']
+  ];
+  document.addEventListener('click', function (e) {
+    var t = e.target && e.target.closest ? e.target : null;
+    if (!t) return;
+    for (var i = 0; i < EVENTS.length; i++) {
+      var el = t.closest(EVENTS[i][0]);
+      if (!el) continue;
+      var name = typeof EVENTS[i][1] === 'function' ? EVENTS[i][1](el) : EVENTS[i][1];
+      if (name) event(name);
+      return;
+    }
+  }, true);
+  document.addEventListener('change', function (e) {
+    var t = e.target;
+    if (!t) return;
+    if (t.classList && t.classList.contains('lang-select')) event('lang/' + String(t.value).replace(/[^a-z]/g, ''));
+    else if (t.id === 'grade-select' && t.value) event('grade/select');
+  }, true);
+  window.addEventListener('appinstalled', function () { event('app/installed'); });
+  return event;
+})();
+
 /* ===== 市の原文の「日時」を表示言語に直す（このファイル共通） =====
    自動取得コーナーの日時欄は市の書いた日本語のまま届く（例:「9月23日 13時30分～16時00分」
    「令和8年11月15日(日曜日)14時から（開場13時）」）。見出しとちがい、日時は表記の問題で
@@ -3494,6 +3617,8 @@ window.KomakiGrade = (function () {
           '<div class="board-cta">' + esc(t('cta', 'この紙に載せきれなかったことは、サイトにすべて載っています。')) + '</div>' +
           '<div class="board-url">' + esc(pageUrl(lang)) + '</div>' +
           '<div class="board-scan">' + esc(t('scan', 'スマートフォンのカメラで読み取れます。')) + '</div>' +
+          // SNS で話題にするときのハッシュタグ（2026-10-24 ユーザー指示。about.html#spread と同じ5つ）
+          '<div class="board-scan">' + esc(t('tags', 'SNSでは #学校再編ナビ #桃花台 #小牧 #小牧市東部 #篠岡地区')) + '</div>' +
         '</div>' +
       '</div>' +
       /* 紙は掲示板や回覧板の上に何週間も残る。だから「いつ時点か」と
@@ -5367,4 +5492,135 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     });
   }
   schedule();
+})();
+
+/* ===== HASHTAGS / PRIVACY TOGGLE（2026-10-24 ユーザー指示） =====
+   ・SNS で触れてもらうときのハッシュタグ5つを、全ページの共有欄（#share）の説明文の下に出し、
+     まとめてコピーできるようにする。共有ボタンの投稿文には入れない（ユーザー決定：案内とコピーだけ）。
+     タグは固有名なので、どの言語でも日本語のまま（about.html#spread の各言語の説明にもそう書いてある）。
+   ・about.html#spread の投稿の例文（.spread-ex）にも「コピー」ボタンを付ける。
+   ・about.html#privacy の「この端末では数えない」ボタン（#nocount-btn）。COUNTER（ファイル冒頭）が読む
+     localStorage の komaki_nocount を出し入れする。
+   文言は辞書（share_tags_* / spread_copy / privacy_*、RUNTIME_KEYS）を隠し要素で受け取る。
+   タグを変えるときは TAGS と、about.html#spread・辞書の board_tags を一緒に直すこと。 */
+(function () {
+  var TAGS = '#学校再編ナビ #桃花台 #小牧 #小牧市東部 #篠岡地区';
+
+  var tpl = document.createElement('div');
+  tpl.hidden = true;
+  document.body.appendChild(tpl);
+  function tplSpan(key, ja) {
+    var el = document.createElement('span');
+    el.setAttribute('data-i18n', key);
+    el.textContent = ja;
+    tpl.appendChild(el);
+    return el;
+  }
+  var okTpl = tplSpan('share_tags_copied', 'コピーしました。投稿に貼り付けてください');
+  var ngTpl = tplSpan('share_copy_failed', 'コピーできませんでした');
+  var onTpl = tplSpan('privacy_state_off', 'この端末では、閲覧数を数えていません。');
+  var offTpl = tplSpan('privacy_state_on', 'この端末の閲覧も、数に入っています。');
+  var btnOnTpl = tplSpan('privacy_btn_stop', 'この端末では数えない');
+  var btnOffTpl = tplSpan('privacy_btn_resume', 'この端末でも数える');
+  var blockedTpl = tplSpan('privacy_state_dnt', 'このブラウザは「追跡しない」設定なので、閲覧数を数えていません。');
+
+  function copyText(text, cb) {
+    function fallback() {
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:absolute;left:-9999px;top:0;';
+        document.body.appendChild(ta);
+        ta.select();
+        var r = document.execCommand('copy');
+        document.body.removeChild(ta);
+        return r;
+      } catch (e) { return false; }
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { cb(true); }, function () { cb(fallback()); });
+    } else cb(fallback());
+  }
+  function flash(msg, okFlag) {
+    msg.textContent = okFlag ? okTpl.textContent : ngTpl.textContent;
+    msg.classList.add('is-visible');
+    clearTimeout(msg._t);
+    msg._t = setTimeout(function () { msg.classList.remove('is-visible'); msg.textContent = ''; }, 3000);
+  }
+
+  // --- 共有欄のタグ（本文の共有欄だけ。固定バーは狭いので入れない）---
+  var shareSec = document.getElementById('share');
+  var lead = shareSec && shareSec.querySelector('.share-lead');
+  if (lead) {
+    var row = document.createElement('p');
+    row.className = 'share-tags';
+    var l = document.createElement('span');
+    l.className = 'share-tags-lead';
+    l.setAttribute('data-i18n', 'share_tags_lead');
+    l.textContent = 'SNSで触れるときは';
+    var list = document.createElement('span');
+    list.className = 'share-tags-list';
+    list.setAttribute('lang', 'ja');
+    // タグごとに折り返さない単位にする（「#」と語の間や語の途中で改行させない）
+    TAGS.split(' ').forEach(function (tg, i) {
+      if (i) list.appendChild(document.createTextNode(' '));
+      var one = document.createElement('span');
+      one.className = 'tag-one';
+      one.textContent = tg;
+      list.appendChild(one);
+    });
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'share-tags-copy';
+    b.setAttribute('data-i18n', 'share_tags_copy');
+    b.textContent = 'タグをコピー';
+    var msg = document.createElement('span');
+    msg.className = 'share-tags-msg';
+    msg.setAttribute('role', 'status');
+    b.addEventListener('click', function () { copyText(TAGS, function (r) { flash(msg, r); }); });
+    row.appendChild(l); row.appendChild(document.createTextNode(' '));
+    row.appendChild(list); row.appendChild(document.createTextNode(' '));
+    row.appendChild(b); row.appendChild(msg);
+    lead.parentNode.insertBefore(row, lead.nextSibling);
+  }
+
+  // --- about.html#spread：タグと例文のコピー ---
+  document.querySelectorAll('.spread-copy').forEach(function (btn) {
+    var msg = document.createElement('span');
+    msg.className = 'share-tags-msg';
+    msg.setAttribute('role', 'status');
+    btn.parentNode.insertBefore(msg, btn.nextSibling);
+    btn.hidden = false;
+    btn.addEventListener('click', function () {
+      var src = btn.getAttribute('data-copy') === 'tags' ? null : btn.closest('.spread-ex');
+      var text = src ? (src.querySelector('.spread-ex-text') || src).textContent.trim() : TAGS;
+      copyText(text, function (r) { flash(msg, r); });
+    });
+  });
+
+  // --- about.html#privacy：この端末では数えない ---
+  var nc = document.getElementById('nocount-btn');
+  var state = document.getElementById('nocount-state');
+  if (nc && state && window.KomakiCount) {
+    var render = function () {
+      var out = window.KomakiCount.optedOut();
+      nc.textContent = out ? btnOffTpl.textContent : btnOnTpl.textContent;
+      nc.setAttribute('aria-pressed', out ? 'true' : 'false');
+      if (!out && window.KomakiCount.blocked()) {
+        // DNT・GPC・手元のサーバーなど、もともと数えていない場合
+        var dnt = navigator.doNotTrack === '1' || window.doNotTrack === '1' || navigator.globalPrivacyControl === true;
+        state.textContent = dnt ? blockedTpl.textContent : onTpl.textContent;
+      } else {
+        state.textContent = out ? onTpl.textContent : offTpl.textContent;
+      }
+    };
+    nc.hidden = false;
+    nc.addEventListener('click', function () {
+      window.KomakiCount.setOptOut(!window.KomakiCount.optedOut());
+      render();
+    });
+    render();
+    document.addEventListener('komaki:i18n-applied', render);
+  }
 })();

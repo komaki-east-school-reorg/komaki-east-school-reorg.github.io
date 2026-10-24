@@ -3,6 +3,18 @@
   "updates": [
     {
       "date": "2026-10-24",
+      "type": "feature",
+      "ja": "SNS用ハッシュタグと使い方の広め方・ご意見の送り先を追加",
+      "en": "Hashtags for social media, ways to spread the word, and a feedback form"
+    },
+    {
+      "date": "2026-10-24",
+      "type": "feature",
+      "ja": "Cookieを使わない閲覧数の集計を開始（端末ごとに停止可）",
+      "en": "Cookie-free visit counting started (can be turned off per device)"
+    },
+    {
+      "date": "2026-10-24",
       "type": "content",
       "ja": "教育の質の観点でQ&A3問・全国の学級人数比較・議会答弁の整理を追加",
       "en": "Quality of education across the site: 3 new Q&As, class-size comparison, council answers gathered"

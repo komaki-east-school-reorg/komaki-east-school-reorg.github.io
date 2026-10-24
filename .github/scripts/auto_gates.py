@@ -154,6 +154,18 @@ PERMITTED_SNS = {
     # 共有ボタンの TikTok はコピーのみで URL を持たないので、tiktok.com はどこにも張れない。
     "tiktok.com": (),
 }
+
+# Cookie を使わない閲覧数の集計（GoatCounter。2026-10-24 ユーザー指示）。
+# 送り先は js/main.js の COUNTER ブロックに置いた1つだけ。外部スクリプトは読まない。
+# 増やす・移すときは CLAUDE.md・CONTRIBUTING.txt 規則1・README.md・about.html#privacy も同時に更新すること。
+PERMITTED_COUNTER = ("komaki-saihen.goatcounter.com/count",)
+COUNTER_FILES = ("js/main.js",)
+
+# 読者の声の窓口（GitHub の Issue フォーム。2026-10-24 ユーザー指示）。about.html#feedback だけ。
+PERMITTED_GITHUB = (
+    "github.com/komaki-east-school-reorg/komaki-east-school-reorg.github.io/issues/new?template=feedback.yml",
+)
+GITHUB_PAGES = ("about.html",)
 MIN_QUOTE_LEN = 10
 
 fails = []
@@ -371,6 +383,13 @@ def main():
                     if host in line and not (is_dict or p in CLUB_PAGES):
                         link_violations.append(
                             f"{p}:{i} 地域クラブのサイトは {'/'.join(CLUB_PAGES)} のみ可 {host}")
+                for m in re.finditer(r"goatcounter\.com[^\s\"'<)\\]*", line):
+                    full = line[max(0, m.start() - 20):m.end()]
+                    if p not in COUNTER_FILES or not any(a in full for a in PERMITTED_COUNTER):
+                        link_violations.append(f"{p}:{i} 集計先は {'/'.join(COUNTER_FILES)} の {PERMITTED_COUNTER[0]} のみ可")
+                for m in re.finditer(r"github\.com[^\s\"'<)\\]*", line):
+                    if p not in GITHUB_PAGES or not any(m.group(0).startswith(a) for a in PERMITTED_GITHUB):
+                        link_violations.append(f"{p}:{i} GitHub へのリンクは {'/'.join(GITHUB_PAGES)} の Issue フォームのみ可 {m.group(0)[:80]}")
                 for host, allowed in PERMITTED_SNS.items():
                     for m in re.finditer(re.escape(host) + r"[^\s\"'<)\\]*", line):
                         if not any(a in m.group(0) for a in allowed):

@@ -90,6 +90,22 @@
   //     判定に通すと日本語ページが英語として登録されてしまうため。
   //   ・自動で切り替えたときだけ、ヘッダ直下に「日本語で見る」を添えた1行の案内を出す
   //     （英語設定のスマホを使う日本語話者が、ワンタップで戻れるように）。
+  // ===== 入口の印（?src=qr、2026-10-24） =====
+  // 紙（回覧板・チラシ・掲示）の QR から来た人を数えるため、build_qr.py は QR の URL に
+  // src=qr を足している。ここで同期的に読み取って window.KomakiEntrySrc に退避し、
+  // アドレスバーからは消す（共有 URL・canonical・ブックマークに残さないため）。
+  // 数えるのは main.js の COUNTER。main.js はこのファイルのあとに読まれる。
+  (function takeEntrySrc() {
+    try {
+      var u = new URL(window.location.href);
+      var s = u.searchParams.get('src');
+      if (s == null) return;
+      if (s === 'qr') window.KomakiEntrySrc = s;
+      u.searchParams.delete('src');
+      window.history.replaceState(null, '', u.href);
+    } catch (e) {}
+  })();
+
   var _autoLang = null;
   (function detectFirstVisitLang() {
     try {

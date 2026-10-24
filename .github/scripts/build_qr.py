@@ -10,7 +10,11 @@ QR コードを、ページ×言語ぶん SVG で書き出す。
   出す危険がある。ここで検証済みライブラリ（segno）を使って生成し、成果物を
   コミットしておけば、ページ側は <img> を1枚読むだけで済む。
 
-出力: qr/<pageId>.<lang>.svg   （日本語は素の URL、他言語は ?lang= 付き）
+出力: qr/<pageId>.<lang>.svg   （日本語は素の URL、他言語は ?lang= 付き。どちらにも src=qr を足す）
+
+src=qr（2026-10-24）: 紙の QR から何人来たかを数えるための印。js/i18n.js が読み込み直後に
+読み取ってアドレスバーから消し、js/main.js の COUNTER が「entry/qr」として数える。
+共有 URL・canonical には残らない。
 実行: python3 .github/scripts/build_qr.py [--check]
       --check は再生成せずに、コミット済みの内容と一致するかだけを見る（終了コード1で不一致）。
 """
@@ -48,7 +52,7 @@ EC_LEVEL = "h"
 
 def url_for(page_id, lang):
     u = BASE + PAGES[page_id]
-    return u if lang == "ja" else u + "?lang=" + lang
+    return u + "?src=qr" if lang == "ja" else u + "?lang=" + lang + "&src=qr"
 
 
 def svg_for(page_id, lang):

@@ -1,0 +1,59 @@
+name: ご意見を送る / Send feedback
+description: 学校再編ナビ（このサイト）の使い方や感想などのご意見 / Your thoughts on this site, such as how you use it
+title: "【ご意見】"
+labels: ["feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **送った内容はインターネット上に公開されます。** お名前・ご住所・お子さんの名前や学校など、個人が分かることは書かないでください。
+        学校再編の計画そのものへの意見や質問は、小牧市教育委員会 教育総務課 学校再編推進係（電話 0568-39-5261）へお寄せください。このサイトは市に取り次ぎません。
+
+        **This will be public on the internet.** Please do not write anything that identifies a person (names, addresses, your child's name or school).
+        Opinions and questions about the reorganization plan itself should go to the city's office (phone 0568-39-5261). This site does not pass messages on to the city.
+  - type: dropdown
+    id: page
+    attributes:
+      label: どのページについてですか / Which page?
+      options:
+        - トップ / Home
+        - 計画概要 / Plan overview
+        - スケジュール / Schedule
+        - 質問・賛否の声 / FAQ and voices
+        - スクールバス / School bus
+        - 地域クラブ / Local clubs
+        - 議会審議 / City council
+        - 地域とまちづくり / Community
+        - 地図 / Map
+        - 全国の動き / Nationwide
+        - 検証と提案 / Review
+        - サイト全体 / Whole site
+    validations:
+      required: true
+  - type: dropdown
+    id: lang
+    attributes:
+      label: 表示していた言語 / Display language
+      options:
+        - 日本語
+        - こどもむけ
+        - English
+        - Português
+        - Tiếng Việt
+        - Filipino
+        - Español
+        - 中文
+        - Bahasa Indonesia
+        - 한국어
+        - नेपाली
+        - Türkçe
+        - မြန်မာ
+    validations:
+      required: false
+  - type: textarea
+    id: body
+    attributes:
+      label: ご意見 / Your feedback
+      description: 使い方や感想など / How you use the site, what you think of it, etc.
+    validations:
+      required: true
