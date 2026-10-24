@@ -1,8 +1,182 @@
 {
-  "fetched_at": "2026-10-23T00:51:24Z",
+  "fetched_at": "2026-10-24T00:54:45Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "sue-e",
+      "level": "elem",
+      "names": {
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-10-23",
+      "items": [
+        {
+          "title": "10/23 中央公園交流会（３＆６年生）",
+          "date": "2026-10-23",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136321226?tm=20261023190122"
+        },
+        {
+          "title": "10/22 音楽：『🎼よろこびの うた』（１年生）",
+          "date": "2026-10-23",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136321177?tm=20261023185314"
+        },
+        {
+          "title": "10/21 今日の給食",
+          "date": "2026-10-21",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136305652?tm=20261021135909"
+        }
+      ]
+    },
+    {
+      "slug": "shinooka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "篠岡中学校",
+        "ja_kids": "しのおか中学校",
+        "en": "Shinooka Junior High",
+        "zh": "篠冈中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
+      "latest_date": "2026-10-23",
+      "items": [
+        {
+          "title": "２年生 合唱練習",
+          "date": "2026-10-23",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136320249?tm=20261023173816"
+        },
+        {
+          "title": "１年生 合唱コンクールリハーサル",
+          "date": "2026-10-23",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136320806?tm=20261023181314"
+        },
+        {
+          "title": "１年生 講師の先生による合唱指導 学年合唱",
+          "date": "2026-10-23",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136320469?tm=20261023174953"
+        }
+      ]
+    },
+    {
+      "slug": "shinooka-e",
+      "level": "elem",
+      "names": {
+        "ja": "篠岡小学校",
+        "ja_kids": "しのおか小学校",
+        "en": "Shinooka Elem. School",
+        "zh": "篠冈小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
+      "latest_date": "2026-10-23",
+      "items": [
+        {
+          "title": "小野競書会激励会",
+          "date": "2026-10-23",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136321223?tm=20261023185730"
+        },
+        {
+          "title": "書写競技会",
+          "date": "2026-10-23",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136321197?tm=20261023185340"
+        },
+        {
+          "title": "書写競技会を行いました",
+          "date": "2026-10-23",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136321118?tm=20261023184413"
+        }
+      ]
+    },
+    {
+      "slug": "ohshiro-e",
+      "level": "elem",
+      "names": {
+        "ja": "大城小学校",
+        "ja_kids": "おおしろ小学校",
+        "en": "Oshiro Elem. School",
+        "zh": "大城小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
+      "latest_date": "2026-10-23",
+      "items": [
+        {
+          "title": "４年生 体育 アタック vs ブロック！工夫いっぱいのバレーボール",
+          "date": "2026-10-23",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136314760?tm=20261023122134"
+        },
+        {
+          "title": "4年生 理科 ポンッ！と快音、空気てっぽうのひみつ",
+          "date": "2026-10-23",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136314634?tm=20261023121447"
+        },
+        {
+          "title": "バッタの観察",
+          "date": "2026-10-21",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136299700?tm=20261020163528"
+        }
+      ]
+    },
+    {
+      "slug": "momogaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "桃ヶ丘小学校",
+        "ja_kids": "ももがおか小学校",
+        "en": "Momogaoka Elem. School",
+        "zh": "桃之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
+      "latest_date": "2026-10-23",
+      "items": [
+        {
+          "title": "中央公園交流会 ～３・６年生～",
+          "date": "2026-10-23",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136319271?tm=20261023164845"
+        },
+        {
+          "title": "パレードにむけて",
+          "date": "2026-10-23",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136308147?tm=20261021170153"
+        },
+        {
+          "title": "３年生：図工「顔を出したらなんだかワクワク」",
+          "date": "2026-10-21",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136305502?tm=20261021134844"
+        }
+      ]
+    },
+    {
+      "slug": "hikarigaoka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "光ヶ丘中学校",
+        "ja_kids": "ひかりがおか中学校",
+        "en": "Hikarigaoka Junior High",
+        "zh": "光之丘中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
+      "latest_date": "2026-10-23",
+      "items": [
+        {
+          "title": "合唱コンクールリハーサルの様子 （３年生）",
+          "date": "2026-10-23",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136314954?tm=20261023123339"
+        },
+        {
+          "title": "小牧市総合防災訓練 3年生の様子",
+          "date": "2026-10-18",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136285803?tm=20261018165421"
+        },
+        {
+          "title": "あと一歩の壁を越えていけ！",
+          "date": "2026-10-12",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136248228?tm=20261012141018"
+        }
+      ]
+    },
     {
       "slug": "hikarigaoka-e",
       "level": "elem",
@@ -16,19 +190,19 @@
       "latest_date": "2026-10-23",
       "items": [
         {
-          "title": "やまももくらぶ「松本先生のお茶会」",
+          "title": "６年生 5校交流会",
           "date": "2026-10-23",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136310516?tm=20261023075552"
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136320162?tm=20261023173313"
         },
         {
-          "title": "６年生 給食",
-          "date": "2026-10-21",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136304367?tm=20261021122247"
+          "title": "5年生 総合",
+          "date": "2026-10-23",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136317796?tm=20261023152615"
         },
         {
-          "title": "5年生 運動会",
-          "date": "2026-10-21",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136300255?tm=20261020171604"
+          "title": "4年生 外国語活動",
+          "date": "2026-10-23",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136310440?tm=20261023075118"
         }
       ]
     },
@@ -58,180 +232,6 @@
           "title": "１年生 合唱コンクール・リハーサル",
           "date": "2026-10-21",
           "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136307765?tm=20261021193632"
-        }
-      ]
-    },
-    {
-      "slug": "sue-e",
-      "level": "elem",
-      "names": {
-        "ja": "陶小学校",
-        "ja_kids": "すえ小学校",
-        "en": "Sue Elem. School",
-        "zh": "陶小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-10-21",
-      "items": [
-        {
-          "title": "10/21 今日の給食",
-          "date": "2026-10-21",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136305652?tm=20261021135909"
-        },
-        {
-          "title": "10/21 読み聞かせ（１＆２年生）",
-          "date": "2026-10-21",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136304794?tm=20261021125736"
-        },
-        {
-          "title": "10/21 校外学習：サツマイモ収穫（２年生）",
-          "date": "2026-10-21",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136303189?tm=20261021104902"
-        }
-      ]
-    },
-    {
-      "slug": "ohshiro-e",
-      "level": "elem",
-      "names": {
-        "ja": "大城小学校",
-        "ja_kids": "おおしろ小学校",
-        "en": "Oshiro Elem. School",
-        "zh": "大城小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
-      "latest_date": "2026-10-21",
-      "items": [
-        {
-          "title": "バッタの観察",
-          "date": "2026-10-21",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136299700?tm=20261020163528"
-        },
-        {
-          "title": "運動会！大成功！",
-          "date": "2026-10-21",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136299640?tm=20261020163110"
-        },
-        {
-          "title": "３・4年生 運動会",
-          "date": "2026-10-21",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136299606?tm=20261020162848"
-        }
-      ]
-    },
-    {
-      "slug": "momogaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "桃ヶ丘小学校",
-        "ja_kids": "ももがおか小学校",
-        "en": "Momogaoka Elem. School",
-        "zh": "桃之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
-      "latest_date": "2026-10-21",
-      "items": [
-        {
-          "title": "３年生：図工「顔を出したらなんだかワクワク」",
-          "date": "2026-10-21",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136305502?tm=20261021134844"
-        },
-        {
-          "title": "後期の委員会もがんばっています",
-          "date": "2026-10-20",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136299196?tm=20261020155642"
-        },
-        {
-          "title": "最後の運動会 ～たくさんの参観、ありがとうございました～",
-          "date": "2026-10-20",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136274461?tm=20261020140555"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "篠岡中学校",
-        "ja_kids": "しのおか中学校",
-        "en": "Shinooka Junior High",
-        "zh": "篠冈中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-10-20",
-      "items": [
-        {
-          "title": "１年生 学年で交流会 学年合唱練習",
-          "date": "2026-10-20",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136300655?tm=20261020174850"
-        },
-        {
-          "title": "２年生 合唱練習 後半戦",
-          "date": "2026-10-20",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136293917?tm=20261020080042"
-        },
-        {
-          "title": "１年生 教育実習生 道徳",
-          "date": "2026-10-19",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136288079?tm=20261019105902"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-e",
-      "level": "elem",
-      "names": {
-        "ja": "篠岡小学校",
-        "ja_kids": "しのおか小学校",
-        "en": "Shinooka Elem. School",
-        "zh": "篠冈小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
-      "latest_date": "2026-10-18",
-      "items": [
-        {
-          "title": "運動会「笑顔いっぱい 最後の運動会」",
-          "date": "2026-10-18",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136285688?tm=20261018114108"
-        },
-        {
-          "title": "6年生：運動会「絆～４５人で紡ぐ篠岡フィナーレ」・短距離走",
-          "date": "2026-10-18",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136285677?tm=20261018113403"
-        },
-        {
-          "title": "5年生：運動会「ソーラン節～Change-up～」・短距離走",
-          "date": "2026-10-18",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136285671?tm=20261018112846"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "光ヶ丘中学校",
-        "ja_kids": "ひかりがおか中学校",
-        "en": "Hikarigaoka Junior High",
-        "zh": "光之丘中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
-      "latest_date": "2026-10-18",
-      "items": [
-        {
-          "title": "小牧市総合防災訓練 3年生の様子",
-          "date": "2026-10-18",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136285803?tm=20261018165421"
-        },
-        {
-          "title": "あと一歩の壁を越えていけ！",
-          "date": "2026-10-12",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136248228?tm=20261012141018"
-        },
-        {
-          "title": "ジュニア奉仕団 赤い羽根募金活動",
-          "date": "2026-10-12",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136246956?tm=20261010163452"
         }
       ]
     }
