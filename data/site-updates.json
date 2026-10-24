@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-10-24",
+      "type": "content",
+      "ja": "検証と提案・計画概要に教育の質の観点を追加（学力・人間力・健康など）",
+      "en": "Quality of education added to the review and plan pages (academic ability, personal strengths, health and more)"
+    },
+    {
+      "date": "2026-10-24",
       "type": "feature",
       "ja": "地域の取組の催しにも「カレンダーに追加」",
       "en": "“Add to calendar” buttons on community events too"

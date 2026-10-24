@@ -366,7 +366,8 @@
         "about.html",
         "faq.html",
         "map.html",
-        "clubs.html"
+        "clubs.html",
+        "review.html"
       ]
     },
     {
@@ -485,7 +486,23 @@
         "label": "安全グループ"
       },
       "shown_in": [
-        "bus.html"
+        "bus.html",
+        "review.html"
+      ]
+    },
+    {
+      "id": "pref-hokenshinko",
+      "level": "pref",
+      "name": "教育委員会事務局　保健体育課　振興・保健グループ",
+      "tel": "052-954-6793",
+      "source": "https://www.pref.aichi.jp/soshiki/hoken-taiiku/",
+      "probe": {
+        "kind": "pref_group",
+        "label": "振興・保健グループ"
+      },
+      "shown_in": [
+        "about.html",
+        "review.html"
       ]
     },
     {
@@ -693,7 +710,8 @@
         "label": "振興・調整グループ"
       },
       "shown_in": [
-        "about.html"
+        "about.html",
+        "review.html"
       ]
     },
     {
