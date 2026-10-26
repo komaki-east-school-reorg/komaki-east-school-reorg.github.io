@@ -13,7 +13,7 @@
    nationwide.html の文科省4URL、「地域の取組」（community.html と index.html）の
    Instagram 許可アカウントのみ、別途認めている。いずれも下のチェックで機械検査している。
 
-■ 許可するURL（5種類のみ。(1)〜(3)・(5) は「インデックスページ」、(4) だけは個別記事）
+■ 許可するURL（7種類のみ。(1)〜(3)・(5)・(6) は「インデックスページ」、(4)・(7) は個別記事）
   (1) 学校再編（教育総務課 学校再編推進係）＝サイト全体で使用
       https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html
   (2) 地域協議会（支え合い協働推進課）＝community.html でのみ使用
@@ -33,6 +33,12 @@
       ※2026-10-17 に追加（ユーザー許可）。リンクの文字列は js/main.js の
         TOSHIKEIKAKU EAST ブロックが持つ。配下の個別記事ページ・下位の索引は不可。
         auto_gates.py の CITY_PAGE_ONLY が review.html（と js/main.js）に限っている。
+  (6) 小牧市議会のトップ＝council.html の出典欄の下（市議会の公式ページ）でのみ使用
+      https://www.city.komaki.aichi.jp/shigikai/index.html
+  (7) 市議会だより＝同じ場所でのみ使用
+      https://www.city.komaki.aichi.jp/shigikai/houkoku/43556.html
+      ※(6)(7) は 2026-10-26 に追加（ユーザー指示）。配下の会議録・だよりの PDF は不可のまま。
+        auto_gates.py の CITY_PAGE_ONLY が council.html に限っている。
 
 ■ 別枠：再編対象8校のホームページ（komaki-aic.ed.jp）
   市サイトとは別ドメインで、各校が自分で運営している。市サイトのように

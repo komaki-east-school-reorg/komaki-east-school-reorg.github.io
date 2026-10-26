@@ -248,6 +248,8 @@
       margin-top: 2rem;
     }
     .source-box a { color: var(--primary); font-weight: 700; }
+    .council-links { margin: .8rem 0 0; font-size: .9rem; line-height: 1.8; }
+    .council-links a { color: var(--primary); font-weight: 700; }
 
     @media (max-width: 640px) {
       .council-card { padding: 1.1rem 1rem; }
@@ -709,6 +711,15 @@
 
       <!-- 出典 -->
       <div class="source-box" data-i18n-html="council_ref_box"><strong>出典・参考資料</strong><br>このページは小牧市議会だより No.214（令和8年5月発行）と No.215（令和8年8月発行）の内容を、当サイトが読んで書き直したものです。市議会だよりの文面そのままではありません。議員名・賛否の詳細・正確な答弁内容は必ず原文でご確認ください。このサイトは小牧市の公式サイトではなく、市民有志による非公式の情報提供サイトです。</div>
+
+      <!-- 市議会の公式ページ（2026-10-26 ユーザー指示）。許可URLの6・7本目で、council.html 限定
+           （auto_gates.py の CITY_PAGE_ONLY）。リンクの文字だけを訳し、URL は HTML にだけ書く。 -->
+      <p class="council-links">
+        <span data-i18n="council_links_label">市議会の公式ページ：</span>
+        <a href="https://www.city.komaki.aichi.jp/shigikai/index.html" target="_blank" rel="noopener" data-i18n="council_link_top">小牧市議会（市公式）</a>
+        <span aria-hidden="true">・</span>
+        <a href="https://www.city.komaki.aichi.jp/shigikai/houkoku/43556.html" target="_blank" rel="noopener" data-i18n="council_link_dayori">こまき市議会だより（市公式）</a>
+      </p>
 
       <!-- 問い合わせ先：傍聴・請願・会議録は議会事務局、条例の中身は教育総務課と、
            窓口が分かれている。部署名の欄に data-i18n を付けていないのは review.html と

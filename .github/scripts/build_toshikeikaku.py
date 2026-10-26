@@ -219,7 +219,7 @@ def add_site_updates(events):
         data = json.load(f)
     ups = data.get("updates", [])
     seen = {u.get("auto_key") for u in ups if u.get("auto_key")}
-    today = datetime.date.today().isoformat()
+    today = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).date().isoformat()   # 日本時間の今日（ランナーは UTC）
     added = []
     for ev in events:
         key = "toshikeikaku:" + "|".join((ev["slug"], ev["role"], ev.get("start", ""), ev["date"]))

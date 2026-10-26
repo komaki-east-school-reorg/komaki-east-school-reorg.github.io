@@ -10,9 +10,23 @@ window.KomakiLang = (function () {
       const q = new URLSearchParams(location.search).get('lang');
       if (LANGS.indexOf(q) !== -1) return q;
     } catch (e) {}
-    try { return localStorage.getItem('komaki_lang') || 'ja'; } catch (e) { return 'ja'; }
+    try {
+      const v = localStorage.getItem('komaki_lang');
+      return LANGS.indexOf(v) !== -1 ? v : 'ja';
+    } catch (e) { return 'ja'; }
   };
 })();
+
+/* ===== 取得データの URL を href に入れる前の検査（このファイル共通） =====
+   news.json・school_news.json などは外部のページから自動で取り込むので、javascript: や data: の
+   URL が紛れても実行されないよう、http(s) とサイト内の相対 URL だけを通す。それ以外は '#'。 */
+window.KomakiSafeUrl = function (u) {
+  if (u == null || u === '') return '#';
+  try {
+    var p = new URL(String(u), location.href).protocol;
+    return (p === 'https:' || p === 'http:') ? String(u) : '#';
+  } catch (e) { return '#'; }
+};
 
 /* ===== COUNTER：Cookie を使わない閲覧数の集計（2026-10-24 ユーザー指示） =====
    サイトがどう読まれているか（ページ・表示言語・参照元・機能の使われ方・紙の QR からの来訪）を
@@ -162,7 +176,10 @@ window.KomakiJaWhen = (function () {
     var date = '';
     var dm = /(?:令和(\d+)年)?(\d{1,2})月(\d{1,2})日/.exec(t);
     if (dm) {
-      var y = dm[1] ? 2018 + (+dm[1]) : new Date().getFullYear();
+      // 年の書いていない日付は、呼び出し側が知っている年（opts.iso＝その催しの YYYY-MM-DD）を使う。
+      // 今年で決め打ちすると、12月に翌年1月の催しを読んだとき曜日がずれる。
+      var isoY = /^(\d{4})-/.exec(opts.iso || '');
+      var y = dm[1] ? 2018 + (+dm[1]) : (isoY ? +isoY[1] : new Date().getFullYear());
       var d = new Date(y, +dm[2] - 1, +dm[3]);
       var o = {month: 'short', day: 'numeric', weekday: 'short'};
       if (dm[1]) o.year = 'numeric';
@@ -210,13 +227,20 @@ window.KomakiIcs = (function () {
   var HOST = 'komaki-east-school-reorg.github.io';
   function esc(v) {
     return String(v).replace(/\\/g, '\\\\').replace(/;/g, '\\;')
-                    .replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+                    .replace(/,/g, '\\,').replace(/\r\n|\r|\n/g, '\\n');
+  }
+  // 1文字ずつ（サロゲートペアは1文字として）UTF-8 のバイト数を数える。line[i] で回すと
+  // 絵文字の半分を encodeURIComponent に渡して URIError になり、書き出しごと止まっていた。
+  var ENC = (typeof TextEncoder !== 'undefined') ? new TextEncoder() : null;
+  function bytes(ch) {
+    if (ENC) return ENC.encode(ch).length;
+    var c = ch.codePointAt(0);
+    return c < 0x80 ? 1 : c < 0x800 ? 2 : c < 0x10000 ? 3 : 4;
   }
   function fold(line) {
-    var out = '', len = 0, i, ch, b;
-    for (i = 0; i < line.length; i++) {
-      ch = line[i];
-      b = encodeURIComponent(ch).replace(/%../g, 'x').length;
+    var out = '', len = 0, b;
+    for (var ch of line) {
+      b = bytes(ch);
       if (len + b > 73) { out += '\r\n '; len = 1; }
       out += ch; len += b;
     }
@@ -256,7 +280,12 @@ window.KomakiIcs = (function () {
       if (e.times) {
         L.push('DTSTART:' + jstUtc(e.date, e.times.sh, e.times.sm));
         // 終わりの時刻が公表されていないときは書かない（推測で作らない）
-        if (e.times.eh != null) L.push('DTEND:' + jstUtc(e.date, e.times.eh, e.times.em));
+        if (e.times.eh != null) {
+          // 終わりが始まりより前（「19時～1時」）なら日をまたぐ予定として翌日の時刻にする
+          var over = e.times.eh * 60 + e.times.em <= e.times.sh * 60 + e.times.sm;
+          L.push('DTEND:' + jstUtc(over ? nextDay(e.date).replace(/^(\d{4})(\d{2})(\d{2})$/, '$1-$2-$3') : e.date,
+                                   e.times.eh, e.times.em));
+        }
       } else {
         // 終日。何日か続く予定・期間（e.end）は、DTEND に最終日の翌日を書く（RFC 5545 の終日の書き方）
         L.push('DTSTART;VALUE=DATE:' + ymd(e.date));
@@ -265,7 +294,7 @@ window.KomakiIcs = (function () {
       L.push(fold('SUMMARY:' + esc(e.summary)));
       if (e.description) L.push(fold('DESCRIPTION:' + esc(e.description)));
       if (e.location) L.push(fold('LOCATION:' + esc(e.location)));
-      if (e.url) L.push(fold('URL:' + e.url));
+      if (e.url) L.push(fold('URL:' + String(e.url).replace(/[\r\n]/g, '')));
       L.push('END:VEVENT');
     });
     L.push('END:VCALENDAR');
@@ -370,7 +399,9 @@ window.KomakiIcs = (function () {
   // 一覧を描き直すブロックは、描いたあとに attach(その箱) を呼ぶ。compact は帯（アイコンだけ）。
   var evP = null;
   function events() {
-    if (!evP) evP = window.KomakiEvents().then(function (d) { return d.events || {}; });
+    // 失敗はキャッシュしない（つながり直したあとの描き直しでボタンが付くように）
+    if (!evP) evP = window.KomakiEvents().then(function (d) { return d.events || {}; },
+                                              function (e) { evP = null; throw e; });
     return evP;
   }
   function find(evs, key, idx) {
@@ -467,9 +498,9 @@ window.KomakiHeadline = (function () {
   function load() {
     if (!p) {
       p = fetch('./data/headline_i18n.json')
-        .then(function (r) { return r.ok ? r.json() : {}; })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
         .then(function (d) { return (d && d.items) || {}; })
-        .catch(function () { return {}; });
+        .catch(function () { p = null; return {}; });
     }
     return p;
   }
@@ -679,8 +710,10 @@ window.KomakiGrade = (function () {
   }
 
   function seen() {
-    try { return JSON.parse(localStorage.getItem('komaki_feature_seen') || '[]'); }
-    catch (e) { return []; }
+    try {
+      var a = JSON.parse(localStorage.getItem('komaki_feature_seen') || '[]');
+      return Array.isArray(a) ? a : [];
+    } catch (e) { return []; }
   }
   function markSeen(id) {
     try {
@@ -1048,7 +1081,8 @@ window.KomakiGrade = (function () {
   // 手書きで current（準備中）にした項目も、終わりの日を過ぎたら完了にする（schedule 側と同じ扱い）。
   // 以前は current を除外していたため、9/30 に終わった受付が10月になっても「準備中」のままだった。
   document.querySelectorAll('.status-item[data-event-date]').forEach(function (item) {
-    if (item.dataset.eventDate <= todayStr && !item.classList.contains('done')) {
+    // 終わりの日の当日はまだ完了にしない（2026-10-26 ユーザー決定：当日は「進行中」）
+    if (item.dataset.eventDate < todayStr && !item.classList.contains('done')) {
       item.classList.remove('current');
       item.classList.add('done');
       var label = item.querySelector('.status-label');
@@ -1061,9 +1095,13 @@ window.KomakiGrade = (function () {
 
   // schedule.html イベント一覧項目
   document.querySelectorAll('.event-item[data-event-date]').forEach(function (item) {
-    if (item.dataset.eventDate <= todayStr) {
+    if (item.dataset.eventDate < todayStr) {
       item.classList.remove('upcoming', 'current');
       item.classList.add('done');
+    } else if (!item.classList.contains('done') && (item.dataset.start || item.dataset.eventDate) <= todayStr) {
+      // 始まりの日から終わりの日の当日までは「進行中」
+      item.classList.remove('upcoming', 'done');
+      item.classList.add('current');
     }
   });
 
@@ -1169,7 +1207,7 @@ window.KomakiGrade = (function () {
   function todayIso() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
 
   function listFor(year) {
-    var h = document.querySelector('[data-i18n="schedule_' + year + '_h3"]');
+    var h = document.querySelector('[data-i18n="schedule_' + (window.CSS && CSS.escape ? CSS.escape(String(year)) : String(year)) + '_h3"]');
     var el = h && h.nextElementSibling;
     while (el && !(el.classList && el.classList.contains('event-list'))) el = el.nextElementSibling;
     if (el) return el;
@@ -1192,7 +1230,7 @@ window.KomakiGrade = (function () {
         if (!list) return;
         var start = t.start || key;   // 期間（都市計画の閲覧・意見募集）は始まりの日から
         var date = fmtDay(start, lang) + (start !== key ? (lang === 'ja' || lang === 'zh' ? ' 〜 ' : ' – ') + fmtDay(key, lang) : '');
-        var state = key < today || (start === key && key <= today) ? 'done' : start <= today ? 'current' : 'upcoming';
+        var state = key < today ? 'done' : start <= today ? 'current' : 'upcoming';
         var badge = window.KomakiEventStatus(state);
         var title = window.KomakiHeadline.text(map, t.title);
         var place = t.place ? window.KomakiHeadline.text(map, t.place) : '';
@@ -1306,7 +1344,7 @@ window.KomakiGrade = (function () {
     var lang = window.KomakiLang();
     var chip = chipText(next.days);
     var host = next.list.length === 1 &&
-      bar.querySelector('.upcoming-item[data-expires="' + next.key + '"]:not(.upcoming-next)');
+      bar.querySelector('.upcoming-item[data-expires="' + (window.CSS && CSS.escape ? CSS.escape(next.key) : next.key) + '"]:not(.upcoming-next)');
     if (host) {
       // 帯にその日の項目があれば、札は DATE COUNTDOWN（全ページ共通）が付けるのでここでは何もしない
     } else {
@@ -1515,7 +1553,8 @@ window.KomakiGrade = (function () {
     if (!r.ok) throw new Error(r.status);
     return r.json();
   }).then(function (d) {
-    if (typeof d.base_value !== 'number' || typeof d.daily_rate !== 'number' || !d.base_date || !d.official) return;
+    if (typeof d.base_value !== 'number' || typeof d.daily_rate !== 'number' || !d.base_date || !d.official ||
+        !d.official.date || typeof d.official.children !== 'number') return;
     data = d;
     render();
   }).catch(function () {});
@@ -1789,7 +1828,10 @@ window.KomakiGrade = (function () {
         col._head.classList.add('is-collapsible');
         col._head.setAttribute('role', 'button');
         col._head.setAttribute('tabindex', '0');
-        setOpen(col, false);                         // スマートフォンでは既定で畳む
+        // スマートフォンでは既定で畳む。辞書の当て直しのたびに畳み直すと、読者が開いた列が
+        // こどもむけの切り替えなどで閉じてしまうので、最初の1回（と PC 幅から戻ったとき）だけ。
+        if (!col._collapsedOnce) { setOpen(col, false); col._collapsedOnce = true; }
+        else setOpen(col, !col.classList.contains('is-collapsed'));
       } else {
         col._head.classList.remove('is-collapsible');
         col._head.removeAttribute('role');
@@ -1797,6 +1839,7 @@ window.KomakiGrade = (function () {
         col._head.removeAttribute('aria-expanded');
         undecorate(col);
         col.classList.remove('is-collapsed');
+        col._collapsedOnce = false;
       }
     });
   }
@@ -1840,9 +1883,9 @@ window.KomakiGrade = (function () {
   }
   function nFmtDate(t) {
     var iso = nIso(t);
-    if (!iso) return t || '';
+    if (!iso) return nEsc(t || '');
     var d = new Date(iso + 'T00:00:00');
-    if (isNaN(d)) return t || '';
+    if (isNaN(d)) return nEsc(t || '');
     return d.toLocaleDateString(_nl === 'ja' ? 'ja-JP' : _nl,
       {year: 'numeric', month: _nl === 'ja' ? 'long' : 'short', day: 'numeric'});
   }
@@ -1866,7 +1909,7 @@ window.KomakiGrade = (function () {
       if (items.length === 0) {
         container.innerHTML =
           `<p class="official-news-loading">${ntr('no_items', days)}</p>` +
-          `<a href="${data.source_url}" target="_blank" rel="noopener" class="card-link">${ntr('see_all')}</a>`;
+          `<a href="${nEsc(window.KomakiSafeUrl(data.source_url))}" target="_blank" rel="noopener" class="card-link">${ntr('see_all')}</a>`;
         return;
       }
 
@@ -1878,7 +1921,7 @@ window.KomakiGrade = (function () {
         const iso = nIso(item.updated_at);
         return `<li class="official-news-item" data-date="${iso}">` +
                  `<div class="official-news-item-inner">` +
-                   `<a href="${nEsc(item.url)}" target="_blank" rel="noopener" data-hl="${nEsc(item.title)}">${nEsc(item.title)}</a>` +
+                   `<a href="${nEsc(window.KomakiSafeUrl(item.url))}" target="_blank" rel="noopener" data-hl="${nEsc(item.title)}">${nEsc(item.title)}</a>` +
                    date +
                  `</div>` +
                `</li>`;
@@ -1887,7 +1930,7 @@ window.KomakiGrade = (function () {
       container.innerHTML =
         `<div class="official-news-meta">${ntr('showing', days)}</div>` +
         `<ul class="official-news-list">${listHtml}</ul>` +
-        `<a href="${data.source_url}" target="_blank" rel="noopener" class="card-link">${ntr('see_all')}</a>`;
+        `<a href="${nEsc(window.KomakiSafeUrl(data.source_url))}" target="_blank" rel="noopener" class="card-link">${ntr('see_all')}</a>`;
       window.KomakiHeadline.apply(container);   // 見出しを表示言語に
     })
     .catch(() => {
@@ -1964,7 +2007,7 @@ window.KomakiGrade = (function () {
         // 各校とも最新1件だけ出す。日付はカード見出しの「最終更新」と同じになるので添えない。
         var items = (s.items || []).slice(0, 1).map(function (it) {
           // data-date は回覧板シート（BOARD SHEET）が直近1週間を絞り込むのに使う
-          return '<li data-date="' + esc(it.date || '') + '"><a href="' + esc(it.url) + '" target="_blank" rel="noopener" data-hl="' + esc(it.title) + '">' +
+          return '<li data-date="' + esc(it.date || '') + '"><a href="' + esc(window.KomakiSafeUrl(it.url)) + '" target="_blank" rel="noopener" data-hl="' + esc(it.title) + '">' +
                    esc(it.title) +
                  '</a></li>';
         }).join('');
@@ -1972,11 +2015,11 @@ window.KomakiGrade = (function () {
         // 「最終更新」は校名やバッジと横幅を取り合うと折り返してしまうので、
         // 見出し行ではなくカード末尾の行に置き、リンクと左右に振り分ける。
         var date = s.latest_date
-          ? '<span class="school-date">' + str('updated') + fmtDate(s.latest_date) + '</span>' : '';
+          ? '<span class="school-date">' + str('updated') + esc(fmtDate(s.latest_date)) + '</span>' : '';
 
         return '<div class="school-card' + (fresh ? ' school-card--fresh' : '') + '">' +
                  '<div class="school-card-head">' +
-                   '<a class="school-name" href="' + esc(s.url) + '" target="_blank" rel="noopener">' +
+                   '<a class="school-name" href="' + esc(window.KomakiSafeUrl(s.url)) + '" target="_blank" rel="noopener">' +
                      esc(schoolName(s.names)) +
                    '</a>' +
                    '<span class="school-badge">' + str(s.level === 'jhs' ? 'jhs' : 'elem') + '</span>' +
@@ -1985,7 +2028,7 @@ window.KomakiGrade = (function () {
                  (items ? '<ul class="school-items">' + items + '</ul>'
                         : '<p class="school-empty">' + str('empty') + '</p>') +
                  '<div class="school-card-foot">' + date +
-                   '<a class="school-card-link" href="' + esc(s.url) + '" target="_blank" rel="noopener">' + str('visit') + '</a>' +
+                   '<a class="school-card-link" href="' + esc(window.KomakiSafeUrl(s.url)) + '" target="_blank" rel="noopener">' + str('visit') + '</a>' +
                  '</div>' +
                '</div>';
       }).join('') + '</div>';
@@ -2048,7 +2091,7 @@ window.KomakiGrade = (function () {
         // data-key は SINCE LAST VISIT が「前回見たか」を言語に関係なく照合するための目印
         return '<li class="update-item" data-date="' + esc(it.date || '') + '" data-key="' + esc((it.date || '') + '|' + (it.ja || '')) + '">' +
                  '<div class="update-meta">' +
-                   '<time class="update-date" datetime="' + esc(it.date || '') + '">' + fmtDate(it.date) + '</time>' +
+                   '<time class="update-date" datetime="' + esc(it.date || '') + '">' + esc(fmtDate(it.date)) + '</time>' +
                    '<span class="update-tag update-tag--' + type + '">' + str(type) + '</span>' +
                  '</div>' +
                  '<div class="update-text">' + esc(text) + '</div>' +
@@ -2095,7 +2138,7 @@ window.KomakiGrade = (function () {
     .then(data => {
       const events = data.events || [];
       const src = data.source_url || FALLBACK_SRC;
-      const seeAll = `<a href="${esc(src)}" target="_blank" rel="noopener" class="card-link">${cet('see_all')}</a>`;
+      const seeAll = `<a href="${esc(window.KomakiSafeUrl(src))}" target="_blank" rel="noopener" class="card-link">${cet('see_all')}</a>`;
 
       if (!events.length) {
         container.innerHTML = `<p class="official-news-loading">${cet('none')}</p>` + seeAll;
@@ -2112,7 +2155,7 @@ window.KomakiGrade = (function () {
           ? `<span class="ce-badge">${cet('badge')}</span>` : '';
         // 日時は表示言語の書式に組み直す（イベント名は下の apply で訳に置き換える）
         const when = ev.when
-          ? `<span class="ce-when">${cet('when')} ${esc(window.KomakiJaWhen(ev.when, _cl))}</span>` : '';
+          ? `<span class="ce-when">${cet('when')} ${esc(window.KomakiJaWhen(ev.when, _cl, {iso: ev.date}))}</span>` : '';
         // 「あと◯日」用の日付。when は「10月10日 11時…」と年が無いので、掲載ページの
         // 更新日（updated_at）の年に置き、それより2か月以上前になるなら翌年とみなす。
         // data/community_events.json の date（build_community_events.py が同じ規則で付ける）を優先する。
@@ -2130,9 +2173,9 @@ window.KomakiGrade = (function () {
         const ics = (cd && cd >= todayKey)
           ? `<button type="button" class="ce-ics" data-ce="${idx}">${cet('ics')}</button>` : '';
         if (ics) icsEvs[idx] = {ev: ev, date: cd};
-        return `<li class="ce-item${ev.shinooka ? ' ce-item--shinooka' : ''}"${cd ? ` data-countdown="${cd}"` : ''}>` +
+        return `<li class="ce-item${ev.shinooka ? ' ce-item--shinooka' : ''}"${cd ? ` data-countdown="${esc(cd)}"` : ''}>` +
                  `<div class="ce-head">${badge}` +
-                   `<a href="${esc(ev.url)}" target="_blank" rel="noopener" data-hl="${esc(ev.title)}">${esc(ev.title)}</a>` +
+                   `<a href="${esc(window.KomakiSafeUrl(ev.url))}" target="_blank" rel="noopener" data-hl="${esc(ev.title)}">${esc(ev.title)}</a>` +
                  `</div>` +
                  when + ics +
                `</li>`;
@@ -2159,7 +2202,7 @@ window.KomakiGrade = (function () {
             location: x.ev.place ? window.KomakiHeadline.text(map, x.ev.place) : '',
             url: x.ev.url || ''
           }]), 'komaki-council-' + x.date + '.ics');
-        });
+        }).catch(function (err) { if (window.console) console.error(err); });
       });
     })
     .catch(() => {
@@ -2268,7 +2311,7 @@ window.KomakiGrade = (function () {
         const labels = getEventLabels(key);
         if (labels.length) {
           cell.classList.add('has-event');
-          const isPast = key <= todayKey;
+          const isPast = key < todayKey;
           labels.forEach(function (lb) {
             const dot = document.createElement('span');
             dot.className = 'cal-event-dot' + (isPast ? ' past' : '');
@@ -2326,7 +2369,7 @@ window.KomakiGrade = (function () {
       });
       const l = window.KomakiLang();
       const list = eventsAt(key);
-      const isPast = key <= todayKey;
+      const isPast = key < todayKey;
       card.innerHTML = '';
       const head = document.createElement('div');
       head.className = 'cal-day-card-head';
@@ -2337,7 +2380,7 @@ window.KomakiGrade = (function () {
       x.className = 'cal-day-card-close';
       x.textContent = cs('close', '閉じる');
       x.addEventListener('click', function () {
-        const cell = document.querySelector('#cal-grid .cal-day[data-date="' + key + '"]');
+        const cell = document.querySelector('#cal-grid .cal-day[data-date="' + (window.CSS && CSS.escape ? CSS.escape(key) : key) + '"]');
         closeCard();
         if (cell) cell.focus();
       });
@@ -3081,7 +3124,7 @@ window.KomakiGrade = (function () {
   var MASTODON_KEY = 'komaki_mastodon';
 
   function mastodonHost() {
-    try { return localStorage.getItem(MASTODON_KEY) || ''; } catch (e) { return ''; }
+    try { return normalizeHost(localStorage.getItem(MASTODON_KEY)); } catch (e) { return ''; }
   }
 
   function normalizeHost(v) {
@@ -3102,14 +3145,12 @@ window.KomakiGrade = (function () {
     // href の無い <a> はキーボードで到達できなくなるため。
     var mastodonBtn = makeBtn('button', 'mastodon', 'm', 'share_mastodon', 'Mastodonで共有');
     mastodonBtn.addEventListener('click', function () {
-      var host = mastodonHost();
-      if (!host) {
-        var raw = window.prompt(hostPromptTpl.textContent, '');
-        if (raw === null) return;                 // 取り消し
-        host = normalizeHost(raw);
-        if (!host) { showMsg(toast, msgHostNgTpl.textContent); return; }
-        try { localStorage.setItem(MASTODON_KEY, host); } catch (e) {}
-      }
+      // 覚えたサーバーは入力欄の既定値に入れて毎回確かめる（打ち間違えたサーバーを直せるように）
+      var raw = window.prompt(hostPromptTpl.textContent, mastodonHost());
+      if (raw === null) return;                   // 取り消し
+      var host = normalizeHost(raw);
+      if (!host) { showMsg(toast, msgHostNgTpl.textContent); return; }
+      try { localStorage.setItem(MASTODON_KEY, host); } catch (e) {}
       window.open('https://' + host + '/share?text=' + enc(withTags(shareTitle()) + ' ' + shareUrl()),
                   '_blank', 'noopener');
     });
@@ -3623,7 +3664,7 @@ window.KomakiGrade = (function () {
       (lead ? '<p class="board-desc">' + esc(lead) + '</p>' : '') +
       '<div class="board-body">' + body + '</div>' +
       '<div class="board-qr">' +
-        '<img id="board-qr-img" alt="" src="qr/' + pageId + '.' + lang + '.svg">' +
+        '<img id="board-qr-img" alt="" src="qr/' + esc(pageId) + '.' + esc(lang) + '.svg">' +
         '<div class="board-qr-text">' +
           '<div class="board-cta">' + esc(t('cta', 'この紙に載せきれなかったことは、サイトにすべて載っています。')) + '</div>' +
           '<div class="board-url">' + esc(pageUrl(lang)) + '</div>' +
@@ -3799,7 +3840,8 @@ window.KomakiGrade = (function () {
   heads.forEach(function (h) {
     var li = document.createElement('li');
     var a = document.createElement('a');
-    a.href = '#' + targetId(h);
+    // 404.html と予定ページは <base href="/"> を持つので、'#id' だけだとトップへ飛ぶ。いまのページの URL を前に付ける。
+    a.href = location.pathname + location.search + '#' + targetId(h);
     a.textContent = label(h);
     li.appendChild(a);
     ol.appendChild(li);
@@ -3911,7 +3953,7 @@ window.KomakiGrade = (function () {
   }
   function onCopy(btn, id, kind) {
     copy(urlFor(id)).then(function () {
-      try { history.replaceState(null, '', '#' + id); } catch (e) {}
+      try { history.replaceState(null, '', location.pathname + location.search + '#' + id); } catch (e) {}
       btn.classList.add('is-copied');
       btn.setAttribute('aria-label', t('done'));
       btn.title = t('done');
@@ -3970,7 +4012,7 @@ window.KomakiGrade = (function () {
   var landed = false;
   function land() {
     if (landed) return;
-    var id = decodeURIComponent((location.hash || '').slice(1));
+    var id; try { id = decodeURIComponent((location.hash || '').slice(1)); } catch (e) { landed = true; return; }
     var it = id && document.getElementById(id);
     if (!it || !it.classList.contains('faq-item')) { landed = true; return; }
     var q = it.querySelector('.faq-q');
@@ -4578,7 +4620,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
               source_label: pick({x_ja: _at.tokadai_src.ja, x_en: _at.tokadai_src.en}, 'x'),
               source_url: window.KomakiTobuSourceUrl};
     it['body_' + _al] = at('tokadai_body');
-    if (_al !== 'ja' && t.date_note) it['date_note_' + _al] = window.KomakiJaWhen(t.date_note, _al);
+    if (_al !== 'ja' && t.date_note) it['date_note_' + _al] = window.KomakiJaWhen(t.date_note, _al, {iso: t.date});
     return it;
   }
   /* 東部地域の地域協議会の催し（2026-10-05 ユーザー指示）。data/community_events.json（自動生成）の
@@ -4591,7 +4633,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
               source_label: at('council_src'),
               source_url: 'community.html#council-events', _internal: true};
     it['body_' + _al] = at('council_body');
-    if (_al !== 'ja' && t.date_note) it['date_note_' + _al] = window.KomakiJaWhen(t.date_note, _al);
+    if (_al !== 'ja' && t.date_note) it['date_note_' + _al] = window.KomakiJaWhen(t.date_note, _al, {iso: t.date});
     return it;
   }
   // 自動で足す催しは KomakiTokadaiEvents()（スケジュールと同じ元）から取る。終わったものは notPast が落とす。
@@ -4643,20 +4685,20 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
         var body = pick(it, 'body');
         var src = it.source_url
           ? (it._internal
-              ? '<a href="' + esc(it.source_url) + '">' + esc(it.source_label || it.source_url) + '</a>'
-              : '<a href="' + esc(it.source_url) + '" target="_blank" rel="noopener">' + esc(it.source_label || it.source_url) + '</a>')
+              ? '<a href="' + esc(window.KomakiSafeUrl(it.source_url)) + '">' + esc(it.source_label || it.source_url) + '</a>'
+              : '<a href="' + esc(window.KomakiSafeUrl(it.source_url)) + '" target="_blank" rel="noopener">' + esc(it.source_label || it.source_url) + '</a>')
           : esc(it.source_label || '');
         // 任意の「参考」行。発信元（主催者自身の発信）とは別に、
         // 本文で触れた事実の出どころを1本だけ示す枠（2026-09-24 ユーザー指示で追加）。
         // 発信元の行とまとめないこと — 主催者の発信と第三者の公表は別物。
         var ref = it.ref_url
-          ? '<div class="action-source">' + at('ref') + '：<a href="' + esc(it.ref_url) + '" target="_blank" rel="noopener">' +
+          ? '<div class="action-source">' + at('ref') + '：<a href="' + esc(window.KomakiSafeUrl(it.ref_url)) + '" target="_blank" rel="noopener">' +
             esc(pick(it, 'ref_label') || it.ref_url) + '</a></div>'
           : '';
         // 任意の「会場の案内」行。会場になる施設自身の告知ページ（2026-09-27 追加）。
         // 主催者でも事実の出どころでもないので、発信元・参考とは別の行にする。
         var venue = it.venue_url
-          ? '<div class="action-source">' + at('venue') + '：<a href="' + esc(it.venue_url) + '" target="_blank" rel="noopener">' +
+          ? '<div class="action-source">' + at('venue') + '：<a href="' + esc(window.KomakiSafeUrl(it.venue_url)) + '" target="_blank" rel="noopener">' +
             esc(pick(it, 'venue_label') || it.venue_url) + '</a></div>'
           : '';
         // data-countdown は DATE COUNTDOWN が「あと◯日」の札を付ける日。複数日の催しは
@@ -4958,6 +5000,8 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     schools: {ja:'各校のホームページ', en:'school websites', pt:'sites das escolas', vi:'trang web của các trường', tl:'website ng mga paaralan', es:'sitios web de las escuelas', zh:'各校网站', id:'situs web sekolah', ko:'각 학교 홈페이지', ne:'विद्यालयका वेबसाइटहरू', tr:'okul web siteleri', my:'ကျောင်းဝဘ်ဆိုက်များ'},
     ok:      {ja:'{src}を最後に確かめた日時：{t}', en:'Last checked ({src}): {t}', pt:'Última verificação ({src}): {t}', vi:'Kiểm tra lần cuối ({src}): {t}', tl:'Huling sinuri ({src}): {t}', es:'Última verificación ({src}): {t}', zh:'最后确认时间（{src}）：{t}', id:'Terakhir diperiksa ({src}): {t}', ko:'마지막 확인({src}): {t}', ne:'अन्तिम जाँच ({src}): {t}', tr:'Son kontrol ({src}): {t}', my:'နောက်ဆုံး စစ်ဆေးချိန် ({src}): {t}'},
     fail:    {ja:'{t1}に{src}を確かめに行きましたが、取得できませんでした。この一覧は{t2}に確かめた時点の内容です。', en:'The check at {t1} failed ({src}). This list is as of {t2}.', pt:'A verificação de {t1} falhou ({src}). Esta lista corresponde a {t2}.', vi:'Lần kiểm tra lúc {t1} không thành công ({src}). Danh sách này là nội dung tại {t2}.', tl:'Hindi nagtagumpay ang pagsuri noong {t1} ({src}). Ang listahang ito ay mula sa {t2}.', es:'La verificación de {t1} falló ({src}). Esta lista corresponde a {t2}.', zh:'{t1}的确认未能获取内容（{src}）。此列表为{t2}确认时的内容。', id:'Pemeriksaan pada {t1} gagal ({src}). Daftar ini sesuai keadaan {t2}.', ko:'{t1} 확인에 실패했습니다({src}). 이 목록은 {t2} 기준입니다.', ne:'{t1} को जाँच असफल भयो ({src})। यो सूची {t2} को अवस्थाअनुसार हो।', tr:'{t1} tarihindeki kontrol başarısız oldu ({src}). Bu liste {t2} itibarıyladır.', my:'{t1} တွင် စစ်ဆေးမှု မအောင်မြင်ပါ ({src})။ ဤစာရင်းသည် {t2} အချိန်က အကြောင်းအရာ ဖြစ်သည်။'},
+    // 一度も取得できていない取得元（last_ok_at が無い）。以前は「最後に確かめた日時」と成功の文を出していた
+    failnone:{ja:'{t}に{src}を確かめに行きましたが、取得できませんでした。', en:'The check at {t} failed ({src}).', pt:'A verificação de {t} falhou ({src}).', vi:'Lần kiểm tra lúc {t} không thành công ({src}).', tl:'Hindi nagtagumpay ang pagsuri noong {t} ({src}).', es:'La verificación de {t} falló ({src}).', zh:'{t}的确认未能获取内容（{src}）。', id:'Pemeriksaan pada {t} gagal ({src}).', ko:'{t} 확인에 실패했습니다({src}).', ne:'{t} को जाँच असफल भयो ({src})।', tr:'{t} tarihindeki kontrol başarısız oldu ({src}).', my:'{t} တွင် စစ်ဆေးမှု မအောင်မြင်ပါ ({src})။'},
     stale:   {ja:'{src}を{t}から確かめられていません。この一覧はその時点の内容です。', en:'Not checked since {t} ({src}). This list is as of then.', pt:'Sem verificação desde {t} ({src}). Esta lista corresponde àquele momento.', vi:'Chưa kiểm tra từ {t} ({src}). Danh sách này là nội dung tại thời điểm đó.', tl:'Hindi pa nasusuri mula {t} ({src}). Ang listahang ito ay mula sa panahong iyon.', es:'Sin verificar desde {t} ({src}). Esta lista corresponde a ese momento.', zh:'自{t}起未能确认（{src}）。此列表为当时的内容。', id:'Belum diperiksa sejak {t} ({src}). Daftar ini sesuai keadaan saat itu.', ko:'{t} 이후 확인하지 못했습니다({src}). 이 목록은 그 시점 기준입니다.', ne:'{t} देखि जाँच हुन सकेको छैन ({src})। यो सूची त्यस बेलाको अवस्थाअनुसार हो।', tr:'{t} tarihinden beri kontrol edilemedi ({src}). Bu liste o tarih itibarıyladır.', my:'{t} ကတည်းက မစစ်ဆေးနိုင်ပါ ({src})။ ဤစာရင်းသည် ထိုအချိန်က အကြောင်းအရာ ဖြစ်သည်။'}
   };
   function ft(k) { return _ft[k][_fl] || _ft[k].en; }
@@ -4988,6 +5032,9 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
         var text, warn = false;
         if (!s.ok && s.last_ok_at) {
           text = ft('fail').replace('{t1}', when(s.checked_at)).replace('{t2}', when(s.last_ok_at));
+          warn = true;
+        } else if (!s.ok) {
+          text = ft('failnone').replace('{t}', when(s.checked_at));
           warn = true;
         } else if (Date.now() - new Date(s.checked_at).getTime() > STALE_MS) {
           text = ft('stale').replace('{t}', when(s.last_ok_at || s.checked_at));

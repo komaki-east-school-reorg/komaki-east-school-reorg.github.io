@@ -53,7 +53,7 @@ import json
 import os
 import re
 import sys
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 
 SNAPSHOT_DIR = "data/official_pages"
 PREFIX = "toubumachidukuri-tobumachidukurisingikai-"
@@ -189,7 +189,7 @@ def main():
         return 1
 
     paths = sorted(glob.glob(os.path.join(SNAPSHOT_DIR, PREFIX + "*.txt")))
-    today = date.today()
+    today = datetime.now(timezone(timedelta(hours=9))).date()   # 日本時間の今日（ランナーは UTC）
     cutoff = (today - timedelta(days=WINDOW_DAYS)).isoformat()
     today_s = today.isoformat()
 

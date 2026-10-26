@@ -400,10 +400,11 @@
   // faq.html に静的に書き写すと data/i18n/*.json との二重管理になり、
   // 片方だけ直したときに黙って食い違う。表示中の辞書からその場で組み立てて、
   // 情報源を data/i18n/ 一本に保つ。表示している言語のまま出力する。
+  // DOMParser で読む：文書に属する div の innerHTML に入れると、切り離したままでも
+  // <img onerror> などが動いてしまうため（DOMParser の文書ではスクリプトも画像の読み込みも動かない）。
   function stripTags(html) {
-    var d = document.createElement('div');
-    d.innerHTML = String(html);
-    return d.textContent.replace(/\s+/g, ' ').trim();
+    var doc = new DOMParser().parseFromString(String(html), 'text/html');
+    return (doc.body.textContent || '').replace(/\s+/g, ' ').trim();
   }
 
   function applyFaqJsonLd(dict, pageId, lang) {
@@ -522,10 +523,16 @@
       .catch(function () { return fetchJson(lang); });
   }
 
+  // こどもむけを素早く切り替えたとき、先に始めた取得が後から終わって上書きしないよう、
+  // いちばん新しい呼び出しの結果だけを当てる。
+  var _loadGen = 0;
   function loadAndApply(lang) {
     if (!LANGS.includes(lang)) lang = DEFAULT;
     _currentLang = lang;
+    var gen = ++_loadGen;
+    function applyNow(dict, l) { if (gen === _loadGen) applyDict(dict, l); }
 
+    clearTimeout(_safetyTimer);
     _safetyTimer = setTimeout(showPage, SAFETY_MS);
 
     var useKids = _kidsMode && lang === DEFAULT;
@@ -535,16 +542,16 @@
     if (lang === DEFAULT && useKids) {
       Promise.all([fetchDict(DEFAULT), fetchDict('ja-kids')])
         .then(function (results) {
-          applyDict(applyTemporal(Object.assign({}, results[0], results[1])), DEFAULT);
+          applyNow(applyTemporal(Object.assign({}, results[0], results[1])), DEFAULT);
         })
         .catch(function () {
           fetchDict(DEFAULT)
-            .then(function (dict) { applyDict(applyTemporal(dict), DEFAULT); })
+            .then(function (dict) { applyNow(applyTemporal(dict), DEFAULT); })
             .catch(showPage);
         });
     } else if (lang === DEFAULT) {
       fetchDict(DEFAULT)
-        .then(function (dict) { applyDict(applyTemporal(dict), DEFAULT); })
+        .then(function (dict) { applyNow(applyTemporal(dict), DEFAULT); })
         .catch(showPage);
     } else {
       // en → 対象言語 の順に重ねる。対象言語に無いキーは英語で出る。
@@ -558,15 +565,15 @@
       //   そのまま書かれているので、表示は従来と同じ日本語に落ちる。
       Promise.all([fetchDict(BRIDGE), fetchDict(lang)])
         .then(function (results) {
-          applyDict(applyTemporal(Object.assign({}, results[0], results[1])), lang);
+          applyNow(applyTemporal(Object.assign({}, results[0], results[1])), lang);
         })
         .catch(function () {
           // 対象言語が取れない場合は en だけ、それも駄目なら ja で表示
           fetchDict(BRIDGE)
-            .then(function (dict) { applyDict(applyTemporal(dict), lang); })
+            .then(function (dict) { applyNow(applyTemporal(dict), lang); })
             .catch(function () {
               fetchDict(DEFAULT)
-                .then(function (dict) { applyDict(applyTemporal(dict), DEFAULT); })
+                .then(function (dict) { applyNow(applyTemporal(dict), DEFAULT); })
                 .catch(showPage);
             });
         });

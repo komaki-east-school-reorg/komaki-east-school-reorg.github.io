@@ -12,12 +12,16 @@
      INSTALL APP）が「オフライン表示中」のバーで断る。
    - 中身の鮮度は network-first が守るので、ふだんは CACHE の版を上げなくてよい。
      このファイルの仕組みを変えたときだけ上げる（activate で古い版を消す）。
+   - ページ（navigate）は ?lang= や ?fbclid= などを外した URL で1枚だけ保存する（v2、2026-10-26）。
+     URL ごとに保存していたので、共有リンクの付け足し（?fbclid= など）のたびにキャッシュが増え続けた。
+     言語は localStorage でも決まり、i18n.js が辞書を当てるので、ページの HTML は1枚で足りる。
+     「/」は「/index.html」と同じものとして保存する。
    ===================================================================== */
-var CACHE = 'komaki-v1';
+var CACHE = 'komaki-v2';
 
 // 最初に入れておく最小限（トップを一度も開かずにアプリを入れた人のため）
 var PRECACHE = [
-  '/',
+  '/index.html',
   '/css/style.css',
   '/js/i18n.js',
   '/js/main.js',
@@ -67,17 +71,22 @@ self.addEventListener('fetch', function (e) {
   if (url.pathname === '/sw.js') return;
 
   var isPage = req.mode === 'navigate';
+  // ページの保存キー：検索語を外し、「/」は「/index.html」にそろえる
+  var key = req;
+  if (isPage) {
+    var path = url.pathname.replace(/\/$/, '/index.html');
+    key = new Request(url.origin + path);
+  }
   e.respondWith(
     fetch(req).then(function (res) {
-      // 正常な応答だけ保存する（404 や途中で切れた応答は保存しない）
-      if (res && res.ok && res.type === 'basic') {
+      // 正常な応答だけ保存する（404 や途中で切れた応答、リダイレクト後の応答は保存しない）
+      if (res && res.ok && res.type === 'basic' && !res.redirected) {
         var copy = res.clone();
-        caches.open(CACHE).then(function (c) { c.put(req, copy); }).catch(function () {});
+        caches.open(CACHE).then(function (c) { return c.put(key, copy); }).catch(function () {});
       }
       return res;
     }).catch(function () {
-      // ページは ?lang= などの違いを無視して探す（言語は localStorage でも決まるため）
-      return caches.match(req, isPage ? { ignoreSearch: true } : undefined).then(function (hit) {
+      return caches.match(key).then(function (hit) {
         if (hit) return hit;
         if (isPage) {
           return new Response(OFFLINE_HTML, {

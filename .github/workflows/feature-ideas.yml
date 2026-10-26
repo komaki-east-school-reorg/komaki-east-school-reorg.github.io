@@ -42,6 +42,16 @@ jobs:
         if: steps.token.outputs.available == 'true'
         run: echo "TODAY=$(TZ=Asia/Tokyo date +%Y-%m-%d)" >> "$GITHUB_ENV"
 
+      # 直近の作業は、AI に git を使わせず、ここで書き出したものを読ませる
+      # （Bash(git log:*) は --output= でファイルを書けてしまうため。2026-10-26）。
+      - name: Write recent commits for the drafter
+        if: steps.token.outputs.available == 'true'
+        run: |
+          mkdir -p auto_ideas
+          git log --oneline -30 > auto_ideas/recent_commits.txt
+          # AI に .git/config を書き換えられても git の実行時にコマンドが走らないよう、元の設定を退避する
+          cp .git/config "$RUNNER_TEMP/git-config.trusted"
+
       # ---------- 起案AI ----------
       # サイトのファイルは触らせない。書いてよいのは auto_ideas/ideas.md だけ。
       - name: Think up feature ideas (Claude)
@@ -50,7 +60,7 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ github.token }}
-          claude_args: '--model sonnet --max-turns 40 --allowedTools "Read,Grep,Glob,Bash(git log:*),Write"'
+          claude_args: '--model sonnet --max-turns 40 --allowedTools "Read,Grep,Glob,Write"'
           prompt: |
             あなたはこの市民向け情報サイト（小牧市東部・篠岡地区の学校再編を伝える非公式サイト）の
             改善提案担当です。今日は ${{ env.TODAY }} です。
@@ -69,7 +79,7 @@ jobs:
             3. auto_ideas/history.json … **過去に出した提案の見出し。ここにある案は二度出さない**
                `implemented` の付いた案はサイトに実装済み（日付と commit つき）。その実装を前提に、重ならない案を考える
             4. data/site-updates.json … 最近ここで何を作ってきたか（読者向けの更新履歴）
-            5. `git log --oneline -30` … 直近の作業
+            5. auto_ideas/recent_commits.txt … 直近の作業（git log --oneline -30 の結果）
             6. 気になったページの HTML と js/main.js の該当ブロック
 
             ## [内容]（掲載コンテンツ）の提案を出すときの追加条件
@@ -144,6 +154,22 @@ jobs:
             （機械が見出しだけ拾って履歴に残すので、印も一緒に残って後から種類が分かる）。
             見送りの日は `## ` の行を書かないこと。
 
+      # AI のあとで実行するスクリプトは、AI が書き換えていない main のものを使う。
+      # AI が書いてよいのは auto_ideas/ideas.md（.gitignore 済み）だけなので、
+      # 作業ツリーに差分が出ていたら止める（このあとの手順は SMTP のパスワードを持つため）。
+      - name: Restore trusted scripts and check the drafter's scope
+        if: steps.token.outputs.available == 'true'
+        run: |
+          cp "$RUNNER_TEMP/git-config.trusted" .git/config
+          git config core.hooksPath /dev/null
+          git checkout HEAD -- .github
+          changed=$(git status --porcelain --untracked-files=all)
+          if [ -n "$changed" ]; then
+            echo "::error::AI が auto_ideas/ideas.md 以外を変更しました。通知もコミットもしません。"
+            echo "$changed"
+            exit 1
+          fi
+
       - name: Build subject line
         id: digest
         if: steps.token.outputs.available == 'true'
@@ -172,6 +198,7 @@ jobs:
         id: mail
         if: steps.digest.outputs.has_ideas == 'true'
         env:
+          SUBJECT: ${{ steps.digest.outputs.subject }}
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
           SMTP_USER: ${{ secrets.SMTP_USER }}
@@ -181,7 +208,7 @@ jobs:
         run: |
           set +e
           python3 .github/scripts/send_mail.py \
-            --subject "${{ steps.digest.outputs.subject }}" \
+            --subject "$SUBJECT" \
             --body-file auto_ideas/ideas.md
           code=$?
           set -e
@@ -198,9 +225,10 @@ jobs:
         if: steps.digest.outputs.has_ideas == 'true' && steps.mail.outputs.sent != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
+          SUBJECT: ${{ steps.digest.outputs.subject }}
         run: |
           gh issue create \
-            --title "${{ steps.digest.outputs.subject }}" \
+            --title "$SUBJECT" \
             --body-file auto_ideas/ideas.md
 
       # 本文はメール（または Issue）にあるので、リポジトリには見出しの履歴だけ残す。
@@ -215,6 +243,7 @@ jobs:
             echo "Nothing to commit"
           else
             git commit -m "chore: record daily feature ideas [skip ci]"
+            git pull --rebase --autostash
             git push
           fi
 

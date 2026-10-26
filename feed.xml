@@ -6,10 +6,18 @@
   <link rel="self" type="application/atom+xml" href="https://komaki-east-school-reorg.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/"/>
   <id>https://komaki-east-school-reorg.github.io/</id>
-  <updated>2026-10-24T00:00:00+09:00</updated>
+  <updated>2026-10-26T00:00:00+09:00</updated>
   <author><name>小牧市東部（篠岡地区）学校再編ナビ（市民有志・非公式）</name></author>
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
   <rights>このサイトは市民有志が運営しており、小牧市・教育委員会とは無関係です。</rights>
+  <entry>
+    <title>議会審議のページに市議会と市議会だよりの公式ページへのリンクを追加</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:aeba9d8087f99e0e</id>
+    <updated>2026-10-26T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜議会審議のページに市議会と市議会だよりの公式ページへのリンクを追加</summary>
+  </entry>
   <entry>
     <title>検証と提案・計画概要に教育の質の観点を追加（学力・人間力・健康など）</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
@@ -321,13 +329,5 @@
     <updated>2026-09-27T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜地域クラブに合唱・プログラミングと各中学校の部活動を追加</summary>
-  </entry>
-  <entry>
-    <title>全ページに関係する市・県・国の問い合わせ先を掲載</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:4baff8c61c14c93a</id>
-    <updated>2026-09-27T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜全ページに関係する市・県・国の問い合わせ先を掲載</summary>
   </entry>
 </feed>

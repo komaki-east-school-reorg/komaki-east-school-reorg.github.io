@@ -5,11 +5,11 @@ on:
     - cron: '17 22 * * *'  # 毎日 22:17 UTC (翌 7:17 JST)。正時を避けて市サーバ・Actionsの混雑時間帯を外す
   workflow_dispatch:        # 手動実行も可
 
+# 取得ジョブ（Job 1）は PR も OIDC も使わないので、ここでは contents と issues だけ。
+# AI を動かす auto-update ジョブだけが、ジョブ単位で pull-requests と id-token を持つ。
 permissions:
   contents: write
   issues: write
-  pull-requests: write
-  id-token: write   # claude-code-action の認証（OIDC）に必要
 
 concurrency:
   group: fetch-news
@@ -67,7 +67,7 @@ jobs:
         id: newsletters
         continue-on-error: true
         run: |
-          pip install --quiet --disable-pip-version-check pdfminer.six
+          pip install --quiet --disable-pip-version-check 'pdfminer.six==20260107'
           set +e
           python3 .github/scripts/fetch_pdf_docs.py
           code=$?
@@ -130,6 +130,7 @@ jobs:
             echo "Nothing to commit"
           else
             git commit -m "chore: update population statistics for the child estimate [skip ci]"
+            git pull --rebase --autostash
             git push
           fi
 
@@ -166,6 +167,7 @@ jobs:
             echo "Nothing to commit"
           else
             git commit -m "chore: update school website news [skip ci]"
+            git pull --rebase --autostash
             git push
           fi
 
@@ -194,10 +196,14 @@ jobs:
                 | python3 .github/scripts/map_targets.py
               echo "## 差分（抜粋・最大200行）"
               echo
-              echo '```diff'
-              git diff --staged -- data/official_pages | head -200
-              echo '```'
+              # 市のページの本文に ``` や @名前 があっても、コードブロックを抜けたり
+              # 人に通知が飛んだりしないよう、~~~~ で囲み @ の後ろにゼロ幅空白を入れる。
+              # Issue 本文の上限（65,536字）を超えないよう 60,000字で切る。
+              echo '~~~~diff'
+              git diff --staged -- data/official_pages | head -200 | sed -e 's/~~~~/~ ~ ~ ~/g' -e $'s/@/@\u200b/g'
+              echo '~~~~'
             } > /tmp/issue_body.md
+            python3 -c "import sys; p='/tmp/issue_body.md'; t=open(p,encoding='utf-8').read(); open(p,'w',encoding='utf-8').write(t[:60000] + ('\n~~~~\n（長すぎるため途中で切りました）\n' if len(t) > 60000 else ''))"
           fi
 
       - name: Upload change report for auto-update job
@@ -219,6 +225,7 @@ jobs:
             echo "Nothing to commit"
           else
             git commit -m "chore: update official news data [skip ci]"
+            git pull --rebase --autostash
             git push
           fi
 
@@ -263,8 +270,13 @@ jobs:
     needs: fetch-news
     if: needs.fetch-news.outputs.pages_changed == 'true'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write   # claude-code-action の認証（OIDC）に必要
+    # GH_TOKEN はジョブ全体には置かない（AI のステップの環境に入れないため）。gh を使うステップだけが持つ。
     env:
-      GH_TOKEN: ${{ github.token }}
       ISSUE: ${{ needs.fetch-news.outputs.issue_number }}
     steps:
       - name: Check OAuth token availability
@@ -284,6 +296,9 @@ jobs:
         with:
           ref: main          # Job 1 の push 後の最新 main
           fetch-depth: 0
+          # 認証情報を作業ツリーの .git に残さない（AI が読める場所に置かない）。
+          # push するステップだけが、その場で GH_TOKEN を使って認証する。
+          persist-credentials: false
 
       - name: Download change report
         if: steps.token.outputs.available == 'true'
@@ -302,6 +317,8 @@ jobs:
           echo "BRANCH=$BRANCH" >> "$GITHUB_ENV"
           echo "TODAY=$(TZ=Asia/Tokyo date +%Y-%m-%d)" >> "$GITHUB_ENV"
           mkdir -p auto_update
+          # AI に .git/config を書き換えられても git の実行時にコマンドが走らないよう、元の設定を退避する
+          cp .git/config "$RUNNER_TEMP/git-config.trusted"
 
       # ---------- 起案AI ----------
       - name: Draft site updates (Claude)
@@ -395,6 +412,37 @@ jobs:
             ```
             quotes の text は改変せずスナップショットからコピーすること。実在しない引用は検証で不合格になる。
 
+      # ---------- 起案AIの作業範囲の確認（2026-10-26） ----------
+      # このあと実行するスクリプト（予定ページ・ページ別辞書の生成、ゲート）は、AI が書き換えて
+      # いない main のものを使う。AI が .github/ のスクリプトやゲートを書き換えても、それが
+      # 実行されないようにするため。git のフックも使わない。
+      # AI が書いてよい場所（auto_gates.py の ALLOWED のうち AI が編集するもの＋作業ファイル）以外に
+      # 差分があれば、ここで止める。
+      - name: Restore trusted scripts and check the drafter's scope
+        id: scope
+        if: steps.token.outputs.available == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp "$RUNNER_TEMP/git-config.trusted" .git/config
+          git config core.hooksPath /dev/null
+          git checkout origin/main -- .github
+          bad=$(git status --porcelain --untracked-files=all | cut -c4- \
+                | grep -vE '^(data/events\.json|data/i18n/[A-Za-z-]+\.json|index\.html|schedule\.html|community\.html|auto_update/[A-Za-z0-9_.-]+|report/.*)$' || true)
+          if [ -n "$bad" ]; then
+            echo "::error::起案AIが編集してよい範囲の外を変更しました"
+            echo "$bad"
+            {
+              echo "🤖 自動更新ジョブ: 起案AIが**編集してよい範囲の外**を変更したため、ここで止めました。サイトは変更していません。"
+              echo
+              echo '~~~~'
+              echo "$bad" | head -50
+              echo '~~~~'
+            } > /tmp/comment.md
+            gh issue comment "$ISSUE" --body-file /tmp/comment.md || true
+            exit 1
+          fi
+
       # ---------- ページ別辞書の再生成 ----------
       # 起案AIが data/i18n/*.json を編集すると data/i18n/pages/ が古くなる。
       # 古いページ別辞書は 404 にならず「古い文面を 200 で返す」ため、
@@ -431,12 +479,16 @@ jobs:
 
       - name: Report "no update needed"
         if: steps.gates.outputs.result == 'no_changes'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           gh issue comment "$ISSUE" --body "🤖 自動更新ジョブの判断: **サイトの更新は不要**（誤字修正・体裁変更など、サイトに反映すべき内容ではありませんでした）。"
           gh issue close "$ISSUE" --reason completed
 
       - name: Report gate failure
         if: steps.gates.outputs.result == 'fail'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           {
             echo "🤖 自動更新ジョブ: **機械検証ゲートで不合格**のため、サイトは変更していません。内容を確認して手動で対応してください。"
@@ -460,6 +512,11 @@ jobs:
           git diff origin/main..HEAD > auto_update/proposed.diff
           echo "--- proposed diff ---"
           cat auto_update/proposed.diff
+
+      # 起案AIが先回りして verdict.json（approve）を書いておけないよう、監査の直前に消す
+      - name: Clear any pre-written verdict
+        if: steps.gates.outputs.result == 'pass'
+        run: rm -f auto_update/verdict.json
 
       # ---------- 監査AI（起案と独立した別セッション） ----------
       - name: Verify proposal (independent Claude)
@@ -502,6 +559,18 @@ jobs:
         id: verdict
         if: steps.gates.outputs.result == 'pass'
         run: |
+          # 監査AIのあとに動くスクリプト（auto_report.py）も main のものを使い、フックも使わない。
+          # 監査AIが書いてよいのは auto_update/verdict.json だけ。コミット済みの提案のあとに
+          # auto_update/ と report/ 以外の差分があれば承認しない。
+          cp "$RUNNER_TEMP/git-config.trusted" .git/config
+          git config core.hooksPath /dev/null
+          git checkout origin/main -- .github
+          extra=$(git status --porcelain --untracked-files=all | cut -c4- | grep -vE '^(auto_update/|report/)' || true)
+          if [ -n "$extra" ]; then
+            echo "::error::監査AIのあとに想定外の変更があります"; echo "$extra"
+            echo "approved=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           python3 - <<'EOF'
           import json, os, sys
           try:
@@ -519,10 +588,13 @@ jobs:
       - name: Create PR and merge
         if: steps.gates.outputs.result == 'pass'
         env:
+          GH_TOKEN: ${{ github.token }}
           APPROVED: ${{ steps.verdict.outputs.approved }}
           AUTO_MERGE: ${{ vars.AUTO_MERGE }}
         run: |
-          git push -u origin "$BRANCH"
+          # checkout は persist-credentials: false なので、push のときだけ認証ヘッダを付ける
+          AUTH=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          git -c http.https://github.com/.extraheader="AUTHORIZATION: basic $AUTH" push -u origin "$BRANCH"
           python3 .github/scripts/auto_report.py pr > /tmp/pr_body.md
 
           if [ "$APPROVED" = "true" ]; then

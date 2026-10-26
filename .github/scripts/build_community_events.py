@@ -154,7 +154,7 @@ def add_site_updates(events):
             hand = {a.get("title_ja", "") for a in json.load(f).get("actions", [])}
     except (OSError, ValueError):
         hand = set()
-    today = datetime.date.today().isoformat()
+    today = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).date().isoformat()   # 日本時間の今日（ランナーは UTC）
     added = []
     for ev in events:
         if not ev.get("shinooka") or not ev.get("date") or ev["url"] in seen:

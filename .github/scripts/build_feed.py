@@ -25,7 +25,14 @@ import json
 import os
 import re
 import sys
-from xml.sax.saxutils import escape
+from xml.sax.saxutils import escape as _xml_escape
+
+# XML 1.0 に書けない制御文字（取得した見出しに紛れると feed.xml 全体が読めなくなる）を落としてから書く
+_XML_BAD = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\ufffe\uffff]")
+
+
+def escape(v):
+    return _xml_escape(_XML_BAD.sub("", str(v)))
 
 SITE = "https://komaki-east-school-reorg.github.io/"
 OUT = "feed.xml"

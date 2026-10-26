@@ -60,6 +60,7 @@ jobs:
             echo "Nothing to commit (報告のみ)"
           else
             git commit -m "chore: update department phone numbers [skip ci]"
+            git pull --rebase --autostash
             git push
           fi
 

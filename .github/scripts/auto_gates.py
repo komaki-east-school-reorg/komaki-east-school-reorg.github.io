@@ -44,10 +44,18 @@ ALLOWED_PREFIXES = ("data/i18n/pages/",
                     "events/", "sitemap.xml",
                     # feed.xml は build_feed.py の生成物（毎日のワークフローが作り直す）
                     "feed.xml")
+# 上の接頭辞の下で許すファイルの形（2026-10-26）。接頭辞だけだと events/x/phish.html や
+# data/i18n/pages/a.html、sitemap.xml.bak まで通っていた。
+ALLOWED_GENERATED = re.compile(r"^(data/i18n/pages/[A-Za-z0-9-]+\.[A-Za-z-]+\.json"
+                               r"|events/\d{4}-\d{2}-\d{2}-\d+\.html|sitemap\.xml|feed\.xml)$")
+
+
+def is_allowed_path(p):
+    return p in ALLOWED or bool(ALLOWED_GENERATED.match(p))
 # 自動化の作業ファイル置き場（検査対象外）
 IGNORE_PREFIXES = ("auto_update/", "report/")
 EVIDENCE = "auto_update/evidence.json"
-# 市サイトへのリンクを張ってよいページ（下の5つのみ。PDF直リンク・
+# 市サイトへのリンクを張ってよいページ（下の7つのみ。PDF直リンク・
 # 個別記事ページは不可）。1つ目＝学校再編（教育総務課）、2つ目＝地域協議会（支え合い
 # 協働推進課、community.html 用に 2026-08-12 追加）、3つ目＝東部まちづくり（東部まちづくり
 # 推進室、「地域の取組」欄の出典として 2026-09-13 にユーザーが許可）。
@@ -63,9 +71,48 @@ EVIDENCE = "auto_update/evidence.json"
 PERMITTED_LINKS = ("303/index.html", "sasaeai/3/3_2/index.html",
                    "tobumachidukurisingikai/index.html",
                    "purattofo-mu/38222.html",
-                   "toshikeikaku/1/index.html")
+                   "toshikeikaku/1/index.html",
+                   "jp/shigikai/index.html",
+                   "jp/shigikai/houkoku/43556.html")
+# 6・7つ目＝小牧市議会のトップと「市議会だより」のページ（2026-10-26 ユーザー指示）。
+# council.html の出典欄の下だけに置く。配下の会議録・個別記事・PDF は不可のまま。
 CITY_PAGE_ONLY = {"purattofo-mu/38222.html": ("community.html",),
-                  "toshikeikaku/1/index.html": ("review.html", "js/main.js")}
+                  "toshikeikaku/1/index.html": ("review.html", "js/main.js"),
+                  "jp/shigikai/index.html": ("council.html",),
+                  "jp/shigikai/houkoku/43556.html": ("council.html",)}
+# 6b で使う：市のページの完全なパス（上の PERMITTED_LINKS と同じ7本。増やすときは両方に足す）
+CITY_PATHS = {
+    "/admin/soshiki/kyoiku/kyouikusoumu/303/index.html",
+    "/admin/soshiki/kenkouikigai/sasaeai/3/3_2/index.html",
+    "/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/index.html",
+    "/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/38222.html",
+    "/admin/soshiki/toshiseisakubu/toshikeikaku/1/index.html",
+    "/shigikai/index.html",
+    "/shigikai/houkoku/43556.html",
+}
+# 6b で使う：サイトに書いてよい外部ホストのすべて（2026-10-26 にいまの全ファイルから洗い出した）。
+# どのページで使ってよいか・どのパスまでよいかは、下の各 PERMITTED_* と 6 が見る。
+# 新しいドメインを足すときは、CLAUDE.md・CONTRIBUTING.txt 規則1・README.md と一緒にここにも足す。
+PERMITTED_HOSTS = {
+    "komaki-east-school-reorg.github.io",          # このサイト自身（canonical・hreflang など）
+    "www.city.komaki.aichi.jp",                    # 市（パスは CITY_PATHS）
+    "www.mext.go.jp",                              # 文部科学省（nationwide.html）
+    "www.komaki-aic.ed.jp",                        # 対象8校のホームページ
+    "www.instagram.com", "instagram.com",          # PERMITTED_INSTAGRAM のアカウント
+    "www.facebook.com", "facebook.com",            # 共有ボタンと市公式 Facebook
+    "x.com", "social-plugins.line.me", "line.me", "b.hatena.ne.jp", "s.hatena.ne.jp",
+    "note.com", "www.threads.net", "bsky.app", "www.reddit.com",   # 共有ボタン・はてなスター
+    "komaki-saihen.goatcounter.com",               # 閲覧数の集計（COUNTER）
+    "github.com",                                  # ご意見の Issue フォーム
+    "logoform.jp",                                 # 東部まちづくりプラットフォームの登録フォーム
+    "peare-toukadai.jp",                           # 地域の取組「会場の案内」
+    "maps.google.co.jp",                           # 地図の検索語リンク
+    "schema.org", "www.w3.org",                    # 構造化データ・SVG の名前空間（リンクではない）
+    # 地域クラブ・団体（clubs.html。PERMITTED_CLUB_SITES）
+    "komaki-sports.or.jp", "www.komaki-sports.or.jp", "acmilansoccerschool-aichi.jp", "seigakan.net",
+    "www.komaki-kendo.jp", "www.fc-fervor.net", "www.komakishion.com", "pc-bitz.jp",
+    "encourage-toukadai.com", "legameinc.com", "white700957.studio.site",
+}
 # 東部まちづくりプラットフォームの登録フォーム（市が案内している logoform）。
 # community.html の #platform でだけ、この1本に限って張ってよい（2026-09-27 ユーザー指示）。
 PERMITTED_FORM_LINKS = ("logoform.jp/form/uSYk/80018",)
@@ -187,7 +234,9 @@ def normalize(text):
 
 def changed_paths():
     """作業ツリーの変更ファイル（未追跡含む）。IGNORE_PREFIXES は除外。"""
-    out = subprocess.check_output(["git", "status", "--porcelain"], text=True)
+    # --untracked-files=all：新しいディレクトリが「?? events/x/」の1行にまとめられて、
+    # 中のファイル名が範囲検査をすり抜けないように
+    out = subprocess.check_output(["git", "status", "--porcelain", "--untracked-files=all"], text=True)
     paths = []
     for line in out.splitlines():
         path = line[3:].strip().strip('"')
@@ -210,7 +259,7 @@ def main():
 
     # --- 1. 編集範囲チェック ---
     for p in changed:
-        if p not in ALLOWED and not p.startswith(ALLOWED_PREFIXES):
+        if not is_allowed_path(p):
             fail(f"許可されていないファイルの変更: {p}")
     if not fails:
         ok("編集範囲は許可ファイル内")
@@ -353,7 +402,11 @@ def main():
         with open(p, encoding="utf-8") as f:
             for i, line in enumerate(f, 1):
                 for m in re.finditer(r"city\.komaki\.aichi\.jp[^\s\"'<)\\]*", line):
-                    if not any(allowed in m.group(0) for allowed in PERMITTED_LINKS):
+                    # 部分一致だと「…/x.pdf#303/index.html」や「?a=303/index.html」が通るので、
+                    # パス（クエリ・断片を除く）が許可URLのどれかで「終わる」ことまで見る
+                    path = re.split(r"[?#]", m.group(0), 1)[0]
+                    if not any(path.endswith("/" + allowed) or path.endswith(allowed) and allowed.startswith("jp/")
+                               for allowed in PERMITTED_LINKS) or "?" in m.group(0):
                         link_violations.append(f"{p}:{i} {m.group(0)[:80]}")
                     for key, pages in CITY_PAGE_ONLY.items():
                         if key in m.group(0) and not (is_dict or p in pages):
@@ -399,6 +452,119 @@ def main():
             fail(f"許可外の外部URL: {v}")
     else:
         ok("外部リンク規則")
+
+    # --- 6b. すべての外部ホストを許可リストで見る（2026-10-26） ---
+    # 6 は決まったドメインだけを探すので、知らないドメイン（https://evil.example や //evil.example）、
+    # 大文字のホスト、HTML の実体参照（&#46;）や JSON の \\u002e で隠したホストを見逃していた。
+    # ここでは実体参照・JSON のエスケープ・%エンコードを戻してから URL を全部拾い、ホストを小文字で
+    # 許可リストと照らす。市のホストは「パスが許可URLと完全に一致」まで見る。
+    # javascript: / data: / vbscript: の URL は、どのファイルにも書かせない。
+    import html as _html
+    import urllib.parse as _up
+    host_violations = []
+    url_re = re.compile(r"(?i)(?<![\w.@-])(?:https?:)?//([^/\s\"'<>)\\`?#]+)([^\s\"'<>)\\`]*)")
+    bad_scheme = re.compile(r"(?i)(?:href|src|action|formaction|xlink:href)\s*=\s*[\"']?\s*(?:javascript|data|vbscript):")
+    scan = (glob.glob("*.html") + glob.glob("events/*.html") + glob.glob("js/*.js") + ["sw.js"]
+            + glob.glob("data/i18n/*.json")
+            + ["data/events.json", "data/community_actions.json", "data/headline_i18n.json"])
+    for p in scan:
+        if not os.path.exists(p):
+            continue
+        with open(p, encoding="utf-8") as f:
+            raw = f.read()
+        if p.endswith(".json"):
+            try:
+                raw = json.dumps(json.load(open(p, encoding="utf-8")), ensure_ascii=False)
+            except Exception:
+                pass
+        text = _html.unescape(raw)
+        text = text + "\n" + _up.unquote(text)
+        if bad_scheme.search(text):
+            host_violations.append(f"{p}: javascript: / data: / vbscript: の URL がある")
+        for m in url_re.finditer(text):
+            host = m.group(1).lower().rstrip(".").split("@")[-1].split(":")[0]
+            if not re.match(r"^[a-z0-9.-]+\.[a-z]{2,}$", host):
+                continue   # 正規表現や JS の式の一部（//… のコメントなど）
+            if host not in PERMITTED_HOSTS:
+                host_violations.append(f"{p}: 許可リストにないホスト {host}")
+            elif host == "www.city.komaki.aichi.jp":
+                path = re.split(r"[?#]", m.group(2), 1)[0]
+                if path not in CITY_PATHS:
+                    host_violations.append(f"{p}: 許可外の市のURL {path[:80]}")
+    if host_violations:
+        for v in sorted(set(host_violations))[:40]:
+            fail(f"外部ホスト: {v}")
+    else:
+        ok("外部ホストの許可リスト・危険な URL なし")
+
+    # --- 19. 辞書に入れてよい HTML（2026-10-26） ---
+    # data-i18n-html の値は innerHTML でそのまま入る。起案AIが <img onerror> や <script> を
+    # 書いても通っていたので、いまの辞書に実在するタグ・属性だけを許す。
+    from html.parser import HTMLParser as _HP
+    DICT_TAGS = {"strong", "br", "small", "a", "span", "p", "li", "dt", "dd", "ul", "b", "em", "wbr"}
+    DICT_ATTRS = {"href", "target", "rel", "style", "class", "data-past", "data-until"}
+    dict_problems = []
+
+    class _DictHTML(_HP):
+        def __init__(self, where):
+            super().__init__(convert_charrefs=True)
+            self.where = where
+
+        def handle_starttag(self, tag, attrs):
+            if tag not in DICT_TAGS:
+                dict_problems.append(f"{self.where}: 使えないタグ <{tag}>")
+            for k, v in attrs:
+                v = v or ""
+                if k not in DICT_ATTRS:
+                    dict_problems.append(f"{self.where}: 使えない属性 {k}=")
+                elif k == "href" and not (v.startswith(("https://", "#", "mailto:", "tel:"))
+                                          or re.match(r"^[A-Za-z0-9_-]+\.html(?:[?#][^\s]*)?$", v)):
+                    dict_problems.append(f"{self.where}: href は https か サイト内のページだけ: {v[:60]}")
+                elif k == "style" and re.search(r"(?i)url\s*\(|expression|@import|javascript:|behavior", v):
+                    dict_problems.append(f"{self.where}: style に url()/expression などは書けない")
+
+        handle_startendtag = handle_starttag
+
+    for p in sorted(glob.glob("data/i18n/*.json")):
+        try:
+            d = json.load(open(p, encoding="utf-8"))
+        except Exception:
+            continue   # JSON の不正は上の型チェックで落ちる
+        for k, v in d.items():
+            if isinstance(v, str) and "<" in v:
+                _DictHTML(f"{os.path.basename(p)} {k}").feed(v)
+    # 自動取得の見出しの訳・予定の名前・地域の取組の文は、HTML を一切持たない
+    for p in ("data/headline_i18n.json", "data/events.json", "data/community_actions.json"):
+        try:
+            blob = json.dumps(json.load(open(p, encoding="utf-8")), ensure_ascii=False)
+        except Exception:
+            continue
+        if re.search(r"<\s*[A-Za-z/!]", blob):
+            dict_problems.append(f"{p}: HTML のタグがある")
+    if dict_problems:
+        for v in sorted(set(dict_problems))[:40]:
+            fail(f"辞書の HTML: {v}")
+    else:
+        ok("辞書の HTML は許可したタグ・属性だけ")
+
+    # --- 20. 秘密情報の混入（2026-10-26） ---
+    # AI が環境の認証情報を読めた場合に、それを許可ファイルへ書いて公開させないための最後の網。
+    SECRET_RE = re.compile(r"(sk-ant-[A-Za-z0-9_-]{10,}|gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}"
+                           r"|-----BEGIN [A-Z ]*PRIVATE KEY-----|xox[abprs]-[A-Za-z0-9-]{10,}|AKIA[0-9A-Z]{16})")
+    secret_hits = []
+    for p in changed:
+        if os.path.isfile(p):
+            try:
+                with open(p, encoding="utf-8", errors="replace") as f:
+                    if SECRET_RE.search(f.read()):
+                        secret_hits.append(p)
+            except OSError:
+                pass
+    if secret_hits:
+        for p in secret_hits:
+            fail(f"秘密情報らしき文字列: {p}")
+    else:
+        ok("秘密情報らしき文字列なし")
 
     # --- 8. 年表の並び（サイト全体を検査） ---
     # 「現在の状況」（index.html）と「主要イベント一覧」（schedule.html）は、
@@ -465,7 +631,8 @@ def main():
     #   ・events.json の各予定の日付が、一覧のどれかの項目の期間に入っている
     # 桃花台を考える会・地域協議会の自動で足す催しは、どちらにも書かれていないので対象外。
     import datetime as _dt
-    today = _dt.date.today().isoformat()
+    # 日本時間の今日（ランナーは UTC。朝7時台の実行では UTC の日付がまだ前日）
+    today = _dt.datetime.now(_dt.timezone(_dt.timedelta(hours=9))).date().isoformat()
     sync_problems = []
     try:
         with open("schedule.html", encoding="utf-8") as f:
@@ -753,7 +920,7 @@ def main():
             by_file.setdefault(e.get("file", ""), []).append(e)
 
         for p in changed:
-            if p.startswith(ALLOWED_PREFIXES):
+            if ALLOWED_GENERATED.match(p):
                 continue  # 生成物。出典は生成元の data/i18n/*.json 側で検証済み
             if p not in by_file:
                 fail(f"{p} の変更に evidence.json のエントリがない")
@@ -766,10 +933,18 @@ def main():
             for q in quotes:
                 snap = q.get("snapshot", "")
                 text = q.get("text", "")
-                if not snap.startswith("data/official_pages/") or not os.path.exists(snap):
+                # ../ で外へ出て、AI が自分で書いた辞書を「出典」にできないよう、実際の場所で見る
+                base = os.path.realpath("data/official_pages")
+                real = os.path.realpath(snap) if isinstance(snap, str) and snap else ""
+                if (not isinstance(snap, str) or not snap.startswith("data/official_pages/")
+                        or not real.startswith(base + os.sep) or not os.path.isfile(real)):
                     fail(f"evidence: スナップショットが存在しない: {snap}")
                     continue
-                if len(text) < MIN_QUOTE_LEN:
+                if not isinstance(text, str):
+                    fail(f"evidence: 引用が文字列でない: {text!r}")
+                    continue
+                # 長さは空白を除いてから測る（空白だけの引用は normalize で空になり、どこにでも「実在」した）
+                if len(normalize(text)) < MIN_QUOTE_LEN:
                     fail(f"evidence: 引用が短すぎる（{MIN_QUOTE_LEN}文字以上必須）: {text!r}")
                     continue
                 if snap not in snap_cache:

@@ -69,8 +69,12 @@ def fetch_html(url):
         return resp.read().decode("utf-8", errors="replace")
 
 
+_CTRL = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f\u200b-\u200f\u202a-\u202e\u2066-\u2069]")
+
+
 def clean(text):
-    return re.sub(r"\s+", " ", unescape(re.sub(r"<[^>]+>", "", text))).strip()
+    # 制御文字・ゼロ幅/双方向の制御文字は落とす（feed.xml や翻訳の検査を壊さないため）
+    return re.sub(r"\s+", " ", _CTRL.sub("", unescape(re.sub(r"<[^>]+>", "", text)))).strip()
 
 
 def to_iso(slashed):
@@ -87,7 +91,11 @@ def parse_school(html, school_url):
         title = clean(title)
         if not iso or not title:
             continue
-        items.append({"title": title, "date": iso, "url": urllib.parse.urljoin(school_url, href)})
+        url = urllib.parse.urljoin(school_url, unescape(href.strip()))
+        # http(s) 以外（javascript: など）はサイトのリンクにしない
+        if urllib.parse.urlparse(url).scheme not in ("http", "https"):
+            continue
+        items.append({"title": title, "date": iso, "url": url})
     items.sort(key=lambda x: x["date"], reverse=True)
     return items[:MAX_ITEMS]
 

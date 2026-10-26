@@ -2658,7 +2658,7 @@ html.has-share-sticky body {
 .grade-box {
   background: var(--accent-light);
   border: 1px solid var(--accent);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius);
   padding: 1.1rem 1.2rem;
 }
 .grade-h { font-size: 1.02rem; font-weight: 800; font-family: var(--heading-font); margin-bottom: .35rem; }

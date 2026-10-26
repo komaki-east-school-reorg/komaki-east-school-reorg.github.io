@@ -22,6 +22,8 @@ concurrency:
 
 jobs:
   translate:
+    # 取得ジョブが失敗した日は訳すものが変わっていないので動かない（手動実行は別）
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Check OAuth token availability
@@ -49,6 +51,11 @@ jobs:
           code=$?
           set -e
           if [ "$code" -eq 0 ]; then echo "todo=true" >> "$GITHUB_OUTPUT"; else echo "todo=false" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Keep a trusted copy of the git config
+        run: |
+          # AI に .git/config を書き換えられても git の実行時にコマンドが走らないよう、元の設定を退避する
+          cp .git/config "$RUNNER_TEMP/git-config.trusted"
 
       # ---------- 翻訳AI ----------
       # 書いてよいのは auto_i18n/translations.json の1枚だけ。サイトのファイルは触らせない。
@@ -119,6 +126,20 @@ jobs:
               その言語の書き方に直して訳す（「5年」は 5th grade、「7組」は Class 7 など）。
             - 催しや団体の名前（「ありがとう大城小」「しのおかRADIO」など）は、意味が伝わるように訳し、
               英字の部分はそのまま残す。
+      # 検証スクリプトは AI が書き換えていない main のものを使う。AI が書いてよいのは
+      # auto_i18n/（.gitignore 済み）だけなので、作業ツリーに差分が出ていたら止める。
+      - name: Restore trusted scripts and check the translator's scope
+        run: |
+          cp "$RUNNER_TEMP/git-config.trusted" .git/config
+          git config core.hooksPath /dev/null
+          git checkout HEAD -- .github
+          changed=$(git status --porcelain --untracked-files=all)
+          if [ -n "$changed" ]; then
+            echo "::error::AI が auto_i18n/ 以外を変更しました。訳は取り込みません。"
+            echo "$changed"
+            exit 1
+          fi
+
       - name: Validate and merge translations
         id: apply
         run: |

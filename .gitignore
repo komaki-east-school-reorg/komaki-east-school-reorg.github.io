@@ -7,3 +7,6 @@ auto_ideas/ideas.md
 
 # 見出し翻訳の作業ファイル（translate-headlines.yml が毎回作り直す）
 auto_i18n/
+
+# feature-ideas.yml が AI に読ませる直近のコミット一覧（毎回作り直す）
+auto_ideas/recent_commits.txt

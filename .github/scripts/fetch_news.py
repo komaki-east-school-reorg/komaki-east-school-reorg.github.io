@@ -226,12 +226,31 @@ def extract_jp_date(html):
     return m.group(1) if m else None
 
 
+JST = timezone(timedelta(hours=9))
+
+
 def jp_date_to_dt(text):
-    """'2026年04月30日' → datetime (UTC midnight), or None."""
+    """'2026年04月30日' → datetime（日本時間の0時）, or None.
+    市のページの日付は日本時間。UTC の0時として読むと、30日の窓の境目が9時間ずれる。"""
     m = re.match(r"(\d{4})年(\d{2})月(\d{2})日", text)
     if not m:
         return None
-    return datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)), tzinfo=timezone.utc)
+    return datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)), tzinfo=JST)
+
+
+def is_city_url(url):
+    """市のサイト（BASE_DOMAIN）のページか。索引に外部サイトへのリンクが混ざっても、
+    それを「市の公式ページ」のスナップショットやお知らせとして取り込まないため。"""
+    return url.startswith(BASE_DOMAIN + "/")
+
+
+_CTRL = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f\u200b-\u200f\u202a-\u202e\u2066-\u2069]")
+
+
+def clean_title(t):
+    """索引の見出し：HTML の実体参照を戻し（&amp; の二重表示を防ぐ）、制御文字を除く
+    （feed.xml が不正な XML になるのを防ぐ）。"""
+    return re.sub(r"\s+", " ", _CTRL.sub("", unescape(t))).strip()
 
 
 def extract_body_text(html):
@@ -306,8 +325,10 @@ def crawl_index(index_url, source_dir, visited_index, seen_item_urls, raw_items,
     BFS within source_dir: collect <li class="page"> items and follow any
     sub-index pages whose URL starts with source_dir.
     Appends found dates to all_dates (for index_updated_at tracking).
+    Returns the list of index URLs that could not be fetched.
     """
     queue = [index_url]
+    failed = []
 
     while queue:
         url = queue.pop(0)
@@ -317,6 +338,7 @@ def crawl_index(index_url, source_dir, visited_index, seen_item_urls, raw_items,
             polite_wait()
         except Exception as e:
             print(f"  ERROR fetching {url}: {e}", file=sys.stderr)
+            failed.append(url)
             continue
 
         page_date = extract_jp_date(html)
@@ -326,7 +348,9 @@ def crawl_index(index_url, source_dir, visited_index, seen_item_urls, raw_items,
         # Collect article links from <li class="page">
         for m in re.finditer(r'<li class="page">\s*<a href="([^"]+)">([^<]+)</a>', html):
             href = normalize_url(m.group(1).strip(), url)
-            title = m.group(2).strip()
+            title = clean_title(m.group(2))
+            if not is_city_url(href) or not title:
+                continue
             if href not in seen_item_urls:
                 seen_item_urls.add(href)
                 raw_items.append({"title": title, "url": href})
@@ -337,6 +361,7 @@ def crawl_index(index_url, source_dir, visited_index, seen_item_urls, raw_items,
             if sub.startswith(source_dir) and sub != url and sub not in visited_index:
                 visited_index.add(sub)
                 queue.append(sub)
+    return failed
 
 
 def main():
@@ -349,7 +374,7 @@ def main():
     source_dir = PARENT_URL.rsplit("/", 1)[0] + "/"
     visited_index = {PARENT_URL}
     print(f"Crawling subtree: {source_dir}")
-    crawl_index(PARENT_URL, source_dir, visited_index, seen_item_urls, raw_items, all_dates)
+    failed_indexes = crawl_index(PARENT_URL, source_dir, visited_index, seen_item_urls, raw_items, all_dates)
 
     if not raw_items and not seen_item_urls:
         print("ERROR: Failed to fetch any index page", file=sys.stderr)
@@ -364,6 +389,15 @@ def main():
     items = []
     snapshots_changed = False
 
+    # 個別ページが取れなかった項目は、前回の news.json の更新日を引き継ぐ（無ければ載せない）。
+    # 以前は「日付なし」として載せていたので、WAF の不調の日に古い記事が一覧に溜まった。
+    prev_dates = {}
+    try:
+        with open(OUTPUT, encoding="utf-8") as f:
+            prev_dates = {it.get("url"): it.get("updated_at") for it in json.load(f).get("items", [])}
+    except (OSError, ValueError):
+        pass
+
     for item in raw_items:
         polite_wait()
         try:
@@ -372,8 +406,12 @@ def main():
             updated_at = extract_jp_date(page_html)
             if save_snapshot(item["url"], page_html):
                 snapshots_changed = True
-        except Exception:
-            updated_at = None
+        except Exception as e:
+            print(f"  ERROR fetching item {item['url']}: {e}", file=sys.stderr)
+            updated_at = prev_dates.get(item["url"])
+            if not updated_at:
+                print(f"  skip  (fetch failed, not listed before)  {item['title'][:40]}")
+                continue
 
         item["updated_at"] = updated_at
 
@@ -393,6 +431,11 @@ def main():
     # news.json の items には入れない。変化の検知だけが目的。
     watch_urls = set(WATCH_PAGES)
     keep_slugs = set()
+    # 学校再編の木で取れなかった索引があれば、その配下のスナップショットを今回は消さない
+    # （一時的な 403 で配下が丸ごと消え、「削除」の Issue と自動更新が無駄に動くのを防ぐ）。
+    for u in failed_indexes:
+        stem = url_to_slug(u).rsplit("-", 1)[0] + "-"
+        keep_slugs |= {f for f in os.listdir(SNAPSHOT_DIR) if f.startswith(stem)}
     watch_indexes = [(u, 0) for u in WATCH_INDEXES]   # BFS の待ち行列（URL, 深さ）
     seen_watch_indexes = set(WATCH_INDEXES)
     # 浅い巡回の日は、今回見に行かない下位ページのスナップショットを消さないよう守る
@@ -416,8 +459,8 @@ def main():
             continue
         if save_snapshot(index_url, index_html):
             snapshots_changed = True
-        pages = [normalize_url(m.group(1).strip(), index_url) for m in
-                 re.finditer(r'<li class="page">\s*<a href="([^"]+)">', index_html)]
+        pages = [u for u in (normalize_url(m.group(1).strip(), index_url) for m in
+                 re.finditer(r'<li class="page">\s*<a href="([^"]+)">', index_html)) if is_city_url(u)]
         subs = [normalize_url(m.group(1).strip(), index_url) for m in
                 re.finditer(r'<li class="dir">\s*<a href="([^"]+)">', index_html)]
         # 過去分が積もっているインデックスは、浅い巡回の日は末尾（新しいほう）だけ見る

@@ -101,8 +101,16 @@ def problems(src, entry):
             errs.append(f"{l}: タグ記号を含む")
         if re.search(r"https?://|www\.", v):
             errs.append(f"{l}: URL を含む")
-        if "\n" in v:
+        if "\n" in v or "\r" in v:
             errs.append(f"{l}: 改行を含む")
+        # 制御文字・ゼロ幅文字・文字の向きを変える制御文字（表示を偽装できる）は入れさせない
+        if re.search(r"[\x00-\x1f\x7f\u200b-\u200f\u202a-\u202e\u2066-\u2069\ufeff]", v):
+            errs.append(f"{l}: 制御文字を含む")
+        if re.search(r"(?i)javascript:|data:|vbscript:|//[a-z0-9-]+\.[a-z]", v):
+            errs.append(f"{l}: URL・スクリプトらしき文字列を含む")
+        # 認証情報らしき文字列（AI が環境から読めたものを書き込んで公開させないため）
+        if re.search(r"sk-ant-|gh[pousr]_[A-Za-z0-9]{20,}|github_pat_|-----BEGIN", v):
+            errs.append(f"{l}: 認証情報らしき文字列を含む")
         if len(v) > max(160, len(src) * 6):
             errs.append(f"{l}: 長すぎる（{len(v)}字）")
         if KANA.search(v):
