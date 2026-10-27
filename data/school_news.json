@@ -1,8 +1,95 @@
 {
-  "fetched_at": "2026-10-24T00:54:45Z",
+  "fetched_at": "2026-10-27T01:39:30Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "ohshiro-e",
+      "level": "elem",
+      "names": {
+        "ja": "大城小学校",
+        "ja_kids": "おおしろ小学校",
+        "en": "Oshiro Elem. School",
+        "zh": "大城小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
+      "latest_date": "2026-10-27",
+      "items": [
+        {
+          "title": "放課後子ども教室わくわくっ子⑩",
+          "date": "2026-10-27",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136332685?tm=20261027072243"
+        },
+        {
+          "title": "1年生 中央公園交流会に向けて",
+          "date": "2026-10-26",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136330253?tm=20261026153938"
+        },
+        {
+          "title": "再編交流会 3年生",
+          "date": "2026-10-26",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136320892?tm=20261023184614"
+        }
+      ]
+    },
+    {
+      "slug": "hikarigaoka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "光ヶ丘中学校",
+        "ja_kids": "ひかりがおか中学校",
+        "en": "Hikarigaoka Junior High",
+        "zh": "光之丘中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
+      "latest_date": "2026-10-27",
+      "items": [
+        {
+          "title": "10/25(日)市民まつりボランティア",
+          "date": "2026-10-27",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136331311?tm=20261026171657"
+        },
+        {
+          "title": "文化祭 合唱コンクールに向け、気合十分で練習に取り組んでいます （3年生）",
+          "date": "2026-10-26",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136329673?tm=20261026144346"
+        },
+        {
+          "title": "合唱コンクールリハーサルの様子 （３年生）",
+          "date": "2026-10-23",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136314954?tm=20261023123339"
+        }
+      ]
+    },
+    {
+      "slug": "toryo-j",
+      "level": "jhs",
+      "names": {
+        "ja": "桃陵中学校",
+        "ja_kids": "とうりょう中学校",
+        "en": "Toryo Junior High",
+        "zh": "桃陵中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
+      "latest_date": "2026-10-26",
+      "items": [
+        {
+          "title": "市民まつりにて",
+          "date": "2026-10-26",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136327492?tm=20261026114107"
+        },
+        {
+          "title": "合唱コンクールのリハーサル",
+          "date": "2026-10-21",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136309478?tm=20261021201326"
+        },
+        {
+          "title": "合唱コンクールリハーサル",
+          "date": "2026-10-21",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136309453?tm=20261021200255"
+        }
+      ]
+    },
     {
       "slug": "sue-e",
       "level": "elem",
@@ -13,22 +100,22 @@
         "zh": "陶小学"
       },
       "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-10-23",
+      "latest_date": "2026-10-26",
       "items": [
         {
-          "title": "10/23 中央公園交流会（３＆６年生）",
-          "date": "2026-10-23",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136321226?tm=20261023190122"
+          "title": "夢チャレンジ科 中間発表",
+          "date": "2026-10-26",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136332476?tm=20261026222516"
         },
         {
-          "title": "10/22 音楽：『🎼よろこびの うた』（１年生）",
-          "date": "2026-10-23",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136321177?tm=20261023185314"
+          "title": "10/26 今日の給食",
+          "date": "2026-10-26",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136330190?tm=20261026153311"
         },
         {
-          "title": "10/21 今日の給食",
-          "date": "2026-10-21",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136305652?tm=20261021135909"
+          "title": "10/26 算数：円と球（３年生）",
+          "date": "2026-10-26",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136331337?tm=20261026171847"
         }
       ]
     },
@@ -42,8 +129,13 @@
         "zh": "篠冈中学"
       },
       "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-10-23",
+      "latest_date": "2026-10-26",
       "items": [
+        {
+          "title": "２年生 １年生との合唱交流",
+          "date": "2026-10-26",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136332391?tm=20261026201820"
+        },
         {
           "title": "２年生 合唱練習",
           "date": "2026-10-23",
@@ -53,11 +145,6 @@
           "title": "１年生 合唱コンクールリハーサル",
           "date": "2026-10-23",
           "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136320806?tm=20261023181314"
-        },
-        {
-          "title": "１年生 講師の先生による合唱指導 学年合唱",
-          "date": "2026-10-23",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136320469?tm=20261023174953"
         }
       ]
     },
@@ -91,35 +178,6 @@
       ]
     },
     {
-      "slug": "ohshiro-e",
-      "level": "elem",
-      "names": {
-        "ja": "大城小学校",
-        "ja_kids": "おおしろ小学校",
-        "en": "Oshiro Elem. School",
-        "zh": "大城小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
-      "latest_date": "2026-10-23",
-      "items": [
-        {
-          "title": "４年生 体育 アタック vs ブロック！工夫いっぱいのバレーボール",
-          "date": "2026-10-23",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136314760?tm=20261023122134"
-        },
-        {
-          "title": "4年生 理科 ポンッ！と快音、空気てっぽうのひみつ",
-          "date": "2026-10-23",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136314634?tm=20261023121447"
-        },
-        {
-          "title": "バッタの観察",
-          "date": "2026-10-21",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136299700?tm=20261020163528"
-        }
-      ]
-    },
-    {
       "slug": "momogaoka-e",
       "level": "elem",
       "names": {
@@ -149,35 +207,6 @@
       ]
     },
     {
-      "slug": "hikarigaoka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "光ヶ丘中学校",
-        "ja_kids": "ひかりがおか中学校",
-        "en": "Hikarigaoka Junior High",
-        "zh": "光之丘中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
-      "latest_date": "2026-10-23",
-      "items": [
-        {
-          "title": "合唱コンクールリハーサルの様子 （３年生）",
-          "date": "2026-10-23",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136314954?tm=20261023123339"
-        },
-        {
-          "title": "小牧市総合防災訓練 3年生の様子",
-          "date": "2026-10-18",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136285803?tm=20261018165421"
-        },
-        {
-          "title": "あと一歩の壁を越えていけ！",
-          "date": "2026-10-12",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136248228?tm=20261012141018"
-        }
-      ]
-    },
-    {
       "slug": "hikarigaoka-e",
       "level": "elem",
       "names": {
@@ -203,35 +232,6 @@
           "title": "4年生 外国語活動",
           "date": "2026-10-23",
           "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136310440?tm=20261023075118"
-        }
-      ]
-    },
-    {
-      "slug": "toryo-j",
-      "level": "jhs",
-      "names": {
-        "ja": "桃陵中学校",
-        "ja_kids": "とうりょう中学校",
-        "en": "Toryo Junior High",
-        "zh": "桃陵中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
-      "latest_date": "2026-10-21",
-      "items": [
-        {
-          "title": "合唱コンクールのリハーサル",
-          "date": "2026-10-21",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136309478?tm=20261021201326"
-        },
-        {
-          "title": "合唱コンクールリハーサル",
-          "date": "2026-10-21",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136309453?tm=20261021200255"
-        },
-        {
-          "title": "１年生 合唱コンクール・リハーサル",
-          "date": "2026-10-21",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136307765?tm=20261021193632"
         }
       ]
     }
