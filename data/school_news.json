@@ -1,8 +1,66 @@
 {
-  "fetched_at": "2026-10-27T01:39:30Z",
+  "fetched_at": "2026-10-28T01:34:48Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "sue-e",
+      "level": "elem",
+      "names": {
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-10-27",
+      "items": [
+        {
+          "title": "10/27 音楽：合奏（４年生）",
+          "date": "2026-10-27",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136443976?tm=20261027153538"
+        },
+        {
+          "title": "夢チャレンジ科 中間発表",
+          "date": "2026-10-26",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136332476?tm=20261026222516"
+        },
+        {
+          "title": "10/26 今日の給食",
+          "date": "2026-10-26",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136330190?tm=20261026153311"
+        }
+      ]
+    },
+    {
+      "slug": "shinooka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "篠岡中学校",
+        "ja_kids": "しのおか中学校",
+        "en": "Shinooka Junior High",
+        "zh": "篠冈中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
+      "latest_date": "2026-10-27",
+      "items": [
+        {
+          "title": "１年生 B組、２Bと合唱交流会",
+          "date": "2026-10-27",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136444145?tm=20261027154615"
+        },
+        {
+          "title": "１年生 A組、２Aと合唱交流会",
+          "date": "2026-10-27",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136444070?tm=20261027154045"
+        },
+        {
+          "title": "２年生 １年生との合唱交流",
+          "date": "2026-10-26",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136332391?tm=20261026201820"
+        }
+      ]
+    },
     {
       "slug": "ohshiro-e",
       "level": "elem",
@@ -16,19 +74,19 @@
       "latest_date": "2026-10-27",
       "items": [
         {
+          "title": "4年音楽 めざせ！リコーダー名人",
+          "date": "2026-10-27",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136443082?tm=20261027142951"
+        },
+        {
+          "title": "5年図工 言葉から思いを広げて",
+          "date": "2026-10-27",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136442940?tm=20261027141723"
+        },
+        {
           "title": "放課後子ども教室わくわくっ子⑩",
           "date": "2026-10-27",
           "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136332685?tm=20261027072243"
-        },
-        {
-          "title": "1年生 中央公園交流会に向けて",
-          "date": "2026-10-26",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136330253?tm=20261026153938"
-        },
-        {
-          "title": "再編交流会 3年生",
-          "date": "2026-10-26",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136320892?tm=20261023184614"
         }
       ]
     },
@@ -87,64 +145,6 @@
           "title": "合唱コンクールリハーサル",
           "date": "2026-10-21",
           "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136309453?tm=20261021200255"
-        }
-      ]
-    },
-    {
-      "slug": "sue-e",
-      "level": "elem",
-      "names": {
-        "ja": "陶小学校",
-        "ja_kids": "すえ小学校",
-        "en": "Sue Elem. School",
-        "zh": "陶小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-10-26",
-      "items": [
-        {
-          "title": "夢チャレンジ科 中間発表",
-          "date": "2026-10-26",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136332476?tm=20261026222516"
-        },
-        {
-          "title": "10/26 今日の給食",
-          "date": "2026-10-26",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136330190?tm=20261026153311"
-        },
-        {
-          "title": "10/26 算数：円と球（３年生）",
-          "date": "2026-10-26",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136331337?tm=20261026171847"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "篠岡中学校",
-        "ja_kids": "しのおか中学校",
-        "en": "Shinooka Junior High",
-        "zh": "篠冈中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-10-26",
-      "items": [
-        {
-          "title": "２年生 １年生との合唱交流",
-          "date": "2026-10-26",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136332391?tm=20261026201820"
-        },
-        {
-          "title": "２年生 合唱練習",
-          "date": "2026-10-23",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136320249?tm=20261023173816"
-        },
-        {
-          "title": "１年生 合唱コンクールリハーサル",
-          "date": "2026-10-23",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136320806?tm=20261023181314"
         }
       ]
     },
