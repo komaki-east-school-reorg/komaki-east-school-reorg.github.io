@@ -6,10 +6,18 @@
   <link rel="self" type="application/atom+xml" href="https://komaki-east-school-reorg.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/"/>
   <id>https://komaki-east-school-reorg.github.io/</id>
-  <updated>2026-10-26T00:00:00+09:00</updated>
+  <updated>2026-10-28T00:00:00+09:00</updated>
   <author><name>小牧市東部（篠岡地区）学校再編ナビ（市民有志・非公式）</name></author>
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
   <rights>このサイトは市民有志が運営しており、小牧市・教育委員会とは無関係です。</rights>
+  <entry>
+    <title>市が「第2回北里地区の学校を考える会」のページを更新</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#news"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:1cc5790ac4e810af</id>
+    <updated>2026-10-28T00:00:00+09:00</updated>
+    <category term="市公式サイトのお知らせ"/>
+    <summary>市公式サイトのお知らせ｜市が「第2回北里地区の学校を考える会」のページを更新</summary>
+  </entry>
   <entry>
     <title>東部まちづくり：湯あがりに考える もしもの時に困らないための〇〇の話</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#community-actions"/>
@@ -321,13 +329,5 @@
     <updated>2026-10-05T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜「いまの状況」「今後のスケジュール」にも読み上げを追加</summary>
-  </entry>
-  <entry>
-    <title>市が「第2回北里地区の学校を考える会」のページを更新</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#news"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:8cff30a24f36db3a</id>
-    <updated>2026-10-02T00:00:00+09:00</updated>
-    <category term="市公式サイトのお知らせ"/>
-    <summary>市公式サイトのお知らせ｜市が「第2回北里地区の学校を考える会」のページを更新</summary>
   </entry>
 </feed>
