@@ -53,7 +53,7 @@
   "comm_def_p1": "O Conselho Comunitário é uma organização <strong>formada voluntariamente pelos moradores com base no distrito da escola primária</strong>. Associações de bairro, PTAs, clubes de idosos, clubes esportivos e comissários de bem-estar participam de forma transversal para discutir problemas locais e revitalizar a vida comunitária.",
   "comm_def_p2": "Em Komaki, Conselhos Comunitários foram criados em 14 dos 16 distritos de escolas primárias da cidade (em abril de 2026). Os cinco distritos da área de Shinooka (Shinooka, Hikarigaoka, Oshiro, Momogaoka e Sue) possuem cada um o seu conselho.",
   "comm_events_h2": "Eventos dos conselhos comunitários<small>Community Council Events</small>",
-  "comm_events_lead": "Lista de eventos dos conselhos comunitários publicada pela cidade de Komaki. A lista cobre os 16 distritos escolares da cidade, por isso os eventos dos cinco conselhos da área de Shinooka são destacados e exibidos primeiro. Atualizada automaticamente todos os dias.",
+  "comm_events_lead": "Eventos dos conselhos comunitários divulgados pela cidade de Komaki (🔄 obtidos automaticamente todos os dias). Abrangem os 16 distritos de escola primária da cidade, por isso os eventos dos cinco conselhos de Shinooka são marcados e aparecem primeiro.",
   "comm_fac_p": "Os <strong>ginásios, campos esportivos e piscinas</strong> de cada escola são usados diariamente pelos moradores para esportes comunitários e como bases de emergência (abrigos de evacuação). Os moradores também participam de eventos escolares como competições esportivas e feiras de aprendizagem, fazendo as escolas funcionarem como o \"rosto\" público da comunidade.",
   "comm_list_intro": "Os cinco distritos escolares da área de Shinooka têm um Conselho Comunitário, todos <strong>reconhecidos pela cidade em 1º de abril de 2020</strong>. O mais antigo, do distrito de Sue, foi fundado em 2014 e acumula mais de uma década de atividades.",
   "comm_list_note": "Obs.: Cada conselho publica seu plano de atividades e orçamento anuais no site da cidade (atualmente o do ano fiscal de 2026). Fonte: Prefeitura de Komaki, \"Situação de criação e atividades dos Conselhos Comunitários\" (atualizado em 4 de junho de 2026). Os nomes dos representantes são dados pessoais e não são reproduzidos aqui.<br>Para informações atualizadas e detalhes de cada conselho, consulte a <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/index.html\" target=\"_blank\" rel=\"noopener\">página dos Conselhos Comunitários da cidade</a>.",
@@ -148,6 +148,7 @@
   "footer_official": "Links Oficiais",
   "footer_official_link": "Reorganização Escolar de Komaki (Oficial)",
   "footer_pages": "Páginas",
+  "footer_site": "Sobre este site",
   "footer_tagline": "Site de voluntários comunitários com informações sobre o plano de reorganização escolar Shinooka, baseado em fontes oficiais de Komaki.",
   "footer_title": "Reorganização Escolar do Leste de Komaki – Mídia de Informação Local",
   "fs_label": "Tamanho do texto",
@@ -230,8 +231,8 @@
   "site_sub": "Mídia de Informação Local da Área de Tokadai (Não Oficial)",
   "status_done": "Concluído",
   "tobu_actions_h": "Novidades da região leste<small>Eastern District Updates</small>",
-  "tobu_actions_lead": "Atividades da região leste divulgadas pelo Escritório de Desenvolvimento da Região Leste: o que está por vir e o que ocorreu nos últimos dois meses. Coletado automaticamente das páginas da prefeitura uma vez por dia. Os títulos são traduzidos automaticamente do japonês da prefeitura.",
-  "tobu_actions_note": "Os títulos e nomes dos eventos são traduzidos automaticamente do japonês da prefeitura. Os itens não têm link individual, pois este site só cria links externos para páginas-índice oficiais; use o link da fonte acima para chegar às páginas \"Desenvolvimento da Região Leste\".",
+  "tobu_actions_lead": "Iniciativas da zona leste publicadas pelo Escritório de Desenvolvimento da Região Leste da cidade: o que vem por aí e o que aconteceu nos últimos dois meses.",
+  "tobu_actions_note": "🔄 Obtido automaticamente todos os dias; títulos traduzidos automaticamente. Os itens não têm link individual; veja os detalhes pela página-índice da fonte.",
   "tts_play": "🔊 Ouvir",
   "tts_stop": "■ Parar"
 }

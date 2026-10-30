@@ -6,10 +6,34 @@
   <link rel="self" type="application/atom+xml" href="https://komaki-east-school-reorg.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/"/>
   <id>https://komaki-east-school-reorg.github.io/</id>
-  <updated>2026-10-28T00:00:00+09:00</updated>
+  <updated>2026-10-31T00:00:00+09:00</updated>
   <author><name>小牧市東部（篠岡地区）学校再編ナビ（市民有志・非公式）</name></author>
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
   <rights>このサイトは市民有志が運営しており、小牧市・教育委員会とは無関係です。</rights>
+  <entry>
+    <title>検証と提案の核心を各10項目に、挿絵つきでまとめて掲載</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:7499a7a7cbd95676</id>
+    <updated>2026-10-31T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜検証と提案の核心を各10項目に、挿絵つきでまとめて掲載</summary>
+  </entry>
+  <entry>
+    <title>検証と提案を要点と「深掘り検証」の2ページに整理</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:557bb44077469d82</id>
+    <updated>2026-10-30T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜検証と提案を要点と「深掘り検証」の2ページに整理</summary>
+  </entry>
+  <entry>
+    <title>「このサイトについて」のページを新設（アプリ・フィードの使い方など）</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:e20a2cbed4ef457d</id>
+    <updated>2026-10-30T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜「このサイトについて」のページを新設（アプリ・フィードの使い方など）</summary>
+  </entry>
   <entry>
     <title>市が「第2回北里地区の学校を考える会」のページを更新</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#news"/>
@@ -305,29 +329,5 @@
     <updated>2026-10-06T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜共有ボタンに note を追加</summary>
-  </entry>
-  <entry>
-    <title>東部の地域協議会の催しを地域の取組と予定に自動掲載</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:1a467ad0b1cc5687</id>
-    <updated>2026-10-05T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜東部の地域協議会の催しを地域の取組と予定に自動掲載</summary>
-  </entry>
-  <entry>
-    <title>トップの今後の予定をスケジュール・カレンダーと連動</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:91a2021434dcca12</id>
-    <updated>2026-10-05T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜トップの今後の予定をスケジュール・カレンダーと連動</summary>
-  </entry>
-  <entry>
-    <title>「篠岡学区地域協議会 しのおかさわやかウォーキング」を地域の取組と予定に掲載</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:a527081fe6f97200</id>
-    <updated>2026-10-05T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜「篠岡学区地域協議会 しのおかさわやかウォーキング」を地域の取組と予定に掲載</summary>
   </entry>
 </feed>

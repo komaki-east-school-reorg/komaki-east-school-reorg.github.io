@@ -1555,7 +1555,8 @@ footer {
 /* トップ「最新の動き」の見出し下のフィードの案内 */
 .feed-box { margin-top: 1rem; padding: .8rem 1rem; background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: var(--radius-sm); }
 .feed-box-link { font-weight: 800; font-family: var(--heading-font); }
-.feed-box-note { font-size: .85rem; margin: .3rem 0 .4rem; color: var(--text-muted); }
+.feed-line { padding: .5rem 1rem; }
+.feed-more { font-size: .85rem; margin-left: .5em; white-space: nowrap; }
 .feed-box-url { display: inline-block; font-size: .8rem; padding: .1rem .4rem; background: var(--bg); border-radius: 4px; word-break: break-all; user-select: all; }
 .footer-links { list-style: none; }
 .footer-links li { margin-bottom: .4rem; }
@@ -3197,3 +3198,8 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
   .logo-sb { white-space: nowrap; }
   .logo-sb wbr { display: none; }
 }
+
+/* ===== トップの「このサイトについて」への案内（index.html#site-card。2026-10-30）===== */
+.site-card-p { margin: 0; font-size: .95rem; color: var(--text-muted); }
+.site-card-p .card-link { white-space: nowrap; margin: .5rem 0 0 .3em; }
+.feed-section-link { margin-top: .5rem; }

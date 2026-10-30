@@ -18,6 +18,7 @@
         "faq.html",
         "bus.html",
         "review.html",
+        "analysis.html",
         "index.html",
         "schedule.html",
         "nationwide.html",
@@ -54,6 +55,7 @@
       },
       "shown_in": [
         "review.html",
+        "analysis.html",
         "schedule.html",
         "community.html"
       ]
@@ -71,6 +73,7 @@
       },
       "shown_in": [
         "review.html",
+        "analysis.html",
         "map.html"
       ]
     },
@@ -86,7 +89,8 @@
         "label": "居住推進係"
       },
       "shown_in": [
-        "review.html"
+        "review.html",
+        "analysis.html"
       ]
     },
     {
@@ -102,6 +106,7 @@
       },
       "shown_in": [
         "review.html",
+        "analysis.html",
         "faq.html",
         "community.html"
       ]
@@ -118,7 +123,8 @@
         "kind": "article_contact"
       },
       "shown_in": [
-        "review.html"
+        "review.html",
+        "analysis.html"
       ]
     },
     {
@@ -133,7 +139,8 @@
         "kind": "article_contact"
       },
       "shown_in": [
-        "review.html"
+        "review.html",
+        "analysis.html"
       ]
     },
     {
@@ -148,7 +155,8 @@
         "kind": "article_contact"
       },
       "shown_in": [
-        "review.html"
+        "review.html",
+        "analysis.html"
       ]
     },
     {
@@ -163,6 +171,7 @@
       },
       "shown_in": [
         "review.html",
+        "analysis.html",
         "map.html"
       ]
     },
@@ -177,7 +186,8 @@
         "label": "地域公共交通グループ"
       },
       "shown_in": [
-        "review.html"
+        "review.html",
+        "analysis.html"
       ]
     },
     {
@@ -191,7 +201,8 @@
         "label": "子ども政策グループ"
       },
       "shown_in": [
-        "review.html"
+        "review.html",
+        "analysis.html"
       ]
     },
     {
@@ -205,7 +216,8 @@
         "label": "立地推進グループ"
       },
       "shown_in": [
-        "review.html"
+        "review.html",
+        "analysis.html"
       ]
     },
     {
@@ -220,6 +232,7 @@
       },
       "shown_in": [
         "review.html",
+        "analysis.html",
         "about.html",
         "faq.html",
         "schedule.html",
@@ -239,6 +252,7 @@
       "shown_in": [
         "nationwide.html",
         "review.html",
+        "analysis.html",
         "about.html",
         "faq.html",
         "schedule.html",
@@ -258,6 +272,7 @@
       "shown_in": [
         "nationwide.html",
         "review.html",
+        "analysis.html",
         "about.html"
       ]
     },
@@ -348,7 +363,8 @@
       },
       "shown_in": [
         "nationwide.html",
-        "review.html"
+        "review.html",
+        "analysis.html"
       ]
     },
     {
@@ -367,7 +383,8 @@
         "faq.html",
         "map.html",
         "clubs.html",
-        "review.html"
+        "review.html",
+        "analysis.html"
       ]
     },
     {
@@ -487,7 +504,8 @@
       },
       "shown_in": [
         "bus.html",
-        "review.html"
+        "review.html",
+        "analysis.html"
       ]
     },
     {
@@ -502,7 +520,8 @@
       },
       "shown_in": [
         "about.html",
-        "review.html"
+        "review.html",
+        "analysis.html"
       ]
     },
     {
@@ -711,7 +730,8 @@
       },
       "shown_in": [
         "about.html",
-        "review.html"
+        "review.html",
+        "analysis.html"
       ]
     },
     {
@@ -734,7 +754,8 @@
         "community.html",
         "map.html",
         "nationwide.html",
-        "review.html"
+        "review.html",
+        "analysis.html"
       ]
     },
     {
@@ -758,7 +779,8 @@
         "community.html",
         "map.html",
         "nationwide.html",
-        "review.html"
+        "review.html",
+        "analysis.html"
       ]
     },
     {
@@ -782,7 +804,8 @@
         "community.html",
         "map.html",
         "nationwide.html",
-        "review.html"
+        "review.html",
+        "analysis.html"
       ]
     },
     {
@@ -806,7 +829,8 @@
         "community.html",
         "map.html",
         "nationwide.html",
-        "review.html"
+        "review.html",
+        "analysis.html"
       ]
     },
     {

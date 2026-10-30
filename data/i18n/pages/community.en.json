@@ -53,7 +53,7 @@
   "comm_def_p1": "A Community Council is an organization <strong>voluntarily formed by local residents based on the elementary school district</strong>. Groups such as neighborhood associations, PTAs, senior clubs, sports clubs, and welfare commissioners participate across organizational lines to discuss local issues and revitalize community life.",
   "comm_def_p2": "In Komaki City, Community Councils have been established in 14 of the city's 16 elementary school districts (as of April 2026). The five elementary school districts in the Shinooka area (Shinooka, Hikarigaoka, Oshiro, Momogaoka, and Sue) each have their own council.",
   "comm_events_h2": "Community council events<small>地域協議会のイベント案内</small>",
-  "comm_events_lead": "Event listings for community councils, published by Komaki City. The listings cover all 16 elementary school districts in the city, so events from the five Shinooka-area councils are marked and shown first. Updated automatically every day.",
+  "comm_events_lead": "Event listings for community councils, published by Komaki City (🔄 fetched automatically every day). They cover all 16 elementary school districts in the city, so events from the five Shinooka-area councils are marked and shown first.",
   "comm_fac_p": "The <strong>gymnasiums, sports fields, and pools</strong> of each school are used daily by local residents for community sports and as disaster bases (evacuation sites). Community members also participate in school events such as sports meets and learning fairs, making schools serve as the public \"face\" of the community.",
   "comm_list_intro": "All five elementary school districts in the Shinooka area have a Community Council, and all five were <strong>certified by the city on April 1, 2020</strong>. The oldest, Sue Elementary District, was founded in 2014 and has over a decade of activity behind it.",
   "comm_list_note": "Note: Each council publishes an annual activity plan and budget on the city website (the FY2026 documents are currently posted). Source: Komaki City, \"Establishment and activities of Community Councils\" (updated June 4, 2026). Representatives' names are personal information and are not reproduced here.<br>For the latest information and details on each council, see the <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/index.html\" target=\"_blank\" rel=\"noopener\">city's Community Council page</a>.",
@@ -148,6 +148,7 @@
   "footer_official": "Official Links",
   "footer_official_link": "Komaki City School Reorganization (Official)",
   "footer_pages": "Pages",
+  "footer_site": "About this site",
   "footer_tagline": "A volunteer community site providing easy-to-understand information on the Shinooka school reorganization plan, based on official Komaki City sources.",
   "footer_title": "Komaki East School Reorganization – Community Info Media",
   "fs_label": "Text size",
@@ -230,8 +231,8 @@
   "site_sub": "Tokadai Area Community Info Media (Unofficial)",
   "status_done": "Done",
   "tobu_actions_h": "Eastern District Updates<small>東部まちづくりの動き</small>",
-  "tobu_actions_lead": "Activities in the eastern district published by the city's Eastern District Development Office: what is coming up, and what has happened in the last two months. Collected automatically from the city's pages once a day. The headings are machine-translated from the city's Japanese.",
-  "tobu_actions_note": "The headings and event names are machine-translated from the city's Japanese. Individual items are not linked, because this site links out only to official index pages; follow the source link above to the city's \"Eastern District Development\" pages for the full text.",
+  "tobu_actions_lead": "Activities in the eastern district published by the city’s Eastern District Development Office: what is coming up, and what has happened in the last two months.",
+  "tobu_actions_note": "🔄 Fetched automatically every day; headings are machine-translated. Individual items are not linked, so follow the source index page for details.",
   "tts_play": "🔊 Listen",
   "tts_stop": "■ Stop"
 }

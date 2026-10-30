@@ -28,11 +28,11 @@
       ※2026-09-27 に追加（ユーザー指示）。唯一の個別記事ページ。同じ節で、市が案内している
         登録フォーム https://logoform.jp/form/uSYk/80018 にもリンクする（これも community.html 限定）。
         auto_gates.py の CITY_PAGE_ONLY / PERMITTED_FORM_LINKS が機械で守っている。
-  (5) 都市計画（都市計画課）＝review.html の「都市計画の動き（東部地域）」の出典として使用
+  (5) 都市計画（都市計画課）＝analysis.html の「都市計画の動き（東部地域）」の出典として使用
       https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toshikeikaku/1/index.html
       ※2026-10-17 に追加（ユーザー許可）。リンクの文字列は js/main.js の
         TOSHIKEIKAKU EAST ブロックが持つ。配下の個別記事ページ・下位の索引は不可。
-        auto_gates.py の CITY_PAGE_ONLY が review.html（と js/main.js）に限っている。
+        auto_gates.py の CITY_PAGE_ONLY が analysis.html（と js/main.js）に限っている。
   (6) 小牧市議会のトップ＝council.html の出典欄の下（市議会の公式ページ）でのみ使用
       https://www.city.komaki.aichi.jp/shigikai/index.html
   (7) 市議会だより＝同じ場所でのみ使用
@@ -112,11 +112,11 @@
   ・閲覧数の集計（2026-10-24 ユーザー指示）：GoatCounter へ画像1枚ぶんの GET を送るだけで、
     外部スクリプトは読まない。送り先は https://komaki-saihen.goatcounter.com/count の1つで、
     js/main.js の COUNTER ブロックにだけ書く（auto_gates.py の PERMITTED_COUNTER）。
-    Cookie・識別子は作らない。DNT / GPC・「この端末では数えない」（index.html#privacy）・
-    ロボット・手元のサーバーでは送らない。数え方を変えたら index.html#privacy（privacy_*）も直す。
+    Cookie・識別子は作らない。DNT / GPC・「この端末では数えない」（site.html#privacy）・
+    ロボット・手元のサーバーでは送らない。数え方を変えたら site.html#privacy（privacy_*）も直す。
   ・読者の声の窓口（2026-10-24 ユーザー指示）：GitHub の Issue フォーム
     https://github.com/komaki-east-school-reorg/komaki-east-school-reorg.github.io/issues/new?template=feedback.yml
-    を index.html#feedback にだけ置く（auto_gates.py の PERMITTED_GITHUB）。
+    を site.html#feedback にだけ置く（auto_gates.py の PERMITTED_GITHUB）。
   ・これらは「出典」ではない。事実の根拠に使うことは一切ない（ルール4）。
   ・上記の city.komaki.aichi.jp / mext.go.jp 用チェックには引っかからない。
 
@@ -262,7 +262,7 @@
     auto_gates.py の PARTIAL_LANGS の両方にコードを入れること。
   ★ 言語を増やすときに直す場所：
       data/i18n/<lang>.json 新規作成 / i18n.js の LANGS・langAttr・PARTIAL /
-      全11ページの <option> と hreflang（?lang=<コード> 付きの実URL）/ sitemap.xml /
+      全ページの <option> と hreflang（?lang=<コード> 付きの実URL）/ sitemap.xml /
       footer_langs（全言語）/ auto_gates.py の PARTIAL_LANGS /
       main.js の KomakiLang の LANGS・CAL_LOCALE_MAP・各インラインラベル辞書
   ★ events.json のイベントラベルは【12言語必須】（auto_gates.py の LANGS）。

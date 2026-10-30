@@ -53,7 +53,7 @@
   "comm_def_p1": "El Consejo Comunitario es una organización <strong>formada voluntariamente por vecinos con base en el distrito de la escuela primaria</strong>. Asociaciones de vecinos, PTAs, clubes de mayores, deportivos y comisarios de bienestar participan de forma transversal para abordar problemas locales y revitalizar la comunidad.",
   "comm_def_p2": "En Komaki, los Consejos Comunitarios se han establecido en 14 de los 16 distritos de escuelas primarias de la ciudad (a abril de 2026). Los cinco distritos del área de Shinooka (Shinooka, Hikarigaoka, Oshiro, Momogaoka y Sue) cuentan cada uno con su propio consejo.",
   "comm_events_h2": "Eventos de los consejos vecinales<small>Community Council Events</small>",
-  "comm_events_lead": "Lista de eventos de los consejos vecinales publicada por la ciudad de Komaki. Abarca los 16 distritos escolares de la ciudad, por lo que los eventos de los cinco consejos de la zona de Shinooka aparecen marcados y en primer lugar. Se actualiza automáticamente cada día.",
+  "comm_events_lead": "Eventos de los consejos comunitarios publicados por la ciudad de Komaki (🔄 se obtienen automáticamente todos los días). Abarcan los 16 distritos de primaria de la ciudad, por eso los eventos de los cinco consejos de Shinooka se marcan y aparecen primero.",
   "comm_fac_p": "Los <strong>gimnasios, canchas y piscinas</strong> de cada escuela son utilizados diariamente por los vecinos para actividades deportivas comunitarias y como bases de emergencia (puntos de evacuación). Los vecinos también participan en eventos escolares como jornadas deportivas y ferias de aprendizaje, haciendo que las escuelas funcionen como el \"rostro\" de la comunidad.",
   "comm_list_intro": "Los cinco distritos escolares de la zona de Shinooka cuentan con un Consejo Comunitario, todos <strong>reconocidos por la ciudad el 1 de abril de 2020</strong>. El más antiguo, el del distrito de Sue, se fundó en 2014 y suma más de una década de actividad.",
   "comm_list_note": "Nota: Cada consejo publica su plan de actividades y presupuesto anuales en el sitio municipal (actualmente los del ejercicio 2026). Fuente: Ciudad de Komaki, «Creación y actividades de los Consejos Comunitarios» (actualizado el 4 de junio de 2026). Los nombres de los representantes son datos personales y no se reproducen aquí.<br>Para la información más reciente y los detalles de cada consejo, consulte la <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/index.html\" target=\"_blank\" rel=\"noopener\">página de Consejos Comunitarios de la ciudad</a>.",
@@ -148,6 +148,7 @@
   "footer_official": "Enlaces Oficiales",
   "footer_official_link": "Reorganización Escolar de Komaki (Oficial)",
   "footer_pages": "Páginas",
+  "footer_site": "Acerca de este sitio",
   "footer_tagline": "Sitio comunitario de voluntarios que proporciona información fácil de entender sobre el plan de reorganización escolar de Shinooka, basado en fuentes oficiales de Komaki.",
   "footer_title": "Reorganización Escolar del Este de Komaki – Medio de Información Local",
   "fs_label": "Tamaño del texto",
@@ -230,8 +231,8 @@
   "site_sub": "Medio de Información Local del Área de Tokadai (No Oficial)",
   "status_done": "Completado",
   "tobu_actions_h": "Novedades de la zona este<small>Eastern District Updates</small>",
-  "tobu_actions_lead": "Actividades de la zona este publicadas por la Oficina de Desarrollo de la Zona Este: lo que viene y lo ocurrido en los últimos dos meses. Se recoge automáticamente de las páginas municipales una vez al día. Los títulos están traducidos automáticamente del japonés del ayuntamiento.",
-  "tobu_actions_note": "Los títulos y nombres de los eventos están traducidos automáticamente del japonés del ayuntamiento. Los elementos no llevan enlace individual, porque este sitio solo enlaza a páginas índice oficiales; siga el enlace de la fuente para ver el texto completo.",
+  "tobu_actions_lead": "Iniciativas de la zona este publicadas por la Oficina de Desarrollo de la Zona Este de la ciudad: lo que viene y lo que pasó en los últimos dos meses.",
+  "tobu_actions_note": "🔄 Se obtiene automáticamente todos los días; títulos traducidos automáticamente. Los elementos no tienen enlace propio; consulte los detalles en la página índice de la fuente.",
   "tts_play": "🔊 Escuchar",
   "tts_stop": "■ Detener"
 }

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 都市計画課の掲載のうち、東部地域に関係するものを data/toshikeikaku_east.json に組み立てる。
-2026-10-17 追加（ユーザー指示）。review.html の「都市計画の動き（東部地域）」の元。
+2026-10-17 追加（ユーザー指示）。analysis.html（2026-10-31 に review.html から移した）の「都市計画の動き（東部地域）」の元。
 
 ■ 市サーバへは一切アクセスしない
    fetch_news.py が監視対象として data/official_pages/toshikeikaku-1-*.txt に

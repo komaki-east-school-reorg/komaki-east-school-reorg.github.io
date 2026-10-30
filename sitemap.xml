@@ -179,6 +179,38 @@
     <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/review.html?lang=my"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/review.html"/>
   </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/analysis.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/analysis.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/analysis.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/analysis.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/analysis.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/analysis.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/analysis.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/analysis.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/analysis.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/analysis.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/analysis.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/analysis.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/analysis.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/analysis.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/site.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/site.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/site.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/site.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/site.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/site.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/site.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/site.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/site.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/site.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/site.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/site.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/site.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/site.html"/>
+  </url>
   <!-- EVENTS:BEGIN 予定ごとの固有ページ。build_event_pages.py が生成する。手編集しないこと -->
   <url>
     <loc>https://komaki-east-school-reorg.github.io/events/2025-05-10-1.html</loc>

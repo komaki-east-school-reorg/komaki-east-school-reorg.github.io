@@ -1,3 +1,22 @@
+/* ===== MOVED ANCHORS：別のページへ移した節の古いアンカーを受ける（2026-10-30 ユーザー指示） =====
+   review.html の深掘り7節は analysis.html へ（2026-10-31 に「読み取れないこと」「だれが決めるのか」
+   「都市計画の動き」の3節も移した）、index.html の「このサイトについて」5節は site.html へ移した。共有済みのリンク（review.html#rev-quality、index.html#app?lang=pt など）で開かれたら、
+   ?lang= などを保ったまま移り先の同じ節へ送る。履歴は残さない（replace）。 */
+(function () {
+  var MOVES = {
+    review: ['analysis.html', ['rev-gaps', 'rev-power', 'rev-toshikeikaku', 'rev-quality', 'rev-skills', 'rev-history',
+                               'rev-nation', 'rev-should', 'rev-ideas', 'rev-highschool']],
+    index: ['site.html', ['site-intro', 'app', 'spread', 'feedback', 'privacy']]
+  };
+  var id = (location.hash || '').slice(1);
+  if (!id) return;
+  var file = location.pathname.split('/').pop().replace(/\.html$/, '') || 'index';
+  var m = MOVES[file];
+  if (m && m[1].indexOf(id) !== -1 && !document.getElementById(id)) {
+    location.replace(m[0] + location.search + location.hash);
+  }
+})();
+
 /* ===== 表示言語の解決（このファイル共通） =====
    URL の ?lang=xx を最優先し、次に localStorage、どちらも無ければ既定の ja。
    URL を先に見るのは、共有された「?lang=pt のリンク」を初めて開いた人でも、
@@ -36,15 +55,15 @@ window.KomakiSafeUrl = function (u) {
      入力された文字・共有した URL・Mastodon のサーバー名・学年などは送らない。
    ・Cookie も localStorage の識別子も作らない。
    ・送らないとき：Do Not Track・Global Privacy Control、この端末で「数えない」を選んだとき
-     （localStorage の komaki_nocount、index.html#privacy のボタン）、ロボット・自動ツール、
+     （localStorage の komaki_nocount、site.html#privacy のボタン）、ロボット・自動ツール、
      手元のサーバー（localhost など）。
    ・機能の使われ方は、各ブロックを触らずに document のクリックを1か所で見て名前を付ける
      （EVENTS）。ボタンのクラス名を変えたらここも直すこと。
    集計先のドメインは auto_gates.py の PERMITTED_COUNTER でこのファイル限定にしてある。
-   読者への説明は index.html#privacy（キー privacy_*）。数え方を変えたらそこも直す。 */
+   読者への説明は site.html#privacy（キー privacy_*）。数え方を変えたらそこも直す。 */
 /* SNS で使ってもらうハッシュタグ（2026-10-24 ユーザー指示）。どの言語でも日本語のまま。
-   共有ボタンの投稿文（SHARE BUTTONS の withTags）と、共有欄・index.html#spread の案内（HASHTAGS）が使う。
-   変えるときは index.html#spread・辞書の board_tags・check_reach.py の TAGS もそろえる。 */
+   共有ボタンの投稿文（SHARE BUTTONS の withTags）と、共有欄・site.html#spread の案内（HASHTAGS）が使う。
+   変えるときは site.html#spread・辞書の board_tags・check_reach.py の TAGS もそろえる。 */
 window.KomakiTags = '#学校再編ナビ #桃花台 #小牧 #小牧市東部 #篠岡地区';
 
 window.KomakiCount = (function () {
@@ -132,7 +151,7 @@ window.KomakiCount = (function () {
     ['.sec-link', 'link/section'],
     ['.faq-link', 'link/faq'],
     ['.event-permalink', 'link/event'],
-    ['.footer-feed a, .feed-box a', 'feed/open'],
+    ['.footer-feed a, .feed-box-link, .feed-section-link', 'feed/open'],
     ['.fb-open', 'feedback/open']
   ];
   document.addEventListener('click', function (e) {
@@ -1238,7 +1257,7 @@ window.KomakiGrade = (function () {
         var line = [place, when].filter(Boolean).join(lang === 'ja' || lang === 'zh' ? '　' : ' · ');
         var isCouncil = t.kind === 'council', isToshi = t.kind === 'toshi';
         var bodies = isCouncil ? BODY_COUNCIL : isToshi ? BODY_TOSHI : BODY;
-        var href = isToshi ? 'review.html#rev-toshikeikaku' : 'community.html#community-actions';
+        var href = isToshi ? 'analysis.html#rev-toshikeikaku' : 'community.html#community-actions';
         var body = (bodies[lang] || bodies.en).replace('{a}', '<a href="' + href + '">').replace('{/a}', '</a>');
         var tags = isCouncil ? window.KomakiTokadaiEvents.TAG_COUNCIL : isToshi ? window.KomakiTokadaiEvents.TAG_TOSHI[t.role] : window.KomakiTokadaiEvents.TAG;
         var tag = tags[lang] || tags.en;
@@ -2694,7 +2713,7 @@ window.KomakiGrade = (function () {
   }
 
   function onPress(e) {
-    if (e && e.preventDefault) e.preventDefault();   // フッタ・メニューのリンク（index.html#app）は飛ばずにここで扱う
+    if (e && e.preventDefault) e.preventDefault();   // フッタ・メニューのリンク（site.html#app）は飛ばずにここで扱う
     if (deferred) {
       var p = deferred;
       deferred = null;   // prompt() は1回しか使えない
@@ -2747,11 +2766,11 @@ window.KomakiGrade = (function () {
   }
 
   // フッタ（フィードの行の下）とモバイルのハンバーガーメニュー（2026-10-17 ユーザー指示）。
-  // どちらも index.html#app へのリンクの形にしておき、押したらここで扱う。メニューの項目は
+  // どちらも site.html#app へのリンクの形にしておき、押したらここで扱う。メニューの項目は
   // CSS でモバイル幅だけ出す（PC のナビは2段に収めてあり、項目を増やすと折り返すため）。
   function appLink(cls) {
     var a = document.createElement('a');
-    a.href = 'index.html#app';
+    a.href = 'site.html#app';
     a.className = cls;
     a.setAttribute('data-i18n', 'app_cta');
     a.textContent = '📲 アプリにする';
@@ -2774,7 +2793,7 @@ window.KomakiGrade = (function () {
     }
   }
 
-  // index.html#app の大きなボタン（JS が無効だと動かないので HTML では hidden。ここで出す）
+  // site.html#app の大きなボタン（JS が無効だと動かないので HTML では hidden。ここで出す）
   var cta = document.getElementById('app-install-cta');
   if (cta && !installed) { cta.hidden = false; window.KomakiApp.track(cta); }
 
@@ -3043,7 +3062,7 @@ window.KomakiGrade = (function () {
   var qrNoteTpl = tplSpan('share_qr_note', '読み取ると、このページを表示中の言語で開きます。チラシや掲示にお使いください。');
   var qrSaveTpl = tplSpan('share_qr_save', '画像を保存');
   var qrCloseTpl = tplSpan('share_qr_close', '閉じる');
-  var QR_PAGES = ['index', 'about', 'schedule', 'faq', 'bus', 'clubs', 'council', 'community', 'map', 'nationwide', 'review'];
+  var QR_PAGES = ['index', 'about', 'schedule', 'faq', 'bus', 'clubs', 'council', 'community', 'map', 'nationwide', 'review', 'analysis', 'site'];
   var PAGE_ID_SB = document.documentElement.getAttribute('data-page') ||
     (location.pathname.match(/([^/]+)\.html$/) || ['', 'index'])[1] || 'index';
   var qrDlg = null;
@@ -3669,7 +3688,7 @@ window.KomakiGrade = (function () {
           '<div class="board-cta">' + esc(t('cta', 'この紙に載せきれなかったことは、サイトにすべて載っています。')) + '</div>' +
           '<div class="board-url">' + esc(pageUrl(lang)) + '</div>' +
           '<div class="board-scan">' + esc(t('scan', 'スマートフォンのカメラで読み取れます。')) + '</div>' +
-          // SNS で話題にするときのハッシュタグ（2026-10-24 ユーザー指示。index.html#spread と同じ5つ）
+          // SNS で話題にするときのハッシュタグ（2026-10-24 ユーザー指示。site.html#spread と同じ5つ）
           '<div class="board-scan">' + esc(t('tags', 'SNSでは #学校再編ナビ #桃花台 #小牧 #小牧市東部 #篠岡地区')) + '</div>' +
         '</div>' +
       '</div>' +
@@ -3801,7 +3820,9 @@ window.KomakiGrade = (function () {
      画面の外へ押し出されるため。 */
 (function () {
   // 目次を差し込む位置。index.html は「いまの状況」を最初に読んでもらいたいので、その帯の下。
+  // 検証と提案の2ページは、ヒーローの下の切り替えタブ（.rev-tabs）のさらに下。
   var anchor = document.querySelector('main > .upcoming-bar') || document.querySelector('main > .now-bar') ||
+               document.querySelector('main > .rev-tabs') ||
                document.querySelector('main > .page-hero') || document.querySelector('main > .hero');
   var heads = [].slice.call(document.querySelectorAll('main h2.section-title'));
   if (!anchor || heads.length < 2) return;
@@ -3910,6 +3931,85 @@ window.KomakiGrade = (function () {
 
   nav.appendChild(wrap);
   anchor.parentNode.insertBefore(nav, anchor.nextSibling);
+})();
+
+/* ===== REVIEW LINKS（検証と提案の2ページを行き来する札、2026-10-31 ユーザー指示）=====
+   review.html（要点）の核心20項目と、analysis.html（深掘り）の根拠のカードを結ぶ対応表。
+   ・左＝review.html の核心のカード（rev-cv1〜10＝検証、rev-cp1〜10＝提案）、右＝その根拠になる
+     analysis.html のカードの id。右の先頭が review の「くわしく →」の飛び先（静的リンク）と一致すること。
+   ・analysis.html では、根拠のカードの見出しの下に「要点で使っている項目：🔎 検証7 ・ 💡 提案2」の
+     札を付け、review.html の該当カードへ戻す。対応表はこの1か所だけ（auto_gates.py check 21 が
+     review.html・analysis.html との食い違いを止める）。
+   ・review の「くわしく」から来て同じ項目の札を押したときは、履歴を戻る（読んでいた位置に戻るため）。
+   ・札の文字は analysis.html の隠し要素 #rev-back-strings（data-i18n）から読む。辞書を当て直すたびに
+     描き直す。札は読み上げ（SKIP の .rev-back）と原文併記（data-i18n を持たない）に混ざらない。 */
+(function () {
+  var LINKS = {"cv1": ["rev-i1"], "cv2": ["rev-i4"], "cv3": ["rev-i3"], "cv4": ["rev-i6"], "cv5": ["rev-i5"],
+    "cv6": ["rev-k1", "rev-k2", "rev-k3"], "cv7": ["rev-k4", "rev-k6", "rev-n4"], "cv8": ["rev-k5", "rev-k7"],
+    "cv9": ["rev-e1", "rev-e2", "rev-e3", "rev-e4"], "cv10": ["rev-r1", "rev-i2", "rev-r3"],
+    "cp1": ["rev-m-p1"], "cp2": ["rev-m-p2"], "cp3": ["rev-m-p3", "rev-m-p4", "rev-m-p5", "rev-m-p6"],
+    "cp4": ["rev-m-p7", "rev-m-p8"], "cp5": ["rev-m-p9"], "cp6": ["rev-p1", "rev-p6", "rev-q7"],
+    "cp7": ["rev-q1", "rev-p2", "rev-q9"], "cp8": ["rev-p3", "rev-q2"], "cp9": ["rev-p5", "rev-p7", "rev-h6", "rev-h7", "rev-h8"],
+    "cp10": ["rev-q4", "rev-q5", "rev-q6"]};
+  var KEY = 'komaki_rev_from';
+  var page = location.pathname.split('/').pop().replace(/\.html$/, '');
+
+  if (page === 'review') {
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[data-rev-from]');
+      if (!a) return;
+      try { sessionStorage.setItem(KEY, a.getAttribute('data-rev-from')); } catch (err) {}
+    });
+    return;
+  }
+  if (page !== 'analysis') return;
+  var strings = document.getElementById('rev-back-strings');
+  if (!strings) return;
+
+  // 根拠の id → それを使っている核心の一覧
+  var back = {};
+  Object.keys(LINKS).forEach(function (core) {
+    LINKS[core].forEach(function (id) { (back[id] = back[id] || []).push(core); });
+  });
+  function str(k) {
+    var n = strings.querySelector('[data-rb="' + k + '"]');
+    return n ? n.textContent : '';
+  }
+  function draw() {
+    document.querySelectorAll('.rev-back').forEach(function (n) { n.remove(); });
+    Object.keys(back).forEach(function (id) {
+      var card = document.getElementById(id);
+      if (!card) return;
+      var head = card.querySelector('.rev-card-h, .rev-idea-h');
+      var p = document.createElement('p');
+      p.className = 'rev-back';
+      var lead = document.createElement('span');
+      lead.className = 'rev-back-lead';
+      lead.textContent = str('lead');
+      p.appendChild(lead);
+      back[id].forEach(function (core) {
+        var a = document.createElement('a');
+        a.href = 'review.html#rev-' + core;
+        a.setAttribute('data-core', core);
+        a.textContent = str(core.charAt(1) === 'v' ? 'v' : 'p').replace('{n}', core.slice(2));
+        p.appendChild(a);
+      });
+      if (head) head.insertAdjacentElement('afterend', p); else card.insertBefore(p, card.firstChild);
+    });
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('.rev-back a[data-core]');
+    if (!a) return;
+    var from = null;
+    try { from = sessionStorage.getItem(KEY); } catch (err) {}
+    if (from === a.getAttribute('data-core') && /\/review\.html/.test(document.referrer || '') && history.length > 1) {
+      e.preventDefault();
+      try { sessionStorage.removeItem(KEY); } catch (err) {}
+      history.back();
+    }
+  });
+  draw();
+  document.addEventListener('komaki:i18n-applied', draw);
 })();
 
 /* ===== SECTION LINKS（節・質問への直リンク、全ページ）=====
@@ -5138,7 +5238,8 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   var SKIP = 'script,style,noscript,svg,rt,select,input,textarea,button:not(.faq-q),' +
              '.tts-row,.page-toc,.faq-q-icon,.section-updated,.bus-map-layers,.bus-area-map,' +
              '[hidden],[aria-hidden="true"],.section-title small,.orig-ja,' +
-             '.now-more,.upcoming-more';   // 「くわしく見る →」などの案内リンクは読まない
+             '.now-more,.upcoming-more,' +  // 「くわしく見る →」などの案内リンクは読まない
+             '.rev-more,.rev-back,.rev-partnav,.rev-num';   // 検証と提案の2ページの行き来の札（REVIEW LINKS）
   var BLOCK = 'h2,h3,h4,h5,p,li,dt,dd,tr,caption,figcaption,blockquote,summary,.faq-q,div';
   // 札（「概要」などの分類ラベル）は直後の文とつなげて読むと意味が崩れるので、あとに読点を挟む
   var TAGLIKE = '[class*="tag"],[class*="badge"],[class*="label"],[class*="date"],[class*="cite"],time';
@@ -5555,12 +5656,12 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
 /* ===== HASHTAGS / PRIVACY TOGGLE（2026-10-24 ユーザー指示） =====
    ・SNS で触れてもらうときのハッシュタグ5つを、全ページの共有欄（#share）の説明文の下に出し、
      まとめてコピーできるようにする。共有ボタンの投稿文にも SHARE BUTTONS（withTags）が添える。
-     タグは固有名なので、どの言語でも日本語のまま（index.html#spread の各言語の説明にもそう書いてある）。
-   ・index.html#spread の投稿の例文（.spread-ex）にも「コピー」ボタンを付ける。
-   ・index.html#privacy の「この端末では数えない」ボタン（#nocount-btn）。COUNTER（ファイル冒頭）が読む
+     タグは固有名なので、どの言語でも日本語のまま（site.html#spread の各言語の説明にもそう書いてある）。
+   ・site.html#spread の投稿の例文（.spread-ex）にも「コピー」ボタンを付ける。
+   ・site.html#privacy の「この端末では数えない」ボタン（#nocount-btn）。COUNTER（ファイル冒頭）が読む
      localStorage の komaki_nocount を出し入れする。
    文言は辞書（share_tags_* / spread_copy / privacy_*、RUNTIME_KEYS）を隠し要素で受け取る。
-   タグを変えるときは TAGS と、index.html#spread・辞書の board_tags を一緒に直すこと。 */
+   タグを変えるときは TAGS と、site.html#spread・辞書の board_tags を一緒に直すこと。 */
 (function () {
   var TAGS = window.KomakiTags;
 
@@ -5643,7 +5744,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     lead.parentNode.insertBefore(row, lead.nextSibling);
   }
 
-  // --- index.html#spread：タグと例文のコピー ---
+  // --- site.html#spread：タグと例文のコピー ---
   document.querySelectorAll('.spread-copy').forEach(function (btn) {
     var msg = document.createElement('span');
     msg.className = 'share-tags-msg';
@@ -5657,7 +5758,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     });
   });
 
-  // --- index.html#privacy：この端末では数えない ---
+  // --- site.html#privacy：この端末では数えない ---
   var nc = document.getElementById('nocount-btn');
   var state = document.getElementById('nocount-state');
   if (nc && state && window.KomakiCount) {

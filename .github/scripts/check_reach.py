@@ -34,7 +34,7 @@ SITE = "https://komaki-east-school-reorg.github.io/"
 COUNTER = "https://komaki-saihen.goatcounter.com/api/v0"
 TAGS = ["学校再編ナビ", "桃花台", "小牧", "小牧市東部", "篠岡地区"]
 PAGES = ["", "about.html", "schedule.html", "faq.html", "bus.html", "clubs.html",
-         "council.html", "community.html", "map.html", "nationwide.html", "review.html"]
+         "council.html", "community.html", "map.html", "nationwide.html", "review.html", "analysis.html", "site.html"]
 UA = "komaki-saihen-navi-report/1.0 (+" + SITE + ")"
 
 

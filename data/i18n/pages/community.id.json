@@ -53,7 +53,7 @@
   "comm_def_p1": "Dewan Komunitas adalah organisasi yang <strong>dibentuk secara sukarela oleh warga berdasarkan wilayah sekolah dasar</strong>. Asosiasi warga, PTA, klub lansia, klub olahraga, dan komisioner kesejahteraan berpartisipasi lintas organisasi untuk mendiskusikan masalah lokal dan merevitalisasi kehidupan komunitas.",
   "comm_def_p2": "Di Kota Komaki, Dewan Komunitas telah dibentuk di 14 dari 16 distrik sekolah dasar (per April 2026). Lima distrik di area Shinooka (Shinooka, Hikarigaoka, Oshiro, Momogaoka, dan Sue) masing-masing memiliki dewan sendiri.",
   "comm_events_h2": "Acara dewan komunitas<small>Community Council Events</small>",
-  "comm_events_lead": "Daftar acara dewan komunitas yang diterbitkan Kota Komaki. Daftar ini mencakup seluruh 16 wilayah sekolah dasar di kota, sehingga acara dari lima dewan di wilayah Shinooka ditandai dan ditampilkan lebih dulu. Diperbarui otomatis setiap hari.",
+  "comm_events_lead": "Pengumuman acara dewan komunitas dari Kota Komaki (🔄 diambil otomatis setiap hari). Mencakup ke-16 wilayah SD di kota, sehingga acara lima dewan di Shinooka diberi tanda dan ditaruh paling atas.",
   "comm_fac_p": "Setiap sekolah memiliki <strong>gymnasium, lapangan olahraga, dan kolam renang</strong> yang digunakan sehari-hari oleh warga setempat untuk olahraga komunitas dan sebagai pangkalan bencana (tempat evakuasi). Warga juga berpartisipasi dalam acara sekolah seperti pertandingan olahraga dan pameran belajar, menjadikan sekolah sebagai \"wajah\" komunitas.",
   "comm_list_intro": "Kelima distrik sekolah dasar di area Shinooka memiliki Dewan Komunitas, dan semuanya <strong>diakui oleh kota pada 1 April 2020</strong>. Yang tertua, distrik Sue, berdiri pada 2014 dan telah aktif lebih dari sepuluh tahun.",
   "comm_list_note": "Catatan: Setiap dewan menerbitkan rencana kegiatan dan anggaran tahunan di situs kota (saat ini untuk TA2026). Sumber: Kota Komaki, \"Pendirian dan kegiatan Dewan Komunitas\" (diperbarui 4 Juni 2026). Nama perwakilan adalah data pribadi dan tidak dimuat di sini.<br>Untuk informasi terbaru dan detail tiap dewan, lihat <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/index.html\" target=\"_blank\" rel=\"noopener\">halaman Dewan Komunitas kota</a>.",
@@ -148,6 +148,7 @@
   "footer_official": "Tautan Resmi",
   "footer_official_link": "Reorganisasi Sekolah Kota Komaki (Resmi)",
   "footer_pages": "Daftar Halaman",
+  "footer_site": "Tentang situs ini",
   "footer_tagline": "Situs sukarela komunitas yang menyediakan informasi mudah dipahami tentang rencana reorganisasi sekolah Shinooka, berdasarkan sumber resmi Kota Komaki.",
   "footer_title": "Rencana Reorganisasi Sekolah Komaki Timur (Wilayah Shinooka) – Media Informasi Lokal",
   "fs_label": "Ukuran teks",
@@ -230,8 +231,8 @@
   "site_sub": "Media Informasi Lokal Kawasan Tokadai (Tidak Resmi)",
   "status_done": "Selesai",
   "tobu_actions_h": "Kabar penataan wilayah timur<small>Eastern District Updates</small>",
-  "tobu_actions_lead": "Kegiatan di wilayah timur yang dipublikasikan Kantor Pengembangan Wilayah Timur: yang akan datang dan yang terjadi dalam dua bulan terakhir. Diambil otomatis dari halaman kota sekali sehari. Judul diterjemahkan otomatis dari bahasa Jepang kota.",
-  "tobu_actions_note": "Judul dan nama acara diterjemahkan otomatis dari bahasa Jepang kota. Tiap item tidak ditautkan satu per satu karena situs ini hanya menautkan ke halaman indeks resmi; ikuti tautan sumber di atas untuk teks lengkapnya.",
+  "tobu_actions_lead": "Kegiatan di wilayah timur yang diumumkan Kantor Pembangunan Wilayah Timur kota: acara mendatang dan perkembangan dua bulan terakhir.",
+  "tobu_actions_note": "🔄 Diambil otomatis setiap hari; judul diterjemahkan otomatis. Tiap butir tidak ditautkan, jadi lihat rinciannya dari halaman indeks sumber.",
   "tts_play": "🔊 Dengarkan",
   "tts_stop": "■ Berhenti"
 }

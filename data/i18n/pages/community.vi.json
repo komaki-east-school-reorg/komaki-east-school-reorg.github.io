@@ -53,7 +53,7 @@
   "comm_def_p1": "Hội đồng Cộng đồng là tổ chức <strong>được thành lập tự nguyện bởi cư dân địa phương theo đơn vị khu trường tiểu học</strong>. Các hội khu phố, PTA, câu lạc bộ người cao tuổi, câu lạc bộ thể thao và ủy viên phúc lợi cùng tham gia để thảo luận giải quyết vấn đề địa phương và thúc đẩy cộng đồng.",
   "comm_def_p2": "Tại thành phố Komaki, Hội đồng Cộng đồng đã được thành lập tại 14 trong số 16 khu trường tiểu học (tính đến tháng 4/2026). Năm khu trường tại khu vực Shinooka (Shinooka, Hikarigaoka, Oshiro, Momogaoka và Sue) đều có hội đồng riêng.",
   "comm_events_h2": "Sự kiện của hội đồng cộng đồng<small>Community Council Events</small>",
-  "comm_events_lead": "Danh sách sự kiện của các hội đồng cộng đồng do thành phố Komaki công bố. Danh sách bao gồm cả 16 khu học chánh tiểu học của thành phố, nên các sự kiện của năm hội đồng khu vực Shinooka được đánh dấu và hiển thị trước. Cập nhật tự động hằng ngày.",
+  "comm_events_lead": "Thông báo sự kiện của các hội đồng khu vực do thành phố Komaki công bố (🔄 lấy tự động mỗi ngày). Danh sách bao gồm cả 16 khu tiểu học trong thành phố, nên sự kiện của năm hội đồng khu Shinooka được đánh dấu và xếp lên đầu.",
   "comm_fac_p": "Các <strong>nhà thể dục, sân thể thao và bể bơi</strong> của mỗi trường được cư dân địa phương sử dụng hàng ngày cho các hoạt động thể thao cộng đồng và làm trung tâm phòng chống thiên tai (nơi sơ tán). Cư dân cũng tham gia các sự kiện trường học như hội thao và hội chợ học tập, khiến trường học trở thành \"bộ mặt\" của cộng đồng.",
   "comm_list_intro": "Cả năm khu trường tiểu học ở khu vực Shinooka đều có Hội đồng Cộng đồng và tất cả đều <strong>được thành phố công nhận vào ngày 1/4/2020</strong>. Lâu đời nhất là khu Sue, thành lập năm 2014, đã hoạt động hơn mười năm.",
   "comm_list_note": "Lưu ý: Mỗi hội đồng công bố kế hoạch hoạt động và ngân sách hằng năm trên trang web thành phố (hiện là tài liệu năm tài khóa 2026). Nguồn: Thành phố Komaki, \"Tình hình thành lập và hoạt động của Hội đồng Cộng đồng\" (cập nhật ngày 4/6/2026). Tên người đại diện là thông tin cá nhân nên không đăng tại đây.<br>Để biết thông tin mới nhất và chi tiết từng hội đồng, xem <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/index.html\" target=\"_blank\" rel=\"noopener\">trang Hội đồng Cộng đồng của thành phố</a>.",
@@ -148,6 +148,7 @@
   "footer_official": "Liên kết chính thức",
   "footer_official_link": "Tái cơ cấu trường học Komaki (Chính thức)",
   "footer_pages": "Trang",
+  "footer_site": "Về trang này",
   "footer_tagline": "Trang web tình nguyện cộng đồng cung cấp thông tin dễ hiểu về kế hoạch tái cơ cấu trường học Shinooka, dựa trên nguồn thông tin chính thức của Komaki.",
   "footer_title": "Tái cơ cấu trường học phía Đông Komaki – Kênh thông tin địa phương",
   "fs_label": "Cỡ chữ",
@@ -230,8 +231,8 @@
   "site_sub": "Kênh thông tin địa phương khu vực Tokadai (Không chính thức)",
   "status_done": "Hoàn thành",
   "tobu_actions_h": "Động thái phát triển khu đông<small>Eastern District Updates</small>",
-  "tobu_actions_lead": "Các hoạt động ở khu vực phía đông do Phòng Xúc tiến Phát triển Khu Đông công bố: sự kiện sắp tới và những gì đã diễn ra trong hai tháng qua. Tự động lấy từ trang của thành phố mỗi ngày một lần. Tiêu đề được dịch tự động từ bản tiếng Nhật của thành phố.",
-  "tobu_actions_note": "Tiêu đề và tên sự kiện được dịch tự động từ bản tiếng Nhật của thành phố. Từng mục không được gắn liên kết riêng, vì trang này chỉ liên kết ra ngoài tới các trang mục lục chính thức; hãy theo liên kết nguồn ở trên để xem toàn văn.",
+  "tobu_actions_lead": "Các hoạt động ở khu vực phía đông do Phòng Xúc tiến Phát triển Khu Đông của thành phố công bố: sự kiện sắp tới và diễn biến trong hai tháng gần đây.",
+  "tobu_actions_note": "🔄 Lấy tự động mỗi ngày; tiêu đề được dịch tự động. Không có liên kết riêng cho từng mục, xem chi tiết từ trang mục lục nguồn.",
   "tts_play": "🔊 Nghe",
   "tts_stop": "■ Dừng"
 }

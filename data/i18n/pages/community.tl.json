@@ -53,7 +53,7 @@
   "comm_def_p1": "Ang Community Council ay isang organisasyong <strong>boluntaryong binuo ng mga lokal na residente batay sa distrito ng elementaryang paaralan</strong>. Ang mga asosasyon ng kapitbahayan, PTA, senior club, sports club, at welfare commissioner ay nagtutulungan upang talakayin ang mga lokal na isyu at palakasin ang buhay ng komunidad.",
   "comm_def_p2": "Sa lungsod ng Komaki, may Community Council sa 14 sa 16 na distrito ng elementaryang paaralan (mula Abril 2026). Ang limang distrito sa lugar ng Shinooka (Shinooka, Hikarigaoka, Oshiro, Momogaoka, at Sue) ay bawat isa ay may sariling konseho.",
   "comm_events_h2": "Mga kaganapan ng community council<small>Community Council Events</small>",
-  "comm_events_lead": "Listahan ng mga kaganapan ng community council na inilalathala ng Lungsod ng Komaki. Saklaw nito ang lahat ng 16 na elementary school district sa lungsod, kaya minarkahan at inuuna ang mga kaganapan mula sa limang konseho sa lugar ng Shinooka. Awtomatikong ina-update araw-araw.",
+  "comm_events_lead": "Mga anunsyo ng kaganapan ng mga konseho ng komunidad na inilathala ng Lungsod ng Komaki (🔄 awtomatikong kinukuha araw-araw). Sakop nito ang 16 na distrito ng elementarya sa lungsod, kaya minarkahan at inuna ang mga kaganapan ng limang konseho sa Shinooka.",
   "comm_fac_p": "Ang <strong>mga gymnasium, sports field, at pool</strong> ng bawat paaralan ay ginagamit araw-araw ng mga lokal na residente para sa mga aktibidad sa palakasan at bilang base sa sakuna (lugar ng paglikas). Ang mga miyembro ng komunidad ay nakikilahok din sa mga aktibidad ng paaralan tulad ng sports meet at learning fair, na ginagawang \"mukha\" ng komunidad ang mga paaralan.",
   "comm_list_intro": "Lahat ng limang distrito ng elementarya sa Shinooka ay may Community Council, at pawang <strong>kinilala ng lungsod noong Abril 1, 2020</strong>. Ang pinakamatanda, ang distrito ng Sue, ay itinatag noong 2014 at mahigit sampung taon nang aktibo.",
   "comm_list_note": "Paalala: Bawat konseho ay naglalathala ng taunang plano at badyet sa website ng lungsod (kasalukuyang nakalagay ang para sa FY2026). Pinagmulan: Lungsod ng Komaki, \"Pagkakatatag at mga gawain ng Community Council\" (na-update Hunyo 4, 2026). Ang pangalan ng mga kinatawan ay personal na impormasyon at hindi inilalathala rito.<br>Para sa pinakabagong impormasyon at detalye ng bawat konseho, tingnan ang <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/index.html\" target=\"_blank\" rel=\"noopener\">pahina ng Community Council ng lungsod</a>.",
@@ -148,6 +148,7 @@
   "footer_official": "Mga Opisyal na Link",
   "footer_official_link": "Muling Pagsasaayos ng Paaralan ng Komaki (Opisyal)",
   "footer_pages": "Mga Pahina",
+  "footer_site": "Tungkol sa site na ito",
   "footer_tagline": "Isang volunteer na site ng komunidad na nagbibigay ng madaling maunawaang impormasyon tungkol sa plano ng muling pagsasaayos ng paaralan ng Shinooka, batay sa opisyal na pinagkukunan ng Komaki.",
   "footer_title": "Muling Pagsasaayos ng Paaralan sa Silangan ng Komaki – Lokal na Media ng Impormasyon",
   "fs_label": "Laki ng teksto",
@@ -230,8 +231,8 @@
   "site_sub": "Lokal na Media ng Impormasyon sa Lugar ng Tokadai (Di-Opisyal)",
   "status_done": "Tapos na",
   "tobu_actions_h": "Mga update sa silangang distrito<small>Eastern District Updates</small>",
-  "tobu_actions_lead": "Mga gawain sa silangang distrito na inilathala ng Eastern District Development Office: ang mga nalalapit at ang nangyari sa nakalipas na dalawang buwan. Awtomatikong kinukuha mula sa mga pahina ng lungsod isang beses sa isang araw. Ang mga pamagat ay awtomatikong isinalin mula sa Hapon ng lungsod.",
-  "tobu_actions_note": "Ang mga pamagat at pangalan ng kaganapan ay awtomatikong isinalin mula sa Hapon ng lungsod. Walang indibidwal na link ang bawat item dahil nagli-link lamang ang site na ito sa opisyal na index na pahina; sundan ang link ng pinagkunan sa itaas para sa buong teksto.",
+  "tobu_actions_lead": "Mga gawain sa silangang distrito na inilathala ng Opisina sa Pagpapaunlad ng Silangang Distrito ng lungsod: mga darating na kaganapan at nangyari sa nakaraang dalawang buwan.",
+  "tobu_actions_note": "🔄 Awtomatikong kinukuha araw-araw; awtomatikong salin ang mga pamagat. Walang hiwalay na link ang bawat item, kaya tingnan ang detalye sa index na pahina ng pinagmulan.",
   "tts_play": "🔊 Pakinggan",
   "tts_stop": "■ Itigil"
 }

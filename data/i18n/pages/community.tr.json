@@ -53,7 +53,7 @@
   "comm_def_p1": "Bölge Konseyi, <strong>ilkokul bölgesi esas alınarak yerel sakinlerin gönüllü olarak kurduğu</strong> bir örgüttür. Mahalle birlikleri, okul aile birlikleri, yaşlı kulüpleri, spor kulüpleri ve sosyal hizmet görevlileri gibi gruplar örgüt sınırlarını aşarak katılır; yerel sorunları görüşür ve topluluk yaşamını canlandırır.",
   "comm_def_p2": "Komaki Belediyesi'nde, kentteki 16 ilkokul bölgesinin 14'ünde Bölge Konseyi kurulmuştur (Nisan 2026 itibarıyla). Shinooka bölgesindeki beş ilkokul bölgesinin (Shinooka, Hikarigaoka, Oshiro, Momogaoka ve Sue) her birinin kendi konseyi vardır.",
   "comm_events_h2": "Mahalle konseyi etkinlikleri<small>Community Council Events</small>",
-  "comm_events_lead": "Komaki Belediyesi tarafından yayımlanan mahalle konseyi etkinlik listesi. Liste şehirdeki 16 ilkokul bölgesinin tamamını kapsadığı için, Shinooka bölgesindeki beş konseyin etkinlikleri işaretlenip en başta gösterilir. Her gün otomatik olarak güncellenir.",
+  "comm_events_lead": "Komaki Belediyesi’nin yayımladığı mahalle konseyi etkinlik duyuruları (🔄 her gün otomatik alınır). Şehirdeki 16 ilkokul bölgesinin tamamını kapsadığı için Shinooka’daki beş konseyin etkinlikleri işaretlenip en üste konur.",
   "comm_fac_p": "Her okulun <strong>spor salonu, sahası ve havuzu</strong> yerel sakinlerce toplum sporu için ve afet üssü (tahliye noktası) olarak günlük biçimde kullanılmaktadır. Sakinler ayrıca spor şenlikleri ve öğrenme fuarları gibi okul etkinliklerine katılır; böylece okullar topluluğun kamusal \"yüzü\" işlevini görür.",
   "comm_list_intro": "Shinooka bölgesindeki beş ilkokul bölgesinin tamamında Bölge Konseyi vardır ve beşi de <strong>1 Nisan 2020'de belediyece tanınmıştır</strong>. En eskisi olan Sue İlkokulu bölgesininki 2014'te kurulmuş olup on yılı aşkın bir faaliyet geçmişine sahiptir.",
   "comm_list_note": "Not: Her konsey yıllık faaliyet planını ve bütçesini belediyenin web sitesinde yayımlar (şu anda 2026 malî yılı belgeleri yer almaktadır). Kaynak: Komaki Belediyesi, \"Bölge Konseylerinin kuruluş ve faaliyet durumu\" (4 Haziran 2026 güncellemesi). Temsilcilerin adları kişisel veri olduğundan burada yayımlanmamaktadır.<br>En güncel bilgi ve her konseyin ayrıntıları için <a href=\"https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/index.html\" target=\"_blank\" rel=\"noopener\">belediyenin Bölge Konseyi sayfasına</a> bakınız.",
@@ -148,6 +148,7 @@
   "footer_official": "Resmî bağlantılar",
   "footer_official_link": "Komaki Belediyesi Okul Yeniden Yapılandırması (Resmî)",
   "footer_pages": "Sayfalar",
+  "footer_site": "Bu site hakkında",
   "footer_tagline": "Shinooka okul yeniden yapılandırma planı hakkında, Komaki Belediyesi'nin resmî kaynaklarına dayanarak anlaşılır bilgi sunan gönüllü bir vatandaş sitesidir.",
   "footer_title": "Komaki Doğu Okul Yeniden Yapılandırması – Yerel Bilgi Medyası",
   "fs_label": "Yazı boyutu",
@@ -230,8 +231,8 @@
   "site_sub": "Tokadai Bölgesi Yerel Bilgi Medyası (Resmî Değildir)",
   "status_done": "Tamamlandı",
   "tobu_actions_h": "Doğu bölgesindeki gelişmeler<small>Eastern District Updates</small>",
-  "tobu_actions_lead": "Belediyenin Doğu Bölgesi Kalkındırma Ofisi'nin yayımladığı çalışmalar: yaklaşan etkinlikler ve son iki ayda olanlar. Günde bir kez belediyenin sayfalarından otomatik alınır. Başlıklar belediyenin Japonca metninden otomatik çevrilmiştir.",
-  "tobu_actions_note": "Başlıklar ve etkinlik adları belediyenin Japonca metninden otomatik çevrilmiştir. Maddeler tek tek bağlanmaz; bu site dışarıya yalnızca resmî dizin sayfalarına bağlantı verir. Tam metin için yukarıdaki kaynak bağlantısını izleyin.",
+  "tobu_actions_lead": "Belediyenin Doğu Bölgesi Kalkınma Ofisi’nin duyurduğu doğu bölgesi faaliyetleri: yaklaşan etkinlikler ve son iki aydaki gelişmeler.",
+  "tobu_actions_note": "🔄 Her gün otomatik alınır; başlıklar otomatik çevrilir. Öğelerin ayrı bağlantısı yoktur; ayrıntılar için kaynağın dizin sayfasına bakın.",
   "tts_play": "🔊 Dinle",
   "tts_stop": "■ Durdur"
 }

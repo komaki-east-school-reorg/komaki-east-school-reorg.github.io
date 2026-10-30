@@ -29,7 +29,7 @@ except ImportError:
 BASE = "https://komaki-east-school-reorg.github.io/"
 OUT_DIR = "qr"
 LANGS = ["ja", "en", "pt", "vi", "tl", "es", "zh", "id", "ko", "ne", "tr", "my"]
-# 回覧板シート（index）に加え、2026-10-11 から全11ページの共有欄の「QR」ボタンでも使う
+# 回覧板シート（index）に加え、2026-10-11 から全ページの共有欄の「QR」ボタンでも使う
 # （チラシ・掲示・発表スライドに貼れるように）。canonical と同じ並び。index は素のディレクトリ URL が正規形。
 # ページを足したら、ここと js/main.js SHARE BUTTONS の QR_PAGES の両方に足すこと。
 PAGES = {
@@ -44,6 +44,8 @@ PAGES = {
     "map": "map.html",
     "nationwide": "nationwide.html",
     "review": "review.html",
+    "analysis": "analysis.html",
+    "site": "site.html",
 }
 
 # 紙に印刷して読むので、誤り訂正は高め（H）にしておく。折り目や汚れに強い。

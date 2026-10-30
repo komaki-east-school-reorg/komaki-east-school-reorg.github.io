@@ -64,9 +64,9 @@ EVIDENCE = "auto_update/evidence.json"
 # 4つ目＝東部まちづくりプラットフォームの説明ページ（2026-09-27 ユーザー指示）。索引ではなく
 # 個別記事だが、ユーザーが明示して許可した。community.html の #platform でだけ張ってよい
 # （CITY_PAGE_ONLY で機械的に縛る）。
-# 5つ目＝都市計画課の索引（2026-10-17 ユーザー指示）。review.html の「都市計画の動き
-# （東部地域）」の出典行だけに使う。URL は js/main.js の TOSHIKEIKAKU EAST ブロックにあり、
-# 描画されるのは review.html だけ。末尾まで含めて照合するので、配下の個別ページや
+# 5つ目＝都市計画課の索引（2026-10-17 ユーザー指示）。analysis.html（2026-10-31 に review.html から
+# 移した）の「都市計画の動き（東部地域）」の出典行だけに使う。URL は js/main.js の TOSHIKEIKAKU EAST
+# ブロックにあり、描画されるのは analysis.html だけ。末尾まで含めて照合するので、配下の個別ページや
 # 下位の索引（.../toshikeikaku/1/2_1/index.html など）は不可のまま。
 PERMITTED_LINKS = ("303/index.html", "sasaeai/3/3_2/index.html",
                    "tobumachidukurisingikai/index.html",
@@ -77,7 +77,7 @@ PERMITTED_LINKS = ("303/index.html", "sasaeai/3/3_2/index.html",
 # 6・7つ目＝小牧市議会のトップと「市議会だより」のページ（2026-10-26 ユーザー指示）。
 # council.html の出典欄の下だけに置く。配下の会議録・個別記事・PDF は不可のまま。
 CITY_PAGE_ONLY = {"purattofo-mu/38222.html": ("community.html",),
-                  "toshikeikaku/1/index.html": ("review.html", "js/main.js"),
+                  "toshikeikaku/1/index.html": ("analysis.html", "js/main.js"),
                   "jp/shigikai/index.html": ("council.html",),
                   "jp/shigikai/houkoku/43556.html": ("council.html",)}
 # 6b で使う：市のページの完全なパス（上の PERMITTED_LINKS と同じ7本。増やすときは両方に足す）
@@ -204,15 +204,15 @@ PERMITTED_SNS = {
 
 # Cookie を使わない閲覧数の集計（GoatCounter。2026-10-24 ユーザー指示）。
 # 送り先は js/main.js の COUNTER ブロックに置いた1つだけ。外部スクリプトは読まない。
-# 増やす・移すときは CLAUDE.md・CONTRIBUTING.txt 規則1・README.md・index.html#privacy も同時に更新すること。
+# 増やす・移すときは CLAUDE.md・CONTRIBUTING.txt 規則1・README.md・site.html#privacy も同時に更新すること。
 PERMITTED_COUNTER = ("komaki-saihen.goatcounter.com/count",)
 COUNTER_FILES = ("js/main.js",)
 
-# 読者の声の窓口（GitHub の Issue フォーム。2026-10-24 ユーザー指示）。index.html#feedback だけ。
+# 読者の声の窓口（GitHub の Issue フォーム。2026-10-24 ユーザー指示）。site.html#feedback だけ（2026-10-30 に index.html から移した）。
 PERMITTED_GITHUB = (
     "github.com/komaki-east-school-reorg/komaki-east-school-reorg.github.io/issues/new?template=feedback.yml",
 )
-GITHUB_PAGES = ("index.html",)
+GITHUB_PAGES = ("site.html",)
 MIN_QUOTE_LEN = 10
 
 fails = []
@@ -804,7 +804,7 @@ def main():
     # （図書館＝level "library" も「図書館で調べる」として各ページに要る。同日指示）
     # 市（city）・県（pref）・国（nat / mext）がそろっているか、載せたはずの番号が本当に
     # そのページにあるかを見る。ページを足したら contacts.json にも登録すること。
-    CONTACT_PAGES = sorted(p for p in glob.glob("*.html") if p not in ("index.html", "voices.html", "404.html"))
+    CONTACT_PAGES = sorted(p for p in glob.glob("*.html") if p not in ("index.html", "site.html", "voices.html", "404.html"))  # site.html はサイト自体の説明（2026-10-30）
     with open("data/contacts.json", encoding="utf-8") as f:
         _contacts = json.load(f)["contacts"]
     ct_problems = []
@@ -903,6 +903,53 @@ def main():
             fail(f"訳語のゆれ: ほか {len(term_found) - 30}件")
     else:
         ok("訳語のゆれなし（data/term_rules.json）")
+
+    # --- 21. 検証と提案の2ページのつながり ---
+    # 2026-10-31 ユーザー指示。review.html（要点）の核心20項目は「くわしく →」で analysis.html の
+    # 根拠のカードへ降り、analysis.html の札（js/main.js の REVIEW LINKS）で要点へ戻る。
+    # 対応表は REVIEW LINKS の1か所なので、id の付け替えやカードの削除で片道になっていないかを見る。
+    try:
+        rv_html = open("review.html", encoding="utf-8").read()
+        an_html = open("analysis.html", encoding="utf-8").read()
+        main_js = open("js/main.js", encoding="utf-8").read()
+        an_ids = set(re.findall(r'\bid="([\w-]+)"', an_html))
+        rv_ids = set(re.findall(r'\bid="([\w-]+)"', rv_html))
+        m = re.search(r"var LINKS = (\{.*?\});", main_js, re.S)
+        links = json.loads(m.group(1)) if m else {}
+        bad21 = []
+        if not links:
+            bad21.append("js/main.js に REVIEW LINKS の LINKS が見つからない")
+        more = dict(re.findall(r'<a href="analysis\.html#([\w-]+)" data-rev-from="(c[vp]\d+)"', rv_html))
+        more = {v: k for k, v in more.items()}
+        for n in range(1, 11):
+            for kind in ("cv", "cp"):
+                core = f"{kind}{n}"
+                if f"rev-{core}" not in rv_ids:
+                    bad21.append(f"review.html に #rev-{core} がない")
+                if core not in links:
+                    bad21.append(f"REVIEW LINKS に {core} がない")
+                    continue
+                if core not in more:
+                    bad21.append(f"review.html の {core} に「くわしく →」がない")
+                elif links[core][0] != more[core]:
+                    bad21.append(f"{core}: 「くわしく →」の飛び先 #{more[core]} が REVIEW LINKS の先頭 #{links[core][0]} と違う")
+        for core, ids in links.items():
+            for i in ids:
+                if i not in an_ids:
+                    bad21.append(f"REVIEW LINKS の {core} → #{i} が analysis.html にない")
+        for a in re.findall(r'href="analysis\.html#([\w-]+)"', rv_html):
+            if a not in an_ids:
+                bad21.append(f"review.html のリンク先 analysis.html#{a} がない")
+        for a in re.findall(r'href="review\.html#([\w-]+)"', an_html):
+            if a not in rv_ids:
+                bad21.append(f"analysis.html のリンク先 review.html#{a} がない")
+        if bad21:
+            for b in bad21[:20]:
+                fail(f"検証と提案のつながり: {b}")
+        else:
+            ok(f"検証と提案の2ページのつながり（核心20項目・根拠{sum(len(v) for v in links.values())}件）")
+    except OSError as e:
+        fail(f"検証と提案のつながりを確かめられない: {e}")
 
     # --- 7. 出典実在チェック ---
     if not os.path.exists(EVIDENCE):
