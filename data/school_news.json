@@ -1,8 +1,37 @@
 {
-  "fetched_at": "2026-10-29T02:00:12Z",
+  "fetched_at": "2026-10-30T02:08:37Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "toryo-j",
+      "level": "jhs",
+      "names": {
+        "ja": "桃陵中学校",
+        "ja_kids": "とうりょう中学校",
+        "en": "Toryo Junior High",
+        "zh": "桃陵中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
+      "latest_date": "2026-10-29",
+      "items": [
+        {
+          "title": "桃陵祭 Ｐフェス",
+          "date": "2026-10-29",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136462047?tm=20261029200941"
+        },
+        {
+          "title": "桃陵祭１日目 展示見学",
+          "date": "2026-10-29",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136462269?tm=20261029200709"
+        },
+        {
+          "title": "桃陵祭１日目 吹奏楽部発表",
+          "date": "2026-10-29",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136461980?tm=20261029163746"
+        }
+      ]
+    },
     {
       "slug": "sue-e",
       "level": "elem",
@@ -13,22 +42,51 @@
         "zh": "陶小学"
       },
       "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-10-28",
+      "latest_date": "2026-10-29",
       "items": [
+        {
+          "title": "10/29 今日の給食",
+          "date": "2026-10-29",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136459498?tm=20261029133930"
+        },
+        {
+          "title": "10/29 中央公園交流会（２＆４年生）",
+          "date": "2026-10-29",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136462823?tm=20261029173710"
+        },
         {
           "title": "10/28 今日の給食",
           "date": "2026-10-28",
           "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136451672?tm=20261028145634"
+        }
+      ]
+    },
+    {
+      "slug": "momogaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "桃ヶ丘小学校",
+        "ja_kids": "ももがおか小学校",
+        "en": "Momogaoka Elem. School",
+        "zh": "桃之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
+      "latest_date": "2026-10-29",
+      "items": [
+        {
+          "title": "中央公園交流会 ～２・４年生～",
+          "date": "2026-10-29",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136458557?tm=20261029123823"
         },
         {
-          "title": "10/28 中央公園交流会（１＆５年生）",
+          "title": "３年生：図工「顔を出したらなんだかワクワク」続き",
           "date": "2026-10-28",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136450205?tm=20261028131256"
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136453429?tm=20261028165006"
         },
         {
-          "title": "10/27 音楽：合奏（４年生）",
-          "date": "2026-10-27",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136443976?tm=20261027153538"
+          "title": "中央公園交流会 ～１・５年生～",
+          "date": "2026-10-28",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136453202?tm=20261028164412"
         }
       ]
     },
@@ -58,35 +116,6 @@
           "title": "１年生 B組、２Bと合唱交流会",
           "date": "2026-10-27",
           "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136444145?tm=20261027154615"
-        }
-      ]
-    },
-    {
-      "slug": "momogaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "桃ヶ丘小学校",
-        "ja_kids": "ももがおか小学校",
-        "en": "Momogaoka Elem. School",
-        "zh": "桃之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
-      "latest_date": "2026-10-28",
-      "items": [
-        {
-          "title": "３年生：図工「顔を出したらなんだかワクワク」続き",
-          "date": "2026-10-28",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136453429?tm=20261028165006"
-        },
-        {
-          "title": "中央公園交流会 ～１・５年生～",
-          "date": "2026-10-28",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136453202?tm=20261028164412"
-        },
-        {
-          "title": "中央公園交流会 ～３・６年生～",
-          "date": "2026-10-23",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136319271?tm=20261023164845"
         }
       ]
     },
@@ -174,35 +203,6 @@
           "title": "合唱コンクールリハーサルの様子 （３年生）",
           "date": "2026-10-23",
           "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136314954?tm=20261023123339"
-        }
-      ]
-    },
-    {
-      "slug": "toryo-j",
-      "level": "jhs",
-      "names": {
-        "ja": "桃陵中学校",
-        "ja_kids": "とうりょう中学校",
-        "en": "Toryo Junior High",
-        "zh": "桃陵中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
-      "latest_date": "2026-10-26",
-      "items": [
-        {
-          "title": "市民まつりにて",
-          "date": "2026-10-26",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136327492?tm=20261026114107"
-        },
-        {
-          "title": "合唱コンクールのリハーサル",
-          "date": "2026-10-21",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136309478?tm=20261021201326"
-        },
-        {
-          "title": "合唱コンクールリハーサル",
-          "date": "2026-10-21",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136309453?tm=20261021200255"
         }
       ]
     },
