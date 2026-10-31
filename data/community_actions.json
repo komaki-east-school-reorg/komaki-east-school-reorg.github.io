@@ -88,6 +88,39 @@
       "body_en": "A children’s centre in Shiroyama 3-chome, known by its nickname “Warabekan”. Its events and parenting-support programmes are announced on the centre’s Instagram.",
       "source_label": "Instagram @warabekan",
       "source_url": "https://www.instagram.com/warabekan/"
+    },
+    {
+      "school_ja": "ALL",
+      "school_en": "ALL",
+      "title_ja": "桃花台まつり",
+      "place_ja": "桃花台中央公園",
+      "place_en": "Tokadai Central Park",
+      "body_ja": "毎年夏に桃花台中央公園で開かれる、桃花台ニュータウンの夏の行事です。盆踊りのほか、フリーマーケットや焼き鳥などの出店が並びます。新型コロナウイルス感染症で見合わせたあと令和5年（第37回）に再開し、令和8年（2026年）は7月25日・26日に第40回が開かれて、市の東部まちづくり推進室も出展しました。次の開催日はまだ公表されていません。",
+      "body_en": "A summer event of Tokadai New Town, held every year in Tokadai Central Park, with bon-odori dancing, a flea market and food stalls such as yakitori. After a pause during the COVID-19 pandemic it resumed in 2023 (the 37th), and the 40th was held on 25–26 July 2026, with a booth from the city’s Eastern District Development Office. The next dates have not been announced yet.",
+      "source_label": "小牧市『東部まちづくりニュース』（令和5年度・令和8年度）",
+      "source_url": ""
+    },
+    {
+      "school_ja": "大城小学校区（大草）・野口",
+      "school_en": "Okusa (Oshiro Elementary School district) and Noguchi",
+      "title_ja": "大草・野口の棒の手",
+      "place_ja": "大久佐八幡宮（大草）・野口神明神社（野口）",
+      "place_en": "Okusa Hachiman Shrine (Okusa) and Noguchi Shinmei Shrine (Noguchi)",
+      "body_ja": "棒などを使う古武道の型を、神社の祭礼で奉納する伝統行事です。大草棒の手（神影流）は大久佐八幡宮、野口棒の手（源氏天流）は野口神明神社の祭礼で、どちらも毎年10月の第2日曜日に奉納されます。どちらも市の指定無形民俗文化財で、戦後いったん途絶えたのを地域の人が保存会をつくって復活させ、いまも伝えています。篠岡小学校の郷土カルタ「篠岡カルタ」にも取り上げられています。",
+      "body_en": "A traditional performance of old martial-art forms with staffs and other tools, offered at shrine festivals. Okusa Bo-no-te (Shinkage school) is offered at the festival of Okusa Hachiman Shrine and Noguchi Bo-no-te (Genji Ten school) at that of Noguchi Shinmei Shrine, both every year on the second Sunday of October. Both are intangible folk cultural properties designated by the city; both died out for a time after the war and were revived by preservation societies formed by local people, who still pass them on. They also appear in the “Shinooka Karuta”, the local karuta of Shinooka Elementary School.",
+      "source_label": "小牧市 教育委員会 文化財課の公表（市指定文化財）",
+      "source_url": ""
+    },
+    {
+      "school_ja": "篠岡小学校区",
+      "school_en": "Shinooka Elementary School district",
+      "title_ja": "池之内の祭り（祭囃子とみこまい）",
+      "place_ja": "池之内",
+      "place_en": "Ikenouchi",
+      "body_ja": "池之内の祭りでは、笛と太鼓で「おかぐら」という曲を奏でる祭囃子を、池之内祭り囃子保存会の人たちが昔から続けています。囃子に合わせて、鈴と扇を手に舞う「みこまい」もあります。開催日は確かめられていません。",
+      "body_en": "At the Ikenouchi festival, members of the Ikenouchi festival music preservation society have long kept up festival music, playing a piece called “Okagura” on flutes and drums. There is also the “mikomai”, danced to the music with bells and fans. We have not been able to confirm the date.",
+      "source_label": "小牧市立篠岡小学校ホームページ「篠岡カルタ」",
+      "source_url": ""
     }
   ]
 }

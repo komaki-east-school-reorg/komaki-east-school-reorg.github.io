@@ -39,6 +39,10 @@
       https://www.city.komaki.aichi.jp/shigikai/houkoku/43556.html
       ※(6)(7) は 2026-10-26 に追加（ユーザー指示）。配下の会議録・だよりの PDF は不可のまま。
         auto_gates.py の CITY_PAGE_ONLY が council.html に限っている。
+  (8) こまき歴史発見館（文化財課、ラピオ4階）＝community.html の「地域のレガシー」と
+      analysis.html の「既存校のレガシーを引き継ぐ」の本文でのみ使用
+      https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/bunkazai/52305.html
+      ※2026-10-31 に追加（ユーザー指示）。auto_gates.py の CITY_PAGE_ONLY が2ページに限っている。
 
 ■ 別枠：再編対象8校のホームページ（komaki-aic.ed.jp）
   市サイトとは別ドメインで、各校が自分で運営している。市サイトのように

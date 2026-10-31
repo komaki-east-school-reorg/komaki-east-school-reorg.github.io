@@ -4,6 +4,30 @@
     {
       "date": "2026-10-31",
       "type": "content",
+      "ja": "地域とまちづくりに「地域のレガシー」（歴史・祭り・特産物・自然）を追加",
+      "en": "“Local Heritage” added to the community page: history, festivals, specialties and nature"
+    },
+    {
+      "date": "2026-10-31",
+      "type": "content",
+      "ja": "地域の取組に桃花台まつり・棒の手・池之内の祭りを追加",
+      "en": "Tokadai Festival, bo-no-te and the Ikenouchi festival added to local initiatives"
+    },
+    {
+      "date": "2026-10-31",
+      "type": "content",
+      "ja": "レガシーの提案を5項目に、篠岡カルタ・祭り・特産物も検討",
+      "en": "Five legacy proposals, now covering the Shinooka Karuta, festivals and local specialties"
+    },
+    {
+      "date": "2026-10-31",
+      "type": "fix",
+      "ja": "ヒーローの挿絵をPCは右に、スマホは横幅いっぱいに",
+      "en": "Hero illustrations: on the right on PCs, full width on phones"
+    },
+    {
+      "date": "2026-10-31",
+      "type": "content",
       "ja": "レガシーの検討に各校の和太鼓などの活動と棒の手を追加",
       "en": "Legacy section: each school's activities and the local bo-no-te"
     },

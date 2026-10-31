@@ -73,14 +73,18 @@ PERMITTED_LINKS = ("303/index.html", "sasaeai/3/3_2/index.html",
                    "purattofo-mu/38222.html",
                    "toshikeikaku/1/index.html",
                    "jp/shigikai/index.html",
-                   "jp/shigikai/houkoku/43556.html")
+                   "jp/shigikai/houkoku/43556.html",
+                   "kyoiku/bunkazai/52305.html")
 # 6・7つ目＝小牧市議会のトップと「市議会だより」のページ（2026-10-26 ユーザー指示）。
 # council.html の出典欄の下だけに置く。配下の会議録・個別記事・PDF は不可のまま。
 CITY_PAGE_ONLY = {"purattofo-mu/38222.html": ("community.html",),
                   "toshikeikaku/1/index.html": ("analysis.html", "js/main.js"),
                   "jp/shigikai/index.html": ("council.html",),
-                  "jp/shigikai/houkoku/43556.html": ("council.html",)}
-# 6b で使う：市のページの完全なパス（上の PERMITTED_LINKS と同じ7本。増やすときは両方に足す）
+                  "jp/shigikai/houkoku/43556.html": ("council.html",),
+                  # 8つ目＝こまき歴史発見館（文化財課、ラピオ4階。2026-10-31 ユーザー指示）。
+                  # 地域のレガシー（community.html）と既存校のレガシー（analysis.html）の本文でだけ使う
+                  "kyoiku/bunkazai/52305.html": ("community.html", "analysis.html")}
+# 6b で使う：市のページの完全なパス（上の PERMITTED_LINKS と同じ8本。増やすときは両方に足す）
 CITY_PATHS = {
     "/admin/soshiki/kyoiku/kyouikusoumu/303/index.html",
     "/admin/soshiki/kenkouikigai/sasaeai/3/3_2/index.html",
@@ -89,6 +93,7 @@ CITY_PATHS = {
     "/admin/soshiki/toshiseisakubu/toshikeikaku/1/index.html",
     "/shigikai/index.html",
     "/shigikai/houkoku/43556.html",
+    "/admin/soshiki/kyoiku/bunkazai/52305.html",
 }
 # 6b で使う：サイトに書いてよい外部ホストのすべて（2026-10-26 にいまの全ファイルから洗い出した）。
 # どのページで使ってよいか・どのパスまでよいかは、下の各 PERMITTED_* と 6 が見る。
@@ -921,8 +926,8 @@ def main():
             bad21.append("js/main.js に REVIEW LINKS の LINKS が見つからない")
         more = dict(re.findall(r'<a href="analysis\.html#([\w-]+)" data-rev-from="(c[vp]\d+)"', rv_html))
         more = {v: k for k, v in more.items()}
-        # 検証10項目・提案11項目（2026-10-31 に既存校のレガシーの提案 cp11 を追加）
-        for kind, last in (("cv", 10), ("cp", 11)):
+        # 検証10項目・提案15項目（2026-10-31 に既存校のレガシーの提案 cp11〜cp15 を追加）
+        for kind, last in (("cv", 10), ("cp", 15)):
             for n in range(1, last + 1):
                 core = f"{kind}{n}"
                 if f"rev-{core}" not in rv_ids:
@@ -948,7 +953,7 @@ def main():
             for b in bad21[:20]:
                 fail(f"検証と提案のつながり: {b}")
         else:
-            ok(f"検証と提案の2ページのつながり（核心21項目・根拠{sum(len(v) for v in links.values())}件）")
+            ok(f"検証と提案の2ページのつながり（核心25項目・根拠{sum(len(v) for v in links.values())}件）")
     except OSError as e:
         fail(f"検証と提案のつながりを確かめられない: {e}")
 

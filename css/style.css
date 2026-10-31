@@ -1068,6 +1068,10 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 
 .card-icon { font-size: 2.2rem; margin-bottom: .7rem; }
 .card h3 { font-size: 1.05rem; font-weight: 800; color: var(--primary); margin-bottom: .5rem; }
+/* 地域のレガシー（community.html #legacy）：まとまりの小見出し（h3）とカードの見出し（h4）。
+   見出しは section-title にしない（目次と読み上げの単位を増やさないため） */
+.leg-group-h { font-size: 1.1rem; font-weight: 800; color: var(--primary-dark); margin: 1.8rem 0 .8rem; padding: .3rem 0 .3rem .8rem; border-left: 6px solid var(--accent); }
+.leg-cards .card h4 { font-size: 1.05rem; font-weight: 800; color: var(--primary); margin-bottom: .5rem; }
 .card p { font-size: .9rem; color: var(--text-muted); }
 .card-link {
   display: inline-block;
@@ -3242,8 +3246,19 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
    見出しの横の絵は CSS の背景で出す — 見出しは辞書で innerHTML ごと書き換わるので、中に img を置くと消えるため。 */
 .card-ill { display: block; width: 6.2rem; height: auto; margin: -.4rem 0 .4rem -.3rem; }
 .ill-hero { display: block; width: 8.5rem; height: auto; margin: 0 auto 1rem; background: #fdf6e0; border-radius: 22px; padding: .3rem .5rem; position: relative; }
-/* トップのヒーローは挿絵を横幅いっぱいの帯に並べる（2026-10-31 ユーザー指示。PC・モバイルとも） */
-.ill-hero-wide { display: flex; justify-content: space-between; align-items: flex-end; gap: .4rem; width: 100%; margin: 0 0 1.1rem; padding: .5rem 1rem .2rem; background: #fdf6e0; border-radius: 22px; box-sizing: border-box; }
+/* トップのヒーローの挿絵（2026-10-31 ユーザー指示）：PC は他のページと同じく右に1枚（.hero-ill-pc）、
+   モバイルは挿絵を横幅いっぱいの帯に並べる（.ill-hero-wide）。 */
+.hero .container::after { content: ""; display: block; clear: both; }
+.hero .page-hero-ill.hero-ill-pc { width: 9rem; }
+/* PC ではトップのヒーローも他のページ（.page-hero）と同じく左寄せ（2026-10-31 ユーザー指示）。
+   子どもの数の枠は左に寄せ、枠の中は中央のまま。モバイルは中央寄せのまま。 */
+@media (min-width: 769px) {
+  .hero { text-align: left; }
+  .hero p { margin-left: 0; margin-right: 0; }
+  .hero-badges { justify-content: flex-start; }
+  .hero-count { margin-left: 0; margin-right: 0; text-align: center; }
+}
+.ill-hero-wide { display: none; justify-content: space-between; align-items: flex-end; gap: .4rem; width: 100%; margin: 0 0 1.1rem; padding: .5rem 1rem .2rem; background: #fdf6e0; border-radius: 22px; box-sizing: border-box; }
 .ill-hero-wide img { flex: 1 1 0; min-width: 0; max-width: 10rem; height: auto; }
 .ill-summary { padding: 1.6rem 0 .4rem; }
 .ill-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: .8rem; counter-reset: illstep; }
@@ -3337,15 +3352,18 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
 .stat-ill { display: block; width: 4.6rem; height: auto; margin: 0 auto .2rem; }
 @media (max-width: 768px) {
   .card-ill { width: 5rem; }
-  .ill-hero { width: 6.5rem; margin-bottom: .7rem; }
-  .ill-hero-wide { padding: .35rem .5rem .1rem; gap: .15rem; margin-bottom: .8rem; }
+  /* モバイルではどのページもヒーローの挿絵を横幅いっぱいの帯にする（2026-10-31 ユーザー指示） */
+  .ill-hero { width: 100%; height: 7rem; object-fit: contain; box-sizing: border-box; margin-bottom: .8rem; border-radius: 18px; }
+  .ill-hero-wide { display: flex; padding: .35rem .5rem .1rem; gap: .15rem; margin-bottom: .8rem; }
+  .hero .page-hero-ill.hero-ill-pc { display: none; }
+  .hero > .container { padding: 0; } /* ヒーロー自身の左右の余白だけにする（PC の左寄せのために .container で包んだため） */
   .ill-hero-wide img:nth-child(n+6) { display: none; }
   .ill-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
   .ill-steps--3 { grid-template-columns: 1fr; }
   .ill-step-pic { width: 5.6rem; }
   .ill-steps a { font-size: .88rem; padding: .5rem .5rem .7rem; }
   .tl-ill { width: 4.4rem; }
-  .page-hero-ill { float: none; display: block; width: 4.8rem; margin: .1rem 0 .5rem; border-radius: 14px; }
+  .page-hero-ill { float: none; display: block; width: 100%; height: 7rem; object-fit: contain; box-sizing: border-box; margin: 0 0 .8rem; padding: .3rem .5rem; border-radius: 18px; }
   .ill-h { background-size: 2.8rem auto; padding-left: 4rem; }
   .section-title.sub.ill-h { background-size: 2.4rem auto; padding-left: 3.6rem; }
 }

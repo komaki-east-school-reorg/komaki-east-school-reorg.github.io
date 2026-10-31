@@ -43,6 +43,22 @@
     <summary>サイトの更新履歴｜地域クラブ・議会・このサイトについてのページに挿絵</summary>
   </entry>
   <entry>
+    <title>地域の取組に桃花台まつり・棒の手・池之内の祭りを追加</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:c160a57cfae13359</id>
+    <updated>2026-10-31T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜地域の取組に桃花台まつり・棒の手・池之内の祭りを追加</summary>
+  </entry>
+  <entry>
+    <title>地域とまちづくりに「地域のレガシー」（歴史・祭り・特産物・自然）を追加</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:89d4c1444e273cc9</id>
+    <updated>2026-10-31T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜地域とまちづくりに「地域のレガシー」（歴史・祭り・特産物・自然）を追加</summary>
+  </entry>
+  <entry>
     <title>地図・地域・質問と賛否・全国の動きのページに挿絵と図</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
     <id>tag:komaki-east-school-reorg.github.io,2026:63a69a484ef7acfa</id>
@@ -57,6 +73,14 @@
     <updated>2026-10-31T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜レガシーの検討に各校の和太鼓などの活動と棒の手を追加</summary>
+  </entry>
+  <entry>
+    <title>レガシーの提案を5項目に、篠岡カルタ・祭り・特産物も検討</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:d9d6c1fd5b6750c3</id>
+    <updated>2026-10-31T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜レガシーの提案を5項目に、篠岡カルタ・祭り・特産物も検討</summary>
   </entry>
   <entry>
     <title>メニューとトップに「このサイトについて」への入口を追加</title>
@@ -305,29 +329,5 @@
     <updated>2026-10-13T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜文字の大きさを3段階で切り替え（各ページの目次の横）</summary>
-  </entry>
-  <entry>
-    <title>カレンダーの日を押すと予定を表示、その日だけ取り込み</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:d92a451b93a9a493</id>
-    <updated>2026-10-13T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜カレンダーの日を押すと予定を表示、その日だけ取り込み</summary>
-  </entry>
-  <entry>
-    <title>節・質問ごとのリンクをコピーできる「#」ボタン</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:faac029cf7a5f947</id>
-    <updated>2026-10-11T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜節・質問ごとのリンクをコピーできる「#」ボタン</summary>
-  </entry>
-  <entry>
-    <title>最新の動きをRSSリーダーで読めるフィードを公開</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:b7b2770cc0b22dc5</id>
-    <updated>2026-10-11T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜最新の動きをRSSリーダーで読めるフィードを公開</summary>
   </entry>
 </feed>

@@ -892,7 +892,8 @@
         "kind": "article_contact"
       },
       "shown_in": [
-        "analysis.html"
+        "analysis.html",
+        "community.html"
       ]
     }
   ]

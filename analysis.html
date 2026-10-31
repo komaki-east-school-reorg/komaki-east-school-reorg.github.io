@@ -62,6 +62,11 @@
     .rev-fact, .rev-view { font-size: .93rem; line-height: 1.85; padding-left: .9rem; }
     .rev-fact { border-left: 4px solid var(--neutral-color); margin-bottom: .9rem; }
     .rev-view { border-left: 4px solid var(--accent); }
+    /* 節全体への 🔎（カードの外に1つだけ置くもの）。事実と提案のあいだの独立した囲みにする */
+    /* 事実のまとまりと提案のまとまりの小見出し（レガシーの節。帯の色は【事実】と 🔎/💡 の帯にそろえる） */
+    .rev-subh--fact, .rev-subh--idea { border-left: 6px solid var(--neutral-color); padding: .35rem 0 .35rem .8rem; margin: 1.6rem 0 .9rem; }
+    .rev-subh--idea { border-left-color: var(--accent); }
+    .rev-view.rev-view--block { background: var(--accent-light); border-radius: 0 14px 14px 0; padding: .9rem 1.1rem; margin: 1.6rem 0 1.8rem; }
     .rev-idea p { font-size: .93rem; line-height: 1.85; }
     .rev-subh {
       font-family: var(--heading-font);
@@ -239,7 +244,7 @@
       <div class="breadcrumb"><a href="index.html" data-i18n="nav_home">ホーム</a> <span>›</span> <a href="review.html" data-i18n="rev_h1">計画の検証と、これからの提案</a> <span>›</span> <span data-i18n="analysis_h1">深掘り検証</span></div>
       <img class="page-hero-ill" src="img/illust/data.svg" alt="" width="160" height="120" decoding="async">
       <h1 data-i18n="analysis_h1">深掘り検証</h1>
-      <p data-i18n="analysis_p">「検証と提案」の要点に挙げた検証10項目と提案11項目の根拠を、計画そのもの・教育の質・子どもの数の3部に分けてくわしく説明します。各カードの札から、要点の該当項目へ戻れます。</p>
+      <p data-i18n="analysis_p">「検証と提案」の要点に挙げた検証10項目と提案15項目の根拠を、計画そのもの・教育の質・子どもの数の3部に分けてくわしく説明します。各カードの札から、要点の該当項目へ戻れます。</p>
     </div>
   </section>
   <!-- 検証と提案の2ページを切り替えるタブ（2026-10-31 ユーザー指示：2ページを1つの読み物としてつなぐ）。
@@ -289,7 +294,7 @@
           <img class="rev-guide-pic" src="img/illust/teacher.svg" alt="" width="160" height="120" decoding="async">
           <p class="rev-guide-n"><span data-i18n="rev_part_n2">第2部</span></p>
           <p class="rev-guide-t"><a href="#rev-quality"><span data-i18n="rev_part2">教育の質</span></a></p>
-          <p class="rev-guide-refs"><span data-i18n="rev_part2_refs">要点の 🔎6〜8・💡①〜⑤・⑪</span></p>
+          <p class="rev-guide-refs"><span data-i18n="rev_part2_refs">要点の 🔎6〜8・💡①〜⑤・⑪〜⑮</span></p>
           <ul>
             <li><a href="#rev-quality" data-i18n="rev_deep_l1">🎓 教育の質から見た再編</a></li>
             <li><a href="#rev-skills" data-i18n="rev_deep_l2">💡 これからの子どもに要る力</a></li>
@@ -608,14 +613,18 @@
   <!-- ===== 既存校のレガシーを引き継ぐ（2026-10-31 ユーザー指示）=====
        閉じる学校の校歌・賛歌・応援歌、校旗、記録、行事を新しい学校と地域へ引き継ぐ検討。楽曲の配信・サブスク提供を含む。
        【事実】は公表資料（だより第4号・校章の決定・閉校後の校舎の扱い・説明会の意見提出シート）と著作権法そのもの。
-       学校ごとの活動（rev-l-f5）は各校のホームページ（学校日記、その主体自身の公表）、棒の手（rev-l-f6）は市の文化財課の公表（2026-10-31 ユーザー指示で追加）。
+       学校ごとの活動（rev-l-f5）は各校のホームページ（学校日記、その主体自身の公表）、棒の手（rev-l-f6）は市の文化財課の公表（2026-10-31 ユーザー指示で追加）。篠岡カルタは篠岡小のホームページ、
+       桃花台まつり・名古屋コーチンは市の『東部まちづくりニュース』とトライアル活動のページ、篠岡音頭（新篠岡音頭）は動画投稿サイトの
+       レコード音源で名前とレコードになったことだけを確かめた（リンクしない・作詞作曲者名は書かない）。
        ⛔ 校歌の歌詞や音源はこのサイトに載せない（著作物のため）。💡 は当サイトの考えで、市が検討しているものではない。 -->
   <section class="section section-alt" id="rev-legacy">
     <div class="container" style="max-width:900px;">
       <h2 class="section-title ill-h ill-h--music" data-i18n-html="rev_s14_h">💡 検討：既存校のレガシーを引き継ぐ<small>Carrying On Our Schools’ Legacy</small></h2>
-      <p class="rev-point" data-i18n-html="rev_pt_legacy"><strong>💡 この節の要点：</strong>閉じる学校が積み重ねてきたもの（校歌・賛歌・応援歌などの歌、和太鼓のように学校で育ってきた活動、校旗、記録、行事）を、新しい学校と地域に引き継ぐ方法を、地域の伝統行事「棒の手」の続き方も手がかりに、事実6つと提案6つで検討します。</p>
+      <p class="rev-point" data-i18n-html="rev_pt_legacy"><strong>💡 この節の要点：</strong>閉じる学校が積み重ねてきたもの（校歌・賛歌・応援歌などの歌、和太鼓や郷土カルタのように学校で育ってきたもの、校旗、記録、行事）を、新しい学校と地域に引き継ぐ方法を、地域の伝統行事「棒の手」の続き方や東部の歴史・祭り・特産物も手がかりに、事実10項目と提案8項目で検討します。</p>
       <p style="margin-bottom:1.4rem;" data-i18n="rev_s14_lead">学校が閉じても、そこで歌われてきた歌や受け継がれてきた行事は、卒業生と地域の記憶として残ります。それを形にして残し、新しい学校へ渡すことは、子どもの心の支えにも、地域のつながりにもなります。【事実】のあとの 🔎・💡 はすべて当サイトの考えで、市が検討しているものではありません。</p>
 
+      <!-- 番号のないカード＝【事実】、番号つき＝💡 提案。2026-10-31 ユーザー指示で違いを小見出しと帯で示す -->
+      <h3 class="rev-subh rev-subh--fact" data-i18n="rev_l_sub_f">【事実】公表された資料でわかっていること</h3>
       <div class="rev-card" id="rev-l-f1">
         <div class="rev-card-h" data-i18n="rev_l_f1_h">新しい学校の校歌と校章</div>
         <p class="rev-fact" data-i18n-html="rev_l_f1_p"><strong>【事実】</strong>令和7年7月から学校再編準備調査研究委員会が、新しい学校の教育課程・教育目標・校歌・校章・部活動などを協議しています（篠岡地区学校再編だより 第4号）。しのおか学園4校で統一の校章は、212作品の中から令和8年9月4日に決まり、校旗の製作が進められます。</p>
@@ -635,15 +644,36 @@
       <div class="rev-card" id="rev-l-f5">
         <img class="rev-pic" src="img/illust/club.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
         <div class="rev-card-h" data-i18n="rev_l_f5_h">学校ごとに受け継がれてきた活動</div>
-        <p class="rev-fact" data-i18n-html="rev_l_f5_p"><strong>【事実】</strong>各校のホームページ（学校日記）には、校歌のほかにも学校で育ってきた活動が載っています。当サイトが令和8年度の記事で確かめられたものの一部です。<br>・陶小学校：和太鼓部が、8月の陶地域の夏祭り（小牧勤労センター）で演奏し、9月には桃ヶ丘小学校の「ピーチフェスタ」の和太鼓の講座で演奏を披露して、桃ヶ丘小の子どもたちを手伝いました。<br>・光ヶ丘小学校：運動会の「光っこソーラン」で6年生が着るはっぴは、2009年に当時の先生と地域の人がつくり、受け継がれてきたものです。5年生は地域のぶどう農家の協力で収穫を体験しています。<br>・桃ヶ丘小学校：金管バンド部が市民まつりのパレードに参加しています。<br>・篠岡中学校：閉校を前に、校長室の年表や航空写真で学校の歴史を学ぶ取り組みを始めました。<br>・桃陵中学校：保護者が育てた東部産の桃で調理実習をしています。</p>
+        <p class="rev-fact" data-i18n-html="rev_l_f5_p"><strong>【事実】</strong>各校のホームページ（学校日記など）には、校歌のほかにも学校で育ってきた活動が載っています。当サイトが確かめられたものの一部です（学校日記は令和8年度の記事）。<br>・篠岡小学校：ホームページに、地域の歴史や暮らし、自然を36組の絵札と解説の札にした郷土カルタ「篠岡カルタ」を載せています。篠岡村の成り立ち、大山川のホタル、のぼり窯、棒の手、祭囃子とみこまい、桃とブドウ、名古屋コーチンなどを取り上げています。<br>・陶小学校：和太鼓部が、8月の陶地域の夏祭り（小牧勤労センター）で演奏し、9月には桃ヶ丘小学校の「ピーチフェスタ」の和太鼓の講座で演奏を披露して、桃ヶ丘小の子どもたちを手伝いました。<br>・光ヶ丘小学校：運動会の「光っこソーラン」で6年生が着るはっぴは、2009年に当時の先生と地域の人がつくり、受け継がれてきたものです。5年生は地域のぶどう農家の協力で収穫を体験しています。<br>・桃ヶ丘小学校：金管バンド部が市民まつりのパレードに参加しています。<br>・篠岡中学校：閉校を前に、校長室の年表や航空写真で学校の歴史を学ぶ取り組みを始めました。<br>・桃陵中学校：保護者が育てた東部産の桃で調理実習をしています。</p>
       </div>
       <div class="rev-card" id="rev-l-f6">
         <img class="rev-pic" src="img/illust/festival.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
         <div class="rev-card-h" data-i18n="rev_l_f6_h">地域の伝統行事「棒の手」</div>
         <p class="rev-fact" data-i18n-html="rev_l_f6_p"><strong>【事実】</strong>東部には、市の指定無形民俗文化財の棒の手が2つあります。大草棒の手（流派は神影流、昭和58年指定）は大草の大久佐八幡宮の祭礼に、野口棒の手（流派は源氏天流、昭和45年指定）は野口神明神社の祭礼に、どちらも毎年10月の第2日曜日に奉納されます。どちらも戦後いったん途絶えましたが、地域の人が保存会をつくって復活させ、いまも伝えています（小牧市 文化財課の公表）。</p>
       </div>
-      <p class="rev-view" data-i18n-html="rev_l_v"><strong>🔎 当サイトの見方：</strong>新しい学校の校歌と校章は話し合われ、校章は決まりました。一方で、閉じる学校の校歌・応援歌や校旗、記録、和太鼓のように学校で育ってきた活動をどう残すかは、公表資料には見当たりません。校舎が原則として解体されるなら、形として残せる場所はさらに限られます。棒の手の例は、学校とは別の担い手がいれば、伝統は途絶えても続けられることを示しています。</p>
+      <div class="rev-card" id="rev-l-f7">
+        <img class="rev-pic" src="img/illust/music.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
+        <div class="rev-card-h" data-i18n="rev_l_f7_h">東部の祭り</div>
+        <p class="rev-fact" data-i18n-html="rev_l_f7_p"><strong>【事実】</strong>東部の各地には、学校とは別に続いてきた祭りがあります。桃花台中央公園の桃花台まつりは盆踊りなどでにぎわう夏の行事で、令和8年7月に第40回が開かれ、市の東部まちづくり推進室も出展しました（『東部まちづくりニュース』）。篠岡小の「篠岡カルタ」は、池之内の祭りで保存会が続けてきた祭囃子と「みこまい」、大草の福厳寺の火渡り神事を紹介しています。令和8年7月には、東部の5つの小学校の4・5年生が合同交流会で盆踊りをしました（桃ヶ丘小の学校日記）。</p>
+      </div>
+      <div class="rev-card" id="rev-l-f8">
+        <img class="rev-pic" src="img/illust/family.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
+        <div class="rev-card-h" data-i18n="rev_l_f8_h">東部の特産物</div>
+        <p class="rev-fact" data-i18n-html="rev_l_f8_p"><strong>【事実】</strong>市は名古屋コーチンを東部地域の特産物として紹介しており、地域の団体が桃陵中学校の調理室で名古屋コーチンの郷土料理「ひきずり鍋」や、ぶどうを使った料理会を開いています（東部まちづくり推進室の公表）。篠岡カルタも、上末・高根・大草で盛んに作られている桃とブドウや、名古屋コーチンが池之内で生まれたことを取り上げています。</p>
+      </div>
+      <div class="rev-card" id="rev-l-f9">
+        <img class="rev-pic" src="img/illust/kiln.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
+        <div class="rev-card-h" data-i18n="rev_l_f9_h">古窯と陶業の歴史</div>
+        <p class="rev-fact" data-i18n-html="rev_l_f9_p"><strong>【事実】</strong>篠岡地区は、7世紀から11世紀にかけて、猿投窯とならぶ尾張地方の焼き物づくり（窯業）の中心地でした。<strong>110基以上の窯跡</strong>が見つかっていて、「篠岡古窯跡群」と呼ばれています。丘の斜面に溝のような穴を掘り、粘土で天井をつくった半地下式の「あな窯」で、7〜8世紀には須恵器、9世紀後半からは灰釉陶器が焼かれました。篠岡78号窯から出た須恵器の文字が奈良の藤原京で出た須恵器の文字とよく似ていて、篠岡の器が奈良まで運ばれていたことがわかっています。ラピオ4階に開館した市の「<a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/bunkazai/52305.html" target="_blank" rel="noopener">こまき歴史発見館</a>」（入館無料）の展示設計（令和7年3月）でも、篠岡古窯跡群のコーナーと陶片に触れる体験が計画されていました。</p>
+      </div>
+      <div class="rev-card" id="rev-l-f10">
+        <img class="rev-pic" src="img/illust/temple.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
+        <div class="rev-card-h" data-i18n="rev_l_f10_h">大山廃寺跡と児神社</div>
+        <p class="rev-fact" data-i18n-html="rev_l_f10_p"><strong>【事実】</strong>大山には、7世紀後半に建てられたとされる大山峰正福寺の跡「大山廃寺跡」があります。一時は「西の比叡山延暦寺、東の大山寺」といわれるほど栄えましたが、12世紀半ばに焼き討ちにあいました。<strong>国指定史跡</strong>で、市内にある国の史跡は小牧山とここの2つです。南にある児神社は、焼き討ちで亡くなった2人の稚児の霊をしずめるために建てられたと伝えられ、参道の100本近い桜で桜の名所にもなっています。ラピオ4階に開館した市の「<a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/bunkazai/52305.html" target="_blank" rel="noopener">こまき歴史発見館</a>」（入館無料）の展示設計（令和7年3月）では、塔の跡の礎石を床に実物大で表す大山廃寺跡のコーナーが計画されていました。</p>
+      </div>
+      <p class="rev-view rev-view--block" data-i18n-html="rev_l_v"><strong>🔎 当サイトの見方：</strong>新しい学校の校歌と校章は話し合われ、校章は決まりました。一方で、閉じる学校の校歌・応援歌や校旗、記録、和太鼓のように学校で育ってきた活動をどう残すかは、公表資料には見当たりません。校舎が原則として解体されるなら、形として残せる場所はさらに限られます。棒の手の例は、学校とは別の担い手がいれば、伝統は途絶えても続けられることを示しています。</p>
 
+      <h3 class="rev-subh rev-subh--idea" data-i18n="rev_l_sub_p">💡 当サイトの提案（1〜8。市が検討しているものではありません）</h3>
       <div class="rev-idea" id="rev-l-p1">
         <div class="rev-idea-h" data-i18n="rev_l_p1_h">1. 校歌・賛歌・応援歌を録音し、配信で残す</div>
         <p data-i18n-html="rev_l_p1_p"><strong>考え方：</strong>閉校までの期間に、各校で歌い継がれてきた校歌・賛歌・応援歌を、いまの子どもたちと卒業生・地域の人の歌で録音します。録音は音楽配信サービス（サブスクリプション）でだれでも聴けるようにし、閉校後も卒業生が手元で聴き、歌える形で残します。配信で収入が出る場合は、記録づくりや新しい学校の文化活動に充てます。</p>
@@ -658,7 +688,7 @@
       </div>
       <div class="rev-idea" id="rev-l-p4">
         <div class="rev-idea-h" data-i18n="rev_l_p4_h">4. 校旗・記録・作品をアーカイブにする</div>
-        <p data-i18n-html="rev_l_p4_p"><strong>考え方：</strong>校旗、学校のあゆみ、記念誌、卒業アルバム、子どもの作品や行事の写真を整理し、残る体育館や地域の施設の一角に展示するとともに、デジタルでも公開します。公開するときは、個人が特定されないよう配慮します。</p>
+        <p data-i18n-html="rev_l_p4_p"><strong>考え方：</strong>校旗、学校のあゆみ、記念誌、卒業アルバム、子どもの作品や行事の写真を整理し、残る体育館や地域の施設の一角に展示するとともに、デジタルでも公開します。公開するときは、個人が特定されないよう配慮します。篠岡小の「篠岡カルタ」のように学校が地域の歴史や暮らしを形にしたものは、新しい学校でも遊び、学べる教材として受け継ぎます。</p>
       </div>
       <div class="rev-idea" id="rev-l-p5">
         <div class="rev-idea-h" data-i18n="rev_l_p5_h">5. 学校の行事を、地域の行事として受け継ぐ</div>
@@ -668,7 +698,15 @@
         <div class="rev-idea-h" data-i18n="rev_l_p6_h">6. 学校で育った芸能を、棒の手のように「保存会」で受け継ぐ</div>
         <p data-i18n-html="rev_l_p6_p"><strong>考え方：</strong>棒の手は、学校ではなく地域の保存会が担い手になったことで、途絶えても復活し、いまも続いています。陶小の和太鼓や光ヶ丘小の「光っこソーラン」のはっぴのように学校で育ってきたものも、閉校前に卒業生・保護者・地域の人で受け継ぐ会をつくり、新しい学校の部活動や地域クラブ、地域の夏祭りへつなぎます。新しい学校の総合的な学習の時間に棒の手の保存会から学ぶ機会をつくれば、学区が広がった子どもたちが東部の各地の伝統を知るきっかけにもなります。</p>
       </div>
-      <p class="rev-open-note" data-i18n-html="rev_l_open"><strong>確認できていないこと：</strong>各校の校歌・応援歌の作詞者・作曲者と権利の状態、録音が残っているか、閉校後の校旗や記録の保管先、学校再編準備調査研究委員会でこれまでの学校の歌や行事、和太鼓部などの活動の扱いが話し合われているか。各校の活動は学校日記で確かめられた一部で、ほかにもある可能性があります。</p>
+      <div class="rev-idea" id="rev-l-p7">
+        <div class="rev-idea-h" data-i18n="rev_l_p7_h">7. 地域の祭りと特産物を、新しい学校の学びにつなぐ</div>
+        <p data-i18n-html="rev_l_p7_p"><strong>考え方：</strong>学区が広がると、子どもが自分の住む地区の祭りや産物にふれる機会は、学校の中では減りかねません。桃花台まつりや池之内の祭り、棒の手の祭礼、篠岡音頭のように地域で踊り継がれてきた踊りに、新しい学校の子どもが学区をこえて加われるよう、学校と地域協議会・保存会が日程や練習の場を伝え合います。桃・ぶどう・名古屋コーチンは、総合的な学習の時間や給食・調理実習で扱い、生産者から学びます。東部のどの地区のことも「自分の地域」と感じられるようにするためです。</p>
+      </div>
+      <div class="rev-idea" id="rev-l-p8">
+        <div class="rev-idea-h" data-i18n="rev_l_p8_h">8. 大山廃寺や篠岡古窯跡群など東部の歴史を、学びと展示で受け継ぐ</div>
+        <p data-i18n-html="rev_l_p8_p"><strong>考え方：</strong>東部には、国指定史跡の大山廃寺跡や、千年以上前に焼き物の一大産地だった篠岡古窯跡群があります。新しい学校の総合的な学習の時間や図画工作で、大山廃寺跡や児神社を訪ねたり、陶片に触れたり粘土で器をつくったりする時間をつくり、閉校する学校の校地や残る体育館の一角には、篠岡カルタや出土品の写真などを展示します。ラピオ4階にある市の「<a href="https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/bunkazai/52305.html" target="_blank" rel="noopener">こまき歴史発見館</a>」と組めば、学区が広がっても、子どもが東部の歴史を自分たちの地域の話として学べます。</p>
+      </div>
+      <p class="rev-open-note" data-i18n-html="rev_l_open"><strong>確認できていないこと：</strong>各校の校歌・応援歌の作詞者・作曲者と権利の状態、録音が残っているか、閉校後の校旗や記録の保管先、学校再編準備調査研究委員会でこれまでの学校の歌や行事、和太鼓部などの活動の扱いが話し合われているか。各校の活動は学校日記で確かめられた一部で、ほかにもある可能性があります。篠岡音頭（新篠岡音頭とも呼ばれます）は盆踊りの定番の音頭で、レコードにもなっていますが、その由来と、池之内の祭りの日程は、公表された資料では確かめられませんでした。</p>
       <p class="rev-partnav"><a href="#rev-history" data-i18n="rev_next_p3">第3部「子どもの数」へ →</a><a href="review.html#rev-core" data-i18n="rev_to_core">↑ 要点（核心）に戻る</a></p>
     </div>
   </section>

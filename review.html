@@ -109,7 +109,12 @@
     .rev-more a { font-weight: 800; }
     .rev-cp-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr)); gap: 0 1.4rem; }
     .rev-cp-col .rev-pic { width: 6.5rem; }
-    .rev-cp-legacy { margin-top: 1.4rem; }
+    /* 提案の核心は PC で3列（教育の質／子どもを増やす／既存校のレガシー）。この節だけ版面を広げる */
+    @media (min-width: 1000px) {
+      #rev-core-ideas > .container { max-width: 1200px !important; }
+      .rev-cp-cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .rev-cp-col .rev-pic { width: 5rem; }
+    }
     .rev-cp-gh { display: flex; align-items: center; gap: .6rem; margin-top: 1rem; }
     .rev-gpic { width: 5rem; height: auto; }
     .rev-steps { list-style: none; margin: .6rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(10rem, 100%), 1fr)); gap: .8rem; counter-reset: step; }
@@ -251,7 +256,7 @@
       <div class="breadcrumb"><a href="index.html" data-i18n="nav_home">ホーム</a> <span>›</span> <span data-i18n="rev_h1">計画の検証と、これからの提案</span></div>
       <img class="page-hero-ill" src="img/illust/magnifier.svg" alt="" width="160" height="120" decoding="async">
       <h1 data-i18n="rev_h1">計画の検証と、これからの提案</h1>
-      <p data-i18n="rev_p">当サイトがこれまで検証してきたことの核心を10項目に、教育の質を守り高めるための提案、東部の子どもを増やすための提案、既存校のレガシーを引き継ぐための提案を合わせて11項目にまとめました。それぞれの根拠は「深掘り検証」のページでくわしく読めます。</p>
+      <p data-i18n="rev_p">当サイトがこれまで検証してきたことの核心を10項目に、教育の質を守り高めるための提案、東部の子どもを増やすための提案、既存校のレガシーを引き継ぐための提案を合わせて15項目にまとめました。それぞれの根拠は「深掘り検証」のページでくわしく読めます。</p>
     </div>
   </section>
   <!-- 検証と提案の2ページを切り替えるタブ（2026-10-31 ユーザー指示：2ページを1つの読み物としてつなぐ）。
@@ -292,7 +297,7 @@
         <ol class="rev-steps">
           <li><img class="rev-step-pic" src="img/illust/school.svg" alt="" width="160" height="120" decoding="async"><p data-i18n-html="rev_sum1"><strong>計画の数字</strong>：再編は「令和15年に各学年1学級」という見通しへの対応です（<a href="#rev-numbers">検証の土台になる数字</a>）。</p></li>
           <li><img class="rev-step-pic" src="img/illust/magnifier.svg" alt="" width="160" height="120" decoding="async"><p data-i18n-html="rev_sum2"><strong>🔎 検証の核心</strong>：計画そのもの（1〜5）、教育の質（6〜8）、子どもの数（9・10）の3つの面から、公表資料で確かめられることと読み取れないことを10項目にまとめています（<a href="#rev-core">検証の核心</a>）。</p></li>
-          <li><img class="rev-step-pic" src="img/illust/bulb.svg" alt="" width="160" height="120" decoding="async"><p data-i18n-html="rev_sum3"><strong>💡 提案の核心</strong>：教育の質を守り高めるための5つ、東部の子どもを増やすための5つ、既存校のレガシーを引き継ぐための1つです（<a href="#rev-core-ideas">提案の核心</a>）。どの項目も「くわしく」から根拠へ進めます。</p></li>
+          <li><img class="rev-step-pic" src="img/illust/bulb.svg" alt="" width="160" height="120" decoding="async"><p data-i18n-html="rev_sum3"><strong>💡 提案の核心</strong>：教育の質を守り高めるための5つ、東部の子どもを増やすための5つ、既存校のレガシーを引き継ぐための5つです（<a href="#rev-core-ideas">提案の核心</a>）。どの項目も「くわしく」から根拠へ進めます。</p></li>
           <li><img class="rev-step-pic" src="img/illust/cityhall.svg" alt="" width="160" height="120" decoding="async"><p data-i18n-html="rev_sum4"><strong>確かめ方</strong>：確認できなかったことと、たずね先の部署を最後にまとめています（<a href="#rev-open">確認できなかったこと</a>・<a href="#rev-contact">問い合わせ先</a>）。</p></li>
         </ol>
       </div>
@@ -423,7 +428,7 @@
        各提案にある。 -->
   <section class="section" id="rev-core-ideas">
     <div class="container" style="max-width:900px;">
-      <h2 class="section-title ill-h ill-h--bulb" data-i18n-html="rev_cp_h">💡 提案の核心（11項目）<small>Key Proposals</small></h2>
+      <h2 class="section-title ill-h ill-h--bulb" data-i18n-html="rev_cp_h">💡 提案の核心（15項目）<small>Key Proposals</small></h2>
       <p class="section-lead" data-i18n="rev_cp_lead">以下は当サイトの提案で、市が検討しているものではありません。それぞれの根拠と「確認できていないこと」は、「くわしく」から深掘り検証で読めます。</p>
       <div class="rev-cp-cols">
       <div class="rev-cp-col">
@@ -492,16 +497,40 @@
           <p class="rev-more"><a href="analysis.html#rev-q4" data-rev-from="cp10" data-i18n="rev_more_idea">くわしく（根拠と確認できていないこと）→</a></p>
         </div>
       </div>
+      <!-- 3つ目のグループ（2026-10-31）：既存校のレガシーを引き継ぐ（⑪〜⑮、同日ユーザー指示で5項目に）。PC では3列目（2026-10-31 ユーザー指示：提案の核心15項目は PC で3列） -->
+      <div class="rev-cp-col rev-cp-legacy">
+        <h3 class="rev-subh rev-cp-gh"><img class="rev-gpic" src="img/illust/archive.svg" alt="" width="160" height="120" decoding="async"><span data-i18n="rev_cp_g3">既存校のレガシーを引き継ぐ</span></h3>
+          <div class="rev-idea rev-core-card" id="rev-cp11">
+            <img class="rev-pic" src="img/illust/music.svg" alt="" width="160" height="120" decoding="async">
+            <div class="rev-idea-h"><span class="rev-num" aria-hidden="true">⑪</span><span data-i18n="rev_cp11_h">校歌・応援歌を録音し、配信で残す</span></div>
+            <p class="rev-view" data-i18n-html="rev_cp11_p"><strong>💡 提案：</strong>各校の校歌・賛歌・応援歌を、閉校までに子どもと卒業生・地域の人の歌で録音します。作詞者・作曲者などの許諾と歌う人の同意を確かめたうえで、音楽配信（サブスク）でだれでも聴けるようにします。</p>
+            <p class="rev-more"><a href="analysis.html#rev-l-p1" data-rev-from="cp11" data-i18n="rev_more_idea">くわしく（根拠と確認できていないこと）→</a></p>
+          </div>
+          <div class="rev-idea rev-core-card" id="rev-cp12">
+            <img class="rev-pic" src="img/illust/school.svg" alt="" width="160" height="120" decoding="async">
+            <div class="rev-idea-h"><span class="rev-num" aria-hidden="true">⑫</span><span data-i18n="rev_cp12_h">新しい学校で、もとの学校の歌を紹介する場をつくる</span></div>
+            <p class="rev-view" data-i18n-html="rev_cp12_p"><strong>💡 提案：</strong>しのおか学園の行事や交流会で、もとの学校の歌を紹介する時間を設けます。新しい校歌を覚えることとは別に、「前の学校の歌も大切にしてよい」と伝えることが、子どもの心の支えになります。</p>
+            <p class="rev-more"><a href="analysis.html#rev-l-p3" data-rev-from="cp12" data-i18n="rev_more_idea">くわしく（根拠と確認できていないこと）→</a></p>
+          </div>
+          <div class="rev-idea rev-core-card" id="rev-cp13">
+            <img class="rev-pic" src="img/illust/archive.svg" alt="" width="160" height="120" decoding="async">
+            <div class="rev-idea-h"><span class="rev-num" aria-hidden="true">⑬</span><span data-i18n="rev_cp13_h">校旗・記録・郷土カルタをアーカイブにする</span></div>
+            <p class="rev-view" data-i18n-html="rev_cp13_p"><strong>💡 提案：</strong>校旗、学校のあゆみ、記念誌、作品や行事の写真を整理し、残る体育館や地域の施設に展示して、デジタルでも公開します。篠岡小の「篠岡カルタ」のように学校が地域の歴史や暮らしを形にしたものは、新しい学校でも遊び、学べる教材として受け継ぎます。</p>
+            <p class="rev-more"><a href="analysis.html#rev-l-p4" data-rev-from="cp13" data-i18n="rev_more_idea">くわしく（根拠と確認できていないこと）→</a></p>
+          </div>
+          <div class="rev-idea rev-core-card" id="rev-cp14">
+            <img class="rev-pic" src="img/illust/club.svg" alt="" width="160" height="120" decoding="async">
+            <div class="rev-idea-h"><span class="rev-num" aria-hidden="true">⑭</span><span data-i18n="rev_cp14_h">学校で育った芸能を、棒の手のように「保存会」で受け継ぐ</span></div>
+            <p class="rev-view" data-i18n-html="rev_cp14_p"><strong>💡 提案：</strong>陶小の和太鼓、光ヶ丘小の「光っこソーラン」のはっぴ、学校ごとの行事を、棒の手の保存会のように、卒業生・保護者・地域の人の会で受け継ぎます。閉校前に担い手と進め方を決め、新しい学校の部活動や地域クラブ、地域の祭りへつなぎます。</p>
+            <p class="rev-more"><a href="analysis.html#rev-l-p6" data-rev-from="cp14" data-i18n="rev_more_idea">くわしく（根拠と確認できていないこと）→</a></p>
+          </div>
+          <div class="rev-idea rev-core-card" id="rev-cp15">
+            <img class="rev-pic" src="img/illust/festival.svg" alt="" width="160" height="120" decoding="async">
+            <div class="rev-idea-h"><span class="rev-num" aria-hidden="true">⑮</span><span data-i18n="rev_cp15_h">地域の祭り・特産物・歴史を、新しい学校の学びにつなぐ</span></div>
+            <p class="rev-view" data-i18n-html="rev_cp15_p"><strong>💡 提案：</strong>桃花台まつりや池之内の祭り、棒の手の祭礼、篠岡音頭のように地域で踊り継がれてきた踊りに、新しい学校の子どもが学区をこえて加われる機会をつくります。桃・ぶどう・名古屋コーチンなどの特産物は、総合的な学習の時間や調理実習で生産者から学びます。国指定史跡の大山廃寺跡や、千年以上前に焼き物の一大産地だった篠岡古窯跡群の歴史も、訪ねる・触れる体験や展示で学べるようにします。</p>
+            <p class="rev-more"><a href="analysis.html#rev-l-p7" data-rev-from="cp15" data-i18n="rev_more_idea">くわしく（根拠と確認できていないこと）→</a></p>
+          </div>
       </div>
-      <!-- 3つ目のグループ（2026-10-31）：既存校のレガシーを引き継ぐ。カードは1枚で全幅 -->
-      <div class="rev-cp-legacy">
-        <h3 class="rev-subh rev-cp-gh"><img class="rev-gpic" src="img/illust/music.svg" alt="" width="160" height="120" decoding="async"><span data-i18n="rev_cp_g3">既存校のレガシーを引き継ぐ</span></h3>
-        <div class="rev-idea rev-core-card" id="rev-cp11">
-          <img class="rev-pic" src="img/illust/archive.svg" alt="" width="160" height="120" decoding="async">
-          <div class="rev-idea-h"><span class="rev-num" aria-hidden="true">⑪</span><span data-i18n="rev_cp11_h">閉じる学校の歌と記録を、配信とアーカイブで残す</span></div>
-          <p class="rev-view" data-i18n-html="rev_cp11_p"><strong>💡 提案：</strong>各校の校歌・賛歌・応援歌を閉校までに子どもと卒業生で録音し、権利者の許諾を確かめたうえで音楽配信（サブスク）で公開します。和太鼓のように学校で育った活動は、棒の手の保存会のように受け継ぐ会をつくって残します。校旗・記録・作品はアーカイブにして、残る体育館などに展示します。</p>
-          <p class="rev-more"><a href="analysis.html#rev-l-p1" data-rev-from="cp11" data-i18n="rev_more_idea">くわしく（根拠と確認できていないこと）→</a></p>
-        </div>
       </div>
     </div>
   </section>
@@ -545,7 +574,7 @@
           <img class="rev-guide-pic" src="img/illust/teacher.svg" alt="" width="160" height="120" decoding="async">
           <p class="rev-guide-n"><span data-i18n="rev_part_n2">第2部</span></p>
           <p class="rev-guide-t"><a href="analysis.html#rev-quality"><span data-i18n="rev_part2">教育の質</span></a></p>
-          <p class="rev-guide-refs"><span data-i18n="rev_part2_refs">要点の 🔎6〜8・💡①〜⑤・⑪</span></p>
+          <p class="rev-guide-refs"><span data-i18n="rev_part2_refs">要点の 🔎6〜8・💡①〜⑤・⑪〜⑮</span></p>
           <ul>
             <li><a href="analysis.html#rev-quality" data-i18n="rev_deep_l1">🎓 教育の質から見た再編</a></li>
             <li><a href="analysis.html#rev-skills" data-i18n="rev_deep_l2">💡 これからの子どもに要る力</a></li>
