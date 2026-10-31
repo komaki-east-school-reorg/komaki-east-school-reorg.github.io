@@ -4,6 +4,18 @@
     {
       "date": "2026-10-31",
       "type": "content",
+      "ja": "レガシーの検討に各校の和太鼓などの活動と棒の手を追加",
+      "en": "Legacy section: each school's activities and the local bo-no-te"
+    },
+    {
+      "date": "2026-10-31",
+      "type": "fix",
+      "ja": "トップの挿絵を横幅いっぱいに、スマホでの文字の重なりを修正",
+      "en": "Wider top-page illustration; overlapping text fixed on phones"
+    },
+    {
+      "date": "2026-10-31",
+      "type": "content",
       "ja": "検証と提案に「既存校のレガシーを引き継ぐ」検討と提案⑪",
       "en": "Review: carrying on the existing schools' legacy (proposal 11)"
     },

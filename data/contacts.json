@@ -880,6 +880,20 @@
       "shown_in": [
         "bus.html"
       ]
+    },
+    {
+      "id": "city-bunkazai",
+      "level": "city",
+      "name": "教育委員会事務局　文化財課　文化財係",
+      "location": "小牧市役所　本庁舎3階",
+      "tel": "0568-76-1189",
+      "source": "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/4/9137.html",
+      "probe": {
+        "kind": "article_contact"
+      },
+      "shown_in": [
+        "analysis.html"
+      ]
     }
   ]
 }

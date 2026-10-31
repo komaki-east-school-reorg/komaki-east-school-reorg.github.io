@@ -913,7 +913,11 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 
 @media (max-width: 768px) {
   .upcoming-inner { flex-direction: column; align-items: flex-start; gap: .6rem; }
-  .upcoming-list { flex-direction: column; gap: 0; }
+  .upcoming-list { flex-direction: column; gap: 0; align-self: stretch; }
+  .upcoming-name { flex: 1; min-width: 0; }
+  /* 狭い画面・文字「大」で、長い言語の「最終更新」が版面からはみ出していた（2026-10-31） */
+  .school-date { white-space: normal; }
+  .upcoming-item { max-width: 100%; flex-wrap: wrap; }
   .upcoming-item { border-left: none; border-top: 1px solid rgba(255,255,255,.12); padding: .4rem 0; }
   .upcoming-item:first-child { border-top: none; }
   .upcoming-name { white-space: normal; }
@@ -1635,6 +1639,7 @@ footer {
 .status-item.current { border-left-color: var(--accent); background: var(--accent-light); }
 .status-item:not(.done):not(.current) { border-left-color: var(--primary); }
 .status-label {
+  flex: none; /* 縮ませない（長い言語で札が切れて日付に重なっていた。2026-10-31） */
   min-width: 56px;
   font-size: .75rem;
   font-weight: 700;
@@ -1649,7 +1654,7 @@ footer {
 }
 .status-item.current .status-label { background: var(--accent); }
 .status-item:not(.done):not(.current) .status-label { background: var(--primary); }
-.status-content { font-size: .9rem; }
+.status-content { font-size: .9rem; min-width: 0; }
 
 /* ===== REORGANIZATION DIAGRAM ===== */
 .reorg-diagram {
@@ -3237,6 +3242,9 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
    見出しの横の絵は CSS の背景で出す — 見出しは辞書で innerHTML ごと書き換わるので、中に img を置くと消えるため。 */
 .card-ill { display: block; width: 6.2rem; height: auto; margin: -.4rem 0 .4rem -.3rem; }
 .ill-hero { display: block; width: 8.5rem; height: auto; margin: 0 auto 1rem; background: #fdf6e0; border-radius: 22px; padding: .3rem .5rem; position: relative; }
+/* トップのヒーローは挿絵を横幅いっぱいの帯に並べる（2026-10-31 ユーザー指示。PC・モバイルとも） */
+.ill-hero-wide { display: flex; justify-content: space-between; align-items: flex-end; gap: .4rem; width: 100%; margin: 0 0 1.1rem; padding: .5rem 1rem .2rem; background: #fdf6e0; border-radius: 22px; box-sizing: border-box; }
+.ill-hero-wide img { flex: 1 1 0; min-width: 0; max-width: 10rem; height: auto; }
 .ill-summary { padding: 1.6rem 0 .4rem; }
 .ill-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: .8rem; counter-reset: illstep; }
 .ill-steps li { counter-increment: illstep; position: relative; background: var(--white); border: 1.5px solid var(--border); border-radius: 18px; text-align: center; }
@@ -3330,6 +3338,8 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
 @media (max-width: 768px) {
   .card-ill { width: 5rem; }
   .ill-hero { width: 6.5rem; margin-bottom: .7rem; }
+  .ill-hero-wide { padding: .35rem .5rem .1rem; gap: .15rem; margin-bottom: .8rem; }
+  .ill-hero-wide img:nth-child(n+6) { display: none; }
   .ill-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
   .ill-steps--3 { grid-template-columns: 1fr; }
   .ill-step-pic { width: 5.6rem; }
@@ -3340,7 +3350,24 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
   .section-title.sub.ill-h { background-size: 2.4rem auto; padding-left: 3.6rem; }
 }
 @media print {
-  .page-hero-ill, .ill-hero, .ill-summary, .ill-steps, .card-ill, .tl-ill, .stat-ill, .process-ill, .reorg-ill { display: none !important; }
+  .page-hero-ill, .ill-hero, .ill-hero-wide, .ill-summary, .ill-steps, .card-ill, .tl-ill, .stat-ill, .process-ill, .reorg-ill { display: none !important; }
   .ill-h, .ill-yh { padding-left: 0; background: none; }
   .ill-h { padding-left: .9rem; }
+}
+
+/* ===== モバイルの重なり・はみ出し（2026-10-31 実測で修正）=====
+   長い語（トルコ語・ネパール語・ビルマ語など）が見出しや Q&A の箱から右へはみ出していた。
+   予定の「📅 カレンダーに追加」は右下に重ねて置いているので、ラベルが2行になる言語・幅では
+   上の文字にかかっていた。狭い画面では本文の下に並べる。 */
+main h2, main h3, main h4 { overflow-wrap: break-word; }
+.qa-q, .qa-a, .faq-q, .faq-a { overflow-wrap: anywhere; min-width: 0; }
+@media (max-width: 600px) {
+  .ill-h { background-size: 2.8rem auto; background-position: .6rem center; padding-left: 3.8rem; }
+  .section-title.sub.ill-h { background-size: 2.5rem auto; padding-left: 3.5rem; }
+  /* 日付の列と本文を横に並べると、文字「大」や長い言語で日付・札が本文に重なっていた。縦に並べる */
+  .event-item { flex-direction: column; gap: .35rem; }
+  .event-date { min-width: 0; }
+  .event-item:has(> .ics-add) { padding-bottom: .9rem; }
+  .event-item > .ics-add { position: static; align-self: stretch; white-space: normal; text-align: center; margin-top: .2rem; }
+  .event-item > div { min-width: 0; }
 }

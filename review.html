@@ -88,7 +88,7 @@
       .rev-map td + td { padding-top: .2rem; }
     }
     /* 深掘り検証（analysis.html）への案内（2026-10-30） */
-    .rev-deep-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: .6rem; }
+    .rev-deep-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(17rem, 100%), 1fr)); gap: .6rem; }
     .rev-deep-list a { display: block; padding: .7rem 1rem; background: var(--white); border: 1.5px solid var(--border); border-left: 5px solid var(--accent); border-radius: var(--radius-sm); font-weight: 700; color: var(--primary-dark); text-decoration: none; line-height: 1.5; }
     .rev-deep-list a:hover, .rev-deep-list a:focus-visible { background: var(--primary-light); }
     /* 節が8つあり長いページなので、冒頭に行き先の一覧を置く */
@@ -107,18 +107,18 @@
     .rev-idea .rev-num { background: var(--accent-light); border: 2px solid var(--accent); }
     .rev-more { clear: both; margin: .8rem 0 0; text-align: right; }
     .rev-more a { font-weight: 800; }
-    .rev-cp-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 0 1.4rem; }
+    .rev-cp-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr)); gap: 0 1.4rem; }
     .rev-cp-col .rev-pic { width: 6.5rem; }
     .rev-cp-legacy { margin-top: 1.4rem; }
     .rev-cp-gh { display: flex; align-items: center; gap: .6rem; margin-top: 1rem; }
     .rev-gpic { width: 5rem; height: auto; }
-    .rev-steps { list-style: none; margin: .6rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: .8rem; counter-reset: step; }
+    .rev-steps { list-style: none; margin: .6rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(10rem, 100%), 1fr)); gap: .8rem; counter-reset: step; }
     .rev-steps li { counter-increment: step; position: relative; background: var(--bg); border-radius: 18px; padding: .6rem .9rem .9rem; text-align: center; }
     .rev-steps li::before { content: counter(step); position: absolute; top: .5rem; left: .6rem; width: 1.6rem; height: 1.6rem; border-radius: 999px; background: var(--primary); color: var(--white); font-weight: 800; display: grid; place-items: center; font-size: .85rem; }
     .rev-step-pic { width: 8rem; height: auto; }
     .rev-steps p { margin: .2rem 0 0; font-size: .9rem; line-height: 1.75; text-align: left; }
     .rev-guide-h { font-family: var(--heading-font); font-weight: 800; color: var(--primary-dark); margin: 1.4rem 0 .5rem; }
-    .rev-guide { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .9rem; }
+    .rev-guide { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr)); gap: .9rem; }
     .rev-guide-part { background: var(--white); border: 2px solid var(--border); border-radius: 18px; padding: .9rem 1.1rem; }
     .rev-guide-pic { display: block; width: 7rem; height: auto; margin: 0 auto .2rem; }
     .rev-guide-n { margin: 0; font-size: .82rem; font-weight: 700; color: var(--text-muted); }
@@ -140,14 +140,14 @@
     @keyframes rev-flash { from { background: var(--accent-light); } to { background: var(--white); } }
     @media (prefers-reduced-motion: reduce) { .rev-card:target, .rev-idea:target { animation: none; } }
     .rev-card, .rev-idea { scroll-margin-top: calc(var(--header-h, 70px) + 1rem); }
-    .rev-compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: .9rem; margin: 0 0 .9rem; }
+    .rev-compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr)); gap: .9rem; margin: 0 0 .9rem; }
     .rev-compare-fact { display: flex; gap: .8rem; align-items: center; background: var(--white); border: 2px solid var(--border); border-left: 5px solid var(--neutral-color); border-radius: 18px; padding: .8rem 1rem; }
     .rev-compare-fact .rev-pic { float: none; margin: 0; width: 7.5rem; flex: none; }
     .rev-compare-fact p { margin: 0; font-size: .9rem; line-height: 1.7; }
     .rev-compare-fact strong { font-size: 1.15rem; color: var(--primary-dark); }
     .rev-compare-h { font-weight: 700; color: var(--neutral-color); font-size: .82rem !important; }
     .rev-pic-faded { opacity: .5; }
-    .rev-verdicts { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: .9rem; margin: 0 0 1.6rem; }
+    .rev-verdicts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr)); gap: .9rem; margin: 0 0 1.6rem; }
     .rev-verdicts > div { background: var(--accent-light); border: 2px solid var(--accent); border-radius: 18px; padding: .7rem 1rem; text-align: center; }
     .rev-verdicts .rev-pic { float: none; margin: 0 auto; width: 6.5rem; display: block; }
     .rev-pic-pair { display: flex; justify-content: center; }
@@ -157,6 +157,9 @@
     @media (max-width: 600px) {
       .rev-pic { width: 6rem; }
       .rev-cp-col .rev-pic { width: 5rem; }
+      /* 狭い画面では絵を回り込ませない（見出しが細い列に押し込まれ、英語や文字「大」で絵に触れていた。2026-10-31） */
+      .rev-core-card .rev-pic, .rev-card > .rev-pic, .rev-idea > .rev-pic { float: none; display: block; width: 5rem; margin: 0 auto .4rem; }
+      .rev-core-card .rev-card-h, .rev-core-card .rev-idea-h, .rev-more a { overflow-wrap: anywhere; }
       .rev-compare-fact .rev-pic { width: 4.5rem; }
       .rev-compare-fact { padding: .7rem .8rem; gap: .6rem; }
       .rev-tabs a { flex-basis: 100%; }
@@ -496,7 +499,7 @@
         <div class="rev-idea rev-core-card" id="rev-cp11">
           <img class="rev-pic" src="img/illust/archive.svg" alt="" width="160" height="120" decoding="async">
           <div class="rev-idea-h"><span class="rev-num" aria-hidden="true">⑪</span><span data-i18n="rev_cp11_h">閉じる学校の歌と記録を、配信とアーカイブで残す</span></div>
-          <p class="rev-view" data-i18n-html="rev_cp11_p"><strong>💡 提案：</strong>各校の校歌・賛歌・応援歌を閉校までに子どもと卒業生で録音し、権利者の許諾を確かめたうえで音楽配信（サブスク）で公開します。校旗・記録・作品はアーカイブにして、残る体育館などに展示します。</p>
+          <p class="rev-view" data-i18n-html="rev_cp11_p"><strong>💡 提案：</strong>各校の校歌・賛歌・応援歌を閉校までに子どもと卒業生で録音し、権利者の許諾を確かめたうえで音楽配信（サブスク）で公開します。和太鼓のように学校で育った活動は、棒の手の保存会のように受け継ぐ会をつくって残します。校旗・記録・作品はアーカイブにして、残る体育館などに展示します。</p>
           <p class="rev-more"><a href="analysis.html#rev-l-p1" data-rev-from="cp11" data-i18n="rev_more_idea">くわしく（根拠と確認できていないこと）→</a></p>
         </div>
       </div>

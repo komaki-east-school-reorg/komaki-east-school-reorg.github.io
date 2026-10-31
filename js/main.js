@@ -3979,7 +3979,7 @@ window.KomakiGrade = (function () {
     "cp4": ["rev-m-p7", "rev-m-p8"], "cp5": ["rev-m-p9"], "cp6": ["rev-p1", "rev-p6", "rev-q7"],
     "cp7": ["rev-q1", "rev-p2", "rev-q9"], "cp8": ["rev-p3", "rev-q2"], "cp9": ["rev-p5", "rev-p7", "rev-h6", "rev-h7", "rev-h8"],
     "cp10": ["rev-q4", "rev-q5", "rev-q6"],
-    "cp11": ["rev-l-p1", "rev-l-p2", "rev-l-p3", "rev-l-p4", "rev-l-p5"]};
+    "cp11": ["rev-l-p1", "rev-l-p2", "rev-l-p3", "rev-l-p4", "rev-l-p5", "rev-l-p6"]};
   var KEY = 'komaki_rev_from';
   var page = location.pathname.split('/').pop().replace(/\.html$/, '');
 

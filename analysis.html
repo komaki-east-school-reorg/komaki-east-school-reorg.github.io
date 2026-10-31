@@ -88,17 +88,17 @@
     .rev-idea .rev-num { background: var(--accent-light); border: 2px solid var(--accent); }
     .rev-more { clear: both; margin: .8rem 0 0; text-align: right; }
     .rev-more a { font-weight: 800; }
-    .rev-cp-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 0 1.4rem; }
+    .rev-cp-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr)); gap: 0 1.4rem; }
     .rev-cp-col .rev-pic { width: 6.5rem; }
     .rev-cp-gh { display: flex; align-items: center; gap: .6rem; margin-top: 1rem; }
     .rev-gpic { width: 5rem; height: auto; }
-    .rev-steps { list-style: none; margin: .6rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: .8rem; counter-reset: step; }
+    .rev-steps { list-style: none; margin: .6rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(10rem, 100%), 1fr)); gap: .8rem; counter-reset: step; }
     .rev-steps li { counter-increment: step; position: relative; background: var(--bg); border-radius: 18px; padding: .6rem .9rem .9rem; text-align: center; }
     .rev-steps li::before { content: counter(step); position: absolute; top: .5rem; left: .6rem; width: 1.6rem; height: 1.6rem; border-radius: 999px; background: var(--primary); color: var(--white); font-weight: 800; display: grid; place-items: center; font-size: .85rem; }
     .rev-step-pic { width: 8rem; height: auto; }
     .rev-steps p { margin: .2rem 0 0; font-size: .9rem; line-height: 1.75; text-align: left; }
     .rev-guide-h { font-family: var(--heading-font); font-weight: 800; color: var(--primary-dark); margin: 1.4rem 0 .5rem; }
-    .rev-guide { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .9rem; }
+    .rev-guide { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr)); gap: .9rem; }
     .rev-guide-part { background: var(--white); border: 2px solid var(--border); border-radius: 18px; padding: .9rem 1.1rem; }
     .rev-guide-pic { display: block; width: 7rem; height: auto; margin: 0 auto .2rem; }
     .rev-guide-n { margin: 0; font-size: .82rem; font-weight: 700; color: var(--text-muted); }
@@ -121,14 +121,14 @@
     @keyframes rev-flash { from { background: var(--accent-light); } to { background: var(--white); } }
     @media (prefers-reduced-motion: reduce) { .rev-card:target, .rev-idea:target { animation: none; } }
     .rev-card, .rev-idea { scroll-margin-top: calc(var(--header-h, 70px) + 1rem); }
-    .rev-compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: .9rem; margin: 0 0 .9rem; }
+    .rev-compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr)); gap: .9rem; margin: 0 0 .9rem; }
     .rev-compare-fact { display: flex; gap: .8rem; align-items: center; background: var(--white); border: 2px solid var(--border); border-left: 5px solid var(--neutral-color); border-radius: 18px; padding: .8rem 1rem; }
     .rev-compare-fact .rev-pic { float: none; margin: 0; width: 7.5rem; flex: none; }
     .rev-compare-fact p { margin: 0; font-size: .9rem; line-height: 1.7; }
     .rev-compare-fact strong { font-size: 1.15rem; color: var(--primary-dark); }
     .rev-compare-h { font-weight: 700; color: var(--neutral-color); font-size: .82rem !important; }
     .rev-pic-faded { opacity: .5; }
-    .rev-verdicts { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: .9rem; margin: 0 0 1.6rem; }
+    .rev-verdicts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr)); gap: .9rem; margin: 0 0 1.6rem; }
     .rev-verdicts > div { background: var(--accent-light); border: 2px solid var(--accent); border-radius: 18px; padding: .7rem 1rem; text-align: center; }
     .rev-verdicts .rev-pic { float: none; margin: 0 auto; width: 6.5rem; display: block; }
     .rev-pic-pair { display: flex; justify-content: center; }
@@ -138,6 +138,9 @@
     @media (max-width: 600px) {
       .rev-pic { width: 6rem; }
       .rev-cp-col .rev-pic { width: 5rem; }
+      /* 狭い画面では絵を回り込ませない（見出しが細い列に押し込まれ、英語や文字「大」で絵に触れていた。2026-10-31） */
+      .rev-core-card .rev-pic, .rev-card > .rev-pic, .rev-idea > .rev-pic { float: none; display: block; width: 5rem; margin: 0 auto .4rem; }
+      .rev-core-card .rev-card-h, .rev-core-card .rev-idea-h, .rev-more a { overflow-wrap: anywhere; }
       .rev-compare-fact .rev-pic { width: 4.5rem; }
       .rev-compare-fact { padding: .7rem .8rem; gap: .6rem; }
       .rev-tabs a { flex-basis: 100%; }
@@ -605,11 +608,12 @@
   <!-- ===== 既存校のレガシーを引き継ぐ（2026-10-31 ユーザー指示）=====
        閉じる学校の校歌・賛歌・応援歌、校旗、記録、行事を新しい学校と地域へ引き継ぐ検討。楽曲の配信・サブスク提供を含む。
        【事実】は公表資料（だより第4号・校章の決定・閉校後の校舎の扱い・説明会の意見提出シート）と著作権法そのもの。
+       学校ごとの活動（rev-l-f5）は各校のホームページ（学校日記、その主体自身の公表）、棒の手（rev-l-f6）は市の文化財課の公表（2026-10-31 ユーザー指示で追加）。
        ⛔ 校歌の歌詞や音源はこのサイトに載せない（著作物のため）。💡 は当サイトの考えで、市が検討しているものではない。 -->
   <section class="section section-alt" id="rev-legacy">
     <div class="container" style="max-width:900px;">
       <h2 class="section-title ill-h ill-h--music" data-i18n-html="rev_s14_h">💡 検討：既存校のレガシーを引き継ぐ<small>Carrying On Our Schools’ Legacy</small></h2>
-      <p class="rev-point" data-i18n-html="rev_pt_legacy"><strong>💡 この節の要点：</strong>閉じる学校が積み重ねてきたもの（校歌・賛歌・応援歌などの歌、校旗、記録、行事）を、新しい学校と地域に引き継ぐ方法を、事実4つと提案5つで検討します。</p>
+      <p class="rev-point" data-i18n-html="rev_pt_legacy"><strong>💡 この節の要点：</strong>閉じる学校が積み重ねてきたもの（校歌・賛歌・応援歌などの歌、和太鼓のように学校で育ってきた活動、校旗、記録、行事）を、新しい学校と地域に引き継ぐ方法を、地域の伝統行事「棒の手」の続き方も手がかりに、事実6つと提案6つで検討します。</p>
       <p style="margin-bottom:1.4rem;" data-i18n="rev_s14_lead">学校が閉じても、そこで歌われてきた歌や受け継がれてきた行事は、卒業生と地域の記憶として残ります。それを形にして残し、新しい学校へ渡すことは、子どもの心の支えにも、地域のつながりにもなります。【事実】のあとの 🔎・💡 はすべて当サイトの考えで、市が検討しているものではありません。</p>
 
       <div class="rev-card" id="rev-l-f1">
@@ -628,7 +632,17 @@
         <div class="rev-card-h" data-i18n="rev_l_f4_h">歌を配信するときの決まり（著作権法）</div>
         <p class="rev-fact" data-i18n-html="rev_l_f4_p"><strong>【事実】</strong>歌詞と曲は著作物で、インターネットで配信するには著作権者の許諾が要ります（著作権法第23条）。営利を目的とせず無料で行う学校行事などでの演奏は許諾なしでできますが（第38条第1項）、この例外は配信には及びません。歌った人・演奏した人には実演家の権利があり（第90条の2以下）、著作権の保護期間は原則として著作者の死後70年です（第51条）。権利者が分からないときは、文化庁長官の裁定を受けて利用できる制度があります（第67条）。</p>
       </div>
-      <p class="rev-view" data-i18n-html="rev_l_v"><strong>🔎 当サイトの見方：</strong>新しい学校の校歌と校章は話し合われ、校章は決まりました。一方で、閉じる学校の校歌・応援歌や校旗、記録をどう残すかは、公表資料には見当たりません。校舎が原則として解体されるなら、形として残せる場所はさらに限られます。</p>
+      <div class="rev-card" id="rev-l-f5">
+        <img class="rev-pic" src="img/illust/club.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
+        <div class="rev-card-h" data-i18n="rev_l_f5_h">学校ごとに受け継がれてきた活動</div>
+        <p class="rev-fact" data-i18n-html="rev_l_f5_p"><strong>【事実】</strong>各校のホームページ（学校日記）には、校歌のほかにも学校で育ってきた活動が載っています。当サイトが令和8年度の記事で確かめられたものの一部です。<br>・陶小学校：和太鼓部が、8月の陶地域の夏祭り（小牧勤労センター）で演奏し、9月には桃ヶ丘小学校の「ピーチフェスタ」の和太鼓の講座で演奏を披露して、桃ヶ丘小の子どもたちを手伝いました。<br>・光ヶ丘小学校：運動会の「光っこソーラン」で6年生が着るはっぴは、2009年に当時の先生と地域の人がつくり、受け継がれてきたものです。5年生は地域のぶどう農家の協力で収穫を体験しています。<br>・桃ヶ丘小学校：金管バンド部が市民まつりのパレードに参加しています。<br>・篠岡中学校：閉校を前に、校長室の年表や航空写真で学校の歴史を学ぶ取り組みを始めました。<br>・桃陵中学校：保護者が育てた東部産の桃で調理実習をしています。</p>
+      </div>
+      <div class="rev-card" id="rev-l-f6">
+        <img class="rev-pic" src="img/illust/festival.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
+        <div class="rev-card-h" data-i18n="rev_l_f6_h">地域の伝統行事「棒の手」</div>
+        <p class="rev-fact" data-i18n-html="rev_l_f6_p"><strong>【事実】</strong>東部には、市の指定無形民俗文化財の棒の手が2つあります。大草棒の手（流派は神影流、昭和58年指定）は大草の大久佐八幡宮の祭礼に、野口棒の手（流派は源氏天流、昭和45年指定）は野口神明神社の祭礼に、どちらも毎年10月の第2日曜日に奉納されます。どちらも戦後いったん途絶えましたが、地域の人が保存会をつくって復活させ、いまも伝えています（小牧市 文化財課の公表）。</p>
+      </div>
+      <p class="rev-view" data-i18n-html="rev_l_v"><strong>🔎 当サイトの見方：</strong>新しい学校の校歌と校章は話し合われ、校章は決まりました。一方で、閉じる学校の校歌・応援歌や校旗、記録、和太鼓のように学校で育ってきた活動をどう残すかは、公表資料には見当たりません。校舎が原則として解体されるなら、形として残せる場所はさらに限られます。棒の手の例は、学校とは別の担い手がいれば、伝統は途絶えても続けられることを示しています。</p>
 
       <div class="rev-idea" id="rev-l-p1">
         <div class="rev-idea-h" data-i18n="rev_l_p1_h">1. 校歌・賛歌・応援歌を録音し、配信で残す</div>
@@ -650,7 +664,11 @@
         <div class="rev-idea-h" data-i18n="rev_l_p5_h">5. 学校の行事を、地域の行事として受け継ぐ</div>
         <p data-i18n-html="rev_l_p5_p"><strong>考え方：</strong>学校ごとに続いてきた行事や、地域と一緒に行ってきた活動を、地域協議会や同窓会が受け継げるよう、閉校前に担い手と進め方を決めておきます。</p>
       </div>
-      <p class="rev-open-note" data-i18n-html="rev_l_open"><strong>確認できていないこと：</strong>各校の校歌・応援歌の作詞者・作曲者と権利の状態、録音が残っているか、閉校後の校旗や記録の保管先、学校再編準備調査研究委員会でこれまでの学校の歌や行事の扱いが話し合われているか。</p>
+      <div class="rev-idea" id="rev-l-p6">
+        <div class="rev-idea-h" data-i18n="rev_l_p6_h">6. 学校で育った芸能を、棒の手のように「保存会」で受け継ぐ</div>
+        <p data-i18n-html="rev_l_p6_p"><strong>考え方：</strong>棒の手は、学校ではなく地域の保存会が担い手になったことで、途絶えても復活し、いまも続いています。陶小の和太鼓や光ヶ丘小の「光っこソーラン」のはっぴのように学校で育ってきたものも、閉校前に卒業生・保護者・地域の人で受け継ぐ会をつくり、新しい学校の部活動や地域クラブ、地域の夏祭りへつなぎます。新しい学校の総合的な学習の時間に棒の手の保存会から学ぶ機会をつくれば、学区が広がった子どもたちが東部の各地の伝統を知るきっかけにもなります。</p>
+      </div>
+      <p class="rev-open-note" data-i18n-html="rev_l_open"><strong>確認できていないこと：</strong>各校の校歌・応援歌の作詞者・作曲者と権利の状態、録音が残っているか、閉校後の校旗や記録の保管先、学校再編準備調査研究委員会でこれまでの学校の歌や行事、和太鼓部などの活動の扱いが話し合われているか。各校の活動は学校日記で確かめられた一部で、ほかにもある可能性があります。</p>
       <p class="rev-partnav"><a href="#rev-history" data-i18n="rev_next_p3">第3部「子どもの数」へ →</a><a href="review.html#rev-core" data-i18n="rev_to_core">↑ 要点（核心）に戻る</a></p>
     </div>
   </section>
@@ -1014,6 +1032,7 @@
             <tr><td>こども未来部 出会い・結婚支援室</td><td data-i18n="rev_c_c6_w">結婚支援（令和5年度に新設された部署）</td><td><a href="tel:0568395572">0568-39-5572</a></td></tr>
             <tr><td>地域活性化営業部 企業立地・次世代産業推進課</td><td data-i18n="rev_c_c7_w">企業立地、企業誘致、次世代産業</td><td><a href="tel:0568761135">0568-76-1135</a></td></tr>
             <tr><td>市長公室 秘書政策課</td><td data-i18n="rev_c_c8_w">総合計画・人口ビジョン、重要施策の企画立案と総合調整</td><td><a href="tel:0568761100">0568-76-1100</a></td></tr>
+            <tr><td>教育委員会事務局 文化財課 文化財係</td><td data-i18n="ct_w_bunkazai">文化財の保護と活用（大草・野口の棒の手など市指定の文化財）</td><td><a href="tel:0568761189">0568-76-1189</a></td></tr>
             <tr><td>教育委員会事務局 学校教育課 学校教育係</td><td data-i18n="ct_w_gakkoukyouiku">就学・転学、学校の教育課程と生徒指導、いじめ・不登校、就学援助</td><td><a href="tel:0568761165">0568-76-1165</a></td></tr>
           </tbody>
         </table>
