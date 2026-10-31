@@ -256,10 +256,24 @@
   <section class="page-hero">
     <div class="container">
       <div class="breadcrumb"><a href="index.html" data-i18n="nav_home">ホーム</a> <span>›</span> <span data-i18n="nationwide_h1">全国から見る学校再編</span></div>
+      <img class="page-hero-ill" src="img/illust/compare.svg" alt="" width="160" height="120" decoding="async">
       <h1 data-i18n="nationwide_h1">全国から見る学校再編</h1>
       <p data-i18n="nationwide_p">学校の再編は、小牧市東部だけで起きていることではありません。国が示している基準と全国の統計を並べて、この計画がどこに位置しているのかを確かめます。</p>
     </div>
   </section>
+
+  <!-- このページの要点（挿絵つき。2026-10-31 第2弾。文字は各節の見出しのキー、絵は文字を含まない） -->
+  <section class="section ill-summary">
+    <div class="container">
+      <ol class="ill-steps">
+          <li><a href="#nw-figures"><img class="ill-step-pic" src="img/illust/data.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="nationwide_s1_h">数字でみる全国<small>Nationwide Figures</small></span></a></li>
+          <li><a href="#nw-standards"><img class="ill-step-pic" src="img/illust/compare.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="nationwide_s2_h">国が示している基準<small>National Standards</small></span></a></li>
+          <li><a href="#nw-guide"><img class="ill-step-pic" src="img/illust/book.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="nationwide_s3_h">2026年8月、国の手引が10年ぶりに改訂<small>Revised Guidance</small></span></a></li>
+          <li><a href="#nw-ikkan"><img class="ill-step-pic" src="img/illust/integrated.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="nationwide_s5_h">小中一貫という形<small>Compulsory Education Schools</small></span></a></li>
+      </ol>
+    </div>
+  </section>
+
 
   <section class="section section-alt">
     <div class="container" style="max-width:860px;">
@@ -274,7 +288,7 @@
       <!-- ============================
            数字でみる全国
            ============================ -->
-      <h2 class="section-title" style="margin-top:0; margin-bottom:1.2rem;" data-i18n-html="nationwide_s1_h">
+      <h2 class="section-title ill-h ill-h--data" id="nw-figures" style="margin-top:0; margin-bottom:1.2rem;" data-i18n-html="nationwide_s1_h">
         数字でみる全国
         <small>Nationwide Figures</small>
       </h2>
@@ -285,18 +299,22 @@
         </p>
         <div class="stat-grid">
           <div class="stat-box">
+            <img class="stat-ill" src="img/illust/data.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
             <div class="num" data-i18n="nationwide_stat1_n">8,850校</div>
             <div class="label" data-i18n="nationwide_stat1_l">平成16〜令和5年度の20年間に発生した廃校の延べ数（全国・公立）</div>
           </div>
           <div class="stat-box">
+            <img class="stat-ill" src="img/illust/calendar.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
             <div class="num" data-i18n="nationwide_stat2_n">298校</div>
             <div class="label" data-i18n="nationwide_stat2_l">令和5年度の1年間に発生した廃校（小191・中82・高等学校等25）</div>
           </div>
           <div class="stat-box">
+            <img class="stat-ill" src="img/illust/mappin.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
             <div class="num" data-i18n="nationwide_stat3_n">92校</div>
             <div class="label" data-i18n="nationwide_stat3_l">同じ20年間の愛知県の廃校（小62・中14・高等学校等16）</div>
           </div>
           <div class="stat-box">
+            <img class="stat-ill" src="img/illust/reuse.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
             <div class="num" data-i18n="nationwide_stat4_n">74.4%</div>
             <div class="label" data-i18n="nationwide_stat4_l">現存する廃校7,612校のうち、別の用途で活用されている割合</div>
           </div>
@@ -309,7 +327,7 @@
       <!-- ============================
            国が示している基準
            ============================ -->
-      <h2 class="section-title" style="margin-top:2.5rem; margin-bottom:1.2rem;" data-i18n-html="nationwide_s2_h">
+      <h2 class="section-title ill-h ill-h--compare" id="nw-standards" style="margin-top:2.5rem; margin-bottom:1.2rem;" data-i18n-html="nationwide_s2_h">
         国が示している基準
         <small>National Standards</small>
       </h2>
@@ -362,7 +380,7 @@
       <!-- ============================
            手引の改訂
            ============================ -->
-      <h2 class="section-title" style="margin-top:2.5rem; margin-bottom:1.2rem;" data-i18n-html="nationwide_s3_h">
+      <h2 class="section-title ill-h ill-h--book" id="nw-guide" style="margin-top:2.5rem; margin-bottom:1.2rem;" data-i18n-html="nationwide_s3_h">
         2026年8月、国の手引が10年ぶりに改訂
         <small>Revised Guidance</small>
       </h2>
@@ -413,7 +431,7 @@
       <!-- ============================
            全国の学校規模
            ============================ -->
-      <h2 class="section-title" style="margin-top:2.5rem; margin-bottom:1.2rem;" data-i18n-html="nationwide_s4_h">
+      <h2 class="section-title ill-h ill-h--classroom" style="margin-top:2.5rem; margin-bottom:1.2rem;" data-i18n-html="nationwide_s4_h">
         全国の学校規模と子どもの数
         <small>Scale and Numbers</small>
       </h2>
@@ -435,7 +453,7 @@
       <!-- ============================
            小中一貫
            ============================ -->
-      <h2 class="section-title" style="margin-top:2.5rem; margin-bottom:1.2rem;" data-i18n-html="nationwide_s5_h">
+      <h2 class="section-title ill-h ill-h--integrated" id="nw-ikkan" style="margin-top:2.5rem; margin-bottom:1.2rem;" data-i18n-html="nationwide_s5_h">
         小中一貫という形
         <small>Compulsory Education Schools</small>
       </h2>
@@ -454,7 +472,7 @@
       <!-- ============================
            中高一貫（2026-09-26 ユーザー指示で追加。数値は文科省の資料＝学校基本調査）
            ============================ -->
-      <h2 class="section-title" style="margin-top:2.5rem; margin-bottom:1.2rem;" data-i18n-html="nationwide_s5b_h">
+      <h2 class="section-title ill-h ill-h--highschool" style="margin-top:2.5rem; margin-bottom:1.2rem;" data-i18n-html="nationwide_s5b_h">
         中高一貫という形
         <small>Secondary Education Schools</small>
       </h2>
@@ -480,7 +498,7 @@
            使うのは日本語の名称そのもの）。番号は文部科学省が各ページで公表しているものだけを
            書き写し、リンクは増やしていない（出典リンクは上の5つのまま）。 -->
       <!-- id="contact" はトップページの「担当部署に直接たずねる」欄から張られている。外すとリンク切れ。 -->
-      <h2 class="section-title" id="contact" style="margin-top:2.5rem; margin-bottom:1.2rem;" data-i18n-html="nationwide_s6_h">国の問い合わせ先<small>Who to Contact</small></h2>
+      <h2 class="section-title ill-h ill-h--phone" id="contact" style="margin-top:2.5rem; margin-bottom:1.2rem;" data-i18n-html="nationwide_s6_h">国の問い合わせ先<small>Who to Contact</small></h2>
       <p style="margin-bottom:1.2rem;" data-i18n="nationwide_contact_lead">このページの数値と基準は、文部科学省の次の部署が所管しています。連絡先は同省が上の各ページで公表しているものです（2026年9月現在）。</p>
       <div class="table-wrap">
         <table class="data-table">

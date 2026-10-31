@@ -120,11 +120,25 @@
   <section class="page-hero">
     <div class="container">
       <div class="breadcrumb"><a href="index.html" data-i18n="nav_home">ホーム</a> <span>›</span> <span data-i18n="faq_h1">よくある質問と賛否の声</span></div>
+      <img class="page-hero-ill" src="img/illust/question.svg" alt="" width="160" height="120" decoding="async">
       <h1 data-i18n="faq_h1">よくある質問と賛否の声</h1>
       <p data-i18n="faq_p">市の公式情報をもとに、地域説明会などで多く寄せられた疑問にお答えします。あわせて、賛成・反対・中立それぞれの声と、パブリックコメントで実際に言われたことも掲載しています。</p>
       <p style="font-size:.85rem; opacity:.9; margin-top:.4rem;" data-i18n="recomposed_note">※ このページの説明は、市が公表した資料（計画、パブリックコメントへの回答、説明会の質疑応答の記録など）を当サイトが読んで書き直したものです。市の文面そのままではありません。</p>
     </div>
   </section>
+
+  <!-- このページの要点（挿絵つき。2026-10-31 第2弾。文字は各節の見出しのキー、絵は文字を含まない） -->
+  <section class="section ill-summary">
+    <div class="container">
+      <ol class="ill-steps">
+          <li><a href="#qa"><img class="ill-step-pic" src="img/illust/question.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="faq_qa_h">よくある質問<small>Frequently Asked Questions</small></span></a></li>
+          <li><a href="#voices"><img class="ill-step-pic" src="img/illust/voices.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="voices_cols_h">賛成・反対・中立の声<small>Voices For, Against and Neutral</small></span></a></li>
+          <li><a href="#pubcom"><img class="ill-step-pic" src="img/illust/mailbox.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="voices_pc_h">パブリックコメントで実際に言われたこと<small>What the Comments Said</small></span></a></li>
+          <li><a href="#contact"><img class="ill-step-pic" src="img/illust/phone.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="faq_contact_h">市へのお問い合わせ<small>Who to Contact</small></span></a></li>
+      </ol>
+    </div>
+  </section>
+
 
   <!-- Q&A：答えが公表されている問い。ここだけが FAQPage 構造化データの対象で、
        i18n.js の applyFaqJsonLd が faq_q<N>/faq_a<N> の連番から組み立てる。
@@ -132,10 +146,10 @@
   <section class="section section-alt" id="qa">
     <div class="container" style="max-width:800px;">
 
-      <h2 class="section-title" data-i18n-html="faq_qa_h">よくある質問<small>Frequently Asked Questions</small></h2>
+      <h2 class="section-title ill-h ill-h--question" data-i18n-html="faq_qa_h">よくある質問<small>Frequently Asked Questions</small></h2>
       <p class="section-lead" data-i18n="faq_qa_intro">再編計画の概要、通学と生活、地域と施設、意見の出し方の4つに分けて、市の公式資料をもとに27問に答えます。質問を押すと答えが開きます。</p>
 
-      <h3 class="section-title sub faq-cat" data-i18n-html="faq_cat1">再編計画の概要について<small>About the Plan</small></h3>
+      <h3 class="section-title sub faq-cat ill-h ill-h--merge" data-i18n-html="faq_cat1">再編計画の概要について<small>About the Plan</small></h3>
       <div class="faq-list">
 
         <div class="faq-item">
@@ -190,7 +204,7 @@
 
       </div>
 
-      <h3 class="section-title sub faq-cat" data-i18n-html="faq_cat2">通学・生活について<small>Daily Life</small></h3>
+      <h3 class="section-title sub faq-cat ill-h ill-h--bus" data-i18n-html="faq_cat2">通学・生活について<small>Daily Life</small></h3>
       <div class="faq-list">
 
         <div class="faq-item">
@@ -351,7 +365,7 @@
         </div>
       </div>
 
-      <h3 class="section-title sub faq-cat" data-i18n-html="faq_cat3">地域・施設について<small>Community &amp; Facilities</small></h3>
+      <h3 class="section-title sub faq-cat ill-h ill-h--houses" data-i18n-html="faq_cat3">地域・施設について<small>Community &amp; Facilities</small></h3>
       <div class="faq-list">
 
         <div class="faq-item">
@@ -402,7 +416,7 @@
 
       </div>
 
-      <h3 class="section-title sub faq-cat" data-i18n-html="faq_cat4">意見・参加について<small>Participation</small></h3>
+      <h3 class="section-title sub faq-cat ill-h ill-h--talk" data-i18n-html="faq_cat4">意見・参加について<small>Participation</small></h3>
       <div class="faq-list">
 
         <div class="faq-item">
@@ -480,7 +494,7 @@
   <section class="section" id="voices">
     <div class="container">
       <!-- VOICES 3-COLUMN -->
-      <h2 class="section-title" data-i18n-html="voices_cols_h">賛成・反対・中立の声<small>Voices For, Against and Neutral</small></h2>
+      <h2 class="section-title ill-h ill-h--voices" data-i18n-html="voices_cols_h">賛成・反対・中立の声<small>Voices For, Against and Neutral</small></h2>
       <div class="info-box" data-i18n-html="voices_about">
         <strong>この欄について：</strong>
         地域説明会・意見交換会・パブリックコメント等で寄せられた声をもとに、賛成・反対・中立の立場から代表的な意見を当サイトが要約・再構成したものです。特定の立場を推奨するものではなく、地域の多様な意見を公平に伝えることを目的としています。ここに並ぶ件数は、地域の賛否の割合を示すものではありません。
@@ -603,7 +617,7 @@
        ⚠️ この id は council.html の council_warn_link から張られている。変えないこと。 -->
   <section class="section section-alt" id="pubcom">
     <div class="container" style="max-width:900px;">
-      <h2 class="section-title" data-i18n-html="voices_pc_h">パブリックコメントで実際に言われたこと<small>What the Comments Said</small></h2>
+      <h2 class="section-title ill-h ill-h--mailbox" data-i18n-html="voices_pc_h">パブリックコメントで実際に言われたこと<small>What the Comments Said</small></h2>
       <p class="section-lead" style="margin-bottom:1rem;" data-i18n="voices_pc_lead">この欄は、市が公表した実際の意見にもとづきます。令和7年（2025年）11月10日〜12月9日のパブリックコメントには55名から142件の意見が寄せられ、市は意見の原文と「市の考え方」を公表しています。当サイトがそれを読み、論点ごとに要約しました。</p>
 
       <!-- PUBLIC COMMENT RESULT -->
@@ -624,7 +638,7 @@
         </div>
       </div>
 
-      <h3 class="section-title sub" style="margin-top:2rem;" data-i18n-html="voices_pc_themes_h">寄せられた意見の論点<small>What Was Raised</small></h3>
+      <h3 class="section-title sub ill-h ill-h--data" style="margin-top:2rem;" data-i18n-html="voices_pc_themes_h">寄せられた意見の論点<small>What Was Raised</small></h3>
       <p class="section-lead" data-i18n="voices_pc_themes_lead">市は意見の一つひとつに「市の考え方」を書き、そのすべてに論点の見出しを付けています。その見出しを当サイトが数えました（全143個・53論点。市の公表は計142件）。多い順に8つを示します。</p>
       <ul class="pc-bars">
         <li class="pc-bar-row">
@@ -707,7 +721,7 @@
           </div>
         </div>
 
-      <h3 class="section-title sub" style="margin-top:2rem;" data-i18n="voices_pc_mh">意見を受けて計画が変わったところ</h3>
+      <h3 class="section-title sub ill-h ill-h--form" style="margin-top:2rem;" data-i18n="voices_pc_mh">意見を受けて計画が変わったところ</h3>
       <ul class="rev-open">
         <li data-i18n="voices_pc_m1">「はじめに」に、少子化が進む中で一定の学校規模を確保する必要があるという考えを追記</li>
         <li data-i18n="voices_pc_m2">適正規模の説明に「学級数のことであり1学級の人数ではない」「少人数学級を否定しない」を追記</li>
@@ -723,7 +737,7 @@
        id="contact" を振ってある。data/contacts.json の週次照合もこの並びを見る。 -->
   <section class="section" id="contact">
     <div class="container" style="max-width:800px;">
-      <h2 class="section-title" data-i18n-html="faq_contact_h">市へのお問い合わせ<small>Who to Contact</small></h2>
+      <h2 class="section-title ill-h ill-h--phone" data-i18n-html="faq_contact_h">市へのお問い合わせ<small>Who to Contact</small></h2>
 
       <div class="contact-box">
         <div class="contact-row">

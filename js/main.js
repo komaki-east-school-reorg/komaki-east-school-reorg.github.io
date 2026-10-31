@@ -2856,6 +2856,34 @@ window.KomakiGrade = (function () {
   stickyBox.className = 'share-buttons share-buttons--sticky';
   stickyBox.id = 'share-buttons-sticky';
   stickyBar.appendChild(stickyBox);
+  /* 「›」送りボタン（2026-10-31 ユーザー指摘）：ホーム画面に追加して開くとブラウザの下のツールバーが無くなり、
+     帯が画面の最下部（OS のジェスチャー操作の領域のすぐ上）に来るため、横スワイプが OS に取られて右のボタンへ
+     進めないことがある。スワイプに頼らず、押せば続きへ送れるようにする。列がはみ出しているときだけ出し、
+     右端まで来たら「‹」で先頭へ戻す。キーボードでは Tab で各ボタンへ進めるので、この送りボタン自体は
+     ポインタ用の補助（tabindex=-1・aria-hidden）。 */
+  var moreBtn = document.createElement('button');
+  moreBtn.type = 'button';
+  moreBtn.className = 'share-sticky-more';
+  moreBtn.tabIndex = -1;
+  moreBtn.setAttribute('aria-hidden', 'true');
+  moreBtn.hidden = true;
+  stickyBar.appendChild(moreBtn);
+  function syncMore() {
+    var over = stickyBox.scrollWidth - stickyBox.clientWidth;
+    moreBtn.hidden = over <= 2;
+    var atEnd = stickyBox.scrollLeft >= over - 2;
+    moreBtn.classList.toggle('is-back', atEnd);
+  }
+  moreBtn.addEventListener('click', function () {
+    var over = stickyBox.scrollWidth - stickyBox.clientWidth;
+    var to = stickyBox.scrollLeft >= over - 2 ? 0 : Math.min(over, stickyBox.scrollLeft + stickyBox.clientWidth * 0.9);
+    try { stickyBox.scrollTo({ left: to, behavior: 'smooth' }); } catch (e) { stickyBox.scrollLeft = to; }
+  });
+  stickyBox.addEventListener('scroll', syncMore, { passive: true });
+  window.addEventListener('resize', syncMore);
+  if (window.ResizeObserver) { new ResizeObserver(syncMore).observe(stickyBox); }
+  if (window.MutationObserver) { new MutationObserver(syncMore).observe(stickyBox, { childList: true, subtree: true, attributes: true, attributeFilter: ['hidden'] }); }
+  setTimeout(syncMore, 0);
   document.body.appendChild(stickyBar);
   document.documentElement.classList.add('has-share-sticky');
 

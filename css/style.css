@@ -2389,6 +2389,18 @@ footer {
   .share-sticky { justify-content: center; }
   .share-buttons--sticky { flex: 0 1 auto; justify-content: center; }
 }
+/* 「›」送りボタン（main.js SHARE BUTTONS）。横スワイプが効かない環境でも右のボタンへ進めるように。
+   記号は CSS で出す（文字を持たせない）。右端まで来たら「‹」で先頭へ戻る。 */
+.share-sticky-more { flex: 0 0 auto; width: 2.1rem; height: 2.1rem; border-radius: 999px; border: 1.5px solid var(--primary); background: var(--primary); color: var(--white); font-weight: 800; font-size: 1.1rem; line-height: 1; display: grid; place-items: center; cursor: pointer; padding: 0; }
+.share-sticky-more::before { content: "›"; }
+.share-sticky-more.is-back { background: var(--white); color: var(--primary); }
+.share-sticky-more.is-back::before { content: "‹"; }
+.share-sticky-more[hidden] { display: none; }
+/* ホーム画面から開いたとき（PWA）は帯が画面の最下部に来て OS のジェスチャー領域と重なるので、少し持ち上げる */
+@media (display-mode: standalone) {
+  .share-sticky { padding-bottom: calc(.4rem + max(env(safe-area-inset-bottom, 0px), 14px)); }
+  html.has-share-sticky body { padding-bottom: calc(3.6rem + max(env(safe-area-inset-bottom, 0px), 14px)); }
+}
 /* トーストは固定バーの真下が画面外になるので、バーの上に浮かせる。 */
 .share-sticky .share-copy-msg {
   position: absolute;
@@ -3213,6 +3225,13 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
 .site-card-p .card-link { white-space: nowrap; margin: .5rem 0 0 .3em; }
 .feed-section-link { margin-top: .5rem; }
 
+/* site.html 冒頭のバージョン表示（2026-11-01 から Ver.1.0） */
+.site-version-bar { padding: 1rem 0 0; }
+.site-history { margin-top: .6rem; font-size: .88rem; }
+.site-history summary { cursor: pointer; font-weight: 700; color: var(--primary-dark); }
+.site-history ul { margin: .4rem 0 0 1.2rem; line-height: 1.8; }
+.site-version { display: inline-block; margin: 0; padding: .35rem 1rem; border: 1.5px solid var(--primary); border-radius: var(--radius-pill); color: var(--primary-dark); font-size: .9rem; background: var(--white); }
+
 /* ===== 挿絵と図（2026-10-31 ユーザー指示：サイト全体を挿絵と図で親しみやすく。サイトのポリシー）=====
    挿絵は img/illust/*.svg（文字を含まない飾り、alt=""）。説明の文字はすべて辞書から流し込む。
    見出しの横の絵は CSS の背景で出す — 見出しは辞書で innerHTML ごと書き換わるので、中に img を置くと消えるため。 */
@@ -3245,28 +3264,37 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
 .section-title.sub.ill-h { background-size: 2.9rem auto; padding-left: 4.1rem; }
 .ill-h--bicycle { background-image: url(../img/illust/bicycle.svg); }
 .ill-h--book { background-image: url(../img/illust/book.svg); }
-.ill-h--bulb { background-image: url(../img/illust/bulb.svg); }
 .ill-h--building { background-image: url(../img/illust/building.svg); }
+.ill-h--bulb { background-image: url(../img/illust/bulb.svg); }
 .ill-h--bus { background-image: url(../img/illust/bus.svg); }
 .ill-h--busstop { background-image: url(../img/illust/busstop.svg); }
 .ill-h--calendar { background-image: url(../img/illust/calendar.svg); }
 .ill-h--cityhall { background-image: url(../img/illust/cityhall.svg); }
 .ill-h--classroom { background-image: url(../img/illust/classroom.svg); }
 .ill-h--commute { background-image: url(../img/illust/commute.svg); }
+.ill-h--compare { background-image: url(../img/illust/compare.svg); }
 .ill-h--data { background-image: url(../img/illust/data.svg); }
 .ill-h--decline { background-image: url(../img/illust/decline.svg); }
 .ill-h--factory { background-image: url(../img/illust/factory.svg); }
 .ill-h--family { background-image: url(../img/illust/family.svg); }
+.ill-h--festival { background-image: url(../img/illust/festival.svg); }
 .ill-h--form { background-image: url(../img/illust/form.svg); }
+.ill-h--handshake { background-image: url(../img/illust/handshake.svg); }
 .ill-h--health { background-image: url(../img/illust/health.svg); }
 .ill-h--highschool { background-image: url(../img/illust/highschool.svg); }
 .ill-h--houses { background-image: url(../img/illust/houses.svg); }
+.ill-h--integrated { background-image: url(../img/illust/integrated.svg); }
 .ill-h--kids { background-image: url(../img/illust/kids.svg); }
 .ill-h--laptop { background-image: url(../img/illust/laptop.svg); }
 .ill-h--magnifier { background-image: url(../img/illust/magnifier.svg); }
+.ill-h--mailbox { background-image: url(../img/illust/mailbox.svg); }
+.ill-h--mappin { background-image: url(../img/illust/mappin.svg); }
 .ill-h--meeting { background-image: url(../img/illust/meeting.svg); }
 .ill-h--merge { background-image: url(../img/illust/merge.svg); }
+.ill-h--network { background-image: url(../img/illust/network.svg); }
 .ill-h--phone { background-image: url(../img/illust/phone.svg); }
+.ill-h--question { background-image: url(../img/illust/question.svg); }
+.ill-h--reuse { background-image: url(../img/illust/reuse.svg); }
 .ill-h--ruler { background-image: url(../img/illust/ruler.svg); }
 .ill-h--safety { background-image: url(../img/illust/safety.svg); }
 .ill-h--school { background-image: url(../img/illust/school.svg); }
@@ -3275,6 +3303,7 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
 .ill-h--teacher { background-image: url(../img/illust/teacher.svg); }
 .ill-h--town { background-image: url(../img/illust/town.svg); }
 .ill-h--umbrella { background-image: url(../img/illust/umbrella.svg); }
+.ill-h--voices { background-image: url(../img/illust/voices.svg); }
 .ill-h--vote { background-image: url(../img/illust/vote.svg); }
 .ill-h--city { background-image: url(../img/illust/cityhall.svg); }
 .ill-h--people { background-image: url(../img/illust/kids.svg); }

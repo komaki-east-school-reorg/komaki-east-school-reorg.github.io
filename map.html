@@ -120,15 +120,29 @@
   <section class="page-hero">
     <div class="container">
       <div class="breadcrumb"><a href="index.html" data-i18n="nav_home">ホーム</a> <span>›</span> <span data-i18n="map_h1">学校の場所（地図）</span></div>
+      <img class="page-hero-ill" src="img/illust/mappin.svg" alt="" width="160" height="120" decoding="async">
       <h1 data-i18n="map_h1">学校の場所（地図）</h1>
       <p data-i18n="map_p">篠岡地区の学校の位置情報です。再編前8校・再編後4校の場所をご確認いただけます。</p>
     </div>
   </section>
 
-  <!-- OVERVIEW MAP -->
-  <section class="section section-alt">
+  <!-- このページの要点（挿絵つき。2026-10-31 第2弾。文字は各節の見出しのキー、絵は文字を含まない） -->
+  <section class="section ill-summary">
     <div class="container">
-      <h2 class="section-title" data-i18n-html="map_overview_h2">エリア概要マップ<small>Area Overview</small></h2>
+      <ol class="ill-steps">
+          <li><a href="#overview"><img class="ill-step-pic" src="img/illust/mappin.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="map_overview_h2">エリア概要マップ<small>Area Overview</small></span></a></li>
+          <li><a href="#before"><img class="ill-step-pic" src="img/illust/school.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="map_before_h2">再編前の学校の場所<small>Current School Locations</small></span></a></li>
+          <li><a href="#after"><img class="ill-step-pic" src="img/illust/merge.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="map_after_h2">再編後の4校の位置<small>New School Locations (from April 2027)</small></span></a></li>
+          <li><a href="#bus-area"><img class="ill-step-pic" src="img/illust/bus.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="map_busmap_h2">通学区域とスクールバスの対象エリア<small>School Districts & Bus Service Area</small></span></a></li>
+      </ol>
+    </div>
+  </section>
+
+
+  <!-- OVERVIEW MAP -->
+  <section id="overview" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title ill-h ill-h--mappin" data-i18n-html="map_overview_h2">エリア概要マップ<small>Area Overview</small></h2>
       <p style="font-size:.9rem; color:var(--text-muted); margin-bottom:1.2rem;" data-i18n="map_overview_p">
         篠岡地区（桃花台周辺）のエリア概要です。各校名のリンクをクリックするとGoogleマップで詳細を確認できます。
       </p>
@@ -171,9 +185,9 @@
   </section>
 
   <!-- BEFORE REORG SCHOOLS -->
-  <section class="section">
+  <section id="before" class="section">
     <div class="container">
-      <h2 class="section-title" data-i18n-html="map_before_h2">再編前の学校の場所<small>Current School Locations</small></h2>
+      <h2 class="section-title ill-h ill-h--school" data-i18n-html="map_before_h2">再編前の学校の場所<small>Current School Locations</small></h2>
       <p style="font-size:.9rem; color:var(--text-muted); margin-bottom:1.2rem;" data-i18n="map_before_p">
         令和9年（2027年）3月まで在籍する現在の8校の位置です。東・西グループ別に統合先を示しています。各校名をクリックするとGoogleマップで場所を確認できます。
       </p>
@@ -242,9 +256,9 @@
   </section>
 
   <!-- NEW SCHOOLS - INDIVIDUAL MAPS -->
-  <section class="section section-alt">
+  <section id="after" class="section section-alt">
     <div class="container">
-      <h2 class="section-title" data-i18n-html="map_after_h2">再編後の4校の位置<small>New School Locations (from April 2027)</small></h2>
+      <h2 class="section-title ill-h ill-h--merge" data-i18n-html="map_after_h2">再編後の4校の位置<small>New School Locations (from April 2027)</small></h2>
       <p style="font-size:.9rem; color:var(--text-muted); margin-bottom:1.5rem;" data-i18n-html="map_after_p">令和9年（2027年）4月からスタートする4校の校舎位置です。現在の光ヶ丘小・桃ヶ丘小・光ヶ丘中・桃陵中の建物をそのまま使用します。<strong>「東グループ」と「西グループ」の2グループに分かれます。</strong></p>
 
       <div class="school-map-detail-grid">
@@ -391,7 +405,7 @@
        ページを更新したら、ここに載せる部署も見直すこと。部署名は窓口で使う日本語のまま（data-i18n を付けない）。 -->
   <section class="section section-alt" id="contact">
     <div class="container">
-      <h2 class="section-title" data-i18n-html="contact_rel_h">関係する部署の問い合わせ先<small>Who to Contact</small></h2>
+      <h2 class="section-title ill-h ill-h--phone" data-i18n-html="contact_rel_h">関係する部署の問い合わせ先<small>Who to Contact</small></h2>
       <p class="section-lead" data-i18n="contact_rel_lead">このページの内容に関係する市・県・国の部署です。番号は各部署が公表しているものです（2026年9月現在）。</p>
       <h4 class="contact-level-h" data-i18n="rev_c_city_h">小牧市</h4>
       <div class="table-wrap">

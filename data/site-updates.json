@@ -4,6 +4,24 @@
     {
       "date": "2026-10-31",
       "type": "content",
+      "ja": "地図・地域・質問と賛否・全国の動きのページに挿絵と図",
+      "en": "Illustrations on the map, community, FAQ and nationwide pages"
+    },
+    {
+      "date": "2026-11-01",
+      "type": "feature",
+      "ja": "このサイトを Ver.1.0 に",
+      "en": "This site is now Ver.1.0"
+    },
+    {
+      "date": "2026-10-31",
+      "type": "fix",
+      "ja": "下の共有バーに「›」の送りボタン（アプリ表示でも右へ進める）",
+      "en": "Share bar: a › button to reach the buttons on the right (also in the app)"
+    },
+    {
+      "date": "2026-10-31",
+      "type": "content",
       "ja": "スケジュールと現在の状況に第2期再編（時期未定）を追加",
       "en": "Phase 2 reorganization (timing undecided) added to the schedule and status"
     },
