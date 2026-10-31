@@ -84,7 +84,7 @@
   "privacy_btn_stop": "Don't count this device",
   "privacy_h": "About Visit Counts<small>閲覧数の集計について</small>",
   "privacy_lead": "To see how this site is read and to make it easier to use, we count visits in a way that uses no cookies.",
-  "privacy_li1": "What is counted: the page opened and the display language, which site you came from (the domain only), the screen size, which feature buttons are pressed (share, print, listen, etc.), and whether you came from a QR code.",
+  "privacy_li1": "What is counted: the page opened and the display language, which site you came from (the domain only), the screen size, which feature buttons are pressed (share, print, listen, etc.), and whether you came from a QR code. When you follow a link to another site, only the kind of destination (the city, a school, etc.) is counted; the page address is not sent.",
   "privacy_li2": "What is not counted: your name or email address, anything you type, the grade you choose, or whom you share with. No cookies and no number that identifies you are created.",
   "privacy_li3": "Counting uses GoatCounter, an open-source analytics service. No outside script is loaded. As with any connection, your IP address reaches the counting service.",
   "privacy_li4": "Nothing is counted when your browser is set to “do not track” (Do Not Track or Global Privacy Control). You can also turn counting off for this device with the button below.",

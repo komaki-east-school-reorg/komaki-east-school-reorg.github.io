@@ -1749,7 +1749,7 @@
   "fb_open": "✉ Enviar opinião",
   "privacy_h": "Sobre a contagem de acessos<small>About Visit Counts</small>",
   "privacy_lead": "Para saber como este site é lido e torná-lo mais fácil de usar, contamos os acessos de uma forma que não usa cookies.",
-  "privacy_li1": "O que é contado: a página aberta e o idioma exibido, de qual site você veio (só o domínio), o tamanho da tela, quais botões de recursos foram usados (compartilhar, imprimir, ouvir etc.) e se você veio por um código QR.",
+  "privacy_li1": "O que é contado: a página aberta e o idioma exibido, de qual site você veio (só o domínio), o tamanho da tela, quais botões de recursos foram usados (compartilhar, imprimir, ouvir etc.) e se você veio por um código QR. Ao seguir um link para outro site, conta-se só o tipo de destino (prefeitura, escola etc.); o endereço da página não é enviado.",
   "privacy_li2": "O que não é contado: seu nome ou e-mail, o que você digita, a série escolhida ou com quem você compartilha. Não criamos cookies nem números que identifiquem você.",
   "privacy_li3": "A contagem usa o GoatCounter, um serviço de estatísticas de código aberto. Nenhum script externo é carregado. Como em qualquer conexão, seu endereço IP chega ao serviço de contagem.",
   "privacy_li4": "Nada é contado quando o navegador está configurado para “não rastrear” (Do Not Track ou Global Privacy Control). Você também pode desligar a contagem neste aparelho com o botão abaixo.",

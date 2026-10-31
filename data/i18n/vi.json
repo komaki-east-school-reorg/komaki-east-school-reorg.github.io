@@ -1749,7 +1749,7 @@
   "fb_open": "✉ Gửi ý kiến",
   "privacy_h": "Về việc đếm lượt xem<small>About Visit Counts</small>",
   "privacy_lead": "Để biết trang được đọc thế nào và làm cho dễ dùng hơn, chúng tôi đếm lượt xem theo cách không dùng cookie.",
-  "privacy_li1": "Những gì được đếm: trang đã mở và ngôn ngữ hiển thị, bạn đến từ trang nào (chỉ tên miền), kích thước màn hình, nút chức năng nào được nhấn (chia sẻ, in, nghe…) và bạn có đến từ mã QR hay không.",
+  "privacy_li1": "Những gì được đếm: trang đã mở và ngôn ngữ hiển thị, bạn đến từ trang nào (chỉ tên miền), kích thước màn hình, nút chức năng nào được nhấn (chia sẻ, in, nghe…) và bạn có đến từ mã QR hay không. Khi bạn bấm liên kết sang trang khác, chỉ đếm loại nơi đến (thành phố, trường…), không gửi địa chỉ trang.",
   "privacy_li2": "Những gì không đếm: tên hay email, chữ bạn nhập, khối lớp bạn chọn, người bạn chia sẻ. Không tạo cookie hay mã số để nhận ra bạn.",
   "privacy_li3": "Việc đếm dùng GoatCounter, một dịch vụ thống kê mã nguồn mở. Không tải script bên ngoài nào. Như mọi kết nối, địa chỉ IP của bạn sẽ đến dịch vụ đếm.",
   "privacy_li4": "Không đếm khi trình duyệt được đặt “không theo dõi” (Do Not Track hoặc Global Privacy Control). Bạn cũng có thể tắt việc đếm trên thiết bị này bằng nút bên dưới.",

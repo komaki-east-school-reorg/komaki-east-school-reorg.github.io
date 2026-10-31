@@ -1749,7 +1749,7 @@
   "fb_open": "✉ Kirim pendapat",
   "privacy_h": "Tentang penghitungan kunjungan<small>About Visit Counts</small>",
   "privacy_lead": "Untuk mengetahui bagaimana situs ini dibaca dan membuatnya lebih mudah dipakai, kami menghitung kunjungan tanpa memakai cookie.",
-  "privacy_li1": "Yang dihitung: halaman yang dibuka dan bahasa tampilan, dari situs mana Anda datang (hanya domain), ukuran layar, tombol fitur mana yang ditekan (bagikan, cetak, dengarkan, dll.), dan apakah Anda datang dari kode QR.",
+  "privacy_li1": "Yang dihitung: halaman yang dibuka dan bahasa tampilan, dari situs mana Anda datang (hanya domain), ukuran layar, tombol fitur mana yang ditekan (bagikan, cetak, dengarkan, dll.), dan apakah Anda datang dari kode QR. Saat Anda mengikuti tautan ke situs lain, hanya jenis tujuannya (pemerintah kota, sekolah, dll.) yang dihitung; alamat halamannya tidak dikirim.",
   "privacy_li2": "Yang tidak dihitung: nama atau email, teks yang Anda ketik, kelas yang dipilih, atau kepada siapa Anda membagikan. Tidak ada cookie atau nomor yang mengenali Anda.",
   "privacy_li3": "Penghitungan memakai GoatCounter, layanan statistik sumber terbuka. Tidak ada skrip luar yang dimuat. Seperti koneksi apa pun, alamat IP Anda sampai ke layanan penghitung.",
   "privacy_li4": "Tidak ada yang dihitung bila peramban diatur “jangan lacak” (Do Not Track atau Global Privacy Control). Anda juga bisa mematikan penghitungan di perangkat ini dengan tombol di bawah.",

@@ -84,7 +84,7 @@
   "privacy_btn_stop": "Bu cihazı sayma",
   "privacy_h": "Ziyaret sayımı hakkında<small>About Visit Counts</small>",
   "privacy_lead": "Bu sitenin nasıl okunduğunu görmek ve kullanımını kolaylaştırmak için ziyaretleri çerez kullanmadan sayıyoruz.",
-  "privacy_li1": "Sayılanlar: açılan sayfa ve görüntüleme dili, hangi siteden geldiğiniz (yalnızca alan adı), ekran boyutu, hangi özellik düğmelerine basıldığı (paylaş, yazdır, dinle vb.) ve QR koddan gelip gelmediğiniz.",
+  "privacy_li1": "Sayılanlar: açılan sayfa ve görüntüleme dili, hangi siteden geldiğiniz (yalnızca alan adı), ekran boyutu, hangi özellik düğmelerine basıldığı (paylaş, yazdır, dinle vb.) ve QR koddan gelip gelmediğiniz. Başka bir siteye giden bağlantıya tıkladığınızda yalnızca gidilen yerin türü (belediye, okul vb.) sayılır; sayfa adresi gönderilmez.",
   "privacy_li2": "Sayılmayanlar: adınız veya e-postanız, yazdıklarınız, seçtiğiniz sınıf, kiminle paylaştığınız. Çerez veya sizi tanıyan bir numara oluşturulmaz.",
   "privacy_li3": "Sayım için açık kaynaklı istatistik hizmeti GoatCounter kullanılır. Dışarıdan hiçbir betik yüklenmez. Her bağlantıda olduğu gibi, IP adresiniz sayım hizmetine ulaşır.",
   "privacy_li4": "Tarayıcınız “izlenmesin” (Do Not Track veya Global Privacy Control) olarak ayarlıysa hiçbir şey sayılmaz. Aşağıdaki düğmeyle bu cihazda sayımı kapatabilirsiniz.",

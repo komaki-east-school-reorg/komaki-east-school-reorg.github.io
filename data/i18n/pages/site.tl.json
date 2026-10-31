@@ -84,7 +84,7 @@
   "privacy_btn_stop": "Huwag bilangin ang device na ito",
   "privacy_h": "Tungkol sa bilang ng pagbisita<small>About Visit Counts</small>",
   "privacy_lead": "Para malaman kung paano binabasa ang site at gawin itong mas madaling gamitin, binibilang namin ang mga pagbisita nang walang cookie.",
-  "privacy_li1": "Binibilang: ang binuksang pahina at wika, kung saang site ka galing (domain lang), laki ng screen, aling mga button ang pinindot (share, print, pakinggan, atbp.), at kung galing ka sa QR code.",
+  "privacy_li1": "Binibilang: ang binuksang pahina at wika, kung saang site ka galing (domain lang), laki ng screen, aling mga button ang pinindot (share, print, pakinggan, atbp.), at kung galing ka sa QR code. Kapag pumindot ka ng link papunta sa ibang site, ang uri lang ng pupuntahan (lungsod, paaralan, atbp.) ang binibilang; hindi ipinapadala ang address ng pahina.",
   "privacy_li2": "Hindi binibilang: pangalan o email, anumang tinype mo, ang piniling grado, o kung kanino ka nag-share. Walang ginagawang cookie o numerong makikilala ka.",
   "privacy_li3": "Ginagamit ang GoatCounter, isang open-source na serbisyo ng estadistika. Walang panlabas na script na nilo-load. Gaya ng anumang koneksyon, umaabot ang iyong IP address sa serbisyo ng pagbilang.",
   "privacy_li4": "Walang binibilang kapag nakatakda ang browser sa “huwag subaybayan” (Do Not Track o Global Privacy Control). Maaari mo ring patayin ang pagbilang sa device na ito gamit ang button sa ibaba.",

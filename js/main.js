@@ -152,7 +152,32 @@ window.KomakiCount = (function () {
     ['.faq-link', 'link/faq'],
     ['.event-permalink', 'link/event'],
     ['.footer-feed a, .feed-box-link, .feed-section-link', 'feed/open'],
-    ['.fb-open', 'feedback/open']
+    ['.fb-open', 'feedback/open'],
+    // 2026-10-31 追加：10/24 以降に足した機能と、ページ内の案内・外部リンクの使われ方
+    ['.app-install-btn, .footer-app, .nav-app, .app-install-cta', 'app/open'],
+    ['.feature-cutin-more', 'cutin/more'],
+    ['.feature-cutin-close', 'cutin/close'],
+    ['.rev-tabs a', function (el) { return /analysis\.html/.test(el.getAttribute('href') || '') ? 'review/tab-analysis' : 'review/tab-review'; }],
+    ['.rev-more a', 'review/more'],
+    ['.rev-back a', 'review/back'],
+    ['.rev-partnav a', 'review/partnav'],
+    ['.page-toc a', 'toc/jump'],
+    ['.ill-steps a, .rev-steps a', 'steps/jump'],
+    ['.bus-map-zoom button', function (el) { return 'map/zoom-' + (el.getAttribute('data-zoom') || 'x').replace(/[^a-z]/g, ''); }],
+    ['.faq-q', 'faq/toggle'],
+    ['.hero-count-method summary', 'child-est/method'],
+    ['a[href^="tel:"]', 'contact/tel'],
+    // 外部サイトへのリンク：送るのは行き先の種類だけ（アドレスやページ名は送らない）
+    ['a[href^="http"]', function (el) {
+      var h = '';
+      try { var u = new URL(el.href); if (u.origin === location.origin) return ''; h = u.hostname; } catch (e) { return ''; }
+      if (/(^|\.)city\.komaki\.aichi\.jp$/.test(h)) return 'out/city';
+      if (/(^|\.)komaki-aic\.ed\.jp$/.test(h)) return 'out/school';
+      if (/(^|\.)mext\.go\.jp$/.test(h)) return 'out/mext';
+      if (/(^|\.)instagram\.com$/.test(h)) return 'out/instagram';
+      if (/(^|\.)facebook\.com$/.test(h)) return 'out/facebook';
+      return 'out/other';
+    }]
   ];
   document.addEventListener('click', function (e) {
     var t = e.target && e.target.closest ? e.target : null;
@@ -170,6 +195,7 @@ window.KomakiCount = (function () {
     if (!t) return;
     if (t.classList && t.classList.contains('lang-select')) event('lang/' + String(t.value).replace(/[^a-z]/g, ''));
     else if (t.id === 'grade-select' && t.value) event('grade/select');
+    else if (t.getAttribute && t.getAttribute('data-layer') && t.closest && t.closest('.bus-map-layers')) event('map/layer');
   }, true);
   window.addEventListener('appinstalled', function () { event('app/installed'); });
   return event;
