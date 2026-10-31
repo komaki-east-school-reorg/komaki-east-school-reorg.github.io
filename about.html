@@ -73,6 +73,7 @@
         <li><a href="map.html" data-i18n="nav_map">地図</a></li>
         <li><a href="nationwide.html" data-i18n="nav_nationwide">全国の動き</a></li>
         <li><a href="review.html" data-i18n="nav_review">検証と提案</a></li>
+        <li class="nav-site"><a href="site.html" data-i18n="footer_site">このサイトについて</a></li>
       </ul>
       <div class="lang-switcher">
         <button class="kids-toggle" aria-pressed="false" title="こどもむけのよみやすい文章にきりかえる">🧒 こどもむけ<span class="kids-switch" aria-hidden="true"></span></button>
@@ -119,19 +120,32 @@
   <section class="page-hero">
     <div class="container">
       <div class="breadcrumb"><a href="index.html" data-i18n="nav_home">ホーム</a> <span>›</span> <span data-i18n="about_h1">計画概要</span></div>
+      <img class="page-hero-ill" src="img/illust/book.svg" alt="" width="160" height="120" decoding="async">
       <h1 data-i18n="about_h1">計画概要</h1>
       <p data-i18n="about_p">「小牧市東部（篠岡地区）学校再編計画」の背景・現状・再編内容・通学計画を小牧市の公式情報をもとに解説します。</p>
     </div>
   </section>
 
   <!-- WHY -->
+
+  <!-- このページの要点（挿絵つき。2026-10-31 ユーザー指示。文字は既存のキー、絵は文字を含まない） -->
+  <section class="section ill-summary">
+    <div class="container">
+      <ol class="ill-steps">
+          <li><a href="#why"><img class="ill-step-pic" src="img/illust/decline.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n="point1_h">なぜ再編が必要なのか</span></a></li>
+          <li><a href="#plan"><img class="ill-step-pic" src="img/illust/merge.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n="point2_h">何が計画されているか</span></a></li>
+          <li><a href="#process"><img class="ill-step-pic" src="img/illust/meeting.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n="point3_h">これまでの経緯</span></a></li>
+          <li><a href="#merits"><img class="ill-step-pic" src="img/illust/kids.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n="point4_h">再編で期待されること</span></a></li>
+      </ol>
+    </div>
+  </section>
   <section id="why" class="section section-alt">
     <div class="container">
       <h2 class="section-title" data-i18n-html="about_why_h2">なぜ今、再編が必要なのか<small>Why Now?</small></h2>
 
       <div class="cards">
         <div class="card">
-          <div class="card-icon">📉</div>
+          <img class="card-ill" src="img/illust/decline.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="issue1_h">課題① 子どもの急減</h3>
           <p data-i18n-html="issue1_p">
             令和7年（2025年）現在、篠岡地区の19歳以下の人口は
@@ -140,7 +154,7 @@
           </p>
         </div>
         <div class="card">
-          <div class="card-icon">🏚️</div>
+          <img class="card-ill" src="img/illust/building.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="issue2_h">課題② 施設の老朽化</h3>
           <p data-i18n-html="issue2_p">
             篠岡小学校は<strong>1958年建築（60年以上経過）</strong>、
@@ -149,7 +163,7 @@
           </p>
         </div>
         <div class="card">
-          <div class="card-icon">🎓</div>
+          <img class="card-ill" src="img/illust/classroom.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="issue3_h">課題③ 単学級化の進行</h3>
           <p data-i18n-html="issue3_p">
             このまま推移すると、<strong>令和15年（2033年）には篠岡地区の
@@ -199,42 +213,42 @@
 
       <div class="cards">
         <div class="card">
-          <div class="card-icon">🔄</div>
+          <img class="card-ill" src="img/illust/kids.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="merit1_h">クラス替えができる環境</h3>
           <p data-i18n-html="merit1_p">
             1学年1学級のまま推移すると、小学6年間・中学3年間、同じメンバーで過ごし続けることになります。再編後は<strong>毎年クラス替えが可能な規模</strong>になり、人間関係の固定化を防ぎ、新たな出会いの機会が生まれます。保護者の<strong>66.4%</strong>が「人間関係の固定化・解消のしにくさ」を現在の課題と感じています。
           </p>
         </div>
         <div class="card">
-          <div class="card-icon">🌈</div>
+          <img class="card-ill" src="img/illust/talk.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="merit2_h">多様な仲間・価値観との出会い</h3>
           <p data-i18n-html="merit2_p">
             多くの同級生と日常的に交流することで、<strong>多様な考え方・価値観</strong>を自然に学べる環境が整います。保護者アンケートでは<strong>52.2%</strong>が「主体性や協調性を集団の中で身に付けること」を、<strong>48.6%</strong>が「多くの友達ができる環境」を期待しています。
           </p>
         </div>
         <div class="card">
-          <div class="card-icon">⚽</div>
+          <img class="card-ill" src="img/illust/sports.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="merit3_h">部活動・委員会活動の充実</h3>
           <p data-i18n-html="merit3_p">
             少人数では活動が難しかった<strong>部活動や委員会の種類・人数が増加</strong>し、子どもたちの選択の幅が広がります。保護者アンケートの「期待すること」で<strong>第1位（55.2%）</strong>に選ばれた項目です。
           </p>
         </div>
         <div class="card">
-          <div class="card-icon">📖</div>
+          <img class="card-ill" src="img/illust/book.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="merit4_h">小中9年間の一貫した学び</h3>
           <p data-i18n-html="merit4_p">
             再編後の4校は<strong>「しのおか学園」</strong>として義務教育9年間を見通した一貫したカリキュラムを実施。小中の連携強化により<strong>「中1ギャップ」の緩和</strong>も期待されます。保護者の<strong>46.1%</strong>が「小中連携による学習・生活指導の充実」に期待しています。
           </p>
         </div>
         <div class="card">
-          <div class="card-icon">👩‍🏫</div>
+          <img class="card-ill" src="img/illust/teacher.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="merit5_h">充実した教員体制</h3>
           <p data-i18n-html="merit5_p">
             小規模校では<strong>経験年数・専門性のバランスがとれた教職員配置が難しい</strong>という課題があります。再編により適切な規模となり、多様な指導力・専門性を生かした教育活動が充実します。
           </p>
         </div>
         <div class="card">
-          <div class="card-icon">🏗️</div>
+          <img class="card-ill" src="img/illust/school.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="merit6_h">整備された教育環境</h3>
           <p data-i18n-html="merit6_p">
             篠岡小学校は<strong>1958年建築・築67年</strong>、篠岡中学校は1965年建築・築60年です。再編により建替えを計画的に実施し、<strong>安全・快適な最新の教育環境</strong>を整備することができます。
@@ -262,32 +276,32 @@
 
       <div class="cards">
         <div class="card">
-          <div class="card-icon">📚</div>
+          <img class="card-ill" src="img/illust/talk.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="about_learn_c1_h">授業の柱「学び合う学び」</h3>
           <p data-i18n-html="about_learn_c1_p">市はこれまで、子ども同士が聴き合い、考えを認め合いながら学びを深める<strong>「学び合う学び」</strong>の授業を続けてきました。そのためには、さまざまな考え方や価値観に触れられる<strong>一定の集団の大きさが望ましい</strong>というのが市の考えです。一方で市は、小規模校には<strong>一人一人に目が届きやすい</strong>という利点があることも認めています。</p>
         </div>
         <div class="card">
-          <div class="card-icon">👥</div>
+          <img class="card-ill" src="img/illust/classroom.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="about_learn_c2_h">学校の大きさと1学級の人数</h3>
           <p data-i18n-html="about_learn_c2_p">市の適正規模は小・中学校とも<strong>1校12〜24学級</strong>（小学校は1学年2〜4学級、中学校は4〜8学級）です。市は計画に、<strong>適正規模は学級の数のことで1学級の人数のことではない</strong>、少人数学級を否定する考えはない、と書き加えました。1学級の上限は小学校の全学年と中学1年が<strong>35人</strong>、中学2・3年が40人で、愛知県は令和8年度から中学2・3年も段階的に35人に引き下げる予定です。国も令和8年に法律を改め、中学校の標準を35人としました（令和9年度までは段階的）。市は市議会で、21〜25人程度のクラス替えが可能な学級規模を確保する必要があると答弁しています。</p>
         </div>
         <div class="card">
-          <div class="card-icon">👩‍🏫</div>
+          <img class="card-ill" src="img/illust/teacher.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="about_learn_c3_h">先生の配置</h3>
           <p data-i18n-html="about_learn_c3_p">市は、再編で児童生徒が増えるのにあわせて<strong>教職員も増える</strong>とし、令和9年度に向けて計画的に配置できるよう<strong>県と調整</strong>していると説明しています。公立小中学校の教職員の数は、国の法律（義務標準法）にもとづき学級の数から算定されます。</p>
         </div>
         <div class="card">
-          <div class="card-icon">🤝</div>
+          <img class="card-ill" src="img/illust/family.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="about_learn_c4_h">移り変わりの時期の支え</h3>
           <p data-i18n-html="about_learn_c4_p">環境の変化が子どもの負担にならないよう、再編前から<strong>学校間の交流</strong>が進められています（小学校では文化・芸術の体験授業や桃花台中央公園での交流、中学校では篠岡中学校と光ヶ丘中学校の合同の里山保全活動や芸術鑑賞）。各校の心の相談員・スクールカウンセラーによる<strong>相談体制の周知と強化</strong>、支援が必要な子の<strong>情報や支援方法の引き継ぎ</strong>、<strong>特別支援学級と通級による指導の維持・継続</strong>も示されています。市議会では、不登校の児童生徒を支える総合教育支援センターの開設を検討しており、閉校後の校舎もその候補の一つだと答弁しています（方針は未定）。</p>
         </div>
         <div class="card">
-          <div class="card-icon">🗂</div>
+          <img class="card-ill" src="img/illust/meeting.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="about_learn_c5_h">新しい学校の中身を決める場</h3>
           <p data-i18n-html="about_learn_c5_p">令和7年7月から<strong>学校再編準備調査研究委員会</strong>が、新しい学校の教育課程・教育目標・校歌・校章・部活動などを協議しています。令和8年12月には<strong>8校合同の学校運営協議会</strong>が予定されています（篠岡地区学校再編だより 第4号）。</p>
         </div>
         <div class="card">
-          <div class="card-icon">🩺</div>
+          <img class="card-ill" src="img/illust/health.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="about_learn_c6_h">健康と安全</h3>
           <p data-i18n-html="about_learn_c6_p">熱中症対策として、令和8年度の夏から使えるよう全小中学校に<strong>マイボトル給水機</strong>を設置するとしています（同 第5号）。小中学校には法律で<strong>養護教諭</strong>（保健室の先生）を置くことになっています（学校教育法）。閉校する学校の体育館・グラウンドは、令和9年度以降も<strong>避難所・避難場所</strong>として使われる予定です。</p>
         </div>
@@ -375,7 +389,7 @@
           <div class="reorg-school jhs" data-i18n="school_hikari_jhs">光ヶ丘中学校</div>
           <div class="reorg-school jhs" data-i18n="school_toryou_jhs">桃陵中学校</div>
         </div>
-        <div class="reorg-arrow">→</div>
+        <div class="reorg-arrow"><img class="reorg-ill" src="img/illust/merge.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span aria-hidden="true">→</span></div>
         <div class="reorg-col after">
           <div class="reorg-col-title" data-i18n="about_diagram_col_after">令和9年度（2027年度）〜</div>
           <div class="reorg-group">
@@ -445,12 +459,12 @@
 
       <div class="cards">
         <div class="card">
-          <div class="card-icon">🚌</div>
+          <img class="card-ill" src="img/illust/bus.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="transport_elem_h">小学生：スクールバス</h3>
           <p data-i18n-html="transport_elem_p"><strong>通学距離2km以上などの対象エリアの小学生</strong>にスクールバスを運行します（市が全額負担・無償）。<br><br>・<strong>登校：</strong>1便<br>・<strong>下校：</strong>最大3便（低学年・高学年・部活動日）<br>・<strong>費用：市が全額負担（無償）</strong><br><br>対象エリア・バス停（案）・申請の手続きは、スクールバスのページにまとめています。<a href="bus.html" style="font-weight:700;">→ スクールバスの詳細ページ</a></p>
         </div>
         <div class="card">
-          <div class="card-icon">🚲</div>
+          <img class="card-ill" src="img/illust/bicycle.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="transport_jhs_h">中学生：自転車通学</h3>
           <p data-i18n-html="transport_jhs_p">
             中学生については<strong>自転車通学</strong>が計画されています。<br><br>
@@ -462,8 +476,8 @@
     </div>
   </section>
 
-  <!-- PHASE 2 -->
-  <section class="section section-alt">
+  <!-- PHASE 2（#phase2 は schedule.html と index.html の第2期の項目からリンクされている） -->
+  <section id="phase2" class="section section-alt">
     <div class="container">
       <h2 class="section-title" data-i18n-html="about_phase2_h2">第2期再編について<small>Phase 2 (Future)</small></h2>
       <div class="info-box" data-i18n-html="about_phase2_box">
@@ -483,12 +497,12 @@
       <h2 class="section-title" data-i18n-html="about_buildings_h2">閉校となる施設について<small>Closed School Buildings</small></h2>
       <div class="cards">
         <div class="card">
-          <div class="card-icon">🏚️</div>
+          <img class="card-ill" src="img/illust/building.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="building_h">校舎</h3>
           <p data-i18n-html="building_p">閉校となる学校の<strong>校舎は原則として解体</strong>される予定です。</p>
         </div>
         <div class="card">
-          <div class="card-icon">🏟️</div>
+          <img class="card-ill" src="img/illust/sports.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="gym_h">体育館・グラウンド</h3>
           <p data-i18n-html="gym_p">体育館やグラウンドについては<strong>基本的に残していく</strong>方針です。地域のスポーツ・コミュニティ活動への活用が期待されます。令和9年度以降も維持・管理され、引き続き避難所・避難場所に指定される予定です。</p>
         </div>
@@ -497,33 +511,33 @@
   </section>
 
   <!-- PROCESS -->
-  <section class="section section-alt">
+  <section id="process" class="section section-alt">
     <div class="container">
       <h2 class="section-title" data-i18n-html="about_process_h2">意思決定のプロセス<small>Decision-Making Process</small></h2>
 
       <div class="process-steps">
         <div class="process-step done">
-          <div class="process-num">①</div>
+          <img class="process-ill" src="img/illust/meeting.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><div class="process-num">①</div>
           <div style="font-size:.88rem; font-weight:700; margin-top:.3rem;" data-i18n="process_s1_title">課題把握・情報共有</div>
           <div class="process-label" data-i18n-html="process_s1_label">令和7年5月〜<br>（完了）</div>
         </div>
         <div class="process-step done">
-          <div class="process-num">②</div>
+          <img class="process-ill" src="img/illust/talk.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><div class="process-num">②</div>
           <div style="font-size:.88rem; font-weight:700; margin-top:.3rem;" data-i18n="process_s2_title">意見収集・計画策定</div>
           <div class="process-label" data-i18n-html="process_s2_label">令和7年5〜11月<br>（完了）</div>
         </div>
         <div class="process-step done">
-          <div class="process-num">③</div>
+          <img class="process-ill" src="img/illust/form.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><div class="process-num">③</div>
           <div style="font-size:.88rem; font-weight:700; margin-top:.3rem;" data-i18n="process_s3_title">パブリックコメント</div>
           <div class="process-label" data-i18n-html="process_s3_label">令和7年11〜12月<br>（完了・142件）</div>
         </div>
         <div class="process-step current">
-          <div class="process-num">④</div>
+          <img class="process-ill" src="img/illust/cityhall.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><div class="process-num">④</div>
           <div style="font-size:.88rem; font-weight:700; margin-top:.3rem;" data-i18n="process_s4_title">計画確定・準備</div>
           <div class="process-label" data-i18n-html="process_s4_label">令和8年〜<br>（進行中）</div>
         </div>
         <div class="process-step">
-          <div class="process-num">⑤</div>
+          <img class="process-ill" src="img/illust/school.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><div class="process-num">⑤</div>
           <div style="font-size:.88rem; font-weight:700; margin-top:.3rem;" data-i18n="process_s5_title">第1期再編実施</div>
           <div class="process-label" data-i18n-html="process_s5_label">令和9年4月<br>（予定）</div>
         </div>

@@ -73,6 +73,7 @@
         <li><a href="map.html" data-i18n="nav_map">地図</a></li>
         <li><a href="nationwide.html" data-i18n="nav_nationwide">全国の動き</a></li>
         <li><a href="review.html" data-i18n="nav_review">検証と提案</a></li>
+        <li class="nav-site"><a href="site.html" data-i18n="footer_site">このサイトについて</a></li>
       </ul>
       <div class="lang-switcher">
         <button class="kids-toggle" aria-pressed="false" title="こどもむけのよみやすい文章にきりかえる">🧒 こどもむけ<span class="kids-switch" aria-hidden="true"></span></button>
@@ -119,6 +120,7 @@
   <section class="page-hero">
     <div class="container">
       <div class="breadcrumb"><a href="index.html" data-i18n="nav_home">ホーム</a> <span>›</span> <span data-i18n="schedule_h1">スケジュール</span></div>
+      <img class="page-hero-ill" src="img/illust/calendar.svg" alt="" width="160" height="120" decoding="async">
       <h1 data-i18n="schedule_h1">スケジュール</h1>
       <p data-i18n="schedule_p">令和7年（2025年）の取組実績と、令和9年（2027年）の再編実施に向けた全体の流れを掲載しています。</p>
     </div>
@@ -177,6 +179,7 @@
       <div class="timeline">
 
         <div class="tl-item">
+          <img class="tl-ill" src="img/illust/meeting.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <div class="tl-dot done"></div>
           <div class="tl-phase done" data-i18n="phase1_label">フェーズ 1 ／ 完了</div>
           <div class="tl-title" data-i18n="phase1_title">課題の把握・情報共有</div>
@@ -188,6 +191,7 @@
         </div>
 
         <div class="tl-item">
+          <img class="tl-ill" src="img/illust/talk.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <div class="tl-dot done"></div>
           <div class="tl-phase done" data-i18n="phase2_label">フェーズ 2 ／ 完了</div>
           <div class="tl-title" data-i18n="phase2_title">意見収集・アンケート</div>
@@ -199,6 +203,7 @@
         </div>
 
         <div class="tl-item">
+          <img class="tl-ill" src="img/illust/form.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <div class="tl-dot done"></div>
           <div class="tl-phase done" data-i18n="phase3_label">フェーズ 3 ／ 完了</div>
           <div class="tl-title" data-i18n="phase3_title">パブリックコメント・計画修正</div>
@@ -209,6 +214,7 @@
         </div>
 
         <div class="tl-item">
+          <img class="tl-ill" src="img/illust/vote.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <div class="tl-dot done"></div>
           <div class="tl-phase done" data-i18n="phase4_label">フェーズ 4 ／ 完了</div>
           <div class="tl-title" data-i18n="phase4_title">通学区域審議会・最終調整</div>
@@ -220,6 +226,7 @@
         </div>
 
         <div class="tl-item">
+          <img class="tl-ill" src="img/illust/cityhall.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <div class="tl-dot current"></div>
           <div class="tl-phase current" data-i18n="phase5_label">フェーズ 5 ／ 進行中</div>
           <div class="tl-title" data-i18n="phase5_title">計画確定・実施準備</div>
@@ -231,6 +238,7 @@
         </div>
 
         <div class="tl-item">
+          <img class="tl-ill" src="img/illust/school.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <div class="tl-dot"></div>
           <div class="tl-phase" data-i18n="phase6_label">フェーズ 6 ／ 予定</div>
           <div class="tl-title" data-i18n="phase6_title">第1期再編実施</div>
@@ -242,6 +250,16 @@
           </div>
         </div>
 
+        <!-- 第2期再編（時期未定。2026-10-31 ユーザー指示：今後の見通しに未定の第2期も入れる。内容は about.html#phase2 と同じ公表事実だけ） -->
+        <div class="tl-item tl-item--tbd">
+          <img class="tl-ill" src="img/illust/merge.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
+          <div class="tl-dot tbd"></div>
+          <div class="tl-phase tbd" data-i18n="phase7_label">フェーズ 7 ／ 未定</div>
+          <div class="tl-title" data-i18n="phase7_title">第2期再編（検討中）</div>
+          <div class="tl-date" data-i18n="phase7_date">時期未定（第1期の実施後に判断）</div>
+          <div class="tl-body" data-i18n-html="phase7_body">第1期の実施後、さらに児童生徒数が減少した場合には、東西の学校を<strong>小学校1校・中学校1校</strong>に統合し、<strong>小中一貫教育</strong>を導入することが検討されています。実施するかどうかと時期は、第1期の状況を見ながら判断される予定で、まだ決まっていません（<a href="about.html#phase2">第2期再編について</a>）。</div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -249,7 +267,7 @@
   <!-- CALENDAR -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title" data-i18n-html="schedule_cal_h2">月別カレンダー<small>Monthly Calendar</small></h2>
+      <h2 class="section-title ill-h ill-h--calendar" data-i18n-html="schedule_cal_h2">月別カレンダー<small>Monthly Calendar</small></h2>
       <div class="info-box">
         <strong data-i18n="cal_legend_label">凡例：</strong>
         <span style="display:inline-block; background:#888; color:#fff; border-radius:3px; padding:.1rem .5rem; font-size:.78rem; margin:0 .3rem;" data-i18n="cal_badge_done">済</span><span data-i18n="cal_legend_done">実施済み</span>
@@ -287,11 +305,11 @@
   <!-- EVENT LIST -->
   <section class="section section-alt">
     <div class="container">
-      <h2 class="section-title" data-i18n-html="schedule_events_h2">主要イベント一覧（公式情報）<small>All Key Events</small></h2>
+      <h2 class="section-title ill-h ill-h--meeting" data-i18n-html="schedule_events_h2">主要イベント一覧（公式情報）<small>All Key Events</small></h2>
       <p class="section-updated" id="events-last-updated"></p>
 
       <!-- 令和7年 -->
-      <h3 style="font-size:1rem; font-weight:700; color:#888; margin-bottom:.8rem; margin-top:1rem;" data-i18n="schedule_2025_h3">令和7年（2025年）【実施済み】</h3>
+      <h3 class="ill-yh ill-yh--meeting" style="font-size:1rem; font-weight:700; color:#888; margin-bottom:.8rem; margin-top:1rem;" data-i18n="schedule_2025_h3">令和7年（2025年）【実施済み】</h3>
 
       <h4 style="font-size:.9rem; font-weight:700; color:var(--primary); margin:.8rem 0 .4rem;" data-i18n="sched_h4_meetings_2025">● 篠岡地区の学校を考える会（全5回）</h4>
       <div class="event-list">
@@ -401,7 +419,7 @@
       </div>
 
       <!-- 令和8年 -->
-      <h3 style="font-size:1rem; font-weight:700; color:#888; margin-bottom:.8rem; margin-top:2rem;" data-i18n="schedule_2026_h3">令和8年（2026年）【実施済み・進行中・予定】</h3>
+      <h3 class="ill-yh ill-yh--form" style="font-size:1rem; font-weight:700; color:#888; margin-bottom:.8rem; margin-top:2rem;" data-i18n="schedule_2026_h3">令和8年（2026年）【実施済み・進行中・予定】</h3>
       <div class="event-list">
         <div class="event-item done" data-start="2026-01-13" id="ev-2026-01-13-18" data-ev="2026-01-13|0">
           <div class="event-date" data-i18n="sched_date18">2026年1月13日（火）</div>
@@ -610,7 +628,7 @@
       </div>
 
       <!-- 令和9年 -->
-      <h3 style="font-size:1rem; font-weight:700; color:var(--primary); margin-bottom:.8rem; margin-top:2rem;" data-i18n="schedule_2027_h3">令和9年（2027年）【予定】</h3>
+      <h3 class="ill-yh ill-yh--school" style="font-size:1rem; font-weight:700; color:var(--primary); margin-bottom:.8rem; margin-top:2rem;" data-i18n="schedule_2027_h3">令和9年（2027年）【予定】</h3>
       <div class="event-list">
         <div class="event-item upcoming" data-start="2027-02-01" data-event-date="2027-02-28" id="ev-2027-02-01-37" data-ev="2027-02-28|0">
           <div class="event-date" data-i18n="sched_date37">2027年2月</div>

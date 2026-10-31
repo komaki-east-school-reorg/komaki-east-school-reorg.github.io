@@ -412,9 +412,12 @@ nav ul {
 .footer-app { margin-top: .4rem; font-size: .82rem; }
 .footer-app a { color: var(--accent); font-weight: 700; }
 .footer-app a[hidden], .nav-app-link[hidden] { display: none; }
+/* 「このサイトについて」（2026-10-31 ユーザー指示）。PC のナビは9項目のまま、ハンバーガーメニューにだけ出す。 */
+header nav li.nav-site { display: none; }
 header nav li.nav-app { display: none; }
 @media (max-width: 768px) {
   header nav ul.open li.nav-app { display: block; border-top: 1px solid rgba(255,255,255,.18); }
+  header nav ul.open li.nav-site { display: block; border-top: 1px solid rgba(255,255,255,.18); }
   header .app-install-btn { display: none; }
 }
 /* about.html#app */
@@ -509,6 +512,12 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   font-weight: 700;
   font-family: var(--heading-font);
 }
+
+/* トップのヒーローの「このサイトについて」（PC・モバイルとも。モバイルはハンバーガーメニューにもある。2026-10-31 ユーザー指示） */
+.hero-site { margin: 1rem 0 0; position: relative; }
+.hero .hero-site-link { display: inline-block; padding: .4rem 1.1rem; border: 1.5px solid var(--accent); border-radius: var(--radius-pill); color: var(--accent); font-weight: 700; font-size: .85rem; text-decoration: none; font-family: var(--heading-font); }
+.hero .hero-site-link:hover, .hero .hero-site-link:focus-visible { background: rgba(212,170,48,.18); outline: none; }
+@media print { .hero-site { display: none; } }
 
 /* ===== NOW BAR（トップ冒頭「いまの状況」を一文で示す枠） ===== */
 .now-bar {
@@ -3203,3 +3212,100 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
 .site-card-p { margin: 0; font-size: .95rem; color: var(--text-muted); }
 .site-card-p .card-link { white-space: nowrap; margin: .5rem 0 0 .3em; }
 .feed-section-link { margin-top: .5rem; }
+
+/* ===== 挿絵と図（2026-10-31 ユーザー指示：サイト全体を挿絵と図で親しみやすく。サイトのポリシー）=====
+   挿絵は img/illust/*.svg（文字を含まない飾り、alt=""）。説明の文字はすべて辞書から流し込む。
+   見出しの横の絵は CSS の背景で出す — 見出しは辞書で innerHTML ごと書き換わるので、中に img を置くと消えるため。 */
+.card-ill { display: block; width: 6.2rem; height: auto; margin: -.4rem 0 .4rem -.3rem; }
+.ill-hero { display: block; width: 8.5rem; height: auto; margin: 0 auto 1rem; background: #fdf6e0; border-radius: 22px; padding: .3rem .5rem; position: relative; }
+.ill-summary { padding: 1.6rem 0 .4rem; }
+.ill-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: .8rem; counter-reset: illstep; }
+.ill-steps li { counter-increment: illstep; position: relative; background: var(--white); border: 1.5px solid var(--border); border-radius: 18px; text-align: center; }
+.ill-steps li::before { content: counter(illstep); position: absolute; top: .5rem; left: .6rem; width: 1.6rem; height: 1.6rem; border-radius: 999px; background: var(--primary); color: var(--white); font-weight: 800; display: grid; place-items: center; font-size: .85rem; }
+.ill-steps a { display: block; padding: .6rem .8rem .9rem; color: var(--primary-dark); font-weight: 800; text-decoration: none; line-height: 1.5; border-radius: 18px; }
+.ill-steps a:hover, .ill-steps a:focus-visible { background: var(--primary-light); }
+.ill-steps a small { display: none; }
+.ill-step-pic { display: block; width: 7.5rem; height: auto; margin: 0 auto .2rem; }
+.ill-steps--3 { margin: 0 0 1.6rem; }
+.ill-steps--3 li { display: flex; align-items: center; gap: .6rem; padding: .6rem .9rem .6rem 2.4rem; text-align: left; line-height: 1.5; }
+.ill-steps--3 .ill-step-pic { width: 5.5rem; margin: 0; flex: none; }
+.ill-steps--3 b { color: var(--primary-dark); }
+.ill-steps--4 { grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); }
+.ill-steps--4 .ill-step-pic { width: 4.4rem; }
+.ill-steps--4 li { padding-left: 2.3rem; gap: .5rem; }
+.ill-steps li.tbd { border-style: dashed; background: transparent; }
+/* 第2期再編（時期未定）。点線で「まだ決まっていない」ことを示す */
+.tl-dot.tbd { background: var(--white); box-shadow: 0 0 0 2px #aab4c0; border: 2px dashed #8a97a6; }
+.tl-phase.tbd { background: transparent; color: #5d6a7a; border: 1.5px dashed #8a97a6; }
+.tl-item--tbd .tl-title, .tl-item--tbd .tl-date { color: #4d5a68; }
+.status-item.tbd { border-style: dashed; }
+.ill-steps--3 small { color: var(--text-muted); font-size: .82rem; }
+.ill-steps--3 small br { display: none; }
+.ill-h { background-repeat: no-repeat; background-size: 3.4rem auto; background-position: .8rem center; padding-left: 4.7rem; min-height: 2.6rem; }
+.section-title.sub.ill-h { background-size: 2.9rem auto; padding-left: 4.1rem; }
+.ill-h--bicycle { background-image: url(../img/illust/bicycle.svg); }
+.ill-h--book { background-image: url(../img/illust/book.svg); }
+.ill-h--bulb { background-image: url(../img/illust/bulb.svg); }
+.ill-h--building { background-image: url(../img/illust/building.svg); }
+.ill-h--bus { background-image: url(../img/illust/bus.svg); }
+.ill-h--busstop { background-image: url(../img/illust/busstop.svg); }
+.ill-h--calendar { background-image: url(../img/illust/calendar.svg); }
+.ill-h--cityhall { background-image: url(../img/illust/cityhall.svg); }
+.ill-h--classroom { background-image: url(../img/illust/classroom.svg); }
+.ill-h--commute { background-image: url(../img/illust/commute.svg); }
+.ill-h--data { background-image: url(../img/illust/data.svg); }
+.ill-h--decline { background-image: url(../img/illust/decline.svg); }
+.ill-h--factory { background-image: url(../img/illust/factory.svg); }
+.ill-h--family { background-image: url(../img/illust/family.svg); }
+.ill-h--form { background-image: url(../img/illust/form.svg); }
+.ill-h--health { background-image: url(../img/illust/health.svg); }
+.ill-h--highschool { background-image: url(../img/illust/highschool.svg); }
+.ill-h--houses { background-image: url(../img/illust/houses.svg); }
+.ill-h--kids { background-image: url(../img/illust/kids.svg); }
+.ill-h--laptop { background-image: url(../img/illust/laptop.svg); }
+.ill-h--magnifier { background-image: url(../img/illust/magnifier.svg); }
+.ill-h--meeting { background-image: url(../img/illust/meeting.svg); }
+.ill-h--merge { background-image: url(../img/illust/merge.svg); }
+.ill-h--phone { background-image: url(../img/illust/phone.svg); }
+.ill-h--ruler { background-image: url(../img/illust/ruler.svg); }
+.ill-h--safety { background-image: url(../img/illust/safety.svg); }
+.ill-h--school { background-image: url(../img/illust/school.svg); }
+.ill-h--sports { background-image: url(../img/illust/sports.svg); }
+.ill-h--talk { background-image: url(../img/illust/talk.svg); }
+.ill-h--teacher { background-image: url(../img/illust/teacher.svg); }
+.ill-h--town { background-image: url(../img/illust/town.svg); }
+.ill-h--umbrella { background-image: url(../img/illust/umbrella.svg); }
+.ill-h--vote { background-image: url(../img/illust/vote.svg); }
+.ill-h--city { background-image: url(../img/illust/cityhall.svg); }
+.ill-h--people { background-image: url(../img/illust/kids.svg); }
+.ill-yh { background-repeat: no-repeat; background-size: 2.6rem auto; background-position: left center; padding-left: 3.1rem; min-height: 2rem; display: flex; align-items: center; }
+.ill-yh--meeting { background-image: url(../img/illust/meeting.svg); }
+.ill-yh--form { background-image: url(../img/illust/form.svg); }
+.ill-yh--school { background-image: url(../img/illust/school.svg); }
+.page-hero-ill { float: right; width: 7.5rem; height: auto; margin: 0 0 .4rem 1.2rem; background: #fdf6e0; border-radius: 20px; padding: .25rem .4rem; position: relative; }
+.page-hero .container::after { content: ""; display: block; clear: both; }
+.process-ill { display: block; width: 4.6rem; height: auto; margin: 0 auto .2rem; }
+.process-step.done .process-ill { opacity: .75; }
+.reorg-arrow { display: flex; flex-direction: column; align-items: center; }
+.reorg-ill { width: 5.5rem; height: auto; }
+.reorg-school::before { content: ""; display: inline-block; width: 1.5em; height: 1.15em; margin-right: .35em; vertical-align: -.22em; background: url(../img/illust/school.svg) center / contain no-repeat; background-color: #fdf6e0; border-radius: 4px; }
+.tl-ill { float: right; width: 6rem; height: auto; margin: 0 0 .4rem 1rem; }
+.tl-item::after { content: ""; display: block; clear: both; }
+.stat-ill { display: block; width: 4.6rem; height: auto; margin: 0 auto .2rem; }
+@media (max-width: 768px) {
+  .card-ill { width: 5rem; }
+  .ill-hero { width: 6.5rem; margin-bottom: .7rem; }
+  .ill-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
+  .ill-steps--3 { grid-template-columns: 1fr; }
+  .ill-step-pic { width: 5.6rem; }
+  .ill-steps a { font-size: .88rem; padding: .5rem .5rem .7rem; }
+  .tl-ill { width: 4.4rem; }
+  .page-hero-ill { float: none; display: block; width: 4.8rem; margin: .1rem 0 .5rem; border-radius: 14px; }
+  .ill-h { background-size: 2.8rem auto; padding-left: 4rem; }
+  .section-title.sub.ill-h { background-size: 2.4rem auto; padding-left: 3.6rem; }
+}
+@media print {
+  .page-hero-ill, .ill-hero, .ill-summary, .ill-steps, .card-ill, .tl-ill, .stat-ill, .process-ill, .reorg-ill { display: none !important; }
+  .ill-h, .ill-yh { padding-left: 0; background: none; }
+  .ill-h { padding-left: .9rem; }
+}

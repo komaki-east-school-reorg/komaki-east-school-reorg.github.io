@@ -92,6 +92,7 @@
         <li><a href="map.html" data-i18n="nav_map">地図</a></li>
         <li><a href="nationwide.html" data-i18n="nav_nationwide">全国の動き</a></li>
         <li><a href="review.html" data-i18n="nav_review">検証と提案</a></li>
+        <li class="nav-site"><a href="site.html" data-i18n="footer_site">このサイトについて</a></li>
       </ul>
       <div class="lang-switcher">
         <button class="kids-toggle" aria-pressed="false" title="こどもむけのよみやすい文章にきりかえる">🧒 こどもむけ<span class="kids-switch" aria-hidden="true"></span></button>
@@ -137,6 +138,7 @@
 <main>
   <!-- HERO -->
   <section class="hero">
+    <img class="ill-hero" src="img/illust/town.svg" alt="" width="160" height="120" decoding="async">
     <h1 data-i18n-html="hero_title">小牧市東部（篠岡地区）<br>学校再編計画</h1>
     <p data-i18n-html="hero_sub">小牧市東部（篠岡地区）の小中学校の再編について、<br>公式情報をもとにわかりやすくお伝えします。</p>
     <div class="hero-badges">
@@ -144,6 +146,7 @@
       <span class="badge" data-i18n="hero_badge2">🏫 小学校5校・中学校3校 → 東西各2校</span>
       <span class="badge" data-i18n="hero_badge3">📅 令和9年度（2027年度）実施予定</span>
     </div>
+    <p class="hero-site"><a class="hero-site-link" href="site.html" data-i18n="site_card_link">このサイトについて →</a></p>
     <!-- 東部地域の0〜17歳（当サイトの推定）。2026-10-22 ユーザー指示：トップのヒーローに、誰の目にも
          明らかなよう大きく出す。数字は js/main.js の CHILD ESTIMATE が data/child_estimate.json
          （build_child_estimate.py が生成）から閲覧日の分を計算して入れる。小数第1位まで出すのは毎日必ず
@@ -246,25 +249,25 @@
       <h2 class="section-title" data-i18n-html="section_points">知っておきたいポイント<small>Key Points</small></h2>
       <div class="cards">
         <div class="card">
-          <div class="card-icon">📉</div>
+          <img class="card-ill" src="img/illust/decline.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="point1_h">なぜ再編が必要なのか</h3>
           <p data-i18n="point1_p">急速な少子化で地区の子どもは20年間で半分以下に減少。令和15年には全小学校と篠岡中が各学年1学級になる見込みで、猶予のない状況です。</p>
           <a href="about.html#why" class="card-link" data-i18n="point1_link">詳しく見る →</a>
         </div>
         <div class="card">
-          <div class="card-icon">🏗️</div>
+          <img class="card-ill" src="img/illust/merge.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="point2_h">何が計画されているか</h3>
           <p data-i18n="point2_p">令和9年度（2027年度）に5小・3中を2小・2中に再編。対象エリアの小学生にはスクールバス（市が全額負担・無償）、中学生には自転車通学を計画しています。</p>
           <a href="about.html#plan" class="card-link" data-i18n="point2_link">計画概要を見る →</a>
         </div>
         <div class="card">
-          <div class="card-icon">🗣️</div>
+          <img class="card-ill" src="img/illust/meeting.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="point3_h">これまでの経緯</h3>
           <p data-i18n="point3_p">令和7年（2025年）に「学校を考える会」5回・住民説明会・保護者意見交換会・パブリックコメント（55名・142件）などが実施されました。</p>
           <a href="schedule.html" class="card-link" data-i18n="point3_link">スケジュールを確認 →</a>
         </div>
         <div class="card">
-          <div class="card-icon">🌱</div>
+          <img class="card-ill" src="img/illust/kids.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="point4_h">再編で期待されること</h3>
           <p data-i18n="point4_p">単学級（1学年1学級）の解消による毎年のクラス替え・多彩な部活動・教科ごとの専門性を生かした教員体制・小中一貫教育など、子どもたちの豊かな学校生活が期待されています。</p>
           <a href="about.html#merits" class="card-link" data-i18n="point4_link">期待される効果を見る →</a>
@@ -279,61 +282,61 @@
       <h2 class="section-title" data-i18n-html="section_links">各ページへのリンク<small>Quick Links</small></h2>
       <div class="cards">
         <div class="card">
-          <div class="card-icon">📋</div>
+          <img class="card-ill" src="img/illust/book.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="ql_about_h">計画概要</h3>
           <p data-i18n="ql_about_p">なぜ再編が必要なのか、第1期の内容（5小3中→2小2中）、再編後の学びと支え（学級の人数・先生・移り変わりの時期・健康と安全）、学校の場所と通学の計画、第2期の検討、閉校となる施設、意思決定の流れ、むずかしい言葉の「ことばメモ」、問い合わせ先までをまとめています。</p>
           <a href="about.html" class="card-link" data-i18n="ql_about_link">計画概要を見る →</a>
         </div>
         <div class="card">
-          <div class="card-icon">📅</div>
+          <img class="card-ill" src="img/illust/calendar.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="ql_schedule_h">スケジュール</h3>
           <p data-i18n="ql_schedule_p">計画全体のフェーズと月別カレンダー、主要イベントの一覧です。お子さんの学年で見る表示と、予定をカレンダーに取り込む機能もあります。日付の決まった予定には「あと◯日」を表示し、日程を担当する市の窓口も載せています。</p>
           <a href="schedule.html" class="card-link" data-i18n="ql_schedule_link">カレンダーを見る →</a>
         </div>
         <div class="card">
-          <div class="card-icon">❓</div>
+          <img class="card-ill" src="img/illust/talk.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="ql_faq_h">よくある質問と賛否の声</h3>
           <p data-i18n="ql_faq_p">再編計画の概要、通学と生活、地域と施設、意見の出し方までの公式回答に加え、賛成・反対・中立の声とパブリックコメントの論点をまとめています。クラスの人数・先生・心のケア・新しい学校の教育内容を決める場についての質問もあります。</p>
           <a href="faq.html" class="card-link" data-i18n="ql_faq_link">FAQを見る →</a>
         </div>
         <div class="card">
-          <div class="card-icon">🚌</div>
+          <img class="card-ill" src="img/illust/bus.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="ql_bus_h">スクールバス</h3>
           <p data-i18n="ql_bus_p">令和9年度から小学生向けに運行し、費用は市が全額負担（無償）。対象エリアの地図、申請の手続き、バス停、運行事業者、安全対策、Q&A、問い合わせ先を載せています。</p>
           <a href="bus.html" class="card-link" data-i18n="ql_bus_link">詳細を見る →</a>
         </div>
         <div class="card">
-          <div class="card-icon">⚽</div>
+          <img class="card-ill" src="img/illust/sports.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="ql_clubs_h">地域クラブ・課外活動</h3>
           <p data-i18n="ql_clubs_p">学校の部活動と、校区で活動している地域のクラブを学校ごとに並べています。部活動の地域移行についての説明もあります。運動系のほか、合唱やプログラミングなどの文化・コンピュータ系も載せています。部活動を所管する県・国の窓口も載せています。再編と部活動の関係も説明しています。</p>
           <a href="clubs.html" class="card-link" data-i18n="ql_clubs_link">クラブを見る →</a>
         </div>
         <div class="card">
-          <div class="card-icon">🏛️</div>
+          <img class="card-ill" src="img/illust/vote.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="ql_council_h">議会での審議</h3>
           <p data-i18n="ql_council_p">令和8年第1回定例会（3月）の学校設置条例の改正と請願、第2回定例会（6月）の一般質問（小規模校の扱い・閉校後の校舎の活用）と委員会の行政調査をまとめています。議会への意見の伝え方と問い合わせ先も載せています。教育の質に関わる答弁を3つに整理した欄もあります。</p>
           <a href="council.html" class="card-link" data-i18n="ql_council_link">審議内容を見る →</a>
         </div>
         <div class="card">
-          <div class="card-icon">🏘️</div>
+          <img class="card-ill" src="img/illust/houses.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="ql_community_h">地域協議会と地域のまちづくり</h3>
           <p data-i18n="ql_community_p">学校区を基盤とする地域協議会の役割と、再編後に変わること・変わらないこと。よくある疑問、協議会のイベント案内、市民有志の取組と東部まちづくりの動き、問い合わせ先も載せています。東部まちづくりプラットフォームへの参加方法も案内しています。</p>
           <a href="community.html" class="card-link" data-i18n="ql_community_link">詳細を見る →</a>
         </div>
         <div class="card">
-          <div class="card-icon">🗺️</div>
+          <img class="card-ill" src="img/illust/town.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="ql_map_h">学校の場所（地図）</h3>
           <p data-i18n="ql_map_p">エリア概要、再編前の学校の場所、再編後の4校の位置、通学区域とスクールバスの対象エリアの地図です。各校のホームページへのリンクもあります。地図と都市計画・通学区域についての市・県・国の問い合わせ先も載せています。</p>
           <a href="map.html" class="card-link" data-i18n="ql_map_link">地図を見る →</a>
         </div>
         <div class="card">
-          <div class="card-icon">🗾</div>
+          <img class="card-ill" src="img/illust/data.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="ql_nationwide_h">全国の動き</h3>
           <p data-i18n="ql_nationwide_p">文部科学省の統計と国が示す学校規模の基準、2026年8月に10年ぶりに改訂された手引、小中一貫と中高一貫という形、国の担当部署までをまとめました。1学級の人数の上限と教職員の数も、国の基準と小牧の計画を並べています。</p>
           <a href="nationwide.html" class="card-link" data-i18n="ql_nationwide_link">全国の状況を見る →</a>
         </div>
         <div class="card">
-          <div class="card-icon">🔎</div>
+          <img class="card-ill" src="img/illust/magnifier.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="ql_review_h">検証と提案</h3>
           <p data-i18n="ql_review_p">当サイトの検証と提案です。計画から読み取れないこと、だれがどこまで決められるのか、確認できなかったことを要点にまとめ、東部地域の都市計画の動きも自動で並べます。教育の質、市・県・国の施策、子どもを増やす提案、高校段階の検討は「深掘り検証」のページに分けています。</p>
           <a href="review.html" class="card-link" data-i18n="ql_review_link">検証と提案を見る →</a>
@@ -364,6 +367,13 @@
       <h2 class="section-title" data-i18n-html="section_status">現在の状況<small>Current Status</small></h2>
       <p class="section-updated" id="status-last-updated"></p>
       <p style="font-size:.88rem; color:var(--text-muted); margin:-.6rem 0 1.4rem;" data-i18n-html="status_digest">節目になった出来事だけを抜き出しています。全 45 件の一覧は <a href="schedule.html">スケジュール</a> にあります。</p>
+      <!-- 4つの場面（済んだ→いま→これから→その先＝第2期・時期未定）。文字は計画概要の「意思決定のプロセス」のキーを使い回す（2026-10-31） -->
+      <ol class="ill-steps ill-steps--3 ill-steps--4">
+        <li><img class="ill-step-pic" src="img/illust/form.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span><b data-i18n="process_s3_title">パブリックコメント</b><br><small data-i18n-html="process_s3_label">令和7年11〜12月<br>（完了・142件）</small></span></li>
+        <li><img class="ill-step-pic" src="img/illust/cityhall.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span><b data-i18n="process_s4_title">計画確定・準備</b><br><small data-i18n-html="process_s4_label">令和8年〜<br>（進行中）</small></span></li>
+        <li><img class="ill-step-pic" src="img/illust/school.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span><b data-i18n="process_s5_title">第1期再編実施</b><br><small data-i18n-html="process_s5_label">令和9年4月<br>（予定）</small></span></li>
+        <li class="tbd"><img class="ill-step-pic" src="img/illust/merge.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span><b data-i18n="phase7_title">第2期再編（検討中）</b><br><small data-i18n="phase7_date">時期未定（第1期の実施後に判断）</small></span></li>
+      </ol>
       <div class="status-timeline">
         <div class="status-item done" data-start="2025-05-01">
           <div class="status-label" data-i18n="status_done">完了</div>
@@ -470,6 +480,11 @@
             <strong>第1期再編実施：桃花台東小・桃花台西小・桃花台東中・桃花台西中がスタート</strong>
           </div>
         </div>
+        <!-- 第2期再編は時期未定。data-event-date を持たないので自動で「完了」にならない（2026-10-31） -->
+        <div class="status-item tbd" data-start="2027-04-01">
+          <div class="status-label" data-i18n="status_tbd">未定</div>
+          <div class="status-content" data-i18n-html="status_c15"><strong>時期未定（第1期の実施後に判断）</strong><br><strong>第2期再編の検討：</strong>さらに児童生徒数が減少した場合に、小学校1校・中学校1校への統合と小中一貫教育の導入を検討</div>
+        </div>
       </div>
       <div style="margin-top:1.5rem; display:flex; gap:.8rem; flex-wrap:wrap;">
         <a href="schedule.html" class="btn" data-i18n="btn_schedule">スケジュール詳細を見る →</a>
@@ -505,7 +520,7 @@
   <!-- id="news" は community.html の actions_note から張られている。外すとリンク切れ。 -->
   <section class="section section-alt" id="news">
     <div class="container">
-      <h3 class="section-title sub" data-i18n-html="section_news">市公式サイト お知らせ<small>Official Announcements</small></h3>
+      <h3 class="section-title sub ill-h ill-h--city" data-i18n-html="section_news">市公式サイト お知らせ<small>Official Announcements</small></h3>
       <div id="official-news-container">
         <p class="official-news-loading" data-i18n="news_loading">読み込み中…</p>
       </div>
@@ -516,7 +531,7 @@
   <!-- SCHOOL WEBSITE UPDATES（トップページ最下段） -->
   <section class="section">
     <div class="container">
-      <h3 class="section-title sub" data-i18n-html="section_school_news">対象校ホームページの更新<small>School Website Updates</small></h3>
+      <h3 class="section-title sub ill-h ill-h--school" data-i18n-html="section_school_news">対象校ホームページの更新<small>School Website Updates</small></h3>
       <p class="school-lead" data-i18n="school_news_lead">
         再編対象の小学校5校・中学校3校が各自で運営している公式ホームページの新着記事です。
         学校の日々の様子は市の学校再編ページには載らないため、ここに集約しています。
@@ -536,7 +551,7 @@
        （CLAUDE.md・CONTRIBUTING.txt 規則1・README.md も同時に更新すること）。 -->
   <section class="section section-alt">
     <div class="container">
-      <h3 class="section-title sub" data-i18n-html="section_actions">地域の取組<small>Community Efforts</small></h3>
+      <h3 class="section-title sub ill-h ill-h--people" data-i18n-html="section_actions">地域の取組<small>Community Efforts</small></h3>
       <p class="school-lead" data-i18n="actions_lead">地域で行われている催しや取組です。住民や地域の団体が始めたもの、地域協議会が回覧板などで知らせているもの、地区の児童館が発信しているものがあり、それぞれ札で誰の取組かを示しています。市の公式発表ではないので、詳しくは各取組の発信元にご確認ください。</p>
       <div id="community-actions-container"></div>
 

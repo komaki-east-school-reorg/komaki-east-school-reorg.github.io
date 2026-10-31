@@ -73,6 +73,7 @@
         <li><a href="map.html" data-i18n="nav_map">地図</a></li>
         <li><a href="nationwide.html" data-i18n="nav_nationwide">全国の動き</a></li>
         <li><a href="review.html" data-i18n="nav_review">検証と提案</a></li>
+        <li class="nav-site"><a href="site.html" data-i18n="footer_site">このサイトについて</a></li>
       </ul>
       <div class="lang-switcher">
         <button class="kids-toggle" aria-pressed="false" title="こどもむけのよみやすい文章にきりかえる">🧒 こどもむけ<span class="kids-switch" aria-hidden="true"></span></button>
@@ -119,26 +120,41 @@
   <section class="page-hero">
     <div class="container">
       <div class="breadcrumb"><a href="index.html" data-i18n="nav_home">ホーム</a> <span>›</span> <span data-i18n="nav_bus">スクールバス</span></div>
+      <img class="page-hero-ill" src="img/illust/bus.svg" alt="" width="160" height="120" decoding="async">
       <h1 data-i18n="bus_h1">スクールバス計画</h1>
       <p data-i18n="bus_p">2027年度（2027年4月）からの学校再編により通学距離が長くなる小学生を対象に、スクールバスを運行します。費用は市が全額負担——無償で乗車できます。</p>
     </div>
   </section>
 
   <!-- STATS -->
+  <!-- このページの要点（挿絵つき。2026-10-31 ユーザー指示。文字は既存のキー、絵は文字を含まない） -->
+  <section class="section ill-summary">
+    <div class="container">
+      <ol class="ill-steps">
+          <li><a href="#overview"><img class="ill-step-pic" src="img/illust/bus.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="bus_overview_h2">サービス概要</span></a></li>
+          <li><a href="#apply"><img class="ill-step-pic" src="img/illust/form.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="bus_apply_h2">申請の手続き</span></a></li>
+          <li><a href="#stops"><img class="ill-step-pic" src="img/illust/busstop.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="bus_stops_h2">バス停と乗降場所</span></a></li>
+          <li><a href="#safety"><img class="ill-step-pic" src="img/illust/safety.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="bus_safety_h2">安全対策</span></a></li>
+      </ol>
+    </div>
+  </section>
   <section class="section section-alt">
     <div class="container">
       <h2 class="section-title" data-i18n-html="bus_stats_h2">計画のポイント<small>Key Facts</small></h2>
       <p style="font-size:.95rem; color:var(--text-muted); max-width:720px; margin-bottom:1.5rem;" data-i18n="bus_stats_intro">スクールバス計画の骨格となる3点です。対象エリア・安全対策・申請方法など詳細は、以下の各セクションをご覧ください。</p>
       <div class="stat-grid">
         <div class="stat-box">
+          <img class="stat-ill" src="img/illust/kids.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <div class="num" data-i18n="bus_stat_target_num">小学生</div>
           <div class="unit" style="font-size:.75rem;" data-i18n="bus_stat_target_label">対象（中学生は自転車）</div>
         </div>
         <div class="stat-box">
+          <img class="stat-ill" src="img/illust/cityhall.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <div class="num" data-i18n="bus_stat_free_num">無償</div>
           <div class="unit" data-i18n="bus_stat_free_label">市が全額負担</div>
         </div>
         <div class="stat-box">
+          <img class="stat-ill" src="img/illust/calendar.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <div class="num" data-i18n="bus_stat_start_num">2027年4月</div>
           <div class="unit" data-i18n="bus_stat_start_label">本格運行開始（予定）</div>
         </div>
@@ -152,27 +168,27 @@
       <h2 class="section-title" data-i18n-html="bus_overview_h2">サービス概要<small>Overview</small></h2>
       <div class="cards">
         <div class="card">
-          <div class="card-icon">📅</div>
+          <img class="card-ill" src="img/illust/calendar.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="bus_ov_day_h">運行日</h3>
           <p data-i18n="bus_ov_day_p">授業日に運行。長期休暇中は運休しますが、運動会・始業日などの学校行事日は運行します。</p>
         </div>
         <div class="card">
-          <div class="card-icon">🚌</div>
+          <img class="card-ill" src="img/illust/bus.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="bus_ov_trips_h">便数</h3>
           <p data-i18n-html="bus_ov_trips_p"><strong>登校：1便</strong>（全学年）<br><strong>下校：最大3便</strong>（低学年 / 高学年 / 部活動あり日）</p>
         </div>
         <div class="card">
-          <div class="card-icon">💴</div>
+          <img class="card-ill" src="img/illust/cityhall.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="bus_ov_free_h">費用</h3>
           <p data-i18n-html="bus_ov_free_p"><strong>児童は無償。</strong>再編により通学距離が長くなることへの配慮から、市が全額を負担します。</p>
         </div>
         <div class="card">
-          <div class="card-icon">🚐</div>
+          <img class="card-ill" src="img/illust/bus.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="bus_ov_fleet_h">車両と台数</h3>
           <p data-i18n-html="bus_ov_fleet_p">2校合計で<strong>5〜6台程度</strong>。定員28名（運転手を除く）のマイクロバス（横幅約2.1m×全長約7m）を想定しています。</p>
         </div>
         <div class="card">
-          <div class="card-icon">📋</div>
+          <img class="card-ill" src="img/illust/form.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="bus_ov_apply_h">申請制</h3>
           <p data-i18n="bus_ov_apply_p">通学区域内の児童が申請して乗車します。定員や班編成は毎年度見直します。</p>
         </div>
@@ -191,12 +207,12 @@
       <h3 style="font-size:1.05rem; font-weight:700; color:var(--primary); margin-bottom:.8rem;" data-i18n="bus_area_districts_h">対象地区（案）</h3>
       <div class="cards" style="margin-bottom:1rem;">
         <div class="card">
-          <div class="card-icon">🏫</div>
+          <img class="card-ill" src="img/illust/school.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="bus_area_east_h">桃花台東小学校 通学区域</h3>
           <p data-i18n="bus_area_east_p">池之内・林・野口・大山・大草 各地区</p>
         </div>
         <div class="card">
-          <div class="card-icon">🏫</div>
+          <img class="card-ill" src="img/illust/school.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="bus_area_west_h">桃花台西小学校 通学区域</h3>
           <p data-i18n="bus_area_west_p">上末・下末・高根 各地区</p>
         </div>
@@ -320,22 +336,22 @@
 
       <div class="cards">
         <div class="card">
-          <div class="card-icon">✉️</div>
+          <img class="card-ill" src="img/illust/form.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="bus_apply_send_h">書類が届いた人</h3>
           <p data-i18n="bus_apply_send_p">対象エリア内の児童の保護者あてに、申請書類と説明会の案内が市から郵送されました。届いていなかった場合や、期限までに出せなかった場合は、教育総務課へお問い合わせください。</p>
         </div>
         <div class="card">
-          <div class="card-icon">↩️</div>
+          <img class="card-ill" src="img/illust/family.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="bus_apply_return_h">全員が返送</h3>
           <p data-i18n="bus_apply_return_p">利用を希望しない場合も返送が必要でした。返送がないと、市が利用希望の有無を把握できないためです。</p>
         </div>
         <div class="card">
-          <div class="card-icon">🗣️</div>
+          <img class="card-ill" src="img/illust/meeting.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="bus_apply_meeting_h">説明会（希望者）</h3>
           <p data-i18n="bus_apply_meeting_p">利用を希望する方は説明会への参加が求められています。乗降場所・運行ダイヤ・「スクールバス利用ガイドライン」が配布・説明される予定です。</p>
         </div>
         <div class="card">
-          <div class="card-icon">💬</div>
+          <img class="card-ill" src="img/illust/talk.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="bus_apply_consult_h">相談会</h3>
           <p data-i18n="bus_apply_consult_p">説明会のなかで、バス利用について気になることや不安なことを相談できる「相談会」も実施される予定です。</p>
         </div>
@@ -397,12 +413,12 @@
       <h3 style="font-size:1.05rem; font-weight:700; color:var(--primary); margin:1.5rem 0 .8rem;" data-i18n="bus_stops_school_h">学校の敷地内での乗降場所</h3>
       <div class="cards">
         <div class="card">
-          <div class="card-icon">🏫</div>
+          <img class="card-ill" src="img/illust/busstop.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="bus_stops_school_east_h">桃花台東小（現・光ヶ丘小学校）</h3>
           <p data-i18n-html="bus_stops_school_east_p"><strong>東側駐車場</strong>。東門から進入し、敷地内で転回して東門から出ます。登校時は玄関付近に縦列（最大2台程度）、下校時は横並びでの停車を想定しています。</p>
         </div>
         <div class="card">
-          <div class="card-icon">🏫</div>
+          <img class="card-ill" src="img/illust/busstop.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="bus_stops_school_west_h">桃花台西小（現・桃ヶ丘小学校）</h3>
           <p data-i18n-html="bus_stops_school_west_p"><strong>北側駐車場</strong>。現在使っていない西門から進入し、敷地内で転回して西門から出る（または北門から西門への一方通行）ことを想定。登下校とも渡り廊下付近または北側昇降口付近での停車を想定しています。</p>
         </div>
@@ -417,7 +433,7 @@
        だより vol.4 の「令和8年6月 スクールバス事業者との契約締結」とも一致する。 -->
   <section id="operator" class="section">
     <div class="container">
-      <h2 class="section-title" data-i18n-html="bus_operator_h2">運行事業者と契約<small>Operator</small></h2>
+      <h2 class="section-title ill-h ill-h--bus" data-i18n-html="bus_operator_h2">運行事業者と契約<small>Operator</small></h2>
       <p style="margin-bottom:1.2rem;" data-i18n="bus_operator_lead">スクールバスの運行管理は民間事業者への業務委託です。指名競争入札が行われ、令和8年6月1日に開札されました。</p>
 
       <div class="table-wrap">
@@ -460,17 +476,17 @@
       <h2 class="section-title" data-i18n-html="bus_safety_h2">安全対策<small>Safety Measures</small></h2>
       <div class="cards">
         <div class="card">
-          <div class="card-icon">🔔</div>
+          <img class="card-ill" src="img/illust/safety.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="bus_safety_check_h">乗降確認システム</h3>
           <p data-i18n="bus_safety_check_p">保護者や学校がリアルタイムで子どもの乗車を確認できるシステムを導入します。</p>
         </div>
         <div class="card">
-          <div class="card-icon">🛡️</div>
+          <img class="card-ill" src="img/illust/kids.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="bus_safety_left_h">置き去り防止システム</h3>
           <p data-i18n="bus_safety_left_p">バス内に子どもが取り残されることを防ぐシステムを設置し、乗車後の安全を徹底します。</p>
         </div>
         <div class="card">
-          <div class="card-icon">👨‍✈️</div>
+          <img class="card-ill" src="img/illust/safety.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
           <h3 data-i18n="bus_safety_guide_h">添乗員</h3>
           <p data-i18n-html="bus_safety_guide_p"><strong>すべてのスクールバスに添乗員が乗る方針</strong>です（だより vol.4）。添乗員は民間事業者への委託で確保し、仕事は「乗降確認アプリの操作」「乗り降りの手助け」「事故など緊急時の学校・関係機関への連絡」の3つだと説明されています（令和8年6月の保護者等説明会での市の回答）。</p>
         </div>
@@ -481,7 +497,7 @@
   <!-- TIMELINE -->
   <section id="timeline" class="section">
     <div class="container">
-      <h2 class="section-title" data-i18n-html="bus_timeline_h2">導入スケジュール<small>Timeline</small></h2>
+      <h2 class="section-title ill-h ill-h--calendar" data-i18n-html="bus_timeline_h2">導入スケジュール<small>Timeline</small></h2>
       <div class="process-steps">
         <div class="process-step done">
           <div class="process-num">①</div>

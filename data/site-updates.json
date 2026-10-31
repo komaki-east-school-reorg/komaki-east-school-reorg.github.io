@@ -4,6 +4,24 @@
     {
       "date": "2026-10-31",
       "type": "content",
+      "ja": "スケジュールと現在の状況に第2期再編（時期未定）を追加",
+      "en": "Phase 2 reorganization (timing undecided) added to the schedule and status"
+    },
+    {
+      "date": "2026-10-31",
+      "type": "content",
+      "ja": "トップ・計画概要・スケジュール・バスなどに挿絵と図",
+      "en": "Illustrations and diagrams on the top, plan, schedule and bus pages"
+    },
+    {
+      "date": "2026-10-31",
+      "type": "feature",
+      "ja": "メニューとトップに「このサイトについて」への入口を追加",
+      "en": "\"About this site\" link added to the menu and the top page"
+    },
+    {
+      "date": "2026-10-31",
+      "type": "content",
       "ja": "検証と提案の核心を各10項目に、挿絵つきでまとめて掲載",
       "en": "Review: 10 key findings and 10 key proposals, with illustrations"
     },
