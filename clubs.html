@@ -257,11 +257,25 @@
   <section class="page-hero">
     <div class="container">
       <div class="breadcrumb"><a href="index.html" data-i18n="nav_home">ホーム</a> <span>›</span> <span data-i18n="clubs_h1">地域クラブ・課外活動</span></div>
+      <img class="page-hero-ill" src="img/illust/club.svg" alt="" width="160" height="120" decoding="async">
       <h1 data-i18n="clubs_h1">地域クラブ・課外活動</h1>
       <p data-i18n="clubs_p">部活動を地域へ移していく国の方針が進むなか、この地区の子どもがいま参加できる活動を、学校ごとに整理しました。学校の部活動と、地域のクラブの両方を並べています。</p>
       <p style="font-size:.85rem; opacity:.9; margin-top:.4rem;" data-i18n="clubs_notice">※ 地域クラブの情報は各クラブ自身の発信にもとづくもので、市や学校の公式案内ではありません。参加の条件や費用は必ず各クラブにご確認ください。</p>
     </div>
   </section>
+
+  <!-- このページの要点（挿絵つき。2026-10-31 第3弾。文字は各節の見出しのキー、絵は文字を含まない） -->
+  <section class="section ill-summary">
+    <div class="container">
+      <ol class="ill-steps">
+          <li><a href="#transition"><img class="ill-step-pic" src="img/illust/club.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="clubs_s1_h">部活動の地域移行とは<small>Moving Club Activities into the Community</small></span></a></li>
+          <li><a href="#wide"><img class="ill-step-pic" src="img/illust/mappin.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="clubs_s3_h">校区をまたぐ・市内全域の活動<small>Across the District</small></span></a></li>
+          <li><a href="#schools"><img class="ill-step-pic" src="img/illust/school.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="clubs_s2_h">学校ごとの部活動と地域クラブ<small>By School</small></span></a></li>
+          <li><a href="#clubs-note"><img class="ill-step-pic" src="img/illust/book.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="clubs_s4_h">このページの情報について<small>About This List</small></span></a></li>
+      </ol>
+    </div>
+  </section>
+
 
   <!-- 国の方針：スポーツ庁・文部科学省の公表にもとづく。文科省サイトへのリンクは
        nationwide.html 限定と決めてあるので、ここでは出典を本文に文字で書く
@@ -269,7 +283,7 @@
        文字列で検査するので、コメントであっても違反として止まる。 -->
   <section class="section section-alt" id="transition">
     <div class="container" style="max-width:860px;">
-      <h2 class="section-title" data-i18n-html="clubs_s1_h">部活動の地域移行とは<small>Moving Club Activities into the Community</small></h2>
+      <h2 class="section-title ill-h ill-h--club" data-i18n-html="clubs_s1_h">部活動の地域移行とは<small>Moving Club Activities into the Community</small></h2>
       <p class="section-lead" data-i18n="clubs_s1_lead">学校の先生が担ってきた部活動を、地域のクラブや団体が担う形へ段階的に移していく、国全体の取組です。篠岡地区では学校の再編と同じ時期に進むため、このページで両方を見られるようにしています。</p>
 
       <div class="info-box" data-i18n-html="clubs_s1_box">
@@ -295,7 +309,7 @@
 
   <section class="section" id="wide">
     <div class="container" style="max-width:900px;">
-      <h2 class="section-title" data-i18n-html="clubs_s3_h">校区をまたぐ・市内全域の活動<small>Across the District</small></h2>
+      <h2 class="section-title ill-h ill-h--mappin" data-i18n-html="clubs_s3_h">校区をまたぐ・市内全域の活動<small>Across the District</small></h2>
       <p class="section-lead" data-i18n="clubs_s3_lead">活動場所が特定の校区に限られないもの、市内全域から参加できるものです。近隣の市で活動していて、この地区から通えるものも含みます。</p>
         <div class="club-item">
           <span class="club-sport" data-i18n="clubs_sp_soccer">サッカー</span>
@@ -393,7 +407,7 @@
 
   <section class="section section-alt" id="schools">
     <div class="container" style="max-width:900px;">
-      <h2 class="section-title" data-i18n-html="clubs_s2_h">学校ごとの部活動と地域クラブ<small>By School</small></h2>
+      <h2 class="section-title ill-h ill-h--school" data-i18n-html="clubs_s2_h">学校ごとの部活動と地域クラブ<small>By School</small></h2>
       <p class="section-lead" data-i18n="clubs_s2_lead">いまの学校名で分けています。再編があっても、この分け方は変えずに使い続けます。学校の部活動は各校が公表しているもの、地域クラブは各クラブ自身が発信しているものです。</p>
       <p style="font-size:.88rem; color:var(--text-muted); margin-bottom:1.6rem;" data-i18n="clubs_s2_note">※ 部活動の一覧を公表している学校は少なく、ここに挙げたのは各校のページや学校日記で確認できたものだけです。載っていない部があることにご注意ください。</p>
       <div class="club-school">
@@ -550,7 +564,7 @@
 
   <section class="section" id="clubs-note">
     <div class="container" style="max-width:860px;">
-      <h2 class="section-title" data-i18n-html="clubs_s4_h">このページの情報について<small>About This List</small></h2>
+      <h2 class="section-title ill-h ill-h--book" data-i18n-html="clubs_s4_h">このページの情報について<small>About This List</small></h2>
       <div class="info-box" data-i18n-html="clubs_s4_box">
         <strong>出どころ：</strong>
         地域クラブの情報は、各クラブが自ら公開している案内（Instagram・ホームページ）から、当サイトが読み取れた範囲で書いています。学校の部活動は各校のページと学校日記から確認したものです。小牧市スポーツ協会の教室は同協会の公表によります。
@@ -568,7 +582,7 @@
        ページを更新したら、ここに載せる部署も見直すこと。部署名は窓口で使う日本語のまま（data-i18n を付けない）。 -->
   <section class="section section-alt" id="contact">
     <div class="container">
-      <h2 class="section-title" data-i18n-html="contact_rel_h">関係する部署の問い合わせ先<small>Who to Contact</small></h2>
+      <h2 class="section-title ill-h ill-h--phone" data-i18n-html="contact_rel_h">関係する部署の問い合わせ先<small>Who to Contact</small></h2>
       <p class="section-lead" data-i18n="contact_rel_lead">このページの内容に関係する市・県・国の部署です。番号は各部署が公表しているものです（2026年9月現在）。</p>
       <h4 class="contact-level-h" data-i18n="rev_c_city_h">小牧市</h4>
       <div class="table-wrap">

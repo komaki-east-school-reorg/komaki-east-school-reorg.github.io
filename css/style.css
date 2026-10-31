@@ -3262,6 +3262,8 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
 .ill-steps--3 small br { display: none; }
 .ill-h { background-repeat: no-repeat; background-size: 3.4rem auto; background-position: .8rem center; padding-left: 4.7rem; min-height: 2.6rem; }
 .section-title.sub.ill-h { background-size: 2.9rem auto; padding-left: 4.1rem; }
+.ill-h--archive { background-image: url(../img/illust/archive.svg); }
+.ill-h--assembly { background-image: url(../img/illust/assembly.svg); }
 .ill-h--bicycle { background-image: url(../img/illust/bicycle.svg); }
 .ill-h--book { background-image: url(../img/illust/book.svg); }
 .ill-h--building { background-image: url(../img/illust/building.svg); }
@@ -3271,6 +3273,7 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
 .ill-h--calendar { background-image: url(../img/illust/calendar.svg); }
 .ill-h--cityhall { background-image: url(../img/illust/cityhall.svg); }
 .ill-h--classroom { background-image: url(../img/illust/classroom.svg); }
+.ill-h--club { background-image: url(../img/illust/club.svg); }
 .ill-h--commute { background-image: url(../img/illust/commute.svg); }
 .ill-h--compare { background-image: url(../img/illust/compare.svg); }
 .ill-h--data { background-image: url(../img/illust/data.svg); }
@@ -3286,11 +3289,13 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
 .ill-h--integrated { background-image: url(../img/illust/integrated.svg); }
 .ill-h--kids { background-image: url(../img/illust/kids.svg); }
 .ill-h--laptop { background-image: url(../img/illust/laptop.svg); }
+.ill-h--lost { background-image: url(../img/illust/lost.svg); }
 .ill-h--magnifier { background-image: url(../img/illust/magnifier.svg); }
 .ill-h--mailbox { background-image: url(../img/illust/mailbox.svg); }
 .ill-h--mappin { background-image: url(../img/illust/mappin.svg); }
 .ill-h--meeting { background-image: url(../img/illust/meeting.svg); }
 .ill-h--merge { background-image: url(../img/illust/merge.svg); }
+.ill-h--music { background-image: url(../img/illust/music.svg); }
 .ill-h--network { background-image: url(../img/illust/network.svg); }
 .ill-h--phone { background-image: url(../img/illust/phone.svg); }
 .ill-h--question { background-image: url(../img/illust/question.svg); }
@@ -3298,6 +3303,7 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
 .ill-h--ruler { background-image: url(../img/illust/ruler.svg); }
 .ill-h--safety { background-image: url(../img/illust/safety.svg); }
 .ill-h--school { background-image: url(../img/illust/school.svg); }
+.ill-h--smartphone { background-image: url(../img/illust/smartphone.svg); }
 .ill-h--sports { background-image: url(../img/illust/sports.svg); }
 .ill-h--talk { background-image: url(../img/illust/talk.svg); }
 .ill-h--teacher { background-image: url(../img/illust/teacher.svg); }

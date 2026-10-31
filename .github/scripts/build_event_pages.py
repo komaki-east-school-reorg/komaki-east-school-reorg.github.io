@@ -182,6 +182,7 @@ def page(it, prev, nxt, header, share, footer):
   <section class="page-hero">
     <div class="container">
       <div class="breadcrumb"><a href="index.html" data-i18n="nav_home">ホーム</a> <span>›</span> <a href="schedule.html" data-i18n="nav_schedule">スケジュール</a> <span>›</span> <span data-i18n="sched_date{it['n']}">{htmlmod.escape(it['date_ja'])}</span></div>
+      <img class="page-hero-ill" src="img/illust/calendar.svg" alt="" width="160" height="120" decoding="async">
       <h1 class="event-h1">{htmlmod.escape(it['title'])}</h1>
       <p class="event-h1-date" data-i18n="sched_date{it['n']}">{htmlmod.escape(it['date_ja'])}</p>
     </div>

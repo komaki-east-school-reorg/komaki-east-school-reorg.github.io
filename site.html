@@ -121,6 +121,7 @@
   <section class="page-hero">
     <div class="container">
       <div class="breadcrumb"><a href="index.html" data-i18n="nav_home">ホーム</a> <span>›</span> <span data-i18n="site_h1">このサイトについて</span></div>
+      <img class="page-hero-ill" src="img/illust/smartphone.svg" alt="" width="160" height="120" decoding="async">
       <h1 data-i18n="site_h1">このサイトについて</h1>
       <p data-i18n="site_p">このサイトの紹介のしかた、アプリとしての使い方、フィード（RSS）での受け取り方、広め方、ご意見の送り先、閲覧数の数え方をまとめています。</p>
     </div>
@@ -148,7 +149,7 @@
 
   <section class="section section-alt" id="site-intro">
     <div class="container">
-      <h2 class="section-title" data-i18n-html="intro_h">このサイトを紹介する<small>Introduce This Site</small></h2>
+      <h2 class="section-title ill-h ill-h--town" data-i18n-html="intro_h">このサイトを紹介する<small>Introduce This Site</small></h2>
       <figure class="site-intro-fig">
         <img src="img/og-image.png?v=20261011" width="1200" height="630" alt="小牧市東部（篠岡地区）学校再編ナビ｜桃花台エリアの非公式でもわかりやすい地域情報メディア" data-i18n-alt="og_img_alt" loading="lazy" decoding="async">
       </figure>
@@ -161,7 +162,7 @@
        ボタンは JS が無効だと動かないので hidden で置き、INSTALL APP が出す（アプリで開いているときは出さない）。 -->
   <section class="section" id="app">
     <div class="container">
-      <h2 class="section-title" data-i18n-html="app_h">アプリとして使う<small>Use as an App</small></h2>
+      <h2 class="section-title ill-h ill-h--smartphone" data-i18n-html="app_h">アプリとして使う<small>Use as an App</small></h2>
       <p class="section-lead" data-i18n="app_lead">このサイトはスマートフォンやパソコンのホーム画面に置いて、アプリのように使えます。📲 のボタン（ヘッダの言語切替の横と、ページ下の共有欄）を押してください。</p>
       <ul class="app-points">
         <li data-i18n="app_li1">アイコンから、アドレスバーの無い全画面で開けます。</li>
@@ -176,7 +177,7 @@
        feed.xml の中身は .github/scripts/build_feed.py が作る。届くものを変えたら feed_li1 も直すこと。 -->
   <section class="section section-alt" id="feed">
     <div class="container">
-      <h2 class="section-title" data-i18n-html="feed_h">フィード（RSS）で受け取る<small>Follow by Feed</small></h2>
+      <h2 class="section-title ill-h ill-h--smartphone" data-i18n-html="feed_h">フィード（RSS）で受け取る<small>Follow by Feed</small></h2>
       <p class="section-lead" data-i18n="feed_lead">このサイトは新しい動きをフィードで配信しています。フィードリーダーに登録しておけば、サイトを開かなくても新しい項目が届きます。</p>
       <ul class="app-points">
         <li data-i18n="feed_li1">届くもの：市の学校再編のお知らせ、篠岡地区の地域協議会の催し、東部まちづくりの動き、このサイトの更新。</li>
@@ -194,7 +195,7 @@
        転載・埋め込みはしない（spread_ask_p に明記）。 -->
   <section class="section" id="spread">
     <div class="container">
-      <h2 class="section-title" data-i18n-html="spread_h">使い方を広める・応援する<small>Spread the Word</small></h2>
+      <h2 class="section-title ill-h ill-h--handshake" data-i18n-html="spread_h">使い方を広める・応援する<small>Spread the Word</small></h2>
       <p class="section-lead" data-i18n="spread_lead">このサイトの使い方や感想を SNS で伝えるときは、次のハッシュタグを付けてください。同じタグが集まると、地域の人が情報を見つけやすくなります。</p>
       <div class="spread-tags-box">
         <p class="spread-tags" lang="ja"><span class="tag-one">#学校再編ナビ</span> <span class="tag-one">#桃花台</span> <span class="tag-one">#小牧</span> <span class="tag-one">#小牧市東部</span> <span class="tag-one">#篠岡地区</span></p>
@@ -227,7 +228,7 @@
        リンク先は auto_gates.py の PERMITTED_GITHUB でこのページ限定。公開されること・アカウントが要ることを必ず書く。 -->
   <section class="section section-alt" id="feedback">
     <div class="container">
-      <h2 class="section-title" data-i18n-html="fb_h">ご意見の送り先<small>Feedback</small></h2>
+      <h2 class="section-title ill-h ill-h--mailbox" data-i18n-html="fb_h">ご意見の送り先<small>Feedback</small></h2>
       <p class="section-lead" data-i18n="fb_lead">このサイトの使い方や感想などのご意見を、このサイトの運営者に送れます。</p>
       <ul class="app-points">
         <li data-i18n="fb_li1">送った内容はインターネット上に公開されます。送るには GitHub（無料）のアカウントが要ります。</li>
@@ -242,7 +243,7 @@
        数え方を変えたらここ（privacy_*）も直すこと。 -->
   <section class="section" id="privacy">
     <div class="container">
-      <h2 class="section-title" data-i18n-html="privacy_h">閲覧数の集計について<small>About Visit Counts</small></h2>
+      <h2 class="section-title ill-h ill-h--data" data-i18n-html="privacy_h">閲覧数の集計について<small>About Visit Counts</small></h2>
       <p class="section-lead" data-i18n="privacy_lead">このサイトがどう読まれているかを確かめ、より使いやすくするために、Cookie を使わない方法で閲覧数を数えています。</p>
       <ul class="app-points">
         <li data-i18n="privacy_li1">数えるもの：開いたページと表示言語、どのサイトから来たか（ドメインだけ）、画面の大きさ、どの機能のボタンが押されたか（共有・印刷・読み上げなど）、QR コードから来たかどうか。</li>

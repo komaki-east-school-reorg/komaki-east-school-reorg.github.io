@@ -921,8 +921,9 @@ def main():
             bad21.append("js/main.js に REVIEW LINKS の LINKS が見つからない")
         more = dict(re.findall(r'<a href="analysis\.html#([\w-]+)" data-rev-from="(c[vp]\d+)"', rv_html))
         more = {v: k for k, v in more.items()}
-        for n in range(1, 11):
-            for kind in ("cv", "cp"):
+        # 検証10項目・提案11項目（2026-10-31 に既存校のレガシーの提案 cp11 を追加）
+        for kind, last in (("cv", 10), ("cp", 11)):
+            for n in range(1, last + 1):
                 core = f"{kind}{n}"
                 if f"rev-{core}" not in rv_ids:
                     bad21.append(f"review.html に #rev-{core} がない")
@@ -947,7 +948,7 @@ def main():
             for b in bad21[:20]:
                 fail(f"検証と提案のつながり: {b}")
         else:
-            ok(f"検証と提案の2ページのつながり（核心20項目・根拠{sum(len(v) for v in links.values())}件）")
+            ok(f"検証と提案の2ページのつながり（核心21項目・根拠{sum(len(v) for v in links.values())}件）")
     except OSError as e:
         fail(f"検証と提案のつながりを確かめられない: {e}")
 

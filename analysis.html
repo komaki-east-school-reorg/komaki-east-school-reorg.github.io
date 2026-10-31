@@ -111,6 +111,7 @@
     .rev-part strong { font-family: var(--heading-font); font-size: 1rem; }
     .rev-part-refs { opacity: .85; font-size: .82rem; }
     .rev-point { background: var(--accent-light); border-radius: var(--radius-sm); padding: .7rem 1rem; font-size: .93rem; line-height: 1.8; margin: .2rem 0 1rem; }
+    .rev-open-note { margin: 1.2rem 0 0; padding: .8rem 1rem; border: 1.5px dashed var(--border); border-radius: var(--radius-sm); font-size: .92rem; line-height: 1.8; }
     .rev-partnav { display: flex; flex-wrap: wrap; gap: .6rem 1.2rem; justify-content: space-between; margin: 1.6rem 0 0; padding-top: 1rem; border-top: 2px dashed var(--border); font-weight: 800; }
     .rev-back { display: flex; flex-wrap: wrap; gap: .3rem .5rem; align-items: center; margin: -.3rem 0 .8rem; font-size: .82rem; }
     .rev-back-lead { color: var(--text-muted); }
@@ -235,7 +236,7 @@
       <div class="breadcrumb"><a href="index.html" data-i18n="nav_home">ホーム</a> <span>›</span> <a href="review.html" data-i18n="rev_h1">計画の検証と、これからの提案</a> <span>›</span> <span data-i18n="analysis_h1">深掘り検証</span></div>
       <img class="page-hero-ill" src="img/illust/data.svg" alt="" width="160" height="120" decoding="async">
       <h1 data-i18n="analysis_h1">深掘り検証</h1>
-      <p data-i18n="analysis_p">「計画の検証と、これからの提案」のうち、教育の質、これまでの市・県・国の施策、子どもを増やす提案、高校段階の検討といった、より踏み込んだ分析をこのページに分けています。要点だけを知りたいときは、検証と提案のページを先にお読みください。</p>
+      <p data-i18n="analysis_p">「検証と提案」の要点に挙げた検証10項目と提案11項目の根拠を、計画そのもの・教育の質・子どもの数の3部に分けてくわしく説明します。各カードの札から、要点の該当項目へ戻れます。</p>
     </div>
   </section>
   <!-- 検証と提案の2ページを切り替えるタブ（2026-10-31 ユーザー指示：2ページを1つの読み物としてつなぐ）。
@@ -285,10 +286,11 @@
           <img class="rev-guide-pic" src="img/illust/teacher.svg" alt="" width="160" height="120" decoding="async">
           <p class="rev-guide-n"><span data-i18n="rev_part_n2">第2部</span></p>
           <p class="rev-guide-t"><a href="#rev-quality"><span data-i18n="rev_part2">教育の質</span></a></p>
-          <p class="rev-guide-refs"><span data-i18n="rev_part2_refs">要点の 🔎6〜8・💡①〜⑤</span></p>
+          <p class="rev-guide-refs"><span data-i18n="rev_part2_refs">要点の 🔎6〜8・💡①〜⑤・⑪</span></p>
           <ul>
             <li><a href="#rev-quality" data-i18n="rev_deep_l1">🎓 教育の質から見た再編</a></li>
             <li><a href="#rev-skills" data-i18n="rev_deep_l2">💡 これからの子どもに要る力</a></li>
+            <li><a href="#rev-legacy" data-i18n="rev_deep_l11">💡 既存校のレガシーを引き継ぐ</a></li>
           </ul>
         </div>
         <div class="rev-guide-part">
@@ -597,6 +599,58 @@
         <div class="rev-idea-h" data-i18n="rev_m_p9_h">9. 健康：保健の体制を「学校の数」ではなく「子どもの数」で見る</div>
         <p data-i18n-html="rev_m_p9_p"><strong>考え方：</strong>再編後の各校の養護教諭の人数、学校医・学校歯科医の体制、医療的ケアが必要な子の受け入れとバス通学の方法を、開校前に公表します。医療的ケア児支援法（令和3年）は、学校の設置者に、在籍する医療的ケア児へ適切な支援を行う責務を定めています。歩く量が減ることへの体力づくりや酷暑への対策は、保健の授業と組み合わせると子ども自身の力にもなります。<br><strong>確認できていないこと：</strong>再編後の各校の養護教諭の人数と、医療的ケアが必要な子への対応。</p>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== 既存校のレガシーを引き継ぐ（2026-10-31 ユーザー指示）=====
+       閉じる学校の校歌・賛歌・応援歌、校旗、記録、行事を新しい学校と地域へ引き継ぐ検討。楽曲の配信・サブスク提供を含む。
+       【事実】は公表資料（だより第4号・校章の決定・閉校後の校舎の扱い・説明会の意見提出シート）と著作権法そのもの。
+       ⛔ 校歌の歌詞や音源はこのサイトに載せない（著作物のため）。💡 は当サイトの考えで、市が検討しているものではない。 -->
+  <section class="section section-alt" id="rev-legacy">
+    <div class="container" style="max-width:900px;">
+      <h2 class="section-title ill-h ill-h--music" data-i18n-html="rev_s14_h">💡 検討：既存校のレガシーを引き継ぐ<small>Carrying On Our Schools’ Legacy</small></h2>
+      <p class="rev-point" data-i18n-html="rev_pt_legacy"><strong>💡 この節の要点：</strong>閉じる学校が積み重ねてきたもの（校歌・賛歌・応援歌などの歌、校旗、記録、行事）を、新しい学校と地域に引き継ぐ方法を、事実4つと提案5つで検討します。</p>
+      <p style="margin-bottom:1.4rem;" data-i18n="rev_s14_lead">学校が閉じても、そこで歌われてきた歌や受け継がれてきた行事は、卒業生と地域の記憶として残ります。それを形にして残し、新しい学校へ渡すことは、子どもの心の支えにも、地域のつながりにもなります。【事実】のあとの 🔎・💡 はすべて当サイトの考えで、市が検討しているものではありません。</p>
+
+      <div class="rev-card" id="rev-l-f1">
+        <div class="rev-card-h" data-i18n="rev_l_f1_h">新しい学校の校歌と校章</div>
+        <p class="rev-fact" data-i18n-html="rev_l_f1_p"><strong>【事実】</strong>令和7年7月から学校再編準備調査研究委員会が、新しい学校の教育課程・教育目標・校歌・校章・部活動などを協議しています（篠岡地区学校再編だより 第4号）。しのおか学園4校で統一の校章は、212作品の中から令和8年9月4日に決まり、校旗の製作が進められます。</p>
+      </div>
+      <div class="rev-card" id="rev-l-f2">
+        <div class="rev-card-h" data-i18n="rev_l_f2_h">説明会で出た、校歌についての声</div>
+        <p class="rev-fact" data-i18n-html="rev_l_f2_p"><strong>【事実】</strong>令和8年6月の保護者等説明会で出された意見には、校歌を覚え直すことも含めて子どもの不安に寄り添ってほしいという声や、第2期で東西をさらに再編するなら制服・体操服・校歌もなるべく共通にしてほしいという声がありました（市が公表した「提出された意見と提案」を当サイトが要約）。</p>
+      </div>
+      <div class="rev-card" id="rev-l-f3">
+        <div class="rev-card-h" data-i18n="rev_l_f3_h">閉校後の校舎</div>
+        <p class="rev-fact" data-i18n-html="rev_l_f3_p"><strong>【事実】</strong>市は、閉校後の校舎について、転用する施設の計画が無ければ原則として解体し、体育館とグラウンドは地域スポーツや防災の拠点として基本的に残す方向としています（パブリックコメントへの回答、保護者等説明会での回答）。</p>
+      </div>
+      <div class="rev-card" id="rev-l-f4">
+        <div class="rev-card-h" data-i18n="rev_l_f4_h">歌を配信するときの決まり（著作権法）</div>
+        <p class="rev-fact" data-i18n-html="rev_l_f4_p"><strong>【事実】</strong>歌詞と曲は著作物で、インターネットで配信するには著作権者の許諾が要ります（著作権法第23条）。営利を目的とせず無料で行う学校行事などでの演奏は許諾なしでできますが（第38条第1項）、この例外は配信には及びません。歌った人・演奏した人には実演家の権利があり（第90条の2以下）、著作権の保護期間は原則として著作者の死後70年です（第51条）。権利者が分からないときは、文化庁長官の裁定を受けて利用できる制度があります（第67条）。</p>
+      </div>
+      <p class="rev-view" data-i18n-html="rev_l_v"><strong>🔎 当サイトの見方：</strong>新しい学校の校歌と校章は話し合われ、校章は決まりました。一方で、閉じる学校の校歌・応援歌や校旗、記録をどう残すかは、公表資料には見当たりません。校舎が原則として解体されるなら、形として残せる場所はさらに限られます。</p>
+
+      <div class="rev-idea" id="rev-l-p1">
+        <div class="rev-idea-h" data-i18n="rev_l_p1_h">1. 校歌・賛歌・応援歌を録音し、配信で残す</div>
+        <p data-i18n-html="rev_l_p1_p"><strong>考え方：</strong>閉校までの期間に、各校で歌い継がれてきた校歌・賛歌・応援歌を、いまの子どもたちと卒業生・地域の人の歌で録音します。録音は音楽配信サービス（サブスクリプション）でだれでも聴けるようにし、閉校後も卒業生が手元で聴き、歌える形で残します。配信で収入が出る場合は、記録づくりや新しい学校の文化活動に充てます。</p>
+      </div>
+      <div class="rev-idea" id="rev-l-p2">
+        <div class="rev-idea-h" data-i18n="rev_l_p2_h">2. 配信の前に、権利と同意を確かめる</div>
+        <p data-i18n-html="rev_l_p2_p"><strong>考え方：</strong>作詞者・作曲者（またはその遺族や著作権を管理する団体）の許諾、伴奏や編曲の権利、歌う子どもと保護者の同意を、学校・教育委員会・同窓会が一緒に確かめます。保護期間が終わっている曲は手続きが軽くなり、権利者が分からない曲には裁定の制度が使えます。</p>
+      </div>
+      <div class="rev-idea" id="rev-l-p3">
+        <div class="rev-idea-h" data-i18n="rev_l_p3_h">3. 新しい学校で、もとの学校の歌を紹介する場をつくる</div>
+        <p data-i18n-html="rev_l_p3_p"><strong>考え方：</strong>しのおか学園の行事や交流会で、もとの学校の歌を紹介する時間を設けます。新しい校歌を覚えることとは別に、「前の学校の歌も大切にしてよい」と伝えることが、子どもの心の支えになります。</p>
+      </div>
+      <div class="rev-idea" id="rev-l-p4">
+        <div class="rev-idea-h" data-i18n="rev_l_p4_h">4. 校旗・記録・作品をアーカイブにする</div>
+        <p data-i18n-html="rev_l_p4_p"><strong>考え方：</strong>校旗、学校のあゆみ、記念誌、卒業アルバム、子どもの作品や行事の写真を整理し、残る体育館や地域の施設の一角に展示するとともに、デジタルでも公開します。公開するときは、個人が特定されないよう配慮します。</p>
+      </div>
+      <div class="rev-idea" id="rev-l-p5">
+        <div class="rev-idea-h" data-i18n="rev_l_p5_h">5. 学校の行事を、地域の行事として受け継ぐ</div>
+        <p data-i18n-html="rev_l_p5_p"><strong>考え方：</strong>学校ごとに続いてきた行事や、地域と一緒に行ってきた活動を、地域協議会や同窓会が受け継げるよう、閉校前に担い手と進め方を決めておきます。</p>
+      </div>
+      <p class="rev-open-note" data-i18n-html="rev_l_open"><strong>確認できていないこと：</strong>各校の校歌・応援歌の作詞者・作曲者と権利の状態、録音が残っているか、閉校後の校旗や記録の保管先、学校再編準備調査研究委員会でこれまでの学校の歌や行事の扱いが話し合われているか。</p>
       <p class="rev-partnav"><a href="#rev-history" data-i18n="rev_next_p3">第3部「子どもの数」へ →</a><a href="review.html#rev-core" data-i18n="rev_to_core">↑ 要点（核心）に戻る</a></p>
     </div>
   </section>
@@ -606,7 +660,7 @@
        東部地域の子どもの数という一点から見て何が効いて何が効かなかったかを検証する部分。
        事実は必ず出典つき、検証は 🔎 のカードに閉じ込めるという書き分けは他節と同じ。
        ⚠️ 個人名（市長・議員）は書かないこと（ユーザー指示 2026-09-06）。責任は職と部署に置いて書く。 -->
-  <section class="section section-alt" id="rev-history">
+  <section class="section" id="rev-history">
     <div class="container" style="max-width:900px;">
       <p class="rev-part"><span class="rev-part-n" data-i18n="rev_part_n3">第3部</span> <strong data-i18n="rev_part3">子どもの数</strong> <span class="rev-part-refs" data-i18n="rev_part3_refs">要点の 🔎9・💡⑥〜⑩</span></p>
       <h2 class="section-title ill-h ill-h--data" data-i18n-html="rev_s5_h">📊 検証：これまでの施策は東部に効いたか<small>Have Past Policies Worked?</small></h2>
@@ -693,7 +747,7 @@
   <!-- ===== 県と国の施策 =====
        市の施策だけを見ても、東部の人口は説明しきれない。ニュータウンも交通も
        県の事業であり、少子化対策の枠組みは国が置いている。ここも事実は出典つき。 -->
-  <section class="section" id="rev-nation">
+  <section class="section section-alt" id="rev-nation">
     <div class="container" style="max-width:900px;">
       <h2 class="section-title ill-h ill-h--cityhall" data-i18n-html="rev_s8_h">🗾 検証：県と国は何をしてきたか<small>The Prefecture and the State</small></h2>
       <p class="rev-point" data-i18n-html="rev_pt_nation"><strong>🔎 この節の要点：</strong>ニュータウンと交通をつくったのは県です。国の少子化対策と地方創生は流れを変えられていません。国は学級を小さくしつつ学校をまとめていますが、この地区に効くのは後者だけです。</p>
@@ -726,7 +780,7 @@
   </section>
 
   <!-- ===== 本来どうすべきだったか ===== -->
-  <section class="section section-alt" id="rev-should">
+  <section class="section" id="rev-should">
     <div class="container" style="max-width:900px;">
       <h2 class="section-title ill-h ill-h--bulb" data-i18n-html="rev_s7_h">💡 本来どうすべきだったか、これから何を攻略するか<small>What Should Have Been Done</small></h2>
       <p class="rev-point" data-i18n-html="rev_pt_should"><strong>💡 この節の要点：</strong>住まいの型、交通、定住支援、仕事の入口、担当する部署の面から、これまでの見落としを繰り返さないための提案を10挙げます。</p>
@@ -785,7 +839,7 @@
   </section>
 
   <!-- ===== 施策の検討 ===== -->
-  <section class="section" id="rev-ideas">
+  <section class="section section-alt" id="rev-ideas">
     <div class="container" style="max-width:900px;">
       <h2 class="section-title ill-h ill-h--houses" data-i18n-html="rev_s3_h">💡 検討：地区全体の子どもを増やすには<small>Ideas for Growth</small></h2>
       <p class="rev-point" data-i18n-html="rev_pt_ideas"><strong>💡 この節の要点：</strong>学校の配置とは別に、地区全体の子どもの数そのものを増やすための提案を7つ挙げます。</p>
@@ -835,7 +889,7 @@
        愛知県の中高一貫教育導入方針・県立高等学校再編将来構想、学校教育法とその施行規則ほか）に
        よる。愛知文教大学の募集停止だけは大学自身の公表による（報道は根拠にしない）。
        🔎 と 💡 は当サイトの考え。版面の左帯で事実と意見を分ける規則はこの節でも同じ。 -->
-  <section class="section section-alt" id="rev-highschool">
+  <section class="section" id="rev-highschool">
     <div class="container" style="max-width:900px;">
       <h2 class="section-title ill-h ill-h--highschool" data-i18n-html="rev_s10_h">🏫 検討：高校段階をこの地区に置けるか<small>A High School in the District?</small></h2>
       <p class="rev-point" data-i18n-html="rev_pt_highschool"><strong>💡 この節の要点：</strong>この地区には高校がありません。校地の使い道を決める前に、高校段階を選択肢に入れることを、事実5つと提案3つで検討します。</p>
@@ -892,7 +946,7 @@
   </section>
 
   <!-- ===== 限界の明示（24項目すべて。review.html には要点側の6つだけを置く）===== -->
-  <section class="section" id="rev-open">
+  <section class="section section-alt" id="rev-open">
     <div class="container" style="max-width:900px;">
       <h2 class="section-title ill-h ill-h--talk" data-i18n-html="rev_s4_h">このページで確認できなかったこと<small>Open Questions</small></h2>
       <p style="margin-bottom:1rem;" data-i18n="rev_s4_lead">検証の限界をそのまま書いておきます。以下は当サイトが公表資料の中に見つけられなかったもので、「存在しない」という意味ではありません。</p>
@@ -936,7 +990,7 @@
        日本語の部署名そのものなので、訳すと用を成さないため（年表の西暦欄と同じ考え方）。
        電話番号も言語に依存しないので翻訳対象外。番号はいずれも市・県が公表している
        ページの写しで、当サイトが調べ出した番号ではない。 -->
-  <section class="section section-alt" id="contact">
+  <section class="section" id="contact">
     <div class="container">
       <h2 class="section-title ill-h ill-h--phone" data-i18n-html="rev_s9_h">関係する部署の問い合わせ先<small>Who to Contact</small></h2>
       <p style="margin-bottom:1.2rem;" data-i18n="rev_s9_lead">このページで取り上げた事柄の所管です。検証や提案の当否は、最後は担当する部署に直接たずねるのが確かです。連絡先は各機関が公表しているものをそのまま書き写しています（2026年9月現在）。</p>

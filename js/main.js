@@ -3962,7 +3962,7 @@ window.KomakiGrade = (function () {
 })();
 
 /* ===== REVIEW LINKS（検証と提案の2ページを行き来する札、2026-10-31 ユーザー指示）=====
-   review.html（要点）の核心20項目と、analysis.html（深掘り）の根拠のカードを結ぶ対応表。
+   review.html（要点）の核心21項目（検証10・提案11）と、analysis.html（深掘り）の根拠のカードを結ぶ対応表。
    ・左＝review.html の核心のカード（rev-cv1〜10＝検証、rev-cp1〜10＝提案）、右＝その根拠になる
      analysis.html のカードの id。右の先頭が review の「くわしく →」の飛び先（静的リンク）と一致すること。
    ・analysis.html では、根拠のカードの見出しの下に「要点で使っている項目：🔎 検証7 ・ 💡 提案2」の
@@ -3978,7 +3978,8 @@ window.KomakiGrade = (function () {
     "cp1": ["rev-m-p1"], "cp2": ["rev-m-p2"], "cp3": ["rev-m-p3", "rev-m-p4", "rev-m-p5", "rev-m-p6"],
     "cp4": ["rev-m-p7", "rev-m-p8"], "cp5": ["rev-m-p9"], "cp6": ["rev-p1", "rev-p6", "rev-q7"],
     "cp7": ["rev-q1", "rev-p2", "rev-q9"], "cp8": ["rev-p3", "rev-q2"], "cp9": ["rev-p5", "rev-p7", "rev-h6", "rev-h7", "rev-h8"],
-    "cp10": ["rev-q4", "rev-q5", "rev-q6"]};
+    "cp10": ["rev-q4", "rev-q5", "rev-q6"],
+    "cp11": ["rev-l-p1", "rev-l-p2", "rev-l-p3", "rev-l-p4", "rev-l-p5"]};
   var KEY = 'komaki_rev_from';
   var page = location.pathname.split('/').pop().replace(/\.html$/, '');
 
