@@ -3251,12 +3251,12 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
 .hero .container::after { content: ""; display: block; clear: both; }
 .hero .page-hero-ill.hero-ill-pc { width: 9rem; }
 /* PC ではトップのヒーローも他のページ（.page-hero）と同じく左寄せ（2026-10-31 ユーザー指示）。
-   子どもの数の枠は左に寄せ、枠の中は中央のまま。モバイルは中央寄せのまま。 */
+   子どもの数の枠は中央（同日ユーザー指示）。モバイルは中央寄せのまま。 */
 @media (min-width: 769px) {
   .hero { text-align: left; }
   .hero p { margin-left: 0; margin-right: 0; }
   .hero-badges { justify-content: flex-start; }
-  .hero-count { margin-left: 0; margin-right: 0; text-align: center; }
+  .hero-count { margin-left: auto; margin-right: auto; text-align: center; }
 }
 .ill-hero-wide { display: none; justify-content: space-between; align-items: flex-end; gap: .4rem; width: 100%; margin: 0 0 1.1rem; padding: .5rem 1rem .2rem; background: #fdf6e0; border-radius: 22px; box-sizing: border-box; }
 .ill-hero-wide img { flex: 1 1 0; min-width: 0; max-width: 10rem; height: auto; }
