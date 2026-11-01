@@ -27,6 +27,97 @@
       "tr": "Kitasato bölgesinin okullarını düşünme toplantısı (2.)",
       "my": "Kitasato ဒေသ ကျောင်းများအကြောင်း စဉ်းစားသည့် ဒုတိယအကြိမ် အစည်းအဝေး"
     },
+    "10/31 学校公開日：「この指とまれ」": {
+      "en": "10/31 School Open Day: \"Kono Yubi Tomare\"",
+      "pt": "31/10 Dia de visita à escola: \"Kono Yubi Tomare\"",
+      "vi": "31/10 Ngày mở cửa trường: \"Kono Yubi Tomare\"",
+      "tl": "10/31 Araw ng Bukas na Paaralan: \"Kono Yubi Tomare\"",
+      "es": "31/10 Día de puertas abiertas: \"Kono Yubi Tomare\"",
+      "zh": "10/31 学校开放日：“Kono Yubi Tomare”",
+      "id": "31/10 Hari Sekolah Terbuka: \"Kono Yubi Tomare\"",
+      "ko": "10/31 학교 공개의 날: \"Kono Yubi Tomare\"",
+      "ne": "10/31 विद्यालय खुला दिन: \"Kono Yubi Tomare\"",
+      "tr": "31/10 Okul Açık Kapı Günü: \"Kono Yubi Tomare\"",
+      "my": "10/31 ကျောင်းဖွင့်ပွဲနေ့: \"Kono Yubi Tomare\""
+    },
+    "10/31 体育：ロックソーランの練習（４～６年生）": {
+      "en": "10/31 PE: Rock Soran practice (grades 4-6)",
+      "pt": "31/10 Educação física: treino de Rock Soran (4º a 6º ano)",
+      "vi": "31/10 Thể dục: luyện tập Rock Soran (lớp 4-6)",
+      "tl": "10/31 PE: Praktis ng Rock Soran (Baitang 4-6)",
+      "es": "31/10 Educación física: práctica de Rock Soran (4.º a 6.º grado)",
+      "zh": "10/31 体育：摇滚索兰舞练习（4～6年级）",
+      "id": "31/10 Olahraga: latihan Rock Soran (kelas 4-6)",
+      "ko": "10/31 체육: 록 소란 연습 (4~6학년)",
+      "ne": "10/31 शारीरिक शिक्षा: रक सोरान अभ्यास (कक्षा 4-6)",
+      "tr": "31/10 Beden eğitimi: Rock Soran çalışması (4-6. sınıflar)",
+      "my": "10/31 ကာယပညာ: Rock Soran လေ့ကျင့်ခြင်း (တန်း ၄-၆)"
+    },
+    "10/30 今日の給食": {
+      "en": "Oct 30: Today's School Lunch",
+      "pt": "30 de outubro: merenda de hoje",
+      "vi": "30/10: Bữa ăn trưa hôm nay",
+      "tl": "Oktubre 30: Tanghalian sa paaralan ngayon",
+      "es": "30 de octubre: almuerzo escolar de hoy",
+      "zh": "10月30日 今日午餐",
+      "id": "30 Oktober: Makan siang sekolah hari ini",
+      "ko": "10월 30일 오늘의 급식",
+      "ne": "अक्टोबर 30: आजको विद्यालय खाजा",
+      "tr": "30 Ekim: Bugünün okul yemeği",
+      "my": "အောက်တိုဘာ 30 - ယနေ့ကျောင်းနေ့လည်စာ"
+    },
+    "5校交流会": {
+      "en": "Five-school exchange meeting",
+      "pt": "Encontro de intercâmbio entre as cinco escolas",
+      "vi": "Buổi giao lưu giữa năm trường",
+      "tl": "Palitang-salubong ng limang paaralan",
+      "es": "Encuentro de intercambio entre las cinco escuelas",
+      "zh": "五校交流会",
+      "id": "Pertemuan pertukaran lima sekolah",
+      "ko": "5개 학교 교류회",
+      "ne": "पाँच विद्यालय अन्तरक्रिया बैठक",
+      "tr": "Beş okul değişim buluşması",
+      "my": "ကျောင်းငါးကျောင်း အပြန်အလှန်ဆုံဆည်းပွဲ"
+    },
+    "東部市民センターの見学": {
+      "en": "Visit to the Eastern Civic Center",
+      "pt": "Visita ao Eastern Civic Center",
+      "vi": "Tham quan Eastern Civic Center",
+      "tl": "Pagbisita sa Eastern Civic Center",
+      "es": "Visita al Eastern Civic Center",
+      "zh": "参观东部市民中心",
+      "id": "Kunjungan ke Eastern Civic Center",
+      "ko": "동부 시민센터 견학",
+      "ne": "पूर्वी नागरिक केन्द्रको भ्रमण",
+      "tr": "Eastern Civic Center ziyareti",
+      "my": "Eastern Civic Center သို့ လေ့လာရေးခရီး"
+    },
+    "小中合同あいさつ運動": {
+      "en": "Joint greeting campaign by elementary and junior high schools",
+      "pt": "Campanha conjunta de cumprimentos das escolas de ensino fundamental e secundária",
+      "vi": "Phong trào chào hỏi chung của trường tiểu học và trung học cơ sở",
+      "tl": "Magkasanib na kampanya sa pagbati ng mga paaralang elementarya at junior high",
+      "es": "Campaña conjunta de saludos de primaria y secundaria",
+      "zh": "小学与中学联合问候活动",
+      "id": "Gerakan salam bersama SD dan SMP",
+      "ko": "초·중학교 합동 인사 운동",
+      "ne": "प्राथमिक र माध्यमिक विद्यालयको संयुक्त अभिवादन अभियान",
+      "tr": "İlkokul ve ortaokul ortak selamlaşma kampanyası",
+      "my": "မူလတန်းနှင့် အလယ်တန်းကျောင်းများ ပူးပေါင်း နှုတ်ဆက်ခြင်းလှုပ်ရှားမှု"
+    },
+    "願い事チャンス": {
+      "en": "Wish Chance",
+      "pt": "Chance de desejos",
+      "vi": "Cơ hội điều ước",
+      "tl": "Pagkakataon ng Hiling",
+      "es": "Oportunidad de deseos",
+      "zh": "许愿机会",
+      "id": "Kesempatan Permohonan",
+      "ko": "소원 찬스",
+      "ne": "इच्छा अवसर",
+      "tr": "Dilek Şansı",
+      "my": "ဆုတောင်းအခွင့်အလမ်း"
+    },
     "文化祭 展示鑑賞の様子 （3年生）": {
       "en": "Cultural Festival: Viewing the Exhibits (Grade 3)",
       "pt": "Festival cultural: visita às exposições (3º ano)",
@@ -52,19 +143,6 @@
       "ne": "आइतबार, 10/25: नागरिक महोत्सव स्वयंसेवक",
       "tr": "25 Ekim Pazar: Vatandaş Festivali Gönüllüleri",
       "my": "အောက်တိုဘာ 25 (တနင်္ဂနွေ) ပြည်သူ့ပွဲတော် sa ဝန်ထမ်းများ"
-    },
-    "文化祭 合唱コンクールに向け、気合十分で練習に取り組んでいます （3年生）": {
-      "en": "School Festival: Practicing with Full Energy for the Choir Contest (3rd Year)",
-      "pt": "Festival cultural: ensaiando com muito empenho para o concurso de coral (3º ano)",
-      "vi": "Lễ hội văn hóa: Luyện tập hết mình cho cuộc thi hợp xướng (năm 3)",
-      "tl": "Cultural festival: Buong sigasig na nag-eensayo para sa paligsahan ng koro (Ika-3 taon)",
-      "es": "Festival escolar: practicando con mucho entusiasmo para el concurso de coros (3.er año)",
-      "zh": "文化节：为合唱比赛干劲十足地练习（三年级）",
-      "id": "Festival budaya: Berlatih penuh semangat untuk lomba paduan suara (Kelas 3)",
-      "ko": "문화제 합창 콩쿠르를 앞두고 열의를 다해 연습하고 있습니다 (3학년)",
-      "ne": "सांस्कृतिक महोत्सव: कोरस प्रतियोगिताका लागि पूर्ण उत्साहका साथ अभ्यास गर्दै (तेस्रो वर्ष)",
-      "tr": "Kültür festivali: Koro yarışması için büyük bir istekle çalışıyoruz (3. sınıf)",
-      "my": "ယဉ်ကျေးမှုပွဲတော် - သံပြိုင်ဆိုပြိုင်ပွဲအတွက် အားရဝမ်းသာ လေ့ကျင့်နေကြသည် (တတိယနှစ်)"
     },
     "３年合唱コンクール": {
       "en": "Grade 3 Choir Contest",
@@ -104,45 +182,6 @@
       "ne": "तोर्यो महोत्सव: कक्षा 1-D को गायन \"खुशी\"",
       "tr": "Toryo Festivali: 1-D sınıfı korosu \"Mutluluk\"",
       "my": "တိုရျိုပွဲတော် - အတန်း 1-D ဓာတ်သီချင်း \"ပျော်ရွှင်မှု\""
-    },
-    "10/30 今日の給食": {
-      "en": "Oct 30: Today's School Lunch",
-      "pt": "30 de outubro: merenda de hoje",
-      "vi": "30/10: Bữa ăn trưa hôm nay",
-      "tl": "Oktubre 30: Tanghalian sa paaralan ngayon",
-      "es": "30 de octubre: almuerzo escolar de hoy",
-      "zh": "10月30日 今日午餐",
-      "id": "30 Oktober: Makan siang sekolah hari ini",
-      "ko": "10월 30일 오늘의 급식",
-      "ne": "अक्टोबर 30: आजको विद्यालय खाजा",
-      "tr": "30 Ekim: Bugünün okul yemeği",
-      "my": "အောက်တိုဘာ 30 - ယနေ့ကျောင်းနေ့လည်စာ"
-    },
-    "10/30 笑顔でさきがけあいさつ運動": {
-      "en": "Oct 30: Smiling Sakigake Greeting Campaign",
-      "pt": "30 de outubro: campanha de cumprimentos Sakigake com sorrisos",
-      "vi": "30/10: Phong trào chào hỏi Sakigake với nụ cười",
-      "tl": "Oktubre 30: Sakigake Greeting Campaign nang may ngiti",
-      "es": "30 de octubre: campaña de saludos Sakigake con sonrisas",
-      "zh": "10月30日 微笑先行问候活动",
-      "id": "30 Oktober: Gerakan salam Sakigake dengan senyuman",
-      "ko": "10월 30일 웃는 얼굴로 사키가케 인사 운동",
-      "ne": "अक्टोबर 30: मुस्कानसहित साकिगाके अभिवादन अभियान",
-      "tr": "30 Ekim: Gülümseyerek Sakigake selamlaşma kampanyası",
-      "my": "အောက်တိုဘာ 30 - ပြုံးရွှင်စွာ ဆာကီဂါကေ နှုတ်ဆက်ရေးလှုပ်ရှားမှု"
-    },
-    "10/29 家庭科：食べて元気！ご飯とみそ汁（５年生）": {
-      "en": "Oct 29: Home Economics: Eat and Feel Great! Rice and Miso Soup (Grade 5)",
-      "pt": "29 de outubro: economia doméstica: comer para ter energia! Arroz e sopa de missô (5º ano)",
-      "vi": "29/10: Môn Gia chính: Ăn để khỏe! Cơm và súp miso (lớp 5)",
-      "tl": "Oktubre 29: Home Economics: Kumain para sumigla! Kanin at miso soup (Grade 5)",
-      "es": "29 de octubre: economía doméstica: ¡comer para tener energía! Arroz y sopa de miso (5.º grado)",
-      "zh": "10月29日 家政课：吃出活力！米饭和味噌汤（5年级）",
-      "id": "29 Oktober: Prakarya rumah tangga: makan agar bertenaga! Nasi dan sup miso (kelas 5)",
-      "ko": "10월 29일 가정과: 먹고 힘내자! 밥과 된장국 (5학년)",
-      "ne": "अक्टोबर 29: गृह विज्ञान: खाऔं र स्वस्थ बनौं! भात र मिसो सूप (कक्षा 5)",
-      "tr": "29 Ekim: Ev ekonomisi: Yiyelim, enerji dolalım! Pilav ve miso çorbası (5. sınıf)",
-      "my": "အောက်တိုဘာ 29 - အိမ်မှုရေးရာ - စားပြီး ကျန်းမာစေ! ထမင်းနှင့် မီဆိုဟင်းရည် (အတန်း 5)"
     },
     "２年生 中央公園で交流会を行いました！": {
       "en": "Grade 2 Held an Exchange Event at Central Park!",
@@ -300,45 +339,6 @@
       "tr": "1. sınıf B şubesi: 2B ile koro değişimi",
       "my": "တန်း ၁ B အတန်း - 2B နှင့် ကျောင်းသံပြိုင်ဖလှယ်ပွဲ"
     },
-    "小野競書会激励会": {
-      "en": "Ono Calligraphy Contest Send-Off Rally",
-      "pt": "Encontro de incentivo para o concurso de caligrafia de Ono",
-      "vi": "Buổi động viên cuộc thi thư pháp Ono",
-      "tl": "Pampasiglang Pagtitipon para sa Paligsahan sa Kaligrapiya ng Ono",
-      "es": "Acto de aliento para el concurso de caligrafía de Ono",
-      "zh": "小野书法比赛鼓励会",
-      "id": "Acara penyemangat lomba kaligrafi Ono",
-      "ko": "오노 서예 대회 격려회",
-      "ne": "ओनो सुलेख प्रतियोगिताको उत्साहवर्धन कार्यक्रम",
-      "tr": "Ono Hat Yarışması moral toplantısı",
-      "my": "အိုနို စာလုံးလှရေးပြိုင်ပွဲ အားပေးပွဲ"
-    },
-    "書写競技会": {
-      "en": "Calligraphy Competition",
-      "pt": "Competição de caligrafia",
-      "vi": "Cuộc thi thư pháp",
-      "tl": "Paligsahan sa Kaligrapiya",
-      "es": "Competencia de caligrafía",
-      "zh": "书写比赛",
-      "id": "Lomba kaligrafi",
-      "ko": "서사 경기회",
-      "ne": "सुलेख प्रतियोगिता",
-      "tr": "Hat yarışması",
-      "my": "စာလုံးလှရေးပြိုင်ပွဲ"
-    },
-    "書写競技会を行いました": {
-      "en": "Calligraphy Competition Held",
-      "pt": "A competição de caligrafia foi realizada",
-      "vi": "Đã tổ chức cuộc thi thư pháp",
-      "tl": "Naganap ang Paligsahan sa Kaligrapiya",
-      "es": "Se realizó la competencia de caligrafía",
-      "zh": "举行了书写比赛",
-      "id": "Lomba kaligrafi telah diadakan",
-      "ko": "서사 경기회를 열었습니다",
-      "ne": "सुलेख प्रतियोगिता सम्पन्न भयो",
-      "tr": "Hat yarışması yapıldı",
-      "my": "စာလုံးလှရေးပြိုင်ပွဲ ကျင်းပခဲ့ပါသည်"
-    },
     "桃ヶ丘小学校区地域協議会 あおぞら市場": {
       "en": "Momogaoka Elementary School District Community Council: Open-Air Market",
       "pt": "Conselho comunitário da área da escola primária Momogaoka: feira ao ar livre",
@@ -364,32 +364,6 @@
       "ne": "मोमोगाओका प्राथमिक विद्यालय र हरित मार्ग",
       "tr": "Momogaoka İlkokulu ve yeşil yol",
       "my": "မိုမိုဂါအိုကာ မူလတန်းကျောင်းနှင့် စိမ်းလန်းသောလမ်း"
-    },
-    "光ヶ丘小学校区地域協議会 新学校区交流 ミュージックフェスティバル": {
-      "en": "Hikarigaoka Elementary School District Community Council: New School District Exchange Music Festival",
-      "pt": "Conselho Comunitário do Distrito da Escola Primária de Hikarigaoka: Festival de Música de Intercâmbio do Novo Distrito Escolar",
-      "vi": "Hội đồng Cộng đồng Khu học chánh Tiểu học Hikarigaoka: Lễ hội Âm nhạc Giao lưu Khu học chánh Mới",
-      "tl": "Konseho ng Komunidad ng Distrito ng Elementarya ng Hikarigaoka: Music Festival ng Pakikipag-ugnayan sa Bagong Distrito ng Paaralan",
-      "es": "Consejo Comunitario del Distrito de la Escuela Primaria de Hikarigaoka: Festival de Música de Intercambio del Nuevo Distrito Escolar",
-      "zh": "光之丘小学学区地域协议会：新学区交流音乐节",
-      "id": "Dewan Komunitas Distrik Sekolah Dasar Hikarigaoka: Festival Musik Pertukaran Distrik Sekolah Baru",
-      "ko": "히카리가오카 초등학교구 지역 협의회: 신학교구 교류 뮤직 페스티벌",
-      "ne": "हिकारिगाओका प्राथमिक विद्यालय क्षेत्र सामुदायिक परिषद्: नयाँ विद्यालय क्षेत्र आदानप्रदान सङ्गीत महोत्सव",
-      "tr": "Hikarigaoka İlkokulu Bölgesi Topluluk Konseyi: Yeni Okul Bölgesi Değişim Müzik Festivali",
-      "my": "ဟိကာရိဂါအိုကာ မူလတန်းကျောင်းဇုန် ရပ်ရွာကောင်စီ - ကျောင်းဇုန်သစ် ဖလှယ်ရေး ဂီတပွဲတော်"
-    },
-    "光ヶ丘中学校": {
-      "en": "Hikarigaoka Junior High School",
-      "pt": "Escola Secundária Hikarigaoka",
-      "vi": "Trường THCS Hikarigaoka",
-      "tl": "Hikarigaoka Junior High School",
-      "es": "Secundaria Hikarigaoka",
-      "zh": "光之丘中学",
-      "id": "SMP Hikarigaoka",
-      "ko": "히카리가오카 중학교",
-      "ne": "हिकारिगाओका माध्यमिक विद्यालय",
-      "tr": "Hikarigaoka Ortaokulu",
-      "my": "Hikarigaoka အလယ်တန်းကျောင်း"
     },
     "大城小学校区地域協議会 宝さがしオリエンテーリング大会": {
       "en": "Oshiro Elementary School District Community Council: Treasure Hunt Orienteering Event",
@@ -703,6 +677,32 @@
       "tr": "Oshiro Çocuk Merkezi (Warabekan)",
       "my": "Oshiro ကလေးစင်တာ (Warabekan)"
     },
+    "桃花台まつり": {
+      "en": "Tokadai Festival",
+      "pt": "Festa de Tokadai",
+      "vi": "Lễ hội Tokadai",
+      "tl": "Tokadai Festival",
+      "es": "Fiesta de Tokadai",
+      "zh": "桃花台祭",
+      "id": "Festival Tokadai",
+      "ko": "도카다이 축제",
+      "ne": "तोकादाइ महोत्सव",
+      "tr": "Tokadai Şenliği",
+      "my": "Tokadai ပွဲတော်"
+    },
+    "大草・野口の棒の手": {
+      "en": "Bo-no-te of Okusa and Noguchi",
+      "pt": "Bo-no-te de Okusa e Noguchi",
+      "vi": "Bo-no-te của Okusa và Noguchi",
+      "tl": "Bo-no-te ng Okusa at Noguchi",
+      "es": "Bo-no-te de Okusa y Noguchi",
+      "zh": "大草与野口的棒之手",
+      "id": "Bo-no-te Okusa dan Noguchi",
+      "ko": "오쿠사·노구치의 보노테",
+      "ne": "ओकुसा र नोगुचीको बो-नो-ते",
+      "tr": "Okusa ve Noguchi’nin bo-no-te’si",
+      "my": "Okusa နှင့် Noguchi ၏ Bo-no-te"
+    },
     "【開催中止】尾張都市計画（用途地域及び桃花台地区計画の変更）に関する公聴会の開催": {
       "en": "[Cancelled] Public hearing on the Owari city plan (changes to zoning and the Tokadai district plan)",
       "pt": "[Cancelada] Audiência pública sobre o plano urbano de Owari (mudanças no zoneamento e no plano distrital de Tokadai)",
@@ -819,32 +819,6 @@
       "ne": "आ.व. २०२६ को पहिलो कोमाकी सहरी योजना परिषद् बैठक",
       "tr": "Komaki Kent Planlama Kurulu 2026 mali yılı 1. toplantısı",
       "my": "၂၀၂၆ ဘဏ္ဍာနှစ် ပထမအကြိမ် Komaki မြို့ပြစီမံကိန်း ကောင်စီ"
-    },
-    "桃花台まつり": {
-      "en": "Tokadai Festival",
-      "pt": "Festa de Tokadai",
-      "vi": "Lễ hội Tokadai",
-      "tl": "Tokadai Festival",
-      "es": "Fiesta de Tokadai",
-      "zh": "桃花台祭",
-      "id": "Festival Tokadai",
-      "ko": "도카다이 축제",
-      "ne": "तोकादाइ महोत्सव",
-      "tr": "Tokadai Şenliği",
-      "my": "Tokadai ပွဲတော်"
-    },
-    "大草・野口の棒の手": {
-      "en": "Bo-no-te of Okusa and Noguchi",
-      "pt": "Bo-no-te de Okusa e Noguchi",
-      "vi": "Bo-no-te của Okusa và Noguchi",
-      "tl": "Bo-no-te ng Okusa at Noguchi",
-      "es": "Bo-no-te de Okusa y Noguchi",
-      "zh": "大草与野口的棒之手",
-      "id": "Bo-no-te Okusa dan Noguchi",
-      "ko": "오쿠사·노구치의 보노테",
-      "ne": "ओकुसा र नोगुचीको बो-नो-ते",
-      "tr": "Okusa ve Noguchi’nin bo-no-te’si",
-      "my": "Okusa နှင့် Noguchi ၏ Bo-no-te"
     }
   }
 }
