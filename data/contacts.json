@@ -895,6 +895,36 @@
         "analysis.html",
         "community.html"
       ]
+    },
+    {
+      "id": "city-midori",
+      "level": "city",
+      "name": "都市政策部　みどり公園課　花と緑推進係",
+      "location": "小牧市役所　東庁舎2階",
+      "tel": "0568-76-1191",
+      "fax": "0568-71-1481",
+      "source": "https://www.city.komaki.aichi.jp/admin/event_1/midokoro/shiminshikinomori/16376.html",
+      "probe": {
+        "kind": "article_contact"
+      },
+      "shown_in": [
+        "community.html"
+      ]
+    },
+    {
+      "id": "city-sougouundoujo",
+      "level": "city",
+      "name": "総合運動場（市民球場）",
+      "tel": "0568-79-3336",
+      "source": "https://www.city.komaki.aichi.jp/admin/shisetsu/sports/1/16515.html",
+      "probe": {
+        "kind": "text",
+        "check_tel": true,
+        "match": "総合運動場（市民球場）"
+      },
+      "shown_in": [
+        "community.html"
+      ]
     }
   ]
 }
