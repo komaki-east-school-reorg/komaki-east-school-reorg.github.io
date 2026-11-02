@@ -3389,3 +3389,35 @@ main h2, main h3, main h4 { overflow-wrap: break-word; }
   .event-item > .ics-add { position: static; align-self: stretch; white-space: normal; text-align: center; margin-top: .2rem; }
   .event-item > div { min-width: 0; }
 }
+
+/* ===== PR（桃花台を考える会の仲間募集。community / index / schedule、2026-11-02）=====
+   画像はポスターそのもの（文字入り）。説明はとなりの文で読めるようにし、画像のリンクは
+   読み上げ・Tab から外してある（同じ行き先のリンクが本文にあるため）。 */
+.pr-section { padding-bottom: 0; }
+.pr-card {
+  display: flex; gap: 1.2rem; align-items: center;
+  max-width: 760px; margin: 1.8rem 0 0;
+  padding: 1rem 1.2rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.pr-card-pic { flex: 0 0 auto; display: block; width: 11rem; line-height: 0; }
+.pr-card-pic::after { content: none !important; }
+.pr-card-pic img { width: 100%; height: auto; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+.pr-card-body { min-width: 0; }
+.pr-badge {
+  display: inline-block; font-size: .68rem; font-weight: 800; letter-spacing: .06em;
+  padding: .1rem .5rem; border-radius: var(--radius-sm);
+  background: var(--text-muted); color: #fff; margin-bottom: .4rem;
+}
+.pr-card-h { font-family: var(--heading-font); font-weight: 800; font-size: 1.05rem; color: var(--primary); margin: 0 0 .4rem; }
+.pr-card-p { font-size: .9rem; line-height: 1.7; margin: 0 0 .5rem; }
+.pr-card-link { font-size: .92rem; font-weight: 700; margin: 0 0 .4rem; }
+.pr-card-note { font-size: .76rem; color: var(--text-muted); margin: 0; }
+@media (max-width: 560px) {
+  .pr-card { flex-direction: column; align-items: stretch; }
+  .pr-card-pic { width: min(100%, 20rem); margin: 0 auto; }
+}
+@media print { .pr-card, .pr-section { display: none !important; } }

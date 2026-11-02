@@ -86,6 +86,7 @@ data/i18n/ja-kids.json      「こどもむけ」モード用の上書き辞書�
 ■ 画像・アイコン
 favicon.svg                 ブラウザタブに表示されるサイトアイコン（SVG形式）。
 img/og-image.png            SNSシェア時に表示されるOGP用サムネイル画像。
+img/pr-tokadai-member.webp  PR：桃花台を考える会の仲間募集ポスター（720px に縮小）。community・index・schedule の .pr-card が Instagram（@tokadai_komaki）へリンク。
 img/icon-192.png / icon-512.png / icon-maskable-512.png / icon-180.png  ウェブアプリのアイコン（favicon.svg の桃の花を描き直したもの。180 は iPhone のホーム画面用）。
 
 ■ ページ別辞書（自動生成）
