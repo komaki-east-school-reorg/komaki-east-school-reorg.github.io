@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-02T01:41:02Z",
+  "fetched_at": "2026-11-03T03:38:19Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
@@ -33,6 +33,35 @@
       ]
     },
     {
+      "slug": "shinooka-e",
+      "level": "elem",
+      "names": {
+        "ja": "篠岡小学校",
+        "ja_kids": "しのおか小学校",
+        "en": "Shinooka Elem. School",
+        "zh": "篠冈小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
+      "latest_date": "2026-11-02",
+      "items": [
+        {
+          "title": "4年生：大山川の水質調査",
+          "date": "2026-11-02",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136483315?tm=20261102194756"
+        },
+        {
+          "title": "5校交流会",
+          "date": "2026-10-31",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136474172?tm=20261031115021"
+        },
+        {
+          "title": "東部市民センターの見学",
+          "date": "2026-10-31",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136474117?tm=20261031113638"
+        }
+      ]
+    },
+    {
       "slug": "ohshiro-e",
       "level": "elem",
       "names": {
@@ -45,19 +74,19 @@
       "latest_date": "2026-11-02",
       "items": [
         {
-          "title": "スポーツレクリエーション大会",
+          "title": "笑顔でさきがけ あいさつ運動",
           "date": "2026-11-02",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136476805?tm=20261102073410"
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136481528?tm=20261102155431"
         },
         {
-          "title": "２年生 中央公園で交流会を行いました！",
-          "date": "2026-10-30",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136462158?tm=20261029164854"
+          "title": "4年体育 ソフトバレーボール",
+          "date": "2026-11-02",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136481336?tm=20261102153336"
         },
         {
-          "title": "4年生 中央公園交流会を行いました！",
-          "date": "2026-10-30",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136472378?tm=20261030174747"
+          "title": "1年図工 いっしょにおさんぽ",
+          "date": "2026-11-02",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136481169?tm=20261102151716"
         }
       ]
     },
@@ -74,6 +103,11 @@
       "latest_date": "2026-11-02",
       "items": [
         {
+          "title": "小牧市青少年健全育成市民大会",
+          "date": "2026-11-02",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136482609?tm=20261102173902"
+        },
+        {
           "title": "恋せよ宇宙",
           "date": "2026-11-02",
           "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136477495?tm=20261102093604"
@@ -82,11 +116,6 @@
           "title": "願い事チャンス",
           "date": "2026-10-31",
           "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136475623?tm=20261031174327"
-        },
-        {
-          "title": "文化祭 展示鑑賞の様子 （3年生）",
-          "date": "2026-10-31",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136471890?tm=20261030171133"
         }
       ]
     },
@@ -100,22 +129,22 @@
         "zh": "光之丘小学"
       },
       "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
-      "latest_date": "2026-11-01",
+      "latest_date": "2026-11-02",
       "items": [
+        {
+          "title": "5年生 算数",
+          "date": "2026-11-02",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136480665?tm=20261102143018"
+        },
+        {
+          "title": "5年生 家庭科 調理実習",
+          "date": "2026-11-02",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136477580?tm=20261102094709"
+        },
         {
           "title": "スクールバス試乗会",
           "date": "2026-11-01",
           "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136476242?tm=20261101133744"
-        },
-        {
-          "title": "4年生 5校交流会",
-          "date": "2026-10-30",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136470032?tm=20261030151338"
-        },
-        {
-          "title": "笑顔でさきがけあいさつ運動",
-          "date": "2026-10-30",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136464875?tm=20261030081544"
         }
       ]
     },
@@ -145,35 +174,6 @@
           "title": "10/30 今日の給食",
           "date": "2026-10-30",
           "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136470334?tm=20261030153358"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-e",
-      "level": "elem",
-      "names": {
-        "ja": "篠岡小学校",
-        "ja_kids": "しのおか小学校",
-        "en": "Shinooka Elem. School",
-        "zh": "篠冈小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
-      "latest_date": "2026-10-31",
-      "items": [
-        {
-          "title": "5校交流会",
-          "date": "2026-10-31",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136474172?tm=20261031115021"
-        },
-        {
-          "title": "東部市民センターの見学",
-          "date": "2026-10-31",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136474117?tm=20261031113638"
-        },
-        {
-          "title": "小中合同あいさつ運動",
-          "date": "2026-10-31",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136474098?tm=20261031112951"
         }
       ]
     },
