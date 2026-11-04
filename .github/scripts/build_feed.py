@@ -121,9 +121,9 @@ def build():
         f'  <link rel="alternate" type="text/html" href="{SITE}"/>',
         f"  <id>{SITE}</id>",
         f"  <updated>{updated}</updated>",
-        "  <author><name>小牧市東部（篠岡地区）学校再編ナビ（市民有志・非公式）</name></author>",
+        "  <author><name>これがまちつくサイトの解。（こまけぇ・住民有志・非公式）</name></author>",
         f"  <icon>{SITE}favicon.svg</icon>",
-        "  <rights>このサイトは市民有志が運営しており、小牧市・教育委員会とは無関係です。</rights>",
+        "  <rights>このサイトは住民有志によるユニット「これがまちつくサイトの解。」（略称：こまけぇ）が運営しており、小牧市・教育委員会とは無関係です。</rights>",
     ]
     for d, title, cat, href, eid in entries:
         lines += [

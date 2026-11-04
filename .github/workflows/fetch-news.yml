@@ -544,7 +544,7 @@ jobs:
           github_token: ${{ github.token }}
           claude_args: '--model sonnet --max-turns 60 --allowedTools "Read,Grep,Glob,Write"'
           prompt: |
-            あなたは独立した監査担当です。別のAIがこの市民向け情報サイトに加えた変更を審査してください。
+            あなたは独立した監査担当です。別のAIがこの住民向け情報サイトに加えた変更を審査してください。
             あなた自身がサイトのデータを修正することは禁止されています（Write は verdict.json の出力のみに使う）。
 
             ## 入力

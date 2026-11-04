@@ -63,7 +63,7 @@ SOURCES = [
         "key": "newsletters",
         # 同じページには各号の外国語版（リンク文字列は「スペイン語」等）と
         # 「意見提出フォームから頂いたご意見」の PDF も並んでいるが、
-        # 前者は日本語版と同内容、後者は市民の意見そのものなので取り込まない。
+        # 前者は日本語版と同内容、後者は住民の意見そのものなので取り込まない。
         "pages": ["https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/"
                   "kyouikusoumu/303/shinooka_gsaihen/49521.html"],
         "title_re": re.compile(r"学校再編だより"),

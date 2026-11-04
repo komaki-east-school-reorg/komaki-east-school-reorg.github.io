@@ -6,10 +6,18 @@
   <link rel="self" type="application/atom+xml" href="https://komaki-east-school-reorg.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/"/>
   <id>https://komaki-east-school-reorg.github.io/</id>
-  <updated>2026-11-04T00:00:00+09:00</updated>
-  <author><name>小牧市東部（篠岡地区）学校再編ナビ（市民有志・非公式）</name></author>
+  <updated>2026-11-05T00:00:00+09:00</updated>
+  <author><name>これがまちつくサイトの解。（こまけぇ・住民有志・非公式）</name></author>
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
-  <rights>このサイトは市民有志が運営しており、小牧市・教育委員会とは無関係です。</rights>
+  <rights>このサイトは住民有志によるユニット「これがまちつくサイトの解。」（略称：こまけぇ）が運営しており、小牧市・教育委員会とは無関係です。</rights>
+  <entry>
+    <title>運営者（住民有志のユニット「こまけぇ」）をフッタとサイトの案内に明記</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:79bf9646ff93caf8</id>
+    <updated>2026-11-05T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜運営者（住民有志のユニット「こまけぇ」）をフッタとサイトの案内に明記</summary>
+  </entry>
   <entry>
     <title>検証と提案の「学級の人数」と高校の節を、わかりやすく書き直し</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
@@ -321,13 +329,5 @@
     <updated>2026-10-13T00:00:00+09:00</updated>
     <category term="東部まちづくりの動き"/>
     <summary>東部まちづくりの動き｜東部まちづくり：栄森の地下街「まちのたね」</summary>
-  </entry>
-  <entry>
-    <title>通学帽子と、閉校後の避難所についてのQ&amp;Aを追加</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:5efa22fa24d99551</id>
-    <updated>2026-10-13T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜通学帽子と、閉校後の避難所についてのQ&amp;Aを追加</summary>
   </entry>
 </feed>

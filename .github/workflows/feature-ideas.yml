@@ -62,7 +62,7 @@ jobs:
           github_token: ${{ github.token }}
           claude_args: '--model sonnet --max-turns 40 --allowedTools "Read,Grep,Glob,Write"'
           prompt: |
-            あなたはこの市民向け情報サイト（小牧市東部・篠岡地区の学校再編を伝える非公式サイト）の
+            あなたはこの住民向け情報サイト（小牧市東部・篠岡地区の学校再編を伝える非公式サイト）の
             改善提案担当です。今日は ${{ env.TODAY }} です。
 
             ## やること

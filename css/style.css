@@ -3142,6 +3142,7 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
 
 /* site.html 冒頭のバージョン表示（2026-11-01 から Ver.1.0） */
 .site-version-bar { padding: 1rem 0 0; }
+.site-operator { margin: 0 0 .6rem; font-size: .9rem; color: var(--primary-dark); }
 .site-history { margin-top: .6rem; font-size: .88rem; }
 .site-history summary { cursor: pointer; font-weight: 700; color: var(--primary-dark); }
 .site-history ul { margin: .4rem 0 0 1.2rem; line-height: 1.8; }

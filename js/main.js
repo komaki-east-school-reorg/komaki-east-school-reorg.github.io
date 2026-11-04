@@ -371,7 +371,7 @@ window.KomakiIcs = (function () {
    ['tbd', 'ics_tbd', '（日程未定・{p}）'],
    ['tbd_desc', 'ics_tbd_desc', '日付はまだ公表されていません。公表された時期（{p}）を期間として登録しています。日程が分かったら、この予定を直してください。'],
    ['calname', 'grade_ics_calname', '小牧市東部 学校再編の予定'],
-   ['desc', 'grade_ics_desc', 'この予定は市民有志のサイトがまとめたものです。正式な案内は市から届く書類でご確認ください。'],
+   ['desc', 'grade_ics_desc', 'この予定は住民有志のサイトがまとめたものです。正式な案内は市から届く書類でご確認ください。'],
    ['fail', 'grade_ics_fail', 'カレンダーの書き出しに失敗しました']].forEach(function (x) {
     var s = document.createElement('span');
     s.setAttribute('data-ik', x[0]);
@@ -580,12 +580,12 @@ window.KomakiHeadline = (function () {
    2026-09-26 ユーザー指示：同会の新しい催しはスケジュールに自動で載せる。
    data/tobu_actions.json（毎日自動生成）のうち organizer 付きの催しを、events.json と
    同じ形（12言語のラベル＋ "day": true）に直して返す。ラベルは見出しの訳
-   （data/headline_i18n.json、毎日自動更新）に「（市民有志）」を足したもの。
+   （data/headline_i18n.json、毎日自動更新）に「（住民有志）」を足したもの。
    KomakiEvents() は events.json にこれを足したもの。events.json にすでに同じ催しが
    あれば（ja のラベルが題名で始まるもの）足さない — 手で書いた項目が優先。
    カレンダー・.ics・「あと◯日」・スケジュール一覧・トップの件数がこれを使う。 */
 window.KomakiTokadaiEvents = (function () {
-  var TAG = {ja:'（市民有志）', en:' (citizen-run)', pt:' (iniciativa de cidadãos)', vi:' (do người dân tổ chức)', tl:' (mamamayan ang nagpapatakbo)', es:' (iniciativa ciudadana)', zh:'（市民自发）', id:' (inisiatif warga)', ko:'(시민 주도)', ne:' (नागरिक पहल)', tr:' (vatandaş girişimi)', my:' (ပြည်သူ့ဦးဆောင်)'};
+  var TAG = {ja:'（住民有志）', en:' (resident-run)', pt:' (iniciativa de moradores)', vi:' (do người dân tổ chức)', tl:' (mga residente ang nagpapatakbo)', es:' (iniciativa vecinal)', zh:'（居民自发）', id:' (inisiatif warga)', ko:'(주민 주도)', ne:' (बासिन्दा पहल)', tr:' (bölge sakinleri girişimi)', my:' (ဒေသခံဦးဆောင်)'};
   /* 地域協議会の催し（2026-10-05 ユーザー指示）。data/community_events.json（毎日自動生成）のうち
      東部地域（shinooka: true）で日付の読めたものも、同じ形でスケジュールへ足す。src.kind が 'council'。 */
   var TAG_COUNCIL = {ja:'（地域協議会）', en:' (community council)', pt:' (conselho comunitário)', vi:' (hội đồng cộng đồng)', tl:' (konseho ng komunidad)', es:' (consejo comunitario)', zh:'（地区协议会）', id:' (dewan komunitas)', ko:'(지역 협의회)', ne:' (सामुदायिक परिषद्)', tr:' (bölge konseyi)', my:' (ဒေသဆိုင်ရာ ကောင်စီ)'};
@@ -731,8 +731,9 @@ window.KomakiGrade = (function () {
    市の個別ページへ出すと、読者が説明を読まないまま外へ抜けてしまう。
 
    【うるさくしない】
-   ・閉じたら、その項目は二度と出さない（localStorage: komaki_feature_seen）。
-   ・複数あるときは1本ずつ入れ替える（最大3件）。全件見せたら自動で閉じ、見たことにする
+   ・帯を開いた時点で、期間内の候補をすべて「見た」と記録し、二度と出さない
+     （localStorage: komaki_feature_seen。2026-11-05 ユーザー指示）。新しい行が増えたときだけ出る。
+   ・複数あるときは1本ずつ入れ替える（最大3件）。全件見せたら自動で閉じる
      （2026-11-04 ユーザー指示）。ページを開いた直後は
      読み込み中の視線を奪わないよう、少し置いてから出す。
    ・prefers-reduced-motion のときはスライドさせず、そのまま出す。 */
@@ -760,11 +761,19 @@ window.KomakiGrade = (function () {
       return Array.isArray(a) ? a : [];
     } catch (e) { return []; }
   }
-  function markSeen(id) {
+  /* 記録は件数ではなく日付で整理する（2026-11-05）。以前は最新40件だけを残していたが、
+     14日の窓の中の候補だけで25件ほどあり、日をまたいで記録が増えると窓の中の古い id から
+     押し出されて「まだ見ていない」に戻り、再読み込みで古い更新履歴が帯に出ていた。
+     id は「種類|YYYY-MM-DD|本文」なので、日付が窓より十分古いものだけを捨てる。 */
+  function markSeen(ids) {
     try {
       var a = seen();
-      if (a.indexOf(id) === -1) a.push(id);
-      localStorage.setItem('komaki_feature_seen', JSON.stringify(a.slice(-40)));
+      [].concat(ids).forEach(function (id) { if (a.indexOf(id) === -1) a.push(id); });
+      a = a.filter(function (id) {
+        var d = String(id).split('|')[1];
+        return !/^\d{4}-\d{2}-\d{2}$/.test(d || '') || daysSince(d) <= WINDOW_DAYS + 7;
+      });
+      localStorage.setItem('komaki_feature_seen', JSON.stringify(a.slice(-300)));
     } catch (e) {}
   }
 
@@ -980,7 +989,7 @@ window.KomakiGrade = (function () {
         if (closed) return;
         closed = true;
         stop();
-        all.forEach(function (it) { markSeen(it.id); });
+        markSeen(all.map(function (it) { return it.id; }));
         host.classList.remove('is-open');
         window.setTimeout(function () { host.hidden = true; }, 400);
       }
@@ -1010,6 +1019,10 @@ window.KomakiGrade = (function () {
 
       host.hidden = false;
       window.setTimeout(function () {
+        // 帯を開いた時点で、期間内の候補をすべて「見た」と記録する（2026-11-05 ユーザー指示：
+        // 新しい3件を見せたらもう出さない）。閉じるまで待つと、途中で再読み込みしたときに
+        // 同じ帯や、繰り上がった古い行がまた出てしまう。新しい行が増えたときだけ、また出る。
+        markSeen(all.map(function (it) { return it.id; }));
         host.classList.add('is-open');
         show(0);
         if (!held.mouse && !held.focus) tick();
@@ -2188,7 +2201,7 @@ window.KomakiGrade = (function () {
     // 各行の「カレンダーに追加」（2026-10-13）。文字はボタン内に持つ（このブロックは辞書より先に描くため埋め込み辞書）
     ics:     {ja:'📅 カレンダーに追加', en:'📅 Add to calendar', pt:'📅 Adicionar à agenda', vi:'📅 Thêm vào lịch', tl:'📅 Idagdag sa kalendaryo', es:'📅 Agregar al calendario', zh:'📅 加入日历', id:'📅 Tambah ke kalender', ko:'📅 캘린더에 추가', ne:'📅 क्यालेन्डरमा थप्नुहोस्', tr:'📅 Takvime ekle', my:'📅 ပြက္ခဒိန်သို့ ထည့်ရန်'},
     calname: {ja:'小牧市 地域協議会の催し', en:'Komaki community council events', pt:'Eventos dos conselhos comunitários de Komaki', vi:'Sự kiện hội đồng khu vực Komaki', tl:'Mga kaganapan ng community council ng Komaki', es:'Eventos de los consejos comunitarios de Komaki', zh:'小牧市地区协议会活动', id:'Acara dewan komunitas Komaki', ko:'고마키시 지역협의회 행사', ne:'कोमाकी सामुदायिक परिषद्का कार्यक्रम', tr:'Komaki mahalle konseyi etkinlikleri', my:'Komaki ရပ်ရွာကောင်စီ ပွဲများ'},
-    icsdesc: {ja:'市の公式ページの案内を、市民有志のサイトがカレンダー用にまとめたものです。内容・変更は記事でご確認ください。', en:'Compiled for calendars by a citizen-run site from the city\'s official listing. Check the article for details and changes.', pt:'Organizado para agendas por um site de cidadãos a partir do aviso oficial da prefeitura. Confira detalhes e mudanças no artigo.', vi:'Trang do người dân vận hành tổng hợp từ thông báo chính thức của thành phố để đưa vào lịch. Hãy xem bài viết để biết chi tiết và thay đổi.', tl:'Tinipon para sa kalendaryo ng site na pinapatakbo ng mamamayan mula sa opisyal na abiso ng lungsod. Tingnan ang artikulo para sa detalye at pagbabago.', es:'Preparado para calendarios por un sitio ciudadano a partir del aviso oficial del municipio. Consulte el artículo para detalles y cambios.', zh:'由市民自发运营的网站根据市官方公告整理成日历用信息。详情和变更请查看原文。', id:'Disusun untuk kalender oleh situs warga dari pengumuman resmi kota. Periksa artikelnya untuk detail dan perubahan.', ko:'시민이 운영하는 사이트가 시 공식 안내를 캘린더용으로 정리한 것입니다. 자세한 내용과 변경은 기사에서 확인하세요.', ne:'नागरिकले चलाएको साइटले नगरको आधिकारिक सूचनाबाट क्यालेन्डरका लागि तयार पारेको। विवरण र परिवर्तन लेखमा हेर्नुहोस्।', tr:'Vatandaşların yürüttüğü bir site, belediyenin resmî duyurusundan takvim için derledi. Ayrıntılar ve değişiklikler için habere bakın.', my:'ပြည်သူများ လုပ်ဆောင်သော ဝဘ်ဆိုက်က မြို့တော်၏ တရားဝင်ကြေညာချက်မှ ပြက္ခဒိန်အတွက် စုစည်းထားသည်။ အသေးစိတ်နှင့် ပြောင်းလဲမှုများကို ဆောင်းပါးတွင် ကြည့်ပါ။'},
+    icsdesc: {ja:'市の公式ページの案内を、住民有志のサイトがカレンダー用にまとめたものです。内容・変更は記事でご確認ください。', en:'Compiled for calendars by a resident-run site from the city\'s official listing. Check the article for details and changes.', pt:'Organizado para agendas por um site de moradores a partir do aviso oficial da prefeitura. Confira detalhes e mudanças no artigo.', vi:'Trang do người dân vận hành tổng hợp từ thông báo chính thức của thành phố để đưa vào lịch. Hãy xem bài viết để biết chi tiết và thay đổi.', tl:'Tinipon para sa kalendaryo ng site na pinapatakbo ng mamamayan mula sa opisyal na abiso ng lungsod. Tingnan ang artikulo para sa detalye at pagbabago.', es:'Preparado para calendarios por un sitio vecinal a partir del aviso oficial del municipio. Consulte el artículo para detalles y cambios.', zh:'由居民自发运营的网站根据市官方公告整理成日历用信息。详情和变更请查看原文。', id:'Disusun untuk kalender oleh situs warga dari pengumuman resmi kota. Periksa artikelnya untuk detail dan perubahan.', ko:'시민이 운영하는 사이트가 시 공식 안내를 캘린더용으로 정리한 것입니다. 자세한 내용과 변경은 기사에서 확인하세요.', ne:'नागरिकले चलाएको साइटले नगरको आधिकारिक सूचनाबाट क्यालेन्डरका लागि तयार पारेको। विवरण र परिवर्तन लेखमा हेर्नुहोस्।', tr:'Vatandaşların yürüttüğü bir site, belediyenin resmî duyurusundan takvim için derledi. Ayrıntılar ve değişiklikler için habere bakın.', my:'ဒေသခံများ လုပ်ဆောင်သော ဝဘ်ဆိုက်က မြို့တော်၏ တရားဝင်ကြေညာချက်မှ ပြက္ခဒိန်အတွက် စုစည်းထားသည်။ အသေးစိတ်နှင့် ပြောင်းလဲမှုများကို ဆောင်းပါးတွင် ကြည့်ပါ။'},
     see_all: {ja:'市の公式ページで確認する →', en:'Check on the official city page →', pt:'Ver na página oficial da cidade →', vi:'Xem trên trang chính thức của thành phố →', tl:'Tingnan sa opisyal na pahina ng lungsod →', es:'Ver en la página oficial del municipio →', zh:'在市政府官方页面确认 →', id:'Lihat di halaman resmi kota →', ko:'시 공식 페이지에서 확인하기 →', ne:'नगरको आधिकारिक पृष्ठमा हेर्नुहोस् →', tr:'Belediyenin resmî sayfasında görün →', my:'မြို့တော် တရားဝင်စာမျက်နှာတွင် ကြည့်ရန် →'}
   };
   function cet(key) { return _cet[key][_cl] || _cet[key]['en'] || _cet[key]['ja']; }
@@ -4336,8 +4349,8 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
    計画の内容・数値の根拠には決して使わない。発信元の表示が
    「誰の発信か」を示す唯一の手がかりなので、外さないこと。
 
-   バッジは主催者の別で切り替える（data 側の badge）。市民有志の催しと
-   地域協議会の催しは主催が違うので、まとめて「市民有志」と書いてはいけない
+   バッジは主催者の別で切り替える（data 側の badge）。住民有志の催しと
+   地域協議会の催しは主催が違うので、まとめて「住民有志」と書いてはいけない
    ——主催者を偽ることになる。協議会の催しでも、市が公式サイトで案内した
    ものはすぐ上の自動取得コーナーに出る。こちらは紙の回覧など、
    自動取得では拾えない経路で知った分を手で載せる場所。
@@ -4355,7 +4368,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     source: {ja:'発信元', en:'Posted by', pt:'Divulgado por', vi:'Nguồn tin', tl:'Mula sa', es:'Publicado por', zh:'发布方', id:'Diposting oleh', ko:'게시 주체', ne:'प्रकाशक', tr:'Paylaşan', my:'တင်သူ'},
     venue:  {ja:'会場の案内', en:'Venue notice', pt:'Aviso do local', vi:'Thông báo của địa điểm', tl:'Anunsyo ng venue', es:'Aviso del lugar', zh:'场地公告', id:'Info tempat acara', ko:'행사장 안내', ne:'स्थलको सूचना', tr:'Mekân duyurusu', my:'ပွဲနေရာ၏ ကြေညာချက်'},
     ref:    {ja:'参考', en:'Reference', pt:'Referência', vi:'Tham khảo', tl:'Sanggunian', es:'Referencia', zh:'参考', id:'Rujukan', ko:'참고', ne:'सन्दर्भ', tr:'Referans', my:'ကိုးကား'},
-    citizen:{ja:'市民有志', en:'Citizen-run', pt:'Iniciativa de cidadãos', vi:'Do người dân tổ chức', tl:'Mamamayan ang nagpapatakbo', es:'Iniciativa ciudadana', zh:'市民自发', id:'Inisiatif warga', ko:'시민 주도', ne:'नागरिक पहल', tr:'Vatandaş girişimi', my:'ပြည်သူ့ဦးဆောင်'},
+    citizen:{ja:'住民有志', en:'Resident-run', pt:'Iniciativa de moradores', vi:'Do người dân tổ chức', tl:'Mga residente ang nagpapatakbo', es:'Iniciativa vecinal', zh:'居民自发', id:'Inisiatif warga', ko:'주민 주도', ne:'बासिन्दा पहल', tr:'Bölge sakinleri girişimi', my:'ဒေသခံဦးဆောင်'},
     facility:{ja:'児童館', en:'Children\'s centre', pt:'Centro infantil', vi:'Nhà thiếu nhi', tl:'Children\'s center', es:'Centro infantil', zh:'儿童馆', id:'Pusat anak', ko:'아동관', ne:'बाल केन्द्र', tr:'Çocuk merkezi', my:'ကလေးစင်တာ'},
     council:{ja:'地域協議会', en:'Community council', pt:'Conselho comunitário', vi:'Hội đồng cộng đồng', tl:'Konseho ng komunidad', es:'Consejo comunitario', zh:'地区协议会', id:'Dewan komunitas', ko:'지역 협의회', ne:'सामुदायिक परिषद्', tr:'Bölge konseyi', my:'ဒေသဆိုင်ရာ ကောင်စီ'},
     tokadai_body:{ja:'桃花台を考える会（市民活動団体）が、市の東部まちづくり推進室との協働提案事業として開く催しです。',
@@ -4520,15 +4533,15 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
 
 /* ===== TOBU ACTIONS（「地域の取組」欄の中の「東部まちづくりの動き」）=====
    2026-09-13 追加（ユーザー指示）。市の東部まちづくり推進室が公表している
-   東部地域の取組を、市民有志の取組のすぐ下に出す。data/tobu_actions.json は
+   東部地域の取組を、住民有志の取組のすぐ下に出す。data/tobu_actions.json は
    .github/scripts/build_tobu_actions.py が毎日の取得結果から組み立てる生成物で、
    手編集しない（自動更新パイプラインの ALLOWED にも入れない）。
 
-   【市民有志の取組とは見出しを分ける】上は住民自身が始めたもの、ここは市の部署が
+   【住民有志の取組とは見出しを分ける】上は住民自身が始めたもの、ここは市の部署が
    公表したもの。同じ一覧に混ぜると「誰が出している情報か」が消えるので、見出しは分ける。
-   ただし**行の形は市民有志の取組（.action-item）と同じカードにそろえてある**
+   ただし**行の形は住民有志の取組（.action-item）と同じカードにそろえてある**
    （2026-09-20 ユーザー指示。欄が続いて見えるようにするため）。出どころの違いは
-   「市公式」の札・カード左帯の色（市公式は緑、市民有志は黄）・最後の出典行で示す。
+   「市公式」の札・カード左帯の色（市公式は緑、住民有志は黄）・最後の出典行で示す。
    この3つは外さないこと。
 
    【これからの催しを先に出す】参加できるものが先、済んだ動きが後。載せるのは
@@ -4611,7 +4624,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     var extra = '';
     // 日本語以外では日付を左の欄で出しているので、ここは時刻だけに組み直す（読めなければ原文）。
     var note = it.date_note ? window.KomakiJaWhen(it.date_note, _tl, {timeOnly: true}) : '';
-    // 行の形は市民有志の取組（.action-row＋.action-label）にそろえてある（2026-09-20 ユーザー指示）。
+    // 行の形は住民有志の取組（.action-row＋.action-label）にそろえてある（2026-09-20 ユーザー指示）。
     // 出どころの違いは、札（市公式）と左帯の色、そして最後の出典行で示す。
     if (note)         extra += '<span class="tobu-from"><span class="tobu-label">' + tt('when') + '</span>' + esc(note) + '</span>';
     if (it.place)     extra += '<span class="tobu-from"><span class="tobu-label">' + tt('place') + '</span><span data-hl="' + esc(it.place) + '">' + esc(it.place) + '</span></span>';

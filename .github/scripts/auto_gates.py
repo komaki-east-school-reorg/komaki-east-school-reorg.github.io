@@ -135,15 +135,15 @@ PERMITTED_MEXT_LINKS = (
     "shotou/ikkan/2/1316125.htm",        # 中高一貫教育の概要と設置状況（2026-09-26）
 )
 MEXT_PAGES = ("nationwide.html",)
-# 閉校を惜しむ市民有志の Instagram アカウント。「地域の取組」欄（community.html と、
+# 閉校を惜しむ住民有志の Instagram アカウント。「地域の取組」欄（community.html と、
 # トップの「最新の動き」に同じ一覧を出す index.html）でのみ、
 # ここに挙げたアカウントに限って張ってよい（2026-08-26 追加）。
-# これは市の公式情報でも報道でもなく【市民有志の発信】であり、
+# これは市の公式情報でも報道でもなく【住民有志の発信】であり、
 # 計画の内容・数値の根拠には決して使わない（報道と同じ扱い）。
 # 増やすときは CLAUDE.md・CONTRIBUTING.txt 規則1・README.md も同時に更新すること。
 # 値は「そのアカウントを張ってよいページ」。None はサイト全体（＝フッタに出るもの）。
 PERMITTED_INSTAGRAM = {
-    # 閉校を惜しむ市民有志。「地域の取組」欄を描くページだけ
+    # 閉校を惜しむ住民有志。「地域の取組」欄を描くページだけ
     # （index は「最新の動き」に同じ一覧を出すため。2026-09-03）
     "instagram.com/arigato.ohshirosho": ("community.html", "index.html"),
     # TOKADAI DANCE FESTIVAL（主催：株式会社iサポート）。同じく「地域の取組」欄を描く
