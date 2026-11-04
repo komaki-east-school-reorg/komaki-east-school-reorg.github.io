@@ -365,6 +365,7 @@ jobs:
                - index.html … 「今後のスケジュール」バーは data/events.json から自動で描かれるので、予定を手で書き足さない
                  （events.json と schedule.html の両方に書けば帯にも出る。両者の食い違いは検証 check 9 で不合格になる）
                - schedule.html … 主要イベント一覧の項目（data-event-date="YYYY-MM-DD"、複数日イベントは終了日）
+               - data/site-updates.json … サイトの更新履歴（手順7のときだけ）
                - community.html … 地域協議会ページ。スナップショットが sasaeai-3-3_2-* のとき
                  （所管は支え合い協働推進課）はここが主対象。篠岡地区5協議会（陶・篠岡学区・
                  大城・光ヶ丘・桃ヶ丘）に関わる記述のみ扱い、他学区の話題は追加しない
@@ -382,10 +383,21 @@ jobs:
                - data/i18n/*.json の now_asof … その基準月（例「2026年8月時点」）を今日の日付に合わせて更新
                - この枠は自動計算ではなく手書きの一文なので、放置すると最も古びやすい。
                  逆に、日程の追加・終了や新資料の公開など状況が動かない変更（誤字修正等）では触らないこと
-            7. 必ず auto_update/evidence.json を書く（後述）
+            7. **更新内容を吟味し、読者が気づく変更なら更新履歴（data/site-updates.json）に1行足す**（2026-11-04 ユーザー指示）
+               - 足すのは、予定の追加・日程の変更・新しい事実（新校名・通学区域・バスなど）の掲載のように、
+                 読者がサイトを開いて「何か変わった」と分かる変更だけ。「いまの状況」枠の言い回しだけ、
+                 誤字・体裁、地域協議会の催し（スクリプトが自動で足す）では足さない。迷ったら足さない
+               - updates 配列の**先頭**に足す。既存の行は1文字も変えない・消さない・並べ替えない（検証で不合格）
+               - 形：{"date": "${{ env.TODAY }}", "type": "content", "ja": "…", "en": "…"}。ほかのキーは書かない
+               - ja は体言止めの短い一行（30〜40字、最大45字、句点「。」なし、「〜しました」と文章にしない）。
+                 例「第2回保護者等説明会の日程をスケジュールに追加」。en も同じ形の名詞句
+                 （例 "Second parents' briefing dates added to the schedule"）。タグ・URL は書かない
+               - 関連する変更は1行にまとめる（多くても2行）。機能や内容の廃止は載せない
+               - evidence.json にも、このファイルのエントリ（根拠の引用）を書く
+            8. 必ず auto_update/evidence.json を書く（後述）
 
             ## 絶対に守るルール
-            - 上記5種類以外のファイルの編集・新規ファイルの作成は禁止（検証で不合格になる）
+            - 上記6種類以外のファイルの編集・新規ファイルの作成は禁止（検証で不合格になる）
             - 代表者名など個人名は転載しない（市公式サイトに載っていても本サイトには載せない）
             - 事実は report/pages.diff と data/official_pages/ の内容のみに基づく。推測・創作は禁止
             - 更新が不要な変更（誤字修正・体裁変更・サイトに載せない情報）なら何も編集せず evidence.json に [] を書く
@@ -428,7 +440,7 @@ jobs:
           git config core.hooksPath /dev/null
           git checkout origin/main -- .github
           bad=$(git status --porcelain --untracked-files=all | cut -c4- \
-                | grep -vE '^(data/events\.json|data/i18n/[A-Za-z-]+\.json|index\.html|schedule\.html|community\.html|auto_update/[A-Za-z0-9_.-]+|report/.*)$' || true)
+                | grep -vE '^(data/events\.json|data/site-updates\.json|data/i18n/[A-Za-z-]+\.json|index\.html|schedule\.html|community\.html|auto_update/[A-Za-z0-9_.-]+|report/.*)$' || true)
           if [ -n "$bad" ]; then
             echo "::error::起案AIが編集してよい範囲の外を変更しました"
             echo "$bad"
@@ -460,6 +472,11 @@ jobs:
       - name: Rebuild page dictionaries
         if: steps.token.outputs.available == 'true'
         run: python3 .github/scripts/build_page_dicts.py
+
+      # 起案AIが更新履歴に1行足すと feed.xml が古くなる（check 14）。決定的に作り直す。
+      - name: Rebuild feed
+        if: steps.token.outputs.available == 'true'
+        run: python3 .github/scripts/build_feed.py
 
       # ---------- 機械検証ゲート ----------
       - name: Run guardrail gates
@@ -507,7 +524,7 @@ jobs:
           # 起案AIの編集が commit されず PR にも proposed.diff にも現れないまま消える
           # （community.html が長らくそうなっていた）。
           # events/ と sitemap.xml は build_event_pages.py の生成物（schedule.html の予定から作る）
-          git add data/events.json data/i18n index.html schedule.html community.html events sitemap.xml
+          git add data/events.json data/site-updates.json data/i18n index.html schedule.html community.html events sitemap.xml feed.xml
           git commit -m "auto: 公式ページ更新の自動反映 ${TODAY}"
           git diff origin/main..HEAD > auto_update/proposed.diff
           echo "--- proposed diff ---"
@@ -548,6 +565,9 @@ jobs:
             6. 状況が動く変更なのに「いまの状況」枠（now_text / now_asof）が古いまま放置されていないか。
                過ぎた日付の内容が「これから」のように書かれていないか（済んだことは過去形＋data-past）。
                逆に now_text が原文にない推測を含んでいないか。更新するなら全12言語＋ja-kids が揃っているか
+            7. 更新履歴（data/site-updates.json）に足した行が、実際の変更と一致しているか。
+               体言止めの短い一行で、廃止を書いていないか。読者が気づく変更なのに足していない、
+               あるいは足すほどでない変更（言い回しだけ・誤字）に足していないか。既存の行が変わっていないか
 
             ## 出力（必須）
             auto_update/verdict.json に次の形式で書く:

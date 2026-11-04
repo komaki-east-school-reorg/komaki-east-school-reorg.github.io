@@ -509,10 +509,6 @@
     <div class="container">
       <h2 class="section-title" data-i18n-html="section_latest">最新の動き<small>Latest Updates</small></h2>
       <p class="school-lead" data-i18n="latest_lead">🔄 の付いた一覧は、市と対象校のページから毎日自動で取り込んでいます。見出しは各ページの原文のままです。「地域の取組」の上半分（住民や地域協議会などの催し）だけは手で集めています。</p>
-      <!-- 各コーナーの新着をA4 1枚にまとめて印刷する。処理は js/main.js の BOARD SHEET。 -->
-      <p class="latest-print">
-        <button type="button" id="latest-print-btn" data-i18n="board_latest_btn">最新の動きを印刷して回覧する</button>
-      </p>
       <!-- フィードの案内（2026-10-13 ユーザー指示「配信していることをわかりやすく」）。2026-10-30 に一行にし、くわしい説明は site.html#feed へ移した（ユーザー指示）。
            feed.xml の中身は .github/scripts/build_feed.py がこの下の各コーナーと同じデータから作る。 -->
       <p class="feed-box feed-line"><a class="feed-box-link" href="feed.xml" type="application/atom+xml" data-i18n="feed_link">📡 更新情報をフィード（RSS）で受け取る</a> <a class="feed-more" href="site.html#feed" data-i18n="feed_more">しくみと使い方 →</a></p>
@@ -572,8 +568,7 @@
       </aside>
 
       <!-- 東部まちづくりの動き（市公式）。community.html と同じ一覧を出す。
-           見出しはこのコーナー（h3）の下位なので h4。回覧板シートの latestBlocks() は
-           h3 だけを見るので、ここを h4 にしておくと紙面の構成は変わらない。 -->
+           見出しはこのコーナー（h3）の下位なので h4。 -->
       <h4 class="section-title sub" style="margin-top:2rem;" data-i18n-html="tobu_actions_h">東部まちづくりの動き<small>Eastern District Updates</small></h4>
       <p class="school-lead" data-i18n="tobu_actions_lead">市の東部まちづくり推進室が公表している東部地域の取組です。これからの催しと、この2か月の動きを並べます。</p>
       <div id="tobu-actions-container"></div>
@@ -587,7 +582,7 @@
   <!-- SITE UPDATE LOG（このサイト自身の更新履歴。トップページ最下部）
        id="site-updates" はトップのカットイン（js/main.js の TOP CUT-IN）の
        リンク先。外すとカットインの「くわしく」がどこにも飛ばなくなる。 -->
-  <!-- 2026-10-24 ユーザー指示で「最新の動き」から独立させた（h2）。回覧板シート（h3 のコーナーだけを拾う）には載らない。 -->
+  <!-- 2026-10-24 ユーザー指示で「最新の動き」から独立させた（h2）。 -->
   <section class="section" id="site-updates">
     <div class="container">
       <h2 class="section-title" data-i18n-html="section_site_updates">サイトの更新履歴<small>Site Update Log</small></h2>
@@ -617,22 +612,6 @@
       <p class="share-lead" data-i18n="share_lead">リンクを送るだけでも、知る人は増えます。</p>
       <div class="share-buttons" id="share-buttons"></div>
       <div class="share-star" id="share-star"></div>
-      <!-- 回覧板シートの文言。js/main.js の BOARD SHEET が組み立てるので
-           HTML には現れない。翻訳は辞書に持たせる。 -->
-      <div id="board-strings" hidden>
-        <span data-bk="unofficial" data-i18n="board_unofficial">市民有志が運営する非公式のサイトです。小牧市・教育委員会が発行したものではありません。</span>
-        <span data-bk="cta" data-i18n="board_cta">この紙に載せきれなかったことは、サイトにすべて載っています。</span>
-        <span data-bk="scan" data-i18n="board_scan">スマートフォンのカメラで読み取れます。</span>
-        <span data-bk="tags" data-i18n="board_tags">SNSでは #学校再編ナビ #桃花台 #小牧 #小牧市東部 #篠岡地区</span>
-        <span data-bk="excerpt" data-i18n="board_excerpt">紙面の都合で要点だけを載せています。</span>
-        <span data-bk="asof" data-i18n="board_asof">この紙は{date}時点の内容です。計画は今後も動きます。最新の情報はサイトでご確認ください。</span>
-        <span data-bk="contact" data-i18n="board_contact">計画そのものについての公式の問い合わせ先：小牧市教育委員会事務局 教育総務課 学校再編推進係（電話 0568-39-5261）</span>
-        <span data-bk="issuer" data-i18n="board_issuer">発行：小牧市東部（篠岡地区）学校再編ナビ（市民有志・非公式）</span>
-        <span data-bk="stamp" data-i18n="board_stamp">回 覧</span>
-        <span data-bk="range" data-i18n="board_latest_range">直近1週間（{from}〜{to}）に更新された内容です。</span>
-        <span data-bk="none" data-i18n="board_latest_none">この1週間に新しい動きはありませんでした。</span>
-        <span data-bk="actions" data-i18n="board_actions">これからの催し</span>
-      </div>
       <p class="share-note" data-i18n="share_note">Instagram・TikTok はリンクのコピーのみ。自動の外部通信は、はてなスターの表示と、Cookie を使わない閲覧数の集計だけです。</p>
     </div>
   </section>

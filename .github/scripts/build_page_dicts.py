@@ -84,8 +84,6 @@ RUNTIME_KEYS = [
     "share_copied",
     "share_copy_failed",
     "share_native",
-    "share_print",
-    "print_stamp",   # ふつうの印刷の末尾の1行（PRINT STAMP in js/main.js）
     # 「📅 カレンダーに追加」（KomakiIcs in js/main.js）。予定が出るどのページでも使うので、
     # .ics の名前・説明・失敗の文言（もとは schedule.html の学年ビュー用）も全ページに入れる。
     "ics_add", "ics_tbd", "ics_tbd_desc",
@@ -102,8 +100,6 @@ RUNTIME_KEYS = [
     "share_star_label",
     "share_star_note",
     "share_sticky_label",
-    # 回覧板シートのボタン。main.js が実行時に作るので HTML に現れない。
-    "board_btn",
     # 長いページの目次の見出し。main.js の PAGE TOC が実行時に作る。
     "page_toc_h",
 ]

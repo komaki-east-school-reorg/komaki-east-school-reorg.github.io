@@ -514,7 +514,9 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 }
 
 /* トップのヒーローの「このサイトについて」（PC・モバイルとも。モバイルはハンバーガーメニューにもある。2026-10-31 ユーザー指示） */
-.hero-site { margin: 1rem 0 0; position: relative; }
+/* <p> なので .hero p（margin: 0 auto 1.3rem）より詳細度を上げないと上の余白が0になり、
+   バッジの枠にくっつく（2026-11-04 ユーザー指摘）。 */
+.hero .hero-site { margin-top: 1.3rem; margin-bottom: 0; position: relative; }
 .hero .hero-site-link { display: inline-block; padding: .4rem 1.1rem; border: 1.5px solid var(--accent); border-radius: var(--radius-pill); color: var(--accent); font-weight: 700; font-size: .85rem; text-decoration: none; font-family: var(--heading-font); }
 .hero .hero-site-link:hover, .hero .hero-site-link:focus-visible { background: rgba(212,170,48,.18); outline: none; }
 @media print { .hero-site { display: none; } }
@@ -1540,6 +1542,12 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 }
 .data-table td { padding: .7rem 1rem; border-bottom: 1px solid var(--border); }
 .data-table tr:last-child td { border-bottom: none; }
+/* 学級の分かれ方の計算例（analysis.html #rev-k4、2026-11-04）。数字だけの小さな表なので横スクロールの枠に入れない。 */
+.rev-classfig { margin: 1rem 0; }
+.rev-classfig figcaption { font-size: .85rem; color: var(--text-muted); margin-bottom: .4rem; }
+.rev-classtable { max-width: 30rem; }
+.rev-classtable th, .rev-classtable td { text-align: center; padding: .5rem .6rem; }
+.rev-classtable td { font-variant-numeric: tabular-nums; font-weight: 700; }
 
 /* ===== FOOTER ===== */
 footer {
@@ -2249,9 +2257,7 @@ footer {
 .share-btn--instagram { --share-color: #e1306c; --share-color-dark: #b3164d; }
 .share-btn--tiktok    { --share-color: #010101; --share-color-dark: #000000; }
 /* 回覧板（印刷）はサービスではなく紙への共有。サイトの色を使う。 */
-.share-btn--board     { --share-color: #6b5b3a; --share-color-dark: #4a3f27; }
 /* ページをそのまま印刷。回覧板（要約1枚）と見分けられるよう、サイトの黒板色にする。 */
-.share-btn--print     { --share-color: #2e5c3a; --share-color-dark: #1b3826; }
 .share-btn--app       { --share-color: #2e5c3a; --share-color-dark: #1b3826; }
 
 .share-copy-msg {
@@ -2743,95 +2749,7 @@ html.has-share-sticky body {
   white-space: nowrap;
 }
 
-/* ===== BOARD SHEET（回覧板・掲示用のA4 1枚印刷）=====
-   画面には出さないが、DOM からは外さない。印刷と同じ幅（A4 210mm − 左右16mm）で
-   画面外に置いてあるので、刷る前に実寸で高さを測って1枚に収められる
-   （js/main.js の BOARD SHEET の fit()）。display:none だと高さが測れない。
-   ふつうの Ctrl+P はページをそのまま印刷する（本文を刷りたい読者がいるので
-   既定は変えない）。ボタンを押したときだけ <html> に .board-printing が付き、
-   印刷でこのシート1枚になる。 */
-#board-sheet {
-  --board-scale: 1;
-  position: fixed;
-  left: -10000px;
-  top: 0;
-  width: 178mm;
-  background: #fff;
-  color: #000;
-  font-size: calc(10.5pt * var(--board-scale));
-  line-height: 1.65;
-}
-/* 回覧板の体裁。左肩の「回覧」枠と、その横に発行元＋非公式である旨。
-   発行元を枠のすぐ横に置くのは、自治会や市が出した回覧と取り違えられないため。 */
-#board-sheet .board-head {
-  display: flex; align-items: flex-start; gap: .7rem;
-  border-bottom: 2px solid #000; padding-bottom: .35rem; margin-bottom: .9rem;
-}
-#board-sheet .board-stamp {
-  flex: none;
-  border: 2px solid #000;
-  padding: .12rem .5rem;
-  font-size: calc(12pt * var(--board-scale));
-  font-weight: 800;
-  letter-spacing: .12em;
-}
-#board-sheet .board-head-text { min-width: 0; }
-#board-sheet .board-site { font-size: calc(12pt * var(--board-scale)); font-weight: 800; }
-#board-sheet .board-unofficial { font-size: calc(8pt * var(--board-scale)); margin-top: .15rem; }
-#board-sheet .board-title { font-size: calc(20pt * var(--board-scale)); font-weight: 800; margin: 0 0 .4rem; line-height: 1.25; }
-#board-sheet .board-desc { font-size: calc(11pt * var(--board-scale)); margin: 0 0 .9rem; }
-#board-sheet .board-block { margin-bottom: .7rem; break-inside: avoid; }
-#board-sheet .board-block-h {
-  font-size: calc(11pt * var(--board-scale));
-  font-weight: 800;
-  border-left: 4px solid #000;
-  padding-left: .4rem;
-  margin-bottom: .2rem;
-}
-#board-sheet .board-block p { margin: 0; }
-#board-sheet .board-block ul { margin: 0 0 0 1.1rem; padding: 0; }
-#board-sheet .board-block li { margin-bottom: .1rem; }
-#board-sheet .board-qr {
-  display: flex; align-items: center; gap: 1rem;
-  border: 2px solid #000; padding: .5rem .7rem; margin-top: .8rem;
-}
-#board-sheet .board-qr img { width: 34mm; height: 34mm; flex: 0 0 34mm; }
-#board-sheet .board-cta { font-size: calc(11pt * var(--board-scale)); font-weight: 800; margin-bottom: .2rem; }
-#board-sheet .board-url { font-size: calc(9pt * var(--board-scale)); word-break: break-all; }
-#board-sheet .board-scan { font-size: calc(9pt * var(--board-scale)); margin-top: .2rem; }
-/* 紙面の末尾。いつ時点か・要点だけであること・公式の問い合わせ先・発行元。 */
-#board-sheet .board-notes {
-  margin-top: .6rem;
-  border-top: 1px solid #000;
-  padding-top: .3rem;
-  font-size: calc(8.5pt * var(--board-scale));
-  line-height: 1.5;
-}
-#board-sheet .board-notes div { margin-bottom: .1rem; }
-
-/* 「最新の動きを印刷する」ボタン（index.html の最新の動き） */
-.latest-print { margin-top: .8rem; }
-.latest-print button {
-  font: inherit;
-  font-size: .84rem;
-  font-weight: 700;
-  padding: .38rem .9rem;
-  border: 1px solid var(--primary);
-  border-radius: var(--radius-pill);
-  background: var(--white);
-  color: var(--primary);
-  cursor: pointer;
-}
-.latest-print button:hover { background: var(--primary); color: #fff; }
-
 @media print {
-  /* :not() でシート自身を除く。!important は詳細度に勝つので、
-     ここで除外しておかないと下の position:static が効く前に消える。 */
-  html.board-printing body > *:not(#board-sheet) { display: none !important; }
-  html.board-printing #board-sheet { position: static; left: auto; width: auto; }
-  /* 固定バーのぶんの body 下余白（html.has-share-sticky body）が紙にも残ると、
-     シートが収まっていても2枚目に押し出される。紙ではシートだけにする。 */
-  html.board-printing body { padding: 0 !important; margin: 0 !important; }
   @page { size: A4 portrait; margin: 16mm; }
 }
 
@@ -3028,42 +2946,30 @@ main section[id], main h2.section-title[id], #area-map { scroll-margin-top: calc
   ::highlight(tts-sentence) { background: none; color: inherit; }
 }
 
-/* ===== ふつうの印刷（Ctrl+P・共有欄の🖨）の共通スタイル（2026-09-14）=====
-   本文（<main> の説明文・表・図）はそのまま刷る — 「ふつうの印刷はページをそのまま」という
-   方針は変えない。消すのは画面で操作するための部品だけで、Q&A は答えを開いた状態にする
-   （閉じたまま刷ると質問しか紙に残らなかった）。
-   回覧板シートの印刷（html.board-printing）とは別物なので、:not(.board-printing) で分ける。
+/* ===== ふつうの印刷（Ctrl+P）の共通スタイル（2026-09-14）=====
+   本文（<main> の説明文・表・図）はそのまま刷る。消すのは画面で操作するための部品だけで、
+   Q&A は答えを開いた状態にする（閉じたまま刷ると質問しか紙に残らなかった）。
+   共有欄の🖨ボタン・回覧板シート・印刷末尾の URL の1行は 2026-11-04 にユーザー指示で廃止した。
    サイトが非公式である旨の帯（.notice-banner）とフッタの運営者表示は、紙の上でも
    市の配布物と取り違えられないよう、あえて残す。 */
 @media print {
-  html:not(.board-printing) header,
-  html:not(.board-printing) .partial-notice,
-  html:not(.board-printing) .section.share,
-  html:not(.board-printing) .section.related,
-  html:not(.board-printing) .page-toc,
-  html:not(.board-printing) #latest-print-btn,
-  html:not(.board-printing) .footer-logo,
-  html:not(.board-printing) .footer-feed,
-  html:not(.board-printing) .footer-app,
-  html:not(.board-printing) .feed-box,
-  html:not(.board-printing) .footer-grid > div:not(:first-child) { display: none !important; }
-  html.has-share-sticky:not(.board-printing) body { padding-bottom: 0 !important; }
+  header,
+  .partial-notice,
+  .section.share,
+  .section.related,
+  .page-toc,
+  .footer-logo,
+  .footer-feed,
+  .footer-app,
+  .feed-box,
+  .footer-grid > div:not(:first-child) { display: none !important; }
+  html.has-share-sticky body { padding-bottom: 0 !important; }
 
-  html:not(.board-printing) .faq-a { display: block !important; }
-  html:not(.board-printing) .faq-q-icon { display: none !important; }
-  html:not(.board-printing) .faq-item,
-  html:not(.board-printing) .qa-block,
-  html:not(.board-printing) .contact-box { break-inside: avoid; }
-}
-
-/* ふつうの印刷の末尾の「このページの URL・印刷日」（PRINT STAMP in js/main.js、2026-10-23）。
-   画面には出さない。回覧板シートの印刷では body > *:not(#board-sheet) で消える。 */
-.print-stamp { display: none; }
-@media print {
-  html:not(.board-printing) .print-stamp {
-    display: block; margin-top: 6mm; padding-top: 2mm; border-top: 1px solid #999;
-    font-size: 8.5pt; line-height: 1.5; color: #333; word-break: break-all; break-inside: avoid;
-  }
+  .faq-a { display: block !important; }
+  .faq-q-icon { display: none !important; }
+  .faq-item,
+  .qa-block,
+  .contact-box { break-inside: avoid; }
 }
 
 /* ===== 関係する部署の問い合わせ先（トップ以外の全ページ。2026-09-27）=====

@@ -18,6 +18,7 @@
 終了コード: 0 = 合格, 1 = 不合格, 3 = 変更なし（更新不要と判断）
 """
 import glob
+import datetime
 import json
 import os
 import re
@@ -33,7 +34,7 @@ PARTIAL_LANGS = []
 
 # events.json の各予定に、言語ラベル以外に書いてよいキー（check 2）。
 EVENT_META = ("day", "start", "until")
-ALLOWED = {"data/events.json", "index.html", "schedule.html", "community.html"} | {
+ALLOWED = {"data/events.json", "data/site-updates.json", "index.html", "schedule.html", "community.html"} | {
     f"data/i18n/{l}.json" for l in LANGS + PARTIAL_LANGS + ["ja-kids"]
 }
 # ページ別辞書は build_page_dicts.py が決定的に生成する。起案AIは触らないが、
@@ -959,6 +960,63 @@ def main():
             ok(f"検証と提案の2ページのつながり（核心25項目・根拠{sum(len(v) for v in links.values())}件）")
     except OSError as e:
         fail(f"検証と提案のつながりを確かめられない: {e}")
+
+    # --- 22. 更新履歴への追加（2026-11-04 ユーザー指示） ---
+    # 自動反映の起案AIは、読者が気づく変更なら data/site-updates.json の先頭に1行足してよい。
+    # 既存の行（手で書いた履歴と、build_*.py が足す auto_key の行）は1文字も変えさせない。
+    if "data/site-updates.json" in changed:
+        try:
+            cur = json.load(open("data/site-updates.json", encoding="utf-8"))["updates"]
+            try:
+                prev = json.loads(subprocess.check_output(
+                    ["git", "show", "HEAD:data/site-updates.json"], text=True))["updates"]
+            except subprocess.CalledProcessError:
+                prev = []
+            k = len(cur) - len(prev)
+            bad22 = []
+            if k < 0 or cur[k:] != prev:
+                bad22.append("既存の行が書き換え・削除・並べ替えされている（先頭に足すことだけができる）")
+            elif k > 2:
+                bad22.append(f"一度に足せるのは2行まで（{k}行）")
+            else:
+                import term_rules
+                rules = term_rules.load_rules()
+                today = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).date()
+                for it in cur[:k]:
+                    if not isinstance(it, dict) or set(it) - {"date", "type", "ja", "en"}:
+                        bad22.append(f"使えるのは date / type / ja / en だけ: {it!r}"[:160]); continue
+                    try:
+                        d = datetime.date.fromisoformat(it.get("date", ""))
+                    except (TypeError, ValueError):
+                        bad22.append(f"date が YYYY-MM-DD でない: {it.get('date')!r}"); continue
+                    if abs((d - today).days) > 3:
+                        bad22.append(f"date が今日（{today}）から離れている: {d}")
+                    if it.get("type") not in ("content", "feature", "fix"):
+                        bad22.append(f"type が不正: {it.get('type')!r}")
+                    ja = it.get("ja")
+                    if not isinstance(ja, str) or not ja.strip():
+                        bad22.append("ja が空"); continue
+                    if len(ja) > 45:
+                        bad22.append(f"ja が45字を超える（{len(ja)}字）: {ja}")
+                    if ja.endswith("。") or "しました" in ja:
+                        bad22.append(f"ja は体言止めの一行にする: {ja}")
+                    if "廃止" in ja:
+                        bad22.append(f"廃止は更新履歴に載せない: {ja}")
+                    for lang in ("ja", "en"):
+                        v = it.get(lang)
+                        if v is None:
+                            continue
+                        if not isinstance(v, str) or re.search(r"[<>]|https?:|\n", v):
+                            bad22.append(f"{lang} にタグ・URL・改行は書けない: {v!r}"[:160])
+                        elif lang == "en":
+                            for r, hit in term_rules.violations("en", v, rules):
+                                bad22.append(f"en の訳語のゆれ「{hit}」→ {r['use']}")
+            for b in bad22:
+                fail(f"site-updates.json: {b}")
+            if not bad22:
+                ok(f"更新履歴への追加（{max(k, 0)}行）")
+        except Exception as e:
+            fail(f"site-updates.json を確かめられない: {e}")
 
     # --- 7. 出典実在チェック ---
     if not os.path.exists(EVIDENCE):

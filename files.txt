@@ -22,8 +22,8 @@ site.html           このサイトについて（2026-10-30 に index.html か�
 404.html            存在しない URL を開いたときに GitHub Pages が返すページ。主なページと12言語への入口（noindex・sitemap 対象外・共有欄なし）。深いパスでも崩れないよう <base href="/"> を持つ。
 
 ■ スタイル
-css/style.css       サイト全体のデザイン・レイアウト・カラー・レスポンシブ対応を定義するスタイルシート。共有ボタン（.share-*）・学年ビュー（.grade-*）・回覧板シートの印刷指定（@media print の #board-sheet）もここ。
-qr/                 QRコード。<ページ>.<言語>.svg の132枚（11ページ×12言語）。回覧板シートと全ページの共有欄「QR」ボタンが使う。.github/scripts/build_qr.py が生成する。手編集不可。
+css/style.css       サイト全体のデザイン・レイアウト・カラー・レスポンシブ対応を定義するスタイルシート。共有ボタン（.share-*）・学年ビュー（.grade-*）・Ctrl+P 用の印刷指定（@media print）もここ。
+qr/                 QRコード。<ページ>.<言語>.svg の132枚（11ページ×12言語）。全ページの共有欄「QR」ボタンが使う。.github/scripts/build_qr.py が生成する。手編集不可。
 .github/scripts/build_event_pages.py 予定ごとの固有ページ（events/*.html）を schedule.html から生成し、各予定に id と固有ページへのリンク、sitemap.xml の EVENTS ブロックを書き込む。--check で鮮度検証（auto_gates.py check 13）。
 .github/scripts/build_feed.py       「最新の動き」の Atom フィード（feed.xml）を生成する。--check で鮮度検証（auto_gates.py check 14）。
 events/             予定ごとの固有ページ（<開始日>-<N>.html、schedule.html の手書きの予定1件ずつ）。.github/scripts/build_event_pages.py が生成する。手編集不可。
@@ -119,7 +119,7 @@ sitemap.xml                 全11ページのサイトマップ。各URLに12言
 .github/scripts/record_fetch_status.py 毎日の巡回の最後に、取得元ごとの確認日時と成否を data/fetch_status.json に書く。
 .github/scripts/map_targets.py      変更された公式ページのスラッグをsite-facts.jsonで引き、サイト内の更新候補箇所をMarkdown出力するスクリプト（Issue本文生成用）。
 .github/scripts/build_page_dicts.py  data/i18n/pages/ を生成する。辞書やHTMLのdata-i18nを変えたら実行してコミットすること。--check で鮮度検証のみ。
-.github/scripts/build_qr.py         回覧板シートと共有欄の「QR」ボタンが使うQRコード（qr/<ページ>.<言語>.svg）を生成する。segnoが必要（pip install segno）。--check で鮮度検証のみ。
+.github/scripts/build_qr.py         共有欄の「QR」ボタンが使うQRコード（qr/<ページ>.<言語>.svg）を生成する。segnoが必要（pip install segno）。--check で鮮度検証のみ。
 .github/scripts/auto_gates.py       自動更新のガードレール検証（編集範囲・スキーマ・ja/enキー一致・こどもモード1行の長さ・ページ別辞書の鮮度・外部リンク規則・出典実在チェック）。exit 0=合格/3=変更なし/1=不合格。
 .github/scripts/auto_report.py      自動更新のPR本文・事後報告コメントをevidence.json/verdict.jsonから生成するスクリプト。
 .github/workflows/check-contacts.yml 毎週1回、担当部署の連絡先を公表ページと照合するワークフロー定義。番号の変更は自動コミット、部署名の変更はIssueで知らせる。

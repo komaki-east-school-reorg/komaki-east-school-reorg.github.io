@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-回覧板シート（index.html）と、全ページの共有欄の「QR」ボタン（2026-10-11 追加）で使う
+全ページの共有欄の「QR」ボタン（2026-10-11 追加）で使う（回覧板シートは 2026-11-04 に廃止）
 QR コードを、ページ×言語ぶん SVG で書き出す。
 
 なぜ静的生成なのか:
@@ -29,7 +29,7 @@ except ImportError:
 BASE = "https://komaki-east-school-reorg.github.io/"
 OUT_DIR = "qr"
 LANGS = ["ja", "en", "pt", "vi", "tl", "es", "zh", "id", "ko", "ne", "tr", "my"]
-# 回覧板シート（index）に加え、2026-10-11 から全ページの共有欄の「QR」ボタンでも使う
+# 2026-10-11 から全ページの共有欄の「QR」ボタンで使う
 # （チラシ・掲示・発表スライドに貼れるように）。canonical と同じ並び。index は素のディレクトリ URL が正規形。
 # ページを足したら、ここと js/main.js SHARE BUTTONS の QR_PAGES の両方に足すこと。
 PAGES = {

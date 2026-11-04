@@ -63,7 +63,7 @@ window.KomakiSafeUrl = function (u) {
    読者への説明は site.html#privacy（キー privacy_*）。数え方を変えたらそこも直す。 */
 /* SNS で使ってもらうハッシュタグ（2026-10-24 ユーザー指示）。どの言語でも日本語のまま。
    共有ボタンの投稿文（SHARE BUTTONS の withTags）と、共有欄・site.html#spread の案内（HASHTAGS）が使う。
-   変えるときは site.html#spread・辞書の board_tags・check_reach.py の TAGS もそろえる。 */
+   変えるときは site.html#spread・check_reach.py の TAGS もそろえる。 */
 window.KomakiTags = '#学校再編ナビ #桃花台 #小牧 #小牧市東部 #篠岡地区';
 
 window.KomakiCount = (function () {
@@ -141,7 +141,6 @@ window.KomakiCount = (function () {
     }],
     ['.share-tags-copy', 'tags/copy'],
     ['.spread-copy', 'tags/example-copy'],
-    ['#latest-print-btn', 'board/print'],
     ['.qr-save', 'qr/save'],
     ['.ics-add, .grade-ics, #grade-ics', 'calendar/add'],
     ['.tts-btn', 'tts/play'],
@@ -733,7 +732,8 @@ window.KomakiGrade = (function () {
 
    【うるさくしない】
    ・閉じたら、その項目は二度と出さない（localStorage: komaki_feature_seen）。
-   ・複数あるときは1本ずつ入れ替える（最大3件）。ページを開いた直後は
+   ・複数あるときは1本ずつ入れ替える（最大3件）。全件見せたら自動で閉じ、見たことにする
+     （2026-11-04 ユーザー指示）。ページを開いた直後は
      読み込み中の視線を奪わないよう、少し置いてから出す。
    ・prefers-reduced-motion のときはスライドさせず、そのまま出す。 */
 (function () {
@@ -969,27 +969,50 @@ window.KomakiGrade = (function () {
         void host.offsetWidth;
         host.classList.add('is-swap');
       }
+      /* 全件（最大3件）を1回ずつ見せたら自動で閉じる（2026-11-04 ユーザー指示）。
+         最後の項目も ROTATE_MS は見せてから閉じ、×で閉じたときと同じく「見た」と記録する
+         （記録しないと、ページを移るたびに同じ帯がまた流れるため）。 */
+      var closed = false;
       function stop() {
-        if (timer) { clearInterval(timer); timer = null; }
+        if (timer) { clearTimeout(timer); timer = null; }
       }
-      close.addEventListener('click', function () {
+      function dismiss() {
+        if (closed) return;
+        closed = true;
         stop();
         all.forEach(function (it) { markSeen(it.id); });
         host.classList.remove('is-open');
         window.setTimeout(function () { host.hidden = true; }, 400);
-      });
-      // 読んでいる最中に入れ替わらないよう、マウスやフォーカスが乗ったら止める
-      ['mouseenter', 'focusin'].forEach(function (ev) {
-        host.addEventListener(ev, stop);
+      }
+      function tick() {
+        stop();
+        if (closed) return;
+        timer = window.setTimeout(function () {
+          timer = null;
+          if (idx + 1 < items.length) { show(idx + 1); tick(); }
+          else dismiss();
+        }, ROTATE_MS);
+      }
+      close.addEventListener('click', dismiss);
+      // 読んでいる最中に入れ替わったり閉じたりしないよう、マウスやフォーカスが乗ったら止め、
+      // 離れたらその項目をもう一度 ROTATE_MS 見せてから先へ進む
+      var held = {mouse: false, focus: false};
+      function hold(k, on) {
+        held[k] = on;
+        if (held.mouse || held.focus) stop(); else tick();
+      }
+      host.addEventListener('mouseenter', function () { hold('mouse', true); });
+      host.addEventListener('mouseleave', function () { hold('mouse', false); });
+      host.addEventListener('focusin', function () { hold('focus', true); });
+      host.addEventListener('focusout', function (e) {
+        if (!host.contains(e.relatedTarget)) hold('focus', false);
       });
 
       host.hidden = false;
       window.setTimeout(function () {
         host.classList.add('is-open');
         show(0);
-        if (items.length > 1) {
-          timer = window.setInterval(function () { show((idx + 1) % items.length); }, ROTATE_MS);
-        }
+        if (!held.mouse && !held.focus) tick();
       }, APPEAR_MS);
     })
     .catch(function () { /* 出せなくても本文には影響しないので黙って諦める */ });
@@ -1615,8 +1638,8 @@ window.KomakiGrade = (function () {
      .upcoming-item は data-expires をその日とみなす。
    ・自動で描かれる一覧のうち、描画側が data-countdown="YYYY-MM-DD" を付けたもの
      （地域の取組・東部まちづくりの「これからの催し」・地域協議会のイベント案内）。
-   今日より前の日には付けない。文字は CSS の ::after（attr(data-cd)）で出す — 回覧板シート・
-   読み上げ・原文併記は textContent を拾うので、文字で入れると「あと◯日」が紙に刷られてしまう。
+   今日より前の日には付けない。文字は CSS の ::after（attr(data-cd)）で出す — 読み上げ・
+   原文併記は textContent を拾うので、文字で入れると「あと◯日」が混ざってしまう。
    文言は辞書の cd_days / cd_today / cd_tomorrow と同じ値。main.js は辞書を読めないのでここに持つ —
    辞書を直したらここも直すこと。 */
 (function () {
@@ -1962,7 +1985,7 @@ window.KomakiGrade = (function () {
         const date = item.updated_at
           ? `<span class="official-news-date">${nFmtDate(item.updated_at)}${ntr('updated')}</span>`
           : '';
-        // 回覧板シート（BOARD SHEET）が日付で絞り込めるよう、機械可読な日付を持たせる
+        // 機械可読な日付（data-date）を持たせておく
         const iso = nIso(item.updated_at);
         return `<li class="official-news-item" data-date="${iso}">` +
                  `<div class="official-news-item-inner">` +
@@ -2051,7 +2074,6 @@ window.KomakiGrade = (function () {
         var fresh = daysSince(s.latest_date) <= 7;
         // 各校とも最新1件だけ出す。日付はカード見出しの「最終更新」と同じになるので添えない。
         var items = (s.items || []).slice(0, 1).map(function (it) {
-          // data-date は回覧板シート（BOARD SHEET）が直近1週間を絞り込むのに使う
           return '<li data-date="' + esc(it.date || '') + '"><a href="' + esc(window.KomakiSafeUrl(it.url)) + '" target="_blank" rel="noopener" data-hl="' + esc(it.title) + '">' +
                    esc(it.title) +
                  '</a></li>';
@@ -2852,7 +2874,7 @@ window.KomakiGrade = (function () {
    HTML に現れないキーなので build_page_dicts.py の RUNTIME_KEYS に入れてある。
 
    2026-09 に、画面下部に常時追従する固定バー（.share-sticky）を追加した。
-   中身は本文最後の共有欄とまったく同じボタン一式（＋index.htmlでは回覧板ボタンも）で、
+   中身は本文最後の共有欄とまったく同じボタン一式で、
    ボタンの生成・href の組み直し・タイトル同期はすべて2つの入れ物（boxes）に対して
    まとめて行う。2026-09-15 にユーザー指示で固定バーにも「はてなスター」を置いた。
    ただし固定バーは常に画面内にあるので、IntersectionObserver では読み込みの合図に
@@ -3254,15 +3276,6 @@ window.KomakiGrade = (function () {
     });
     box.appendChild(copyBtn);
 
-    /* --- このページをそのまま印刷する（2026-09-14 追加）---
-       Ctrl+P を知らない読者やスマートフォンから、ページを紙にする入口。ふつうの印刷と
-       まったく同じで、画面用の部品（ヘッダ・共有欄・固定バーなど）は css/style.css の
-       共通印刷スタイルが消し、Q&A は答えを開いた状態で刷られる。
-       index.html の「回」（回覧板シート＝要約1枚）とは別物なので、アイコンも分けてある。 */
-    var printBtn = makeBtn('button', 'print', '🖨', 'share_print', 'このページを印刷する');
-    printBtn.addEventListener('click', function () { window.print(); });
-    box.appendChild(printBtn);
-
     /* --- このページの QR コード（2026-10-11 追加）---
        チラシ・掲示・発表スライドに貼って、紙から表示中の言語のこのページへ来てもらうため。
        QR は自前で作らず、.github/scripts/build_qr.py（segno）が書き出した qr/<ページ>.<言語>.svg を
@@ -3480,383 +3493,6 @@ window.KomakiGrade = (function () {
       }
     }).observe(stickyHolder, {childList: true, subtree: true});
   }
-})();
-
-/* ===== BOARD SHEET（回覧板・掲示用のA4 1枚印刷）=====
-   index.html 専用。「最新の動き」各コーナーの新着一覧を、共有欄の「回」ボタンと、
-   「最新の動き」節内の専用ボタン（#latest-print-btn）のどちらからでも同じ内容で刷る。
-
-   【ほかのページには置かない】
-   以前はページごとの要約シート（各ページの共有欄の「回」ボタンで、その節の見出しと
-   代表文を集めたもの）もあったが廃止した。「お知らせ」「学校HP更新」等のコーナー DOM は
-   index.html にしか無く、下の【文章はページ内の既存要素からしか取らない】原則のもとでは
-   ほかのページで再現しようがないため、この機能は index.html だけに一本化してある。
-   このIIFEは #latest-print-btn が無いページ（= index.html 以外）では何もしない。
-
-   なぜ作ったか: この地区で実際に情報が回るのは回覧板と掲示板で、
-   SNS のリンクでは届かない層がいる。紙で配り、QR で戻ってこられるようにする。
-
-   【文章はページ内の既存要素からしか取らない】
-   各コーナーの一覧を、表示されているものからそのまま拾う。
-   ここで独自の要約文を書き起こすと、出典のないニ次情報が紙になって出て行く。
-   紙幅の都合で切り詰めるので、そのことは board_excerpt で紙面にも書く。
-
-   【A4 1枚に収める】
-   #board-sheet は常に DOM にあり、画面外（position:fixed, left:-10000px）に
-   印刷と同じ幅 178mm（A4 210mm − 左右16mm）で置いてある。だから刷る前に
-   実寸で高さを測れる。収まるまで「1行の字数」「1コーナーの行数」を段階的に
-   詰め、それでも溢れるときは末尾のコーナーから落とす。
-   高さの上限は 250mm（印刷できる 265mm から 15mm のゆとりを残す）を実測の px に直して使う。
-
-   【QR は自前生成しない】
-   qr/<pageId>.<lang>.svg を .github/scripts/build_qr.py（segno）で書き出して
-   コミットしてあり、ここでは <img> を1枚読むだけ。JS の QR エンコーダを自作すると、
-   壊れていても「QR に見える絵」が出て、印刷して配ったあとまで気づけない。
-   CDN から読むと「自動で読む外部スクリプトははてなスター1本だけ」の方針が崩れる。 */
-(function () {
-  var shareBox = document.getElementById('share-buttons');
-  var latestBtn = document.getElementById('latest-print-btn');
-  if (!latestBtn) return;   // 「最新の動き」節が無いページ = index.html 以外では機能ごと出さない
-
-  var pageId = (location.pathname.split('/').pop() || 'index.html').replace(/\.html$/, '') || 'index';
-  var strings = document.getElementById('board-strings');
-
-  function t(key, fallback) {
-    var el = strings && strings.querySelector('[data-bk="' + key + '"]');
-    var v = el && el.textContent;
-    return (v && v.trim()) || fallback;
-  }
-
-  // 共有ボタンと同じ考え方で、URL は canonical から組み立てる（アドレスバーは1手遅れる）。
-  var CANON = (function () {
-    var el = document.querySelector('link[rel="canonical"]');
-    var href = (el && el.getAttribute('href')) || location.href;
-    return href.split('#')[0].split('?')[0];
-  })();
-  function pageUrl(lang) { return lang === 'ja' ? CANON : CANON + '?lang=' + lang; }
-
-  function esc(v) {
-    return String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  }
-  // 見出しの <small>（英語併記）は紙では冗長なので落とす
-  function headText(h) {
-    var c = h.cloneNode(true);
-    c.querySelectorAll('small, .orig-ja').forEach(function (s) { s.remove(); });
-    return (c.textContent || '').replace(/\s+/g, ' ').trim();
-  }
-  // 原文併記（.orig-ja）は画面だけのもの。紙に日本語と訳文が二重に出ないよう落とす。
-  function clean(el) {
-    if (!el) return '';
-    if (el.querySelector && el.querySelector('.orig-ja')) {
-      var c = el.cloneNode(true);
-      c.querySelectorAll('.orig-ja').forEach(function (s) { s.remove(); });
-      el = c;
-    }
-    return ((el && el.textContent) || '').replace(/\s+/g, ' ').trim();
-  }
-  // 場所の括弧は日本語・中国語では全角、ほかの言語では半角（英文に全角括弧が混ざらないように）
-  function paren(v) {
-    var l = window.KomakiLang();
-    return (l === 'ja' || l === 'zh') ? '（' + v + '）' : ' (' + v + ')';
-  }
-
-  /* ---- 材料あつめ ---- */
-
-  /* これからの催し（地域の取組）。
-     「最新の動き」は起きたことを配る紙なので直近7日の data-date で絞るが、
-     地域の催しはこれから開かれるもので、回覧板でこそ知らせる値打ちがある。
-     だから7日の窓とは別枠にして、画面と同じ「地域の取組」の位置に置く。
-     文面は画面に描かれた要素からそのまま取る。終わった催しは COMMUNITY ACTIONS が
-     描画時に落としているので、ここで日付を見る必要はない。 */
-  function actionRowValue(item, idx) {
-    var r = item.querySelectorAll('.action-row')[idx];
-    if (!r) return '';
-    var c = r.cloneNode(true);
-    var lab = c.querySelector('.action-label');
-    if (lab) lab.remove();
-    return (c.textContent || '').replace(/\s+/g, ' ').trim();
-  }
-  function upcomingActionsBlock() {
-    // 日付の無い常設の取組（児童館など）は「これからの催し」ではないので載せない
-    var items = document.querySelectorAll('#community-actions-container .action-item:not([data-standing])');
-    if (!items.length) return null;
-    var lines = [];
-    [].forEach.call(items, function (it) {
-      var title = clean(it.querySelector('.action-title'));
-      if (!title) return;
-      var when = actionRowValue(it, 0);
-      var place = actionRowValue(it, 1);
-      var line = (when ? when + ' ' : '') + title + (place ? paren(place) : '');
-      if (lines.indexOf(line) === -1) lines.push(line);
-    });
-    return lines.length ? {h: t('actions', 'これからの催し'), kind: 'list', lines: lines} : null;
-  }
-
-  /* 最新の動き: 4つのコーナーを、描画済みの DOM からそのまま拾う。
-     構造はコーナーごとに違うので、入れ物の id ごとに書き分ける。
-
-     載せるのは直近 LATEST_DAYS 日ぶんだけ。画面のコーナーは30日ぶんを出すが、
-     紙は「今どうなっているか」を短く伝えるためのもので、1か月ぶんを刷ると
-     読み飛ばされる。日付は各コーナーの描画時に data-date（YYYY-MM-DD）で
-     持たせてあるので、それで絞る。data-date が無い項目は落とす
-     （日付が分からないものを「直近1週間」として配れないため）。 */
-  var LATEST_DAYS = 7;
-
-  function withinDays(el, days) {
-    var d = el.getAttribute('data-date') || '';
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return false;
-    var then = Date.parse(d + 'T00:00:00Z');
-    var now = new Date();
-    var today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
-    var age = Math.floor((today - then) / 86400000);
-    return age >= 0 && age < days;
-  }
-
-  function latestBlocks() {
-    var out = [];
-    document.querySelectorAll('main h3.section-title.sub').forEach(function (h) {
-      var box = h.closest('.container');
-      if (!box) return;
-      var lines = [];
-      function take(sel, fn) {
-        box.querySelectorAll(sel).forEach(function (el) {
-          if (!withinDays(el, LATEST_DAYS)) return;
-          var line = fn(el);
-          if (line) lines.push(line);
-        });
-      }
-      take('.official-news-item', function (li) {
-        return clean(li.querySelector('.official-news-date')) + ' ' + clean(li.querySelector('a'));
-      });
-      // 学校HPは記事1件ずつに日付が付いている。校名は親カードから取る。
-      take('.school-items li', function (li) {
-        var card = li.closest('.school-card');
-        return clean(card && card.querySelector('.school-name')) + '｜' + clean(li);
-      });
-      take('.update-item', function (li) {
-        return clean(li.querySelector('.update-date')) + ' ' + clean(li.querySelector('.update-text'));
-      });
-      if (lines.length) out.push({h: headText(h), kind: 'list', lines: lines});
-      // 地域の取組は画面と同じ位置（学校HPの次・サイトの更新履歴の前）に、画面と同じ
-      // 上下の順（これからの催し → 東部まちづくりの動き）で置く（2026-10-11 ユーザー指示：
-      // 紙の並びはトップページの表示順に合わせ、サイトの更新履歴をいちばん下にする）。
-      if (box.querySelector('#community-actions-container, #tobu-actions-container')) {
-        var acts = upcomingActionsBlock();
-        if (acts) out.push(acts);
-        var tobu = tobuBlock();
-        if (tobu) out.push(tobu);
-      }
-    });
-    return out;
-  }
-
-  /* 東部まちづくりの動き（2026-09-14 ユーザー指示で紙に追加）。
-     市の東部まちづくり推進室が公表したもので、すぐ上の「これからの催し」（住民・協議会の催し）とは
-     出どころが違うので、見出しを分けた別の塊にする（画面と同じ分け方）。
-     市の記録は月に数件しか増えず、7日の窓で絞るとほぼ毎回空になるため、この塊だけは
-     「これから開かれる催し」ぜんぶ＋「最近の動き」の新しい3件を載せる。どの行にも日付を
-     付けるので、古い記録を新着と取り違えることはない。文面は画面に描かれた要素から取る
-     （日本語以外の表示なら、見出しはすでに訳に置き換わっている）。 */
-  var TOBU_RECENT_ON_SHEET = 3;
-  function tobuBlock() {
-    var box = document.getElementById('tobu-actions-container');
-    var h = document.querySelector('[data-i18n-html="tobu_actions_h"]');
-    if (!box || !h) return null;
-    var today = (function () {
-      var d = new Date();
-      return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
-    })();
-    var up = [], recent = [];
-    box.querySelectorAll('.tobu-item').forEach(function (li) {
-      var title = clean(li.querySelector('.tobu-title'));
-      if (!title) return;
-      var date = clean(li.querySelector('.tobu-date'));
-      var placeEl = li.querySelector('.tobu-from [data-hl]');
-      var place = placeEl ? clean(placeEl) : '';
-      var line = (date ? date + ' ' : '') + title + (place ? paren(place) : '');
-      if ((li.getAttribute('data-date') || '') >= today) up.push(line);
-      else if (recent.length < TOBU_RECENT_ON_SHEET) recent.push(line);
-    });
-    var lines = up.concat(recent);
-    return lines.length ? {h: headText(h), kind: 'list', lines: lines} : null;
-  }
-
-  /* ---- シートの組み立てと、A4 1枚に収める調整 ---- */
-
-  var sheet = null;
-  function ensureSheet() {
-    if (!sheet) {
-      sheet = document.createElement('div');
-      sheet.id = 'board-sheet';
-      sheet.setAttribute('aria-hidden', 'true');
-      document.body.appendChild(sheet);
-    }
-    return sheet;
-  }
-
-  /* 紙面の高さの上限が何 px かを実測する。印刷できる高さは 265mm（A4 297mm − 上下16mm）
-     だが、上限いっぱいまで詰めると、画面での計測と印刷時の組版のわずかな差（行の折り返し・
-     フォントの丸め）や、@page の余白を大きめに取るブラウザ・プリンタで最後の数行が2枚目に
-     こぼれる。2026-09-15 に実測で979px（上限1002px）のシートが2枚になったので、15mm の
-     ゆとりを残した 250mm を上限にする。 */
-  var SHEET_MAX_MM = 250;
-  function targetHeight() {
-    var probe = document.createElement('div');
-    probe.style.cssText = 'position:fixed;left:-10000px;top:0;width:1mm;height:' + SHEET_MAX_MM + 'mm;';
-    document.body.appendChild(probe);
-    var h = probe.offsetHeight;
-    document.body.removeChild(probe);
-    return h || 1000;
-  }
-
-  function render(title, lead, blocks, lang, cfg) {
-    var el = ensureSheet();
-    var today = new Date();
-    var ymd = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) +
-              '-' + ('0' + today.getDate()).slice(-2);
-    var body = blocks.map(function (b) {
-      var inner = '<ul>' + b.lines.slice(0, cfg.maxLines).map(function (l) {
-        return '<li>' + esc(l) + '</li>';
-      }).join('') + '</ul>';
-      return '<div class="board-block"><div class="board-block-h">' + esc(b.h) + '</div>' +
-             inner + '</div>';
-    }).join('');
-    el.style.setProperty('--board-scale', cfg.scale);
-    el.innerHTML =
-      // 回覧板の体裁: 左肩に「回覧」の枠、その横に発行元。発行元がすぐ隣に来るのは、
-      // 自治会や市の回覧と取り違えられないようにするため。非公式である旨は必ず並べる。
-      '<div class="board-head">' +
-        '<div class="board-stamp">' + esc(t('stamp', '回 覧')) + '</div>' +
-        '<div class="board-head-text">' +
-          '<div class="board-site">小牧市東部（篠岡地区）学校再編ナビ</div>' +
-          '<div class="board-unofficial">' + esc(t('unofficial',
-            '市民有志による非公式の情報サイトです。公式情報は小牧市教育委員会のページをご確認ください。')) + '</div>' +
-        '</div>' +
-      '</div>' +
-      '<h1 class="board-title">' + esc(title) + '</h1>' +
-      (lead ? '<p class="board-desc">' + esc(lead) + '</p>' : '') +
-      '<div class="board-body">' + body + '</div>' +
-      '<div class="board-qr">' +
-        '<img id="board-qr-img" alt="" src="qr/' + esc(pageId) + '.' + esc(lang) + '.svg">' +
-        '<div class="board-qr-text">' +
-          '<div class="board-cta">' + esc(t('cta', 'この紙に載せきれなかったことは、サイトにすべて載っています。')) + '</div>' +
-          '<div class="board-url">' + esc(pageUrl(lang)) + '</div>' +
-          '<div class="board-scan">' + esc(t('scan', 'スマートフォンのカメラで読み取れます。')) + '</div>' +
-          // SNS で話題にするときのハッシュタグ（2026-10-24 ユーザー指示。site.html#spread と同じ5つ）
-          '<div class="board-scan">' + esc(t('tags', 'SNSでは #学校再編ナビ #桃花台 #小牧 #小牧市東部 #篠岡地区')) + '</div>' +
-        '</div>' +
-      '</div>' +
-      /* 紙は掲示板や回覧板の上に何週間も残る。だから「いつ時点か」と
-         「公式に聞く先」を必ず入れる。画面と違って、読者はその場で
-         最新かどうかを確かめられないため。 */
-      '<div class="board-notes">' +
-        '<div>' + esc(t('asof', 'この紙は{date}時点の内容です。計画は今後も動きます。最新の情報はサイトでご確認ください。')
-                        .replace('{date}', ymd)) + '</div>' +
-        '<div>' + esc(t('excerpt', '紙面の都合で要点だけを載せています。')) + '</div>' +
-        '<div>' + esc(t('contact', '計画そのものについての公式の問い合わせ先：小牧市教育委員会事務局 教育総務課 学校再編推進係（電話 0568-39-5261）')) + '</div>' +
-        '<div>' + esc(t('issuer', '発行：小牧市東部（篠岡地区）学校再編ナビ（市民有志・非公式）')) + '</div>' +
-      '</div>';
-    return el;
-  }
-
-  /* 詰め方の順番。文や見出しを途中で切ることは一切しない。
-     一覧の項目数 → 文字の倍率、の順に減らし、
-     それでも溢れるときは fit() が末尾の見出しごと落とす。 */
-  var LADDER = [
-    {maxLines: 8, scale: 1},
-    {maxLines: 7, scale: 1},
-    {maxLines: 6, scale: 1},
-    {maxLines: 5, scale: .95},
-    {maxLines: 4, scale: .9},
-    {maxLines: 3, scale: .85},
-    {maxLines: 2, scale: .85}
-  ];
-
-  function fit(title, lead, blocks, lang) {
-    var limit = targetHeight();
-    var el, i;
-    for (i = 0; i < LADDER.length; i++) {
-      el = render(title, lead, blocks, lang, LADDER[i]);
-      if (el.scrollHeight <= limit) return el;
-    }
-    // いちばん詰めても溢れる場合は、末尾の見出しごと落とす（先頭ほど重要なため）。
-    // 文を削るのではなく見出し単位で落とすので、載った節は必ず文が完結している。
-    var cut = blocks.slice();
-    while (cut.length > 1) {
-      cut = cut.slice(0, cut.length - 1);
-      el = render(title, lead, cut, lang, LADDER[LADDER.length - 1]);
-      if (el.scrollHeight <= limit) return el;
-    }
-    return el;
-  }
-
-  function printSheet(title, lead, blocks) {
-    var lang = window.KomakiLang();
-    var root = document.documentElement;
-    // 文字の大きさ（html.fs-s / fs-l）はシートの余白（rem）も動かすので、測る前に外して
-    // 標準の大きさで組む。A4 1枚に収める保証を、読者の設定で崩さないため。刷り終えたら戻す。
-    var fsKeep = ['fs-s', 'fs-l'].filter(function (c) { return root.classList.contains(c); });
-    fsKeep.forEach(function (c) { root.classList.remove(c); });
-    var el = fit(title, lead, blocks, lang);
-    var img = el.querySelector('#board-qr-img');
-    var go = function () {
-      root.classList.add('board-printing');
-      var done = function () {
-        root.classList.remove('board-printing');
-        fsKeep.forEach(function (c) { root.classList.add(c); });
-        fsKeep = [];
-      };
-      window.addEventListener('afterprint', done, {once: true});
-      window.setTimeout(done, 8000);   // afterprint を出さないブラウザ向けの保険
-      window.print();
-    };
-    if (img && !img.complete) {
-      img.addEventListener('load', go, {once: true});
-      // QR が取れなくてもシートは出す（URL は文字でも書いてある）
-      img.addEventListener('error', function () { img.remove(); go(); }, {once: true});
-    } else {
-      go();
-    }
-  }
-
-  /* ---- 印刷実行と、ボタン2つ（共有欄の「回」＋「最新の動き」節内の専用ボタン） ----
-     両方とも同じ内容（「最新の動き」各コーナーの新着一覧）を刷る。 */
-
-  function printLatest() {
-    var h2 = document.querySelector('#latest h2.section-title');
-    var blocks = latestBlocks();
-    // 画面の説明文（「4つのコーナーは毎日自動で取得して…」）は紙では意味がない。
-    // 代わりに「いつからいつまでの分か」を出す。紙は日付が命なので。
-    var now = new Date();
-    var to = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
-    var from = new Date(to.getTime() - (LATEST_DAYS - 1) * 86400000);
-    var fmt = function (d) { return d.toISOString().slice(0, 10); };
-    var lead = t('range', '直近1週間（{from}〜{to}）に更新された内容です。')
-                 .replace('{from}', fmt(from)).replace('{to}', fmt(to));
-    if (!blocks.length) lead += ' ' + t('none', 'この1週間に新しい動きはありませんでした。');
-    printSheet((h2 && headText(h2)) || '', lead, blocks);
-  }
-
-  latestBtn.addEventListener('click', printLatest);
-
-  // 共有欄・固定バー（画面下部に常時表示、SHARE BUTTONS が作る）の両方に置く。
-  // 固定バーは index.html にしか無い latestBtn がある前提でしか作られないので、
-  // ここに来ている時点でどちらも存在する（他ページはこの関数より前で return 済み）。
-  [shareBox, document.getElementById('share-buttons-sticky')].forEach(function (box) {
-    if (!box) return;
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'share-btn share-btn--board';
-    btn.setAttribute('data-i18n-aria', 'board_btn');
-    btn.setAttribute('aria-label', '印刷して回覧・掲示する');
-    var ic = document.createElement('span');
-    ic.className = 'share-icon';
-    ic.setAttribute('aria-hidden', 'true');
-    ic.textContent = '回';        // 「回」＝回覧
-    btn.appendChild(ic);
-    btn.addEventListener('click', printLatest);
-    box.appendChild(btn);
-  });
 })();
 
 /* ===== PAGE TOC（全ページの「このページの目次」）=====
@@ -4078,7 +3714,7 @@ window.KomakiGrade = (function () {
      開いた答えの下に「この質問へのリンクをコピー」を置く。その id で開かれたら答えを開いて着地する。
    ・URL は canonical（i18n.js が表示言語の ?lang= 付きに書き換え済み）＋ #id。
    ・見出しは i18n.js が辞書で中身ごと書き換えるので、komaki:i18n-applied のたびに付け直す。
-     ボタン自体は文字を持たない（記号は CSS の ::before）— 目次・読み上げ・原文併記・回覧板は
+     ボタン自体は文字を持たない（記号は CSS の ::before）— 目次・読み上げ・原文併記は
      見出しの textContent を拾うので、文字を入れると混ざる。文言は aria-label と title だけ。
    ・文言は下の隠し要素（data-i18n）から読む。キーは build_page_dicts.py の RUNTIME_KEYS。 */
 (function () {
@@ -5207,49 +4843,6 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     .catch(function () { /* 記録が読めなければ何も出さない（推測の日時は出さない） */ });
 })();
 
-/* ===== PRINT STAMP（ふつうの印刷の末尾に「このページの URL・印刷日」）=====
-   2026-10-23 ユーザー指示。紙だけが回っても、どこの何をいつ刷ったものか分かるように。
-   画面には出さず、@media print の html:not(.board-printing) でだけ見せる（回覧板シートには
-   board_asof と QR がすでにある）。文言は辞書の print_stamp（RUNTIME_KEYS）を隠し要素で受け取り、
-   印刷の直前に {url}（表示言語の canonical）と {date}（日本時間の今日）を入れる。 */
-(function () {
-  var box = document.createElement('div');
-  box.className = 'print-stamp';
-  var tpl = document.createElement('span');
-  tpl.hidden = true;
-  tpl.setAttribute('data-i18n', 'print_stamp');
-  tpl.textContent = 'このページ：{url} ／ 印刷日：{date} ／ 印刷した日の内容です。最新の情報はサイトでご確認ください。';
-  var out = document.createElement('span');
-  box.appendChild(tpl);
-  box.appendChild(out);
-  document.body.appendChild(box);
-
-  function today() {
-    var lang = window.KomakiLang();
-    var d = new Date();
-    if (lang === 'ja') {
-      var p = {};
-      new Intl.DateTimeFormat('en-US', {timeZone: 'Asia/Tokyo', year: 'numeric', month: 'numeric', day: 'numeric'})
-        .formatToParts(d).forEach(function (x) { p[x.type] = x.value; });
-      return p.year + '年' + p.month + '月' + p.day + '日';
-    }
-    try {
-      return d.toLocaleDateString({es: 'es-419', tl: 'fil'}[lang] || lang, {timeZone: 'Asia/Tokyo', year: 'numeric', month: 'long', day: 'numeric'});
-    } catch (e) { return d.toISOString().slice(0, 10); }
-  }
-  function fill() {
-    var c = document.querySelector('link[rel="canonical"]');
-    var url = c ? c.href : location.href.split('#')[0];
-    out.textContent = tpl.textContent.replace('{url}', url).replace('{date}', today());
-  }
-  window.addEventListener('beforeprint', fill);
-  if (window.matchMedia) {   // beforeprint を出さないブラウザ向け
-    var mq = window.matchMedia('print');
-    if (mq.addEventListener) mq.addEventListener('change', function (e) { if (e.matches) fill(); });
-  }
-  fill();
-})();
-
 /* ===== READ ALOUD（全ページ）=====
    2026-09-15 ユーザー採用。節の見出しの下に「🔊 読み上げる」を置き、その節の本文を
    ブラウザに内蔵された音声合成（speechSynthesis）で、表示中の言語のまま読み上げる。
@@ -5307,7 +4900,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     // h4 はトップの「地域の取組」の下半分（東部まちづくりの動き）だけ。見出しが別なので
     // 読み上げも別にする（2026-09-27 ユーザー指示）。含めないと上の取組と続けて読んでしまう。
     main.querySelectorAll('h2.section-title, h3.section-title.sub, h4.section-title.sub, .now-label, .upcoming-label'),
-    function (h) { return !h.closest('.group-head, .share, .related, #board-sheet'); });
+    function (h) { return !h.closest('.group-head, .share, .related'); });
   if (!heads.length) return;
 
   function pickVoice() {
@@ -5586,8 +5179,8 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
    ・初めて来た人（記録が無い人）には印を付けない。全部に印が付くと意味が無い。
    ・「前回」の記録はタブを開いている間 sessionStorage に持ち続ける（SNAP_MS まで）。開いた瞬間に
      「見た」と上書きするので、そうしないと再読み込みで印が消えてしまう。
-   ・印の文字は CSS の ::after { content: attr(data-unseen) } で出す。回覧板シート（BOARD SHEET）は
-     描画済みの一覧の textContent を拾うので、普通の文字で入れると紙に「前回から」と刷られる。
+   ・印の文字は CSS の ::after { content: attr(data-unseen) } で出す。読み上げ・原文併記は
+     textContent を拾うので、普通の文字で入れると「前回から」が混ざる。
    ・学校HPのカードの「新着」（7日以内）とは別物。混同しないよう、言葉も色も変えてある。
    ・記録は端末の localStorage（komaki_seen_items）だけ。どこにも送らない。KEEP_DAYS を過ぎた目印は捨てる。
    ・各コーナーは非同期に描かれ、見出しの訳でも書き換わるので、MutationObserver で追いかける。
@@ -5717,7 +5310,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
    ・site.html#privacy の「この端末では数えない」ボタン（#nocount-btn）。COUNTER（ファイル冒頭）が読む
      localStorage の komaki_nocount を出し入れする。
    文言は辞書（share_tags_* / spread_copy / privacy_*、RUNTIME_KEYS）を隠し要素で受け取る。
-   タグを変えるときは TAGS と、site.html#spread・辞書の board_tags を一緒に直すこと。 */
+   タグを変えるときは TAGS と、site.html#spread を一緒に直すこと。 */
 (function () {
   var TAGS = window.KomakiTags;
 
