@@ -1,8 +1,37 @@
 {
-  "fetched_at": "2026-11-03T03:38:19Z",
+  "fetched_at": "2026-11-04T02:31:57Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "toryo-j",
+      "level": "jhs",
+      "names": {
+        "ja": "桃陵中学校",
+        "ja_kids": "とうりょう中学校",
+        "en": "Toryo Junior High",
+        "zh": "桃陵中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
+      "latest_date": "2026-11-04",
+      "items": [
+        {
+          "title": "11/３ 尾張東部少年軟式野球大会2回戦",
+          "date": "2026-11-04",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136483934?tm=20261103145144"
+        },
+        {
+          "title": "11/1 野球部 尾張東部少年軟式野球大会1回戦",
+          "date": "2026-11-04",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136483901?tm=20261103142617"
+        },
+        {
+          "title": "３年合唱コンクール",
+          "date": "2026-10-30",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136472861?tm=20261030183759"
+        }
+      ]
+    },
     {
       "slug": "shinooka-j",
       "level": "jhs",
@@ -13,8 +42,13 @@
         "zh": "篠冈中学"
       },
       "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-11-02",
+      "latest_date": "2026-11-03",
       "items": [
+        {
+          "title": "《桃花台野球部》準々決勝サヨナラ勝利！",
+          "date": "2026-11-03",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136483871?tm=20261103134435"
+        },
         {
           "title": "《桃花台野球部》尾張東部大会初戦突破！",
           "date": "2026-11-02",
@@ -24,11 +58,35 @@
           "title": "１年生 文化祭準備",
           "date": "2026-10-28",
           "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136454151?tm=20261028173818"
+        }
+      ]
+    },
+    {
+      "slug": "hikarigaoka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "光ヶ丘中学校",
+        "ja_kids": "ひかりがおか中学校",
+        "en": "Hikarigaoka Junior High",
+        "zh": "光之丘中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
+      "latest_date": "2026-11-03",
+      "items": [
+        {
+          "title": "掴み取った「1x」",
+          "date": "2026-11-03",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136483912?tm=20261103143547"
         },
         {
-          "title": "１年生 前日最後の合唱練習",
-          "date": "2026-10-28",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136454101?tm=20261028173522"
+          "title": "小牧市青少年健全育成市民大会",
+          "date": "2026-11-02",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136482609?tm=20261102173902"
+        },
+        {
+          "title": "恋せよ宇宙",
+          "date": "2026-11-02",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136477495?tm=20261102093604"
         }
       ]
     },
@@ -91,35 +149,6 @@
       ]
     },
     {
-      "slug": "hikarigaoka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "光ヶ丘中学校",
-        "ja_kids": "ひかりがおか中学校",
-        "en": "Hikarigaoka Junior High",
-        "zh": "光之丘中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
-      "latest_date": "2026-11-02",
-      "items": [
-        {
-          "title": "小牧市青少年健全育成市民大会",
-          "date": "2026-11-02",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136482609?tm=20261102173902"
-        },
-        {
-          "title": "恋せよ宇宙",
-          "date": "2026-11-02",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136477495?tm=20261102093604"
-        },
-        {
-          "title": "願い事チャンス",
-          "date": "2026-10-31",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136475623?tm=20261031174327"
-        }
-      ]
-    },
-    {
       "slug": "hikarigaoka-e",
       "level": "elem",
       "names": {
@@ -174,35 +203,6 @@
           "title": "10/30 今日の給食",
           "date": "2026-10-30",
           "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136470334?tm=20261030153358"
-        }
-      ]
-    },
-    {
-      "slug": "toryo-j",
-      "level": "jhs",
-      "names": {
-        "ja": "桃陵中学校",
-        "ja_kids": "とうりょう中学校",
-        "en": "Toryo Junior High",
-        "zh": "桃陵中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
-      "latest_date": "2026-10-30",
-      "items": [
-        {
-          "title": "３年合唱コンクール",
-          "date": "2026-10-30",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136472861?tm=20261030183759"
-        },
-        {
-          "title": "２年生合唱コンクール",
-          "date": "2026-10-30",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136472679?tm=20261030183828"
-        },
-        {
-          "title": "桃陵祭 １年D組合唱「幸せ」",
-          "date": "2026-10-30",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136471059?tm=20261030180236"
         }
       ]
     },
