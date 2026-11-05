@@ -131,8 +131,7 @@
        ここから「閲覧数の集計について」までの5節は 2026-10-24 にユーザー指示で about.html から移した。
        画像は OGP と同じファイル。差し替えたら ?v= を全ページの og:image と一緒に上げること。 -->
   <!-- サイトのバージョン（2026-10-31 ユーザー指示：2026年11月1日をもって Ver.1.0）。あゆみは git の履歴と更新履歴で確かめられた節目だけ。Ver.0.1〜0.9 は後付けの版番号（同日ユーザー指示。外国語の追加は版に含めず、ページの新設は含める） -->
-  <div class="site-version-bar"><div class="container"><!-- 運営者（2026-11-05 ユーザー指示：住民有志によるユニット「これがまちつくサイトの解。」、略称「こまけぇ」。外国語では名前を音で写す） -->
-    <p class="site-operator" data-i18n-html="site_operator"><strong>運営：</strong>住民有志によるユニット「これがまちつくサイトの解。」（略称：こまけぇ）。小牧市・教育委員会とは無関係です。</p>
+  <div class="site-version-bar"><div class="container">
     <p class="site-version" data-i18n-html="site_version"><strong>バージョン：Ver.1.0</strong>（2026年11月1日から）</p>
       <details class="site-history"><summary data-i18n="site_hist_h">これまでのあゆみ（Ver.0.1〜0.9 は Ver.1.0 を決めたときに後から付けた版番号）</summary>
         <ul>
@@ -168,7 +167,7 @@
       <p class="section-lead" data-i18n="app_lead">このサイトはスマートフォンやパソコンのホーム画面に置いて、アプリのように使えます。📲 のボタン（ヘッダの言語切替の横と、ページ下の共有欄）を押してください。</p>
       <ul class="app-points">
         <li data-i18n="app_li1">アイコンから、アドレスバーの無い全画面で開けます。</li>
-        <li data-i18n="app_li2">開くたびにネットから最新の内容を読みます。電波のない所では、前に開いたことのあるページだけを、そう断ったうえで表示します。</li>
+        <li data-i18n="app_li2">開くたびに、ネットから最新の内容を読み込みます。電波のない所では、前に開いたページだけを、その旨を添えて表示します。</li>
         <li data-i18n="app_li3">通知は送りません。閲覧数は Cookie を使わず、個人を特定しない形で数えます（このページの「閲覧数の集計について」）。やめるときは、ふつうのアプリと同じように削除できます。</li>
       </ul>
       <p><button type="button" class="app-install-cta" id="app-install-cta" hidden data-i18n="app_cta">📲 アプリにする</button></p>
@@ -258,6 +257,14 @@
   </section>
 
   <!-- 関連ページ -->
+  <!-- 運営者（2026-11-05 ユーザー指示：「これがまちつくサイトの解。」THE UNIT（住民有志）。略称なし。外国語では意訳した名前。
+       同日のユーザー指示でページの下のほう（「関連するページ」の直前）へ移した） -->
+  <section class="section site-operator-sec">
+    <div class="container">
+      <p class="site-operator" data-i18n-html="site_operator"><strong>運営：</strong>「これがまちつくサイトの解。」THE UNIT（住民有志）。小牧市・教育委員会とは無関係です。</p>
+    </div>
+  </section>
+
   <section class="section related">
     <div class="container">
       <h2 class="related-h" data-i18n="related_h">関連するページ</h2>
@@ -290,7 +297,7 @@
       <div>
         <img class="footer-logo" src="img/og-image.png?v=20261011" width="1200" height="630" alt="" loading="lazy" decoding="async">
         <div class="footer-title" data-i18n="footer_title">小牧市東部（篠岡地区）学校再編ナビ</div>
-        <p style="font-size:.82rem;" data-i18n="footer_tagline">篠岡地区の学校再編計画について、小牧市公式情報をもとにわかりやすく情報提供することを目的とした住民有志サイトです。</p>
+        <p style="font-size:.82rem;" data-i18n="footer_tagline">篠岡地区の学校再編計画について、小牧市の公式情報をもとにわかりやすく伝える、住民有志のサイトです。</p>
       <p style="font-size:.78rem;margin-top:.4rem;" data-i18n="footer_langs">対応言語：日本語・English・Português・Tiếng Việt・Filipino・Español・中文・Bahasa Indonesia・한국어・नेपाली・Türkçe・မြန်မာ</p>
       <p class="footer-feed"><a href="feed.xml" type="application/atom+xml" data-i18n="feed_link">📡 更新情報をフィード（RSS）で受け取る</a></p>
       </div>
@@ -319,7 +326,7 @@
         </ul>
       </div>
     </div>
-    <div class="footer-bottom" data-i18n-html="footer_copyright">© 2026 小牧市東部（篠岡地区）学校再編ナビ（非公式）｜このサイトは住民有志によるユニット「これがまちつくサイトの解。」（略称：こまけぇ）が運営しており、小牧市・教育委員会とは無関係です。</div>
+    <div class="footer-bottom" data-i18n-html="footer_copyright">© 2026 小牧市東部（篠岡地区）学校再編ナビ（非公式）｜このサイトは「これがまちつくサイトの解。」THE UNIT（住民有志）が運営しており、小牧市・教育委員会とは無関係です。</div>
     <p class="site-credit" data-i18n="footer_credit">このサイトは Claude Code と GitHub で作成・運用しています。</p>
   </div>
 </footer>

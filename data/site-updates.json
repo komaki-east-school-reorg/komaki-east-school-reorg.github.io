@@ -4,8 +4,20 @@
     {
       "date": "2026-11-05",
       "type": "content",
-      "ja": "運営者（住民有志のユニット「こまけぇ」）をフッタとサイトの案内に明記",
-      "en": "The site's operator, the resident volunteer unit Komakee, now named in the footer and on the About This Site page"
+      "ja": "全ページの文章を、読みやすく自然な日本語に書き直し",
+      "en": "Text on every page rewritten to read more clearly"
+    },
+    {
+      "date": "2026-11-05",
+      "type": "feature",
+      "ja": "スケジュールで、終わった地域の取組を表示しないように",
+      "en": "Finished community events no longer shown on the schedule"
+    },
+    {
+      "date": "2026-11-05",
+      "type": "content",
+      "ja": "運営者「これがまちつくサイトの解。」THE UNIT を明記",
+      "en": "The site’s operator, “This Is the Answer: A Site for Building Our Town.” THE UNIT, now named"
     },
     {
       "date": "2026-11-05",

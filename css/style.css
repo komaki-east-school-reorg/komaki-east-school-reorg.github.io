@@ -1257,6 +1257,7 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 .cal-day-card-list li.past { color: var(--text-muted); }
 
 .event-list { margin-top: 1.5rem; }
+.event-item[hidden] { display: none; }
 .event-item {
   display: flex;
   gap: 1rem;
@@ -3142,7 +3143,8 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
 
 /* site.html 冒頭のバージョン表示（2026-11-01 から Ver.1.0） */
 .site-version-bar { padding: 1rem 0 0; }
-.site-operator { margin: 0 0 .6rem; font-size: .9rem; color: var(--primary-dark); }
+.site-operator { margin: 0; font-size: .9rem; color: var(--primary-dark); }
+.site-operator-sec { padding-top: 1rem; padding-bottom: 1rem; }
 .site-history { margin-top: .6rem; font-size: .88rem; }
 .site-history summary { cursor: pointer; font-weight: 700; color: var(--primary-dark); }
 .site-history ul { margin: .4rem 0 0 1.2rem; line-height: 1.8; }
@@ -3324,7 +3326,15 @@ main h2, main h3, main h4 { overflow-wrap: break-word; }
 .pr-card-link { font-size: .92rem; font-weight: 700; margin: 0 0 .4rem; }
 .pr-card-note { font-size: .76rem; color: var(--text-muted); margin: 0; }
 @media (max-width: 560px) {
-  .pr-card { flex-direction: column; align-items: stretch; }
-  .pr-card-pic { width: min(100%, 20rem); margin: 0 auto; }
+  /* モバイルでは冒頭で PR だと分かるよう、札と「市の募集ではありません」をポスターより先に出す
+     （2026-11-05 ユーザー指示）。本文の箱を display:contents にして、子を直接並べ替える。 */
+  .pr-card { flex-direction: column; align-items: stretch; gap: .5rem; }
+  .pr-card-body { display: contents; }
+  .pr-badge { order: -3; align-self: flex-start; margin: 0; font-size: .8rem; padding: .15rem .65rem; }
+  .pr-card-note { order: -2; font-size: .82rem; margin-top: -.2rem; }
+  .pr-card-h { order: -1; margin: .1rem 0 0; }
+  .pr-card-pic { order: 1; width: min(100%, 20rem); margin: .2rem auto; }
+  .pr-card-p { order: 2; margin: 0; }
+  .pr-card-link { order: 3; margin: 0; }
 }
 @media print { .pr-card, .pr-section { display: none !important; } }

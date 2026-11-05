@@ -7,16 +7,32 @@
   <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/"/>
   <id>https://komaki-east-school-reorg.github.io/</id>
   <updated>2026-11-05T00:00:00+09:00</updated>
-  <author><name>これがまちつくサイトの解。（こまけぇ・住民有志・非公式）</name></author>
+  <author><name>「これがまちつくサイトの解。」THE UNIT（住民有志・非公式）</name></author>
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
-  <rights>このサイトは住民有志によるユニット「これがまちつくサイトの解。」（略称：こまけぇ）が運営しており、小牧市・教育委員会とは無関係です。</rights>
+  <rights>このサイトは「これがまちつくサイトの解。」THE UNIT（住民有志）が運営しており、小牧市・教育委員会とは無関係です。</rights>
   <entry>
-    <title>運営者（住民有志のユニット「こまけぇ」）をフッタとサイトの案内に明記</title>
+    <title>運営者「これがまちつくサイトの解。」THE UNIT を明記</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:79bf9646ff93caf8</id>
+    <id>tag:komaki-east-school-reorg.github.io,2026:01edbb078344e9e3</id>
     <updated>2026-11-05T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜運営者（住民有志のユニット「こまけぇ」）をフッタとサイトの案内に明記</summary>
+    <summary>サイトの更新履歴｜運営者「これがまちつくサイトの解。」THE UNIT を明記</summary>
+  </entry>
+  <entry>
+    <title>全ページの文章を、読みやすく自然な日本語に書き直し</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:9e5aa60316e213e2</id>
+    <updated>2026-11-05T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜全ページの文章を、読みやすく自然な日本語に書き直し</summary>
+  </entry>
+  <entry>
+    <title>スケジュールで、終わった地域の取組を表示しないように</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:07975f96d06414a3</id>
+    <updated>2026-11-05T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜スケジュールで、終わった地域の取組を表示しないように</summary>
   </entry>
   <entry>
     <title>検証と提案の「学級の人数」と高校の節を、わかりやすく書き直し</title>
@@ -313,21 +329,5 @@
     <updated>2026-10-15T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜「大城小学校区地域協議会 宝さがしオリエンテーリング大会」を地域の取組と予定に掲載</summary>
-  </entry>
-  <entry>
-    <title>「大城小学校区地域協議会 シニアのためのスマホ使い方相談会」を地域の取組と予定に掲載</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:1ea357ebe50517f0</id>
-    <updated>2026-10-15T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜「大城小学校区地域協議会 シニアのためのスマホ使い方相談会」を地域の取組と予定に掲載</summary>
-  </entry>
-  <entry>
-    <title>東部まちづくり：栄森の地下街「まちのたね」</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#community-actions"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:0ddf0b982a8fb526</id>
-    <updated>2026-10-13T00:00:00+09:00</updated>
-    <category term="東部まちづくりの動き"/>
-    <summary>東部まちづくりの動き｜東部まちづくり：栄森の地下街「まちのたね」</summary>
   </entry>
 </feed>

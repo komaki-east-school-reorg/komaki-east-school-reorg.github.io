@@ -5,7 +5,7 @@
 (function () {
   var MOVES = {
     review: ['analysis.html', ['rev-gaps', 'rev-power', 'rev-toshikeikaku', 'rev-quality', 'rev-skills', 'rev-history',
-                               'rev-nation', 'rev-should', 'rev-ideas', 'rev-highschool']],
+                               'rev-nation', 'rev-should', 'rev-ideas', 'rev-highschool', 'rev-open']],
     index: ['site.html', ['site-intro', 'app', 'spread', 'feedback', 'privacy']]
   };
   var id = (location.hash || '').slice(1);
@@ -1307,6 +1307,9 @@ window.KomakiGrade = (function () {
       document.querySelectorAll('.event-item[data-auto]').forEach(function (n) { n.remove(); });
       extra.forEach(function (x) {
         var t = x.src, key = x.key;
+        // 終わった地域の取組（桃花台を考える会・地域協議会の催し）は一覧に出さない（2026-11-05 ユーザー指示）。
+        // 都市計画の日程は地域の取組ではないので、終わっても残す。
+        if (t.kind !== 'toshi' && key < today) return;
         var list = listFor(key.slice(0, 4));
         if (!list) return;
         var start = t.start || key;   // 期間（都市計画の閲覧・意見募集）は始まりの日から
@@ -1369,6 +1372,23 @@ window.KomakiGrade = (function () {
     renderDigest();
   }).catch(function () {});
   document.addEventListener('komaki:i18n-applied', function () { renderSchedule(); renderDigest(); });
+})();
+
+/* ===== PAST COMMUNITY EVENTS（schedule.html） =====
+   2026-11-05 ユーザー指示：スケジュールの一覧では、すでに終わった「地域の取組」だけを隠す。
+   対象は schedule.html で data-community を付けた手書きの予定（札が「住民有志」「地域協議会」のもの）。
+   「終わった」は今日が最終日（data-event-date）より後のとき（当日は進行中として残す）。
+   市の予定は終わっても残す。自動で足す催しは TOKADAI SCHEDULE が終わったものを差し込まない。
+   地域の取組をスケジュールに足すときは、その .event-item に data-community を付けること。 */
+(function () {
+  var items = document.querySelectorAll('.event-item[data-community]');
+  if (!items.length) return;
+  var d = new Date();
+  var today = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  items.forEach(function (it) {
+    var end = it.getAttribute('data-event-date') || it.getAttribute('data-start') || '';
+    if (end && end < today) it.hidden = true;
+  });
 })();
 
 /* ===== UPCOMING SCHEDULE EXPIRY ===== */
