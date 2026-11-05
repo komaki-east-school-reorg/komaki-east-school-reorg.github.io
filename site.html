@@ -258,10 +258,18 @@
 
   <!-- 関連ページ -->
   <!-- 運営者（2026-11-05 ユーザー指示：「これがまちつくサイトの解。」THE UNIT（住民有志）。略称なし。外国語では意訳した名前。
-       同日のユーザー指示でページの下のほう（「関連するページ」の直前）へ移した） -->
-  <section class="section site-operator-sec">
+       同日のユーザー指示でページの下のほう（「関連するページ」の直前）へ移し、挿絵「住民の輪」（img/illust/unit.svg）つきの紹介欄にした） -->
+  <section class="section site-operator-sec" id="operator">
     <div class="container">
-      <p class="site-operator" data-i18n-html="site_operator"><strong>運営：</strong>「これがまちつくサイトの解。」THE UNIT（住民有志）。小牧市・教育委員会とは無関係です。</p>
+      <div class="op-card">
+        <img class="op-ill" src="img/illust/unit.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
+        <div class="op-body">
+          <p class="op-label" data-i18n="site_op_label">運営</p>
+          <p class="op-name" data-i18n-html="site_op_name">「これがまちつくサイトの解。」<span class="op-unit">THE UNIT</span></p>
+          <p class="op-note" data-i18n="site_op_note">住民有志のユニットです。小牧市・教育委員会とは関係ありません。</p>
+          <p class="op-fb"><a href="#feedback" data-i18n="site_op_fb">ご意見の送り先 →</a></p>
+        </div>
+      </div>
     </div>
   </section>
 

@@ -3,52 +3,148 @@
   "rules": [
     {
       "id": "new-school-latin",
-      "langs": ["en", "tl", "pt", "es", "vi", "id", "tr", "my"],
+      "langs": [
+        "en",
+        "tl",
+        "pt",
+        "es",
+        "vi",
+        "id",
+        "tr",
+        "my"
+      ],
       "avoid": "Tokadai[ -](East|West|Leste|Oeste|Este|Đông|Tây|Silangan|Kanluran|Timur|Barat|Doğu|Batı|အရှေ့|အနောက်)",
       "use": "Tokadai Higashi / Tokadai Nishi",
       "note": "桃花台東・桃花台西（新校名と学校区）。方角を訳すと、Higashi と書いた箇所と同じ学校だと読めない"
     },
     {
       "id": "new-school-latin-reversed",
-      "langs": ["vi", "id"],
+      "langs": [
+        "vi",
+        "id"
+      ],
       "avoid": "(phía Đông|phía Tây|Timur|Barat) Tokadai",
       "use": "Tokadai Higashi / Tokadai Nishi",
       "note": "語順を入れ替えた形（Tiểu học phía Đông Tokadai、SD Timur Tokadai）"
     },
     {
       "id": "new-school-hyphen",
-      "langs": ["en", "tl", "pt", "es", "vi", "id", "tr", "my"],
+      "langs": [
+        "en",
+        "tl",
+        "pt",
+        "es",
+        "vi",
+        "id",
+        "tr",
+        "my"
+      ],
       "avoid": "Tokadai-(Higashi|Nishi)",
       "use": "Tokadai Higashi / Tokadai Nishi",
       "note": "ハイフンでつながない"
     },
     {
       "id": "zh-junior-high",
-      "langs": ["zh"],
+      "langs": [
+        "zh"
+      ],
       "avoid": "(桃花台[东西]|篠冈|光之丘|桃陵)初中",
       "use": "〇〇中学（桃花台东中学・篠冈中学）",
       "note": "学校名は「中学」。「初中」は学校の種類を言うときだけ（【初中：2所】など）"
     },
     {
       "id": "ko-new-school",
-      "langs": ["ko"],
+      "langs": [
+        "ko"
+      ],
       "avoid": "도카다이 ?(히가시|니시)",
       "use": "도카다이 동 / 도카다이 서",
       "note": "ko は方角を訳した形で一定"
     },
     {
       "id": "en-ize",
-      "langs": ["en"],
+      "langs": [
+        "en"
+      ],
       "avoid": "\\b[Rr]eorganis(e|ed|es|ing|ation|ations)\\b",
       "use": "reorganize / reorganization",
       "note": "英語は -ize（米国式）にそろえる"
     },
     {
       "id": "newsletter-title",
-      "langs": ["en", "tl", "pt", "es", "vi", "id", "tr", "my", "zh", "ko", "ne"],
+      "langs": [
+        "en",
+        "tl",
+        "pt",
+        "es",
+        "vi",
+        "id",
+        "tr",
+        "my",
+        "zh",
+        "ko",
+        "ne"
+      ],
       "avoid": "Reorganisation News",
       "use": "“Shinooka School Reorganization News”",
       "note": "『篠岡地区 学校再編だより』の英訳名"
+    },
+    {
+      "id": "en-us-spelling",
+      "langs": [
+        "en"
+      ],
+      "avoid": "\\b(Centre|centre|organis(e|ed|es|ing|ation|ations|er|ers)|programme|neighbour|counsell(or|ing)|councillor|judgement|enrolment|summaris|modernis)",
+      "use": "American spelling (Center, organize, program, neighbor, counselor, councilor, judgment, enrollment)",
+      "note": "英語は米国式の綴りにそろえる（-ize の規則と同じ考え。2026-11-05）"
+    },
+    {
+      "id": "en-kangaeru-kai",
+      "langs": [
+        "en"
+      ],
+      "avoid": "School (Discussion|Review) Meeting",
+      "use": "\"Think About Schools\" meeting",
+      "note": "「学校を考える会」の英語名を一つにそろえる（2026-11-05）"
+    },
+    {
+      "id": "en-names-macron",
+      "langs": [
+        "en"
+      ],
+      "avoid": "Toryou|Tōbu Civic|Ōkusa|Ōyama",
+      "use": "Toryo / East Community Center / Okusa / Oyama",
+      "note": "桃陵中・東部市民センター・大草・大山の英語表記（長音記号を付けない。2026-11-05）"
+    },
+    {
+      "id": "k9",
+      "langs": [
+        "en",
+        "tl",
+        "id"
+      ],
+      "avoid": "\\bK[–-]9\\b|mula K hanggang 9",
+      "use": "grades 1–9 / elementary–junior high",
+      "note": "小1〜中3。幼稚園（K）は含まない（2026-11-05）"
+    },
+    {
+      "id": "pre-commute",
+      "langs": [
+        "en",
+        "tl"
+      ],
+      "avoid": "[Pp]re-enrollment",
+      "use": "pre-commute trial",
+      "note": "プレ登校は新しい学校へ通う練習で、入学前の手続きではない（2026-11-05）"
+    },
+    {
+      "id": "kouryaku",
+      "langs": [
+        "ko"
+      ],
+      "avoid": "공략",
+      "use": "할 수 있는 것 / 한계를 넘다",
+      "note": "日本語の「攻略」をやめたのにあわせる（2026-11-05）"
     }
   ]
 }

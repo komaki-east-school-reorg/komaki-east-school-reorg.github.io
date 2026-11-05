@@ -50,12 +50,17 @@ jobs:
         if: steps.check.outputs.diff == 'true'
         run: python3 .github/scripts/build_page_dicts.py
 
+      # 検索の索引にも番号が入るので作り直す（auto_gates.py check 23。2026-11-05）
+      - name: Rebuild search index
+        if: steps.check.outputs.diff == 'true'
+        run: python3 .github/scripts/build_search_index.py
+
       - name: Commit automatic number fixes
         if: steps.check.outputs.diff == 'true'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A data/contacts.json data/i18n *.html
+          git add -A data/contacts.json data/i18n data/search *.html
           if git diff --staged --quiet; then
             echo "Nothing to commit (報告のみ)"
           else

@@ -164,6 +164,11 @@ window.KomakiCount = (function () {
     ['.ill-steps a, .rev-steps a', 'steps/jump'],
     ['.bus-map-zoom button', function (el) { return 'map/zoom-' + (el.getAttribute('data-zoom') || 'x').replace(/[^a-z]/g, ''); }],
     ['.faq-q', 'faq/toggle'],
+    // 2026-11-05 追加：サイト内検索・上へ戻る・本文へ移動（入力した語は送らない）
+    ['.search-open-btn, .nav-search-link, .search-inline-btn', 'search/open'],
+    ['.search-result a', 'search/go'],
+    ['.to-top', 'nav/top'],
+    ['.skip-link', 'nav/skip'],
     ['.hero-count-method summary', 'child-est/method'],
     ['a[href^="tel:"]', 'contact/tel'],
     // 外部サイトへのリンク：送るのは行き先の種類だけ（アドレスやページ名は送らない）
@@ -5464,4 +5469,278 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     render();
     document.addEventListener('komaki:i18n-applied', render);
   }
+})();
+
+/* ===== SKIP LINK / TO TOP（全ページ。2026-11-05 ユーザー指示：過去の提案「上へ戻る↑と本文への移動」） =====
+   ・本文へ移動：<body> の先頭に、Tab で最初に止まるリンクを差し込む（ふだんは見えず、フォーカスで出る）。
+     飛び先は <main>（id が無ければ main-content を付け、tabindex=-1 で読み上げの位置も移す）。
+   ・上へ戻る：1.5画面ぶん下へ進むと右下に「↑」を出す。画面下の共有バーと重ならない高さ（CSS）。
+     prefers-reduced-motion のときは瞬時に移動。印刷では隠す（CSS）。
+   文言は辞書の skip_to_main / to_top（RUNTIME_KEYS）。 */
+(function () {
+  var main = document.querySelector('main');
+  if (!main) return;
+  if (!main.id) main.id = 'main-content';
+  if (!main.hasAttribute('tabindex')) main.setAttribute('tabindex', '-1');
+  var skip = document.createElement('a');
+  skip.className = 'skip-link';
+  skip.href = '#' + main.id;
+  skip.setAttribute('data-i18n', 'skip_to_main');
+  skip.textContent = '本文へ移動';
+  skip.addEventListener('click', function (e) {
+    e.preventDefault();
+    main.focus({ preventScroll: true });
+    main.scrollIntoView();
+  });
+  document.body.insertBefore(skip, document.body.firstChild);
+
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'to-top';
+  btn.hidden = true;
+  btn.setAttribute('data-i18n-aria', 'to_top');
+  btn.setAttribute('aria-label', 'ページの上へ');
+  btn.innerHTML = '<span aria-hidden="true">↑</span>';
+  ['pointerenter', 'focus'].forEach(function (ev) {
+    btn.addEventListener(ev, function () { btn.title = btn.getAttribute('aria-label') || ''; });
+  });
+  btn.addEventListener('click', function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    try { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); } catch (e) { window.scrollTo(0, 0); }
+    var first = document.querySelector('header a, header button');
+    if (first) { try { first.focus({ preventScroll: true }); } catch (e) {} }
+  });
+  document.body.appendChild(btn);
+  var ticking = false;
+  function sync() {
+    ticking = false;
+    btn.hidden = window.scrollY < window.innerHeight * 1.5;
+    // 画面下の共有バーの実際の高さ（言語や幅で変わる）を測って、その上に浮かせる
+    var bar = document.querySelector('.share-sticky');
+    if (bar && bar.offsetHeight) document.documentElement.style.setProperty('--share-sticky-h', bar.offsetHeight + 'px');
+  }
+  window.addEventListener('resize', sync);
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(sync); }
+  }, { passive: true });
+  sync();
+})();
+
+/* ===== SITE SEARCH（全ページ。2026-11-05 ユーザー指示：過去の提案「サイト内検索」） =====
+   索引は .github/scripts/build_search_index.py が作る data/search/<言語>.json（12言語＋ja-kids）。
+   検索の窓を初めて開いたときに、表示言語（こどもむけなら ja-kids）の索引だけを読み込む。
+   ・置き場所：PC はヘッダの言語切替の行（📲 の右。寸法は --hr）、モバイルはハンバーガーメニューの最後
+     （モバイルのヘッダには置かない — 📲 と同じく言語のセレクトが狭まるため）。404 はページ内の欄。
+   ・空白で区切った語をすべて含む所を、見出しに一致したものを先に最大30件。日本語は NFKC・
+     カタカナ→ひらがなでそろえ、空白を無視して比べる。
+   ・結果はページ名・見出し・一致した語を <mark> で囲んだ抜粋。飛び先は「ページ?lang=…#節」。
+   ・0件なら問い合わせ先（about.html#contact）へ案内。
+   ・集計（COUNTER）は search/open と search/go だけで、入力した語は送らない。
+   文言は辞書の search_*（RUNTIME_KEYS）を隠しテンプレートで受け取る（SHARE BUTTONS と同じ）。 */
+(function () {
+  var MAX = 30;
+  var tpl = document.createElement('div');
+  tpl.hidden = true;
+  document.body.appendChild(tpl);
+  var T = {};
+  [['search_h', 'サイト内を検索'], ['search_ph', '調べたい言葉（例：スクールバス 申請）'],
+   ['search_hint', '空白で区切ると、すべての言葉を含む所を探します。'],
+   ['search_count', '{n}件あります'], ['search_more', '（上から{n}件を表示）'],
+   ['search_none', '当てはまる所はありませんでした。言葉を変えて探すか、問い合わせ先にたずねてください。'],
+   ['search_contact', '問い合わせ先 →'], ['search_loading', '読み込んでいます…'],
+   ['search_fail', '検索の準備ができませんでした。通信の状態を確かめて、もう一度開いてください。'],
+   ['search_menu', '🔍 サイト内を検索'], ['search_btn', 'サイト内を検索'], ['share_qr_close', '閉じる']
+  ].forEach(function (p) {
+    var el = document.createElement('span');
+    el.setAttribute('data-i18n', p[0]);
+    el.textContent = p[1];
+    tpl.appendChild(el);
+    T[p[0]] = el;
+  });
+  function t(k) { return T[k] ? T[k].textContent : ''; }
+
+  function lang() {
+    var l = window.KomakiLang ? window.KomakiLang() : 'ja';
+    var kids = false;
+    try { kids = l === 'ja' && localStorage.getItem('komaki_kids') === '1'; } catch (e) {}
+    return kids ? 'ja-kids' : l;
+  }
+  var CJK = /^(ja|ja-kids|zh)$/;
+  function norm(s, cjk) {
+    s = String(s || '');
+    try { s = s.normalize('NFKC'); } catch (e) {}
+    s = s.toLowerCase().replace(/[ァ-ヶ]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0x60); });
+    return cjk ? s.replace(/\s+/g, '') : s.replace(/\s+/g, ' ');
+  }
+  function esc(v) { return String(v).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  var cache = {};
+  function load(l) {
+    if (!cache[l]) {
+      cache[l] = fetch('data/search/' + l + '.json').then(function (r) {
+        if (!r.ok) throw new Error('http ' + r.status);
+        return r.json();
+      }).then(function (d) {
+        var cjk = CJK.test(l);
+        d.items.forEach(function (it) { it.n = norm(it[2], cjk); it.m = norm(it[3], cjk); });
+        return d;
+      });
+      cache[l].catch(function () { delete cache[l]; });
+    }
+    return cache[l];
+  }
+
+  function marked(text, terms) {
+    var h = esc(text);
+    terms.forEach(function (w) {
+      if (!w) return;
+      var re = new RegExp(esc(w).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+      h = h.replace(re, function (m) { return '<mark>' + m + '</mark>'; });
+    });
+    return h;
+  }
+  function snippet(text, terms) {
+    var low = text.toLowerCase().replace(/[ァ-ヶ]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0x60); });
+    var at = -1;
+    terms.forEach(function (w) { var i = low.indexOf(w); if (i >= 0 && (at < 0 || i < at)) at = i; });
+    var start = Math.max(0, at - 30);
+    var s = (start > 0 ? '…' : '') + text.slice(start, start + 110) + (text.length > start + 110 ? '…' : '');
+    return marked(s, terms);
+  }
+
+  function hrefFor(l, page, anchor) {
+    var q = (l !== 'ja' && l !== 'ja-kids') ? '?lang=' + encodeURIComponent(l) : '';
+    return page + '.html' + q + (anchor ? '#' + encodeURIComponent(anchor) : '');
+  }
+
+  function search(box) {
+    var input = box.querySelector('.search-input');
+    var out = box.querySelector('.search-results');
+    var status = box.querySelector('.search-status');
+    var q = input.value.trim();
+    var l = lang();
+    var cjk = CJK.test(l);
+    if (!q) { out.innerHTML = ''; status.textContent = t('search_hint'); box.classList.remove('is-empty'); return; }
+    status.textContent = t('search_loading');
+    load(l).then(function (d) {
+      if (input.value.trim() !== q) return;   // 打っている途中で次の検索が始まった
+      var terms = q.split(/[\s　]+/).map(function (w) { return norm(w, cjk); }).filter(Boolean);
+      var hits = [];
+      d.items.forEach(function (it) {
+        var hay = it.n + ' ' + it.m;
+        for (var i = 0; i < terms.length; i++) if (hay.indexOf(terms[i]) < 0) return;
+        var score = 0;
+        var pg = norm(d.pages[it[0]] || '', cjk);
+        terms.forEach(function (w) {
+          if (it.n.indexOf(w) >= 0) score += 10;     // 見出しに出てくる語をいちばん重く
+          if (pg.indexOf(w) >= 0) score += 4;         // そのページの名前に出てくる語（スクールバス → スクールバスのページ）
+          score += Math.min(5, it.m.split(w).length - 1);
+        });
+        hits.push([score, it]);
+      });
+      hits.sort(function (a, b) { return b[0] - a[0]; });
+      out.innerHTML = '';
+      box.classList.toggle('is-empty', !hits.length);
+      if (!hits.length) {
+        status.innerHTML = esc(t('search_none')) + ' <a href="' + hrefFor(l, 'about', 'contact') + '">' + esc(t('search_contact')) + '</a>';
+        return;
+      }
+      status.textContent = t('search_count').replace('{n}', hits.length) + (hits.length > MAX ? ' ' + t('search_more').replace('{n}', MAX) : '');
+      var rawTerms = q.split(/[\s　]+/).filter(Boolean).map(function (w) { return w.toLowerCase(); });
+      hits.slice(0, MAX).forEach(function (h) {
+        var it = h[1];
+        var li = document.createElement('li');
+        li.className = 'search-result';
+        li.innerHTML = '<a href="' + hrefFor(l, it[0], it[1]) + '">' +
+          '<span class="search-page">' + esc(d.pages[it[0]] || it[0]) + '</span>' +
+          '<span class="search-title">' + marked(it[2], rawTerms) + '</span>' +
+          (it[3] ? '<span class="search-snip">' + snippet(it[3], rawTerms) + '</span>' : '') + '</a>';
+        out.appendChild(li);
+      });
+    }).catch(function () { status.textContent = t('search_fail'); });
+  }
+
+  function makeBox(cls) {
+    var box = document.createElement('div');
+    box.className = 'search-box ' + (cls || '');
+    box.innerHTML = '<form class="search-form" role="search"><input class="search-input" type="search" enterkeyhint="search" autocomplete="off"></form>' +
+      '<p class="search-status" role="status" aria-live="polite"></p>' +
+      '<img class="search-empty-ill" src="img/illust/magnifier.svg" alt="" width="160" height="120" loading="lazy" decoding="async">' +
+      '<ul class="search-results"></ul>';
+    var input = box.querySelector('.search-input');
+    var timer = null;
+    input.addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(function () { search(box); }, 180); });
+    box.querySelector('.search-form').addEventListener('submit', function (e) { e.preventDefault(); search(box); });
+    function texts() {
+      input.placeholder = t('search_ph');
+      input.setAttribute('aria-label', t('search_h'));
+      if (!input.value.trim()) box.querySelector('.search-status').textContent = t('search_hint');
+    }
+    texts();
+    document.addEventListener('komaki:i18n-applied', function () { texts(); if (input.value.trim()) search(box); });
+    return box;
+  }
+
+  var dlg = null;
+  function open(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (!dlg) {
+      dlg = document.createElement('dialog');
+      dlg.className = 'search-dialog';
+      dlg.innerHTML = '<div class="search-dialog-head"><p class="search-dialog-h"></p><button type="button" class="search-close"></button></div>';
+      dlg.appendChild(makeBox('in-dialog'));
+      dlg.addEventListener('click', function (ev) { if (ev.target === dlg) dlg.close(); });
+      dlg.querySelector('.search-close').addEventListener('click', function () { dlg.close(); });
+      dlg.addEventListener('click', function (ev) {
+        var a = ev.target.closest && ev.target.closest('.search-result a');
+        if (a) dlg.close();
+      });
+      document.body.appendChild(dlg);
+    }
+    dlg.querySelector('.search-dialog-h').textContent = t('search_h');
+    dlg.querySelector('.search-close').textContent = t('share_qr_close');
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+    var input = dlg.querySelector('.search-input');
+    setTimeout(function () { input.focus(); input.select(); }, 30);
+    load(lang()).catch(function () {});   // 先に読み込み始めておく
+  }
+
+  // ヘッダ（PC）：言語切替の行の右端（📲 の右）
+  document.querySelectorAll('header .lang-pick').forEach(function (row) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'search-open-btn';
+    b.setAttribute('data-i18n-aria', 'search_btn');
+    b.setAttribute('aria-label', 'サイト内を検索');
+    b.innerHTML = '<span aria-hidden="true">🔍</span>';
+    ['pointerenter', 'focus'].forEach(function (ev) {
+      b.addEventListener(ev, function () { b.title = b.getAttribute('aria-label') || ''; });
+    });
+    b.addEventListener('click', open);
+    row.appendChild(b);
+  });
+  // モバイル：ハンバーガーメニューの最後（CSS でモバイル幅だけ出す）
+  var navUl = document.querySelector('header nav ul');
+  if (navUl) {
+    var li = document.createElement('li');
+    li.className = 'nav-search';
+    var a = document.createElement('a');
+    a.href = '#';
+    a.className = 'nav-search-link';
+    a.setAttribute('data-i18n', 'search_menu');
+    a.textContent = '🔍 サイト内を検索';
+    a.addEventListener('click', function (e) {
+      open(e);
+      var ul = a.closest('ul');
+      if (ul) ul.classList.remove('open');
+      var hb = document.querySelector('.hamburger');
+      if (hb) hb.classList.remove('open');
+    });
+    li.appendChild(a);
+    navUl.appendChild(li);
+  }
+  // 404：ページ内の欄
+  var inline = document.getElementById('site-search-inline');
+  if (inline) inline.appendChild(makeBox('inline'));
+  window.KomakiSearch = { open: open };
 })();

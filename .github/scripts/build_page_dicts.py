@@ -42,6 +42,19 @@ AFTER_SUFFIX = "__after"
 #   event_status_*     … schedule.html の 完了/進行中/予定 バッジ
 #   share_*            … 全ページ共通の共有ボタン（main.js が組み立てる）
 RUNTIME_KEYS = [
+    "search_h",           # SITE SEARCH（全ページ、main.js。2026-11-05）
+    "search_ph",
+    "search_hint",
+    "search_count",
+    "search_more",
+    "search_none",
+    "search_contact",
+    "search_loading",
+    "search_fail",
+    "search_menu",
+    "search_btn",
+    "skip_to_main",       # SKIP LINK / TO TOP（全ページ、main.js。2026-11-05）
+    "to_top",
     "share_tags_lead",    # HASHTAGS（共有欄のハッシュタグ、main.js。2026-10-24）
     "share_tags_copy",
     "share_tags_copied",

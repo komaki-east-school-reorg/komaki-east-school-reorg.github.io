@@ -8,6 +8,7 @@
   3. ja/en キー一致    — i18n.js が非日本語表示で ja.json を取らない前提を守る
   4. こどもモード      — ja-kids.json の1行がモーラ換算で長すぎないか
   5. ページ別辞書      — data/i18n/pages/ が data/i18n/ と HTML に対して最新か
+  23. 検索の索引       — data/search/ が data/i18n/ と HTML に対して最新か（2026-11-05）
   8. 年表の並び        — 現在の状況・主要イベント一覧が data-start の昇順か
   6. 外部リンク規則    — 市サイトへのリンクは許可URL（303/index.html）のみ、
                        Instagram は許可アカウントかつ index.html のみ、
@@ -44,11 +45,14 @@ ALLOWED_PREFIXES = ("data/i18n/pages/",
                     # schedule.html から決定的に生成する（2026-10-11）。ワークフローが作り直す。
                     "events/", "sitemap.xml",
                     # feed.xml は build_feed.py の生成物（毎日のワークフローが作り直す）
-                    "feed.xml")
+                    "feed.xml",
+                    # サイト内検索の索引は build_search_index.py の生成物（2026-11-05）
+                    "data/search/")
 # 上の接頭辞の下で許すファイルの形（2026-10-26）。接頭辞だけだと events/x/phish.html や
 # data/i18n/pages/a.html、sitemap.xml.bak まで通っていた。
 ALLOWED_GENERATED = re.compile(r"^(data/i18n/pages/[A-Za-z0-9-]+\.[A-Za-z-]+\.json"
-                               r"|events/\d{4}-\d{2}-\d{2}-\d+\.html|sitemap\.xml|feed\.xml)$")
+                               r"|events/\d{4}-\d{2}-\d{2}-\d+\.html|sitemap\.xml|feed\.xml"
+                               r"|data/search/[A-Za-z-]+\.json)$")
 
 
 def is_allowed_path(p):
@@ -401,6 +405,20 @@ def main():
             ok("ページ別辞書は最新")
     except Exception as e:
         fail(f"build_page_dicts.py が実行できない: {e}")
+
+    # --- 23. サイト内検索の索引が最新か（2026-11-05） ---
+    # data/search/<言語>.json は辞書と HTML から決定的に作る。古いと、検索で昔の文が出たり、
+    # 消えた節へ飛んだりする（ページ別辞書の check 5 と同じ考え方）。
+    try:
+        r = subprocess.run(
+            [sys.executable, ".github/scripts/build_search_index.py", "--check"],
+            capture_output=True, text=True)
+        if r.returncode != 0:
+            fail("検索の索引が古い（build_search_index.py を実行すること）:\n" + r.stdout.strip())
+        else:
+            ok("検索の索引は最新")
+    except Exception as e:
+        fail(f"build_search_index.py が実行できない: {e}")
 
     # --- 6. 外部リンク規則（サイト全体を検査） ---
     link_violations = []
