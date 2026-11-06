@@ -3,6 +3,18 @@
   "updates": [
     {
       "date": "2026-11-06",
+      "type": "content",
+      "ja": "議会での審議に第3回定例会（9月）を追加",
+      "en": "September 2026 council session added to the council page"
+    },
+    {
+      "date": "2026-11-06",
+      "type": "feature",
+      "ja": "トップページに検索欄を追加",
+      "en": "Search box added to the top page"
+    },
+    {
+      "date": "2026-11-06",
       "type": "feature",
       "ja": "サイト内を言葉で探せる検索を追加（12言語・こどもむけ）",
       "en": "Site search added, in all 12 languages and the kids view"

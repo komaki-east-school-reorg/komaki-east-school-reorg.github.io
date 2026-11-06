@@ -5530,7 +5530,8 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
    索引は .github/scripts/build_search_index.py が作る data/search/<言語>.json（12言語＋ja-kids）。
    検索の窓を初めて開いたときに、表示言語（こどもむけなら ja-kids）の索引だけを読み込む。
    ・置き場所：PC はヘッダの言語切替の行（📲 の右。寸法は --hr）、モバイルはハンバーガーメニューの最後
-     （モバイルのヘッダには置かない — 📲 と同じく言語のセレクトが狭まるため）。404 はページ内の欄。
+     （モバイルのヘッダには置かない — 📲 と同じく言語のセレクトが狭まるため）。トップ（「いまの状況」の下）と
+     404 はページ内の欄（[data-site-search]。結果は欄の下にそのまま出る）。
    ・空白で区切った語をすべて含む所を、見出しに一致したものを先に最大30件。日本語は NFKC・
      カタカナ→ひらがなでそろえ、空白を無視して比べる。
    ・結果はページ名・見出し・一致した語を <mark> で囲んだ抜粋。飛び先は「ページ?lang=…#節」。
@@ -5739,8 +5740,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     li.appendChild(a);
     navUl.appendChild(li);
   }
-  // 404：ページ内の欄
-  var inline = document.getElementById('site-search-inline');
-  if (inline) inline.appendChild(makeBox('inline'));
+  // ページ内の欄：トップ（「いまの状況」の下。2026-11-06）と 404。[data-site-search] を付けた要素に作る
+  document.querySelectorAll('[data-site-search]').forEach(function (el) { el.appendChild(makeBox('inline')); });
   window.KomakiSearch = { open: open };
 })();

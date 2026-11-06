@@ -3418,3 +3418,27 @@ main:focus { outline: none; }
 .to-top:hover, .to-top:focus-visible { background: var(--primary-dark); outline: 3px solid var(--accent); outline-offset: 2px; }
 /* 画面下の共有バー（.share-sticky）があるときは、その上に浮かせる */
 html.has-share-sticky .to-top { bottom: calc(var(--share-sticky-h, 3.4rem) + .8rem); }
+/* トップの検索欄（index.html、「いまの状況」のすぐ下。2026-11-06）
+   目立ちすぎない入力欄1本（ユーザー指示）。🔍は ::before（文字を DOM に入れない）。
+   何も入力していないときは説明の行を出さない。 */
+.top-search { background: var(--accent-light); border-bottom: 1px solid var(--border); padding: 0 0 1.1rem; }
+/* 「いまの状況」と1つの帯に見せる：間の線を消し、余白を詰める */
+.now-bar:has(+ .top-search) { border-bottom: 0; padding-bottom: .7rem; }
+/* 幅・左端・枠・角・影は上の「いまの状況」の枠（.now-inner）にそろえる */
+.top-search .search-box.inline { position: relative; max-width: none; margin: 0; }
+.top-search .search-box.inline::before {
+  content: "🔍"; position: absolute; left: 1.05rem; top: .62rem; font-size: .85rem; opacity: .5; pointer-events: none;
+}
+.top-search .search-input {
+  font-size: .95rem; padding: .55rem 1.2rem .55rem 2.5rem;
+  border: 1.5px solid var(--border); border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow);
+}
+.top-search .search-input:focus { border-color: var(--primary); }
+.top-search .search-box:has(.search-input:placeholder-shown) .search-status { display: none; }
+.top-search .search-empty-ill { display: none !important; }
+.top-search .search-status { margin: .55rem .3rem .3rem; font-size: .85rem; }
+.top-search .search-results:not(:empty) {
+  max-height: 24rem; overflow: auto; background: var(--white);
+  border: 1.5px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
+}
+@media print { .top-search { display: none; } }
