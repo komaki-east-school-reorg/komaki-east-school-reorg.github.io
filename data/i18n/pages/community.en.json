@@ -259,6 +259,8 @@
   "search_fail": "Search could not be prepared. Check your connection and open it again.",
   "search_h": "Search this site",
   "search_hint": "Separate words with spaces to find places that contain all of them.",
+  "search_link_copied": "Link copied",
+  "search_link_copy": "🔗 Copy a link to this search",
   "search_loading": "Loading…",
   "search_menu": "🔍 Search this site",
   "search_more": "(showing the top {n})",

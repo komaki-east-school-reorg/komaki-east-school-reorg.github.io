@@ -99,6 +99,8 @@
   "search_fail": "Không thể chuẩn bị tìm kiếm. Hãy kiểm tra kết nối rồi mở lại.",
   "search_h": "Tìm trong trang web",
   "search_hint": "Tách các từ bằng dấu cách để tìm những chỗ có đủ tất cả các từ.",
+  "search_link_copied": "Đã sao chép liên kết",
+  "search_link_copy": "🔗 Sao chép liên kết tìm kiếm này",
   "search_loading": "Đang tải…",
   "search_menu": "🔍 Tìm trong trang web",
   "search_more": "(hiển thị {n} kết quả đầu)",

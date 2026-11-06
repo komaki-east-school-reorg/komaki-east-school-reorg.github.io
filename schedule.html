@@ -285,6 +285,18 @@
           <span data-ck="ics" data-i18n="cal_day_ics">この日の予定をカレンダーに追加（.ics）</span>
           <span data-ck="close" data-i18n="cal_day_close">閉じる</span>
         </div>
+        <!-- 購読できるカレンダー（2026-11-07 ユーザー指示）。calendar.<言語>.ics は build_calendar.py が毎日作る。
+             ボタンの href は js/main.js の CALENDAR SUBSCRIBE が表示言語に合わせて書く。外部サービスへのリンクは張らない。 -->
+        <div class="cal-sub" id="cal-sub">
+          <p class="cal-sub-h" data-i18n="cal_sub_h">🔔 カレンダーアプリで購読する</p>
+          <p class="cal-sub-p" data-i18n="cal_sub_p">一度登録すれば、このページの予定の追加や変更が、お使いのカレンダーに自動で届きます。</p>
+          <div class="cal-sub-btns">
+            <a class="cal-sub-btn" id="cal-sub-webcal" href="webcal://komaki-east-school-reorg.github.io/calendar.ja.ics" data-i18n="cal_sub_btn">購読する（iPhone・Mac など）</a>
+            <button type="button" class="cal-sub-copy" id="cal-sub-copy" data-i18n="cal_sub_copy">購読用の URL をコピー</button>
+          </div>
+          <p class="cal-sub-note" data-i18n-html="cal_sub_note">Google カレンダーや Android では、パソコンの Google カレンダーの「他のカレンダー」→「URL で追加」に、コピーした URL を貼りつけてください。予定は当サイトのまとめです。正式な案内は市から届く書類でご確認ください。</p>
+          <span id="cal-sub-copied" hidden data-i18n="cal_sub_copied">URL をコピーしました</span>
+        </div>
       </div>
     </div>
   </section>

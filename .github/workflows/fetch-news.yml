@@ -102,6 +102,11 @@ jobs:
       - name: Build nearby-district list (Komaki)
         run: python3 .github/scripts/build_nearby_komaki.py
 
+      # 購読できるカレンダー（calendar.<言語>.ics。2026-11-07）。events.json と上で作った自動の催しから
+      # 決定的に作る（auto_gates.py check 25）。市サーバへは行かない。
+      - name: Build subscribable calendars
+        run: python3 .github/scripts/build_calendar.py
+
       # 「最新の動き」の Atom フィード（feed.xml）。上で作ったデータと更新履歴から決定的に作る。
       # 市サーバへは行かない。これらのデータの【あと】に置くこと（2026-10-11）。
       - name: Build Atom feed
@@ -245,7 +250,7 @@ jobs:
         id: report
         if: steps.fetch.outputs.changed == 'true' || steps.newsletters.outputs.changed == 'true'
         run: |
-          git add data/news.json data/official_pages ':!data/official_pages/kasugai' data/community_events.json data/tobu_actions.json data/toshikeikaku_east.json data/nearby_komaki.json data/site-updates.json feed.xml
+          git add data/news.json data/official_pages ':!data/official_pages/kasugai' data/community_events.json data/tobu_actions.json data/toshikeikaku_east.json data/nearby_komaki.json data/site-updates.json feed.xml calendar.*.ics
           if git diff --staged --quiet -- data/official_pages; then
             echo "pages_changed=false" >> "$GITHUB_OUTPUT"
           else
@@ -553,6 +558,11 @@ jobs:
         if: steps.token.outputs.available == 'true'
         run: python3 .github/scripts/build_feed.py
 
+      # 起案AIが events.json を直すと購読カレンダーが古くなる（check 25）。決定的に作り直す。
+      - name: Rebuild subscribable calendars
+        if: steps.token.outputs.available == 'true'
+        run: python3 .github/scripts/build_calendar.py
+
       # ---------- 機械検証ゲート ----------
       - name: Run guardrail gates
         id: gates
@@ -599,7 +609,7 @@ jobs:
           # 起案AIの編集が commit されず PR にも proposed.diff にも現れないまま消える
           # （community.html が長らくそうなっていた）。
           # events/ と sitemap.xml は build_event_pages.py の生成物（schedule.html の予定から作る）
-          git add data/events.json data/site-updates.json data/i18n index.html schedule.html community.html events sitemap.xml feed.xml data/search
+          git add data/events.json data/site-updates.json data/i18n index.html schedule.html community.html events sitemap.xml feed.xml data/search calendar.*.ics
           git commit -m "auto: 公式ページ更新の自動反映 ${TODAY}"
           git diff origin/main..HEAD > auto_update/proposed.diff
           echo "--- proposed diff ---"

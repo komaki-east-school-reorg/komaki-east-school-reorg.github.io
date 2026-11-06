@@ -228,6 +228,8 @@
   "search_fail": "No se pudo preparar la búsqueda. Revisa la conexión y vuelve a abrirla.",
   "search_h": "Buscar en el sitio",
   "search_hint": "Separa las palabras con espacios para encontrar los lugares que las contienen todas.",
+  "search_link_copied": "Enlace copiado",
+  "search_link_copy": "🔗 Copiar enlace de esta búsqueda",
   "search_loading": "Cargando…",
   "search_menu": "🔍 Buscar en el sitio",
   "search_more": "(se muestran los {n} primeros)",

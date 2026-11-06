@@ -4846,6 +4846,31 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     .catch(function () { container.innerHTML = '<p class="official-news-error">' + pick(T.error) + '</p>'; });
 })();
 
+/* ===== CALENDAR SUBSCRIBE（schedule.html「🔔 カレンダーアプリで購読する」。2026-11-07）=====
+   calendar.<言語>.ics は .github/scripts/build_calendar.py が毎日作る（UID は「📅 カレンダーに追加」と同じ）。
+   ここは表示言語に合わせて webcal:// の href と、コピーする https:// の URL を決めるだけ。 */
+(function () {
+  var box = document.getElementById('cal-sub');
+  if (!box) return;
+  var btn = document.getElementById('cal-sub-webcal');
+  var copy = document.getElementById('cal-sub-copy');
+  var done = document.getElementById('cal-sub-copied');
+  var HOSTPATH = 'komaki-east-school-reorg.github.io/';
+  function file() { return 'calendar.' + (window.KomakiLang ? window.KomakiLang() : 'ja') + '.ics'; }
+  function sync() { btn.href = 'webcal://' + HOSTPATH + file(); }
+  sync();
+  document.addEventListener('komaki:i18n-applied', sync);
+  btn.addEventListener('click', function () { if (window.KomakiCount) window.KomakiCount('calendar/subscribe'); });
+  copy.addEventListener('click', function () {
+    var u = 'https://' + HOSTPATH + file();
+    var label = copy.textContent;
+    var ok = function () { copy.textContent = done.textContent; setTimeout(function () { copy.textContent = label; }, 2500); };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(u).then(ok, function () { window.prompt('', u); });
+    else window.prompt('', u);
+    if (window.KomakiCount) window.KomakiCount('calendar/sub-copy');
+  });
+})();
+
 /* ===== KASUGAI WATCH（about.html#nearby「ほかの地区や、となりのまちでは？」の春日井市の一覧）=====
    2026-11-07 追加（ユーザー指示）。春日井市「小中学校の適正規模等について」の配下ページを、
    更新日の新しい順に5件出す。data/kasugai_reorg.json は .github/scripts/fetch_kasugai.py が
@@ -5666,7 +5691,8 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
    ['search_none', '当てはまる所はありませんでした。言葉を変えて探すか、問い合わせ先にたずねてください。'],
    ['search_contact', '問い合わせ先 →'], ['search_loading', '読み込んでいます…'],
    ['search_fail', '検索の準備ができませんでした。通信の状態を確かめて、もう一度開いてください。'],
-   ['search_menu', '🔍 サイト内を検索'], ['search_btn', 'サイト内を検索'], ['share_qr_close', '閉じる']
+   ['search_menu', '🔍 サイト内を検索'], ['search_btn', 'サイト内を検索'], ['share_qr_close', '閉じる'],
+   ['search_link_copy', '🔗 この検索のリンクをコピー'], ['search_link_copied', 'リンクをコピーしました']
   ].forEach(function (p) {
     var el = document.createElement('span');
     el.setAttribute('data-i18n', p[0]);
@@ -5763,6 +5789,21 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
         return;
       }
       status.textContent = t('search_count').replace('{n}', hits.length) + (hits.length > MAX ? ' ' + t('search_more').replace('{n}', MAX) : '');
+      // この検索をリンクで渡せるように（?q=。2026-11-07）。リンク先はトップの検索欄
+      var lk = document.createElement('button');
+      lk.type = 'button';
+      lk.className = 'search-link-copy';
+      lk.textContent = t('search_link_copy');
+      lk.addEventListener('click', function () {
+        var u = location.origin + location.pathname.replace(/[^/]*$/, '') + 'index.html?q=' + encodeURIComponent(q) +
+                (l !== 'ja' && l !== 'ja-kids' ? '&lang=' + encodeURIComponent(l) : '');
+        var done = function () { lk.textContent = t('search_link_copied'); setTimeout(function () { lk.textContent = t('search_link_copy'); }, 2500); };
+        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(u).then(done, function () { window.prompt('', u); });
+        else window.prompt('', u);
+        if (window.KomakiCount) window.KomakiCount('search/link-copy');
+      });
+      status.appendChild(document.createTextNode(' '));
+      status.appendChild(lk);
       var rawTerms = q.split(/[\s　]+/).filter(Boolean).map(function (w) { return w.toLowerCase(); });
       hits.slice(0, MAX).forEach(function (h) {
         var it = h[1];
@@ -5858,5 +5899,22 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   }
   // ページ内の欄：トップ（「いまの状況」の下。2026-11-06）と 404。[data-site-search] を付けた要素に作る
   document.querySelectorAll('[data-site-search]').forEach(function (el) { el.appendChild(makeBox('inline')); });
+  // ?q=語 で開かれたら、その語で検索した状態にする（2026-11-07）。トップと404はページ内の欄、
+  // ほかのページは検索の窓を開く。語は集計（COUNTER）には送らない（パスにも入れていない）。
+  try {
+    var q0 = (new URLSearchParams(location.search).get('q') || '').trim().slice(0, 100);
+    if (q0) {
+      var inBox = document.querySelector('[data-site-search] .search-box');
+      if (inBox) {
+        inBox.querySelector('.search-input').value = q0;
+        search(inBox);
+        setTimeout(function () { inBox.scrollIntoView({block: 'start'}); }, 400);
+      } else {
+        open();
+        dlg.querySelector('.search-input').value = q0;
+        search(dlg.querySelector('.search-box'));
+      }
+    }
+  } catch (e) {}
   window.KomakiSearch = { open: open };
 })();

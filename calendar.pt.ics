@@ -1,0 +1,515 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//komaki-east-school-reorg//subscribe//PT
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Reorganização escolar — Komaki leste
+X-WR-TIMEZONE:Asia/Tokyo
+REFRESH-INTERVAL;VALUE=DURATION:P1D
+X-PUBLISHED-TTL:P1D
+BEGIN:VEVENT
+UID:2025-05-10-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20250510T000000Z
+DTSTART;VALUE=DATE:20250510
+DTEND;VALUE=DATE:20250511
+SUMMARY:1ª Reunião de Discussão Escolar
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-05-30-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20250530T000000Z
+DTSTART;VALUE=DATE:20250530
+DTEND;VALUE=DATE:20250531
+SUMMARY:2ª Reunião de Discussão Escolar
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-06-13-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20250613T000000Z
+DTSTART;VALUE=DATE:20250613
+DTEND;VALUE=DATE:20250614
+SUMMARY:Relatório ao Conselho Comunitário
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-06-14-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20250614T000000Z
+DTSTART;VALUE=DATE:20250614
+DTEND;VALUE=DATE:20250615
+SUMMARY:Relatório Assoc. de Bairro (1º)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-06-27-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20250627T000000Z
+DTSTART;VALUE=DATE:20250627
+DTEND;VALUE=DATE:20250628
+SUMMARY:3ª Reunião de Discussão Escolar
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-07-27-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20250727T000000Z
+DTSTART;VALUE=DATE:20250727
+DTEND;VALUE=DATE:20250728
+SUMMARY:Reunião Shiroyama 3&4 Bairros
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-08-24-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20250824T000000Z
+DTSTART;VALUE=DATE:20250824
+DTEND;VALUE=DATE:20250825
+SUMMARY:1ª Reunião de Opiniões de Pais
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-08-30-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20250830T000000Z
+DTSTART;VALUE=DATE:20250830
+DTEND;VALUE=DATE:20250831
+SUMMARY:2ª e 3ª Reuniões de Opiniões
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-09-21-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20250921T000000Z
+DTSTART;VALUE=DATE:20250921
+DTEND;VALUE=DATE:20250922
+SUMMARY:Reunião Comunitária
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-09-26-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20250926T000000Z
+DTSTART;VALUE=DATE:20250926
+DTEND;VALUE=DATE:20250927
+SUMMARY:Relatório Assoc. de Bairro (2º)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-10-11-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20251011T000000Z
+DTSTART;VALUE=DATE:20251011
+DTEND;VALUE=DATE:20251012
+SUMMARY:4ª Reunião de Discussão Escolar
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-11-02-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20251102T000000Z
+DTSTART;VALUE=DATE:20251102
+DTEND;VALUE=DATE:20251103
+SUMMARY:Relatório Assoc. de Bairro (3º)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-11-10-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20251110T000000Z
+DTSTART;VALUE=DATE:20251101
+DTEND;VALUE=DATE:20251201
+SUMMARY:Com. Público Abre / Pesquisa de Nome (data a definir\, 11/2025)
+DESCRIPTION:A data ainda não foi divulgada. Foi registrada como o perío
+ do divulgado (11/2025). Atualize este evento quando a data for conhecida
+ .\nEstas datas foram reunidas por um site de moradores. Confirme o aviso
+  oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-11-27-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20251127T000000Z
+DTSTART;VALUE=DATE:20251127
+DTEND;VALUE=DATE:20251128
+SUMMARY:Relatório ao Conselho Comunitário (2º)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-12-09-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20251209T000000Z
+DTSTART;VALUE=DATE:20251209
+DTEND;VALUE=DATE:20251210
+SUMMARY:Com. Público Encerra (142)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-01-13-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260113T000000Z
+DTSTART;VALUE=DATE:20260113
+DTEND;VALUE=DATE:20260114
+SUMMARY:Comitê de Distrito Escolar
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-02-07-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260207T000000Z
+DTSTART;VALUE=DATE:20260207
+DTEND;VALUE=DATE:20260208
+SUMMARY:5ª Reunião de Discussão Escolar
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-05-18-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260518T000000Z
+DTSTART;VALUE=DATE:20260518
+DTEND;VALUE=DATE:20260519
+SUMMARY:Prazo do Concurso de Emblema
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-01-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260601T000000Z
+DTSTART;VALUE=DATE:20260601
+DTEND;VALUE=DATE:20260602
+SUMMARY:Operadora do ônibus definida (Aoi Kotsu)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-06-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260606T000000Z
+DTSTART;VALUE=DATE:20260606
+DTEND;VALUE=DATE:20260607
+SUMMARY:Sessão Pais (JHS Toryou)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-07-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260607T000000Z
+DTSTART;VALUE=DATE:20260607
+DTEND;VALUE=DATE:20260608
+SUMMARY:Sessão Pais (JHS Shinooka)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-14-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260614T000000Z
+DTSTART;VALUE=DATE:20260614
+DTEND;VALUE=DATE:20260615
+SUMMARY:Sessão Pais (Sue Elem.)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-20-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260620T000000Z
+DTSTART;VALUE=DATE:20260620
+DTEND;VALUE=DATE:20260621
+SUMMARY:Sessão Pais (Oshiro Elem.)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-21-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260621T000000Z
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260622
+SUMMARY:Sessão Pais (JHS Hikarigaoka)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-29-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260629T000000Z
+DTSTART;VALUE=DATE:20260629
+DTEND;VALUE=DATE:20260630
+SUMMARY:Sessão Pais (Centro Comunit. Leste)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-14-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260714T000000Z
+DTSTART;VALUE=DATE:20260714
+DTEND;VALUE=DATE:20260715
+SUMMARY:Encontro das 5 escolas (4º–5º ano)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-21-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260721T000000Z
+DTSTART;VALUE=DATE:20260721
+DTEND;VALUE=DATE:20260722
+SUMMARY:Perguntas e Respostas Publicadas
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-08-30-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260830T000000Z
+DTSTART;VALUE=DATE:20260830
+DTEND;VALUE=DATE:20260831
+SUMMARY:Início da inscrição do ônibus escolar
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-09-04-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260904T000000Z
+DTSTART;VALUE=DATE:20260904
+DTEND;VALUE=DATE:20260905
+SUMMARY:Emblema da Shinooka Gakuen definido
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-09-30-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260930T000000Z
+DTSTART;VALUE=DATE:20260930
+DTEND;VALUE=DATE:20261001
+SUMMARY:Prazo final do ônibus escolar
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-10-12-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261012
+DTEND;VALUE=DATE:20261013
+SUMMARY:TOKADAI DANCE FESTIVAL (iniciativa de moradores)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-10-21-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261021T000000Z
+DTSTART;VALUE=DATE:20261021
+DTEND;VALUE=DATE:20261022
+SUMMARY:Caminhada Refrescante de Shinooka (conselho)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-10-31-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261031T000000Z
+DTSTART;VALUE=DATE:20261001
+DTEND;VALUE=DATE:20261101
+SUMMARY:Exame pré-matrícula (5 escolas) (data a definir\, 10/2026)
+DESCRIPTION:A data ainda não foi divulgada. Foi registrada como o perío
+ do divulgado (10/2026). Atualize este evento quando a data for conhecida
+ .\nEstas datas foram reunidas por um site de moradores. Confirme o aviso
+  oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-10-31-2-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261031T000000Z
+DTSTART;VALUE=DATE:20261031
+DTEND;VALUE=DATE:20261101
+SUMMARY:Festival de música do novo distrito escolar (conselho)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-10-31-3-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261031T000000Z
+DTSTART;VALUE=DATE:20261001
+DTEND;VALUE=DATE:20261101
+SUMMARY:Encontro conjunto das cinco escolas primárias (todos os anos) (d
+ ata a definir\, 10/2026)
+DESCRIPTION:A data ainda não foi divulgada. Foi registrada como o perío
+ do divulgado (10/2026). Atualize este evento quando a data for conhecida
+ .\nEstas datas foram reunidas por um site de moradores. Confirme o aviso
+  oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-11-13-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261113T000000Z
+DTSTART;VALUE=DATE:20261113
+DTEND;VALUE=DATE:20261116
+SUMMARY:Bamboo Installation em Okusa (até 15/11\, iniciativa de moradore
+ s)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-11-14-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261114T000000Z
+DTSTART;VALUE=DATE:20261114
+DTEND;VALUE=DATE:20261115
+SUMMARY:Bamboo Art Marché & Music Fest (iniciativa de moradores)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-11-15-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261115T000000Z
+DTSTART;VALUE=DATE:20261115
+DTEND;VALUE=DATE:20261116
+SUMMARY:11º Festival de Música de Tokadai (iniciativa de moradores)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:council-12sy5in-2026-11-15@komaki-east-school-reorg.github.io
+DTSTAMP:20261115T000000Z
+DTSTART:20261115T040000Z
+DTEND:20261115T070000Z
+SUMMARY:Conselho comunitário da área da escola primária Oshiro: consul
+ toria de uso de celular para idosos (conselho comunitário)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.\n11月15日 13
+ 時00分～16時00分
+LOCATION:Salão comunitário Shiroyama
+URL:https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3
+ /3_2/chiikikyougikaievent/52817.html
+END:VEVENT
+BEGIN:VEVENT
+UID:council-no5w3g-2026-11-29@komaki-east-school-reorg.github.io
+DTSTAMP:20261129T000000Z
+DTSTART:20261129T000000Z
+SUMMARY:Conselho comunitário da área da escola primária Momogaoka: fei
+ ra ao ar livre (conselho comunitário)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.\n11月29日 9
+ 時00分～正午
+LOCATION:Escola primária Momogaoka e via verde
+URL:https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3
+ /3_2/chiikikyougikaievent/52067.html
+END:VEVENT
+BEGIN:VEVENT
+UID:council-11dtac2-2026-11-29@komaki-east-school-reorg.github.io
+DTSTAMP:20261129T000000Z
+DTSTART:20261129T050000Z
+DTEND:20261129T063000Z
+SUMMARY:Conselho comunitário da área da escola primária Oshiro: gincan
+ a de orientação com caça ao tesouro (conselho comunitário)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.\n11月29日 14
+ 時00分～15時30分
+LOCATION:Escola primária Oshiro\, arredores e via verde (inscrição na 
+ escola primária Oshiro)
+URL:https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3
+ /3_2/chiikikyougikaievent/52814.html
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-12-13-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261213T000000Z
+DTSTART;VALUE=DATE:20261213
+DTEND;VALUE=DATE:20261214
+SUMMARY:Arigato Oshiro-sho (moradores)
+DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
+  o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-12-31-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261231T000000Z
+DTSTART;VALUE=DATE:20261201
+DTEND;VALUE=DATE:20270101
+SUMMARY:Conselho conjunto de gestão (8 escolas) (data a definir\, 12/202
+ 6)
+DESCRIPTION:A data ainda não foi divulgada. Foi registrada como o perío
+ do divulgado (12/2026). Atualize este evento quando a data for conhecida
+ .\nEstas datas foram reunidas por um site de moradores. Confirme o aviso
+  oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-12-31-2-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261231T000000Z
+DTSTART;VALUE=DATE:20261101
+DTEND;VALUE=DATE:20270101
+SUMMARY:Viagens experimentais e teste do app (data a definir\, 11/2026 
+ – 12/2026)
+DESCRIPTION:A data ainda não foi divulgada. Foi registrada como o perío
+ do divulgado (11/2026 – 12/2026). Atualize este evento quando a data f
+ or conhecida.\nEstas datas foram reunidas por um site de moradores. Conf
+ irme o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2027-02-28-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20270228T000000Z
+DTSTART;VALUE=DATE:20270201
+DTEND;VALUE=DATE:20270301
+SUMMARY:Sessão de matrícula e trajeto de teste (data a definir\, 2/2027
+ )
+DESCRIPTION:A data ainda não foi divulgada. Foi registrada como o perío
+ do divulgado (2/2027). Atualize este evento quando a data for conhecida.
+ \nEstas datas foram reunidas por um site de moradores. Confirme o aviso 
+ oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2027-03-31-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20270331T000000Z
+DTSTART;VALUE=DATE:20270301
+DTEND;VALUE=DATE:20270401
+SUMMARY:Cerimônias de encerramento (5+3 escolas) (data a definir\, 3/202
+ 7)
+DESCRIPTION:A data ainda não foi divulgada. Foi registrada como o perío
+ do divulgado (3/2027). Atualize este evento quando a data for conhecida.
+ \nEstas datas foram reunidas por um site de moradores. Confirme o aviso 
+ oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
+UID:2027-04-01-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20270401T000000Z
+DTSTART;VALUE=DATE:20270401
+DTEND;VALUE=DATE:20270501
+SUMMARY:Fase 1 Reorganização (Shinooka Gakuen) (data a definir\, 4/2027
+ )
+DESCRIPTION:A data ainda não foi divulgada. Foi registrada como o perío
+ do divulgado (4/2027). Atualize este evento quando a data for conhecida.
+ \nEstas datas foram reunidas por um site de moradores. Confirme o aviso 
+ oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+END:VCALENDAR

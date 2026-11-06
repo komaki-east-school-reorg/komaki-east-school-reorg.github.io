@@ -228,6 +228,8 @@
   "search_fail": "Pencarian tidak dapat disiapkan. Periksa koneksi lalu buka lagi.",
   "search_h": "Cari di situs ini",
   "search_hint": "Pisahkan kata dengan spasi untuk mencari bagian yang memuat semuanya.",
+  "search_link_copied": "Tautan disalin",
+  "search_link_copy": "🔗 Salin tautan pencarian ini",
   "search_loading": "Memuat…",
   "search_menu": "🔍 Cari di situs ini",
   "search_more": "(menampilkan {n} teratas)",

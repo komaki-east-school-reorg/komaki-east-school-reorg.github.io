@@ -35,6 +35,22 @@
     <summary>サイトの更新履歴｜計画概要に「近隣他地区の状況」（北里地区・春日井市）を追加</summary>
   </entry>
   <entry>
+    <title>検索の言葉をリンクで共有できるように</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:705fbd1e3f44c69e</id>
+    <updated>2026-11-07T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜検索の言葉をリンクで共有できるように</summary>
+  </entry>
+  <entry>
+    <title>予定をカレンダーアプリで購読できるように</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:545a062c1ce823ed</id>
+    <updated>2026-11-07T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜予定をカレンダーアプリで購読できるように</summary>
+  </entry>
+  <entry>
     <title>議会での審議に第3回定例会（9月）を追加</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
     <id>tag:komaki-east-school-reorg.github.io,2026:6d937c9ff39b5019</id>
@@ -313,21 +329,5 @@
     <updated>2026-10-24T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜SNS用ハッシュタグと使い方の広め方・ご意見の送り先を追加</summary>
-  </entry>
-  <entry>
-    <title>Cookieを使わない閲覧数の集計を開始（端末ごとに停止可）</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:cb190ddde4be6b79</id>
-    <updated>2026-10-24T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜Cookieを使わない閲覧数の集計を開始（端末ごとに停止可）</summary>
-  </entry>
-  <entry>
-    <title>自動で集めた各コーナーに、元のページを確かめた日時を表示</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:a58774253aa11c0b</id>
-    <updated>2026-10-23T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜自動で集めた各コーナーに、元のページを確かめた日時を表示</summary>
   </entry>
 </feed>

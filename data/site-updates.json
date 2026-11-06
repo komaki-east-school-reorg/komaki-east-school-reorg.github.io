@@ -3,6 +3,18 @@
   "updates": [
     {
       "date": "2026-11-07",
+      "type": "feature",
+      "ja": "予定をカレンダーアプリで購読できるように",
+      "en": "Schedule can now be subscribed to in calendar apps"
+    },
+    {
+      "date": "2026-11-07",
+      "type": "feature",
+      "ja": "検索の言葉をリンクで共有できるように",
+      "en": "Searches can now be shared as links"
+    },
+    {
+      "date": "2026-11-07",
       "type": "content",
       "ja": "計画概要に「近隣他地区の状況」（北里地区・春日井市）を追加",
       "en": "“Nearby Districts” (Kitazato and Kasugai City) added to the plan overview"

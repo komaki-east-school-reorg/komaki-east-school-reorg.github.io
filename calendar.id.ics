@@ -1,0 +1,516 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//komaki-east-school-reorg//subscribe//ID
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Reorganisasi sekolah Komaki timur
+X-WR-TIMEZONE:Asia/Tokyo
+REFRESH-INTERVAL;VALUE=DURATION:P1D
+X-PUBLISHED-TTL:P1D
+BEGIN:VEVENT
+UID:2025-05-10-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20250510T000000Z
+DTSTART;VALUE=DATE:20250510
+DTEND;VALUE=DATE:20250511
+SUMMARY:Diskusi Sekolah ke-1
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-05-30-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20250530T000000Z
+DTSTART;VALUE=DATE:20250530
+DTEND;VALUE=DATE:20250531
+SUMMARY:Diskusi Sekolah ke-2
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-06-13-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20250613T000000Z
+DTSTART;VALUE=DATE:20250613
+DTEND;VALUE=DATE:20250614
+SUMMARY:Laporan Dewan Komunitas
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-06-14-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20250614T000000Z
+DTSTART;VALUE=DATE:20250614
+DTEND;VALUE=DATE:20250615
+SUMMARY:Laporan Asosiasi Warga (1)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-06-27-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20250627T000000Z
+DTSTART;VALUE=DATE:20250627
+DTEND;VALUE=DATE:20250628
+SUMMARY:Diskusi Sekolah ke-3
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-07-27-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20250727T000000Z
+DTSTART;VALUE=DATE:20250727
+DTEND;VALUE=DATE:20250728
+SUMMARY:Sosialisasi Shiroyama 3&4
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-08-24-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20250824T000000Z
+DTSTART;VALUE=DATE:20250824
+DTEND;VALUE=DATE:20250825
+SUMMARY:Pertukaran Pendapat Orang Tua (1)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-08-30-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20250830T000000Z
+DTSTART;VALUE=DATE:20250830
+DTEND;VALUE=DATE:20250831
+SUMMARY:Pertukaran Pendapat Orang Tua (2&3)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-09-21-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20250921T000000Z
+DTSTART;VALUE=DATE:20250921
+DTEND;VALUE=DATE:20250922
+SUMMARY:Sosialisasi Komunitas
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-09-26-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20250926T000000Z
+DTSTART;VALUE=DATE:20250926
+DTEND;VALUE=DATE:20250927
+SUMMARY:Laporan Asosiasi Warga (2)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-10-11-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20251011T000000Z
+DTSTART;VALUE=DATE:20251011
+DTEND;VALUE=DATE:20251012
+SUMMARY:Diskusi Sekolah ke-4
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-11-02-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20251102T000000Z
+DTSTART;VALUE=DATE:20251102
+DTEND;VALUE=DATE:20251103
+SUMMARY:Laporan Asosiasi Warga (3)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-11-10-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20251110T000000Z
+DTSTART;VALUE=DATE:20251101
+DTEND;VALUE=DATE:20251201
+SUMMARY:Komentar Publik Dibuka / Survei Nama (tanggal belum ditentukan\, 
+ 11/2025)
+DESCRIPTION:Tanggal belum diumumkan. Dicatat sebagai periode yang diumumk
+ an (11/2025). Perbarui setelah tanggalnya diketahui.\nTanggal-tanggal in
+ i dihimpun oleh situs yang dikelola warga. Periksa dokumen yang dikirim 
+ pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-11-27-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20251127T000000Z
+DTSTART;VALUE=DATE:20251127
+DTEND;VALUE=DATE:20251128
+SUMMARY:Laporan Dewan Komunitas (2)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2025-12-09-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20251209T000000Z
+DTSTART;VALUE=DATE:20251209
+DTEND;VALUE=DATE:20251210
+SUMMARY:Komentar Publik Ditutup (142)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-01-13-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260113T000000Z
+DTSTART;VALUE=DATE:20260113
+DTEND;VALUE=DATE:20260114
+SUMMARY:Komite Penasehat Distrik Sekolah
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-02-07-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260207T000000Z
+DTSTART;VALUE=DATE:20260207
+DTEND;VALUE=DATE:20260208
+SUMMARY:Diskusi Sekolah ke-5
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-05-18-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260518T000000Z
+DTSTART;VALUE=DATE:20260518
+DTEND;VALUE=DATE:20260519
+SUMMARY:Batas Desain Lambang Sekolah
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-01-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260601T000000Z
+DTSTART;VALUE=DATE:20260601
+DTEND;VALUE=DATE:20260602
+SUMMARY:Operator bus sekolah ditetapkan (Aoi Kotsu)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-06-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260606T000000Z
+DTSTART;VALUE=DATE:20260606
+DTEND;VALUE=DATE:20260607
+SUMMARY:Sosialisasi Orang Tua (SMP Toryou)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-07-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260607T000000Z
+DTSTART;VALUE=DATE:20260607
+DTEND;VALUE=DATE:20260608
+SUMMARY:Sosialisasi Orang Tua (SMP Shinooka)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-14-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260614T000000Z
+DTSTART;VALUE=DATE:20260614
+DTEND;VALUE=DATE:20260615
+SUMMARY:Sosialisasi Orang Tua (SD Sue)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-20-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260620T000000Z
+DTSTART;VALUE=DATE:20260620
+DTEND;VALUE=DATE:20260621
+SUMMARY:Sosialisasi Orang Tua (SD Oshiro)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-21-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260621T000000Z
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260622
+SUMMARY:Sosialisasi Orang Tua (SMP Hikarigaoka)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-29-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260629T000000Z
+DTSTART;VALUE=DATE:20260629
+DTEND;VALUE=DATE:20260630
+SUMMARY:Sosialisasi Orang Tua (Pusat Komunitas Timur)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-14-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260714T000000Z
+DTSTART;VALUE=DATE:20260714
+DTEND;VALUE=DATE:20260715
+SUMMARY:Pertemuan 5 Sekolah (Kelas 4–5)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-21-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260721T000000Z
+DTSTART;VALUE=DATE:20260721
+DTEND;VALUE=DATE:20260722
+SUMMARY:Tanya Jawab Sosialisasi Dipublikasikan
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-08-30-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260830T000000Z
+DTSTART;VALUE=DATE:20260830
+DTEND;VALUE=DATE:20260831
+SUMMARY:Pendaftaran bus sekolah dibuka
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-09-04-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260904T000000Z
+DTSTART;VALUE=DATE:20260904
+DTEND;VALUE=DATE:20260905
+SUMMARY:Lambang Shinooka Gakuen ditetapkan
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-09-30-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20260930T000000Z
+DTSTART;VALUE=DATE:20260930
+DTEND;VALUE=DATE:20261001
+SUMMARY:Batas akhir pendaftaran bus sekolah
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-10-12-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261012
+DTEND;VALUE=DATE:20261013
+SUMMARY:TOKADAI DANCE FESTIVAL (inisiatif warga)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-10-21-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261021T000000Z
+DTSTART;VALUE=DATE:20261021
+DTEND;VALUE=DATE:20261022
+SUMMARY:Jalan Sehat Segar Shinooka (dewan komunitas)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-10-31-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261031T000000Z
+DTSTART;VALUE=DATE:20261001
+DTEND;VALUE=DATE:20261101
+SUMMARY:Pemeriksaan kesehatan pra-masuk (5 sekolah) (tanggal belum ditent
+ ukan\, 10/2026)
+DESCRIPTION:Tanggal belum diumumkan. Dicatat sebagai periode yang diumumk
+ an (10/2026). Perbarui setelah tanggalnya diketahui.\nTanggal-tanggal in
+ i dihimpun oleh situs yang dikelola warga. Periksa dokumen yang dikirim 
+ pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-10-31-2-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261031T000000Z
+DTSTART;VALUE=DATE:20261031
+DTEND;VALUE=DATE:20261101
+SUMMARY:Festival musik distrik sekolah baru (dewan komunitas)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-10-31-3-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261031T000000Z
+DTSTART;VALUE=DATE:20261001
+DTEND;VALUE=DATE:20261101
+SUMMARY:Pertemuan bersama lima sekolah dasar (semua tingkat) (tanggal bel
+ um ditentukan\, 10/2026)
+DESCRIPTION:Tanggal belum diumumkan. Dicatat sebagai periode yang diumumk
+ an (10/2026). Perbarui setelah tanggalnya diketahui.\nTanggal-tanggal in
+ i dihimpun oleh situs yang dikelola warga. Periksa dokumen yang dikirim 
+ pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-11-13-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261113T000000Z
+DTSTART;VALUE=DATE:20261113
+DTEND;VALUE=DATE:20261116
+SUMMARY:Bamboo Installation di Okusa (s.d. 15/11\, inisiatif warga)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-11-14-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261114T000000Z
+DTSTART;VALUE=DATE:20261114
+DTEND;VALUE=DATE:20261115
+SUMMARY:Bamboo Art Marché & Music Fest (inisiatif warga)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-11-15-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261115T000000Z
+DTSTART;VALUE=DATE:20261115
+DTEND;VALUE=DATE:20261116
+SUMMARY:Festival Musik Tokadai ke-11 (inisiatif warga)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:council-12sy5in-2026-11-15@komaki-east-school-reorg.github.io
+DTSTAMP:20261115T000000Z
+DTSTART:20261115T040000Z
+DTEND:20261115T070000Z
+SUMMARY:Dewan komunitas wilayah SD Oshiro: Konsultasi penggunaan ponsel p
+ intar untuk lansia (dewan komunitas)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.\
+ n11月15日 13時00分～16時00分
+LOCATION:Balai Shiroyama
+URL:https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3
+ /3_2/chiikikyougikaievent/52817.html
+END:VEVENT
+BEGIN:VEVENT
+UID:council-no5w3g-2026-11-29@komaki-east-school-reorg.github.io
+DTSTAMP:20261129T000000Z
+DTSTART:20261129T000000Z
+SUMMARY:Dewan komunitas wilayah SD Momogaoka: Pasar terbuka (dewan komuni
+ tas)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.\
+ n11月29日 9時00分～正午
+LOCATION:SD Momogaoka dan jalur hijau
+URL:https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3
+ /3_2/chiikikyougikaievent/52067.html
+END:VEVENT
+BEGIN:VEVENT
+UID:council-11dtac2-2026-11-29@komaki-east-school-reorg.github.io
+DTSTAMP:20261129T000000Z
+DTSTART:20261129T050000Z
+DTEND:20261129T063000Z
+SUMMARY:Dewan komunitas wilayah SD Oshiro: Lomba orienteering berburu har
+ ta karun (dewan komunitas)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.\
+ n11月29日 14時00分～15時30分
+LOCATION:SD Oshiro\, kawasan sekitarnya\, dan jalur hijau (pendaftaran di
+  SD Oshiro)
+URL:https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3
+ /3_2/chiikikyougikaievent/52814.html
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-12-13-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261213T000000Z
+DTSTART;VALUE=DATE:20261213
+DTEND;VALUE=DATE:20261214
+SUMMARY:Arigato Oshiro-sho (warga)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-12-31-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261231T000000Z
+DTSTART;VALUE=DATE:20261201
+DTEND;VALUE=DATE:20270101
+SUMMARY:Dewan pengelolaan gabungan (8 sekolah) (tanggal belum ditentukan\
+ , 12/2026)
+DESCRIPTION:Tanggal belum diumumkan. Dicatat sebagai periode yang diumumk
+ an (12/2026). Perbarui setelah tanggalnya diketahui.\nTanggal-tanggal in
+ i dihimpun oleh situs yang dikelola warga. Periksa dokumen yang dikirim 
+ pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-12-31-2-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261231T000000Z
+DTSTART;VALUE=DATE:20261101
+DTEND;VALUE=DATE:20270101
+SUMMARY:Uji coba naik bus & aplikasi (tanggal belum ditentukan\, 11/2026 
+ – 12/2026)
+DESCRIPTION:Tanggal belum diumumkan. Dicatat sebagai periode yang diumumk
+ an (11/2026 – 12/2026). Perbarui setelah tanggalnya diketahui.\nTangga
+ l-tanggal ini dihimpun oleh situs yang dikelola warga. Periksa dokumen y
+ ang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2027-02-28-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20270228T000000Z
+DTSTART;VALUE=DATE:20270201
+DTEND;VALUE=DATE:20270301
+SUMMARY:Sosialisasi pendaftaran & uji perjalanan (tanggal belum ditentuka
+ n\, 2/2027)
+DESCRIPTION:Tanggal belum diumumkan. Dicatat sebagai periode yang diumumk
+ an (2/2027). Perbarui setelah tanggalnya diketahui.\nTanggal-tanggal ini
+  dihimpun oleh situs yang dikelola warga. Periksa dokumen yang dikirim p
+ emerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2027-03-31-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20270331T000000Z
+DTSTART;VALUE=DATE:20270301
+DTEND;VALUE=DATE:20270401
+SUMMARY:Upacara penutupan (5 SD + 3 SMP) (tanggal belum ditentukan\, 3/20
+ 27)
+DESCRIPTION:Tanggal belum diumumkan. Dicatat sebagai periode yang diumumk
+ an (3/2027). Perbarui setelah tanggalnya diketahui.\nTanggal-tanggal ini
+  dihimpun oleh situs yang dikelola warga. Periksa dokumen yang dikirim p
+ emerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2027-04-01-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20270401T000000Z
+DTSTART;VALUE=DATE:20270401
+DTEND;VALUE=DATE:20270501
+SUMMARY:Reorganisasi Tahap 1 (Shinooka Gakuen) (tanggal belum ditentukan\
+ , 4/2027)
+DESCRIPTION:Tanggal belum diumumkan. Dicatat sebagai periode yang diumumk
+ an (4/2027). Perbarui setelah tanggalnya diketahui.\nTanggal-tanggal ini
+  dihimpun oleh situs yang dikelola warga. Periksa dokumen yang dikirim p
+ emerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+END:VCALENDAR

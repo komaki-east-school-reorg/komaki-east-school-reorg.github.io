@@ -276,6 +276,8 @@
   "search_fail": "Não foi possível preparar a pesquisa. Verifique a conexão e abra de novo.",
   "search_h": "Pesquisar no site",
   "search_hint": "Separe as palavras com espaços para encontrar trechos que contenham todas elas.",
+  "search_link_copied": "Link copiado",
+  "search_link_copy": "🔗 Copiar link desta pesquisa",
   "search_loading": "Carregando…",
   "search_menu": "🔍 Pesquisar no site",
   "search_more": "(mostrando os {n} primeiros)",

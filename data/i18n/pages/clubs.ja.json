@@ -149,6 +149,8 @@
   "search_fail": "検索の準備ができませんでした。通信の状態を確かめて、もう一度開いてください。",
   "search_h": "サイト内を検索",
   "search_hint": "空白で区切ると、すべての言葉を含む所を探します。",
+  "search_link_copied": "リンクをコピーしました",
+  "search_link_copy": "🔗 この検索のリンクをコピー",
   "search_loading": "読み込んでいます…",
   "search_menu": "🔍 サイト内を検索",
   "search_more": "（上から{n}件を表示）",

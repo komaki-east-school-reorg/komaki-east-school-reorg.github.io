@@ -162,6 +162,8 @@
   "search_fail": "Arama hazırlanamadı. Bağlantınızı kontrol edip yeniden açın.",
   "search_h": "Sitede ara",
   "search_hint": "Kelimeleri boşlukla ayırırsanız hepsini içeren yerler aranır.",
+  "search_link_copied": "Bağlantı kopyalandı",
+  "search_link_copy": "🔗 Bu aramanın bağlantısını kopyala",
   "search_loading": "Yükleniyor…",
   "search_menu": "🔍 Sitede ara",
   "search_more": "(ilk {n} gösteriliyor)",

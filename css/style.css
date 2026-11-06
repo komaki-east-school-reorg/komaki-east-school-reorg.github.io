@@ -3448,3 +3448,17 @@ html.has-share-sticky .to-top { bottom: calc(var(--share-sticky-h, 3.4rem) + .8r
 .nearby-list { margin-top: 1.2rem; }
 .nearby-note { margin-top: .6rem; font-size: .85rem; color: var(--text-muted); }
 .nearby-src { margin-top: 1.8rem; }
+/* 検索のリンクをコピー（?q=。2026-11-07） */
+.search-link-copy { margin-left: .3rem; border: 0; background: none; padding: 0; font: inherit; font-size: .85rem; color: var(--primary); text-decoration: underline; cursor: pointer; }
+.search-link-copy:hover, .search-link-copy:focus-visible { color: var(--primary-dark); }
+/* 購読できるカレンダー（schedule.html。2026-11-07） */
+.cal-sub { margin-top: 1.4rem; background: var(--white); border: 1.5px solid var(--border); border-left: 5px solid var(--primary); border-radius: var(--radius); padding: 1rem 1.2rem; }
+.cal-sub-h { margin: 0 0 .3rem; font-weight: 800; color: var(--primary); }
+.cal-sub-p { margin: 0 0 .7rem; font-size: .92rem; }
+.cal-sub-btns { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: .6rem; }
+.cal-sub-btn, .cal-sub-copy { display: inline-block; padding: .45rem 1rem; border-radius: var(--radius-pill); font: inherit; font-size: .9rem; font-weight: 700; cursor: pointer; text-decoration: none; }
+.cal-sub-btn { background: var(--primary); color: #fff; border: 0; }
+.cal-sub-copy { background: var(--white); color: var(--primary); border: 1.5px solid var(--primary); }
+.cal-sub-btn:hover, .cal-sub-btn:focus-visible { background: var(--primary-dark); }
+.cal-sub-note { margin: 0; font-size: .82rem; color: var(--text-muted); }
+@media print { .cal-sub { display: none; } }

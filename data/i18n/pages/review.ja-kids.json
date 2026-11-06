@@ -248,6 +248,8 @@
   "search_fail": "さがす じゅんびが できませんでした。もう一度 ひらいて ください。",
   "search_h": "このサイトの中を さがす",
   "search_hint": "ことばを あけて ならべると、ぜんぶ 入って いる ところを さがします。",
+  "search_link_copied": "リンクを コピーしました",
+  "search_link_copy": "🔗 この けんさくの リンクを コピー",
   "search_loading": "よみこんで います…",
   "search_menu": "🔍 サイトの中を さがす",
   "search_more": "（上から {n}こ を 見せて います）",

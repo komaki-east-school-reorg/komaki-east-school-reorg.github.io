@@ -43,7 +43,7 @@ AFTER_SUFFIX = "__after"
 #   share_*            … 全ページ共通の共有ボタン（main.js が組み立てる）
 RUNTIME_KEYS = [
     "search_h",           # SITE SEARCH（全ページ、main.js。2026-11-05）
-    "search_ph",
+    "search_ph", "search_link_copy", "search_link_copied",
     "search_hint",
     "search_count",
     "search_more",

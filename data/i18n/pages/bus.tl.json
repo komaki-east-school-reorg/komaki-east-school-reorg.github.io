@@ -276,6 +276,8 @@
   "search_fail": "Hindi maihanda ang paghahanap. Tingnan ang koneksyon at buksan muli.",
   "search_h": "Maghanap sa site",
   "search_hint": "Paghiwalayin ng espasyo ang mga salita para mahanap ang mga bahaging may lahat ng ito.",
+  "search_link_copied": "Nakopya ang link",
+  "search_link_copy": "🔗 Kopyahin ang link ng paghahanap na ito",
   "search_loading": "Naglo-load…",
   "search_menu": "🔍 Maghanap sa site",
   "search_more": "(ipinapakita ang unang {n})",

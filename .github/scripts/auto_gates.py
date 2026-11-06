@@ -47,12 +47,14 @@ ALLOWED_PREFIXES = ("data/i18n/pages/",
                     # feed.xml は build_feed.py の生成物（毎日のワークフローが作り直す）
                     "feed.xml",
                     # サイト内検索の索引は build_search_index.py の生成物（2026-11-05）
-                    "data/search/")
+                    "data/search/",
+                    # 購読カレンダーは build_calendar.py の生成物（2026-11-07）
+                    "calendar.")
 # 上の接頭辞の下で許すファイルの形（2026-10-26）。接頭辞だけだと events/x/phish.html や
 # data/i18n/pages/a.html、sitemap.xml.bak まで通っていた。
 ALLOWED_GENERATED = re.compile(r"^(data/i18n/pages/[A-Za-z0-9-]+\.[A-Za-z-]+\.json"
                                r"|events/\d{4}-\d{2}-\d{2}-\d+\.html|sitemap\.xml|feed\.xml"
-                               r"|data/search/[A-Za-z-]+\.json)$")
+                               r"|data/search/[A-Za-z-]+\.json|calendar\.[a-z]{2}\.ics)$")
 
 
 def is_allowed_path(p):
@@ -846,6 +848,14 @@ def main():
     else:
         ok("近隣他地区（小牧市）の一覧は最新")
 
+    # --- 25. 購読カレンダー（calendar.<言語>.ics）が最新（2026-11-07） ---
+    r = subprocess.run([sys.executable, ".github/scripts/build_calendar.py", "--check"],
+                       capture_output=True, text=True)
+    if r.returncode != 0:
+        fail("calendar.*.ics: " + (r.stdout + r.stderr).strip().splitlines()[0])
+    else:
+        ok("購読カレンダーは最新")
+
     # --- 15. トップ以外の各ページの問い合わせ先に、市・県・国がそれぞれ1件以上（サイト全体を検査） ---
     # 2026-10-11 ユーザー指示。data/contacts.json の shown_in を正として、ページごとに
     # （図書館＝level "library" も「図書館で調べる」として各ページに要る。同日指示）
@@ -950,6 +960,31 @@ def main():
             fail(f"訳語のゆれ: ほか {len(term_found) - 30}件")
     else:
         ok("訳語のゆれなし（data/term_rules.json）")
+
+    # --- 24. 目次の下のリンクカードの飛び先が実在する（2026-11-07 ユーザー指示） ---
+    # ページを更新したら .ill-steps（review は .rev-steps）のカードも見直す決まり。消した・移した節を
+    # 指したままのカードを止める。他ページへのリンク（analysis.html#rev-gaps など）はそのページで確かめる。
+    def _ids(path):
+        try:
+            with open(path, encoding="utf-8") as f:
+                return set(re.findall(r'\bid="([^"]+)"', f.read()))
+        except OSError:
+            return set()
+    card_bad = []
+    for page in sorted(glob.glob("*.html")):
+        with open(page, encoding="utf-8") as f:
+            html = f.read()
+        for blk in re.findall(r'<ol class="(?:ill|rev)-steps"[^>]*>(.*?)</ol>', html, re.DOTALL):
+            for href in re.findall(r'href="([^"]*#[^"]+)"', blk):
+                target, frag = href.split("#", 1)
+                tpage = target or page
+                if frag not in _ids(tpage):
+                    card_bad.append(f"{page}: カード {href} の飛び先が {tpage} に無い")
+    if card_bad:
+        for v in card_bad[:20]:
+            fail(f"リンクカード: {v}")
+    else:
+        ok("目次の下のリンクカードの飛び先はすべて実在")
 
     # --- 21. 検証と提案の2ページのつながり ---
     # 2026-10-31 ユーザー指示。review.html（要点）の核心20項目は「くわしく →」で analysis.html の

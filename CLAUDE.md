@@ -566,6 +566,16 @@ Every page carries a `<section class="section share" id="share">` just above `</
 - 🔍 を足してもヘッダの高さは変わらない（2026-11-05 に 769〜1280px × 13表示で実測）。ヘッダに手を入れたら測り直すこと。
 - 文言は `search_*`（`RUNTIME_KEYS`）。集計は `search/open`・`search/go` だけで、入力した語は送らない。
 
+- **検索語を URL で渡せる**（2026-11-07、日次アイデア 11/6 の案）。`?q=語` で開くと、トップ・404 はページ内の欄に、他のページは検索の窓を開いて、その語で検索した状態になる。結果の件数の行に「🔗 この検索のリンクをコピー」（`search_link_copy` / `search_link_copied`、`RUNTIME_KEYS`）— コピーするのはトップの `index.html?q=語`（＋`?lang=`）。index.html の `WebSite` 構造化データに `SearchAction`（同じ URL）。**`q` は集計に送らない**（COUNTER の `pagePath()` は `?lang=` / `?kids=1` しか付けない — ここを変えるときも `q` を入れない）。
+
+### 購読できるカレンダー（`calendar.<言語>.ics`、2026-11-07）
+
+日次アイデア 10/22 の案をユーザーが採用。schedule.html のカレンダーの下の「🔔 カレンダーアプリで購読する」（`#cal-sub`、`cal_sub_*`）から、`webcal://…/calendar.<表示言語>.ics` を購読するか、URL をコピーして Google カレンダーの「URL で追加」に貼る（外部サービスへのリンクは張らない）。CALENDAR SUBSCRIBE（`js/main.js`）が表示言語に合わせて href を書く。
+
+- **生成は `.github/scripts/build_calendar.py`**（手編集不可、`--check`、`auto_gates.py` check 25）。`events.json` に、`KomakiTokadaiEvents` / `KomakiEvents` と**同じ選び方・同じ並び**で自動の催し（桃花台を考える会・東部の協議会・都市計画の日程）を足し、`KomakiIcs.entry()` と同じ規則で12言語ぶん書く。**UID は「📅 カレンダーに追加」と同じ**（`日付[-n]-komaki-saihen@…`、協議会は `councilUid` と同じハッシュ）なので、1件ずつ足した人が購読しても二重にならない — JS 側の UID・タグ・時刻の読み方を変えたら、このスクリプトも同時に直すこと。2026-11-07 に画面の UID 47件と一致を確認。
+- 出力は入力だけで決まる（DTSTAMP は予定の日付から、終わった予定も残す）。`REFRESH-INTERVAL` / `X-PUBLISHED-TTL` は1日。
+- 作り直すのは `fetch-news.yml`（毎日・起案AIのあと）と `translate-headlines.yml`（訳が入ると催しの名前が変わる）。自動更新ジョブの `ALLOWED_GENERATED` に `calendar.xx.ics` を入れてある。sitemap には入れない。集計は `calendar/subscribe`・`calendar/sub-copy`。
+
 ### 本文へ移動・上へ戻る（全ページ、2026-11-05）
 
 ユーザーが過去の提案から選んだ（2026-09-02）。`js/main.js` の SKIP LINK / TO TOP。**本文へ移動**は `<body>` の先頭に JS で差し込むリンク（`.skip-link`、Tab の最初、フォーカスで見える）で、`<main>` に id（無ければ `main-content`）と `tabindex=-1` を付けて飛ばす。**上へ戻る**（`.to-top`）は 1.5画面ぶん下で右下に出る。画面下の共有バーの実際の高さを測って（`--share-sticky-h`）その上に浮かせる。`prefers-reduced-motion` では瞬時に移動、印刷では隠す。文言は `skip_to_main` / `to_top`（`RUNTIME_KEYS`）、集計は `nav/top`・`nav/skip`。
@@ -689,6 +699,10 @@ The *Current Status* list (`index.html`) and the *Key Events* list (`schedule.ht
 ## Page structure
 
 Every HTML page follows the same pattern: `notice-banner` → `<header>` (with `.lang-switcher` containing `.kids-toggle` and `.lang-select`) → `<main>` → `<footer>`. Both `js/i18n.js` and `js/main.js` are loaded at the end of `<body>`. Pages are standalone — there is no shared template or server-side include. Every page also carries the SHARE section (`<section class="section share" id="share">`) as the last thing inside `<main>`. When adding a new page, copy the full header/share/footer blocks from an existing page — **and add it to `sitemap.xml` and `files.txt`**, plus `meta_title_<pageId>` / `meta_desc_<pageId>` keys in every language file.
+
+### 目次の下のリンクカード（`.ill-steps`、review は `.rev-steps`）— ページを更新したら見直す
+
+2026-11-07 ユーザー指示でルール化。ページ冒頭の「このページの目次」の下に、挿絵つきで主な節へ飛ぶカードの列がある（about・bus・clubs・community・council・faq・map・nationwide、review は `.rev-steps`）。**節を足す・移す・消す・名前を変えたら、そのページのカードも見直す**（飛び先・文言・挿絵・順番）。カードは主な節だけでよく、すべての節を並べる必要はない。文言は節見出しのキー（`data-i18n-html`）を使い回すのが基本。`auto_gates.py` **check 24** が、カードの `#id` がそのページ（他ページへのリンクはそのページ）に実在することを確かめる — 消した節を指したままのカードを止めるため。
 
 ### このページの目次（`.page-toc`）— 全ページ
 
@@ -847,5 +861,7 @@ Beyond the auto-update pipeline's scope and evidence checks, these run site-wide
 | 19 | Dictionary HTML uses only `strong br small a span p li dt dd ul b em wbr` with `href target rel style class data-past data-until`; `href` is https / in-site / `#` / `tel:` / `mailto:`; `style` has no `url()`/`expression`; headline translations, event labels and community actions carry no tags at all | `data-i18n-html` goes straight into `innerHTML`; an `<img onerror>` drafted by the AI used to pass every gate (2026-10-26) |
 | 20 | No token-like string (`sk-ant-`, `ghp_`, `github_pat_`, private keys…) in any changed file | Last net against an AI writing a credential it could read into a public file (2026-10-26) |
 | 22 | Lines the auto-update drafter adds to `data/site-updates.json` only prepend (≤2), leave every existing line untouched, and follow the changelog format | The drafter may log its own change (2026-11-04); the hand-written history and the scripts' `auto_key` lines must never be rewritten by an AI |
+| 24 | Every `.ill-steps` / `.rev-steps` card links to an `#id` that exists on its page | Pages change and the cards under the TOC have to follow (2026-11-07) |
+| 25 | `calendar.*.ics` matches the data (`build_calendar.py --check`) | A stale subscription calendar silently shows old dates in readers' own calendars (2026-11-07) |
 | 23 | `data/search/*.json` matches the dictionaries and the pages (`build_search_index.py --check`) | A stale search index shows old wording or jumps to a section that no longer exists (2026-11-05) |
 | 21 | review.html's 25 key-point cards (10 findings, 15 proposals), their 「くわしく →」 targets, `REVIEW LINKS` in `js/main.js` and the links between review.html and analysis.html all agree | The two pages are read as one: a key point must land on its evidence and every evidence card must lead back (2026-10-31) |

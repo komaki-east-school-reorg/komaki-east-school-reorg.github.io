@@ -149,3 +149,5 @@ README.md                      プロジェクト概要・ページ構成・対�
 CLAUDE.md                      Claude Code向けの開発ガイド（英語）。i18n仕様・検証コマンド・制約事項を記載。
 CLAUDE_ja.md                   CLAUDE.mdの日本語説明ファイル。日本語話者向けにCLAUDE.mdの内容を解説。
 files.txt                      本ファイル。サイト構成ファイルの一覧と説明を手動管理するインデックス。
+calendar.<lang>.ics 購読できるカレンダー（12言語、自動生成・手編集不可）。schedule.html の「🔔 カレンダーアプリで購読する」から登録する。build_calendar.py が作る。
+.github/scripts/build_calendar.py events.json と自動で足す催しから calendar.<lang>.ics を作る。UID は画面の「📅 カレンダーに追加」と同じ。--check あり（auto_gates.py check 25）。
