@@ -56,6 +56,10 @@
     "tobu_actions": {
       "file": "data/tobu_actions.json（自動生成・手編集不可）/ community.html と index.html の #tobu-actions-container",
       "notes": "東部まちづくりの取組一覧。build_tobu_actions.py がスナップショットから毎日組み立てるので、人もAIも手で直さない"
+    },
+    "about_nearby": {
+      "file": "about.html / data/i18n/*.json（about_nb_*・about_nearby_asof）",
+      "notes": "計画概要「近隣他地区の状況」。随時更新する。小牧市のほかの地区と春日井市の説明は手書き（13辞書）、一覧は自動。動きがあれば説明と about_nearby_asof を直す。about.html は自動更新ジョブの ALLOWED 外なので、人が直す"
     }
   },
   "default_targets": [
@@ -173,8 +177,10 @@
     },
     {
       "slug_prefix": "303-719-kitazatochiku-",
-      "topic": "北里地区の学校を考える会（篠岡地区外・参考情報）",
-      "targets": []
+      "topic": "北里地区の学校を考える会（篠岡地区外）。一覧は data/nearby_komaki.json に自動反映。about.html#nearby の北里地区の説明（手書き・13辞書の about_nb_kitazato_p）を人が見直す",
+      "targets": [
+        "about_nearby"
+      ]
     },
     {
       "slug_prefix": "303-shinooka_gsaihen-48603",

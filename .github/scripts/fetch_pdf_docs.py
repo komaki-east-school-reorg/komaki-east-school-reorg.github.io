@@ -99,6 +99,48 @@ SOURCES = [
         "out_dir": "gikai",
         "prefix": "shigikai-dayori-",
     },
+    # --- 北里地区の学校を考える会（2026-11-07 ユーザー指示。about.html#nearby の出典） ---
+    # 会議資料のうち、市が示した再編の方向性と今後の取組だけを取り込む。
+    {
+        "key": "kitazato",
+        "pages": ["https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/719/kitazatochiku/51757.html",
+                  "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/719/kitazatochiku/52590.html"],
+        "title_re": re.compile(r"方向性|今後の取組"),
+        "out_dir": "kitazato",
+        "prefix": "kitazato-",
+    },
+    # --- 春日井市の学校再編（2026-11-07 ユーザー指示。about.html#kasugai の出典） ---
+    # 掲載ページの HTML は fetch_kasugai.py が取得済み（同じキャッシュを使う）。
+    # 全編がある資料は全編だけを取り、章ごとの分割版は取らない（同じ中身のため）。
+    {
+        "key": "kasugai-kangaekata",
+        "pages": ["https://www.city.kasugai.lg.jp/kosodate/kyouiku/school/1009208/1037178/index.html"],
+        "title_re": re.compile(r"^全編"),
+        "out_dir": "kasugai/pdf",
+        "prefix": "kangaekata-",
+    },
+    {
+        "key": "kasugai-sakashita",
+        "pages": ["https://www.city.kasugai.lg.jp/kosodate/kyouiku/school/1009208/1039714.html"],
+        "title_re": re.compile(r"^全編"),
+        "out_dir": "kasugai/pdf",
+        "prefix": "sakashita-hoshin-",
+    },
+    {
+        "key": "kasugai-kozoji",
+        "pages": ["https://www.city.kasugai.lg.jp/kosodate/kyouiku/school/1009208/1040361.html"],
+        "title_re": re.compile(r"高蔵寺ニュータウン"),
+        "out_dir": "kasugai/pdf",
+        "prefix": "kozoji-",
+    },
+    {
+        "key": "kasugai-tsushin",
+        "pages": ["https://www.city.kasugai.lg.jp/kosodate/kyouiku/school/1009208/1040208.html",
+                  "https://www.city.kasugai.lg.jp/kosodate/kyouiku/school/1009208/1040209.html"],
+        "title_re": re.compile(r"学校のこれから通信"),
+        "out_dir": "kasugai/pdf",
+        "prefix": "tsushin-",
+    },
 ]
 
 # これ未満の文字数しか取れなかった PDF は「本文が取れなかった」として扱う
@@ -121,12 +163,17 @@ def fetch_page_html(url):
 
 def iter_pdf_links(html, page_url):
     """掲載ページから (PDF の URL, リンク文字列) を順に返す。"""
-    m = re.search(r'<article id="contents"[^>]*>(.*?)</article>', html, re.DOTALL)
+    # 小牧市は id="contents"、春日井市は id="content"
+    m = re.search(r'<article id="contents?"[^>]*>(.*?)</article>', html, re.DOTALL)
     body = m.group(1) if m else html
     seen = set()
     for a in re.finditer(r'<a\s[^>]*href="([^"]+\.pdf)"[^>]*>(.*?)</a>',
                          body, re.DOTALL | re.IGNORECASE):
-        url = fetch_news.normalize_url(a.group(1).strip(), page_url)
+        # 相対パスは掲載ページを基準に解く（春日井市は "../../_res/..." の形。
+        # fetch_news.normalize_url は "/..." を小牧市のドメインとして扱うので使わない）
+        url = urllib.parse.urljoin(page_url, unescape(a.group(1).strip()))
+        if url.startswith("http://"):
+            url = "https://" + url[7:]
         label = " ".join(unescape(re.sub(r"<[^>]+>", "", a.group(2))).split())
         if url in seen:
             continue
@@ -136,7 +183,9 @@ def iter_pdf_links(html, page_url):
 
 def split_label(label):
     """リンク文字列を（表題, ファイルサイズ表示）に分ける。"""
-    m = re.search(r"\(PDF\s*ファイル\s*[:：]\s*([^)]+)\)", label)
+    # 小牧市「(PDFファイル:1005.3KB)」、春日井市「（PDF 525.3KB）」
+    # （「(PDF:122KB)」の形は以前から表題の一部として扱っているので、ここでは拾わない）
+    m = re.search(r"[(（]PDF(?:\s*ファイル\s*[:：]|\s+)\s*([^)）]+)[)）]", label)
     size = m.group(1).strip() if m else ""
     title = label[:m.start()].strip() if m else label
     return title, size
@@ -153,6 +202,12 @@ def slug_for(source, title, url):
     """
     base = os.path.splitext(os.path.basename(urllib.parse.urlparse(url).path))[0]
     base = re.sub(r"[^A-Za-z0-9_-]", "_", base)
+    # 春日井市『学校のこれから通信』は「(坂下中学校区)ナンバー3」の形。中学校区ごとに号がある
+    t = re.search(r"\((\S+?)中学校区\)\s*ナンバー\s*(\d+)", title)
+    if t:
+        area = {"坂下": "sakashita", "藤山台": "fujiyamadai", "高森台": "takamoridai",
+                "石尾台": "ishiodai", "岩成台": "iwanaridai"}.get(t.group(1), "x")
+        return f"{source['prefix']}{area}-{int(t.group(2)):02d}-{base}"
     m = re.search(r"第\s*(\d+)\s*号", title) or re.search(r"vol\.?\s*(\d+)", title, re.I)
     if m:
         return f"{source['prefix']}{int(m.group(1)):02d}-{base}"
@@ -207,7 +262,16 @@ def main():
     failures = 0
     found = 0
 
-    for source in SOURCES:
+    # --only=kasugai / --skip=kasugai：key がその接頭辞で始まる群だけ／以外を処理する。
+    # 春日井市の群は fetch-news.yml の別のステップ（fetch_kasugai.py のあと）で回し、
+    # 小牧市の「公式ページ更新検知」の差分と自動更新ジョブに混ぜないため（2026-11-07）。
+    only = [a.split("=", 1)[1] for a in sys.argv[1:] if a.startswith("--only=")]
+    skip = [a.split("=", 1)[1] for a in sys.argv[1:] if a.startswith("--skip=")]
+    sources = [s for s in SOURCES
+               if (not only or s["key"].startswith(tuple(only)))
+               and not (skip and s["key"].startswith(tuple(skip)))]
+
+    for source in sources:
         out_dir = os.path.join("data", "official_pages", source["out_dir"])
         os.makedirs(out_dir, exist_ok=True)
         print(f"■ {source['key']}")

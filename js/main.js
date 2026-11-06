@@ -1,16 +1,27 @@
 /* ===== MOVED ANCHORS：別のページへ移した節の古いアンカーを受ける（2026-10-30 ユーザー指示） =====
    review.html の深掘り7節は analysis.html へ（2026-10-31 に「読み取れないこと」「だれが決めるのか」
-   「都市計画の動き」の3節も移した）、index.html の「このサイトについて」5節は site.html へ移した。共有済みのリンク（review.html#rev-quality、index.html#app?lang=pt など）で開かれたら、
+   「都市計画の動き」の3節も移した。「都市計画の動き」は 2026-11-07 に community.html#toshikeikaku へ移した）、index.html の「このサイトについて」5節は site.html へ移した。共有済みのリンク（review.html#rev-quality、index.html#app?lang=pt など）で開かれたら、
    ?lang= などを保ったまま移り先の同じ節へ送る。履歴は残さない（replace）。 */
 (function () {
   var MOVES = {
-    review: ['analysis.html', ['rev-gaps', 'rev-power', 'rev-toshikeikaku', 'rev-quality', 'rev-skills', 'rev-history',
+    review: ['analysis.html', ['rev-gaps', 'rev-power', 'rev-quality', 'rev-skills', 'rev-history',
                                'rev-nation', 'rev-should', 'rev-ideas', 'rev-highschool', 'rev-open']],
     index: ['site.html', ['site-intro', 'app', 'spread', 'feedback', 'privacy']]
+  };
+  // 移り先で id が変わったもの：「ページ#古いid」→「新しいページ#新しいid」
+  // （2026-11-07：都市計画の動き（東部地域）を analysis.html から community.html へ移した）
+  var RENAMED = {
+    'review#rev-toshikeikaku': 'community.html#toshikeikaku',
+    'analysis#rev-toshikeikaku': 'community.html#toshikeikaku'
   };
   var id = (location.hash || '').slice(1);
   if (!id) return;
   var file = location.pathname.split('/').pop().replace(/\.html$/, '') || 'index';
+  var r = RENAMED[file + '#' + id];
+  if (r && !document.getElementById(id)) {
+    location.replace(r.split('#')[0] + location.search + '#' + r.split('#')[1]);
+    return;
+  }
   var m = MOVES[file];
   if (m && m[1].indexOf(id) !== -1 && !document.getElementById(id)) {
     location.replace(m[0] + location.search + location.hash);
@@ -1301,7 +1312,7 @@ window.KomakiGrade = (function () {
         var line = [place, when].filter(Boolean).join(lang === 'ja' || lang === 'zh' ? '　' : ' · ');
         var isCouncil = t.kind === 'council', isToshi = t.kind === 'toshi';
         var bodies = isCouncil ? BODY_COUNCIL : isToshi ? BODY_TOSHI : BODY;
-        var href = isToshi ? 'analysis.html#rev-toshikeikaku' : 'community.html#community-actions';
+        var href = isToshi ? 'community.html#toshikeikaku' : 'community.html#community-actions';
         var body = (bodies[lang] || bodies.en).replace('{a}', '<a href="' + href + '">').replace('{/a}', '</a>');
         var tags = isCouncil ? window.KomakiTokadaiEvents.TAG_COUNCIL : isToshi ? window.KomakiTokadaiEvents.TAG_TOSHI[t.role] : window.KomakiTokadaiEvents.TAG;
         var tag = tags[lang] || tags.en;
@@ -4684,13 +4695,13 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     });
 })();
 
-/* ===== TOSHIKEIKAKU EAST（review.html「都市計画の動き（東部地域）」）=====
+/* ===== TOSHIKEIKAKU EAST（community.html#toshikeikaku「都市計画の動き（東部地域）」。2026-11-07 に analysis.html から移した）=====
    2026-10-17 追加（ユーザー指示）。市の都市計画課の配下（審議会・地区計画・公聴会・告示など）
    のうち、題名か本文に東部の地名があるページを、更新日の新しい順に5件出す。
    data/toshikeikaku_east.json は .github/scripts/build_toshikeikaku.py が毎日の取得結果から
    組み立てる生成物で、手編集しない（自動更新パイプラインの ALLOWED にも入れない）。
 
-   【事実の欄】review.html で唯一、自動で入れ替わる欄。並べるのは市が掲載したページの題名と
+   【事実の欄】並べるのは市が掲載したページの題名と
    更新日だけで、当サイトの見方（🔎・💡）は書かない。札（市公式）・左帯の色・出典行は
    東部まちづくりの動き（TOBU ACTIONS）と同じ形で、外さないこと。
 
@@ -4781,6 +4792,134 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     });
 })();
 
+/* ===== NEARBY KOMAKI（about.html#nearby「近隣他地区の状況」の小牧市のほかの地区の一覧）=====
+   2026-11-07 追加（ユーザー指示「随時更新されるように」）。data/nearby_komaki.json は
+   .github/scripts/build_nearby_komaki.py が fetch_news.py のスナップショット（303-719-<地区>-*）から
+   毎日作る生成物で、手編集しない。市が新しい地区の会議のページを作れば自動でここに出る。
+   リンクは出典の学校再編の索引1本だけ（許可URL）。題名は日本語以外で headline_i18n.json の訳。 */
+(function () {
+  var container = document.getElementById('nearby-komaki-container');
+  if (!container) return;
+  var SOURCE_URL = 'https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html';
+  var MAX_ITEMS = 5, NEW_DAYS = 14;
+  var _l = window.KomakiLang();
+  var T = {
+    badge:  {ja:'市公式', en:'City official', pt:'Oficial da cidade', vi:'Chính quyền thành phố', tl:'Opisyal ng lungsod', es:'Oficial municipal', zh:'市官方', id:'Resmi kota', ko:'시 공식', ne:'नगर आधिकारिक', tr:'Belediye resmî', my:'မြို့တော် တရားဝင်'},
+    fresh:  {ja:'新着', en:'NEW', pt:'NOVO', vi:'MỚI', tl:'BAGO', es:'NUEVO', zh:'最新', id:'BARU', ko:'새 글', ne:'नयाँ', tr:'YENİ', my:'အသစ်'},
+    updated:{ja:'更新', en:'Updated', pt:'Atualizado', vi:'Cập nhật', tl:'Na-update', es:'Actualizado', zh:'更新', id:'Diperbarui', ko:'갱신', ne:'अद्यावधिक', tr:'Güncellendi', my:'အပ်ဒိတ်'},
+    source: {ja:'出典', en:'Source', pt:'Fonte', vi:'Nguồn', tl:'Pinagkunan', es:'Fuente', zh:'来源', id:'Sumber', ko:'출처', ne:'स्रोत', tr:'Kaynak', my:'ရင်းမြစ်'},
+    label:  {ja:'小牧市「学校再編」のページ', en:'Komaki City, school reorganization pages (Japanese)', pt:'Komaki: páginas da reorganização escolar (em japonês)', vi:'TP Komaki: trang tái tổ chức trường học (tiếng Nhật)', tl:'Komaki: mga pahina ng pagsasaayos ng paaralan (Japanese)', es:'Komaki: páginas de la reorganización escolar (en japonés)', zh:'小牧市“学校重组”页面（日文）', id:'Kota Komaki: halaman penataan ulang sekolah (bahasa Jepang)', ko:'고마키시 「학교 재편」 페이지(일본어)', ne:'कोमाकी नगर: विद्यालय पुनर्गठनका पृष्ठ (जापानी)', tr:'Komaki: okul yeniden yapılandırma sayfaları (Japonca)', my:'Komaki မြို့ ကျောင်းပြန်လည်ဖွဲ့စည်းရေး စာမျက်နှာများ (ဂျပန်)'},
+    empty:  {ja:'いま、一覧に出せる掲載はありません。', en:'Nothing to list at the moment.', pt:'Nada a listar no momento.', vi:'Hiện chưa có mục nào.', tl:'Wala pang maililista sa ngayon.', es:'Por ahora no hay nada que mostrar.', zh:'目前没有可列出的内容。', id:'Saat ini belum ada yang dapat ditampilkan.', ko:'지금은 표시할 게시물이 없습니다.', ne:'अहिले देखाउन मिल्ने केही छैन।', tr:'Şu anda listelenecek bir şey yok.', my:'ယခု ပြစရာ မရှိသေးပါ။'},
+    error:  {ja:'一覧を取得できませんでした。', en:'Could not load the list.', pt:'Não foi possível carregar.', vi:'Không tải được danh sách.', tl:'Hindi ma-load ang listahan.', es:'No se pudo cargar.', zh:'无法加载列表。', id:'Gagal memuat.', ko:'목록을 가져오지 못했습니다.', ne:'सूची लोड गर्न सकिएन।', tr:'Yüklenemedi.', my:'မဖွင့်နိုင်ပါ။'}
+  };
+  var DIST = {
+    kitazato:  {ja:'北里地区', en:'Kitazato district', pt:'Distrito de Kitazato', vi:'Khu Kitazato', tl:'Distrito ng Kitazato', es:'Distrito de Kitazato', zh:'北里地区', id:'Distrik Kitazato', ko:'기타자토 지구', ne:'कितासातो क्षेत्र', tr:'Kitazato bölgesi', my:'Kitazato ဒေသ'},
+    habashita: {ja:'巾下地区', en:'Habashita (巾下) district', pt:'Distrito de Habashita (巾下)', vi:'Khu Habashita (巾下)', tl:'Distrito ng Habashita (巾下)', es:'Distrito de Habashita (巾下)', zh:'巾下地区', id:'Distrik Habashita (巾下)', ko:'하바시타(巾下) 지구', ne:'हाबाशिता (巾下) क्षेत्र', tr:'Habashita (巾下) bölgesi', my:'Habashita (巾下) ဒေသ'},
+    other:     {ja:'その他の地区', en:'Other districts', pt:'Outros distritos', vi:'Khu khác', tl:'Ibang distrito', es:'Otros distritos', zh:'其他地区', id:'Distrik lain', ko:'기타 지구', ne:'अन्य क्षेत्र', tr:'Diğer bölgeler', my:'အခြားဒေသ'}
+  };
+  function pick(d) { return d[_l] || d.en || d.ja; }
+  function esc(x) { return String(x == null ? '' : x).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function fmtDate(iso) {
+    var d = new Date(iso + 'T00:00:00');
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(iso || '') || isNaN(d)) return '';
+    return d.toLocaleDateString(_l === 'ja' ? 'ja-JP' : (_l === 'es' ? 'es-419' : _l), {year: 'numeric', month: _l === 'ja' ? 'long' : 'short', day: 'numeric'});
+  }
+  function isFresh(iso) { var d = new Date(iso + 'T00:00:00'); return !isNaN(d) && (Date.now() - d.getTime()) / 864e5 <= NEW_DAYS; }
+  function row(it) {
+    return '<li class="tobu-item" data-date="' + esc(it.updated || '') + '"><div class="tobu-head">' +
+      (it.updated ? '<span class="tobu-date">' + pick(T.updated) + ' ' + esc(fmtDate(it.updated)) + '</span>' : '') +
+      '<span class="tobu-title" data-hl="' + esc(it.title || '') + '">' + esc(it.title || '') + '</span>' +
+      '<span class="ce-badge">' + pick(T.badge) + '</span>' +
+      (isFresh(it.updated) ? '<span class="school-badge school-badge--new">' + pick(T.fresh) + '</span>' : '') +
+      '</div><span class="tobu-from tobu-from--tag">' + esc(pick(DIST[it.district] || DIST.other)) + '</span></li>';
+  }
+  fetch('./data/nearby_komaki.json')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) {
+      var items = (data.items || []).slice(0, MAX_ITEMS);
+      var html = items.length ? '<ul class="tobu-list">' + items.map(row).join('') + '</ul>' : '<p class="school-empty">' + pick(T.empty) + '</p>';
+      html += '<div class="tobu-source">' + pick(T.source) + ((_l === 'ja' || _l === 'zh') ? '：' : ': ') +
+              '<a href="' + SOURCE_URL + '" target="_blank" rel="noopener">' + esc(pick(T.label)) + '</a></div>';
+      container.innerHTML = html;
+      window.KomakiHeadline.apply(container);
+    })
+    .catch(function () { container.innerHTML = '<p class="official-news-error">' + pick(T.error) + '</p>'; });
+})();
+
+/* ===== KASUGAI WATCH（about.html#nearby「近隣他地区の状況」の春日井市の一覧）=====
+   2026-11-07 追加（ユーザー指示）。春日井市「小中学校の適正規模等について」の配下ページを、
+   更新日の新しい順に5件出す。data/kasugai_reorg.json は .github/scripts/fetch_kasugai.py が
+   毎日作る生成物で、手編集しない。並べるのは春日井市が掲載した題名・更新日・地区だけ（【事実】）。
+   リンクは出典の索引1本だけ（許可URL。about.html と js/main.js に限る — auto_gates.py）。
+   題名は日本語以外の表示で data/headline_i18n.json の訳に置き換える。 */
+(function () {
+  var container = document.getElementById('kasugai-container');
+  if (!container) return;
+
+  var SOURCE_URL = 'https://www.city.kasugai.lg.jp/kosodate/kyouiku/school/1009208/index.html';
+  var MAX_ITEMS = 5;
+  var NEW_DAYS = 14;
+
+  var _l = window.KomakiLang();
+  var T = {
+    badge:  {ja:'春日井市公式', en:'Kasugai City official', pt:'Oficial de Kasugai', vi:'TP Kasugai chính thức', tl:'Opisyal ng Kasugai', es:'Oficial de Kasugai', zh:'春日井市官方', id:'Resmi Kota Kasugai', ko:'가스가이시 공식', ne:'कासुगाइ नगर आधिकारिक', tr:'Kasugai resmî', my:'Kasugai မြို့ တရားဝင်'},
+    fresh:  {ja:'新着', en:'NEW', pt:'NOVO', vi:'MỚI', tl:'BAGO', es:'NUEVO', zh:'最新', id:'BARU', ko:'새 글', ne:'नयाँ', tr:'YENİ', my:'အသစ်'},
+    updated:{ja:'更新', en:'Updated', pt:'Atualizado', vi:'Cập nhật', tl:'Na-update', es:'Actualizado', zh:'更新', id:'Diperbarui', ko:'갱신', ne:'अद्यावधिक', tr:'Güncellendi', my:'အပ်ဒိတ်'},
+    source: {ja:'出典', en:'Source', pt:'Fonte', vi:'Nguồn', tl:'Pinagkunan', es:'Fuente', zh:'来源', id:'Sumber', ko:'출처', ne:'स्रोत', tr:'Kaynak', my:'ရင်းမြစ်'},
+    label:  {ja:'春日井市「小中学校の適正規模等について」', en:'Kasugai City, “Appropriate size of elementary and junior high schools” (Japanese)', pt:'Kasugai: “Porte adequado das escolas” (em japonês)', vi:'TP Kasugai: “Quy mô phù hợp của trường tiểu học và THCS” (tiếng Nhật)', tl:'Kasugai: “Angkop na laki ng mga paaralan” (Japanese)', es:'Kasugai: “Tamaño adecuado de las escuelas” (en japonés)', zh:'春日井市“关于中小学的适当规模等”（日文）', id:'Kota Kasugai: “Ukuran sekolah yang sesuai” (bahasa Jepang)', ko:'가스가이시 「초중학교의 적정 규모 등에 대하여」(일본어)', ne:'कासुगाइ नगर: “प्राथमिक र निम्न माध्यमिक विद्यालयको उपयुक्त आकार” (जापानी)', tr:'Kasugai: “Okulların uygun büyüklüğü” (Japonca)', my:'Kasugai မြို့ “ကျောင်းများ၏ သင့်တော်သော အရွယ်အစား” (ဂျပန်)'},
+    empty:  {ja:'いま、一覧に出せる掲載はありません。', en:'Nothing to list at the moment.', pt:'Nada a listar no momento.', vi:'Hiện chưa có mục nào.', tl:'Wala pang maililista sa ngayon.', es:'Por ahora no hay nada que mostrar.', zh:'目前没有可列出的内容。', id:'Saat ini belum ada yang dapat ditampilkan.', ko:'지금은 표시할 게시물이 없습니다.', ne:'अहिले देखाउन मिल्ने केही छैन।', tr:'Şu anda listelenecek bir şey yok.', my:'ယခု ပြစရာ မရှိသေးပါ။'},
+    error:  {ja:'春日井市の掲載を取得できませんでした。', en:'Could not load the Kasugai City list.', pt:'Não foi possível carregar.', vi:'Không tải được danh sách.', tl:'Hindi ma-load ang listahan.', es:'No se pudo cargar.', zh:'无法加载春日井市的内容。', id:'Gagal memuat.', ko:'가스가이시 게시물을 가져오지 못했습니다.', ne:'कासुगाइ नगरको सूची लोड गर्न सकिएन।', tr:'Yüklenemedi.', my:'မဖွင့်နိုင်ပါ။'}
+  };
+  var AREA = {
+    sakashita: {ja:'坂下中学校区', en:'Sakashita JHS district', pt:'Distrito da EF Sakashita', vi:'Khu THCS Sakashita', tl:'Distrito ng Sakashita JHS', es:'Distrito de la secundaria Sakashita', zh:'坂下中学学区', id:'Wilayah SMP Sakashita', ko:'사카시타 중학교구', ne:'साकाशिता निम्न माध्यमिक क्षेत्र', tr:'Sakashita ortaokul bölgesi', my:'Sakashita အလယ်တန်း ဒေသ'},
+    kozoji:    {ja:'高蔵寺ニュータウン地区', en:'Kozoji New Town area', pt:'Área de Kozoji New Town', vi:'Khu Kozoji New Town', tl:'Lugar ng Kozoji New Town', es:'Zona de Kozoji New Town', zh:'高藏寺新城地区', id:'Kawasan Kozoji New Town', ko:'고조지 뉴타운 지구', ne:'कोजोजी न्यु टाउन क्षेत्र', tr:'Kozoji New Town bölgesi', my:'Kozoji New Town ဒေသ'},
+    both:      {ja:'両地区', en:'Both areas', pt:'Ambas as áreas', vi:'Cả hai khu', tl:'Parehong lugar', es:'Ambas zonas', zh:'两个地区', id:'Kedua kawasan', ko:'두 지구', ne:'दुवै क्षेत्र', tr:'Her iki bölge', my:'ဒေသ နှစ်ခုလုံး'},
+    general:   {ja:'市全体', en:'Citywide', pt:'Toda a cidade', vi:'Toàn thành phố', tl:'Buong lungsod', es:'Todo el municipio', zh:'全市', id:'Seluruh kota', ko:'시 전체', ne:'नगरभर', tr:'Şehir geneli', my:'မြို့တစ်ခုလုံး'}
+  };
+  function pick(d) { return d[_l] || d.en || d.ja; }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c];
+    });
+  }
+  function fmtDate(iso) {
+    var d = new Date(iso + 'T00:00:00');
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(iso || '') || isNaN(d)) return '';
+    return d.toLocaleDateString(_l === 'ja' ? 'ja-JP' : (_l === 'es' ? 'es-419' : _l),
+      {year: 'numeric', month: _l === 'ja' ? 'long' : 'short', day: 'numeric'});
+  }
+  function isFresh(iso) {
+    var d = new Date(iso + 'T00:00:00');
+    return !isNaN(d) && (Date.now() - d.getTime()) / 864e5 <= NEW_DAYS;
+  }
+  function row(it) {
+    return '<li class="tobu-item" data-date="' + esc(it.updated || '') + '">' +
+             '<div class="tobu-head">' +
+               (it.updated ? '<span class="tobu-date">' + pick(T.updated) + ' ' + esc(fmtDate(it.updated)) + '</span>' : '') +
+               '<span class="tobu-title" data-hl="' + esc(it.title || '') + '">' + esc(it.title || '') + '</span>' +
+               '<span class="ce-badge">' + pick(T.badge) + '</span>' +
+               (isFresh(it.updated) ? '<span class="school-badge school-badge--new">' + pick(T.fresh) + '</span>' : '') +
+             '</div>' +
+             '<span class="tobu-from tobu-from--tag">' + esc(pick(AREA[it.area] || AREA.general)) + '</span>' +
+           '</li>';
+  }
+  fetch('./data/kasugai_reorg.json')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) {
+      var items = (data.items || []).slice(0, MAX_ITEMS);
+      var html = items.length
+        ? '<ul class="tobu-list">' + items.map(row).join('') + '</ul>'
+        : '<p class="school-empty">' + pick(T.empty) + '</p>';
+      html += '<div class="tobu-source">' + pick(T.source) + ((_l === 'ja' || _l === 'zh') ? '：' : ': ') +
+              '<a href="' + SOURCE_URL + '" target="_blank" rel="noopener">' + esc(pick(T.label)) + '</a></div>';
+      container.innerHTML = html;
+      window.KomakiHeadline.apply(container);
+    })
+    .catch(function () {
+      container.innerHTML = '<p class="official-news-error">' + pick(T.error) + '</p>';
+    });
+})();
+
 /* ===== FETCH STATUS（自動取得の各コーナーの「最後に確かめた日時」）=====
    2026-10-23 ユーザー指示。data/fetch_status.json は毎日の巡回の最後に
    record_fetch_status.py が成否にかかわらず書く（news.json などの fetched_at は変化の無い日に
@@ -4792,6 +4931,8 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     'community-events-container': 'city',
     'tobu-actions-container': 'city',
     'toshikeikaku-container': 'city',
+    'kasugai-container': 'kasugai',
+    'nearby-komaki-container': 'city',
     'school-news-container': 'schools'
   };
   var boxes = Object.keys(MAP).map(function (id) { return document.getElementById(id); }).filter(Boolean);
@@ -4801,6 +4942,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   var _fl = window.KomakiLang();
   var _ft = {
     city:    {ja:'市の公式ページ', en:'city’s official pages', pt:'páginas oficiais da prefeitura', vi:'trang chính thức của thành phố', tl:'opisyal na mga pahina ng lungsod', es:'páginas oficiales de la ciudad', zh:'市政府官方网页', id:'halaman resmi kota', ko:'시 공식 페이지', ne:'नगरका आधिकारिक पृष्ठहरू', tr:'belediyenin resmî sayfaları', my:'မြို့တော် တရားဝင် စာမျက်နှာများ'},
+    kasugai: {ja:'春日井市の公式ページ', en:'Kasugai City’s official pages', pt:'páginas oficiais de Kasugai', vi:'trang chính thức của TP Kasugai', tl:'opisyal na mga pahina ng Kasugai', es:'páginas oficiales de Kasugai', zh:'春日井市官方网页', id:'halaman resmi Kota Kasugai', ko:'가스가이시 공식 페이지', ne:'कासुगाइ नगरका आधिकारिक पृष्ठहरू', tr:'Kasugai belediyesinin resmî sayfaları', my:'Kasugai မြို့ တရားဝင် စာမျက်နှာများ'},
     schools: {ja:'各校のホームページ', en:'school websites', pt:'sites das escolas', vi:'trang web của các trường', tl:'website ng mga paaralan', es:'sitios web de las escuelas', zh:'各校网站', id:'situs web sekolah', ko:'각 학교 홈페이지', ne:'विद्यालयका वेबसाइटहरू', tr:'okul web siteleri', my:'ကျောင်းဝဘ်ဆိုက်များ'},
     ok:      {ja:'{src}を最後に確かめた日時：{t}', en:'Last checked ({src}): {t}', pt:'Última verificação ({src}): {t}', vi:'Kiểm tra lần cuối ({src}): {t}', tl:'Huling sinuri ({src}): {t}', es:'Última verificación ({src}): {t}', zh:'最后确认时间（{src}）：{t}', id:'Terakhir diperiksa ({src}): {t}', ko:'마지막 확인({src}): {t}', ne:'अन्तिम जाँच ({src}): {t}', tr:'Son kontrol ({src}): {t}', my:'နောက်ဆုံး စစ်ဆေးချိန် ({src}): {t}'},
     fail:    {ja:'{t1}に{src}を確かめに行きましたが、取得できませんでした。この一覧は{t2}に確かめた時点の内容です。', en:'The check at {t1} failed ({src}). This list is as of {t2}.', pt:'A verificação de {t1} falhou ({src}). Esta lista corresponde a {t2}.', vi:'Lần kiểm tra lúc {t1} không thành công ({src}). Danh sách này là nội dung tại {t2}.', tl:'Hindi nagtagumpay ang pagsuri noong {t1} ({src}). Ang listahang ito ay mula sa {t2}.', es:'La verificación de {t1} falló ({src}). Esta lista corresponde a {t2}.', zh:'{t1}的确认未能获取内容（{src}）。此列表为{t2}确认时的内容。', id:'Pemeriksaan pada {t1} gagal ({src}). Daftar ini sesuai keadaan {t2}.', ko:'{t1} 확인에 실패했습니다({src}). 이 목록은 {t2} 기준입니다.', ne:'{t1} को जाँच असफल भयो ({src})। यो सूची {t2} को अवस्थाअनुसार हो।', tr:'{t1} tarihindeki kontrol başarısız oldu ({src}). Bu liste {t2} itibarıyladır.', my:'{t1} တွင် စစ်ဆေးမှု မအောင်မြင်ပါ ({src})။ ဤစာရင်းသည် {t2} အချိန်က အကြောင်းအရာ ဖြစ်သည်။'},

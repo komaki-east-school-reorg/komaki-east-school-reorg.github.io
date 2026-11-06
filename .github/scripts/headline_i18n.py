@@ -75,11 +75,15 @@ def current_headlines():
     for it in load("data/community_actions.json", {}).get("actions", []):
         add(it.get("title_ja"))
     for it in load("data/toshikeikaku_east.json", {}).get("items", []):
-        add(it.get("title"))     # analysis.html「都市計画の動き（東部地域）」
+        add(it.get("title"))     # community.html「都市計画の動き（東部地域）」
         for h in it.get("hits", []):
             add(h)               # 該当した地名
     for ev in load("data/toshikeikaku_east.json", {}).get("events", []):
         add(ev.get("title"))     # スケジュールに自動で載る日程
+    for it in load("data/nearby_komaki.json", {}).get("items", []):
+        add(it.get("title"))     # about.html「近隣他地区の状況」の小牧市のほかの地区
+    for it in load("data/kasugai_reorg.json", {}).get("items", [])[:5]:
+        add(it.get("title"))     # about.html「近隣他地区の状況」の春日井市の一覧（表示は5件）
     return out
 
 

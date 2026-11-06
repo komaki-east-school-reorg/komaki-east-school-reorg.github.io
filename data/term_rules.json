@@ -145,6 +145,22 @@
       "avoid": "공략",
       "use": "할 수 있는 것 / 한계를 넘다",
       "note": "日本語の「攻略」をやめたのにあわせる（2026-11-05）"
+    },
+    {
+      "id": "kasugai-places-latin",
+      "langs": [
+        "en",
+        "tl",
+        "pt",
+        "es",
+        "vi",
+        "id",
+        "tr",
+        "my"
+      ],
+      "avoid": "Kouzouji|Kôzôji|Kōzōji|Kozo-ji|Sakasita|Fujiyamadaii|Takamori-dai|Ishio-dai|Iwanari-dai|Fujiyama-dai|Kitasato",
+      "use": "Kozoji New Town / Sakashita / Fujiyamadai / Takamoridai / Ishiodai / Iwanaridai / Kitazato（北里）",
+      "note": "春日井市の地名（高蔵寺ニュータウン・坂下・藤山台・高森台・石尾台・岩成台）。長音記号もハイフンも付けない。2026-11-07"
     }
   ]
 }

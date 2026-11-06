@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>地域協議会と地域のまちづくり – 小牧市東部（篠岡地区）学校再編ナビ</title>
-  <meta name="description" content="小牧市篠岡地区の地域協議会とは何か、学校とのつながり、学校再編で変わること・変わらないことを解説。協議会のイベント案内と住民有志の取組も掲載しています。東部まちづくりプラットフォームへの参加方法も案内しています。">
+  <meta name="description" content="小牧市篠岡地区の地域協議会とは何か、学校とのつながり、学校再編で変わること・変わらないことを解説。協議会のイベント案内と住民有志の取組も掲載しています。東部まちづくりプラットフォームへの参加方法も案内しています。東部の都市計画の動きも毎日自動で並べています。">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="小牧市東部（篠岡地区）学校再編ナビ｜桃花台エリアの非公式でもわかりやすい地域情報メディア">
   <meta property="og:title" content="地域協議会と地域のまちづくり – 小牧市東部（篠岡地区）学校再編ナビ">
-  <meta property="og:description" content="小牧市篠岡地区の地域協議会とは何か、学校とのつながり、学校再編で変わること・変わらないことを解説。協議会のイベント案内と住民有志の取組も掲載しています。東部まちづくりプラットフォームへの参加方法も案内しています。">
+  <meta property="og:description" content="小牧市篠岡地区の地域協議会とは何か、学校とのつながり、学校再編で変わること・変わらないことを解説。協議会のイベント案内と住民有志の取組も掲載しています。東部まちづくりプラットフォームへの参加方法も案内しています。東部の都市計画の動きも毎日自動で並べています。">
   <meta property="og:url" content="https://komaki-east-school-reorg.github.io/community.html">
   <meta property="og:image" content="https://komaki-east-school-reorg.github.io/img/og-image.png?v=20261011">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="地域協議会と地域のまちづくり – 小牧市東部（篠岡地区）学校再編ナビ">
-  <meta name="twitter:description" content="小牧市篠岡地区の地域協議会とは何か、学校とのつながり、学校再編で変わること・変わらないことを解説。協議会のイベント案内と住民有志の取組も掲載しています。東部まちづくりプラットフォームへの参加方法も案内しています。">
+  <meta name="twitter:description" content="小牧市篠岡地区の地域協議会とは何か、学校とのつながり、学校再編で変わること・変わらないことを解説。協議会のイベント案内と住民有志の取組も掲載しています。東部まちづくりプラットフォームへの参加方法も案内しています。東部の都市計画の動きも毎日自動で並べています。">
   <meta name="twitter:image" content="https://komaki-east-school-reorg.github.io/img/og-image.png?v=20261011">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.ja.webmanifest">
@@ -729,11 +729,26 @@
     </div>
   </section>
 
+  <!-- ===== 都市計画の動き（東部地域）=====
+       2026-10-17 追加（ユーザー指示）、2026-11-07 に analysis.html から移した（ユーザー指示）。
+       市の都市計画課の配下を毎日見て（全階層は週1回）、題名か本文に東部の地名があるページを
+       更新日の新しい順に5件出す。一覧は data/toshikeikaku_east.json（build_toshikeikaku.py の生成物）
+       から js/main.js の TOSHIKEIKAKU EAST が描く。中身は市の掲載の題名と更新日だけ。
+       古いアンカー（analysis.html#rev-toshikeikaku など）は MOVED ANCHORS がここへ送る。 -->
+  <section class="section section-alt" id="toshikeikaku">
+    <div class="container" style="max-width:900px;">
+      <h2 class="section-title ill-h ill-h--town" data-i18n-html="rev_s11_h">都市計画の動き（東部地域）<small>City Planning Updates</small></h2>
+      <p class="section-lead" data-i18n-html="rev_tk_lead">東部の住まいや土地の使い方を決める都市計画が、いまどう動いているかを並べます。市の都市計画課のページのうち、題名か本文に東部地域の地名があるものを、更新日の新しい順に5件までです。都市計画が東部の子どもの数にどうかかわるかの当サイトの考えは、<a href="analysis.html#rev-power">深掘り検証の「だれが決め、どこまで市が決められるのか」</a>にあります。</p>
+      <div id="toshikeikaku-container" aria-live="polite"></div>
+      <p style="margin-top:1rem; font-size:.9rem; color:var(--text-muted);" data-i18n="rev_tk_note">🔄 毎日自動で取得（全体は週に1回）。添付のPDFや図の中の文字は読めないため、ここに無いことは「掲載が無い」という意味ではありません。日にちの決まった日程はスケジュールにも載ります。</p>
+    </div>
+  </section>
+
   <!-- 市へのお問い合わせ：地域協議会を所管するのは支え合い協働推進課で、学校再編の教育総務課とは
        別の課。番号・階数は市公式ページの「この記事に関するお問い合わせ先」の写しで、当サイトが
        調べて書いたものではない。課の再編で変わりうるので、出典を note に残してある。 -->
   <!-- id="contact" はトップページの「担当部署に直接たずねる」欄から張られている。外すとリンク切れ。 -->
-  <section class="section section-alt" id="contact">
+  <section class="section" id="contact">
     <div class="container">
       <h2 class="section-title ill-h ill-h--phone" data-i18n-html="comm_contact_h2">地域協議会の問い合わせ先<small>Who to Contact</small></h2>
       <div class="contact-box">
@@ -774,6 +789,7 @@
           </thead>
           <tbody>
             <tr><td>都市政策部 東部まちづくり推進室</td><td data-i18n="rev_c_c2_w">東部振興構想、桃花台ニュータウン、東部のまちづくり</td><td><a href="tel:0568395229">0568-39-5229</a></td></tr>
+            <tr><td>都市政策部 都市計画課 都市計画係</td><td data-i18n="rev_c_c3_w">都市計画の決定・変更、地区計画、立地適正化計画、土地利用</td><td><a href="tel:0568761155">0568-76-1155</a></td></tr>
             <tr><td>教育委員会事務局 文化財課 文化財係</td><td data-i18n="ct_w_bunkazai">文化財の保護と活用（大草・野口の棒の手など市指定の文化財）</td><td><a href="tel:0568761189">0568-76-1189</a></td></tr>
             <tr><td>こども未来部 こども政策課</td><td data-i18n="rev_c_c5_w">子育て支援、放課後児童健全育成、児童手当</td><td><a href="tel:0568761129">0568-76-1129</a></td></tr>
             <tr><td>都市政策部 みどり公園課 花と緑推進係</td><td data-i18n="ct_w_midori">市民四季の森、市の公園</td><td><a href="tel:0568761191">0568-76-1191</a></td></tr>

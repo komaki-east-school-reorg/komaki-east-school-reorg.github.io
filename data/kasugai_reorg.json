@@ -1,0 +1,144 @@
+{
+  "description": "春日井市「小中学校の適正規模等について」の配下ページの一覧。.github/scripts/fetch_kasugai.py が毎日作る。手で編集しないこと。",
+  "source_url": "https://www.city.kasugai.lg.jp/kosodate/kyouiku/school/1009208/index.html",
+  "items": [
+    {
+      "slug": "1039815",
+      "title": "坂下中学校区の学校づくりを考える懇談会",
+      "updated": "2026-11-06",
+      "area": "sakashita"
+    },
+    {
+      "slug": "1040208",
+      "title": "学校のこれから通信",
+      "updated": "2026-10-23",
+      "area": "sakashita"
+    },
+    {
+      "slug": "1040209",
+      "title": "学校のこれから通信",
+      "updated": "2026-10-23",
+      "area": "kozoji"
+    },
+    {
+      "slug": "1040361",
+      "title": "高蔵寺ニュータウン地区における学校統合に向けた基本方針(中間案)に対する市民意見公募(パブリックコメント)の結果",
+      "updated": "2026-10-14",
+      "area": "kozoji"
+    },
+    {
+      "slug": "1038159-1038841",
+      "title": "藤山台中学校区",
+      "updated": "2026-10-13",
+      "area": "kozoji"
+    },
+    {
+      "slug": "1040236-index",
+      "title": "意見交換会",
+      "updated": "2026-10-13",
+      "area": "sakashita"
+    },
+    {
+      "slug": "1038159-1038844",
+      "title": "岩成台中学校区",
+      "updated": "2026-10-13",
+      "area": "kozoji"
+    },
+    {
+      "slug": "1040236-1040285",
+      "title": "学校統合に向けた意見交換会の報告",
+      "updated": "2026-10-13",
+      "area": "sakashita"
+    },
+    {
+      "slug": "1037188-index",
+      "title": "教育委員会・総合教育会議での協議等の結果",
+      "updated": "2026-09-28",
+      "area": "general"
+    },
+    {
+      "slug": "1038159-1040216",
+      "title": "第2回意見交換会の報告",
+      "updated": "2026-09-16",
+      "area": "sakashita"
+    },
+    {
+      "slug": "1038159-1040217",
+      "title": "第2回意見交換会の報告",
+      "updated": "2026-09-16",
+      "area": "kozoji"
+    },
+    {
+      "slug": "1040212",
+      "title": "第1回意見交換会の報告",
+      "updated": "2026-09-16",
+      "area": "sakashita"
+    },
+    {
+      "slug": "1040213",
+      "title": "第1回意見交換会の報告",
+      "updated": "2026-09-16",
+      "area": "kozoji"
+    },
+    {
+      "slug": "1038159-index",
+      "title": "意見交換会",
+      "updated": "2026-09-16",
+      "area": "kozoji"
+    },
+    {
+      "slug": "1037178-index",
+      "title": "小学校・中学校の適正規模の基本的な考え方",
+      "updated": "2026-09-16",
+      "area": "general"
+    },
+    {
+      "slug": "1038719-index",
+      "title": "学校の適正規模等に関するアンケート結果",
+      "updated": "2026-09-16",
+      "area": "both"
+    },
+    {
+      "slug": "1039714",
+      "title": "坂下中学校区における学校統合に向けた基本方針",
+      "updated": "2026-09-16",
+      "area": "sakashita"
+    },
+    {
+      "slug": "1039887",
+      "title": "児童生徒数推計",
+      "updated": "2026-09-16",
+      "area": "both"
+    },
+    {
+      "slug": "1037325",
+      "title": "アンケート結果(子ども)",
+      "updated": "2026-09-16",
+      "area": "both"
+    },
+    {
+      "slug": "1037375",
+      "title": "アンケート結果(地域)",
+      "updated": "2026-09-16",
+      "area": "both"
+    },
+    {
+      "slug": "1037312",
+      "title": "アンケート結果(保護者)",
+      "updated": "2026-09-16",
+      "area": "both"
+    },
+    {
+      "slug": "1038159-1039568",
+      "title": "高森台中学校区",
+      "updated": "2026-06-29",
+      "area": "kozoji"
+    },
+    {
+      "slug": "1038159-1038845",
+      "title": "石尾台中学校区",
+      "updated": "2026-06-29",
+      "area": "kozoji"
+    }
+  ]
+}

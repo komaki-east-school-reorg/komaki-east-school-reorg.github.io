@@ -28,11 +28,12 @@
       ※2026-09-27 に追加（ユーザー指示）。唯一の個別記事ページ。同じ節で、市が案内している
         登録フォーム https://logoform.jp/form/uSYk/80018 にもリンクする（これも community.html 限定）。
         auto_gates.py の CITY_PAGE_ONLY / PERMITTED_FORM_LINKS が機械で守っている。
-  (5) 都市計画（都市計画課）＝analysis.html の「都市計画の動き（東部地域）」の出典として使用
+  (5) 都市計画（都市計画課）＝community.html の「都市計画の動き（東部地域）」の出典として使用
+      （2026-10-31 に review.html → analysis.html、2026-11-07 に community.html へ移した）
       https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toshikeikaku/1/index.html
       ※2026-10-17 に追加（ユーザー許可）。リンクの文字列は js/main.js の
         TOSHIKEIKAKU EAST ブロックが持つ。配下の個別記事ページ・下位の索引は不可。
-        auto_gates.py の CITY_PAGE_ONLY が analysis.html（と js/main.js）に限っている。
+        auto_gates.py の CITY_PAGE_ONLY が community.html（と js/main.js）に限っている。
   (6) 小牧市議会のトップ＝council.html の出典欄の下（市議会の公式ページ）でのみ使用
       https://www.city.komaki.aichi.jp/shigikai/index.html
   (7) 市議会だより＝同じ場所でのみ使用
@@ -43,6 +44,12 @@
       analysis.html の「既存校のレガシーを引き継ぐ」の本文でのみ使用
       https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/bunkazai/52305.html
       ※2026-10-31 に追加（ユーザー指示）。auto_gates.py の CITY_PAGE_ONLY が2ページに限っている。
+
+■ 別枠：春日井市「小中学校の適正規模等について」の索引（1本だけ）
+      https://www.city.kasugai.lg.jp/kosodate/kyouiku/school/1009208/index.html
+      ※2026-11-07 に追加（ユーザー指示）。about.html「近隣他地区の状況」の春日井市の一覧の出典行
+        だけに使う（URL は js/main.js の KASUGAI WATCH）。配下の個別ページ・PDF は不可。
+        auto_gates.py の KASUGAI_PATHS / KASUGAI_PAGES が about.html と js/main.js に限っている。
 
 ■ 別枠：再編対象8校のホームページ（komaki-aic.ed.jp）
   市サイトとは別ドメインで、各校が自分で運営している。市サイトのように

@@ -74,7 +74,8 @@
       "shown_in": [
         "review.html",
         "analysis.html",
-        "map.html"
+        "map.html",
+        "community.html"
       ]
     },
     {
@@ -924,6 +925,21 @@
       },
       "shown_in": [
         "community.html"
+      ]
+    },
+    {
+      "id": "kasugai-aratanagakko",
+      "level": "nearby",
+      "name": "春日井市 教育委員会 学校教育課 新たな学校づくり推進室",
+      "tel": "0568-85-6149",
+      "source": "https://www.city.kasugai.lg.jp/kosodate/kyouiku/school/1009208/index.html",
+      "probe": {
+        "kind": "text",
+        "check_tel": true,
+        "match": "教育委員会 学校教育課 新たな学校づくり推進室"
+      },
+      "shown_in": [
+        "about.html"
       ]
     }
   ]

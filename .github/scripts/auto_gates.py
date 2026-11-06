@@ -83,7 +83,7 @@ PERMITTED_LINKS = ("303/index.html", "sasaeai/3/3_2/index.html",
 # 6・7つ目＝小牧市議会のトップと「市議会だより」のページ（2026-10-26 ユーザー指示）。
 # council.html の出典欄の下だけに置く。配下の会議録・個別記事・PDF は不可のまま。
 CITY_PAGE_ONLY = {"purattofo-mu/38222.html": ("community.html",),
-                  "toshikeikaku/1/index.html": ("analysis.html", "js/main.js"),
+                  "toshikeikaku/1/index.html": ("community.html", "js/main.js"),
                   "jp/shigikai/index.html": ("council.html",),
                   "jp/shigikai/houkoku/43556.html": ("council.html",),
                   # 8つ目＝こまき歴史発見館（文化財課、ラピオ4階。2026-10-31 ユーザー指示）。
@@ -100,6 +100,11 @@ CITY_PATHS = {
     "/shigikai/houkoku/43556.html",
     "/admin/soshiki/kyoiku/bunkazai/52305.html",
 }
+# 9本目の行政ページ＝春日井市「小中学校の適正規模等について」の索引（2026-11-07 ユーザー指示）。
+# about.html の「近隣他地区の状況」の出典行だけに使う（URL は js/main.js の KASUGAI WATCH）。
+# 配下の個別ページ・PDF は不可。増やすときは CLAUDE.md・CONTRIBUTING.txt 規則1・README.md も直す。
+KASUGAI_PATHS = {"/kosodate/kyouiku/school/1009208/index.html"}
+KASUGAI_PAGES = ("about.html", "js/main.js")
 # 6b で使う：サイトに書いてよい外部ホストのすべて（2026-10-26 にいまの全ファイルから洗い出した）。
 # どのページで使ってよいか・どのパスまでよいかは、下の各 PERMITTED_* と 6 が見る。
 # 新しいドメインを足すときは、CLAUDE.md・CONTRIBUTING.txt 規則1・README.md と一緒にここにも足す。
@@ -113,6 +118,7 @@ PERMITTED_HOSTS = {
     "x.com", "social-plugins.line.me", "line.me", "b.hatena.ne.jp", "s.hatena.ne.jp",
     "note.com", "www.threads.net", "bsky.app", "www.reddit.com",   # 共有ボタン・はてなスター
     "komaki-saihen.goatcounter.com",               # 閲覧数の集計（COUNTER）
+    "www.city.kasugai.lg.jp",                      # 春日井市（パスは KASUGAI_PATHS、about.html と js/main.js だけ）
     "github.com",                                  # ご意見の Issue フォーム
     "logoform.jp",                                 # 東部まちづくりプラットフォームの登録フォーム
     "peare-toukadai.jp",                           # 地域の取組「会場の案内」
@@ -514,6 +520,12 @@ def main():
                 continue   # 正規表現や JS の式の一部（//… のコメントなど）
             if host not in PERMITTED_HOSTS:
                 host_violations.append(f"{p}: 許可リストにないホスト {host}")
+            elif host == "www.city.kasugai.lg.jp":
+                path = re.split(r"[?#]", m.group(2), 1)[0]
+                if path not in KASUGAI_PATHS:
+                    host_violations.append(f"{p}: 許可外の春日井市のURL {path[:80]}")
+                elif p not in KASUGAI_PAGES:
+                    host_violations.append(f"{p}: 春日井市へのリンクは {', '.join(KASUGAI_PAGES)} だけ")
             elif host == "www.city.komaki.aichi.jp":
                 path = re.split(r"[?#]", m.group(2), 1)[0]
                 if path not in CITY_PATHS:
@@ -825,6 +837,14 @@ def main():
         fail("feed.xml: " + (r.stdout + r.stderr).strip().splitlines()[0])
     else:
         ok("Atom フィード（feed.xml）は最新")
+
+    # --- 14b. 近隣他地区（小牧市のほかの地区）の一覧が最新（2026-11-07） ---
+    r = subprocess.run([sys.executable, ".github/scripts/build_nearby_komaki.py", "--check"],
+                       capture_output=True, text=True)
+    if r.returncode != 0:
+        fail("data/nearby_komaki.json: " + (r.stdout + r.stderr).strip().splitlines()[0])
+    else:
+        ok("近隣他地区（小牧市）の一覧は最新")
 
     # --- 15. トップ以外の各ページの問い合わせ先に、市・県・国がそれぞれ1件以上（サイト全体を検査） ---
     # 2026-10-11 ユーザー指示。data/contacts.json の shown_in を正として、ページごとに
