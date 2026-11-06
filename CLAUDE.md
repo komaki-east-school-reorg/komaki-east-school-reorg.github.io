@@ -122,7 +122,7 @@ Keys that `main.js` attaches at runtime (`status_done`, `event_status_*`) never 
 
 There is also `data/i18n/ja-kids.json`: when the kids-mode toggle is active (Japanese only), it is fetched and merged on top of `ja.json` (`Object.assign({}, ja_dict, kids_dict)`), overriding keys with simpler hiragana/easy-Japanese text.
 
-Language preference and kids-mode state are persisted in `localStorage` under `komaki_lang` and `komaki_kids`. (Other per-reader keys: `komaki_nocount`, `komaki_orig`, `komaki_fs`, `komaki_grade`, `komaki_mastodon`, `komaki_feature_seen`, `komaki_seen_items` — see their sections.)
+Language preference and kids-mode state are persisted in `localStorage` under `komaki_lang` and `komaki_kids`. (Other per-reader keys: `komaki_nocount`, `komaki_orig`, `komaki_fs`, `komaki_grade`, `komaki_mastodon`, `komaki_seen_items` — see their sections.)
 
 ### Language in the URL (`?lang=`)
 
@@ -590,7 +590,7 @@ Every page carries a `<section class="section share" id="share">` just above `</
 
 ### カットイン（全ページ、ヘッダの下）
 
-`TOP CUT-IN` in `js/main.js`（2026-09-03 に `NEW FEATURE CUT-IN` から改称・拡張）。**2026-09-20 のユーザー指示で、トップページだけでなく全ページに出す**ようにした（読者が最初に開くページはトップとはかぎらないため）。`#feature-cutin` と `#feature-strings` の2つの `div` は11ページすべての `</header>` 直後にあり、同じブロックがそれを見つけて描く。ヘッダの下にスライドインする帯で、**今日から14日以内**（`WINDOW_DAYS`）の新しい情報を出す。出すのは3種類：
+`TOP CUT-IN` in `js/main.js`（2026-09-03 に `NEW FEATURE CUT-IN` から改称・拡張）。**2026-09-20 のユーザー指示で、トップページだけでなく全ページに出す**ようにした（読者が最初に開くページはトップとはかぎらないため）。`#feature-cutin` と `#feature-strings` の2つの `div` は11ページすべての `</header>` 直後にあり、同じブロックがそれを見つけて描く。ヘッダの下にスライドインする帯で、**今日を含む直近5日間**（`WINDOW_DAYS`、2026-11-06 ユーザー指示）の新しい情報を、ページを開くたびに出す。出すのは3種類：
 
 | 札 | 元データ | 飛び先 |
 |---|---|---|
@@ -602,14 +602,14 @@ Every page carries a `<section class="section share" id="share">` just above `</
 
 `type: "fix"` は出さない（誤字直しや体裁の修正は帯で知らせる話ではない）。**都市計画関連の行も出さない**（2026-10-18 ユーザー指示）：更新履歴の `ja` に「都市計画」を含む行は帯から外す。例外は、都市計画の日程がスケジュールに載ったときに `build_toshikeikaku.py` が足す行（`auto_key` が `toshikeikaku:` 始まり）だけ。市のお知らせでも**飛び先は本文の該当コーナー**にする — 帯から直接市の個別ページへ出すと、読者が説明を読まないまま外へ抜けてしまう。
 
-- **並びは「新しいかつ重要度が高い順」**（2026-09-22 ユーザー指示）。`rank()` が **重要度 + `RECENCY_WEIGHT`（8）× 新しさ** で点を付け、高いものを、下の割合の枠ごとに出す（同点なら新しいほう）。新しさは今日 = 1・14日前 = 0 の線形、重要度は ①種類（お知らせ 6 > 新機能 3 > 更新 2）②緊急語（`URGENT_RE`、+4）③`data/site-updates.json` の任意の `priority`（`high` +6 / `low` −4）で、ふだんの幅は 2〜10。**`RECENCY_WEIGHT` はその幅とほぼ同じ値にしてある** — 片方だけを支配的にしないためで、重要度側の点を動かしたら重みも見直すこと。
+- **並びは「新しいかつ重要度が高い順」**（2026-09-22 ユーザー指示）。`rank()` が **重要度 + `RECENCY_WEIGHT`（8）× 新しさ** で点を付け、高いものを、下の割合の枠ごとに出す（同点なら新しいほう）。新しさは今日 = 1・5日前 = 0 の線形、重要度は ①種類（お知らせ 6 > 新機能 3 > 更新 2）②緊急語（`URGENT_RE`、+4）③`data/site-updates.json` の任意の `priority`（`high` +6 / `low` −4）で、ふだんの幅は 2〜10。**`RECENCY_WEIGHT` はその幅とほぼ同じ値にしてある** — 片方だけを支配的にしないためで、重要度側の点を動かしたら重みも見直すこと。
 - **緊急語（`URGENT_RE`）は市のお知らせにだけ効かせる。** 更新履歴の文面は「説明会の質疑からQ&Aを追加」のように市の催しに言及するだけのことが多く、読者に締切があるわけではない（そのまま当てると全部が緊急になり順位が意味を失う）。更新履歴を上げ下げしたいときは `priority` を使う。語を足すときも「読者が何かをする必要がある言葉」に限ること。
 - **判定は日本語の原文（`ja`）で行う。** 訳文で判定すると、表示言語によって帯の順番が入れ替わってしまう。
 - **3件の内訳は「市からのお知らせ」1・「更新」1・「新機能」1**（`SLOTS`、2026-10-15 ユーザー指示。2026-10-11 から お知らせ1・更新履歴2 だった）。それぞれの枠の中で `rank()` の点の高いものを取り、ある種類に期間内の項目が無ければ空いた枠を残りの点の高いもので埋める。選んだ3件は点の順に並べる。
 - **札とリンクには `data-i18n` を付けない。** 項目ごとに種類が変わるので、辞書に上書きされると札と中身が食い違う。文言は `#feature-strings` の隠し要素から `data-fk` で読む（`label` / `label_update` / `label_news` / `more` / `more_news` / `close` / `news_fmt`）。**市のお知らせは見出しだけを置かず、更新履歴と同じ体言止めの一行にする**（`news_fmt`＝辞書の `feature_new_news_fmt`「市が「{title}」のページを更新」。`{title}` に訳した見出しが入る。2026-10-11 ユーザー指示）。
 
-- **カットイン専用のお知らせデータを作らないこと。** 文面は更新履歴と市のお知らせ、どちらもサイトが既に持っているデータそのもの。別データにすると元の一覧と食い違ったまま気づけなくなる。**更新履歴に1行足す／市がページを更新する**だけでここは自動的に出て、14日で自動的に消える（消し忘れが起きない）。
-- **帯を開いた時点で、期間内（14日）の候補をすべて「見た」と記録し、二度と出さない**（`localStorage: komaki_feature_seen`。2026-11-05 ユーザー指示：新しい3件を見せたらもう表示しない。閉じるまで待つと、途中の再読み込みで同じ帯や繰り上がった古い行が出ていた）。記録は**件数ではなく日付で整理する**（id の日付が14＋7日より古いものだけを捨てる。以前の「最新40件」は、窓の中の候補が25件ほどあるため古い id が押し出され、再読み込みで古い更新履歴が出ていた）。新しい行が増えたときだけ、また出る。複数あるときは最大3件を7秒ごとに入れ替え、全件を1回ずつ見せたら自動で閉じる（2026-11-04 ユーザー指示。1件だけのときも7秒で閉じる）。マウスやフォーカスが乗ったら止まり、離れたらその項目をもう一度7秒見せてから先へ進む。`prefers-reduced-motion` では動きを出さない。
+- **カットイン専用のお知らせデータを作らないこと。** 文面は更新履歴と市のお知らせ、どちらもサイトが既に持っているデータそのもの。別データにすると元の一覧と食い違ったまま気づけなくなる。**更新履歴に1行足す／市がページを更新する**だけでここは自動的に出て、5日で自動的に消える（消し忘れが起きない）。
+- **直近5日間の新着は、ページを開くたびに出す**（2026-11-06 ユーザー指示。既読の記録はしない — 以前の `komaki_feature_seen` は読み込み時に消している）。複数あるときは最大3件を7秒ごとに入れ替え、全件を1回ずつ見せたら自動で閉じる（2026-11-04 ユーザー指示。1件だけのときも7秒で閉じる）。マウスやフォーカスが乗ったら止まり、離れたらその項目をもう一度7秒見せてから先へ進む。`prefers-reduced-motion` では動きを出さない。
 - 帯は `position: sticky` のヘッダの**下**（`</header>` の直後、通常フロー）に置く（2026-09-20 ユーザー指示。それまではヘッダの上だった）。ヘッダに重ねると本文が読めなくなるので、重ねない。
 - **帯の色は上下の背景と同じ黒板グリーンの系統でそろえる**（同日ユーザー指示）。上はヘッダ（`--primary-dark`）、下はヒーロー（`135deg` で `#111f14` → `--primary-dark` → `#2e5c3a`）なので、帯も同じ `135deg` で `--primary-dark` → `#24492e`、つまり両隣の値の内側に収める。同系色が続いて境目が消えないよう、上下に細い線（白 .14 / 黒 .25）を入れてある。
 - `.feature-cutin` の `display:flex` は UA の `[hidden]{display:none}` に勝つので、`.feature-cutin[hidden] { display:none; }` が要る。無いと出す前と閉じたあとに padding ぶんの帯が残る。

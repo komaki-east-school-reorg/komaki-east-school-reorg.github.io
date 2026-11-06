@@ -735,9 +735,9 @@ window.KomakiGrade = (function () {
    市のお知らせでも、飛び先は本文の該当コーナー（#news）にする。帯から直接
    市の個別ページへ出すと、読者が説明を読まないまま外へ抜けてしまう。
 
-   【うるさくしない】
-   ・帯を開いた時点で、期間内の候補をすべて「見た」と記録し、二度と出さない
-     （localStorage: komaki_feature_seen。2026-11-05 ユーザー指示）。新しい行が増えたときだけ出る。
+   【出し方】
+   ・今日を含む直近5日間の新着を、ページを開くたびに出す（2026-11-06 ユーザー指示。
+     既読の記録はしない。以前の komaki_feature_seen は読み込み時に消す）。
    ・複数あるときは1本ずつ入れ替える（最大3件）。全件見せたら自動で閉じる
      （2026-11-04 ユーザー指示）。ページを開いた直後は
      読み込み中の視線を奪わないよう、少し置いてから出す。
@@ -746,7 +746,7 @@ window.KomakiGrade = (function () {
   var host = document.getElementById('feature-cutin');
   if (!host) return;
 
-  var WINDOW_DAYS = 14;      // 掲載から何日出すか
+  var WINDOW_DAYS = 5;       // 今日を含む何日間の新着を出すか（2026-11-06 ユーザー指示）
   var MAX_ITEMS = 3;         // 入れ替えで見せる最大件数
   var SLOTS = {news: 1, content: 1, feature: 1};  // 3件の内訳：市のお知らせ1・更新1・新機能1（2026-10-15 ユーザー指示）
   var ROTATE_MS = 7000;      // 入れ替えの間隔
@@ -760,27 +760,8 @@ window.KomakiGrade = (function () {
     return (v && v.trim()) || fallback;
   }
 
-  function seen() {
-    try {
-      var a = JSON.parse(localStorage.getItem('komaki_feature_seen') || '[]');
-      return Array.isArray(a) ? a : [];
-    } catch (e) { return []; }
-  }
-  /* 記録は件数ではなく日付で整理する（2026-11-05）。以前は最新40件だけを残していたが、
-     14日の窓の中の候補だけで25件ほどあり、日をまたいで記録が増えると窓の中の古い id から
-     押し出されて「まだ見ていない」に戻り、再読み込みで古い更新履歴が帯に出ていた。
-     id は「種類|YYYY-MM-DD|本文」なので、日付が窓より十分古いものだけを捨てる。 */
-  function markSeen(ids) {
-    try {
-      var a = seen();
-      [].concat(ids).forEach(function (id) { if (a.indexOf(id) === -1) a.push(id); });
-      a = a.filter(function (id) {
-        var d = String(id).split('|')[1];
-        return !/^\d{4}-\d{2}-\d{2}$/.test(d || '') || daysSince(d) <= WINDOW_DAYS + 7;
-      });
-      localStorage.setItem('komaki_feature_seen', JSON.stringify(a.slice(-300)));
-    } catch (e) {}
-  }
+  // 以前の「見た」記録（2026-11-05〜11-06）は使わなくなったので消しておく
+  try { localStorage.removeItem('komaki_feature_seen'); } catch (e) {}
 
   function daysSince(d) {
     var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(d || '');
@@ -813,7 +794,7 @@ window.KomakiGrade = (function () {
 
   function inWindow(d) {
     var age = daysSince(d);
-    return age >= 0 && age <= WINDOW_DAYS;
+    return age >= 0 && age < WINDOW_DAYS;   // 今日 = 0 … 4日前 = 4
   }
 
   /* ===== 並び順：新しいかつ重要度が高い順（2026-09-22 ユーザー指示）=====
@@ -877,7 +858,6 @@ window.KomakiGrade = (function () {
 
   Promise.all([get('./data/site-updates.json'), get('./data/news.json'), window.KomakiHeadline.load()])
     .then(function (res) {
-      var done = seen();
       var pool = [];
 
       // 更新履歴（新機能・掲載内容）。本文は 対象言語 → en → ja
@@ -914,7 +894,7 @@ window.KomakiGrade = (function () {
         });
       });
 
-      var items = pool.filter(function (u) { return u.text && done.indexOf(u.id) === -1; });
+      var items = pool.filter(function (u) { return u.text; });
       if (!items.length) return;
       items.forEach(function (it) { it.score = rank(it); });
       // 同点のときは新しいほうを先に（日付まで同じなら元の順を保つ＝安定ソート）
@@ -984,8 +964,7 @@ window.KomakiGrade = (function () {
         host.classList.add('is-swap');
       }
       /* 全件（最大3件）を1回ずつ見せたら自動で閉じる（2026-11-04 ユーザー指示）。
-         最後の項目も ROTATE_MS は見せてから閉じ、×で閉じたときと同じく「見た」と記録する
-         （記録しないと、ページを移るたびに同じ帯がまた流れるため）。 */
+         最後の項目も ROTATE_MS は見せてから閉じる。次に開いたページではまた出る（2026-11-06）。 */
       var closed = false;
       function stop() {
         if (timer) { clearTimeout(timer); timer = null; }
@@ -994,7 +973,6 @@ window.KomakiGrade = (function () {
         if (closed) return;
         closed = true;
         stop();
-        markSeen(all.map(function (it) { return it.id; }));
         host.classList.remove('is-open');
         window.setTimeout(function () { host.hidden = true; }, 400);
       }
@@ -1024,10 +1002,6 @@ window.KomakiGrade = (function () {
 
       host.hidden = false;
       window.setTimeout(function () {
-        // 帯を開いた時点で、期間内の候補をすべて「見た」と記録する（2026-11-05 ユーザー指示：
-        // 新しい3件を見せたらもう出さない）。閉じるまで待つと、途中で再読み込みしたときに
-        // 同じ帯や、繰り上がった古い行がまた出てしまう。新しい行が増えたときだけ、また出る。
-        markSeen(all.map(function (it) { return it.id; }));
         host.classList.add('is-open');
         show(0);
         if (!held.mouse && !held.focus) tick();

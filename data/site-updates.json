@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-11-06",
+      "type": "feature",
+      "ja": "新着の帯を、直近5日の情報をページを開くたびに表示",
+      "en": "New-items banner now shows the last 5 days on every page open"
+    },
+    {
+      "date": "2026-11-06",
       "type": "content",
       "ja": "議会での審議に第3回定例会（9月）を追加",
       "en": "September 2026 council session added to the council page"

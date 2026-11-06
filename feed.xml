@@ -27,6 +27,14 @@
     <summary>サイトの更新履歴｜議会での審議に第3回定例会（9月）を追加</summary>
   </entry>
   <entry>
+    <title>新着の帯を、直近5日の情報をページを開くたびに表示</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:aba8ec8820cd7cfe</id>
+    <updated>2026-11-06T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜新着の帯を、直近5日の情報をページを開くたびに表示</summary>
+  </entry>
+  <entry>
     <title>ページの上へ戻るボタンと「本文へ移動」のリンクを追加</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
     <id>tag:komaki-east-school-reorg.github.io,2026:b6812b90ecc05711</id>
@@ -321,13 +329,5 @@
     <updated>2026-10-22T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜トップに東部の0〜17歳の子どもの人数（推定）を毎日表示</summary>
-  </entry>
-  <entry>
-    <title>東部に関係する都市計画の日程を、スケジュールにも自動で掲載</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:bcb261e643691f57</id>
-    <updated>2026-10-18T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜東部に関係する都市計画の日程を、スケジュールにも自動で掲載</summary>
   </entry>
 </feed>
