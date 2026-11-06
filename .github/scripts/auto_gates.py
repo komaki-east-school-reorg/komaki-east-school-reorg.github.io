@@ -101,7 +101,7 @@ CITY_PATHS = {
     "/admin/soshiki/kyoiku/bunkazai/52305.html",
 }
 # 9本目の行政ページ＝春日井市「小中学校の適正規模等について」の索引（2026-11-07 ユーザー指示）。
-# about.html の「近隣他地区の状況」の出典行だけに使う（URL は js/main.js の KASUGAI WATCH）。
+# about.html の「ほかの地区や、となりのまちでは？」の出典行だけに使う（URL は js/main.js の KASUGAI WATCH）。
 # 配下の個別ページ・PDF は不可。増やすときは CLAUDE.md・CONTRIBUTING.txt 規則1・README.md も直す。
 KASUGAI_PATHS = {"/kosodate/kyouiku/school/1009208/index.html"}
 KASUGAI_PAGES = ("about.html", "js/main.js")

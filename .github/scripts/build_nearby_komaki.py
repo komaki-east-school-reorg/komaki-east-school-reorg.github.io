@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 小牧市の、篠岡地区以外の地区の学校再編の掲載を data/nearby_komaki.json に組み立てる。
-2026-11-07 ユーザー指示（about.html#nearby「近隣他地区の状況」を随時更新する）。
+2026-11-07 ユーザー指示（about.html#nearby「ほかの地区や、となりのまちでは？」を随時更新する）。
 
 fetch_news.py が学校再編の木（.../kyouikusoumu/303/ の下）から毎日保存している
 data/official_pages/303-719-<地区のフォルダ>-<ページID>.txt のうち、篠岡地区と

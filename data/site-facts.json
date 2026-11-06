@@ -59,7 +59,7 @@
     },
     "about_nearby": {
       "file": "about.html / data/i18n/*.json（about_nb_*・about_nearby_asof）",
-      "notes": "計画概要「近隣他地区の状況」。随時更新する。小牧市のほかの地区と春日井市の説明は手書き（13辞書）、一覧は自動。動きがあれば説明と about_nearby_asof を直す。about.html は自動更新ジョブの ALLOWED 外なので、人が直す"
+      "notes": "計画概要「ほかの地区や、となりのまちでは？」。随時更新する。小牧市のほかの地区と春日井市の説明は手書き（13辞書）、一覧は自動。動きがあれば説明と about_nearby_asof を直す。about.html は自動更新ジョブの ALLOWED 外なので、人が直す"
     }
   },
   "default_targets": [

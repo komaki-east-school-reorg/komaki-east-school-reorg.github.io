@@ -4792,7 +4792,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     });
 })();
 
-/* ===== NEARBY KOMAKI（about.html#nearby「近隣他地区の状況」の小牧市のほかの地区の一覧）=====
+/* ===== NEARBY KOMAKI（about.html#nearby「ほかの地区や、となりのまちでは？」の小牧市のほかの地区の一覧）=====
    2026-11-07 追加（ユーザー指示「随時更新されるように」）。data/nearby_komaki.json は
    .github/scripts/build_nearby_komaki.py が fetch_news.py のスナップショット（303-719-<地区>-*）から
    毎日作る生成物で、手編集しない。市が新しい地区の会議のページを作れば自動でここに出る。
@@ -4846,7 +4846,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     .catch(function () { container.innerHTML = '<p class="official-news-error">' + pick(T.error) + '</p>'; });
 })();
 
-/* ===== KASUGAI WATCH（about.html#nearby「近隣他地区の状況」の春日井市の一覧）=====
+/* ===== KASUGAI WATCH（about.html#nearby「ほかの地区や、となりのまちでは？」の春日井市の一覧）=====
    2026-11-07 追加（ユーザー指示）。春日井市「小中学校の適正規模等について」の配下ページを、
    更新日の新しい順に5件出す。data/kasugai_reorg.json は .github/scripts/fetch_kasugai.py が
    毎日作る生成物で、手編集しない。並べるのは春日井市が掲載した題名・更新日・地区だけ（【事実】）。

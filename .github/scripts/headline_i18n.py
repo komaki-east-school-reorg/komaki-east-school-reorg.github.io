@@ -81,9 +81,9 @@ def current_headlines():
     for ev in load("data/toshikeikaku_east.json", {}).get("events", []):
         add(ev.get("title"))     # スケジュールに自動で載る日程
     for it in load("data/nearby_komaki.json", {}).get("items", []):
-        add(it.get("title"))     # about.html「近隣他地区の状況」の小牧市のほかの地区
+        add(it.get("title"))     # about.html「ほかの地区や、となりのまちでは？」の小牧市のほかの地区
     for it in load("data/kasugai_reorg.json", {}).get("items", [])[:5]:
-        add(it.get("title"))     # about.html「近隣他地区の状況」の春日井市の一覧（表示は5件）
+        add(it.get("title"))     # about.html「ほかの地区や、となりのまちでは？」の春日井市の一覧（表示は5件）
     return out
 
 

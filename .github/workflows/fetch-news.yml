@@ -97,7 +97,7 @@ jobs:
       - name: Build eastern-district city-planning list
         run: python3 .github/scripts/build_toshikeikaku.py
 
-      # 小牧市の、篠岡地区以外の地区の学校再編の掲載（about.html「近隣他地区の状況」。2026-11-07）。
+      # 小牧市の、篠岡地区以外の地区の学校再編の掲載（about.html「ほかの地区や、となりのまちでは？」。2026-11-07）。
       # これも市サーバへは行かず、直前の fetch_news.py のスナップショットを読むだけ。
       - name: Build nearby-district list (Komaki)
         run: python3 .github/scripts/build_nearby_komaki.py
@@ -174,7 +174,7 @@ jobs:
           fi
           {
             echo "春日井市の「小中学校の適正規模等について」の配下に変化がありました。"
-            echo "about.html の「近隣他地区の状況」の春日井市の説明（手書き）を直す必要があるか確かめてください。"
+            echo "about.html の「ほかの地区や、となりのまちでは？」の春日井市の説明（手書き）を直す必要があるか確かめてください。"
             echo "一覧（自動）は data/kasugai_reorg.json から入れ替わります。"
             echo
             echo "## 変わったファイル"
