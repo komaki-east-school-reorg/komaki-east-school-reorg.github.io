@@ -2087,5 +2087,6 @@
   "search_btn": "사이트 내 검색",
   "skip_to_main": "본문으로 이동",
   "to_top": "맨 위로",
+  "table_scroll_hint": "← 옆으로 넘겨 보세요 →",
   "nf_search_h": "사이트 내 검색<small>Search</small>"
 }

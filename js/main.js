@@ -5701,6 +5701,44 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   }
 })();
 
+/* ===== TABLE SCROLL HINT（横長の表の合図。2026-11-07、日次アイデア 10/04） =====
+   スマートフォンで右が切れて見える表（.table-wrap の中だけ横にスクロールする）の上に
+   「← 横にスクロールできます →」（辞書の table_scroll_hint、RUNTIME_KEYS）を出す。
+   はみ出しているときだけ出し、その表を一度横に動かしたら消す。幅は言語や文字の大きさで変わるので、
+   辞書が当たったとき・画面の幅が変わったとき・<details> を開いたときに測り直す。
+   aria-hidden なので読み上げには入らない（表そのものは読める）。原文併記は i18n.js の ORIG_SKIP で外してある。 */
+(function () {
+  var wraps = Array.prototype.slice.call(document.querySelectorAll('main .table-wrap'));
+  if (!wraps.length) return;
+  var hints = wraps.map(function (w) {
+    var p = document.createElement('p');
+    p.className = 'scroll-hint';
+    p.setAttribute('aria-hidden', 'true');
+    p.hidden = true;
+    var s = document.createElement('span');
+    s.setAttribute('data-i18n', 'table_scroll_hint');
+    s.textContent = '← 横にスクロールできます →';
+    p.appendChild(s);
+    w.parentNode.insertBefore(p, w);
+    w.addEventListener('scroll', function () {
+      if (w.scrollLeft > 8) { w.setAttribute('data-scrolled', '1'); p.hidden = true; }
+    }, { passive: true });
+    return p;
+  });
+  var timer = 0;
+  function measure() {
+    wraps.forEach(function (w, i) {
+      var over = w.clientWidth > 0 && w.scrollWidth > w.clientWidth + 2;
+      hints[i].hidden = !over || w.getAttribute('data-scrolled') === '1';
+    });
+  }
+  function later() { clearTimeout(timer); timer = setTimeout(measure, 150); }
+  document.addEventListener('komaki:i18n-applied', later);
+  document.addEventListener('toggle', later, true);
+  window.addEventListener('resize', later);
+  window.addEventListener('load', later);
+})();
+
 /* ===== SKIP LINK / TO TOP（全ページ。2026-11-05 ユーザー指示：過去の提案「上へ戻る↑と本文への移動」） =====
    ・本文へ移動：<body> の先頭に、Tab で最初に止まるリンクを差し込む（ふだんは見えず、フォーカスで出る）。
      飛び先は <main>（id が無ければ main-content を付け、tabindex=-1 で読み上げの位置も移す）。

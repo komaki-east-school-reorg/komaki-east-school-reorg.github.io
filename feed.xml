@@ -43,6 +43,14 @@
     <summary>サイトの更新履歴｜計画概要に「近隣他地区の状況」（北里地区・春日井市）を追加</summary>
   </entry>
   <entry>
+    <title>横にはみ出す表に「横にスクロールできます」の合図</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:502498ef2f15bcd4</id>
+    <updated>2026-11-07T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜横にはみ出す表に「横にスクロールできます」の合図</summary>
+  </entry>
+  <entry>
     <title>検索の言葉をリンクで共有できるように</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
     <id>tag:komaki-east-school-reorg.github.io,2026:705fbd1e3f44c69e</id>
@@ -321,13 +329,5 @@
     <updated>2026-10-26T00:00:00+09:00</updated>
     <category term="東部まちづくりの動き"/>
     <summary>東部まちづくりの動き｜東部まちづくり：湯あがりに考える もしもの時に困らないための〇〇の話</summary>
-  </entry>
-  <entry>
-    <title>東部まちづくり：リユースバスケット</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#community-actions"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:3a9ccaa7787eac5c</id>
-    <updated>2026-10-26T00:00:00+09:00</updated>
-    <category term="東部まちづくりの動き"/>
-    <summary>東部まちづくりの動き｜東部まちづくり：リユースバスケット</summary>
   </entry>
 </feed>

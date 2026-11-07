@@ -2087,5 +2087,6 @@
   "search_btn": "站内搜索",
   "skip_to_main": "跳到正文",
   "to_top": "回到顶部",
+  "table_scroll_hint": "← 可左右滑动 →",
   "nf_search_h": "站内搜索<small>Search</small>"
 }

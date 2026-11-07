@@ -1542,6 +1542,10 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 /* 横に広い表は、ページ本体ではなくこの箱の中だけを横スクロールさせる */
 .table-wrap { overflow-x: auto; margin-bottom: 1rem; }
 .table-wrap .data-table { min-width: 32rem; }
+/* 横にはみ出している表の上の合図（TABLE SCROLL HINT in js/main.js。2026-11-07） */
+.scroll-hint { margin: 0 0 .3rem; font-size: .8rem; color: var(--text-muted); text-align: right; }
+.scroll-hint span { display: inline-block; padding: .1rem .55rem; border-radius: 999px; background: #f1ead2; }
+@media print { .scroll-hint { display: none !important; } }
 /* 幅の決まった表（地域協議会の拠点・議会の採決）を、はみ出したときだけ横スクロールにする枠 */
 .table-wrap--fit { margin-bottom: 0; }
 .data-table { width: 100%; border-collapse: collapse; font-size: .9rem; background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }

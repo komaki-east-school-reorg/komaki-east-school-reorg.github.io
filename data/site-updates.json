@@ -4,6 +4,12 @@
     {
       "date": "2026-11-07",
       "type": "feature",
+      "ja": "横にはみ出す表に「横にスクロールできます」の合図",
+      "en": "Hint added above tables that scroll sideways"
+    },
+    {
+      "date": "2026-11-07",
+      "type": "feature",
       "ja": "こどもむけ表示をリンク（?kids=1）で共有できるように",
       "en": "Kids mode can now be shared as a link (?kids=1)"
     },
