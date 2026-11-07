@@ -396,6 +396,8 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 - **国土地理院（gsi.go.jp）は古い TLS 再ネゴシエーションしか話さない**ので、OpenSSL 3 の curl は exit 35 で落ちる。`fetch_news._curl_get` はそのエラーのときだけ `UnsafeLegacyRenegotiation` を許す一時設定で取り直す。番号が全角で書かれたページもあるので、`check_contacts.py` は NFKC で半角にそろえてから比べる。
 - 区分の見出しは、文科省だけの表は `rev_c_nat_h`（国（文部科学省））、他省庁を含む表は `contact_lv_nat`（国）。文科省の表に他省庁の行を混ぜない。
 
+**窓口で見せる日本語（`about.html#contact` の `.mc-card`、2026-11-07、日次アイデア 10/02）**：外国語表示の読者が市役所の窓口や電話でそのまま見せられる定型文5つ。太字の日本語（`.mc-ja`）は HTML に固定で書き `data-i18n` を付けない（部署名と同じ考え方）、下の行の意味だけ `mc_m1`〜`5`（`mc_h` / `mc_lead`）で訳す。日本語表示では出さない（`html:lang(ja) .mc-card`）。原文併記（`ORIG_SKIP`）・読み上げ（`SKIP` の `.mc-ja`）・検索索引（`SKIP_CLASSES`）から外してある。定型文に事実の主張を書かない。
+
 トップページの「各ページへのリンク」の下に、この4か所への案内（`contacts_guide_*`）を置いてある。**番号そのものをトップに書かない** — 直す場所が増えると必ず食い違うため。
 
 - **部署名は日本語のまま**（表の「部署」欄に `data-i18n` を付けない）。窓口で見せたり電話で伝えたりするのは日本語の名称そのもので、訳すと用を成さないため。訳すのは「このページで触れた事柄」の欄とラベルだけ。年表の西暦欄と同じ考え方。ただし `about.html`・`faq.html`・`community.html` の `.contact-box` は従来どおり部署名も翻訳する（1部署だけなので窓口で示す用途より読みやすさを優先）。

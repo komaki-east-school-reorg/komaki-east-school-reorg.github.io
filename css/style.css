@@ -95,6 +95,18 @@ img { max-width: 100%; }
   padding: .1rem .35rem;
   vertical-align: middle;
 }
+/* ===== MADOGUCHI CARD（about.html#contact「窓口で見せる日本語」。2026-11-07） =====
+   外国語表示のときだけ出す。太字の日本語を大きく、意味は小さく。 */
+.mc-card { margin-top: 1.6rem; background: #fffdf3; border: 1.5px solid var(--accent); border-radius: var(--radius); padding: 1.1rem 1.3rem; box-shadow: var(--shadow); }
+html:lang(ja) .mc-card { display: none; }
+.mc-h { font-size: 1.05rem; color: var(--primary-dark); margin: 0 0 .3rem; }
+.mc-lead { font-size: .88rem; color: var(--text-muted); margin: 0 0 .8rem; }
+.mc-list { margin: 0; padding-left: 1.4rem; }
+.mc-list li { margin: 0 0 .75rem; }
+.mc-list li:last-child { margin-bottom: 0; }
+.mc-ja { font-size: 1.25rem; font-weight: 800; line-height: 1.5; margin: 0; font-family: var(--heading-font); }
+.mc-m { font-size: .88rem; color: var(--text-muted); margin: .1rem 0 0; }
+
 @media print { .auto-lang-notice, .app-offline-notice, .app-install-btn, .search-open-btn, .to-top, .skip-link, .search-dialog { display: none !important; } }
 
 /* ===== HEADER & NAV ===== */

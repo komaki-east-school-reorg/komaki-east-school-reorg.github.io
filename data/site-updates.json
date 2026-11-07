@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-11-07",
+      "type": "feature",
+      "ja": "外国語表示に「窓口で見せる日本語」のカードを追加",
+      "en": "“Japanese to show at the counter” card added for non-Japanese readers"
+    },
+    {
+      "date": "2026-11-07",
       "type": "content",
       "ja": "再編前の学校間交流のQ&Aに自己紹介カードの取りやめを追記",
       "en": "Pre-merger school exchange Q&A updated: self-introduction cards dropped"
