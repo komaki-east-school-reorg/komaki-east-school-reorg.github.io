@@ -1,8 +1,95 @@
 {
-  "fetched_at": "2026-11-06T02:40:30Z",
+  "fetched_at": "2026-11-07T02:09:43Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "shinooka-e",
+      "level": "elem",
+      "names": {
+        "ja": "篠岡小学校",
+        "ja_kids": "しのおか小学校",
+        "en": "Shinooka Elem. School",
+        "zh": "篠冈小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
+      "latest_date": "2026-11-07",
+      "items": [
+        {
+          "title": "校外学習：名古屋港水族館",
+          "date": "2026-11-07",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136509670?tm=20261107110617"
+        },
+        {
+          "title": "校外学習",
+          "date": "2026-11-07",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136509645?tm=20261107110030"
+        },
+        {
+          "title": "さつまいものつる切り",
+          "date": "2026-11-05",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136499604?tm=20261105184357"
+        }
+      ]
+    },
+    {
+      "slug": "momogaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "桃ヶ丘小学校",
+        "ja_kids": "ももがおか小学校",
+        "en": "Momogaoka Elem. School",
+        "zh": "桃之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
+      "latest_date": "2026-11-07",
+      "items": [
+        {
+          "title": "４年生 校外学習",
+          "date": "2026-11-07",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136507132?tm=20261106164422"
+        },
+        {
+          "title": "５年生：図工「ミラクル！ミラーワールド！」",
+          "date": "2026-11-07",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136498211?tm=20261105164300"
+        },
+        {
+          "title": "６年生：修学旅行に向けて",
+          "date": "2026-11-07",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136497974?tm=20261105162338"
+        }
+      ]
+    },
+    {
+      "slug": "sue-e",
+      "level": "elem",
+      "names": {
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-11-06",
+      "items": [
+        {
+          "title": "11/6 玉入れの練習（１～３年生）",
+          "date": "2026-11-06",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136506703?tm=20261106161712"
+        },
+        {
+          "title": "11/5 今日の給食",
+          "date": "2026-11-05",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136496786?tm=20261105143949"
+        },
+        {
+          "title": "11/5 ロックソーランの練習（４～６年生）",
+          "date": "2026-11-05",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136499839?tm=20261105192536"
+        }
+      ]
+    },
     {
       "slug": "shinooka-j",
       "level": "jhs",
@@ -87,93 +174,6 @@
           "title": "11/３ 尾張東部少年軟式野球大会2回戦",
           "date": "2026-11-04",
           "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136483934?tm=20261103145144"
-        }
-      ]
-    },
-    {
-      "slug": "sue-e",
-      "level": "elem",
-      "names": {
-        "ja": "陶小学校",
-        "ja_kids": "すえ小学校",
-        "en": "Sue Elem. School",
-        "zh": "陶小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-11-05",
-      "items": [
-        {
-          "title": "11/5 今日の給食",
-          "date": "2026-11-05",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136496786?tm=20261105143949"
-        },
-        {
-          "title": "11/5 ロックソーランの練習（４～６年生）",
-          "date": "2026-11-05",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136499839?tm=20261105192536"
-        },
-        {
-          "title": "11/15 運動会全体練習１回目",
-          "date": "2026-11-05",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136492912?tm=20261105094240"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-e",
-      "level": "elem",
-      "names": {
-        "ja": "篠岡小学校",
-        "ja_kids": "しのおか小学校",
-        "en": "Shinooka Elem. School",
-        "zh": "篠冈小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
-      "latest_date": "2026-11-05",
-      "items": [
-        {
-          "title": "さつまいものつる切り",
-          "date": "2026-11-05",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136499604?tm=20261105184357"
-        },
-        {
-          "title": "音楽：森のくまさん",
-          "date": "2026-11-05",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136499564?tm=20261105183823"
-        },
-        {
-          "title": "今回の読み聞かせは",
-          "date": "2026-11-05",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136499531?tm=20261105183252"
-        }
-      ]
-    },
-    {
-      "slug": "momogaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "桃ヶ丘小学校",
-        "ja_kids": "ももがおか小学校",
-        "en": "Momogaoka Elem. School",
-        "zh": "桃之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
-      "latest_date": "2026-11-05",
-      "items": [
-        {
-          "title": "３年生:どのクラブに入ろうかな？ ～クラブ活動見学～",
-          "date": "2026-11-05",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136497747?tm=20261105160134"
-        },
-        {
-          "title": "３年生：図工「顔を出したらなんだかワクワク」完成・図工あそび",
-          "date": "2026-11-04",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136487513?tm=20261104130052"
-        },
-        {
-          "title": "第２回 笑顔でさきがけあいさつ運動",
-          "date": "2026-10-30",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136465073?tm=20261030084929"
         }
       ]
     },
