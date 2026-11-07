@@ -751,6 +751,14 @@ def main():
     else:
         ok("いまの状況（日付は data-past / data-until つき）")
 
+    # 10b. 期限つきの PR カードなど（data-expires）が期限を過ぎていないか（2026-11-07）。
+    # 画面では js/main.js（DATED TEXT）が隠すので失敗にはせず、差し替えか削除を促す警告だけ出す。
+    for page in sorted(glob.glob("*.html")):
+        with open(page, encoding="utf-8") as f:
+            for m in re.finditer(r'<(?:aside|section)\b[^>]*\bdata-expires="([\d-]+)"', f.read()):
+                if m.group(1) < today:
+                    print(f"WARN: {page} の data-expires={m.group(1)}（PR カードなど）は期限切れ。画面では隠れている。差し替えか削除を")
+
     # --- 11. 全ページに共有欄がある（サイト全体を検査） ---
     # 2026-10-05 に clubs.html だけ共有欄（#share）が抜けていて、共有ボタンも画面下の固定バーも
     # 出ていなかった。共有ボタンは main.js がこの欄を見つけて組み立てるので、欄が無いと黙って消える。

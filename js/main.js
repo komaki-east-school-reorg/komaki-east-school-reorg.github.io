@@ -1646,6 +1646,32 @@ window.KomakiGrade = (function () {
   document.addEventListener('komaki:i18n-applied', prune);
 })();
 
+/* ===== DATED TEXT（日付を過ぎた文・カードを外す。2026-11-07、日次アイデア 11/3） =====
+   いまの状況（NOW BAR）と同じ考え方を本文全体に広げたもの。
+   ・<span data-until="YYYY-MM-DD"> … その日を過ぎたら外す（辞書の文の中で使う。例：PR カードの音楽まつりの1文）
+   ・data-expires="YYYY-MM-DD" の要素 … その日を過ぎたら隠す（例：aside.pr-card。ポスターに日付が入っているため）
+   「今後のスケジュール」の帯の .upcoming-item は UPCOMING SCHEDULE EXPIRY が受け持つので触らない。
+   辞書が当たるたびに中身が書き換わるので、komaki:i18n-applied のたびに外し直す。 */
+(function () {
+  var main = document.querySelector('main');
+  if (!main) return;
+  function today() {
+    var d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  function prune() {
+    var t = today();
+    main.querySelectorAll('[data-until]').forEach(function (n) {
+      if ((n.getAttribute('data-until') || '') < t) n.remove();
+    });
+    main.querySelectorAll('[data-expires]:not(.upcoming-item)').forEach(function (n) {
+      if ((n.getAttribute('data-expires') || '9999') < t) n.style.display = 'none';
+    });
+  }
+  prune();
+  document.addEventListener('komaki:i18n-applied', prune);
+})();
+
 /* ===== CHILD ESTIMATE（index.html のヒーロー、東部地域の0〜17歳・当サイトの推定） =====
    2026-10-22 ユーザー指示（ヒーローに大きく）。data/child_estimate.json（build_child_estimate.py が市の人口統計から生成）の
    base_value × exp(daily_rate × 経過日数) を、日本時間の今日の日付で計算する。ワークフローが止まっても
