@@ -4,6 +4,18 @@
     {
       "date": "2026-11-07",
       "type": "feature",
+      "ja": "スケジュールで終わった予定を隠せるように",
+      "en": "Past events can now be hidden on the schedule page"
+    },
+    {
+      "date": "2026-11-07",
+      "type": "content",
+      "ja": "城山三・四丁目の学区とバスの車内・通学手段のQ&Aを追加",
+      "en": "Q&A added on the Shiroyama 3/4-chome districts, riding the bus and other ways to school"
+    },
+    {
+      "date": "2026-11-07",
+      "type": "feature",
       "ja": "予定をカレンダーアプリで購読できるように",
       "en": "Schedule can now be subscribed to in calendar apps"
     },

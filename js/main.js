@@ -1381,6 +1381,64 @@ window.KomakiGrade = (function () {
   });
 })();
 
+/* ===== HIDE PAST EVENTS（schedule.html） =====
+   2026-11-07（日次アイデア 9/10 の案）：主要イベント一覧の「終わった予定を隠す」。
+   ふだんは全部を見せる（年表として読む人がいるため）。押すと、最終日（data-event-date、無ければ data-start）が
+   今日より前の予定を隠し、中身が全部隠れた h4・年の h3 も隠す。状態は localStorage の komaki_hide_done。
+   隠すのは class（display:none）で、hidden は使わない — 地域の取組の過去分（PAST COMMUNITY EVENTS）の hidden と混ぜないため。
+   自動で差し込まれる予定（TOKADAI SCHEDULE）や辞書の適用のあとも付け直す。 */
+(function () {
+  var box = document.getElementById('hide-done');
+  if (!box) return;
+  var wrap = box.closest('.hide-done-toggle');
+  var sec = box.closest('section');
+  var cnt = wrap.querySelector('.hide-done-n');
+  var KEY = 'komaki_hide_done';
+  var HID = 'is-past-hidden';
+  try { box.checked = localStorage.getItem(KEY) === '1'; } catch (e) { /* 保存できない環境 */ }
+  function today() {
+    var d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  function apply() {
+    var on = box.checked, t = today(), n = 0;
+    sec.querySelectorAll('.event-item').forEach(function (it) {
+      var end = it.getAttribute('data-event-date') || it.getAttribute('data-start') || '';
+      var past = !!end && end < t;
+      if (past && !it.hidden) n++;
+      it.classList.toggle(HID, on && past);
+    });
+    sec.querySelectorAll('.event-list').forEach(function (list) {
+      var vis = [].some.call(list.querySelectorAll('.event-item'), function (it) {
+        return !it.hidden && !it.classList.contains(HID);
+      });
+      list.classList.toggle(HID, on && !vis);
+      var h = list.previousElementSibling;
+      if (h && h.tagName === 'H4') h.classList.toggle(HID, on && !vis);
+    });
+    sec.querySelectorAll('h3').forEach(function (h3) {
+      var el = h3.nextElementSibling, any = false;
+      while (el && el.tagName !== 'H3') {
+        if (el.classList.contains('event-list') && !el.classList.contains(HID)) any = true;
+        el = el.nextElementSibling;
+      }
+      h3.classList.toggle(HID, on && !any);
+    });
+    cnt.textContent = n ? ' (' + n + ')' : '';
+    wrap.hidden = !n;
+  }
+  box.addEventListener('change', function () {
+    try { localStorage.setItem(KEY, box.checked ? '1' : '0'); } catch (e) { /* 保存できない環境 */ }
+    apply();
+    if (window.KomakiCount) window.KomakiCount(box.checked ? 'schedule/hide-done' : 'schedule/show-done');
+  });
+  var raf = 0;
+  function later() { if (!raf) raf = requestAnimationFrame(function () { raf = 0; apply(); }); }
+  if (window.MutationObserver) new MutationObserver(later).observe(sec, { childList: true, subtree: true });
+  document.addEventListener('komaki:i18n-applied', later);
+  apply();
+})();
+
 /* ===== UPCOMING SCHEDULE EXPIRY ===== */
 (function () {
   var bar = document.querySelector('.upcoming-bar');

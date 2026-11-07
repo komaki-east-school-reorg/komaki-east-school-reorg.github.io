@@ -3462,3 +3462,10 @@ html.has-share-sticky .to-top { bottom: calc(var(--share-sticky-h, 3.4rem) + .8r
 .cal-sub-btn:hover, .cal-sub-btn:focus-visible { background: var(--primary-dark); }
 .cal-sub-note { margin: 0; font-size: .82rem; color: var(--text-muted); }
 @media print { .cal-sub { display: none; } }
+
+/* 主要イベント一覧の「終わった予定を隠す」（HIDE PAST EVENTS in js/main.js、2026-11-07） */
+.hide-done-toggle { display: inline-flex; align-items: center; gap: .4rem; margin: .2rem 0 .6rem; font-size: .9rem; color: var(--text-muted); cursor: pointer; }
+.hide-done-toggle[hidden] { display: none; }
+.hide-done-toggle input { width: 1.05rem; height: 1.05rem; accent-color: var(--primary); }
+.is-past-hidden { display: none !important; }
+@media print { .hide-done-toggle { display: none; } }

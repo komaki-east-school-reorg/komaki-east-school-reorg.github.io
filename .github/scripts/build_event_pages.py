@@ -124,6 +124,43 @@ def chunk(sched, start_marker, end_marker):
     return sched[i:j]
 
 
+def venue(it):
+    """予定の題名（<strong>）の直後の（…）に書いてある会場名。無ければ空。"""
+    h = it["desc_html"]
+    k = h.find("</strong>")
+    if k < 0:
+        return ""
+    m = re.match(r"\s*（([^（）]+)）", h[k + 9:])
+    return plain(m.group(1)).split("、")[0].strip() if m else ""
+
+
+def event_ld(it, url):
+    """Event の構造化データ（2026-11-07、日次アイデア 10/12 の案）。
+    日付の決まった予定（events.json の "day": true）で、会場名が本文に書いてあるものだけ。
+    主催者（organizer）は書かない — 当サイトが主催者や公式の案内に見えないように。
+    会場は小牧市内の公表された施設名だけを書き、住所を作らない（市町村まで）。"""
+    loc = venue(it)
+    if not it.get("day") or not loc:
+        return ""
+    ld = {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": it["title"],
+        "startDate": it["start"],
+        "endDate": it.get("until") or it["end"] or it["start"],
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "location": {"@type": "Place", "name": loc,
+                     "address": {"@type": "PostalAddress", "addressLocality": "小牧市",
+                                 "addressRegion": "愛知県", "addressCountry": "JP"}},
+        "description": it["desc_plain"][:200],
+        "url": url,
+        "inLanguage": "ja",
+    }
+    body = json.dumps(ld, ensure_ascii=False, indent=2).replace("</", "<\\/")
+    return '  <script type="application/ld+json">\n' + body + "\n  </script>\n"
+
+
 def page(it, prev, nxt, header, share, footer):
     url = f"{SITE}{OUT_DIR}/{it['id']}.html"
     t = f"{it['title']}（{it['date_ja']}） – {SITE_NAME}"
@@ -174,7 +211,7 @@ def page(it, prev, nxt, header, share, footer):
   <link rel="alternate" type="application/atom+xml" title="{SITE_NAME}｜最新の動き" href="{SITE}feed.xml">
   <link rel="canonical" href="{url}">
 {alt}
-</head>
+{event_ld(it, url)}</head>
 <body>
 
 {header}<main>
@@ -220,6 +257,9 @@ def build():
     for it in items:
         m = match_event(it, flat)
         it["ev"] = f"{m[0]}|{m[1]}" if m else ""
+        e = next((e for k, i, e in flat if m and (k, i) == m), None) or {}
+        it["day"] = bool(e.get("day"))
+        it["until"] = e.get("until", "")
     header = chunk(sched, '<div class="notice-banner"', "<main>")
     share = chunk(sched, '  <section class="section share"', "</main>")
     footer = sched[sched.index("<footer>"):]
