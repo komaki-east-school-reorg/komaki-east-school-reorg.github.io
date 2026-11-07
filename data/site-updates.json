@@ -4,6 +4,12 @@
     {
       "date": "2026-11-07",
       "type": "feature",
+      "ja": "言語を切り替えても読んでいた位置のまま表示",
+      "en": "Switching language now keeps your place on the page"
+    },
+    {
+      "date": "2026-11-07",
+      "type": "feature",
       "ja": "横にはみ出す表に「横にスクロールできます」の合図",
       "en": "Hint added above tables that scroll sideways"
     },

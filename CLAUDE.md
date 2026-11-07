@@ -586,6 +586,10 @@ Every page carries a `<section class="section share" id="share">` just above `</
 
 ユーザーが過去の提案から選んだ（2026-09-02）。`js/main.js` の SKIP LINK / TO TOP。**本文へ移動**は `<body>` の先頭に JS で差し込むリンク（`.skip-link`、Tab の最初、フォーカスで見える）で、`<main>` に id（無ければ `main-content`）と `tabindex=-1` を付けて飛ばす。**上へ戻る**（`.to-top`）は 1.5画面ぶん下で右下に出る。画面下の共有バーの実際の高さを測って（`--share-sticky-h`）その上に浮かせる。`prefers-reduced-motion` では瞬時に移動、印刷では隠す。文言は `skip_to_main` / `to_top`（`RUNTIME_KEYS`）、集計は `nav/top`・`nav/skip`。
 
+### 横長の表の合図・言語切り替えで位置を保つ（全ページ、2026-11-07）
+
+日次アイデア 10/04・9/30。**TABLE SCROLL HINT**（`js/main.js`）は `main .table-wrap` の上に「← 横にスクロールできます →」（`table_scroll_hint`、`RUNTIME_KEYS`）を差し込み、表がはみ出しているときだけ出して、その表を一度横に動かしたら消す（`aria-hidden`・`ORIG_SKIP`・印刷で非表示）。**言語の切り替え**（`js/i18n.js` の `saveReadingPos` / `restoreReadingPos`）は、読み直す前に画面上端にいちばん近い `main` 内の id つき要素とずれを `sessionStorage` の `komaki_lang_pos` に残し、読み直したページで同じ要素へ戻す（30秒以内・同じパスだけ、id が無ければ縦位置の割合。600ms・1500ms 後にも合わせ直し、読者がスクロールしたらやめる）。節・Q&A・予定の id を変えると戻り先がずれるので、id は今までどおり変えないこと。
+
 ### 文字の大きさ（全ページ、2026-10-13）
 
 「このページの目次」（PAGE TOC）の横、`<details>` の外に「文字の大きさ [A][A][A]」（小・中・大）を置く（置き場所はユーザー指定。ヘッダには置かない）。状態は `localStorage` の `komaki_fs`（`s` / `l`、無し＝中）で、`i18n.js` の冒頭が同期的に `<html>` へ `fs-s` / `fs-l` を付け、CSS が `:root` の font-size を 14px / 18px にする。本文の字はほぼすべて rem なので一律に効く。

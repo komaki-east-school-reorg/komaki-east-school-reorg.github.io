@@ -593,6 +593,62 @@
     }
   }
 
+  // 言語を切り替えても読んでいた位置を保つ（2026-11-07、日次アイデア 9/30）。
+  // 切り替えはページの読み直しなので、移る前に「画面の上端にいちばん近い id つきの要素」と
+  // そこからのずれを sessionStorage に残し、読み直したページで同じ要素へ戻す。
+  // 文の長さは言語で変わるので、縦位置そのものではなく要素で合わせる（id が無ければ割合で）。
+  var POS_KEY = 'komaki_lang_pos';
+  function headerBottom() {
+    var h = document.querySelector('header');
+    return h ? Math.max(0, h.getBoundingClientRect().bottom) : 0;
+  }
+  function saveReadingPos() {
+    try {
+      if (window.scrollY < 40) return;
+      var top = headerBottom(), best = null, bestTop = -Infinity;
+      var main = document.querySelector('main');
+      if (main) {
+        main.querySelectorAll('[id]').forEach(function (el) {
+          if (!el.offsetParent) return;
+          var r = el.getBoundingClientRect();
+          if (r.top <= top + 24 && r.bottom > top && r.top > bestTop) { best = el; bestTop = r.top; }
+        });
+      }
+      var docH = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      sessionStorage.setItem(POS_KEY, JSON.stringify({
+        path: location.pathname, id: best ? best.id : null, off: best ? bestTop - top : 0,
+        ratio: window.scrollY / docH, t: Date.now()
+      }));
+    } catch (e) {}
+  }
+  function restoreReadingPos() {
+    var rec;
+    try { rec = JSON.parse(sessionStorage.getItem(POS_KEY) || 'null'); } catch (e) { rec = null; }
+    if (!rec || rec.path !== location.pathname || Date.now() - rec.t > 30000) return;
+    function go() {
+      var el = rec.id && document.getElementById(rec.id);
+      if (el && el.offsetParent) {
+        var y = el.getBoundingClientRect().top + window.scrollY - headerBottom() - rec.off;
+        window.scrollTo(0, Math.max(0, y));
+      } else {
+        window.scrollTo(0, rec.ratio * Math.max(0, document.documentElement.scrollHeight - window.innerHeight));
+      }
+    }
+    // 自動で描く一覧が後から伸びるので、少しあとにもう一度合わせる。読者が動かしたらやめる。
+    var moved = false;
+    function stop() { moved = true; }
+    ['wheel', 'touchstart', 'keydown'].forEach(function (ev) { window.addEventListener(ev, stop, { once: true, passive: true }); });
+    requestAnimationFrame(go);
+    setTimeout(function () { if (!moved) go(); }, 600);
+    setTimeout(function () { if (!moved) go(); try { sessionStorage.removeItem(POS_KEY); } catch (e) {} }, 1500);
+  }
+  var _posRestored = false;
+  document.addEventListener('komaki:i18n-applied', function () {
+    if (_posRestored) return;
+    _posRestored = true;
+    restoreReadingPos();
+  });
+
   function setKidsMode(kids) {
     _kidsMode = kids;
     try { localStorage.setItem('komaki_kids', kids ? '1' : '0'); } catch (e) {}
@@ -627,6 +683,7 @@
       sel.addEventListener('change', function () {
         var v = LANGS.indexOf(sel.value) !== -1 ? sel.value : DEFAULT;
         try { localStorage.setItem('komaki_lang', v); } catch (e) {}
+        saveReadingPos();
         try {
           var u = new URL(window.location.href);
           if (v === DEFAULT) u.searchParams.delete(LANG_PARAM);
