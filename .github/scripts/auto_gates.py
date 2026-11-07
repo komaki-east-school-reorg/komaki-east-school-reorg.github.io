@@ -588,6 +588,48 @@ def main():
     else:
         ok("辞書の HTML は許可したタグ・属性だけ")
 
+    # --- 19b. 文字として流す値に HTML の文字参照を書かない（2026-11-07 ユーザー指示） ---
+    # data-i18n（textContent）・data-i18n-aria / -alt・meta_*・main.js が文字で入れるキーと、
+    # 画面が文字として描く JSON（更新履歴・予定・地域の取組・見出しの訳）に「&amp;」などを書くと、
+    # 画面にそのまま「Q&amp;A」と出る（ql_faq_p / ql_bus_p で実際に出た）。半角の & は & のまま書く。
+    # data-i18n-html（innerHTML）でだけ使うキーは対象外（& も &amp; も同じに表示される）。
+    ent_re = re.compile(r"&(?:amp|lt|gt|quot|apos|nbsp|#\d+|#x[0-9a-fA-F]+);")
+    text_keys, html_keys = set(), set()
+    for page in glob.glob("*.html") + glob.glob("events/*.html"):
+        with open(page, encoding="utf-8") as f:
+            h = f.read()
+        text_keys |= set(re.findall(r'data-i18n(?:-aria|-alt)?="([^"]+)"', h))
+        html_keys |= set(re.findall(r'data-i18n-html="([^"]+)"', h))
+    for js in ("js/main.js", "js/i18n.js"):
+        with open(js, encoding="utf-8") as f:
+            text_keys |= set(re.findall(r"""setAttribute\(\s*'data-i18n(?:-aria)?',\s*'([^']+)'""", f.read()))
+    ent_problems = []
+    for path in sorted(glob.glob("data/i18n/*.json")):
+        name = os.path.basename(path)[:-5]
+        try:
+            with open(path, encoding="utf-8") as f:
+                dd = json.load(f)
+        except ValueError:
+            continue
+        for k, v in dd.items():
+            if not isinstance(v, str) or not ent_re.search(v):
+                continue
+            if (k in text_keys and k not in html_keys) or k.startswith(("meta_title_", "meta_desc_")):
+                ent_problems.append(f"{name}.{k} に文字参照「{ent_re.search(v).group(0)}」（文字として表示されるので & などをそのまま書く）")
+    for path in ("data/site-updates.json", "data/events.json", "data/community_actions.json", "data/headline_i18n.json"):
+        try:
+            with open(path, encoding="utf-8") as f:
+                m = ent_re.search(f.read())
+        except FileNotFoundError:
+            continue
+        if m:
+            ent_problems.append(f"{path} に文字参照「{m.group(0)}」（画面は文字として描くので & などをそのまま書く）")
+    if ent_problems:
+        for v in ent_problems[:40]:
+            fail(f"文字参照: {v}")
+    else:
+        ok("文字として表示する値に &amp; などの文字参照なし")
+
     # --- 20. 秘密情報の混入（2026-10-26） ---
     # AI が環境の認証情報を読めた場合に、それを許可ファイルへ書いて公開させないための最後の網。
     SECRET_RE = re.compile(r"(sk-ant-[A-Za-z0-9_-]{10,}|gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}"
