@@ -58,6 +58,7 @@
   var _safetyTimer = null;
   var _currentLang = DEFAULT;
   var _kidsMode = false;
+  var KIDS_PARAM = 'kids';
   var _origMode = false;   // 日本語の原文を並べて出すか（日本語表示では使わない）
   var _jaDictPromise = null;
 
@@ -194,11 +195,23 @@
 
   // アドレスバーの URL を選択中の言語に合わせる。履歴は増やさない
   // （戻るボタンで言語だけが巻き戻るのは分かりにくいため replaceState）。
+  // こどもむけ表示を URL で共有する（?kids=1。2026-11-07、日次アイデア 10/03）。
+  // 日本語のときだけ意味を持つ。URL の値は localStorage より優先し、そのまま保存もする。
+  function kidsFromUrl() {
+    try {
+      var v = new URLSearchParams(window.location.search).get(KIDS_PARAM);
+      return v === '1' ? true : (v === '0' ? false : null);
+    } catch (e) { return null; }
+  }
+
   function syncUrl(lang) {
     try {
       var u = new URL(window.location.href);
       if (lang === DEFAULT) u.searchParams.delete(LANG_PARAM);
       else u.searchParams.set(LANG_PARAM, lang);
+      // こどもむけはアドレスにも出す（そのまま共有・ブックマークできるように）。日本語以外では付けない
+      if (lang === DEFAULT && _kidsMode) u.searchParams.set(KIDS_PARAM, '1');
+      else u.searchParams.delete(KIDS_PARAM);
       if (u.href !== window.location.href) window.history.replaceState(null, '', u.href);
     } catch (e) {}
   }
@@ -595,6 +608,11 @@
     var savedKids;
     try { savedKids = localStorage.getItem('komaki_kids'); } catch (e) {}
     _kidsMode = savedKids === '1';
+    var urlKids = kidsFromUrl();
+    if (urlKids !== null && lang === DEFAULT) {
+      _kidsMode = urlKids;
+      try { localStorage.setItem('komaki_kids', urlKids ? '1' : '0'); } catch (e) {}
+    }
 
     var savedOrig;
     try { savedOrig = localStorage.getItem('komaki_orig'); } catch (e) {}

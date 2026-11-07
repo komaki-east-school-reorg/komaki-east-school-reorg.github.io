@@ -119,6 +119,7 @@ window.KomakiCount = (function () {
     var lang = window.KomakiLang();
     var kids = false;
     try { kids = lang === 'ja' && localStorage.getItem('komaki_kids') === '1'; } catch (e) {}
+    try { var uk = new URLSearchParams(location.search).get('kids'); if (lang === 'ja' && (uk === '1' || uk === '0')) kids = uk === '1'; } catch (e) {}
     return path + (lang !== 'ja' ? '?lang=' + lang : (kids ? '?kids=1' : ''));
   }
   function referrerHost() {
@@ -3067,6 +3068,10 @@ window.KomakiGrade = (function () {
   function shareUrl() {
     var lang = currentLang();
     var u = lang === 'ja' ? CANON : CANON + '?lang=' + lang;
+    // こどもむけで見ているときは、そのままこどもむけで開くリンクにする（?kids=1。2026-11-07）
+    var kids = false;
+    try { kids = lang === 'ja' && localStorage.getItem('komaki_kids') === '1'; } catch (e) {}
+    if (kids) u += '?kids=1';
     var g = document.getElementById('grade-select');
     var code = g && g.value;
     if (code) u += (u.indexOf('?') === -1 ? '?' : '&') + 'grade=' + code;

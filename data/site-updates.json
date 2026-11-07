@@ -4,6 +4,12 @@
     {
       "date": "2026-11-07",
       "type": "feature",
+      "ja": "こどもむけ表示をリンク（?kids=1）で共有できるように",
+      "en": "Kids mode can now be shared as a link (?kids=1)"
+    },
+    {
+      "date": "2026-11-07",
+      "type": "feature",
       "ja": "外国語表示に「窓口で見せる日本語」のカードを追加",
       "en": "“Japanese to show at the counter” card added for non-Japanese readers"
     },

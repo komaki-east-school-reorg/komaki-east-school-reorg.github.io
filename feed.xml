@@ -107,6 +107,14 @@
     <summary>サイトの更新履歴｜スクールバスの運転手の確保と確認についてのQ&amp;Aを追加</summary>
   </entry>
   <entry>
+    <title>こどもむけ表示をリンク（?kids=1）で共有できるように</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:07c21b988527d924</id>
+    <updated>2026-11-07T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜こどもむけ表示をリンク（?kids=1）で共有できるように</summary>
+  </entry>
+  <entry>
     <title>議会での審議に第3回定例会（9月）を追加</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
     <id>tag:komaki-east-school-reorg.github.io,2026:6d937c9ff39b5019</id>
@@ -321,13 +329,5 @@
     <updated>2026-10-26T00:00:00+09:00</updated>
     <category term="東部まちづくりの動き"/>
     <summary>東部まちづくりの動き｜東部まちづくり：リユースバスケット</summary>
-  </entry>
-  <entry>
-    <title>東部まちづくり：ランチしよっ！</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#community-actions"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:73113bcf82564396</id>
-    <updated>2026-10-26T00:00:00+09:00</updated>
-    <category term="東部まちづくりの動き"/>
-    <summary>東部まちづくりの動き｜東部まちづくり：ランチしよっ！</summary>
   </entry>
 </feed>
