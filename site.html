@@ -123,7 +123,7 @@
       <div class="breadcrumb"><a href="index.html" data-i18n="nav_home">ホーム</a> <span>›</span> <span data-i18n="site_h1">このサイトについて</span></div>
       <img class="page-hero-ill" src="img/illust/smartphone.svg" alt="" width="160" height="120" decoding="async">
       <h1 data-i18n="site_h1">このサイトについて</h1>
-      <p data-i18n="site_p">このサイトの紹介のしかた、アプリとしての使い方、フィード（RSS）での受け取り方、広め方、ご意見の送り先、閲覧数の数え方をまとめています。</p>
+      <p data-i18n="site_p">このサイトの運営者、紹介のしかた、アプリとしての使い方、フィード（RSS）での受け取り方、広め方、ご意見の送り先、閲覧数の数え方をまとめています。</p>
     </div>
   </section>
 
@@ -148,7 +148,23 @@
         </ul>
       </details></div></div>
 
-  <section class="section section-alt" id="site-intro">
+  <!-- 運営者（2026-11-05 ユーザー指示：「これがまちつくサイトの解。」THE UNIT（住民有志）。略称なし。外国語では意訳した名前。
+       同日のユーザー指示で挿絵「住民の輪」（img/illust/unit.svg）つきの紹介欄にした。2026-11-07 のユーザー指示で見出しのある節にして「このサイトを紹介する」の上へ移した） -->
+  <section class="section section-alt site-operator-sec" id="operator">
+    <div class="container">
+      <h2 class="section-title ill-h ill-h--people" data-i18n-html="site_op_h">運営者<small>Who Runs This Site</small></h2>
+      <div class="op-card">
+        <img class="op-ill" src="img/illust/unit.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
+        <div class="op-body">
+          <p class="op-name" data-i18n-html="site_op_name">「これがまちつくサイトの解。」<span class="op-unit">THE UNIT</span></p>
+          <p class="op-note" data-i18n="site_op_note">住民有志のユニットです。小牧市・教育委員会とは関係ありません。</p>
+          <p class="op-fb"><a href="#feedback" data-i18n="site_op_fb">ご意見の送り先 →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="site-intro">
     <div class="container">
       <h2 class="section-title ill-h ill-h--town" data-i18n-html="intro_h">このサイトを紹介する<small>Introduce This Site</small></h2>
       <figure class="site-intro-fig">
@@ -161,7 +177,7 @@
 
   <!-- アプリとして使う（ウェブアプリ化。2026-10-17 ユーザー指示）。ボタンの動きは js/main.js の INSTALL APP。
        ボタンは JS が無効だと動かないので hidden で置き、INSTALL APP が出す（アプリで開いているときは出さない）。 -->
-  <section class="section" id="app">
+  <section class="section section-alt" id="app">
     <div class="container">
       <h2 class="section-title ill-h ill-h--smartphone" data-i18n-html="app_h">アプリとして使う<small>Use as an App</small></h2>
       <p class="section-lead" data-i18n="app_lead">このサイトはスマートフォンやパソコンのホーム画面に置いて、アプリのように使えます。📲 のボタン（ヘッダの言語切替の横と、ページ下の共有欄）を押してください。</p>
@@ -176,7 +192,7 @@
 
   <!-- フィード（RSS）の説明（2026-10-30 ユーザー指示でトップから移し、くわしく書き直した）。
        feed.xml の中身は .github/scripts/build_feed.py が作る。届くものを変えたら feed_li1 も直すこと。 -->
-  <section class="section section-alt" id="feed">
+  <section class="section" id="feed">
     <div class="container">
       <h2 class="section-title ill-h ill-h--smartphone" data-i18n-html="feed_h">フィード（RSS）で受け取る<small>Follow by Feed</small></h2>
       <p class="section-lead" data-i18n="feed_lead">このサイトは新しい動きをフィードで配信しています。フィードリーダーに登録しておけば、サイトを開かなくても新しい項目が届きます。</p>
@@ -194,7 +210,7 @@
        タグを変えるときは js/main.js の HASHTAGS（TAGS）も直す。
        使い方の例は既存の機能への案内だけで、新しい事実は書かない。SNS の投稿をこのサイトに
        転載・埋め込みはしない（spread_ask_p に明記）。 -->
-  <section class="section" id="spread">
+  <section class="section section-alt" id="spread">
     <div class="container">
       <h2 class="section-title ill-h ill-h--handshake" data-i18n-html="spread_h">使い方を広める・応援する<small>Spread the Word</small></h2>
       <p class="section-lead" data-i18n="spread_lead">このサイトの使い方や感想を SNS で伝えるときは、次のハッシュタグを付けてください。同じタグが集まると、地域の人が情報を見つけやすくなります。</p>
@@ -227,7 +243,7 @@
 
   <!-- ご意見・誤りの報告（2026-10-24 ユーザー指示）。窓口は GitHub の Issue フォームだけ。
        リンク先は auto_gates.py の PERMITTED_GITHUB でこのページ限定。公開されること・アカウントが要ることを必ず書く。 -->
-  <section class="section section-alt" id="feedback">
+  <section class="section" id="feedback">
     <div class="container">
       <h2 class="section-title ill-h ill-h--mailbox" data-i18n-html="fb_h">ご意見の送り先<small>Feedback</small></h2>
       <p class="section-lead" data-i18n="fb_lead">このサイトの使い方や感想などのご意見を、このサイトの運営者に送れます。</p>
@@ -242,7 +258,7 @@
 
   <!-- 閲覧数の集計について（2026-10-24 ユーザー指示）。js/main.js の COUNTER と同じ中身を書く。
        数え方を変えたらここ（privacy_*）も直すこと。 -->
-  <section class="section" id="privacy">
+  <section class="section section-alt" id="privacy">
     <div class="container">
       <h2 class="section-title ill-h ill-h--data" data-i18n-html="privacy_h">閲覧数の集計について<small>About Visit Counts</small></h2>
       <p class="section-lead" data-i18n="privacy_lead">このサイトがどう読まれているかを確かめ、より使いやすくするために、Cookie を使わない方法で閲覧数を数えています。</p>
@@ -257,22 +273,6 @@
   </section>
 
   <!-- 関連ページ -->
-  <!-- 運営者（2026-11-05 ユーザー指示：「これがまちつくサイトの解。」THE UNIT（住民有志）。略称なし。外国語では意訳した名前。
-       同日のユーザー指示でページの下のほう（「関連するページ」の直前）へ移し、挿絵「住民の輪」（img/illust/unit.svg）つきの紹介欄にした） -->
-  <section class="section site-operator-sec" id="operator">
-    <div class="container">
-      <div class="op-card">
-        <img class="op-ill" src="img/illust/unit.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
-        <div class="op-body">
-          <p class="op-label" data-i18n="site_op_label">運営</p>
-          <p class="op-name" data-i18n-html="site_op_name">「これがまちつくサイトの解。」<span class="op-unit">THE UNIT</span></p>
-          <p class="op-note" data-i18n="site_op_note">住民有志のユニットです。小牧市・教育委員会とは関係ありません。</p>
-          <p class="op-fb"><a href="#feedback" data-i18n="site_op_fb">ご意見の送り先 →</a></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="section related">
     <div class="container">
       <h2 class="related-h" data-i18n="related_h">関連するページ</h2>
