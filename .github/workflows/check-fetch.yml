@@ -1,0 +1,58 @@
+name: Check Fetch Health
+
+# 自動取得（市・対象8校・春日井市）が止まっていないかを毎日確かめ、止まっていたら Issue（⚠️）で知らせる。
+# 2026-11-07、日次アイデア 11/2。画面の赤字（FETCH STATUS）だけでは運営者が気づけないため。
+# data/fetch_status.json を読むだけで、外部のサーバにはアクセスしない。AI も使わない。
+# 毎日の巡回（07:17 JST）が終わったあとの時刻に動く。巡回そのものが止まっていても、こちらは別に動くので気づける。
+
+on:
+  schedule:
+    - cron: '20 1 * * *'   # 毎日 01:20 UTC（＝10:20 JST）
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: check-fetch
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Check fetch status
+        id: check
+        run: |
+          set +e
+          python3 .github/scripts/check_fetch_health.py --report /tmp/fetch.md
+          code=$?
+          set -e
+          if [ "$code" -eq 1 ]; then
+            exit 1
+          fi
+          if [ "$code" -eq 3 ]; then
+            echo "problem=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "problem=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # 止まっているあいだは毎日、開いている ⚠️ Issue に追記する（新しい Issue を毎日立てない）。
+      - name: Report
+        if: steps.check.outputs.problem == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          open=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "⚠️ 自動取得の停止 in:title" --json number --jq '.[0].number')
+          if [ -n "$open" ]; then
+            gh issue comment "$open" --repo "$GITHUB_REPOSITORY" --body-file /tmp/fetch.md
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" \
+              --title "⚠️ 自動取得の停止 $(TZ=Asia/Tokyo date +%Y-%m-%d)" \
+              --body-file /tmp/fetch.md
+          fi

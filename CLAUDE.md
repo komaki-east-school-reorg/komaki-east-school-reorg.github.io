@@ -331,6 +331,7 @@ The **地域の取組 section on `community.html`**, sitting directly below the 
 
 - **外部リンクの死活確認**（`.github/workflows/check-links.yml`、毎週月曜 5:40 JST）。`check_links.py` が `*.html`・`js/*.js`・`data/i18n/*.json` と `data/community_actions.json`（まだ終わっていない項目だけ）の URL を、`fetch_news._curl_get` で1本ずつ3〜5秒あけて取りに行く。**Instagram・Facebook は robots.txt が機械での収集を禁じているので見ない**。共有ボタンの送り先と Google マップ（検索語のリンク）も外す。一時的な不調（メンテナンスの 503 など）で騒がないよう、**2週続けて開けない URL だけ**を Issue（🔗、開いているものがあれば追記）で知らせる。記録は `data/link_check.json`（自動生成）。**自動では直さない** — 移転先は発信元の公表で確かめてから差し替え、市・文科省の URL なら許可URLの表と `PERMITTED_LINKS` も直す。
 - **自動取得の各コーナーの下に「最後に確かめた日時」**（FETCH STATUS in `js/main.js`）。`news.json` などの `fetched_at` は内容に変化の無い日はコミットされないので使えない。代わりに `fetch-news.yml` の最後のステップ（`if: always()`）が `record_fetch_status.py` で `data/fetch_status.json` に取得元（`city` / `schools`）ごとの `checked_at`・`ok`・`last_ok_at` を毎回書いてコミットする。**取れなかった日は「取得できませんでした。この一覧は◯日に確かめた時点の内容です」、36時間以上確かめていなければ「◯日から確かめられていません」と、一覧が古いことを赤字で書く** — 古い一覧を最新に見せないため（オフラインの断り書きと同じ考え方）。対象は市のお知らせ・学校HP・地域協議会のイベント・東部まちづくりの動き・都市計画の動き。新しい自動取得コーナーを足したら `MAP` にも足す。
+- **止まったら運営者に Issue で知らせる**（2026-11-07、日次アイデア 11/2）。`.github/workflows/check-fetch.yml`（毎日 10:20 JST）が `check_fetch_health.py` で `data/fetch_status.json` を読み、`ok:false` か `checked_at` が36時間より古い取得元があれば「⚠️ 自動取得の停止」の Issue を作る（開いていれば追記。自動では閉じない）。毎日の巡回とは別のワークフローなので、巡回そのものが動かなくなっても気づける。外部にはアクセスせず、AI も使わない。取得元を足したら `record_fetch_status.py` の `LABELS` に足せば、ここも自動で見る。
 
 ## `data/site-updates.json` (this site's own changelog)
 
