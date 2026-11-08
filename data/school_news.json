@@ -1,8 +1,95 @@
 {
-  "fetched_at": "2026-11-07T02:09:43Z",
+  "fetched_at": "2026-11-08T01:56:28Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "toryo-j",
+      "level": "jhs",
+      "names": {
+        "ja": "桃陵中学校",
+        "ja_kids": "とうりょう中学校",
+        "en": "Toryo Junior High",
+        "zh": "桃陵中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
+      "latest_date": "2026-11-07",
+      "items": [
+        {
+          "title": "11/7 野球部 尾張東部少年軟式野球大会準決勝",
+          "date": "2026-11-07",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136510208?tm=20261107141446"
+        },
+        {
+          "title": "市民スポーツ大会（個人戦） 卓球部",
+          "date": "2026-11-05",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136490243?tm=20261105074524"
+        },
+        {
+          "title": "【サッカー部】 新人戦優勝 愛日大会へ",
+          "date": "2026-11-04",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136484571?tm=20261104074514"
+        }
+      ]
+    },
+    {
+      "slug": "sue-e",
+      "level": "elem",
+      "names": {
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-11-07",
+      "items": [
+        {
+          "title": "秋季火災予防運動",
+          "date": "2026-11-07",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136510151?tm=20261107134825"
+        },
+        {
+          "title": "スクールバス体験乗車会【２】",
+          "date": "2026-11-07",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136510119?tm=20261107213503"
+        },
+        {
+          "title": "11/6 玉入れの練習（１～３年生）",
+          "date": "2026-11-06",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136506703?tm=20261106161712"
+        }
+      ]
+    },
+    {
+      "slug": "shinooka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "篠岡中学校",
+        "ja_kids": "しのおか中学校",
+        "en": "Shinooka Junior High",
+        "zh": "篠冈中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
+      "latest_date": "2026-11-07",
+      "items": [
+        {
+          "title": "《桃花台野球部》尾張東部大会第３位！",
+          "date": "2026-11-07",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136510632?tm=20261107161548"
+        },
+        {
+          "title": "１年生 職業調べの授業が始まりました",
+          "date": "2026-11-06",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136500933?tm=20261106085703"
+        },
+        {
+          "title": "２年生 マナー講座",
+          "date": "2026-11-05",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136492360?tm=20261105082326"
+        }
+      ]
+    },
     {
       "slug": "shinooka-e",
       "level": "elem",
@@ -16,19 +103,19 @@
       "latest_date": "2026-11-07",
       "items": [
         {
-          "title": "校外学習：名古屋港水族館",
+          "title": "スクールバス試乗体験会",
           "date": "2026-11-07",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136509670?tm=20261107110617"
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136509850?tm=20261107115548"
         },
         {
-          "title": "校外学習",
+          "title": "校外学習：火力発電所",
           "date": "2026-11-07",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136509645?tm=20261107110030"
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136509798?tm=20261107113550"
         },
         {
-          "title": "さつまいものつる切り",
-          "date": "2026-11-05",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136499604?tm=20261105184357"
+          "title": "校外学習：常滑市・半田市",
+          "date": "2026-11-07",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136509770?tm=20261107112702"
         }
       ]
     },
@@ -62,64 +149,6 @@
       ]
     },
     {
-      "slug": "sue-e",
-      "level": "elem",
-      "names": {
-        "ja": "陶小学校",
-        "ja_kids": "すえ小学校",
-        "en": "Sue Elem. School",
-        "zh": "陶小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-11-06",
-      "items": [
-        {
-          "title": "11/6 玉入れの練習（１～３年生）",
-          "date": "2026-11-06",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136506703?tm=20261106161712"
-        },
-        {
-          "title": "11/5 今日の給食",
-          "date": "2026-11-05",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136496786?tm=20261105143949"
-        },
-        {
-          "title": "11/5 ロックソーランの練習（４～６年生）",
-          "date": "2026-11-05",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136499839?tm=20261105192536"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "篠岡中学校",
-        "ja_kids": "しのおか中学校",
-        "en": "Shinooka Junior High",
-        "zh": "篠冈中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-11-06",
-      "items": [
-        {
-          "title": "１年生 職業調べの授業が始まりました",
-          "date": "2026-11-06",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136500933?tm=20261106085703"
-        },
-        {
-          "title": "２年生 マナー講座",
-          "date": "2026-11-05",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136492360?tm=20261105082326"
-        },
-        {
-          "title": "《桃花台野球部》準々決勝サヨナラ勝利！",
-          "date": "2026-11-03",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136483871?tm=20261103134435"
-        }
-      ]
-    },
-    {
       "slug": "ohshiro-e",
       "level": "elem",
       "names": {
@@ -145,35 +174,6 @@
           "title": "「円と球」",
           "date": "2026-11-05",
           "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136489822?tm=20261104161908"
-        }
-      ]
-    },
-    {
-      "slug": "toryo-j",
-      "level": "jhs",
-      "names": {
-        "ja": "桃陵中学校",
-        "ja_kids": "とうりょう中学校",
-        "en": "Toryo Junior High",
-        "zh": "桃陵中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
-      "latest_date": "2026-11-05",
-      "items": [
-        {
-          "title": "市民スポーツ大会（個人戦） 卓球部",
-          "date": "2026-11-05",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136490243?tm=20261105074524"
-        },
-        {
-          "title": "【サッカー部】 新人戦優勝 愛日大会へ",
-          "date": "2026-11-04",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136484571?tm=20261104074514"
-        },
-        {
-          "title": "11/３ 尾張東部少年軟式野球大会2回戦",
-          "date": "2026-11-04",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136483934?tm=20261103145144"
         }
       ]
     },
