@@ -1,0 +1,44 @@
+{
+  "description": "運用カレンダー（人の手でしか直せない、期限つきの作業）。2026-11-08 追加。.github/scripts/check_ops_calendar.py が毎日読み、期限の notice_days 日前になったら Issue（⏰ 運用作業の期限）で知らせる。HTML の data-expires と辞書の data-until はここに書かなくても自動で拾う。一度きりの項目は、済んだらここから消す。repeat（yearly＝毎年 due の月日／monthly＝毎月 due の日）の項目は消さない。covers に自動で拾う項目の id（auto-expires-日付 / auto-until-日付）を書くと、その自動の項目は出さずにこちらの説明で知らせる。一覧を見るには python3 .github/scripts/check_ops_calendar.py --list",
+  "items": [
+    {
+      "id": "pr-card-tokadai",
+      "due": "2026-12-12",
+      "notice_days": 14,
+      "covers": "auto-expires-2026-12-12",
+      "title": "桃花台を考える会の PR カードが自動で外れる",
+      "how": "index.html・community.html・schedule.html の aside.pr-card（と schedule.html の .pr-section）。次のポスターが届いていれば画像と pr_tk_* を差し替えて data-expires を新しい日付に、無ければ3ページから削除する。"
+    },
+    {
+      "id": "first-reorg-opening",
+      "due": "2027-04-01",
+      "notice_days": 60,
+      "title": "第1期再編の開校（しのおか学園）",
+      "how": "トップの帯の手書き項目（upcoming_date8 / upcoming_name8、data-expires=2027-04-30）、いまの状況（now_text ほか13辞書）、about.html の対象校・新校名、map.html の学校と各校ホームページの一覧、fetch_schools.py の SCHOOLS、status_digest の件数を見直す。開校後も実際の学校の状況を見守る（CLAUDE.md「運営の方針」）。"
+    },
+    {
+      "id": "base-fy",
+      "due": "04-01",
+      "repeat": "yearly",
+      "notice_days": 14,
+      "title": "学年ビューの基準年度（BASE_FY）を上げる",
+      "how": "js/main.js の GRADE VIEW の BASE_FY を新しい年度（2027年4月なら 2027）に。上げないと schedule.html の「お子さんは何年生か」が1年ずれる。学年の選択肢の文言（grade_*）も年度を書いていれば直す。"
+    },
+    {
+      "id": "april-reorganization",
+      "due": "04-07",
+      "repeat": "yearly",
+      "notice_days": 7,
+      "title": "4月の組織改編で部署名・番号が変わっていないか",
+      "how": "4月第1週は月曜の「Check Department Contacts」の結果（☎️ Issue）を必ず見る。部署名の変更は data/contacts.json・掲載ページ・13辞書を手で直す。新年度の市の資料（計画・だより）が出ていないかも確かめる。"
+    },
+    {
+      "id": "monthly-review",
+      "due": "01",
+      "repeat": "monthly",
+      "notice_days": 0,
+      "title": "月初の点検",
+      "how": "① Search Console を見る（API は使っていない）② 週次の「利用状況」報告（📈）に目を通す ③ 地域の取組の Instagram を人が見て、新しい催しがあれば反映する（機械では読まない）④ about.html#nearby の時点表記（about_nearby_asof）と now_asof を今月に合わせる必要がないか ⑤ 開いたままの Issue を片付ける。"
+    }
+  ]
+}

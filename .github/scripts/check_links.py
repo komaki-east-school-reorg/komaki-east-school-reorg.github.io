@@ -19,6 +19,9 @@
    - 共有ボタンの送り先（X・LINE・はてな・note・Threads・Bluesky・Reddit）：
      読者が押したときに開く入口で、出典ではない。
    - Google マップ：検索語を渡すリンクで、決まったページではない。
+   - LoGoフォーム（市の登録フォーム）：機械の取得には「安全な接続の確認中」の画面と 403 を
+     返すので、生きていても毎回失敗に見える（2026-11-08）。フォームを案内している市の
+     ページ（purattofo-mu/38222.html）は毎日の巡回で見ているので、変わればそちらで気づく。
 
 ■ 切れたと判断するまで
    一時的な不調で騒がないよう、2週続けて失敗した URL だけを「切れている」とする。
@@ -49,6 +52,7 @@ SKIP_HOSTS = (
     "threads.net", "bsky.app", "reddit.com", "tiktok.com",
     "maps.google.co.jp", "google.com",
     "schema.org", "w3.org", "ogp.me",
+    "logoform.jp",       # ボット確認の画面で 403 を返す（上の説明を参照）
     "goatcounter.com",   # 閲覧数の集計の送り先（リンクではない。js/main.js の COUNTER）
 )
 JST = timezone(timedelta(hours=9))

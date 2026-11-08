@@ -3,6 +3,7 @@ name: Check Fetch Health
 # 自動取得（市・対象8校・春日井市）が止まっていないかを毎日確かめ、止まっていたら Issue（⚠️）で知らせる。
 # 2026-11-07、日次アイデア 11/2。画面の赤字（FETCH STATUS）だけでは運営者が気づけないため。
 # data/fetch_status.json を読むだけで、外部のサーバにはアクセスしない。AI も使わない。
+# 2026-11-08 から、運用カレンダー（data/ops_calendar.json）の期限も同じジョブで確かめ、Issue（⏰ 運用作業の期限）で知らせる。
 # 毎日の巡回（07:17 JST）が終わったあとの時刻に動く。巡回そのものが止まっていても、こちらは別に動くので気づける。
 
 on:
@@ -55,4 +56,45 @@ jobs:
             gh issue create --repo "$GITHUB_REPOSITORY" \
               --title "⚠️ 自動取得の停止 $(TZ=Asia/Tokyo date +%Y-%m-%d)" \
               --body-file /tmp/fetch.md
+          fi
+
+      # 運用カレンダー（2026-11-08）：人の手でしか直せない期限つきの作業を、期限が近づいたら Issue（⏰）で知らせる。
+      # data/ops_calendar.json と、HTML の data-expires・辞書の data-until を読むだけ。外部にはアクセスしない。
+      # 同じ期限を二度知らせないよう、これまでの ⏰ Issue（閉じたものも）の本文とコメントを --seen に渡す。
+      - name: Collect previous ops notices
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue list --repo "$GITHUB_REPOSITORY" --state all --limit 50 \
+            --search "⏰ 運用作業の期限 in:title" --json body,comments \
+            --jq '.[] | .body, (.comments[].body)' > /tmp/ops-seen.txt || : > /tmp/ops-seen.txt
+
+      - name: Check ops calendar
+        id: ops
+        run: |
+          set +e
+          python3 .github/scripts/check_ops_calendar.py --report /tmp/ops.md --seen /tmp/ops-seen.txt
+          code=$?
+          set -e
+          if [ "$code" -eq 1 ]; then
+            exit 1
+          fi
+          if [ "$code" -eq 3 ]; then
+            echo "due=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "due=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Report ops calendar
+        if: steps.ops.outputs.due == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          open=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "⏰ 運用作業の期限 in:title" --json number --jq '.[0].number')
+          if [ -n "$open" ]; then
+            gh issue comment "$open" --repo "$GITHUB_REPOSITORY" --body-file /tmp/ops.md
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" \
+              --title "⏰ 運用作業の期限 $(TZ=Asia/Tokyo date +%Y-%m-%d)" \
+              --body-file /tmp/ops.md
           fi

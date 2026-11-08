@@ -1,0 +1,70 @@
+name: 訳の直し案を送る / Suggest a better translation
+description: 外国語版の分かりにくい訳・意味の違う訳の直し案 / A better translation for a foreign-language text on this site
+title: "【翻訳】"
+labels: ["translation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        このサイトの外国語版は、日本語をもとにAIを使って訳したもので、母語の方の確認をまだ受けていません。直した訳を教えてください。どの言語で書いてもかまいません。
+        **送った内容はインターネット上に公開されます。** 個人が分かることは書かないでください。
+
+        The foreign-language versions of this site were translated from Japanese with the help of AI and have not yet been checked by native speakers. Please send us a better translation. You may write in any language.
+        **This will be public on the internet.** Please do not write anything that identifies a person.
+  - type: dropdown
+    id: lang
+    attributes:
+      label: 言語 / Language
+      options:
+        - English
+        - Português
+        - Tiếng Việt
+        - Filipino
+        - Español
+        - 中文
+        - Bahasa Indonesia
+        - 한국어
+        - नेपाली
+        - Türkçe
+        - မြန်မာ
+    validations:
+      required: true
+  - type: dropdown
+    id: page
+    attributes:
+      label: どのページですか / Which page?
+      options:
+        - トップ / Home
+        - 計画概要 / Plan overview
+        - スケジュール / Schedule
+        - 質問・賛否の声 / FAQ and voices
+        - スクールバス / School bus
+        - 地域クラブ / Local clubs
+        - 議会審議 / City council
+        - 地域とまちづくり / Community
+        - 地図 / Map
+        - 全国の動き / Nationwide
+        - 検証と提案 / Review
+        - このサイトについて / About this site
+        - サイト全体 / Whole site
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: いまの訳 / Current translation
+      description: 画面に出ている文をそのまま貼ってください / Paste the text as it appears on the page
+    validations:
+      required: true
+  - type: textarea
+    id: suggested
+    attributes:
+      label: 直した訳 / Your suggested translation
+    validations:
+      required: true
+  - type: textarea
+    id: note
+    attributes:
+      label: 理由・補足（任意） / Why, or anything else (optional)
+    validations:
+      required: false

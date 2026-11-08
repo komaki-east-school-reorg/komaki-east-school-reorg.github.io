@@ -18,7 +18,7 @@ nationwide.html     全国の廃校数・国が示す学校規模と通学の基
 review.html         計画の検証と提案のページ（要点）。検証の核心10項目と提案の核心10項目（教育の質5・東部の子どもを増やす5）、確認できなかったこと（要点側）。各項目は analysis.html の根拠へリンク。当サイトの見解を含む。
 analysis.html       深掘り検証のページ（2026-10-30 に review.html から分割）。3部構成：計画そのもの（読み取れないこと・だれが決めるか・都市計画の動き）、教育の質、子どもの数（施策の年表・県と国・本来どうすべきだったか・子どもを増やす提案・高校段階）と、確認できなかったこと24項目。根拠のカードから要点へ戻る札は js/main.js の REVIEW LINKS。当サイトの見解を含む。
 img/illust/*.svg    サイト全体の挿絵（2026-10-31〜。全ページ）。文字を含まない飾り（alt=""）で、説明の文字は辞書から流す。下絵は Claude Design。校舎は古く描かない（building.svg）。
-site.html           このサイトについて（2026-10-30 に index.html から移した）。紹介用画像・アプリとして使う・広める・ご意見の送り先・閲覧数の集計。
+site.html           このサイトについて（2026-10-30 に index.html から移した）。運営者・紹介用画像・アプリとして使う・広める・ご意見の送り先・翻訳の直し案・訂正の記録・閲覧数の集計。
 404.html            存在しない URL を開いたときに GitHub Pages が返すページ。主なページと12言語への入口（noindex・sitemap 対象外・共有欄なし）。深いパスでも崩れないよう <base href="/"> を持つ。
 
 ■ スタイル
@@ -135,8 +135,13 @@ sitemap.xml                 全11ページのサイトマップ。各URLに12言
 .github/workflows/check-contacts.yml 毎週1回、担当部署の連絡先を公表ページと照合するワークフロー定義。番号の変更は自動コミット、部署名の変更はIssueで知らせる。
 .github/workflows/check-reach.yml    毎週月曜 7:10 JST に check_reach.py を回し、メール（だめなら Issue）で届けるワークフロー定義。Secret GOATCOUNTER_TOKEN が無ければ閲覧数は省く。
 .github/ISSUE_TEMPLATE/feedback.yml  読者の声の窓口（index.html#feedback）の Issue フォーム。公開されること・個人情報を書かないことを冒頭に明記。
+.github/ISSUE_TEMPLATE/translation.yml  翻訳の直し案の窓口（site.html#translation）の Issue フォーム（ラベル translation）。公開されること・個人情報を書かないことを冒頭に明記。
+.github/scripts/check_ops_calendar.py   運用カレンダー（data/ops_calendar.json と HTML の data-expires・辞書の data-until）を読み、期限の近い作業を報告する（check-fetch.yml が使う）。--list で一覧。exit 0=なし・3=あり。
+data/ops_calendar.json  運用カレンダー（人の手でしか直せない期限つきの作業）。手動管理。一度きりの項目は済んだら消す。
+data/corrections.json   訂正の記録（site.html#corrections）。手動管理。事実の誤りを直したら1件足す。消さない。
+HANDOVER.md         運営の引き継ぎ（最低限これだけ）。毎週届く Issue と対処、人の手でしか直せないこと、直す手順、触ってはいけないもの、Secrets。
 .github/workflows/check-links.yml    毎週1回、サイトが張っている外部リンクが開けるかを確かめるワークフロー定義。2週続けて開けないURLをIssue（🔗）で知らせる。自動では直さない。
-.github/workflows/check-fetch.yml    毎日1回、自動取得（市・対象8校・春日井市）が止まっていないかを data/fetch_status.json で確かめ、止まっていればIssue（⚠️ 自動取得の停止）で知らせるワークフロー定義。外部にはアクセスしない。
+.github/workflows/check-fetch.yml    毎日1回、自動取得（市・対象8校・春日井市）が止まっていないかを data/fetch_status.json で確かめ、止まっていればIssue（⚠️ 自動取得の停止）で知らせるワークフロー定義。運用カレンダーの期限も同じジョブで確かめ、Issue（⏰ 運用作業の期限）で知らせる。外部にはアクセスしない。
 .github/workflows/feature-ideas.yml 毎朝1回、このサイトに足すとよさそうな機能をAIに考えさせてメールで届けるワークフロー定義。サイトのファイルは変更しない。
 .github/workflows/translate-headlines.yml 取得ワークフローの完了後、新しく入った見出しだけをAIで9言語に訳し、機械検証してheadline_i18n.jsonに取り込むワークフロー定義。
 .github/scripts/headline_i18n.py    見出し翻訳の下ごしらえと検証（pending＝訳の無い見出しを書き出す／apply＝AIの下書きを検証して取り込む／prune＝古い訳を落とす）。

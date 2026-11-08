@@ -1,0 +1,47 @@
+{
+  "description": "訂正の記録（手動管理）。2026-11-08 追加。公表資料と照らしてこのサイトの記述に誤りがあったと分かり、直したものを1件ずつ書く。site.html#corrections に js/main.js の CORRECTIONS ブロックが全件を新しい順に出す。各項目：date（直した日）、page（サイト内の該当箇所。ページ名＋#id）、ja（必須）、en（推奨）。ほかの言語は en → ja の順に代わりを出す（更新履歴と同じ）。書き方：何を誤って書いていたか → 正しくは何か、を1〜2文で。文面の言い回しの改善・表示の不具合・誤字は載せない。消さない（記録なので）。",
+  "items": [
+    {
+      "date": "2026-11-06",
+      "page": "map.html",
+      "ja": "外国語版で、新しい学校が使う校舎を「同じ名前の学校の校舎」と訳していました。正しくは、いまの光ヶ丘小・桃ヶ丘小・光ヶ丘中・桃陵中の校舎を使います。",
+      "en": "The foreign-language versions said the new schools would use \"the buildings of the schools with the same names\". In fact, they will use the current buildings of Hikarigaoka Elementary, Momogaoka Elementary, Hikarigaoka Junior High and Toryo Junior High."
+    },
+    {
+      "date": "2026-11-06",
+      "page": "faq.html#faq-q3",
+      "ja": "第2期の説明で「小学校2校を小学校1校・中学校1校に」と書いていました（日本語と外国語版）。正しくは、東と西の学校をそれぞれ1校ずつにする計画です。",
+      "en": "The explanation of Phase 2 said \"two elementary schools become one elementary and one junior high school\" (Japanese and foreign-language versions). In fact, the plan is to make the eastern and the western schools one school each."
+    },
+    {
+      "date": "2026-10-23",
+      "page": "faq.html#pubcom",
+      "ja": "ほかのページに残っていたパブリックコメントの「55件」という表記を、「55名から142件」に直しました。",
+      "en": "Pages that still said the public comments numbered \"55\" were corrected to \"142 comments from 55 people\"."
+    },
+    {
+      "date": "2026-09-24",
+      "page": "faq.html#pubcom",
+      "ja": "パブリックコメントを「55件」と書いていました。市の『実施結果概要』では55は人数で、件数は142件です（55名から142件）。",
+      "en": "We wrote that there were 55 public comments. In the city's summary of results, 55 is the number of people; there were 142 comments (142 comments from 55 people)."
+    },
+    {
+      "date": "2026-09-20",
+      "page": "analysis.html#rev-highschool",
+      "ja": "誉高校の移転先を「アジア競技大会の選手村跡地」と書いていました。選手村として使う計画は無くなったため、この書き方を削除しました。",
+      "en": "We described Homare High School's new site as \"the former Asian Games athletes' village site\". Since the plan to use it as the athletes' village was dropped, this wording was removed."
+    },
+    {
+      "date": "2026-09-15",
+      "page": "bus.html#area-map",
+      "ja": "対象エリアの地図の説明で、桃花台東が枠の外に続く所を「右上の角」と書いていました。正しくは、上の辺（左から約3割の所から）と右の辺の上の部分です。徒歩の範囲を「色のない部分」としていたのも、「赤線の内側で紫のかかっていない部分」に直しました。",
+      "en": "The notes on the service-area map said Tokadai Higashi continues beyond the \"top-right corner\". In fact, it continues past the top edge (from about 30% in from the left) and the upper part of the right edge. We also corrected \"the uncolored part\" for the walking area to \"the part inside the red line that is not purple\"."
+    },
+    {
+      "date": "2026-08-28",
+      "page": "bus.html#area-map",
+      "ja": "対象エリアの地図の通学区域の線を目で写していたため、城山四丁目と高根三丁目を反対側の学校区に描き、大字大山を地図から落としていました。国の公表データ（国土数値情報の小学校区と、国勢調査の町丁の境界）から作り直し、面積が市の公表値（20.3km²・6.9km²）と合うことを確かめました。",
+      "en": "The school-district line on the service-area map had been traced by eye: it put Shiroyama 4-chome and Takane 3-chome on the wrong side and left out Oyama. We rebuilt it from national open data (the MLIT elementary-school-district data and census block boundaries) and confirmed the areas match the city's published figures (20.3 km² and 6.9 km²)."
+    }
+  ]
+}

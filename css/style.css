@@ -422,6 +422,9 @@ nav ul {
 /* フッタとハンバーガーメニューの「📲 アプリにする」（INSTALL APP が作る）。メニューの項目はモバイル幅だけ。
    モバイルではヘッダの 📲 は出さない — 言語のセレクトが狭まって「日本語」が読めなくなるため（実測）。 */
 .footer-app { margin-top: .4rem; font-size: .82rem; }
+.footer-tr { margin-top: .7rem; font-size: .82rem; }   /* 外国語表示だけ（TRANSLATION HELP） */
+.footer-tr a { color: var(--accent); font-weight: 700; }
+.corr-where { white-space: nowrap; font-size: .85rem; }
 .footer-app a { color: var(--accent); font-weight: 700; }
 .footer-app a[hidden], .nav-app-link[hidden] { display: none; }
 /* 「このサイトについて」（2026-10-31 ユーザー指示）。PC のナビは9項目のまま、ハンバーガーメニューにだけ出す。 */
@@ -2978,6 +2981,7 @@ main section[id], main h2.section-title[id], #area-map { scroll-margin-top: calc
   .footer-logo,
   .footer-feed,
   .footer-app,
+  .footer-tr,
   .feed-box,
   .footer-grid > div:not(:first-child) { display: none !important; }
   html.has-share-sticky body { padding-bottom: 0 !important; }

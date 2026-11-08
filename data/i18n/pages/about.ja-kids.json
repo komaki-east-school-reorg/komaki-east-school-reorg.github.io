@@ -316,6 +316,7 @@
   "th_new_name": "新しい学校の名前",
   "th_note": "その他",
   "to_top": "ページの 上へ",
+  "tr_footer": "🌐 ほんやくを 見て くれる 人を さがして います",
   "transport_elem_h": "小学生：スクールバス",
   "transport_elem_p": "<strong>学校まで 2kmより 遠いなどの エリアの 小学生</strong>に スクールバスを はしらせます（バス代は ただ）。<br><br>・<strong>行き：</strong>1本<br>・<strong>帰り：</strong>おおくて 3本（下の 学年・上の 学年・部活の ある日）<br>・<strong>お金：ただ（市が ぜんぶ はらう）</strong><br><br>のれる エリアや バスていの あん、もうしこみの しかたは スクールバスの ページに あります。<a href=\"bus.html\" style=\"font-weight:700;\">→ スクールバスの くわしい ページ</a>",
   "transport_jhs_h": "中学生：自転車で通学",
