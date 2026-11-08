@@ -1,12 +1,12 @@
-name: 訳の直し案を送る / Suggest a better translation
-description: 外国語版の分かりにくい訳・意味の違う訳の直し案 / A better translation for a foreign-language text on this site
+name: 翻訳の修正を提案する / Suggest a better translation
+description: 外国語版の分かりにくい訳・意味の違う訳の修正提案 / A better translation for a foreign-language text on this site
 title: "【翻訳】"
 labels: ["translation"]
 body:
   - type: markdown
     attributes:
       value: |
-        このサイトの外国語版は、日本語をもとにAIを使って訳したもので、母語の方の確認をまだ受けていません。直した訳を教えてください。どの言語で書いてもかまいません。
+        このサイトの外国語版は、日本語をもとにAIを使って訳したもので、母語の方の確認をまだ受けていません。よりよい訳を教えてください。どの言語で書いてもかまいません。
         **送った内容はインターネット上に公開されます。** 個人が分かることは書かないでください。
 
         The foreign-language versions of this site were translated from Japanese with the help of AI and have not yet been checked by native speakers. Please send us a better translation. You may write in any language.
@@ -52,14 +52,14 @@ body:
   - type: textarea
     id: current
     attributes:
-      label: いまの訳 / Current translation
+      label: 現在の訳 / Current translation
       description: 画面に出ている文をそのまま貼ってください / Paste the text as it appears on the page
     validations:
       required: true
   - type: textarea
     id: suggested
     attributes:
-      label: 直した訳 / Your suggested translation
+      label: 修正した訳 / Your suggested translation
     validations:
       required: true
   - type: textarea

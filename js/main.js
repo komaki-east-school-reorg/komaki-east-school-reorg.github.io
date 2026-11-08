@@ -164,7 +164,7 @@ window.KomakiCount = (function () {
     ['.event-permalink', 'link/event'],
     ['.footer-feed a, .feed-box-link, .feed-section-link', 'feed/open'],
     ['.fb-open', 'feedback/open'],
-    ['.tr-open', 'translation/open'],      // 2026-11-08 翻訳の直し案（site.html#translation）
+    ['.tr-open', 'translation/open'],      // 2026-11-08 翻訳の修正提案（site.html#translation）
     ['.footer-tr a', 'translation/footer'],
     // 2026-10-31 追加：10/24 以降に足した機能と、ページ内の案内・外部リンクの使われ方
     ['.app-install-btn, .footer-app, .nav-app, .app-install-cta', 'app/open'],

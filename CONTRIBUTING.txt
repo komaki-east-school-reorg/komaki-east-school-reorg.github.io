@@ -128,7 +128,7 @@
   ・読者の声の窓口（2026-10-24 ユーザー指示）：GitHub の Issue フォーム
     https://github.com/komaki-east-school-reorg/komaki-east-school-reorg.github.io/issues/new?template=feedback.yml
     を site.html#feedback にだけ置く（auto_gates.py の PERMITTED_GITHUB）。
-  ・翻訳の直し案の窓口（2026-11-08 ユーザー指示）：同じく GitHub の Issue フォーム
+  ・翻訳の修正提案の窓口（2026-11-08 ユーザー指示）：同じく GitHub の Issue フォーム
     https://github.com/komaki-east-school-reorg/komaki-east-school-reorg.github.io/issues/new?template=translation.yml
     を site.html#translation にだけ置く（PERMITTED_GITHUB）。
   ・これらは「出典」ではない。事実の根拠に使うことは一切ない（ルール4）。

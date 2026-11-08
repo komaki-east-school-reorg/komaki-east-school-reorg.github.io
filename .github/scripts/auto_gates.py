@@ -232,7 +232,7 @@ COUNTER_FILES = ("js/main.js",)
 # 読者の声の窓口（GitHub の Issue フォーム。2026-10-24 ユーザー指示）。site.html#feedback だけ（2026-10-30 に index.html から移した）。
 PERMITTED_GITHUB = (
     "github.com/komaki-east-school-reorg/komaki-east-school-reorg.github.io/issues/new?template=feedback.yml",
-    # 翻訳の直し案（site.html#translation、2026-11-08 ユーザー指示）
+    # 翻訳の修正提案（site.html#translation、2026-11-08 ユーザー指示）
     "github.com/komaki-east-school-reorg/komaki-east-school-reorg.github.io/issues/new?template=translation.yml",
 )
 GITHUB_PAGES = ("site.html",)
