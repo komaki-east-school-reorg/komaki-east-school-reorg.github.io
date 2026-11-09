@@ -463,7 +463,9 @@ jobs:
                  読者がサイトを開いて「何か変わった」と分かる変更だけ。「いまの状況」枠の言い回しだけ、
                  誤字・体裁、地域協議会の催し（スクリプトが自動で足す）では足さない。迷ったら足さない
                - updates 配列の**先頭**に足す。既存の行は1文字も変えない・消さない・並べ替えない（検証で不合格）
-               - 形：{"date": "${{ env.TODAY }}", "type": "content", "ja": "…", "en": "…"}。ほかのキーは書かない
+               - 形：{"date": "${{ env.TODAY }}", "type": "content", "ja": "…", "en": "…", "link": "schedule.html"}。ほかのキーは書かない
+               - link は、その変更を読者が見に行けるサイト内のコーナー（「ページ.html」か「ページ.html#id」。例 schedule.html、
+                 index.html#status、community.html#community-actions）。外部 URL は書かない。ページに実在する id だけ（検証で確かめる）
                - ja は体言止めの短い一行（30〜40字、最大45字、句点「。」なし、「〜しました」と文章にしない）。
                  例「第2回保護者等説明会の日程をスケジュールに追加」。en も同じ形の名詞句
                  （例 "Second parents' briefing dates added to the schedule"）。タグ・URL は書かない

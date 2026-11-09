@@ -1086,6 +1086,44 @@ def main():
     except OSError as e:
         fail(f"検証と提案のつながりを確かめられない: {e}")
 
+    # --- 26. 更新履歴の link の飛び先が実在する（2026-11-10 ユーザー指示） ---
+    # 本文がそのコーナーへのリンクになるので、消えた節を指したままにしない。
+    # 実行時に付く id（Q&A の faq-qN など、目次の toc-<キー>）は、元になる辞書キーがページにあれば可。
+    try:
+        bad26 = []
+        cache = {}
+        for it in json.load(open("data/site-updates.json", encoding="utf-8")).get("updates", []):
+            link = it.get("link")
+            if link is None:
+                continue
+            m = re.fullmatch(r"([a-z0-9-]+\.html)(?:#([A-Za-z0-9_-]+))?", str(link))
+            if not m or not os.path.exists(m.group(1)):
+                bad26.append(f"{it.get('date')} {link!r}: サイト内のページではない"); continue
+            frag = m.group(2)
+            if not frag:
+                continue
+            html = cache.setdefault(m.group(1), open(m.group(1), encoding="utf-8").read())
+            if f'id="{frag}"' in html:
+                continue
+            key = None
+            mm = re.fullmatch(r"((?:bus-|comm-)?faq)-q(\d+)", frag)
+            if mm:
+                key = mm.group(1).replace("-", "_") + "_q" + mm.group(2)
+            elif frag.startswith("toc-"):
+                key = frag[4:]
+            if key:
+                tag = re.search(r'<[^>]*data-i18n(?:-html)?="%s"[^>]*>' % re.escape(key), html)
+                # 目次の toc-<キー> は、見出しに id が無いときだけ付く（id があればそちらが飛び先）
+                if tag and not (frag.startswith("toc-") and re.search(r'\sid="', tag.group(0))):
+                    continue
+            bad26.append(f"{it.get('date')} {link}: 飛び先がページに無い")
+        for b in bad26:
+            fail(f"更新履歴の link: {b}")
+        if not bad26:
+            ok("更新履歴の link の飛び先はすべて実在")
+    except Exception as e:
+        fail(f"更新履歴の link を確かめられない: {e}")
+
     # --- 22. 更新履歴への追加（2026-11-04 ユーザー指示） ---
     # 自動反映の起案AIは、読者が気づく変更なら data/site-updates.json の先頭に1行足してよい。
     # 既存の行（手で書いた履歴と、build_*.py が足す auto_key の行）は1文字も変えさせない。
@@ -1108,8 +1146,10 @@ def main():
                 rules = term_rules.load_rules()
                 today = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).date()
                 for it in cur[:k]:
-                    if not isinstance(it, dict) or set(it) - {"date", "type", "ja", "en"}:
-                        bad22.append(f"使えるのは date / type / ja / en だけ: {it!r}"[:160]); continue
+                    if not isinstance(it, dict) or set(it) - {"date", "type", "ja", "en", "link"}:
+                        bad22.append(f"使えるのは date / type / ja / en / link だけ: {it!r}"[:160]); continue
+                    if "link" in it and not re.fullmatch(r"[a-z0-9-]+\.html(#[A-Za-z0-9_-]+)?", str(it["link"])):
+                        bad22.append(f"link はサイト内の「ページ.html(#id)」だけ: {it['link']!r}"[:160])
                     try:
                         d = datetime.date.fromisoformat(it.get("date", ""))
                     except (TypeError, ValueError):

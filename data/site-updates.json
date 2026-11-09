@@ -1,23 +1,33 @@
 {
-  "description": "このサイト自身の更新履歴。トップページ最下部の「サイトの更新履歴」コーナーが実行時に fetch して描画する（表示は新しい順に6件まで。このファイルには全履歴を残す）。手動管理（例外：東部地域の地域協議会の催しが自動取得されたときは、.github/scripts/build_community_events.py が1行足す。その行は auto_key に記事 URL を持ち、同じ催しを二度足さないための目印なので消さないこと。東部に関係する都市計画の日程がスケジュールに載ったときも、.github/scripts/build_toshikeikaku.py が auto_key「toshikeikaku:…」付きの1行を足す）。新しいものを配列の先頭に足す。自動反映の起案AI（fetch-news.yml の auto-update ジョブ）も、読者が気づく変更のときは先頭に1行足す（2026-11-04 ユーザー指示。既存の行は変えられないことを auto_gates.py check 22 が確かめる）。type は content（掲載内容）/ feature（機能追加）/ fix（修正）のいずれか。ja は必須、en は推奨（未記載なら ja が出る）。他言語は en → ja の順にフォールバックする。文体は体言止めの短い一行にすること（ja は30〜40字を目安に、長くても45字まで。入りきらない詳細はコミットメッセージへ）（「〜しました。」と文章にしない。コミットメッセージの貼り付けもしない）。読者が画面上で気づかない内部改修（表示の高速化・リファクタ・SEO の内部設定・ドキュメント修正など）は載せない。priority は任意で、high なら上げ、low なら下げる — ヘッダ下のカットイン帯（js/main.js の TOP CUT-IN）の並び順にだけ効く。帯はふだん「新しいかつ重要度が高い順」に自動で並ぶので、ふつうは書かなくてよい。ja に「都市計画」を含む行は帯に出ない（auto_key が toshikeikaku: で始まる自動の行だけは出る。2026-10-18 ユーザー指示）。関連する小さな修正はまとめて1件にする。機能や内容を廃止したことは載せない（2026-10-11 ユーザー指示）。",
+  "description": "このサイト自身の更新履歴。トップページ最下部の「サイトの更新履歴」コーナーが実行時に fetch して描画する（表示は新しい順に6件まで。このファイルには全履歴を残す）。手動管理（例外：東部地域の地域協議会の催しが自動取得されたときは、.github/scripts/build_community_events.py が1行足す。その行は auto_key に記事 URL を持ち、同じ催しを二度足さないための目印なので消さないこと。東部に関係する都市計画の日程がスケジュールに載ったときも、.github/scripts/build_toshikeikaku.py が auto_key「toshikeikaku:…」付きの1行を足す）。新しいものを配列の先頭に足す。自動反映の起案AI（fetch-news.yml の auto-update ジョブ）も、読者が気づく変更のときは先頭に1行足す（2026-11-04 ユーザー指示。既存の行は変えられないことを auto_gates.py check 22 が確かめる）。type は content（掲載内容）/ feature（機能追加）/ fix（修正）のいずれか。link は任意で、その行に関係するコーナーへのサイト内リンク（「ページ.html」か「ページ.html#id」。外部 URL は不可。2026-11-10 ユーザー指示）— 行の本文がそのリンクになり、フィードの飛び先にもなる。飛び先がもう無い行（廃止した機能など）には付けない。auto_gates.py check 26 が飛び先の実在を確かめる。ja は必須、en は推奨（未記載なら ja が出る）。他言語は en → ja の順にフォールバックする。文体は体言止めの短い一行にすること（ja は30〜40字を目安に、長くても45字まで。入りきらない詳細はコミットメッセージへ）（「〜しました。」と文章にしない。コミットメッセージの貼り付けもしない）。読者が画面上で気づかない内部改修（表示の高速化・リファクタ・SEO の内部設定・ドキュメント修正など）は載せない。priority は任意で、high なら上げ、low なら下げる — ヘッダ下のカットイン帯（js/main.js の TOP CUT-IN）の並び順にだけ効く。帯はふだん「新しいかつ重要度が高い順」に自動で並ぶので、ふつうは書かなくてよい。ja に「都市計画」を含む行は帯に出ない（auto_key が toshikeikaku: で始まる自動の行だけは出る。2026-10-18 ユーザー指示）。関連する小さな修正はまとめて1件にする。機能や内容を廃止したことは載せない（2026-10-11 ユーザー指示）。",
   "updates": [
+    {
+      "date": "2026-11-10",
+      "type": "feature",
+      "ja": "更新履歴の各行から関係するコーナーへ移れるように",
+      "en": "Each changelog line now links to the part of the site it is about",
+      "link": "index.html#site-updates"
+    },
     {
       "date": "2026-11-09",
       "type": "content",
       "ja": "検証と提案に市・教育委員会への質問集を掲載",
-      "en": "Questions for the city and Board of Education added to the review"
+      "en": "Questions for the city and Board of Education added to the review",
+      "link": "review.html#rev-open"
     },
     {
       "date": "2026-11-09",
       "type": "content",
       "ja": "よくある質問に不登校の支援と雨の日の車の送迎を追加",
-      "en": "FAQ: support for children not attending school, and driving to school"
+      "en": "FAQ: support for children not attending school, and driving to school",
+      "link": "faq.html#faq-q31"
     },
     {
       "date": "2026-11-08",
       "type": "feature",
       "ja": "外国語版の翻訳の修正を提案できる窓口を追加",
-      "en": "A way to suggest better translations for the foreign-language versions"
+      "en": "A way to suggest better translations for the foreign-language versions",
+      "link": "site.html#translation"
     },
     {
       "date": "2026-11-07",
@@ -41,49 +51,57 @@
       "date": "2026-11-07",
       "type": "feature",
       "ja": "外国語表示に「窓口で見せる日本語」のカードを追加",
-      "en": "“Japanese to show at the counter” card added for non-Japanese readers"
+      "en": "“Japanese to show at the counter” card added for non-Japanese readers",
+      "link": "about.html#contact"
     },
     {
       "date": "2026-11-07",
       "type": "content",
       "ja": "再編前の学校間交流のQ&Aに自己紹介カードの取りやめを追記",
-      "en": "Pre-merger school exchange Q&A updated: self-introduction cards dropped"
+      "en": "Pre-merger school exchange Q&A updated: self-introduction cards dropped",
+      "link": "faq.html#faq-q15"
     },
     {
       "date": "2026-11-07",
       "type": "content",
       "ja": "スクールバスの運転手の確保と確認についてのQ&Aを追加",
-      "en": "Q&A on how school bus drivers are found and checked added"
+      "en": "Q&A on how school bus drivers are found and checked added",
+      "link": "bus.html#bus-faq-q14"
     },
     {
       "date": "2026-11-07",
       "type": "content",
       "ja": "通学路の防犯カメラと防犯灯についてのQ&Aを追加",
-      "en": "Q&A on security cameras and lights along school routes added"
+      "en": "Q&A on security cameras and lights along school routes added",
+      "link": "faq.html#faq-q30"
     },
     {
       "date": "2026-11-07",
       "type": "content",
       "ja": "中学校の修学旅行先についてのQ&Aを追加",
-      "en": "Q&A on junior high school trip destinations added"
+      "en": "Q&A on junior high school trip destinations added",
+      "link": "faq.html#faq-q29"
     },
     {
       "date": "2026-11-07",
       "type": "feature",
       "ja": "スケジュールで終わった予定を隠せるように",
-      "en": "Past events can now be hidden on the schedule page"
+      "en": "Past events can now be hidden on the schedule page",
+      "link": "schedule.html#hide-done"
     },
     {
       "date": "2026-11-07",
       "type": "content",
       "ja": "城山三・四丁目の学区とバスの車内・通学手段のQ&Aを追加",
-      "en": "Q&A added on the Shiroyama 3/4-chome districts, riding the bus and other ways to school"
+      "en": "Q&A added on the Shiroyama 3/4-chome districts, riding the bus and other ways to school",
+      "link": "faq.html#faq-q28"
     },
     {
       "date": "2026-11-07",
       "type": "feature",
       "ja": "予定をカレンダーアプリで購読できるように",
-      "en": "Schedule can now be subscribed to in calendar apps"
+      "en": "Schedule can now be subscribed to in calendar apps",
+      "link": "schedule.html#cal-sub"
     },
     {
       "date": "2026-11-07",
@@ -95,13 +113,15 @@
       "date": "2026-11-07",
       "type": "content",
       "ja": "計画概要に「近隣他地区の状況」（北里地区・春日井市）を追加",
-      "en": "“Nearby Districts” (Kitazato and Kasugai City) added to the plan overview"
+      "en": "“Nearby Districts” (Kitazato and Kasugai City) added to the plan overview",
+      "link": "about.html#nearby"
     },
     {
       "date": "2026-11-07",
       "type": "content",
       "ja": "都市計画の動き（東部地域）を地域とまちづくりのページへ",
-      "en": "Eastern city planning updates moved to the Community & Town page"
+      "en": "Eastern city planning updates moved to the Community & Town page",
+      "link": "community.html#toshikeikaku"
     },
     {
       "date": "2026-11-06",
@@ -113,7 +133,8 @@
       "date": "2026-11-06",
       "type": "content",
       "ja": "議会での審議に第3回定例会（9月）を追加",
-      "en": "September 2026 council session added to the council page"
+      "en": "September 2026 council session added to the council page",
+      "link": "council.html#council-r3"
     },
     {
       "date": "2026-11-06",
@@ -143,13 +164,15 @@
       "date": "2026-11-05",
       "type": "feature",
       "ja": "スケジュールで、終わった地域の取組を表示しないように",
-      "en": "Finished community events no longer shown on the schedule"
+      "en": "Finished community events no longer shown on the schedule",
+      "link": "schedule.html"
     },
     {
       "date": "2026-11-05",
       "type": "content",
       "ja": "運営者「これがまちつくサイトの解。」THE UNIT を明記",
-      "en": "The site’s operator, “This Is the Answer: A Site for Building Our Town.” THE UNIT, now named"
+      "en": "The site’s operator, “This Is the Answer: A Site for Building Our Town.” THE UNIT, now named",
+      "link": "site.html#operator"
     },
     {
       "date": "2026-11-05",
@@ -161,7 +184,8 @@
       "date": "2026-11-04",
       "type": "content",
       "ja": "検証と提案の「学級の人数」と高校の節を、わかりやすく書き直し",
-      "en": "Clearer explanations of class sizes and the high school question in the review pages"
+      "en": "Clearer explanations of class sizes and the high school question in the review pages",
+      "link": "analysis.html#rev-k4"
     },
     {
       "date": "2026-11-04",
@@ -173,19 +197,22 @@
       "date": "2026-10-31",
       "type": "content",
       "ja": "地域とまちづくりに「地域のレガシー」（歴史・祭り・特産物・自然）を追加",
-      "en": "“Local Heritage” added to the community page: history, festivals, specialties and nature"
+      "en": "“Local Heritage” added to the community page: history, festivals, specialties and nature",
+      "link": "community.html#legacy"
     },
     {
       "date": "2026-10-31",
       "type": "content",
       "ja": "地域の取組に桃花台まつりと大草・野口の棒の手を追加",
-      "en": "Tokadai Festival and the bo-no-te of Okusa and Noguchi added to local initiatives"
+      "en": "Tokadai Festival and the bo-no-te of Okusa and Noguchi added to local initiatives",
+      "link": "community.html#community-actions"
     },
     {
       "date": "2026-10-31",
       "type": "content",
       "ja": "レガシーの提案を5項目に、篠岡カルタ・祭り・特産物も検討",
-      "en": "Five legacy proposals, now covering the Shinooka Karuta, festivals and local specialties"
+      "en": "Five legacy proposals, now covering the Shinooka Karuta, festivals and local specialties",
+      "link": "review.html#rev-core-ideas"
     },
     {
       "date": "2026-10-31",
@@ -197,7 +224,8 @@
       "date": "2026-10-31",
       "type": "content",
       "ja": "レガシーの検討に各校の和太鼓などの活動と棒の手を追加",
-      "en": "Legacy section: each school's activities and the local bo-no-te"
+      "en": "Legacy section: each school's activities and the local bo-no-te",
+      "link": "analysis.html#rev-legacy"
     },
     {
       "date": "2026-10-31",
@@ -209,7 +237,8 @@
       "date": "2026-10-31",
       "type": "content",
       "ja": "検証と提案に「既存校のレガシーを引き継ぐ」検討と提案⑪",
-      "en": "Review: carrying on the existing schools' legacy (proposal 11)"
+      "en": "Review: carrying on the existing schools' legacy (proposal 11)",
+      "link": "analysis.html#rev-legacy"
     },
     {
       "date": "2026-10-31",
@@ -227,7 +256,8 @@
       "date": "2026-11-01",
       "type": "feature",
       "ja": "このサイトを Ver.1.0 に",
-      "en": "This site is now Ver.1.0"
+      "en": "This site is now Ver.1.0",
+      "link": "site.html"
     },
     {
       "date": "2026-10-31",
@@ -239,7 +269,8 @@
       "date": "2026-10-31",
       "type": "content",
       "ja": "スケジュールと現在の状況に第2期再編（時期未定）を追加",
-      "en": "Phase 2 reorganization (timing undecided) added to the schedule and status"
+      "en": "Phase 2 reorganization (timing undecided) added to the schedule and status",
+      "link": "schedule.html"
     },
     {
       "date": "2026-10-31",
@@ -251,79 +282,92 @@
       "date": "2026-10-31",
       "type": "feature",
       "ja": "メニューとトップに「このサイトについて」への入口を追加",
-      "en": "\"About this site\" link added to the menu and the top page"
+      "en": "\"About this site\" link added to the menu and the top page",
+      "link": "site.html"
     },
     {
       "date": "2026-10-31",
       "type": "content",
       "ja": "検証と提案の核心を各10項目に、挿絵つきでまとめて掲載",
-      "en": "Review: 10 key findings and 10 key proposals, with illustrations"
+      "en": "Review: 10 key findings and 10 key proposals, with illustrations",
+      "link": "review.html#rev-core"
     },
     {
       "date": "2026-10-30",
       "type": "content",
       "ja": "検証と提案を要点と「深掘り検証」の2ページに整理",
-      "en": "Review page split into key points and a separate in-depth review"
+      "en": "Review page split into key points and a separate in-depth review",
+      "link": "analysis.html"
     },
     {
       "date": "2026-10-30",
       "type": "content",
       "ja": "「このサイトについて」のページを新設（アプリ・フィードの使い方など）",
-      "en": "New “About this site” page, with how to use the app and the feed"
+      "en": "New “About this site” page, with how to use the app and the feed",
+      "link": "site.html"
     },
     {
       "date": "2026-10-26",
       "type": "content",
       "ja": "議会審議のページに市議会と市議会だよりの公式ページへのリンクを追加",
-      "en": "Links to the official City Council and council newsletter pages on the council page"
+      "en": "Links to the official City Council and council newsletter pages on the council page",
+      "link": "council.html"
     },
     {
       "date": "2026-10-26",
       "type": "fix",
       "ja": "予定の当日の表示を「完了」から「進行中」に修正",
-      "en": "Events now show as in progress on the day itself, not as done"
+      "en": "Events now show as in progress on the day itself, not as done",
+      "link": "schedule.html"
     },
     {
       "date": "2026-10-24",
       "type": "feature",
       "ja": "SNS用ハッシュタグと使い方の広め方・ご意見の送り先を追加",
-      "en": "Hashtags for social media, ways to spread the word, and a feedback form"
+      "en": "Hashtags for social media, ways to spread the word, and a feedback form",
+      "link": "site.html#spread"
     },
     {
       "date": "2026-10-24",
       "type": "feature",
       "ja": "Cookieを使わない閲覧数の集計を開始（端末ごとに停止可）",
-      "en": "Cookie-free visit counting started (can be turned off per device)"
+      "en": "Cookie-free visit counting started (can be turned off per device)",
+      "link": "site.html#privacy"
     },
     {
       "date": "2026-10-24",
       "type": "content",
       "ja": "教育の質の観点でQ&A3問・全国の学級人数比較・議会答弁の整理を追加",
-      "en": "Quality of education across the site: 3 new Q&As, class-size comparison, council answers gathered"
+      "en": "Quality of education across the site: 3 new Q&As, class-size comparison, council answers gathered",
+      "link": "faq.html#faq-q25"
     },
     {
       "date": "2026-10-24",
       "type": "content",
       "ja": "検証と提案・計画概要に教育の質の観点を追加（学力・人間力・健康など）",
-      "en": "Quality of education added to the review and plan pages (academic ability, personal strengths, health and more)"
+      "en": "Quality of education added to the review and plan pages (academic ability, personal strengths, health and more)",
+      "link": "analysis.html#rev-quality"
     },
     {
       "date": "2026-10-24",
       "type": "feature",
       "ja": "地域の取組の催しにも「カレンダーに追加」",
-      "en": "“Add to calendar” buttons on community events too"
+      "en": "“Add to calendar” buttons on community events too",
+      "link": "community.html#community-actions"
     },
     {
       "date": "2026-10-24",
       "type": "feature",
       "ja": "スケジュールとカレンダーのすべての予定に「カレンダーに追加」",
-      "en": "“Add to calendar” buttons on every upcoming event in the schedule and calendar"
+      "en": "“Add to calendar” buttons on every upcoming event in the schedule and calendar",
+      "link": "schedule.html"
     },
     {
       "date": "2026-10-23",
       "type": "feature",
       "ja": "自動で集めた各コーナーに、元のページを確かめた日時を表示",
-      "en": "Auto-collected lists now show when their source pages were last checked"
+      "en": "Auto-collected lists now show when their source pages were last checked",
+      "link": "index.html#latest"
     },
     {
       "date": "2026-10-23",
@@ -341,25 +385,29 @@
       "date": "2026-10-22",
       "type": "feature",
       "ja": "トップに東部の0〜17歳の子どもの人数（推定）を毎日表示",
-      "en": "Top page now shows a daily estimate of children aged 0–17 in the eastern district"
+      "en": "Top page now shows a daily estimate of children aged 0–17 in the eastern district",
+      "link": "index.html#child-estimate"
     },
     {
       "date": "2026-10-18",
       "type": "feature",
       "ja": "東部に関係する都市計画の日程を、スケジュールにも自動で掲載",
-      "en": "City planning dates for the eastern district now added to the schedule automatically"
+      "en": "City planning dates for the eastern district now added to the schedule automatically",
+      "link": "schedule.html"
     },
     {
       "date": "2026-10-17",
       "type": "feature",
       "ja": "検証と提案に、東部に関係する都市計画の動きを自動で掲載",
-      "en": "Review page now lists city planning updates for the eastern district automatically"
+      "en": "Review page now lists city planning updates for the eastern district automatically",
+      "link": "community.html#toshikeikaku"
     },
     {
       "date": "2026-10-17",
       "type": "feature",
       "ja": "ホーム画面に置けるアプリ化ボタン📲を追加（前に見たページはオフラインでも）",
-      "en": "📲 button to add the site to your Home Screen as an app (works offline for pages you have seen)"
+      "en": "📲 button to add the site to your Home Screen as an app (works offline for pages you have seen)",
+      "link": "site.html#app"
     },
     {
       "date": "2026-10-15",
@@ -372,6 +420,7 @@
       "type": "content",
       "ja": "「桃ヶ丘小学校区地域協議会 あおぞら市場」を地域の取組と予定に掲載",
       "en": "Community council event added to community efforts and the schedule",
+      "link": "community.html#council-events",
       "auto_key": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/chiikikyougikaievent/52067.html"
     },
     {
@@ -379,6 +428,7 @@
       "type": "content",
       "ja": "「大城小学校区地域協議会 宝さがしオリエンテーリング大会」を地域の取組と予定に掲載",
       "en": "Community council event added to community efforts and the schedule",
+      "link": "community.html#council-events",
       "auto_key": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/chiikikyougikaievent/52814.html"
     },
     {
@@ -386,19 +436,22 @@
       "type": "content",
       "ja": "「大城小学校区地域協議会 シニアのためのスマホ使い方相談会」を地域の取組と予定に掲載",
       "en": "Community council event added to community efforts and the schedule",
+      "link": "community.html#council-events",
       "auto_key": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/chiikikyougikaievent/52817.html"
     },
     {
       "date": "2026-10-13",
       "type": "content",
       "ja": "通学帽子と、閉校後の避難所についてのQ&Aを追加",
-      "en": "Q&As on school caps and on shelters after closure"
+      "en": "Q&As on school caps and on shelters after closure",
+      "link": "faq.html#faq-q23"
     },
     {
       "date": "2026-10-13",
       "type": "feature",
       "ja": "カレンダーの日を押すと予定を表示、その日だけ取り込み",
-      "en": "Tap a calendar day to see its events and add just that day"
+      "en": "Tap a calendar day to see its events and add just that day",
+      "link": "schedule.html#calendar-view"
     },
     {
       "date": "2026-10-13",
@@ -410,19 +463,22 @@
       "date": "2026-10-13",
       "type": "feature",
       "ja": "更新情報のフィード（RSS）の案内を全ページのフッタに",
-      "en": "Feed (RSS) link for updates in every page's footer"
+      "en": "Feed (RSS) link for updates in every page's footer",
+      "link": "site.html#feed"
     },
     {
       "date": "2026-10-11",
       "type": "content",
       "ja": "各ページの問い合わせ先に市・県・国の関係部署と図書館を追加",
-      "en": "City, prefectural, national and library contacts added to every page"
+      "en": "City, prefectural, national and library contacts added to every page",
+      "link": "about.html#contact"
     },
     {
       "date": "2026-10-11",
       "type": "feature",
       "ja": "予定ごとの固有ページを追加（スケジュールの🔗から）",
-      "en": "A page for each scheduled event (🔗 in the schedule)"
+      "en": "A page for each scheduled event (🔗 in the schedule)",
+      "link": "schedule.html"
     },
     {
       "date": "2026-10-11",
@@ -440,7 +496,8 @@
       "date": "2026-10-11",
       "type": "feature",
       "ja": "最新の動きをRSSリーダーで読めるフィードを公開",
-      "en": "Feed of the latest updates for RSS readers"
+      "en": "Feed of the latest updates for RSS readers",
+      "link": "site.html#feed"
     },
     {
       "date": "2026-10-11",
@@ -458,32 +515,37 @@
       "date": "2026-10-06",
       "type": "fix",
       "ja": "地域クラブのページに共有ボタンを表示、終わった受付の表示と表のはみ出しを修正",
-      "en": "Share buttons restored on the clubs page; outdated notices and overflowing tables fixed"
+      "en": "Share buttons restored on the clubs page; outdated notices and overflowing tables fixed",
+      "link": "clubs.html"
     },
     {
       "date": "2026-10-05",
       "type": "feature",
       "ja": "「いまの状況」「今後のスケジュール」にも読み上げを追加",
-      "en": "Read-aloud added to “Right Now” and “Upcoming Events”"
+      "en": "Read-aloud added to “Right Now” and “Upcoming Events”",
+      "link": "index.html"
     },
     {
       "date": "2026-10-05",
       "type": "content",
       "ja": "「篠岡学区地域協議会 しのおかさわやかウォーキング」を地域の取組と予定に掲載",
       "en": "Community council event added to community efforts and the schedule",
+      "link": "community.html#council-events",
       "auto_key": "https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3/3_2/chiikikyougikaievent/52531.html"
     },
     {
       "date": "2026-10-05",
       "type": "feature",
       "ja": "トップの今後の予定をスケジュール・カレンダーと連動",
-      "en": "Upcoming events on the top page now match the schedule and calendar"
+      "en": "Upcoming events on the top page now match the schedule and calendar",
+      "link": "index.html"
     },
     {
       "date": "2026-10-05",
       "type": "feature",
       "ja": "東部の地域協議会の催しを地域の取組と予定に自動掲載",
-      "en": "Eastern district community council events now listed automatically"
+      "en": "Eastern district community council events now listed automatically",
+      "link": "community.html#council-events"
     },
     {
       "date": "2026-09-28",
@@ -495,25 +557,29 @@
       "date": "2026-09-27",
       "type": "content",
       "ja": "「地域協議会と地域のまちづくり」に改名、東部まちづくりプラットフォームを紹介",
-      "en": "Page renamed; Eastern District Town Development Platform introduced"
+      "en": "Page renamed; Eastern District Town Development Platform introduced",
+      "link": "community.html#platform"
     },
     {
       "date": "2026-09-27",
       "type": "content",
       "ja": "全ページに関係する市・県・国の問い合わせ先を掲載",
-      "en": "City, prefectural, national and library contacts added to every page"
+      "en": "City, prefectural, national and library contacts added to every page",
+      "link": "about.html#contact"
     },
     {
       "date": "2026-09-27",
       "type": "content",
       "ja": "地域クラブに合唱・プログラミングと各中学校の部活動を追加",
-      "en": "Choir, programming and more school clubs added to Local Clubs"
+      "en": "Choir, programming and more school clubs added to Local Clubs",
+      "link": "clubs.html#schools"
     },
     {
       "date": "2026-09-27",
       "type": "content",
       "ja": "Q&Aに児童クラブ・スマホの持ち込み・バス停の目印を追加",
-      "en": "Q&A on after-school clubs, smartphones and bus stop signs added"
+      "en": "Q&A on after-school clubs, smartphones and bus stop signs added",
+      "link": "faq.html#faq-q21"
     },
     {
       "date": "2026-09-26",
@@ -525,25 +591,29 @@
       "date": "2026-09-26",
       "type": "content",
       "ja": "全国の動きに中高一貫教育の現状を追加",
-      "en": "Combined junior–senior high schools added to the nationwide page"
+      "en": "Combined junior–senior high schools added to the nationwide page",
+      "link": "nationwide.html#nw-ikkan"
     },
     {
       "date": "2026-09-26",
       "type": "content",
       "ja": "地域の取組に大草のバンブーインスタレーションと児童館2館を追加",
-      "en": "Okusa Bamboo Installation and two children’s centres added"
+      "en": "Okusa Bamboo Installation and two children’s centres added",
+      "link": "community.html#community-actions"
     },
     {
       "date": "2026-09-26",
       "type": "feature",
       "ja": "トップに次の予定まで「あと◯日」を表示",
-      "en": "Top page shows how many days until the next event"
+      "en": "Top page shows how many days until the next event",
+      "link": "index.html"
     },
     {
       "date": "2026-09-26",
       "type": "content",
       "ja": "再編前の学校間交流の具体例をよくある質問に追記",
-      "en": "Examples of pre-merger school exchanges added to the FAQ"
+      "en": "Examples of pre-merger school exchanges added to the FAQ",
+      "link": "faq.html#faq-q15"
     },
     {
       "date": "2026-09-24",
@@ -555,25 +625,29 @@
       "date": "2026-09-24",
       "type": "content",
       "ja": "パブリックコメントの論点を図で表示、件数表記も訂正",
-      "en": "Public comment topics shown as a chart; comment count corrected"
+      "en": "Public comment topics shown as a chart; comment count corrected",
+      "link": "faq.html#pubcom"
     },
     {
       "date": "2026-09-24",
       "type": "content",
       "ja": "地域の取組にTOKADAI DANCE FESTIVALを追加",
-      "en": "TOKADAI DANCE FESTIVAL added to community efforts"
+      "en": "TOKADAI DANCE FESTIVAL added to community efforts",
+      "link": "community.html#community-actions"
     },
     {
       "date": "2026-09-22",
       "type": "feature",
       "ja": "読み上げ中の文を光らせ、計画概要に「ことばメモ」を追加",
-      "en": "Sentence highlighting while reading aloud, and a plain-language glossary"
+      "en": "Sentence highlighting while reading aloud, and a plain-language glossary",
+      "link": "about.html#glossary"
     },
     {
       "date": "2026-09-22",
       "type": "feature",
       "ja": "地域クラブ・課外活動のページを新設",
-      "en": "New page: community clubs and after-school activities"
+      "en": "New page: community clubs and after-school activities",
+      "link": "clubs.html"
     },
     {
       "date": "2026-09-22",
@@ -585,7 +659,8 @@
       "date": "2026-09-22",
       "type": "content",
       "ja": "「賛否の声」を「よくある質問」に統合し1ページに",
-      "en": "Community Voices merged into the FAQ page"
+      "en": "Community Voices merged into the FAQ page",
+      "link": "faq.html#voices"
     },
     {
       "date": "2026-09-22",
@@ -597,19 +672,22 @@
       "date": "2026-09-20",
       "type": "content",
       "ja": "トップの各ページ案内の説明文を最新の内容に更新",
-      "en": "Page summaries on the top page brought up to date"
+      "en": "Page summaries on the top page brought up to date",
+      "link": "index.html"
     },
     {
       "date": "2026-09-20",
       "type": "content",
       "ja": "誉高校の名古屋市への移転を検証ページに追記",
-      "en": "Homare High School's move to Nagoya added to the review page"
+      "en": "Homare High School's move to Nagoya added to the review page",
+      "link": "analysis.html#rev-highschool"
     },
     {
       "date": "2026-09-20",
       "type": "fix",
       "ja": "東部まちづくりの動きを地域の取組と同じ体裁に",
-      "en": "Eastern district updates now match the community efforts layout"
+      "en": "Eastern district updates now match the community efforts layout",
+      "link": "community.html#community-actions"
     },
     {
       "date": "2026-09-20",
@@ -621,7 +699,8 @@
       "date": "2026-09-20",
       "type": "content",
       "ja": "検証と提案に「高校段階を地区に置けるか」を追加",
-      "en": "New section: could a high school fit in this district?"
+      "en": "New section: could a high school fit in this district?",
+      "link": "analysis.html#rev-highschool"
     },
     {
       "date": "2026-09-18",
@@ -651,7 +730,8 @@
       "date": "2026-09-15",
       "type": "feature",
       "ja": "スクールバスの対象エリア地図を拡大・縮小できるように",
-      "en": "School bus service area map can now be zoomed"
+      "en": "School bus service area map can now be zoomed",
+      "link": "bus.html#area-map"
     },
     {
       "date": "2026-09-15",
@@ -663,13 +743,15 @@
       "date": "2026-09-15",
       "type": "content",
       "ja": "地図ページにもスクールバスの対象エリア地図を掲載",
-      "en": "School bus service area map now also on the Map page"
+      "en": "School bus service area map now also on the Map page",
+      "link": "map.html#bus-area"
     },
     {
       "date": "2026-09-15",
       "type": "feature",
       "ja": "トップの「最新の動き」に、前回見たあと増えた項目の印を追加",
-      "en": "Home page now marks items added since your last visit"
+      "en": "Home page now marks items added since your last visit",
+      "link": "index.html#latest"
     },
     {
       "date": "2026-09-15",
@@ -681,7 +763,8 @@
       "date": "2026-09-15",
       "type": "fix",
       "ja": "スクールバスの対象エリア地図の凡例を、地図の色と範囲に合わせて修正",
-      "en": "School bus map legend corrected to match the map's colours and extent"
+      "en": "School bus map legend corrected to match the map's colours and extent",
+      "link": "bus.html#area-map"
     },
     {
       "date": "2026-09-14",
@@ -705,61 +788,71 @@
       "date": "2026-09-14",
       "type": "feature",
       "ja": "自動取得の見出しを9言語に翻訳し、各ページの表記と見出しを統一",
-      "en": "Auto-fetched headlines translated; wording and headings unified"
+      "en": "Auto-fetched headlines translated; wording and headings unified",
+      "link": "index.html#latest"
     },
     {
       "date": "2026-09-14",
       "type": "content",
       "ja": "議会審議の第2回定例会に委員会の義務教育学校視察などを追記",
-      "en": "June 2026 session expanded, incl. a committee school study visit"
+      "en": "June 2026 session expanded, incl. a committee school study visit",
+      "link": "council.html#council-visit"
     },
     {
       "date": "2026-09-13",
       "type": "content",
       "ja": "議会審議に令和8年第2回定例会と傍聴・請願の案内を追加",
-      "en": "June 2026 council session and how to attend or petition added"
+      "en": "June 2026 council session and how to attend or petition added",
+      "link": "council.html#council-r2"
     },
     {
       "date": "2026-09-13",
       "type": "content",
       "ja": "スクールバスのQ&Aを最新の説明会の回答に更新し4件追加",
-      "en": "School bus Q&A updated and four new questions added"
+      "en": "School bus Q&A updated and four new questions added",
+      "link": "bus.html#faq"
     },
     {
       "date": "2026-09-13",
       "type": "content",
       "ja": "よくある質問を12件から20件に拡充（説明会の質疑から）",
-      "en": "FAQ expanded from 12 to 20 questions, drawn from the briefings"
+      "en": "FAQ expanded from 12 to 20 questions, drawn from the briefings",
+      "link": "faq.html#qa"
     },
     {
       "date": "2026-09-13",
       "type": "content",
       "ja": "賛否の声にパブリックコメント142件の論点と市の回答を追加",
-      "en": "Public comment topics and the city's responses added to Community Voices"
+      "en": "Public comment topics and the city's responses added to Community Voices",
+      "link": "faq.html#pubcom"
     },
     {
       "date": "2026-09-13",
       "type": "feature",
       "ja": "東部まちづくりの欄にこれからの催しと直近2か月の動き",
-      "en": "Upcoming events and the last two months of eastern-district updates"
+      "en": "Upcoming events and the last two months of eastern-district updates",
+      "link": "community.html#community-actions"
     },
     {
       "date": "2026-09-13",
       "type": "feature",
       "ja": "地域の取組の欄に市の東部まちづくりの動きを毎日自動で掲載",
-      "en": "Eastern-district updates from the city now shown in Community Efforts"
+      "en": "Eastern-district updates from the city now shown in Community Efforts",
+      "link": "community.html#community-actions"
     },
     {
       "date": "2026-09-13",
       "type": "content",
       "ja": "市・県・国と議会・運行事業者の連絡先を各ページに掲載",
-      "en": "Contact details for the city, prefecture, state, council and bus operator added"
+      "en": "Contact details for the city, prefecture, state, council and bus operator added",
+      "link": "about.html#contact"
     },
     {
       "date": "2026-09-06",
       "type": "fix",
       "ja": "市公式サイトお知らせの日付を各言語の表記に対応",
-      "en": "Dates in the official-announcements corner now follow each language's format"
+      "en": "Dates in the official-announcements corner now follow each language's format",
+      "link": "index.html#news"
     },
     {
       "date": "2026-09-06",
@@ -771,19 +864,22 @@
       "date": "2026-09-06",
       "type": "content",
       "ja": "検証と提案ページに市・県・国の施策の検証を追加",
-      "en": "Review of past city, prefectural and national policies added"
+      "en": "Review of past city, prefectural and national policies added",
+      "link": "analysis.html#rev-nation"
     },
     {
       "date": "2026-09-05",
       "type": "content",
       "ja": "しのおか学園の校章決定（9月4日公表）を反映",
-      "en": "Shinooka Gakuen emblem decision (4 Sep) reflected"
+      "en": "Shinooka Gakuen emblem decision (4 Sep) reflected",
+      "link": "schedule.html"
     },
     {
       "date": "2026-09-05",
       "type": "fix",
       "ja": "対象エリアの地図の凡例に通学区域の色分けを追加",
-      "en": "Map legend now explains the school-district fill colours"
+      "en": "Map legend now explains the school-district fill colours",
+      "link": "bus.html#area-map"
     },
     {
       "date": "2026-09-04",
@@ -801,7 +897,8 @@
       "date": "2026-09-03",
       "type": "content",
       "ja": "地域の取組をスケジュールとカレンダーにも反映",
-      "en": "Community efforts now also appear in the schedule and calendar"
+      "en": "Community efforts now also appear in the schedule and calendar",
+      "link": "schedule.html"
     },
     {
       "date": "2026-09-03",
@@ -813,7 +910,8 @@
       "date": "2026-09-03",
       "type": "content",
       "ja": "トップの「最新の動き」に地域の取組を追加",
-      "en": "Community efforts now also shown in Latest Updates on the top page"
+      "en": "Community efforts now also shown in Latest Updates on the top page",
+      "link": "index.html#latest"
     },
     {
       "date": "2026-09-02",
@@ -825,7 +923,8 @@
       "date": "2026-09-02",
       "type": "content",
       "ja": "地域の取組に新学校区交流ミュージックフェスティバルを追加",
-      "en": "Music festival for the new school district added to community efforts"
+      "en": "Music festival for the new school district added to community efforts",
+      "link": "community.html#community-actions"
     },
     {
       "date": "2026-09-02",
@@ -837,7 +936,8 @@
       "date": "2026-09-02",
       "type": "content",
       "ja": "「検証と提案」ページを10言語に対応",
-      "en": "Review & ideas page now available in all ten languages"
+      "en": "Review & ideas page now available in all ten languages",
+      "link": "review.html"
     },
     {
       "date": "2026-08-30",
@@ -849,7 +949,8 @@
       "date": "2026-08-30",
       "type": "feature",
       "ja": "スケジュールに「お子さんの学年で見る」を追加。予定のカレンダー取込にも対応",
-      "en": "Schedule page: view dates by your child’s school year, and export them to your calendar"
+      "en": "Schedule page: view dates by your child’s school year, and export them to your calendar",
+      "link": "schedule.html#grade-select"
     },
     {
       "date": "2026-08-30",
@@ -861,49 +962,57 @@
       "date": "2026-08-30",
       "type": "fix",
       "ja": "対象エリアの地図を市の公表図と同じ範囲・縮尺に作り直し、紫の範囲も読み直し",
-      "en": "Service-area map rebuilt to match the city figure’s extent, scale and shading"
+      "en": "Service-area map rebuilt to match the city figure’s extent, scale and shading",
+      "link": "bus.html#area-map"
     },
     {
       "date": "2026-08-28",
       "type": "content",
       "ja": "公表資料で確認できない点と当サイトの提案をまとめた「検証と提案」ページを新設",
-      "en": "New “Review & ideas” page: gaps in the published material, and our proposals"
+      "en": "New “Review & ideas” page: gaps in the published material, and our proposals",
+      "link": "review.html"
     },
     {
       "date": "2026-08-28",
       "type": "fix",
       "ja": "対象エリアの地図の通学区域を国の公表データから引き直し、面積が市の公表値と一致",
-      "en": "School-district boundary on the map rebuilt from national open data"
+      "en": "School-district boundary on the map rebuilt from national open data",
+      "link": "bus.html#area-map"
     },
     {
       "date": "2026-08-27",
       "type": "feature",
       "ja": "トップページ下部の自動更新コーナーを「最新の動き」に集約し、関連ページ導線を追加",
-      "en": "Auto-updating corners grouped under “Latest updates”, with new cross-links"
+      "en": "Auto-updating corners grouped under “Latest updates”, with new cross-links",
+      "link": "index.html#latest"
     },
     {
       "date": "2026-08-26",
       "type": "content",
       "ja": "「地域の取組」を地域協議会ページへ移動し、地域協議会のイベント案内の隣に配置",
-      "en": "“Community efforts” moved to the community council page, next to the council events listing"
+      "en": "“Community efforts” moved to the community council page, next to the council events listing",
+      "link": "community.html#community-actions"
     },
     {
       "date": "2026-08-26",
       "type": "fix",
       "ja": "「現在の状況」と「主要イベント一覧」の時系列を正しい順序に整列",
-      "en": "Current Status and Key Events lists put back into correct chronological order"
+      "en": "Current Status and Key Events lists put back into correct chronological order",
+      "link": "schedule.html"
     },
     {
       "date": "2026-08-26",
       "type": "content",
       "ja": "「学校再編だより」vol.3・vol.4と入札結果を反映し、「地域の取組」を新設",
-      "en": "Newsletters vol.3–4 and the tender result reflected; “Local initiatives” added"
+      "en": "Newsletters vol.3–4 and the tender result reflected; “Local initiatives” added",
+      "link": "community.html#community-actions"
     },
     {
       "date": "2026-08-25",
       "type": "content",
       "ja": "「学校再編だより」vol.6 を反映し、バスの申請手続きと対象エリアの地図を追加",
-      "en": "Newsletter vol.6 reflected: bus application steps and the service-area map"
+      "en": "Newsletter vol.6 reflected: bus application steps and the service-area map",
+      "link": "bus.html#apply"
     },
     {
       "date": "2026-08-23",
@@ -915,7 +1024,8 @@
       "date": "2026-08-22",
       "type": "content",
       "ja": "全国の廃校数や国の基準をまとめた「全国の動き」ページを新設",
-      "en": "New page on school reorganization nationwide (MEXT statistics and national standards)"
+      "en": "New page on school reorganization nationwide (MEXT statistics and national standards)",
+      "link": "nationwide.html"
     },
     {
       "date": "2026-08-16",
@@ -933,7 +1043,8 @@
       "date": "2026-08-13",
       "type": "feature",
       "ja": "地域協議会ページに市のイベント案内コーナーを新設",
-      "en": "City's community-council event listings added to the community councils page"
+      "en": "City's community-council event listings added to the community councils page",
+      "link": "community.html#council-events"
     },
     {
       "date": "2026-08-13",
@@ -969,7 +1080,8 @@
       "date": "2026-08-13",
       "type": "fix",
       "ja": "トルコ語・ビルマ語のカレンダー表記を修正",
-      "en": "Turkish and Burmese calendar labels fixed"
+      "en": "Turkish and Burmese calendar labels fixed",
+      "link": "schedule.html#calendar-view"
     },
     {
       "date": "2026-08-12",
@@ -981,43 +1093,50 @@
       "date": "2026-08-12",
       "type": "feature",
       "ja": "対象8校のホームページ更新コーナーを新設（地図ページに各校リンクも追加）",
-      "en": "New section for the eight schools' website updates (school links also on the map page)"
+      "en": "New section for the eight schools' website updates (school links also on the map page)",
+      "link": "index.html#latest"
     },
     {
       "date": "2026-08-12",
       "type": "content",
       "ja": "地域協議会ページに篠岡地区5協議会の一覧と防犯分野の活動を追加",
-      "en": "List of the five Shinooka community councils and their crime-prevention activities added"
+      "en": "List of the five Shinooka community councils and their crime-prevention activities added",
+      "link": "community.html#what"
     },
     {
       "date": "2026-08-12",
       "type": "feature",
       "ja": "トップページ冒頭に現況を1文で示す「いまの状況」枠を追加",
-      "en": "One-sentence current-status box added at the top of the home page"
+      "en": "One-sentence current-status box added at the top of the home page",
+      "link": "index.html"
     },
     {
       "date": "2026-08-12",
       "type": "content",
       "ja": "6月の保護者等説明会の質疑応答と意見への回答の公開を反映（公式7月21日更新分）",
-      "en": "City's July 21 publication of briefing Q&A and responses to opinions reflected"
+      "en": "City's July 21 publication of briefing Q&A and responses to opinions reflected",
+      "link": "faq.html#qa"
     },
     {
       "date": "2026-07-11",
       "type": "content",
       "ja": "城山3・4丁目のバス対象外注記・再編だより第5号・校章選考中を追加",
-      "en": "Notes on Shiroyama 3/4-chome bus exclusion, newsletter No. 5, and crest selection added"
+      "en": "Notes on Shiroyama 3/4-chome bus exclusion, newsletter No. 5, and crest selection added",
+      "link": "bus.html#area"
     },
     {
       "date": "2026-07-11",
       "type": "feature",
       "ja": "市公式サイトの更新を毎日自動検知する仕組みを導入",
-      "en": "Daily automatic detection of city website updates introduced"
+      "en": "Daily automatic detection of city website updates introduced",
+      "link": "index.html#news"
     },
     {
       "date": "2026-06-01",
       "type": "feature",
       "ja": "スケジュールページに月別カレンダーを追加",
-      "en": "Monthly calendar added to the schedule page"
+      "en": "Monthly calendar added to the schedule page",
+      "link": "schedule.html#calendar-view"
     },
     {
       "date": "2026-05-24",

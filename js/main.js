@@ -2266,13 +2266,17 @@ window.KomakiGrade = (function () {
         // 本文は 対象言語 → en → ja の順（i18n.js のフォールバックと揃える）
         var text = it[_ul] || it.en || it.ja || '';
         var type = (it.type === 'feature' || it.type === 'fix') ? it.type : 'content';
+        // link（任意、2026-11-10）：その行に関係するコーナー。サイト内の「ページ.html(#id)」だけを通す
+        var link = /^[a-z0-9-]+\.html(#[A-Za-z0-9_-]+)?$/.test(it.link || '') ? it.link : '';
         // data-key は SINCE LAST VISIT が「前回見たか」を言語に関係なく照合するための目印
         return '<li class="update-item" data-date="' + esc(it.date || '') + '" data-key="' + esc((it.date || '') + '|' + (it.ja || '')) + '">' +
                  '<div class="update-meta">' +
                    '<time class="update-date" datetime="' + esc(it.date || '') + '">' + esc(fmtDate(it.date)) + '</time>' +
                    '<span class="update-tag update-tag--' + type + '">' + str(type) + '</span>' +
                  '</div>' +
-                 '<div class="update-text">' + esc(text) + '</div>' +
+                 '<div class="update-text">' + (link
+                   ? '<a class="update-link" href="' + esc(link) + '">' + esc(text) + '</a>'
+                   : esc(text)) + '</div>' +
                '</li>';
       }).join('') + '</ol>';
     })

@@ -96,7 +96,9 @@ def collect():
         d = iso_of(it.get("date", ""))
         t = it.get("ja", "")
         if d and t:
-            out.append((d, t, "サイトの更新履歴", "index.html#site-updates", entry_id("site", d, t)))
+            link = it.get("link", "")
+            href = link if re.fullmatch(r"[a-z0-9-]+\.html(#[A-Za-z0-9_-]+)?", link or "") else "index.html#site-updates"
+            out.append((d, t, "サイトの更新履歴", href, entry_id("site", d, t)))
     # 新しい順。同じ日付の中は種類と題名で決まった順にして、出力を毎回同じにする。
     out.sort(key=lambda e: (e[0], e[2], e[1]), reverse=True)
     seen, uniq = set(), []

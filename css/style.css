@@ -832,6 +832,8 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 .update-tag--content { background: var(--primary-light); color: var(--primary); }
 .update-tag--feature { background: var(--accent-light); color: #8a6200; }
 .update-tag--fix     { background: #f0f4f1; color: #4a6050; }
+.update-link { color: inherit; text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: .2em; text-decoration-thickness: 2px; }
+.update-link:hover, .update-link:focus-visible { color: var(--primary); }
 .update-text {
   font-size: .88rem;
   line-height: 1.7;

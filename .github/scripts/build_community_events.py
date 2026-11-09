@@ -176,6 +176,7 @@ def add_site_updates(events):
             "type": "content",
             "ja": head + title + tail,
             "en": "Community council event added to community efforts and the schedule",
+            "link": "community.html#council-events",
             "auto_key": ev["url"],
         })
         seen.add(ev["url"])

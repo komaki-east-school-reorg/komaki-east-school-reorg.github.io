@@ -236,6 +236,7 @@ def add_site_updates(events):
             "type": "content",
             "ja": head + title + tail,
             "en": "City planning date for the eastern district added to the schedule",
+            "link": "community.html#toshikeikaku",
             "auto_key": key,
         })
         seen.add(key)
