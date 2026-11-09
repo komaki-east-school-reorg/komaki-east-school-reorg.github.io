@@ -1,8 +1,66 @@
 {
-  "fetched_at": "2026-11-08T01:56:28Z",
+  "fetched_at": "2026-11-09T01:55:35Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "hikarigaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "光ヶ丘小学校",
+        "ja_kids": "ひかりがおか小学校",
+        "en": "Hikarigaoka Elem. School",
+        "zh": "光之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
+      "latest_date": "2026-11-09",
+      "items": [
+        {
+          "title": "【兒の森クラブ】第3回「ちごの森でワクワク体験」を実施しました！",
+          "date": "2026-11-09",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136512844?tm=20261109095342"
+        },
+        {
+          "title": "やまももくらぶ「おさんぼペット”まもちゃん”を作りました」",
+          "date": "2026-11-05",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136499324?tm=20261105180858"
+        },
+        {
+          "title": "６年生 昼休み",
+          "date": "2026-11-05",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136497475?tm=20261105153723"
+        }
+      ]
+    },
+    {
+      "slug": "sue-e",
+      "level": "elem",
+      "names": {
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-11-08",
+      "items": [
+        {
+          "title": "11/8 スクールバス体験乗車会【２】２日目",
+          "date": "2026-11-08",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136511250?tm=20261108110327"
+        },
+        {
+          "title": "秋季火災予防運動",
+          "date": "2026-11-07",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136510151?tm=20261107134825"
+        },
+        {
+          "title": "スクールバス体験乗車会【２】",
+          "date": "2026-11-07",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136510119?tm=20261107213503"
+        }
+      ]
+    },
     {
       "slug": "toryo-j",
       "level": "jhs",
@@ -29,35 +87,6 @@
           "title": "【サッカー部】 新人戦優勝 愛日大会へ",
           "date": "2026-11-04",
           "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136484571?tm=20261104074514"
-        }
-      ]
-    },
-    {
-      "slug": "sue-e",
-      "level": "elem",
-      "names": {
-        "ja": "陶小学校",
-        "ja_kids": "すえ小学校",
-        "en": "Sue Elem. School",
-        "zh": "陶小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-11-07",
-      "items": [
-        {
-          "title": "秋季火災予防運動",
-          "date": "2026-11-07",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136510151?tm=20261107134825"
-        },
-        {
-          "title": "スクールバス体験乗車会【２】",
-          "date": "2026-11-07",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136510119?tm=20261107213503"
-        },
-        {
-          "title": "11/6 玉入れの練習（１～３年生）",
-          "date": "2026-11-06",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136506703?tm=20261106161712"
         }
       ]
     },
@@ -174,35 +203,6 @@
           "title": "「円と球」",
           "date": "2026-11-05",
           "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136489822?tm=20261104161908"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "光ヶ丘小学校",
-        "ja_kids": "ひかりがおか小学校",
-        "en": "Hikarigaoka Elem. School",
-        "zh": "光之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
-      "latest_date": "2026-11-05",
-      "items": [
-        {
-          "title": "やまももくらぶ「おさんぼペット”まもちゃん”を作りました」",
-          "date": "2026-11-05",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136499324?tm=20261105180858"
-        },
-        {
-          "title": "６年生 昼休み",
-          "date": "2026-11-05",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136497475?tm=20261105153723"
-        },
-        {
-          "title": "６年生 給食",
-          "date": "2026-11-05",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136495003?tm=20261105122403"
         }
       ]
     },
