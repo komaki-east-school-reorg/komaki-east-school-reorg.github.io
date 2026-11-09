@@ -424,7 +424,6 @@ nav ul {
 .footer-app { margin-top: .4rem; font-size: .82rem; }
 .footer-tr { margin-top: .7rem; font-size: .82rem; }   /* 外国語表示だけ（TRANSLATION HELP） */
 .footer-tr a { color: var(--accent); font-weight: 700; }
-.corr-where { white-space: nowrap; font-size: .85rem; }
 .footer-app a { color: var(--accent); font-weight: 700; }
 .footer-app a[hidden], .nav-app-link[hidden] { display: none; }
 /* 「このサイトについて」（2026-10-31 ユーザー指示）。PC のナビは9項目のまま、ハンバーガーメニューにだけ出す。 */

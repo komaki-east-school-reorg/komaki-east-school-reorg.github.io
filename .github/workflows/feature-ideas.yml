@@ -122,6 +122,7 @@ jobs:
               キャッシュを先に出す・全ページを先に保存する・プッシュ通知など、古い内容を最新に
               見せたり読者を追跡したりする案は出さない
             - **新聞報道のコーナーは 2026-10-10 に廃止した**。新聞記事を載せる・取り込む案は出さない
+            - **訂正の記録（サイト自身の誤りの一覧）は 2026-11-09 に廃止した**。訂正・誤りを一覧で公表する案は出さない
             - `data/` 配下の自動生成ファイル（news.json, school_news.json,
               community_events.json, tobu_actions.json, toshikeikaku_east.json, i18n/pages/, official_pages/）を
               手編集する前提の案は出さない。link_check.json・fetch_status.json も自動生成

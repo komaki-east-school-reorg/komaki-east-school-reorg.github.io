@@ -3,12 +3,6 @@
   "updates": [
     {
       "date": "2026-11-08",
-      "type": "content",
-      "ja": "「このサイトについて」に訂正の記録を掲載",
-      "en": "A record of corrections added to About This Site"
-    },
-    {
-      "date": "2026-11-08",
       "type": "feature",
       "ja": "外国語版の翻訳の修正を提案できる窓口を追加",
       "en": "A way to suggest better translations for the foreign-language versions"

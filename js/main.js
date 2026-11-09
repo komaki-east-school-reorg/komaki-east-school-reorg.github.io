@@ -2280,54 +2280,6 @@ window.KomakiGrade = (function () {
     });
 })();
 
-/* ===== CORRECTIONS ===== */
-/* 訂正の記録（site.html#corrections、2026-11-08 ユーザー指示）。data/corrections.json は手動管理。
-   全件を新しい順に出す。本文は 表示言語 → en → ja（更新履歴と同じ）。該当箇所はサイト内のリンクだけ。 */
-(function () {
-  var box = document.getElementById('corrections-container');
-  if (!box) return;
-  var L = window.KomakiLang();
-  var T = {
-    tag:   {ja:'訂正', en:'Correction', pt:'Correção', vi:'Đính chính', tl:'Pagwawasto', es:'Corrección', zh:'更正', id:'Ralat', ko:'정정', ne:'सच्याइएको', tr:'Düzeltme', my:'ပြင်ဆင်ချက်'},
-    where: {ja:'該当箇所を見る →', en:'See the section →', pt:'Ver o trecho →', vi:'Xem phần liên quan →', tl:'Tingnan ang bahagi →', es:'Ver la sección →', zh:'查看相关部分 →', id:'Lihat bagiannya →', ko:'해당 부분 보기 →', ne:'सम्बन्धित भाग हेर्नुहोस् →', tr:'İlgili bölümü görün →', my:'သက်ဆိုင်ရာ အပိုင်းကို ကြည့်ရန် →'},
-    none:  {ja:'訂正の記録はまだありません。', en:'No corrections recorded yet.', pt:'Ainda não há correções.', vi:'Chưa có đính chính nào.', tl:'Wala pang naitalang pagwawasto.', es:'Aún no hay correcciones.', zh:'尚无更正记录。', id:'Belum ada ralat.', ko:'정정 기록이 아직 없습니다.', ne:'अहिलेसम्म कुनै सच्याइ छैन।', tr:'Henüz kayıtlı düzeltme yok.', my:'ပြင်ဆင်ချက် မှတ်တမ်း မရှိသေးပါ။'},
-    error: {ja:'訂正の記録を取得できませんでした。', en:'Could not load the corrections.', pt:'Não foi possível carregar as correções.', vi:'Không tải được các đính chính.', tl:'Hindi ma-load ang mga pagwawasto.', es:'No se pudieron cargar las correcciones.', zh:'无法加载更正记录。', id:'Gagal memuat ralat.', ko:'정정 기록을 가져오지 못했습니다.', ne:'सच्याइको विवरण लोड गर्न सकिएन।', tr:'Düzeltmeler yüklenemedi.', my:'ပြင်ဆင်ချက်များ မဖွင့်နိုင်ပါ။'}
-  };
-  function str(k) { return T[k][L] || T[k].en; }
-  function esc(s) {
-    return String(s).replace(/[&<>"]/g, function (c) { return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]; });
-  }
-  function fmtDate(iso) {
-    var p = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
-    if (!p) return iso || '';
-    try {
-      return new Date(+p[1], +p[2] - 1, +p[3]).toLocaleDateString(L === 'ja' ? 'ja-JP' : L, {year: 'numeric', month: 'short', day: 'numeric'});
-    } catch (e) { return iso; }
-  }
-  // サイト内のページだけを許す（外へのリンクにしない）
-  function inSite(page) { return /^[a-z0-9-]+\.html(#[A-Za-z0-9_-]+)?$/.test(page || '') ? page : ''; }
-  fetch('./data/corrections.json')
-    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function (data) {
-      var items = (data.items || []).slice();
-      if (!items.length) { box.innerHTML = '<p class="school-empty">' + str('none') + '</p>'; return; }
-      items.sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); });
-      box.innerHTML = '<ol class="update-list corr-list">' + items.map(function (it) {
-        var page = inSite(it.page);
-        return '<li class="update-item">' +
-                 '<div class="update-meta">' +
-                   '<time class="update-date" datetime="' + esc(it.date || '') + '">' + esc(fmtDate(it.date)) + '</time>' +
-                   '<span class="update-tag update-tag--fix">' + str('tag') + '</span>' +
-                 '</div>' +
-                 '<div class="update-text">' + esc(it[L] || it.en || it.ja || '') +
-                   (page ? ' <a class="corr-where" href="' + esc(page) + '">' + str('where') + '</a>' : '') +
-                 '</div>' +
-               '</li>';
-      }).join('') + '</ol>';
-    })
-    .catch(function () { box.innerHTML = '<p class="official-news-error">' + str('error') + '</p>'; });
-})();
-
 /* ===== TRANSLATION HELP ===== */
 /* 外国語表示のときだけ、全ページのフッタに「翻訳の確認にご協力ください」の一行を足す（2026-11-08）。
    行き先は site.html#translation。文言は辞書の tr_footer（RUNTIME_KEYS）。日本語・こどもむけでは出さない。 */
