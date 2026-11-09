@@ -5,7 +5,8 @@
 (function () {
   var MOVES = {
     review: ['analysis.html', ['rev-gaps', 'rev-power', 'rev-quality', 'rev-skills', 'rev-history',
-                               'rev-nation', 'rev-should', 'rev-ideas', 'rev-highschool', 'rev-open']],
+                               'rev-nation', 'rev-should', 'rev-ideas', 'rev-highschool']],
+    analysis: ['review.html', ['rev-open']],   // 質問集は 2026-11-09 に review.html へ移した
     index: ['site.html', ['site-intro', 'app', 'spread', 'feedback', 'privacy']]
   };
   // 移り先で id が変わったもの：「ページ#古いid」→「新しいページ#新しいid」
