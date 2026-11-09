@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>深掘り検証 – 小牧市東部（篠岡地区）学校再編ナビ</title>
-  <meta name="description" content="小牧市東部（篠岡地区）の学校再編を、計画そのもの・教育の質・子どもの人数の3部に分けて、根拠からくわしく検証する当サイトの考察です。公表資料からはわからないことの一覧も載せています（市の見解ではありません）。">
+  <meta name="description" content="小牧市東部（篠岡地区）の学校再編を、計画そのもの・教育の質・子どもの人数の3部に分けて、根拠からくわしく検証する当サイトの考察です。市・教育委員会への質問集も載せています（市の見解ではありません）。">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="小牧市東部（篠岡地区）学校再編ナビ｜桃花台エリアの非公式でもわかりやすい地域情報メディア">
   <meta property="og:title" content="深掘り検証 – 小牧市東部（篠岡地区）学校再編ナビ">
-  <meta property="og:description" content="小牧市東部（篠岡地区）の学校再編を、計画そのもの・教育の質・子どもの人数の3部に分けて、根拠からくわしく検証する当サイトの考察です。公表資料からはわからないことの一覧も載せています（市の見解ではありません）。">
+  <meta property="og:description" content="小牧市東部（篠岡地区）の学校再編を、計画そのもの・教育の質・子どもの人数の3部に分けて、根拠からくわしく検証する当サイトの考察です。市・教育委員会への質問集も載せています（市の見解ではありません）。">
   <meta property="og:url" content="https://komaki-east-school-reorg.github.io/analysis.html">
   <meta property="og:image" content="https://komaki-east-school-reorg.github.io/img/og-image.png?v=20261011">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="深掘り検証 – 小牧市東部（篠岡地区）学校再編ナビ">
-  <meta name="twitter:description" content="小牧市東部（篠岡地区）の学校再編を、計画そのもの・教育の質・子どもの人数の3部に分けて、根拠からくわしく検証する当サイトの考察です。公表資料からはわからないことの一覧も載せています（市の見解ではありません）。">
+  <meta name="twitter:description" content="小牧市東部（篠岡地区）の学校再編を、計画そのもの・教育の質・子どもの人数の3部に分けて、根拠からくわしく検証する当サイトの考察です。市・教育委員会への質問集も載せています（市の見解ではありません）。">
   <meta name="twitter:image" content="https://komaki-east-school-reorg.github.io/img/og-image.png?v=20261011">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.ja.webmanifest">
@@ -74,6 +74,28 @@
       font-weight: 800;
       color: var(--primary-dark);
       margin: 2rem 0 1rem;
+    }
+    /* 市・教育委員会への質問集（#rev-open） */
+    .ask-intro { display: flex; gap: 1.2rem; align-items: center; margin-bottom: 1rem; }
+    .ask-intro .section-lead { margin: 0; }
+    .ask-pic { flex: none; width: 160px; height: auto; }
+    .ask-flow { list-style: none; margin: 0 0 1.6rem; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem .4rem; align-items: center; }
+    .ask-flow li { background: var(--white); border: 2px solid var(--primary); border-radius: 999px; padding: .35rem .9rem; font-weight: 700; font-size: .9rem; color: var(--primary); }
+    .ask-flow li + li::before { content: "→"; margin: 0 .45rem 0 -.1rem; color: inherit; opacity: .75; }
+    .ask-flow li:last-child { background: var(--primary); color: var(--white); }
+    .ask-flow li + li { position: relative; }
+    .ask-list { list-style: none; margin: 0 0 1.6rem; padding: 0; counter-reset: ask; display: grid; gap: .8rem; }
+    .ask-list--cont { counter-reset: ask 20; }
+    .ask-item { counter-increment: ask; position: relative; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .9rem 1rem .9rem 3.6rem; }
+    .ask-item::before { content: "Q" counter(ask); position: absolute; left: .8rem; top: .85rem; min-width: 2.2rem; height: 2.2rem; border-radius: 999px; background: var(--accent); color: var(--primary-dark); font-weight: 800; font-size: .82rem; display: flex; align-items: center; justify-content: center; }
+    .ask-q { margin: 0 0 .5rem; font-weight: 700; line-height: 1.7; }
+    .ask-meta { margin: 0; display: flex; flex-wrap: wrap; gap: .4rem .9rem; align-items: center; font-size: .85rem; }
+    .ask-to { display: inline-flex; flex-wrap: wrap; gap: .1rem .5rem; background: #e6f0e8; border-radius: 6px; padding: .15rem .6rem; }
+    .ask-to-l { font-weight: 700; }
+    .ask-rel { white-space: nowrap; }
+    @media (max-width: 560px) {
+      .ask-intro { flex-direction: column; align-items: flex-start; }
+      .ask-pic { width: 120px; }
     }
     .rev-open { margin: 0; padding-left: 1.2rem; }
     .rev-open li { font-size: .93rem; line-height: 1.9; margin-bottom: .3rem; }
@@ -314,7 +336,7 @@
           </ul>
         </div>
       </div>
-      <p class="rev-guide-end"><span data-i18n="rev_guide_last">最後に：</span> <a href="#rev-open" data-i18n="rev_open_short">確認できなかったこと（28項目）</a> ・ <a href="#contact" data-i18n="rev_contact_short">問い合わせ先</a></p>
+      <p class="rev-guide-end"><span data-i18n="rev_guide_last">最後に：</span> <a href="#rev-open" data-i18n="rev_open_short">市・教育委員会への質問集（28問）</a> ・ <a href="#contact" data-i18n="rev_contact_short">問い合わせ先</a></p>
     </div>
   </section>
 
@@ -994,50 +1016,145 @@
       </div>
 
       <p style="margin-top:1.4rem; font-size:.9rem; color:var(--text-muted);" data-i18n="rev_s10_note">ここで述べるのは、「高校をつくれば子どもが増える」ということではありません。大学が地区から出ていき、県立高校も減っていくなかで、高校を置くのは流れに逆らう提案です。それでも、校地の使い道が決まってしまえば、選択肢そのものがなくなります。決める前に一度検討しておくべきだ、というのがここでの考えです。</p>
-      <p class="rev-partnav"><a href="#rev-open" data-i18n="rev_next_end">確認できなかったことへ →</a><a href="review.html#rev-core" data-i18n="rev_to_core">↑ 要点（核心）に戻る</a></p>
+      <p class="rev-partnav"><a href="#rev-open" data-i18n="rev_next_end">質問集へ →</a><a href="review.html#rev-core" data-i18n="rev_to_core">↑ 要点（核心）に戻る</a></p>
     </div>
   </section>
 
-  <!-- ===== 限界の明示（24項目すべて。review.html には要点側の6つだけを置く）===== -->
+  <!-- ===== 市・教育委員会への質問集（2026-11-09 ユーザー指示。旧「確認できなかったこと」を組み替えた）=====
+       公表資料でわからなかったことは、ここ1か所に問いの形で置く（似た文言をほかに書かない）。
+       当サイトは送っていない（載せるだけ。送付・回答の状態は持たない）。答えが公表されたら問いを外し、本文に事実として書く。
+       宛先の部署名は日本語のまま（data-i18n なし。下の連絡先表と同じ考え方）。関連リンクは根拠のカードの id。 -->
   <section class="section" id="rev-open">
     <div class="container" style="max-width:900px;">
-      <h2 class="section-title ill-h ill-h--talk" data-i18n-html="rev_s4_h">確認できなかったこと<small>Open Questions</small></h2>
-      <p style="margin-bottom:1rem;" data-i18n="rev_s4_lead">公表資料からはわからなかったことを、ここに一つにまとめます。「存在しない」という意味ではありません。</p>
-      <h3 class="rev-subh" data-i18n="rev_o_h1">計画の要点にかかわるもの</h3>
-      <ul class="rev-open">
-        <li data-i18n="rev_o1">児童生徒数の将来推計に使われた前提（出生数・転入転出・住宅供給の見込み）</li>
-        <li data-i18n="rev_o2">第2期再編に進む判断の具体的な基準と、小規模特認校など別の道を検討しているかどうか</li>
-        <li data-i18n="rev_o3">閉校となる8校の施設ごとの活用方針と時期、傷みぐあいと改修費</li>
-        <li data-i18n="rev_o4">篠岡地区の空き家数・住宅供給・年齢別人口の推移と、通勤の流れや公共交通の使われ方</li>
-        <li data-i18n="rev_o5">スクールバス利用ガイドラインの内容（子どもに任せる範囲を含む）</li>
-        <li data-i18n="rev_o6">学校再編の検討に市長部局がどう関与しているか</li>
-      </ul>
-      <h3 class="rev-subh" data-i18n="rev_o_h2">深掘り検証で取り上げたことにかかわるもの</h3>
-      <ul class="rev-open">
-        <li data-i18n="rev_o7">東部振興構想のKPI（生産年齢人口比率）の現時点の実績値</li>
-        <li data-i18n="rev_o8">定住促進の補助金・奨励金が東部地域でどれだけ使われたか</li>
-        <li data-i18n="rev_o9">桃花台地区計画の見直しが検討されているかどうか</li>
-        <li data-i18n="rev_o10">企業立地の支援制度に、工場・物流以外の業種を対象とする枠があるかどうか</li>
-        <li data-i18n="rev_o11">東部地域の住宅地の再生について、県と市が協議しているかどうか</li>
-        <li data-i18n="rev_o12">「令和15年に各学年1学級」という見込みが、35人学級の完成を織り込んだものかどうか</li>
-        <li data-i18n="rev_o13">篠岡小・篠岡中の敷地面積と校舎の状態、転用にかかる費用</li>
-        <li data-i18n="rev_o14">篠岡地区の中学生の進学先の内訳と、県と市が高校の在り方（中学校と高校の連携を含む）を協議しているかどうか</li>
-        <li data-i18n="rev_o15">誉高校が名古屋市へ移ったあと、小牧市内の校舎がどうなるか</li>
-        <li data-i18n="rev_o16">再編後の各校・各学年の学級数と、1学級の人数の見込み</li>
-        <li data-i18n="rev_o17">令和9年度の教職員配置で、先生の上乗せ（加配）があるかどうか</li>
-        <li data-i18n="rev_o18">地区の子どもの学力の現状と、再編後の学力・人間力の目標</li>
-        <li data-i18n="rev_o19">再編の教育上の効果を、市が何で確かめるのか</li>
-        <li data-i18n="rev_o20">学校再編準備調査研究委員会で決まった教育目標・教育課程（探究、委員会・行事の組み方、端末の使い方を含む）と、学校運営協議会で扱う議題</li>
-        <li data-i18n="rev_o21">再編後の中学校で、専門の先生がいる教科</li>
-        <li data-i18n="rev_o22">再編後の各校の養護教諭の人数と保健室の体制</li>
-        <li data-i18n="rev_o23">医療的ケアが必要な子の受け入れとバス通学</li>
-        <li data-i18n="rev_o24">通う学校と住む地域の避難所が別になることへの防災教育と、スクールバスに乗っているときの災害への備え</li>
-        <li data-i18n="rev_o25">各校の校歌・応援歌の作詞者・作曲者と権利の状態、録音が残っているか、閉校後の校旗や記録の保管先</li>
-        <li data-i18n="rev_o26">学校再編準備調査研究委員会で、これまでの学校の歌や行事、和太鼓部などの活動の扱いが話し合われているか</li>
-        <li data-i18n="rev_o27">篠岡音頭（新篠岡音頭）の由来と、池之内の祭りの日程</li>
-        <li data-i18n="rev_o28">再編後のPTA（保護者の会）を、もとの学校ごとの会からどうまとめていくか</li>
-      </ul>
-      <p style="margin-top:1rem;" data-i18n-html="rev_s4_note">これらは市の教育総務課 学校再編推進係（TEL: <a href="tel:0568395261">0568-39-5261</a>）にたずねることができます。答えがわかりしだい、このページを更新します。</p>
+      <h2 class="section-title ill-h ill-h--ask" data-i18n-html="rev_s4_h">市・教育委員会への質問集<small>Questions for the City</small></h2>
+      <div class="ask-intro">
+        <img class="ask-pic" src="img/illust/ask.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
+        <p class="section-lead" data-i18n-html="rev_s4_lead">公表資料ではわからなかったことを、当サイトが市・教育委員会にたずねたい問いの形でまとめました。当サイトが送ったものではありません。窓口にたずねるときの手がかりにしてください。答えが見つからないことは「存在しない」という意味ではありません。</p>
+      </div>
+      <ol class="ask-flow">
+        <li data-i18n="rev_ask_f1">公表資料を読む</li>
+        <li data-i18n="rev_ask_f2">わからないことを問いにする</li>
+        <li data-i18n="rev_ask_f3">窓口にたずねる</li>
+      </ol>
+      <h3 class="rev-subh" data-i18n="rev_o_h1">教育委員会へ</h3>
+      <ol class="ask-list">
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o1">児童生徒数の将来推計は、出生数・転入転出・住宅供給をどう見込んで出したのですか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 教育総務課 学校再編推進係</span></span> <a class="ask-rel" href="#rev-i1" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o2">第2期再編に進むかどうかは、どんな基準で判断するのですか？小規模特認校など、別の道も検討していますか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 教育総務課 学校再編推進係</span></span> <a class="ask-rel" href="#rev-i4" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o12">「令和15年に各学年1学級」という見込みは、35人学級が完成することを織り込んだものですか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 教育総務課 学校再編推進係</span></span> <a class="ask-rel" href="#rev-k4" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o16">再編後の各校・各学年の学級数と、1学級の人数はどれくらいの見込みですか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 教育総務課 学校再編推進係</span></span> <a class="ask-rel" href="#rev-k4" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o19">再編による教育上の効果を、市は何で確かめるのですか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 教育総務課 学校再編推進係</span></span> <a class="ask-rel" href="#rev-k1" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o3">閉校となる8校の施設は、学校ごとにいつ、どう使う方針ですか？建物の傷みぐあいと改修にかかる費用はどれくらいですか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 教育総務課 学校再編推進係</span></span> <a class="ask-rel" href="#rev-i6" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o13">篠岡小・篠岡中の敷地の広さと校舎の状態はどうですか？別の用途に変えるには、どれくらいの費用がかかりますか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 教育総務課 学校再編推進係</span></span> <a class="ask-rel" href="#rev-h3" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o5">スクールバスの利用ガイドラインには何が書かれますか？子どもに任せる範囲はどこまでですか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 教育総務課 学校再編推進係</span></span> <a class="ask-rel" href="#rev-k7" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o24">通う学校と住む地域の避難所が別になることについて、どんな防災教育をしますか？スクールバスに乗っているときの災害には、どう備えますか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 教育総務課 学校再編推進係</span></span> <a class="ask-rel" href="#rev-k7" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o17">令和9年度の教職員の配置で、先生の上乗せ（加配）はありますか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 学校教育課 学校教育係</span></span> <a class="ask-rel" href="#rev-k6" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o18">地区の子どもの学力は、いまどうなっていますか？再編後の学力・人間力の目標は何ですか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 学校教育課 学校教育係</span></span> <a class="ask-rel" href="#rev-k2" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o20">学校再編準備調査研究委員会では、どんな教育目標・教育課程（探究、委員会・行事の組み方、端末の使い方を含む）が決まりましたか？学校運営協議会では何を話し合いますか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 学校教育課 学校教育係</span></span> <a class="ask-rel" href="#rev-k6" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o21">再編後の中学校では、どの教科に専門の先生がいますか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 学校教育課 学校教育係</span></span> <a class="ask-rel" href="#rev-m-v1" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o22">再編後の各校の養護教諭は何人で、保健室はどんな体制になりますか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 学校教育課 学校教育係</span></span> <a class="ask-rel" href="#rev-k7" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o23">医療的ケアが必要な子どもの受け入れとバス通学は、どうなりますか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 学校教育課 学校教育係</span></span> <a class="ask-rel" href="#rev-k7" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o14">篠岡地区の中学生は、どの高校へ進んでいますか？高校のあり方（中学校と高校の連携を含む）について、市は県と協議していますか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 学校教育課 学校教育係</span></span> <a class="ask-rel" href="#rev-h1" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o28">再編後のPTA（保護者の会）は、もとの学校ごとの会からどうまとめていくのですか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 教育総務課 学校再編推進係</span></span> <a class="ask-rel" href="#rev-k5" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o25">各校の校歌・応援歌の作詞者・作曲者と権利の状態はどうなっていますか？録音は残っていますか？閉校後の校旗や記録はどこに保管しますか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 教育総務課 学校再編推進係</span></span> <a class="ask-rel" href="#rev-l-f4" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o26">学校再編準備調査研究委員会で、これまでの学校の歌や行事、和太鼓部などの活動の扱いは話し合われていますか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 教育総務課 学校再編推進係</span></span> <a class="ask-rel" href="#rev-l-f5" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o27">篠岡音頭（新篠岡音頭）は、どうやって生まれたのですか？池之内の祭りはいつ開かれますか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 文化財課 文化財係</span></span> <a class="ask-rel" href="#rev-l-f7" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+      </ol>
+      <h3 class="rev-subh" data-i18n="rev_o_h2">市長部局へ</h3>
+      <ol class="ask-list ask-list--cont">
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o6">学校再編の検討に、市長部局はどう関わっていますか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">市長公室 秘書政策課</span></span> <a class="ask-rel" href="#rev-r1" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o7">東部振興構想の目標（生産年齢人口の割合）は、いまどこまで達していますか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">都市政策部 東部まちづくり推進室</span></span> <a class="ask-rel" href="#rev-e6" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o4">篠岡地区の空き家の数、住宅の供給、年齢別の人口はどう移り変わっていますか？通勤の流れや公共交通の使われ方はどうですか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">都市政策部 都市計画課 居住推進係</span></span> <a class="ask-rel" href="#rev-e3" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o8">定住促進の補助金・奨励金は、東部地域でどれだけ使われましたか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">都市政策部 都市計画課 居住推進係</span></span> <a class="ask-rel" href="#rev-e2" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o9">桃花台の地区計画を見直すことは検討されていますか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">都市政策部 都市計画課 都市計画係</span></span> <a class="ask-rel" href="#rev-q1" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o11">東部地域の住宅地の再生について、市は県と協議していますか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">都市政策部 都市計画課 都市計画係</span></span> <a class="ask-rel" href="#rev-n3" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o10">企業立地の支援制度に、工場・物流以外の業種を対象とする枠はありますか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">地域活性化営業部 企業立地・次世代産業推進課</span></span> <a class="ask-rel" href="#rev-q4" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o15">誉高校が名古屋市へ移ったあと、小牧市内の校舎がどうなるかを、市は把握していますか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">市長公室 秘書政策課</span></span> <a class="ask-rel" href="#rev-h2" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+      </ol>
+      <p class="rev-open-note" data-i18n-html="rev_s4_note">宛先の電話番号は、下の「関係する部署の問い合わせ先」にあります。答えが公表されたら、その質問を外してページを更新します。</p>
     </div>
   </section>
 
