@@ -162,6 +162,7 @@ window.KomakiCount = (function () {
     ['.fs-btn', function (el) { var m = /fs-btn--([a-z]+)/.exec(el.className) || []; return 'font/' + (m[1] || 'x'); }],
     ['.sec-link', 'link/section'],
     ['.faq-link', 'link/faq'],
+    ['.xlink', 'xlink/go'],
     ['.event-permalink', 'link/event'],
     ['.footer-feed a, .feed-box-link, .feed-section-link', 'feed/open'],
     ['.fb-open', 'feedback/open'],
@@ -2232,6 +2233,9 @@ window.KomakiGrade = (function () {
   var _loc = _ul === 'ja' ? 'ja-JP' : (_ul === 'es' ? 'es-419' : _ul);
 
   var _ut = {
+    open_all:  {ja:'すべての月を開く', en:'Expand all months', pt:'Abrir todos os meses', vi:'Mở tất cả các tháng', tl:'Buksan ang lahat ng buwan', es:'Abrir todos los meses', zh:'展开全部月份', id:'Buka semua bulan', ko:'모든 달 펼치기', ne:'सबै महिना खोल्नुहोस्', tr:'Tüm ayları aç', my:'လအားလုံး ဖွင့်ရန်'},
+    close_all: {ja:'すべての月を閉じる', en:'Collapse all months', pt:'Fechar todos os meses', vi:'Thu gọn tất cả các tháng', tl:'Isara ang lahat ng buwan', es:'Cerrar todos los meses', zh:'收起全部月份', id:'Tutup semua bulan', ko:'모든 달 접기', ne:'सबै महिना बन्द गर्नुहोस्', tr:'Tüm ayları kapat', my:'လအားလုံး ပိတ်ရန်'},
+    count:     {ja:'{n}件', en:'{n}', pt:'{n}', vi:'{n} mục', tl:'{n}', es:'{n}', zh:'{n}条', id:'{n}', ko:'{n}건', ne:'{n}', tr:'{n}', my:'{n} ခု'},
     all:     {ja:'すべて', en:'All', pt:'Todas', vi:'Tất cả', tl:'Lahat', es:'Todas', zh:'全部', id:'Semua', ko:'전체', ne:'सबै', tr:'Tümü', my:'အားလုံး'},
     content: {ja:'掲載内容', en:'Content', pt:'Conteúdo', vi:'Nội dung', tl:'Nilalaman', es:'Contenido', zh:'内容', id:'Konten', ko:'내용', ne:'सामग्री', tr:'İçerik', my:'အကြောင်းအရာ'},
     feature: {ja:'機能',     en:'Feature', pt:'Recurso',  vi:'Tính năng', tl:'Tampok', es:'Función',   zh:'功能', id:'Fitur',  ko:'기능', ne:'सुविधा', tr:'Özellik', my:'လုပ်ဆောင်ချက်'},
@@ -2295,19 +2299,36 @@ window.KomakiGrade = (function () {
     });
     var counts = {all: items.length, content: 0, feature: 0, fix: 0};
     items.forEach(function (it) { counts[typeOf(it)]++; });
-    var html = '<div class="update-filter" role="group">' + ['all', 'content', 'feature', 'fix'].filter(function (k) {
+    var html = '<div class="update-tools"><div class="update-filter" role="group">' + ['all', 'content', 'feature', 'fix'].filter(function (k) {
       return k === 'all' || counts[k] > 0;
     }).map(function (k) {
       return '<button type="button" class="update-filter-btn" data-filter="' + k + '" aria-pressed="' + (k === 'all') + '">' +
                esc(str(k)) + ' <span class="update-filter-n">' + counts[k] + '</span></button>';
-    }).join('') + '</div>';
-    html += groups.map(function (g) {
-      return '<div class="update-month-group">' +
-               '<h3 class="update-month">' + esc(fmtMonth(g.ym)) + '</h3>' +
+    }).join('') + '</div>' +
+      '<button type="button" class="update-fold-all" aria-expanded="false">' + esc(str('open_all')) + '</button></div>';
+    // 月ごとに <details> で畳む（2026-11-10 ユーザー指示「月単位で表示を閉じることができるなど、長く見えないように」）。
+    // 最新の月だけ開いておく。summary の件数は絞り込みに合わせて数え直す。
+    html += groups.map(function (g, i) {
+      return '<details class="update-month-group"' + (i === 0 ? ' open' : '') + '>' +
+               '<summary class="update-month">' + esc(fmtMonth(g.ym)) +
+                 ' <span class="update-month-n">' + esc(str('count').replace('{n}', g.items.length)) + '</span></summary>' +
                '<ol class="update-list">' + g.items.map(function (it) { return row(it, false); }).join('') + '</ol>' +
-             '</div>';
+             '</details>';
     }).join('');
     all.innerHTML = html;
+    var foldBtn = all.querySelector('.update-fold-all');
+    function syncFold() {
+      var gs = [].slice.call(all.querySelectorAll('.update-month-group:not([hidden])'));
+      var allOpen = gs.length && gs.every(function (g) { return g.open; });
+      foldBtn.textContent = str(allOpen ? 'close_all' : 'open_all');
+      foldBtn.setAttribute('aria-expanded', String(!!allOpen));
+    }
+    all.addEventListener('toggle', syncFold, true);
+    foldBtn.addEventListener('click', function () {
+      var open = foldBtn.getAttribute('aria-expanded') !== 'true';
+      all.querySelectorAll('.update-month-group').forEach(function (g) { g.open = open; });
+      syncFold();
+    });
     all.addEventListener('click', function (e) {
       var b = e.target.closest && e.target.closest('.update-filter-btn');
       if (!b) return;
@@ -2321,8 +2342,12 @@ window.KomakiGrade = (function () {
           if (on) shown++;
         });
         g.hidden = shown === 0;
+        var n = g.querySelector('.update-month-n');
+        if (n) n.textContent = str('count').replace('{n}', shown);
       });
+      syncFold();
     });
+    syncFold();
   }
 
   fetch('./data/site-updates.json')
@@ -4018,6 +4043,90 @@ window.KomakiGrade = (function () {
   window.addEventListener('hashchange', function () { landed = false; land(); });
 })();
 
+/* ===== CROSS LINKS（あわせて読みたい、全ページ）=====
+   2026-11-10 ユーザー指示「サイトの回遊性を高めるため、サイト内で必要と考えられる箇所すべて計算してたくさんリンクを作成」。
+   どこからどこへ張るかは .github/scripts/build_crosslinks.py が検索の索引の本文の近さから計算し、
+   data/crosslinks/<ページ>.json に書いてある（手編集不可。手でリンクを書き足さない）。ここはそのページの1枚だけを読んで描く。
+   ・h2 の節 → 節の終わり、Q&A の1問 → 開いた答えの下、カード・予定 → その要素の終わりに aside.xlinks を置く。
+   ・リンクの文字は「ページ名 › 見出し」で、表示言語（こどもむけを含む）の見出しを使う。言語が変わるたびに描き直す。
+   ・読み上げ（READ ALOUD の SKIP）・原文併記（ORIG_SKIP）・検索の索引（SKIP_CLASSES）からは外してある。印刷では隠す。
+   ・SECTION LINKS（Q&A の id）と PAGE TOC（toc-… の id）より後に置くこと。 */
+(function () {
+  var main = document.querySelector('main');
+  if (!main) return;
+  var page = document.documentElement.getAttribute('data-page') ||
+    (location.pathname.match(/([^/]+)\.html$/) || ['', 'index'])[1] || 'index';
+  if (page === 'event' || page === '404') return;
+  var tpl = document.createElement('div');
+  tpl.hidden = true;
+  tpl.innerHTML = '<span data-i18n="xlinks_label">あわせて読みたい</span>';
+  document.body.appendChild(tpl);
+  var data = null;
+
+  function lang() {
+    var l = window.KomakiLang();
+    if (l === 'ja') { try { if (localStorage.getItem('komaki_kids') === '1') return 'ja-kids'; } catch (e) {} }
+    return l;
+  }
+  function pick(m) { var l = lang(); return (m && (m[l] || m.en || m.ja)) || ''; }
+
+  function placeFor(id) {
+    var el = document.getElementById(id);
+    if (!el || !main.contains(el)) return null;
+    if (el.classList.contains('faq-item')) return {box: el, faq: true};
+    if (el.tagName === 'SECTION') return {box: el.querySelector(':scope > .container') || el};
+    if (/^H[1-6]$/.test(el.tagName)) {
+      var sec = el.closest('section');
+      return sec ? {box: sec.querySelector(':scope > .container') || sec} : null;
+    }
+    if (el.hasAttribute('data-i18n') || el.hasAttribute('data-i18n-html')) return {after: el};
+    return {box: el};
+  }
+
+  function render() {
+    if (!data) return;
+    main.querySelectorAll('.xlinks').forEach(function (x) { x.remove(); });
+    var label = tpl.textContent.trim();
+    Object.keys(data.links).forEach(function (id) {
+      var at = placeFor(id);
+      if (!at) return;
+      var aside = document.createElement('aside');
+      aside.className = 'xlinks' + (at.faq ? ' xlinks--faq' : '');
+      var h = document.createElement('span');
+      h.className = 'xlinks-h';
+      h.textContent = label;
+      aside.appendChild(h);
+      var ul = document.createElement('ul');
+      data.links[id].forEach(function (t) {
+        var key = t[0] + '#' + t[1];
+        var title = pick(data.t[key]);
+        if (!title) return;
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.className = 'xlink';
+        a.href = t[0] + '.html#' + t[1];
+        var pg = document.createElement('span');
+        pg.className = 'xlink-page';
+        pg.textContent = pick(data.p[t[0]]);
+        a.appendChild(pg);
+        a.appendChild(document.createTextNode(title));
+        li.appendChild(a);
+        ul.appendChild(li);
+      });
+      if (!ul.children.length) return;
+      aside.appendChild(ul);
+      if (at.after) at.after.parentNode.insertBefore(aside, at.after.nextSibling);
+      else at.box.appendChild(aside);
+    });
+  }
+
+  fetch('./data/crosslinks/' + page + '.json')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (d) { data = d; render(); })
+    .catch(function () {});
+  document.addEventListener('komaki:i18n-applied', render);
+})();
+
 /* ===== EVENT PAGE（予定ごとの固有ページ、events/*.html）=====
    2026-10-11 ユーザー指示。ページは .github/scripts/build_event_pages.py が schedule.html から作る。
    静的な <title>・og・大見出し（h1.event-h1）は日本語なので、表示言語に合わせて書き換える
@@ -5242,7 +5351,8 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
              '.tts-row,.page-toc,.faq-q-icon,.section-updated,.bus-map-layers,.bus-area-map,' +
              '[hidden],[aria-hidden="true"],.section-title small,.orig-ja,.mc-ja,' +   // .mc-ja＝窓口で見せる日本語（外国語の声で日本語を読まない）
              '.now-more,.upcoming-more,' +  // 「くわしく見る →」などの案内リンクは読まない
-             '.rev-more,.rev-back,.rev-partnav,.rev-num';   // 検証と提案の2ページの行き来の札（REVIEW LINKS）
+             '.rev-more,.rev-back,.rev-partnav,.rev-num,' +
+             '.xlinks';   // あわせて読みたい（CROSS LINKS）は案内なので読まない   // 検証と提案の2ページの行き来の札（REVIEW LINKS）
   var BLOCK = 'h2,h3,h4,h5,p,li,dt,dd,tr,caption,figcaption,blockquote,summary,.faq-q,div';
   // 札（「概要」などの分類ラベル）は直後の文とつなげて読むと意味が崩れるので、あとに読点を挟む
   var TAGLIKE = '[class*="tag"],[class*="badge"],[class*="label"],[class*="date"],[class*="cite"],time';

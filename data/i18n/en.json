@@ -1736,6 +1736,7 @@
   "sec_link_copy": "Copy link to this section",
   "faq_link_copy": "Copy link to this question",
   "sec_link_copied": "Link copied",
+  "xlinks_label": "Related",
   "event_permalink": "Page for this event",
   "event_prev": "Previous event",
   "event_next": "Next event",

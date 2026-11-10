@@ -48,13 +48,15 @@ ALLOWED_PREFIXES = ("data/i18n/pages/",
                     "feed.xml",
                     # サイト内検索の索引は build_search_index.py の生成物（2026-11-05）
                     "data/search/",
+                    # 関連リンク（あわせて読みたい）は build_crosslinks.py の生成物（2026-11-10）
+                    "data/crosslinks/",
                     # 購読カレンダーは build_calendar.py の生成物（2026-11-07）
                     "calendar.")
 # 上の接頭辞の下で許すファイルの形（2026-10-26）。接頭辞だけだと events/x/phish.html や
 # data/i18n/pages/a.html、sitemap.xml.bak まで通っていた。
 ALLOWED_GENERATED = re.compile(r"^(data/i18n/pages/[A-Za-z0-9-]+\.[A-Za-z-]+\.json"
                                r"|events/\d{4}-\d{2}-\d{2}-\d+\.html|sitemap\.xml|feed\.xml"
-                               r"|data/search/[A-Za-z-]+\.json|calendar\.[a-z]{2}\.ics)$")
+                               r"|data/search/[A-Za-z-]+\.json|data/crosslinks/[a-z0-9-]+\.json|calendar\.[a-z]{2}\.ics)$")
 
 
 def is_allowed_path(p):
@@ -429,6 +431,20 @@ def main():
             ok("検索の索引は最新")
     except Exception as e:
         fail(f"build_search_index.py が実行できない: {e}")
+
+    # --- 27. 関連リンク（あわせて読みたい）が最新か（2026-11-10） ---
+    # data/crosslinks/<ページ>.json は検索の索引から決定的に計算する。古いと、消えた節へ飛んだり、
+    # 新しい節・Q&A に関連リンクが付かなかったりする。
+    try:
+        r = subprocess.run(
+            [sys.executable, ".github/scripts/build_crosslinks.py", "--check"],
+            capture_output=True, text=True)
+        if r.returncode != 0:
+            fail("関連リンクが古い（build_crosslinks.py を実行すること）:\n" + r.stdout.strip())
+        else:
+            ok("関連リンクは最新")
+    except Exception as e:
+        fail(f"build_crosslinks.py が実行できない: {e}")
 
     # --- 6. 外部リンク規則（サイト全体を検査） ---
     link_violations = []

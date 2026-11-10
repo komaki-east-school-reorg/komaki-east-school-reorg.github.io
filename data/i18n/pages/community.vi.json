@@ -312,5 +312,6 @@
   "tobu_actions_note": "🔄 Lấy tự động mỗi ngày; tiêu đề được dịch tự động. Không có liên kết riêng cho từng mục, xem chi tiết từ trang mục lục nguồn.",
   "tr_footer": "🌐 Giúp chúng tôi kiểm tra bản dịch",
   "tts_play": "🔊 Nghe",
-  "tts_stop": "■ Dừng"
+  "tts_stop": "■ Dừng",
+  "xlinks_label": "Đọc thêm"
 }

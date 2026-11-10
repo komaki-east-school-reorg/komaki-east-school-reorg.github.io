@@ -76,7 +76,7 @@ RUNTIME_KEYS = [
     "share_qr_close",
     "sec_link_copy",      # SECTION LINKS（main.js）
     "faq_link_copy",
-    "sec_link_copied",
+    "xlinks_label", "sec_link_copied",
     "status_done",
     "event_status_done",
     "event_status_current",

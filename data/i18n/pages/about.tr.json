@@ -322,5 +322,6 @@
   "transport_jhs_h": "Ortaokul öğrencileri: bisikletle gidiş",
   "transport_jhs_p": "Ortaokul öğrencileri için <strong>bisikletle okula gidiş</strong> planlanıyor.<br><br>Güvenli güzergâhlar ve yağmurlu gün düzenlemelerine ilişkin ayrıntılar incelenecek ve ileride duyurulacaktır.",
   "tts_play": "🔊 Dinle",
-  "tts_stop": "■ Durdur"
+  "tts_stop": "■ Durdur",
+  "xlinks_label": "Bunu da okuyun"
 }

@@ -555,6 +555,11 @@ jobs:
         if: steps.token.outputs.available == 'true'
         run: python3 .github/scripts/build_search_index.py
 
+      # 関連リンク（あわせて読みたい）は検索の索引から計算するので、続けて作り直す（auto_gates.py check 27。2026-11-10）
+      - name: Rebuild cross links
+        if: steps.token.outputs.available == 'true'
+        run: python3 .github/scripts/build_crosslinks.py
+
       # 起案AIが更新履歴に1行足すと feed.xml が古くなる（check 14）。決定的に作り直す。
       - name: Rebuild feed
         if: steps.token.outputs.available == 'true'
@@ -611,7 +616,7 @@ jobs:
           # 起案AIの編集が commit されず PR にも proposed.diff にも現れないまま消える
           # （community.html が長らくそうなっていた）。
           # events/ と sitemap.xml は build_event_pages.py の生成物（schedule.html の予定から作る）
-          git add data/events.json data/site-updates.json data/i18n index.html schedule.html community.html events sitemap.xml feed.xml data/search calendar.*.ics
+          git add data/events.json data/site-updates.json data/i18n index.html schedule.html community.html events sitemap.xml feed.xml data/search data/crosslinks calendar.*.ics
           git commit -m "auto: 公式ページ更新の自動反映 ${TODAY}"
           git diff origin/main..HEAD > auto_update/proposed.diff
           echo "--- proposed diff ---"

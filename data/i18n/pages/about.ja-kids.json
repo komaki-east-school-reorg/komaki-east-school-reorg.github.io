@@ -322,5 +322,6 @@
   "transport_jhs_h": "中学生：自転車で通学",
   "transport_jhs_p": "中学生は<strong>じてんしゃで 学校に 通う</strong>計画です。<br><br>あんぜんな 通学路や、雨の 日に どう するかは、これから 決まる 予定です。",
   "tts_play": "🔊 よみあげる",
-  "tts_stop": "■ とめる"
+  "tts_stop": "■ とめる",
+  "xlinks_label": "いっしょに 読みたい"
 }

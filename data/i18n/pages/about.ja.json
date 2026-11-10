@@ -322,5 +322,6 @@
   "transport_jhs_h": "中学生：自転車通学",
   "transport_jhs_p": "中学生は<strong>自転車通学</strong>が計画されています。<br><br>安全な通学路の確保や雨の日の対応は、これから検討されて発表される予定です。",
   "tts_play": "🔊 読み上げる",
-  "tts_stop": "■ 止める"
+  "tts_stop": "■ 止める",
+  "xlinks_label": "あわせて読みたい"
 }

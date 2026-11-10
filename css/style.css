@@ -837,13 +837,39 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 /* トップの更新履歴の下の「過去の更新履歴をすべて見る」と、site.html#changelog の全件一覧（2026-11-10） */
 .update-all { margin: .8rem 0 0; font-size: .9rem; font-weight: 700; }
 .update-all a { color: var(--primary); }
-.update-filter { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 1.4rem; }
-.update-filter-btn { font: inherit; font-size: .85rem; font-weight: 700; padding: .3rem .9rem; border: 1.5px solid var(--primary); border-radius: var(--radius-pill); background: var(--white); color: var(--primary); cursor: pointer; }
+.update-tools { display: flex; flex-wrap: wrap; gap: .6rem 1rem; align-items: center; justify-content: space-between; margin: 0 0 1.2rem; }
+.update-filter { display: flex; flex-wrap: wrap; gap: .4rem; }
+.update-filter-btn, .update-fold-all { font: inherit; font-size: .85rem; font-weight: 700; padding: .3rem .9rem; border: 1.5px solid var(--primary); border-radius: var(--radius-pill); background: var(--white); color: var(--primary); cursor: pointer; }
 .update-filter-btn[aria-pressed="true"] { background: var(--primary); color: var(--white); }
+.update-fold-all { border-style: dashed; }
 .update-filter-n { font-weight: 400; opacity: .8; font-size: .8em; }
-.update-month-group + .update-month-group { margin-top: 1.6rem; }
-.update-month { font-family: var(--heading-font); font-size: 1rem; font-weight: 800; color: var(--primary-dark); margin: 0 0 .7rem; padding-bottom: .25rem; border-bottom: 1px solid var(--border); }
-@media print { .update-filter { display: none; } }
+/* 月ごとに畳む（2026-11-10）。最新の月だけ開いて出す */
+.update-month-group { border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--white); margin: 0 0 .6rem; }
+.update-month-group[hidden] { display: none; }
+.update-month { list-style: none; cursor: pointer; display: flex; align-items: center; gap: .6rem; font-family: var(--heading-font); font-size: 1rem; font-weight: 800; color: var(--primary-dark); padding: .65rem 1rem; }
+.update-month::-webkit-details-marker { display: none; }
+.update-month::before { content: "▶"; font-size: .7em; color: var(--accent); transition: transform .15s; }
+.update-month-group[open] > .update-month::before { transform: rotate(90deg); }
+.update-month-n { font-size: .78rem; font-weight: 700; color: var(--text-muted); background: var(--bg); border-radius: var(--radius-pill); padding: .05rem .6rem; }
+.update-month-group > .update-list { margin: 0 1rem 1rem 1.4rem; }
+@media (prefers-reduced-motion: reduce) { .update-month::before { transition: none; } }
+@media print { .update-tools { display: none; } .update-month-group > .update-list { display: block; } }
+
+/* ===== あわせて読みたい（CROSS LINKS、2026-11-10）=====
+   計算で選んだ関連リンク（data/crosslinks/）。節・カード・予定の終わりと、開いた Q&A の答えの下に出る。 */
+.xlinks { display: flex; flex-wrap: wrap; align-items: baseline; gap: .35rem .6rem; margin: 1.2rem 0 0; padding: .6rem .8rem; border-top: 1px dashed var(--border); font-size: .84rem; line-height: 1.5; }
+.xlinks-h { font-weight: 700; color: var(--text-muted); white-space: nowrap; }
+.xlinks-h::before { content: "🧭 "; }
+.xlinks ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .35rem .5rem; }
+.xlinks li { margin: 0; }
+.xlink { display: inline-block; padding: .2rem .7rem; border: 1px solid var(--border); border-radius: var(--radius-pill); background: var(--white); color: var(--primary); text-decoration: none; }
+.xlink:hover, .xlink:focus-visible { border-color: var(--primary); background: var(--primary-light); }
+.xlink-page { font-size: .78em; font-weight: 700; color: var(--text-muted); margin-right: .35em; }
+.xlink-page::after { content: " ›"; }
+.xlinks--faq { display: none; margin: 0 0 .8rem; }
+.faq-q.open ~ .xlinks--faq { display: flex; }
+.section-alt .xlinks .xlink { background: var(--bg); }
+@media print { .xlinks { display: none !important; } }
 .update-text {
   font-size: .88rem;
   line-height: 1.7;

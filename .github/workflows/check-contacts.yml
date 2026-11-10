@@ -55,12 +55,17 @@ jobs:
         if: steps.check.outputs.diff == 'true'
         run: python3 .github/scripts/build_search_index.py
 
+      # 関連リンク（あわせて読みたい）は検索の索引から計算するので、続けて作り直す（auto_gates.py check 27。2026-11-10）
+      - name: Rebuild cross links
+        if: steps.check.outputs.diff == 'true'
+        run: python3 .github/scripts/build_crosslinks.py
+
       - name: Commit automatic number fixes
         if: steps.check.outputs.diff == 'true'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A data/contacts.json data/i18n data/search *.html
+          git add -A data/contacts.json data/i18n data/search data/crosslinks *.html
           if git diff --staged --quiet; then
             echo "Nothing to commit (報告のみ)"
           else

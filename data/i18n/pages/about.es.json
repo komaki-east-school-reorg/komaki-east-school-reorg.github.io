@@ -322,5 +322,6 @@
   "transport_jhs_h": "Alumnos de Secundaria: Bicicleta",
   "transport_jhs_p": "Se planea el <strong>uso de bicicleta</strong> para los alumnos de secundaria.<br><br>Los detalles sobre rutas seguras y medidas para días lluviosos se estudiarán y anunciarán en una fecha posterior.",
   "tts_play": "🔊 Escuchar",
-  "tts_stop": "■ Detener"
+  "tts_stop": "■ Detener",
+  "xlinks_label": "Lea también"
 }

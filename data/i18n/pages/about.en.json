@@ -322,5 +322,6 @@
   "transport_jhs_h": "Junior High Students: Bicycle Commuting",
   "transport_jhs_p": "<strong>Bicycle commuting</strong> is planned for junior high students.<br><br>Details regarding safe commuting routes and rainy-day arrangements will be studied and announced at a later date.",
   "tts_play": "🔊 Listen",
-  "tts_stop": "■ Stop"
+  "tts_stop": "■ Stop",
+  "xlinks_label": "Related"
 }

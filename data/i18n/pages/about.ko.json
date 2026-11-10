@@ -322,5 +322,6 @@
   "transport_jhs_h": "중학생: 자전거 통학",
   "transport_jhs_p": "중학생에 대해서는 <strong>자전거 통학</strong>이 계획되어 있습니다.<br><br>안전한 통학로의 확보나 우천 시의 대응에 대해서는 앞으로 상세한 내용이 검토·발표될 예정입니다.",
   "tts_play": "🔊 읽어 주기",
-  "tts_stop": "■ 멈추기"
+  "tts_stop": "■ 멈추기",
+  "xlinks_label": "함께 읽기"
 }

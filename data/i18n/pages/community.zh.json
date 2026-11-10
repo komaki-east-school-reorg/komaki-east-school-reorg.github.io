@@ -312,5 +312,6 @@
   "tobu_actions_note": "🔄 每天自动获取，标题为自动翻译。各项目没有单独链接，详情请从来源的索引页面查看。",
   "tr_footer": "🌐 欢迎帮助核对译文",
   "tts_play": "🔊 朗读",
-  "tts_stop": "■ 停止"
+  "tts_stop": "■ 停止",
+  "xlinks_label": "相关内容"
 }

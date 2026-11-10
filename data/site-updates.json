@@ -4,6 +4,13 @@
     {
       "date": "2026-11-10",
       "type": "feature",
+      "ja": "各節の終わりに関連する所へのリンク「あわせて読みたい」を追加",
+      "en": "“Related” links to connected parts of the site added at the end of each section",
+      "link": "about.html#why"
+    },
+    {
+      "date": "2026-11-10",
+      "type": "feature",
       "ja": "過去の更新履歴をすべて見られる一覧を追加",
       "en": "Full list of past site updates added",
       "link": "site.html#changelog"

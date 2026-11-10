@@ -355,7 +355,7 @@ The **`#site-updates` section of `index.html`** (its own `<h2>` section right af
 - Write a **reader-facing summary, not a commit message** — "Turkish and Burmese added", not "feat(i18n): …". Internal refactors and doc fixes do not belong here.
 - **Do not record removals.** Retiring a feature or a corner (e.g. the 報道 corner on 2026-10-10) gets no entry — the log lists what was added or changed for the reader (2026-10-11, user's instruction).
 - The list is sorted newest-first at render time and **only the newest 6 are displayed** (`MAX_ITEMS` in the `js/main.js` block); keep the full history in the file.
-- **Every entry is shown on `site.html#changelog`** (「更新履歴の一覧」, 2026-11-10, user's instruction) — grouped by month with すべて／掲載内容／機能／修正 filter buttons, drawn by the same SITE UPDATE LOG block into `#site-updates-all`. The top page links to it under the six lines (`site_updates_all`). Keys `changelog_h` / `changelog_lead`; the filter and tag labels are the block's inline dict.
+- **Every entry is shown on `site.html#changelog`** (「更新履歴の一覧」, 2026-11-10, user's instruction) — grouped by month with すべて／掲載内容／機能／修正 filter buttons, drawn by the same SITE UPDATE LOG block into `#site-updates-all`. The top page links to it under the six lines (`site_updates_all`). Keys `changelog_h` / `changelog_lead`; the filter and tag labels are the block's inline dict. **Each month is a `<details>`, and only the newest month is open** (2026-11-10, user's instruction: keep the list from looking long), with 「すべての月を開く／閉じる」; filtering recounts each month and hides empty ones.
 
 ## 注記は少なく・印で示す（2026-10-30 ユーザー指示）
 
@@ -587,6 +587,15 @@ Every page carries a `<section class="section share" id="share">` just above `</
 - 文言は `search_*`（`RUNTIME_KEYS`）。集計は `search/open`・`search/go` だけで、入力した語は送らない。
 
 - **検索語を URL で渡せる**（2026-11-07、日次アイデア 11/6 の案）。`?q=語` で開くと、トップ・404 はページ内の欄に、他のページは検索の窓を開いて、その語で検索した状態になる。結果の件数の行に「🔗 この検索のリンクをコピー」（`search_link_copy` / `search_link_copied`、`RUNTIME_KEYS`）— コピーするのはトップの `index.html?q=語`（＋`?lang=`）。index.html の `WebSite` 構造化データに `SearchAction`（同じ URL）。**`q` は集計に送らない**（COUNTER の `pagePath()` は `?lang=` / `?kids=1` しか付けない — ここを変えるときも `q` を入れない）。
+
+### 関連リンク「あわせて読みたい」（全ページ、2026-11-10）
+
+ユーザー指示「サイトの回遊性を高めるため、サイト内で必要と考えられる箇所すべて計算してたくさんリンクを作成」。**手で1本ずつ書かない**（方針として記憶済み）。`.github/scripts/build_crosslinks.py` が検索の索引 `data/search/<言語>.json` の日本語の本文から、文字2-gram の TF-IDF のコサイン類似度でリンク先を選び、`data/crosslinks/<ページ>.json`（手編集不可、`--check`、`auto_gates.py` **check 27**、`--show` で組み合わせを一覧）に書く。画面は `js/main.js` の CROSS LINKS で、そのページの1枚だけを読む。
+
+- **リンク元**：h2 の節（問い合わせ先・更新履歴・運営の節は除く）、Q&A の1問（開いた答えの下）、節の中のカード（`rev-…` の根拠・核心、`legacy-…`、`council-…`、予定 `ev-…`）。**リンク先**：索引の全項目から、同じページ・`site.html`・連絡先・部品の id・本文が 3000字を超える項目（何にでも似てしまう）を除いたもの。
+- **選び方**：3ページ以上に出てくる文（書き直しの注記・窓口の部署名など）は計算から外す。似ている順に、1ページにつき1件まで、節は4件・Q&A とカードは2件まで、類似度 0.17 未満は出さない。カード・予定の見出しが親の節と同じときは本文の頭を見出しにする。
+- **文を変えたら** `build_search_index.py` → `build_crosslinks.py` の順に回す（毎日の自動更新と週1回の番号照合のワークフローも同じ順で作り直す。`ALLOWED_GENERATED` に入れてある）。新しい節・Q&A・カードは自動で対象になる。
+- 文言は `xlinks_label`（`RUNTIME_KEYS`）。読み上げ（`SKIP`）・原文併記（`ORIG_SKIP`）・検索の索引（`SKIP_CLASSES`）から外し、印刷では隠す。集計は `xlink/go`。
 
 ### 購読できるカレンダー（`calendar.<言語>.ics`、2026-11-07）
 
@@ -890,4 +899,5 @@ Beyond the auto-update pipeline's scope and evidence checks, these run site-wide
 | 25 | `calendar.*.ics` matches the data (`build_calendar.py --check`) | A stale subscription calendar silently shows old dates in readers' own calendars (2026-11-07) |
 | 23 | `data/search/*.json` matches the dictionaries and the pages (`build_search_index.py --check`) | A stale search index shows old wording or jumps to a section that no longer exists (2026-11-05) |
 | 26 | Every `link` in `data/site-updates.json` points at an existing page and `#id` | Changelog lines link to the corner they are about (2026-11-10); a removed section must not leave dead links |
+| 27 | `data/crosslinks/*.json` matches the search index (`build_crosslinks.py --check`) | The related links are computed from the page text (2026-11-10); a stale file points at removed sections or misses new ones |
 | 21 | review.html's 25 key-point cards (10 findings, 15 proposals), their 「くわしく →」 targets, `REVIEW LINKS` in `js/main.js` and the links between review.html and analysis.html all agree | The two pages are read as one: a key point must land on its evidence and every evidence card must lead back (2026-10-31) |

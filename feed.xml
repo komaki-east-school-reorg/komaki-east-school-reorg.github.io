@@ -43,6 +43,14 @@
     <summary>サイトの更新履歴｜更新履歴の各行から関係するコーナーへ移れるように</summary>
   </entry>
   <entry>
+    <title>各節の終わりに関連する所へのリンク「あわせて読みたい」を追加</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/about.html#why"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:2ffa58eff858f873</id>
+    <updated>2026-11-10T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜各節の終わりに関連する所へのリンク「あわせて読みたい」を追加</summary>
+  </entry>
+  <entry>
     <title>検証と提案に市・教育委員会への質問集を掲載</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/review.html#rev-open"/>
     <id>tag:komaki-east-school-reorg.github.io,2026:c58b7f5effc080d9</id>
@@ -321,13 +329,5 @@
     <updated>2026-10-31T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜レガシーの検討に各校の和太鼓などの活動と棒の手を追加</summary>
-  </entry>
-  <entry>
-    <title>レガシーの提案を5項目に、篠岡カルタ・祭り・特産物も検討</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/review.html#rev-core-ideas"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:d9d6c1fd5b6750c3</id>
-    <updated>2026-10-31T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜レガシーの提案を5項目に、篠岡カルタ・祭り・特産物も検討</summary>
   </entry>
 </feed>

@@ -251,7 +251,7 @@
      ・翻訳が無くて日本語のまま出ている要素には付けない（同じ文が二度出るため）。
      ・READ ALOUD は .orig-ja を読まない（SKIP に入れてある）。回覧板シートと
        ページ目次も .orig-ja を外してから文字を取る。表示を変えたらその3か所も見ること。 */
-  var ORIG_SKIP = '.page-toc,.tts-row,.share,.notice-banner,.lang-switcher,.breadcrumb,.mc-card,.scroll-hint';   // .mc-card は日本語がすでに太字で出ている（窓口で見せる日本語）
+  var ORIG_SKIP = '.page-toc,.tts-row,.share,.notice-banner,.lang-switcher,.breadcrumb,.mc-card,.scroll-hint,.xlinks';   // .mc-card は日本語がすでに太字で出ている（窓口で見せる日本語）
 
   function jaDict() {
     if (!_jaDictPromise) _jaDictPromise = fetchDict(DEFAULT).then(applyTemporal);

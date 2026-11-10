@@ -312,5 +312,6 @@
   "tobu_actions_note": "🔄 Se obtiene automáticamente todos los días; títulos traducidos automáticamente. Los elementos no tienen enlace propio; consulte los detalles en la página índice de la fuente.",
   "tr_footer": "🌐 Ayúdenos a revisar esta traducción",
   "tts_play": "🔊 Escuchar",
-  "tts_stop": "■ Detener"
+  "tts_stop": "■ Detener",
+  "xlinks_label": "Lea también"
 }

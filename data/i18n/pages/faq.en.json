@@ -299,5 +299,6 @@
   "voices_pc_q5": "\"Walking children through this heat is dangerous, and we worry about safety checks on the bus.\"",
   "voices_pc_themes_h": "What the Comments Raised<small>寄せられた意見の論点</small>",
   "voices_pc_themes_lead": "The city answered every comment and gave each answer a topic heading of its own. This site counted those headings: 143 of them across 53 topics (the city states 142 comments in total). The eight most frequent are shown here.",
-  "voices_pc_themes_note": "Note: a count is not a measure of support or opposition. One person raising several topics is counted once per topic. The categories are the city's own headings; this site only counted them."
+  "voices_pc_themes_note": "Note: a count is not a measure of support or opposition. One person raising several topics is counted once per topic. The categories are the city's own headings; this site only counted them.",
+  "xlinks_label": "Related"
 }

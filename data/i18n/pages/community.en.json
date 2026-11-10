@@ -312,5 +312,6 @@
   "tobu_actions_note": "🔄 Fetched automatically every day; headings are machine-translated. Individual items are not linked, so follow the source index page for details.",
   "tr_footer": "🌐 Help us check this translation",
   "tts_play": "🔊 Listen",
-  "tts_stop": "■ Stop"
+  "tts_stop": "■ Stop",
+  "xlinks_label": "Related"
 }
