@@ -4,6 +4,20 @@
     {
       "date": "2026-11-10",
       "type": "feature",
+      "ja": "過去の更新履歴をすべて見られる一覧を追加",
+      "en": "Full list of past site updates added",
+      "link": "site.html#changelog"
+    },
+    {
+      "date": "2026-11-10",
+      "type": "content",
+      "ja": "質問集に愛知県・国あての問いを追加",
+      "en": "Questions for Aichi Prefecture and the national government added",
+      "link": "review.html#rev-open"
+    },
+    {
+      "date": "2026-11-10",
+      "type": "feature",
       "ja": "更新履歴の各行から関係するコーナーへ移れるように",
       "en": "Each changelog line now links to the part of the site it is about",
       "link": "index.html#site-updates"

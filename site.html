@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>このサイトについて – 小牧市東部（篠岡地区）学校再編ナビ</title>
-  <meta name="description" content="小牧市東部（篠岡地区）学校再編ナビの紹介用画像、アプリとしての使い方、ハッシュタグ、ご意見の送り先、Cookie を使わない閲覧数の集計についての説明です。">
+  <meta name="description" content="小牧市東部（篠岡地区）学校再編ナビの紹介用画像、アプリとしての使い方、ハッシュタグ、ご意見の送り先、翻訳の確認のお願い、これまでの更新履歴の一覧、Cookie を使わない閲覧数の集計についての説明です。">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="小牧市東部（篠岡地区）学校再編ナビ｜桃花台エリアの非公式でもわかりやすい地域情報メディア">
   <meta property="og:title" content="このサイトについて – 小牧市東部（篠岡地区）学校再編ナビ">
-  <meta property="og:description" content="小牧市東部（篠岡地区）学校再編ナビの紹介用画像、アプリとしての使い方、ハッシュタグ、ご意見の送り先、Cookie を使わない閲覧数の集計についての説明です。">
+  <meta property="og:description" content="小牧市東部（篠岡地区）学校再編ナビの紹介用画像、アプリとしての使い方、ハッシュタグ、ご意見の送り先、翻訳の確認のお願い、これまでの更新履歴の一覧、Cookie を使わない閲覧数の集計についての説明です。">
   <meta property="og:url" content="https://komaki-east-school-reorg.github.io/site.html">
   <meta property="og:image" content="https://komaki-east-school-reorg.github.io/img/og-image.png?v=20261011">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="このサイトについて – 小牧市東部（篠岡地区）学校再編ナビ">
-  <meta name="twitter:description" content="小牧市東部（篠岡地区）学校再編ナビの紹介用画像、アプリとしての使い方、ハッシュタグ、ご意見の送り先、Cookie を使わない閲覧数の集計についての説明です。">
+  <meta name="twitter:description" content="小牧市東部（篠岡地区）学校再編ナビの紹介用画像、アプリとしての使い方、ハッシュタグ、ご意見の送り先、翻訳の確認のお願い、これまでの更新履歴の一覧、Cookie を使わない閲覧数の集計についての説明です。">
   <meta name="twitter:image" content="https://komaki-east-school-reorg.github.io/img/og-image.png?v=20261011">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.ja.webmanifest">
@@ -273,6 +273,18 @@
 
   <!-- 閲覧数の集計について（2026-10-24 ユーザー指示）。js/main.js の COUNTER と同じ中身を書く。
        数え方を変えたらここ（privacy_*）も直すこと。 -->
+  <!-- 更新履歴の一覧（2026-11-10 ユーザー指示）。data/site-updates.json の全件を月ごとに並べる。
+       描くのは js/main.js の SITE UPDATE LOG（トップの #site-updates と共通）。トップの更新履歴の下からリンクしている。 -->
+  <section class="section" id="changelog">
+    <div class="container">
+      <h2 class="section-title ill-h ill-h--archive" data-i18n-html="changelog_h">更新履歴の一覧<small>All Site Updates</small></h2>
+      <p class="section-lead" data-i18n="changelog_lead">このサイトに加えた変更を、はじめから月ごとにすべて並べています。</p>
+      <div id="site-updates-all">
+        <p class="official-news-loading" data-i18n="news_loading">読み込み中…</p>
+      </div>
+    </div>
+  </section>
+
   <section class="section section-alt" id="privacy">
     <div class="container">
       <h2 class="section-title ill-h ill-h--data" data-i18n-html="privacy_h">閲覧数の集計について<small>About Visit Counts</small></h2>

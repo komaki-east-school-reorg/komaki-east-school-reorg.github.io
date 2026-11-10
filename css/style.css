@@ -834,6 +834,16 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 .update-tag--fix     { background: #f0f4f1; color: #4a6050; }
 .update-link { color: inherit; text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: .2em; text-decoration-thickness: 2px; }
 .update-link:hover, .update-link:focus-visible { color: var(--primary); }
+/* トップの更新履歴の下の「過去の更新履歴をすべて見る」と、site.html#changelog の全件一覧（2026-11-10） */
+.update-all { margin: .8rem 0 0; font-size: .9rem; font-weight: 700; }
+.update-all a { color: var(--primary); }
+.update-filter { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 1.4rem; }
+.update-filter-btn { font: inherit; font-size: .85rem; font-weight: 700; padding: .3rem .9rem; border: 1.5px solid var(--primary); border-radius: var(--radius-pill); background: var(--white); color: var(--primary); cursor: pointer; }
+.update-filter-btn[aria-pressed="true"] { background: var(--primary); color: var(--white); }
+.update-filter-n { font-weight: 400; opacity: .8; font-size: .8em; }
+.update-month-group + .update-month-group { margin-top: 1.6rem; }
+.update-month { font-family: var(--heading-font); font-size: 1rem; font-weight: 800; color: var(--primary-dark); margin: 0 0 .7rem; padding-bottom: .25rem; border-bottom: 1px solid var(--border); }
+@media print { .update-filter { display: none; } }
 .update-text {
   font-size: .88rem;
   line-height: 1.7;
@@ -3247,6 +3257,7 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
 .ill-h--commute { background-image: url(../img/illust/commute.svg); }
 .ill-h--compare { background-image: url(../img/illust/compare.svg); }
 .ill-h--data { background-image: url(../img/illust/data.svg); }
+.ill-h--archive { background-image: url(../img/illust/archive.svg); }
 .ill-h--decline { background-image: url(../img/illust/decline.svg); }
 .ill-h--factory { background-image: url(../img/illust/factory.svg); }
 .ill-h--family { background-image: url(../img/illust/family.svg); }
@@ -3290,6 +3301,12 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
 .ill-yh--school { background-image: url(../img/illust/school.svg); }
 .page-hero-ill { float: right; width: 7.5rem; height: auto; margin: 0 0 .4rem 1.2rem; background: #fdf6e0; border-radius: 20px; padding: .25rem .4rem; position: relative; }
 .page-hero .container::after { content: ""; display: block; clear: both; }
+/* PC では冒頭の挿絵を題名と説明文の高さに見合う大きさにする（2026-11-10 ユーザー指示）。
+   パンくずの行まで上げて、パンくず・題名・説明文の3行ぶんの高さにそろえる。モバイルの帯（≤768px）は変えない。 */
+@media (min-width: 769px) {
+  .page-hero-ill { width: clamp(10rem, 15vw, 13rem); margin: -2.2rem 0 .4rem 1.6rem; padding: .35rem .55rem; border-radius: 24px; }
+  .hero .page-hero-ill.hero-ill-pc { width: clamp(11rem, 17vw, 15rem); margin-top: 0; }
+}
 .process-ill { display: block; width: 4.6rem; height: auto; margin: 0 auto .2rem; }
 .process-step.done .process-ill { opacity: .75; }
 .reorg-arrow { display: flex; flex-direction: column; align-items: center; }

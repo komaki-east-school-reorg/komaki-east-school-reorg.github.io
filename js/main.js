@@ -2218,16 +2218,21 @@ window.KomakiGrade = (function () {
 })();
 
 /* ===== SITE UPDATE LOG ===== */
-/* このサイト自身の更新履歴。data/site-updates.json は手動管理（自動生成ではない）。 */
+/* このサイト自身の更新履歴。data/site-updates.json は手動管理（自動生成ではない）。
+   描く場所は2つ（2026-11-10）：トップの #site-updates-container（直近 MAX_ITEMS 件）と、
+   site.html#changelog の #site-updates-all（全件を月ごとに。種類で絞り込める）。 */
 (function () {
   const container = document.getElementById('site-updates-container');
-  if (!container) return;
+  const all = document.getElementById('site-updates-all');
+  if (!container && !all) return;
 
-  var MAX_ITEMS = 6;   // 表示件数。data/site-updates.json 側は全履歴を保持する
+  var MAX_ITEMS = 6;   // トップの表示件数。data/site-updates.json 側は全履歴を保持する
 
   var _ul = window.KomakiLang();
+  var _loc = _ul === 'ja' ? 'ja-JP' : (_ul === 'es' ? 'es-419' : _ul);
 
   var _ut = {
+    all:     {ja:'すべて', en:'All', pt:'Todas', vi:'Tất cả', tl:'Lahat', es:'Todas', zh:'全部', id:'Semua', ko:'전체', ne:'सबै', tr:'Tümü', my:'အားလုံး'},
     content: {ja:'掲載内容', en:'Content', pt:'Conteúdo', vi:'Nội dung', tl:'Nilalaman', es:'Contenido', zh:'内容', id:'Konten', ko:'내용', ne:'सामग्री', tr:'İçerik', my:'အကြောင်းအရာ'},
     feature: {ja:'機能',     en:'Feature', pt:'Recurso',  vi:'Tính năng', tl:'Tampok', es:'Función',   zh:'功能', id:'Fitur',  ko:'기능', ne:'सुविधा', tr:'Özellik', my:'လုပ်ဆောင်ချက်'},
     fix:     {ja:'修正',     en:'Fix',     pt:'Correção', vi:'Sửa lỗi',   tl:'Ayos',   es:'Corrección',zh:'修正', id:'Perbaikan', ko:'수정', ne:'सुधार', tr:'Düzeltme', my:'ပြင်ဆင်မှု'},
@@ -2241,8 +2246,16 @@ window.KomakiGrade = (function () {
     if (!p) return iso || '';
     try {
       return new Date(+p[1], +p[2] - 1, +p[3])
-        .toLocaleDateString(_ul === 'ja' ? 'ja-JP' : _ul, {year: 'numeric', month: 'short', day: 'numeric'});
+        .toLocaleDateString(_loc, {year: 'numeric', month: 'short', day: 'numeric'});
     } catch (e) { return iso; }
+  }
+
+  function fmtMonth(ym) {
+    var p = /^(\d{4})-(\d{2})$/.exec(ym || '');
+    if (!p) return ym || '';
+    try {
+      return new Date(+p[1], +p[2] - 1, 1).toLocaleDateString(_loc, {year: 'numeric', month: 'long'});
+    } catch (e) { return ym; }
   }
 
   function esc(s) {
@@ -2251,37 +2264,86 @@ window.KomakiGrade = (function () {
     });
   }
 
+  function typeOf(it) { return (it.type === 'feature' || it.type === 'fix') ? it.type : 'content'; }
+
+  // withKey：トップの一覧にだけ data-key を付ける（SINCE LAST VISIT が「前回見たか」を言語に関係なく照合する目印）
+  function row(it, withKey) {
+    // 本文は 対象言語 → en → ja の順（i18n.js のフォールバックと揃える）
+    var text = it[_ul] || it.en || it.ja || '';
+    var type = typeOf(it);
+    // link（任意、2026-11-10）：その行に関係するコーナー。サイト内の「ページ.html(#id)」だけを通す
+    var link = /^[a-z0-9-]+\.html(#[A-Za-z0-9_-]+)?$/.test(it.link || '') ? it.link : '';
+    return '<li class="update-item" data-date="' + esc(it.date || '') + '" data-type="' + type + '"' +
+             (withKey ? ' data-key="' + esc((it.date || '') + '|' + (it.ja || '')) + '"' : '') + '>' +
+             '<div class="update-meta">' +
+               '<time class="update-date" datetime="' + esc(it.date || '') + '">' + esc(fmtDate(it.date)) + '</time>' +
+               '<span class="update-tag update-tag--' + type + '">' + str(type) + '</span>' +
+             '</div>' +
+             '<div class="update-text">' + (link
+               ? '<a class="update-link" href="' + esc(link) + '">' + esc(text) + '</a>'
+               : esc(text)) + '</div>' +
+           '</li>';
+  }
+
+  function renderAll(items) {
+    // 月ごとのまとまり（新しい月から）
+    var groups = [], cur = null;
+    items.forEach(function (it) {
+      var ym = (it.date || '').slice(0, 7);
+      if (!cur || cur.ym !== ym) { cur = {ym: ym, items: []}; groups.push(cur); }
+      cur.items.push(it);
+    });
+    var counts = {all: items.length, content: 0, feature: 0, fix: 0};
+    items.forEach(function (it) { counts[typeOf(it)]++; });
+    var html = '<div class="update-filter" role="group">' + ['all', 'content', 'feature', 'fix'].filter(function (k) {
+      return k === 'all' || counts[k] > 0;
+    }).map(function (k) {
+      return '<button type="button" class="update-filter-btn" data-filter="' + k + '" aria-pressed="' + (k === 'all') + '">' +
+               esc(str(k)) + ' <span class="update-filter-n">' + counts[k] + '</span></button>';
+    }).join('') + '</div>';
+    html += groups.map(function (g) {
+      return '<div class="update-month-group">' +
+               '<h3 class="update-month">' + esc(fmtMonth(g.ym)) + '</h3>' +
+               '<ol class="update-list">' + g.items.map(function (it) { return row(it, false); }).join('') + '</ol>' +
+             '</div>';
+    }).join('');
+    all.innerHTML = html;
+    all.addEventListener('click', function (e) {
+      var b = e.target.closest && e.target.closest('.update-filter-btn');
+      if (!b) return;
+      var f = b.getAttribute('data-filter');
+      all.querySelectorAll('.update-filter-btn').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      all.querySelectorAll('.update-month-group').forEach(function (g) {
+        var shown = 0;
+        g.querySelectorAll('.update-item').forEach(function (li) {
+          var on = f === 'all' || li.getAttribute('data-type') === f;
+          li.hidden = !on;
+          if (on) shown++;
+        });
+        g.hidden = shown === 0;
+      });
+    });
+  }
+
   fetch('./data/site-updates.json')
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(function (data) {
       var items = (data.updates || []).slice();
-      if (!items.length) { container.innerHTML = '<p class="school-empty">' + str('empty') + '</p>'; return; }
+      var empty = '<p class="school-empty">' + str('empty') + '</p>';
+      if (!items.length) { [container, all].forEach(function (c) { if (c) c.innerHTML = empty; }); return; }
 
-      // 新しい順に並べ、直近 MAX_ITEMS 件だけ出す。
-      // JSON には履歴を残したままにして、表示だけを絞る。
+      // 新しい順に並べる（同じ日付はファイルの並びのまま）。JSON には履歴を残したままにして、トップは表示だけを絞る。
       items.sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); });
-      items = items.slice(0, MAX_ITEMS);
 
-      container.innerHTML = '<ol class="update-list">' + items.map(function (it) {
-        // 本文は 対象言語 → en → ja の順（i18n.js のフォールバックと揃える）
-        var text = it[_ul] || it.en || it.ja || '';
-        var type = (it.type === 'feature' || it.type === 'fix') ? it.type : 'content';
-        // link（任意、2026-11-10）：その行に関係するコーナー。サイト内の「ページ.html(#id)」だけを通す
-        var link = /^[a-z0-9-]+\.html(#[A-Za-z0-9_-]+)?$/.test(it.link || '') ? it.link : '';
-        // data-key は SINCE LAST VISIT が「前回見たか」を言語に関係なく照合するための目印
-        return '<li class="update-item" data-date="' + esc(it.date || '') + '" data-key="' + esc((it.date || '') + '|' + (it.ja || '')) + '">' +
-                 '<div class="update-meta">' +
-                   '<time class="update-date" datetime="' + esc(it.date || '') + '">' + esc(fmtDate(it.date)) + '</time>' +
-                   '<span class="update-tag update-tag--' + type + '">' + str(type) + '</span>' +
-                 '</div>' +
-                 '<div class="update-text">' + (link
-                   ? '<a class="update-link" href="' + esc(link) + '">' + esc(text) + '</a>'
-                   : esc(text)) + '</div>' +
-               '</li>';
-      }).join('') + '</ol>';
+      if (container) {
+        container.innerHTML = '<ol class="update-list">' +
+          items.slice(0, MAX_ITEMS).map(function (it) { return row(it, true); }).join('') + '</ol>';
+      }
+      if (all) renderAll(items);
     })
     .catch(function () {
-      container.innerHTML = '<p class="official-news-error">' + str('error') + '</p>';
+      var err = '<p class="official-news-error">' + str('error') + '</p>';
+      [container, all].forEach(function (c) { if (c) c.innerHTML = err; });
     });
 })();
 
