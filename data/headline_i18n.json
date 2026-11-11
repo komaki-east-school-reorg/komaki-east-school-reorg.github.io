@@ -14,6 +14,45 @@
       "tr": "Kitazato bölgesinin okullarını düşünme toplantısı (2.)",
       "my": "Kitazato ဒေသ ကျောင်းများအကြောင်း စဉ်းစားသည့် ဒုတိယအကြိမ် အစည်းအဝေး"
     },
+    "１年生 図工「せんのぼうけん」": {
+      "en": "1st Grade Art: \"The Adventure of Lines\"",
+      "pt": "1º ano, Artes: \"A aventura das linhas\"",
+      "vi": "Lớp 1 Mỹ thuật: \"Cuộc phiêu lưu của những đường nét\"",
+      "tl": "Grade 1 Sining: \"Ang Pakikipagsapalaran ng mga Guhit\"",
+      "es": "1.er grado, Arte: \"La aventura de las líneas\"",
+      "zh": "一年级 美术课“线条的冒险”",
+      "id": "Kelas 1 Seni Rupa: \"Petualangan Garis\"",
+      "ko": "1학년 미술 \"선의 모험\"",
+      "ne": "कक्षा 1 कला: \"रेखाहरूको साहसिक यात्रा\"",
+      "tr": "1. Sınıf Resim-İş: \"Çizgilerin Macerası\"",
+      "my": "ပထမတန်း ပုံဆွဲအတန်း \"မျဉ်းကြောင်းများ၏ စွန့်စားခန်း\""
+    },
+    "３年生 読み聞かせ": {
+      "en": "3rd Grade Story Reading",
+      "pt": "3º ano: leitura de histórias",
+      "vi": "Lớp 3 Đọc truyện cho học sinh nghe",
+      "tl": "Grade 3 Pagbabasa ng Kuwento",
+      "es": "3.er grado: lectura de cuentos",
+      "zh": "三年级 故事朗读",
+      "id": "Kelas 3 Membacakan Cerita",
+      "ko": "3학년 책 읽어주기",
+      "ne": "कक्षा 3 कथा वाचन",
+      "tr": "3. Sınıf Hikâye Okuma",
+      "my": "တတိယတန်း ပုံပြင်ဖတ်ပြခြင်း"
+    },
+    "６年生 給食": {
+      "en": "6th Grade School Lunch",
+      "pt": "6º ano: merenda escolar",
+      "vi": "Lớp 6 Bữa trưa ở trường",
+      "tl": "Grade 6 Tanghalian sa Paaralan",
+      "es": "6.º grado: almuerzo escolar",
+      "zh": "六年级 学校午餐",
+      "id": "Kelas 6 Makan Siang Sekolah",
+      "ko": "6학년 급식",
+      "ne": "कक्षा 6 विद्यालयको खाजा",
+      "tr": "6. Sınıf Okul Yemeği",
+      "my": "ဆဋ္ဌမတန်း ကျောင်းစာသုံးဆောင်ချိန်"
+    },
     "航空写真": {
       "en": "Aerial photo",
       "pt": "Foto aérea",
@@ -53,6 +92,19 @@
       "tr": "7/11 Kız basketbol 3. sınıf takımı şehir spor turnuvasında birinci oldu",
       "my": "11/7 အမျိုးသမီး ဘတ်စကက်ဘောအသင်း တတိယနှစ် မြို့တော်အားကစားပွဲ ပထမရ"
     },
+    "11/10 キッズソーランの練習（１～３年生）": {
+      "en": "11/10 Kids Soran Dance Practice (Grades 1-3)",
+      "pt": "10/11 Treino de Kids Soran (1º ao 3º ano)",
+      "vi": "10/11 Luyện tập Kids Soran (Lớp 1-3)",
+      "tl": "11/10 Praktis ng Kids Soran (Grade 1-3)",
+      "es": "10/11 Práctica de Kids Soran (1.º a 3.er grado)",
+      "zh": "11/10 儿童索兰舞练习（一至三年级）",
+      "id": "10/11 Latihan Kids Soran (Kelas 1-3)",
+      "ko": "11/10 키즈 소란 연습 (1~3학년)",
+      "ne": "11/10 किड्स सोरान अभ्यास (कक्षा 1-3)",
+      "tr": "10/11 Kids Soran Çalışması (1-3. Sınıflar)",
+      "my": "11/10 Kids Soran လေ့ကျင့်ခြင်း (ပထမတန်းမှ တတိယတန်းအထိ)"
+    },
     "11/19 夢チャレンジ科（４～６年生）": {
       "en": "11/19 Dream Challenge class (grades 4-6)",
       "pt": "19/11 Aula Desafio dos Sonhos (4º ao 6º ano)",
@@ -79,18 +131,44 @@
       "tr": "Sonbahar okul gezisi (3. sınıf)",
       "my": "ဆောင်းဦးရာသီ ကျောင်းပြင်ပလေ့လာရေး (အတန်း ၃)"
     },
-    "11/9 今日の給食": {
-      "en": "11/9 Today's school lunch",
-      "pt": "9/11 A merenda de hoje",
-      "vi": "9/11 Bữa ăn trưa hôm nay",
-      "tl": "11/9 Tanghalian sa paaralan ngayon",
-      "es": "9/11 El almuerzo escolar de hoy",
-      "zh": "11/9 今日营养午餐",
-      "id": "9/11 Makan siang sekolah hari ini",
-      "ko": "11/9 오늘의 급식",
-      "ne": "11/9 आजको विद्यालय खाजा",
-      "tr": "9/11 Bugünkü okul yemeği",
-      "my": "11/9 ယနေ့ကျောင်းနေ့လည်စာ"
+    "たくさん採れました": {
+      "en": "A Big Harvest",
+      "pt": "Colheita farta",
+      "vi": "Thu hoạch được rất nhiều",
+      "tl": "Marami ang Naani",
+      "es": "Una gran cosecha",
+      "zh": "收获满满",
+      "id": "Panen Melimpah",
+      "ko": "많이 수확했어요",
+      "ne": "धेरै उब्जनी भयो",
+      "tr": "Bol Bol Hasat Yapıldı",
+      "my": "အများကြီး ရိတ်သိမ်းရပါတယ်"
+    },
+    "スクールバス試乗体験会": {
+      "en": "School Bus Test Ride Event",
+      "pt": "Evento de experiência de teste no ônibus escolar",
+      "vi": "Buổi trải nghiệm đi thử xe buýt trường học",
+      "tl": "Karanasang Test Ride sa School Bus",
+      "es": "Evento de viaje de prueba en el bus escolar",
+      "zh": "校车试乘体验会",
+      "id": "Acara uji coba naik bus sekolah",
+      "ko": "스쿨버스 시승 체험회",
+      "ne": "स्कुल बस परीक्षण सवारी अनुभव कार्यक्रम",
+      "tr": "Okul servisi deneme sürüşü etkinliği",
+      "my": "ကျောင်းဘတ်စ်ကား စမ်းသပ်စီးနင်းမှု အတွေ့အကြုံ အစီအစဉ်"
+    },
+    "校外学習：火力発電所": {
+      "en": "Field Trip: Thermal Power Plant",
+      "pt": "Estudo externo: usina termelétrica",
+      "vi": "Học tập ngoại khóa: nhà máy nhiệt điện",
+      "tl": "Field Trip: Planta ng Thermal Power",
+      "es": "Salida educativa: central termoeléctrica",
+      "zh": "校外学习：火力发电厂",
+      "id": "Belajar di luar sekolah: pembangkit listrik tenaga termal",
+      "ko": "현장 학습: 화력 발전소",
+      "ne": "फिल्ड ट्रिप: तापीय विद्युत केन्द्र",
+      "tr": "Okul gezisi: termik santral",
+      "my": "ကျောင်းပြင်ပ သင်ယူမှု - အပူစွမ်းအင် လျှပ်စစ်ဓာတ်ပေးစက်ရုံ"
     },
     "校外学習：びっくりがいっぱい！": {
       "en": "Field trip: full of surprises!",
@@ -170,45 +248,6 @@
       "tr": "Emekle kazanılan \"1x\"",
       "my": "ကြိုးစားယူခဲ့သော \"1x\""
     },
-    "4年生 体育「小型ハードル走」": {
-      "en": "4th grade P.E. \"Mini hurdle running\"",
-      "pt": "4º ano Educação Física \"Corrida com mini barreiras\"",
-      "vi": "Lớp 4 Thể dục \"Chạy vượt rào nhỏ\"",
-      "tl": "Grade 4 P.E. \"Mini hurdle running\"",
-      "es": "4.º grado Educación Física \"Carrera con mini vallas\"",
-      "zh": "4年级 体育“小型跨栏跑”",
-      "id": "Kelas 4 Olahraga \"Lari gawang mini\"",
-      "ko": "4학년 체육 \"소형 허들 달리기\"",
-      "ne": "कक्षा 4 शारीरिक शिक्षा \"सानो हर्डल दौड\"",
-      "tr": "4. sınıf Beden Eğitimi \"Mini engelli koşu\"",
-      "my": "အတန်း ၄ ကာယပညာ \"အသေးစား အတားအဆီးပြေးခြင်း\""
-    },
-    "1年生 図工「いっしょにおさんぽ」": {
-      "en": "1st grade Arts and Crafts \"A walk together\"",
-      "pt": "1º ano Artes e Trabalhos Manuais \"Um passeio juntos\"",
-      "vi": "Lớp 1 Mỹ thuật thủ công \"Cùng nhau đi dạo\"",
-      "tl": "Grade 1 Arts and Crafts \"Sabay na paglalakad\"",
-      "es": "1.er grado Artes y Manualidades \"Un paseo juntos\"",
-      "zh": "1年级 美术手工“一起去散步”",
-      "id": "Kelas 1 Seni dan Kerajinan \"Berjalan-jalan bersama\"",
-      "ko": "1학년 미술·공작 \"함께 산책\"",
-      "ne": "कक्षा 1 कला तथा हस्तकला \"सँगै टहल\"",
-      "tr": "1. sınıf Resim-El İşi \"Birlikte yürüyüş\"",
-      "my": "အတန်း ၁ အနုပညာနှင့် လက်မှုပညာ \"အတူတူ လမ်းလျှောက်ခြင်း\""
-    },
-    "5年生 体育": {
-      "en": "5th grade P.E.",
-      "pt": "5º ano Educação Física",
-      "vi": "Lớp 5 Thể dục",
-      "tl": "Grade 5 P.E.",
-      "es": "5.º grado Educación Física",
-      "zh": "5年级 体育",
-      "id": "Kelas 5 Olahraga",
-      "ko": "5학년 체육",
-      "ne": "कक्षा 5 शारीरिक शिक्षा",
-      "tr": "5. sınıf Beden Eğitimi",
-      "my": "အတန်း ၅ ကာယပညာ"
-    },
     "《桃花台野球部》尾張東部大会第３位！": {
       "en": "Tokadai Baseball Club: 3rd Place at the Owari Eastern Tournament!",
       "pt": "Clube de beisebol de Tokadai: 3º lugar no torneio do leste de Owari!",
@@ -247,45 +286,6 @@
       "ne": "कक्षा 2 को शिष्टाचार कक्षा",
       "tr": "2. sınıf görgü kuralları dersi",
       "my": "ဒုတိယတန်း ကျင့်ဝတ်သင်တန်း"
-    },
-    "スクールバス試乗体験会": {
-      "en": "School Bus Test Ride Event",
-      "pt": "Evento de experiência de teste no ônibus escolar",
-      "vi": "Buổi trải nghiệm đi thử xe buýt trường học",
-      "tl": "Karanasang Test Ride sa School Bus",
-      "es": "Evento de viaje de prueba en el bus escolar",
-      "zh": "校车试乘体验会",
-      "id": "Acara uji coba naik bus sekolah",
-      "ko": "스쿨버스 시승 체험회",
-      "ne": "स्कुल बस परीक्षण सवारी अनुभव कार्यक्रम",
-      "tr": "Okul servisi deneme sürüşü etkinliği",
-      "my": "ကျောင်းဘတ်စ်ကား စမ်းသပ်စီးနင်းမှု အတွေ့အကြုံ အစီအစဉ်"
-    },
-    "校外学習：火力発電所": {
-      "en": "Field Trip: Thermal Power Plant",
-      "pt": "Estudo externo: usina termelétrica",
-      "vi": "Học tập ngoại khóa: nhà máy nhiệt điện",
-      "tl": "Field Trip: Planta ng Thermal Power",
-      "es": "Salida educativa: central termoeléctrica",
-      "zh": "校外学习：火力发电厂",
-      "id": "Belajar di luar sekolah: pembangkit listrik tenaga termal",
-      "ko": "현장 학습: 화력 발전소",
-      "ne": "फिल्ड ट्रिप: तापीय विद्युत केन्द्र",
-      "tr": "Okul gezisi: termik santral",
-      "my": "ကျောင်းပြင်ပ သင်ယူမှု - အပူစွမ်းအင် လျှပ်စစ်ဓာတ်ပေးစက်ရုံ"
-    },
-    "校外学習：常滑市・半田市": {
-      "en": "Field trip: Tokoname City and Handa City",
-      "pt": "Passeio escolar: cidades de Tokoname e Handa",
-      "vi": "Học tập ngoại khóa: thành phố Tokoname và Handa",
-      "tl": "Field trip: Lungsod ng Tokoname at Handa",
-      "es": "Excursión escolar: ciudades de Tokoname y Handa",
-      "zh": "校外学习：常滑市・半田市",
-      "id": "Studi lapangan: Kota Tokoname dan Handa",
-      "ko": "현장 학습: 도코나메시·한다시",
-      "ne": "बाहिरी अध्ययन भ्रमण: टोकोनामे सहर र हान्डा सहर",
-      "tr": "Okul gezisi: Tokoname ve Handa şehirleri",
-      "my": "ကျောင်းပြင်ပလေ့လာရေး- Tokoname မြို့နှင့် Handa မြို့"
     },
     "5年外国語活動 英語で道案内をしてみよう！": {
       "en": "5th Grade Foreign Language Activity: Let's Give Directions in English!",
