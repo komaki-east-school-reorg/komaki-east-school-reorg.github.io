@@ -31,7 +31,9 @@
     },
     {
       "date": "2026-11-07",
-      "title": "[機能] 全ページの head に購読カレンダーの rel=alternate を入れる"
+      "title": "[機能] 全ページの head に購読カレンダーの rel=alternate を入れる",
+      "implemented": "2026-11-11",
+      "note": "schedule.html の head だけに入れた（calendar.ja.ics）"
     },
     {
       "date": "2026-11-07",
@@ -110,11 +112,15 @@
     },
     {
       "date": "2026-10-30",
-      "title": "[機能] 共有カード画像に代替テキスト（og:image:alt）を付ける"
+      "title": "[機能] 共有カード画像に代替テキスト（og:image:alt）を付ける",
+      "implemented": "2026-11-11",
+      "note": "全ページの head と予定ページの雛形、twitter:image:alt も"
     },
     {
       "date": "2026-10-30",
-      "title": "[機能] 日本語のまま残す部署名・学校名に lang=ja と translate=no を付ける"
+      "title": "[機能] 日本語のまま残す部署名・学校名に lang=ja と translate=no を付ける",
+      "implemented": "2026-11-11",
+      "note": "連絡先の表の部署欄・.mc-ja・clubs.html のクラブ名と会場名"
     },
     {
       "date": "2026-10-29",
@@ -144,7 +150,9 @@
     },
     {
       "date": "2026-10-27",
-      "title": "[機能] 全ページに WebPage の構造化データを実行時に付ける"
+      "title": "[機能] 全ページに WebPage の構造化データを実行時に付ける",
+      "implemented": "2026-11-11",
+      "note": "i18n.js applyPageMeta（表示言語で。こどもむけ・noindex・予定ページを除く）"
     },
     {
       "date": "2026-10-27",
@@ -174,15 +182,21 @@
     },
     {
       "date": "2026-10-24",
-      "title": "[機能] ことばメモを DefinedTermSet の構造化データにする"
+      "title": "[機能] ことばメモを DefinedTermSet の構造化データにする",
+      "implemented": "2026-11-11",
+      "note": "採らず（検索結果に効く見込みが薄く、辞書と二重になる）"
     },
     {
       "date": "2026-10-24",
-      "title": "[機能] 検索結果・共有時の抜粋を広く許す robots メタを全ページに入れる"
+      "title": "[機能] 検索結果・共有時の抜粋を広く許す robots メタを全ページに入れる",
+      "implemented": "2026-11-11",
+      "note": "max-snippet:-1, max-image-preview:large（404・voices を除く）"
     },
     {
       "date": "2026-10-23",
-      "title": "[機能] index.html の WebSite 構造化データを12言語・現行名称に直す"
+      "title": "[機能] index.html の WebSite 構造化データを12言語・現行名称に直す",
+      "implemented": "2026-11-11",
+      "note": "alternateName を現行の名前に（inLanguage は12言語で既に入っていた）"
     },
     {
       "date": "2026-10-23",
@@ -233,7 +247,9 @@
     },
     {
       "date": "2026-10-19",
-      "title": "[機能] スケジュールの予定を ItemList の構造化データで一覧化"
+      "title": "[機能] スケジュールの予定を ItemList の構造化データで一覧化",
+      "implemented": "2026-11-11",
+      "note": "採らず（予定ごとのページに Event があり、二重になる）"
     },
     {
       "date": "2026-10-18",
@@ -321,7 +337,9 @@
     },
     {
       "date": "2026-10-12",
-      "title": "[機能] og:locale と OGP 画像の代替テキストを言語ごとに入れる"
+      "title": "[機能] og:locale と OGP 画像の代替テキストを言語ごとに入れる",
+      "implemented": "2026-11-11",
+      "note": "i18n.js applyPageMeta（og_image_alt、es は es_LA）。静的な head に日本語の値"
     },
     {
       "date": "2026-10-11",

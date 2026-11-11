@@ -190,6 +190,7 @@ def page(it, prev, nxt, header, share, footer):
   <base href="/">
   <title>{htmlmod.escape(t)}</title>
   <meta name="description" content="{htmlmod.escape(d)}">
+  <meta name="robots" content="max-snippet:-1, max-image-preview:large">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="{SITE_NAME}｜桃花台エリアの非公式でもわかりやすい地域情報メディア">
   <meta property="og:title" content="{htmlmod.escape(t)}">
@@ -198,10 +199,13 @@ def page(it, prev, nxt, header, share, footer):
   <meta property="og:image" content="{SITE}img/og-image.png?v=20261011">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="黒板のデザインに「小牧市東部（篠岡地区）学校再編ナビ」と書かれたタイトル画像">
+  <meta property="og:locale" content="ja_JP">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{htmlmod.escape(t)}">
   <meta name="twitter:description" content="{htmlmod.escape(d)}">
   <meta name="twitter:image" content="{SITE}img/og-image.png?v=20261011">
+  <meta name="twitter:image:alt" content="黒板のデザインに「小牧市東部（篠岡地区）学校再編ナビ」と書かれたタイトル画像">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.ja.webmanifest">
   <link rel="apple-touch-icon" href="img/icon-180.png">

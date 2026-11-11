@@ -358,6 +358,7 @@
     updateSeoUrls(lang);
     updateAppMeta(dict, lang);
     applyBreadcrumbJsonLd(lang);
+    applyPageMeta(dict, lang);
 
     try { localStorage.setItem('komaki_lang', lang); } catch (e) {}
     showPage();
@@ -369,6 +370,53 @@
     // 本文の DOM を掴んでいる処理（js/main.js の READ ALOUD など）はこれを見て手を離す。
     // 言語の切り替えはページの読み直しになるが、こどもむけの切り替えはここを通る。
     try { document.dispatchEvent(new CustomEvent('komaki:i18n-applied', { detail: { lang: lang } })); } catch (e) {}
+  }
+
+  // ===== ページの構造化データ（schema.org WebPage）と共有カードの言語（2026-11-11） =====
+  // 日次アイデアの SEO まわりの案（WebPage・og:locale・og:image:alt）をまとめた。
+  // ・WebPage：表示中の言語の題名・説明・URL（canonical と同じ）・inLanguage を書く。publisher は書かない
+  //   （運営者を組織として名乗ると公式に見えるため。index.html の WebSite と同じ考え方）。
+  //   こどもむけ（noindex）、noindex のページ（404・voices）、予定ページ（Event を持つ）には書かない。
+  // ・og:locale は Facebook の書式（es は中南米の es_LA）。og:image:alt / twitter:image:alt は辞書の og_image_alt。
+  // FAQPage・パンくずと同じく静的に書かない（辞書と黙って食い違うため）。静的な head には日本語の値がある。
+  var OG_LOCALE = { ja: 'ja_JP', en: 'en_US', pt: 'pt_BR', vi: 'vi_VN', tl: 'tl_PH', es: 'es_LA', zh: 'zh_CN',
+                    id: 'id_ID', ko: 'ko_KR', ne: 'ne_NP', tr: 'tr_TR', my: 'my_MM' };
+  function applyPageMeta(dict, lang) {
+    var loc = document.querySelector('meta[property="og:locale"]');
+    if (loc && OG_LOCALE[lang]) loc.setAttribute('content', OG_LOCALE[lang]);
+    if (dict.og_image_alt) {
+      ['meta[property="og:image:alt"]', 'meta[name="twitter:image:alt"]'].forEach(function (sel) {
+        var el = document.querySelector(sel);
+        if (el) el.setAttribute('content', dict.og_image_alt);
+      });
+    }
+    var existing = document.getElementById('webpage-jsonld');
+    var noindex = document.querySelector('meta[name="robots"][content*="noindex"]');
+    var desc = document.querySelector('meta[name="description"]');
+    if (_kidsMode || noindex || PAGE_ID === 'event' || PAGE_ID === '404' || !dict['meta_title_' + PAGE_ID]) {
+      if (existing) existing.remove();
+      return;
+    }
+    var origin;
+    try { origin = new URL(_canonicalBase).origin + '/'; } catch (e) { return; }
+    var langAttrMap = { ja: 'ja', en: 'en', pt: 'pt-BR', vi: 'vi', tl: 'tl', es: 'es-419', zh: 'zh-Hans', id: 'id', ko: 'ko', ne: 'ne', tr: 'tr', my: 'my' };
+    var payload = {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: dict['meta_title_' + PAGE_ID],
+      description: desc ? desc.getAttribute('content') : undefined,
+      url: seoUrlForLang(lang),
+      inLanguage: langAttrMap[lang] || lang,
+      isPartOf: { '@type': 'WebSite', url: origin }
+    };
+    var el = existing;
+    if (!el) {
+      el = document.createElement('script');
+      el.id = 'webpage-jsonld';
+      el.type = 'application/ld+json';
+      document.head.appendChild(el);
+    }
+    el.textContent = JSON.stringify(payload);
   }
 
   // ===== パンくずの構造化データ（schema.org BreadcrumbList） =====

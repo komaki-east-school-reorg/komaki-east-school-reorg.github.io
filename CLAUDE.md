@@ -426,6 +426,7 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 
 トップページの「各ページへのリンク」の下に、この4か所への案内（`contacts_guide_*`）を置いてある。**番号そのものをトップに書かない** — 直す場所が増えると必ず食い違うため。
 
+- **日本語のまま出す名前には `lang="ja" translate="no"` を付ける**（2026-11-11）。連絡先の表の「部署」欄（1列目の `<td>`）、窓口で見せる日本語（`.mc-ja`）、clubs.html のクラブ名・会場名（`.club-name` / `.club-place`。日本語を含まない名前は `translate="no"` だけ）。ブラウザの自動翻訳で部署名が別の言葉に変わると、窓口で通じなくなるため。**連絡先の行やクラブを足すときも付けること。** 読み上げは、日本語・中国語以外の表示ではこれらを声に渡さない。
 - **部署名は日本語のまま**（表の「部署」欄に `data-i18n` を付けない）。窓口で見せたり電話で伝えたりするのは日本語の名称そのもので、訳すと用を成さないため。訳すのは「このページで触れた事柄」の欄とラベルだけ。年表の西暦欄と同じ考え方。ただし `about.html`・`faq.html`・`community.html` の `.contact-box` は従来どおり部署名も翻訳する（1部署だけなので窓口で示す用途より読みやすさを優先）。
 - **番号は HTML と辞書に直接書く。** `tel:` リンクの数字だけの形と、表示用のハイフン入りの形の2つが本文中にある。
 - **出典は「その部署の公表ページ」**。市・県・国のどのページから写したかは `data/contacts.json` の `source` にある。**このURLはサイトからはリンクしない**（許可外部リンクを増やせないため）。
@@ -852,6 +853,9 @@ The 対象エリアの地図 draws **three sources with different accuracy** —
 | JSON-LD `WebSite` | `index.html` only | Static. Deliberately carries **no `publisher`/`Organization`** — inventing one would imply this site is official, which it is not. `citation` points at the permitted city URL. |
 | JSON-LD `FAQPage` | `faq.html`, generated at runtime | Built by `applyFaqJsonLd` in `i18n.js` from the loaded dictionary's `faq_q<N>`/`faq_a<N>` pairs. **Do not hand-write it into `faq.html`** — that would duplicate `data/i18n/` and silently drift. The loop stops at the first missing `faq_q<N>`, so FAQ keys must stay contiguously numbered. |
 | JSON-LD `BreadcrumbList` | every page with a `.breadcrumb`, generated at runtime | `applyBreadcrumbJsonLd` in `i18n.js` builds it from the translated breadcrumb text, in the reader's language, with URLs in the canonical `?lang=` form (2026-10-11). Same reason as FAQPage: never hand-write it |
+| JSON-LD `WebPage`, `og:locale`, `og:image:alt` | every page, at runtime | `applyPageMeta` in `i18n.js` (2026-11-11) writes a `WebPage` (name / description / url = canonical / `inLanguage` / `isPartOf`, **no `publisher`**) in the reader's language, and switches `og:locale` (Facebook's codes; `es` is `es_LA`) and `og:image:alt` / `twitter:image:alt` (key `og_image_alt`, in `RUNTIME_KEYS`). No `WebPage` in kids mode, on `noindex` pages (404, voices) or on event pages (they carry `Event`). The static `<head>` of every page holds the Japanese values (`og:locale` `ja_JP`, the alt text) for crawlers that do not run JS — **copy those lines when adding a page** |
+| `<meta name="robots" content="max-snippet:-1, max-image-preview:large">` | every indexable page `<head>` (not 404 / voices), and the event-page template | Lets search results quote as much as they like and show the large image (2026-11-11). Kids mode adds its own `noindex, follow` next to it; the stricter one wins |
+| `rel="alternate" type="text/calendar"` | `schedule.html` `<head>` only | Points at `calendar.ja.ics` (2026-11-11) |
 | Atom feed | `feed.xml` (generated) | See 「外から見つけてもらう仕組み」 below. Linked from every page's `<head>` with `rel="alternate"` |
 
 Google has restricted `FAQPage` rich results to authoritative government and health sites, so this markup will most likely not produce rich results here. It is still valid, accurate structured data and costs nothing to keep.

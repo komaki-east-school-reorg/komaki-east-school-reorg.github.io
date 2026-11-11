@@ -42,6 +42,7 @@ AFTER_SUFFIX = "__after"
 #   event_status_*     … schedule.html の 完了/進行中/予定 バッジ
 #   share_*            … 全ページ共通の共有ボタン（main.js が組み立てる）
 RUNTIME_KEYS = [
+    "og_image_alt",       # 共有カードの画像の代替テキスト（i18n.js の applyPageMeta、2026-11-11）
     "tr_footer",          # TRANSLATION HELP（外国語表示のフッタの一行、main.js。2026-11-08）
     "table_scroll_hint",  # TABLE SCROLL HINT（横長の表の合図、main.js。2026-11-07）
     "search_h",           # SITE SEARCH（全ページ、main.js。2026-11-05）
