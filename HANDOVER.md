@@ -22,6 +22,7 @@ GitHub の Issue（通知メールが届きます）と、メールで届きま�
 | ⏰ 運用作業の期限 | 期限の数日前（毎日10:20確認） | 書いてある作業をします。一覧は `python3 .github/scripts/check_ops_calendar.py --list`。一度きりの作業は済んだら `data/ops_calendar.json` から消します |
 | ☎️ 担当部署の連絡先に変化 | 月曜 | 番号は自動で直っています。部署名・所在地の変化は、公表ページで確かめてから `data/contacts.json`・掲載ページ・13辞書を手で直します。**取得の一時的な失敗のこともある**ので、まず出所ページを開いて確かめます |
 | 🔗 外部リンク切れ | 月曜（2週続けて開けないとき） | リンク先を開いて確かめます。移転先が発信元の公表で分かれば差し替え、分からなければリンクを外します（推測で URL を作らない） |
+| 🧹 サイトの点検 | 月曜（気になる所があるとき） | 急ぎません。書いてある所を手の空いたときに直し、直したら閉じます（使われていない辞書のキー、訳の抜け、古い「時点」表記、文中の数と実数の食い違いなど）。手元では `python3 .github/scripts/site_lint.py` |
 | 📈 利用状況（メール） | 月曜 | 目を通すだけ。使われていない機能を見直す材料にします |
 | 💡 新機能アイデア（メール） | 毎朝 | 採用するものだけ実装します。採用しなければ何もしなくてよい |
 | 【ご意見】【翻訳】 | 読者が送ったとき | ご意見は読んで閉じます。翻訳の修正提案は、その言語のそのキーを直し、**同じキーを英語でも確かめます**（誤りは英語から広がるため）。表記の決まりなら `data/term_rules.json` に1行足します。 |
@@ -43,6 +44,8 @@ python3 .github/scripts/build_search_index.py    # 辞書や HTML の文を触�
 python3 .github/scripts/build_event_pages.py     # schedule.html の予定を触ったとき
 python3 .github/scripts/build_feed.py            # 更新履歴などを触ったとき
 python3 .github/scripts/build_calendar.py        # events.json を触ったとき
+python3 .github/scripts/build_crosslinks.py      # 検索の索引を作り直したあと（関連リンク）
+python3 .github/scripts/site_lint.py             # サイトの点検（止めない検査。気になる所の一覧）
 python3 .github/scripts/auto_gates.py            # 全体の検査（「許可されていないファイル」「evidence.json」の NG は人の変更では出てよい。それ以外の NG を無くす）
 ```
 

@@ -139,10 +139,12 @@ sitemap.xml                 全11ページのサイトマップ。各URLに12言
 .github/workflows/check-reach.yml    毎週月曜 7:10 JST に check_reach.py を回し、メール（だめなら Issue）で届けるワークフロー定義。Secret GOATCOUNTER_TOKEN が無ければ閲覧数は省く。
 .github/ISSUE_TEMPLATE/feedback.yml  読者の声の窓口（index.html#feedback）の Issue フォーム。公開されること・個人情報を書かないことを冒頭に明記。
 .github/ISSUE_TEMPLATE/translation.yml  翻訳の修正提案の窓口（site.html#translation）の Issue フォーム（ラベル translation）。公開されること・個人情報を書かないことを冒頭に明記。
+.github/scripts/site_lint.py            サイトの点検（止めない検査）。使われていない辞書のキー・訳の抜け・言語一覧・meta description・画像の属性・版の表記・文中の数・day:true・古い「時点」・「市民」の表記・HANDOVER.md との食い違いを一覧にする（check-site.yml が週1回使う）。辞書に無いキーとサイト内リンク切れの2つは auto_gates.py check 28・29 からも呼ばれる。exit 0=なし・3=あり。
 .github/scripts/check_ops_calendar.py   運用カレンダー（data/ops_calendar.json と HTML の data-expires・辞書の data-until）を読み、期限の近い作業を報告する（check-fetch.yml が使う）。--list で一覧。exit 0=なし・3=あり。
 data/ops_calendar.json  運用カレンダー（人の手でしか直せない期限つきの作業）。手動管理。一度きりの項目は済んだら消す。
 HANDOVER.md         運営の引き継ぎ（最低限これだけ）。毎週届く Issue と対処、人の手でしか直せないこと、直す手順、触ってはいけないもの、Secrets。
 .github/workflows/check-links.yml    毎週1回、サイトが張っている外部リンクが開けるかを確かめるワークフロー定義。2週続けて開けないURLをIssue（🔗）で知らせる。自動では直さない。
+.github/workflows/check-site.yml     毎週月曜 6:20 JST に site_lint.py を回し、気になる所があれば Issue（🧹 サイトの点検）で知らせるワークフロー定義。外部にはアクセスしない。サイトは止めない。
 .github/workflows/check-fetch.yml    毎日1回、自動取得（市・対象8校・春日井市）が止まっていないかを data/fetch_status.json で確かめ、止まっていればIssue（⚠️ 自動取得の停止）で知らせるワークフロー定義。運用カレンダーの期限も同じジョブで確かめ、Issue（⏰ 運用作業の期限）で知らせる。外部にはアクセスしない。
 .github/workflows/feature-ideas.yml 毎朝1回、このサイトに足すとよさそうな機能をAIに考えさせてメールで届けるワークフロー定義。サイトのファイルは変更しない。
 .github/workflows/translate-headlines.yml 取得ワークフローの完了後、新しく入った見出しだけをAIで9言語に訳し、機械検証してheadline_i18n.jsonに取り込むワークフロー定義。

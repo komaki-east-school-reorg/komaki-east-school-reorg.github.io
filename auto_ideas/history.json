@@ -15,7 +15,9 @@
     },
     {
       "date": "2026-11-10",
-      "title": "[機能] HANDOVER.md と実際のワークフロー・Issue 見出し・Secrets の食い違いを検査"
+      "title": "[機能] HANDOVER.md と実際のワークフロー・Issue 見出し・Secrets の食い違いを検査",
+      "implemented": "2026-11-11",
+      "note": "site_lint.py"
     },
     {
       "date": "2026-11-08",
@@ -23,7 +25,9 @@
     },
     {
       "date": "2026-11-08",
-      "title": "[機能] 辞書の value 内にある内部リンク（href=#...）の切れを検査する"
+      "title": "[機能] 辞書の value 内にある内部リンク（href=#...）の切れを検査する",
+      "implemented": "2026-11-11",
+      "note": "auto_gates.py check 29（辞書の値の中のリンクも見る）"
     },
     {
       "date": "2026-11-07",
@@ -44,7 +48,9 @@
     },
     {
       "date": "2026-11-05",
-      "title": "[機能] 「市民」の書き戻しを防ぐ検査（固有名詞は許可）"
+      "title": "[機能] 「市民」の書き戻しを防ぐ検査（固有名詞は許可）",
+      "implemented": "2026-11-11",
+      "note": "site_lint.py（SHIMIN_OK）"
     },
     {
       "date": "2026-11-04",
@@ -52,7 +58,9 @@
     },
     {
       "date": "2026-11-04",
-      "title": "[機能] 挿絵の <img> の属性（width/height・lazy・alt）を機械で検査"
+      "title": "[機能] 挿絵の <img> の属性（width/height・lazy・alt）を機械で検査",
+      "implemented": "2026-11-11",
+      "note": "site_lint.py（画像の属性。lazy は見ていない）"
     },
     {
       "date": "2026-11-03",
@@ -66,7 +74,9 @@
     },
     {
       "date": "2026-11-02",
-      "title": "[機能] ページ別辞書の重さに上限を設けるゲート"
+      "title": "[機能] ページ別辞書の重さに上限を設けるゲート",
+      "implemented": "2026-11-11",
+      "note": "site_lint.py（止めずに知らせる）"
     },
     {
       "date": "2026-11-02",
@@ -76,15 +86,21 @@
     },
     {
       "date": "2026-11-01",
-      "title": "[機能] 挿絵SVGが「文字なし」の規則を守っているか検査"
+      "title": "[機能] 挿絵SVGが「文字なし」の規則を守っているか検査",
+      "implemented": "2026-11-11",
+      "note": "site_lint.py（挿絵の文字）"
     },
     {
       "date": "2026-11-01",
-      "title": "[機能] サイトの版（Ver.）表記が13辞書でそろっているかを検査"
+      "title": "[機能] サイトの版（Ver.）表記が13辞書でそろっているかを検査",
+      "implemented": "2026-11-11",
+      "note": "site_lint.py（版の表記）"
     },
     {
       "date": "2026-10-31",
-      "title": "[機能] 更新履歴(site-updates.json)の書式を機械で検査"
+      "title": "[機能] 更新履歴(site-updates.json)の書式を機械で検査",
+      "implemented": "2026-11-11",
+      "note": "既存の check 22・26 と check 19b が見ている（書式・link・実体参照）"
     },
     {
       "date": "2026-10-31",
@@ -116,7 +132,9 @@
     },
     {
       "date": "2026-10-28",
-      "title": "[機能] 「day:true」の付け忘れを機械で検査"
+      "title": "[機能] 「day:true」の付け忘れを機械で検査",
+      "implemented": "2026-11-11",
+      "note": "site_lint.py"
     },
     {
       "date": "2026-10-28",
@@ -134,11 +152,15 @@
     },
     {
       "date": "2026-10-26",
-      "title": "[機能] OGP画像の版番号と実ファイルの食い違いを検査"
+      "title": "[機能] OGP画像の版番号と実ファイルの食い違いを検査",
+      "implemented": "2026-11-11",
+      "note": "site_lint.py（?v= がページ間でそろっているか）"
     },
     {
       "date": "2026-10-26",
-      "title": "[機能] 手書きの「N件」「N問」と実数の食い違いを検査"
+      "title": "[機能] 手書きの「N件」「N問」と実数の食い違いを検査",
+      "implemented": "2026-11-11",
+      "note": "site_lint.py（faq_qa_intro・rev_open_short・faq_q の連番）"
     },
     {
       "date": "2026-10-25",
@@ -164,7 +186,9 @@
     },
     {
       "date": "2026-10-23",
-      "title": "[機能] 対応言語の一覧が各所でそろっているかを機械で検査するゲート"
+      "title": "[機能] 対応言語の一覧が各所でそろっているかを機械で検査するゲート",
+      "implemented": "2026-11-11",
+      "note": "site_lint.py（言語の一覧）"
     },
     {
       "date": "2026-10-22",
@@ -173,7 +197,9 @@
     },
     {
       "date": "2026-10-22",
-      "title": "[機能] ja-kids の取りこぼしキーを検査するゲート"
+      "title": "[機能] ja-kids の取りこぼしキーを検査するゲート",
+      "implemented": "2026-11-11",
+      "note": "site_lint.py（訳の抜け）"
     },
     {
       "date": "2026-10-21",
@@ -183,7 +209,9 @@
     },
     {
       "date": "2026-10-21",
-      "title": "[機能] 辞書の「使われていないキー」を検出するゲート"
+      "title": "[機能] 辞書の「使われていないキー」を検出するゲート",
+      "implemented": "2026-11-11",
+      "note": "site_lint.py（週1回の点検、Issue 🧹。見つかった9キーは削除）"
     },
     {
       "date": "2026-10-20",
@@ -199,7 +227,9 @@
     },
     {
       "date": "2026-10-19",
-      "title": "[機能] 辞書に無い data-i18n キーを機械で検査"
+      "title": "[機能] 辞書に無い data-i18n キーを機械で検査",
+      "implemented": "2026-11-11",
+      "note": "auto_gates.py check 28（site_lint.missing_keys）"
     },
     {
       "date": "2026-10-19",
@@ -217,11 +247,15 @@
     },
     {
       "date": "2026-10-17",
-      "title": "[機能] target=_blank に rel=noopener を機械で検査"
+      "title": "[機能] target=_blank に rel=noopener を機械で検査",
+      "implemented": "2026-11-11",
+      "note": "site_lint.py"
     },
     {
       "date": "2026-10-17",
-      "title": "[機能] 画像の alt 属性の抜けを検査するゲート"
+      "title": "[機能] 画像の alt 属性の抜けを検査するゲート",
+      "implemented": "2026-11-11",
+      "note": "site_lint.py（画像の属性）"
     },
     {
       "date": "2026-10-16",
@@ -237,7 +271,9 @@
     },
     {
       "date": "2026-10-15",
-      "title": "[機能] 各ページの更新日を機械で検査し、古い「時点」表記を拾うゲート"
+      "title": "[機能] 各ページの更新日を機械で検査し、古い「時点」表記を拾うゲート",
+      "implemented": "2026-11-11",
+      "note": "site_lint.py（*_asof が3か月より古い）"
     },
     {
       "date": "2026-10-15",
@@ -251,7 +287,9 @@
     },
     {
       "date": "2026-10-14",
-      "title": "[機能] meta description の長さと言語漏れを検査するゲート"
+      "title": "[機能] meta description の長さと言語漏れを検査するゲート",
+      "implemented": "2026-11-11",
+      "note": "site_lint.py（meta description の長さ）"
     },
     {
       "date": "2026-10-14",
@@ -261,7 +299,9 @@
     },
     {
       "date": "2026-10-13",
-      "title": "[機能] 予定ページ・404に hreflang と JSON-LD の漏れを検査"
+      "title": "[機能] 予定ページ・404に hreflang と JSON-LD の漏れを検査",
+      "implemented": "2026-11-11",
+      "note": "check 28 が予定ページの data-i18n キーも見る。hreflang は check 12・13"
     },
     {
       "date": "2026-10-13",
@@ -301,7 +341,9 @@
     },
     {
       "date": "2026-10-10",
-      "title": "[機能] 12言語の翻訳漏れを機械で検査するゲート（auto_gates.py）"
+      "title": "[機能] 12言語の翻訳漏れを機械で検査するゲート（auto_gates.py）",
+      "implemented": "2026-11-11",
+      "note": "site_lint.py（訳の抜け）"
     },
     {
       "date": "2026-10-09",
@@ -311,7 +353,9 @@
     },
     {
       "date": "2026-10-09",
-      "title": "[機能] 内部リンク（#アンカー）の切れを機械で検査するゲート"
+      "title": "[機能] 内部リンク（#アンカー）の切れを機械で検査するゲート",
+      "implemented": "2026-11-11",
+      "note": "auto_gates.py check 29（site_lint.broken_links）"
     },
     {
       "date": "2026-10-08",

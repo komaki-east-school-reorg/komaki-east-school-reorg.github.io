@@ -1140,6 +1140,28 @@ def main():
     except Exception as e:
         fail(f"更新履歴の link を確かめられない: {e}")
 
+    # --- 28・29. 辞書に無いキー／サイト内リンクの切れ（2026-11-11） ---
+    # 週1回の点検（site_lint.py）のうち、壊れると読者に見える2つだけはここで止める。
+    # 28：HTML の data-i18n* が指すキーが ja.json に無い（その要素は HTML の初期値のまま、どの言語でも訳されない）。
+    # 29：*.html と辞書の値にあるサイト内リンク（page.html#id・#id）の飛び先が無い。
+    #     実行時に付く id（faq-qN・toc-<キー>）と、MOVED ANCHORS が受ける古いアンカーは認める。
+    try:
+        import site_lint
+        bad28 = site_lint.missing_keys()
+        for b in bad28[:20]:
+            fail(f"辞書に無いキー: {b}")
+        if not bad28:
+            ok("HTML の data-i18n のキーはすべて辞書にある")
+        bad29 = site_lint.broken_links()
+        for b in bad29[:20]:
+            fail(f"サイト内リンク切れ: {b}")
+        if len(bad29) > 20:
+            fail(f"サイト内リンク切れ: ほか {len(bad29) - 20}件")
+        if not bad29:
+            ok("サイト内リンクの飛び先はすべて実在")
+    except Exception as e:
+        fail(f"辞書のキー・サイト内リンクを確かめられない: {e}")
+
     # --- 22. 更新履歴への追加（2026-11-04 ユーザー指示） ---
     # 自動反映の起案AIは、読者が気づく変更なら data/site-updates.json の先頭に1行足してよい。
     # 既存の行（手で書いた履歴と、build_*.py が足す auto_key の行）は1文字も変えさせない。

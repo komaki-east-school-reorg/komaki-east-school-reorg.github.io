@@ -129,6 +129,9 @@ jobs:
             - 外部リンクの死活確認（check-links.yml、週1回）・訳語のゆれの検査（data/term_rules.json と
               auto_gates.py check 18）・各コーナーの「最後に確かめた日時」は
               2026-10-23 に実装済み。Instagram・Facebook を機械で確かめる案は出さない（規約で禁止）
+            - **サイトの点検は .github/scripts/site_lint.py（週1回、Issue 🧹）にまとめた**（2026-11-11）。
+              新しい検査の案は「site_lint.py に点検を1つ足す」形で出す。auto_gates.py に止める検査を足す案は、
+              壊れると読者に見えるものに限る
             - **🖨 印刷ボタン・回覧板シート・印刷の末尾の URL と日付は 2026-11-04 に廃止した**。戻す案は出さない
               （ふつうの印刷 Ctrl+P 用の共通スタイルは残してある）
             - 市・県・国の担当部署の連絡先（data/contacts.json）は毎週 check_contacts.py が
