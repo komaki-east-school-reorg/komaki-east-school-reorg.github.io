@@ -1,8 +1,37 @@
 {
-  "fetched_at": "2026-11-10T04:19:54Z",
+  "fetched_at": "2026-11-11T02:08:46Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "hikarigaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "光ヶ丘小学校",
+        "ja_kids": "ひかりがおか小学校",
+        "en": "Hikarigaoka Elem. School",
+        "zh": "光之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
+      "latest_date": "2026-11-11",
+      "items": [
+        {
+          "title": "１年生 図工「せんのぼうけん」",
+          "date": "2026-11-11",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136524391?tm=20261110155539"
+        },
+        {
+          "title": "３年生 読み聞かせ",
+          "date": "2026-11-11",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136523383?tm=20261110143249"
+        },
+        {
+          "title": "６年生 給食",
+          "date": "2026-11-11",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136521876?tm=20261110123839"
+        }
+      ]
+    },
     {
       "slug": "toryo-j",
       "level": "jhs",
@@ -42,8 +71,13 @@
         "zh": "陶小学"
       },
       "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-11-09",
+      "latest_date": "2026-11-10",
       "items": [
+        {
+          "title": "11/10 キッズソーランの練習（１～３年生）",
+          "date": "2026-11-10",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136522596?tm=20261110133245"
+        },
         {
           "title": "11/19 夢チャレンジ科（４～６年生）",
           "date": "2026-11-09",
@@ -53,11 +87,35 @@
           "title": "秋の校外学習（３年生）",
           "date": "2026-11-09",
           "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136517701?tm=20261109171458"
+        }
+      ]
+    },
+    {
+      "slug": "shinooka-e",
+      "level": "elem",
+      "names": {
+        "ja": "篠岡小学校",
+        "ja_kids": "しのおか小学校",
+        "en": "Shinooka Elem. School",
+        "zh": "篠冈小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
+      "latest_date": "2026-11-10",
+      "items": [
+        {
+          "title": "たくさん採れました",
+          "date": "2026-11-10",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136526358?tm=20261110190057"
         },
         {
-          "title": "11/9 今日の給食",
-          "date": "2026-11-09",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136517422?tm=20261109163437"
+          "title": "スクールバス試乗体験会",
+          "date": "2026-11-07",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136509850?tm=20261107115548"
+        },
+        {
+          "title": "校外学習：火力発電所",
+          "date": "2026-11-07",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136509798?tm=20261107113550"
         }
       ]
     },
@@ -120,35 +178,6 @@
       ]
     },
     {
-      "slug": "hikarigaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "光ヶ丘小学校",
-        "ja_kids": "ひかりがおか小学校",
-        "en": "Hikarigaoka Elem. School",
-        "zh": "光之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
-      "latest_date": "2026-11-09",
-      "items": [
-        {
-          "title": "4年生 体育「小型ハードル走」",
-          "date": "2026-11-09",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136516527?tm=20261109150425"
-        },
-        {
-          "title": "1年生 図工「いっしょにおさんぽ」",
-          "date": "2026-11-09",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136488883?tm=20261109124945"
-        },
-        {
-          "title": "5年生 体育",
-          "date": "2026-11-09",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136514540?tm=20261109124029"
-        }
-      ]
-    },
-    {
       "slug": "shinooka-j",
       "level": "jhs",
       "names": {
@@ -174,35 +203,6 @@
           "title": "２年生 マナー講座",
           "date": "2026-11-05",
           "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136492360?tm=20261105082326"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-e",
-      "level": "elem",
-      "names": {
-        "ja": "篠岡小学校",
-        "ja_kids": "しのおか小学校",
-        "en": "Shinooka Elem. School",
-        "zh": "篠冈小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
-      "latest_date": "2026-11-07",
-      "items": [
-        {
-          "title": "スクールバス試乗体験会",
-          "date": "2026-11-07",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136509850?tm=20261107115548"
-        },
-        {
-          "title": "校外学習：火力発電所",
-          "date": "2026-11-07",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136509798?tm=20261107113550"
-        },
-        {
-          "title": "校外学習：常滑市・半田市",
-          "date": "2026-11-07",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136509770?tm=20261107112702"
         }
       ]
     },
