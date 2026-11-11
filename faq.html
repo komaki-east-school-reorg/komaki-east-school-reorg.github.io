@@ -149,6 +149,14 @@
       <h2 class="section-title ill-h ill-h--question" data-i18n-html="faq_qa_h">よくある質問<small>Frequently Asked Questions</small></h2>
       <p class="section-lead" data-i18n="faq_qa_intro">再編計画の概要、通学と生活、地域と施設、意見の出し方の4つに分けて、市の公式資料をもとに32問に答えます。質問を押すと答えが開きます。</p>
 
+      <!-- Q&A の絞り込みと「すべて開く」（FAQ FILTER in js/main.js、2026-11-11）。入力欄と結果は JS が作る。 -->
+      <div class="faq-tools" data-faq-filter>
+        <button type="button" class="faq-all-btn" aria-pressed="false"><span data-i18n="faq_open_all">すべて開く</span><span data-i18n="faq_close_all" hidden>すべて閉じる</span></button>
+        <span hidden data-faq-s="ph" data-i18n="faq_filter_ph">質問を探す（例：制服）</span>
+        <span hidden data-faq-s="count" data-i18n="faq_filter_count">{n}問が当てはまります</span>
+        <span hidden data-faq-s="other" data-i18n="faq_filter_other">ほかのページの Q&A</span>
+      </div>
+
       <h3 class="section-title sub faq-cat ill-h ill-h--merge" data-i18n-html="faq_cat1">再編計画の概要について<small>About the Plan</small></h3>
       <div class="faq-list">
 

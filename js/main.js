@@ -1906,6 +1906,12 @@ window.KomakiGrade = (function () {
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {
       const isOpen = btn.classList.contains('open');
+      // 「すべて開く」のあいだ（FAQ FILTER）は、押した1問だけを開け閉めする
+      if (document.documentElement.classList.contains('faq-all-open')) {
+        btn.classList.toggle('open', !isOpen);
+        btn.nextElementSibling.classList.toggle('open', !isOpen);
+        return;
+      }
       document.querySelectorAll('.faq-q').forEach(b => {
         b.classList.remove('open');
         b.nextElementSibling.classList.remove('open');
@@ -1915,6 +1921,162 @@ window.KomakiGrade = (function () {
         btn.nextElementSibling.classList.add('open');
       }
     });
+  });
+})();
+
+/* ===== FAQ FILTER（faq.html の Q&A の絞り込みと、faq.html・bus.html の「すべて開く」。2026-11-11） =====
+   日次アイデアの FAQ まわりの案（絞り込み・すべて開く・0件の案内・ほかのページの Q&A）を1つにまとめた。
+   ・絞り込みは faq.html だけ（[data-faq-filter]）。画面の文字（質問＋答え）を SITE SEARCH と同じ
+     norm()（NFKC・カタカナ→ひらがな・空白無視）で比べ、空白区切りの語をすべて含む問いだけ残す。
+     隠すのは .is-filtered（display:none）。hidden 属性は使わない（読み上げの SKIP と混ぜない）。
+   ・一覧の下に、bus.html・community.html の Q&A で当てはまるもの（検索の索引 data/search/<言語>.json から。
+     最初の入力のときだけ読む）。0件なら検索と同じ問い合わせ先の案内。
+   ・「すべて開く」のあいだは <html> に faq-all-open が付き、FAQ ACCORDION は押した1問だけを開け閉めする。
+   ・入力した語は集計に送らない（faq/filter は最初の入力の1回、faq/open-all）。
+   ・欄（.faq-tools）は読み上げ（SKIP）・原文併記（ORIG_SKIP）・検索の索引（SKIP_CLASSES）から外してある。 */
+(function () {
+  var toolsAll = document.querySelectorAll('.faq-tools');
+  if (!toolsAll.length) return;
+  var root = document.documentElement;
+
+  // --- すべて開く／閉じる
+  function visibleQs() {
+    return Array.prototype.filter.call(document.querySelectorAll('.faq-item'), function (it) {
+      return !it.classList.contains('is-filtered');
+    }).map(function (it) { return it.querySelector('.faq-q'); }).filter(Boolean);
+  }
+  function setAll(on) {
+    root.classList.toggle('faq-all-open', on);
+    document.querySelectorAll('.faq-q').forEach(function (q) {
+      q.classList.remove('open');
+      if (q.nextElementSibling) q.nextElementSibling.classList.remove('open');
+    });
+    if (on) visibleQs().forEach(function (q) { q.classList.add('open'); q.nextElementSibling.classList.add('open'); });
+    document.querySelectorAll('.faq-all-btn').forEach(function (b) {
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.children[0].hidden = on;
+      b.children[1].hidden = !on;
+    });
+  }
+  document.querySelectorAll('.faq-all-btn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var on = !root.classList.contains('faq-all-open');
+      setAll(on);
+      if (on && window.KomakiCount) window.KomakiCount('faq/open-all');
+    });
+  });
+
+  // --- 絞り込み（faq.html）
+  var tools = document.querySelector('.faq-tools[data-faq-filter]');
+  if (!tools) return;
+  function s(k) { var el = tools.querySelector('[data-faq-s="' + k + '"]'); return el ? el.textContent : ''; }
+  function esc(v) { return String(v).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  var input = document.createElement('input');
+  input.type = 'search';
+  input.className = 'faq-filter-input';
+  input.autocomplete = 'off';
+  input.setAttribute('enterkeyhint', 'search');
+  tools.insertBefore(input, tools.firstChild);
+  var status = document.createElement('p');
+  status.className = 'faq-filter-status';
+  status.setAttribute('role', 'status');
+  status.setAttribute('aria-live', 'polite');
+  status.hidden = true;
+  var other = document.createElement('div');
+  other.className = 'faq-filter-other';
+  other.hidden = true;
+  tools.insertAdjacentElement('afterend', status);
+
+  function texts() {
+    input.placeholder = s('ph');
+    input.setAttribute('aria-label', s('ph'));
+  }
+  texts();
+
+  var items = Array.prototype.slice.call(document.querySelectorAll('#qa .faq-item'));
+  var lists = Array.prototype.slice.call(document.querySelectorAll('#qa .faq-list'));
+  // ほかのページの Q&A は、このページの結果の下（一覧のあと）に出す
+  if (lists.length) lists[lists.length - 1].insertAdjacentElement('afterend', other); else status.insertAdjacentElement('afterend', other);
+  var cache = null;       // 各問いの比べる用の文字（言語が変わったら作り直す）
+  var counted = false;
+
+  function apply() {
+    var K = window.KomakiSearch;
+    var q = input.value.trim();
+    if (!K || !q) {
+      items.forEach(function (it) { it.classList.remove('is-filtered'); });
+      root.classList.remove('faq-filtering');
+      lists.forEach(function (l) { groupOf(l).forEach(function (el) { el.classList.remove('is-filtered'); }); });
+      status.hidden = true; other.hidden = true; other.innerHTML = '';
+      return;
+    }
+    if (!counted) { counted = true; if (window.KomakiCount) window.KomakiCount('faq/filter'); }
+    var l = K.lang(), cjk = K.isCjk(l);
+    if (!cache) cache = items.map(function (it) { return K.norm(it.textContent, cjk); });
+    var terms = q.split(/[\s　]+/).map(function (w) { return K.norm(w, cjk); }).filter(Boolean);
+    var n = 0;
+    items.forEach(function (it, i) {
+      var ok = terms.every(function (w) { return cache[i].indexOf(w) >= 0; });
+      it.classList.toggle('is-filtered', !ok);
+      if (ok) n++;
+    });
+    root.classList.add('faq-filtering');
+    // 中身が全部消えたカテゴリは、見出し（と読み上げの行）ごと隠す
+    lists.forEach(function (list) {
+      var empty = !list.querySelector('.faq-item:not(.is-filtered)');
+      groupOf(list).forEach(function (el) { el.classList.toggle('is-filtered', empty); });
+    });
+    status.hidden = false;
+    status.textContent = s('count').replace('{n}', n);
+    // ほかのページの Q&A（検索の索引から）
+    K.load(l).then(function (d) {
+      if (input.value.trim() !== q) return;
+      var hits = d.items.filter(function (it) {
+        if (!((it[0] === 'bus' && /^bus-faq-q\d+$/.test(it[1] || '')) || (it[0] === 'community' && it[1] === 'qa'))) return false;
+        var hay = it.n + ' ' + it.m;
+        return terms.every(function (w) { return hay.indexOf(w) >= 0; });
+      }).slice(0, 8);
+      other.innerHTML = '';
+      other.hidden = !hits.length;
+      if (hits.length) {
+        var h = document.createElement('p');
+        h.className = 'faq-filter-other-h';
+        h.textContent = s('other');
+        other.appendChild(h);
+        var ul = document.createElement('ul');
+        hits.forEach(function (it) {
+          var li = document.createElement('li');
+          li.innerHTML = '<a href="' + K.hrefFor(l, it[0], it[1]) + '"><span class="search-page">' +
+            esc(d.pages[it[0]] || it[0]) + '</span> ' + esc(it[2]) + '</a>';
+          ul.appendChild(li);
+        });
+        other.appendChild(ul);
+      } else if (!n) {
+        status.innerHTML = esc(K.t('search_none')) + ' <a href="' + K.hrefFor(l, 'about', 'contact') + '">' + esc(K.t('search_contact')) + '</a>';
+      }
+    }).catch(function () {});
+  }
+  // 一覧（.faq-list）と、その上のカテゴリ見出し・読み上げの行
+  function groupOf(list) {
+    var out = [list], el = list.previousElementSibling;
+    while (el && !el.classList.contains('faq-list') && !el.classList.contains('faq-tools') &&
+           !el.classList.contains('faq-filter-status') && !el.classList.contains('faq-filter-other')) {
+      if (el.classList.contains('faq-cat') || el.classList.contains('tts-row')) out.push(el);
+      if (el.classList.contains('faq-cat')) break;
+      el = el.previousElementSibling;
+    }
+    return out;
+  }
+  var timer = null;
+  input.addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(apply, 150); });
+  input.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); apply(); } });
+  document.addEventListener('komaki:i18n-applied', function () { cache = null; texts(); if (input.value.trim()) apply(); });
+  // #faq-q3 のように1問を指して来たとき・移ったときは、その問いが隠れないよう絞り込みを解く
+  window.addEventListener('hashchange', function () {
+    var t = null;
+    try { t = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch (e) {}
+    if (t && t.classList.contains('is-filtered')) { input.value = ''; apply(); }
   });
 })();
 
@@ -5352,7 +5514,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
              '[hidden],[aria-hidden="true"],.section-title small,.orig-ja,.mc-ja,' +   // .mc-ja＝窓口で見せる日本語（外国語の声で日本語を読まない）
              '.now-more,.upcoming-more,' +  // 「くわしく見る →」などの案内リンクは読まない
              '.rev-more,.rev-back,.rev-partnav,.rev-num,' +
-             '.xlinks';   // あわせて読みたい（CROSS LINKS）は案内なので読まない   // 検証と提案の2ページの行き来の札（REVIEW LINKS）
+             '.xlinks,.faq-tools,.faq-filter-status,.faq-filter-other';   // あわせて読みたい（CROSS LINKS）は案内なので読まない   // 検証と提案の2ページの行き来の札（REVIEW LINKS）
   var BLOCK = 'h2,h3,h4,h5,p,li,dt,dd,tr,caption,figcaption,blockquote,summary,.faq-q,div';
   // 札（「概要」などの分類ラベル）は直後の文とつなげて読むと意味が崩れるので、あとに読点を挟む
   var TAGLIKE = '[class*="tag"],[class*="badge"],[class*="label"],[class*="date"],[class*="cite"],time';
@@ -6239,5 +6401,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
       }
     }
   } catch (e) {}
-  window.KomakiSearch = { open: open };
+  // norm・load などは FAQ FILTER（faq.html の Q&A の絞り込み）も使う
+  window.KomakiSearch = { open: open, norm: norm, load: load, lang: lang, hrefFor: hrefFor, t: t,
+                         isCjk: function (l) { return CJK.test(l); } };
 })();
