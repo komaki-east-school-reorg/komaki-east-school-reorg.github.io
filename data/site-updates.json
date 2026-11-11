@@ -4,6 +4,13 @@
     {
       "date": "2026-11-11",
       "type": "feature",
+      "ja": "カレンダーに「この月の予定」の一覧と、今月・次の予定の月へのボタンを追加",
+      "en": "Calendar: a list of the month’s events and buttons to this month / the next month with events",
+      "link": "schedule.html#calendar-view"
+    },
+    {
+      "date": "2026-11-11",
+      "type": "feature",
       "ja": "読み上げに速さの切り替えと「通して読む」を追加・区切りで間を置くよう改良",
       "en": "Read-aloud: speed control, “Read all”, and pauses at breaks"
     },

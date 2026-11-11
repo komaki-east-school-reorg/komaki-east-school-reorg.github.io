@@ -27,6 +27,14 @@
     <summary>サイトの更新履歴｜読み上げに速さの切り替えと「通して読む」を追加・区切りで間を置くよう改良</summary>
   </entry>
   <entry>
+    <title>カレンダーに「この月の予定」の一覧と、今月・次の予定の月へのボタンを追加</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/schedule.html#calendar-view"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:00d0922ece1d7d10</id>
+    <updated>2026-11-11T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜カレンダーに「この月の予定」の一覧と、今月・次の予定の月へのボタンを追加</summary>
+  </entry>
+  <entry>
     <title>よくある質問に絞り込みと「すべて開く」を追加</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/faq.html#qa"/>
     <id>tag:komaki-east-school-reorg.github.io,2026:d62c3f9536b0fbec</id>
@@ -321,13 +329,5 @@
     <updated>2026-10-31T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜地域の取組に桃花台まつりと大草・野口の棒の手を追加</summary>
-  </entry>
-  <entry>
-    <title>地域とまちづくりに「地域のレガシー」（歴史・祭り・特産物・自然）を追加</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#legacy"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:89d4c1444e273cc9</id>
-    <updated>2026-10-31T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜地域とまちづくりに「地域のレガシー」（歴史・祭り・特産物・自然）を追加</summary>
   </entry>
 </feed>

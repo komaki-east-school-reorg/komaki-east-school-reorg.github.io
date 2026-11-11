@@ -268,6 +268,11 @@
           <div id="cal-month-label" class="cal-month-label"></div>
           <button id="cal-next" class="cal-nav-btn">▶</button>
         </div>
+        <!-- 今月へ戻る・次の予定のある月へ（CALENDAR、2026-11-11）。要るときだけ JS が出す。 -->
+        <div class="cal-jump">
+          <button type="button" id="cal-today" class="cal-jump-btn" hidden data-i18n="cal_today">今月に戻る</button>
+          <button type="button" id="cal-next-ev" class="cal-jump-btn" hidden data-i18n="cal_next_ev">次の予定のある月へ</button>
+        </div>
         <div id="cal-grid" class="cal-grid">
           <div class="cal-header-cell sun" data-i18n="cal_day_sun">日</div>
           <div class="cal-header-cell" data-i18n="cal_day_mon">月</div>
@@ -279,6 +284,12 @@
         </div>
         <!-- 予定のある日を押すと、その日の予定をここに出す（js/main.js の CALENDAR、2026-10-13）。
              その日の「1日の予定」だけを .ics で取り込める。UID は一括の .ics と同じ。 -->
+        <!-- その月の予定を文字で並べる（押すと下の日カードが開く。2026-11-11） -->
+        <div class="cal-month-list" id="cal-month-list">
+          <p class="cal-month-h" data-i18n="cal_month_h">この月の予定</p>
+          <ul class="cal-month-items"></ul>
+          <p class="cal-month-none" data-i18n="cal_month_none" hidden>この月に予定はありません。</p>
+        </div>
         <div id="cal-day-card" class="cal-day-card" aria-live="polite" hidden></div>
         <div id="cal-strings" hidden>
           <span data-ck="h" data-i18n="cal_day_h">{date}の予定</span>

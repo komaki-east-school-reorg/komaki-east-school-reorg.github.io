@@ -599,6 +599,14 @@ Every page carries a `<section class="section share" id="share">` just above `</
 - **文を変えたら** `build_search_index.py` → `build_crosslinks.py` の順に回す（毎日の自動更新と週1回の番号照合のワークフローも同じ順で作り直す。`ALLOWED_GENERATED` に入れてある）。新しい節・Q&A・カードは自動で対象になる。
 - 文言は `xlinks_label`（`RUNTIME_KEYS`）。読み上げ（`SKIP`）・原文併記（`ORIG_SKIP`）・検索の索引（`SKIP_CLASSES`）から外し、印刷では隠す。集計は `xlink/go`。
 
+### カレンダーの月送りと「この月の予定」（schedule.html、2026-11-11）
+
+日次アイデアのカレンダーまわりの案をまとめたもの。CALENDAR（`js/main.js`）の中。
+- 月送りの行の下に「今月に戻る」（`#cal-today`。今月を見ているときは出さない）と「次の予定のある月へ」（`#cal-next-ev`。表示中の月より後で、まだ終わっていない予定がある最初の月。無ければ出さない）。**初期表示は今月のまま**（予定のある月へ自動で飛ばさない方針は変えていない）。
+- 升目を左右にはらうと月送り（横に50px以上で、縦の動きの1.5倍より大きいときだけ。縦のスクロールは妨げない）。
+- カレンダーの下に「この月の予定」（`#cal-month-list`）：その月の予定を日付順に文字で並べ、押すと日カードが開く。**日付を付けるのは `"day": true` と `span` の予定だけ** — 月単位の予定は月末の日付で置いてあるだけなので、名前だけを出す（日付を作らない）。予定の種類のアイコンは入れていない（種類分けを当サイトが作ることになるため）。
+- キー `cal_today` / `cal_next_ev` / `cal_month_h` / `cal_month_none`（HTML にあるので `RUNTIME_KEYS` 不要）。集計は `calendar/today`・`calendar/next-ev`・`calendar/swipe`。
+
 ### 購読できるカレンダー（`calendar.<言語>.ics`、2026-11-07）
 
 日次アイデア 10/22 の案をユーザーが採用。schedule.html のカレンダーの下の「🔔 カレンダーアプリで購読する」（`#cal-sub`、`cal_sub_*`）から、`webcal://…/calendar.<表示言語>.ics` を購読するか、URL をコピーして Google カレンダーの「URL で追加」に貼る（外部サービスへのリンクは張らない）。CALENDAR SUBSCRIBE（`js/main.js`）が表示言語に合わせて href を書く。

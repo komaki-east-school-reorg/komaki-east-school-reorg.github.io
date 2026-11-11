@@ -156,6 +156,8 @@ window.KomakiCount = (function () {
     ['.spread-copy', 'tags/example-copy'],
     ['.qr-save', 'qr/save'],
     ['.ics-add, .grade-ics, #grade-ics', 'calendar/add'],
+    ['#cal-today', 'calendar/today'],
+    ['#cal-next-ev', 'calendar/next-ev'],
     ['.tts-btn:not(.tts-all-btn)', 'tts/play'],
     ['.kids-toggle', 'toggle/kids'],
     ['.orig-toggle', 'toggle/orig'],
@@ -2778,6 +2780,8 @@ window.KomakiGrade = (function () {
 
         grid.appendChild(cell);
       }
+      renderMonthList(year, month);
+      updateJump();
     }
 
     /* ---- 日カード（2026-10-13） ----
@@ -2788,6 +2792,72 @@ window.KomakiGrade = (function () {
     const card = document.getElementById('cal-day-card');
     const strings = document.getElementById('cal-strings');
     const gradeStr = document.getElementById('grade-strings');
+
+    /* その月の予定を文字で並べる（2026-11-11。日次アイデア「月の予定のテキスト一覧」）。
+       升目の小さな字が読めなくても予定が分かるように。押すと日カードが開く。
+       日付を出すのは「その日に決まっている予定」（"day": true）と期間の決まった予定（span）だけ。
+       月単位の予定は月末の日付で置いてあるだけなので、日付を付けない（日付を作らない）。 */
+    function renderMonthList(year, month) {
+      const box = document.getElementById('cal-month-list');
+      if (!box) return;
+      const ul = box.querySelector('.cal-month-items');
+      const none = box.querySelector('.cal-month-none');
+      ul.innerHTML = '';
+      const prefix = `${year}-${pad(month + 1)}-`;
+      const keys = Object.keys(events).filter(function (k) { return k.indexOf(prefix) === 0; }).sort();
+      let n = 0;
+      keys.forEach(function (key) {
+        const labels = getEventLabels(key);
+        eventsAt(key).forEach(function (ev, idx) {
+          const lb = labels[idx];
+          if (!lb) return;
+          const li = document.createElement('li');
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'cal-month-item' + (key < todayKey ? ' past' : '');
+          const d = document.createElement('span');
+          d.className = 'cal-month-date';
+          if (ev && (ev.day || ev.span)) {
+            try {
+              d.textContent = new Intl.DateTimeFormat(getCalLocale(), {month: 'short', day: 'numeric', weekday: 'short'})
+                .format(new Date(year, month, +key.slice(8)));
+            } catch (e) { d.textContent = key.slice(5); }
+          }
+          const t = document.createElement('span');
+          t.className = 'cal-month-name';
+          t.textContent = lb;
+          if (d.textContent) b.appendChild(d);
+          b.appendChild(t);
+          b.addEventListener('click', function () {
+            openCard(key);
+            const c = document.getElementById('cal-day-card');
+            if (c && c.scrollIntoView) { try { c.scrollIntoView({block: 'nearest'}); } catch (e) {} }
+          });
+          li.appendChild(b);
+          ul.appendChild(li);
+          n++;
+        });
+      });
+      none.hidden = n > 0;
+      ul.hidden = n === 0;
+    }
+    // 表示中の月より後で、まだ終わっていない予定がある最初の月
+    function nextEventMonth() {
+      const end = `${currentYear}-${pad(currentMonth + 1)}-31`;
+      const k = Object.keys(events).filter(function (x) { return x > end && x >= todayKey; }).sort()[0];
+      return k ? [+k.slice(0, 4), +k.slice(5, 7) - 1] : null;
+    }
+    function updateJump() {
+      const t = document.getElementById('cal-today'), nx = document.getElementById('cal-next-ev');
+      if (t) t.hidden = currentYear === today.getFullYear() && currentMonth === today.getMonth();
+      if (nx) nx.hidden = !nextEventMonth();
+    }
+    function goMonth(y, m) {
+      closeCard();
+      currentYear = y; currentMonth = m;
+      renderCalendar(currentYear, currentMonth);
+    }
+
     let openKey = null;
     function cs(k, fb) {
       const el = strings && strings.querySelector('[data-ck="' + k + '"]');
@@ -2905,6 +2975,25 @@ window.KomakiGrade = (function () {
       if (currentMonth > 11) { currentMonth = 0; currentYear++; }
       renderCalendar(currentYear, currentMonth);
     });
+
+    // 今月に戻る・次の予定のある月へ（2026-11-11）
+    const jumpToday = document.getElementById('cal-today'), jumpNext = document.getElementById('cal-next-ev');
+    if (jumpToday) jumpToday.addEventListener('click', function () { goMonth(today.getFullYear(), today.getMonth()); });
+    if (jumpNext) jumpNext.addEventListener('click', function () { const m = nextEventMonth(); if (m) goMonth(m[0], m[1]); });
+    // 左右にはらって月送り（横に50px以上で、縦の動きより十分大きいときだけ。縦のスクロールは妨げない）
+    let sx = null, sy = null;
+    grid.addEventListener('touchstart', function (e) {
+      if (e.touches.length !== 1) { sx = null; return; }
+      sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+    }, {passive: true});
+    grid.addEventListener('touchend', function (e) {
+      if (sx === null) return;
+      const t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
+      sx = null;
+      if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      document.getElementById(dx < 0 ? 'cal-next' : 'cal-prev').click();
+      if (window.KomakiCount) window.KomakiCount('calendar/swipe');
+    }, {passive: true});
 
     renderCalendar(currentYear, currentMonth);
 

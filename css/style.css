@@ -1242,6 +1242,30 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   display: flex; align-items: center; justify-content: center;
 }
 .cal-nav-btn:hover { background: var(--primary); color: #fff; }
+/* 今月に戻る・次の予定のある月へ／その月の予定の一覧（CALENDAR、2026-11-11） */
+.cal-jump { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; margin: -.4rem 0 .9rem; }
+.cal-jump:not(:has(.cal-jump-btn:not([hidden]))) { display: none; }
+.cal-jump-btn {
+  font: inherit; font-size: .82rem; font-weight: 700; cursor: pointer; padding: .3rem .9rem;
+  border-radius: var(--radius-pill); border: 1.5px solid var(--border); background: var(--white); color: var(--primary);
+}
+.cal-jump-btn:hover, .cal-jump-btn:focus-visible { border-color: var(--primary); }
+.cal-jump-btn[hidden] { display: none; }
+.cal-month-list { margin-top: 1rem; }
+.cal-month-h { margin: 0 0 .4rem; font-family: var(--heading-font); font-size: .9rem; font-weight: 800; color: var(--primary); }
+.cal-month-items { list-style: none; margin: 0; padding: 0; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--white); overflow: hidden; }
+.cal-month-items[hidden] { display: none; }
+.cal-month-items li + li { border-top: 1px solid var(--border); }
+.cal-month-item {
+  display: flex; flex-wrap: wrap; gap: .1rem .8rem; align-items: baseline; width: 100%; text-align: left;
+  font: inherit; font-size: .92rem; color: var(--text); background: none; border: 0; padding: .55rem .8rem; cursor: pointer;
+}
+.cal-month-item:hover, .cal-month-item:focus-visible { background: var(--primary-light); }
+.cal-month-item.past { color: var(--text-muted); }
+.cal-month-date { flex: 0 0 auto; font-weight: 700; color: var(--primary); white-space: nowrap; }
+.cal-month-item.past .cal-month-date { color: var(--text-muted); }
+.cal-month-name { flex: 1 1 12rem; min-width: 0; overflow-wrap: anywhere; }
+.cal-month-none { margin: 0; font-size: .9rem; color: var(--text-muted); }
 .cal-month-label { font-size: 1.1rem; font-weight: 800; color: var(--primary); font-family: var(--heading-font); }
 
 .cal-grid {
