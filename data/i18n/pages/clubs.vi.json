@@ -197,7 +197,12 @@
   "table_scroll_hint": "← Vuốt ngang để xem →",
   "to_top": "Lên đầu trang",
   "tr_footer": "🌐 Giúp chúng tôi kiểm tra bản dịch",
+  "tts_all": "🔊 Nghe hết",
   "tts_play": "🔊 Nghe",
+  "tts_rate_fast": "Nhanh",
+  "tts_rate_label": "Tốc độ",
+  "tts_rate_normal": "Vừa",
+  "tts_rate_slow": "Chậm",
   "tts_stop": "■ Dừng",
   "xlinks_label": "Đọc thêm"
 }

@@ -209,7 +209,12 @@
   "table_scroll_hint": "← Role para o lado →",
   "to_top": "Voltar ao topo",
   "tr_footer": "🌐 Ajude a revisar esta tradução",
+  "tts_all": "🔊 Ouvir tudo",
   "tts_play": "🔊 Ouvir",
+  "tts_rate_fast": "Rápida",
+  "tts_rate_label": "Velocidade",
+  "tts_rate_normal": "Normal",
+  "tts_rate_slow": "Lenta",
   "tts_stop": "■ Parar",
   "xlinks_label": "Leia também"
 }

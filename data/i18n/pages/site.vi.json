@@ -191,7 +191,12 @@
   "tr_li1": "Xin ghi rõ trang, ngôn ngữ, bản dịch hiện tại và bản bạn đã sửa. Bạn có thể viết bằng bất kỳ ngôn ngữ nào.",
   "tr_li2": "Nội dung bạn gửi sẽ được công khai trên internet. Cần có tài khoản GitHub (miễn phí) để gửi. Xin đừng ghi thông tin có thể nhận ra một người.",
   "tr_open": "🌐 Gửi bản dịch tốt hơn",
+  "tts_all": "🔊 Nghe hết",
   "tts_play": "🔊 Nghe",
+  "tts_rate_fast": "Nhanh",
+  "tts_rate_label": "Tốc độ",
+  "tts_rate_normal": "Vừa",
+  "tts_rate_slow": "Chậm",
   "tts_stop": "■ Dừng",
   "xlinks_label": "Đọc thêm"
 }

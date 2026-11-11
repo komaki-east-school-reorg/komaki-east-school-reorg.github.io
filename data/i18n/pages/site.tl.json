@@ -191,7 +191,12 @@
   "tr_li1": "Isulat ang pahina, ang wika, ang kasalukuyang salin at ang iyong itinamang bersyon. Maaari kang sumulat sa anumang wika.",
   "tr_li2": "Ang ipapadala mo ay ilalathala sa internet. Kailangan ng (libreng) GitHub account para makapagpadala. Huwag isulat ang anumang makakapagpakilala sa isang tao.",
   "tr_open": "🌐 Magmungkahi ng mas mahusay na salin",
+  "tts_all": "🔊 Pakinggan lahat",
   "tts_play": "🔊 Pakinggan",
+  "tts_rate_fast": "Mabilis",
+  "tts_rate_label": "Bilis",
+  "tts_rate_normal": "Karaniwan",
+  "tts_rate_slow": "Mabagal",
   "tts_stop": "■ Itigil",
   "xlinks_label": "Basahin din"
 }

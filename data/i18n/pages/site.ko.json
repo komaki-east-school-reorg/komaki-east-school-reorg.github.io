@@ -191,7 +191,12 @@
   "tr_li1": "페이지, 언어, 현재 번역, 고친 번역을 적어 주세요. 어느 언어로 쓰셔도 됩니다.",
   "tr_li2": "보낸 내용은 인터넷에 공개됩니다. 보내려면 GitHub(무료) 계정이 필요합니다. 개인을 알 수 있는 내용은 쓰지 마세요.",
   "tr_open": "🌐 더 나은 번역 보내기",
+  "tts_all": "🔊 전체 읽기",
   "tts_play": "🔊 읽어 주기",
+  "tts_rate_fast": "빠르게",
+  "tts_rate_label": "속도",
+  "tts_rate_normal": "보통",
+  "tts_rate_slow": "느리게",
   "tts_stop": "■ 멈추기",
   "xlinks_label": "함께 읽기"
 }

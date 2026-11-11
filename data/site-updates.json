@@ -4,6 +4,12 @@
     {
       "date": "2026-11-11",
       "type": "feature",
+      "ja": "読み上げに速さの切り替えと「通して読む」を追加・区切りで間を置くよう改良",
+      "en": "Read-aloud: speed control, “Read all”, and pauses at breaks"
+    },
+    {
+      "date": "2026-11-11",
+      "type": "feature",
       "ja": "よくある質問に絞り込みと「すべて開く」を追加",
       "en": "Question filter and “Open all” added to the FAQ",
       "link": "faq.html#qa"

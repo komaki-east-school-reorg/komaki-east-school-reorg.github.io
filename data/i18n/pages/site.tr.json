@@ -191,7 +191,12 @@
   "tr_li1": "Lütfen sayfayı, dili, mevcut çeviriyi ve düzelttiğiniz hâlini yazın. İstediğiniz dilde yazabilirsiniz.",
   "tr_li2": "Gönderdiğiniz içerik internette herkese açık olur. Göndermek için (ücretsiz) bir GitHub hesabı gerekir. Lütfen bir kişiyi tanıtacak bilgi yazmayın.",
   "tr_open": "🌐 Daha iyi bir çeviri önerin",
+  "tts_all": "🔊 Tümünü dinle",
   "tts_play": "🔊 Dinle",
+  "tts_rate_fast": "Hızlı",
+  "tts_rate_label": "Hız",
+  "tts_rate_normal": "Normal",
+  "tts_rate_slow": "Yavaş",
   "tts_stop": "■ Durdur",
   "xlinks_label": "Bunu da okuyun"
 }

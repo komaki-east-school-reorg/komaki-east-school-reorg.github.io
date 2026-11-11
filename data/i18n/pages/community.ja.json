@@ -311,7 +311,12 @@
   "tobu_actions_lead": "市の東部まちづくり推進室が公表している東部地域の取組です。これからの催しと、この2か月の動きを並べます。",
   "tobu_actions_note": "🔄 毎日自動で取得しています。項目ごとのリンクはないので、くわしくは出典の索引ページからたどってください。",
   "tr_footer": "🌐 翻訳の確認にご協力ください",
+  "tts_all": "🔊 通して読む",
   "tts_play": "🔊 読み上げる",
+  "tts_rate_fast": "はやい",
+  "tts_rate_label": "速さ",
+  "tts_rate_normal": "ふつう",
+  "tts_rate_slow": "ゆっくり",
   "tts_stop": "■ 止める",
   "xlinks_label": "あわせて読みたい"
 }

@@ -311,7 +311,12 @@
   "tobu_actions_lead": "Các hoạt động ở khu vực phía đông do Phòng Xúc tiến Phát triển Khu Đông của thành phố công bố: sự kiện sắp tới và diễn biến trong hai tháng gần đây.",
   "tobu_actions_note": "🔄 Lấy tự động mỗi ngày; tiêu đề được dịch tự động. Không có liên kết riêng cho từng mục, xem chi tiết từ trang mục lục nguồn.",
   "tr_footer": "🌐 Giúp chúng tôi kiểm tra bản dịch",
+  "tts_all": "🔊 Nghe hết",
   "tts_play": "🔊 Nghe",
+  "tts_rate_fast": "Nhanh",
+  "tts_rate_label": "Tốc độ",
+  "tts_rate_normal": "Vừa",
+  "tts_rate_slow": "Chậm",
   "tts_stop": "■ Dừng",
   "xlinks_label": "Đọc thêm"
 }

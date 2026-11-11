@@ -191,7 +191,12 @@
   "tr_li1": "Please tell us the page, the language, the current translation and your corrected version. You may write in any language.",
   "tr_li2": "What you send is published on the internet. You need a free GitHub account to send it. Please do not write anything that identifies a person.",
   "tr_open": "🌐 Suggest a better translation",
+  "tts_all": "🔊 Read all",
   "tts_play": "🔊 Listen",
+  "tts_rate_fast": "Fast",
+  "tts_rate_label": "Speed",
+  "tts_rate_normal": "Normal",
+  "tts_rate_slow": "Slow",
   "tts_stop": "■ Stop",
   "xlinks_label": "Related"
 }

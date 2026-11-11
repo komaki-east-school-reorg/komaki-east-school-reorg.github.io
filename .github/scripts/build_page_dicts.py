@@ -112,6 +112,8 @@ RUNTIME_KEYS = [
     "app_cta",            # フッタ・ハンバーガーメニューの「📲 アプリにする」（main.js）
     "tts_play",
     "tts_stop",
+    "tts_all",            # READ ALOUD：目次の横の「通して読む」と速さ（2026-11-11）
+    "tts_rate_label", "tts_rate_slow", "tts_rate_normal", "tts_rate_fast",
     "share_star_label",
     "share_star_note",
     "share_sticky_label",

@@ -218,7 +218,12 @@
   "table_scroll_hint": "← 可左右滑动 →",
   "to_top": "回到顶部",
   "tr_footer": "🌐 欢迎帮助核对译文",
+  "tts_all": "🔊 朗读全文",
   "tts_play": "🔊 朗读",
+  "tts_rate_fast": "快",
+  "tts_rate_label": "语速",
+  "tts_rate_normal": "中",
+  "tts_rate_slow": "慢",
   "tts_stop": "■ 停止",
   "xlinks_label": "相关内容"
 }

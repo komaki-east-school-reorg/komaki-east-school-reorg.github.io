@@ -191,7 +191,12 @@
   "tr_li1": "Tuliskan halaman, bahasa, terjemahan saat ini, dan versi perbaikan Anda. Anda boleh menulis dalam bahasa apa pun.",
   "tr_li2": "Isi yang Anda kirim akan dipublikasikan di internet. Untuk mengirim, diperlukan akun GitHub (gratis). Jangan menulis apa pun yang dapat mengenali seseorang.",
   "tr_open": "🌐 Usulkan terjemahan yang lebih baik",
+  "tts_all": "🔊 Dengarkan semua",
   "tts_play": "🔊 Dengarkan",
+  "tts_rate_fast": "Cepat",
+  "tts_rate_label": "Kecepatan",
+  "tts_rate_normal": "Normal",
+  "tts_rate_slow": "Lambat",
   "tts_stop": "■ Berhenti",
   "xlinks_label": "Baca juga"
 }

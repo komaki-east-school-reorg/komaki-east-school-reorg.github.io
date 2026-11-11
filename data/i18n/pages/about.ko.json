@@ -321,7 +321,12 @@
   "transport_elem_p": "<strong>통학 거리 2km 이상 등 대상 구역의 초등학생</strong>에게 스쿨버스를 운행합니다(시가 전액 부담·무료).<br><br>·<strong>등교:</strong> 1회<br>·<strong>하교:</strong> 최대 3회(저학년·고학년·동아리 활동일)<br>·<strong>비용: 시가 전액 부담(무료)</strong><br><br>대상 구역·정류장(안)·신청 절차는 스쿨버스 페이지에 정리했습니다. <a href=\"bus.html\" style=\"font-weight:700;\">→ 스쿨버스 상세 페이지</a>",
   "transport_jhs_h": "중학생: 자전거 통학",
   "transport_jhs_p": "중학생에 대해서는 <strong>자전거 통학</strong>이 계획되어 있습니다.<br><br>안전한 통학로의 확보나 우천 시의 대응에 대해서는 앞으로 상세한 내용이 검토·발표될 예정입니다.",
+  "tts_all": "🔊 전체 읽기",
   "tts_play": "🔊 읽어 주기",
+  "tts_rate_fast": "빠르게",
+  "tts_rate_label": "속도",
+  "tts_rate_normal": "보통",
+  "tts_rate_slow": "느리게",
   "tts_stop": "■ 멈추기",
   "xlinks_label": "함께 읽기"
 }

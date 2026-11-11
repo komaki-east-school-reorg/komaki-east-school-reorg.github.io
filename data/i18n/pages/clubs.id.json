@@ -197,7 +197,12 @@
   "table_scroll_hint": "← Geser ke samping →",
   "to_top": "Kembali ke atas",
   "tr_footer": "🌐 Bantu kami memeriksa terjemahan ini",
+  "tts_all": "🔊 Dengarkan semua",
   "tts_play": "🔊 Dengarkan",
+  "tts_rate_fast": "Cepat",
+  "tts_rate_label": "Kecepatan",
+  "tts_rate_normal": "Normal",
+  "tts_rate_slow": "Lambat",
   "tts_stop": "■ Berhenti",
   "xlinks_label": "Baca juga"
 }

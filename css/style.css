@@ -2990,6 +2990,34 @@ main section[id], main h2.section-title[id], #area-map { scroll-margin-top: calc
    いないブラウザではこの規則が効かないだけで、段落のハイライトは従来どおり出る。 */
 ::highlight(tts-sentence) { background: var(--accent); color: #1c2e20; }
 
+/* 目次の横の「通して読む」と読み上げの速さ（READ ALOUD、2026-11-11）。寸法は「文字の大きさ」と同じく px で固定 */
+.tts-ctrl { flex: 0 1 auto; min-width: 0; max-width: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .7rem; }
+.tts-ctrl[hidden] { display: none; }
+@media (min-width: 769px) { .tts-ctrl { margin-left: auto; justify-content: flex-end; } }
+.tts-ctrl .tts-all-btn { font-size: 12px; padding: 0 .7rem; height: 30px; margin: 0; }
+.tts-rate { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .25rem; min-width: 0; }
+.tts-ctrl .tts-all-btn, .tts-rate-btn { white-space: nowrap; }
+.tts-rate-btn {
+  height: 30px; padding: 0 .55rem; line-height: 1; font-family: var(--heading-font); font-size: 12px; font-weight: 700;
+  color: var(--primary-dark); background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-sm); cursor: pointer;
+}
+.tts-rate-btn:hover { border-color: var(--primary); }
+.tts-rate-btn[aria-pressed="true"] { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+/* Windows の強制カラー（高コントラスト）でも、色だけで示している所を見分けられるように（2026-11-11）。
+   背景色は消されるので、枠線・下線・システム色で示す。色の切り替えボタンは作らない。 */
+@media (forced-colors: active) {
+  .rev-fact, .rev-view, .action-item, .tobu-item, .status-item, .event-item, .voice-card, .contact-box,
+  .now-bar, .op-card, .pr-card, .faq-list, .faq-item, .xlinks { border: 1px solid CanvasText; }
+  .rev-fact { border-left: 6px solid CanvasText; }
+  .rev-view { border-left: 6px double CanvasText; }
+  [aria-pressed="true"], [aria-current], .faq-q.open { outline: 2px solid Highlight; outline-offset: -2px; }
+  .tts-reading { outline: 2px solid Highlight; }
+  ::highlight(tts-sentence) { background: Highlight; color: HighlightText; }
+  .tag, .badge, [class*="badge"], .faq-tag { border: 1px solid CanvasText; }
+  mark { background: Highlight; color: HighlightText; }
+}
+
 /* ===== 「前回から」の印（js/main.js の SINCE LAST VISIT）=====
    印の文字は ::after で出す（回覧板シートが textContent を拾っても紙に混ざらない）。
    学校HPの「新着」（黄色）と取り違えないよう、青系にしてある。 */
@@ -3020,7 +3048,7 @@ main section[id], main h2.section-title[id], #area-map { scroll-margin-top: calc
 .since-last-summary[hidden] { display: none; }
 .since-last-summary--none { border-left-color: var(--border); background: transparent; color: var(--text-muted); }
 @media print {
-  .tts-row, .since-last-summary { display: none !important; }
+  .tts-row, .tts-ctrl, .since-last-summary { display: none !important; }
   [data-unseen]::after { content: none; }
   .tts-reading { background: none; box-shadow: none; }
   ::highlight(tts-sentence) { background: none; color: inherit; }

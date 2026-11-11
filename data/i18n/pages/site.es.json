@@ -191,7 +191,12 @@
   "tr_li1": "Indique la página, el idioma, la traducción actual y su versión corregida. Puede escribir en cualquier idioma.",
   "tr_li2": "Lo que envíe se publica en internet. Para enviarlo necesita una cuenta (gratuita) de GitHub. No escriba nada que permita identificar a una persona.",
   "tr_open": "🌐 Sugerir una mejor traducción",
+  "tts_all": "🔊 Escuchar todo",
   "tts_play": "🔊 Escuchar",
+  "tts_rate_fast": "Rápida",
+  "tts_rate_label": "Velocidad",
+  "tts_rate_normal": "Normal",
+  "tts_rate_slow": "Lenta",
   "tts_stop": "■ Detener",
   "xlinks_label": "Lea también"
 }

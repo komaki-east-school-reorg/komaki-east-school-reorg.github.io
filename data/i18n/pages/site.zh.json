@@ -191,7 +191,12 @@
   "tr_li1": "请写明页面、语言、现在的译文和修改后的译文。用任何语言书写都可以。",
   "tr_li2": "发送的内容会在网上公开。发送需要（免费的）GitHub 账号。请不要写能识别个人身份的内容。",
   "tr_open": "🌐 提交修改后的译文",
+  "tts_all": "🔊 朗读全文",
   "tts_play": "🔊 朗读",
+  "tts_rate_fast": "快",
+  "tts_rate_label": "语速",
+  "tts_rate_normal": "中",
+  "tts_rate_slow": "慢",
   "tts_stop": "■ 停止",
   "xlinks_label": "相关内容"
 }

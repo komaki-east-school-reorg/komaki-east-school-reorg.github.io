@@ -328,7 +328,12 @@
   "table_scroll_hint": "← दायाँ–बायाँ सार्न सकिन्छ →",
   "to_top": "माथि फर्कनुहोस्",
   "tr_footer": "🌐 यो अनुवाद जाँच्न सहयोग गर्नुहोस्",
+  "tts_all": "🔊 सबै सुन्नुहोस्",
   "tts_play": "🔊 सुन्नुहोस्",
+  "tts_rate_fast": "छिटो",
+  "tts_rate_label": "गति",
+  "tts_rate_normal": "सामान्य",
+  "tts_rate_slow": "ढिलो",
   "tts_stop": "■ रोक्नुहोस्",
   "xlinks_label": "यो पनि पढ्नुहोस्"
 }

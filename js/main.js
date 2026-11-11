@@ -156,7 +156,7 @@ window.KomakiCount = (function () {
     ['.spread-copy', 'tags/example-copy'],
     ['.qr-save', 'qr/save'],
     ['.ics-add, .grade-ics, #grade-ics', 'calendar/add'],
-    ['.tts-btn', 'tts/play'],
+    ['.tts-btn:not(.tts-all-btn)', 'tts/play'],
     ['.kids-toggle', 'toggle/kids'],
     ['.orig-toggle', 'toggle/orig'],
     ['.fs-btn', function (el) { var m = /fs-btn--([a-z]+)/.exec(el.className) || []; return 'font/' + (m[1] || 'x'); }],
@@ -5502,12 +5502,26 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   var lang = window.KomakiLang();
   var VOICE_LANGS = {ja: ['ja'], en: ['en'], pt: ['pt-br', 'pt'], vi: ['vi'], tl: ['fil', 'tl'],
                      es: ['es'], zh: ['zh-cn', 'cmn-hans-cn', 'zh-hans', 'zh'], id: ['id', 'in'],
-                     tr: ['tr'], my: ['my']};
-  // 公表資料で読みが確かめられた地名だけ。推測で足さないこと。
-  var YOMI = {ja: [['篠岡', 'しのおか'], ['大草', 'おおくさ']]};
-  // 1回に渡す長さ。日本語・中国語は1文字あたりの読み時間が長いので短めに切る。
-  var MAX = (lang === 'ja' || lang === 'zh') ? 70 : 180;
-  var COMMA = (lang === 'ja' || lang === 'zh') ? '、' : ', ';
+                     ko: ['ko'], ne: ['ne'], tr: ['tr'], my: ['my']};
+  /* 読みの分かっている名前だけ。推測で足さないこと（読みは事実）。出どころ：
+     篠岡・大草＝市の公表資料、光ヶ丘・桃ヶ丘・陶・大城・桃陵＝各校が自分のホームページで使っているローマ字
+     （fetch_schools.py の SCHOOLS の slug）、桃花台東・西＝新校名の表記（data/term_rules.json）。
+     長い名前を先に置く（「桃花台東」を「桃花台」より先に）。「陶」は学校名のときだけ（陶業・陶器は変えない）。 */
+  var YOMI = {ja: [['篠岡', 'しのおか'], ['大草', 'おおくさ'],
+                   ['桃花台東', 'とうかだいひがし'], ['桃花台西', 'とうかだいにし'], ['桃花台', 'とうかだい'],
+                   ['光ヶ丘', 'ひかりがおか'], ['桃ヶ丘', 'ももがおか'], ['桃陵', 'とうりょう'], ['大城', 'おおしろ'],
+                   ['陶小学校', 'すえしょうがっこう'], ['陶小', 'すえしょう']]};
+  var IS_JA = lang === 'ja';
+  var CJKL = IS_JA || lang === 'zh';
+  // 1回に渡す長さ。日本語・中国語・韓国語は1文字あたりの読み時間が長いので短めに切る。
+  var MAX = CJKL ? 70 : lang === 'ko' ? 80 : lang === 'ne' ? 120 : 180;
+  var COMMA = CJKL ? '、' : ', ';
+  /* 速さ（2026-11-11）。目次の横の「読み上げの速さ」で選ぶ。localStorage の komaki_tts_rate（slow / fast、無し＝ふつう）。 */
+  var RATES = {slow: 0.8, normal: 1, fast: 1.25};
+  var rateKey = 'normal';
+  try { var rk = localStorage.getItem('komaki_tts_rate'); if (rk === 'slow' || rk === 'fast') rateKey = rk; } catch (e) {}
+  // 段落・項目・改行をまたぐときに置く間（ミリ秒。速さで割る）。続けて読むと別々の欄が1文に聞こえる
+  var GAP = 380;
 
   var SKIP = 'script,style,noscript,svg,rt,select,input,textarea,button:not(.faq-q),' +
              '.tts-row,.page-toc,.faq-q-icon,.section-updated,.bus-map-layers,.bus-area-map,' +
@@ -5555,8 +5569,28 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     var stop = (i + 1 < heads.length && root.contains(heads[i + 1])) ? heads[i + 1] : null;
     var FOLLOW = Node.DOCUMENT_POSITION_FOLLOWING;
     var out = [], cur = null, prevTag = null, n;
-    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+    /* 区切りや改行のある所は続けて読まない（2026-11-11 ユーザー指示）。
+       ・ひとまとまり（unit）は「inline でないいちばん近い祖先」。横に並んだ札・日付・名前（flex の子）や
+         段落・項目が別々のまとまりになり、あいだに間（GAP）が入る。表だけは行ごと（セルの間は読点）。
+       ・<br>・<hr> をまたいだら、同じ要素の中でも新しいまとまりにする。 */
+    var unitCache = new Map();
+    function unitOf(pe) {
+      if (unitCache.has(pe)) return unitCache.get(pe);
+      var u = null, row = pe.closest('tr');
+      if (row && root.contains(row)) u = row;
+      for (var el = pe; !u && el && el !== root; el = el.parentElement) {
+        var d = '';
+        try { d = window.getComputedStyle(el).display || ''; } catch (e) {}
+        if (d && d.indexOf('inline') !== 0 && d !== 'contents') u = el;
+      }
+      u = u || pe.closest(BLOCK) || pe;
+      unitCache.set(pe, u);
+      return u;
+    }
+    var brk = false;
+    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT, null);
     while ((n = w.nextNode())) {
+      if (n.nodeType === 1) { if (n.tagName === 'BR' || n.tagName === 'HR') brk = true; continue; }
       var pe = n.parentElement;
       if (!pe) continue;
       if (!(h.compareDocumentPosition(n) & FOLLOW)) continue;          // 見出しより前
@@ -5567,7 +5601,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
       // 画面の狭い端末でこそ使われるので、畳んだせいで声が丸ごと落ちては困る。
       if (!pe.closest('.faq-a, .voice-card') && !pe.getClientRects().length) continue;
       var t = n.nodeValue.replace(/\s+/g, ' ');
-      var b = pe.closest(BLOCK) || pe;
+      var b = unitOf(pe);
       if (!t.trim()) {
         // 空白だけの文字（<span>文。</span> <span>文。</span> の間など）も1つの空白として残す。
         // 捨てると英語などで「grades.School」とつながり、文の区切り（". "）が見つからない。
@@ -5577,9 +5611,10 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
       var cell = pe.closest('td,th');
       var tag = pe.closest(TAGLIKE);
       function padMap(k) { while (cur.map.length < cur.text.length) cur.map.push(k); }
-      if (!cur || cur.el !== b) { cur = {el: b, text: '', cell: cell, map: []}; out.push(cur); }
+      if (!cur || cur.el !== b || brk) { cur = {el: b, text: '', cell: cell, map: []}; out.push(cur); }
       else if (cell && cell !== cur.cell) { cur.text += COMMA; padMap(null); cur.cell = cell; }
       else if (prevTag && prevTag !== tag) { cur.text += COMMA; padMap(null); }
+      brk = false;
       prevTag = tag;
       // 連結後の1文字ずつに「どのテキストノードの何文字目か」を控える。
       // 文単位のハイライト（下の rangeOf）がこの対応表を使う。空白の潰し方が
@@ -5603,21 +5638,39 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
      元の文字位置のままなので、その範囲をそのまま画面のハイライトに使える
      （2026-09-22 に文単位のハイライトを入れたときにこの形へ変えた）。
      戻り値は [開始, 終了] の配列。 */
+  // ピリオドで文を切らない略語（No. 7、Shinooka Elem. School、p. ej. など）
+  var ABBR = /(?:^|[\s(（"“'‘·,])(?:No|Nos|Art|Arts|Vol|vol|Fig|Sec|Elem|Jr|Sr|St|Mr|Mrs|Ms|Dr|Prof|Dept|Div|Co|Inc|Ltd|vs|approx|est|ca|cf|e\.g|i\.e|ej|p|pp|ex|núm|pág|aprox|Sra?|Dra?|Av|örn|vb|mis|dll|dsb|hal|atbp|tel|Tel|nov|dez|dic|out|oct|set|sep|ago|jul|jun|abr|mar|fev|feb|jan|ene|seg|ter|qua|qui|sex|sáb|dom|lun|mié|jue|vie|[A-Z]|\d{1,2}|[①-⑳])$/;
   function sentenceRanges(text) {
-    var out = [], re = /([。！？!?။]|\.(?=\s))\s*/g, m, last = 0;
+    var out = [], re = /([。！？!?။।]|\.(?=\s))\s*/g, m, last = 0;
     while ((m = re.exec(text))) {
+      if (m[1] === '.') {
+        // 略語・番号（「1. 」）のあと、小文字や数字で続くときは切らない
+        var before = text.slice(Math.max(last, m.index - 8), m.index);
+        var after = text.charAt(re.lastIndex);
+        if (ABBR.test(before) || /[a-zà-ÿ0-9]/.test(after)) continue;
+      }
       out.push([last, m.index + m[1].length]);
       last = re.lastIndex;
     }
     if (last < text.length) out.push([last, text.length]);
-    // 長すぎる文は読点・空白でさらに分ける（Chrome は長い発話を黙って止めることがある）
+    // 長すぎる文は読点・空白でさらに分ける（Chrome は長い発話を黙って止めることがある）。
+    // 読点が無ければ、かぎ括弧の終わりか、助詞のあと（次がかな以外）で切る。語の途中では切らない。
+    function cutIn(seg, min) {
+      var cut = Math.max(seg.lastIndexOf('、'), seg.lastIndexOf('，'), seg.lastIndexOf(','), seg.lastIndexOf(' '),
+                         seg.lastIndexOf('；'), seg.lastIndexOf(';'));
+      if (cut >= min) return cut;
+      var r2 = /[」』）)]|[はがをにでともへ](?=[^぀-ゟ])/g, mm, best = -1;
+      while ((mm = r2.exec(seg))) best = mm.index;
+      return best >= min ? best : -1;
+    }
     var fine = [];
     out.forEach(function (r) {
       var a = r[0], b = r[1];
-      while (b - a > MAX) {
-        var seg = text.slice(a, a + MAX);
-        var cut = Math.max(seg.lastIndexOf('、'), seg.lastIndexOf('，'), seg.lastIndexOf(','), seg.lastIndexOf(' '));
-        if (cut < MAX / 3) cut = MAX - 1;
+      while (b - a > MAX * 1.25) {   // 少しはみ出すだけなら切らない（短い切れ端だけが残るのを防ぐ）
+        var cut = cutIn(text.slice(a, a + MAX), MAX / 3);
+        if (cut < 0) cut = cutIn(text.slice(a, a + Math.round(MAX * 1.6)), MAX / 3);   // 少し長めに渡してでも切れ目を探す
+        if (cut < 0) cut = MAX - 1;
+        if (a + cut + 1 >= b) break;
         fine.push([a, a + cut + 1]);
         a = a + cut + 1;
       }
@@ -5626,11 +5679,60 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     return fine;
   }
 
-  // 読み上げる文字列にする。絵文字を外し、読みの分かっている地名を置き換える
+  /* 読み上げる文字列にする（声に渡す文字だけを直す。画面の文字とハイライトの範囲は変えない）。
+     2026-11-11 に、全ページの「声に渡す文」を書き出して不自然だった所を直した：
+     ・記号：文頭・文末の矢印（「くわしく →」）、※・■・★・#、Instagram の @アカウント名は渡さない。
+       文中の「→」は、日本語では数字のそばなら「から」、ほかは読点。
+     ・電話番号は1桁ずつ（「0568-73-9951」を引き算や大きな数に読ませない）。
+     ・日本語：曜日の括弧（（月）→ 月曜日）、「〜」→「から」（頭に付く「〜11/15」は「まで」）、
+       「11/15」→「11月15日」、番地の「2-4」→「2の4」、H21・R8 → 平成21年・令和8年、
+       km²・㎡・ha、区切りの「／」「｜」「＝」と名前を並べる「・」は読点。
+     ・日本語・中国語以外：日本語のまま出している部署名・資料名（かな・漢字）は渡さない
+       （外国語の声がでたらめに読むため）。中国語は、かなを含む部分だけ渡さない。
+     ・読みの分かっている名前を置き換える（YOMI）。 */
+  var JP_RUN = /[぀-ヿ㐀-鿿々〆ー（）「」『』【】、。・･〜～：][぀-ヿ㐀-鿿々〆ー（）「」『』【】、。・･〜～：0-9０-９\s]*/g;
+  var WEEK = {'月': 'げつ', '火': 'か', '水': 'すい', '木': 'もく', '金': 'きん', '土': 'ど', '日': 'にち'};
   function speakable(t) {
     if (EMOJI) t = t.replace(EMOJI, '');
+    t = t.replace(/@[A-Za-z0-9_.]{3,}/g, ' ');
+    t = t.replace(/[※＊■□◆◇★☆▶◀▲▼#＃]/g, ' ');
+    t = t.replace(/^[\s→←↑↓↗↘⇒»›]+|[\s→←↑↓↗↘⇒»›]+$/g, '');
+    t = t.replace(/0\d{1,4}-\d{1,4}-\d{3,4}/g, function (m) {
+      return m.split('-').map(function (p) { return p.split('').join(' '); }).join(COMMA);
+    });
+    if (IS_JA) {
+      t = t.replace(/[（(]([月火水木金土日])(?:曜日?)?(・祝)?[）)]/g, function (m, d, h) { return '、' + WEEK[d] + 'よう' + (h ? '、祝日' : ''); });
+      t = t.replace(/(^|[^\d\/.])(\d{1,2})\/(\d{1,2})(?![\d\/])/g, function (m, pre, a, b) {
+        return (+a >= 1 && +a <= 12 && +b >= 1 && +b <= 31) ? pre + a + '月' + b + '日' : m;
+      });
+      t = t.replace(/(^|[（(、])[〜～]\s*(\d+月\d+日|\d+月|\d+日)/g, '$1$2まで');
+      t = t.replace(/\s*[〜～]\s*/g, 'から');
+      t = t.replace(/(\d)\s*-\s*(?=\d)/g, '$1の');
+      t = t.replace(/(^|[^A-Za-z0-9])([HR])(\d{1,2})(?![\dA-Za-z])年?/g, function (m, pre, e, n) { return pre + (e === 'H' ? '平成' : '令和') + n + '年'; });
+      t = t.replace(/km²|㎢/g, '平方キロメートル').replace(/㎡|m²/g, '平方メートル').replace(/(\d)\s*ha(?![a-z])/g, '$1ヘクタール');
+      t = t.replace(/\s*[→⇒]\s*/g, function (m, off, str) {
+        return /\d/.test(str.slice(Math.max(0, off - 6), off)) || /^\s*[→⇒]\s*\d/.test(str.slice(off, off + 4)) ? 'から' : '、';
+      });
+      t = t.replace(/\s*[／｜|＝←]\s*/g, '、');
+      t = t.replace(/[（(]\s*[）)]/g, ' ');   // 中身が無くなった括弧（@アカウント名を外したあとなど）
+      // 「市・県・国」のように名前を並べる中点は読点に。カタカナ語の中の中点（ニュー・タウン）はそのまま
+      t = t.replace(/・/g, function (m, off, str) {
+        var a = str.charAt(off - 1), b = str.charAt(off + 1), k = /[ァ-ヶー]/;
+        return (k.test(a) && k.test(b)) ? m : '、';
+      });
+    } else {
+      t = t.replace(/\s*[→⇒←]\s*/g, COMMA);
+      t = t.replace(/\s*[〜～]\s*$/, '').replace(/\s*[〜～]\s*/g, '–');
+      if (lang === 'zh') {
+        t = t.replace(/[぀-ヿ㐀-鿿々ー]+/g, function (m) { return /[ぁ-ゖァ-ヺ]/.test(m) ? ' ' : m; });
+      } else {
+        t = t.replace(JP_RUN, function (m) { return /[぀-ヿ㐀-鿿]/.test(m) ? ' ' : m; });
+        t = t.replace(/[（(\[“"‘'「]\s*[）)\]”"’'」]/g, ' ');           // 中身が無くなった括弧
+        t = t.replace(/\s+([,.;:)])/g, '$1').replace(/(?:[,:;]\s*){2,}/g, ', ').replace(/^[\s,.;:：]+|[\s,:;：]+$/g, '');
+      }
+    }
     (YOMI[lang] || []).forEach(function (p) { t = t.split(p[0]).join(p[1]); });
-    t = t.replace(/\s+/g, ' ').replace(/^[・\s]+|[・\s]+$/g, '');   // 区切りの「・」だけが端に残ることがある
+    t = t.replace(/\s+/g, ' ').replace(/、{2,}/g, '、').replace(/^[・、\s]+|[・、\s]+$/g, '');   // 区切りだけが端に残ることがある
     if (!t || (LETTER && !LETTER.test(t))) return '';
     return t;
   }
@@ -5723,32 +5825,45 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     setActive(null);
     highlight(null);
   }
+  // h は見出し1つ、または見出しの配列（「このページを通して読む」）。見出しの文字は blocksOf が先頭に拾う
   function play(h, btn) {
     var voice = pickVoice();
     stop();
     if (!voice) return;
     var queue = [];
-    blocksOf(h).forEach(function (b) {
-      sentenceRanges(b.text).forEach(function (r) {
-        var say = speakable(b.text.slice(r[0], r[1]));
-        if (say) queue.push({el: b.el, s: say, b: b, from: r[0], to: r[1]});
+    var list = Array.isArray(h) ? h : [h];
+    list.forEach(function (hd) {
+      blocksOf(hd).forEach(function (b) {
+        sentenceRanges(b.text).forEach(function (r) {
+          var say = speakable(b.text.slice(r[0], r[1]));
+          if (say) queue.push({el: b.el, s: say, b: b, from: r[0], to: r[1]});
+        });
       });
     });
     if (!queue.length) return;
     var my = token;
     setActive(btn);
-    function next() {
+    var prev = null;
+    function speak(item) {
       if (my !== token) return;
-      var item = queue.shift();
-      if (!item) { stop(); return; }
       highlight(item);
       var u = new SpeechSynthesisUtterance(item.s);
       u.voice = voice;
       u.lang = voice.lang;
+      u.rate = RATES[rateKey] || 1;   // 途中で速さを変えたら、次の文から効く
       u.onend = next;
       u.onerror = function () { if (my === token) next(); };
       current = u;   // 参照を持っておかないと、Chrome では読み終わりの合図が来ないことがある
       synth.speak(u);
+    }
+    function next() {
+      if (my !== token) return;
+      var item = queue.shift();
+      if (!item) { stop(); return; }
+      // まとまり（段落・項目・改行）が変わるときは間を置く。同じまとまりの中の文は続けて読む
+      var gap = (prev && prev.b !== item.b) ? Math.round(GAP / (RATES[rateKey] || 1)) : 0;
+      prev = item;
+      if (gap) setTimeout(function () { speak(item); }, gap); else speak(item);
     }
     // cancel() の直後に speak() すると、読み始めずに捨てられるブラウザがある
     setTimeout(next, 80);
@@ -5779,6 +5894,51 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     }
     rows.push(row);
   });
+
+  /* 目次の横（「文字の大きさ」の隣）に「このページを通して読む」と速さ（2026-11-11）。
+     目次の無いページ（予定ページ・404）には出さない。声が無い言語では節ごとのボタンと同じく隠す。 */
+  var fsCtrl = document.querySelector('.page-toc .fs-ctrl');
+  if (fsCtrl) {
+    var ctrl = document.createElement('div');
+    ctrl.className = 'tts-ctrl';
+    ctrl.hidden = true;
+    var allBtn = document.createElement('button');
+    allBtn.type = 'button';
+    allBtn.className = 'tts-btn tts-all-btn';
+    allBtn.setAttribute('aria-pressed', 'false');
+    allBtn.innerHTML = '<span data-i18n="tts_all">🔊 通して読む</span><span data-i18n="tts_stop" hidden>■ 止める</span>';
+    allBtn.addEventListener('click', function () {
+      if (activeBtn === allBtn) { stop(); return; }
+      play(heads.filter(function (h) { return h.getClientRects().length; }), allBtn);
+      if (window.KomakiCount) window.KomakiCount('tts/all');
+    });
+    ctrl.appendChild(allBtn);
+    var grp = document.createElement('span');
+    grp.className = 'tts-rate';
+    grp.setAttribute('role', 'group');
+    grp.setAttribute('aria-labelledby', 'tts-rate-label');
+    grp.innerHTML = '<span class="fs-label" id="tts-rate-label" data-i18n="tts_rate_label">速さ</span>';
+    var rateBtns = [];
+    [['slow', 'tts_rate_slow', 'ゆっくり'], ['normal', 'tts_rate_normal', 'ふつう'], ['fast', 'tts_rate_fast', 'はやい']].forEach(function (r) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'tts-rate-btn';
+      b.setAttribute('data-i18n', r[1]);
+      b.textContent = r[2];
+      b.setAttribute('aria-pressed', r[0] === rateKey ? 'true' : 'false');
+      b.addEventListener('click', function () {
+        rateKey = r[0];
+        try { if (rateKey === 'normal') localStorage.removeItem('komaki_tts_rate'); else localStorage.setItem('komaki_tts_rate', rateKey); } catch (e) {}
+        rateBtns.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        if (window.KomakiCount && rateKey !== 'normal') window.KomakiCount('tts/rate-' + rateKey);
+      });
+      rateBtns.push(b);
+      grp.appendChild(b);
+    });
+    ctrl.appendChild(grp);
+    fsCtrl.insertAdjacentElement('afterend', ctrl);
+    rows.push(ctrl);
+  }
 
   function reveal() {
     var ok = !!pickVoice();

@@ -311,7 +311,12 @@
   "tobu_actions_lead": "Mga gawain sa silangang distrito na inilathala ng Opisina sa Pagpapaunlad ng Silangang Distrito ng lungsod: mga darating na kaganapan at nangyari sa nakaraang dalawang buwan.",
   "tobu_actions_note": "🔄 Awtomatikong kinukuha araw-araw; awtomatikong salin ang mga pamagat. Walang hiwalay na link ang bawat item, kaya tingnan ang detalye sa index na pahina ng pinagmulan.",
   "tr_footer": "🌐 Tulungan kaming suriin ang salin",
+  "tts_all": "🔊 Pakinggan lahat",
   "tts_play": "🔊 Pakinggan",
+  "tts_rate_fast": "Mabilis",
+  "tts_rate_label": "Bilis",
+  "tts_rate_normal": "Karaniwan",
+  "tts_rate_slow": "Mabagal",
   "tts_stop": "■ Itigil",
   "xlinks_label": "Basahin din"
 }

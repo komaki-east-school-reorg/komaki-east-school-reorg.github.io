@@ -197,7 +197,12 @@
   "table_scroll_hint": "← Scroll sideways →",
   "to_top": "Back to top",
   "tr_footer": "🌐 Help us check this translation",
+  "tts_all": "🔊 Read all",
   "tts_play": "🔊 Listen",
+  "tts_rate_fast": "Fast",
+  "tts_rate_label": "Speed",
+  "tts_rate_normal": "Normal",
+  "tts_rate_slow": "Slow",
   "tts_stop": "■ Stop",
   "xlinks_label": "Related"
 }

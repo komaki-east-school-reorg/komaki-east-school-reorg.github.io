@@ -145,7 +145,7 @@
   "sched_desc39": "<strong>「感谢大城小」（居民自发）</strong><br>在即将闭校的大城小学，预定于体育馆举办祭典市集、在操场进行棒球等活动，并有餐车出摊。此前也曾招募实行委员与当日志愿者（最新情况请查看主办方的Instagram）。<strong>并非市或学校的事业，而是居民自发的行动</strong>。详见<a href=\"community.html#community-actions\">地区行动</a>。",
   "sched_desc4": "<strong>第4次\"篠冈地区学校研讨会\"</strong>（东部市民中心礼堂）<br>议题：第3次会议回顾，家长意见交流及社区说明会结果，计划草案修订",
   "sched_desc40": "<strong>新学区交流 音乐节（地区协议会）</strong><br>在光之丘中学的体育馆举办，以音乐和舞蹈拓展新学区的交流。演出者的报名已于2026年8月30日截止。<strong>这不是市的事业，而是光之丘小学学区地区协议会音乐部会的活动。</strong>详情请见<a href=\"community.html#community-actions\">地区行动</a>。",
-  "sched_desc41": "<strong>「篠冈学园」の校徽确定</strong><br>4校统一的校徽从212件作品中选出。以三叶结表现三个理念，与圆形组合成桃子，中央为「S」，下部为书本与翅膀。今后将进行校舍悬挂与校旗制作。",
+  "sched_desc41": "<strong>「篠冈学园」的校徽确定</strong><br>4校统一的校徽从212件作品中选出。以三叶结表现三个理念，与圆形组合成桃子，中央为「S」，下部为书本与翅膀。今后将进行校舍悬挂与校旗制作。",
   "sched_desc42": "<strong>TOKADAI DANCE FESTIVAL（居民自发）</strong><br>在Peare桃花台2层的Peare广场，举办了分为U15组和OPEN组的舞蹈比赛。观看免费。<strong>这不是市的事业，而是株式会社i-Support的活动。</strong>详情请见<a href=\"community.html#community-actions\">地区行动</a>。",
   "sched_desc43": "<strong>大草竹子装置艺术展（居民自发）</strong><br>在大草八田川两岸的稻田里陈列竹制作品的环境造型展（第33届）。11月14日（周六）10:00～15:00，还将在大草会馆停车场举办“竹艺市集＆音乐节”（雨天取消）。<strong>这不是市的事业，而是竹子装置艺术展执行委员会的活动。</strong>详情请见<a href=\"community.html#community-actions\">地区行动</a>。",
   "sched_desc44": "<strong>第11届桃花台音乐节（居民自发）</strong><br>14:00起在东部市民中心礼堂举行（13:00开场），由中部爱乐弦乐四重奏演奏名曲。费用500日元（高中生及以下免费）。<strong>由市民活动团体“桃花台を考える会”作为与市东部城市建设推进室的协作提案事业举办。</strong>详情请见<a href=\"community.html#community-actions\">地区行动</a>。",
@@ -209,7 +209,12 @@
   "table_scroll_hint": "← 可左右滑动 →",
   "to_top": "回到顶部",
   "tr_footer": "🌐 欢迎帮助核对译文",
+  "tts_all": "🔊 朗读全文",
   "tts_play": "🔊 朗读",
+  "tts_rate_fast": "快",
+  "tts_rate_label": "语速",
+  "tts_rate_normal": "中",
+  "tts_rate_slow": "慢",
   "tts_stop": "■ 停止",
   "xlinks_label": "相关内容"
 }

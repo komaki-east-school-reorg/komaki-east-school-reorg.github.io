@@ -1,0 +1,58 @@
+name: Check Site
+
+# 週1回の「サイトの点検」（2026-11-11）。日次アイデアにたまっていた検査の案を1本にまとめたもの。
+# .github/scripts/site_lint.py がリポジトリのファイルを読むだけで、外部にはアクセスしない。AI も使わない。
+# 気になる所があれば Issue（🧹 サイトの点検）で知らせる。サイトを止める検査ではない
+# （止める検査は auto_gates.py。辞書に無いキーとサイト内リンク切れは check 28・29 が止める）。
+
+on:
+  schedule:
+    - cron: '20 21 * * 0'   # 毎週日曜 21:20 UTC（＝月曜 06:20 JST）
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: check-site
+  cancel-in-progress: false
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Lint the site
+        id: lint
+        run: |
+          set +e
+          python3 .github/scripts/site_lint.py --report /tmp/site-lint.md
+          code=$?
+          set -e
+          if [ "$code" -eq 1 ]; then
+            exit 1
+          fi
+          if [ "$code" -eq 3 ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # 開いている 🧹 Issue があれば追記する（毎週新しい Issue を立てない）。自動では閉じない。
+      - name: Report
+        if: steps.lint.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          open=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "🧹 サイトの点検 in:title" --json number --jq '.[0].number')
+          if [ -n "$open" ]; then
+            gh issue comment "$open" --repo "$GITHUB_REPOSITORY" --body-file /tmp/site-lint.md
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" \
+              --title "🧹 サイトの点検 $(TZ=Asia/Tokyo date +%Y-%m-%d)" \
+              --body-file /tmp/site-lint.md
+          fi

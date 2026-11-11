@@ -197,7 +197,12 @@
   "table_scroll_hint": "← よこに うごかせます →",
   "to_top": "ページの 上へ",
   "tr_footer": "🌐 ほんやくを 見て くれる 人を さがして います",
+  "tts_all": "🔊 ぜんぶ よむ",
   "tts_play": "🔊 よみあげる",
+  "tts_rate_fast": "はやい",
+  "tts_rate_label": "はやさ",
+  "tts_rate_normal": "ふつう",
+  "tts_rate_slow": "ゆっくり",
   "tts_stop": "■ とめる",
   "xlinks_label": "いっしょに 読みたい"
 }

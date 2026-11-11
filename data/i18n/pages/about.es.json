@@ -321,7 +321,12 @@
   "transport_elem_p": "<strong>Servicio de bus escolar</strong> para los alumnos de primaria elegibles en el área de servicio (distancia de 2 km o más, etc.) — totalmente financiado por la ciudad, gratuito.<br><br>· <strong>Mañana:</strong> 1 viaje<br>· <strong>Tarde:</strong> Hasta 3 viajes (cursos inferiores / superiores / días de club)<br>· <strong>Costo: Gratuito (financiado por la ciudad)</strong><br><br>La zona atendida, las paradas propuestas y cómo solicitarlo están en la página del bus escolar. <a href=\"bus.html\" style=\"font-weight:700;\">→ Página de detalles del Bus Escolar</a>",
   "transport_jhs_h": "Alumnos de Secundaria: Bicicleta",
   "transport_jhs_p": "Se planea el <strong>uso de bicicleta</strong> para los alumnos de secundaria.<br><br>Los detalles sobre rutas seguras y medidas para días lluviosos se estudiarán y anunciarán en una fecha posterior.",
+  "tts_all": "🔊 Escuchar todo",
   "tts_play": "🔊 Escuchar",
+  "tts_rate_fast": "Rápida",
+  "tts_rate_label": "Velocidad",
+  "tts_rate_normal": "Normal",
+  "tts_rate_slow": "Lenta",
   "tts_stop": "■ Detener",
   "xlinks_label": "Lea también"
 }

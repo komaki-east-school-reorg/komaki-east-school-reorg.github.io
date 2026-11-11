@@ -114,7 +114,12 @@
   "table_scroll_hint": "← Yana kaydırabilirsiniz →",
   "to_top": "Başa dön",
   "tr_footer": "🌐 Bu çeviriyi kontrol etmemize yardım edin",
+  "tts_all": "🔊 Tümünü dinle",
   "tts_play": "🔊 Dinle",
+  "tts_rate_fast": "Hızlı",
+  "tts_rate_label": "Hız",
+  "tts_rate_normal": "Normal",
+  "tts_rate_slow": "Yavaş",
   "tts_stop": "■ Durdur",
   "xlinks_label": "Bunu da okuyun"
 }

@@ -347,7 +347,12 @@
   "table_scroll_hint": "← I-scroll pakanan o pakaliwa →",
   "to_top": "Bumalik sa itaas",
   "tr_footer": "🌐 Tulungan kaming suriin ang salin",
+  "tts_all": "🔊 Pakinggan lahat",
   "tts_play": "🔊 Pakinggan",
+  "tts_rate_fast": "Mabilis",
+  "tts_rate_label": "Bilis",
+  "tts_rate_normal": "Karaniwan",
+  "tts_rate_slow": "Mabagal",
   "tts_stop": "■ Itigil",
   "xlinks_label": "Basahin din"
 }
