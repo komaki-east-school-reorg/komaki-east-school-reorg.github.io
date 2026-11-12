@@ -59,6 +59,7 @@ def record(path):
     hist["description"] = (
         "毎日の新機能アイデア（.github/workflows/feature-ideas.yml）が過去に出した見出しの記録。"
         "同じ案を繰り返さないために起案AIが読む。実装済みの案には implemented（実装日）・commit・note（任意）を付ける。"
+        "不採用の案には rejected（日付）・reason を付ける（行は消さない。不採用の案と似た案も出さない）。"
         "手編集可（消せばまた提案されうる）。"
     )
     os.makedirs(os.path.dirname(HISTORY), exist_ok=True)
