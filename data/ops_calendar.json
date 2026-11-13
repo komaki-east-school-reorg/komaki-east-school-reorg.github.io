@@ -14,7 +14,7 @@
       "due": "2027-04-01",
       "notice_days": 60,
       "title": "第1期再編の開校（しのおか学園）",
-      "how": "トップの帯の手書き項目（upcoming_date8 / upcoming_name8、data-expires=2027-04-30）、いまの状況（now_text ほか13辞書）、about.html の対象校・新校名、map.html の学校と各校ホームページの一覧、fetch_schools.py の SCHOOLS、status_digest の件数を見直す。開校後も実際の学校の状況を見守る（CLAUDE.md「運営の方針」）。"
+      "how": "トップの帯の手書き項目（upcoming_date8 / upcoming_name8、data-expires=2027-04-30）、いまの状況（now_text ほか13辞書）、about.html の対象校・新校名、map.html の学校と各校ホームページの一覧、fetch_schools.py の SCHOOLS、status_digest の件数、bus.html#checklist の「乗り始めるまで」の項目（bus_chk_1〜4・bus_chk_goal）を見直す。開校後も実際の学校の状況を見守る（CLAUDE.md「運営の方針」）。"
     },
     {
       "id": "base-fy",

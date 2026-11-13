@@ -306,6 +306,15 @@
     <div class="container" style="max-width:900px;">
       <h2 class="section-title ill-h ill-h--mappin" data-i18n-html="clubs_s3_h">校区をまたぐ・市内全域の活動<small>Across the District</small></h2>
       <p class="section-lead" data-i18n="clubs_s3_lead">活動場所が特定の校区に限られないもの、市内全域から参加できるものです。近隣の市で活動していて、この地区から通えるものも含みます。</p>
+      <!-- 種目でしぼる（CLUB FILTER in js/main.js、2026-11-13）。ボタンは JS がページの種目の札から作る。
+           この節（#wide）と次の節（#schools）の両方に効く。JS が無効なら出ない。 -->
+      <div class="club-filter" hidden>
+        <p class="club-filter-label" id="club-filter-label" data-i18n="clubs_filter_label">種目でしぼる（このページの一覧すべてに効きます）</p>
+        <div class="club-filter-btns" role="group" aria-labelledby="club-filter-label"></div>
+        <p class="club-filter-status" aria-live="polite"></p>
+        <span hidden data-club-all data-i18n="clubs_filter_all">すべて</span>
+        <span hidden data-club-fmt data-i18n="clubs_filter_count">{n}件を表示中</span>
+      </div>
         <div class="club-item">
           <span class="club-sport" data-i18n="clubs_sp_soccer">サッカー</span>
           <span class="club-name" translate="no">AC Milan Academy Aichi</span>
@@ -408,7 +417,7 @@
         <h3 class="section-title sub clubs-school-h">篠岡中学校</h3>
         <div class="club-group">
           <div class="club-group-h" data-i18n="clubs_bukatsu_h">学校の部活動</div>
-          <div class="club-item"><span class="club-name" lang="ja" translate="no">ソフトテニス部・女子バレーボール部・駅伝部・野球部</span></div>
+          <div class="club-item" data-sports="baseball"><span class="club-name" lang="ja" translate="no">ソフトテニス部・女子バレーボール部・駅伝部・野球部</span></div>
           <p class="club-note" data-i18n="clubs_tokadai_bb">野球は、学校日記では「桃花台野球部」「桃花台チーム」という合同チームの名前で大会に出ています。</p>
           <p class="club-note" data-i18n="clubs_bukatsu_none">部活動の一覧は、学校のページでは公表されていません。活動の様子は学校日記でご覧ください。</p>
           <span class="club-links"><a href="https://www.komaki-aic.ed.jp/shinooka-j/" target="_blank" rel="noopener" data-i18n="clubs_link_diary">学校日記</a></span>
@@ -436,7 +445,7 @@
         <h3 class="section-title sub clubs-school-h">光ヶ丘中学校</h3>
         <div class="club-group">
           <div class="club-group-h" data-i18n="clubs_bukatsu_h">学校の部活動</div>
-          <div class="club-item"><span class="club-name" lang="ja" translate="no">吹奏楽部・男子テニス部・男子バスケットボール部・女子バスケットボール部・野球部</span></div>
+          <div class="club-item" data-sports="basketball baseball"><span class="club-name" lang="ja" translate="no">吹奏楽部・男子テニス部・男子バスケットボール部・女子バスケットボール部・野球部</span></div>
           <p class="club-note" data-i18n="clubs_tokadai_bb">野球は、学校日記では「桃花台野球部」「桃花台チーム」という合同チームの名前で大会に出ています。</p>
           <p class="club-note" data-i18n="clubs_bukatsu_partial">学校のページで確認できたものだけです。ほかにも部があります。</p>
           <span class="club-links"><a href="https://www.komaki-aic.ed.jp/hikarigaoka_j/page/bukatu0" target="_blank" rel="noopener" data-i18n="clubs_link_bukatsu">部活動のページ</a></span>
@@ -465,7 +474,7 @@
         <h3 class="section-title sub clubs-school-h">桃陵中学校</h3>
         <div class="club-group">
           <div class="club-group-h" data-i18n="clubs_bukatsu_h">学校の部活動</div>
-          <div class="club-item"><span class="club-name" lang="ja" translate="no">吹奏楽部・サッカー部・野球部・女子バスケットボール部・女子ソフトテニス部・卓球部・バレー部・情報部</span></div>
+          <div class="club-item" data-sports="soccer baseball basketball"><span class="club-name" lang="ja" translate="no">吹奏楽部・サッカー部・野球部・女子バスケットボール部・女子ソフトテニス部・卓球部・バレー部・情報部</span></div>
           <p class="club-note" data-i18n="clubs_johobu">情報部は、校内の部活動の取材や、市の東部地域トライアル活動への参加などをしている部です（学校日記より）。</p>
           <p class="club-note" data-i18n="clubs_bukatsu_partial">学校のページで確認できたものだけです。ほかにも部があります。</p>
           <span class="club-links"><a href="https://www.komaki-aic.ed.jp/toryo-j/" target="_blank" rel="noopener" data-i18n="clubs_link_diary">学校日記</a></span>

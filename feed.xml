@@ -6,10 +6,26 @@
   <link rel="self" type="application/atom+xml" href="https://komaki-east-school-reorg.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/"/>
   <id>https://komaki-east-school-reorg.github.io/</id>
-  <updated>2026-11-12T00:00:00+09:00</updated>
+  <updated>2026-11-13T00:00:00+09:00</updated>
   <author><name>「これがまちつくサイトの解。」THE UNIT（住民有志・非公式）</name></author>
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
   <rights>このサイトは「これがまちつくサイトの解。」THE UNIT（住民有志）が運営しており、小牧市・教育委員会とは無関係です。</rights>
+  <entry>
+    <title>地域クラブ・課外活動を種目でしぼれるボタンを追加</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/clubs.html#wide"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:e287ed19beadb526</id>
+    <updated>2026-11-13T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜地域クラブ・課外活動を種目でしぼれるボタンを追加</summary>
+  </entry>
+  <entry>
+    <title>スクールバスに乗り始めるまでのチェックリストを追加</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/bus.html#checklist"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:2e621857275082ef</id>
+    <updated>2026-11-13T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜スクールバスに乗り始めるまでのチェックリストを追加</summary>
+  </entry>
   <entry>
     <title>東部まちづくり：令和8年度第3回小牧市東部まちづくり審議会</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#community-actions"/>
@@ -313,21 +329,5 @@
     <updated>2026-10-31T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜検証と提案に「既存校のレガシーを引き継ぐ」検討と提案⑪</summary>
-  </entry>
-  <entry>
-    <title>地域クラブ・議会・このサイトについてのページに挿絵</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:0ab3597a2ed0c8c2</id>
-    <updated>2026-10-31T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜地域クラブ・議会・このサイトについてのページに挿絵</summary>
-  </entry>
-  <entry>
-    <title>地域の取組に桃花台まつりと大草・野口の棒の手を追加</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#community-actions"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:0e7940374a670548</id>
-    <updated>2026-10-31T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜地域の取組に桃花台まつりと大草・野口の棒の手を追加</summary>
   </entry>
 </feed>

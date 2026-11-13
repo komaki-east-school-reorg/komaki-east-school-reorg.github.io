@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>スクールバス計画 – 小牧市東部（篠岡地区）学校再編ナビ</title>
-  <meta name="description" content="令和9年度（2027年度）開始予定の篠岡地区スクールバス計画。対象エリア・便数・費用・安全対策・よくある質問を解説します。">
+  <meta name="description" content="令和9年度（2027年度）開始予定の篠岡地区スクールバス計画。対象エリア・便数・費用・安全対策・乗り始めるまでのチェックリスト・よくある質問を解説します。">
   <meta name="robots" content="max-snippet:-1, max-image-preview:large">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="小牧市東部（篠岡地区）学校再編ナビ｜桃花台エリアの非公式でもわかりやすい地域情報メディア">
   <meta property="og:title" content="スクールバス計画 – 小牧市東部（篠岡地区）学校再編ナビ">
-  <meta property="og:description" content="令和9年度（2027年度）開始予定の篠岡地区スクールバス計画。対象エリア・便数・費用・安全対策・よくある質問を解説します。">
+  <meta property="og:description" content="令和9年度（2027年度）開始予定の篠岡地区スクールバス計画。対象エリア・便数・費用・安全対策・乗り始めるまでのチェックリスト・よくある質問を解説します。">
   <meta property="og:url" content="https://komaki-east-school-reorg.github.io/bus.html">
   <meta property="og:image" content="https://komaki-east-school-reorg.github.io/img/og-image.png?v=20261011">
   <meta property="og:image:width" content="1200">
@@ -18,7 +18,7 @@
   <meta property="og:locale" content="ja_JP">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="スクールバス計画 – 小牧市東部（篠岡地区）学校再編ナビ">
-  <meta name="twitter:description" content="令和9年度（2027年度）開始予定の篠岡地区スクールバス計画。対象エリア・便数・費用・安全対策・よくある質問を解説します。">
+  <meta name="twitter:description" content="令和9年度（2027年度）開始予定の篠岡地区スクールバス計画。対象エリア・便数・費用・安全対策・乗り始めるまでのチェックリスト・よくある質問を解説します。">
   <meta name="twitter:image" content="https://komaki-east-school-reorg.github.io/img/og-image.png?v=20261011">
   <meta name="twitter:image:alt" content="黒板のデザインに「小牧市東部（篠岡地区）学校再編ナビ」と書かれたタイトル画像">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -137,6 +137,7 @@
       <ol class="ill-steps">
           <li><a href="#overview"><img class="ill-step-pic" src="img/illust/bus.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="bus_overview_h2">サービス概要</span></a></li>
           <li><a href="#apply"><img class="ill-step-pic" src="img/illust/form.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="bus_apply_h2">申請の手続き</span></a></li>
+          <li><a href="#checklist"><img class="ill-step-pic" src="img/illust/family.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="bus_chk_h2">乗り始めるまでのチェックリスト</span></a></li>
           <li><a href="#stops"><img class="ill-step-pic" src="img/illust/busstop.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="bus_stops_h2">バス停と乗降場所</span></a></li>
           <li><a href="#safety"><img class="ill-step-pic" src="img/illust/safety.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="bus_safety_h2">安全対策</span></a></li>
       </ol>
@@ -357,11 +358,54 @@
     </div>
   </section>
 
+  <!-- ===== 乗り始めるまでのチェックリスト（BUS CHECKLIST in js/main.js、2026-11-13） =====
+       項目は公表資料で確かめられたものだけ：だより vol.6、導入スケジュール、
+       保護者等説明会（令和8年6月）の質疑応答と、提出された質問への市の回答。
+       まだ決まっていないこと（休む日・運休の連絡の仕組み）は項目にしない（質問集 rev_o40）。
+       チェックは localStorage の komaki_bus_check（この端末だけ）。ラベルの文字は内側の span に
+       data-i18n を付ける（label に付けると input ごと消える）。 -->
+  <section id="checklist" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title ill-h ill-h--form" data-i18n-html="bus_chk_h2">乗り始めるまでのチェックリスト<small>Checklist</small></h2>
+      <p class="section-lead" data-i18n="bus_chk_lead">令和9年4月にスクールバスで通い始めるまでに、家庭で済ませておくこと・確かめておくことを並べました。済んだものに印を付けながら使えます。</p>
+
+      <div class="chk-box" id="bus-checklist">
+        <h3 class="chk-group-h" data-i18n="bus_chk_g1">乗り始めるまで</h3>
+        <ul class="chk-list">
+          <li><label class="chk-item"><input type="checkbox" data-chk="c1"><span data-i18n="bus_chk_1">申請書類を市へ返送した（受付は令和8年9月30日で締め切り。まだの場合は教育総務課へ）</span></label></li>
+          <li><label class="chk-item"><input type="checkbox" data-chk="c2"><span data-i18n="bus_chk_2">説明会の資料で、乗降場所・運行ダイヤ・「スクールバス利用ガイドライン」を確かめた</span></label></li>
+          <li><label class="chk-item"><input type="checkbox" data-chk="c3"><span data-i18n="bus_chk_3">体験乗車会とアプリの試用に参加した（令和8年11〜12月）</span></label></li>
+          <li><label class="chk-item"><input type="checkbox" data-chk="c4"><span data-i18n="bus_chk_4">プレ登下校で、指定のバス停から学校まで通う練習をした（令和9年2月）</span></label></li>
+        </ul>
+        <p class="chk-goal" data-i18n="bus_chk_goal">🚌 令和9年（2027年）4月　スクールバスの運行開始（予定）</p>
+
+        <h3 class="chk-group-h" data-i18n="bus_chk_g2">家庭で確かめておくこと・毎朝の確認</h3>
+        <ul class="chk-list">
+          <li><label class="chk-item"><input type="checkbox" data-chk="c5"><span data-i18n="bus_chk_5">指定された乗降場所を、子どもと一緒に確かめた（場所は市が指定。防犯のため目印は置かれません）</span></label></li>
+          <li><label class="chk-item"><input type="checkbox" data-chk="c6"><span data-i18n="bus_chk_6">乗降場所までの行き方を確かめた（いまの通学団をもとに、集団で移動します）</span></label></li>
+          <li><label class="chk-item"><input type="checkbox" data-chk="c7"><span data-i18n="bus_chk_7">乗り遅れたときにどうするかを、家庭で決めた（バスは待ちません。アプリの通知と学校からの連絡を受けて、原則として保護者が対応します）</span></label></li>
+          <li><label class="chk-item"><input type="checkbox" data-chk="c8"><span data-i18n="bus_chk_8">荷物の持ち方を確かめた（荷物置き場は無く、ランドセルなどは膝の上か座席の下に置きます）</span></label></li>
+          <li><label class="chk-item"><input type="checkbox" data-chk="c9"><span data-i18n="bus_chk_9">乗車カードを持った（乗り降りの確認に使います）</span></label></li>
+          <li><label class="chk-item"><input type="checkbox" data-chk="c10"><span data-i18n="bus_chk_10">乗ったらシートベルトを締めることを、子どもと確かめた</span></label></li>
+        </ul>
+
+        <div class="chk-tools" hidden>
+          <span class="chk-progress" aria-live="polite"></span>
+          <span hidden data-chk-fmt data-i18n="bus_chk_progress">{done}／{total} 済み</span>
+          <button type="button" class="chk-reset" data-i18n="bus_chk_reset">チェックをすべて外す</button>
+        </div>
+      </div>
+
+      <p class="chk-note" data-i18n="bus_chk_note">※ 市が公表した内容から当サイトがまとめたもので、市の配布物ではありません。くわしい決まりは、市から配られる資料でお確かめください。チェックはこの端末の中だけに保存され、どこにも送られません。</p>
+      <p class="chk-src" data-i18n="bus_chk_src">出典：『篠岡地区 学校再編だより』vol.6（令和8年8月）、保護者等説明会（令和8年6月）の質疑応答と、提出された質問への市の回答</p>
+    </div>
+  </section>
+
   <!-- ===== バス停と乗降場所 =====
        バス停案は だより vol.3 の図から復元したもの。vol.4 に「改めてバス停（案）を
        お示ししていく考えです」と明記されているため、【見直し中である】ことを
        停留所名より先に読ませる。確定版は対象者向け説明会で配布される。 -->
-  <section id="stops" class="section section-alt">
+  <section id="stops" class="section">
     <div class="container">
       <h2 class="section-title" data-i18n-html="bus_stops_h2">バス停と乗降場所<small>Bus Stops</small></h2>
       <p style="margin-bottom:1.2rem;" data-i18n="bus_stops_lead">バス停には、児童が安全に待ったり乗り降りしたりできる地域の会館や公共の土地などが指定されます。時刻どおりに走れるよう、バス停の数は絞る考えが示されています。</p>
@@ -423,7 +467,7 @@
        出典は「あいち電子調達共同システム（物品等）」の入札結果詳細（公式）。
        ドメインを増やさない方針のため本文にリンクは張らず、出典名だけを明記している。
        だより vol.4 の「令和8年6月 スクールバス事業者との契約締結」とも一致する。 -->
-  <section id="operator" class="section">
+  <section id="operator" class="section section-alt">
     <div class="container">
       <h2 class="section-title ill-h ill-h--bus" data-i18n-html="bus_operator_h2">運行事業者と契約<small>Operator</small></h2>
       <p style="margin-bottom:1.2rem;" data-i18n="bus_operator_lead">スクールバスの運行管理は民間事業者に委託します。指名競争入札が行われ、令和8年6月1日に開札されました。</p>
@@ -463,7 +507,7 @@
   </section>
 
   <!-- SAFETY -->
-  <section id="safety" class="section section-alt">
+  <section id="safety" class="section">
     <div class="container">
       <h2 class="section-title" data-i18n-html="bus_safety_h2">安全対策<small>Safety Measures</small></h2>
       <div class="cards">
@@ -487,7 +531,7 @@
   </section>
 
   <!-- TIMELINE -->
-  <section id="timeline" class="section">
+  <section id="timeline" class="section section-alt">
     <div class="container">
       <h2 class="section-title ill-h ill-h--calendar" data-i18n-html="bus_timeline_h2">導入スケジュール<small>Timeline</small></h2>
       <div class="process-steps">
@@ -521,7 +565,7 @@
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="section section-alt">
+  <section id="faq" class="section">
     <div class="container" style="max-width:800px;">
       <h2 class="section-title" data-i18n-html="bus_faq_h2">よくある質問<small>FAQ</small></h2>
       <p style="font-size:.85rem; color:var(--text-muted); margin:-.4rem 0 1.2rem;" data-i18n="recomposed_note">※ このページの説明は、市が公表した資料（計画、パブリックコメントへの回答、説明会の質疑応答の記録など）を、当サイトが読んで書き直したものです。</p>

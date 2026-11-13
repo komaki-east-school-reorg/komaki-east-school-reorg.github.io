@@ -2103,6 +2103,168 @@ window.KomakiGrade = (function () {
   });
 })();
 
+/* ===== BUS CHECKLIST（bus.html#checklist。2026-11-13、日次アイデア 9/4 の案） =====
+   スクールバスに乗り始めるまでのチェックリスト。項目は HTML に書いてあり（文字は辞書の bus_chk_*）、
+   ここは「印を覚える」だけ。
+   ・印は localStorage の komaki_bus_check（印の付いた data-chk の配列）。この端末の中だけで、どこにも送らない。
+   ・集計は checklist/check（最初の1回）と checklist/reset。どの項目に印を付けたかは送らない。
+   ・進み具合の書式は隠し要素 [data-chk-fmt]（辞書の bus_chk_progress）から読む。
+   ・.chk-tools は読み上げ（SKIP）・原文併記（ORIG_SKIP）・検索の索引（SKIP_CLASSES）から外してある。 */
+(function () {
+  var box = document.getElementById('bus-checklist');
+  if (!box) return;
+  var KEY = 'komaki_bus_check';
+  var inputs = [].slice.call(box.querySelectorAll('input[data-chk]'));
+  var tools = box.querySelector('.chk-tools');
+  var prog = box.querySelector('.chk-progress');
+  var fmt = box.querySelector('[data-chk-fmt]');
+  var reset = box.querySelector('.chk-reset');
+  if (!inputs.length || !tools || !prog || !reset) return;
+  var counted = false;
+  function load() {
+    try { var a = JSON.parse(localStorage.getItem(KEY) || '[]'); return Array.isArray(a) ? a : []; }
+    catch (e) { return []; }
+  }
+  function save() {
+    var a = inputs.filter(function (i) { return i.checked; }).map(function (i) { return i.getAttribute('data-chk'); });
+    try { if (a.length) localStorage.setItem(KEY, JSON.stringify(a)); else localStorage.removeItem(KEY); }
+    catch (e) { /* 保存できない環境では、開いているあいだだけ印が残る */ }
+  }
+  function draw() {
+    var done = inputs.filter(function (i) { return i.checked; }).length;
+    var t = (fmt && fmt.textContent) || '{done}/{total}';
+    prog.textContent = t.replace('{done}', done).replace('{total}', inputs.length);
+    reset.hidden = !done;
+  }
+  function restore() {
+    var saved = load();
+    inputs.forEach(function (i) { i.checked = saved.indexOf(i.getAttribute('data-chk')) !== -1; });
+    draw();
+  }
+  restore();
+  tools.hidden = false;
+  box.addEventListener('change', function (e) {
+    var t = e.target;
+    if (!t || !t.getAttribute || !t.getAttribute('data-chk')) return;
+    save(); draw();
+    if (!counted && window.KomakiCount) { counted = true; window.KomakiCount('checklist/check'); }
+  });
+  reset.addEventListener('click', function () {
+    inputs.forEach(function (i) { i.checked = false; });
+    save(); draw();
+    if (window.KomakiCount) window.KomakiCount('checklist/reset');
+  });
+  // 「戻る」で開き直したとき、ブラウザが覚えていた印ではなく保存した印に合わせる
+  window.addEventListener('pageshow', function (e) { if (e.persisted) restore(); });
+  document.addEventListener('komaki:i18n-applied', draw);
+})();
+
+/* ===== CLUB FILTER（clubs.html の「種目でしぼる」。2026-11-13、日次アイデア 9/25 の案） =====
+   ・ボタンはページにある種目の札（.club-sport、キー clubs_sp_<種目>）から作る。クラブを足せばボタンも増える。
+     ボタンの文字は札の表示中の文字を写すので、言語を切り替えるたびに付け直す（原文併記の .orig-ja は除く）。
+   ・学校の部活動の行は札を持たないので、HTML の data-sports="baseball soccer" で種目を教える
+     （部名が既存の種目に当たるものだけ。新しい種目は作らない）。
+   ・隠すのは .is-filtered（display:none）。hidden は使わない（読み上げの SKIP と混ぜない）。
+     中身が全部隠れた .club-group・.club-school も隠す。印刷では全部出す。
+   ・集計は clubs/filter（最初の1回）。選んだ種目は送らない。 */
+(function () {
+  var wrap = document.querySelector('.club-filter');
+  var main = document.querySelector('main');
+  if (!wrap || !main) return;
+  var btnBox = wrap.querySelector('.club-filter-btns');
+  var status = wrap.querySelector('.club-filter-status');
+  var fmt = wrap.querySelector('[data-club-fmt]');
+  var allTpl = wrap.querySelector('[data-club-all]');
+  var items = [].slice.call(main.querySelectorAll('.club-item'));
+  if (!btnBox || !items.length) return;
+
+  function keyOf(sp) {
+    var k = sp.getAttribute('data-i18n') || '';
+    return k.indexOf('clubs_sp_') === 0 ? k.slice(9) : '';
+  }
+  function sportsOf(it) {
+    var sp = it.querySelector('.club-sport');
+    var a = sp ? [keyOf(sp)] : (it.getAttribute('data-sports') || '').split(/\s+/);
+    return a.filter(Boolean);
+  }
+  function labelOf(sp) {
+    var c = sp.cloneNode(true);
+    c.querySelectorAll('.orig-ja').forEach(function (n) { n.remove(); });
+    return (c.textContent || '').replace(/\s+/g, ' ').trim();
+  }
+
+  var order = [], count = {}, sample = {};
+  items.forEach(function (it) {
+    var sp = it.querySelector('.club-sport');
+    if (sp) { var k = keyOf(sp); if (k && !sample[k]) { sample[k] = sp; order.push(k); } }
+  });
+  items.forEach(function (it) {
+    sportsOf(it).forEach(function (k) { if (sample[k]) count[k] = (count[k] || 0) + 1; });
+  });
+  if (order.length < 2) return;
+
+  var cur = '', counted = false;
+  function mk(key) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'club-filter-btn';
+    b.setAttribute('data-sport', key);
+    b.setAttribute('aria-pressed', key === cur ? 'true' : 'false');
+    var t = document.createElement('span');
+    t.className = 'club-filter-t';
+    b.appendChild(t);
+    if (key) {
+      var n = document.createElement('span');
+      n.className = 'club-filter-n';
+      n.textContent = ' ' + count[key];
+      b.appendChild(n);
+    }
+    return b;
+  }
+  btnBox.appendChild(mk(''));
+  order.forEach(function (k) { btnBox.appendChild(mk(k)); });
+
+  function relabel() {
+    btnBox.querySelectorAll('.club-filter-btn').forEach(function (b) {
+      var k = b.getAttribute('data-sport');
+      b.querySelector('.club-filter-t').textContent = k ? labelOf(sample[k]) : ((allTpl && allTpl.textContent) || 'All');
+    });
+    drawStatus();
+  }
+  function drawStatus() {
+    if (!status) return;
+    if (!cur) { status.textContent = ''; return; }
+    var n = items.filter(function (it) { return !it.classList.contains('is-filtered'); }).length;
+    status.textContent = ((fmt && fmt.textContent) || '{n}').replace('{n}', n);
+  }
+  function apply() {
+    items.forEach(function (it) {
+      it.classList.toggle('is-filtered', !!cur && sportsOf(it).indexOf(cur) === -1);
+    });
+    main.querySelectorAll('.club-group').forEach(function (g) {
+      g.classList.toggle('is-filtered', !!cur && !g.querySelector('.club-item:not(.is-filtered)'));
+    });
+    main.querySelectorAll('.club-school').forEach(function (s) {
+      s.classList.toggle('is-filtered', !!cur && !s.querySelector('.club-group:not(.is-filtered)'));
+    });
+    btnBox.querySelectorAll('.club-filter-btn').forEach(function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-sport') === cur ? 'true' : 'false');
+    });
+    drawStatus();
+  }
+  btnBox.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('.club-filter-btn');
+    if (!b) return;
+    var k = b.getAttribute('data-sport');
+    cur = (k === cur) ? '' : k;      // 同じ種目をもう一度押すと「すべて」に戻る
+    apply();
+    if (cur && !counted && window.KomakiCount) { counted = true; window.KomakiCount('clubs/filter'); }
+  });
+  relabel();
+  wrap.hidden = false;
+  document.addEventListener('komaki:i18n-applied', relabel);
+})();
+
 /* ===== VOICES COLLAPSE（賛否の声・スマートフォンのみ）=====
    2026-09-22 のユーザー指示。voices.html を faq.html に統合した結果、Q&A 20問は
    アコーディオンで畳まれているのに声のカードは18枚が開いたままで、狭い画面では
@@ -5617,7 +5779,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
              '[hidden],[aria-hidden="true"],.section-title small,.orig-ja,.mc-ja,' +   // .mc-ja＝窓口で見せる日本語（外国語の声で日本語を読まない）
              '.now-more,.upcoming-more,' +  // 「くわしく見る →」などの案内リンクは読まない
              '.rev-more,.rev-back,.rev-partnav,.rev-num,' +
-             '.xlinks,.faq-tools,.faq-filter-status,.faq-filter-other';   // あわせて読みたい（CROSS LINKS）は案内なので読まない   // 検証と提案の2ページの行き来の札（REVIEW LINKS）
+             '.xlinks,.faq-tools,.faq-filter-status,.faq-filter-other,.club-filter,.chk-tools';   // あわせて読みたい（CROSS LINKS）は案内なので読まない   // 検証と提案の2ページの行き来の札（REVIEW LINKS）
   var BLOCK = 'h2,h3,h4,h5,p,li,dt,dd,tr,caption,figcaption,blockquote,summary,.faq-q,div';
   // 札（「概要」などの分類ラベル）は直後の文とつなげて読むと意味が崩れるので、あとに読点を挟む
   var TAGLIKE = '[class*="tag"],[class*="badge"],[class*="label"],[class*="date"],[class*="cite"],time';
