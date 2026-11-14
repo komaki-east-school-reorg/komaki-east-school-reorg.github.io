@@ -13,7 +13,9 @@
   // （2026-11-07：都市計画の動き（東部地域）を analysis.html から community.html へ移した）
   var RENAMED = {
     'review#rev-toshikeikaku': 'community.html#toshikeikaku',
-    'analysis#rev-toshikeikaku': 'community.html#toshikeikaku'
+    'analysis#rev-toshikeikaku': 'community.html#toshikeikaku',
+    // 2026-11-14：「中高一貫という形」の見出しに id を付けた（それまでは目次が作る toc-… だった）
+    'nationwide#toc-nationwide_s5b_h': 'nationwide.html#nw-chuko'
   };
   var id = (location.hash || '').slice(1);
   if (!id) return;
