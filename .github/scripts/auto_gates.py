@@ -44,6 +44,8 @@ ALLOWED_PREFIXES = ("data/i18n/pages/",
                     # 予定ごとの固有ページと sitemap の EVENTS ブロックは build_event_pages.py が
                     # schedule.html から決定的に生成する（2026-10-11）。ワークフローが作り直す。
                     "events/", "sitemap.xml",
+                    # Q&A の1問ずつのページは build_qa_pages.py が辞書から決定的に生成する（2026-11-14）
+                    "qa/",
                     # feed.xml は build_feed.py の生成物（毎日のワークフローが作り直す）
                     "feed.xml",
                     # サイト内検索の索引は build_search_index.py の生成物（2026-11-05）
@@ -55,7 +57,7 @@ ALLOWED_PREFIXES = ("data/i18n/pages/",
 # 上の接頭辞の下で許すファイルの形（2026-10-26）。接頭辞だけだと events/x/phish.html や
 # data/i18n/pages/a.html、sitemap.xml.bak まで通っていた。
 ALLOWED_GENERATED = re.compile(r"^(data/i18n/pages/[A-Za-z0-9-]+\.[A-Za-z-]+\.json"
-                               r"|events/\d{4}-\d{2}-\d{2}-\d+\.html|sitemap\.xml|feed\.xml"
+                               r"|events/\d{4}-\d{2}-\d{2}-\d+\.html|qa/[a-z]+(?:-[a-z]+)*\d+\.html|sitemap\.xml|feed\.xml"
                                r"|data/search/[A-Za-z-]+\.json|data/crosslinks/[a-z0-9-]+\.json|calendar\.[a-z]{2}\.ics)$")
 
 
@@ -517,7 +519,7 @@ def main():
     host_violations = []
     url_re = re.compile(r"(?i)(?<![\w.@-])(?:https?:)?//([^/\s\"'<>)\\`?#]+)([^\s\"'<>)\\`]*)")
     bad_scheme = re.compile(r"(?i)(?:href|src|action|formaction|xlink:href)\s*=\s*[\"']?\s*(?:javascript|data|vbscript):")
-    scan = (glob.glob("*.html") + glob.glob("events/*.html") + glob.glob("js/*.js") + ["sw.js"]
+    scan = (glob.glob("*.html") + glob.glob("events/*.html") + glob.glob("qa/*.html") + glob.glob("js/*.js") + ["sw.js"]
             + glob.glob("data/i18n/*.json")
             + ["data/events.json", "data/community_actions.json", "data/headline_i18n.json"])
     for p in scan:
@@ -613,7 +615,7 @@ def main():
     # data-i18n-html（innerHTML）でだけ使うキーは対象外（& も &amp; も同じに表示される）。
     ent_re = re.compile(r"&(?:amp|lt|gt|quot|apos|nbsp|#\d+|#x[0-9a-fA-F]+);")
     text_keys, html_keys = set(), set()
-    for page in glob.glob("*.html") + glob.glob("events/*.html"):
+    for page in glob.glob("*.html") + glob.glob("events/*.html") + glob.glob("qa/*.html"):
         with open(page, encoding="utf-8") as f:
             h = f.read()
         text_keys |= set(re.findall(r'data-i18n(?:-aria|-alt)?="([^"]+)"', h))
@@ -868,6 +870,8 @@ def main():
         page = loc[len(SITE):] or "index.html"
         if page.startswith("events/"):
             continue   # 予定ごとのページは check 13（build_event_pages.py --check）が見る
+        if page.startswith("qa/"):
+            continue   # Q&A の1問ずつのページは check 13b（build_qa_pages.py --check）が見る
         in_sitemap.add(page)
         links = dict(re.findall(r'hreflang="([^"]+)" href="([^"]+)"', b))
         for hl, code in HREFLANG.items():
@@ -898,6 +902,17 @@ def main():
             fail(f"予定ページ: {line}")
     else:
         ok("予定ごとの固有ページは最新")
+
+    # --- 13b. Q&A の1問ずつのページが辞書・もとのページと一致（サイト全体を検査） ---
+    # qa/*.html・faq.html と bus.html の各問いのリンク・sitemap.xml の QA ブロックは
+    # build_qa_pages.py が生成する（2026-11-14）。古いまま公開すると、直す前の答えが検索結果に残る。
+    r = subprocess.run([sys.executable, ".github/scripts/build_qa_pages.py", "--check"],
+                       capture_output=True, text=True)
+    if r.returncode != 0:
+        for line in (r.stdout + r.stderr).strip().splitlines()[:10]:
+            fail(f"Q&A のページ: {line}")
+    else:
+        ok("Q&A の1問ずつのページは最新")
 
     # --- 14. Atom フィード（feed.xml）が最新（サイト全体を検査） ---
     # build_feed.py がデータと更新履歴から決定的に作る。更新履歴を手で足したら作り直すこと。
@@ -959,7 +974,7 @@ def main():
     # マニフェストが辞書から作り直されていること、sw.js が同じオリジンだけを扱い
     # network-first（ネットを先に取り、つながらないときだけキャッシュ）のままであること。
     app_problems = []
-    for page in sorted(glob.glob("*.html") + glob.glob("events/*.html")):
+    for page in sorted(glob.glob("*.html") + glob.glob("events/*.html") + glob.glob("qa/*.html")):
         with open(page, encoding="utf-8") as f:
             head = f.read().split("</head>", 1)[0]
         for need in ('rel="manifest" href="manifest.ja.webmanifest"', 'rel="apple-touch-icon"', 'name="theme-color"'):

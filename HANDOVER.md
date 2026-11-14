@@ -42,6 +42,7 @@ python3 -m http.server 8000          # 手元で表示（http://localhost:8000/�
 python3 .github/scripts/build_page_dicts.py      # 辞書や data-i18n を触ったとき
 python3 .github/scripts/build_search_index.py    # 辞書や HTML の文を触ったとき
 python3 .github/scripts/build_event_pages.py     # schedule.html の予定を触ったとき
+python3 .github/scripts/build_qa_pages.py        # Q&A（faq_q* / bus_faq_q* と答え）を触ったとき
 python3 .github/scripts/build_feed.py            # 更新履歴などを触ったとき
 python3 .github/scripts/build_calendar.py        # events.json を触ったとき
 python3 .github/scripts/build_crosslinks.py      # 検索の索引を作り直したあと（関連リンク）
@@ -54,7 +55,7 @@ python3 .github/scripts/auto_gates.py            # 全体の検査（「許可�
 ## 5. 触ってはいけないもの
 
 - `bus.html` / `map.html` の**対象エリアの地図**（完成・凍結）。
-- **自動生成のファイル**（`data/news.json`・`data/school_news.json`・`data/official_pages/`・`data/i18n/pages/`・`data/search/`・`events/`・`feed.xml`・`calendar.*.ics`・`qr/` など）。手で直さず、生成スクリプトを回します。
+- **自動生成のファイル**（`data/news.json`・`data/school_news.json`・`data/official_pages/`・`data/i18n/pages/`・`data/search/`・`events/`・`qa/`・`feed.xml`・`calendar.*.ics`・`qr/` など）。手で直さず、生成スクリプトを回します。
 - **外部リンク**は許可されたものだけ（`CLAUDE.md` の表と `auto_gates.py`）。市の個別記事や PDF へ直接リンクしません。
 - 非公式の旨の表示（ページ上部の帯・`rev_stance` など）。
 

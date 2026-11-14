@@ -10,6 +10,20 @@
       "how": "index.html・community.html・schedule.html の aside.pr-card（と schedule.html の .pr-section）。次のポスターが届いていれば画像と pr_tk_* を差し替えて data-expires を新しい日付に、無ければ3ページから削除する。"
     },
     {
+      "id": "reach-search-titles",
+      "due": "2026-12-01",
+      "notice_days": 7,
+      "title": "閲覧数を増やす計画：題名と説明文を検索語に合わせる・紙の案内を用意する",
+      "how": "① 週次の利用状況（📈）と Search Console から、週の閲覧数・参照元・入口ページ・表示回数が多いのにクリックの少ない検索語を書き出し、目標の数字を決める ② その検索語をもとに meta_title_* / meta_desc_*（13辞書）を書き直す（宣伝文にしない）→ build_page_dicts.py・build_manifest.py・build_search_index.py ③ 町名から学校がわかる早見（大草・城山三丁目＝桃花台東、城山二・四・五丁目＝桃花台西。公表済みの区分だけ）④ QR つきの A4 の案内（非公式と明記）を用意し、1月に児童館・東部市民センターなどへ。"
+    },
+    {
+      "id": "reach-enrollment-guide",
+      "due": "2027-01-05",
+      "notice_days": 14,
+      "title": "閲覧数を増やす計画：入学・進級までにやることのまとめ（1〜4月の山に向けて）",
+      "how": "公表資料で確かめられる範囲で、月ごとにまとめる（bus.html#checklist・学年ビュー・予定と結ぶ）。あわせて、掲載している団体への連絡、購読の導線（カレンダー・フィード・アプリ）をトップの予定の近くに出すこと、外国語の読者への QR つき案内を進める。4週続けて効かない手はやめる。"
+    },
+    {
       "id": "first-reorg-opening",
       "due": "2027-04-01",
       "notice_days": 60,

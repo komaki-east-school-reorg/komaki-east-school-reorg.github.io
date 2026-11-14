@@ -165,6 +165,15 @@ def build():
         keys |= {k for k in ("meta_title_event", "meta_desc_event") if k in all_keys}
         for lang, d in dicts.items():
             out[f"event.{lang}.json"] = {k: d[k] for k in sorted(keys) if k in d}
+    # Q&A の1問ずつのページ（qa/*.html、build_qa_pages.py が生成）も <html data-page="qa"> で、
+    # 1つの辞書 qa.<lang>.json を共有する（2026-11-14）。
+    qa_pages = sorted(glob.glob("qa/*.html"))
+    if qa_pages:
+        keys = set()
+        for path in qa_pages:
+            keys |= keys_for_page(path, all_keys)
+        for lang, d in dicts.items():
+            out[f"qa.{lang}.json"] = {k: d[k] for k in sorted(keys) if k in d}
     return out
 
 

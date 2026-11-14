@@ -546,6 +546,12 @@ jobs:
         if: steps.token.outputs.available == 'true'
         run: python3 .github/scripts/build_event_pages.py
 
+      # Q&A の1問ずつのページ（qa/*.html）は辞書の日本語から作るので、起案AIが辞書を直すと古くなる
+      # （auto_gates.py check 13b。2026-11-14）。ページ別辞書は qa/*.html も読むので、その前に回す。
+      - name: Rebuild Q&A pages
+        if: steps.token.outputs.available == 'true'
+        run: python3 .github/scripts/build_qa_pages.py
+
       - name: Rebuild page dictionaries
         if: steps.token.outputs.available == 'true'
         run: python3 .github/scripts/build_page_dicts.py
@@ -616,7 +622,8 @@ jobs:
           # 起案AIの編集が commit されず PR にも proposed.diff にも現れないまま消える
           # （community.html が長らくそうなっていた）。
           # events/ と sitemap.xml は build_event_pages.py の生成物（schedule.html の予定から作る）
-          git add data/events.json data/site-updates.json data/i18n index.html schedule.html community.html events sitemap.xml feed.xml data/search data/crosslinks calendar.*.ics
+          # qa/ は build_qa_pages.py の生成物（辞書の Q&A から作る）
+          git add data/events.json data/site-updates.json data/i18n index.html schedule.html community.html events qa sitemap.xml feed.xml data/search data/crosslinks calendar.*.ics
           git commit -m "auto: 公式ページ更新の自動反映 ${TODAY}"
           git diff origin/main..HEAD > auto_update/proposed.diff
           echo "--- proposed diff ---"

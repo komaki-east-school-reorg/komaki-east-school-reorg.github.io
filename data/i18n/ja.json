@@ -2151,5 +2151,9 @@
   "skip_to_main": "本文へ移動",
   "to_top": "ページの上へ",
   "table_scroll_hint": "← 横にスクロールできます →",
-  "nf_search_h": "サイトの中を探す<small>Search</small>"
+  "nf_search_h": "サイトの中を探す<small>Search</small>",
+  "qa_prev": "前の質問",
+  "qa_next": "次の質問",
+  "qa_page_back": "ほかの質問といっしょに見る →",
+  "qa_permalink": "この質問だけのページ"
 }

@@ -2,7 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap');
 
 /* ===== FOUC PREVENTION ===== */
-html:not(.i18n-ready) body { opacity: 0; }
+/* JavaScript が無効のときは各ページの <noscript> が、i18n.js そのものを読めなかったときは
+   下のアニメーションが本文を出す（真っ白のままにしない。2026-11-14）。 */
+html:not(.i18n-ready) body { opacity: 0; animation: i18n-fallback-show 0s linear 4s forwards; }
+@keyframes i18n-fallback-show { to { opacity: 1; } }
 html.i18n-ready body { opacity: 1; transition: opacity .12s ease; }
 
 /* ===== BASE & RESET ===== */
@@ -3278,6 +3281,23 @@ main p, main li, main dd, main blockquote { overflow-wrap: anywhere; }
 .event-nav-label { font-size: .75rem; color: var(--text-muted); }
 .event-nav-date { font-weight: 700; font-size: .9rem; }
 @media print { .event-permalink, .event-nav { display: none !important; } }
+
+/* Q&A の1問ずつのページ（qa/*.html、build_qa_pages.py が生成。2026-11-14）。
+   もとのページの各問いには、開いた答えの下に固有ページへのリンク（文字は持たない。
+   読み上げ・原文併記・検索の索引が拾わないように記号は ::before）。 */
+.qa-permalink { display: none; width: fit-content; margin: .1rem 0 .5rem auto; font-size: .82rem; text-decoration: none; opacity: .55; }
+.qa-permalink::before { content: "📄"; }
+.qa-permalink:hover, .qa-permalink:focus-visible { opacity: 1; }
+.faq-q.open ~ .qa-permalink { display: block; float: right; margin: .1rem 0 .5rem .7rem; }
+.faq-q.open ~ .qa-permalink ~ .faq-link { margin-right: 0; }
+.faq-item::after { content: ""; display: block; clear: both; }
+.faq-item > .xlinks { clear: both; }
+.qa-h1 { font-size: clamp(1.25rem, 3.2vw, 1.7rem); line-height: 1.5; }
+.qa-h1 .faq-tag { vertical-align: middle; }
+.qa-single { background: var(--card-bg, #fff); border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: var(--radius-sm, 6px); padding: .4rem 1.2rem 1.1rem; overflow-wrap: anywhere; scroll-margin-top: calc(var(--header-h, 80px) + 12px); }
+.qa-single-a { line-height: 1.9; }
+.qa-single ~ .event-nav .event-nav-date { font-weight: 500; font-size: .85rem; max-width: 20rem; }
+@media print { .qa-permalink { display: none !important; } }
 
 /* ===== 共有欄の QR（2026-10-11） ===== */
 .share-btn--qr { --share-color: #2e5c3a; --share-color-dark: #1b3826; }

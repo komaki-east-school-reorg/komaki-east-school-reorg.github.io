@@ -2151,5 +2151,9 @@
   "skip_to_main": "跳到正文",
   "to_top": "回到顶部",
   "table_scroll_hint": "← 可左右滑动 →",
-  "nf_search_h": "站内搜索<small>Search</small>"
+  "nf_search_h": "站内搜索<small>Search</small>",
+  "qa_prev": "上一个问题",
+  "qa_next": "下一个问题",
+  "qa_page_back": "和其他问题一起看 →",
+  "qa_permalink": "只显示这个问题的页面"
 }

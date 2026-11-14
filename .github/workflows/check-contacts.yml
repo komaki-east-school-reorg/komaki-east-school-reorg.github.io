@@ -44,6 +44,12 @@ jobs:
             echo "diff=false" >> "$GITHUB_OUTPUT"
           fi
 
+      # Q&A の1問ずつのページ（qa/*.html）は辞書の日本語から作る。答えに番号があれば古くなるので
+      # 作り直す（auto_gates.py check 13b。2026-11-14）。ページ別辞書の前に回す。
+      - name: Rebuild Q&A pages
+        if: steps.check.outputs.diff == 'true'
+        run: python3 .github/scripts/build_qa_pages.py
+
       # 番号は辞書（data/i18n/*.json）の文面にも入っているので、
       # 直したらページ別辞書を作り直さないと古い番号が 200 で配られ続ける。
       - name: Rebuild page dictionaries
@@ -65,7 +71,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A data/contacts.json data/i18n data/search data/crosslinks *.html
+          git add -A data/contacts.json data/i18n data/search data/crosslinks *.html qa
           if git diff --staged --quiet; then
             echo "Nothing to commit (報告のみ)"
           else

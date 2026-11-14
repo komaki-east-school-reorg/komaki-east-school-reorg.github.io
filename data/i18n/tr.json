@@ -2151,5 +2151,9 @@
   "skip_to_main": "Ana içeriğe geç",
   "to_top": "Başa dön",
   "table_scroll_hint": "← Yana kaydırabilirsiniz →",
-  "nf_search_h": "Sitede ara<small>Search</small>"
+  "nf_search_h": "Sitede ara<small>Search</small>",
+  "qa_prev": "Önceki soru",
+  "qa_next": "Sonraki soru",
+  "qa_page_back": "Diğer sorularla birlikte gör →",
+  "qa_permalink": "Yalnızca bu sorunun sayfası"
 }

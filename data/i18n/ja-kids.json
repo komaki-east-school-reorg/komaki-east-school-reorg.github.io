@@ -2151,5 +2151,9 @@
   "skip_to_main": "本文へ いく",
   "to_top": "ページの 上へ",
   "table_scroll_hint": "← よこに うごかせます →",
-  "nf_search_h": "サイトの中を さがす"
+  "nf_search_h": "サイトの中を さがす",
+  "qa_prev": "まえの しつもん",
+  "qa_next": "つぎの しつもん",
+  "qa_page_back": "ほかの しつもんも 見る →",
+  "qa_permalink": "この しつもんだけの ページ"
 }

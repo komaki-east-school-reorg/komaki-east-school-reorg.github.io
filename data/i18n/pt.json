@@ -2151,5 +2151,9 @@
   "skip_to_main": "Ir para o conteúdo",
   "to_top": "Voltar ao topo",
   "table_scroll_hint": "← Role para o lado →",
-  "nf_search_h": "Pesquisar no site<small>Search</small>"
+  "nf_search_h": "Pesquisar no site<small>Search</small>",
+  "qa_prev": "Pergunta anterior",
+  "qa_next": "Próxima pergunta",
+  "qa_page_back": "Ver junto com as outras perguntas →",
+  "qa_permalink": "Página só desta pergunta"
 }

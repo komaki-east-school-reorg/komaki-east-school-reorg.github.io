@@ -6,10 +6,18 @@
   <link rel="self" type="application/atom+xml" href="https://komaki-east-school-reorg.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/"/>
   <id>https://komaki-east-school-reorg.github.io/</id>
-  <updated>2026-11-13T00:00:00+09:00</updated>
+  <updated>2026-11-14T00:00:00+09:00</updated>
   <author><name>「これがまちつくサイトの解。」THE UNIT（住民有志・非公式）</name></author>
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
   <rights>このサイトは「これがまちつくサイトの解。」THE UNIT（住民有志）が運営しており、小牧市・教育委員会とは無関係です。</rights>
+  <entry>
+    <title>よくある質問・スクールバスの Q&amp;A に、1問ずつのページを追加</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/faq.html#qa"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:898b4f883a06e3ae</id>
+    <updated>2026-11-14T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜よくある質問・スクールバスの Q&amp;A に、1問ずつのページを追加</summary>
+  </entry>
   <entry>
     <title>地域クラブ・課外活動を種目でしぼれるボタンを追加</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/clubs.html#wide"/>
@@ -321,13 +329,5 @@
     <updated>2026-10-31T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜検証と提案の核心を各10項目に、挿絵つきでまとめて掲載</summary>
-  </entry>
-  <entry>
-    <title>検証と提案に「既存校のレガシーを引き継ぐ」検討と提案⑪</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/analysis.html#rev-legacy"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:b6a122b3bdf82c28</id>
-    <updated>2026-10-31T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜検証と提案に「既存校のレガシーを引き継ぐ」検討と提案⑪</summary>
   </entry>
 </feed>

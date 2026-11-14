@@ -2151,5 +2151,9 @@
   "skip_to_main": "본문으로 이동",
   "to_top": "맨 위로",
   "table_scroll_hint": "← 옆으로 넘겨 보세요 →",
-  "nf_search_h": "사이트 내 검색<small>Search</small>"
+  "nf_search_h": "사이트 내 검색<small>Search</small>",
+  "qa_prev": "이전 질문",
+  "qa_next": "다음 질문",
+  "qa_page_back": "다른 질문과 함께 보기 →",
+  "qa_permalink": "이 질문만 보는 페이지"
 }

@@ -2151,5 +2151,9 @@
   "skip_to_main": "Đến nội dung chính",
   "to_top": "Lên đầu trang",
   "table_scroll_hint": "← Vuốt ngang để xem →",
-  "nf_search_h": "Tìm trong trang web<small>Search</small>"
+  "nf_search_h": "Tìm trong trang web<small>Search</small>",
+  "qa_prev": "Câu hỏi trước",
+  "qa_next": "Câu hỏi tiếp theo",
+  "qa_page_back": "Xem cùng các câu hỏi khác →",
+  "qa_permalink": "Trang riêng của câu hỏi này"
 }

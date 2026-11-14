@@ -487,7 +487,9 @@
     },
     {
       "date": "2026-10-04",
-      "title": "[機能] JavaScript無効でも本文が読める noscript 救済"
+      "title": "[機能] JavaScript無効でも本文が読める noscript 救済",
+      "implemented": "2026-11-14",
+      "note": "全ページの <noscript> と css/style.css の保険（i18n-fallback-show）"
     },
     {
       "date": "2026-10-04",

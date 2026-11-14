@@ -63,7 +63,7 @@ def missing_keys():
     """HTML の data-i18n* が指すキーで、ja.json に無いもの。"""
     ja = json.loads(read("data/i18n/ja.json"))
     bad = []
-    for page in sorted(glob.glob("*.html")) + sorted(glob.glob("events/*.html")):
+    for page in sorted(glob.glob("*.html")) + sorted(glob.glob("events/*.html")) + sorted(glob.glob("qa/*.html")):
         seen = set()
         for key in I18N_ATTR.findall(read(page)):
             if key not in ja and key not in seen:
@@ -180,7 +180,7 @@ def unused_keys():
     ja = json.loads(read("data/i18n/ja.json"))
     used = set(bpd.RUNTIME_KEYS)
     blob = ""
-    for p in sorted(glob.glob("*.html")) + sorted(glob.glob("events/*.html")):
+    for p in sorted(glob.glob("*.html")) + sorted(glob.glob("events/*.html")) + sorted(glob.glob("qa/*.html")):
         t = read(p)
         used |= set(I18N_ATTR.findall(t))
         blob += t
@@ -261,7 +261,7 @@ def meta_desc_length():
 
 def blank_without_noopener():
     out = []
-    for page in sorted(glob.glob("*.html")) + sorted(glob.glob("events/*.html")):
+    for page in sorted(glob.glob("*.html")) + sorted(glob.glob("events/*.html")) + sorted(glob.glob("qa/*.html")):
         for tag in re.findall(r"<a\b[^>]*target=\"_blank\"[^>]*>", read(page)):
             if "noopener" not in tag:
                 out.append(f"{page}: {tag[:90]}")

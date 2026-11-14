@@ -2151,5 +2151,9 @@
   "skip_to_main": "Langsung ke isi",
   "to_top": "Kembali ke atas",
   "table_scroll_hint": "← Geser ke samping →",
-  "nf_search_h": "Cari di situs ini<small>Search</small>"
+  "nf_search_h": "Cari di situs ini<small>Search</small>",
+  "qa_prev": "Pertanyaan sebelumnya",
+  "qa_next": "Pertanyaan berikutnya",
+  "qa_page_back": "Lihat bersama pertanyaan lainnya →",
+  "qa_permalink": "Halaman khusus pertanyaan ini"
 }

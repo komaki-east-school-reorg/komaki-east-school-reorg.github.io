@@ -212,6 +212,7 @@ def page(it, prev, nxt, header, share, footer):
   <meta name="theme-color" content="#1b3826">
   <meta name="apple-mobile-web-app-title" content="学校再編ナビ">
   <link rel="stylesheet" href="css/style.css">
+  <noscript><style>html:not(.i18n-ready) body {{ opacity: 1; }}</style></noscript>
   <link rel="alternate" type="application/atom+xml" title="{SITE_NAME}｜最新の動き" href="{SITE}feed.xml">
   <link rel="canonical" href="{url}">
 {alt}

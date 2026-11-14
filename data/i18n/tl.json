@@ -2151,5 +2151,9 @@
   "skip_to_main": "Lumaktaw sa nilalaman",
   "to_top": "Bumalik sa itaas",
   "table_scroll_hint": "← I-scroll pakanan o pakaliwa →",
-  "nf_search_h": "Maghanap sa site<small>Search</small>"
+  "nf_search_h": "Maghanap sa site<small>Search</small>",
+  "qa_prev": "Naunang tanong",
+  "qa_next": "Susunod na tanong",
+  "qa_page_back": "Tingnan kasama ng iba pang tanong →",
+  "qa_permalink": "Pahina para sa tanong na ito lamang"
 }

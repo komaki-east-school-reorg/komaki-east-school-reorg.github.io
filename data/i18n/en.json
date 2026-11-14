@@ -2151,5 +2151,9 @@
   "skip_to_main": "Skip to main content",
   "to_top": "Back to top",
   "table_scroll_hint": "← Scroll sideways →",
-  "nf_search_h": "Search this site<small>サイトの中を探す</small>"
+  "nf_search_h": "Search this site<small>サイトの中を探す</small>",
+  "qa_prev": "Previous question",
+  "qa_next": "Next question",
+  "qa_page_back": "See this with the other questions →",
+  "qa_permalink": "Page for this question alone"
 }

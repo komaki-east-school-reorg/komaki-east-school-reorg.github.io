@@ -933,4 +933,758 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/events/2027-04-01-28.html"/>
   </url>
   <!-- EVENTS:END -->
+  <!-- QA:BEGIN Q&A の1問ずつのページ。build_qa_pages.py が生成する。手編集しないこと -->
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q1.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q1.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q1.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q1.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q1.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q1.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q1.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q1.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q1.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q1.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q1.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q1.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q1.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q1.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q2.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q2.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q2.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q2.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q2.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q2.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q2.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q2.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q2.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q2.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q2.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q2.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q2.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q2.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q28.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q28.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q28.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q28.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q28.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q28.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q28.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q28.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q28.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q28.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q28.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q28.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q28.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q28.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q3.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q3.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q3.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q3.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q3.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q3.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q3.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q3.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q3.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q3.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q3.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q3.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q3.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q3.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q4.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q4.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q4.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q4.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q4.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q4.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q4.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q4.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q4.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q4.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q4.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q4.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q4.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q4.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q5.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q5.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q5.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q5.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q5.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q5.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q5.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q5.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q5.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q5.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q5.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q5.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q5.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q5.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q6.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q6.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q6.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q6.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q6.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q6.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q6.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q6.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q6.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q6.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q6.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q6.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q6.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q6.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q25.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q25.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q25.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q25.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q25.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q25.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q25.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q25.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q25.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q25.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q25.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q25.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q25.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q25.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q31.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q31.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q31.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q31.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q31.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q31.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q31.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q31.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q31.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q31.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q31.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q31.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q31.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q31.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q13.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q13.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q13.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q13.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q13.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q13.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q13.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q13.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q13.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q13.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q13.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q13.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q13.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q13.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q14.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q14.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q14.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q14.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q14.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q14.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q14.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q14.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q14.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q14.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q14.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q14.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q14.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q14.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q32.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q32.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q32.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q32.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q32.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q32.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q32.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q32.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q32.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q32.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q32.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q32.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q32.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q32.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q15.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q15.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q15.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q15.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q15.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q15.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q15.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q15.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q15.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q15.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q15.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q15.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q15.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q15.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q16.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q16.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q16.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q16.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q16.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q16.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q16.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q16.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q16.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q16.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q16.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q16.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q16.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q16.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q27.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q27.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q27.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q27.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q27.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q27.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q27.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q27.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q27.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q27.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q27.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q27.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q27.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q27.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q17.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q17.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q17.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q17.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q17.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q17.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q17.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q17.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q17.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q17.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q17.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q17.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q17.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q17.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q23.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q23.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q23.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q23.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q23.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q23.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q23.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q23.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q23.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q23.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q23.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q23.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q23.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q23.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q18.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q18.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q18.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q18.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q18.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q18.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q18.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q18.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q18.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q18.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q18.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q18.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q18.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q18.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q26.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q26.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q26.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q26.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q26.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q26.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q26.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q26.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q26.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q26.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q26.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q26.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q26.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q26.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q21.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q21.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q21.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q21.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q21.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q21.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q21.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q21.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q21.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q21.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q21.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q21.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q21.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q21.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q22.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q22.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q22.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q22.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q22.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q22.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q22.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q22.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q22.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q22.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q22.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q22.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q22.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q22.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q29.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q29.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q29.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q29.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q29.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q29.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q29.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q29.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q29.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q29.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q29.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q29.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q29.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q29.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q30.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q30.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q30.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q30.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q30.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q30.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q30.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q30.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q30.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q30.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q30.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q30.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q30.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q30.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q7.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q7.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q7.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q7.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q7.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q7.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q7.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q7.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q7.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q7.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q7.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q7.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q7.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q7.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q24.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q24.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q24.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q24.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q24.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q24.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q24.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q24.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q24.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q24.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q24.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q24.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q24.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q24.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q8.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q8.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q8.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q8.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q8.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q8.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q8.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q8.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q8.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q8.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q8.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q8.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q8.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q8.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q9.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q9.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q9.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q9.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q9.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q9.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q9.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q9.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q9.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q9.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q9.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q9.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q9.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q9.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q10.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q10.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q10.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q10.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q10.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q10.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q10.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q10.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q10.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q10.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q10.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q10.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q10.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q10.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q11.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q11.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q11.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q11.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q11.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q11.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q11.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q11.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q11.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q11.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q11.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q11.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q11.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q11.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q12.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q12.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q12.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q12.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q12.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q12.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q12.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q12.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q12.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q12.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q12.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q12.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q12.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q12.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q19.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q19.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q19.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q19.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q19.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q19.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q19.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q19.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q19.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q19.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q19.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q19.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q19.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q19.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/faq-q20.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/faq-q20.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/faq-q20.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/faq-q20.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/faq-q20.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/faq-q20.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/faq-q20.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/faq-q20.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/faq-q20.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/faq-q20.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/faq-q20.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/faq-q20.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/faq-q20.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/faq-q20.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/bus-faq-q1.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q1.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q1.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q1.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q1.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q1.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q1.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q1.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q1.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q1.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q1.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q1.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q1.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q1.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/bus-faq-q2.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q2.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q2.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q2.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q2.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q2.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q2.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q2.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q2.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q2.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q2.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q2.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q2.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q2.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/bus-faq-q3.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q3.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q3.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q3.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q3.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q3.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q3.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q3.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q3.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q3.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q3.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q3.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q3.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q3.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/bus-faq-q4.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q4.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q4.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q4.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q4.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q4.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q4.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q4.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q4.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q4.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q4.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q4.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q4.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q4.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/bus-faq-q5.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q5.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q5.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q5.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q5.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q5.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q5.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q5.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q5.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q5.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q5.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q5.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q5.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q5.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/bus-faq-q6.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q6.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q6.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q6.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q6.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q6.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q6.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q6.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q6.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q6.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q6.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q6.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q6.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q6.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/bus-faq-q7.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q7.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q7.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q7.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q7.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q7.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q7.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q7.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q7.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q7.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q7.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q7.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q7.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q7.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/bus-faq-q8.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q8.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q8.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q8.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q8.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q8.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q8.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q8.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q8.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q8.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q8.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q8.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q8.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q8.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/bus-faq-q9.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q9.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q9.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q9.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q9.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q9.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q9.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q9.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q9.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q9.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q9.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q9.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q9.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q9.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/bus-faq-q10.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q10.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q10.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q10.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q10.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q10.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q10.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q10.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q10.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q10.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q10.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q10.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q10.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q10.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/bus-faq-q11.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q11.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q11.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q11.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q11.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q11.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q11.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q11.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q11.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q11.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q11.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q11.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q11.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q11.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/bus-faq-q12.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q12.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q12.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q12.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q12.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q12.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q12.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q12.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q12.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q12.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q12.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q12.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q12.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q12.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/bus-faq-q13.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q13.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q13.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q13.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q13.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q13.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q13.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q13.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q13.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q13.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q13.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q13.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q13.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q13.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/bus-faq-q14.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q14.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q14.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q14.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q14.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q14.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q14.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q14.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q14.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q14.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q14.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q14.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q14.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q14.html"/>
+  </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/qa/bus-faq-q15.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q15.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q15.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q15.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q15.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q15.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q15.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q15.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q15.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q15.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q15.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q15.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q15.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/qa/bus-faq-q15.html"/>
+  </url>
+  <!-- QA:END -->
 </urlset>

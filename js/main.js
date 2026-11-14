@@ -4469,7 +4469,7 @@ window.KomakiGrade = (function () {
   if (!main) return;
   var page = document.documentElement.getAttribute('data-page') ||
     (location.pathname.match(/([^/]+)\.html$/) || ['', 'index'])[1] || 'index';
-  if (page === 'event' || page === '404') return;
+  if (page === 'event' || page === 'qa' || page === '404') return;
   var tpl = document.createElement('div');
   tpl.hidden = true;
   tpl.innerHTML = '<span data-i18n="xlinks_label">あわせて読みたい</span>';
@@ -4568,6 +4568,38 @@ window.KomakiGrade = (function () {
       var m = document.querySelector(sel);
       if (m) m.setAttribute('content', t);
     });
+  }
+  document.addEventListener('komaki:i18n-applied', apply);
+})();
+
+/* ===== QA PAGE（Q&A の1問ずつのページ、qa/*.html）=====
+   2026-11-14。ページは .github/scripts/build_qa_pages.py が辞書と faq.html / bus.html から作る。
+   静的な <title>・description・og は日本語なので、表示言語の質問と答えに書き換える
+   （title は「質問 – サイト名」、description は答えの頭）。質問の頭の札（.faq-tag）は題名に入れない。 */
+(function () {
+  if (document.documentElement.getAttribute('data-page') !== 'qa') return;
+  function txt(el) { return el ? (el.textContent || '').replace(/\s+/g, ' ').trim() : ''; }
+  function apply() {
+    var h1 = document.querySelector('h1.qa-h1');
+    var qc = h1 && h1.cloneNode(true);
+    if (qc) qc.querySelectorAll('.faq-tag').forEach(function (b) { b.remove(); });
+    var q = txt(qc);
+    if (!q) return;
+    var a = txt(document.querySelector('.qa-single-a'));
+    var site = txt(document.querySelector('.footer-title[data-i18n="footer_title"]'));
+    var t = q + (site ? ' – ' + site : '');
+    document.title = t;
+    ['meta[property="og:title"]', 'meta[name="twitter:title"]'].forEach(function (sel) {
+      var m = document.querySelector(sel);
+      if (m) m.setAttribute('content', t);
+    });
+    if (a) {
+      var d = a.length > 150 ? a.slice(0, 150) : a;
+      ['meta[name="description"]', 'meta[property="og:description"]', 'meta[name="twitter:description"]'].forEach(function (sel) {
+        var m = document.querySelector(sel);
+        if (m) m.setAttribute('content', d);
+      });
+    }
   }
   document.addEventListener('komaki:i18n-applied', apply);
 })();
