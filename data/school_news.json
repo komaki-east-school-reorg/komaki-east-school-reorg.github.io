@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-14T02:39:05Z",
+  "fetched_at": "2026-11-15T02:22:25Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
@@ -13,8 +13,13 @@
         "zh": "陶小学"
       },
       "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-11-13",
+      "latest_date": "2026-11-15",
       "items": [
+        {
+          "title": "閉校記念秋季大運動会延期のお知らせ",
+          "date": "2026-11-15",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136544512?tm=20261115061717"
+        },
         {
           "title": "11/13 運動会準備（５＆６年生）",
           "date": "2026-11-13",
@@ -24,11 +29,35 @@
           "title": "11/13 今日の給食",
           "date": "2026-11-13",
           "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136522822?tm=20261113131319"
+        }
+      ]
+    },
+    {
+      "slug": "hikarigaoka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "光ヶ丘中学校",
+        "ja_kids": "ひかりがおか中学校",
+        "en": "Hikarigaoka Junior High",
+        "zh": "光之丘中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
+      "latest_date": "2026-11-14",
+      "items": [
+        {
+          "title": "『冬の足音と、新しいご縁』",
+          "date": "2026-11-14",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136553342?tm=20261114141720"
         },
         {
-          "title": "11/13 キッズソーランの練習（１～３年生）",
-          "date": "2026-11-13",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136546742?tm=20261113121906"
+          "title": "尾張東部少年軟式野球大会 準決勝",
+          "date": "2026-11-09",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136518056?tm=20261109180657"
+        },
+        {
+          "title": "第36回尾張東部少年（中学）軟式野球大会",
+          "date": "2026-11-04",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136491684?tm=20261104195442"
         }
       ]
     },
@@ -203,35 +232,6 @@
           "title": "1107 女バス３年チーム 市民スポーツ大会優勝",
           "date": "2026-11-10",
           "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136511190?tm=20261110080258"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "光ヶ丘中学校",
-        "ja_kids": "ひかりがおか中学校",
-        "en": "Hikarigaoka Junior High",
-        "zh": "光之丘中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
-      "latest_date": "2026-11-09",
-      "items": [
-        {
-          "title": "尾張東部少年軟式野球大会 準決勝",
-          "date": "2026-11-09",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136518056?tm=20261109180657"
-        },
-        {
-          "title": "第36回尾張東部少年（中学）軟式野球大会",
-          "date": "2026-11-04",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136491684?tm=20261104195442"
-        },
-        {
-          "title": "掴み取った「1x」",
-          "date": "2026-11-03",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136483912?tm=20261103143547"
         }
       ]
     }
