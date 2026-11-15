@@ -616,6 +616,21 @@ URL:https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3
  /3_2/chiikikyougikaievent/52814.html
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-05-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261205T000000Z
+DTSTART;VALUE=DATE:20261205
+DTEND;VALUE=DATE:20261207
+SUMMARY:ठूलो निको-निको मेला “निक
+ ोसाई” (डिसेम्बर 6 सम्म\, बासि
+ न्दा पहल)
+DESCRIPTION:यी मिति स्वयंसेवी बासि
+ न्दाहरूको साइटले जम्मा गरे
+ का हुन्। औपचारिक सूचना नगर
+ बाट आउने कागजातमै पक्का गर
+ ्नुहोस्।
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=ne
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-13-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261213T000000Z
 DTSTART;VALUE=DATE:20261213

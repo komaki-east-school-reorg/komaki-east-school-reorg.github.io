@@ -698,6 +698,22 @@ URL:https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3
  /3_2/chiikikyougikaievent/52814.html
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-05-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261205T000000Z
+DTSTART;VALUE=DATE:20261205
+DTEND;VALUE=DATE:20261207
+SUMMARY:Niko-Niko ပွဲတော်ကြီး “Nikosai” (ဒီ
+ ဇင်ဘာ ၆ အထိ၊ ဒေသခံဦးဆောင်)
+DESCRIPTION:ဤရက်စွဲများကို ဒေသခံမ
+ ျား လုပ်ဆောင်သော ဝဘ်ဆိုက်
+ မှ စုစည်းထားခြင်း ဖြစ်သည်
+ ။ တရားဝင် အကြောင်းကြားချက
+ ်ကို မြို့တော်မှ ပေးပို့သ
+ ော စာရွက်စာတမ်းများဖြင့် 
+ စစ်ဆေးပါ။
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=my
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-13-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261213T000000Z
 DTSTART;VALUE=DATE:20261213

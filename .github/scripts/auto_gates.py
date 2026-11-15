@@ -170,6 +170,9 @@ PERMITTED_INSTAGRAM = {
     "instagram.com/bamboo_installation_ookusa": ("community.html", "index.html"),
     "instagram.com/shinookajidoukan": ("community.html", "index.html"),
     "instagram.com/warabekan": ("community.html", "index.html"),
+    # 大にこにこ祭り ニコサイ（主催：にこにこマルシェ。市の東部地域トライアル活動）。
+    # 同じく「地域の取組」欄を描くページだけ（2026-11-15 ユーザー指示）
+    "instagram.com/2525marche.komaki": ("community.html", "index.html"),
     # 桃花台を考える会の仲間募集の PR（ポスター画像つき。2026-11-02 ユーザー指示）。
     # 「地域の取組」欄（community / index）と、同会の音楽まつりが載る schedule.html だけ。
     "instagram.com/tokadai_komaki": ("community.html", "index.html", "schedule.html"),

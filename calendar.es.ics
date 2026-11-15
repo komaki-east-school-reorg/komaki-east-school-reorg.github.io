@@ -441,6 +441,17 @@ URL:https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3
  /3_2/chiikikyougikaievent/52814.html
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-05-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261205T000000Z
+DTSTART;VALUE=DATE:20261205
+DTEND;VALUE=DATE:20261207
+SUMMARY:Gran Festival Niko-Niko “Nikosai” (hasta el 6/12\, iniciativa
+  vecinal)
+DESCRIPTION:Estas fechas las ha reunido un sitio vecinal. Confirme el avi
+ so oficial en los documentos que le envíe el ayuntamiento.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=es
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-13-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261213T000000Z
 DTSTART;VALUE=DATE:20261213

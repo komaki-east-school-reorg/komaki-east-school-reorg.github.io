@@ -477,6 +477,17 @@ URL:https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3
  /3_2/chiikikyougikaievent/52814.html
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-05-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261205T000000Z
+DTSTART;VALUE=DATE:20261205
+DTEND;VALUE=DATE:20261207
+SUMMARY:대 니코니코 축제 ‘니코사이’(~12/6\, 주민 주도)
+DESCRIPTION:이 예정은 뜻있는 주민들의 사이트가 정리한 
+ 것입니다. 정식 안내는 시에서 도착하는 서류로 확인
+ 해 주세요.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=ko
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-13-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261213T000000Z
 DTSTART;VALUE=DATE:20261213
