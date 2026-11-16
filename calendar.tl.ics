@@ -432,6 +432,18 @@ DESCRIPTION:Ang mga petsang ito ay tinipon ng isang site na pinapatakbo n
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=tl
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-11-21-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261121T000000Z
+DTSTART;VALUE=DATE:20261121
+DTEND;VALUE=DATE:20261122
+SUMMARY:Gabi ng Pagmamasid sa mga Bituin sa Taglagas (Citizens Cultural F
+ oundation)
+DESCRIPTION:Ang mga petsang ito ay tinipon ng isang site na pinapatakbo n
+ g mga residente. Tingnan ang mga dokumentong ipinadala ng lungsod para s
+ a opisyal na abiso.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=tl
+END:VEVENT
+BEGIN:VEVENT
 UID:council-no5w3g-2026-11-29@komaki-east-school-reorg.github.io
 DTSTAMP:20261129T000000Z
 DTSTART:20261129T000000Z

@@ -435,6 +435,17 @@ DESCRIPTION:이 예정은 뜻있는 주민들의 사이트가 정리한
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=ko
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-11-21-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261121T000000Z
+DTSTART;VALUE=DATE:20261121
+DTEND;VALUE=DATE:20261122
+SUMMARY:가을 ‘별 보는 모임’(시민문화재단)
+DESCRIPTION:이 예정은 뜻있는 주민들의 사이트가 정리한 
+ 것입니다. 정식 안내는 시에서 도착하는 서류로 확인
+ 해 주세요.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=ko
+END:VEVENT
+BEGIN:VEVENT
 UID:council-no5w3g-2026-11-29@komaki-east-school-reorg.github.io
 DTSTAMP:20261129T000000Z
 DTSTART:20261129T000000Z

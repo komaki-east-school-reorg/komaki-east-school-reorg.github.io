@@ -53,6 +53,21 @@
       "notice_days": 0,
       "title": "月初の点検",
       "how": "① Search Console を見る（API は使っていない）② 週次の「利用状況」報告（📈）に目を通す ③ 地域の取組の Instagram を人が見て、新しい催しがあれば反映する（機械では読まない）④ about.html#nearby の時点表記（about_nearby_asof）と now_asof を今月に合わせる必要がないか ⑤ 開いたままの Issue を片付ける。"
+    },
+    {
+      "id": "tobu-pubcom-open",
+      "due": "2026-11-27",
+      "notice_days": 4,
+      "title": "東部振興構想中間見直し（案）のパブリックコメントが正式に始まったか確かめ、スケジュールに載せる",
+      "how": "審議会資料の予定は 11/27(金)〜12/27(日)。市の正式な案内（パブリックコメントの令和8年度実施状況、東部まちづくりのページ）で期間を確かめたら、① data/events.json に1件（キー＝最終日 2026-12-27、\"start\": \"2026-11-27\"、12言語ラベル）② schedule.html の主要イベント一覧に .event-item（data-start=2026-11-27、data-event-date=2026-12-27、sched_date<N>/sched_desc<N> を13辞書）③ status_digest の件数 ④ community.html#tobu-kousou の囲み comm_kz_pc_h / comm_kz_pc_p / comm_kz_pc_note の「予定」を事実の書き方に（期間が違えば data-expires と index.html の案内の行も）⑤ 更新履歴1行 → build_event_pages.py・build_page_dicts.py・build_search_index.py・build_crosslinks.py・build_calendar.py・build_feed.py。自動更新ジョブが先に足していれば中身だけ確かめる。案内が出ていなければ載せない。"
+    },
+    {
+      "id": "tobu-pubcom-close",
+      "due": "2026-12-27",
+      "notice_days": 3,
+      "covers": "auto-expires-2026-12-27",
+      "title": "東部振興構想中間見直し（案）の意見募集の囲みが自動で隠れる・結果と決定を待って書き直す",
+      "how": "community.html#tobu-kousou の .kz-pubcom と index.html の .kz-line（data-expires=2026-12-27）が隠れる。HTML から消し、キー comm_kz_pc_* / idx_kz_line を13辞書から外す。意見と市の考え方・構想の決定が公表されたら、節の本文・時点（comm_kz_asof）・analysis の rev_e7_* / rev_p8_*・質問集 rev_o41〜43 を見直す。桃花台地区計画の変更は 2026年12月 公聴会 → 2027年6月 決定の予定（決まったら「案」を外す）。4月に年度が変わったら fetch_news.py の R8zyoukyou を R9zyoukyou に。"
     }
   ]
 }

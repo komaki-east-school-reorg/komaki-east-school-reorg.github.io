@@ -44,6 +44,11 @@
       analysis.html の「既存校のレガシーを引き継ぐ」の本文でのみ使用
       https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/bunkazai/52305.html
       ※2026-10-31 に追加（ユーザー指示）。auto_gates.py の CITY_PAGE_ONLY が2ページに限っている。
+  (9) 令和8年度第3回 東部まちづくり審議会の会議資料のページ＝community.html の
+      「東部振興構想の見直しと桃花台の土地利用」（#tobu-kousou）の出典行でのみ使用
+      https://www.city.komaki.aichi.jp/admin/shisei/jyohokokai/kaigikoukai/4/53024.html
+      ※2026-11-15 に追加（ユーザー指示）。添付の PDF へは直リンクしない。
+        auto_gates.py の CITY_PAGE_ONLY が community.html に限っている。
 
 ■ 別枠：春日井市「小中学校の適正規模等について」の索引（1本だけ）
       https://www.city.kasugai.lg.jp/kosodate/kyouiku/school/1009208/index.html
@@ -85,6 +90,15 @@
     （ピアーレ桃花台。TOKADAI DANCE FESTIVAL の会場）の1本だけ。
   ・会場の告知は主催者の発信でも事実の出どころでもないので、「発信元」「参考」
     の行とは分けて置く。サイト本文の事実の根拠には使わない（ルール4）。
+  ・増やすときは CLAUDE.md・README.md も同時に更新すること。
+
+■ 別枠：こまき市民文化財団（プラネタリウム）の案内ページ（2026-11-16 追加）
+  「地域の取組」欄（community.html／index.html）で、項目の「発信元」行に
+  だけ使う。data/community_actions.json の source_url に書く。
+  ・いまあるのは www.komaki-bunka.or.jp/planet/news/3579.html
+    （秋の「星を見る会」2026-11-21 の案内）の1本だけ。ユーザーが示したページに限る。
+  ・その催しの案内であって、計画の内容・数値・日程の根拠には使わない（ルール4）。
+  ・auto_gates.py の BUNKA_PATHS / BUNKA_PAGES が機械で守っている。
   ・増やすときは CLAUDE.md・README.md も同時に更新すること。
 
 ■ 別枠：共有ボタンの送り先（SNS・はてな）

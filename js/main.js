@@ -1547,7 +1547,8 @@ window.KomakiGrade = (function () {
    2026-10-05 ユーザー指示：帯はスケジュールページ・カレンダーと正しく連動させ、随時更新されるようにする。
    元データはカレンダーと同じ KomakiEvents()（data/events.json＋自動で足す催し）。schedule.html の一覧と
    events.json の食い違いは auto_gates.py の check 9 が止める。
-   ・終わっていない予定（キーの日付が今日以降）を、始まる日（"start" があればそれ）の順に MAX 件まで。
+   ・終わっていない予定（キーの日付が今日以降。何日か続く予定は最終日 "until" が今日以降＝期間中は出し続ける）を、
+     始まる日（"start" があればそれ）の順に MAX 件まで。
      いちばん近い "day": true の予定は、MAX からはみ出しても必ず入れる（「あと◯日」の札が付く先）。
    ・日付は ja で「10月12日（月）」。他の言語は Intl で同じ情報（月・日・曜日）を出す。
      月単位・期間の予定（"day" の無いもの）は曜日を作らず「10月」「11月〜12月」と月だけを出す。
@@ -1599,12 +1600,16 @@ window.KomakiGrade = (function () {
       var ev = it.ev;
       var name = kids ? ev.ja : (ev[lang] || ev.en || ev.ja || '');
       // span: true（都市計画の閲覧・意見募集の期間）は始まりと終わりの日が決まっているので日付まで出す
-      var date = ev.day === true ? dayLabel(it.key, lang, thisYear)
+      // 何日か続く予定（"day": true ＋ "until"）は「11月13日（金）〜11月15日（日）」と最終日まで出す
+      var multi = ev.day === true && ev.until && ev.until > it.key;
+      var date = multi ? dayLabel(it.key, lang, thisYear) + (lang === 'ja' || lang === 'zh' ? '〜' : ' – ') + dayLabel(ev.until, lang, thisYear)
+        : ev.day === true ? dayLabel(it.key, lang, thisYear)
         : ev.span === true ? dayLabel(ev.start, lang, thisYear) + (lang === 'ja' || lang === 'zh' ? '〜' : ' – ') + dayLabel(it.key, lang, thisYear)
         : monthLabel(ev.start || it.key, it.key, lang, thisYear);
       // 「あと◯日」は日の決まった予定だけ（data-countdown）。月単位の予定に data-expires を付けると、
       // 同じ日付キーに "day": true の予定があるとき DATE COUNTDOWN が札を付けてしまう。
-      return '<div class="upcoming-item"' + (ev.day === true ? ' data-countdown="' + esc(it.key) + '"' : ' data-key="' + esc(it.key) + '"') +
+      // 始まっている予定（期間中）には「あと◯日」を付けない
+      return '<div class="upcoming-item"' + (ev.day === true && it.key >= it.today ? ' data-countdown="' + esc(it.key) + '"' : ' data-key="' + esc(it.key) + '"') +
                ' data-ev="' + esc(it.key + '|' + it.idx) + '">' +
                '<span class="upcoming-date">' + esc(date) + '</span>' +
                '<span class="upcoming-name">' + esc(name) + '</span>' +
@@ -1620,14 +1625,18 @@ window.KomakiGrade = (function () {
     var today = iso(new Date());
     var all = [];
     Object.keys(events).forEach(function (k) {
-      if (k < today || skip[k]) return;
+      if (skip[k]) return;
       (Array.isArray(events[k]) ? events[k] : [events[k]]).forEach(function (ev) {
-        if (ev) all.push({key: k, ev: ev, idx: (Array.isArray(events[k]) ? events[k].indexOf(ev) : 0), sort: (ev.day === true ? k : (ev.start || k))});
+        if (!ev) return;
+        // 何日か続く予定は最終日（"until"）まで帯に出し続ける（2026-11-15 ユーザー指示）
+        var last = ev.day === true && ev.until && ev.until > k ? ev.until : k;
+        if (last < today) return;
+        all.push({key: k, ev: ev, today: today, idx: (Array.isArray(events[k]) ? events[k].indexOf(ev) : 0), sort: (ev.day === true ? k : (ev.start || k))});
       });
     });
     all.sort(function (a, b) { return a.sort < b.sort ? -1 : a.sort > b.sort ? 1 : (a.key < b.key ? -1 : a.key > b.key ? 1 : 0); });
     var pick = all.slice(0, MAX);
-    var nextDay = all.filter(function (x) { return x.ev.day === true; })[0];
+    var nextDay = all.filter(function (x) { return x.ev.day === true && x.key >= today; })[0];
     if (nextDay && pick.indexOf(nextDay) === -1) pick.push(nextDay);
     items = pick;
     render();
@@ -5111,6 +5120,8 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     ref:    {ja:'参考', en:'Reference', pt:'Referência', vi:'Tham khảo', tl:'Sanggunian', es:'Referencia', zh:'参考', id:'Rujukan', ko:'참고', ne:'सन्दर्भ', tr:'Referans', my:'ကိုးကား'},
     citizen:{ja:'住民有志', en:'Resident-run', pt:'Iniciativa de moradores', vi:'Do người dân tổ chức', tl:'Mga residente ang nagpapatakbo', es:'Iniciativa vecinal', zh:'居民自发', id:'Inisiatif warga', ko:'주민 주도', ne:'बासिन्दा पहल', tr:'Bölge sakinleri girişimi', my:'ဒေသခံဦးဆောင်'},
     facility:{ja:'児童館', en:'Children\'s centre', pt:'Centro infantil', vi:'Nhà thiếu nhi', tl:'Children\'s center', es:'Centro infantil', zh:'儿童馆', id:'Pusat anak', ko:'아동관', ne:'बाल केन्द्र', tr:'Çocuk merkezi', my:'ကလေးစင်တာ'},
+    // こまき市民文化財団（プラネタリウム・公民館など）が案内する催し（2026-11-16 ユーザー指示。星を見る会）
+    foundation:{ja:'市民文化財団', en:'Citizens Cultural Foundation', pt:'Fundação Cultural dos Cidadãos', vi:'Quỹ Văn hóa Thị dân', tl:'Citizens Cultural Foundation', es:'Fundación Cultural Ciudadana', zh:'市民文化财团', id:'Yayasan Budaya Warga', ko:'시민문화재단', ne:'नागरिक सांस्कृतिक प्रतिष्ठान', tr:'Halk Kültür Vakfı', my:'ပြည်သူ့ယဉ်ကျေးမှုဖောင်ဒေးရှင်း'},
     council:{ja:'地域協議会', en:'Community council', pt:'Conselho comunitário', vi:'Hội đồng cộng đồng', tl:'Konseho ng komunidad', es:'Consejo comunitario', zh:'地区协议会', id:'Dewan komunitas', ko:'지역 협의회', ne:'सामुदायिक परिषद्', tr:'Bölge konseyi', my:'ဒေသဆိုင်ရာ ကောင်စီ'},
     tokadai_body:{ja:'桃花台を考える会（市民活動団体）が、市の東部まちづくり推進室との協働提案事業として開く催しです。',
              en:'Run by “桃花台を考える会”, a citizens’ group, as a joint proposal project with the city’s Eastern District Development Office.',
@@ -5253,7 +5264,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
                  (it._ev ? ' data-ev="' + esc(it._ev) + '"' : '') + '>' +
                  '<div class="action-head">' +
                    '<span class="action-title" data-hl="' + esc(it.title_ja || '') + '">' + esc(it.title_ja || '') + '</span>' +
-                   '<span class="action-badge">' + at(it.badge === 'council' || it.badge === 'facility' ? it.badge : 'citizen') + '</span>' +
+                   '<span class="action-badge">' + at(it.badge === 'council' || it.badge === 'facility' || it.badge === 'foundation' ? it.badge : 'citizen') + '</span>' +
                  '</div>' +
                  '<div class="action-school">' + esc(pick(it, 'school')) + '</div>' +
                  rows +

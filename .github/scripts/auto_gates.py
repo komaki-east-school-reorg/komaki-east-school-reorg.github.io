@@ -85,7 +85,8 @@ PERMITTED_LINKS = ("303/index.html", "sasaeai/3/3_2/index.html",
                    "toshikeikaku/1/index.html",
                    "jp/shigikai/index.html",
                    "jp/shigikai/houkoku/43556.html",
-                   "kyoiku/bunkazai/52305.html")
+                   "kyoiku/bunkazai/52305.html",
+                   "kaigikoukai/4/53024.html")
 # 6・7つ目＝小牧市議会のトップと「市議会だより」のページ（2026-10-26 ユーザー指示）。
 # council.html の出典欄の下だけに置く。配下の会議録・個別記事・PDF は不可のまま。
 CITY_PAGE_ONLY = {"purattofo-mu/38222.html": ("community.html",),
@@ -94,8 +95,12 @@ CITY_PAGE_ONLY = {"purattofo-mu/38222.html": ("community.html",),
                   "jp/shigikai/houkoku/43556.html": ("council.html",),
                   # 8つ目＝こまき歴史発見館（文化財課、ラピオ4階。2026-10-31 ユーザー指示）。
                   # 地域のレガシー（community.html）と既存校のレガシー（analysis.html）の本文でだけ使う
-                  "kyoiku/bunkazai/52305.html": ("community.html", "analysis.html")}
-# 6b で使う：市のページの完全なパス（上の PERMITTED_LINKS と同じ8本。増やすときは両方に足す）
+                  "kyoiku/bunkazai/52305.html": ("community.html", "analysis.html"),
+                  # 9つ目＝令和8年度第3回 東部まちづくり審議会の会議資料のページ（2026-11-15 ユーザー指示）。
+                  # community.html#tobu-kousou（東部振興構想の見直しと桃花台の土地利用）の出典行だけに使う。
+                  # 個別記事だがユーザーが明示して許可した。添付の PDF へは今までどおり直リンクしない
+                  "kaigikoukai/4/53024.html": ("community.html",)}
+# 6b で使う：市のページの完全なパス（上の PERMITTED_LINKS と同じ9本。増やすときは両方に足す）
 CITY_PATHS = {
     "/admin/soshiki/kyoiku/kyouikusoumu/303/index.html",
     "/admin/soshiki/kenkouikigai/sasaeai/3/3_2/index.html",
@@ -105,6 +110,7 @@ CITY_PATHS = {
     "/shigikai/index.html",
     "/shigikai/houkoku/43556.html",
     "/admin/soshiki/kyoiku/bunkazai/52305.html",
+    "/admin/shisei/jyohokokai/kaigikoukai/4/53024.html",
 }
 # 9本目の行政ページ＝春日井市「小中学校の適正規模等について」の索引（2026-11-07 ユーザー指示）。
 # about.html の「ほかの地区や、となりのまちでは？」の出典行だけに使う（URL は js/main.js の KASUGAI WATCH）。
@@ -128,6 +134,7 @@ PERMITTED_HOSTS = {
     "github.com",                                  # ご意見の Issue フォーム
     "logoform.jp",                                 # 東部まちづくりプラットフォームの登録フォーム
     "peare-toukadai.jp",                           # 地域の取組「会場の案内」
+    "www.komaki-bunka.or.jp",                      # 地域の取組の発信元（パスは BUNKA_PATHS、data/community_actions.json だけ）
     "maps.google.co.jp",                           # 地図の検索語リンク
     "schema.org", "www.w3.org",                    # 構造化データ・SVG の名前空間（リンクではない）
     # 地域クラブ・団体（clubs.html。PERMITTED_CLUB_SITES）
@@ -135,6 +142,11 @@ PERMITTED_HOSTS = {
     "www.komaki-kendo.jp", "www.fc-fervor.net", "www.komakishion.com", "pc-bitz.jp",
     "encourage-toukadai.com", "legameinc.com", "white700957.studio.site",
 }
+# こまき市民文化財団（プラネタリウム）の案内ページ。「地域の取組」の発信元（source_url）としてだけ、
+# ユーザーが示したページに限って張ってよい（2026-11-16 ユーザー指示。秋の「星を見る会」）。
+# 増やすときは CLAUDE.md・CONTRIBUTING.txt 規則1・README.md と一緒にここにも足す。
+BUNKA_PATHS = {"/planet/news/3579.html"}
+BUNKA_PAGES = ("data/community_actions.json",)
 # 東部まちづくりプラットフォームの登録フォーム（市が案内している logoform）。
 # community.html の #platform でだけ、この1本に限って張ってよい（2026-09-27 ユーザー指示）。
 PERMITTED_FORM_LINKS = ("logoform.jp/form/uSYk/80018",)
@@ -551,6 +563,12 @@ def main():
                     host_violations.append(f"{p}: 許可外の春日井市のURL {path[:80]}")
                 elif p not in KASUGAI_PAGES:
                     host_violations.append(f"{p}: 春日井市へのリンクは {', '.join(KASUGAI_PAGES)} だけ")
+            elif host == "www.komaki-bunka.or.jp":
+                path = re.split(r"[?#]", m.group(2), 1)[0]
+                if path not in BUNKA_PATHS:
+                    host_violations.append(f"{p}: 許可外の市民文化財団のURL {path[:80]}")
+                elif p not in BUNKA_PAGES:
+                    host_violations.append(f"{p}: 市民文化財団へのリンクは {', '.join(BUNKA_PAGES)} だけ")
             elif host == "www.city.komaki.aichi.jp":
                 path = re.split(r"[?#]", m.group(2), 1)[0]
                 if path not in CITY_PATHS:

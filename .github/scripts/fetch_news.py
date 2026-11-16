@@ -50,6 +50,14 @@ WATCH_INDEXES = [
 # 新しい号が出るとこのページが変わるので、それが「議会審議のページを更新する合図」になる。
 WATCH_PAGES.append(BASE_DOMAIN + "/admin/soshiki/gikai/giji/2/2/51603.html")
 
+# --- 監視のみ行うページ（パブリックコメントの実施状況：広報広聴課の所管） ---
+# 2026-11-15 追加（ユーザー指示）。東部振興構想中間見直し（案）の意見募集（審議会資料では
+# 11/27〜12/27 の予定）が正式に案内されたら、スケジュールに載せるための合図にする。
+# 取るのは年度の一覧ページ1枚だけ（個々の案件のページまでは降りない）。題名の一覧が変われば
+# 検知 Issue が立ち、site-facts.json が calendar / key_events / tobu_kousou を指す。
+# 年度が変わったら R9zyoukyou に直す（data/ops_calendar.json の tobu-pubcom-close に書いてある）。
+WATCH_PAGES.append(BASE_DOMAIN + "/admin/shisei/shisei/2/R8zyoukyou/index.html")
+
 # --- 監視のみ行うページ（東部まちづくり：東部まちづくり推進室の所管） ---
 # 2026-09-13 追加（ユーザー指示）。学校再編とは所管課が違うので news.json の
 # 「お知らせ」には載せない。本文スナップショットだけを取り、そこから

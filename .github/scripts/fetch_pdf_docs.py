@@ -109,6 +109,18 @@ SOURCES = [
         "out_dir": "kitazato",
         "prefix": "kitazato-",
     },
+    # --- 東部まちづくり審議会の会議資料（2026-11-15 ユーザー指示。
+    #     community.html#tobu-kousou＝東部振興構想の中間見直し（案）と
+    #     桃花台地区計画の変更（案）の出典） ---
+    # 委員名簿（資料1）は個人名の一覧なので取り込まない。次第も取らない。
+    {
+        "key": "tobu-shingikai",
+        "pages": ["https://www.city.komaki.aichi.jp/admin/shisei/jyohokokai/"
+                  "kaigikoukai/4/53024.html"],
+        "title_re": re.compile(r"資料[2-9２-９]】|参考資料"),
+        "out_dir": "tobu_shingikai",
+        "prefix": "shingikai-",
+    },
     # --- 春日井市の学校再編（2026-11-07 ユーザー指示。about.html#kasugai の出典） ---
     # 掲載ページの HTML は fetch_kasugai.py が取得済み（同じキャッシュを使う）。
     # 全編がある資料は全編だけを取り、章ごとの分割版は取らない（同じ中身のため）。

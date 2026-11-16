@@ -439,6 +439,17 @@ DESCRIPTION:この予定は住民有志のサイトがまとめたもの
 URL:https://komaki-east-school-reorg.github.io/schedule.html
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-11-21-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261121T000000Z
+DTSTART;VALUE=DATE:20261121
+DTEND;VALUE=DATE:20261122
+SUMMARY:秋の「星を見る会」（市民文化財団）
+DESCRIPTION:この予定は住民有志のサイトがまとめたもの
+ です。正式な案内は市から届く書類でご確認ください
+ 。
+URL:https://komaki-east-school-reorg.github.io/schedule.html
+END:VEVENT
+BEGIN:VEVENT
 UID:council-no5w3g-2026-11-29@komaki-east-school-reorg.github.io
 DTSTAMP:20261129T000000Z
 DTSTART:20261129T000000Z

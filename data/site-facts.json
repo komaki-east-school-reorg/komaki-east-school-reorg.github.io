@@ -60,6 +60,10 @@
     "about_nearby": {
       "file": "about.html / data/i18n/*.json（about_nb_*・about_nearby_asof）",
       "notes": "計画概要「ほかの地区や、となりのまちでは？」。随時更新する。小牧市のほかの地区と春日井市の説明は手書き（13辞書）、一覧は自動。動きがあれば説明と about_nearby_asof を直す。about.html は自動更新ジョブの ALLOWED 外なので、人が直す"
+    },
+    "tobu_kousou": {
+      "file": "community.html / data/i18n/*.json",
+      "notes": "「東部振興構想の見直しと桃花台の土地利用」（#tobu-kousou）。審議会資料にもとづく事実だけの節。意見募集が正式に案内されたら囲み（comm_kz_pc_*）の「予定」を事実に直し、結果が出たら節を書き直す（13辞書）"
     }
   },
   "default_targets": [
@@ -271,13 +275,22 @@
     },
     {
       "slug_prefix": "toubumachidukuri-tobumachidukurisingikai-",
-      "topic": "東部まちづくり（東部まちづくり推進室・監視のみ）。取組一覧は data/tobu_actions.json に自動反映されるので手編集は不要",
+      "topic": "東部まちづくり（東部まちづくり推進室・監視のみ）。取組一覧は data/tobu_actions.json に自動反映されるので手編集は不要。ただし東部振興構想中間見直し（案）のパブリックコメントの案内・結果が載ったときは、calendar / key_events（予定）と tobu_kousou（community.html#tobu-kousou）を直す",
       "targets": []
     },
     {
       "slug_prefix": "toshikeikaku-1-",
       "topic": "都市計画（都市計画課・監視のみ）。東部に関係する掲載は data/toshikeikaku_east.json に自動反映され review.html に出るので手編集は不要",
       "targets": []
+    },
+    {
+      "slug_prefix": "admin-shisei-shisei-2-R8zyoukyou-index",
+      "topic": "市のパブリックコメント実施状況（令和8年度・広報広聴課・監視のみ）。「東部振興構想中間見直し（案）」の意見募集が載ったら、期間を確かめて予定に足す：data/events.json はキー＝最終日・\"start\"＝初日・12言語ラベル、schedule.html は .event-item（data-start＝初日、data-event-date＝最終日、sched_date<N>/sched_desc<N> を13辞書に）、status_digest の件数、community.html#tobu-kousou の囲み（comm_kz_pc_*）。東部振興構想以外の案件は学校再編に関係しなければ何もしない",
+      "targets": [
+        "calendar",
+        "key_events",
+        "tobu_kousou"
+      ]
     }
   ]
 }

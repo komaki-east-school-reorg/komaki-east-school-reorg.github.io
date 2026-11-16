@@ -398,6 +398,17 @@ DESCRIPTION:Estas fechas las ha reunido un sitio vecinal. Confirme el avi
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=es
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-11-21-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261121T000000Z
+DTSTART;VALUE=DATE:20261121
+DTEND;VALUE=DATE:20261122
+SUMMARY:Noche de observación de estrellas de otoño (Fundación Cultural
+  Ciudadana)
+DESCRIPTION:Estas fechas las ha reunido un sitio vecinal. Confirme el avi
+ so oficial en los documentos que le envíe el ayuntamiento.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=es
+END:VEVENT
+BEGIN:VEVENT
 UID:council-no5w3g-2026-11-29@komaki-east-school-reorg.github.io
 DTSTAMP:20261129T000000Z
 DTSTART:20261129T000000Z

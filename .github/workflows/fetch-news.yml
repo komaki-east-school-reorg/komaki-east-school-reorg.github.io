@@ -448,6 +448,12 @@ jobs:
                  東部地域（篠岡地区5校区の協議会、または会場が東部）の催しは、build_community_events.py と
                  js/main.js が「地域の取組」・スケジュール・カレンダー・トップの帯・更新履歴へ自動で載せる。
                  events.json や schedule.html に同じ催しを書くと二重になるので書かないこと
+               - **東部振興構想中間見直し（案）のパブリックコメント**（スナップショットが
+                 admin-shisei-shisei-2-R8zyoukyou-index か toubumachidukuri-* で、その意見募集の案内が載ったとき）：
+                 期間を出典で確かめ、data/events.json に1件（キー＝最終日、"start"＝初日、12言語）と schedule.html の
+                 主要イベント一覧に .event-item（data-start＝初日、data-event-date＝最終日）を足す。community.html の
+                 #tobu-kousou の囲み（comm_kz_pc_h / comm_kz_pc_p / comm_kz_pc_note）は「予定」を事実の書き方に直す。
+                 案内がまだ載っていなければ何も足さない。東部振興構想以外の案件は扱わない
             6. **サイトの状況が動く変更なら、トップ冒頭「いまの状況」枠を必ず更新する**
                - data/i18n/*.json の now_text … 全12言語＋ja-kids を更新する。書く順は
                  「済んだこと（日付を確かめ、過去だと分かる書き方で）→ いまの状態・何をしているか → 近い先の予定」

@@ -68,6 +68,7 @@ data/nearby_komaki.json 小牧市の篠岡地区以外の地区の学校再編�
 data/kasugai_reorg.json 春日井市「小中学校の適正規模等について」の配下ページの一覧（自動生成・手編集不可）。about.htmlの「近隣他地区の状況」が実行時にfetchして描画。fetch_kasugai.pyが毎日作る。
 data/official_pages/kasugai/ 春日井市の学校再編ページの本文スナップショット（fetch_kasugai.py）と添付PDFの本文（pdf/、fetch_pdf_docs.py）。自動生成・手編集不可・古いものも消さない。
 data/official_pages/kitazato/ 北里地区の学校を考える会の資料（再編の方向性・今後の取組）のPDF本文（fetch_pdf_docs.py）。自動生成・手編集不可。
+data/official_pages/tobu_shingikai/ 令和8年度第3回 東部まちづくり審議会（2026-11-12）の会議資料のPDF本文（東部振興構想中間見直し（案）・パブリックコメント実施概要・桃花台地区計画の変更（案）など9点。委員名簿は取り込まない。fetch_pdf_docs.py）。community.html#tobu-kousou の出典。自動生成・手編集不可。
 data/headline_i18n.json     自動取得した見出しの9言語訳（translate-headlines.yml が毎日更新）。日本語以外の表示で見出しを置き換える。キーは見出しの原文。
                             市サーバへは行かず、official_pages/のtoubumachidukuri-*スナップショットから組み立てる。載せるのは直近2か月ぶん（これからの催しは日付が未来なので残る）。
                             個別記事ページへのリンクは許可されていないのでurlは持たず、出典の索引ページへのリンクだけをjs/main.jsが持つ。
