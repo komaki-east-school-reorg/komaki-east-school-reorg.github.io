@@ -435,20 +435,6 @@ DESCRIPTION:이 예정은 뜻있는 주민들의 사이트가 정리한
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=ko
 END:VEVENT
 BEGIN:VEVENT
-UID:council-12sy5in-2026-11-15@komaki-east-school-reorg.github.io
-DTSTAMP:20261115T000000Z
-DTSTART:20261115T040000Z
-DTEND:20261115T070000Z
-SUMMARY:오시로 초등학교 학구 지역 협의회: 어르신을 위
- 한 스마트폰 사용법 상담회(지역 협의회)
-DESCRIPTION:이 예정은 뜻있는 주민들의 사이트가 정리한 
- 것입니다. 정식 안내는 시에서 도착하는 서류로 확인
- 해 주세요.\n11月15日 13時00分～16時00分
-LOCATION:시로야마 회관
-URL:https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3
- /3_2/chiikikyougikaievent/52817.html
-END:VEVENT
-BEGIN:VEVENT
 UID:council-no5w3g-2026-11-29@komaki-east-school-reorg.github.io
 DTSTAMP:20261129T000000Z
 DTSTART:20261129T000000Z

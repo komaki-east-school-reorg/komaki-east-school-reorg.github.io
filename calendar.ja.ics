@@ -439,20 +439,6 @@ DESCRIPTION:この予定は住民有志のサイトがまとめたもの
 URL:https://komaki-east-school-reorg.github.io/schedule.html
 END:VEVENT
 BEGIN:VEVENT
-UID:council-12sy5in-2026-11-15@komaki-east-school-reorg.github.io
-DTSTAMP:20261115T000000Z
-DTSTART:20261115T040000Z
-DTEND:20261115T070000Z
-SUMMARY:大城小学校区地域協議会 シニアのためのスマホ
- 使い方相談会（地域協議会）
-DESCRIPTION:この予定は住民有志のサイトがまとめたもの
- です。正式な案内は市から届く書類でご確認ください
- 。\n11月15日 13時00分～16時00分
-LOCATION:城山会館
-URL:https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3
- /3_2/chiikikyougikaievent/52817.html
-END:VEVENT
-BEGIN:VEVENT
 UID:council-no5w3g-2026-11-29@komaki-east-school-reorg.github.io
 DTSTAMP:20261129T000000Z
 DTSTART:20261129T000000Z
