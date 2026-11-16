@@ -1,8 +1,95 @@
 {
-  "fetched_at": "2026-11-15T02:22:25Z",
+  "fetched_at": "2026-11-16T02:22:35Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "toryo-j",
+      "level": "jhs",
+      "names": {
+        "ja": "桃陵中学校",
+        "ja_kids": "とうりょう中学校",
+        "en": "Toryo Junior High",
+        "zh": "桃陵中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
+      "latest_date": "2026-11-16",
+      "items": [
+        {
+          "title": "第3回テスト",
+          "date": "2026-11-16",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136555137?tm=20261116091655"
+        },
+        {
+          "title": "航空写真",
+          "date": "2026-11-10",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136513629?tm=20261109112302"
+        },
+        {
+          "title": "テスト週間が始まりました",
+          "date": "2026-11-10",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136515117?tm=20261110080417"
+        }
+      ]
+    },
+    {
+      "slug": "shinooka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "篠岡中学校",
+        "ja_kids": "しのおか中学校",
+        "en": "Shinooka Junior High",
+        "zh": "篠冈中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
+      "latest_date": "2026-11-16",
+      "items": [
+        {
+          "title": "生と性のカリキュラム",
+          "date": "2026-11-16",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136555004?tm=20261116085947"
+        },
+        {
+          "title": "２年生 道徳",
+          "date": "2026-11-12",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136539722?tm=20261112140703"
+        },
+        {
+          "title": "２年生 職業人体験に向けて",
+          "date": "2026-11-11",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136532801?tm=20261111161357"
+        }
+      ]
+    },
+    {
+      "slug": "momogaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "桃ヶ丘小学校",
+        "ja_kids": "ももがおか小学校",
+        "en": "Momogaoka Elem. School",
+        "zh": "桃之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
+      "latest_date": "2026-11-16",
+      "items": [
+        {
+          "title": "学校保健委員会＆金管バンド部発表会",
+          "date": "2026-11-16",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136555278?tm=20261116093138"
+        },
+        {
+          "title": "１・２年生：校外学習「名古屋港水族館」",
+          "date": "2026-11-13",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136541316?tm=20261112162246"
+        },
+        {
+          "title": "５年生：秋の校外学習「三菱自動車・刈谷ハイウェイ」",
+          "date": "2026-11-12",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136534654?tm=20261111192951"
+        }
+      ]
+    },
     {
       "slug": "sue-e",
       "level": "elem",
@@ -29,6 +116,35 @@
           "title": "11/13 今日の給食",
           "date": "2026-11-13",
           "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136522822?tm=20261113131319"
+        }
+      ]
+    },
+    {
+      "slug": "hikarigaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "光ヶ丘小学校",
+        "ja_kids": "ひかりがおか小学校",
+        "en": "Hikarigaoka Elem. School",
+        "zh": "光之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
+      "latest_date": "2026-11-15",
+      "items": [
+        {
+          "title": "光ヶ丘小学校最後の「光キッズフェスティバル」を開催しました！",
+          "date": "2026-11-15",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136554343?tm=20261115170511"
+        },
+        {
+          "title": "5年生 総合 グループ発表",
+          "date": "2026-11-15",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136554288?tm=20261115155140"
+        },
+        {
+          "title": "６年生 しおり配布",
+          "date": "2026-11-15",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136554276?tm=20261115152041"
         }
       ]
     },
@@ -116,122 +232,6 @@
           "title": "さつまいもほり したよ！",
           "date": "2026-11-13",
           "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136541571?tm=20261112163340"
-        }
-      ]
-    },
-    {
-      "slug": "momogaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "桃ヶ丘小学校",
-        "ja_kids": "ももがおか小学校",
-        "en": "Momogaoka Elem. School",
-        "zh": "桃之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
-      "latest_date": "2026-11-13",
-      "items": [
-        {
-          "title": "１・２年生：校外学習「名古屋港水族館」",
-          "date": "2026-11-13",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136541316?tm=20261112162246"
-        },
-        {
-          "title": "５年生：秋の校外学習「三菱自動車・刈谷ハイウェイ」",
-          "date": "2026-11-12",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136534654?tm=20261111192951"
-        },
-        {
-          "title": "校外学習：びっくりがいっぱい！",
-          "date": "2026-11-09",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136518394?tm=20261109182331"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "光ヶ丘小学校",
-        "ja_kids": "ひかりがおか小学校",
-        "en": "Hikarigaoka Elem. School",
-        "zh": "光之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
-      "latest_date": "2026-11-13",
-      "items": [
-        {
-          "title": "６年生 校内作品展",
-          "date": "2026-11-13",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136547805?tm=20261113133638"
-        },
-        {
-          "title": "６年生 音楽",
-          "date": "2026-11-11",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136531166?tm=20261111140616"
-        },
-        {
-          "title": "学校保健委員会",
-          "date": "2026-11-11",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136528573?tm=20261111105338"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "篠岡中学校",
-        "ja_kids": "しのおか中学校",
-        "en": "Shinooka Junior High",
-        "zh": "篠冈中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-11-12",
-      "items": [
-        {
-          "title": "２年生 道徳",
-          "date": "2026-11-12",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136539722?tm=20261112140703"
-        },
-        {
-          "title": "２年生 職業人体験に向けて",
-          "date": "2026-11-11",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136532801?tm=20261111161357"
-        },
-        {
-          "title": "《桃花台野球部》尾張東部大会第３位！",
-          "date": "2026-11-07",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136510632?tm=20261107161548"
-        }
-      ]
-    },
-    {
-      "slug": "toryo-j",
-      "level": "jhs",
-      "names": {
-        "ja": "桃陵中学校",
-        "ja_kids": "とうりょう中学校",
-        "en": "Toryo Junior High",
-        "zh": "桃陵中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
-      "latest_date": "2026-11-10",
-      "items": [
-        {
-          "title": "航空写真",
-          "date": "2026-11-10",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136513629?tm=20261109112302"
-        },
-        {
-          "title": "テスト週間が始まりました",
-          "date": "2026-11-10",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136515117?tm=20261110080417"
-        },
-        {
-          "title": "1107 女バス３年チーム 市民スポーツ大会優勝",
-          "date": "2026-11-10",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136511190?tm=20261110080258"
         }
       ]
     }
