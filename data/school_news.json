@@ -1,8 +1,95 @@
 {
-  "fetched_at": "2026-11-16T02:22:35Z",
+  "fetched_at": "2026-11-17T04:43:24Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "sue-e",
+      "level": "elem",
+      "names": {
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-11-17",
+      "items": [
+        {
+          "title": "11/17 算数：かけ算（２年生）",
+          "date": "2026-11-17",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136563466?tm=20261117104713"
+        },
+        {
+          "title": "令和８年度閉校記念秋季大運動会再延期のご案内",
+          "date": "2026-11-17",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136561847?tm=20261117062729"
+        },
+        {
+          "title": "11/13 運動会準備（５＆６年生）",
+          "date": "2026-11-13",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136549611?tm=20261113155104"
+        }
+      ]
+    },
+    {
+      "slug": "momogaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "桃ヶ丘小学校",
+        "ja_kids": "ももがおか小学校",
+        "en": "Momogaoka Elem. School",
+        "zh": "桃之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
+      "latest_date": "2026-11-17",
+      "items": [
+        {
+          "title": "給食試食会",
+          "date": "2026-11-17",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136565699?tm=20261117134154"
+        },
+        {
+          "title": "清水坂でお昼ごはん♫",
+          "date": "2026-11-17",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136564418?tm=20261117120606"
+        },
+        {
+          "title": "清水寺に到着しました!!",
+          "date": "2026-11-17",
+          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136563622?tm=20261117110447"
+        }
+      ]
+    },
+    {
+      "slug": "hikarigaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "光ヶ丘小学校",
+        "ja_kids": "ひかりがおか小学校",
+        "en": "Hikarigaoka Elem. School",
+        "zh": "光之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
+      "latest_date": "2026-11-17",
+      "items": [
+        {
+          "title": "4年生 外国語活動",
+          "date": "2026-11-17",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136557828?tm=20261116131819"
+        },
+        {
+          "title": "4年生 外国語",
+          "date": "2026-11-17",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136556181?tm=20261116111057"
+        },
+        {
+          "title": "5年生 理科",
+          "date": "2026-11-17",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136554896?tm=20261116084537"
+        }
+      ]
+    },
     {
       "slug": "toryo-j",
       "level": "jhs",
@@ -45,6 +132,11 @@
       "latest_date": "2026-11-16",
       "items": [
         {
+          "title": "１年生 第３回定期テスト １日目",
+          "date": "2026-11-16",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136558791?tm=20261116142704"
+        },
+        {
           "title": "生と性のカリキュラム",
           "date": "2026-11-16",
           "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136555004?tm=20261116085947"
@@ -53,98 +145,35 @@
           "title": "２年生 道徳",
           "date": "2026-11-12",
           "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136539722?tm=20261112140703"
-        },
-        {
-          "title": "２年生 職業人体験に向けて",
-          "date": "2026-11-11",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136532801?tm=20261111161357"
         }
       ]
     },
     {
-      "slug": "momogaoka-e",
+      "slug": "ohshiro-e",
       "level": "elem",
       "names": {
-        "ja": "桃ヶ丘小学校",
-        "ja_kids": "ももがおか小学校",
-        "en": "Momogaoka Elem. School",
-        "zh": "桃之丘小学"
+        "ja": "大城小学校",
+        "ja_kids": "おおしろ小学校",
+        "en": "Oshiro Elem. School",
+        "zh": "大城小学"
       },
-      "url": "https://www.komaki-aic.ed.jp/momogaoka-e/",
+      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
       "latest_date": "2026-11-16",
       "items": [
         {
-          "title": "学校保健委員会＆金管バンド部発表会",
+          "title": "5年理科 流れる水のはたらき",
           "date": "2026-11-16",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136555278?tm=20261116093138"
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136557214?tm=20261116194439"
         },
         {
-          "title": "１・２年生：校外学習「名古屋港水族館」",
-          "date": "2026-11-13",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136541316?tm=20261112162246"
+          "title": "４年生 体育でハードル走",
+          "date": "2026-11-16",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136558108?tm=20261116133526"
         },
         {
-          "title": "５年生：秋の校外学習「三菱自動車・刈谷ハイウェイ」",
-          "date": "2026-11-12",
-          "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136534654?tm=20261111192951"
-        }
-      ]
-    },
-    {
-      "slug": "sue-e",
-      "level": "elem",
-      "names": {
-        "ja": "陶小学校",
-        "ja_kids": "すえ小学校",
-        "en": "Sue Elem. School",
-        "zh": "陶小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-11-15",
-      "items": [
-        {
-          "title": "閉校記念秋季大運動会延期のお知らせ",
-          "date": "2026-11-15",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136544512?tm=20261115061717"
-        },
-        {
-          "title": "11/13 運動会準備（５＆６年生）",
-          "date": "2026-11-13",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136549611?tm=20261113155104"
-        },
-        {
-          "title": "11/13 今日の給食",
-          "date": "2026-11-13",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136522822?tm=20261113131319"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "光ヶ丘小学校",
-        "ja_kids": "ひかりがおか小学校",
-        "en": "Hikarigaoka Elem. School",
-        "zh": "光之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
-      "latest_date": "2026-11-15",
-      "items": [
-        {
-          "title": "光ヶ丘小学校最後の「光キッズフェスティバル」を開催しました！",
-          "date": "2026-11-15",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136554343?tm=20261115170511"
-        },
-        {
-          "title": "5年生 総合 グループ発表",
-          "date": "2026-11-15",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136554288?tm=20261115155140"
-        },
-        {
-          "title": "６年生 しおり配布",
-          "date": "2026-11-15",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136554276?tm=20261115152041"
+          "title": "【３年生】ナフコ見学",
+          "date": "2026-11-16",
+          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136561158?tm=20261116180906"
         }
       ]
     },
@@ -203,35 +232,6 @@
           "title": "算数：かたちづくり",
           "date": "2026-11-13",
           "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136548517?tm=20261113142754"
-        }
-      ]
-    },
-    {
-      "slug": "ohshiro-e",
-      "level": "elem",
-      "names": {
-        "ja": "大城小学校",
-        "ja_kids": "おおしろ小学校",
-        "en": "Oshiro Elem. School",
-        "zh": "大城小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/ohshiro-e/",
-      "latest_date": "2026-11-13",
-      "items": [
-        {
-          "title": "6年 保健 がん教育の授業",
-          "date": "2026-11-13",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136546258?tm=20261113114923"
-        },
-        {
-          "title": "第117・118・119回 バスケットボール教室",
-          "date": "2026-11-13",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136541391?tm=20261112162211"
-        },
-        {
-          "title": "さつまいもほり したよ！",
-          "date": "2026-11-13",
-          "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136541571?tm=20261112163340"
         }
       ]
     }
