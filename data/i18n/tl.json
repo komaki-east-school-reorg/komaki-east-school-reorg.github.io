@@ -1190,7 +1190,7 @@
   "actions_more": "Tingnan kasama ang mga okasyon ng konseho ng komunidad →",
   "actions_note": "Maaaring magbago ang petsa at detalye. Para sa pinakabagong impormasyon at pagsali, tingnan ang sariling channel ng bawat grupo. Para sa opisyal na impormasyon, tingnan ang <a href=\"index.html#news\">“Balita mula sa lungsod” sa unang pahina</a>.",
   "pr_tk_h": "Naghahanap ng bagong miyembro ang Tokadai wo Kangaeru Kai",
-  "pr_tk_p": "Isang grupo ng mga mamamayan na nagdaraos ng music festival, lektyur at seminar tungkol sa pabahay at bakanteng bahay. Puwede kang manood lang sa regular na pulong sa Sabado, Disyembre 12, 10:00 (planong lugar: East Community Center).<span data-until=\"2026-11-15\"> Puwede mo ring kausapin ang staff sa ika-11 Tokadai Music Festival sa Linggo, Nobyembre 15.</span>",
+  "pr_tk_p": "Isang grupo ng mga mamamayan na nagdaraos ng music festival, lektyur at seminar tungkol sa pabahay at bakanteng bahay. Naghahanap ito ng bagong miyembro para maipagpatuloy ang gawain mula sa susunod na taon ng piskal. Puwede kang manood lang sa regular na pulong sa Sabado, Disyembre 12, 10:00–11:00 (East Community Center, study room sa 2F).",
   "pr_tk_link": "Tingnan ang Instagram (@tokadai_komaki)",
   "pr_tk_note": "Paunawa mula sa isang grupo ng mga mamamayan. Hindi ito recruitment ng lungsod. (Sa Japanese)",
   "tobu_actions_h": "Mga update sa silangang distrito<small>Eastern District Updates</small>",
@@ -1604,7 +1604,7 @@
   "ql_review_link": "Tingnan ang pagsusuri at mga mungkahi →",
   "rel_nationwide_community": "Tingnan ang ugnayan ng mga konseho ng komunidad at ng mga paaralan",
   "rel_community_nationwide": "Tingnan ang sitwasyon sa buong bansa at ang pamantayan ng pamahalaan",
-  "status_digest": "Ang mga mahahalagang yugto lamang ang nakalista rito. Ang buong listahan na 47 na aytem ay nasa <a href=\"schedule.html\">iskedyul</a>.",
+  "status_digest": "Ang mga mahahalagang yugto lamang ang nakalista rito. Ang buong listahan na 48 na aytem ay nasa <a href=\"schedule.html\">iskedyul</a>.",
   "grade_h": "Tingnan ayon sa baitang ng inyong anak",
   "grade_lead": "Pumili ng baitang at bawat petsa sa ibaba ay lalagyan ng baitang ng inyong anak sa panahong iyon. Ang piniling baitang ay para sa taong panuruan 2026. Simpleng kuwenta lamang ito sa mga inilathalang petsa — hindi naman iba ang pagtrato ng plano ng lungsod sa bawat baitang — at ang paaralang papasukan ay batay sa tirahan.",
   "grade_select_label": "Baitang",
@@ -2192,5 +2192,7 @@
   "rev_y16": "Ipinakita sa konseho para sa pagpapaunlad ng silangan ang burador ng panggitnang pagrepaso ng Estratehiya sa Pagpapaunlad ng Silangang Distrito at ang burador ng pagbabago sa district plan ng Tokadai",
   "rev_o41": "Sa aling mga complex, kailan magsisimula, at ilang yunit ang sakop ng paggamit sa mga bakanteng yunit ng pabahay ng prepektura? Pag-aaralan din ba ang pagpapaupa sa mga ito bilang tirahan ng mga batang pamilya?",
   "rev_o42": "Kailan at sa anong anyo ilalabas ang mga tuntunin para sa magbubukas ng tindahan sa Tokadai (paradahan, pagsasaalang-alang sa paligid, pagpapaliwanag sa mga residente)?",
-  "rev_o43": "May balak bang idagdag ang bilang ng mga bata (batang populasyon o bilang ng mag-aaral) sa mga panukat ng Estratehiya sa Pagpapaunlad ng Silangang Distrito?"
+  "rev_o43": "May balak bang idagdag ang bilang ng mga bata (batang populasyon o bilang ng mag-aaral) sa mga panukat ng Estratehiya sa Pagpapaunlad ng Silangang Distrito?",
+  "sched_date48": "Sabado, 12 Dis 2026",
+  "sched_desc48": "<strong>Regular na pulong ng Tokadai wo Kangaeru Kai (mga residente ang nagpapatakbo)</strong><br>Gaganapin nang 10:00–11:00 sa study room sa 2F ng East Community Center. Naghahanap ang grupo ng bagong miyembro para maipagpatuloy ang gawain sa susunod na taon ng piskal, at puwede kang manood lang. <strong>Hindi ito programa ng lungsod kundi pulong ng isang grupo ng mamamayan.</strong>"
 }

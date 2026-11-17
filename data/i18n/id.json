@@ -1190,7 +1190,7 @@
   "actions_more": "Lihat bersama info acara dewan komunitas →",
   "actions_note": "Tanggal dan detail dapat berubah. Untuk informasi terbaru dan cara ikut serta, lihat kanal masing-masing kelompok. Informasi resmi soal reorganisasi ada di <a href=\"index.html#news\">“Berita dari situs kota” pada halaman utama</a>.",
   "pr_tk_h": "Tokadai wo Kangaeru Kai mencari anggota baru",
-  "pr_tk_p": "Kelompok warga yang mengadakan festival musik, ceramah, dan seminar tentang hunian dan rumah kosong. Anda boleh sekadar melihat rapat rutinnya pada Sabtu, 12 Desember, pukul 10.00 (rencana tempat: Pusat Komunitas Timur).<span data-until=\"2026-11-15\"> Anda juga bisa menyapa panitia di Festival Musik Tokadai ke-11 pada Minggu, 15 November.</span>",
+  "pr_tk_p": "Kelompok warga yang mengadakan festival musik, ceramah, dan seminar tentang hunian dan rumah kosong. Kelompok ini mencari anggota baru agar kegiatannya berlanjut mulai tahun fiskal berikutnya. Anda boleh sekadar melihat rapat rutinnya pada Sabtu, 12 Desember, pukul 10.00–11.00 (Pusat Komunitas Timur, ruang belajar lantai 2).",
   "pr_tk_link": "Lihat Instagram (@tokadai_komaki)",
   "pr_tk_note": "Pemberitahuan dari kelompok warga. Ini bukan perekrutan oleh kota. (Dalam bahasa Jepang)",
   "tobu_actions_h": "Kabar penataan wilayah timur<small>Eastern District Updates</small>",
@@ -1604,7 +1604,7 @@
   "ql_review_link": "Lihat telaah dan usulan →",
   "rel_nationwide_community": "Lihat kaitan antara dewan komunitas dan sekolah",
   "rel_community_nationwide": "Lihat gambaran nasional dan standar pemerintah",
-  "status_digest": "Di sini hanya dicantumkan peristiwa yang menjadi titik penting. Daftar lengkap sebanyak 47 butir ada di halaman <a href=\"schedule.html\">jadwal</a>.",
+  "status_digest": "Di sini hanya dicantumkan peristiwa yang menjadi titik penting. Daftar lengkap sebanyak 48 butir ada di halaman <a href=\"schedule.html\">jadwal</a>.",
   "grade_h": "Lihat berdasarkan kelas anak Anda",
   "grade_lead": "Pilih kelas, dan setiap tanggal di bawah akan diberi keterangan kelas anak Anda pada saat itu. Kelas yang dipilih adalah untuk tahun ajaran 2026. Ini hanya perhitungan atas tanggal yang telah diumumkan — rencana kota tidak membedakan berdasarkan kelas — dan sekolah yang dimasuki ditentukan oleh alamat.",
   "grade_select_label": "Kelas",
@@ -2192,5 +2192,7 @@
   "rev_y16": "Rancangan peninjauan tengah periode Strategi Pengembangan Wilayah Timur dan rancangan perubahan rencana kawasan Tokadai disampaikan kepada dewan pengembangan wilayah timur",
   "rev_o41": "Pemanfaatan unit kosong perumahan prefektur akan dilakukan di kompleks mana, mulai kapan, dan untuk berapa unit? Apakah menyewakannya sebagai hunian bagi keluarga muda juga akan dikaji?",
   "rev_o42": "Kapan dan dalam bentuk apa aturan bagi orang yang membuka toko di Tokadai (parkir, perhatian pada lingkungan sekitar, penjelasan kepada warga) akan diumumkan?",
-  "rev_o43": "Adakah rencana memasukkan jumlah anak (penduduk muda atau jumlah murid) ke dalam indikator Strategi Pengembangan Wilayah Timur?"
+  "rev_o43": "Adakah rencana memasukkan jumlah anak (penduduk muda atau jumlah murid) ke dalam indikator Strategi Pengembangan Wilayah Timur?",
+  "sched_date48": "Sabtu, 12 Des 2026",
+  "sched_desc48": "<strong>Rapat rutin Tokadai wo Kangaeru Kai (inisiatif warga)</strong><br>Diadakan pukul 10.00–11.00 di ruang belajar lantai 2 Pusat Komunitas Timur. Kelompok ini mencari anggota baru agar kegiatannya berlanjut pada tahun fiskal berikutnya, dan Anda boleh sekadar melihat. <strong>Ini bukan program kota, melainkan rapat sebuah kelompok warga.</strong>"
 }

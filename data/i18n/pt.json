@@ -1190,7 +1190,7 @@
   "actions_more": "Ver junto com os eventos dos conselhos comunitários →",
   "actions_note": "Datas e detalhes podem mudar. Para informação atualizada e para participar, consulte o canal de cada grupo. Para informação oficial sobre a reorganização, veja <a href=\"index.html#news\">“Notícias do site da prefeitura”, na página inicial</a>.",
   "pr_tk_h": "O Tokadai wo Kangaeru Kai procura novos membros",
-  "pr_tk_p": "Grupo de cidadãos que organiza festivais de música, palestras e seminários sobre moradia e casas vazias. Você pode só assistir à reunião regular no sábado, 12 de dezembro, às 10h (local previsto: Centro Comunitário Leste).<span data-until=\"2026-11-15\"> Também pode falar com a equipe no 11º Festival de Música de Tokadai, no domingo, 15 de novembro.</span>",
+  "pr_tk_p": "Grupo de cidadãos que organiza festivais de música, palestras e seminários sobre moradia e casas vazias. Está procurando novos membros para continuar as atividades a partir do próximo ano fiscal. Você pode só assistir à reunião regular no sábado, 12 de dezembro, das 10h às 11h (Centro Comunitário Leste, 2º andar, sala de estudos).",
   "pr_tk_link": "Ver o Instagram (@tokadai_komaki)",
   "pr_tk_note": "Aviso de um grupo de cidadãos. Não é um recrutamento da prefeitura. (Em japonês)",
   "tobu_actions_h": "Novidades da região leste<small>Eastern District Updates</small>",
@@ -1604,7 +1604,7 @@
   "ql_review_link": "Ver a análise e as propostas →",
   "rel_nationwide_community": "Ver a ligação entre os conselhos comunitários e as escolas",
   "rel_community_nationwide": "Ver o panorama nacional e os parâmetros do governo",
-  "status_digest": "Aqui estão apenas os marcos principais. A lista completa, com 47 itens, está no <a href=\"schedule.html\">cronograma</a>.",
+  "status_digest": "Aqui estão apenas os marcos principais. A lista completa, com 48 itens, está no <a href=\"schedule.html\">cronograma</a>.",
   "grade_h": "Ver pelo ano escolar do seu filho",
   "grade_lead": "Escolha um ano escolar e cada data abaixo receberá a indicação do ano em que a criança estará naquele momento. O ano escolhido é o do ano letivo de 2026. É apenas um cálculo sobre as datas publicadas — o plano da prefeitura não trata os anos escolares de forma diferente — e a escola que a criança frequentará é definida pelo endereço.",
   "grade_select_label": "Ano escolar",
@@ -2192,5 +2192,7 @@
   "rev_y16": "Proposta de revisão intermediária da Estratégia de Desenvolvimento da Zona Leste e proposta de alteração do plano de bairro de Tokadai apresentadas ao conselho de desenvolvimento do leste",
   "rev_o41": "O uso das unidades vazias da habitação provincial vai ocorrer em quais conjuntos, a partir de quando e em quantas unidades? Alugá-las como moradia para famílias jovens também será estudado?",
   "rev_o42": "Quando e de que forma serão divulgadas as regras para quem abrir loja em Tokadai (estacionamento, cuidado com o entorno, explicação aos moradores)?",
-  "rev_o43": "Há intenção de incluir o número de crianças (população jovem ou número de alunos) nos indicadores da Estratégia de Desenvolvimento da Zona Leste?"
+  "rev_o43": "Há intenção de incluir o número de crianças (população jovem ou número de alunos) nos indicadores da Estratégia de Desenvolvimento da Zona Leste?",
+  "sched_date48": "sábado, 12 dez 2026",
+  "sched_desc48": "<strong>Reunião regular do Tokadai wo Kangaeru Kai (iniciativa de moradores)</strong><br>Das 10h às 11h, na sala de estudos do 2º andar do Centro Comunitário Leste. O grupo está procurando novos membros para continuar as atividades no próximo ano fiscal, e você pode só assistir. <strong>Não é um programa da prefeitura, e sim uma reunião de um grupo de cidadãos.</strong>"
 }

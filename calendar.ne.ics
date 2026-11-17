@@ -627,6 +627,21 @@ DESCRIPTION:यी मिति स्वयंसेवी बासि
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=ne
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-12-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261212T000000Z
+DTSTART;VALUE=DATE:20261212
+DTEND;VALUE=DATE:20261213
+SUMMARY:तोकादाइ वो कान्गाएरु का
+ ईको नियमित बैठक (बासिन्दा प
+ हल)
+DESCRIPTION:यी मिति स्वयंसेवी बासि
+ न्दाहरूको साइटले जम्मा गरे
+ का हुन्। औपचारिक सूचना नगर
+ बाट आउने कागजातमै पक्का गर
+ ्नुहोस्।
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=ne
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-13-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261213T000000Z
 DTSTART;VALUE=DATE:20261213

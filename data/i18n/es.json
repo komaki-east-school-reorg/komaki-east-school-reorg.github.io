@@ -1190,7 +1190,7 @@
   "actions_more": "Verlas junto a los eventos de los consejos comunitarios →",
   "actions_note": "Las fechas y los detalles pueden cambiar. Para la información más reciente y para participar, consulte el canal de cada grupo. Para la información oficial sobre la reorganización, véase <a href=\"index.html#news\">«Novedades del sitio municipal», en la página principal</a>.",
   "pr_tk_h": "Tokadai wo Kangaeru Kai busca nuevos miembros",
-  "pr_tk_p": "Grupo de ciudadanos que organiza festivales de música, conferencias y seminarios sobre vivienda y casas vacías. Puede solo observar su reunión regular el sábado 12 de diciembre a las 10:00 (lugar previsto: Centro Comunitario Este).<span data-until=\"2026-11-15\"> También puede hablar con el personal en el 11.º Festival de Música de Tokadai, el domingo 15 de noviembre.</span>",
+  "pr_tk_p": "Grupo de ciudadanos que organiza festivales de música, conferencias y seminarios sobre vivienda y casas vacías. Busca nuevos miembros para seguir con sus actividades a partir del próximo año fiscal. Puede solo observar su reunión regular el sábado 12 de diciembre, de 10:00 a 11:00 (Centro Comunitario Este, sala de estudio del 2.º piso).",
   "pr_tk_link": "Ver su Instagram (@tokadai_komaki)",
   "pr_tk_note": "Aviso de un grupo de ciudadanos. No es una convocatoria de la ciudad. (En japonés)",
   "tobu_actions_h": "Novedades de la zona este<small>Eastern District Updates</small>",
@@ -1604,7 +1604,7 @@
   "ql_review_link": "Ver el análisis y las propuestas →",
   "rel_nationwide_community": "Ver la relación entre los consejos comunitarios y las escuelas",
   "rel_community_nationwide": "Ver el panorama nacional y los parámetros del gobierno",
-  "status_digest": "Aquí solo figuran los hitos principales. La lista completa, de 47 entradas, está en el <a href=\"schedule.html\">cronograma</a>.",
+  "status_digest": "Aquí solo figuran los hitos principales. La lista completa, de 48 entradas, está en el <a href=\"schedule.html\">cronograma</a>.",
   "grade_h": "Ver según el curso de su hijo/a",
   "grade_lead": "Elija un curso y cada fecha de abajo mostrará en qué curso estará su hijo/a en ese momento. El curso elegido es el del año escolar 2026. Es un cálculo sobre las fechas publicadas —el plan del ayuntamiento no distingue por curso— y la escuela a la que asistirá se decide por el domicilio.",
   "grade_select_label": "Curso",
@@ -2192,5 +2192,7 @@
   "rev_y16": "Propuesta de revisión intermedia de la Estrategia de Desarrollo de la Zona Este y propuesta de cambio del plan de distrito de Tokadai presentadas al consejo de desarrollo del este",
   "rev_o41": "¿En qué conjuntos, desde cuándo y en cuántas unidades se aprovecharán las viviendas prefecturales vacías? ¿Se estudiará también alquilarlas como hogar a familias jóvenes?",
   "rev_o42": "¿Cuándo y en qué forma se publicarán las reglas para quien abra una tienda en Tokadai (estacionamiento, cuidado del entorno, explicación a los vecinos)?",
-  "rev_o43": "¿Se piensa incluir el número de niños (población joven o número de alumnos) en los indicadores de la Estrategia de Desarrollo de la Zona Este?"
+  "rev_o43": "¿Se piensa incluir el número de niños (población joven o número de alumnos) en los indicadores de la Estrategia de Desarrollo de la Zona Este?",
+  "sched_date48": "sábado 12 dic 2026",
+  "sched_desc48": "<strong>Reunión regular de Tokadai wo Kangaeru Kai (iniciativa vecinal)</strong><br>De 10:00 a 11:00 en la sala de estudio del 2.º piso del Centro Comunitario Este. El grupo busca nuevos miembros para seguir con sus actividades en el próximo año fiscal, y puede asistir solo para observar. <strong>No es un programa de la ciudad, sino una reunión de un grupo de ciudadanos.</strong>"
 }

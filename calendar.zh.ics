@@ -444,6 +444,16 @@ DESCRIPTION:这些日程由居民自发运营的网站整理。正式通
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=zh
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-12-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261212T000000Z
+DTSTART;VALUE=DATE:20261212
+DTEND;VALUE=DATE:20261213
+SUMMARY:“思考桃花台之会”例会（居民自发）
+DESCRIPTION:这些日程由居民自发运营的网站整理。正式通
+ 知请以市里寄送的文件为准。
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=zh
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-13-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261213T000000Z
 DTSTART;VALUE=DATE:20261213

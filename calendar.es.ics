@@ -448,6 +448,16 @@ DESCRIPTION:Estas fechas las ha reunido un sitio vecinal. Confirme el avi
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=es
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-12-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261212T000000Z
+DTSTART;VALUE=DATE:20261212
+DTEND;VALUE=DATE:20261213
+SUMMARY:Reunión regular de Tokadai wo Kangaeru Kai (iniciativa vecinal)
+DESCRIPTION:Estas fechas las ha reunido un sitio vecinal. Confirme el avi
+ so oficial en los documentos que le envíe el ayuntamiento.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=es
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-13-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261213T000000Z
 DTSTART;VALUE=DATE:20261213

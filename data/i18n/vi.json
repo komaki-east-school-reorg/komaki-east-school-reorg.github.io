@@ -1190,7 +1190,7 @@
   "actions_more": "Xem cùng với thông báo sự kiện của hội đồng cộng đồng →",
   "actions_note": "Ngày giờ và nội dung có thể thay đổi. Để biết thông tin mới nhất và đăng ký tham gia, hãy xem kênh của từng nhóm. Thông tin chính thức về việc tái cơ cấu, xem <a href=\"index.html#news\">“Tin từ trang thành phố” ở trang chủ</a>.",
   "pr_tk_h": "Tokadai wo Kangaeru Kai đang tìm thành viên mới",
-  "pr_tk_p": "Một nhóm hoạt động của người dân, tổ chức lễ hội âm nhạc, buổi nói chuyện và hội thảo về nhà ở, nhà bỏ trống. Bạn có thể chỉ đến tham quan buổi họp định kỳ lúc 10:00 thứ Bảy 12/12 (địa điểm dự kiến: Trung tâm Cộng đồng phía Đông).<span data-until=\"2026-11-15\"> Bạn cũng có thể bắt chuyện với ban tổ chức tại Lễ hội âm nhạc Tokadai lần thứ 11 vào Chủ nhật 15/11.</span>",
+  "pr_tk_p": "Một nhóm hoạt động của người dân, tổ chức lễ hội âm nhạc, buổi nói chuyện và hội thảo về nhà ở, nhà bỏ trống. Nhóm đang tìm thành viên mới để tiếp tục hoạt động từ năm tài chính tới. Bạn có thể chỉ đến tham quan buổi họp định kỳ lúc 10:00–11:00 thứ Bảy 12/12 (Trung tâm Cộng đồng phía Đông, phòng học tầng 2).",
   "pr_tk_link": "Xem Instagram (@tokadai_komaki)",
   "pr_tk_note": "Thông báo từ một nhóm người dân. Đây không phải đợt tuyển của thành phố. (Bằng tiếng Nhật)",
   "tobu_actions_h": "Động thái phát triển khu đông<small>Eastern District Updates</small>",
@@ -1604,7 +1604,7 @@
   "ql_review_link": "Xem phân tích và đề xuất →",
   "rel_nationwide_community": "Xem mối liên hệ giữa hội đồng cộng đồng và trường học",
   "rel_community_nationwide": "Xem tình hình toàn quốc và tiêu chuẩn quốc gia",
-  "status_digest": "Ở đây chỉ trích ra những mốc quan trọng. Danh sách đầy đủ gồm 47 mục nằm ở trang <a href=\"schedule.html\">lịch trình</a>.",
+  "status_digest": "Ở đây chỉ trích ra những mốc quan trọng. Danh sách đầy đủ gồm 48 mục nằm ở trang <a href=\"schedule.html\">lịch trình</a>.",
   "grade_h": "Xem theo khối lớp của con bạn",
   "grade_lead": "Chọn khối lớp và mỗi mốc thời gian bên dưới sẽ ghi kèm khối lớp của con bạn vào lúc đó. Khối lớp bạn chọn là của năm học 2026. Đây chỉ là phép tính trên các ngày đã công bố — kế hoạch của thành phố không phân biệt theo khối lớp — và trường mà trẻ theo học được quyết định theo địa chỉ.",
   "grade_select_label": "Khối lớp",
@@ -2192,5 +2192,7 @@
   "rev_y16": "Dự thảo rà soát giữa kỳ Đề án Phát triển vùng phía đông và dự thảo thay đổi quy hoạch khu vực Tokadai được trình lên hội đồng phát triển phía đông",
   "rev_o41": "Việc sử dụng căn trống của nhà ở do tỉnh quản lý sẽ thực hiện ở khu nào, từ khi nào, với bao nhiêu căn? Có xem xét cho các gia đình trẻ thuê làm chỗ ở không?",
   "rev_o42": "Các quy tắc đối với người mở cửa hàng ở Tokadai (chỗ đỗ xe, quan tâm đến xung quanh, giải thích với người dân) sẽ được công bố khi nào và dưới hình thức nào?",
-  "rev_o43": "Có ý định thêm số trẻ em (dân số trẻ hoặc số học sinh) vào chỉ số của Đề án Phát triển vùng phía đông không?"
+  "rev_o43": "Có ý định thêm số trẻ em (dân số trẻ hoặc số học sinh) vào chỉ số của Đề án Phát triển vùng phía đông không?",
+  "sched_date48": "Thứ Bảy 12/12/2026",
+  "sched_desc48": "<strong>Buổi họp định kỳ của Tokadai wo Kangaeru Kai (do người dân tổ chức)</strong><br>Diễn ra lúc 10:00–11:00 tại phòng học tầng 2 của Trung tâm Cộng đồng phía Đông. Nhóm đang tìm thành viên mới để tiếp tục hoạt động từ năm tài chính tới, bạn có thể chỉ đến tham quan. <strong>Đây không phải chương trình của thành phố mà là buổi họp của một nhóm người dân.</strong>"
 }
