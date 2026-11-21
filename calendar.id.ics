@@ -466,6 +466,28 @@ DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga.
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-15-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261215T000000Z
+DTSTART;VALUE=DATE:20261201
+DTEND;VALUE=DATE:20261216
+SUMMARY:尾張都市計画桃花台地区計画の変更に関する公
+ 聴会の開催 (tata kota: draf dapat dilihat)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-12-25-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261225T000000Z
+DTSTART;VALUE=DATE:20261225
+DTEND;VALUE=DATE:20261226
+SUMMARY:尾張都市計画桃花台地区計画の変更に関する公
+ 聴会の開催 (tata kota)
+DESCRIPTION:Tanggal-tanggal ini dihimpun oleh situs yang dikelola warga. 
+ Periksa dokumen yang dikirim pemerintah kota untuk pemberitahuan resmi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=id
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-31-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261231T000000Z
 DTSTART;VALUE=DATE:20261201

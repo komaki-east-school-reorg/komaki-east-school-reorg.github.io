@@ -468,6 +468,28 @@ DESCRIPTION:Estas fechas las ha reunido un sitio vecinal. Confirme el avi
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=es
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-15-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261215T000000Z
+DTSTART;VALUE=DATE:20261201
+DTEND;VALUE=DATE:20261216
+SUMMARY:尾張都市計画桃花台地区計画の変更に関する公
+ 聴会の開催 (planificación urbana: consulta del borrador)
+DESCRIPTION:Estas fechas las ha reunido un sitio vecinal. Confirme el avi
+ so oficial en los documentos que le envíe el ayuntamiento.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=es
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-12-25-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261225T000000Z
+DTSTART;VALUE=DATE:20261225
+DTEND;VALUE=DATE:20261226
+SUMMARY:尾張都市計画桃花台地区計画の変更に関する公
+ 聴会の開催 (planificación urbana)
+DESCRIPTION:Estas fechas las ha reunido un sitio vecinal. Confirme el avi
+ so oficial en los documentos que le envíe el ayuntamiento.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=es
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-31-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261231T000000Z
 DTSTART;VALUE=DATE:20261201

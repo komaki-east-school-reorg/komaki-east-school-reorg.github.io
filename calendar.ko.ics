@@ -508,6 +508,30 @@ DESCRIPTION:이 예정은 뜻있는 주민들의 사이트가 정리한
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=ko
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-15-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261215T000000Z
+DTSTART;VALUE=DATE:20261201
+DTEND;VALUE=DATE:20261216
+SUMMARY:尾張都市計画桃花台地区計画の変更に関する公
+ 聴会の開催(도시계획・안 열람)
+DESCRIPTION:이 예정은 뜻있는 주민들의 사이트가 정리한 
+ 것입니다. 정식 안내는 시에서 도착하는 서류로 확인
+ 해 주세요.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=ko
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-12-25-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261225T000000Z
+DTSTART;VALUE=DATE:20261225
+DTEND;VALUE=DATE:20261226
+SUMMARY:尾張都市計画桃花台地区計画の変更に関する公
+ 聴会の開催(도시계획)
+DESCRIPTION:이 예정은 뜻있는 주민들의 사이트가 정리한 
+ 것입니다. 정식 안내는 시에서 도착하는 서류로 확인
+ 해 주세요.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=ko
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-31-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261231T000000Z
 DTSTART;VALUE=DATE:20261201
