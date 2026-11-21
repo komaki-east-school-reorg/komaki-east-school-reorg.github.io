@@ -178,6 +178,7 @@ window.KomakiCount = (function () {
     ['.feature-cutin-close', 'cutin/close'],
     ['.rev-tabs a', function (el) { return /analysis\.html/.test(el.getAttribute('href') || '') ? 'review/tab-analysis' : 'review/tab-review'; }],
     ['.page-recent a', 'page-recent/go'],
+    ['.quiz-jump a', 'quiz/jump'],
     ['.season-pick', 'season/pick'],
     ['.leg-season-links a', 'season/jump'],
     ['.rev-more a', 'review/more'],
@@ -5873,7 +5874,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   var GAP = 380;
 
   var SKIP = 'script,style,noscript,svg,rt,select,input,textarea,button:not(.faq-q),' +
-             '.tts-row,.page-toc,.page-recent,.leg-season-box,.east-quiz,.season-line,.plan-steps,.ask-tools,.ask-copy-hint,.ask-pick,.faq-q-icon,.section-updated,.bus-map-layers,.bus-area-map,' +
+             '.tts-row,.page-toc,.page-recent,.leg-season-box,.east-quiz,.season-line,.quiz-jump,.plan-steps,.ask-tools,.ask-copy-hint,.ask-pick,.faq-q-icon,.section-updated,.bus-map-layers,.bus-area-map,' +
              '[hidden],[aria-hidden="true"],.section-title small,.orig-ja,.mc-ja,' +   // .mc-ja＝窓口で見せる日本語（外国語の声で日本語を読まない）
              '.now-more,.upcoming-more,' +  // 「くわしく見る →」などの案内リンクは読まない
              '.rev-more,.rev-back,.rev-partnav,.rev-num,' +

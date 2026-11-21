@@ -3818,3 +3818,9 @@ html.has-share-sticky .to-top { bottom: calc(var(--share-sticky-h, 3.4rem) + .8r
 .leg-season-col, .east-quiz { min-width: 0; overflow-wrap: anywhere; }
 .east-quiz-wrap { padding: 1.4rem 0; }
 .east-quiz-wrap .east-quiz { margin-top: 0; }
+
+/* トップ上段から東部たんけんクイズへ（2026-11-22） */
+.quiz-jump { margin: 0; padding: .45rem 1.2rem; background: var(--accent-light); border-bottom: 1px solid var(--border); text-align: center; font-size: .92rem; font-weight: 700; }
+.quiz-jump a { color: var(--primary-dark); }
+#east-quiz { scroll-margin-top: calc(var(--header-h, 80px) + .7rem); }
+@media print { .quiz-jump { display: none; } }
