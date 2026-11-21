@@ -4333,7 +4333,7 @@ window.KomakiGrade = (function () {
     "cp7": ["rev-q1", "rev-p2", "rev-q9"], "cp8": ["rev-p3", "rev-q2"], "cp9": ["rev-p5", "rev-p7", "rev-h6", "rev-h7", "rev-h8"],
     "cp10": ["rev-q4", "rev-q5", "rev-q6"],
     "cp11": ["rev-l-p1", "rev-l-p2"], "cp12": ["rev-l-p3"], "cp13": ["rev-l-p4", "rev-l-f5"],
-    "cp14": ["rev-l-p6", "rev-l-p5", "rev-l-f6"], "cp15": ["rev-l-p7", "rev-l-p8", "rev-l-p9", "rev-l-p10", "rev-l-p11", "rev-l-f7", "rev-l-f8", "rev-l-f9", "rev-l-f10", "rev-l-f11", "rev-l-f12", "rev-l-f13"]};
+    "cp14": ["rev-l-p6", "rev-l-p5", "rev-l-f6"], "cp15": ["rev-l-p7", "rev-l-p8", "rev-l-p9", "rev-l-p10", "rev-l-p11", "rev-l-p12", "rev-l-f7", "rev-l-f8", "rev-l-f9", "rev-l-f10", "rev-l-f11", "rev-l-f12", "rev-l-f13", "rev-l-f14"]};
   var KEY = 'komaki_rev_from';
   var page = location.pathname.split('/').pop().replace(/\.html$/, '');
 

@@ -685,6 +685,7 @@
         "label": "市政戦略係"
       },
       "shown_in": [
+        "community.html",
         "nationwide.html"
       ]
     },
