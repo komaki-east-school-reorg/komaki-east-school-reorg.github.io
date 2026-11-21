@@ -3,6 +3,13 @@
   "updates": [
     {
       "date": "2026-11-22",
+      "type": "content",
+      "ja": "既存校のレガシーの検討にピーチライナーや自然・音楽のまちを追加",
+      "en": "Peachliner, local nature and music added to the legacy proposals",
+      "link": "analysis.html#rev-legacy"
+    },
+    {
+      "date": "2026-11-22",
       "type": "feature",
       "ja": "地域のレガシーに季節めぐりと東部たんけんクイズを追加",
       "en": "Seasonal guide and a quiz about the eastern district added",
