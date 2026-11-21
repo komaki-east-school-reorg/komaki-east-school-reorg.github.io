@@ -86,7 +86,11 @@ PERMITTED_LINKS = ("303/index.html", "sasaeai/3/3_2/index.html",
                    "jp/shigikai/index.html",
                    "jp/shigikai/houkoku/43556.html",
                    "kyoiku/bunkazai/52305.html",
-                   "kaigikoukai/4/53024.html")
+                   "kaigikoukai/4/53024.html",
+                   # 10〜14本目＝地域のレガシーのカードの出典（2026-11-22 ユーザー指示。community.html だけ）
+                   "shiteibunkazai/1/9109.html", "midokoro/kankou/2/10630.html",
+                   "shiteibunkazai/4/9128.html", "sisetuunnei/2_1/3492.html",
+                   "dragons/51869.html")
 # 6・7つ目＝小牧市議会のトップと「市議会だより」のページ（2026-10-26 ユーザー指示）。
 # council.html の出典欄の下だけに置く。配下の会議録・個別記事・PDF は不可のまま。
 CITY_PAGE_ONLY = {"purattofo-mu/38222.html": ("community.html",),
@@ -99,7 +103,12 @@ CITY_PAGE_ONLY = {"purattofo-mu/38222.html": ("community.html",),
                   # 9つ目＝令和8年度第3回 東部まちづくり審議会の会議資料のページ（2026-11-15 ユーザー指示）。
                   # community.html#tobu-kousou（東部振興構想の見直しと桃花台の土地利用）の出典行だけに使う。
                   # 個別記事だがユーザーが明示して許可した。添付の PDF へは今までどおり直リンクしない
-                  "kaigikoukai/4/53024.html": ("community.html",)}
+                  "kaigikoukai/4/53024.html": ("community.html",),
+                  "shiteibunkazai/1/9109.html": ("community.html",),
+                  "midokoro/kankou/2/10630.html": ("community.html",),
+                  "shiteibunkazai/4/9128.html": ("community.html",),
+                  "sisetuunnei/2_1/3492.html": ("community.html",),
+                  "dragons/51869.html": ("community.html",)}
 # 6b で使う：市のページの完全なパス（上の PERMITTED_LINKS と同じ9本。増やすときは両方に足す）
 CITY_PATHS = {
     "/admin/soshiki/kyoiku/kyouikusoumu/303/index.html",
@@ -111,6 +120,19 @@ CITY_PATHS = {
     "/shigikai/houkoku/43556.html",
     "/admin/soshiki/kyoiku/bunkazai/52305.html",
     "/admin/shisei/jyohokokai/kaigikoukai/4/53024.html",
+    "/admin/soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/1/9109.html",
+    "/admin/event_1/midokoro/kankou/2/10630.html",
+    "/admin/soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/4/9128.html",
+    "/admin/soshiki/kenkouikigai/bunkasports/sisetuunnei/2_1/3492.html",
+    "/admin/soshiki/shicokoshitsu/hisyo/shiseisenryaku/dragons/51869.html",
+}
+# 地域のレガシーのカードの出典（2026-11-22 ユーザー指示）。市以外のページ。community.html だけ、このパスだけ
+LEGACY_SOURCES = {
+    "komakici.jp": {"/dantaijouhou/ちごりんの里山/", "/2024/03/31/20240331/"},
+    "dragons.jp": {"/news/2026/26052701.php"},
+    "www.kashiwabara.co.jp": {"/corp/apartment/gallery/sky-stage-33/"},
+    "www.blue-style.com": {"/building/スカイステージ33"},
+    "komaki2.jp": {"/photo/tower-20230715.html"},
 }
 # 9本目の行政ページ＝春日井市「小中学校の適正規模等について」の索引（2026-11-07 ユーザー指示）。
 # about.html の「ほかの地区や、となりのまちでは？」の出典行だけに使う（URL は js/main.js の KASUGAI WATCH）。
@@ -134,6 +156,7 @@ PERMITTED_HOSTS = {
     "github.com",                                  # ご意見の Issue フォーム
     "logoform.jp",                                 # 東部まちづくりプラットフォームの登録フォーム
     "peare-toukadai.jp",                           # 地域の取組「会場の案内」
+    "komakici.jp", "dragons.jp", "www.kashiwabara.co.jp", "www.blue-style.com", "komaki2.jp",   # 地域のレガシーの出典（LEGACY_SOURCES、community.html だけ）
     "www.komaki-bunka.or.jp",                      # 地域の取組の発信元（パスは BUNKA_PATHS、data/community_actions.json だけ）
     "maps.google.co.jp",                           # 地図の検索語リンク
     "schema.org", "www.w3.org",                    # 構造化データ・SVG の名前空間（リンクではない）
@@ -557,6 +580,11 @@ def main():
                 continue   # 正規表現や JS の式の一部（//… のコメントなど）
             if host not in PERMITTED_HOSTS:
                 host_violations.append(f"{p}: 許可リストにないホスト {host}")
+            elif host in LEGACY_SOURCES:
+                from urllib.parse import unquote
+                path = unquote(re.split(r"[?#]", m.group(2), 1)[0])
+                if path not in LEGACY_SOURCES[host] or p != "community.html":
+                    host_violations.append(f"{p}: 地域のレガシーの出典以外のURL {host}{path[:60]}")
             elif host == "www.city.kasugai.lg.jp":
                 path = re.split(r"[?#]", m.group(2), 1)[0]
                 if path not in KASUGAI_PATHS:

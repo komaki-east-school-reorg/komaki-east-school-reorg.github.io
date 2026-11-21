@@ -30,7 +30,7 @@ python3 -m http.server 8000
 
 ## Validation checks (run before every commit)
 
-**1. Illegal external links** — exactly **nine** city URLs are permitted: five index pages, plus four article pages that the user explicitly allowed (2026-09-27, 2026-10-26, 2026-10-31, 2026-11-15). No PDF direct links, no other article subpages.
+**1. Illegal external links** — exactly **fourteen** city URLs are permitted: five index pages, plus nine article pages (the last five are the legacy-card sources listed under the table) that the user explicitly allowed (2026-09-27, 2026-10-26, 2026-10-31, 2026-11-15). No PDF direct links, no other article subpages.
 
 | Permitted URL | Used by |
 |---|---|
@@ -44,17 +44,21 @@ python3 -m http.server 8000
 | `.../kyoiku/bunkazai/52305.html` | こまき歴史発見館 (the city's history museum on Lapio 4F, Cultural Properties Division) — `community.html` (#legacy) and `analysis.html` (#rev-legacy) only, linked from the museum's name in the 大山廃寺 / 古窯 cards and proposal 8 (added 2026-10-31 on the user's instruction; `CITY_PAGE_ONLY`) |
 | `.../shisei/jyohokokai/kaigikoukai/4/53024.html` | 令和8年度第3回 東部まちづくり審議会の会議資料のページ — `community.html` `#tobu-kousou` の出典行 **only** (added 2026-11-15 on the user's instruction; `CITY_PAGE_ONLY`). The PDFs attached to it stay forbidden |
 
+**地域のレガシーのカードの出典（2026-11-22 ユーザー指示、community.html だけ）：市の5ページ shiteibunkazai/1/9109.html・midokoro/kankou/2/10630.html・shiteibunkazai/4/9128.html・sisetuunnei/2_1/3492.html・dragons/51869.html と、komakici.jp・dragons.jp・www.kashiwabara.co.jp・www.blue-style.com・komaki2.jp の各1〜2ページ（`LEGACY_SOURCES`）。PDF へは今までどおり直リンクしない。**
+
 ```bash
 grep -rn "city\.komaki\.aichi\.jp" *.html js/*.js \
   | grep -v -e "303/index\.html" -e "sasaeai/3/3_2/index\.html" \
            -e "tobumachidukurisingikai/index\.html" -e "purattofo-mu/38222\.html" \
            -e "toshikeikaku/1/index\.html" -e "jp/shigikai/index\.html" \
            -e "shigikai/houkoku/43556\.html" -e "kyoiku/bunkazai/52305\.html" \
-           -e "kaigikoukai/4/53024\.html"
+           -e "kaigikoukai/4/53024\.html" \
+           -e "shiteibunkazai/1/9109\.html" -e "midokoro/kankou/2/10630\.html" \
+           -e "shiteibunkazai/4/9128\.html" -e "sisetuunnei/2_1/3492\.html" -e "dragons/51869\.html"
 # Any output = violation. Replace with one of the permitted URLs.
 ```
 
-The same nine URLs are encoded in `PERMITTED_LINKS` (and `CITY_PATHS`) in `.github/scripts/auto_gates.py` — keep them in sync. The third one is matched with its `index.html` suffix on purpose, so the pages **under** it (`.../tobumachidukurisingikai/34277.html`, `.../toubumatidukurinyu-su/index.html`) stay forbidden. Adding a tenth requires updating this file, `CONTRIBUTING.txt` rule 1, `README.md`, and that gate together.
+The same fourteen URLs are encoded in `PERMITTED_LINKS` (and `CITY_PATHS`) in `.github/scripts/auto_gates.py` — keep them in sync. The third one is matched with its `index.html` suffix on purpose, so the pages **under** it (`.../tobumachidukurisingikai/34277.html`, `.../toubumatidukurinyu-su/index.html`) stay forbidden. Adding a fifteenth requires updating this file, `CONTRIBUTING.txt` rule 1, `README.md`, and that gate together.
 
 **Kasugai City (2026-11-07, user's instruction):** one more government page, outside the nine above — `https://www.city.kasugai.lg.jp/kosodate/kyouiku/school/1009208/index.html` (春日井市「小中学校の適正規模等について」), confined to `about.html` / `js/main.js` (the 出典 line of the Kasugai list in `#nearby`, 「ほかの地区や、となりのまちでは？」) by `KASUGAI_PATHS` / `KASUGAI_PAGES` in `auto_gates.py`. The pages under it and its PDFs stay forbidden.
 
@@ -302,7 +306,7 @@ The **地域の取組 section on `community.html`**, sitting directly below the 
 
 ## `community.html#legacy`（地域のレガシー）
 
-2026-10-31 追加（ユーザー指示）。東部で学校とは別に受け継がれてきたものを、**事実だけ**で21枚のカードにして7つのまとまりで並べる：東部の歴史（大山廃寺跡と児神社・古窯と陶業の歴史・ピーチライナー〈2026-11-02 追加。出典は愛知県「旧桃花台線について」、市の年表・こまき検定・ピーチバスと旧車両基地用地のページ〉）／桃花台ニュータウン（桃花台中央公園・丘の上の給水塔・スカイステージ33・緑道と各地区の公園・音楽のまち。2026-11-02 ユーザー指示。出典は市の公園ページ・県の景観資源「桃花台ニュータウンのまちなみ」・『東部まちづくりニュース』・意見提出シートへの市の回答。**給水塔・藤棚・桜はユーザーから伝えられた現地の様子で、公表資料では確かめていない。スカイステージ33（民間の集合住宅。見学できる施設ではないと書く）の竣工年・階数・高さ・戸数は、2026-11-22 にユーザーが示した改修会社の施工事例と建物情報サイトで一致を確かめたものだけを書く（竣工月は資料で6月と7月に分かれるので書かない。番地・「市内で最も高い」は書かない。リンクは張らない）** — 名前と存在だけを書き、**出典の行（`comm_leg_src`）の1文でだけ**そう断る（新篠岡音頭の由来も同じ1文。2026-11-05 にカードごとの断りを外してまとめた）。由来・本数・場所を推測で補わない）／祭りと芸能（棒の手・桃花台まつり・東部各地の祭り・新篠岡音頭〈挿絵は盆踊り〉・音楽のまち〈桃花台音楽まつり。出演者の個人名は書かない。2026-11-02 ユーザー指示で桃花台ニュータウンから移した〉）／特産物（桃・ぶどう・名古屋コーチン・小牧ワイナリー〈2026-11-02 追加。出典はワイナリー自身の公表＝社会福祉法人AJU自立の家が2015年4月に開設、と市の東部まちづくりのイベント情報・トライアル活動のページ。こどもむけでは「ワインは大人の飲み物」と添える〉）／自然（大山川のホタル・マメナシ）／公園とスポーツ（市民四季の森・市民球場〈総合運動場〉。2026-11-02 追加。出典は市の施設ページ・景観資源の指定ページ・市制70周年「小牧市のあゆみ」〈野球場の完成＝昭和63年〉。四季の森の開園年は公表ページで確かめられなかったので書いていない）／郷土カルタ（篠岡カルタ）。連絡先は community.html#contact に みどり公園課 花と緑推進係（四季の森）と総合運動場（市民球場）を足してある（`ct_w_midori` / `ct_w_stadium`）。キーは `comm_leg_*`、カードの id は `legacy-<キー>`。まとまりの見出しは `h3.leg-group-h`、カードの見出しは `h4`（`section-title` にしない — 目次と読み上げの単位を増やさないため）。
+2026-10-31 追加（ユーザー指示）。東部で学校とは別に受け継がれてきたものを、**事実だけ**で21枚のカードにして7つのまとまりで並べる：東部の歴史（大山廃寺跡と児神社・古窯と陶業の歴史・ピーチライナー〈2026-11-02 追加。出典は愛知県「旧桃花台線について」、市の年表・こまき検定・ピーチバスと旧車両基地用地のページ〉）／桃花台ニュータウン（桃花台中央公園・丘の上の給水塔・スカイステージ33・緑道と各地区の公園・音楽のまち。2026-11-02 ユーザー指示。出典は市の公園ページ・県の景観資源「桃花台ニュータウンのまちなみ」・『東部まちづくりニュース』・意見提出シートへの市の回答。**藤棚・桜はユーザーから伝えられた現地の様子で、公表資料では確かめていない。スカイステージ33（民間の集合住宅。見学できる施設ではないと書く）の竣工年・階数・高さ・戸数は、2026-11-22 にユーザーが示した改修会社の施工事例と建物情報サイトで一致を確かめたものだけを書く（竣工月は資料で6月と7月に分かれるので書かない。番地・「市内で最も高い」は書かない。リンクは張らない）** — 名前と存在だけを書き、**出典の行（`comm_leg_src`）の1文でだけ**そう断る（新篠岡音頭の由来も同じ1文。2026-11-05 にカードごとの断りを外してまとめた）。由来・本数・場所を推測で補わない）／祭りと芸能（棒の手・桃花台まつり・東部各地の祭り・新篠岡音頭〈挿絵は盆踊り〉・音楽のまち〈桃花台音楽まつり。出演者の個人名は書かない。2026-11-02 ユーザー指示で桃花台ニュータウンから移した〉）／特産物（桃・ぶどう・名古屋コーチン・小牧ワイナリー〈2026-11-02 追加。出典はワイナリー自身の公表＝社会福祉法人AJU自立の家が2015年4月に開設、と市の東部まちづくりのイベント情報・トライアル活動のページ。こどもむけでは「ワインは大人の飲み物」と添える〉）／自然（大山川のホタル・マメナシ）／公園とスポーツ（市民四季の森・市民球場〈総合運動場〉。2026-11-02 追加。出典は市の施設ページ・景観資源の指定ページ・市制70周年「小牧市のあゆみ」〈野球場の完成＝昭和63年〉。四季の森の開園年は公表ページで確かめられなかったので書いていない）／郷土カルタ（篠岡カルタ）。連絡先は community.html#contact に みどり公園課 花と緑推進係（四季の森）と総合運動場（市民球場）を足してある（`ct_w_midori` / `ct_w_stadium`）。キーは `comm_leg_*`、カードの id は `legacy-<キー>`。まとまりの見出しは `h3.leg-group-h`、カードの見出しは `h4`（`section-title` にしない — 目次と読み上げの単位を増やさないため）。
 
 - **出典は市の公表**（文化財課・『こまき検定 問題一覧と解説文』・歴史民俗資料展示施設（仮称）の展示設計説明書・「美しい愛知づくり景観資源」の指定ページ・『東部まちづくりニュース』と東部地域トライアル活動）と、**学校自身の公表**（篠岡小HPの「篠岡カルタ」、各校の学校日記）。本文の最後に文字で書き、リンクは張らない。
 - **新篠岡音頭**は公表資料に無く、動画投稿サイトに個人が上げたレコードの音源で「名前とレコードになったこと」だけを確かめた。リンクせず、作詞・作曲者の個人名も書かない。由来と踊られている場は「確かめられていない」と書く。

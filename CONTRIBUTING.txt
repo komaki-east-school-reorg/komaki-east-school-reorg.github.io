@@ -204,6 +204,8 @@
     共有ボタンの送り先は「出典」ではないので、本文から引用してはいけない。
     増やすときは auto_gates.py・CLAUDE.md・README.md も同時に更新すること。
 
+■ 地域のレガシーのカードの出典（2026-11-22 ユーザー指示、community.html だけ）：市の5ページ shiteibunkazai/1/9109.html・midokoro/kankou/2/10630.html・shiteibunkazai/4/9128.html・sisetuunnei/2_1/3492.html・dragons/51869.html と、komakici.jp・dragons.jp・www.kashiwabara.co.jp・www.blue-style.com・komaki2.jp の各1〜2ページ（`LEGACY_SOURCES`）。PDF へは今までどおり直リンクしない。
+
 ■ 許可URLを増やすとき
   次の4か所を必ず同時に更新する（片方だけ直すと検証が誤検知する）：
     本ファイルのルール1 / CLAUDE.md の検証コマンド / README.md の主なルール /
