@@ -2214,5 +2214,6 @@
   "ask_copy": "Seçilen {n} soruyu kopyala",
   "ask_copied": "Kopyalandı",
   "ask_clear": "Temizle",
-  "ask_copy_note": "Bunlar, okulların yeniden yapılandırılması hakkında bölge sakinlerinin yürüttüğü gayriresmî bir sitenin soru listesinden seçilmiş taslak sorulardır. Site yürütücüleri bu soruları göndermemiştir."
+  "ask_copy_note": "Bunlar, okulların yeniden yapılandırılması hakkında bölge sakinlerinin yürüttüğü gayriresmî bir sitenin soru listesinden seçilmiş taslak sorulardır. Site yürütücüleri bu soruları göndermemiştir.",
+  "page_recent_h": "Bu sayfadaki son güncellemeler"
 }

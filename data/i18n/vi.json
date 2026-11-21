@@ -2214,5 +2214,6 @@
   "ask_copy": "Sao chép {n} câu đã chọn",
   "ask_copied": "Đã sao chép",
   "ask_clear": "Bỏ chọn",
-  "ask_copy_note": "Đây là các câu hỏi gợi ý chọn từ danh sách trên một trang web không chính thức do cư dân vận hành về việc tái cơ cấu trường học. Người vận hành trang không gửi các câu hỏi này."
+  "ask_copy_note": "Đây là các câu hỏi gợi ý chọn từ danh sách trên một trang web không chính thức do cư dân vận hành về việc tái cơ cấu trường học. Người vận hành trang không gửi các câu hỏi này.",
+  "page_recent_h": "Cập nhật gần đây của trang này"
 }

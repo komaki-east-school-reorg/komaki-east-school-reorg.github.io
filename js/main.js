@@ -177,6 +177,7 @@ window.KomakiCount = (function () {
     ['.feature-cutin-more', 'cutin/more'],
     ['.feature-cutin-close', 'cutin/close'],
     ['.rev-tabs a', function (el) { return /analysis\.html/.test(el.getAttribute('href') || '') ? 'review/tab-analysis' : 'review/tab-review'; }],
+    ['.page-recent a', 'page-recent/go'],
     ['.rev-more a', 'review/more'],
     ['.rev-back a', 'review/back'],
     ['.rev-partnav a', 'review/partnav'],
@@ -4431,8 +4432,17 @@ window.KomakiGrade = (function () {
       document.body.removeChild(ta);
     });
   }
+  // Q&A は1問ずつのページ（qa/…）の URL を渡す。SNS のカードにその質問が出るため（2026-11-22、日次アイデア 11/21）
+  function shareUrlFor(id, kind) {
+    if (kind !== 'faq' || !/^(faq|bus-faq)-q\d+$/.test(id)) return urlFor(id);
+    var c = document.querySelector('link[rel="canonical"]');
+    try {
+      var u = new URL((c && c.getAttribute('href')) || location.href);
+      return u.origin + '/qa/' + id + '.html' + u.search;
+    } catch (e) { return urlFor(id); }
+  }
   function onCopy(btn, id, kind) {
-    copy(urlFor(id)).then(function () {
+    copy(shareUrlFor(id, kind)).then(function () {
       try { history.replaceState(null, '', location.pathname + location.search + '#' + id); } catch (e) {}
       btn.classList.add('is-copied');
       btn.setAttribute('aria-label', t('done'));
@@ -5861,7 +5871,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   var GAP = 380;
 
   var SKIP = 'script,style,noscript,svg,rt,select,input,textarea,button:not(.faq-q),' +
-             '.tts-row,.page-toc,.plan-steps,.ask-tools,.ask-copy-hint,.ask-pick,.faq-q-icon,.section-updated,.bus-map-layers,.bus-area-map,' +
+             '.tts-row,.page-toc,.page-recent,.plan-steps,.ask-tools,.ask-copy-hint,.ask-pick,.faq-q-icon,.section-updated,.bus-map-layers,.bus-area-map,' +
              '[hidden],[aria-hidden="true"],.section-title small,.orig-ja,.mc-ja,' +   // .mc-ja＝窓口で見せる日本語（外国語の声で日本語を読まない）
              '.now-more,.upcoming-more,' +  // 「くわしく見る →」などの案内リンクは読まない
              '.rev-more,.rev-back,.rev-partnav,.rev-num,' +
@@ -6946,6 +6956,65 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   // norm・load などは FAQ FILTER（faq.html の Q&A の絞り込み）も使う
   window.KomakiSearch = { open: open, norm: norm, load: load, lang: lang, hrefFor: hrefFor, t: t,
                          isCjk: function (l) { return CJK.test(l); } };
+})();
+
+/* ===== PAGE RECENT（このページの最近の更新。2026-11-22、日次アイデア 11/11） =====
+   data/site-updates.json のうち link がこのページを指す行を、新しい順に3件。目次の下に畳んで置く。
+   トップと site.html は更新履歴そのものがあるので出さない。同じ日付を WebPage の dateModified にも入れる。 */
+(function () {
+  var m = /([^/]+)\.html$/.exec(location.pathname);
+  var page = m ? m[1] : 'index';
+  if (page === 'index' || page === 'site' || !document.querySelector('main')) return;
+  if (['event', 'qa', '404'].indexOf(document.documentElement.getAttribute('data-page')) >= 0) return;
+  var tpl = document.createElement('span');
+  tpl.hidden = true;
+  tpl.setAttribute('data-i18n', 'page_recent_h');
+  tpl.textContent = 'このページの最近の更新';
+  document.body.appendChild(tpl);
+  var rows = null, box = null;
+  function lang() { return window.KomakiLang ? window.KomakiLang() : 'ja'; }
+  function when(iso) {
+    var l = lang(), p = iso.split('-');
+    try {
+      return new Intl.DateTimeFormat(l === 'ja' ? 'ja-JP' : l === 'es' ? 'es-419' : l === 'tl' ? 'fil-PH' : l,
+        { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' }).format(new Date(Date.UTC(+p[0], +p[1] - 1, +p[2])));
+    } catch (e) { return iso; }
+  }
+  function draw() {
+    if (!rows || !rows.length) return;
+    var toc = document.querySelector('main .page-toc');
+    if (!toc) return;
+    if (!box) { box = document.createElement('details'); box.className = 'page-recent'; }
+    if (toc.nextElementSibling !== box) toc.insertAdjacentElement('afterend', box);
+    var open = box.open, l = lang();
+    box.textContent = '';
+    var sum = document.createElement('summary');
+    sum.textContent = tpl.textContent + (l === 'ja' || l === 'zh' ? '（' + when(rows[0].date) + '）' : ' (' + when(rows[0].date) + ')');
+    var ul = document.createElement('ul');
+    rows.forEach(function (x) {
+      var li = document.createElement('li'), d = document.createElement('span');
+      var text = l === 'ja' ? x.ja : (x[l] || x.en || x.ja);
+      var hash = (x.link.split('#')[1] || '');
+      d.className = 'page-recent-date';
+      d.textContent = when(x.date);
+      li.appendChild(d);
+      if (hash) { var a = document.createElement('a'); a.href = '#' + hash; a.textContent = text; li.appendChild(a); }
+      else { var s = document.createElement('span'); s.textContent = text; li.appendChild(s); }
+      ul.appendChild(li);
+    });
+    box.appendChild(sum); box.appendChild(ul);
+    box.open = open;
+    var ld = document.getElementById('webpage-jsonld');
+    if (ld) {
+      try { var o = JSON.parse(ld.textContent); o.dateModified = rows[0].date; ld.textContent = JSON.stringify(o); } catch (e) {}
+    }
+  }
+  fetch('data/site-updates.json').then(function (r) { return r.ok ? r.json() : { updates: [] }; }).then(function (d) {
+    rows = (d.updates || []).filter(function (x) { return x.link && x.link.split('#')[0] === page + '.html'; })
+      .sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; }).slice(0, 3);
+    draw();
+  }).catch(function () {});
+  document.addEventListener('komaki:i18n-applied', function () { setTimeout(draw, 0); });
 })();
 
 /* ===== ASK COPY（review.html の質問集を宛先ごとにコピー。2026-11-21、日次アイデア 11/10） =====

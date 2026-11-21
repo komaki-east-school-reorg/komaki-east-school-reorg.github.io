@@ -3,6 +3,12 @@
   "updates": [
     {
       "date": "2026-11-22",
+      "type": "feature",
+      "ja": "各ページに最近の更新を表示、Q&Aの共有で質問がカードに出る形に",
+      "en": "Each page now lists its recent updates, and shared Q&A links show the question"
+    },
+    {
+      "date": "2026-11-22",
       "type": "fix",
       "ja": "日本語の折り返しと、印刷したときの表の読みやすさを改善",
       "en": "Improved Japanese line breaks and printed tables"

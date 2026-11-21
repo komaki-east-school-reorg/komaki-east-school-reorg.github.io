@@ -6,10 +6,18 @@
   <link rel="self" type="application/atom+xml" href="https://komaki-east-school-reorg.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/"/>
   <id>https://komaki-east-school-reorg.github.io/</id>
-  <updated>2026-11-21T00:00:00+09:00</updated>
+  <updated>2026-11-22T00:00:00+09:00</updated>
   <author><name>「これがまちつくサイトの解。」THE UNIT（住民有志・非公式）</name></author>
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
   <rights>このサイトは「これがまちつくサイトの解。」THE UNIT（住民有志）が運営しており、小牧市・教育委員会とは無関係です。</rights>
+  <entry>
+    <title>各ページに最近の更新を表示、Q&amp;Aの共有で質問がカードに出る形に</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:5a438d22dc6b61d3</id>
+    <updated>2026-11-22T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜各ページに最近の更新を表示、Q&amp;Aの共有で質問がカードに出る形に</summary>
+  </entry>
   <entry>
     <title>都市計画「尾張都市計画桃花台地区計画の変更に関する公聴会の開催」の閲覧期間を予定に掲載</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#toshikeikaku"/>
@@ -321,13 +329,5 @@
     <updated>2026-11-07T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜こどもむけ表示をリンク（?kids=1）で共有できるように</summary>
-  </entry>
-  <entry>
-    <title>議会での審議に第3回定例会（9月）を追加</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/council.html#council-r3"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:6d937c9ff39b5019</id>
-    <updated>2026-11-06T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜議会での審議に第3回定例会（9月）を追加</summary>
   </entry>
 </feed>

@@ -2214,5 +2214,6 @@
   "ask_copy": "Kopyahin ang {n} napili",
   "ask_copied": "Nakopya na",
   "ask_clear": "I-clear",
-  "ask_copy_note": "Mga mungkahing tanong ito mula sa listahan ng isang di-opisyal na website ng mga residente tungkol sa muling pagsasaayos ng mga paaralan. Hindi ito ipinadala ng mga nagpapatakbo ng site."
+  "ask_copy_note": "Mga mungkahing tanong ito mula sa listahan ng isang di-opisyal na website ng mga residente tungkol sa muling pagsasaayos ng mga paaralan. Hindi ito ipinadala ng mga nagpapatakbo ng site.",
+  "page_recent_h": "Mga kamakailang update sa pahinang ito"
 }

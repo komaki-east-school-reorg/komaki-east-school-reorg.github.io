@@ -2214,5 +2214,6 @@
   "ask_copy": "Copiar {n} seleccionadas",
   "ask_copied": "Copiado",
   "ask_clear": "Borrar",
-  "ask_copy_note": "Son preguntas sugeridas, elegidas de la lista de un sitio no oficial y vecinal sobre la reorganización escolar. Los responsables del sitio no las enviaron."
+  "ask_copy_note": "Son preguntas sugeridas, elegidas de la lista de un sitio no oficial y vecinal sobre la reorganización escolar. Los responsables del sitio no las enviaron.",
+  "page_recent_h": "Actualizaciones recientes de esta página"
 }

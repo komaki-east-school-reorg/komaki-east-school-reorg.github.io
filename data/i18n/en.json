@@ -2214,5 +2214,6 @@
   "ask_copy": "Copy {n} selected",
   "ask_copied": "Copied",
   "ask_clear": "Clear",
-  "ask_copy_note": "These are draft questions chosen from the question list on an unofficial, resident-run website about the school reorganization. The site’s operators did not send them."
+  "ask_copy_note": "These are draft questions chosen from the question list on an unofficial, resident-run website about the school reorganization. The site’s operators did not send them.",
+  "page_recent_h": "Recent updates to this page"
 }

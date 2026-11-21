@@ -46,7 +46,7 @@ RUNTIME_KEYS = [
     "tr_footer",          # TRANSLATION HELP（外国語表示のフッタの一行、main.js。2026-11-08）
     "table_scroll_hint",  # TABLE SCROLL HINT（横長の表の合図、main.js。2026-11-07）
     "search_h",           # SITE SEARCH（全ページ、main.js。2026-11-05）
-    "search_ph", "search_hints", "search_link_copy", "search_link_copied",
+    "page_recent_h", "search_ph", "search_hints", "search_link_copy", "search_link_copied",
     "search_hint",
     "search_count",
     "search_more",

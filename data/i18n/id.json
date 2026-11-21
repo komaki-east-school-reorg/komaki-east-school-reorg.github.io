@@ -2214,5 +2214,6 @@
   "ask_copy": "Salin {n} terpilih",
   "ask_copied": "Tersalin",
   "ask_clear": "Hapus pilihan",
-  "ask_copy_note": "Ini adalah draf pertanyaan dari daftar di situs tidak resmi yang dikelola warga tentang reorganisasi sekolah. Pengelola situs tidak mengirimkannya."
+  "ask_copy_note": "Ini adalah draf pertanyaan dari daftar di situs tidak resmi yang dikelola warga tentang reorganisasi sekolah. Pengelola situs tidak mengirimkannya.",
+  "page_recent_h": "Pembaruan terbaru halaman ini"
 }

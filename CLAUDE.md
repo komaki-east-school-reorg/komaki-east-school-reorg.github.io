@@ -660,6 +660,10 @@ Every page carries a `<section class="section share" id="share">` just above `</
 
 日次アイデア 9/26・11/10。**原文併記**は `data-hl`（見出しの原文）にも効く（`window.KomakiOrigHl`。`KomakiHeadline.apply` のあとにも呼ぶ）。**ASK COPY**（`js/main.js`）は `review.html#rev-open` の問いに印を付けて、宛先の部署ごとに日本語の問い（外国語表示では訳も）をコピーする。先頭の断り書き `ask_copy_note`（運営者が送ったものではない）は外さない。**送信機能は作らない**、選択は保存しない、問いの中身は集計に送らない（`ask/copy` のみ）。問いを足すと印は自動で付く。
 
+### このページの最近の更新と、Q&A の共有 URL（2026-11-22）
+
+日次アイデア 11/11・11/21。**PAGE RECENT**（`js/main.js`）は `data/site-updates.json` の `link` がそのページを指す行を新しい順に3件、目次の下の `<details>` に出し、最新日を `WebPage` の `dateModified` に入れる（トップ・site・予定・Q&A の1問ページには出さない。キー `page_recent_h`）。**更新履歴の行に `link` を付けないと、ここにも出ない。** SECTION LINKS の Q&A の🔗は、`faq-qN` / `bus-faq-qN` なら `qa/<id>.html`（＋`?lang=`）をコピーする（SNS のカードにその質問が出るため）。節の `#` は今までどおり。
+
 ### 本文へ移動・上へ戻る（全ページ、2026-11-05）
 
 ユーザーが過去の提案から選んだ（2026-09-02）。`js/main.js` の SKIP LINK / TO TOP。**本文へ移動**は `<body>` の先頭に JS で差し込むリンク（`.skip-link`、Tab の最初、フォーカスで見える）で、`<main>` に id（無ければ `main-content`）と `tabindex=-1` を付けて飛ばす。**上へ戻る**（`.to-top`）は 1.5画面ぶん下で右下に出る。画面下の共有バーの実際の高さを測って（`--share-sticky-h`）その上に浮かせる。`prefers-reduced-motion` では瞬時に移動、印刷では隠す。文言は `skip_to_main` / `to_top`（`RUNTIME_KEYS`）、集計は `nav/top`・`nav/skip`。
