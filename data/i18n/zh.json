@@ -2206,5 +2206,7 @@
   "prep_m3_p": "现有8所学校分别举行闭校仪式，学校设备等也将搬到新学校。",
   "prep_m4_t": "2027年4月",
   "prep_m4_p": "4所新学校开学，小学生校车也计划开始运行。",
-  "prep_any": "不确定要买什么？请看常见问题中的<a href=\"faq.html#faq-q17\">校服</a>和<a href=\"faq.html#faq-q23\">上学帽</a>。"
+  "prep_any": "不确定要买什么？请看常见问题中的<a href=\"faq.html#faq-q17\">校服</a>和<a href=\"faq.html#faq-q23\">上学帽</a>。",
+  "search_hints": "校车|校服|学区|说明会|闭校|咨询",
+  "gloss_pointer": "遇到不懂的词语，可以查看<a href=\"about.html#glossary\">词语备忘</a>。"
 }

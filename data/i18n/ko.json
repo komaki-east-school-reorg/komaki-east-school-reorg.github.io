@@ -2206,5 +2206,7 @@
   "prep_m3_p": "현재 8개 학교가 각각 폐교식을 열고, 학교 비품 등은 새 학교로 옮겨집니다.",
   "prep_m4_t": "2027년 4월",
   "prep_m4_p": "새 학교 4곳이 문을 열고, 초등학생 스쿨버스도 운행을 시작할 예정입니다.",
-  "prep_any": "무엇을 사야 할지 궁금하면 자주 묻는 질문의 <a href=\"faq.html#faq-q17\">교복</a>과 <a href=\"faq.html#faq-q23\">통학 모자</a>를 확인하세요."
+  "prep_any": "무엇을 사야 할지 궁금하면 자주 묻는 질문의 <a href=\"faq.html#faq-q17\">교복</a>과 <a href=\"faq.html#faq-q23\">통학 모자</a>를 확인하세요.",
+  "search_hints": "스쿨버스|교복|학구|설명회|폐교식|문의",
+  "gloss_pointer": "모르는 말은 <a href=\"about.html#glossary\">말 메모</a>에서 확인할 수 있습니다."
 }

@@ -3,7 +3,9 @@
   "ideas": [
     {
       "date": "2026-11-21",
-      "title": "[機能] 検索で開いたページの該当語をマーク"
+      "title": "[機能] 検索で開いたページの該当語をマーク",
+      "implemented": "2026-11-21",
+      "note": "検索の流れに統合：言い換え語 data/search_aliases.json、窓の入口の語 search_hints、着地の強調と該当語（LANDING）、faq・bus のことばメモ案内"
     },
     {
       "date": "2026-11-21",
@@ -23,7 +25,9 @@
     },
     {
       "date": "2026-11-15",
-      "title": "[機能] 検索の窓を開いた直後に「よく探す入口」を並べる"
+      "title": "[機能] 検索の窓を開いた直後に「よく探す入口」を並べる",
+      "implemented": "2026-11-21",
+      "note": "検索の流れに統合：言い換え語 data/search_aliases.json、窓の入口の語 search_hints、着地の強調と該当語（LANDING）、faq・bus のことばメモ案内"
     },
     {
       "date": "2026-11-15",
@@ -79,7 +83,9 @@
     },
     {
       "date": "2026-11-08",
-      "title": "[機能] サイト内検索に言い換え語（同義語）の辞書を足す"
+      "title": "[機能] サイト内検索に言い換え語（同義語）の辞書を足す",
+      "implemented": "2026-11-21",
+      "note": "検索の流れに統合：言い換え語 data/search_aliases.json、窓の入口の語 search_hints、着地の強調と該当語（LANDING）、faq・bus のことばメモ案内"
     },
     {
       "date": "2026-11-08",
@@ -592,7 +598,9 @@
     },
     {
       "date": "2026-09-27",
-      "title": "[機能] FAQ・スクールバス欄に「ことばメモ」への案内"
+      "title": "[機能] FAQ・スクールバス欄に「ことばメモ」への案内",
+      "implemented": "2026-11-21",
+      "note": "検索の流れに統合：言い換え語 data/search_aliases.json、窓の入口の語 search_hints、着地の強調と該当語（LANDING）、faq・bus のことばメモ案内"
     },
     {
       "date": "2026-09-27",
@@ -697,7 +705,9 @@
     },
     {
       "date": "2026-09-21",
-      "title": "アンカーへ移動した見出しを一瞬ハイライト"
+      "title": "アンカーへ移動した見出しを一瞬ハイライト",
+      "implemented": "2026-11-21",
+      "note": "検索の流れに統合：言い換え語 data/search_aliases.json、窓の入口の語 search_hints、着地の強調と該当語（LANDING）、faq・bus のことばメモ案内"
     },
     {
       "date": "2026-09-21",

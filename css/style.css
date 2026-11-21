@@ -3726,3 +3726,16 @@ html.has-share-sticky .to-top { bottom: calc(var(--share-sticky-h, 3.4rem) + .8r
 @media (max-width: 560px) { .prep { padding: .9rem .8rem; } .prep-item { grid-template-columns: 1fr; } }
 @media print { .plan-steps { display: none; } .prep { break-inside: avoid; } }
 @media (forced-colors: active) { .plan-step.is-current .plan-step-n { border-width: 4px; } .prep-item.is-now { outline: 2px solid CanvasText; } }
+
+/* 検索の入口の語・着地の強調・ことばメモへの案内（2026-11-21） */
+.search-hints { display: flex; flex-wrap: wrap; gap: .4rem; margin: .1rem 0 .7rem; }
+.search-box.has-q .search-hints { display: none; }
+.search-hints button { padding: .32rem .75rem; border: 1px solid var(--border); border-radius: var(--radius-pill); background: var(--primary-light); color: var(--primary-dark); font: inherit; font-size: .85rem; cursor: pointer; }
+.search-hints button:hover { background: var(--accent-light); }
+::highlight(site-q) { background-color: #ffe27a; color: #1c2e20; }
+.just-landed { animation: just-landed 2.2s ease-out; border-radius: var(--radius-sm); }
+@keyframes just-landed { 0%, 35% { background-color: var(--accent-light); box-shadow: 0 0 0 .35rem var(--accent-light); } 100% { background-color: transparent; box-shadow: 0 0 0 .35rem transparent; } }
+@media (prefers-reduced-motion: reduce) { .just-landed { animation: none; outline: 2px solid var(--accent); outline-offset: 3px; } }
+@media (forced-colors: active) { ::highlight(site-q) { background-color: Mark; color: MarkText; } .just-landed { animation: none; outline: 2px solid Highlight; } }
+.gloss-pointer { margin: -.3rem 0 1rem; font-size: .88rem; color: var(--text-muted); }
+@media print { .gloss-pointer { display: none; } }

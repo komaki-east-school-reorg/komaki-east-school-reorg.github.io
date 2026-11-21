@@ -2206,5 +2206,7 @@
   "prep_m3_p": "Each of the eight current schools holds a closing ceremony, and school equipment is moved to the new schools.",
   "prep_m4_t": "April 2027",
   "prep_m4_p": "The four new schools open, and the school bus for elementary students is scheduled to start.",
-  "prep_any": "Unsure what to buy? See the FAQ on <a href=\"faq.html#faq-q17\">uniforms</a> and <a href=\"faq.html#faq-q23\">school caps</a>."
+  "prep_any": "Unsure what to buy? See the FAQ on <a href=\"faq.html#faq-q17\">uniforms</a> and <a href=\"faq.html#faq-q23\">school caps</a>.",
+  "search_hints": "school bus|uniform|school district|briefing|closing ceremony|contact",
+  "gloss_pointer": "Not sure what a term means? See <a href=\"about.html#glossary\">Words to Know</a>."
 }

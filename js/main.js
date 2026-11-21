@@ -6673,7 +6673,8 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
    ['search_contact', '問い合わせ先 →'], ['search_loading', '読み込んでいます…'],
    ['search_fail', '検索の準備ができませんでした。通信の状態を確かめて、もう一度開いてください。'],
    ['search_menu', '🔍 サイト内を検索'], ['search_btn', 'サイト内を検索'], ['share_qr_close', '閉じる'],
-   ['search_link_copy', '🔗 この検索のリンクをコピー'], ['search_link_copied', 'リンクをコピーしました']
+   ['search_link_copy', '🔗 この検索のリンクをコピー'], ['search_link_copied', 'リンクをコピーしました'],
+   ['search_hints', 'スクールバス|制服|通学区域|説明会|閉校式|問い合わせ']
   ].forEach(function (p) {
     var el = document.createElement('span');
     el.setAttribute('data-i18n', p[0]);
@@ -6701,9 +6702,13 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   var cache = {};
   function load(l) {
     if (!cache[l]) {
+      // 言い換え語（data/search_aliases.json、2026-11-21）は読めなくても検索は動かす
+      var al = fetch('data/search_aliases.json').then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; });
       cache[l] = fetch('data/search/' + l + '.json').then(function (r) {
         if (!r.ok) throw new Error('http ' + r.status);
         return r.json();
+      }).then(function (d) {
+        return al.then(function (a) { d.aliases = a[l === 'ja-kids' ? 'ja' : l] || {}; return d; });
       }).then(function (d) {
         var cjk = CJK.test(l);
         d.items.forEach(function (it) { it.n = norm(it[2], cjk); it.m = norm(it[3], cjk); });
@@ -6744,21 +6749,38 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     var q = input.value.trim();
     var l = lang();
     var cjk = CJK.test(l);
+    box.classList.toggle('has-q', !!q);
     if (!q) { out.innerHTML = ''; status.textContent = t('search_hint'); box.classList.remove('is-empty'); return; }
     status.textContent = t('search_loading');
     load(l).then(function (d) {
       if (input.value.trim() !== q) return;   // 打っている途中で次の検索が始まった
-      var terms = q.split(/[\s　]+/).map(function (w) { return norm(w, cjk); }).filter(Boolean);
+      var words = q.split(/[\s　]+/).filter(Boolean);
+      // 語ごとに「その語か、言い換え語のどれか」を含めば当たり。本人が打った語を少し重くする
+      var aliasMap = {};
+      Object.keys(d.aliases || {}).forEach(function (k) { aliasMap[norm(k, cjk)] = d.aliases[k]; });
+      var groups = words.map(function (w) {
+        var n = norm(w, cjk);
+        return [n].concat((aliasMap[n] || []).map(function (a) { return norm(a, cjk); }));
+      }).filter(function (g) { return g[0]; });
       var hits = [];
       d.items.forEach(function (it) {
         var hay = it.n + ' ' + it.m;
-        for (var i = 0; i < terms.length; i++) if (hay.indexOf(terms[i]) < 0) return;
+        for (var i = 0; i < groups.length; i++) {
+          if (!groups[i].some(function (w) { return hay.indexOf(w) >= 0; })) return;
+        }
         var score = 0;
         var pg = norm(d.pages[it[0]] || '', cjk);
-        terms.forEach(function (w) {
-          if (it.n.indexOf(w) >= 0) score += 10;     // 見出しに出てくる語をいちばん重く
-          if (pg.indexOf(w) >= 0) score += 4;         // そのページの名前に出てくる語（スクールバス → スクールバスのページ）
-          score += Math.min(5, it.m.split(w).length - 1);
+        groups.forEach(function (g) {
+          var best = 0;
+          g.forEach(function (w, wi) {
+            var s = 0;
+            if (it.n.indexOf(w) >= 0) s += 10;       // 見出しに出てくる語をいちばん重く
+            if (pg.indexOf(w) >= 0) s += 4;           // そのページの名前に出てくる語（スクールバス → スクールバスのページ）
+            s += Math.min(5, it.m.split(w).length - 1);
+            if (wi === 0 && s) s += 1;
+            if (s > best) best = s;
+          });
+          score += best;
         });
         hits.push([score, it]);
       });
@@ -6785,7 +6807,11 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
       });
       status.appendChild(document.createTextNode(' '));
       status.appendChild(lk);
-      var rawTerms = q.split(/[\s　]+/).filter(Boolean).map(function (w) { return w.toLowerCase(); });
+      var rawTerms = [];
+      words.forEach(function (w) {
+        rawTerms.push(w.toLowerCase());
+        (aliasMap[norm(w, cjk)] || []).forEach(function (a) { rawTerms.push(a.toLowerCase()); });
+      });
       hits.slice(0, MAX).forEach(function (h) {
         var it = h[1];
         var li = document.createElement('li');
@@ -6794,6 +6820,9 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
           '<span class="search-page">' + esc(d.pages[it[0]] || it[0]) + '</span>' +
           '<span class="search-title">' + marked(it[2], rawTerms) + '</span>' +
           (it[3] ? '<span class="search-snip">' + snippet(it[3], rawTerms) + '</span>' : '') + '</a>';
+        li.firstChild.addEventListener('click', function () {
+          if (window.KomakiLand) window.KomakiLand(this.href, rawTerms);   // 語は端末内だけ（URL にも集計にも載せない）
+        });
         out.appendChild(li);
       });
     }).catch(function () { status.textContent = t('search_fail'); });
@@ -6804,6 +6833,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     box.className = 'search-box ' + (cls || '');
     box.innerHTML = '<form class="search-form" role="search"><input class="search-input" type="search" enterkeyhint="search" autocomplete="off"></form>' +
       '<p class="search-status" role="status" aria-live="polite"></p>' +
+      (cls === 'in-dialog' ? '<div class="search-hints"></div>' : '') +   // トップの欄は入力欄1本のまま
       '<img class="search-empty-ill" src="img/illust/magnifier.svg" alt="" width="160" height="120" loading="lazy" decoding="async">' +
       '<ul class="search-results"></ul>';
     var input = box.querySelector('.search-input');
@@ -6814,6 +6844,21 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
       input.placeholder = t('search_ph');
       input.setAttribute('aria-label', t('search_h'));
       if (!input.value.trim()) box.querySelector('.search-status').textContent = t('search_hint');
+      var hints = box.querySelector('.search-hints');
+      if (hints) {
+        hints.textContent = '';
+        t('search_hints').split('|').forEach(function (w) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.textContent = w;
+          b.addEventListener('click', function () {
+            input.value = w;
+            search(box);
+            if (window.KomakiCount) window.KomakiCount('search/hint');   // どの語かは送らない
+          });
+          hints.appendChild(b);
+        });
+      }
     }
     texts();
     document.addEventListener('komaki:i18n-applied', function () { texts(); if (input.value.trim()) search(box); });
@@ -6900,4 +6945,96 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   // norm・load などは FAQ FILTER（faq.html の Q&A の絞り込み）も使う
   window.KomakiSearch = { open: open, norm: norm, load: load, lang: lang, hrefFor: hrefFor, t: t,
                          isCjk: function (l) { return CJK.test(l); } };
+})();
+
+/* ===== LANDING（検索・関連リンクから着いた所を示す。2026-11-21、日次アイデア 9/21・11/21） =====
+   ふつうのアンカー移動では何もしない。検索の結果か「あわせて読みたい」を押したときだけ、着いた見出しを少し強調する。
+   検索から来たときは、その節の中の語を CSS Custom Highlight API で示す（DOM を変えないので読み上げ・原文併記に影響しない。
+   未対応のブラウザでは強調だけ）。語は sessionStorage に15秒だけ置き、URL・集計には載せない。 */
+(function () {
+  var KEY = 'komaki_land', TTL = 15000, SHOW = 15000;
+  var SKIP = 'script,style,noscript,.orig-ja,.share,.xlinks,.tts-row,.page-toc,[hidden],[aria-hidden="true"]';
+  window.KomakiLand = function (href, terms) {
+    try {
+      var u = new URL(href, location.href);
+      sessionStorage.setItem(KEY, JSON.stringify({ t: Date.now(), p: u.pathname, h: u.hash, w: terms || [] }));
+    } catch (e) {}
+  };
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('.xlinks a');
+    if (a) window.KomakiLand(a.href, []);
+  });
+  function take() {
+    var v = null;
+    try { v = JSON.parse(sessionStorage.getItem(KEY) || 'null'); sessionStorage.removeItem(KEY); } catch (e) {}
+    if (!v || Date.now() - v.t > TTL || v.p !== location.pathname || v.h !== location.hash) return null;
+    return v;
+  }
+  function fold(s) {
+    return s.replace(/[\s\S]/g, function (c) {
+      var x = c.charCodeAt(0);
+      if (x >= 0xFF01 && x <= 0xFF5E) c = String.fromCharCode(x - 0xFEE0);
+      else if (x >= 0x30A1 && x <= 0x30F6) c = String.fromCharCode(x - 0x60);
+      var l = c.toLowerCase();
+      return l.length === 1 ? l : c;
+    });
+  }
+  function clear() { if (window.CSS && CSS.highlights) CSS.highlights.delete('site-q'); }
+  var cur = null, timer = null;
+  function apply() {
+    if (!cur) return;
+    var id = '';
+    try { id = decodeURIComponent(cur.h.slice(1)); } catch (e) {}
+    var el = id && document.getElementById(id);
+    if (!el) return;
+    var mark = el.matches('section') ? (el.querySelector('h2,h3') || el) : el;
+    if (!cur.flashed) {
+      cur.flashed = true;
+      mark.classList.add('just-landed');
+      setTimeout(function () { mark.classList.remove('just-landed'); }, 2400);
+    }
+    if (!cur.w.length || !window.CSS || !CSS.highlights || typeof Highlight === 'undefined') return;
+    var terms = cur.w.map(function (w) { try { w = w.normalize('NFKC'); } catch (e) {} return fold(w); }).filter(Boolean);
+    var ranges = [], walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT), n;
+    while ((n = walker.nextNode()) && ranges.length < 200) {
+      if (!n.nodeValue.trim() || (n.parentElement && n.parentElement.closest(SKIP))) continue;
+      var text = fold(n.nodeValue);
+      terms.forEach(function (w) {
+        for (var i = text.indexOf(w); i >= 0 && ranges.length < 200; i = text.indexOf(w, i + w.length)) {
+          var r = document.createRange();
+          r.setStart(n, i); r.setEnd(n, i + w.length);
+          ranges.push(r);
+        }
+      });
+    }
+    if (!ranges.length) return;
+    CSS.highlights.set('site-q', (function () { var h = new Highlight(); ranges.forEach(function (r) { h.add(r); }); return h; })());
+    if (!cur.scrolled) {
+      cur.scrolled = true;
+      var first = ranges.filter(function (r) { return r.getClientRects().length; })
+                        .sort(function (a, b) { return a.getBoundingClientRect().top - b.getBoundingClientRect().top; })[0];
+      if (first) {
+        var b = first.getBoundingClientRect();
+        if (b.bottom > innerHeight - 90) {
+          var calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+          scrollBy({ top: b.top - innerHeight * 0.4, behavior: calm ? 'auto' : 'smooth' });
+        }
+      }
+    }
+  }
+  function start() {
+    var v = take();
+    if (!v) return;
+    cur = v;
+    clearTimeout(timer);
+    apply();
+    setTimeout(apply, 600);
+    timer = setTimeout(function () { cur = null; clear(); }, SHOW);
+  }
+  start();
+  window.addEventListener('hashchange', start);
+  document.addEventListener('komaki:i18n-applied', apply);
+  ['pointerdown', 'keydown'].forEach(function (ev) {
+    document.addEventListener(ev, function () { if (cur && cur.scrolled) { cur = null; clear(); } }, true);
+  });
 })();

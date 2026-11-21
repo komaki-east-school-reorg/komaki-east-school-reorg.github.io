@@ -2206,5 +2206,7 @@
   "prep_m3_p": "Kedelapan sekolah saat ini masing-masing mengadakan upacara penutupan, dan perlengkapan dipindahkan ke sekolah baru.",
   "prep_m4_t": "April 2027",
   "prep_m4_p": "Empat sekolah baru dimulai, dan bus sekolah untuk siswa SD dijadwalkan mulai beroperasi.",
-  "prep_any": "Ragu apa yang perlu dibeli? Lihat FAQ tentang <a href=\"faq.html#faq-q17\">seragam</a> dan <a href=\"faq.html#faq-q23\">topi sekolah</a>."
+  "prep_any": "Ragu apa yang perlu dibeli? Lihat FAQ tentang <a href=\"faq.html#faq-q17\">seragam</a> dan <a href=\"faq.html#faq-q23\">topi sekolah</a>.",
+  "search_hints": "bus sekolah|seragam|wilayah|pengarahan|upacara|kontak",
+  "gloss_pointer": "Ada istilah yang kurang jelas? Lihat <a href=\"about.html#glossary\">Kata-kata yang perlu diketahui</a>."
 }

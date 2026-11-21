@@ -2206,5 +2206,7 @@
   "prep_m3_p": "Mevcut sekiz okulun her biri kapanış töreni yapar; okul eşyaları yeni okullara taşınır.",
   "prep_m4_t": "Nisan 2027",
   "prep_m4_p": "Dört yeni okul açılır; ilkokul öğrencileri için okul servisinin de başlaması planlanmaktadır.",
-  "prep_any": "Ne alacağınızdan emin değil misiniz? <a href=\"faq.html#faq-q17\">Üniforma</a> ve <a href=\"faq.html#faq-q23\">okul şapkası</a> sorularına bakın."
+  "prep_any": "Ne alacağınızdan emin değil misiniz? <a href=\"faq.html#faq-q17\">Üniforma</a> ve <a href=\"faq.html#faq-q23\">okul şapkası</a> sorularına bakın.",
+  "search_hints": "okul servisi|üniforma|bölge|toplantı|tören|iletişim",
+  "gloss_pointer": "Bir terimi bilmiyor musunuz? <a href=\"about.html#glossary\">Bilinmesi gereken sözcükler</a> bölümüne bakın."
 }

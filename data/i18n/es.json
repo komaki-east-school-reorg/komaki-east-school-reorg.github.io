@@ -2206,5 +2206,7 @@
   "prep_m3_p": "Cada una de las ocho escuelas actuales celebra su ceremonia de cierre, y el equipamiento se traslada a las nuevas escuelas.",
   "prep_m4_t": "Abril de 2027",
   "prep_m4_p": "Comienzan las cuatro nuevas escuelas y está previsto que empiece el bus escolar para primaria.",
-  "prep_any": "¿Dudas sobre qué comprar? Consulta las preguntas sobre <a href=\"faq.html#faq-q17\">uniformes</a> y <a href=\"faq.html#faq-q23\">gorras escolares</a>."
+  "prep_any": "¿Dudas sobre qué comprar? Consulta las preguntas sobre <a href=\"faq.html#faq-q17\">uniformes</a> y <a href=\"faq.html#faq-q23\">gorras escolares</a>.",
+  "search_hints": "bus escolar|uniforme|distrito escolar|reunión|ceremonia de cierre|contacto",
+  "gloss_pointer": "¿No conoces algún término? Mira <a href=\"about.html#glossary\">Palabras que conviene conocer</a>."
 }

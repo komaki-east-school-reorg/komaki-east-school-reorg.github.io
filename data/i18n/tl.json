@@ -2206,5 +2206,7 @@
   "prep_m3_p": "Magdaraos ng seremonya ng pagsasara ang bawat isa sa walong paaralan, at ililipat ang mga kagamitan sa bagong paaralan.",
   "prep_m4_t": "Abril 2027",
   "prep_m4_p": "Magbubukas ang apat na bagong paaralan, at nakatakdang magsimula ang school bus para sa elementarya.",
-  "prep_any": "Hindi sigurado kung ano ang bibilhin? Tingnan ang FAQ tungkol sa <a href=\"faq.html#faq-q17\">uniporme</a> at <a href=\"faq.html#faq-q23\">sumbrero</a>."
+  "prep_any": "Hindi sigurado kung ano ang bibilhin? Tingnan ang FAQ tungkol sa <a href=\"faq.html#faq-q17\">uniporme</a> at <a href=\"faq.html#faq-q23\">sumbrero</a>.",
+  "search_hints": "school bus|uniporme|distrito|briefing|seremonya|makipag-ugnayan",
+  "gloss_pointer": "Hindi malinaw ang isang salita? Tingnan ang <a href=\"about.html#glossary\">Mga salitang dapat alamin</a>."
 }

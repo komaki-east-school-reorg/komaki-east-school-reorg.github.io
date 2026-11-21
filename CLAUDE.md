@@ -652,6 +652,10 @@ Every page carries a `<section class="section share" id="share">` just above `</
 - 出力は入力だけで決まる（DTSTAMP は予定の日付から、終わった予定も残す）。`REFRESH-INTERVAL` / `X-PUBLISHED-TTL` は1日。
 - 作り直すのは `fetch-news.yml`（毎日・起案AIのあと）と `translate-headlines.yml`（訳が入ると催しの名前が変わる）。自動更新ジョブの `ALLOWED_GENERATED` に `calendar.xx.ics` を入れてある。sitemap には入れない。集計は `calendar/subscribe`・`calendar/sub-copy`。
 
+### 検索の言い換え語・入口の語・着地の強調（2026-11-21）
+
+日次アイデア 9/21・9/27・11/8・11/15・11/21 を統合。**言い換え語**は `data/search_aliases.json`（手編集可。値は本文で実際に使う語だけ。言語は `ja`〈こどもむけも使う〉と `en`）。**入口の語**は `search_hints`（`|` 区切り、`RUNTIME_KEYS`）で、検索の窓の中だけに出す（トップの欄は入力欄1本のまま）。語を変えたら `site_lint.py` の `search_words` が索引に当たるかを見る。**LANDING**（`js/main.js`）は検索結果と「あわせて読みたい」から着いたときだけ見出しを強調し、検索語を CSS Custom Highlight API で示す。語は `sessionStorage` の `komaki_land` に15秒だけ置き、**URL・集計には載せない**。`faq.html`・`bus.html` の Q&A の冒頭にことばメモへの案内（`gloss_pointer`）。
+
 ### 本文へ移動・上へ戻る（全ページ、2026-11-05）
 
 ユーザーが過去の提案から選んだ（2026-09-02）。`js/main.js` の SKIP LINK / TO TOP。**本文へ移動**は `<body>` の先頭に JS で差し込むリンク（`.skip-link`、Tab の最初、フォーカスで見える）で、`<main>` に id（無ければ `main-content`）と `tabindex=-1` を付けて飛ばす。**上へ戻る**（`.to-top`）は 1.5画面ぶん下で右下に出る。画面下の共有バーの実際の高さを測って（`--share-sticky-h`）その上に浮かせる。`prefers-reduced-motion` では瞬時に移動、印刷では隠す。文言は `skip_to_main` / `to_top`（`RUNTIME_KEYS`）、集計は `nav/top`・`nav/skip`。

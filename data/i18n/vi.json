@@ -2206,5 +2206,7 @@
   "prep_m3_p": "Mỗi trường trong 8 trường hiện tại tổ chức lễ đóng trường; thiết bị được chuyển sang trường mới.",
   "prep_m4_t": "Tháng 4/2027",
   "prep_m4_p": "Bốn trường mới bắt đầu hoạt động; xe buýt trường cho học sinh tiểu học dự kiến bắt đầu chạy.",
-  "prep_any": "Chưa rõ cần mua gì? Xem câu hỏi về <a href=\"faq.html#faq-q17\">đồng phục</a> và <a href=\"faq.html#faq-q23\">mũ đi học</a>."
+  "prep_any": "Chưa rõ cần mua gì? Xem câu hỏi về <a href=\"faq.html#faq-q17\">đồng phục</a> và <a href=\"faq.html#faq-q23\">mũ đi học</a>.",
+  "search_hints": "xe buýt|đồng phục|khu vực|buổi giới thiệu|lễ|liên hệ",
+  "gloss_pointer": "Chưa rõ một từ? Xem <a href=\"about.html#glossary\">Từ ngữ cần biết</a>."
 }

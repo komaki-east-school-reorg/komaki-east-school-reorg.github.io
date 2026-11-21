@@ -4,6 +4,12 @@
     {
       "date": "2026-11-21",
       "type": "feature",
+      "ja": "サイト内検索に言い換え語と入口の語、着いた所の強調を追加",
+      "en": "Site search now understands similar words, suggests starting points and highlights matches"
+    },
+    {
+      "date": "2026-11-21",
+      "type": "feature",
       "ja": "スケジュールに計画の段階の図と入学・進級までの流れを追加",
       "en": "Plan stage diagram and a guide to getting ready for April 2027 added to the schedule",
       "link": "schedule.html#prep"

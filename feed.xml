@@ -35,6 +35,14 @@
     <summary>サイトの更新履歴｜スケジュールに計画の段階の図と入学・進級までの流れを追加</summary>
   </entry>
   <entry>
+    <title>サイト内検索に言い換え語と入口の語、着いた所の強調を追加</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:d38a8ea9fc8adbb5</id>
+    <updated>2026-11-21T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜サイト内検索に言い換え語と入口の語、着いた所の強調を追加</summary>
+  </entry>
+  <entry>
     <title>市が「篠岡地区における学校再編について」のページを更新</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#news"/>
     <id>tag:komaki-east-school-reorg.github.io,2026:b68c308e3f212298</id>
@@ -321,13 +329,5 @@
     <updated>2026-11-06T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜新着の帯を、直近5日の情報をページを開くたびに表示</summary>
-  </entry>
-  <entry>
-    <title>ページの上へ戻るボタンと「本文へ移動」のリンクを追加</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:b6812b90ecc05711</id>
-    <updated>2026-11-06T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜ページの上へ戻るボタンと「本文へ移動」のリンクを追加</summary>
   </entry>
 </feed>

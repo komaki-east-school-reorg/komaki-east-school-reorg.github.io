@@ -429,6 +429,35 @@ def handover():
     return cap(sorted(set(out)))
 
 
+def search_words():
+    """検索の窓の入口の語（search_hints）と言い換え先（data/search_aliases.json）が、その言語の索引に実際に当たるか。"""
+    import unicodedata
+    def norm(s, cjk):
+        s = unicodedata.normalize("NFKC", s).lower()
+        s = "".join(chr(ord(c) - 0x60) if "ァ" <= c <= "ヶ" else c for c in s)
+        return re.sub(r"\s+", "", s) if cjk else re.sub(r"\s+", " ", s)
+    out = []
+    aliases = json.load(open("data/search_aliases.json", encoding="utf-8"))
+    hays = {}
+    def hit(lang, word):
+        cjk = lang in ("ja", "ja-kids", "zh")
+        if lang not in hays:
+            d = json.load(open(f"data/search/{lang}.json", encoding="utf-8"))
+            hays[lang] = "\n".join(norm(it[2], cjk) + " " + norm(it[3], cjk) for it in d["items"])
+        return norm(word, cjk) in hays[lang]
+    for lang in ["ja", "ja-kids", "en", "pt", "vi", "tl", "es", "zh", "id", "ko", "ne", "tr", "my"]:
+        v = json.load(open(f"data/i18n/{lang}.json", encoding="utf-8")).get("search_hints", "")
+        for w in v.split("|"):
+            if not hit(lang, w):
+                out.append(f"{lang}: 入口の語「{w}」が索引に当たらない")
+    for lang in ("ja", "en"):
+        for k, vals in aliases[lang].items():
+            for w in vals:
+                if not hit(lang, w) and not (lang == "ja" and hit("ja-kids", w)):
+                    out.append(f"{lang}: 言い換え「{k}→{w}」が索引に当たらない")
+    return out
+
+
 CHECKS = [
     ("辞書に無いキー（HTML の data-i18n）", missing_keys),
     ("サイト内リンクの切れ", broken_links),
@@ -445,6 +474,7 @@ CHECKS = [
     ("古い「時点」表記", old_asof),
     ("「市民」の表記（サイトは「住民」）", shimin),
     ("HANDOVER.md との食い違い", handover),
+    ("検索の入口の語・言い換え語が索引に当たらない", search_words),
 ]
 
 
