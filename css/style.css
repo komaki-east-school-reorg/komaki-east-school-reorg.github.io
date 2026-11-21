@@ -3834,3 +3834,4 @@ html.has-share-sticky .to-top { bottom: calc(var(--share-sticky-h, 3.4rem) + .8r
 .east-quiz .season-line-l { color: rgba(255,255,255,.86); }
 .east-quiz .season-pick { color: var(--accent); }
 .east-quiz .season-pick img { background: var(--white); border-radius: var(--radius-sm); }
+#east-quiz-h { scroll-margin-top: calc(var(--header-h, 80px) + 1.7rem); }
