@@ -1,8 +1,95 @@
 {
-  "fetched_at": "2026-11-20T03:35:21Z",
+  "fetched_at": "2026-11-21T03:25:48Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "hikarigaoka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "光ヶ丘中学校",
+        "ja_kids": "ひかりがおか中学校",
+        "en": "Hikarigaoka Junior High",
+        "zh": "光之丘中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
+      "latest_date": "2026-11-21",
+      "items": [
+        {
+          "title": "全尾張中学軟式野球大会 １回戦突破",
+          "date": "2026-11-21",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136594509?tm=20261121121040"
+        },
+        {
+          "title": "夢の教室",
+          "date": "2026-11-20",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136592971?tm=20261120173811"
+        },
+        {
+          "title": "『冬の足音と、新しいご縁』",
+          "date": "2026-11-14",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136553342?tm=20261114141720"
+        }
+      ]
+    },
+    {
+      "slug": "sue-e",
+      "level": "elem",
+      "names": {
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-11-20",
+      "items": [
+        {
+          "title": "11月２０日 夢チャレンジ科～漫画講座～",
+          "date": "2026-11-20",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136593899?tm=20261120194006"
+        },
+        {
+          "title": "11/20 社会：陶地区の戦国時代（６年生）",
+          "date": "2026-11-20",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136589826?tm=20261120134438"
+        },
+        {
+          "title": "11/19 今日の給食",
+          "date": "2026-11-19",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136554008?tm=20261119141024"
+        }
+      ]
+    },
+    {
+      "slug": "shinooka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "篠岡中学校",
+        "ja_kids": "しのおか中学校",
+        "en": "Shinooka Junior High",
+        "zh": "篠冈中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
+      "latest_date": "2026-11-20",
+      "items": [
+        {
+          "title": "３年生 家庭科",
+          "date": "2026-11-20",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136593163?tm=20261120175130"
+        },
+        {
+          "title": "１年生 職業調べ インタビューの仕方",
+          "date": "2026-11-20",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136590326?tm=20261120141806"
+        },
+        {
+          "title": "２年生 道徳",
+          "date": "2026-11-18",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136572623?tm=20261118122755"
+        }
+      ]
+    },
     {
       "slug": "momogaoka-e",
       "level": "elem",
@@ -58,35 +145,6 @@
           "title": "航空写真",
           "date": "2026-11-10",
           "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136513629?tm=20261109112302"
-        }
-      ]
-    },
-    {
-      "slug": "sue-e",
-      "level": "elem",
-      "names": {
-        "ja": "陶小学校",
-        "ja_kids": "すえ小学校",
-        "en": "Sue Elem. School",
-        "zh": "陶小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-11-19",
-      "items": [
-        {
-          "title": "11/19 今日の給食",
-          "date": "2026-11-19",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136554008?tm=20261119141024"
-        },
-        {
-          "title": "11/18 今日の給食",
-          "date": "2026-11-19",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136554007?tm=20261118135838"
-        },
-        {
-          "title": "11/18 閉校記念秋季大運動会13：閉会式",
-          "date": "2026-11-18",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136575646?tm=20261118162102"
         }
       ]
     },
@@ -174,64 +232,6 @@
           "title": "4年生 国語「クラスみんなで決めるには」",
           "date": "2026-11-19",
           "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136579045?tm=20261119103456"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "篠岡中学校",
-        "ja_kids": "しのおか中学校",
-        "en": "Shinooka Junior High",
-        "zh": "篠冈中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-11-18",
-      "items": [
-        {
-          "title": "２年生 道徳",
-          "date": "2026-11-18",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136572623?tm=20261118122755"
-        },
-        {
-          "title": "１年生 テストが終わりました",
-          "date": "2026-11-18",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136571409?tm=20261118105734"
-        },
-        {
-          "title": "１年生 第３回定期テスト 最終日",
-          "date": "2026-11-18",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136571382?tm=20261118105432"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "光ヶ丘中学校",
-        "ja_kids": "ひかりがおか中学校",
-        "en": "Hikarigaoka Junior High",
-        "zh": "光之丘中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
-      "latest_date": "2026-11-14",
-      "items": [
-        {
-          "title": "『冬の足音と、新しいご縁』",
-          "date": "2026-11-14",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136553342?tm=20261114141720"
-        },
-        {
-          "title": "尾張東部少年軟式野球大会 準決勝",
-          "date": "2026-11-09",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136518056?tm=20261109180657"
-        },
-        {
-          "title": "第36回尾張東部少年（中学）軟式野球大会",
-          "date": "2026-11-04",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136491684?tm=20261104195442"
         }
       ]
     }
