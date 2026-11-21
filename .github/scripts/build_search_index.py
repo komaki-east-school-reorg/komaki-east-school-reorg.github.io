@@ -90,6 +90,9 @@ class Walker(HTMLParser):
                 info["skip"] = True
                 self.skip += 1
             else:
+                key = a.get("data-i18n-html") or a.get("data-i18n")
+                is_sec_h2 = (tag == "h2" and "section-title" in cls and key and self.cur
+                             and self.records[self.cur[-1]].get("sec_id") is not None)
                 if tag == "section":
                     info["sec"] = True
                     info["rec"] = self._new(a.get("id") or "")
@@ -97,11 +100,22 @@ class Walker(HTMLParser):
                 elif "faq-item" in cls:
                     info["faq"] = True
                     info["rec"] = self._new("")
+                elif is_sec_h2:
+                    # 1つの <section> に h2 がいくつもあるページ（nationwide.html）は、h2 ごとに項目を分ける。
+                    # 飛び先は PAGE TOC と同じ規則（2026-11-22。分けないと本文が1項目に固まり、検索が別の節へ飛んでいた）
+                    top = self.cur[-1]
+                    if "h2key" in self.records[top]:
+                        new = self._new("")
+                        self.records[new]["parent"] = self.records[top]["parent"]
+                        self.records[new]["sec_id"] = ""
+                        self.cur[-1] = new
+                        for _, inf in self.stack:
+                            if inf["rec"] == top:
+                                inf["rec"] = new
                 elif a.get("id") and self.cur:
                     info["rec"] = self._new(a["id"])
                 if info["rec"] is not None:
                     self.cur.append(info["rec"])
-                key = a.get("data-i18n-html") or a.get("data-i18n")
                 is_h2 = tag == "h2" and "section-title" in cls
                 if self.cur and key and not self.keyed:
                     r = self.records[self.cur[-1]]

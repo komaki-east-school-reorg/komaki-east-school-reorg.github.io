@@ -365,6 +365,8 @@ The **地域の取組 section on `community.html`**, sitting directly below the 
 日次アイデアにたまっていた検査の案（約20件）を1本にまとめた。**止めない点検**で、`.github/workflows/check-site.yml`（毎週月曜 6:20 JST）が `.github/scripts/site_lint.py` を回し、気になる所があれば Issue「🧹 サイトの点検」1件で知らせる（開いていれば追記、自動では閉じない）。外部にはアクセスせず、AI も使わない。
 
 - 見るもの：使われていない辞書のキー／訳の抜け（12言語・こどもむけ）／言語の一覧のそろい（`i18n.js`・各スクリプト・sitemap）／`meta_desc_*` の長さ／`target="_blank"` の `rel="noopener"`／`<img>` の `alt`・`width`・`height` と挿絵 SVG の文字／`site_version` と `og-image.png?v=` のそろい／文中の数と実数（`faq_qa_intro` の「◯問」、`faq_q` の連番、`rev_open_short` の「◯問」）／1日の予定の `"day": true`／ページ別辞書の重さ／3か月より古い `*_asof`／「市民」の表記（固有名詞の許可リスト `SHIMIN_OK`）／`HANDOVER.md` とワークフロー・Secrets・Issue の印の食い違い。
+- 2026-11-22 に3つ足した（日次アイデア 11/11・11/12）：日付と曜日の食い違い（`weekday_mismatch`。年が直前に無い日付は 2025〜2027 年のどれとも合わないものだけ）、許可する市の URL の記載もれ（`permitted_sync`。`auto_gates.py` の `PERMITTED_LINKS` と CLAUDE.md・`CONTRIBUTING.txt`・`README.md`）、関連リンクの偏り（`crosslink_balance`。どこからも指されないページ・3割超が集まるページ）。
+- `build_search_index.py` は、1つの `<section>` に h2 が複数あるページ（nationwide.html）を **h2 ごとの項目に分ける**（飛び先は PAGE TOC と同じ規則）。
 - **検査を足したいときは、まずここに点検を1つ足す**（関数を書いて `CHECKS` に足す）。`auto_gates.py` に足すのは、壊れると読者に見えるものだけ — 止める検査が増えると、毎日の自動更新が小さなことで止まる。いま上げてあるのは check 28（辞書に無いキー）と 29（サイト内リンク切れ）の2つで、どちらも `site_lint.py` の関数を呼ぶ（実装は1か所）。
 - 固有名詞を足したら `SHIMIN_OK`、言語を足したら `LANGS`、Issue の種類を足したら `HANDOVER.md` の表も直す（点検が食い違いを知らせる）。
 - 2026-11-11 に、点検で見つかった使われていないキー9つ（`rel_voices_*`・`rev_f11_*`・`rev_f12_*`・`rev_src_pref`・`site_op_label`）を13辞書から消した。

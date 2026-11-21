@@ -458,6 +458,81 @@ def search_words():
     return out
 
 
+def weekday_mismatch():
+    """「M月D日（曜）」の曜日が実際と合っているか（ja・こどもむけ・events.json の ja・HTML）。
+    年が日付の直前に書いてあればその年で確かめる。無ければ 2025〜2027 年のどれとも合わないものだけを報告する。"""
+    import unicodedata
+    W = "月火水木金土日"
+    pat = re.compile(r"(?:(20\d\d)年|令和(\d{1,2})年)?\s*(?:(\d{1,2})月)?(\d{1,2})日\s*[（(]([月火水木金土日])(?:曜日?)?[）)]")
+    def check(where, text):
+        out = []
+        text = unicodedata.normalize("NFKC", str(text))
+        month = None
+        for m in pat.finditer(text):
+            y = int(m.group(1)) if m.group(1) else (2018 + int(m.group(2)) if m.group(2) else None)
+            if m.group(3):
+                month = int(m.group(3))
+            if month is None:
+                continue
+            ok = False
+            real = []
+            for yy in ([y] if y else [2025, 2026, 2027]):
+                try:
+                    wd = W[datetime.date(yy, month, int(m.group(4))).weekday()]
+                except ValueError:
+                    continue
+                real.append(f"{yy}年は{wd}")
+                ok = ok or wd == m.group(5)
+            if not ok:
+                out.append(f"{where}: {month}月{m.group(4)}日（{m.group(5)}）→ " + "・".join(real))
+        return out
+    out = []
+    for lang in ("ja", "ja-kids"):
+        for k, v in json.load(open(f"data/i18n/{lang}.json", encoding="utf-8")).items():
+            out += check(f"{lang}:{k}", v)
+    for day, v in json.load(open("data/events.json", encoding="utf-8"))["events"].items():
+        for e in (v if isinstance(v, list) else [v]):
+            out += check(f"events:{day}", e.get("ja", ""))
+    for f in sorted(glob.glob("*.html")):
+        out += check(f, re.sub(r"<!--.*?-->", "", open(f, encoding="utf-8").read(), flags=re.S))
+    return sorted(set(out))
+
+
+def permitted_sync():
+    """auto_gates.py の許可する市の URL が、CLAUDE.md・CONTRIBUTING.txt・README.md にも書いてあるか。"""
+    import ast
+    src = open(".github/scripts/auto_gates.py", encoding="utf-8").read()
+    links = None
+    for node in ast.parse(src).body:
+        if isinstance(node, ast.Assign) and getattr(node.targets[0], "id", "") == "PERMITTED_LINKS":
+            links = ast.literal_eval(node.value)
+    if not links:
+        return ["auto_gates.py の PERMITTED_LINKS を読めない"]
+    out = []
+    for doc in ("CLAUDE.md", "CONTRIBUTING.txt", "README.md"):
+        text = open(doc, encoding="utf-8").read()
+        for u in links:
+            tail = u[3:] if u.startswith("jp/") else u
+            if tail not in text:
+                out.append(f"{doc}: {tail} が無い")
+    return out
+
+
+def crosslink_balance():
+    """「あわせて読みたい」でどこからも指されないページと、3割を超えて集まるページ。"""
+    incoming = {}
+    total = 0
+    pages = [os.path.basename(f)[:-5] for f in glob.glob("data/crosslinks/*.json")]
+    for f in glob.glob("data/crosslinks/*.json"):
+        for rows in json.load(open(f, encoding="utf-8"))["links"].values():
+            for page, _ in rows:
+                incoming[page] = incoming.get(page, 0) + 1
+                total += 1
+    out = [f"{p}: どこからも指されていない" for p in sorted(pages) if p != "site" and not incoming.get(p)]
+    out += [f"{p}: 全体の{n * 100 // total}%（{n}本）が集まっている" for p, n in sorted(incoming.items()) if total and n / total > 0.3]
+    return out
+
+
 CHECKS = [
     ("辞書に無いキー（HTML の data-i18n）", missing_keys),
     ("サイト内リンクの切れ", broken_links),
@@ -475,6 +550,9 @@ CHECKS = [
     ("「市民」の表記（サイトは「住民」）", shimin),
     ("HANDOVER.md との食い違い", handover),
     ("検索の入口の語・言い換え語が索引に当たらない", search_words),
+    ("日付と曜日の食い違い", weekday_mismatch),
+    ("許可する市の URL の記載もれ", permitted_sync),
+    ("関連リンクの偏り", crosslink_balance),
 ]
 
 

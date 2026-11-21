@@ -65,11 +65,15 @@
     },
     {
       "date": "2026-11-12",
-      "title": "[機能] 日付に添えた曜日が実際の曜日と合っているかを点検"
+      "title": "[機能] 日付に添えた曜日が実際の曜日と合っているかを点検",
+      "implemented": "2026-11-22",
+      "note": "site_lint.py に crosslink_balance・weekday_mismatch・permitted_sync を追加。点検で見つかった nationwide.html の検索・関連リンクの不具合（1つの section に複数の h2）も修正"
     },
     {
       "date": "2026-11-12",
-      "title": "[機能] 許可する外部リンクの一覧が4か所でそろっているかを点検"
+      "title": "[機能] 許可する外部リンクの一覧が4か所でそろっているかを点検",
+      "implemented": "2026-11-22",
+      "note": "site_lint.py に crosslink_balance・weekday_mismatch・permitted_sync を追加。点検で見つかった nationwide.html の検索・関連リンクの不具合（1つの section に複数の h2）も修正"
     },
     {
       "date": "2026-11-11",
@@ -79,7 +83,9 @@
     },
     {
       "date": "2026-11-11",
-      "title": "[機能] 「あわせて読みたい」の偏りと孤立ページを検査・報告"
+      "title": "[機能] 「あわせて読みたい」の偏りと孤立ページを検査・報告",
+      "implemented": "2026-11-22",
+      "note": "site_lint.py に crosslink_balance・weekday_mismatch・permitted_sync を追加。点検で見つかった nationwide.html の検索・関連リンクの不具合（1つの section に複数の h2）も修正"
     },
     {
       "date": "2026-11-10",

@@ -3,6 +3,13 @@
   "updates": [
     {
       "date": "2026-11-22",
+      "type": "fix",
+      "ja": "全国の動きのページが検索と関連リンクで正しい節に届くよう修正",
+      "en": "Search and related links now reach the right section of the nationwide page",
+      "link": "nationwide.html"
+    },
+    {
+      "date": "2026-11-22",
       "type": "feature",
       "ja": "各ページに最近の更新を表示、Q&Aの共有で質問がカードに出る形に",
       "en": "Each page now lists its recent updates, and shared Q&A links show the question"
