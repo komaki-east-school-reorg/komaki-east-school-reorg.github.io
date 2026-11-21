@@ -632,6 +632,10 @@ Every page carries a `<section class="section share" id="share">` just above `</
 - **文を変えたら** `build_search_index.py` → `build_crosslinks.py` の順に回す（毎日の自動更新と週1回の番号照合のワークフローも同じ順で作り直す。`ALLOWED_GENERATED` に入れてある）。新しい節・Q&A・カードは自動で対象になる。
 - 文言は `xlinks_label`（`RUNTIME_KEYS`）。読み上げ（`SKIP`）・原文併記（`ORIG_SKIP`）・検索の索引（`SKIP_CLASSES`）から外し、印刷では隠す。集計は `xlink/go`。
 
+### 計画の段階の図と「入学・進級までの流れ」（schedule.html、2026-11-21）
+
+日次アイデア 9/17・11/15 を統合。`#plan-steps` は PLAN STEPS（`js/main.js`）が下の縦の年表（`.tl-item`）の名前と状態から作るので、**段階を直すときは年表だけ直す**。`#prep` は公表済みの予定だけを時期ごとに並べ（キー `prep_*`）、過ぎた時期は `data-until`、節全体は `data-expires="2027-04-30"` で外れる。未公表の日程は項目にせず、バスの持ち物などは `bus.html#checklist` へ送って二重に書かない。予定が変わったら `events.json`・schedule.html の一覧と一緒に `prep_m*` も直す。
+
 ### カレンダーの月送りと「この月の予定」（schedule.html、2026-11-11）
 
 日次アイデアのカレンダーまわりの案をまとめたもの。CALENDAR（`js/main.js`）の中。

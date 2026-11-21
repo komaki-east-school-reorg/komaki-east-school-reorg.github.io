@@ -3698,3 +3698,31 @@ html.has-share-sticky .to-top { bottom: calc(var(--share-sticky-h, 3.4rem) + .8r
   .kz-pubcom, .kz-col--new { border-style: double; border-width: 4px; }
 }
 @media print { .kz-card, .kz-pubcom { break-inside: avoid; } }
+
+/* 計画の段階の図と「入学・進級までの流れ」（schedule.html、2026-11-21） */
+.plan-steps { list-style: none; display: flex; gap: .25rem; margin: 0 0 1.6rem; padding: .2rem .1rem .5rem; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.plan-steps[hidden] { display: none; }
+.plan-step { flex: 1 0 6.2rem; min-width: 0; position: relative; }
+.plan-step::before { content: ""; position: absolute; top: .95rem; left: -50%; width: 100%; height: 2px; background: var(--border); }
+.plan-step:first-child::before { display: none; }
+.plan-step.is-done::before, .plan-step.is-current::before { background: var(--primary); }
+.plan-step a { position: relative; display: flex; flex-direction: column; align-items: center; gap: .3rem; padding: 0 .15rem; color: var(--text-muted); text-decoration: none; text-align: center; font-size: .76rem; line-height: 1.35; }
+.plan-step-n { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; border: 2px solid var(--border); background: var(--white); color: var(--text-muted); font-weight: 700; }
+.plan-step.is-done .plan-step-n { background: var(--primary); border-color: var(--primary); color: #fff; }
+.plan-step.is-current .plan-step-n { background: var(--accent); border-color: var(--primary-dark); color: var(--primary-dark); }
+.plan-step.is-current a { color: var(--text); font-weight: 700; }
+.plan-step.is-tbd .plan-step-n { border-style: dashed; }
+.prep { margin-bottom: 2rem; padding: 1.1rem 1.2rem; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); }
+.prep .section-lead { margin-bottom: .8rem; }
+.prep-list { list-style: none; margin: 0; padding: 0; }
+.prep-item { display: grid; grid-template-columns: minmax(8rem, 11rem) 1fr; gap: .2rem 1rem; padding: .65rem .6rem; border-top: 1px solid var(--border); }
+.prep-item:first-child { border-top: 0; }
+.prep-item.is-now { background: var(--accent-light); border-radius: var(--radius-sm); }
+.prep-when { font-weight: 700; color: var(--primary-dark); font-size: .9rem; }
+.prep-now { display: inline-block; margin-left: .25rem; padding: 0 .45rem; border-radius: var(--radius-pill); background: var(--primary-dark); color: #fff; font-size: .72rem; }
+.prep-now[hidden] { display: none; }
+.prep-what { font-size: .92rem; }
+.prep-any { margin: .7rem 0 0; font-size: .88rem; color: var(--text-muted); }
+@media (max-width: 560px) { .prep { padding: .9rem .8rem; } .prep-item { grid-template-columns: 1fr; } }
+@media print { .plan-steps { display: none; } .prep { break-inside: avoid; } }
+@media (forced-colors: active) { .plan-step.is-current .plan-step-n { border-width: 4px; } .prep-item.is-now { outline: 2px solid CanvasText; } }

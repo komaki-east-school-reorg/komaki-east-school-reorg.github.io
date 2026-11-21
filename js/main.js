@@ -1690,6 +1690,46 @@ window.KomakiGrade = (function () {
   document.addEventListener('komaki:i18n-applied', prune);
 })();
 
+/* ===== PLAN STEPS（schedule.html の段階の図と「いまの時期」。2026-11-21、日次アイデア 9/17・11/15） =====
+   図の中身は下の縦の年表（.tl-item）から作る。段階の名前と状態（完了・進行中・予定・未定）を2か所に書かないため。
+   読み上げ・原文併記・検索の索引からは外してある（同じ文が年表にあるので）。 */
+(function () {
+  var box = document.getElementById('plan-steps');
+  if (!box) return;
+  var items = Array.prototype.slice.call(document.querySelectorAll('.timeline .tl-item'));
+  items.forEach(function (it, i) { if (!it.id) it.id = 'tl-phase-' + (i + 1); });
+  function jst() {
+    return new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10);
+  }
+  function draw() {
+    box.textContent = '';
+    items.forEach(function (it, i) {
+      var dot = it.querySelector('.tl-dot'), title = it.querySelector('.tl-title');
+      if (!dot || !title) return;
+      var st = ['done', 'current', 'tbd'].filter(function (c) { return dot.classList.contains(c); })[0] || 'next';
+      var li = document.createElement('li'), a = document.createElement('a'), n = document.createElement('span'), t = document.createElement('span');
+      li.className = 'plan-step is-' + st;
+      a.href = '#' + it.id;
+      if (st === 'current') a.setAttribute('aria-current', 'step');
+      n.className = 'plan-step-n'; n.textContent = i + 1;
+      t.className = 'plan-step-t'; t.textContent = title.textContent;
+      a.appendChild(n); a.appendChild(t); li.appendChild(a); box.appendChild(li);
+    });
+    box.hidden = false;
+    var cur = box.querySelector('.is-current');
+    if (cur && box.scrollWidth > box.clientWidth) box.scrollLeft = cur.offsetLeft - (box.clientWidth - cur.offsetWidth) / 2;
+    var t = jst();
+    document.querySelectorAll('.prep-item').forEach(function (li) {
+      var on = li.getAttribute('data-start') <= t && t <= li.getAttribute('data-until');
+      li.classList.toggle('is-now', on);
+      var mark = li.querySelector('.prep-now');
+      if (mark) mark.hidden = !on;
+    });
+  }
+  draw();
+  document.addEventListener('komaki:i18n-applied', draw);
+})();
+
 /* ===== CHILD ESTIMATE（index.html のヒーロー、東部地域の0〜17歳・当サイトの推定） =====
    2026-10-22 ユーザー指示（ヒーローに大きく）。data/child_estimate.json（build_child_estimate.py が市の人口統計から生成）の
    base_value × exp(daily_rate × 経過日数) を、日本時間の今日の日付で計算する。ワークフローが止まっても
@@ -5820,7 +5860,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   var GAP = 380;
 
   var SKIP = 'script,style,noscript,svg,rt,select,input,textarea,button:not(.faq-q),' +
-             '.tts-row,.page-toc,.faq-q-icon,.section-updated,.bus-map-layers,.bus-area-map,' +
+             '.tts-row,.page-toc,.plan-steps,.faq-q-icon,.section-updated,.bus-map-layers,.bus-area-map,' +
              '[hidden],[aria-hidden="true"],.section-title small,.orig-ja,.mc-ja,' +   // .mc-ja＝窓口で見せる日本語（外国語の声で日本語を読まない）
              '.now-more,.upcoming-more,' +  // 「くわしく見る →」などの案内リンクは読まない
              '.rev-more,.rev-back,.rev-partnav,.rev-num,' +

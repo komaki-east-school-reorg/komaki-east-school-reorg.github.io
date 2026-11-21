@@ -128,7 +128,7 @@
   "point4_link": "Lihat manfaat yang diharapkan →",
   "point4_p": "Sekolah dengan satu kelas per angkatan tidak ada lagi, sehingga kelas dapat diacak setiap tahun. Pilihan kegiatan klub yang lebih banyak, pengajaran oleh guru spesialis tiap mata pelajaran, dan pendidikan terpadu SD–SMP juga diharapkan.",
   "ql_about_p": "Mengapa reorganisasi diperlukan, isi Tahap 1 (5 SD dan 3 SMP menjadi 2 dan 2), pembelajaran dan dukungan setelah reorganisasi (jumlah siswa per kelas, guru, masa peralihan, kesehatan dan keselamatan), lokasi sekolah dan rencana perjalanan, kajian Tahap 2, gedung yang ditutup, cara pengambilan keputusan, penjelasan sederhana kata-kata sulit, dan ke mana bertanya. Juga merangkum penataan ulang sekolah di Kota Kasugai di sebelah dan distrik lain Komaki seperti Kitazato.",
-  "ql_schedule_p": "Tahapan seluruh rencana, kalender bulanan, dan daftar acara penting. Bisa juga dilihat menurut kelas anak Anda dan ditambahkan ke kalender sendiri. Acara bertanggal menampilkan sisa hari, dan instansi kota yang bertanggung jawab dicantumkan.",
+  "ql_schedule_p": "Tahapan seluruh rencana, kalender bulanan, dan daftar acara penting. Bisa juga dilihat menurut kelas anak Anda dan ditambahkan ke kalender sendiri. Acara bertanggal menampilkan sisa hari, dan instansi kota yang bertanggung jawab dicantumkan. Juga memuat hal-hal sebelum April 2027.",
   "ql_faq_p": "Jawaban tentang rencananya, tentang perjalanan ke sekolah dan keseharian, tentang kawasan dan gedung, serta cara menyampaikan pendapat — ditambah suara setuju, menolak, netral dan pokok bahasan dalam konsultasi publik. Ada juga pertanyaan tentang besar kelas, guru, dukungan emosional, dukungan bagi anak yang tidak bersekolah, mengantar anak dengan mobil, dan siapa yang memutuskan isi pelajaran sekolah baru.",
   "ql_council_p": "Merangkum sidang 2026: Maret, perubahan perda sekolah dan petisi; Juni, mempertahankan sekolah kecil dan pemanfaatan gedung yang ditutup; September, petisi penundaan yang ditolak, pernyataan tentang jumlah guru, keselamatan jalan ke sekolah, dan lahan SD Sue. Ada juga jawaban tentang mutu pendidikan, cara menyampaikan pendapat ke DPRD, dan kontak.",
   "ql_bus_p": "Bus sekolah gratis untuk siswa SD mulai tahun fiskal 2027, seluruhnya dibiayai kota. Peta wilayah layanan, cara mendaftar, daftar periksa sebelum naik pertama kali, halte, perusahaan operator, langkah keselamatan, tanya jawab, dan kontak.",
@@ -2194,5 +2194,17 @@
   "rev_o42": "Kapan dan dalam bentuk apa aturan bagi orang yang membuka toko di Tokadai (parkir, perhatian pada lingkungan sekitar, penjelasan kepada warga) akan diumumkan?",
   "rev_o43": "Adakah rencana memasukkan jumlah anak (penduduk muda atau jumlah murid) ke dalam indikator Strategi Pengembangan Wilayah Timur?",
   "sched_date48": "Sabtu, 12 Des 2026",
-  "sched_desc48": "<strong>Rapat rutin Tokadai wo Kangaeru Kai (inisiatif warga)</strong><br>Diadakan pukul 10.00–11.00 di ruang belajar lantai 2 Pusat Komunitas Timur. Kelompok ini mencari anggota baru agar kegiatannya berlanjut pada tahun fiskal berikutnya, dan Anda boleh sekadar melihat. <strong>Ini bukan program kota, melainkan rapat sebuah kelompok warga.</strong>"
+  "sched_desc48": "<strong>Rapat rutin Tokadai wo Kangaeru Kai (inisiatif warga)</strong><br>Diadakan pukul 10.00–11.00 di ruang belajar lantai 2 Pusat Komunitas Timur. Kelompok ini mencari anggota baru agar kegiatannya berlanjut pada tahun fiskal berikutnya, dan Anda boleh sekadar melihat. <strong>Ini bukan program kota, melainkan rapat sebuah kelompok warga.</strong>",
+  "prep_h": "Persiapan menuju April 2027<small>Getting Ready for April 2027</small>",
+  "prep_lead": "Hal-hal yang direncanakan sebelum April 2027, menurut periode. Tanggal pastinya harap dicek pada pemberitahuan dari sekolah atau kota.",
+  "prep_now": "Saat ini",
+  "prep_m1_t": "Sekitar Nov–Des 2026",
+  "prep_m1_p": "Ada uji coba naik bus sekolah dan uji coba aplikasi. Keluarga yang akan memakai bus juga bisa memakai <a href=\"bus.html#checklist\">daftar periksa</a>.",
+  "prep_m2_t": "Februari 2027",
+  "prep_m2_p": "Pengarahan bagi siswa baru tahun depan di dua SD dan dua SMP baru, serta latihan berangkat dan pulang ke sekolah baru.",
+  "prep_m3_t": "Maret 2027",
+  "prep_m3_p": "Kedelapan sekolah saat ini masing-masing mengadakan upacara penutupan, dan perlengkapan dipindahkan ke sekolah baru.",
+  "prep_m4_t": "April 2027",
+  "prep_m4_p": "Empat sekolah baru dimulai, dan bus sekolah untuk siswa SD dijadwalkan mulai beroperasi.",
+  "prep_any": "Ragu apa yang perlu dibeli? Lihat FAQ tentang <a href=\"faq.html#faq-q17\">seragam</a> dan <a href=\"faq.html#faq-q23\">topi sekolah</a>."
 }

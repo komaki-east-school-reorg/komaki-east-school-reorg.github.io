@@ -128,7 +128,7 @@
   "point4_link": "Tingnan ang mga inaasahang benepisyo →",
   "point4_p": "Mawawala na ang iisang klase bawat baitang, kaya makakapagpalit ng klase taon-taon. Inaasahan din ang mas maraming pagpipiliang club, pagtuturo ng mga gurong espesyalista sa bawat asignatura, at tuluy-tuloy na edukasyon mula elementarya hanggang junior high.",
   "ql_about_p": "Bakit kailangan ang muling pagsasaayos, ang Phase 1 (5 elementarya at 3 hayskul tungo sa 2 at 2), pag-aaral at suporta pagkatapos ng muling pag-aayos (laki ng klase, guro, panahon ng paglipat, kalusugan at kaligtasan), nasaan ang mga paaralan at paano makakarating ang mga bata, ang pag-aaral sa Phase 2, ang mga gusaling isasara, paano nagdedesisyon, simpleng paliwanag sa mahihirap na salita, at kung kanino lalapit. Binubuod din ang muling pagsasaayos ng paaralan sa katabing Kasugai at sa ibang distrito ng Komaki gaya ng Kitazato.",
-  "ql_schedule_p": "Ang mga yugto ng plano, kalendaryo buwan-buwan at listahan ng mahahalagang kaganapan. Maaari ring tingnan ayon sa baitang ng anak at idagdag ang mga petsa sa sariling kalendaryo. Ipinapakita sa mga may petsang event kung ilang araw pa, at nakalista ang mga tanggapan ng lungsod na may hawak.",
+  "ql_schedule_p": "Ang mga yugto ng plano, kalendaryo buwan-buwan at listahan ng mahahalagang kaganapan. Maaari ring tingnan ayon sa baitang ng anak at idagdag ang mga petsa sa sariling kalendaryo. Ipinapakita sa mga may petsang event kung ilang araw pa, at nakalista ang mga tanggapan ng lungsod na may hawak. Nakasaad din ang mga mangyayari bago mag-Abril 2027.",
   "ql_faq_p": "Mga sagot tungkol sa plano, sa pagpasok at pang-araw-araw na buhay, sa komunidad at mga gusali, at sa paraan ng pagbibigay ng opinyon — kasama ang mga boses na sang-ayon, tutol at neutral at ang mga puntong lumabas sa public comment. May mga tanong din tungkol sa laki ng klase, guro, suportang pang-emosyonal, suporta sa mga batang hindi pumapasok, paghatid ng kotse at kung sino ang nagpapasya sa ituturo ng mga bagong paaralan.",
   "ql_council_p": "Buod ng mga sesyon ng 2026: noong Marso, ang pagbabago sa ordinansa ng mga paaralan at ang petisyon; noong Hunyo, ang pagpapanatili ng maliliit na paaralan at paggamit ng mga gusaling isasara; noong Setyembre, ang ibinasurang petisyon ng pagpapaliban, ang pahayag tungkol sa bilang ng guro, kaligtasan sa daan papuntang paaralan at ang lote ng Sue Elementarya. Kasama rin ang mga sagot tungkol sa kalidad ng edukasyon, paano magpahayag sa konseho at mga contact.",
   "ql_bus_p": "Libreng school bus para sa mga mag-aaral sa elementarya mula piskal 2027, buong gastos ng lungsod. Mapa ng saklaw na lugar, paano mag-apply, checklist bago ang unang sakay, mga hintuan, ang operator, hakbang sa kaligtasan, Q&A at mga contact.",
@@ -2194,5 +2194,17 @@
   "rev_o42": "Kailan at sa anong anyo ilalabas ang mga tuntunin para sa magbubukas ng tindahan sa Tokadai (paradahan, pagsasaalang-alang sa paligid, pagpapaliwanag sa mga residente)?",
   "rev_o43": "May balak bang idagdag ang bilang ng mga bata (batang populasyon o bilang ng mag-aaral) sa mga panukat ng Estratehiya sa Pagpapaunlad ng Silangang Distrito?",
   "sched_date48": "Sabado, 12 Dis 2026",
-  "sched_desc48": "<strong>Regular na pulong ng Tokadai wo Kangaeru Kai (mga residente ang nagpapatakbo)</strong><br>Gaganapin nang 10:00–11:00 sa study room sa 2F ng East Community Center. Naghahanap ang grupo ng bagong miyembro para maipagpatuloy ang gawain sa susunod na taon ng piskal, at puwede kang manood lang. <strong>Hindi ito programa ng lungsod kundi pulong ng isang grupo ng mamamayan.</strong>"
+  "sched_desc48": "<strong>Regular na pulong ng Tokadai wo Kangaeru Kai (mga residente ang nagpapatakbo)</strong><br>Gaganapin nang 10:00–11:00 sa study room sa 2F ng East Community Center. Naghahanap ang grupo ng bagong miyembro para maipagpatuloy ang gawain sa susunod na taon ng piskal, at puwede kang manood lang. <strong>Hindi ito programa ng lungsod kundi pulong ng isang grupo ng mamamayan.</strong>",
+  "prep_h": "Paghahanda para sa Abril 2027<small>Getting Ready for April 2027</small>",
+  "prep_lead": "Ang mga nakaplano bago mag-Abril 2027, ayon sa panahon. Tingnan ang eksaktong petsa sa abiso ng paaralan o ng lungsod.",
+  "prep_now": "Ngayon",
+  "prep_m1_t": "Bandang Nob.–Dis. 2026",
+  "prep_m1_p": "May pagsubok sumakay sa school bus at pagsubok ng app. Magagamit din ng mga pamilyang sasakay ang <a href=\"bus.html#checklist\">checklist</a>.",
+  "prep_m2_t": "Pebrero 2027",
+  "prep_m2_p": "Mga briefing para sa mga bagong mag-aaral sa susunod na taon sa dalawang bagong elementarya at dalawang bagong junior high, at pagsasanay sa pagpasok sa bagong paaralan.",
+  "prep_m3_t": "Marso 2027",
+  "prep_m3_p": "Magdaraos ng seremonya ng pagsasara ang bawat isa sa walong paaralan, at ililipat ang mga kagamitan sa bagong paaralan.",
+  "prep_m4_t": "Abril 2027",
+  "prep_m4_p": "Magbubukas ang apat na bagong paaralan, at nakatakdang magsimula ang school bus para sa elementarya.",
+  "prep_any": "Hindi sigurado kung ano ang bibilhin? Tingnan ang FAQ tungkol sa <a href=\"faq.html#faq-q17\">uniporme</a> at <a href=\"faq.html#faq-q23\">sumbrero</a>."
 }

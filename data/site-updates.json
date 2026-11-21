@@ -3,6 +3,13 @@
   "updates": [
     {
       "date": "2026-11-21",
+      "type": "feature",
+      "ja": "スケジュールに計画の段階の図と入学・進級までの流れを追加",
+      "en": "Plan stage diagram and a guide to getting ready for April 2027 added to the schedule",
+      "link": "schedule.html#prep"
+    },
+    {
+      "date": "2026-11-21",
       "type": "content",
       "ja": "都市計画「尾張都市計画桃花台地区計画の変更に関する公聴会の開催」の閲覧期間を予定に掲載",
       "en": "City planning date for the eastern district added to the schedule",

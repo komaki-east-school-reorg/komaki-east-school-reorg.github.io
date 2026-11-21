@@ -128,7 +128,7 @@
   "point4_link": "Ver benefícios esperados →",
   "point4_p": "Mudanças anuais de turma, atividades extracurriculares diversificadas e educação contínua do 1º ao 9º ano — a reorganização abre experiências escolares mais ricas para cada criança.",
   "ql_about_p": "Por que a reorganização é necessária, o que faz a 1ª fase (5 primárias e 3 escolas secundárias viram 2 e 2), aprendizagem e apoio depois da reorganização (tamanho das turmas, professores, transição, saúde e segurança), onde ficam as escolas e como as crianças chegarão, o estudo da 2ª fase, os prédios que fecham, como se decide, explicações simples das palavras difíceis e a quem recorrer. Também resume a reorganização escolar na cidade vizinha de Kasugai e em outros distritos de Komaki, como Kitazato.",
-  "ql_schedule_p": "As fases do plano, um calendário mês a mês e a lista dos principais eventos. Dá para ver pela série do seu filho e adicionar as datas à sua agenda. Os eventos com data mostram quantos dias faltam, e os órgãos responsáveis da prefeitura estão listados.",
+  "ql_schedule_p": "As fases do plano, um calendário mês a mês e a lista dos principais eventos. Dá para ver pela série do seu filho e adicionar as datas à sua agenda. Os eventos com data mostram quantos dias faltam, e os órgãos responsáveis da prefeitura estão listados. Também mostra o que acontece até abril de 2027.",
   "ql_faq_p": "Respostas sobre o plano, sobre o trajeto e o dia a dia, sobre o bairro e os prédios, e sobre como opinar — além de opiniões a favor, contra e neutras e os pontos levantados na consulta pública. Também responde a perguntas sobre o tamanho das turmas, professores, apoio emocional, apoio a crianças que não frequentam a escola, levar os filhos de carro e quem decide o que as novas escolas vão ensinar.",
   "ql_council_p": "Resume as sessões de 2026: em março, a alteração da lei das escolas e a petição; em junho, a manutenção de escolas pequenas e o uso dos prédios fechados; em setembro, a petição de adiamento rejeitada, a moção sobre o número de professores, a segurança no caminho da escola e o terreno da Primária Sue. Há também respostas sobre a qualidade da educação, como enviar opiniões à câmara e contatos.",
   "ql_bus_p": "Ônibus escolar gratuito para os alunos da primária a partir do ano fiscal de 2027, custeado pela prefeitura. Mapa da área atendida, como se inscrever, lista de verificação antes do primeiro dia, pontos, a empresa operadora, segurança, perguntas e contatos.",
@@ -2194,5 +2194,17 @@
   "rev_o42": "Quando e de que forma serão divulgadas as regras para quem abrir loja em Tokadai (estacionamento, cuidado com o entorno, explicação aos moradores)?",
   "rev_o43": "Há intenção de incluir o número de crianças (população jovem ou número de alunos) nos indicadores da Estratégia de Desenvolvimento da Zona Leste?",
   "sched_date48": "sábado, 12 dez 2026",
-  "sched_desc48": "<strong>Reunião regular do Tokadai wo Kangaeru Kai (iniciativa de moradores)</strong><br>Das 10h às 11h, na sala de estudos do 2º andar do Centro Comunitário Leste. O grupo está procurando novos membros para continuar as atividades no próximo ano fiscal, e você pode só assistir. <strong>Não é um programa da prefeitura, e sim uma reunião de um grupo de cidadãos.</strong>"
+  "sched_desc48": "<strong>Reunião regular do Tokadai wo Kangaeru Kai (iniciativa de moradores)</strong><br>Das 10h às 11h, na sala de estudos do 2º andar do Centro Comunitário Leste. O grupo está procurando novos membros para continuar as atividades no próximo ano fiscal, e você pode só assistir. <strong>Não é um programa da prefeitura, e sim uma reunião de um grupo de cidadãos.</strong>",
+  "prep_h": "Preparação para abril de 2027<small>Getting Ready for April 2027</small>",
+  "prep_lead": "O que está previsto até abril de 2027, por período. Confirme as datas exatas nos avisos da escola ou da prefeitura.",
+  "prep_now": "Agora",
+  "prep_m1_t": "Por volta de nov.–dez. de 2026",
+  "prep_m1_p": "Passeios de teste no ônibus escolar e teste do aplicativo. Famílias que usarão o ônibus também podem seguir a <a href=\"bus.html#checklist\">lista de verificação</a>.",
+  "prep_m2_t": "Fevereiro de 2027",
+  "prep_m2_p": "Reuniões para os novos alunos do próximo ano letivo, nas duas novas escolas primárias e duas novas escolas secundárias, e um treino do trajeto até as novas escolas.",
+  "prep_m3_t": "Março de 2027",
+  "prep_m3_p": "Cada uma das oito escolas atuais faz sua cerimônia de encerramento, e os equipamentos são levados para as novas escolas.",
+  "prep_m4_t": "Abril de 2027",
+  "prep_m4_p": "As quatro novas escolas começam, e o ônibus escolar dos alunos do primário está previsto para iniciar.",
+  "prep_any": "Dúvidas sobre o que comprar? Veja as perguntas sobre <a href=\"faq.html#faq-q17\">uniformes</a> e <a href=\"faq.html#faq-q23\">bonés escolares</a>."
 }

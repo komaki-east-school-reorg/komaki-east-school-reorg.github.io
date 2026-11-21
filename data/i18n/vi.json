@@ -128,7 +128,7 @@
   "point4_link": "Xem các lợi ích kỳ vọng →",
   "point4_p": "Thay đổi lớp học hàng năm, hoạt động ngoại khóa đa dạng và giáo dục liên tục từ lớp 1 đến lớp 9 — tái cơ cấu mang lại trải nghiệm học đường phong phú hơn cho mọi trẻ em.",
   "ql_about_p": "Vì sao cần tái cơ cấu, nội dung giai đoạn 1 (5 tiểu học và 3 THCS thành 2 và 2), việc học và hỗ trợ sau tái cơ cấu (sĩ số lớp, giáo viên, giai đoạn chuyển tiếp, sức khỏe và an toàn), vị trí trường và kế hoạch đi học, nghiên cứu giai đoạn 2, các cơ sở đóng cửa, cách ra quyết định, giải thích dễ hiểu các từ khó, và nơi liên hệ. Trang cũng tóm tắt việc tái tổ chức trường học ở TP Kasugai bên cạnh và các khu khác của Komaki như Kitazato.",
-  "ql_schedule_p": "Các giai đoạn của kế hoạch, lịch theo từng tháng và danh sách sự kiện chính. Bạn cũng có thể xem theo khối lớp của con và thêm lịch vào ứng dụng của mình. Các sự kiện có ngày cụ thể hiển thị số ngày còn lại, kèm các cơ quan phụ trách của thành phố.",
+  "ql_schedule_p": "Các giai đoạn của kế hoạch, lịch theo từng tháng và danh sách sự kiện chính. Bạn cũng có thể xem theo khối lớp của con và thêm lịch vào ứng dụng của mình. Các sự kiện có ngày cụ thể hiển thị số ngày còn lại, kèm các cơ quan phụ trách của thành phố. Có cả các việc diễn ra trước tháng 4/2027.",
   "ql_faq_p": "Giải đáp về bản kế hoạch, về việc đi học và sinh hoạt, về khu dân cư và các tòa nhà, và về cách nêu ý kiến — cùng ý kiến ủng hộ, phản đối, trung lập và các vấn đề nêu trong đợt lấy ý kiến. Ngoài ra còn có câu hỏi về sĩ số lớp, giáo viên, hỗ trợ tâm lý, hỗ trợ trẻ không đến trường, đưa con đi học bằng ô tô và ai quyết định nội dung giảng dạy của trường mới.",
   "ql_council_p": "Tóm tắt các kỳ họp năm 2026: tháng 3 là sửa điều lệ trường học và kiến nghị; tháng 6 là việc giữ trường nhỏ và sử dụng tòa nhà sau khi đóng; tháng 9 là kiến nghị hoãn bị bác, văn bản ý kiến về số giáo viên, an toàn đường đến trường và khu đất TH Sue. Có cả các câu trả lời về chất lượng giáo dục, cách gửi ý kiến đến hội đồng và nơi liên hệ.",
   "ql_bus_p": "Xe buýt đưa đón miễn phí cho học sinh tiểu học từ năm tài khóa 2027, thành phố chi trả toàn bộ. Bản đồ khu vực, cách đăng ký, danh sách kiểm tra trước khi đi xe, điểm dừng, đơn vị vận hành, biện pháp an toàn, hỏi đáp và nơi liên hệ.",
@@ -2194,5 +2194,17 @@
   "rev_o42": "Các quy tắc đối với người mở cửa hàng ở Tokadai (chỗ đỗ xe, quan tâm đến xung quanh, giải thích với người dân) sẽ được công bố khi nào và dưới hình thức nào?",
   "rev_o43": "Có ý định thêm số trẻ em (dân số trẻ hoặc số học sinh) vào chỉ số của Đề án Phát triển vùng phía đông không?",
   "sched_date48": "Thứ Bảy 12/12/2026",
-  "sched_desc48": "<strong>Buổi họp định kỳ của Tokadai wo Kangaeru Kai (do người dân tổ chức)</strong><br>Diễn ra lúc 10:00–11:00 tại phòng học tầng 2 của Trung tâm Cộng đồng phía Đông. Nhóm đang tìm thành viên mới để tiếp tục hoạt động từ năm tài chính tới, bạn có thể chỉ đến tham quan. <strong>Đây không phải chương trình của thành phố mà là buổi họp của một nhóm người dân.</strong>"
+  "sched_desc48": "<strong>Buổi họp định kỳ của Tokadai wo Kangaeru Kai (do người dân tổ chức)</strong><br>Diễn ra lúc 10:00–11:00 tại phòng học tầng 2 của Trung tâm Cộng đồng phía Đông. Nhóm đang tìm thành viên mới để tiếp tục hoạt động từ năm tài chính tới, bạn có thể chỉ đến tham quan. <strong>Đây không phải chương trình của thành phố mà là buổi họp của một nhóm người dân.</strong>",
+  "prep_h": "Chuẩn bị đến tháng 4/2027<small>Getting Ready for April 2027</small>",
+  "prep_lead": "Những việc dự kiến trước tháng 4/2027, theo từng thời điểm. Vui lòng xem ngày cụ thể trong thông báo của trường hoặc thành phố.",
+  "prep_now": "Hiện tại",
+  "prep_m1_t": "Khoảng tháng 11–12/2026",
+  "prep_m1_p": "Có buổi đi thử xe buýt trường và dùng thử ứng dụng. Gia đình dự định đi xe buýt có thể dùng thêm <a href=\"bus.html#checklist\">danh sách kiểm tra</a>.",
+  "prep_m2_t": "Tháng 2/2027",
+  "prep_m2_p": "Buổi giới thiệu cho học sinh mới năm sau tại 2 trường tiểu học và 2 trường trung học cơ sở mới, cùng buổi tập đi học đến trường mới.",
+  "prep_m3_t": "Tháng 3/2027",
+  "prep_m3_p": "Mỗi trường trong 8 trường hiện tại tổ chức lễ đóng trường; thiết bị được chuyển sang trường mới.",
+  "prep_m4_t": "Tháng 4/2027",
+  "prep_m4_p": "Bốn trường mới bắt đầu hoạt động; xe buýt trường cho học sinh tiểu học dự kiến bắt đầu chạy.",
+  "prep_any": "Chưa rõ cần mua gì? Xem câu hỏi về <a href=\"faq.html#faq-q17\">đồng phục</a> và <a href=\"faq.html#faq-q23\">mũ đi học</a>."
 }
