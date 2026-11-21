@@ -2208,5 +2208,11 @@
   "prep_m4_p": "Empat sekolah baru dimulai, dan bus sekolah untuk siswa SD dijadwalkan mulai beroperasi.",
   "prep_any": "Ragu apa yang perlu dibeli? Lihat FAQ tentang <a href=\"faq.html#faq-q17\">seragam</a> dan <a href=\"faq.html#faq-q23\">topi sekolah</a>.",
   "search_hints": "bus sekolah|seragam|wilayah|pengarahan|upacara|kontak",
-  "gloss_pointer": "Ada istilah yang kurang jelas? Lihat <a href=\"about.html#glossary\">Kata-kata yang perlu diketahui</a>."
+  "gloss_pointer": "Ada istilah yang kurang jelas? Lihat <a href=\"about.html#glossary\">Kata-kata yang perlu diketahui</a>.",
+  "ask_copy_hint": "Centang pertanyaan yang ingin diajukan, lalu salin per kantor.",
+  "ask_sel": "Pilih pertanyaan ini",
+  "ask_copy": "Salin {n} terpilih",
+  "ask_copied": "Tersalin",
+  "ask_clear": "Hapus pilihan",
+  "ask_copy_note": "Ini adalah draf pertanyaan dari daftar di situs tidak resmi yang dikelola warga tentang reorganisasi sekolah. Pengelola situs tidak mengirimkannya."
 }

@@ -251,7 +251,7 @@
      ・翻訳が無くて日本語のまま出ている要素には付けない（同じ文が二度出るため）。
      ・READ ALOUD は .orig-ja を読まない（SKIP に入れてある）。回覧板シートと
        ページ目次も .orig-ja を外してから文字を取る。表示を変えたらその3か所も見ること。 */
-  var ORIG_SKIP = '.page-toc,.tts-row,.share,.notice-banner,.lang-switcher,.breadcrumb,.mc-card,.scroll-hint,.xlinks,.faq-tools,.faq-filter-status,.faq-filter-other,.club-filter,.chk-tools,.plan-steps,.prep-now';   // .mc-card は日本語がすでに太字で出ている（窓口で見せる日本語）
+  var ORIG_SKIP = '.page-toc,.tts-row,.share,.notice-banner,.lang-switcher,.breadcrumb,.mc-card,.scroll-hint,.xlinks,.faq-tools,.faq-filter-status,.faq-filter-other,.club-filter,.chk-tools,.plan-steps,.prep-now,.ask-tools,.ask-copy-hint';   // .mc-card は日本語がすでに太字で出ている（窓口で見せる日本語）
 
   function jaDict() {
     if (!_jaDictPromise) _jaDictPromise = fetchDict(DEFAULT).then(applyTemporal);
@@ -284,7 +284,27 @@
       sp.textContent = txt;
       el.appendChild(sp);
     });
+    applyOrigHl(main);
   }
+
+  // 自動取得の見出し（data-hl＝見出しの原文）にも原文を添える（2026-11-21、日次アイデア 9/26）。
+  // 各コーナーは辞書より後に描かれ、KomakiHeadline.apply が textContent を差し替えるので、そのあとにも呼ばれる。
+  function applyOrigHl(root) {
+    if (!_origMode || _currentLang === DEFAULT || !root) return;
+    root.querySelectorAll('[data-hl]').forEach(function (el) {
+      if (el.closest(ORIG_SKIP) || el.querySelector('.orig-ja')) return;
+      var txt = (el.getAttribute('data-hl') || '').trim();
+      var cur = (el.textContent || '').replace(/\s+/g, ' ').trim();
+      if (!txt || !cur || cur.indexOf(txt) !== -1) return;   // 訳がまだ無く原文のまま出ているものには付けない
+      var sp = document.createElement('span');
+      sp.className = 'orig-ja';
+      sp.lang = 'ja';
+      sp.textContent = txt;
+      el.appendChild(sp);
+    });
+  }
+  window.KomakiOrigHl = applyOrigHl;
+  window.KomakiJaDict = jaDict;
 
   function renderOrig() {
     clearOrig();

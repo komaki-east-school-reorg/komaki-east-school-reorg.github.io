@@ -4,6 +4,13 @@
     {
       "date": "2026-11-21",
       "type": "feature",
+      "ja": "質問集を宛先の部署ごとにコピーできる機能を追加",
+      "en": "Questions can now be selected and copied, grouped by the office to ask",
+      "link": "review.html#rev-open"
+    },
+    {
+      "date": "2026-11-21",
+      "type": "feature",
       "ja": "サイト内検索に言い換え語と入口の語、着いた所の強調を追加",
       "en": "Site search now understands similar words, suggests starting points and highlights matches"
     },

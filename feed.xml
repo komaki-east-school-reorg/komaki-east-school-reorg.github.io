@@ -27,6 +27,14 @@
     <summary>サイトの更新履歴｜都市計画「尾張都市計画桃花台地区計画の変更に関する公聴会の開催」の開催日を予定に掲載</summary>
   </entry>
   <entry>
+    <title>質問集を宛先の部署ごとにコピーできる機能を追加</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/review.html#rev-open"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:f90b5dd647eabead</id>
+    <updated>2026-11-21T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜質問集を宛先の部署ごとにコピーできる機能を追加</summary>
+  </entry>
+  <entry>
     <title>スケジュールに計画の段階の図と入学・進級までの流れを追加</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/schedule.html#prep"/>
     <id>tag:komaki-east-school-reorg.github.io,2026:3a87203e2f1c6791</id>
@@ -321,13 +329,5 @@
     <updated>2026-11-06T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜議会での審議に第3回定例会（9月）を追加</summary>
-  </entry>
-  <entry>
-    <title>新着の帯を、直近5日の情報をページを開くたびに表示</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:aba8ec8820cd7cfe</id>
-    <updated>2026-11-06T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜新着の帯を、直近5日の情報をページを開くたびに表示</summary>
   </entry>
 </feed>

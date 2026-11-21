@@ -2208,5 +2208,11 @@
   "prep_m4_p": "4所新学校开学，小学生校车也计划开始运行。",
   "prep_any": "不确定要买什么？请看常见问题中的<a href=\"faq.html#faq-q17\">校服</a>和<a href=\"faq.html#faq-q23\">上学帽</a>。",
   "search_hints": "校车|校服|学区|说明会|闭校|咨询",
-  "gloss_pointer": "遇到不懂的词语，可以查看<a href=\"about.html#glossary\">词语备忘</a>。"
+  "gloss_pointer": "遇到不懂的词语，可以查看<a href=\"about.html#glossary\">词语备忘</a>。",
+  "ask_copy_hint": "勾选想问的问题，即可按部门汇总复制。",
+  "ask_sel": "选择此问题",
+  "ask_copy": "复制所选{n}个问题",
+  "ask_copied": "已复制",
+  "ask_clear": "清除选择",
+  "ask_copy_note": "这些是从一个由居民自发运营的非官方学校整合网站的问题集中选出的咨询草案。网站运营者并未发送这些问题。"
 }

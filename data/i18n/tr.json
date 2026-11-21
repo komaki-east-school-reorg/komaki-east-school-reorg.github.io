@@ -2208,5 +2208,11 @@
   "prep_m4_p": "Dört yeni okul açılır; ilkokul öğrencileri için okul servisinin de başlaması planlanmaktadır.",
   "prep_any": "Ne alacağınızdan emin değil misiniz? <a href=\"faq.html#faq-q17\">Üniforma</a> ve <a href=\"faq.html#faq-q23\">okul şapkası</a> sorularına bakın.",
   "search_hints": "okul servisi|üniforma|bölge|toplantı|tören|iletişim",
-  "gloss_pointer": "Bir terimi bilmiyor musunuz? <a href=\"about.html#glossary\">Bilinmesi gereken sözcükler</a> bölümüne bakın."
+  "gloss_pointer": "Bir terimi bilmiyor musunuz? <a href=\"about.html#glossary\">Bilinmesi gereken sözcükler</a> bölümüne bakın.",
+  "ask_copy_hint": "Sormak istediğiniz soruları işaretleyin ve birimlere göre kopyalayın.",
+  "ask_sel": "Bu soruyu seç",
+  "ask_copy": "Seçilen {n} soruyu kopyala",
+  "ask_copied": "Kopyalandı",
+  "ask_clear": "Temizle",
+  "ask_copy_note": "Bunlar, okulların yeniden yapılandırılması hakkında bölge sakinlerinin yürüttüğü gayriresmî bir sitenin soru listesinden seçilmiş taslak sorulardır. Site yürütücüleri bu soruları göndermemiştir."
 }

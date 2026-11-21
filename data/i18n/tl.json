@@ -2208,5 +2208,11 @@
   "prep_m4_p": "Magbubukas ang apat na bagong paaralan, at nakatakdang magsimula ang school bus para sa elementarya.",
   "prep_any": "Hindi sigurado kung ano ang bibilhin? Tingnan ang FAQ tungkol sa <a href=\"faq.html#faq-q17\">uniporme</a> at <a href=\"faq.html#faq-q23\">sumbrero</a>.",
   "search_hints": "school bus|uniporme|distrito|briefing|seremonya|makipag-ugnayan",
-  "gloss_pointer": "Hindi malinaw ang isang salita? Tingnan ang <a href=\"about.html#glossary\">Mga salitang dapat alamin</a>."
+  "gloss_pointer": "Hindi malinaw ang isang salita? Tingnan ang <a href=\"about.html#glossary\">Mga salitang dapat alamin</a>.",
+  "ask_copy_hint": "Lagyan ng tsek ang mga tanong na nais itanong at kopyahin ayon sa tanggapan.",
+  "ask_sel": "Piliin ang tanong na ito",
+  "ask_copy": "Kopyahin ang {n} napili",
+  "ask_copied": "Nakopya na",
+  "ask_clear": "I-clear",
+  "ask_copy_note": "Mga mungkahing tanong ito mula sa listahan ng isang di-opisyal na website ng mga residente tungkol sa muling pagsasaayos ng mga paaralan. Hindi ito ipinadala ng mga nagpapatakbo ng site."
 }

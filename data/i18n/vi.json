@@ -2208,5 +2208,11 @@
   "prep_m4_p": "Bốn trường mới bắt đầu hoạt động; xe buýt trường cho học sinh tiểu học dự kiến bắt đầu chạy.",
   "prep_any": "Chưa rõ cần mua gì? Xem câu hỏi về <a href=\"faq.html#faq-q17\">đồng phục</a> và <a href=\"faq.html#faq-q23\">mũ đi học</a>.",
   "search_hints": "xe buýt|đồng phục|khu vực|buổi giới thiệu|lễ|liên hệ",
-  "gloss_pointer": "Chưa rõ một từ? Xem <a href=\"about.html#glossary\">Từ ngữ cần biết</a>."
+  "gloss_pointer": "Chưa rõ một từ? Xem <a href=\"about.html#glossary\">Từ ngữ cần biết</a>.",
+  "ask_copy_hint": "Đánh dấu các câu muốn hỏi rồi sao chép theo từng phòng ban.",
+  "ask_sel": "Chọn câu hỏi này",
+  "ask_copy": "Sao chép {n} câu đã chọn",
+  "ask_copied": "Đã sao chép",
+  "ask_clear": "Bỏ chọn",
+  "ask_copy_note": "Đây là các câu hỏi gợi ý chọn từ danh sách trên một trang web không chính thức do cư dân vận hành về việc tái cơ cấu trường học. Người vận hành trang không gửi các câu hỏi này."
 }

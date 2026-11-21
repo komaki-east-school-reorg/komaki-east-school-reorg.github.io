@@ -581,6 +581,7 @@
         <li data-i18n="rev_ask_f2">わからないことを問いにする</li>
         <li data-i18n="rev_ask_f3">窓口にたずねる</li>
       </ol>
+      <p class="ask-copy-hint" data-i18n="ask_copy_hint" hidden>聞きたい問いに印を付けると、宛先の部署ごとにまとめてコピーできます。</p>
       <h3 class="rev-subh" data-i18n="rev_o_h1">教育委員会へ</h3>
       <ol class="ask-list">
         <li class="ask-item">
@@ -753,6 +754,15 @@
           <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">大臣官房文教施設企画・防災部 施設助成課 振興地域係</span></span> <a class="ask-rel" href="analysis.html#rev-i6" data-i18n="rev_ask_rel">関連する検証 →</a></p>
         </li>
       </ol>
+      <!-- 質問を宛先ごとにコピー（ASK COPY in js/main.js、2026-11-21、日次アイデア 11/10）。選択は保存しない -->
+      <div class="ask-tools" id="ask-tools" hidden>
+        <button type="button" class="ask-copy-btn"></button>
+        <button type="button" class="ask-clear-btn" data-i18n="ask_clear">選択を外す</button>
+        <span data-ask="copy" data-i18n="ask_copy" hidden>選んだ{n}問をコピー</span>
+        <span data-ask="done" data-i18n="ask_copied" hidden>コピーしました</span>
+        <span data-ask="sel" data-i18n="ask_sel" hidden>この問いを選ぶ</span>
+        <span data-ask="note" data-i18n="ask_copy_note" hidden>これは「小牧市東部（篠岡地区）学校再編ナビ」（住民有志の非公式サイト）の質問集から選んだ問い合わせの案です。サイトの運営者が送ったものではありません。</span>
+      </div>
       <p class="rev-open-note" data-i18n-html="rev_s4_note">宛先の電話番号は、下の「関係する部署の問い合わせ先」にあります。答えが公表されたら、その質問を外してページを更新します。</p>
     </div>
   </section>

@@ -2208,5 +2208,11 @@
   "prep_m4_p": "새 학교 4곳이 문을 열고, 초등학생 스쿨버스도 운행을 시작할 예정입니다.",
   "prep_any": "무엇을 사야 할지 궁금하면 자주 묻는 질문의 <a href=\"faq.html#faq-q17\">교복</a>과 <a href=\"faq.html#faq-q23\">통학 모자</a>를 확인하세요.",
   "search_hints": "스쿨버스|교복|학구|설명회|폐교식|문의",
-  "gloss_pointer": "모르는 말은 <a href=\"about.html#glossary\">말 메모</a>에서 확인할 수 있습니다."
+  "gloss_pointer": "모르는 말은 <a href=\"about.html#glossary\">말 메모</a>에서 확인할 수 있습니다.",
+  "ask_copy_hint": "묻고 싶은 질문을 선택하면 부서별로 묶어 복사할 수 있습니다.",
+  "ask_sel": "이 질문 선택",
+  "ask_copy": "선택한 {n}개 복사",
+  "ask_copied": "복사했습니다",
+  "ask_clear": "선택 해제",
+  "ask_copy_note": "학교 재편에 관한 주민 운영 비공식 사이트의 질문집에서 고른 문의 초안입니다. 사이트 운영자가 보낸 것이 아닙니다."
 }
