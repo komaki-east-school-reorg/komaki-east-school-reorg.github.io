@@ -11,6 +11,14 @@
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
   <rights>このサイトは「これがまちつくサイトの解。」THE UNIT（住民有志）が運営しており、小牧市・教育委員会とは無関係です。</rights>
   <entry>
+    <title>地域のレガシーに季節めぐりと東部たんけんクイズを追加</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#legacy"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:8087fdc74b934e4c</id>
+    <updated>2026-11-22T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜地域のレガシーに季節めぐりと東部たんけんクイズを追加</summary>
+  </entry>
+  <entry>
     <title>各ページに最近の更新を表示、Q&amp;Aの共有で質問がカードに出る形に</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
     <id>tag:komaki-east-school-reorg.github.io,2026:5a438d22dc6b61d3</id>
@@ -321,13 +329,5 @@
     <updated>2026-11-07T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜スクールバスの運転手の確保と確認についてのQ&amp;Aを追加</summary>
-  </entry>
-  <entry>
-    <title>こどもむけ表示をリンク（?kids=1）で共有できるように</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:07c21b988527d924</id>
-    <updated>2026-11-07T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜こどもむけ表示をリンク（?kids=1）で共有できるように</summary>
   </entry>
 </feed>

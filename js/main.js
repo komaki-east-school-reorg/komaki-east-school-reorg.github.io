@@ -178,6 +178,8 @@ window.KomakiCount = (function () {
     ['.feature-cutin-close', 'cutin/close'],
     ['.rev-tabs a', function (el) { return /analysis\.html/.test(el.getAttribute('href') || '') ? 'review/tab-analysis' : 'review/tab-review'; }],
     ['.page-recent a', 'page-recent/go'],
+    ['.season-pick', 'season/pick'],
+    ['.leg-season-links a', 'season/jump'],
     ['.rev-more a', 'review/more'],
     ['.rev-back a', 'review/back'],
     ['.rev-partnav a', 'review/partnav'],
@@ -5871,7 +5873,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   var GAP = 380;
 
   var SKIP = 'script,style,noscript,svg,rt,select,input,textarea,button:not(.faq-q),' +
-             '.tts-row,.page-toc,.page-recent,.plan-steps,.ask-tools,.ask-copy-hint,.ask-pick,.faq-q-icon,.section-updated,.bus-map-layers,.bus-area-map,' +
+             '.tts-row,.page-toc,.page-recent,.leg-season-box,.east-quiz,.season-line,.plan-steps,.ask-tools,.ask-copy-hint,.ask-pick,.faq-q-icon,.section-updated,.bus-map-layers,.bus-area-map,' +
              '[hidden],[aria-hidden="true"],.section-title small,.orig-ja,.mc-ja,' +   // .mc-ja＝窓口で見せる日本語（外国語の声で日本語を読まない）
              '.now-more,.upcoming-more,' +  // 「くわしく見る →」などの案内リンクは読まない
              '.rev-more,.rev-back,.rev-partnav,.rev-num,' +
@@ -7015,6 +7017,92 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     draw();
   }).catch(function () {});
   document.addEventListener('komaki:i18n-applied', function () { setTimeout(draw, 0); });
+})();
+
+/* ===== SEASON（季節めぐりと、トップの「いまの季節の東部」。2026-11-22、日次アイデア 11/13・11/14） =====
+   日本時間の月で季節を決める（3〜5月＝春、6〜8月＝夏、9〜11月＝秋、12〜2月＝冬）。トップは、その季節の項目を月で1つ選ぶ。 */
+(function () {
+  var mon = new Date(Date.now() + 9 * 3600000).getUTCMonth() + 1;
+  var now = mon >= 3 && mon <= 5 ? 'spring' : mon >= 6 && mon <= 8 ? 'summer' : mon >= 9 && mon <= 11 ? 'autumn' : 'winter';
+  var col = document.querySelector('.leg-season-col[data-season="' + now + '"]');
+  if (col) col.classList.add('is-now');
+  var line = document.getElementById('season-line');
+  if (!line) return;
+  var picks = Array.prototype.filter.call(line.querySelectorAll('.season-pick'), function (a) {
+    return a.getAttribute('data-season').split(' ').indexOf(now) >= 0;
+  });
+  if (!picks.length) return;
+  picks[mon % picks.length].hidden = false;
+  line.hidden = false;
+})();
+
+/* ===== QUIZ（東部たんけんクイズ、community.html。2026-11-22、日次アイデア 11/14・11/17） =====
+   問いと選択肢は辞書（quiz_q<N> / quiz_q<N>_o は「|」区切り）。正解の位置は HTML の data-a。
+   答えも点数も保存・送信しない（集計は quiz/finish の1回だけ）。 */
+(function () {
+  var box = document.getElementById('east-quiz');
+  if (!box) return;
+  var stage = box.querySelector('.east-quiz-stage');
+  var qs = Array.prototype.slice.call(box.querySelectorAll('[data-quiz-q]'));
+  var at = 0, score = 0, picked = -1, counted = false;
+  function t(k) { var n = box.querySelector('[data-quiz-t="' + k + '"]'); return n ? n.textContent : ''; }
+  function btn(text, cls, fn) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = cls; b.textContent = text;
+    b.addEventListener('click', fn);
+    return b;
+  }
+  function moreHref(h) {
+    if (h.charAt(0) === '#' || !window.KomakiLang) return h;
+    var l = window.KomakiLang();
+    return l === 'ja' ? h : h.replace('#', '?lang=' + encodeURIComponent(l) + '#');
+  }
+  function draw() {
+    stage.textContent = '';
+    if (at >= qs.length) {
+      var r = document.createElement('p');
+      r.className = 'east-quiz-result';
+      r.textContent = t('result').replace('{n}', qs.length).replace('{c}', score);
+      stage.appendChild(r);
+      stage.appendChild(btn(t('retry'), 'east-quiz-next', function () { at = 0; score = 0; picked = -1; draw(); }));
+      if (!counted && window.KomakiCount) { counted = true; window.KomakiCount('quiz/finish'); }
+      return;
+    }
+    var q = qs[at], parts = q.querySelectorAll('span'), opts = parts[1].textContent.split('|'), ans = +q.getAttribute('data-a');
+    var num = document.createElement('p'); num.className = 'east-quiz-num'; num.textContent = 'Q' + (at + 1) + ' / ' + qs.length;
+    var head = document.createElement('p'); head.className = 'east-quiz-q'; head.textContent = parts[0].textContent;
+    var list = document.createElement('div'); list.className = 'east-quiz-opts';
+    opts.forEach(function (o, i) {
+      var b = btn(o, 'east-quiz-opt', function () {
+        if (picked >= 0) return;
+        picked = i;
+        if (i === ans) score++;
+        draw();
+      });
+      if (picked >= 0) {
+        b.disabled = true;
+        if (i === ans) b.classList.add('is-right');
+        else if (i === picked) b.classList.add('is-wrong');
+      }
+      list.appendChild(b);
+    });
+    stage.appendChild(num); stage.appendChild(head); stage.appendChild(list);
+    if (picked >= 0) {
+      var f = document.createElement('p');
+      f.className = 'east-quiz-feedback';
+      f.textContent = picked === ans ? t('right') : t('wrong').replace('{a}', opts[ans]);
+      var a = document.createElement('a');
+      a.href = moreHref(q.getAttribute('data-more'));
+      a.textContent = t('more');
+      f.appendChild(document.createTextNode(' '));
+      f.appendChild(a);
+      stage.appendChild(f);
+      stage.appendChild(btn(t('next'), 'east-quiz-next', function () { at++; picked = -1; draw(); }));
+    }
+  }
+  box.hidden = false;
+  draw();
+  document.addEventListener('komaki:i18n-applied', draw);
 })();
 
 /* ===== ASK COPY（review.html の質問集を宛先ごとにコピー。2026-11-21、日次アイデア 11/10） =====

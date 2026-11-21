@@ -3,6 +3,13 @@
   "updates": [
     {
       "date": "2026-11-22",
+      "type": "feature",
+      "ja": "地域のレガシーに季節めぐりと東部たんけんクイズを追加",
+      "en": "Seasonal guide and a quiz about the eastern district added",
+      "link": "community.html#legacy"
+    },
+    {
+      "date": "2026-11-22",
       "type": "fix",
       "ja": "全国の動きのページが検索と関連リンクで正しい節に届くよう修正",
       "en": "Search and related links now reach the right section of the nationwide page",
