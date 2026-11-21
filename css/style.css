@@ -3824,3 +3824,4 @@ html.has-share-sticky .to-top { bottom: calc(var(--share-sticky-h, 3.4rem) + .8r
 .quiz-jump a { color: var(--primary-dark); }
 #east-quiz { scroll-margin-top: calc(var(--header-h, 80px) + .7rem); }
 @media print { .quiz-jump { display: none; } }
+@media (max-width: 430px) { .quiz-jump { padding-inline: .4rem; font-size: .78rem; white-space: nowrap; overflow-wrap: normal; } }
