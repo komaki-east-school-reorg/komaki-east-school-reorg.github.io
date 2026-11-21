@@ -161,7 +161,7 @@
       <span class="badge" data-i18n="hero_badge2">🏫 小学校5校・中学校3校 → 東西各2校</span>
       <span class="badge" data-i18n="hero_badge3">📅 令和9年度（2027年度）実施予定</span>
     </div>
-    <p class="hero-site"><a class="hero-site-link" href="site.html" data-i18n="site_card_link">このサイトについて →</a></p>
+    <p class="hero-site"><a class="hero-site-link" href="site.html" data-i18n="site_card_link">このサイトについて →</a><a class="hero-site-link hero-quiz-link" href="#east-quiz" data-i18n="idx_quiz_jump">東部たんけんクイズに挑戦する →</a></p>
     <!-- 東部地域の0〜17歳（当サイトの推定）。2026-10-22 ユーザー指示：トップのヒーローに、誰の目にも
          明らかなよう大きく出す。数字は js/main.js の CHILD ESTIMATE が data/child_estimate.json
          （build_child_estimate.py が生成）から閲覧日の分を計算して入れる。小数第1位まで出すのは毎日必ず
@@ -204,9 +204,6 @@
       </div>
     </div>
   </section>
-
-  <!-- トップ上段から同じページの東部たんけんクイズへ（2026-11-22 ユーザー指示） -->
-  <p class="quiz-jump"><a href="#east-quiz" data-i18n="idx_quiz_jump">東部たんけんクイズに挑戦する →</a></p>
 
   <!-- TOP SEARCH（2026-11-06 ユーザー指示：トップに検索欄。目立ちすぎず、気安く使える入力欄1本だけ —
        見出し・挿絵・カードは付けない。入力欄と結果は js/main.js の SITE SEARCH が [data-site-search] の中に作る） -->
@@ -510,20 +507,6 @@
   </section>
 
 
-  <!-- いまの季節の東部（2026-11-22、日次アイデア 11/13）。community.html の季節めぐりから、月で1枚選ぶ（SEASON） -->
-  <div class="season-line" id="season-line" hidden>
-    <div class="container season-line-in">
-      <span class="season-line-l" data-i18n="season_now">いまの季節の東部</span>
-        <a class="season-pick" data-season="spring" href="community.html#legacy-hist" hidden><img src="img/illust/temple.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n="comm_leg_hist_h">大山廃寺跡と児神社</span></a>
-        <a class="season-pick" data-season="spring autumn" href="community.html#legacy-mame" hidden><img src="img/illust/mamenashi.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n="comm_leg_mame_h">マメナシ</span></a>
-        <a class="season-pick" data-season="spring" href="community.html#legacy-cochin" hidden><img src="img/illust/chicken.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n="comm_leg_cochin_h">名古屋コーチン</span></a>
-        <a class="season-pick" data-season="summer" href="community.html#legacy-hotaru" hidden><img src="img/illust/firefly.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n="comm_leg_hotaru_h">大山川のホタル</span></a>
-        <a class="season-pick" data-season="summer" href="community.html#legacy-matsuri" hidden><img src="img/illust/festival.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n="comm_leg_matsuri_h">桃花台まつり</span></a>
-        <a class="season-pick" data-season="autumn" href="community.html#legacy-bonote" hidden><img src="img/illust/bonote.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n="comm_leg_bonote_h">棒の手（大草・野口）</span></a>
-        <a class="season-pick" data-season="winter" href="community.html#legacy-fukugonji" hidden><img src="img/illust/fukugonji.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n="comm_leg_fuku_h">福厳寺</span></a>
-    </div>
-  </div>
-
   <!-- 東部たんけんクイズ（2026-11-22 ユーザー指示でトップにも掲載。中身は community.html と同じ QUIZ ブロック。問いを変えたら両方直す） -->
   <div class="east-quiz-wrap">
     <div class="container">
@@ -540,6 +523,20 @@
           <span data-quiz-t="right" data-i18n="quiz_right">正解！</span><span data-quiz-t="wrong" data-i18n="quiz_wrong">おしい！答えは「{a}」</span><span data-quiz-t="next" data-i18n="quiz_next">次の問題</span><span data-quiz-t="result" data-i18n="quiz_result">{n}問中{c}問正解でした</span><span data-quiz-t="retry" data-i18n="quiz_retry">もう一度</span><span data-quiz-t="more" data-i18n="quiz_more">くわしく見る →</span>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- いまの季節の東部（2026-11-22、日次アイデア 11/13）。community.html の季節めぐりから、月で1枚選ぶ（SEASON） -->
+  <div class="season-line" id="season-line" hidden>
+    <div class="container season-line-in">
+      <span class="season-line-l" data-i18n="season_now">いまの季節の東部</span>
+        <a class="season-pick" data-season="spring" href="community.html#legacy-hist" hidden><img src="img/illust/temple.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n="comm_leg_hist_h">大山廃寺跡と児神社</span></a>
+        <a class="season-pick" data-season="spring autumn" href="community.html#legacy-mame" hidden><img src="img/illust/mamenashi.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n="comm_leg_mame_h">マメナシ</span></a>
+        <a class="season-pick" data-season="spring" href="community.html#legacy-cochin" hidden><img src="img/illust/chicken.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n="comm_leg_cochin_h">名古屋コーチン</span></a>
+        <a class="season-pick" data-season="summer" href="community.html#legacy-hotaru" hidden><img src="img/illust/firefly.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n="comm_leg_hotaru_h">大山川のホタル</span></a>
+        <a class="season-pick" data-season="summer" href="community.html#legacy-matsuri" hidden><img src="img/illust/festival.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n="comm_leg_matsuri_h">桃花台まつり</span></a>
+        <a class="season-pick" data-season="autumn" href="community.html#legacy-bonote" hidden><img src="img/illust/bonote.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n="comm_leg_bonote_h">棒の手（大草・野口）</span></a>
+        <a class="season-pick" data-season="winter" href="community.html#legacy-fukugonji" hidden><img src="img/illust/fukugonji.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n="comm_leg_fuku_h">福厳寺</span></a>
     </div>
   </div>
 
