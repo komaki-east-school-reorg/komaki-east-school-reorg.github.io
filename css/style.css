@@ -3754,3 +3754,19 @@ html.has-share-sticky .to-top { bottom: calc(var(--share-sticky-h, 3.4rem) + .8r
 .ask-copy-btn { border: 0; background: var(--accent); color: var(--primary-dark); font-weight: 700; }
 .ask-clear-btn { border: 1px solid rgba(255,255,255,.55); background: transparent; color: #fff; }
 @media print { .ask-tools, .ask-copy-hint, .ask-pick { display: none; } .ask-item.has-pick { min-height: 0; } }
+.ask-item .ask-rel { white-space: normal; max-width: 100%; }
+
+/* 日本語の本文は文節の切れ目で折り返す（2026-11-22、日次アイデア 11/13）。未対応のブラウザは今までどおり。
+   表・ヘッダ・窓口で見せる日本語には効かせない。スマートフォンで全ページ実測：横のはみ出しの増加なし */
+@supports (word-break: auto-phrase) {
+  html:lang(ja) main :is(p, li, dd) { word-break: auto-phrase; overflow-wrap: break-word; }
+  html:lang(ja) main .mc-ja { word-break: normal; }
+}
+
+/* 印刷（Ctrl+P）：表の見出し行をページごとに繰り返し、行・カード・見出しの泣き別れを防ぐ（2026-11-22、日次アイデア 11/06） */
+@media print {
+  .table-wrap { overflow: visible !important; }
+  thead { display: table-header-group; }
+  tr, .contact-box, .rev-fact, .rev-view, .faq-item, .event-item, .ask-item { break-inside: avoid; }
+  h2.section-title, h3.section-title, h4 { break-after: avoid; }
+}
