@@ -3816,3 +3816,5 @@ html.has-share-sticky .to-top { bottom: calc(var(--share-sticky-h, 3.4rem) + .8r
 @media print { .east-quiz, .season-line { display: none; } }
 @media (forced-colors: active) { .leg-season-col.is-now { outline: 2px solid Highlight; } .east-quiz-opt.is-right { outline: 3px solid Highlight; } }
 .leg-season-col, .east-quiz { min-width: 0; overflow-wrap: anywhere; }
+.east-quiz-wrap { padding: 1.4rem 0; }
+.east-quiz-wrap .east-quiz { margin-top: 0; }
