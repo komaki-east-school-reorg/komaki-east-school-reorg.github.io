@@ -3742,8 +3742,10 @@ html.has-share-sticky .to-top { bottom: calc(var(--share-sticky-h, 3.4rem) + .8r
 
 /* 質問集を宛先ごとにコピー（review.html、2026-11-21） */
 .ask-copy-hint { margin: .3rem 0 1rem; font-size: .9rem; color: var(--text-muted); }
-.ask-item.has-pick { position: relative; padding-left: 2.1rem; }
-.ask-pick { position: absolute; left: .55rem; top: 1rem; width: 1.15rem; height: 1.15rem; margin: 0; accent-color: var(--primary); cursor: pointer; }
+.ask-item.has-pick { min-height: 5.4rem; }   /* 印は Q の番号の真下に置く（本文の幅を狭めない） */
+.ask-pick { position: absolute; left: 1.25rem; top: 3.45rem; width: 1.3rem; height: 1.3rem; margin: 0; accent-color: var(--primary); cursor: pointer; }
+.ask-list { grid-template-columns: minmax(0, 1fr); }   /* 長い語で列が画面より広がらないように */
+.ask-item .ask-q, .ask-item .ask-meta { overflow-wrap: anywhere; }
 .ask-item.is-picked { outline: 2px solid var(--accent); outline-offset: -2px; }
 .ask-tools { position: sticky; bottom: calc(var(--share-sticky-h, 0px) + .6rem); z-index: 20; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: 1rem; padding: .6rem .7rem; background: var(--primary-dark); border-radius: var(--radius); box-shadow: var(--shadow-lg); }
 .ask-tools[hidden] { display: none; }
@@ -3751,4 +3753,4 @@ html.has-share-sticky .to-top { bottom: calc(var(--share-sticky-h, 3.4rem) + .8r
 .ask-copy-btn, .ask-clear-btn { min-height: 2.5rem; padding: .35rem .9rem; border-radius: var(--radius-pill); font: inherit; font-size: .9rem; cursor: pointer; }
 .ask-copy-btn { border: 0; background: var(--accent); color: var(--primary-dark); font-weight: 700; }
 .ask-clear-btn { border: 1px solid rgba(255,255,255,.55); background: transparent; color: #fff; }
-@media print { .ask-tools, .ask-copy-hint, .ask-pick { display: none; } .ask-item.has-pick { padding-left: 0; } }
+@media print { .ask-tools, .ask-copy-hint, .ask-pick { display: none; } .ask-item.has-pick { min-height: 0; } }
