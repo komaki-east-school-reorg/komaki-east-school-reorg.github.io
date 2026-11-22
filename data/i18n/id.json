@@ -1604,7 +1604,7 @@
   "ql_review_link": "Lihat telaah dan usulan →",
   "rel_nationwide_community": "Lihat kaitan antara dewan komunitas dan sekolah",
   "rel_community_nationwide": "Lihat gambaran nasional dan standar pemerintah",
-  "status_digest": "Di sini hanya dicantumkan peristiwa yang menjadi titik penting. Daftar lengkap sebanyak 48 butir ada di halaman <a href=\"schedule.html\">jadwal</a>.",
+  "status_digest": "Di sini hanya dicantumkan peristiwa yang menjadi titik penting. Daftar lengkap sebanyak 49 butir ada di halaman <a href=\"schedule.html\">jadwal</a>.",
   "grade_h": "Lihat berdasarkan kelas anak Anda",
   "grade_lead": "Pilih kelas, dan setiap tanggal di bawah akan diberi keterangan kelas anak Anda pada saat itu. Kelas yang dipilih adalah untuk tahun ajaran 2026. Ini hanya perhitungan atas tanggal yang telah diumumkan — rencana kota tidak membedakan berdasarkan kelas — dan sekolah yang dimasuki ditentukan oleh alamat.",
   "grade_select_label": "Kelas",
@@ -2274,5 +2274,7 @@
   "quiz_hard": "Sulit",
   "quiz_easy_note": "Jawaban ada di bagian warisan lokal situs ini.",
   "quiz_normal_note": "Pertanyaan dari semua tema.",
-  "quiz_hard_note": "Untuk yang mengenal daerah ini dengan baik."
+  "quiz_hard_note": "Untuk yang mengenal daerah ini dengan baik.",
+  "sched_date49": "Sabtu, 5 Des 2026",
+  "sched_desc49": "<strong>Festival Besar Akiba Fukugonji dan Berjalan di Atas Api (Kuil)</strong><br>Festival besar tahunan di Fukugonji, Okusa, dengan ritual berjalan di atas api. Ada juga doa (hanya dengan reservasi), kios makanan, musik, dan tari. Parkir biasa tidak dapat digunakan, jadi gunakan bus antar-jemput gratis dari Stasiun JR Kasugai atau bus reguler. Foto dan video dilarang selama ritual, dan partisipasi umum dapat dibatalkan tergantung cuaca. <strong>Lihat pemberitahuan resmi Fukugonji.</strong>"
 }

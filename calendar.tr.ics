@@ -485,6 +485,18 @@ DESCRIPTION:Bu tarihler bölge sakinlerinin yürüttüğü bir sitede der
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=tr
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-05-2-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261205T000000Z
+DTSTART;VALUE=DATE:20261205
+DTEND;VALUE=DATE:20261206
+SUMMARY:Fukugonji Akiba Büyük Festivali ve Ateşte Yürüme (Tapınakla
+ r)
+DESCRIPTION:Bu tarihler bölge sakinlerinin yürüttüğü bir sitede der
+ lenmiştir. Resmî duyuru için belediyenin gönderdiği belgelere bakı
+ n.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=tr
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-12-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261212T000000Z
 DTSTART;VALUE=DATE:20261212

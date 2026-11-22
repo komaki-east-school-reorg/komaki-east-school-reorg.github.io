@@ -490,6 +490,18 @@ DESCRIPTION:Các mốc thời gian này do một trang do người dân l
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=vi
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-05-2-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261205T000000Z
+DTSTART;VALUE=DATE:20261205
+DTEND;VALUE=DATE:20261206
+SUMMARY:Đại lễ Akiba chùa Fukugonji và nghi lễ đi trên lửa (
+ Đền chùa)
+DESCRIPTION:Các mốc thời gian này do một trang do người dân l
+ ập tổng hợp. Hãy kiểm tra thông báo chính thức trong giấ
+ y tờ thành phố gửi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=vi
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-12-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261212T000000Z
 DTSTART;VALUE=DATE:20261212

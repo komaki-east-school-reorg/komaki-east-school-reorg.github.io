@@ -1604,7 +1604,7 @@
   "ql_review_link": "Xem phân tích và đề xuất →",
   "rel_nationwide_community": "Xem mối liên hệ giữa hội đồng cộng đồng và trường học",
   "rel_community_nationwide": "Xem tình hình toàn quốc và tiêu chuẩn quốc gia",
-  "status_digest": "Ở đây chỉ trích ra những mốc quan trọng. Danh sách đầy đủ gồm 48 mục nằm ở trang <a href=\"schedule.html\">lịch trình</a>.",
+  "status_digest": "Ở đây chỉ trích ra những mốc quan trọng. Danh sách đầy đủ gồm 49 mục nằm ở trang <a href=\"schedule.html\">lịch trình</a>.",
   "grade_h": "Xem theo khối lớp của con bạn",
   "grade_lead": "Chọn khối lớp và mỗi mốc thời gian bên dưới sẽ ghi kèm khối lớp của con bạn vào lúc đó. Khối lớp bạn chọn là của năm học 2026. Đây chỉ là phép tính trên các ngày đã công bố — kế hoạch của thành phố không phân biệt theo khối lớp — và trường mà trẻ theo học được quyết định theo địa chỉ.",
   "grade_select_label": "Khối lớp",
@@ -2274,5 +2274,7 @@
   "quiz_hard": "Khó",
   "quiz_easy_note": "Có thể tìm đáp án trong mục di sản địa phương của trang này.",
   "quiz_normal_note": "Câu hỏi từ mọi chủ đề.",
-  "quiz_hard_note": "Dành cho người am hiểu địa phương."
+  "quiz_hard_note": "Dành cho người am hiểu địa phương.",
+  "sched_date49": "Thứ Bảy 5/12/2026",
+  "sched_desc49": "<strong>Đại lễ Akiba chùa Fukugonji và nghi lễ đi trên lửa (Đền chùa)</strong><br>Đại lễ mỗi năm một lần tại chùa Fukugonji ở Okusa, có nghi lễ đi trên lửa. Ngoài ra có cầu nguyện (chỉ đặt trước), quầy ăn, âm nhạc và khiêu vũ. Không dùng được bãi đỗ xe thường ngày, nên hãy đi xe buýt đưa đón miễn phí từ ga JR Kasugai hoặc xe buýt tuyến. Cấm chụp ảnh, quay phim trong nghi lễ, và phần tham gia chung có thể bị hủy tùy thời tiết. <strong>Xem chi tiết trong thông báo chính thức của chùa Fukugonji.</strong>"
 }

@@ -587,22 +587,39 @@
       "my": "ဆောင်းဦးရာသီ ကြယ်ကြည့်ပွဲ (ပြည်သူ့ယဉ်ကျေးမှုဖောင်ဒေးရှင်း)",
       "day": true
     },
-    "2026-12-05": {
-      "ja": "大にこにこ祭り ニコサイ（〜12/6・住民有志）",
-      "en": "Big Niko-Niko Festival “Nikosai” (to 6 Dec, resident-run)",
-      "pt": "Grande Festival Niko-Niko “Nikosai” (até 6/12, iniciativa de moradores)",
-      "vi": "Đại lễ hội Niko-Niko “Nikosai” (đến 6/12, do người dân tổ chức)",
-      "tl": "Malaking Niko-Niko Festival “Nikosai” (hanggang 6 Dis, mga residente ang nagpapatakbo)",
-      "es": "Gran Festival Niko-Niko “Nikosai” (hasta el 6/12, iniciativa vecinal)",
-      "zh": "大微笑祭“Nikosai”（至12/6・居民自发）",
-      "id": "Festival Besar Niko-Niko “Nikosai” (s.d. 6/12, inisiatif warga)",
-      "ko": "대 니코니코 축제 ‘니코사이’(~12/6, 주민 주도)",
-      "ne": "ठूलो निको-निको मेला “निकोसाई” (डिसेम्बर 6 सम्म, बासिन्दा पहल)",
-      "tr": "Büyük Niko-Niko Festivali “Nikosai” (6 Aralık'a kadar, bölge sakinleri girişimi)",
-      "my": "Niko-Niko ပွဲတော်ကြီး “Nikosai” (ဒီဇင်ဘာ ၆ အထိ၊ ဒေသခံဦးဆောင်)",
-      "day": true,
-      "until": "2026-12-06"
-    },
+    "2026-12-05": [
+      {
+        "ja": "大にこにこ祭り ニコサイ（〜12/6・住民有志）",
+        "en": "Big Niko-Niko Festival “Nikosai” (to 6 Dec, resident-run)",
+        "pt": "Grande Festival Niko-Niko “Nikosai” (até 6/12, iniciativa de moradores)",
+        "vi": "Đại lễ hội Niko-Niko “Nikosai” (đến 6/12, do người dân tổ chức)",
+        "tl": "Malaking Niko-Niko Festival “Nikosai” (hanggang 6 Dis, mga residente ang nagpapatakbo)",
+        "es": "Gran Festival Niko-Niko “Nikosai” (hasta el 6/12, iniciativa vecinal)",
+        "zh": "大微笑祭“Nikosai”（至12/6・居民自发）",
+        "id": "Festival Besar Niko-Niko “Nikosai” (s.d. 6/12, inisiatif warga)",
+        "ko": "대 니코니코 축제 ‘니코사이’(~12/6, 주민 주도)",
+        "ne": "ठूलो निको-निको मेला “निकोसाई” (डिसेम्बर 6 सम्म, बासिन्दा पहल)",
+        "tr": "Büyük Niko-Niko Festivali “Nikosai” (6 Aralık'a kadar, bölge sakinleri girişimi)",
+        "my": "Niko-Niko ပွဲတော်ကြီး “Nikosai” (ဒီဇင်ဘာ ၆ အထိ၊ ဒေသခံဦးဆောင်)",
+        "day": true,
+        "until": "2026-12-06"
+      },
+      {
+        "ja": "福厳寺 あきば大祭・火渡り（神社・仏閣）",
+        "en": "Fukugonji Akiba Grand Festival and Fire-Walking (Shrines & Temples)",
+        "pt": "Grande Festival Akiba do Fukugonji e caminhada no fogo (Santuários e templos)",
+        "vi": "Đại lễ Akiba chùa Fukugonji và nghi lễ đi trên lửa (Đền chùa)",
+        "tl": "Akiba Grand Festival ng Fukugonji at Paglakad sa Apoy (Dambana at templo)",
+        "es": "Gran Festival Akiba de Fukugonji y caminata sobre fuego (Santuarios y templos)",
+        "zh": "福严寺秋叶大祭・火渡（神社・寺院）",
+        "id": "Festival Besar Akiba Fukugonji dan Berjalan di Atas Api (Kuil)",
+        "ko": "후쿠곤지 아키바 대제·불 건너기 (신사·사찰)",
+        "ne": "फुकुगोन्जी आकिबा महोत्सव र आगोमा हिँड्ने अनुष्ठान (मन्दिर तथा देवालय)",
+        "tr": "Fukugonji Akiba Büyük Festivali ve Ateşte Yürüme (Tapınaklar)",
+        "my": "Fukugonji Akiba ပွဲတော်ကြီးနှင့် မီးပေါ်လျှောက်ခြင်း (နတ်ကွန်းနှင့် ဘုရားကျောင်း)",
+        "day": true
+      }
+    ],
     "2026-12-12": {
       "ja": "桃花台を考える会 定例会（住民有志）",
       "en": "Tokadai wo Kangaeru Kai regular meeting (resident-run)",

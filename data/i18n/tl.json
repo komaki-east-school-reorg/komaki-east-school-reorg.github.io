@@ -1604,7 +1604,7 @@
   "ql_review_link": "Tingnan ang pagsusuri at mga mungkahi →",
   "rel_nationwide_community": "Tingnan ang ugnayan ng mga konseho ng komunidad at ng mga paaralan",
   "rel_community_nationwide": "Tingnan ang sitwasyon sa buong bansa at ang pamantayan ng pamahalaan",
-  "status_digest": "Ang mga mahahalagang yugto lamang ang nakalista rito. Ang buong listahan na 48 na aytem ay nasa <a href=\"schedule.html\">iskedyul</a>.",
+  "status_digest": "Ang mga mahahalagang yugto lamang ang nakalista rito. Ang buong listahan na 49 na aytem ay nasa <a href=\"schedule.html\">iskedyul</a>.",
   "grade_h": "Tingnan ayon sa baitang ng inyong anak",
   "grade_lead": "Pumili ng baitang at bawat petsa sa ibaba ay lalagyan ng baitang ng inyong anak sa panahong iyon. Ang piniling baitang ay para sa taong panuruan 2026. Simpleng kuwenta lamang ito sa mga inilathalang petsa — hindi naman iba ang pagtrato ng plano ng lungsod sa bawat baitang — at ang paaralang papasukan ay batay sa tirahan.",
   "grade_select_label": "Baitang",
@@ -2274,5 +2274,7 @@
   "quiz_hard": "Mahirap",
   "quiz_easy_note": "Makikita ang sagot sa bahaging lokal na pamana ng site na ito.",
   "quiz_normal_note": "Mga tanong mula sa lahat ng tema.",
-  "quiz_hard_note": "Para sa mga lubos na nakakakilala sa lugar."
+  "quiz_hard_note": "Para sa mga lubos na nakakakilala sa lugar.",
+  "sched_date49": "Sabado, 5 Dis 2026",
+  "sched_desc49": "<strong>Akiba Grand Festival ng Fukugonji at Paglakad sa Apoy (Dambana at templo)</strong><br>Taunang malaking pista sa Fukugonji sa Okusa, na may ritwal ng paglakad sa nagliliyab na apoy. Mayroon ding panalangin (may reserbasyon lamang), mga food stall, musika at sayaw. Hindi magagamit ang karaniwang paradahan, kaya gamitin ang libreng shuttle bus mula JR Kasugai Station o ang regular na bus. Bawal ang litrato at video habang may ritwal, at maaaring kanselahin ang pangkalahatang paglahok depende sa panahon. <strong>Tingnan ang opisyal na abiso ng Fukugonji.</strong>"
 }

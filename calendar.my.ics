@@ -710,6 +710,23 @@ DESCRIPTION:ဤရက်စွဲများကို ဒေသခံမ
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=my
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-05-2-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261205T000000Z
+DTSTART;VALUE=DATE:20261205
+DTEND;VALUE=DATE:20261206
+SUMMARY:Fukugonji Akiba ပွဲတော်ကြီးနှင့် 
+ မီးပေါ်လျှောက်ခြင်း (နတ်က
+ ွန်းနှင့် ဘုရားကျောင်း)
+DESCRIPTION:ဤရက်စွဲများကို ဒေသခံမ
+ ျား လုပ်ဆောင်သော ဝဘ်ဆိုက်
+ မှ စုစည်းထားခြင်း ဖြစ်သည်
+ ။ တရားဝင် အကြောင်းကြားချက
+ ်ကို မြို့တော်မှ ပေးပို့သ
+ ော စာရွက်စာတမ်းများဖြင့် 
+ စစ်ဆေးပါ။
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=my
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-12-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261212T000000Z
 DTSTART;VALUE=DATE:20261212

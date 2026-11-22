@@ -5175,6 +5175,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     citizen:{ja:'住民有志', en:'Resident-run', pt:'Iniciativa de moradores', vi:'Do người dân tổ chức', tl:'Mga residente ang nagpapatakbo', es:'Iniciativa vecinal', zh:'居民自发', id:'Inisiatif warga', ko:'주민 주도', ne:'बासिन्दा पहल', tr:'Bölge sakinleri girişimi', my:'ဒေသခံဦးဆောင်'},
     facility:{ja:'児童館', en:'Children\'s centre', pt:'Centro infantil', vi:'Nhà thiếu nhi', tl:'Children\'s center', es:'Centro infantil', zh:'儿童馆', id:'Pusat anak', ko:'아동관', ne:'बाल केन्द्र', tr:'Çocuk merkezi', my:'ကလေးစင်တာ'},
     // こまき市民文化財団（プラネタリウム・公民館など）が案内する催し（2026-11-16 ユーザー指示。星を見る会）
+    temple:{ja:'神社・仏閣', en:'Shrines & Temples', pt:'Santuários e templos', vi:'Đền chùa', tl:'Dambana at templo', es:'Santuarios y templos', zh:'神社・寺院', id:'Kuil', ko:'신사·사찰', ne:'मन्दिर तथा देवालय', tr:'Tapınaklar', my:'နတ်ကွန်းနှင့် ဘုရားကျောင်း'},
     foundation:{ja:'市民文化財団', en:'Citizens Cultural Foundation', pt:'Fundação Cultural dos Cidadãos', vi:'Quỹ Văn hóa Thị dân', tl:'Citizens Cultural Foundation', es:'Fundación Cultural Ciudadana', zh:'市民文化财团', id:'Yayasan Budaya Warga', ko:'시민문화재단', ne:'नागरिक सांस्कृतिक प्रतिष्ठान', tr:'Halk Kültür Vakfı', my:'ပြည်သူ့ယဉ်ကျေးမှုဖောင်ဒေးရှင်း'},
     council:{ja:'地域協議会', en:'Community council', pt:'Conselho comunitário', vi:'Hội đồng cộng đồng', tl:'Konseho ng komunidad', es:'Consejo comunitario', zh:'地区协议会', id:'Dewan komunitas', ko:'지역 협의회', ne:'सामुदायिक परिषद्', tr:'Bölge konseyi', my:'ဒေသဆိုင်ရာ ကောင်စီ'},
     tokadai_body:{ja:'桃花台を考える会（市民活動団体）が、市の東部まちづくり推進室との協働提案事業として開く催しです。',
@@ -5318,7 +5319,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
                  (it._ev ? ' data-ev="' + esc(it._ev) + '"' : '') + '>' +
                  '<div class="action-head">' +
                    '<span class="action-title" data-hl="' + esc(it.title_ja || '') + '">' + esc(it.title_ja || '') + '</span>' +
-                   '<span class="action-badge">' + at(it.badge === 'council' || it.badge === 'facility' || it.badge === 'foundation' ? it.badge : 'citizen') + '</span>' +
+                   '<span class="action-badge">' + at(it.badge === 'council' || it.badge === 'facility' || it.badge === 'foundation' || it.badge === 'temple' ? it.badge : 'citizen') + '</span>' +
                  '</div>' +
                  '<div class="action-school">' + esc(pick(it, 'school')) + '</div>' +
                  rows +

@@ -1604,7 +1604,7 @@
   "ql_review_link": "See the review and ideas →",
   "rel_nationwide_community": "See how community councils and schools are tied together",
   "rel_community_nationwide": "See the national picture and standards",
-  "status_digest": "Only the turning points are listed here. All 48 entries are on the <a href=\"schedule.html\">schedule</a> page.",
+  "status_digest": "Only the turning points are listed here. All 49 entries are on the <a href=\"schedule.html\">schedule</a> page.",
   "grade_h": "View by your child’s school year",
   "grade_lead": "Pick a school year and each date below is labeled with the year your child will be in at that time. The year you pick is the one for FY2026. This is simple arithmetic on the published dates — the city’s plan does not treat school years differently — and which school a child attends is decided by address.",
   "grade_select_label": "School year",
@@ -2274,5 +2274,7 @@
   "quiz_hard": "Hard",
   "quiz_easy_note": "Answers can be found in this site’s Local Heritage section.",
   "quiz_normal_note": "Questions from all themes.",
-  "quiz_hard_note": "For people who know the area well."
+  "quiz_hard_note": "For people who know the area well.",
+  "sched_date49": "Saturday 5 December 2026",
+  "sched_desc49": "<strong>Fukugonji Akiba Grand Festival and Fire-Walking (Shrines & Temples)</strong><br>A once-a-year grand festival at Fukugonji in Okusa, with a rite of walking over burning fire. There are also prayer services (reservation only), food stalls, music and dance. The usual parking lot cannot be used, so visitors are asked to take the free shuttle bus from JR Kasugai Station or a local bus. Photos and video are not allowed during the rite, and general participation may be cancelled depending on the weather. <strong>See Fukugonji’s official notice for details.</strong>"
 }

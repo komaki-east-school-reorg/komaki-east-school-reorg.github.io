@@ -75,6 +75,14 @@
       "notice_days": 14,
       "title": "中日ドラゴンズのファーム移転先（優先交渉権者）の決定を確かめる",
       "how": "球団と市の公表を確かめ、community.html#legacy-farm（comm_leg_farm_p）、analysis.html#rev-l-f14・rev_l_v2・rev-l-p12、質問集 rev_o44〜46、council_r3_site_p を13辞書で直す。"
+    },
+    {
+      "id": "akiba-taisai",
+      "due": "11-01",
+      "notice_days": 21,
+      "repeat": "yearly",
+      "title": "福厳寺 あきば大祭（火渡り）の今年の開催を確かめる",
+      "how": "公式サイト https://akiba.busshin.or.jp/ で今年の開催日・会場・交通・注意事項を確かめる。開催があれば data/community_actions.json（badge: temple）の日付と本文、schedule.html の予定と sched_date/desc（13辞書）、data/events.json を更新し、status_digest の件数を直して build_event_pages.py ほかを回す。公式サイトの日付が前年のままなら載せず、次の週にもう一度見る。"
     }
   ]
 }

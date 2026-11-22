@@ -627,6 +627,21 @@ DESCRIPTION:यी मिति स्वयंसेवी बासि
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=ne
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-05-2-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261205T000000Z
+DTSTART;VALUE=DATE:20261205
+DTEND;VALUE=DATE:20261206
+SUMMARY:फुकुगोन्जी आकिबा महोत्स
+ व र आगोमा हिँड्ने अनुष्ठान (
+ मन्दिर तथा देवालय)
+DESCRIPTION:यी मिति स्वयंसेवी बासि
+ न्दाहरूको साइटले जम्मा गरे
+ का हुन्। औपचारिक सूचना नगर
+ बाट आउने कागजातमै पक्का गर
+ ्नुहोस्।
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=ne
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-12-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261212T000000Z
 DTSTART;VALUE=DATE:20261212

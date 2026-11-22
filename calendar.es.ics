@@ -448,6 +448,17 @@ DESCRIPTION:Estas fechas las ha reunido un sitio vecinal. Confirme el avi
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=es
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-05-2-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261205T000000Z
+DTSTART;VALUE=DATE:20261205
+DTEND;VALUE=DATE:20261206
+SUMMARY:Gran Festival Akiba de Fukugonji y caminata sobre fuego (Santuari
+ os y templos)
+DESCRIPTION:Estas fechas las ha reunido un sitio vecinal. Confirme el avi
+ so oficial en los documentos que le envíe el ayuntamiento.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=es
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-12-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261212T000000Z
 DTSTART;VALUE=DATE:20261212

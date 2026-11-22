@@ -827,13 +827,13 @@
    "id": "g08",
    "theme": "g",
    "more": null,
-   "q": "What did Kissa Tanpopo sell at an eastern market?",
+   "q": "Which flour does Soramimi PAN bake with?",
    "o": [
-    "Mitarashi dango",
-    "Pizza",
-    "Oden"
+    "Japanese wheat",
+    "Imported wheat",
+    "Buckwheat"
    ],
-   "src": "小牧市 東部地域トライアル活動",
+   "src": "チルチンびと広場",
    "lv": "hard"
   },
   {

@@ -1604,7 +1604,7 @@
   "ql_review_link": "Ver el análisis y las propuestas →",
   "rel_nationwide_community": "Ver la relación entre los consejos comunitarios y las escuelas",
   "rel_community_nationwide": "Ver el panorama nacional y los parámetros del gobierno",
-  "status_digest": "Aquí solo figuran los hitos principales. La lista completa, de 48 entradas, está en el <a href=\"schedule.html\">cronograma</a>.",
+  "status_digest": "Aquí solo figuran los hitos principales. La lista completa, de 49 entradas, está en el <a href=\"schedule.html\">cronograma</a>.",
   "grade_h": "Ver según el curso de su hijo/a",
   "grade_lead": "Elija un curso y cada fecha de abajo mostrará en qué curso estará su hijo/a en ese momento. El curso elegido es el del año escolar 2026. Es un cálculo sobre las fechas publicadas —el plan del ayuntamiento no distingue por curso— y la escuela a la que asistirá se decide por el domicilio.",
   "grade_select_label": "Curso",
@@ -2274,5 +2274,7 @@
   "quiz_hard": "Difícil",
   "quiz_easy_note": "Las respuestas están en la sección de patrimonio local de este sitio.",
   "quiz_normal_note": "Preguntas de todos los temas.",
-  "quiz_hard_note": "Para quienes conocen bien la zona."
+  "quiz_hard_note": "Para quienes conocen bien la zona.",
+  "sched_date49": "sábado 5 dic 2026",
+  "sched_desc49": "<strong>Gran Festival Akiba de Fukugonji y caminata sobre fuego (Santuarios y templos)</strong><br>Gran festival anual de Fukugonji, en Okusa, con el rito de caminar sobre el fuego. También hay oraciones (solo con reserva), puestos de comida, música y danza. El estacionamiento habitual no se puede usar; tome el bus gratuito desde la estación JR Kasugai o un bus de línea. No se permiten fotos ni videos durante el rito, y la participación general puede cancelarse según el clima. <strong>Consulte el aviso oficial de Fukugonji.</strong>"
 }

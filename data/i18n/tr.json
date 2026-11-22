@@ -1604,7 +1604,7 @@
   "ql_review_link": "İncelemeye ve önerilere bak →",
   "rel_nationwide_community": "Bölge konseyleri ile okulların bağını gör",
   "rel_community_nationwide": "Ülke genelindeki duruma ve ulusal ölçütlere bak",
-  "status_digest": "Burada yalnızca dönüm noktaları yer alıyor. 48 maddenin tamamı <a href=\"schedule.html\">takvim</a> sayfasında.",
+  "status_digest": "Burada yalnızca dönüm noktaları yer alıyor. 49 maddenin tamamı <a href=\"schedule.html\">takvim</a> sayfasında.",
   "grade_h": "Çocuğunuzun sınıfına göre görün",
   "grade_lead": "Bir sınıf seçin; aşağıdaki her tarih, çocuğunuzun o sırada hangi sınıfta olacağıyla birlikte gösterilir. Seçtiğiniz sınıf 2026 öğretim yılına aittir. Bu, açıklanan tarihler üzerinde yapılan basit bir hesaptır; belediyenin planı sınıflara göre bir ayrım yapmaz ve çocuğun gideceği okul adrese göre belirlenir.",
   "grade_select_label": "Sınıf",
@@ -2274,5 +2274,7 @@
   "quiz_hard": "Zor",
   "quiz_easy_note": "Yanıtlar bu sitenin yerel miras bölümünde bulunur.",
   "quiz_normal_note": "Tüm temalardan sorular.",
-  "quiz_hard_note": "Bölgeyi iyi bilenler için."
+  "quiz_hard_note": "Bölgeyi iyi bilenler için.",
+  "sched_date49": "5 Aralık 2026 Cumartesi",
+  "sched_desc49": "<strong>Fukugonji Akiba Büyük Festivali ve Ateşte Yürüme (Tapınaklar)</strong><br>Okusa’daki Fukugonji’de yılda bir yapılan, yanan ateşin üzerinde yürüme ayinini içeren büyük festival. Dua törenleri (yalnızca rezervasyonla), yemek tezgâhları, müzik ve dans da vardır. Her zamanki otopark kullanılamaz; JR Kasugai İstasyonu’ndan ücretsiz servis otobüsünü veya hat otobüsünü kullanın. Ayin sırasında fotoğraf ve video yasaktır; genel katılım hava koşullarına göre iptal edilebilir. <strong>Ayrıntılar için Fukugonji’nin resmî duyurusuna bakın.</strong>"
 }

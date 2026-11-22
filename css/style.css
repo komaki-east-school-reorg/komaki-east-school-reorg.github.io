@@ -536,6 +536,9 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 .hero .hero-site { margin-top: 1.3rem; margin-bottom: 0; position: relative; }
 .hero .hero-site-link { display: inline-block; padding: .4rem 1.1rem; border: 1.5px solid var(--accent); border-radius: var(--radius-pill); color: var(--accent); font-weight: 700; font-size: .85rem; text-decoration: none; font-family: var(--heading-font); }
 .hero .hero-site-link:hover, .hero .hero-site-link:focus-visible { background: rgba(212,170,48,.18); outline: none; }
+.hero .hero-site-link.hero-quiz-link { background: var(--accent); border-color: var(--accent); color: var(--primary-dark); box-shadow: 0 2px 6px rgba(0,0,0,.28); }
+.hero .hero-site-link.hero-quiz-link:hover { background: #e6c04a; border-color: #e6c04a; }
+.hero .hero-site-link.hero-quiz-link:focus-visible { background: #e6c04a; outline: 2px solid #fff; outline-offset: 2px; }
 @media print { .hero-site { display: none; } }
 
 /* ===== NOW BAR（トップ冒頭「いまの状況」を一文で示す枠） ===== */

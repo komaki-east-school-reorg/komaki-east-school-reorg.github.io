@@ -489,6 +489,17 @@ DESCRIPTION:この予定は住民有志のサイトがまとめたもの
 URL:https://komaki-east-school-reorg.github.io/schedule.html
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-05-2-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261205T000000Z
+DTSTART;VALUE=DATE:20261205
+DTEND;VALUE=DATE:20261206
+SUMMARY:福厳寺 あきば大祭・火渡り（神社・仏閣）
+DESCRIPTION:この予定は住民有志のサイトがまとめたもの
+ です。正式な案内は市から届く書類でご確認ください
+ 。
+URL:https://komaki-east-school-reorg.github.io/schedule.html
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-12-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261212T000000Z
 DTSTART;VALUE=DATE:20261212
