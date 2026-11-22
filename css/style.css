@@ -539,6 +539,11 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 .hero .hero-site-link.hero-quiz-link { background: var(--accent); border-color: var(--accent); color: var(--primary-dark); box-shadow: 0 2px 6px rgba(0,0,0,.28); }
 .hero .hero-site-link.hero-quiz-link:hover { background: #e6c04a; border-color: #e6c04a; }
 .hero .hero-site-link.hero-quiz-link:focus-visible { background: #e6c04a; outline: 2px solid #fff; outline-offset: 2px; }
+.page-hero p.page-hero-quiz { margin-top: .85rem; opacity: 1; }
+.page-quiz-link { display: inline-block; max-width: 100%; padding: .45rem 1.15rem; border: 1.5px solid var(--accent); border-radius: var(--radius-pill); background: var(--accent); color: var(--primary-dark); font-weight: 700; font-size: .88rem; line-height: 1.35; text-decoration: none; box-shadow: 0 2px 6px rgba(0,0,0,.28); }
+.page-quiz-link:hover { background: #e6c04a; border-color: #e6c04a; color: var(--primary-dark); }
+.page-quiz-link:focus-visible { background: #e6c04a; outline: 2px solid #fff; outline-offset: 2px; }
+@media print { .page-hero-quiz { display: none; } }
 @media print { .hero-site { display: none; } }
 
 /* ===== NOW BAR（トップ冒頭「いまの状況」を一文で示す枠） ===== */
