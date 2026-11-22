@@ -1,8 +1,66 @@
 {
-  "fetched_at": "2026-11-21T03:25:48Z",
+  "fetched_at": "2026-11-22T02:41:43Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "toryo-j",
+      "level": "jhs",
+      "names": {
+        "ja": "桃陵中学校",
+        "ja_kids": "とうりょう中学校",
+        "en": "Toryo Junior High",
+        "zh": "桃陵中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
+      "latest_date": "2026-11-21",
+      "items": [
+        {
+          "title": "11/21 全尾張中学軟式野球大会１回戦",
+          "date": "2026-11-21",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136594553?tm=20261121142244"
+        },
+        {
+          "title": "学校保健委員会",
+          "date": "2026-11-21",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136591766?tm=20261121142052"
+        },
+        {
+          "title": "PTAカルチャー講座",
+          "date": "2026-11-19",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136575773?tm=20261118162950"
+        }
+      ]
+    },
+    {
+      "slug": "shinooka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "篠岡中学校",
+        "ja_kids": "しのおか中学校",
+        "en": "Shinooka Junior High",
+        "zh": "篠冈中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
+      "latest_date": "2026-11-21",
+      "items": [
+        {
+          "title": "ジュニア奉仕団 レター書き",
+          "date": "2026-11-21",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136594449?tm=20261121113545"
+        },
+        {
+          "title": "３年生 家庭科",
+          "date": "2026-11-20",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136593163?tm=20261120175130"
+        },
+        {
+          "title": "１年生 職業調べ インタビューの仕方",
+          "date": "2026-11-20",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136590326?tm=20261120141806"
+        }
+      ]
+    },
     {
       "slug": "hikarigaoka-j",
       "level": "jhs",
@@ -62,35 +120,6 @@
       ]
     },
     {
-      "slug": "shinooka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "篠岡中学校",
-        "ja_kids": "しのおか中学校",
-        "en": "Shinooka Junior High",
-        "zh": "篠冈中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-11-20",
-      "items": [
-        {
-          "title": "３年生 家庭科",
-          "date": "2026-11-20",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136593163?tm=20261120175130"
-        },
-        {
-          "title": "１年生 職業調べ インタビューの仕方",
-          "date": "2026-11-20",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136590326?tm=20261120141806"
-        },
-        {
-          "title": "２年生 道徳",
-          "date": "2026-11-18",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136572623?tm=20261118122755"
-        }
-      ]
-    },
-    {
       "slug": "momogaoka-e",
       "level": "elem",
       "names": {
@@ -116,35 +145,6 @@
           "title": "２日間の思い出をお土産に…",
           "date": "2026-11-18",
           "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136574992?tm=20261118152147"
-        }
-      ]
-    },
-    {
-      "slug": "toryo-j",
-      "level": "jhs",
-      "names": {
-        "ja": "桃陵中学校",
-        "ja_kids": "とうりょう中学校",
-        "en": "Toryo Junior High",
-        "zh": "桃陵中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
-      "latest_date": "2026-11-19",
-      "items": [
-        {
-          "title": "PTAカルチャー講座",
-          "date": "2026-11-19",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136575773?tm=20261118162950"
-        },
-        {
-          "title": "第3回テスト",
-          "date": "2026-11-16",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136555137?tm=20261116091655"
-        },
-        {
-          "title": "航空写真",
-          "date": "2026-11-10",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136513629?tm=20261109112302"
         }
       ]
     },
