@@ -7060,7 +7060,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
 })();
 
 /* ===== SEASON（季節めぐりと、トップの「いまの季節の東部」。2026-11-22、日次アイデア 11/13・11/14） =====
-   日本時間の月で季節を決める（3〜5月＝春、6〜8月＝夏、9〜11月＝秋、12〜2月＝冬）。トップは、その季節の項目を月で1つ選ぶ。 */
+   日本時間の月で季節を決める（3〜5月＝春、6〜8月＝夏、9〜11月＝秋、12〜2月＝冬）。「いまの季節の東部」は、その季節の項目から開くたびにランダムで1つ選ぶ。 */
 (function () {
   var mon = new Date(Date.now() + 9 * 3600000).getUTCMonth() + 1;
   var now = mon >= 3 && mon <= 5 ? 'spring' : mon >= 6 && mon <= 8 ? 'summer' : mon >= 9 && mon <= 11 ? 'autumn' : 'winter';
@@ -7072,7 +7072,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     return a.getAttribute('data-season').split(' ').indexOf(now) >= 0;
   });
   if (!picks.length) return;
-  picks[mon % picks.length].hidden = false;
+  picks[Math.floor(Math.random() * picks.length)].hidden = false;  // 開くたびに今の季節の項目からランダムに1つ
   line.hidden = false;
 })();
 
