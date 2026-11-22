@@ -1,5 +1,5 @@
 {
- "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / f 喫茶・カフェ / g パン・お菓子・直売 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし / k もっと東部のお店。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
+ "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / f 喫茶・カフェ / g パン・お菓子・直売 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし / k もっと東部のお店 / l ごはん処と古民家カフェ。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
  "items": [
   {
    "id": "a01",
@@ -1376,6 +1376,136 @@
     "Koga"
    ],
    "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "l01",
+   "theme": "l",
+   "more": null,
+   "q": "Em que área fica o Kissaten Pineapple?",
+   "o": [
+    "Hayashi",
+    "Okusa",
+    "Koga"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "l02",
+   "theme": "l",
+   "more": null,
+   "q": "O Kissaten Pineapple é conhecido por ter muito o quê?",
+   "o": [
+    "Frutas",
+    "Queijo",
+    "Matchá"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "l03",
+   "theme": "l",
+   "more": null,
+   "q": "Em que área fica o restaurante Chika-chan?",
+   "o": [
+    "Noguchi",
+    "Shiroyama",
+    "Hikarigaoka"
+   ],
+   "src": "小牧つーしん（Yahoo!ニュース エキスパート）",
+   "lv": "hard"
+  },
+  {
+   "id": "l04",
+   "theme": "l",
+   "more": null,
+   "q": "Que tipo de lugar é o Chika-chan, em Noguchi?",
+   "o": [
+    "Restaurante popular de pratos e yakiniku",
+    "Sushi de esteira",
+    "Confeitaria"
+   ],
+   "src": "小牧つーしん（Yahoo!ニュース エキスパート）",
+   "lv": "hard"
+  },
+  {
+   "id": "l05",
+   "theme": "l",
+   "more": null,
+   "q": "Em que área fica o Kiki no Kamaza?",
+   "o": [
+    "Okusa",
+    "Kamisue",
+    "Koga"
+   ],
+   "src": "木木の釜座 公式サイト",
+   "lv": "hard"
+  },
+  {
+   "id": "l06",
+   "theme": "l",
+   "more": null,
+   "q": "Que cozinha criativa o Kiki no Kamaza serve?",
+   "o": [
+    "Teppanyaki",
+    "Sushi",
+    "Tempurá"
+   ],
+   "src": "木木の釜座 公式サイト",
+   "lv": "hard"
+  },
+  {
+   "id": "l07",
+   "theme": "l",
+   "more": null,
+   "q": "Que carne vai no curry recomendado do Kiki no Kamaza?",
+   "o": [
+    "Hida beef",
+    "Matsusaka beef",
+    "Kobe beef"
+   ],
+   "src": "木木の釜座 公式サイト",
+   "lv": "hard"
+  },
+  {
+   "id": "l08",
+   "theme": "l",
+   "more": null,
+   "q": "Que tipo de prédio é o café Min cade KU?",
+   "o": [
+    "Antiga casa japonesa",
+    "Arranha-céu",
+    "Navio"
+   ],
+   "src": "Lemon8 の投稿",
+   "lv": "hard"
+  },
+  {
+   "id": "l09",
+   "theme": "l",
+   "more": null,
+   "q": "Em que área fica o Min cade KU?",
+   "o": [
+    "Hayashi",
+    "Kamisue",
+    "Takane"
+   ],
+   "src": "Lemon8 の投稿",
+   "lv": "hard"
+  },
+  {
+   "id": "l10",
+   "theme": "l",
+   "more": null,
+   "q": "Qual ingrediente fermentado se destaca no cardápio do Min cade KU?",
+   "o": [
+    "Koji",
+    "Queijo",
+    "Iogurte"
+   ],
+   "src": "Lemon8 の投稿",
    "lv": "hard"
   }
  ]

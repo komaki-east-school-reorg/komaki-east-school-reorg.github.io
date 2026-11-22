@@ -7038,7 +7038,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
 })();
 
 /* ===== QUIZ（東部たんけんクイズ、community.html と index.html。2026-11-22） =====
-   問題は data/quiz/<言語>.json（110問・11テーマ各10問。o の先頭が正解）。開いた人の言語の1枚だけ読む。
+   問題は data/quiz/<言語>.json（120問・12テーマ各10問。o の先頭が正解）。開いた人の言語の1枚だけ読む。
    難易度：easy＝lv が easy（このサイトのカードで答えがわかる問い）、hard＝それ以外、normal＝全部。
    1回5問は別々のテーマから選ぶ。全テーマを一巡するまで同じテーマを選ばず、テーマの中では全問出るまで同じ問いを出さない。
    答えも点数も保存・送信しない（集計は quiz/finish の1回だけ）。 */
@@ -7046,7 +7046,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   var box = document.getElementById('east-quiz');
   if (!box) return;
   var stage = box.querySelector('.east-quiz-stage');
-  var THEMES = 'abcdefghijk'.split(''), themeDecks = {};
+  var THEMES = 'abcdefghijkl'.split(''), themeDecks = {};
   var mode = 'normal', modeBox = null, byId = null, loaded = '', decks = {}, round = [], at = 0, score = 0, picked = -1, counted = false;
   function t(k) { var n = box.querySelector('[data-quiz-t="' + k + '"]'); return n ? n.textContent : ''; }
   function lang() {
@@ -7090,11 +7090,13 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
       modeBox = document.createElement('div');
       modeBox.className = 'east-quiz-modes';
       modeBox.setAttribute('role', 'group');
-      box.insertBefore(modeBox, stage);
+      box.insertBefore(modeBox, stage.nextSibling);
     }
     modeBox.textContent = '';
     modeBox.setAttribute('aria-label', t('mode'));
     var row = document.createElement('div'); row.className = 'east-quiz-mode-row';
+    var lab = document.createElement('span'); lab.className = 'east-quiz-mode-label'; lab.textContent = t('mode');
+    row.appendChild(lab);
     ['easy', 'normal', 'hard'].forEach(function (m) {
       var b = btn(t(m), 'east-quiz-mode', function () {
         if (mode === m) return;

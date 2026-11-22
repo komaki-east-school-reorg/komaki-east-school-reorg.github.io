@@ -165,3 +165,6 @@ CLAUDE_ja.md                   CLAUDE.mdの日本語説明ファイル。日本�
 files.txt                      本ファイル。サイト構成ファイルの一覧と説明を手動管理するインデックス。
 calendar.<lang>.ics 購読できるカレンダー（12言語、自動生成・手編集不可）。schedule.html の「🔔 カレンダーアプリで購読する」から登録する。build_calendar.py が作る。
 .github/scripts/build_calendar.py events.json と自動で足す催しから calendar.<lang>.ics を作る。UID は画面の「📅 カレンダーに追加」と同じ。--check あり（auto_gates.py check 25）。
+.github/workflows/quiz-candidates.yml  東部たんけんクイズの候補を週1回 AI が探し Issue にする（サイトは変更しない）
+.github/scripts/quiz_candidates.py  候補を検査して Issue の本文に整える
+data/quiz/<言語>.json  東部たんけんクイズの問題（手で直す）
