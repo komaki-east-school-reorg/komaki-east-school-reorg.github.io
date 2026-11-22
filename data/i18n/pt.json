@@ -2276,5 +2276,8 @@
   "quiz_normal_note": "Perguntas de todos os temas.",
   "quiz_hard_note": "Para quem conhece bem a região.",
   "sched_date49": "sábado, 5 dez 2026",
-  "sched_desc49": "<strong>Grande Festival Akiba do Fukugonji e caminhada no fogo (Santuários e templos)</strong><br>Grande festival anual do Fukugonji, em Okusa, com o rito de caminhar sobre o fogo. Há também orações (somente com reserva), barracas de comida, música e dança. O estacionamento habitual não pode ser usado; use o ônibus gratuito da estação JR Kasugai ou uma linha regular. Fotos e vídeos são proibidos durante o rito, e a participação geral pode ser cancelada conforme o clima. <strong>Veja os detalhes no aviso oficial do Fukugonji.</strong>"
+  "sched_desc49": "<strong>Grande Festival Akiba do Fukugonji e caminhada no fogo (Santuários e templos)</strong><br>Grande festival anual do Fukugonji, em Okusa, com o rito de caminhar sobre o fogo. Há também orações (somente com reserva), barracas de comida, música e dança. O estacionamento habitual não pode ser usado; use o ônibus gratuito da estação JR Kasugai ou uma linha regular. Fotos e vídeos são proibidos durante o rito, e a participação geral pode ser cancelada conforme o clima. <strong>Veja os detalhes no aviso oficial do Fukugonji.</strong>",
+  "child_est_age_h": "Crianças por idade (números da prefeitura)",
+  "child_est_age_note": "Números da prefeitura em {date}, somados para todo o leste. Não são estimativas.",
+  "child_est_age_unit": "{n} anos"
 }

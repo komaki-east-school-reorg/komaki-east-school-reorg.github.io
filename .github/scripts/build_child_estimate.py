@@ -103,6 +103,10 @@ def build():
     if worst < MIN_DAILY:
         raise RuntimeError(f"1日の動きが {worst:.3f} 人で、小数第1位が変わらない日が出る")
 
+    by_age = a1[:18]                 # 0歳〜17歳（市の公表値を東部で合算。増減と町字ごとの数は出さない）
+    if len(a1) != 20 or sum(by_age) != c1:
+        raise RuntimeError("年齢別の合計が0〜17歳計と合わない")
+
     data = {
         "_comment": "build_child_estimate.py が生成。手編集不可。"
                     "推定値 = base_value × exp(daily_rate × (今日 − base_date の日数))。",
@@ -114,6 +118,7 @@ def build():
         "official": {
             "date": t1.isoformat(),
             "children": c1,
+            "by_age": by_age,
             "source": h1["資料"],
         },
         "inputs": {

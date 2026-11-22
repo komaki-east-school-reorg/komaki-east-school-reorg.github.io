@@ -2276,5 +2276,8 @@
   "quiz_normal_note": "Mga tanong mula sa lahat ng tema.",
   "quiz_hard_note": "Para sa mga lubos na nakakakilala sa lugar.",
   "sched_date49": "Sabado, 5 Dis 2026",
-  "sched_desc49": "<strong>Akiba Grand Festival ng Fukugonji at Paglakad sa Apoy (Dambana at templo)</strong><br>Taunang malaking pista sa Fukugonji sa Okusa, na may ritwal ng paglakad sa nagliliyab na apoy. Mayroon ding panalangin (may reserbasyon lamang), mga food stall, musika at sayaw. Hindi magagamit ang karaniwang paradahan, kaya gamitin ang libreng shuttle bus mula JR Kasugai Station o ang regular na bus. Bawal ang litrato at video habang may ritwal, at maaaring kanselahin ang pangkalahatang paglahok depende sa panahon. <strong>Tingnan ang opisyal na abiso ng Fukugonji.</strong>"
+  "sched_desc49": "<strong>Akiba Grand Festival ng Fukugonji at Paglakad sa Apoy (Dambana at templo)</strong><br>Taunang malaking pista sa Fukugonji sa Okusa, na may ritwal ng paglakad sa nagliliyab na apoy. Mayroon ding panalangin (may reserbasyon lamang), mga food stall, musika at sayaw. Hindi magagamit ang karaniwang paradahan, kaya gamitin ang libreng shuttle bus mula JR Kasugai Station o ang regular na bus. Bawal ang litrato at video habang may ritwal, at maaaring kanselahin ang pangkalahatang paglahok depende sa panahon. <strong>Tingnan ang opisyal na abiso ng Fukugonji.</strong>",
+  "child_est_age_h": "Mga bata ayon sa edad (bilang ng lungsod)",
+  "child_est_age_note": "Bilang ng lungsod noong {date}, pinagsama para sa buong silangan. Hindi ito tantiya.",
+  "child_est_age_unit": "Edad {n}"
 }

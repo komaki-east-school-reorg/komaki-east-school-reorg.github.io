@@ -11,6 +11,14 @@
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
   <rights>このサイトは「これがまちつくサイトの解。」THE UNIT（住民有志）が運営しており、小牧市・教育委員会とは無関係です。</rights>
   <entry>
+    <title>東部の0〜17歳の年齢別グラフをトップに追加</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#child-estimate"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:6bc023abd1653249</id>
+    <updated>2026-11-22T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜東部の0〜17歳の年齢別グラフをトップに追加</summary>
+  </entry>
+  <entry>
     <title>東部たんけんクイズを10テーマ・100問に拡充</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#east-quiz"/>
     <id>tag:komaki-east-school-reorg.github.io,2026:cc53d4a2aae75da6</id>
@@ -321,13 +329,5 @@
     <updated>2026-11-07T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜検索の言葉をリンクで共有できるように</summary>
-  </entry>
-  <entry>
-    <title>外国語表示に「窓口で見せる日本語」のカードを追加</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/about.html#contact"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:95f5c9d4cdc50ce2</id>
-    <updated>2026-11-07T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜外国語表示に「窓口で見せる日本語」のカードを追加</summary>
   </entry>
 </feed>

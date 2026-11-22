@@ -2276,5 +2276,8 @@
   "quiz_normal_note": "Câu hỏi từ mọi chủ đề.",
   "quiz_hard_note": "Dành cho người am hiểu địa phương.",
   "sched_date49": "Thứ Bảy 5/12/2026",
-  "sched_desc49": "<strong>Đại lễ Akiba chùa Fukugonji và nghi lễ đi trên lửa (Đền chùa)</strong><br>Đại lễ mỗi năm một lần tại chùa Fukugonji ở Okusa, có nghi lễ đi trên lửa. Ngoài ra có cầu nguyện (chỉ đặt trước), quầy ăn, âm nhạc và khiêu vũ. Không dùng được bãi đỗ xe thường ngày, nên hãy đi xe buýt đưa đón miễn phí từ ga JR Kasugai hoặc xe buýt tuyến. Cấm chụp ảnh, quay phim trong nghi lễ, và phần tham gia chung có thể bị hủy tùy thời tiết. <strong>Xem chi tiết trong thông báo chính thức của chùa Fukugonji.</strong>"
+  "sched_desc49": "<strong>Đại lễ Akiba chùa Fukugonji và nghi lễ đi trên lửa (Đền chùa)</strong><br>Đại lễ mỗi năm một lần tại chùa Fukugonji ở Okusa, có nghi lễ đi trên lửa. Ngoài ra có cầu nguyện (chỉ đặt trước), quầy ăn, âm nhạc và khiêu vũ. Không dùng được bãi đỗ xe thường ngày, nên hãy đi xe buýt đưa đón miễn phí từ ga JR Kasugai hoặc xe buýt tuyến. Cấm chụp ảnh, quay phim trong nghi lễ, và phần tham gia chung có thể bị hủy tùy thời tiết. <strong>Xem chi tiết trong thông báo chính thức của chùa Fukugonji.</strong>",
+  "child_est_age_h": "Số trẻ theo độ tuổi (số liệu của thành phố)",
+  "child_est_age_note": "Số liệu của thành phố ngày {date}, cộng cho toàn khu vực phía đông. Đây không phải số ước tính.",
+  "child_est_age_unit": "{n} tuổi"
 }

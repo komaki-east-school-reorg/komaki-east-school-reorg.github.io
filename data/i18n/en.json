@@ -2276,5 +2276,8 @@
   "quiz_normal_note": "Questions from all themes.",
   "quiz_hard_note": "For people who know the area well.",
   "sched_date49": "Saturday 5 December 2026",
-  "sched_desc49": "<strong>Fukugonji Akiba Grand Festival and Fire-Walking (Shrines & Temples)</strong><br>A once-a-year grand festival at Fukugonji in Okusa, with a rite of walking over burning fire. There are also prayer services (reservation only), food stalls, music and dance. The usual parking lot cannot be used, so visitors are asked to take the free shuttle bus from JR Kasugai Station or a local bus. Photos and video are not allowed during the rite, and general participation may be cancelled depending on the weather. <strong>See Fukugonji’s official notice for details.</strong>"
+  "sched_desc49": "<strong>Fukugonji Akiba Grand Festival and Fire-Walking (Shrines & Temples)</strong><br>A once-a-year grand festival at Fukugonji in Okusa, with a rite of walking over burning fire. There are also prayer services (reservation only), food stalls, music and dance. The usual parking lot cannot be used, so visitors are asked to take the free shuttle bus from JR Kasugai Station or a local bus. Photos and video are not allowed during the rite, and general participation may be cancelled depending on the weather. <strong>See Fukugonji’s official notice for details.</strong>",
+  "child_est_age_h": "Children by age (city figures)",
+  "child_est_age_note": "City figures as of {date}, added up for the whole eastern district. These are not estimates.",
+  "child_est_age_unit": "Age {n}"
 }

@@ -2276,5 +2276,8 @@
   "quiz_normal_note": "Tüm temalardan sorular.",
   "quiz_hard_note": "Bölgeyi iyi bilenler için.",
   "sched_date49": "5 Aralık 2026 Cumartesi",
-  "sched_desc49": "<strong>Fukugonji Akiba Büyük Festivali ve Ateşte Yürüme (Tapınaklar)</strong><br>Okusa’daki Fukugonji’de yılda bir yapılan, yanan ateşin üzerinde yürüme ayinini içeren büyük festival. Dua törenleri (yalnızca rezervasyonla), yemek tezgâhları, müzik ve dans da vardır. Her zamanki otopark kullanılamaz; JR Kasugai İstasyonu’ndan ücretsiz servis otobüsünü veya hat otobüsünü kullanın. Ayin sırasında fotoğraf ve video yasaktır; genel katılım hava koşullarına göre iptal edilebilir. <strong>Ayrıntılar için Fukugonji’nin resmî duyurusuna bakın.</strong>"
+  "sched_desc49": "<strong>Fukugonji Akiba Büyük Festivali ve Ateşte Yürüme (Tapınaklar)</strong><br>Okusa’daki Fukugonji’de yılda bir yapılan, yanan ateşin üzerinde yürüme ayinini içeren büyük festival. Dua törenleri (yalnızca rezervasyonla), yemek tezgâhları, müzik ve dans da vardır. Her zamanki otopark kullanılamaz; JR Kasugai İstasyonu’ndan ücretsiz servis otobüsünü veya hat otobüsünü kullanın. Ayin sırasında fotoğraf ve video yasaktır; genel katılım hava koşullarına göre iptal edilebilir. <strong>Ayrıntılar için Fukugonji’nin resmî duyurusuna bakın.</strong>",
+  "child_est_age_h": "Yaşa göre çocuklar (belediye rakamları)",
+  "child_est_age_note": "{date} itibarıyla belediye rakamlarının tüm doğu bölgesi için toplamı. Tahmin değildir.",
+  "child_est_age_unit": "{n} yaş"
 }

@@ -2276,5 +2276,8 @@
   "quiz_normal_note": "Pertanyaan dari semua tema.",
   "quiz_hard_note": "Untuk yang mengenal daerah ini dengan baik.",
   "sched_date49": "Sabtu, 5 Des 2026",
-  "sched_desc49": "<strong>Festival Besar Akiba Fukugonji dan Berjalan di Atas Api (Kuil)</strong><br>Festival besar tahunan di Fukugonji, Okusa, dengan ritual berjalan di atas api. Ada juga doa (hanya dengan reservasi), kios makanan, musik, dan tari. Parkir biasa tidak dapat digunakan, jadi gunakan bus antar-jemput gratis dari Stasiun JR Kasugai atau bus reguler. Foto dan video dilarang selama ritual, dan partisipasi umum dapat dibatalkan tergantung cuaca. <strong>Lihat pemberitahuan resmi Fukugonji.</strong>"
+  "sched_desc49": "<strong>Festival Besar Akiba Fukugonji dan Berjalan di Atas Api (Kuil)</strong><br>Festival besar tahunan di Fukugonji, Okusa, dengan ritual berjalan di atas api. Ada juga doa (hanya dengan reservasi), kios makanan, musik, dan tari. Parkir biasa tidak dapat digunakan, jadi gunakan bus antar-jemput gratis dari Stasiun JR Kasugai atau bus reguler. Foto dan video dilarang selama ritual, dan partisipasi umum dapat dibatalkan tergantung cuaca. <strong>Lihat pemberitahuan resmi Fukugonji.</strong>",
+  "child_est_age_h": "Anak menurut usia (angka kota)",
+  "child_est_age_note": "Angka kota per {date}, dijumlahkan untuk seluruh wilayah timur. Ini bukan perkiraan.",
+  "child_est_age_unit": "{n} tahun"
 }

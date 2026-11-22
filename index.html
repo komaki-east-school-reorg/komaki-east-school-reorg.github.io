@@ -176,10 +176,14 @@
       <details class="hero-count-method">
         <summary data-i18n="child_est_method_h">推定のしかた</summary>
         <p data-i18n="child_est_method">市が公表している「指定区別年齢別男女別人口統計表」（年1回・10月1日現在）と「人口世帯表」（毎月1日現在）から、東部地域の町字（大山〜城山五丁目）の数字を使って当サイトが計算した推定値です。子どもの割合と総人口の変化を1日ごとに延ばして計算しているため、数字は毎日少しずつ変わります。市が公表した数ではありません。</p>
+        <div class="child-ages" id="child-est-ages" hidden></div>
       </details>
       <span class="child-est-tpl" hidden>
         <span data-ce="num" data-i18n="child_est_num">{n}人</span>
         <span data-ce="asof" data-i18n="child_est_asof">{date}時点の推定</span>
+        <span data-ce="age_h" data-i18n="child_est_age_h">年齢別の人数（市の公表値）</span>
+        <span data-ce="age_note" data-i18n="child_est_age_note">{date}現在の市の公表値を、東部全体で足し合わせた人数です。推定ではありません。</span>
+        <span data-ce="age_unit" data-i18n="child_est_age_unit">{n}歳</span>
         <span data-ce="official" data-i18n="child_est_official">市の公表値は{date}現在で{n}人</span>
       </span>
     </div>

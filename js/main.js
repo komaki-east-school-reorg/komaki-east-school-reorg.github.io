@@ -1785,7 +1785,45 @@ window.KomakiGrade = (function () {
     document.getElementById('child-est-asof').textContent = tpl('asof').replace('{date}', day(today));
     document.getElementById('child-est-official').textContent =
       tpl('official').replace('{date}', day(data.official.date)).replace('{n}', num(data.official.children, 0));
+    drawAges(num, day);
     box.hidden = false;
+  }
+  // 年齢別の人数（市の公表値を東部で合算）。文字の読める表のまま棒を添える。増減は出さない
+  function drawAges(num, day) {
+    var wrap = document.getElementById('child-est-ages'), ages = data.official.by_age;
+    if (!wrap || !Array.isArray(ages) || ages.length !== 18) return;
+    var max = Math.max.apply(null, ages);
+    if (!(max > 0)) return;
+    var table = document.createElement('table');
+    var cap = document.createElement('caption');
+    cap.textContent = tpl('age_h');
+    table.appendChild(cap);
+    var body = document.createElement('tbody');
+    ages.forEach(function (n, i) {
+      var tr = document.createElement('tr');
+      var th = document.createElement('th');
+      th.scope = 'row';
+      th.textContent = tpl('age_unit').replace('{n}', num(i, 0));
+      var bar = document.createElement('td');
+      bar.className = 'child-age-bar';
+      bar.setAttribute('aria-hidden', 'true');
+      var fill = document.createElement('span');
+      fill.style.width = (n / max * 100).toFixed(1) + '%';
+      bar.appendChild(fill);
+      var val = document.createElement('td');
+      val.className = 'child-age-n';
+      val.textContent = num(n, 0);
+      tr.appendChild(th); tr.appendChild(bar); tr.appendChild(val);
+      body.appendChild(tr);
+    });
+    table.appendChild(body);
+    var note = document.createElement('p');
+    note.className = 'child-ages-note';
+    note.textContent = tpl('age_note').replace('{date}', day(data.official.date));
+    wrap.textContent = '';
+    wrap.appendChild(table);
+    wrap.appendChild(note);
+    wrap.hidden = false;
   }
   fetch('data/child_estimate.json', {cache: 'no-cache'}).then(function (r) {
     if (!r.ok) throw new Error(r.status);
