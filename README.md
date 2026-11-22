@@ -114,3 +114,4 @@ python3 -m http.server 8000
 - `kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/1/9103.html`（`shiteibunkazai/1/9103.html`、篠岡古窯跡群）と、国立国会図書館サーチの1件 `ndlsearch.ndl.go.jp/books/R100000001-I23111100253640`（『篠岡古窯址群』、昭和46〜47年。古窯のカードの出典、community.html だけ）。
 
 - `akiba.busshin.or.jp/`（福厳寺 あきば大祭の公式サイトのトップだけ。`data/community_actions.json` の発信元に限る。`AKIBA_PATHS`、2026-11-22 ユーザー指示）
+- `syouunji.net/about/`（祥雲寺の公式サイトの1ページ。`community.html` の `#legacy-shoun` の出典に限る。`SHOUNJI_PATHS`、2026-11-23 ユーザー指示）

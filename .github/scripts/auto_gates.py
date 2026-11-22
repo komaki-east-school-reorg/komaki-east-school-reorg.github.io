@@ -234,6 +234,7 @@ PERMITTED_HOSTS = {
     "logoform.jp",                                 # 東部まちづくりプラットフォームの登録フォーム
     "peare-toukadai.jp",                           # 地域の取組「会場の案内」
     "komakici.jp", "dragons.jp", "www.kashiwabara.co.jp", "www.blue-style.com", "komaki2.jp", "www.pref.aichi.jp", "www.aoi-eng.co.jp", "www.youtube.com", "ndlsearch.ndl.go.jp",   # 地域のレガシーの出典（LEGACY_SOURCES、community.html だけ）
+    "syouunji.net",                                # 祥雲寺の公式サイト（SHOUNJI_PATHS、community.html だけ）
     "akiba.busshin.or.jp",                         # 福厳寺 あきば大祭（AKIBA_PATHS、data/community_actions.json だけ）
     "www.komaki-bunka.or.jp",                      # 地域の取組の発信元（パスは BUNKA_PATHS、data/community_actions.json だけ）
     "maps.google.co.jp",                           # 地図の検索語リンク
@@ -249,6 +250,8 @@ PERMITTED_HOSTS = {
 BUNKA_PATHS = {"/planet/news/3579.html"}
 # 福厳寺 あきば大祭の公式サイト。「地域の取組」の発信元だけ、トップページの1本（2026-11-22 ユーザー指示）
 AKIBA_PATHS = {"/"}
+# 祥雲寺の公式サイト。地域のレガシーのカードの出典だけ、この1ページ（2026-11-23 ユーザー指示）
+SHOUNJI_PATHS = {"/about/"}
 BUNKA_PAGES = ("data/community_actions.json",)
 # 東部まちづくりプラットフォームの登録フォーム（市が案内している logoform）。
 # community.html の #platform でだけ、この1本に限って張ってよい（2026-09-27 ユーザー指示）。
@@ -678,6 +681,10 @@ def main():
             elif host == "akiba.busshin.or.jp":
                 path = re.split(r"[?#]", m.group(2), 1)[0] or "/"
                 if path not in AKIBA_PATHS or p != "data/community_actions.json":
+                    host_violations.append(f"{p}: 許可外の福厳寺 あきば大祭のURL {path[:80]}")
+            elif host == "syouunji.net":
+                path = re.split(r"[?#]", m.group(2), 1)[0] or "/"
+                if path not in SHOUNJI_PATHS or p != "community.html":
                     host_violations.append(f"{p}: 許可外の福厳寺 あきば大祭のURL {path[:80]}")
             elif host == "www.komaki-bunka.or.jp":
                 path = re.split(r"[?#]", m.group(2), 1)[0]

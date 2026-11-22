@@ -11,6 +11,14 @@
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
   <rights>このサイトは「これがまちつくサイトの解。」THE UNIT（住民有志）が運営しており、小牧市・教育委員会とは無関係です。</rights>
   <entry>
+    <title>地域のレガシーの祥雲寺に宗派や由緒を追加</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#legacy-shoun"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:818f3d8521ed43b0</id>
+    <updated>2026-11-23T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜地域のレガシーの祥雲寺に宗派や由緒を追加</summary>
+  </entry>
+  <entry>
     <title>「篠岡」の由来に明治の学校の年表、レガシーに祥雲寺を追加</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/shinooka.html#before-village"/>
     <id>tag:komaki-east-school-reorg.github.io,2026:00ff3ea850f3023d</id>
@@ -321,13 +329,5 @@
     <updated>2026-11-09T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜よくある質問に不登校の支援と雨の日の車の送迎を追加</summary>
-  </entry>
-  <entry>
-    <title>外国語版の翻訳の修正を提案できる窓口を追加</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/site.html#translation"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:d34753ad08425c68</id>
-    <updated>2026-11-08T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜外国語版の翻訳の修正を提案できる窓口を追加</summary>
   </entry>
 </feed>
