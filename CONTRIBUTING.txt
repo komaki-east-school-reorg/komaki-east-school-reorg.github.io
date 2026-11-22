@@ -531,3 +531,32 @@
     python3 .github/scripts/auto_gates.py
     → 「年表の並び」が NG なら、data-start の欠落・時系列の逆転・
       AUTO DATE STATUS への並べ替え処理の復活のいずれか。
+
+
+**地域のレガシーの各カードの出典（2026-11-22 ユーザー指示。community.html だけ）で追加した市のページ：**
+- `event_1/midokoro/shiminshikinomori/16376.html`
+- `event_1/midokoro/shiminshikinomori/16809.html`
+- `soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/2/9116.html`
+- `soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/3/9118.html`
+- `soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/4/9137.html`
+- `soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/4/9146.html`
+- `soshiki/kyoiku/kyouikusoumu/303/52402.html`
+- `soshiki/toshiseisakubu/kouen/1/8/1/35746.html`
+- `soshiki/toshiseisakubu/kouen/1/8/1/tikukouen/22276.html`
+- `soshiki/toshiseisakubu/toshikeikaku/1/1_1/toshikeikan/5901.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/46417.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/35668.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/45200.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/51859.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/kyoudouteianjigyou/index.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/machidukurisemina/46283.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa4nendo/39361.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa4nendo/39418.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa5nendo/43097.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/45800.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/45889.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/46053.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/48386.html`
+ほかに愛知県2ページ（旧桃花台線・風景群リスト）と葵エンジニアリング「地名の由来」9ページ（`LEGACY_SOURCES`）。PDF へは直リンクしない。新篠岡音頭の出典は YouTube の音源1本だけ（`https://www.youtube.com/watch?v=h_WC-X5YbuE`、2026-11-22 ユーザー指示。`YOUTUBE_LEGACY`、community.html だけ）。作詞・作曲者や歌い手の名前は書かない。
+
+- `kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/1/9103.html`（`shiteibunkazai/1/9103.html`、篠岡古窯跡群）と、国立国会図書館サーチの1件 `ndlsearch.ndl.go.jp/books/R100000001-I23111100253640`（『篠岡古窯址群』、昭和46〜47年。古窯のカードの出典、community.html だけ）。

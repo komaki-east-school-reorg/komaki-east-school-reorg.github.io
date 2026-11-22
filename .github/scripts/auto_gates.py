@@ -90,7 +90,32 @@ PERMITTED_LINKS = ("303/index.html", "sasaeai/3/3_2/index.html",
                    # 10〜14本目＝地域のレガシーのカードの出典（2026-11-22 ユーザー指示。community.html だけ）
                    "shiteibunkazai/1/9109.html", "midokoro/kankou/2/10630.html",
                    "shiteibunkazai/4/9128.html", "sisetuunnei/2_1/3492.html",
-                   "dragons/51869.html")
+                   "dragons/51869.html",
+                   "shiteibunkazai/1/9103.html",
+                   # 地域のレガシーの各カードの出典（2026-11-22 ユーザー指示。community.html だけ）
+                   "event_1/midokoro/shiminshikinomori/16376.html",
+                   "event_1/midokoro/shiminshikinomori/16809.html",
+                   "soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/2/9116.html",
+                   "soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/3/9118.html",
+                   "soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/4/9137.html",
+                   "soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/4/9146.html",
+                   "soshiki/kyoiku/kyouikusoumu/303/52402.html",
+                   "soshiki/toshiseisakubu/kouen/1/8/1/35746.html",
+                   "soshiki/toshiseisakubu/kouen/1/8/1/tikukouen/22276.html",
+                   "soshiki/toshiseisakubu/toshikeikaku/1/1_1/toshikeikan/5901.html",
+                   "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/46417.html",
+                   "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/35668.html",
+                   "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/45200.html",
+                   "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/51859.html",
+                   "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/kyoudouteianjigyou/index.html",
+                   "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/machidukurisemina/46283.html",
+                   "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa4nendo/39361.html",
+                   "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa4nendo/39418.html",
+                   "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa5nendo/43097.html",
+                   "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/45800.html",
+                   "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/45889.html",
+                   "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/46053.html",
+                   "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/48386.html")
 # 6・7つ目＝小牧市議会のトップと「市議会だより」のページ（2026-10-26 ユーザー指示）。
 # council.html の出典欄の下だけに置く。配下の会議録・個別記事・PDF は不可のまま。
 CITY_PAGE_ONLY = {"purattofo-mu/38222.html": ("community.html",),
@@ -104,6 +129,30 @@ CITY_PAGE_ONLY = {"purattofo-mu/38222.html": ("community.html",),
                   # community.html#tobu-kousou（東部振興構想の見直しと桃花台の土地利用）の出典行だけに使う。
                   # 個別記事だがユーザーが明示して許可した。添付の PDF へは今までどおり直リンクしない
                   "kaigikoukai/4/53024.html": ("community.html",),
+                  "event_1/midokoro/shiminshikinomori/16376.html": ("community.html",),
+                  "event_1/midokoro/shiminshikinomori/16809.html": ("community.html",),
+                  "soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/2/9116.html": ("community.html",),
+                  "soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/3/9118.html": ("community.html",),
+                  "soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/4/9137.html": ("community.html",),
+                  "soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/4/9146.html": ("community.html",),
+                  "soshiki/kyoiku/kyouikusoumu/303/52402.html": ("community.html",),
+                  "soshiki/toshiseisakubu/kouen/1/8/1/35746.html": ("community.html",),
+                  "soshiki/toshiseisakubu/kouen/1/8/1/tikukouen/22276.html": ("community.html",),
+                  "soshiki/toshiseisakubu/toshikeikaku/1/1_1/toshikeikan/5901.html": ("community.html",),
+                  "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/46417.html": ("community.html",),
+                  "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/35668.html": ("community.html",),
+                  "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/45200.html": ("community.html",),
+                  "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/51859.html": ("community.html",),
+                  "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/kyoudouteianjigyou/index.html": ("community.html",),
+                  "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/machidukurisemina/46283.html": ("community.html",),
+                  "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa4nendo/39361.html": ("community.html",),
+                  "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa4nendo/39418.html": ("community.html",),
+                  "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa5nendo/43097.html": ("community.html",),
+                  "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/45800.html": ("community.html",),
+                  "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/45889.html": ("community.html",),
+                  "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/46053.html": ("community.html",),
+                  "soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/48386.html": ("community.html",),
+                  "shiteibunkazai/1/9103.html": ("community.html",),
                   "shiteibunkazai/1/9109.html": ("community.html",),
                   "midokoro/kankou/2/10630.html": ("community.html",),
                   "shiteibunkazai/4/9128.html": ("community.html",),
@@ -125,6 +174,30 @@ CITY_PATHS = {
     "/admin/soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/4/9128.html",
     "/admin/soshiki/kenkouikigai/bunkasports/sisetuunnei/2_1/3492.html",
     "/admin/soshiki/shicokoshitsu/hisyo/shiseisenryaku/dragons/51869.html",
+    "/admin/soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/1/9103.html",
+    "/admin/event_1/midokoro/shiminshikinomori/16376.html",
+    "/admin/event_1/midokoro/shiminshikinomori/16809.html",
+    "/admin/soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/2/9116.html",
+    "/admin/soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/3/9118.html",
+    "/admin/soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/4/9137.html",
+    "/admin/soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/4/9146.html",
+    "/admin/soshiki/kyoiku/kyouikusoumu/303/52402.html",
+    "/admin/soshiki/toshiseisakubu/kouen/1/8/1/35746.html",
+    "/admin/soshiki/toshiseisakubu/kouen/1/8/1/tikukouen/22276.html",
+    "/admin/soshiki/toshiseisakubu/toshikeikaku/1/1_1/toshikeikan/5901.html",
+    "/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/46417.html",
+    "/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/35668.html",
+    "/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/45200.html",
+    "/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/51859.html",
+    "/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/kyoudouteianjigyou/index.html",
+    "/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/machidukurisemina/46283.html",
+    "/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa4nendo/39361.html",
+    "/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa4nendo/39418.html",
+    "/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa5nendo/43097.html",
+    "/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/45800.html",
+    "/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/45889.html",
+    "/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/46053.html",
+    "/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/48386.html",
 }
 # 地域のレガシーのカードの出典（2026-11-22 ユーザー指示）。市以外のページ。community.html だけ、このパスだけ
 LEGACY_SOURCES = {
@@ -133,7 +206,11 @@ LEGACY_SOURCES = {
     "www.kashiwabara.co.jp": {"/corp/apartment/gallery/sky-stage-33/"},
     "www.blue-style.com": {"/building/スカイステージ33"},
     "komaki2.jp": {"/photo/tower-20230715.html"},
+    "ndlsearch.ndl.go.jp": {"/books/R100000001-I23111100253640"},
+    "www.pref.aichi.jp": {"/soshiki/kotsu/0000006608.html", "/soshiki/koen/keikanshigen-group2.html"},
+    "www.aoi-eng.co.jp": {"/river/shounai/timei02/r022053.html", "/river/shounai/timei02/r022115.html", "/river/shounai/timei02/r022108.html", "/river/shounai/timei02/r022104.html", "/river/shounai/timei02/r022105.html", "/river/shounai/timei02/r022106.html", "/river/shounai/timei02/r022071.html", "/river/shounai/timei02/r022087.html", "/river/shounai/timei02/r022086.html"},
 }
+YOUTUBE_LEGACY = "/watch?v=h_WC-X5YbuE"   # 地域のレガシー「新篠岡音頭」の音源。この1本だけ
 # 9本目の行政ページ＝春日井市「小中学校の適正規模等について」の索引（2026-11-07 ユーザー指示）。
 # about.html の「ほかの地区や、となりのまちでは？」の出典行だけに使う（URL は js/main.js の KASUGAI WATCH）。
 # 配下の個別ページ・PDF は不可。増やすときは CLAUDE.md・CONTRIBUTING.txt 規則1・README.md も直す。
@@ -156,7 +233,7 @@ PERMITTED_HOSTS = {
     "github.com",                                  # ご意見の Issue フォーム
     "logoform.jp",                                 # 東部まちづくりプラットフォームの登録フォーム
     "peare-toukadai.jp",                           # 地域の取組「会場の案内」
-    "komakici.jp", "dragons.jp", "www.kashiwabara.co.jp", "www.blue-style.com", "komaki2.jp",   # 地域のレガシーの出典（LEGACY_SOURCES、community.html だけ）
+    "komakici.jp", "dragons.jp", "www.kashiwabara.co.jp", "www.blue-style.com", "komaki2.jp", "www.pref.aichi.jp", "www.aoi-eng.co.jp", "www.youtube.com", "ndlsearch.ndl.go.jp",   # 地域のレガシーの出典（LEGACY_SOURCES、community.html だけ）
     "www.komaki-bunka.or.jp",                      # 地域の取組の発信元（パスは BUNKA_PATHS、data/community_actions.json だけ）
     "maps.google.co.jp",                           # 地図の検索語リンク
     "schema.org", "www.w3.org",                    # 構造化データ・SVG の名前空間（リンクではない）
@@ -580,6 +657,10 @@ def main():
                 continue   # 正規表現や JS の式の一部（//… のコメントなど）
             if host not in PERMITTED_HOSTS:
                 host_violations.append(f"{p}: 許可リストにないホスト {host}")
+            elif host == "www.youtube.com":
+                # 新篠岡音頭のレコード音源の1本だけ（2026-11-22 ユーザー指示。community.html だけ）
+                if m.group(2) != YOUTUBE_LEGACY or p != "community.html":
+                    host_violations.append(f"{p}: 許可外の YouTube のURL {m.group(2)[:60]}")
             elif host in LEGACY_SOURCES:
                 from urllib.parse import unquote
                 path = unquote(re.split(r"[?#]", m.group(2), 1)[0])

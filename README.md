@@ -52,7 +52,7 @@ python3 -m http.server 8000
 
 詳細は [CONTRIBUTING.txt](CONTRIBUTING.txt) を参照してください。主なルール：
 
-1. **外部リンクは公式市ページの14のURLのみ** — 学校再編 `.../kyoiku/kyouikusoumu/303/index.html`（サイト全体）、地域協議会 `.../kenkouikigai/sasaeai/3/3_2/index.html`（community.html のみ）、東部まちづくり `.../toubumachidukuri/tobumachidukurisingikai/index.html`（「地域の取組」欄の出典）、東部まちづくりプラットフォームの説明 `.../purattofo-mu/38222.html`（community.html の #platform のみ。同じ節で登録フォーム `logoform.jp/form/uSYk/80018` にもリンク）、都市計画 `.../toshiseisakubu/toshikeikaku/1/index.html`（community.html「都市計画の動き（東部地域）」の出典のみ）、市議会のトップ `https://www.city.komaki.aichi.jp/shigikai/index.html` と市議会だより `.../shigikai/houkoku/43556.html`（council.html の出典欄の下のみ）、こまき歴史発見館 `.../kyoiku/bunkazai/52305.html`（community.html の「地域のレガシー」と analysis.html の「既存校のレガシーを引き継ぐ」のみ）、令和8年度第3回 東部まちづくり審議会の会議資料のページ `.../jyohokokai/kaigikoukai/4/53024.html`（community.html「東部振興構想の見直しと桃花台の土地利用」の出典のみ）。それ以外の city.komaki.aichi.jp URL は禁止。別枠として、春日井市「小中学校の適正規模等について」の索引 `https://www.city.kasugai.lg.jp/kosodate/kyouiku/school/1009208/index.html`（about.html「ほかの地区や、となりのまちでは？」の出典のみ）、再編対象8校のホームページ（`komaki-aic.ed.jp`）、nationwide.html が出典として張る文部科学省の5つの資料ページ（`mext.go.jp`）、「地域の取組」（community.html と、同じ一覧を出す index.html）が発信元として張る住民有志の許可アカウント（`instagram.com/arigato.ohshirosho`・`instagram.com/tokadaidancefestival`・`instagram.com/bamboo_installation_ookusa`）と、同じ欄が載せる市の児童館2館のアカウント（`instagram.com/shinookajidoukan`・`instagram.com/warabekan`）、大にこにこ祭り ニコサイの主催者（`instagram.com/2525marche.komaki`、community.html・index.html のみ）、桃花台を考える会の仲間募集の PR（`instagram.com/tokadai_komaki`。community.html・index.html・schedule.html のみ）、「地域の取組」が事実の出どころとして張る小牧市公式Facebookの投稿（`facebook.com/city.komaki`）、「地域の取組」欄の「会場の案内」行にだけ置く会場施設の告知ページ（`peare-toukadai.jp/event_campaign/tokadai-dance-festival/`）、同じ欄の「発信元」行にだけ置くこまき市民文化財団（プラネタリウム）の案内ページ（`www.komaki-bunka.or.jp/planet/news/3579.html`、秋の「星を見る会」）、site.html#feedback の GitHub Issue フォーム（`github.com/komaki-east-school-reorg/komaki-east-school-reorg.github.io/issues/new?template=feedback.yml`）と翻訳の修正提案の Issue フォーム（`…/issues/new?template=translation.yml`、`site.html#translation` だけ）、そして全ページ下部の共有ボタンの送り先（LINE・X・Facebook・はてなブックマーク・note・Threads・Bluesky・Reddit・Mastodon／はてなスター。スマートフォンではアプリが入っていればアプリを開く）は可。いずれも `auto_gates.py` が機械検査する。リンクではないが、Cookie なしの閲覧数の集計の送り先 `komaki-saihen.goatcounter.com/count`（js/main.js の COUNTER のみ。外部スクリプトは読まない）も同じく検査している
+1. **外部リンクは公式市ページの38のURLのみ** — 学校再編 `.../kyoiku/kyouikusoumu/303/index.html`（サイト全体）、地域協議会 `.../kenkouikigai/sasaeai/3/3_2/index.html`（community.html のみ）、東部まちづくり `.../toubumachidukuri/tobumachidukurisingikai/index.html`（「地域の取組」欄の出典）、東部まちづくりプラットフォームの説明 `.../purattofo-mu/38222.html`（community.html の #platform のみ。同じ節で登録フォーム `logoform.jp/form/uSYk/80018` にもリンク）、都市計画 `.../toshiseisakubu/toshikeikaku/1/index.html`（community.html「都市計画の動き（東部地域）」の出典のみ）、市議会のトップ `https://www.city.komaki.aichi.jp/shigikai/index.html` と市議会だより `.../shigikai/houkoku/43556.html`（council.html の出典欄の下のみ）、こまき歴史発見館 `.../kyoiku/bunkazai/52305.html`（community.html の「地域のレガシー」と analysis.html の「既存校のレガシーを引き継ぐ」のみ）、令和8年度第3回 東部まちづくり審議会の会議資料のページ `.../jyohokokai/kaigikoukai/4/53024.html`（community.html「東部振興構想の見直しと桃花台の土地利用」の出典のみ）。それ以外の city.komaki.aichi.jp URL は禁止。別枠として、春日井市「小中学校の適正規模等について」の索引 `https://www.city.kasugai.lg.jp/kosodate/kyouiku/school/1009208/index.html`（about.html「ほかの地区や、となりのまちでは？」の出典のみ）、再編対象8校のホームページ（`komaki-aic.ed.jp`）、nationwide.html が出典として張る文部科学省の5つの資料ページ（`mext.go.jp`）、「地域の取組」（community.html と、同じ一覧を出す index.html）が発信元として張る住民有志の許可アカウント（`instagram.com/arigato.ohshirosho`・`instagram.com/tokadaidancefestival`・`instagram.com/bamboo_installation_ookusa`）と、同じ欄が載せる市の児童館2館のアカウント（`instagram.com/shinookajidoukan`・`instagram.com/warabekan`）、大にこにこ祭り ニコサイの主催者（`instagram.com/2525marche.komaki`、community.html・index.html のみ）、桃花台を考える会の仲間募集の PR（`instagram.com/tokadai_komaki`。community.html・index.html・schedule.html のみ）、「地域の取組」が事実の出どころとして張る小牧市公式Facebookの投稿（`facebook.com/city.komaki`）、「地域の取組」欄の「会場の案内」行にだけ置く会場施設の告知ページ（`peare-toukadai.jp/event_campaign/tokadai-dance-festival/`）、同じ欄の「発信元」行にだけ置くこまき市民文化財団（プラネタリウム）の案内ページ（`www.komaki-bunka.or.jp/planet/news/3579.html`、秋の「星を見る会」）、site.html#feedback の GitHub Issue フォーム（`github.com/komaki-east-school-reorg/komaki-east-school-reorg.github.io/issues/new?template=feedback.yml`）と翻訳の修正提案の Issue フォーム（`…/issues/new?template=translation.yml`、`site.html#translation` だけ）、そして全ページ下部の共有ボタンの送り先（LINE・X・Facebook・はてなブックマーク・note・Threads・Bluesky・Reddit・Mastodon／はてなスター。スマートフォンではアプリが入っていればアプリを開く）は可。いずれも `auto_gates.py` が機械検査する。リンクではないが、Cookie なしの閲覧数の集計の送り先 `komaki-saihen.goatcounter.com/count`（js/main.js の COUNTER のみ。外部スクリプトは読まない）も同じく検査している
    地域のレガシーのカードの出典（2026-11-22 ユーザー指示、community.html だけ）：市の5ページ shiteibunkazai/1/9109.html・midokoro/kankou/2/10630.html・shiteibunkazai/4/9128.html・sisetuunnei/2_1/3492.html・dragons/51869.html と、komakici.jp・dragons.jp・www.kashiwabara.co.jp・www.blue-style.com・komaki2.jp の各1〜2ページ（`LEGACY_SOURCES`）。PDF へは今までどおり直リンクしない。
 2. **翻訳ファイルの構文** — `data/i18n/*.json` はコミット前に全ファイルを JSON パースして確認（アポストロフィのエスケープは不要。`\'` と書くと逆に壊れる）
 3. **新しい翻訳キー** — `ja`（日本語）と `en`（英語）への記載が必須。他の言語は未記載でも英語→日本語の順にフォールバック
@@ -83,3 +83,32 @@ python3 -m http.server 8000
 - [CLAUDE_ja.md](CLAUDE_ja.md) — CLAUDE.md の日本語説明
 - [CONTRIBUTING.txt](CONTRIBUTING.txt) — コンテンツ管理ルール
 - [files.txt](files.txt) — ファイル一覧と説明
+
+
+**地域のレガシーの各カードの出典（2026-11-22 ユーザー指示。community.html だけ）で追加した市のページ：**
+- `event_1/midokoro/shiminshikinomori/16376.html`
+- `event_1/midokoro/shiminshikinomori/16809.html`
+- `soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/2/9116.html`
+- `soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/3/9118.html`
+- `soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/4/9137.html`
+- `soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/4/9146.html`
+- `soshiki/kyoiku/kyouikusoumu/303/52402.html`
+- `soshiki/toshiseisakubu/kouen/1/8/1/35746.html`
+- `soshiki/toshiseisakubu/kouen/1/8/1/tikukouen/22276.html`
+- `soshiki/toshiseisakubu/toshikeikaku/1/1_1/toshikeikan/5901.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/46417.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/35668.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/45200.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/51859.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/kyoudouteianjigyou/index.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/machidukurisemina/46283.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa4nendo/39361.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa4nendo/39418.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa5nendo/43097.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/45800.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/45889.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/46053.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/48386.html`
+ほかに愛知県2ページ（旧桃花台線・風景群リスト）と葵エンジニアリング「地名の由来」9ページ（`LEGACY_SOURCES`）。PDF へは直リンクしない。新篠岡音頭の出典は YouTube の音源1本だけ（`https://www.youtube.com/watch?v=h_WC-X5YbuE`、2026-11-22 ユーザー指示。`YOUTUBE_LEGACY`、community.html だけ）。作詞・作曲者や歌い手の名前は書かない。
+
+- `kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/1/9103.html`（`shiteibunkazai/1/9103.html`、篠岡古窯跡群）と、国立国会図書館サーチの1件 `ndlsearch.ndl.go.jp/books/R100000001-I23111100253640`（『篠岡古窯址群』、昭和46〜47年。古窯のカードの出典、community.html だけ）。

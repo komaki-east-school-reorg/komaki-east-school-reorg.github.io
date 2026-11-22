@@ -30,7 +30,7 @@ python3 -m http.server 8000
 
 ## Validation checks (run before every commit)
 
-**1. Illegal external links** — exactly **fourteen** city URLs are permitted: five index pages, plus nine article pages (the last five are the legacy-card sources listed under the table) that the user explicitly allowed (2026-09-27, 2026-10-26, 2026-10-31, 2026-11-15). No PDF direct links, no other article subpages.
+**1. Illegal external links** — exactly **thirty-eight** city URLs are permitted: five index pages, plus article pages that the user explicitly allowed (2026-09-27, 2026-10-26, 2026-10-31, 2026-11-15, 2026-11-22; 29 of them are legacy-card sources, listed under the table and at the end of this file). The authoritative list is `PERMITTED_LINKS` in `auto_gates.py`; the grep below shows only the first fourteen, so rely on check 6 for the rest. No PDF direct links, no other article subpages.
 
 | Permitted URL | Used by |
 |---|---|
@@ -58,7 +58,7 @@ grep -rn "city\.komaki\.aichi\.jp" *.html js/*.js \
 # Any output = violation. Replace with one of the permitted URLs.
 ```
 
-The same fourteen URLs are encoded in `PERMITTED_LINKS` (and `CITY_PATHS`) in `.github/scripts/auto_gates.py` — keep them in sync. The third one is matched with its `index.html` suffix on purpose, so the pages **under** it (`.../tobumachidukurisingikai/34277.html`, `.../toubumatidukurinyu-su/index.html`) stay forbidden. Adding a fifteenth requires updating this file, `CONTRIBUTING.txt` rule 1, `README.md`, and that gate together.
+The same URLs are encoded in `PERMITTED_LINKS` (and `CITY_PATHS`) in `.github/scripts/auto_gates.py` — keep them in sync. The third one is matched with its `index.html` suffix on purpose, so the pages **under** it (`.../tobumachidukurisingikai/34277.html`, `.../toubumatidukurinyu-su/index.html`) stay forbidden. Adding another requires updating this file, `CONTRIBUTING.txt` rule 1, `README.md`, and that gate together.
 
 **Kasugai City (2026-11-07, user's instruction):** one more government page, outside the nine above — `https://www.city.kasugai.lg.jp/kosodate/kyouiku/school/1009208/index.html` (春日井市「小中学校の適正規模等について」), confined to `about.html` / `js/main.js` (the 出典 line of the Kasugai list in `#nearby`, 「ほかの地区や、となりのまちでは？」) by `KASUGAI_PATHS` / `KASUGAI_PAGES` in `auto_gates.py`. The pages under it and its PDFs stay forbidden.
 
@@ -309,7 +309,7 @@ The **地域の取組 section on `community.html`**, sitting directly below the 
 2026-10-31 追加（ユーザー指示）。東部で学校とは別に受け継がれてきたものを、**事実だけ**で21枚のカードにして7つのまとまりで並べる：東部の歴史（大山廃寺跡と児神社・古窯と陶業の歴史・ピーチライナー〈2026-11-02 追加。出典は愛知県「旧桃花台線について」、市の年表・こまき検定・ピーチバスと旧車両基地用地のページ〉）／桃花台ニュータウン（桃花台中央公園・丘の上の給水塔・スカイステージ33・緑道と各地区の公園・音楽のまち。2026-11-02 ユーザー指示。出典は市の公園ページ・県の景観資源「桃花台ニュータウンのまちなみ」・『東部まちづくりニュース』・意見提出シートへの市の回答。**藤棚・桜はユーザーから伝えられた現地の様子で、公表資料では確かめていない。スカイステージ33（民間の集合住宅。見学できる施設ではないと書く）の竣工年・階数・高さ・戸数は、2026-11-22 にユーザーが示した改修会社の施工事例と建物情報サイトで一致を確かめたものだけを書く（竣工月は資料で6月と7月に分かれるので書かない。番地・「市内で最も高い」は書かない。リンクは張らない）** — 名前と存在だけを書き、**出典の行（`comm_leg_src`）の1文でだけ**そう断る（新篠岡音頭の由来も同じ1文。2026-11-05 にカードごとの断りを外してまとめた）。由来・本数・場所を推測で補わない）／祭りと芸能（棒の手・桃花台まつり・東部各地の祭り・新篠岡音頭〈挿絵は盆踊り〉・音楽のまち〈桃花台音楽まつり。出演者の個人名は書かない。2026-11-02 ユーザー指示で桃花台ニュータウンから移した〉）／特産物（桃・ぶどう・名古屋コーチン・小牧ワイナリー〈2026-11-02 追加。出典はワイナリー自身の公表＝社会福祉法人AJU自立の家が2015年4月に開設、と市の東部まちづくりのイベント情報・トライアル活動のページ。こどもむけでは「ワインは大人の飲み物」と添える〉）／自然（大山川のホタル・マメナシ）／公園とスポーツ（市民四季の森・市民球場〈総合運動場〉。2026-11-02 追加。出典は市の施設ページ・景観資源の指定ページ・市制70周年「小牧市のあゆみ」〈野球場の完成＝昭和63年〉。四季の森の開園年は公表ページで確かめられなかったので書いていない）／郷土カルタ（篠岡カルタ）。連絡先は community.html#contact に みどり公園課 花と緑推進係（四季の森）と総合運動場（市民球場）を足してある（`ct_w_midori` / `ct_w_stadium`）。キーは `comm_leg_*`、カードの id は `legacy-<キー>`。まとまりの見出しは `h3.leg-group-h`、カードの見出しは `h4`（`section-title` にしない — 目次と読み上げの単位を増やさないため）。
 
 - **出典は市の公表**（文化財課・『こまき検定 問題一覧と解説文』・歴史民俗資料展示施設（仮称）の展示設計説明書・「美しい愛知づくり景観資源」の指定ページ・『東部まちづくりニュース』と東部地域トライアル活動）と、**学校自身の公表**（篠岡小HPの「篠岡カルタ」、各校の学校日記）。本文の最後に文字で書き、リンクは張らない。
-- **新篠岡音頭**は公表資料に無く、動画投稿サイトに個人が上げたレコードの音源で「名前とレコードになったこと」だけを確かめた。リンクせず、作詞・作曲者の個人名も書かない。由来と踊られている場は「確かめられていない」と書く。
+- **新篠岡音頭**は公表資料に無く、動画投稿サイトに個人が上げたレコードの音源で「名前とレコードになったこと」だけを確かめた。出典としてその音源1本にリンクし（2026-11-22 ユーザー指示）、作詞・作曲者の個人名も書かない。由来と踊られている場は「確かめられていない」と書く。
 - 当サイトの考え（提案）は書かず、`comm_leg_more` で `analysis.html#rev-legacy` へ送る（事実のページに提案を混ぜない）。
 - 中身を足したら `ql_community_p`（13辞書＋index.html）も直す。
 
@@ -565,7 +565,7 @@ Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics
 | `rev-core-ideas` | 💡 提案の核心（15項目。教育の質5・子どもを増やす5・既存校のレガシー5。review.html。2026-10-31） | `rev_cp_*`、`rev_cp1`〜`rev_cp15` |
 | `rev-gaps` | 🔎 計画から読み取れないこと（6論点） | `rev_i1`〜`rev_i6` |
 | `rev-quality` | 🎓 教育の質から見た再編（学力・人間力・学級・移り変わり・先生・健康と安全の7論点。2026-10-24 ユーザー指示） | `rev_s12_*`、`rev_k1`〜`rev_k7` |
-| `rev-legacy` | 💡 既存校のレガシーを引き継ぐ（事実13＋提案11。棒の手・東部の祭り・東部の特産物はそれぞれ別のカード。節全体への 🔎 は事実と提案のあいだの独立した囲み（`.rev-view--block`）。著作権法の条文を本文に文字で出典。学校ごとの活動＝陶小の和太鼓部・光ヶ丘小の「光っこソーラン」のはっぴなどは各校のホームページ（学校日記）、篠岡小の郷土カルタ「篠岡カルタ」（36組、画像のみ）は同校のホームページ、大草・野口の棒の手（市指定無形民俗文化財）は市の文化財課、桃花台まつり・名古屋コーチンなどの特産物は市の『東部まちづくりニュース』とトライアル活動のページを出典にし、リンクは張らない。篠岡音頭（新篠岡音頭）は名前とレコードになったことだけ（動画投稿サイトの音源。リンクせず、作詞・作曲者の個人名は書かない）で、由来と踊られている場は「確認できていないこと」。2026-10-31） | `rev_s14_*`、`rev_l_f1`〜`f13`、`rev_l_p1`〜`p11`、`rev_l_v`、`rev_l_open` |
+| `rev-legacy` | 💡 既存校のレガシーを引き継ぐ（事実13＋提案11。棒の手・東部の祭り・東部の特産物はそれぞれ別のカード。節全体への 🔎 は事実と提案のあいだの独立した囲み（`.rev-view--block`）。著作権法の条文を本文に文字で出典。学校ごとの活動＝陶小の和太鼓部・光ヶ丘小の「光っこソーラン」のはっぴなどは各校のホームページ（学校日記）、篠岡小の郷土カルタ「篠岡カルタ」（36組、画像のみ）は同校のホームページ、大草・野口の棒の手（市指定無形民俗文化財）は市の文化財課、桃花台まつり・名古屋コーチンなどの特産物は市の『東部まちづくりニュース』とトライアル活動のページを出典にし、リンクは張らない。篠岡音頭（新篠岡音頭）は名前とレコードになったことだけ（動画投稿サイトの音源。community.html のカードからだけリンクし、作詞・作曲者の個人名は書かない）で、由来と踊られている場は「確認できていないこと」。2026-10-31） | `rev_s14_*`、`rev_l_f1`〜`f13`、`rev_l_p1`〜`p11`、`rev_l_v`、`rev_l_open` |
 | `rev-skills` | 💡 これからの子どもに要る力（学習指導要領の教科別の表＋8つの力の 🔎＋提案9件。数学力・情報・プロジェクト・地域経営・生き抜く力・生活力・保健医療。同日） | `rev_s13_*`、`rev_m_*` |
 | `rev-history` | 📊 これまでの市の施策は東部に効いたか（年表＋7論点。7つ目は東部振興構想の中間見直し（案）、2026-11-15） | `rev_y1`〜`rev_y16`、`rev_e1`〜`rev_e7` |
 | `rev-nation` | 🗾 県と国は何をしてきたか（4論点） | `rev_n1`〜`rev_n4` |
@@ -987,3 +987,32 @@ Beyond the auto-update pipeline's scope and evidence checks, these run site-wide
 | 28 | Every `data-i18n*` key in the HTML exists in `ja.json` (`site_lint.missing_keys()`) | A key with no dictionary entry keeps its inline Japanese in every language and nobody notices (2026-11-11) |
 | 29 | Every in-site link (`page.html#id`, `#id`) in `*.html` and in dictionary values points at something that exists (`site_lint.broken_links()`; runtime ids `faq-qN` / `toc-<key>` and the old anchors MOVED ANCHORS forwards are accepted) | Sections get renamed and moved; a dead in-page link fails silently (2026-11-11) |
 | 21 | review.html's 25 key-point cards (10 findings, 15 proposals), their 「くわしく →」 targets, `REVIEW LINKS` in `js/main.js` and the links between review.html and analysis.html all agree | The two pages are read as one: a key point must land on its evidence and every evidence card must lead back (2026-10-31) |
+
+
+**地域のレガシーの各カードの出典（2026-11-22 ユーザー指示。community.html だけ）で追加した市のページ：**
+- `event_1/midokoro/shiminshikinomori/16376.html`
+- `event_1/midokoro/shiminshikinomori/16809.html`
+- `soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/2/9116.html`
+- `soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/3/9118.html`
+- `soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/4/9137.html`
+- `soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/4/9146.html`
+- `soshiki/kyoiku/kyouikusoumu/303/52402.html`
+- `soshiki/toshiseisakubu/kouen/1/8/1/35746.html`
+- `soshiki/toshiseisakubu/kouen/1/8/1/tikukouen/22276.html`
+- `soshiki/toshiseisakubu/toshikeikaku/1/1_1/toshikeikan/5901.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/46417.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/35668.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/45200.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/51859.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/kyoudouteianjigyou/index.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/machidukurisemina/46283.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa4nendo/39361.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa4nendo/39418.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa5nendo/43097.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/45800.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/45889.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/46053.html`
+- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/48386.html`
+ほかに愛知県2ページ（旧桃花台線・風景群リスト）と葵エンジニアリング「地名の由来」9ページ（`LEGACY_SOURCES`）。PDF へは直リンクしない。新篠岡音頭の出典は YouTube の音源1本だけ（`https://www.youtube.com/watch?v=h_WC-X5YbuE`、2026-11-22 ユーザー指示。`YOUTUBE_LEGACY`、community.html だけ）。作詞・作曲者や歌い手の名前は書かない。
+
+- `kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/1/9103.html`（`shiteibunkazai/1/9103.html`、篠岡古窯跡群）と、国立国会図書館サーチの1件 `ndlsearch.ndl.go.jp/books/R100000001-I23111100253640`（『篠岡古窯址群』、昭和46〜47年。古窯のカードの出典、community.html だけ）。

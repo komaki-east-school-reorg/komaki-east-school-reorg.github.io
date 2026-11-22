@@ -3824,6 +3824,9 @@ html.has-share-sticky .to-top { bottom: calc(var(--share-sticky-h, 3.4rem) + .8r
 #east-quiz { scroll-margin-top: calc(var(--header-h, 80px) + .7rem); }
 
 /* 地域のレガシーのカードの出典（2026-11-22） */
+.leg-name-list { list-style: none; margin: .5rem 0 .7rem; padding: 0; border-top: 1px solid var(--border); font-size: .86rem; }
+.leg-name-list li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .1rem .8rem; padding: .3rem 0; border-bottom: 1px solid var(--border); }
+.leg-name-list li:last-child { font-weight: 700; color: var(--primary); }
 .leg-src { margin: .5rem 0 0; font-size: .76rem; line-height: 1.5; color: var(--text-muted); overflow-wrap: anywhere; }
 @media (max-width: 560px) {
   .hero .hero-site { flex-wrap: nowrap; gap: .4rem; }
