@@ -1,5 +1,5 @@
 {
- "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / f 喫茶・カフェ / g パン・お菓子・直売 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
+ "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / f 喫茶・カフェ / g パン・お菓子・直売 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし / k もっと東部のお店。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
  "items": [
   {
    "id": "a01",
@@ -710,26 +710,26 @@
    "id": "f09",
    "theme": "f",
    "more": null,
-   "q": "Bên trong Komaki Winery có gì?",
+   "q": "Nhà hàng Trung Hoa Sasakatsu ở Ikenouchi được đặt tên theo nơi thành lập. Đó là đâu?",
    "o": [
-    "Quán cà phê",
-    "Rạp phim",
-    "Nhà sách"
+    "Sasashima (Nagoya)",
+    "Sakae (Nagoya)",
+    "Osu (Nagoya)"
    ],
-   "src": "小牧市 東部まちづくりニュース",
+   "src": "食べログの口コミ",
    "lv": "hard"
   },
   {
    "id": "f10",
    "theme": "f",
    "more": null,
-   "q": "Shin Cafe ở khu nào?",
+   "q": "Món nổi bật của Kissa Monte Rosa ở Okusa là gì?",
    "o": [
-    "Okusa",
-    "Kamisue",
-    "Koga"
+    "Tonteki",
+    "Hamburg steak",
+    "Omurice"
    ],
-   "src": "小牧つーしん",
+   "src": "食べログ",
    "lv": "hard"
   },
   {
@@ -1246,6 +1246,136 @@
     "Noguchi"
    ],
    "src": "こまき市民文化財団の案内",
+   "lv": "hard"
+  },
+  {
+   "id": "k01",
+   "theme": "k",
+   "more": null,
+   "q": "Tiệm bánh Mahou no Cake-ya JIJI nằm trong tòa nhà nào?",
+   "o": [
+    "Piesta",
+    "Lapio",
+    "Peare Tokadai"
+   ],
+   "src": "コマキタイムズ",
+   "lv": "hard"
+  },
+  {
+   "id": "k02",
+   "theme": "k",
+   "more": null,
+   "q": "Loại bánh nào khiến JIJI nổi tiếng?",
+   "o": [
+    "Bánh vẽ hình",
+    "Bánh băng",
+    "Bánh kiểu Nhật"
+   ],
+   "src": "コマキタイムズ",
+   "lv": "hard"
+  },
+  {
+   "id": "k03",
+   "theme": "k",
+   "more": null,
+   "q": "Tiệm Soramimi PAN ở khu nào?",
+   "o": [
+    "Kamisue",
+    "Shiroyama",
+    "Koga"
+   ],
+   "src": "チルチンびと広場",
+   "lv": "hard"
+  },
+  {
+   "id": "k04",
+   "theme": "k",
+   "more": null,
+   "q": "Soramimi PAN nuôi men bánh từ gì?",
+   "o": [
+    "Thảo dược và cây dại địa phương",
+    "Rong biển",
+    "Vỏ trái cây"
+   ],
+   "src": "チルチンびと広場",
+   "lv": "hard"
+  },
+  {
+   "id": "k05",
+   "theme": "k",
+   "more": null,
+   "q": "Ở Rich Farm tại Kamisue có thể đào gì?",
+   "o": [
+    "Măng",
+    "Củ sen",
+    "Khoai tây"
+   ],
+   "src": "リッチファーム 公式サイト",
+   "lv": "hard"
+  },
+  {
+   "id": "k06",
+   "theme": "k",
+   "more": null,
+   "q": "Ở Rich Farm có thể hái trái gì?",
+   "o": [
+    "Đào",
+    "Dưa lưới",
+    "Dưa hấu"
+   ],
+   "src": "リッチファーム 公式サイト",
+   "lv": "hard"
+  },
+  {
+   "id": "k07",
+   "theme": "k",
+   "more": null,
+   "q": "Kodanuki ở Kamisue là quán gì?",
+   "o": [
+    "Okonomiyaki",
+    "Sushi",
+    "Soba"
+   ],
+   "src": "食べログ",
+   "lv": "hard"
+  },
+  {
+   "id": "k08",
+   "theme": "k",
+   "more": null,
+   "q": "Jikasei-men Izumi ở Hayashi nổi tiếng với món mì nào?",
+   "o": [
+    "Tantanmen",
+    "Yakisoba",
+    "Somen"
+   ],
+   "src": "Retty",
+   "lv": "hard"
+  },
+  {
+   "id": "k09",
+   "theme": "k",
+   "more": null,
+   "q": "Ramen Haruto ở khu nào?",
+   "o": [
+    "Takane",
+    "Okusa",
+    "Noguchi"
+   ],
+   "src": "個人ブログ「懸勝麺ロード」",
+   "lv": "hard"
+  },
+  {
+   "id": "k10",
+   "theme": "k",
+   "more": null,
+   "q": "Vườn nho Suzuki và Ogawa ở khu nào?",
+   "o": [
+    "Takane",
+    "Oyama",
+    "Koga"
+   ],
+   "src": "小牧つーしん",
    "lv": "hard"
   }
  ]

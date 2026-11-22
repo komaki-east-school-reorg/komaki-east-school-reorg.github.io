@@ -1,5 +1,5 @@
 {
- "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / f 喫茶・カフェ / g パン・お菓子・直売 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
+ "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / f 喫茶・カフェ / g パン・お菓子・直売 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし / k もっと東部のお店。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
  "items": [
   {
    "id": "a01",
@@ -710,26 +710,26 @@
    "id": "f09",
    "theme": "f",
    "more": null,
-   "q": "Apa yang ada di dalam Komaki Winery?",
+   "q": "Restoran Tionghoa Sasakatsu di Ikenouchi dinamai dari tempat pendiriannya. Di mana?",
    "o": [
-    "Kafe",
-    "Bioskop",
-    "Toko buku"
+    "Sasashima (Nagoya)",
+    "Sakae (Nagoya)",
+    "Osu (Nagoya)"
    ],
-   "src": "小牧市 東部まちづくりニュース",
+   "src": "食べログの口コミ",
    "lv": "hard"
   },
   {
    "id": "f10",
    "theme": "f",
    "more": null,
-   "q": "Di area mana Shin Cafe?",
+   "q": "Apa menu andalan Kissa Monte Rosa di Okusa?",
    "o": [
-    "Okusa",
-    "Kamisue",
-    "Koga"
+    "Tonteki",
+    "Hamburg steak",
+    "Omurice"
    ],
-   "src": "小牧つーしん",
+   "src": "食べログ",
    "lv": "hard"
   },
   {
@@ -1246,6 +1246,136 @@
     "Noguchi"
    ],
    "src": "こまき市民文化財団の案内",
+   "lv": "hard"
+  },
+  {
+   "id": "k01",
+   "theme": "k",
+   "more": null,
+   "q": "Di gedung mana toko kue Mahou no Cake-ya JIJI?",
+   "o": [
+    "Piesta",
+    "Lapio",
+    "Peare Tokadai"
+   ],
+   "src": "コマキタイムズ",
+   "lv": "hard"
+  },
+  {
+   "id": "k02",
+   "theme": "k",
+   "more": null,
+   "q": "Kue apa yang membuat JIJI populer?",
+   "o": [
+    "Kue bergambar",
+    "Kue es",
+    "Kue gaya Jepang"
+   ],
+   "src": "コマキタイムズ",
+   "lv": "hard"
+  },
+  {
+   "id": "k03",
+   "theme": "k",
+   "more": null,
+   "q": "Di area mana toko roti Soramimi PAN?",
+   "o": [
+    "Kamisue",
+    "Shiroyama",
+    "Koga"
+   ],
+   "src": "チルチンびと広場",
+   "lv": "hard"
+  },
+  {
+   "id": "k04",
+   "theme": "k",
+   "more": null,
+   "q": "Dari apa Soramimi PAN menumbuhkan biang rotinya?",
+   "o": [
+    "Herbal dan tanaman liar setempat",
+    "Rumput laut",
+    "Kulit buah"
+   ],
+   "src": "チルチンびと広場",
+   "lv": "hard"
+  },
+  {
+   "id": "k05",
+   "theme": "k",
+   "more": null,
+   "q": "Apa yang bisa digali di Rich Farm, Kamisue?",
+   "o": [
+    "Rebung",
+    "Akar teratai",
+    "Kentang"
+   ],
+   "src": "リッチファーム 公式サイト",
+   "lv": "hard"
+  },
+  {
+   "id": "k06",
+   "theme": "k",
+   "more": null,
+   "q": "Buah apa yang bisa dipetik di Rich Farm?",
+   "o": [
+    "Persik",
+    "Melon",
+    "Semangka"
+   ],
+   "src": "リッチファーム 公式サイト",
+   "lv": "hard"
+  },
+  {
+   "id": "k07",
+   "theme": "k",
+   "more": null,
+   "q": "Kodanuki di Kamisue adalah rumah makan apa?",
+   "o": [
+    "Okonomiyaki",
+    "Sushi",
+    "Soba"
+   ],
+   "src": "食べログ",
+   "lv": "hard"
+  },
+  {
+   "id": "k08",
+   "theme": "k",
+   "more": null,
+   "q": "Mi apa yang terkenal di Jikasei-men Izumi, Hayashi?",
+   "o": [
+    "Tantanmen",
+    "Yakisoba",
+    "Somen"
+   ],
+   "src": "Retty",
+   "lv": "hard"
+  },
+  {
+   "id": "k09",
+   "theme": "k",
+   "more": null,
+   "q": "Di area mana Ramen Haruto?",
+   "o": [
+    "Takane",
+    "Okusa",
+    "Noguchi"
+   ],
+   "src": "個人ブログ「懸勝麺ロード」",
+   "lv": "hard"
+  },
+  {
+   "id": "k10",
+   "theme": "k",
+   "more": null,
+   "q": "Di area mana kebun anggur Suzuki dan Ogawa?",
+   "o": [
+    "Takane",
+    "Oyama",
+    "Koga"
+   ],
+   "src": "小牧つーしん",
    "lv": "hard"
   }
  ]

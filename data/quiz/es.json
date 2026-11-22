@@ -1,5 +1,5 @@
 {
- "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / f 喫茶・カフェ / g パン・お菓子・直売 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
+ "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / f 喫茶・カフェ / g パン・お菓子・直売 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし / k もっと東部のお店。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
  "items": [
   {
    "id": "a01",
@@ -710,26 +710,26 @@
    "id": "f09",
    "theme": "f",
    "more": null,
-   "q": "¿Qué hay dentro de la Bodega de Komaki?",
+   "q": "El restaurante chino Sasakatsu, en Ikenouchi, lleva el nombre del lugar donde se fundó. ¿Cuál es?",
    "o": [
-    "Una cafetería",
-    "Un cine",
-    "Una librería"
+    "Sasashima (Nagoya)",
+    "Sakae (Nagoya)",
+    "Osu (Nagoya)"
    ],
-   "src": "小牧市 東部まちづくりニュース",
+   "src": "食べログの口コミ",
    "lv": "hard"
   },
   {
    "id": "f10",
    "theme": "f",
    "more": null,
-   "q": "¿En qué zona está Shin Cafe?",
+   "q": "¿Cuál es el plato estrella de Kissa Monte Rosa, en Okusa?",
    "o": [
-    "Okusa",
-    "Kamisue",
-    "Koga"
+    "Tonteki",
+    "Hamburg steak",
+    "Omurice"
    ],
-   "src": "小牧つーしん",
+   "src": "食べログ",
    "lv": "hard"
   },
   {
@@ -1246,6 +1246,136 @@
     "Noguchi"
    ],
    "src": "こまき市民文化財団の案内",
+   "lv": "hard"
+  },
+  {
+   "id": "k01",
+   "theme": "k",
+   "more": null,
+   "q": "¿En qué edificio está la pastelería Mahou no Cake-ya JIJI?",
+   "o": [
+    "Piesta",
+    "Lapio",
+    "Peare Tokadai"
+   ],
+   "src": "コマキタイムズ",
+   "lv": "hard"
+  },
+  {
+   "id": "k02",
+   "theme": "k",
+   "more": null,
+   "q": "¿Qué pasteles hicieron tan popular a JIJI?",
+   "o": [
+    "Pasteles ilustrados",
+    "Pasteles de hielo",
+    "Pasteles japoneses"
+   ],
+   "src": "コマキタイムズ",
+   "lv": "hard"
+  },
+  {
+   "id": "k03",
+   "theme": "k",
+   "more": null,
+   "q": "¿En qué zona está la panadería Soramimi PAN?",
+   "o": [
+    "Kamisue",
+    "Shiroyama",
+    "Koga"
+   ],
+   "src": "チルチンびと広場",
+   "lv": "hard"
+  },
+  {
+   "id": "k04",
+   "theme": "k",
+   "more": null,
+   "q": "¿De qué cultiva Soramimi PAN su masa madre?",
+   "o": [
+    "Hierbas y plantas silvestres locales",
+    "Algas",
+    "Cáscara de fruta"
+   ],
+   "src": "チルチンびと広場",
+   "lv": "hard"
+  },
+  {
+   "id": "k05",
+   "theme": "k",
+   "more": null,
+   "q": "¿Qué se puede desenterrar en Rich Farm, en Kamisue?",
+   "o": [
+    "Brotes de bambú",
+    "Raíz de loto",
+    "Papas"
+   ],
+   "src": "リッチファーム 公式サイト",
+   "lv": "hard"
+  },
+  {
+   "id": "k06",
+   "theme": "k",
+   "more": null,
+   "q": "¿Qué fruta se puede cosechar en Rich Farm?",
+   "o": [
+    "Durazno",
+    "Melón",
+    "Sandía"
+   ],
+   "src": "リッチファーム 公式サイト",
+   "lv": "hard"
+  },
+  {
+   "id": "k07",
+   "theme": "k",
+   "more": null,
+   "q": "¿Qué tipo de restaurante es Kodanuki, en Kamisue?",
+   "o": [
+    "Okonomiyaki",
+    "Sushi",
+    "Soba"
+   ],
+   "src": "食べログ",
+   "lv": "hard"
+  },
+  {
+   "id": "k08",
+   "theme": "k",
+   "more": null,
+   "q": "¿Por qué plato de fideos se conoce Jikasei-men Izumi, en Hayashi?",
+   "o": [
+    "Tantanmen",
+    "Yakisoba",
+    "Somen"
+   ],
+   "src": "Retty",
+   "lv": "hard"
+  },
+  {
+   "id": "k09",
+   "theme": "k",
+   "more": null,
+   "q": "¿En qué zona está Ramen Haruto?",
+   "o": [
+    "Takane",
+    "Okusa",
+    "Noguchi"
+   ],
+   "src": "個人ブログ「懸勝麺ロード」",
+   "lv": "hard"
+  },
+  {
+   "id": "k10",
+   "theme": "k",
+   "more": null,
+   "q": "¿En qué zona están los viñedos Suzuki y Ogawa?",
+   "o": [
+    "Takane",
+    "Oyama",
+    "Koga"
+   ],
+   "src": "小牧つーしん",
    "lv": "hard"
   }
  ]

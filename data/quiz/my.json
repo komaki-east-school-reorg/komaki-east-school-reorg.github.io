@@ -1,5 +1,5 @@
 {
- "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / f 喫茶・カフェ / g パン・お菓子・直売 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
+ "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / f 喫茶・カフェ / g パン・お菓子・直売 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし / k もっと東部のお店。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
  "items": [
   {
    "id": "a01",
@@ -710,26 +710,26 @@
    "id": "f09",
    "theme": "f",
    "more": null,
-   "q": "Komaki Winery အတွင်း ဘာရှိသလဲ။",
+   "q": "Ikenouchi ရှိ တရုတ်စားသောက်ဆိုင် Sasakatsu ၏ အမည်သည် စတင်ခဲ့သည့်နေရာမှ လာသည်။ ဘယ်နေရာလဲ။",
    "o": [
-    "ကဖေး",
-    "ရုပ်ရှင်ရုံ",
-    "စာအုပ်ဆိုင်"
+    "Sasashima (Nagoya)",
+    "Sakae (Nagoya)",
+    "Osu (Nagoya)"
    ],
-   "src": "小牧市 東部まちづくりニュース",
+   "src": "食べログの口コミ",
    "lv": "hard"
   },
   {
    "id": "f10",
    "theme": "f",
    "more": null,
-   "q": "Shin Cafe ဘယ်ဒေသမှာလဲ။",
+   "q": "Okusa ရှိ Kissa Monte Rosa ၏ နာမည်ကြီးဟင်းက ဘာလဲ။",
    "o": [
-    "Okusa",
-    "Kamisue",
-    "Koga"
+    "Tonteki",
+    "Hamburg steak",
+    "Omurice"
    ],
-   "src": "小牧つーしん",
+   "src": "食べログ",
    "lv": "hard"
   },
   {
@@ -1246,6 +1246,136 @@
     "Noguchi"
    ],
    "src": "こまき市民文化財団の案内",
+   "lv": "hard"
+  },
+  {
+   "id": "k01",
+   "theme": "k",
+   "more": null,
+   "q": "Mahou no Cake-ya JIJI ကိတ်ဆိုင် ဘယ်အဆောက်အအုံထဲမှာလဲ။",
+   "o": [
+    "Piesta",
+    "Lapio",
+    "Peare Tokadai"
+   ],
+   "src": "コマキタイムズ",
+   "lv": "hard"
+  },
+  {
+   "id": "k02",
+   "theme": "k",
+   "more": null,
+   "q": "JIJI ကို နာမည်ကြီးစေသော ကိတ်က ဘာလဲ။",
+   "o": [
+    "ပုံဆွဲထားသော ကိတ်",
+    "ရေခဲကိတ်",
+    "ဂျပန်ပုံစံကိတ်"
+   ],
+   "src": "コマキタイムズ",
+   "lv": "hard"
+  },
+  {
+   "id": "k03",
+   "theme": "k",
+   "more": null,
+   "q": "Soramimi PAN ပေါင်မုန့်ဆိုင် ဘယ်ဒေသမှာလဲ။",
+   "o": [
+    "Kamisue",
+    "Shiroyama",
+    "Koga"
+   ],
+   "src": "チルチンびと広場",
+   "lv": "hard"
+  },
+  {
+   "id": "k04",
+   "theme": "k",
+   "more": null,
+   "q": "Soramimi PAN သည် တဆေးကို ဘာမှ မွေးသလဲ။",
+   "o": [
+    "ဒေသရှိ ဆေးဖက်ဝင်အပင်နှင့် တောပင်များ",
+    "ပင်လယ်ရေညှိ",
+    "အသီးအခွံ"
+   ],
+   "src": "チルチンびと広場",
+   "lv": "hard"
+  },
+  {
+   "id": "k05",
+   "theme": "k",
+   "more": null,
+   "q": "Kamisue ရှိ Rich Farm တွင် ဘာတူးနိုင်သလဲ။",
+   "o": [
+    "မျှစ်",
+    "ကြာမြစ်",
+    "အာလူး"
+   ],
+   "src": "リッチファーム 公式サイト",
+   "lv": "hard"
+  },
+  {
+   "id": "k06",
+   "theme": "k",
+   "more": null,
+   "q": "Rich Farm တွင် ဘယ်အသီး ခူးနိုင်သလဲ။",
+   "o": [
+    "မက်မွန်",
+    "သခွားမွှေး",
+    "ဖရဲသီး"
+   ],
+   "src": "リッチファーム 公式サイト",
+   "lv": "hard"
+  },
+  {
+   "id": "k07",
+   "theme": "k",
+   "more": null,
+   "q": "Kamisue ရှိ Kodanuki က ဘာဆိုင်လဲ။",
+   "o": [
+    "Okonomiyaki",
+    "ဆူရှီ",
+    "Soba"
+   ],
+   "src": "食べログ",
+   "lv": "hard"
+  },
+  {
+   "id": "k08",
+   "theme": "k",
+   "more": null,
+   "q": "Hayashi ရှိ Jikasei-men Izumi သည် ဘယ်ခေါက်ဆွဲနှင့် ကျော်ကြားသလဲ။",
+   "o": [
+    "Tantanmen",
+    "Yakisoba",
+    "Somen"
+   ],
+   "src": "Retty",
+   "lv": "hard"
+  },
+  {
+   "id": "k09",
+   "theme": "k",
+   "more": null,
+   "q": "Ramen Haruto ဘယ်ဒေသမှာလဲ။",
+   "o": [
+    "Takane",
+    "Okusa",
+    "Noguchi"
+   ],
+   "src": "個人ブログ「懸勝麺ロード」",
+   "lv": "hard"
+  },
+  {
+   "id": "k10",
+   "theme": "k",
+   "more": null,
+   "q": "Suzuki နှင့် Ogawa စပျစ်ခြံများ ဘယ်ဒေသမှာလဲ။",
+   "o": [
+    "Takane",
+    "Oyama",
+    "Koga"
+   ],
+   "src": "小牧つーしん",
    "lv": "hard"
   }
  ]
