@@ -3947,5 +3947,9 @@ html.has-share-sticky .to-top { bottom: calc(var(--share-sticky-h, 3.4rem) + .8r
 .sn-top .card-link { display: inline-block; margin-top: .55rem; }
 @media (max-width: 560px) { .sn-top { flex-direction: column; } .sn-top img { align-self: center; } }
 @media (forced-colors: active) { .sn-fact { border-left-style: solid; } .sn-view { border-left-style: double; } }
+.sn-tl { list-style: none; margin: 1rem 0 0; padding: 0; border-left: 3px solid var(--primary); }
+.sn-tl li { display: grid; grid-template-columns: 6.6rem minmax(0, 1fr); gap: .7rem; padding: .5rem 0 .5rem .85rem; line-height: 1.75; }
+.sn-tl-y { font-weight: 800; color: var(--primary-dark); white-space: nowrap; }
+@media (max-width: 560px) { .sn-tl li { grid-template-columns: minmax(0, 1fr); gap: .1rem; } }
 .sn-card-link { margin-top: .5rem; font-weight: 700; }
 @media (max-width: 560px) { .sn-estates { grid-template-columns: minmax(0, 1fr); } }
