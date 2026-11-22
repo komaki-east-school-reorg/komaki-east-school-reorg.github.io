@@ -3,6 +3,13 @@
   "updates": [
     {
       "date": "2026-11-22",
+      "type": "feature",
+      "ja": "東部たんけんクイズを10テーマ・100問に拡充",
+      "en": "East Explorer Quiz expanded to 100 questions on 10 themes",
+      "link": "community.html#east-quiz"
+    },
+    {
+      "date": "2026-11-22",
       "type": "content",
       "ja": "地域のレガシーに「篠岡」の名前のはじまりと各カードの出典",
       "en": "Origin of the name Shinooka and per-card sources added to Local Heritage",

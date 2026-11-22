@@ -533,7 +533,39 @@ def crosslink_balance():
     return out
 
 
+def quiz_data():
+    """東部たんけんクイズ：全言語で同じ問い、3択、飛び先が実在、テーマが均等、学校再編・行政の語が無い。"""
+    out = []
+    page = open("community.html", encoding="utf-8").read()
+    base = None
+    for f in sorted(glob.glob("data/quiz/*.json")):
+        name = os.path.basename(f)
+        items = json.load(open(f, encoding="utf-8"))["items"]
+        sig = [(x["id"], x["theme"], x["more"]) for x in items]
+        base = base or sig
+        if sig != base:
+            out.append(f"{name}: 問いの並び・テーマ・飛び先がほかの言語と違う")
+        for x in items:
+            if len(x["o"]) != 3 or len(set(x["o"])) != 3:
+                out.append(f"{name} {x['id']}: 選択肢が3つでない")
+            if x.get("lv") not in ("easy", "hard") or (x.get("lv") == "easy" and not x.get("more")):
+                out.append(f"{name} {x['id']}: 難易度の指定がおかしい")
+            if not x.get("more") and not x.get("src"):
+                out.append(f"{name} {x['id']}: 飛び先も出どころも無い")
+            if x.get("more") and f'id="{x["more"]}"' not in page:
+                out.append(f"{name} {x['id']}: 飛び先 {x['more']} が無い")
+            if re.search("再編|パブリックコメント|教育委員会|議会", x["q"] + "".join(x["o"])):
+                out.append(f"{name} {x['id']}: 学校再編・行政の語がある")
+    themes = {}
+    for _, th, _m in base or []:
+        themes[th] = themes.get(th, 0) + 1
+    if len(set(themes.values())) > 1:
+        out.append(f"テーマの問題数がそろっていない {themes}")
+    return out
+
+
 CHECKS = [
+    ("東部たんけんクイズのデータ", quiz_data),
     ("辞書に無いキー（HTML の data-i18n）", missing_keys),
     ("サイト内リンクの切れ", broken_links),
     ("使われていない辞書のキー", unused_keys),

@@ -1,0 +1,1252 @@
+{
+ "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / f 喫茶・カフェ / g パン・お菓子・直売 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
+ "items": [
+  {
+   "id": "a01",
+   "theme": "a",
+   "more": "legacy-hist",
+   "q": "Kapan kuil di Reruntuhan Oyama konon dibangun?",
+   "o": [
+    "Akhir abad ke-7",
+    "Akhir abad ke-12",
+    "Akhir abad ke-17"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a02",
+   "theme": "a",
+   "more": "legacy-hist",
+   "q": "Kuil mana yang disebut “Enryakuji dari timur”?",
+   "o": [
+    "Oyama-dera",
+    "Todai-ji",
+    "Kiyomizu-dera"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a03",
+   "theme": "a",
+   "more": "legacy-hist",
+   "q": "Komaki punya dua situs sejarah nasional: Gunung Komaki dan apa lagi?",
+   "o": [
+    "Reruntuhan Kuil Oyama",
+    "Taman Pusat Tokadai",
+    "Taman Shiki-no-Mori"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a04",
+   "theme": "a",
+   "more": "legacy-shinooka",
+   "q": "Tahun berapa desa bernama “Shinooka” lahir?",
+   "o": [
+    "@y1906",
+    "@y1868",
+    "@y1955"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a05",
+   "theme": "a",
+   "more": "legacy-shinooka",
+   "q": "Dua desa mana yang bergabung pada 1889 menjadi Desa Sue?",
+   "o": [
+    "Kamisue dan Shimosue",
+    "Okusa dan Noguchi",
+    "Ikenouchi dan Hayashi"
+   ],
+   "lv": "hard",
+   "src": "葵エンジニアリング「地名の由来」"
+  },
+  {
+   "id": "a06",
+   "theme": "a",
+   "more": "legacy-kama",
+   "q": "Sedikitnya berapa situs tungku kuno ditemukan di Shinooka?",
+   "o": [
+    "110",
+    "11",
+    "1100"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a07",
+   "theme": "a",
+   "more": "legacy-kama",
+   "q": "Apa yang banyak dibuat di Shinooka pada abad ke-7 sampai ke-11?",
+   "o": [
+    "Tembikar",
+    "Pedang",
+    "Kertas"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a08",
+   "theme": "a",
+   "more": "legacy-kama",
+   "q": "Apa nama tungku setengah bawah tanah yang digali di lereng?",
+   "o": [
+    "Anagama",
+    "Tungku listrik",
+    "Tungku gas"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a09",
+   "theme": "a",
+   "more": "legacy-kama",
+   "q": "Sampai ke mana wadah dari Shinooka dibawa?",
+   "o": [
+    "Nara",
+    "Hokkaido",
+    "Okinawa"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a10",
+   "theme": "a",
+   "more": "legacy-kama",
+   "q": "Apa yang mulai dibakar di Shinooka sejak akhir abad ke-9?",
+   "o": [
+    "Tembikar berglasir abu",
+    "Porselen",
+    "Barang pernis"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b01",
+   "theme": "b",
+   "more": "legacy-peach",
+   "q": "Apa julukan Jalur Tokadai?",
+   "o": [
+    "Peachliner",
+    "Hana Liner",
+    "Momo Express"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b02",
+   "theme": "b",
+   "more": "legacy-peach",
+   "q": "Tahun berapa Peachliner dibuka?",
+   "o": [
+    "@y1991",
+    "@y1981",
+    "@y2001"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b03",
+   "theme": "b",
+   "more": "legacy-peach",
+   "q": "Berapa panjang Peachliner dari Stasiun Komaki ke Tokadai-Higashi?",
+   "o": [
+    "7.4 km",
+    "3.2 km",
+    "15.6 km"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b04",
+   "theme": "b",
+   "more": "legacy-peach",
+   "q": "Tahun berapa Peachliner berhenti beroperasi?",
+   "o": [
+    "@y2006",
+    "@y1996",
+    "@y2016"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b05",
+   "theme": "b",
+   "more": "legacy-peach",
+   "q": "Berapa jumlah stasiun Peachliner?",
+   "o": [
+    "7",
+    "3",
+    "15"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b06",
+   "theme": "b",
+   "more": "legacy-peach",
+   "q": "Bus apa yang menggantikan Peachliner?",
+   "o": [
+    "Peach Bus",
+    "Momo Bus",
+    "Hana Bus"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b07",
+   "theme": "b",
+   "more": "legacy-ryokudo",
+   "q": "Apa yang membentang di seluruh kota Tokadai?",
+   "o": [
+    "Jalur hijau",
+    "Kanal",
+    "Rel trem"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b08",
+   "theme": "b",
+   "more": "legacy-ryokudo",
+   "q": "Kira-kira seberapa luas Tokadai New Town?",
+   "o": [
+    "322 ha",
+    "32 ha",
+    "3220 ha"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b09",
+   "theme": "b",
+   "more": "legacy-ryokudo",
+   "q": "Tahun berapa warga mulai pindah ke Tokadai New Town?",
+   "o": [
+    "@y1980",
+    "@y1960",
+    "@y2000"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b10",
+   "theme": "b",
+   "more": "legacy-tkpark",
+   "q": "Tahun berapa Taman Pusat Tokadai dibuka?",
+   "o": [
+    "@y1992",
+    "@y1972",
+    "@y2012"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c01",
+   "theme": "c",
+   "more": "legacy-bonote",
+   "q": "Bulan apa Bo-no-te Okusa dan Noguchi dipersembahkan setiap tahun?",
+   "o": [
+    "@m10",
+    "@m4",
+    "@m8"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c02",
+   "theme": "c",
+   "more": "legacy-bonote",
+   "q": "Apa asal Bo-no-te?",
+   "o": [
+    "Bela diri kuno dengan tongkat",
+    "Tarian menanam padi",
+    "Cerita bergambar"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c03",
+   "theme": "c",
+   "more": "legacy-bonote",
+   "q": "Bo-no-te terhenti setelah perang. Lalu bagaimana?",
+   "o": [
+    "Kelompok pelestari menghidupkannya",
+    "Pindah ke luar negeri",
+    "Hanya tersisa di film"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c04",
+   "theme": "c",
+   "more": "legacy-matsuri",
+   "q": "Festival Tokadai 2026 adalah penyelenggaraan ke berapa?",
+   "o": [
+    "40",
+    "10",
+    "100"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c05",
+   "theme": "c",
+   "more": "legacy-matsuri",
+   "q": "Pada musim apa Festival Tokadai diadakan?",
+   "o": [
+    "Musim panas",
+    "Musim semi",
+    "Musim dingin"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c06",
+   "theme": "c",
+   "more": "legacy-fukugonji",
+   "q": "Apa nama ritual Desember di Fukugonji dengan berjalan di atas api?",
+   "o": [
+    "Hiwatari (berjalan di atas api)",
+    "Festival salju",
+    "Pesta kembang api"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c07",
+   "theme": "c",
+   "more": "legacy-fukugonji",
+   "q": "Tahun berapa Hoshakuji, asal Fukugonji, dibangun di Noguchi?",
+   "o": [
+    "@y1450",
+    "@y1650",
+    "@y1850"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c08",
+   "theme": "c",
+   "more": "legacy-okusa",
+   "q": "Kartu bergambar zaman Edo apa yang ada di Okusa Hachimangu?",
+   "o": [
+    "Tiga Puluh Enam Penyair",
+    "Tujuh Dewa Keberuntungan",
+    "Dua Belas Shio"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c09",
+   "theme": "c",
+   "more": "legacy-karuta",
+   "q": "Berapa pasang kartu dalam Shinooka Karuta?",
+   "o": [
+    "36",
+    "12",
+    "100"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c10",
+   "theme": "c",
+   "more": "legacy-tkpark",
+   "q": "Apa yang dibangun di Taman Pusat Tokadai pada 2002?",
+   "o": [
+    "Panggung terbuka",
+    "Kolam renang",
+    "Bianglala"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d01",
+   "theme": "d",
+   "more": "legacy-momo",
+   "q": "Pemandangan apa yang menjadi asal nama Tokadai?",
+   "o": [
+    "Kebun persik di bukit",
+    "Hutan pinus di pantai",
+    "Gunung bersalju"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d02",
+   "theme": "d",
+   "more": "legacy-momo",
+   "q": "Apa ciri persik Shinooka?",
+   "o": [
+    "Besar dan sangat manis",
+    "Kecil dan asam",
+    "Kulit biru"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d03",
+   "theme": "d",
+   "more": "legacy-momo",
+   "q": "Kira-kira berapa tahun lalu budidaya persik di Kamisue, Takane, dan Okusa dimulai?",
+   "o": [
+    "80",
+    "8",
+    "800"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d04",
+   "theme": "d",
+   "more": "legacy-budou",
+   "q": "Buah apa yang banyak ditanam di timur bersama persik?",
+   "o": [
+    "Anggur",
+    "Jeruk",
+    "Apel"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d05",
+   "theme": "d",
+   "more": "legacy-cochin",
+   "q": "Ayam apa yang diperkenalkan kota sebagai khas timur?",
+   "o": [
+    "Nagoya Cochin",
+    "Hinai-jidori",
+    "Satsuma-jidori"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d06",
+   "theme": "d",
+   "more": "legacy-cochin",
+   "q": "Bulan apa “Hari Nagoya Cochin”?",
+   "o": [
+    "@m3",
+    "@m7",
+    "@m11"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d07",
+   "theme": "d",
+   "more": "legacy-cochin",
+   "q": "Masakan lokal apa yang memakai Nagoya Cochin?",
+   "o": [
+    "Hikizuri-nabe",
+    "Hoto",
+    "Kiritanpo"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d08",
+   "theme": "d",
+   "more": "legacy-cochin",
+   "q": "Menurut Shinooka Karuta, siapa yang memulai peternakan cikal bakal Nagoya Cochin?",
+   "o": [
+    "Mantan samurai Owari",
+    "Nelayan",
+    "Tukang kayu"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d09",
+   "theme": "d",
+   "more": "legacy-winery",
+   "q": "Tahun berapa Komaki Winery dibuka?",
+   "o": [
+    "@y2015",
+    "@y2005",
+    "@y1995"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d10",
+   "theme": "d",
+   "more": "legacy-winery",
+   "q": "Apa itu ampas anggur (wine pomace)?",
+   "o": [
+    "Sisa perasan pembuatan wine",
+    "Label wine",
+    "Tong wine"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e01",
+   "theme": "e",
+   "more": "legacy-hotaru",
+   "q": "Kapan kunang-kunang Genji terbang di Sungai Oyama?",
+   "o": [
+    "@m6",
+    "@m3",
+    "@m10"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e02",
+   "theme": "e",
+   "more": "legacy-hotaru",
+   "q": "Kunang-kunang apa yang terlihat di “Desa Kunang-kunang” Sungai Oyama?",
+   "o": [
+    "Genji",
+    "Heike",
+    "Hime"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e03",
+   "theme": "e",
+   "more": "legacy-mame",
+   "q": "Tanaman terancam punah apa yang tumbuh liar di Okusa?",
+   "o": [
+    "Mamenashi",
+    "Edelweiss",
+    "Kembang sepatu"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e04",
+   "theme": "e",
+   "more": "legacy-mame",
+   "q": "Mamenashi khas perbukitan wilayah mana?",
+   "o": [
+    "Tokai",
+    "Tohoku",
+    "Kyushu"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e05",
+   "theme": "e",
+   "more": "legacy-hist",
+   "q": "Bunga apa yang membuat jalan ke Kuil Chigo terkenal?",
+   "o": [
+    "Sakura",
+    "Bunga matahari",
+    "Kosmos"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e06",
+   "theme": "e",
+   "more": "legacy-tkpark",
+   "q": "Berapa ketinggian bukit di Taman Pusat Tokadai?",
+   "o": [
+    "100 m",
+    "10 m",
+    "1000 m"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e07",
+   "theme": "e",
+   "more": "legacy-shiki",
+   "q": "Kira-kira seberapa luas Taman Shiki-no-Mori?",
+   "o": [
+    "28.2 ha",
+    "2.8 ha",
+    "282 ha"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e08",
+   "theme": "e",
+   "more": "legacy-shiki",
+   "q": "Apa nama bukit kereta luncur di Shiki-no-Mori?",
+   "o": [
+    "Sorisuberi",
+    "Yukiyama",
+    "Suberidai"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e09",
+   "theme": "e",
+   "more": "legacy-chigorin",
+   "q": "Bunga kota apa yang dilindungi di Chigorin no Satoyama?",
+   "o": [
+    "Azalea",
+    "Bunga matahari",
+    "Mawar"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e10",
+   "theme": "e",
+   "more": "legacy-stadium",
+   "q": "Tahun berapa stadion bisbol kota selesai dibangun?",
+   "o": [
+    "@y1988",
+    "@y1968",
+    "@y2008"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "f01",
+   "theme": "f",
+   "more": null,
+   "q": "Tahun berapa Kissa Minato dibuka?",
+   "o": [
+    "@y1969",
+    "@y1989",
+    "@y2009"
+   ],
+   "src": "コマキタイムズ",
+   "lv": "hard"
+  },
+  {
+   "id": "f02",
+   "theme": "f",
+   "more": null,
+   "q": "Sarapan apa yang terkenal di Kissa Minato?",
+   "o": [
+    "Agepan (fried bread)",
+    "Onigiri",
+    "Pizza toast"
+   ],
+   "src": "コマキタイムズ",
+   "lv": "hard"
+  },
+  {
+   "id": "f03",
+   "theme": "f",
+   "more": null,
+   "q": "Pukul berapa Kissa Minato buka pagi hari?",
+   "o": [
+    "6:00",
+    "8:00",
+    "10:00"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "f04",
+   "theme": "f",
+   "more": null,
+   "q": "Seperti apa bangunan kafe Bodaiju di Okusa?",
+   "o": [
+    "Rumah kayu",
+    "Bentuk kapal",
+    "Bentuk kastil"
+   ],
+   "src": "Retty",
+   "lv": "hard"
+  },
+  {
+   "id": "f05",
+   "theme": "f",
+   "more": null,
+   "q": "Apa isi sandwich pagi spesial Camarade Coffee?",
+   "o": [
+    "Banh mi",
+    "Hot dog",
+    "Onigiri"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "f06",
+   "theme": "f",
+   "more": null,
+   "q": "Di area mana Camarade Coffee?",
+   "o": [
+    "Kamisue",
+    "Okusa",
+    "Shiroyama"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "f07",
+   "theme": "f",
+   "more": null,
+   "q": "Apa spesialisasi Shin Cafe di Okusa?",
+   "o": [
+    "Kopi",
+    "Teh",
+    "Jus"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "f08",
+   "theme": "f",
+   "more": null,
+   "q": "Di area mana kafe Bambina?",
+   "o": [
+    "Ikenouchi",
+    "Koga",
+    "Hikarigaoka"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "f09",
+   "theme": "f",
+   "more": null,
+   "q": "Apa yang ada di dalam Komaki Winery?",
+   "o": [
+    "Kafe",
+    "Bioskop",
+    "Toko buku"
+   ],
+   "src": "小牧市 東部まちづくりニュース",
+   "lv": "hard"
+  },
+  {
+   "id": "f10",
+   "theme": "f",
+   "more": null,
+   "q": "Di area mana Shin Cafe?",
+   "o": [
+    "Okusa",
+    "Kamisue",
+    "Koga"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "g01",
+   "theme": "g",
+   "more": null,
+   "q": "Di area mana toko kue Ebisuya?",
+   "o": [
+    "Ikenouchi",
+    "Okusa",
+    "Kamisue"
+   ],
+   "src": "名古屋コーチングルメなび",
+   "lv": "hard"
+  },
+  {
+   "id": "g02",
+   "theme": "g",
+   "more": null,
+   "q": "Telur apa yang dipakai dorayaki Ebisuya?",
+   "o": [
+    "Nagoya Cochin",
+    "Puyuh",
+    "Bebek"
+   ],
+   "src": "名古屋コーチングルメなび",
+   "lv": "hard"
+  },
+  {
+   "id": "g03",
+   "theme": "g",
+   "more": null,
+   "q": "Kue Ebisuya mana yang memakai nama Tuan Nobunaga?",
+   "o": [
+    "Kintsuba",
+    "Daifuku",
+    "Yokan"
+   ],
+   "src": "ゑびすや 公式サイト",
+   "lv": "hard"
+  },
+  {
+   "id": "g04",
+   "theme": "g",
+   "more": null,
+   "q": "Di mana toko roti Panbell?",
+   "o": [
+    "Shiroyama 3-chome",
+    "Okusa",
+    "Kamisue"
+   ],
+   "src": "小牧市 東部まちづくりニュース",
+   "lv": "hard"
+  },
+  {
+   "id": "g05",
+   "theme": "g",
+   "more": null,
+   "q": "Menu makan siang apa yang dibuat Panbell dengan ampas anggur?",
+   "o": [
+    "Sandwich",
+    "Ramen",
+    "Kari"
+   ],
+   "src": "小牧市 東部まちづくりニュース",
+   "lv": "hard"
+  },
+  {
+   "id": "g06",
+   "theme": "g",
+   "more": null,
+   "q": "Apa spesialisasi Hoteipan Tokadai?",
+   "o": [
+    "Roti tawar",
+    "Kue",
+    "Senbei"
+   ],
+   "src": "コマキタイムズ",
+   "lv": "hard"
+  },
+  {
+   "id": "g07",
+   "theme": "g",
+   "more": null,
+   "q": "Kue apa yang diperkenalkan saat tur pabrik Ace Bakery?",
+   "o": [
+    "Baumkuchen",
+    "Senbei",
+    "Manju"
+   ],
+   "src": "小牧市 東部まちづくりニュース",
+   "lv": "hard"
+  },
+  {
+   "id": "g08",
+   "theme": "g",
+   "more": null,
+   "q": "Apa yang dijual Kissa Tanpopo di pasar timur?",
+   "o": [
+    "Mitarashi dango",
+    "Piza",
+    "Oden"
+   ],
+   "src": "小牧市 東部地域トライアル活動",
+   "lv": "hard"
+  },
+  {
+   "id": "g09",
+   "theme": "g",
+   "more": null,
+   "q": "Kapan musim anggur Komaki, yang juga dijual di kios petani?",
+   "o": [
+    "@m8",
+    "@m2",
+    "@m12"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "g10",
+   "theme": "g",
+   "more": null,
+   "q": "Di area mana kebun anggur Yokoyama dan Nishio?",
+   "o": [
+    "Okusa",
+    "Shiroyama",
+    "Koga"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "h01",
+   "theme": "h",
+   "more": null,
+   "q": "Bagaimana membaca nama tempat 陶?",
+   "o": [
+    "Sue",
+    "To",
+    "Kama"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h02",
+   "theme": "h",
+   "more": null,
+   "q": "Bagaimana membaca nama tempat 大草?",
+   "o": [
+    "Okusa",
+    "Daiso",
+    "Oogusa"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h03",
+   "theme": "h",
+   "more": null,
+   "q": "Bagaimana membaca nama tempat 上末?",
+   "o": [
+    "Kamisue",
+    "Uesue",
+    "Jomatsu"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h04",
+   "theme": "h",
+   "more": null,
+   "q": "Bagaimana membaca nama tempat 古雅?",
+   "o": [
+    "Koga",
+    "Furuga",
+    "Komiyabi"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h05",
+   "theme": "h",
+   "more": null,
+   "q": "Dua desa mana yang digabung dalam nama 池林 zaman Meiji?",
+   "o": [
+    "Ikenouchi + Hayashi",
+    "Oyama + Noguchi",
+    "Kamisue + Shimosue"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h06",
+   "theme": "h",
+   "more": null,
+   "q": "Dua desa mana yang digabung dalam nama 大野 zaman Meiji?",
+   "o": [
+    "Oyama + Noguchi",
+    "Ikenouchi + Hayashi",
+    "Kamisue + Shimosue"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h07",
+   "theme": "h",
+   "more": null,
+   "q": "Tahun berapa nama kelurahan Shinooka mulai dipakai?",
+   "o": [
+    "@y1979",
+    "@y1959",
+    "@y1999"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h08",
+   "theme": "h",
+   "more": null,
+   "q": "Noguchi abad pertengahan termasuk tanah mana?",
+   "o": [
+    "Shinogi",
+    "Komaki",
+    "Toka"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h09",
+   "theme": "h",
+   "more": null,
+   "q": "Di mana kantor Desa Shinooka?",
+   "o": [
+    "Ikenouchi",
+    "Oyama",
+    "Noguchi"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h10",
+   "theme": "h",
+   "more": null,
+   "q": "Tahun berapa Komaki, Ajioka, dan Shinooka bergabung menjadi Kota Komaki?",
+   "o": [
+    "@y1955",
+    "@y1935",
+    "@y1975"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i01",
+   "theme": "i",
+   "more": null,
+   "q": "Dalam pertempuran apa Okusa menjadi basis pihak Hideyoshi?",
+   "o": [
+    "Komaki–Nagakute",
+    "Sekigahara",
+    "Okehazama"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i02",
+   "theme": "i",
+   "more": null,
+   "q": "Tahun berapa Pertempuran Komaki–Nagakute?",
+   "o": [
+    "@y1584",
+    "@y1600",
+    "@y1560"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i03",
+   "theme": "i",
+   "more": null,
+   "q": "Siapa yang menjadikan Okusa basis dalam Pertempuran Komaki–Nagakute?",
+   "o": [
+    "Hashiba Hideyoshi",
+    "Tokugawa Ieyasu",
+    "Takeda Shingen"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i04",
+   "theme": "i",
+   "more": null,
+   "q": "Sekitar tahun berapa Kastil Okusa ditinggalkan?",
+   "o": [
+    "@y1548",
+    "@y1648",
+    "@y1748"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i05",
+   "theme": "i",
+   "more": null,
+   "q": "Okusa abad pertengahan milik kuil mana di Kamakura?",
+   "o": [
+    "Engaku-ji",
+    "Todai-ji",
+    "Kinkaku-ji"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i06",
+   "theme": "i",
+   "more": null,
+   "q": "Dokumen 1499 tentang Kamisue dan Shimosue terkait kuil besar mana?",
+   "o": [
+    "Kumano",
+    "Ise",
+    "Izumo"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i07",
+   "theme": "i",
+   "more": null,
+   "q": "Domain apa yang menguasai Kamisue, Shimosue, dan Okusa pada zaman Edo?",
+   "o": [
+    "Owari",
+    "Kaga",
+    "Satsuma"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i08",
+   "theme": "i",
+   "more": null,
+   "q": "Ke kota pos mana Kamisue mengirim orang dan kuda pada zaman Edo?",
+   "o": [
+    "Komaki",
+    "Shinagawa",
+    "Seki"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i09",
+   "theme": "i",
+   "more": null,
+   "q": "Kuil Hakusan di Noguchi melindungi berapa desa Shinogi?",
+   "o": [
+    "33",
+    "3",
+    "333"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i10",
+   "theme": "i",
+   "more": null,
+   "q": "Kira-kira berapa penduduk Desa Shinooka pada 1907?",
+   "o": [
+    "5,700",
+    "570",
+    "57,000"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "j01",
+   "theme": "j",
+   "more": null,
+   "q": "Sungai apa yang mengalir ke selatan melalui lembah timur?",
+   "o": [
+    "Oyama",
+    "Kiso",
+    "Nagara"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "j02",
+   "theme": "j",
+   "more": "legacy-hotaru",
+   "q": "Berapa sungai utama yang bergabung ke Sungai Oyama?",
+   "o": [
+    "5",
+    "2",
+    "10"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "j03",
+   "theme": "j",
+   "more": null,
+   "q": "Tahun berapa Jalan Tol Chuo sampai ke Oyama?",
+   "o": [
+    "@y1972",
+    "@y1952",
+    "@y1992"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "j04",
+   "theme": "j",
+   "more": null,
+   "q": "Simpang susun Jalan Tol Chuo mana yang ada di timur?",
+   "o": [
+    "Komaki-Higashi",
+    "Nagoya-Nishi",
+    "Toyota-Minami"
+   ],
+   "src": "小牧市 東部まちづくり審議会の資料",
+   "lv": "hard"
+  },
+  {
+   "id": "j05",
+   "theme": "j",
+   "more": null,
+   "q": "Tahun berapa Kanal Aichi selesai?",
+   "o": [
+    "@y1960",
+    "@y1940",
+    "@y1980"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "j06",
+   "theme": "j",
+   "more": null,
+   "q": "Tahun berapa kesepakatan lahan pabrik Komaki Utara Mitsubishi Heavy Industries diteken di Kamisue?",
+   "o": [
+    "@y1969",
+    "@y1949",
+    "@y1989"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "j07",
+   "theme": "j",
+   "more": "legacy-tower",
+   "q": "Berapa tinggi menara air di bukit Tokadai?",
+   "o": [
+    "29.4 m",
+    "9.4 m",
+    "99.4 m"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "j08",
+   "theme": "j",
+   "more": "legacy-tower",
+   "q": "Tahun berapa menara air diserahkan ke Kota Komaki?",
+   "o": [
+    "@y1995",
+    "@y1975",
+    "@y2015"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "j09",
+   "theme": "j",
+   "more": "legacy-sky",
+   "q": "Sky Stage 33 memiliki berapa lantai?",
+   "o": [
+    "33",
+    "13",
+    "53"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "j10",
+   "theme": "j",
+   "more": null,
+   "q": "Di mana Peare Tokadai?",
+   "o": [
+    "Koga 1-chome",
+    "Oyama",
+    "Noguchi"
+   ],
+   "src": "こまき市民文化財団の案内",
+   "lv": "hard"
+  }
+ ]
+}

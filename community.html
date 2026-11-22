@@ -760,15 +760,10 @@
       <!-- 東部たんけんクイズ（QUIZ in js/main.js、2026-11-22、日次アイデア 11/14・11/17）。問いはこのページのカードと、ことばメモにある事実だけ。答えは保存も送信もしない -->
       <div class="east-quiz" id="east-quiz" hidden>
         <h3 class="leg-group-h" id="east-quiz-h" data-i18n="quiz_h">東部たんけんクイズ</h3>
-        <p class="east-quiz-lead" data-i18n="quiz_lead">このサイトに書いてあることから5問。親子でどうぞ。</p>
+        <p class="east-quiz-lead" data-i18n="quiz_lead">東部の歴史や地名、祭り、特産物、お店など10のテーマ・100問から、毎回5問。親子でどうぞ。</p>
         <div class="east-quiz-stage" aria-live="polite"></div>
         <div class="east-quiz-data" hidden>
-          <div data-quiz-q data-a="1" data-more="#legacy-hotaru"><span data-i18n="quiz_q1">大山川でゲンジボタルが飛び交うのは、いつごろ？</span><span data-i18n="quiz_q1_o">3月|6月|10月</span></div>
-          <div data-quiz-q data-a="2" data-more="#legacy-bonote"><span data-i18n="quiz_q2">大草と野口の「棒の手」が奉納されるのは、毎年何月？</span><span data-i18n="quiz_q2_o">4月|8月|10月</span></div>
-          <div data-quiz-q data-a="0" data-more="#legacy-momo"><span data-i18n="quiz_q3">「桃花台」という名前の由来になった景色は？</span><span data-i18n="quiz_q3_o">丘の桃畑|海辺の松林|雪の山</span></div>
-          <div data-quiz-q data-a="1" data-more="about.html#glossary"><span data-i18n="quiz_q4">「パブリックコメント」とは、どんなしくみ？</span><span data-i18n="quiz_q4_o">学校の先生を選ぶ選挙|市が案を見せて住民の意見を集めるしくみ|市のお知らせを家に配る係</span></div>
-          <div data-quiz-q data-a="1" data-more="about.html#glossary"><span data-i18n="quiz_q5">令和9年度の再編で、篠岡地区の小学校5校は何校になる予定？</span><span data-i18n="quiz_q5_o">1校|2校|3校</span></div>
-          <span data-quiz-t="right" data-i18n="quiz_right">正解！</span><span data-quiz-t="wrong" data-i18n="quiz_wrong">おしい！答えは「{a}」</span><span data-quiz-t="next" data-i18n="quiz_next">次の問題</span><span data-quiz-t="result" data-i18n="quiz_result">{n}問中{c}問正解でした</span><span data-quiz-t="retry" data-i18n="quiz_retry">もう一度</span><span data-quiz-t="more" data-i18n="quiz_more">くわしく見る →</span>
+          <span data-quiz-t="mode" data-i18n="quiz_mode_label">難易度</span><span data-quiz-t="easy" data-i18n="quiz_easy">イージー</span><span data-quiz-t="normal" data-i18n="quiz_normal">ふつう</span><span data-quiz-t="hard" data-i18n="quiz_hard">むずかしい</span><span data-quiz-t="note_easy" data-i18n="quiz_easy_note">このサイトの「地域のレガシー」を読めばわかる問題です。</span><span data-quiz-t="note_normal" data-i18n="quiz_normal_note">すべてのテーマから出題します。</span><span data-quiz-t="note_hard" data-i18n="quiz_hard_note">地元をよく知っている人向けの問題です。</span><span data-quiz-t="src" data-i18n="comm_leg_src_l">出典</span><span data-quiz-t="right" data-i18n="quiz_right">正解！</span><span data-quiz-t="wrong" data-i18n="quiz_wrong">おしい！答えは「{a}」</span><span data-quiz-t="next" data-i18n="quiz_next">次の問題</span><span data-quiz-t="result" data-i18n="quiz_result">{n}問中{c}問正解でした</span><span data-quiz-t="retry" data-i18n="quiz_retry">次の5問</span><span data-quiz-t="more" data-i18n="quiz_more">くわしく見る →</span>
         </div>
         <!-- いまの季節の東部（2026-11-22 ユーザー指示でクイズの見出しの中にまとめた。SEASON が月で1つ選ぶ） -->
         <div class="season-line" id="season-line" hidden>

@@ -3793,6 +3793,13 @@ html.has-share-sticky .to-top { bottom: calc(var(--share-sticky-h, 3.4rem) + .8r
 .east-quiz[hidden], .east-quiz-data[hidden] { display: none; }
 .east-quiz .leg-group-h { color: var(--accent); border-color: rgba(255,255,255,.3); margin-top: 0; }
 .east-quiz-lead { margin: .2rem 0 .8rem; font-size: .88rem; color: rgba(255,255,255,.86); }
+.east-quiz-modes { margin: 0 0 .9rem; }
+.east-quiz-mode-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .35rem; }
+.east-quiz-mode { min-height: 2.5rem; padding: .3rem .35rem; border: 2px solid rgba(255,255,255,.45); border-radius: var(--radius-pill); background: transparent; color: #fff; font: inherit; font-size: .84rem; font-weight: 700; cursor: pointer; overflow-wrap: anywhere; }
+.east-quiz-mode:hover { border-color: var(--accent); }
+.east-quiz-mode[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--primary-dark); }
+.east-quiz-mode-note { margin: .4rem 0 0; font-size: .78rem; color: rgba(255,255,255,.82); }
+.east-quiz-feedback small { font-weight: 400; color: rgba(255,255,255,.82); }
 .east-quiz-num { margin: 0; font-size: .78rem; font-weight: 700; color: var(--accent); }
 .east-quiz-q { margin: .15rem 0 .7rem; font-weight: 700; font-size: 1.05rem; }
 .east-quiz-opts { display: grid; gap: .45rem; }
@@ -3814,7 +3821,7 @@ html.has-share-sticky .to-top { bottom: calc(var(--share-sticky-h, 3.4rem) + .8r
 .season-pick { display: inline-flex; align-items: center; gap: .45rem; font-weight: 700; }
 .season-pick img { width: 3rem; height: auto; }
 @media print { .east-quiz, .season-line { display: none; } }
-@media (forced-colors: active) { .leg-season-col.is-now { outline: 2px solid Highlight; } .east-quiz-opt.is-right { outline: 3px solid Highlight; } }
+@media (forced-colors: active) { .east-quiz-mode[aria-pressed="true"] { outline: 2px solid Highlight; } .leg-season-col.is-now { outline: 2px solid Highlight; } .east-quiz-opt.is-right { outline: 3px solid Highlight; } }
 .leg-season-col, .east-quiz { min-width: 0; overflow-wrap: anywhere; }
 .east-quiz-wrap { padding: 1.4rem 0; }
 .east-quiz-wrap .east-quiz { margin-top: 0; }

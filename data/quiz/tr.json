@@ -1,0 +1,1252 @@
+{
+ "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / f 喫茶・カフェ / g パン・お菓子・直売 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
+ "items": [
+  {
+   "id": "a01",
+   "theme": "a",
+   "more": "legacy-hist",
+   "q": "Oyama Tapınağı Kalıntıları’ndaki tapınağın ne zaman yapıldığı söylenir?",
+   "o": [
+    "7. yüzyıl sonu",
+    "12. yüzyıl sonu",
+    "17. yüzyıl sonu"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a02",
+   "theme": "a",
+   "more": "legacy-hist",
+   "q": "Hangi tapınağa “doğunun Enryakuji’si” denirdi?",
+   "o": [
+    "Oyama-dera",
+    "Todai-ji",
+    "Kiyomizu-dera"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a03",
+   "theme": "a",
+   "more": "legacy-hist",
+   "q": "Komaki’nin iki ulusal tarihî alanı var: Komaki Dağı ve hangisi?",
+   "o": [
+    "Oyama Tapınağı Kalıntıları",
+    "Tokadai Merkez Parkı",
+    "Shiki-no-Mori Parkı"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a04",
+   "theme": "a",
+   "more": "legacy-shinooka",
+   "q": "“Shinooka” adlı köy hangi yılda doğdu?",
+   "o": [
+    "@y1906",
+    "@y1868",
+    "@y1955"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a05",
+   "theme": "a",
+   "more": "legacy-shinooka",
+   "q": "1889’da birleşerek Sue Köyü’nü kuran iki köy hangileri?",
+   "o": [
+    "Kamisue ve Shimosue",
+    "Okusa ve Noguchi",
+    "Ikenouchi ve Hayashi"
+   ],
+   "lv": "hard",
+   "src": "葵エンジニアリング「地名の由来」"
+  },
+  {
+   "id": "a06",
+   "theme": "a",
+   "more": "legacy-kama",
+   "q": "Shinooka’da en az kaç eski fırın alanı bulundu?",
+   "o": [
+    "110",
+    "11",
+    "1100"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a07",
+   "theme": "a",
+   "more": "legacy-kama",
+   "q": "7. ve 11. yüzyıllar arasında Shinooka’da bol miktarda ne üretiliyordu?",
+   "o": [
+    "Çömlek",
+    "Kılıç",
+    "Kâğıt"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a08",
+   "theme": "a",
+   "more": "legacy-kama",
+   "q": "Yamaca kazılan yarı yeraltı fırınına ne denir?",
+   "o": [
+    "Anagama",
+    "Elektrikli fırın",
+    "Gazlı fırın"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a09",
+   "theme": "a",
+   "more": "legacy-kama",
+   "q": "Shinooka kapları nereye kadar taşındı?",
+   "o": [
+    "Nara",
+    "Hokkaido",
+    "Okinawa"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a10",
+   "theme": "a",
+   "more": "legacy-kama",
+   "q": "9. yüzyıl sonundan itibaren Shinooka’da ne pişirilmeye başlandı?",
+   "o": [
+    "Kül sırlı seramik",
+    "Porselen",
+    "Lake eşya"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b01",
+   "theme": "b",
+   "more": "legacy-peach",
+   "q": "Tokadai Hattı’nın lakabı neydi?",
+   "o": [
+    "Peachliner",
+    "Hana Liner",
+    "Momo Express"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b02",
+   "theme": "b",
+   "more": "legacy-peach",
+   "q": "Peachliner hangi yıl açıldı?",
+   "o": [
+    "@y1991",
+    "@y1981",
+    "@y2001"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b03",
+   "theme": "b",
+   "more": "legacy-peach",
+   "q": "Peachliner, Komaki İstasyonu’ndan Tokadai-Higashi’ye kaç kilometreydi?",
+   "o": [
+    "7.4 km",
+    "3.2 km",
+    "15.6 km"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b04",
+   "theme": "b",
+   "more": "legacy-peach",
+   "q": "Peachliner hangi yıl durdu?",
+   "o": [
+    "@y2006",
+    "@y1996",
+    "@y2016"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b05",
+   "theme": "b",
+   "more": "legacy-peach",
+   "q": "Peachliner’ın kaç istasyonu vardı?",
+   "o": [
+    "7",
+    "3",
+    "15"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b06",
+   "theme": "b",
+   "more": "legacy-peach",
+   "q": "Peachliner’ın yerini hangi otobüs aldı?",
+   "o": [
+    "Peach Bus",
+    "Momo Bus",
+    "Hana Bus"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b07",
+   "theme": "b",
+   "more": "legacy-ryokudo",
+   "q": "Tokadai’nin her yanından ne geçer?",
+   "o": [
+    "Yeşil yollar",
+    "Kanallar",
+    "Tramvay rayları"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b08",
+   "theme": "b",
+   "more": "legacy-ryokudo",
+   "q": "Tokadai New Town yaklaşık ne kadar büyüktür?",
+   "o": [
+    "322 ha",
+    "32 ha",
+    "3220 ha"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b09",
+   "theme": "b",
+   "more": "legacy-ryokudo",
+   "q": "Tokadai New Town’a yerleşim hangi yıl başladı?",
+   "o": [
+    "@y1980",
+    "@y1960",
+    "@y2000"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b10",
+   "theme": "b",
+   "more": "legacy-tkpark",
+   "q": "Tokadai Merkez Parkı hangi yıl açıldı?",
+   "o": [
+    "@y1992",
+    "@y1972",
+    "@y2012"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c01",
+   "theme": "c",
+   "more": "legacy-bonote",
+   "q": "Okusa ve Noguchi’nin Bo-no-te gösterisi her yıl hangi ay sunulur?",
+   "o": [
+    "@m10",
+    "@m4",
+    "@m8"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c02",
+   "theme": "c",
+   "more": "legacy-bonote",
+   "q": "Bo-no-te aslında nedir?",
+   "o": [
+    "Sopalarla yapılan eski dövüş sanatı",
+    "Pirinç ekme dansı",
+    "Resimli hikâye"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c03",
+   "theme": "c",
+   "more": "legacy-bonote",
+   "q": "Savaştan sonra duran Bo-no-te’ye ne oldu?",
+   "o": [
+    "Koruma grupları yeniden canlandırdı",
+    "Yurt dışına taşındı",
+    "Yalnızca filmde kaldı"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c04",
+   "theme": "c",
+   "more": "legacy-matsuri",
+   "q": "2026 Tokadai Festivali kaçıncıydı?",
+   "o": [
+    "40",
+    "10",
+    "100"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c05",
+   "theme": "c",
+   "more": "legacy-matsuri",
+   "q": "Tokadai Festivali hangi mevsimde yapılır?",
+   "o": [
+    "Yaz",
+    "İlkbahar",
+    "Kış"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c06",
+   "theme": "c",
+   "more": "legacy-fukugonji",
+   "q": "Fukugonji’de aralıkta ateş üzerinde yürünen ayin hangisidir?",
+   "o": [
+    "Hiwatari (ateşte yürüme)",
+    "Kar festivali",
+    "Havai fişek"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c07",
+   "theme": "c",
+   "more": "legacy-fukugonji",
+   "q": "Fukugonji’nin kökeni Hoshakuji, Noguchi’de hangi yıl yapıldı?",
+   "o": [
+    "@y1450",
+    "@y1650",
+    "@y1850"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c08",
+   "theme": "c",
+   "more": "legacy-okusa",
+   "q": "Okusa Hachimangu’da hangi Edo dönemi resimli kartlar var?",
+   "o": [
+    "Otuz Altı Şair",
+    "Yedi Şans Tanrısı",
+    "On İki Hayvan"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c09",
+   "theme": "c",
+   "more": "legacy-karuta",
+   "q": "Shinooka Karuta’da kaç çift kart var?",
+   "o": [
+    "36",
+    "12",
+    "100"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c10",
+   "theme": "c",
+   "more": "legacy-tkpark",
+   "q": "2002’de Tokadai Merkez Parkı’na ne yapıldı?",
+   "o": [
+    "Açık hava sahnesi",
+    "Yüzme havuzu",
+    "Dönme dolap"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d01",
+   "theme": "d",
+   "more": "legacy-momo",
+   "q": "Tokadai adını hangi manzaradan aldı?",
+   "o": [
+    "Tepelerdeki şeftali bahçeleri",
+    "Deniz kıyısı çamları",
+    "Karlı dağlar"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d02",
+   "theme": "d",
+   "more": "legacy-momo",
+   "q": "Shinooka şeftalisinin özelliği nedir?",
+   "o": [
+    "Büyük ve çok tatlı",
+    "Küçük ve ekşi",
+    "Kabuğu mavi"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d03",
+   "theme": "d",
+   "more": "legacy-momo",
+   "q": "Kamisue, Takane ve Okusa’da şeftali yetiştiriciliği yaklaşık kaç yıl önce başladı?",
+   "o": [
+    "80",
+    "8",
+    "800"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d04",
+   "theme": "d",
+   "more": "legacy-budou",
+   "q": "Doğuda şeftaliyle birlikte çok yetiştirilen meyve hangisidir?",
+   "o": [
+    "Üzüm",
+    "Mandalina",
+    "Elma"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d05",
+   "theme": "d",
+   "more": "legacy-cochin",
+   "q": "Belediyenin doğunun özel ürünü olarak tanıttığı tavuk hangisi?",
+   "o": [
+    "Nagoya Cochin",
+    "Hinai-jidori",
+    "Satsuma-jidori"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d06",
+   "theme": "d",
+   "more": "legacy-cochin",
+   "q": "“Nagoya Cochin Günü” hangi ayda?",
+   "o": [
+    "@m3",
+    "@m7",
+    "@m11"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d07",
+   "theme": "d",
+   "more": "legacy-cochin",
+   "q": "Hangi yerel yemekte Nagoya Cochin kullanılır?",
+   "o": [
+    "Hikizuri-nabe",
+    "Hoto",
+    "Kiritanpo"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d08",
+   "theme": "d",
+   "more": "legacy-cochin",
+   "q": "Shinooka Karuta’ya göre Nagoya Cochin’e giden tavukçuluğu kim başlattı?",
+   "o": [
+    "Eski bir Owari samurayı",
+    "Balıkçı",
+    "Marangoz"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d09",
+   "theme": "d",
+   "more": "legacy-winery",
+   "q": "Komaki Şaraphanesi hangi yıl açıldı?",
+   "o": [
+    "@y2015",
+    "@y2005",
+    "@y1995"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d10",
+   "theme": "d",
+   "more": "legacy-winery",
+   "q": "Şarap posası (wine pomace) nedir?",
+   "o": [
+    "Şarap yapımından kalan posa",
+    "Şarap etiketi",
+    "Şarap fıçısı"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e01",
+   "theme": "e",
+   "more": "legacy-hotaru",
+   "q": "Oyama Nehri’nde Genji ateş böcekleri ne zaman uçar?",
+   "o": [
+    "@m6",
+    "@m3",
+    "@m10"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e02",
+   "theme": "e",
+   "more": "legacy-hotaru",
+   "q": "Oyama Nehri’nin “Ateş Böceği Köyü”nde hangi ateş böcekleri görülür?",
+   "o": [
+    "Genji",
+    "Heike",
+    "Hime"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e03",
+   "theme": "e",
+   "more": "legacy-mame",
+   "q": "Okusa’da doğal olarak yetişen nesli tehlikedeki bitki hangisi?",
+   "o": [
+    "Mamenashi",
+    "Edelweiss",
+    "Hibiskus"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e04",
+   "theme": "e",
+   "more": "legacy-mame",
+   "q": "Mamenashi hangi bölgenin tepelerine özgüdür?",
+   "o": [
+    "Tokai",
+    "Tohoku",
+    "Kyushu"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e05",
+   "theme": "e",
+   "more": "legacy-hist",
+   "q": "Chigo Tapınağı yolunu ünlü yapan çiçek hangisi?",
+   "o": [
+    "Kiraz çiçeği",
+    "Ayçiçeği",
+    "Kozmos"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e06",
+   "theme": "e",
+   "more": "legacy-tkpark",
+   "q": "Tokadai Merkez Parkı’ndaki tepenin yüksekliği nedir?",
+   "o": [
+    "100 m",
+    "10 m",
+    "1000 m"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e07",
+   "theme": "e",
+   "more": "legacy-shiki",
+   "q": "Shiki-no-Mori Parkı yaklaşık ne kadar büyüktür?",
+   "o": [
+    "28.2 ha",
+    "2.8 ha",
+    "282 ha"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e08",
+   "theme": "e",
+   "more": "legacy-shiki",
+   "q": "Shiki-no-Mori’deki kızak tepesinin adı nedir?",
+   "o": [
+    "Sorisuberi",
+    "Yukiyama",
+    "Suberidai"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e09",
+   "theme": "e",
+   "more": "legacy-chigorin",
+   "q": "Chigorin no Satoyama’da korunan şehir çiçeği hangisi?",
+   "o": [
+    "Açelya",
+    "Ayçiçeği",
+    "Gül"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e10",
+   "theme": "e",
+   "more": "legacy-stadium",
+   "q": "Belediye beyzbol stadyumu hangi yıl tamamlandı?",
+   "o": [
+    "@y1988",
+    "@y1968",
+    "@y2008"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "f01",
+   "theme": "f",
+   "more": null,
+   "q": "Kissa Minato hangi yıl açıldı?",
+   "o": [
+    "@y1969",
+    "@y1989",
+    "@y2009"
+   ],
+   "src": "コマキタイムズ",
+   "lv": "hard"
+  },
+  {
+   "id": "f02",
+   "theme": "f",
+   "more": null,
+   "q": "Kissa Minato hangi kahvaltısıyla tanınır?",
+   "o": [
+    "Agepan (fried bread)",
+    "Onigiri",
+    "Pizza toast"
+   ],
+   "src": "コマキタイムズ",
+   "lv": "hard"
+  },
+  {
+   "id": "f03",
+   "theme": "f",
+   "more": null,
+   "q": "Kissa Minato sabah saat kaçta açılır?",
+   "o": [
+    "6:00",
+    "8:00",
+    "10:00"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "f04",
+   "theme": "f",
+   "more": null,
+   "q": "Okusa’daki Bodaiju kafesinin binası nasıldır?",
+   "o": [
+    "Kütük ev",
+    "Gemi biçimi",
+    "Kale biçimi"
+   ],
+   "src": "Retty",
+   "lv": "hard"
+  },
+  {
+   "id": "f05",
+   "theme": "f",
+   "more": null,
+   "q": "Camarade Coffee’nin özel sabah sandviçi nedir?",
+   "o": [
+    "Banh mi",
+    "Hot dog",
+    "Onigiri"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "f06",
+   "theme": "f",
+   "more": null,
+   "q": "Camarade Coffee hangi bölgede?",
+   "o": [
+    "Kamisue",
+    "Okusa",
+    "Shiroyama"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "f07",
+   "theme": "f",
+   "more": null,
+   "q": "Okusa’daki Shin Cafe neyde uzmandır?",
+   "o": [
+    "Kahve",
+    "Çay",
+    "Meyve suyu"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "f08",
+   "theme": "f",
+   "more": null,
+   "q": "Bambina kafesi hangi bölgede?",
+   "o": [
+    "Ikenouchi",
+    "Koga",
+    "Hikarigaoka"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "f09",
+   "theme": "f",
+   "more": null,
+   "q": "Komaki Şaraphanesi’nin içinde ne var?",
+   "o": [
+    "Kafe",
+    "Sinema",
+    "Kitapçı"
+   ],
+   "src": "小牧市 東部まちづくりニュース",
+   "lv": "hard"
+  },
+  {
+   "id": "f10",
+   "theme": "f",
+   "more": null,
+   "q": "Shin Cafe hangi bölgede?",
+   "o": [
+    "Okusa",
+    "Kamisue",
+    "Koga"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "g01",
+   "theme": "g",
+   "more": null,
+   "q": "Tatlıcı Ebisuya hangi bölgede?",
+   "o": [
+    "Ikenouchi",
+    "Okusa",
+    "Kamisue"
+   ],
+   "src": "名古屋コーチングルメなび",
+   "lv": "hard"
+  },
+  {
+   "id": "g02",
+   "theme": "g",
+   "more": null,
+   "q": "Ebisuya’nın dorayakisinde hangi yumurta kullanılır?",
+   "o": [
+    "Nagoya Cochin",
+    "Bıldırcın",
+    "Ördek"
+   ],
+   "src": "名古屋コーチングルメなび",
+   "lv": "hard"
+  },
+  {
+   "id": "g03",
+   "theme": "g",
+   "more": null,
+   "q": "Ebisuya’nın hangi tatlısı Lord Nobunaga’nın adını taşır?",
+   "o": [
+    "Kintsuba",
+    "Daifuku",
+    "Yokan"
+   ],
+   "src": "ゑびすや 公式サイト",
+   "lv": "hard"
+  },
+  {
+   "id": "g04",
+   "theme": "g",
+   "more": null,
+   "q": "Yerel fırın Panbell nerede?",
+   "o": [
+    "Shiroyama 3-chome",
+    "Okusa",
+    "Kamisue"
+   ],
+   "src": "小牧市 東部まちづくりニュース",
+   "lv": "hard"
+  },
+  {
+   "id": "g05",
+   "theme": "g",
+   "more": null,
+   "q": "Panbell şarap posasıyla hangi öğle yemeğini geliştirdi?",
+   "o": [
+    "Sandviç",
+    "Ramen",
+    "Köri"
+   ],
+   "src": "小牧市 東部まちづくりニュース",
+   "lv": "hard"
+  },
+  {
+   "id": "g06",
+   "theme": "g",
+   "more": null,
+   "q": "Hoteipan Tokadai neyde uzmandır?",
+   "o": [
+    "Tost ekmeği",
+    "Kek",
+    "Senbei"
+   ],
+   "src": "コマキタイムズ",
+   "lv": "hard"
+  },
+  {
+   "id": "g07",
+   "theme": "g",
+   "more": null,
+   "q": "Ace Bakery fabrika gezisinde hangi tatlı tanıtıldı?",
+   "o": [
+    "Baumkuchen",
+    "Senbei",
+    "Manju"
+   ],
+   "src": "小牧市 東部まちづくりニュース",
+   "lv": "hard"
+  },
+  {
+   "id": "g08",
+   "theme": "g",
+   "more": null,
+   "q": "Kissa Tanpopo doğudaki pazarda ne sattı?",
+   "o": [
+    "Mitarashi dango",
+    "Pizza",
+    "Oden"
+   ],
+   "src": "小牧市 東部地域トライアル活動",
+   "lv": "hard"
+  },
+  {
+   "id": "g09",
+   "theme": "g",
+   "more": null,
+   "q": "Çiftçi tezgâhlarında da satılan Komaki üzümünün mevsimi ne zaman?",
+   "o": [
+    "@m8",
+    "@m2",
+    "@m12"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "g10",
+   "theme": "g",
+   "more": null,
+   "q": "Yokoyama ve Nishio üzüm bağları hangi bölgede?",
+   "o": [
+    "Okusa",
+    "Shiroyama",
+    "Koga"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "h01",
+   "theme": "h",
+   "more": null,
+   "q": "陶 yer adı nasıl okunur?",
+   "o": [
+    "Sue",
+    "To",
+    "Kama"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h02",
+   "theme": "h",
+   "more": null,
+   "q": "大草 yer adı nasıl okunur?",
+   "o": [
+    "Okusa",
+    "Daiso",
+    "Oogusa"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h03",
+   "theme": "h",
+   "more": null,
+   "q": "上末 yer adı nasıl okunur?",
+   "o": [
+    "Kamisue",
+    "Uesue",
+    "Jomatsu"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h04",
+   "theme": "h",
+   "more": null,
+   "q": "古雅 yer adı nasıl okunur?",
+   "o": [
+    "Koga",
+    "Furuga",
+    "Komiyabi"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h05",
+   "theme": "h",
+   "more": null,
+   "q": "Meiji dönemindeki 池林 adı hangi iki köyü birleştirir?",
+   "o": [
+    "Ikenouchi + Hayashi",
+    "Oyama + Noguchi",
+    "Kamisue + Shimosue"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h06",
+   "theme": "h",
+   "more": null,
+   "q": "Meiji dönemindeki 大野 adı hangi iki köyü birleştirir?",
+   "o": [
+    "Oyama + Noguchi",
+    "Ikenouchi + Hayashi",
+    "Kamisue + Shimosue"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h07",
+   "theme": "h",
+   "more": null,
+   "q": "Shinooka mahalle adı hangi yıl başladı?",
+   "o": [
+    "@y1979",
+    "@y1959",
+    "@y1999"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h08",
+   "theme": "h",
+   "more": null,
+   "q": "Orta Çağ’da Noguchi hangi malikâneye bağlıydı?",
+   "o": [
+    "Shinogi",
+    "Komaki",
+    "Toka"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h09",
+   "theme": "h",
+   "more": null,
+   "q": "Shinooka Köyü’nün idare binası neredeydi?",
+   "o": [
+    "Ikenouchi",
+    "Oyama",
+    "Noguchi"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h10",
+   "theme": "h",
+   "more": null,
+   "q": "Komaki, Ajioka ve Shinooka hangi yıl birleşerek Komaki şehri oldu?",
+   "o": [
+    "@y1955",
+    "@y1935",
+    "@y1975"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i01",
+   "theme": "i",
+   "more": null,
+   "q": "Hangi savaşta Okusa, Hideyoshi tarafının üssü oldu?",
+   "o": [
+    "Komaki–Nagakute",
+    "Sekigahara",
+    "Okehazama"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i02",
+   "theme": "i",
+   "more": null,
+   "q": "Komaki–Nagakute Savaşı hangi yıldaydı?",
+   "o": [
+    "@y1584",
+    "@y1600",
+    "@y1560"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i03",
+   "theme": "i",
+   "more": null,
+   "q": "Komaki–Nagakute Savaşı’nda Okusa’yı üs yapan kimdi?",
+   "o": [
+    "Hashiba Hideyoshi",
+    "Tokugawa Ieyasu",
+    "Takeda Shingen"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i04",
+   "theme": "i",
+   "more": null,
+   "q": "Okusa Kalesi yaklaşık hangi yıl terk edildi?",
+   "o": [
+    "@y1548",
+    "@y1648",
+    "@y1748"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i05",
+   "theme": "i",
+   "more": null,
+   "q": "Orta Çağ’da Okusa, Kamakura’daki hangi tapınağa aitti?",
+   "o": [
+    "Engaku-ji",
+    "Todai-ji",
+    "Kinkaku-ji"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i06",
+   "theme": "i",
+   "more": null,
+   "q": "Kamisue ve Shimosue’yi anan 1499 belgesi hangi büyük tapınakla ilgilidir?",
+   "o": [
+    "Kumano",
+    "Ise",
+    "Izumo"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i07",
+   "theme": "i",
+   "more": null,
+   "q": "Edo döneminde Kamisue, Shimosue ve Okusa hangi beyliğe bağlıydı?",
+   "o": [
+    "Owari",
+    "Kaga",
+    "Satsuma"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i08",
+   "theme": "i",
+   "more": null,
+   "q": "Edo döneminde Kamisue hangi konak kasabasına insan ve at sağlardı?",
+   "o": [
+    "Komaki",
+    "Shinagawa",
+    "Seki"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i09",
+   "theme": "i",
+   "more": null,
+   "q": "Noguchi’deki Hakusan Tapınağı kaç Shinogi köyünün koruyucusuydu?",
+   "o": [
+    "33",
+    "3",
+    "333"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i10",
+   "theme": "i",
+   "more": null,
+   "q": "1907’de Shinooka Köyü’nün nüfusu yaklaşık kaçtı?",
+   "o": [
+    "5,700",
+    "570",
+    "57,000"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "j01",
+   "theme": "j",
+   "more": null,
+   "q": "Hangi nehir doğu vadisinden güneye akar?",
+   "o": [
+    "Oyama",
+    "Kiso",
+    "Nagara"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "j02",
+   "theme": "j",
+   "more": "legacy-hotaru",
+   "q": "Oyama Nehri’ne kaç ana nehir katılır?",
+   "o": [
+    "5",
+    "2",
+    "10"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "j03",
+   "theme": "j",
+   "more": null,
+   "q": "Chuo Otoyolu Oyama’ya hangi yıl ulaştı?",
+   "o": [
+    "@y1972",
+    "@y1952",
+    "@y1992"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "j04",
+   "theme": "j",
+   "more": null,
+   "q": "Doğudaki Chuo Otoyolu kavşağı hangisidir?",
+   "o": [
+    "Komaki-Higashi",
+    "Nagoya-Nishi",
+    "Toyota-Minami"
+   ],
+   "src": "小牧市 東部まちづくり審議会の資料",
+   "lv": "hard"
+  },
+  {
+   "id": "j05",
+   "theme": "j",
+   "more": null,
+   "q": "Aichi Kanalı hangi yıl tamamlandı?",
+   "o": [
+    "@y1960",
+    "@y1940",
+    "@y1980"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "j06",
+   "theme": "j",
+   "more": null,
+   "q": "Mitsubishi Heavy Industries Komaki Kuzey fabrikasının arazi anlaşması Kamisue’de hangi yıl imzalandı?",
+   "o": [
+    "@y1969",
+    "@y1949",
+    "@y1989"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "j07",
+   "theme": "j",
+   "more": "legacy-tower",
+   "q": "Tokadai tepesindeki su kulesi kaç metre?",
+   "o": [
+    "29.4 m",
+    "9.4 m",
+    "99.4 m"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "j08",
+   "theme": "j",
+   "more": "legacy-tower",
+   "q": "Su kulesi hangi yıl Komaki şehrine devredildi?",
+   "o": [
+    "@y1995",
+    "@y1975",
+    "@y2015"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "j09",
+   "theme": "j",
+   "more": "legacy-sky",
+   "q": "Sky Stage 33 kaç katlıdır?",
+   "o": [
+    "33",
+    "13",
+    "53"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "j10",
+   "theme": "j",
+   "more": null,
+   "q": "Peare Tokadai nerede?",
+   "o": [
+    "Koga 1-chome",
+    "Oyama",
+    "Noguchi"
+   ],
+   "src": "こまき市民文化財団の案内",
+   "lv": "hard"
+  }
+ ]
+}

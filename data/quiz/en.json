@@ -1,0 +1,1252 @@
+{
+ "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / f 喫茶・カフェ / g パン・お菓子・直売 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
+ "items": [
+  {
+   "id": "a01",
+   "theme": "a",
+   "more": "legacy-hist",
+   "q": "When is the temple at the Oyama Temple Ruins said to have been built?",
+   "o": [
+    "Late 7th century",
+    "Late 12th century",
+    "Late 17th century"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a02",
+   "theme": "a",
+   "more": "legacy-hist",
+   "q": "Which temple was called “the Enryakuji of the east”?",
+   "o": [
+    "Oyama-dera",
+    "Todai-ji",
+    "Kiyomizu-dera"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a03",
+   "theme": "a",
+   "more": "legacy-hist",
+   "q": "Komaki has two national historic sites: Mt. Komaki and which other?",
+   "o": [
+    "Oyama Temple Ruins",
+    "Tokadai Central Park",
+    "Shiki-no-Mori park"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a04",
+   "theme": "a",
+   "more": "legacy-shinooka",
+   "q": "In what year was a village named “Shinooka” born?",
+   "o": [
+    "@y1906",
+    "@y1868",
+    "@y1955"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a05",
+   "theme": "a",
+   "more": "legacy-shinooka",
+   "q": "Which two villages merged in 1889 to form Sue Village?",
+   "o": [
+    "Kamisue and Shimosue",
+    "Okusa and Noguchi",
+    "Ikenouchi and Hayashi"
+   ],
+   "lv": "hard",
+   "src": "葵エンジニアリング「地名の由来」"
+  },
+  {
+   "id": "a06",
+   "theme": "a",
+   "more": "legacy-kama",
+   "q": "At least how many kiln sites have been found in the Shinooka kiln group?",
+   "o": [
+    "110",
+    "11",
+    "1100"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a07",
+   "theme": "a",
+   "more": "legacy-kama",
+   "q": "What was made in large quantities in Shinooka from the 7th to 11th century?",
+   "o": [
+    "Pottery",
+    "Swords",
+    "Paper"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a08",
+   "theme": "a",
+   "more": "legacy-kama",
+   "q": "What is a half-underground kiln dug into a hillside called?",
+   "o": [
+    "Anagama",
+    "Electric kiln",
+    "Gas kiln"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a09",
+   "theme": "a",
+   "more": "legacy-kama",
+   "q": "How far were Shinooka’s vessels carried?",
+   "o": [
+    "Nara",
+    "Hokkaido",
+    "Okinawa"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "a10",
+   "theme": "a",
+   "more": "legacy-kama",
+   "q": "What began to be fired in Shinooka from the late 9th century?",
+   "o": [
+    "Ash-glazed ware",
+    "Porcelain",
+    "Lacquerware"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b01",
+   "theme": "b",
+   "more": "legacy-peach",
+   "q": "What was the nickname of the Tokadai Line?",
+   "o": [
+    "Peachliner",
+    "Hana Liner",
+    "Momo Express"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b02",
+   "theme": "b",
+   "more": "legacy-peach",
+   "q": "In what year did the Peachliner open?",
+   "o": [
+    "@y1991",
+    "@y1981",
+    "@y2001"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b03",
+   "theme": "b",
+   "more": "legacy-peach",
+   "q": "How long was the Peachliner from Komaki Station to Tokadai-Higashi?",
+   "o": [
+    "7.4 km",
+    "3.2 km",
+    "15.6 km"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b04",
+   "theme": "b",
+   "more": "legacy-peach",
+   "q": "In what year did the Peachliner stop running?",
+   "o": [
+    "@y2006",
+    "@y1996",
+    "@y2016"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b05",
+   "theme": "b",
+   "more": "legacy-peach",
+   "q": "How many stations did the Peachliner have?",
+   "o": [
+    "7",
+    "3",
+    "15"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b06",
+   "theme": "b",
+   "more": "legacy-peach",
+   "q": "Which bus replaced the Peachliner?",
+   "o": [
+    "Peach Bus",
+    "Momo Bus",
+    "Hana Bus"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b07",
+   "theme": "b",
+   "more": "legacy-ryokudo",
+   "q": "What runs all through the town of Tokadai?",
+   "o": [
+    "Greenways",
+    "Canals",
+    "Tram tracks"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b08",
+   "theme": "b",
+   "more": "legacy-ryokudo",
+   "q": "About how large is Tokadai New Town?",
+   "o": [
+    "322 ha",
+    "32 ha",
+    "3220 ha"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b09",
+   "theme": "b",
+   "more": "legacy-ryokudo",
+   "q": "In what year did residents begin moving into Tokadai New Town?",
+   "o": [
+    "@y1980",
+    "@y1960",
+    "@y2000"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "b10",
+   "theme": "b",
+   "more": "legacy-tkpark",
+   "q": "In what year did Tokadai Central Park open?",
+   "o": [
+    "@y1992",
+    "@y1972",
+    "@y2012"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c01",
+   "theme": "c",
+   "more": "legacy-bonote",
+   "q": "In which month are the Bo-no-te performances of Okusa and Noguchi offered each year?",
+   "o": [
+    "@m10",
+    "@m4",
+    "@m8"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c02",
+   "theme": "c",
+   "more": "legacy-bonote",
+   "q": "What is Bo-no-te originally?",
+   "o": [
+    "An old martial art using staffs",
+    "A rice-planting dance",
+    "Picture-card storytelling"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c03",
+   "theme": "c",
+   "more": "legacy-bonote",
+   "q": "Bo-no-te stopped after the war. What happened next?",
+   "o": [
+    "Preservation groups revived it",
+    "It moved overseas",
+    "It survives only on film"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c04",
+   "theme": "c",
+   "more": "legacy-matsuri",
+   "q": "Which edition was the 2026 Tokadai Festival?",
+   "o": [
+    "40",
+    "10",
+    "100"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c05",
+   "theme": "c",
+   "more": "legacy-matsuri",
+   "q": "In which season is the Tokadai Festival held?",
+   "o": [
+    "Summer",
+    "Spring",
+    "Winter"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c06",
+   "theme": "c",
+   "more": "legacy-fukugonji",
+   "q": "What is the December rite at Fukugonji where people walk over fire?",
+   "o": [
+    "Hiwatari (fire-walking)",
+    "Snow festival",
+    "Fireworks show"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c07",
+   "theme": "c",
+   "more": "legacy-fukugonji",
+   "q": "In what year was Hoshakuji, the origin of Fukugonji, built in Noguchi?",
+   "o": [
+    "@y1450",
+    "@y1650",
+    "@y1850"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c08",
+   "theme": "c",
+   "more": "legacy-okusa",
+   "q": "Which Edo-period picture cards are kept at Okusa Hachimangu?",
+   "o": [
+    "Thirty-Six Immortal Poets",
+    "Seven Lucky Gods",
+    "Twelve Zodiac Animals"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c09",
+   "theme": "c",
+   "more": "legacy-karuta",
+   "q": "How many pairs of cards are in the Shinooka Karuta?",
+   "o": [
+    "36",
+    "12",
+    "100"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "c10",
+   "theme": "c",
+   "more": "legacy-tkpark",
+   "q": "What was built in Tokadai Central Park in 2002?",
+   "o": [
+    "An outdoor stage",
+    "A swimming pool",
+    "A Ferris wheel"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d01",
+   "theme": "d",
+   "more": "legacy-momo",
+   "q": "Which landscape gave Tokadai its name?",
+   "o": [
+    "Peach orchards on the hills",
+    "Pine woods by the sea",
+    "Snowy mountains"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d02",
+   "theme": "d",
+   "more": "legacy-momo",
+   "q": "What is special about Shinooka peaches?",
+   "o": [
+    "Large and very sweet",
+    "Small and sour",
+    "Blue skin"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d03",
+   "theme": "d",
+   "more": "legacy-momo",
+   "q": "About how many years ago did peach growing begin in Kamisue, Takane and Okusa?",
+   "o": [
+    "80",
+    "8",
+    "800"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d04",
+   "theme": "d",
+   "more": "legacy-budou",
+   "q": "Which fruit is grown widely in the east along with peaches?",
+   "o": [
+    "Grapes",
+    "Mandarins",
+    "Apples"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d05",
+   "theme": "d",
+   "more": "legacy-cochin",
+   "q": "Which chicken does the city introduce as an eastern specialty?",
+   "o": [
+    "Nagoya Cochin",
+    "Hinai-jidori",
+    "Satsuma-jidori"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d06",
+   "theme": "d",
+   "more": "legacy-cochin",
+   "q": "In which month is “Nagoya Cochin Day”?",
+   "o": [
+    "@m3",
+    "@m7",
+    "@m11"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d07",
+   "theme": "d",
+   "more": "legacy-cochin",
+   "q": "Which local dish uses Nagoya Cochin?",
+   "o": [
+    "Hikizuri-nabe",
+    "Hoto",
+    "Kiritanpo"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d08",
+   "theme": "d",
+   "more": "legacy-cochin",
+   "q": "According to the Shinooka Karuta, who started the poultry farming behind Nagoya Cochin?",
+   "o": [
+    "A former Owari domain samurai",
+    "A fisherman",
+    "A carpenter"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d09",
+   "theme": "d",
+   "more": "legacy-winery",
+   "q": "In what year did Komaki Winery open?",
+   "o": [
+    "@y2015",
+    "@y2005",
+    "@y1995"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "d10",
+   "theme": "d",
+   "more": "legacy-winery",
+   "q": "What is wine pomace?",
+   "o": [
+    "Pressings left from winemaking",
+    "A wine label",
+    "A wine barrel"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e01",
+   "theme": "e",
+   "more": "legacy-hotaru",
+   "q": "When do Genji fireflies fly along the Oyama River?",
+   "o": [
+    "@m6",
+    "@m3",
+    "@m10"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e02",
+   "theme": "e",
+   "more": "legacy-hotaru",
+   "q": "Which fireflies are seen at the Oyama River’s “Firefly Village”?",
+   "o": [
+    "Genji fireflies",
+    "Heike fireflies",
+    "Hime fireflies"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e03",
+   "theme": "e",
+   "more": "legacy-mame",
+   "q": "Which endangered plant grows wild in Okusa?",
+   "o": [
+    "Mamenashi",
+    "Edelweiss",
+    "Hibiscus"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e04",
+   "theme": "e",
+   "more": "legacy-mame",
+   "q": "Mamenashi is typical of the hills of which region?",
+   "o": [
+    "Tokai",
+    "Tohoku",
+    "Kyushu"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e05",
+   "theme": "e",
+   "more": "legacy-hist",
+   "q": "Which flower makes the approach to Chigo Shrine famous?",
+   "o": [
+    "Cherry blossoms",
+    "Sunflowers",
+    "Cosmos"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e06",
+   "theme": "e",
+   "more": "legacy-tkpark",
+   "q": "How high is the hill in Tokadai Central Park?",
+   "o": [
+    "100 m",
+    "10 m",
+    "1000 m"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e07",
+   "theme": "e",
+   "more": "legacy-shiki",
+   "q": "About how large is Shiki-no-Mori park?",
+   "o": [
+    "28.2 ha",
+    "2.8 ha",
+    "282 ha"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e08",
+   "theme": "e",
+   "more": "legacy-shiki",
+   "q": "What is the sledding hill at Shiki-no-Mori called?",
+   "o": [
+    "Sorisuberi Hill",
+    "Yukiyama Hill",
+    "Suberidai Hill"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e09",
+   "theme": "e",
+   "more": "legacy-chigorin",
+   "q": "Which city flower is protected at Chigorin no Satoyama?",
+   "o": [
+    "Azalea",
+    "Sunflower",
+    "Rose"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "e10",
+   "theme": "e",
+   "more": "legacy-stadium",
+   "q": "In what year was the municipal baseball stadium completed?",
+   "o": [
+    "@y1988",
+    "@y1968",
+    "@y2008"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "f01",
+   "theme": "f",
+   "more": null,
+   "q": "In what year did Kissa Minato open?",
+   "o": [
+    "@y1969",
+    "@y1989",
+    "@y2009"
+   ],
+   "src": "コマキタイムズ",
+   "lv": "hard"
+  },
+  {
+   "id": "f02",
+   "theme": "f",
+   "more": null,
+   "q": "Which breakfast set is Kissa Minato known for?",
+   "o": [
+    "Agepan (fried bread)",
+    "Onigiri",
+    "Pizza toast"
+   ],
+   "src": "コマキタイムズ",
+   "lv": "hard"
+  },
+  {
+   "id": "f03",
+   "theme": "f",
+   "more": null,
+   "q": "What time does Kissa Minato open in the morning?",
+   "o": [
+    "6:00",
+    "8:00",
+    "10:00"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "f04",
+   "theme": "f",
+   "more": null,
+   "q": "What does the Okusa café Bodaiju look like?",
+   "o": [
+    "A log house",
+    "A ship",
+    "A castle"
+   ],
+   "src": "Retty",
+   "lv": "hard"
+  },
+  {
+   "id": "f05",
+   "theme": "f",
+   "more": null,
+   "q": "What is in the special morning sandwich at Camarade Coffee?",
+   "o": [
+    "Banh mi",
+    "Hot dog",
+    "Onigiri"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "f06",
+   "theme": "f",
+   "more": null,
+   "q": "In which area is Camarade Coffee?",
+   "o": [
+    "Kamisue",
+    "Okusa",
+    "Shiroyama"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "f07",
+   "theme": "f",
+   "more": null,
+   "q": "What does Shin Cafe in Okusa specialize in?",
+   "o": [
+    "Coffee",
+    "Tea",
+    "Juice"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "f08",
+   "theme": "f",
+   "more": null,
+   "q": "In which area is the café Bambina?",
+   "o": [
+    "Ikenouchi",
+    "Koga",
+    "Hikarigaoka"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "f09",
+   "theme": "f",
+   "more": null,
+   "q": "What is inside Komaki Winery?",
+   "o": [
+    "A café",
+    "A movie theater",
+    "A bookstore"
+   ],
+   "src": "小牧市 東部まちづくりニュース",
+   "lv": "hard"
+  },
+  {
+   "id": "f10",
+   "theme": "f",
+   "more": null,
+   "q": "In which area is Shin Cafe?",
+   "o": [
+    "Okusa",
+    "Kamisue",
+    "Koga"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "g01",
+   "theme": "g",
+   "more": null,
+   "q": "In which area is the sweets shop Ebisuya?",
+   "o": [
+    "Ikenouchi",
+    "Okusa",
+    "Kamisue"
+   ],
+   "src": "名古屋コーチングルメなび",
+   "lv": "hard"
+  },
+  {
+   "id": "g02",
+   "theme": "g",
+   "more": null,
+   "q": "Which eggs go into Ebisuya’s dorayaki?",
+   "o": [
+    "Nagoya Cochin",
+    "Quail",
+    "Duck"
+   ],
+   "src": "名古屋コーチングルメなび",
+   "lv": "hard"
+  },
+  {
+   "id": "g03",
+   "theme": "g",
+   "more": null,
+   "q": "Which Ebisuya sweet carries the name of Lord Nobunaga?",
+   "o": [
+    "Kintsuba",
+    "Daifuku",
+    "Yokan"
+   ],
+   "src": "ゑびすや 公式サイト",
+   "lv": "hard"
+  },
+  {
+   "id": "g04",
+   "theme": "g",
+   "more": null,
+   "q": "Where is the local bakery Panbell?",
+   "o": [
+    "Shiroyama 3-chome",
+    "Okusa",
+    "Kamisue"
+   ],
+   "src": "小牧市 東部まちづくりニュース",
+   "lv": "hard"
+  },
+  {
+   "id": "g05",
+   "theme": "g",
+   "more": null,
+   "q": "What lunch item did Panbell create using wine pomace?",
+   "o": [
+    "Sandwich",
+    "Ramen",
+    "Curry"
+   ],
+   "src": "小牧市 東部まちづくりニュース",
+   "lv": "hard"
+  },
+  {
+   "id": "g06",
+   "theme": "g",
+   "more": null,
+   "q": "What does Hoteipan Tokadai specialize in?",
+   "o": [
+    "Shokupan (loaf bread)",
+    "Cakes",
+    "Senbei"
+   ],
+   "src": "コマキタイムズ",
+   "lv": "hard"
+  },
+  {
+   "id": "g07",
+   "theme": "g",
+   "more": null,
+   "q": "Which sweet was featured on the Ace Bakery Komaki factory tour?",
+   "o": [
+    "Baumkuchen",
+    "Senbei",
+    "Manju"
+   ],
+   "src": "小牧市 東部まちづくりニュース",
+   "lv": "hard"
+  },
+  {
+   "id": "g08",
+   "theme": "g",
+   "more": null,
+   "q": "What did Kissa Tanpopo sell at an eastern market?",
+   "o": [
+    "Mitarashi dango",
+    "Pizza",
+    "Oden"
+   ],
+   "src": "小牧市 東部地域トライアル活動",
+   "lv": "hard"
+  },
+  {
+   "id": "g09",
+   "theme": "g",
+   "more": null,
+   "q": "When are Komaki grapes, also sold at farmers’ stands, in season?",
+   "o": [
+    "@m8",
+    "@m2",
+    "@m12"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "g10",
+   "theme": "g",
+   "more": null,
+   "q": "In which area are the Yokoyama and Nishio grape farms?",
+   "o": [
+    "Okusa",
+    "Shiroyama",
+    "Koga"
+   ],
+   "src": "小牧つーしん",
+   "lv": "hard"
+  },
+  {
+   "id": "h01",
+   "theme": "h",
+   "more": null,
+   "q": "How is the place name 陶 read?",
+   "o": [
+    "Sue",
+    "To",
+    "Kama"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h02",
+   "theme": "h",
+   "more": null,
+   "q": "How is the place name 大草 read?",
+   "o": [
+    "Okusa",
+    "Daiso",
+    "Oogusa"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h03",
+   "theme": "h",
+   "more": null,
+   "q": "How is the place name 上末 read?",
+   "o": [
+    "Kamisue",
+    "Uesue",
+    "Jomatsu"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h04",
+   "theme": "h",
+   "more": null,
+   "q": "How is the place name 古雅 read?",
+   "o": [
+    "Koga",
+    "Furuga",
+    "Komiyabi"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h05",
+   "theme": "h",
+   "more": null,
+   "q": "Which two villages does the Meiji-era name 池林 combine?",
+   "o": [
+    "Ikenouchi + Hayashi",
+    "Oyama + Noguchi",
+    "Kamisue + Shimosue"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h06",
+   "theme": "h",
+   "more": null,
+   "q": "Which two villages does the Meiji-era name 大野 combine?",
+   "o": [
+    "Oyama + Noguchi",
+    "Ikenouchi + Hayashi",
+    "Kamisue + Shimosue"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h07",
+   "theme": "h",
+   "more": null,
+   "q": "In what year did the town name Shinooka begin?",
+   "o": [
+    "@y1979",
+    "@y1959",
+    "@y1999"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h08",
+   "theme": "h",
+   "more": null,
+   "q": "Which medieval estate did Noguchi belong to?",
+   "o": [
+    "Shinogi",
+    "Komaki",
+    "Toka"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h09",
+   "theme": "h",
+   "more": null,
+   "q": "Where was the Shinooka Village office?",
+   "o": [
+    "Ikenouchi",
+    "Oyama",
+    "Noguchi"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "h10",
+   "theme": "h",
+   "more": null,
+   "q": "In what year did Komaki, Ajioka and Shinooka merge to form Komaki City?",
+   "o": [
+    "@y1955",
+    "@y1935",
+    "@y1975"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i01",
+   "theme": "i",
+   "more": null,
+   "q": "In which battle did Okusa become a base for Hideyoshi’s side?",
+   "o": [
+    "Komaki–Nagakute",
+    "Sekigahara",
+    "Okehazama"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i02",
+   "theme": "i",
+   "more": null,
+   "q": "In what year was the Battle of Komaki–Nagakute?",
+   "o": [
+    "@y1584",
+    "@y1600",
+    "@y1560"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i03",
+   "theme": "i",
+   "more": null,
+   "q": "Who used Okusa as a base in the Battle of Komaki–Nagakute?",
+   "o": [
+    "Hashiba Hideyoshi",
+    "Tokugawa Ieyasu",
+    "Takeda Shingen"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i04",
+   "theme": "i",
+   "more": null,
+   "q": "Around what year was Okusa Castle abandoned?",
+   "o": [
+    "@y1548",
+    "@y1648",
+    "@y1748"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i05",
+   "theme": "i",
+   "more": null,
+   "q": "Medieval Okusa belonged to which temple in Kamakura?",
+   "o": [
+    "Engaku-ji",
+    "Todai-ji",
+    "Kinkaku-ji"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i06",
+   "theme": "i",
+   "more": null,
+   "q": "A 1499 document naming Kamisue and Shimosue is linked to which great shrine?",
+   "o": [
+    "Kumano",
+    "Ise",
+    "Izumo"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i07",
+   "theme": "i",
+   "more": null,
+   "q": "Which domain ruled Kamisue, Shimosue and Okusa in the Edo period?",
+   "o": [
+    "Owari",
+    "Kaga",
+    "Satsuma"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i08",
+   "theme": "i",
+   "more": null,
+   "q": "Which post town did Edo-period Kamisue supply with people and horses?",
+   "o": [
+    "Komaki",
+    "Shinagawa",
+    "Seki"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i09",
+   "theme": "i",
+   "more": null,
+   "q": "Noguchi’s Hakusan shrine was the guardian of how many Shinogi villages?",
+   "o": [
+    "33",
+    "3",
+    "333"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "i10",
+   "theme": "i",
+   "more": null,
+   "q": "About what was the population of Shinooka Village in 1907?",
+   "o": [
+    "5,700",
+    "570",
+    "57,000"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "j01",
+   "theme": "j",
+   "more": null,
+   "q": "Which river flows south through the eastern valley?",
+   "o": [
+    "Oyama",
+    "Kiso",
+    "Nagara"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "j02",
+   "theme": "j",
+   "more": "legacy-hotaru",
+   "q": "How many main rivers join the Oyama River?",
+   "o": [
+    "5",
+    "2",
+    "10"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "j03",
+   "theme": "j",
+   "more": null,
+   "q": "In what year did the Chuo Expressway open through Oyama?",
+   "o": [
+    "@y1972",
+    "@y1952",
+    "@y1992"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "j04",
+   "theme": "j",
+   "more": null,
+   "q": "Which Chuo Expressway interchange is in the east?",
+   "o": [
+    "Komaki-Higashi",
+    "Nagoya-Nishi",
+    "Toyota-Minami"
+   ],
+   "src": "小牧市 東部まちづくり審議会の資料",
+   "lv": "hard"
+  },
+  {
+   "id": "j05",
+   "theme": "j",
+   "more": null,
+   "q": "In what year was the Aichi Canal completed?",
+   "o": [
+    "@y1960",
+    "@y1940",
+    "@y1980"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "j06",
+   "theme": "j",
+   "more": null,
+   "q": "In what year was the land deal for Mitsubishi Heavy Industries’ Komaki North plant signed in Kamisue?",
+   "o": [
+    "@y1969",
+    "@y1949",
+    "@y1989"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "lv": "hard"
+  },
+  {
+   "id": "j07",
+   "theme": "j",
+   "more": "legacy-tower",
+   "q": "How tall is the water tower on the Tokadai hill?",
+   "o": [
+    "29.4 m",
+    "9.4 m",
+    "99.4 m"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "j08",
+   "theme": "j",
+   "more": "legacy-tower",
+   "q": "In what year was the water tower transferred to Komaki City?",
+   "o": [
+    "@y1995",
+    "@y1975",
+    "@y2015"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "j09",
+   "theme": "j",
+   "more": "legacy-sky",
+   "q": "How many floors does Sky Stage 33 have?",
+   "o": [
+    "33",
+    "13",
+    "53"
+   ],
+   "lv": "easy"
+  },
+  {
+   "id": "j10",
+   "theme": "j",
+   "more": null,
+   "q": "Where is Peare Tokadai?",
+   "o": [
+    "Koga 1-chome",
+    "Oyama",
+    "Noguchi"
+   ],
+   "src": "こまき市民文化財団の案内",
+   "lv": "hard"
+  }
+ ]
+}

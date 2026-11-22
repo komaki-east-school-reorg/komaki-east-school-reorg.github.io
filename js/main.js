@@ -7037,52 +7037,113 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   line.hidden = false;
 })();
 
-/* ===== QUIZ（東部たんけんクイズ、community.html。2026-11-22、日次アイデア 11/14・11/17） =====
-   問いと選択肢は辞書（quiz_q<N> / quiz_q<N>_o は「|」区切り）。正解の位置は HTML の data-a。
+/* ===== QUIZ（東部たんけんクイズ、community.html と index.html。2026-11-22） =====
+   問題は data/quiz/<言語>.json（100問・10テーマ各10問。o の先頭が正解）。開いた人の言語の1枚だけ読む。
+   難易度：easy＝lv が easy（このサイトのカードで答えがわかる問い）、hard＝それ以外、normal＝全部。
+   1回5問は別々のテーマから選ぶ。10テーマを一巡するまで同じテーマを選ばず、テーマの中では全問出るまで同じ問いを出さない。
    答えも点数も保存・送信しない（集計は quiz/finish の1回だけ）。 */
 (function () {
   var box = document.getElementById('east-quiz');
   if (!box) return;
   var stage = box.querySelector('.east-quiz-stage');
-  var qs = Array.prototype.slice.call(box.querySelectorAll('[data-quiz-q]'));
-  var at = 0, score = 0, picked = -1, counted = false;
+  var THEMES = 'abcdefghij'.split(''), themeDecks = {};
+  var mode = 'normal', modeBox = null, byId = null, loaded = '', decks = {}, round = [], at = 0, score = 0, picked = -1, counted = false;
   function t(k) { var n = box.querySelector('[data-quiz-t="' + k + '"]'); return n ? n.textContent : ''; }
+  function lang() {
+    var l = window.KomakiLang ? window.KomakiLang() : 'ja';
+    if (l === 'ja') { try { if (localStorage.getItem('komaki_kids') === '1') return 'ja-kids'; } catch (e) {} }
+    return l;
+  }
+  function shuffle(a) {
+    for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), x = a[i]; a[i] = a[j]; a[j] = x; }
+    return a;
+  }
+  function fmt(s) {
+    var m = /^@([ym])(\d+)$/.exec(s);
+    if (!m) return s;
+    var l = lang() === 'ja-kids' ? 'ja' : lang();
+    if (m[1] === 'y') return m[2] + (l === 'ja' || l === 'zh' ? '年' : l === 'ko' ? '년' : '');
+    try { return new Intl.DateTimeFormat(l === 'es' ? 'es-419' : l, { month: 'long', timeZone: 'UTC' }).format(new Date(Date.UTC(2026, +m[2] - 1, 1))); }
+    catch (e) { return m[2]; }
+  }
+  function inMode(it) { return mode === 'normal' || it.lv === mode; }
+  function newRound() {
+    var ids = Object.keys(byId).filter(function (id) { return inMode(byId[id]); });
+    var themes = THEMES.filter(function (th) { return ids.some(function (id) { return byId[id].theme === th; }); });
+    var picks = [], want = Math.min(5, themes.length), td = themeDecks[mode] || [];
+    while (picks.length < want) {
+      if (!td.length) td = shuffle(themes.filter(function (x) { return picks.indexOf(x) < 0; }));
+      picks.push(td.pop());
+    }
+    themeDecks[mode] = td;
+    round = shuffle(picks.map(function (th) {
+      var k = mode + th;
+      if (!decks[k] || !decks[k].length) {
+        decks[k] = shuffle(ids.filter(function (id) { return byId[id].theme === th; }));
+      }
+      return { id: decks[k].pop(), ord: shuffle([0, 1, 2]) };
+    }));
+    at = 0; score = 0; picked = -1;
+  }
+  function drawModes() {
+    if (!modeBox) {
+      modeBox = document.createElement('div');
+      modeBox.className = 'east-quiz-modes';
+      modeBox.setAttribute('role', 'group');
+      box.insertBefore(modeBox, stage);
+    }
+    modeBox.textContent = '';
+    modeBox.setAttribute('aria-label', t('mode'));
+    var row = document.createElement('div'); row.className = 'east-quiz-mode-row';
+    ['easy', 'normal', 'hard'].forEach(function (m) {
+      var b = btn(t(m), 'east-quiz-mode', function () {
+        if (mode === m) return;
+        mode = m; newRound(); draw();
+        if (window.KomakiCount) window.KomakiCount('quiz/mode-' + m);
+      });
+      b.setAttribute('aria-pressed', mode === m ? 'true' : 'false');
+      row.appendChild(b);
+    });
+    var note = document.createElement('p'); note.className = 'east-quiz-mode-note'; note.textContent = t('note_' + mode);
+    modeBox.appendChild(row); modeBox.appendChild(note);
+  }
   function btn(text, cls, fn) {
     var b = document.createElement('button');
     b.type = 'button'; b.className = cls; b.textContent = text;
     b.addEventListener('click', fn);
     return b;
   }
-  function moreHref(h) {
-    if (h.charAt(0) === '#' || !window.KomakiLang) return h;
-    var l = window.KomakiLang();
-    return l === 'ja' ? h : h.replace('#', '?lang=' + encodeURIComponent(l) + '#');
+  function moreHref(id) {
+    if (document.getElementById(id)) return '#' + id;
+    var l = window.KomakiLang ? window.KomakiLang() : 'ja';
+    return 'community.html' + (l === 'ja' ? '' : '?lang=' + encodeURIComponent(l)) + '#' + id;
   }
   function draw() {
+    drawModes();
     stage.textContent = '';
-    if (at >= qs.length) {
+    if (at >= round.length) {
       var r = document.createElement('p');
       r.className = 'east-quiz-result';
-      r.textContent = t('result').replace('{n}', qs.length).replace('{c}', score);
+      r.textContent = t('result').replace('{n}', round.length).replace('{c}', score);
       stage.appendChild(r);
-      stage.appendChild(btn(t('retry'), 'east-quiz-next', function () { at = 0; score = 0; picked = -1; draw(); }));
+      stage.appendChild(btn(t('retry'), 'east-quiz-next', function () { newRound(); draw(); }));
       if (!counted && window.KomakiCount) { counted = true; window.KomakiCount('quiz/finish'); }
       return;
     }
-    var q = qs[at], parts = q.querySelectorAll('span'), opts = parts[1].textContent.split('|'), ans = +q.getAttribute('data-a');
-    var num = document.createElement('p'); num.className = 'east-quiz-num'; num.textContent = 'Q' + (at + 1) + ' / ' + qs.length;
-    var head = document.createElement('p'); head.className = 'east-quiz-q'; head.textContent = parts[0].textContent;
+    var cur = round[at], q = byId[cur.id];
+    var num = document.createElement('p'); num.className = 'east-quiz-num'; num.textContent = 'Q' + (at + 1) + ' / ' + round.length;
+    var head = document.createElement('p'); head.className = 'east-quiz-q'; head.textContent = q.q;
     var list = document.createElement('div'); list.className = 'east-quiz-opts';
-    opts.forEach(function (o, i) {
-      var b = btn(o, 'east-quiz-opt', function () {
+    cur.ord.forEach(function (i) {
+      var b = btn(fmt(q.o[i]), 'east-quiz-opt', function () {
         if (picked >= 0) return;
         picked = i;
-        if (i === ans) score++;
+        if (i === 0) score++;
         draw();
       });
       if (picked >= 0) {
         b.disabled = true;
-        if (i === ans) b.classList.add('is-right');
+        if (i === 0) b.classList.add('is-right');
         else if (i === picked) b.classList.add('is-wrong');
       }
       list.appendChild(b);
@@ -7091,19 +7152,42 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     if (picked >= 0) {
       var f = document.createElement('p');
       f.className = 'east-quiz-feedback';
-      f.textContent = picked === ans ? t('right') : t('wrong').replace('{a}', opts[ans]);
-      var a = document.createElement('a');
-      a.href = moreHref(q.getAttribute('data-more'));
-      a.textContent = t('more');
+      f.textContent = picked === 0 ? t('right') : t('wrong').replace('{a}', fmt(q.o[0]));
       f.appendChild(document.createTextNode(' '));
-      f.appendChild(a);
+      if (q.more) {
+        var a = document.createElement('a');
+        a.href = moreHref(q.more);
+        a.textContent = t('more');
+        f.appendChild(a);
+      } else if (q.src) {
+        var c = document.createElement('small');
+        c.lang = 'ja'; c.setAttribute('translate', 'no');
+        c.textContent = t('src') + '：' + q.src;
+        f.appendChild(c);
+      }
       stage.appendChild(f);
       stage.appendChild(btn(t('next'), 'east-quiz-next', function () { at++; picked = -1; draw(); }));
     }
   }
-  box.hidden = false;
-  draw();
-  document.addEventListener('komaki:i18n-applied', draw);
+  function load() {
+    var l = lang();
+    if (l === loaded) { if (byId) draw(); return; }
+    loaded = l;
+    fetch('data/quiz/' + l + '.json').then(function (res) {
+      if (!res.ok) throw new Error('quiz');
+      return res.json();
+    }).then(function (d) {
+      if (l !== loaded) return;
+      var first = !byId;
+      byId = {};
+      d.items.forEach(function (it) { byId[it.id] = it; });
+      if (first) newRound();
+      box.hidden = false;
+      draw();
+    }).catch(function () { if (!byId) box.hidden = true; });
+  }
+  load();
+  document.addEventListener('komaki:i18n-applied', load);
 })();
 
 /* ===== ASK COPY（review.html の質問集を宛先ごとにコピー。2026-11-21、日次アイデア 11/10） =====
