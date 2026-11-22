@@ -698,6 +698,7 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   .hero .hero-count-meta { font-size: .76rem; line-height: 1.45; }
 }
 
+#legacy-temples { scroll-margin-top: calc(var(--header-h, 72px) + 12px); }
 .town-lookup { margin-top: 2rem; scroll-margin-top: calc(var(--header-h, 72px) + 12px); }
 .tl-head { display: grid; grid-template-columns: minmax(0, 1fr) 8rem; gap: 1rem; align-items: center; }
 .tl-head-text { min-width: 0; }

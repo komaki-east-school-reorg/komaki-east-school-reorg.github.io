@@ -2080,7 +2080,7 @@
   "rev_l_sub_p": "This site’s proposals (1–12; not under consideration by the city)",
   "comm_leg_h2": "Local Heritage<small>地域のレガシー</small>",
   "comm_leg_lead": "Apart from the schools, the eastern district has traditions, festivals and local specialties that local people have handed down. They are the area’s heritage, and they go on even when the schools are reorganized.",
-  "comm_leg_src": "Sources are shown under each card. PDF materials are listed by title only. The wisteria trellises and cherry trees, autumn festivals around the east, New Year visits to Okusa Hachimangu, and the origin of the Shin-Shinooka Ondo, could not be confirmed from published materials. For the latest dates, please check with each group or organizer.",
+  "comm_leg_src": "Sources are shown under each card. PDF materials are listed by title only. The wisteria trellises and cherry trees, autumn festivals around the east, and the origin of the Shin-Shinooka Ondo, could not be confirmed from published materials. For the latest dates, please check with each group or organizer.",
   "comm_leg_more": "This site’s view on how to carry on these traditions after the schools close (not the city’s view) is in <a href=\"analysis.html#rev-legacy\">In-depth review: “Carrying on the existing schools’ legacy”</a>.",
   "comm_leg_bonote_h": "Bo-no-te (Okusa and Noguchi)",
   "comm_leg_bonote_p": "A tradition of offering old martial-art forms with staffs and other tools at shrine festivals. Okusa Bo-no-te (Shinkage school) is offered at the festival of Okusa Hachiman Shrine and Noguchi Bo-no-te (Genji Ten school) at that of Noguchi Shinmei Shrine, both <strong>every year on the second Sunday of October</strong>. Both are intangible folk cultural properties designated by the city. They died out for a time after the war, but local people formed preservation societies, revived them and still pass them on.",
@@ -2301,6 +2301,6 @@
   "map_tl_ejf": "Uses the current Hikarigaoka Junior High School building",
   "map_tl_wjf": "Uses the current Toryo Junior High School building",
   "season_fire": "Fukugonji (fire-walking)",
-  "season_hatsumode": "Okusa Hachimangu (New Year visit)",
+  "season_hatsumode": "New Year visits (local shrines and temples)",
   "map_tl_pick_card": "Find Your School by Town"
 }

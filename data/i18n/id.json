@@ -2080,7 +2080,7 @@
   "rev_l_sub_p": "Usulan situs ini (1–12; tidak sedang dipertimbangkan pemerintah kota)",
   "comm_leg_h2": "Warisan setempat<small>Local Heritage</small>",
   "comm_leg_lead": "Selain sekolah, wilayah timur punya tradisi, festival dan produk khas yang diwariskan warga turun-temurun. Inilah warisan daerah yang terus berlanjut meski sekolah ditata ulang.",
-  "comm_leg_src": "Sumber ditulis di bawah setiap kartu. Materi PDF hanya ditulis judulnya. Para-para wisteria, pohon sakura, festival musim gugur di timur, kunjungan Tahun Baru ke Okusa Hachimangu, dan asal Shin-Shinooka Ondo tidak dapat dipastikan dari materi yang dipublikasikan. Untuk tanggal terbaru, silakan tanyakan kepada tiap kelompok atau penyelenggara.",
+  "comm_leg_src": "Sumber ditulis di bawah setiap kartu. Materi PDF hanya ditulis judulnya. Para-para wisteria, pohon sakura, festival musim gugur di timur, dan asal Shin-Shinooka Ondo tidak dapat dipastikan dari materi yang dipublikasikan. Untuk tanggal terbaru, silakan tanyakan kepada tiap kelompok atau penyelenggara.",
   "comm_leg_more": "Pandangan situs ini tentang cara melanjutkan tradisi ini setelah sekolah ditutup (bukan pandangan pemerintah kota) ada di <a href=\"analysis.html#rev-legacy\">Telaah mendalam: “Melanjutkan warisan sekolah-sekolah yang ada”</a>.",
   "comm_leg_bonote_h": "Bo-no-te (Okusa dan Noguchi)",
   "comm_leg_bonote_p": "Tradisi mempersembahkan jurus bela diri kuno dengan tongkat di festival kuil. Bo-no-te Okusa (aliran Shinkage) dipersembahkan di festival Kuil Okusa Hachiman dan Bo-no-te Noguchi (aliran Genji Ten) di festival Kuil Noguchi Shinmei, keduanya <strong>setiap Minggu kedua bulan Oktober</strong>. Keduanya warisan budaya rakyat takbenda yang ditetapkan kota. Sempat terhenti setelah perang, warga membentuk perkumpulan pelestarian, menghidupkannya kembali dan terus mewariskannya.",
@@ -2301,6 +2301,6 @@
   "map_tl_ejf": "Memakai gedung SMP Hikarigaoka saat ini",
   "map_tl_wjf": "Memakai gedung SMP Toryou saat ini",
   "season_fire": "Fukugonji (berjalan di atas api)",
-  "season_hatsumode": "Okusa Hachimangu (kunjungan Tahun Baru)",
+  "season_hatsumode": "Kunjungan Tahun Baru (kuil setempat)",
   "map_tl_pick_card": "Cari Sekolah Menurut Wilayah"
 }

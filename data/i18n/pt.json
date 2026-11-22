@@ -2080,7 +2080,7 @@
   "rev_l_sub_p": "Propostas deste site (1–12; não estão sendo consideradas pela prefeitura)",
   "comm_leg_h2": "Patrimônio local<small>Local Heritage</small>",
   "comm_leg_lead": "Além das escolas, a zona leste tem tradições, festas e produtos típicos que os moradores mantêm há gerações. É o patrimônio da região, que continua mesmo com a reorganização das escolas.",
-  "comm_leg_src": "As fontes aparecem abaixo de cada cartão. Materiais em PDF são indicados só pelo título. As pérgulas de glicínias, as cerejeiras, os festivais de outono do leste, as visitas de Ano-Novo ao Okusa Hachimangu e a origem do Shin-Shinooka Ondo não puderam ser confirmadas em materiais publicados. Para datas atualizadas, consulte cada grupo ou organizador.",
+  "comm_leg_src": "As fontes aparecem abaixo de cada cartão. Materiais em PDF são indicados só pelo título. As pérgulas de glicínias, as cerejeiras, os festivais de outono do leste e a origem do Shin-Shinooka Ondo não puderam ser confirmadas em materiais publicados. Para datas atualizadas, consulte cada grupo ou organizador.",
   "comm_leg_more": "A visão deste site sobre como manter essas tradições depois do fechamento das escolas (não é a opinião da prefeitura) está em <a href=\"analysis.html#rev-legacy\">Análise aprofundada: “Dar continuidade ao legado das escolas atuais”</a>.",
   "comm_leg_bonote_h": "Bo-no-te (Okusa e Noguchi)",
   "comm_leg_bonote_p": "Tradição de apresentar antigas formas de arte marcial com bastões nas festas dos santuários. O Bo-no-te de Okusa (escola Shinkage) é apresentado na festa do Santuário Okusa Hachiman e o de Noguchi (escola Genji Ten) na do Santuário Noguchi Shinmei, ambos <strong>todo ano no segundo domingo de outubro</strong>. Os dois são bens culturais folclóricos imateriais designados pela prefeitura. Pararam por um tempo depois da guerra, mas moradores criaram associações de preservação, retomaram e mantêm a tradição até hoje.",
@@ -2301,6 +2301,6 @@
   "map_tl_ejf": "No prédio atual da Escola Secundária Hikarigaoka",
   "map_tl_wjf": "No prédio atual da Escola Secundária Toryou",
   "season_fire": "Fukugonji (caminhada no fogo)",
-  "season_hatsumode": "Okusa Hachimangu (visita de Ano-Novo)",
+  "season_hatsumode": "Visitas de Ano-Novo (santuários e templos locais)",
   "map_tl_pick_card": "Encontre sua escola pelo bairro"
 }

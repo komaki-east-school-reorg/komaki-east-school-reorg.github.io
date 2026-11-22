@@ -2080,7 +2080,7 @@
   "rev_l_sub_p": "Đề xuất của trang này (1–12; thành phố không xem xét)",
   "comm_leg_h2": "Di sản địa phương<small>Local Heritage</small>",
   "comm_leg_lead": "Ngoài trường học, vùng phía Đông còn có những lễ hội, sự kiện truyền thống và đặc sản mà người dân đã gìn giữ qua nhiều thế hệ. Đó là di sản của vùng, vẫn tiếp tục dù trường học được tái tổ chức.",
-  "comm_leg_src": "Nguồn được ghi dưới mỗi thẻ. Tài liệu PDF chỉ ghi tên. Giàn hoa tử đằng, hoa anh đào, các lễ hội mùa thu ở phía đông, việc viếng đầu năm ở Okusa Hachimangu và nguồn gốc của Shin-Shinooka Ondo chưa xác nhận được từ tài liệu công bố. Về ngày giờ mới nhất, vui lòng hỏi từng nhóm hoặc ban tổ chức.",
+  "comm_leg_src": "Nguồn được ghi dưới mỗi thẻ. Tài liệu PDF chỉ ghi tên. Giàn hoa tử đằng, hoa anh đào, các lễ hội mùa thu ở phía đông và nguồn gốc của Shin-Shinooka Ondo chưa xác nhận được từ tài liệu công bố. Về ngày giờ mới nhất, vui lòng hỏi từng nhóm hoặc ban tổ chức.",
   "comm_leg_more": "Quan điểm của trang này về cách tiếp nối những truyền thống này sau khi trường đóng cửa (không phải quan điểm của thành phố) có ở <a href=\"analysis.html#rev-legacy\">Phân tích chuyên sâu: “Tiếp nối di sản của các trường hiện có”</a>.",
   "comm_leg_bonote_h": "Bo-no-te (Okusa và Noguchi)",
   "comm_leg_bonote_p": "Truyền thống dâng các bài võ cổ dùng gậy tại lễ hội đền. Bo-no-te Okusa (phái Shinkage) được dâng ở lễ hội đền Okusa Hachiman, Bo-no-te Noguchi (phái Genji Ten) ở lễ hội đền Noguchi Shinmei, cả hai vào <strong>Chủ nhật thứ hai của tháng 10 hằng năm</strong>. Cả hai là di sản văn hóa dân gian phi vật thể do thành phố công nhận. Sau chiến tranh từng bị gián đoạn, nhưng người dân đã lập hội bảo tồn, khôi phục và gìn giữ đến nay.",
@@ -2301,6 +2301,6 @@
   "map_tl_ejf": "Dùng tòa nhà hiện tại của Trường THCS Hikarigaoka",
   "map_tl_wjf": "Dùng tòa nhà hiện tại của Trường THCS Toryou",
   "season_fire": "Fukugonji (đi trên lửa)",
-  "season_hatsumode": "Okusa Hachimangu (viếng đầu năm)",
+  "season_hatsumode": "Viếng đầu năm (đền chùa trong vùng)",
   "map_tl_pick_card": "Tra cứu trường theo khu phố"
 }

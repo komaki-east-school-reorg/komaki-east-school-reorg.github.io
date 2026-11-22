@@ -2080,7 +2080,7 @@
   "rev_l_sub_p": "Bu sitenin önerileri (1–12; belediyenin gündeminde değildir)",
   "comm_leg_h2": "Yerel miras<small>Local Heritage</small>",
   "comm_leg_lead": "Doğu bölgesinde, okullardan ayrı olarak yöre halkının kuşaktan kuşağa aktardığı gelenekler, şenlikler ve yöresel ürünler var. Okullar yeniden yapılandırılsa da süren, yörenin mirasıdır.",
-  "comm_leg_src": "Kaynaklar her kartın altında gösterilir. PDF belgelerin yalnızca adı yazılıdır. Mor salkım çardakları, kiraz ağaçları, doğudaki sonbahar festivalleri, Okusa Hachimangu’daki Yeni Yıl ziyaretleri ve Shin-Shinooka Ondo’nun kökeni yayımlanmış belgelerle doğrulanamadı. Güncel tarihler için ilgili grup veya düzenleyiciye danışın.",
+  "comm_leg_src": "Kaynaklar her kartın altında gösterilir. PDF belgelerin yalnızca adı yazılıdır. Mor salkım çardakları, kiraz ağaçları, doğudaki sonbahar festivalleri ve Shin-Shinooka Ondo’nun kökeni yayımlanmış belgelerle doğrulanamadı. Güncel tarihler için ilgili grup veya düzenleyiciye danışın.",
   "comm_leg_more": "Okullar kapandıktan sonra bu geleneklerin nasıl sürdürüleceğine dair bu sitenin görüşü (belediyenin görüşü değildir) <a href=\"analysis.html#rev-legacy\">Derinlemesine inceleme: “Mevcut okulların mirasını sürdürmek”</a> bölümündedir.",
   "comm_leg_bonote_h": "Bo-no-te (Okusa ve Noguchi)",
   "comm_leg_bonote_p": "Sopa gibi araçlarla yapılan eski dövüş sanatı kalıplarını tapınak şenliklerinde sunma geleneği. Okusa Bo-no-te’si (Shinkage okulu) Okusa Hachiman Tapınağı’nda, Noguchi Bo-no-te’si (Genji Ten okulu) Noguchi Shinmei Tapınağı’nın şenliğinde, ikisi de <strong>her yıl ekimin ikinci pazarı</strong> sunulur. İkisi de belediyenin tescil ettiği somut olmayan halk kültürü varlığıdır. Savaştan sonra bir süre kesintiye uğradılar; yöre halkı koruma dernekleri kurarak onları yeniden canlandırdı ve hâlâ sürdürüyor.",
@@ -2301,6 +2301,6 @@
   "map_tl_ejf": "Bugünkü Hikarigaoka Ortaokulu binası",
   "map_tl_wjf": "Bugünkü Toryou Ortaokulu binası",
   "season_fire": "Fukugonji (ateşte yürüme)",
-  "season_hatsumode": "Okusa Hachimangu (Yeni Yıl ziyareti)",
+  "season_hatsumode": "Yeni Yıl ziyareti (yöredeki tapınaklar)",
   "map_tl_pick_card": "Mahalleye Göre Okulunu Bul"
 }
