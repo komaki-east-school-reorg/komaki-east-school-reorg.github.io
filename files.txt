@@ -19,6 +19,7 @@ review.html         計画の検証と提案のページ（要点）。検証の
 analysis.html       深掘り検証のページ（2026-10-30 に review.html から分割）。3部構成：計画そのもの（読み取れないこと・だれが決めるか・都市計画の動き）、教育の質、子どもの数（施策の年表・県と国・本来どうすべきだったか・子どもを増やす提案・高校段階）と、確認できなかったこと24項目。根拠のカードから要点へ戻る札は js/main.js の REVIEW LINKS。当サイトの見解を含む。
 img/illust/*.svg    サイト全体の挿絵（2026-10-31〜。全ページ）。文字を含まない飾り（alt=""）で、説明の文字は辞書から流す。下絵は Claude Design。校舎は古く描かない（building.svg）。
 site.html           このサイトについて（2026-10-30 に index.html から移した）。運営者・紹介用画像・アプリとして使う・広める・ご意見の送り先・翻訳の修正提案・閲覧数の集計。
+quiz.html           東部たんけんクイズの専用ページ（2026-11-22）。答えに合わせて次の問題を選ぶ。テーマの制覇マップ。
 404.html            存在しない URL を開いたときに GitHub Pages が返すページ。主なページと12言語への入口（noindex・sitemap 対象外・共有欄なし）。深いパスでも崩れないよう <base href="/"> を持つ。
 
 ■ スタイル
@@ -37,6 +38,7 @@ manifest.<言語>.webmanifest  ウェブアプリのマニフェスト（12言�
 ■ JavaScript
 js/i18n.js          言語JSONファイルを非同期取得してページ内テキストを多言語に切り替える国際化スクリプト。
 js/main.js          ハンバーガーメニュー・カレンダー・日付自動ステータス更新・公式ニュース表示・共有ボタン（SNS＋はてな）・学年ビュー（schedule.html）・回覧板シート印刷などのUIロジックを担うメインスクリプト。
+js/quiz.js          東部たんけんクイズの出題と画面（index・community・quiz の3ページだけで読む）。
 
 ■ データ
 data/news.json              GitHub Actionsが定期取得した市公式サイトの最新お知らせを格納するJSONファイル。
@@ -168,3 +170,4 @@ calendar.<lang>.ics 購読できるカレンダー（12言語、自動生成・�
 .github/workflows/quiz-candidates.yml  東部たんけんクイズの候補を週1回 AI が探し Issue にする（サイトは変更しない）
 .github/scripts/quiz_candidates.py  候補を検査して Issue の本文に整える
 data/quiz/<言語>.json  東部たんけんクイズの問題（手で直す）
+data/quiz_meta.json  クイズの問題の難しさ（1〜5）と、かんたん→むずかしいに並べたつながり（手で直す）

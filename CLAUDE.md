@@ -141,7 +141,7 @@ Keys that `main.js` attaches at runtime (`status_done`, `event_status_*`) never 
 
 There is also `data/i18n/ja-kids.json`: when the kids-mode toggle is active (Japanese only), it is fetched and merged on top of `ja.json` (`Object.assign({}, ja_dict, kids_dict)`), overriding keys with simpler hiragana/easy-Japanese text.
 
-Language preference and kids-mode state are persisted in `localStorage` under `komaki_lang` and `komaki_kids`. (Other per-reader keys: `komaki_nocount`, `komaki_orig`, `komaki_fs`, `komaki_grade`, `komaki_mastodon`, `komaki_seen_items`, `komaki_hide_done`, `komaki_bus_check` — see their sections.)
+Language preference and kids-mode state are persisted in `localStorage` under `komaki_lang` and `komaki_kids`. (Other per-reader keys: `komaki_nocount`, `komaki_orig`, `komaki_fs`, `komaki_grade`, `komaki_mastodon`, `komaki_quiz`, `komaki_seen_items`, `komaki_hide_done`, `komaki_bus_check` — see their sections.)
 
 ### Language in the URL (`?lang=`)
 
@@ -315,7 +315,16 @@ The **地域の取組 section on `community.html`**, sitting directly below the 
 
 ### 季節めぐりと東部たんけんクイズ（2026-11-22）
 
-日次アイデア 11/13・11/14（2件）・11/17 を統合。`#legacy` の冒頭に季節めぐり（`.leg-season`、文字はカードの見出し `comm_leg_*_h` を使い回す）、末尾にクイズ（QUIZ。問題は `data/quiz/<言語>.json`＝手で直す、120問・12テーマ〈歴史／桃花台のまち／祭りと伝統／特産物／自然と公園／喫茶・カフェ／パン・お菓子・直売／地名と読み方／戦国と昔の村／川・道・産業と目じるし／もっと東部のお店／ごはん処と古民家カフェ〉各10問、`o` の先頭が正解。1回5問を別々のテーマからランダムに出し、全テーマを一巡するまで同じテーマを選ばず、テーマの中で全問出るまで重複させない。難易度はかんたん（`lv: easy`＝このサイトのカードで答えを確かめられる問いだけ）／ふつう（全部）／むずかしい（それ以外）で、問いを足すときは `lv` を確かめる。`site_lint.py` の `quiz_data` が検査。**お店と新しいテーマの事実はクイズの中だけに置き**、出どころは公式に限らず地元の情報サイト・お店自身の案内でよい〈`src` に名前を文字で書き、リンクは張らない〉。お店は閉店・移転があるので見直す（桃源郷は閉店済みで載せない）。InstagramなどのSNSは機械で読まない。難易度の選択は問題の下に控えめに置き、初期値は「ふつう」。**新しいお店・テーマの候補は `.github/workflows/quiz-candidates.yml`（毎週木曜 7:40 JST）が AI に探させ、Issue「🧩 クイズの問題の候補」にするだけで、サイトは変更しない。** 運営者が承認した候補だけを人（かAI）が `data/quiz/` の13枚に足す。テーマの問題数はそろえる。Issue の本文は `quiz_candidates.py` が整える（出どころの URL が無い候補と、SNS・地図サービスを根拠にした候補は落とす）。2026-11-22 ユーザー指示）。`#season-line`（トップと community.html の `#east-quiz` の見出しの中、クイズの下）は SEASON が今の季節の項目から、開くたびにランダムで1つ選ぶ（2026-11-23 ユーザー指示）。**季節は基本的にカードに時期が書いてあるものを置く**（例外はユーザー指示の冬の「初詣（地域内の神社・仏閣）」〈特定の寺社に限らない。飛び先は寺社のまとまり `#legacy-temples`〉と秋の「東部各地の祭り」で、秋の祭りが公表資料で確かめられていないことは `comm_leg_src` に書いてある。マメナシは春だけ。2026-11-23）。**もとの決まり：カードに時期が書いてあるものだけ、問いは地域のレガシーと東部の地名・歴史・雑学だけで、サイトのカードに書いてある事実から作る。**学校再編・行政の問いは出さない**（2026-11-22 ユーザー指示）**（新篠岡音頭は出題しない）。カードの時期や「5校→2校」が変わったら直す。答えは保存も送信もしない（集計は `quiz/finish` のみ）。結果の共有は付けない。 クイズは `index.html` にも同じ枠で載せてある（2026-11-22 ユーザー指示）。問いは `data/quiz/` の13枚をそろえて直す。トップのページ冒頭の「このサイトについて」の右に、同じページのクイズの見出し `#east-quiz-h` へ飛ぶリンク `.hero-quiz-link`（`idx_quiz_jump`）がある。
+日次アイデア 11/13・11/14（2件）・11/17 を統合。`#legacy` の冒頭に季節めぐり（`.leg-season`、文字はカードの見出し `comm_leg_*_h` を使い回す）、末尾にクイズ（QUIZ。問題は `data/quiz/<言語>.json`＝手で直す、120問・12テーマ〈歴史／桃花台のまち／祭りと伝統／特産物／自然と公園／喫茶・カフェ／パン・お菓子・直売／地名と読み方／戦国と昔の村／川・道・産業と目じるし／もっと東部のお店／ごはん処と古民家カフェ〉各10問、`o` の先頭が正解。1回5問を別々のテーマからランダムに出し、全テーマを一巡するまで同じテーマを選ばず、テーマの中で全問出るまで重複させない。難易度はかんたん（`lv: easy`＝このサイトのカードで答えを確かめられる問いだけ）／ふつう（全部）／むずかしい（それ以外）で、問いを足すときは `lv` を確かめる。`site_lint.py` の `quiz_data` が検査。**お店と新しいテーマの事実はクイズの中だけに置き**、出どころは公式に限らず地元の情報サイト・お店自身の案内でよい〈`src` に名前を文字で書き、リンクは張らない〉。お店は閉店・移転があるので見直す（桃源郷は閉店済みで載せない）。InstagramなどのSNSは機械で読まない。難易度の選択は問題の下に控えめに置き、初期値は「ふつう」。**新しいお店・テーマの候補は `.github/workflows/quiz-candidates.yml`（毎週木曜 7:40 JST）が AI に探させ、Issue「🧩 クイズの問題の候補」にするだけで、サイトは変更しない。** 運営者が承認した候補だけを人（かAI）が `data/quiz/` の13枚に足す。テーマの問題数はそろえる。Issue の本文は `quiz_candidates.py` が整える（出どころの URL が無い候補と、SNS・地図サービスを根拠にした候補は落とす）。2026-11-22 ユーザー指示）。`#season-line`（トップと community.html の `#east-quiz` の見出しの中、クイズの下）は SEASON が今の季節の項目から、開くたびにランダムで1つ選ぶ（2026-11-23 ユーザー指示）。**季節は基本的にカードに時期が書いてあるものを置く**（例外はユーザー指示の冬の「初詣（地域内の神社・仏閣）」〈特定の寺社に限らない。飛び先は寺社のまとまり `#legacy-temples`〉と秋の「東部各地の祭り」で、秋の祭りが公表資料で確かめられていないことは `comm_leg_src` に書いてある。マメナシは春だけ。2026-11-23）。**もとの決まり：カードに時期が書いてあるものだけ、問いは地域のレガシーと東部の地名・歴史・雑学だけで、サイトのカードに書いてある事実から作る。**学校再編・行政の問いは出さない**（2026-11-22 ユーザー指示）**（新篠岡音頭は出題しない）。カードの時期や「5校→2校」が変わったら直す。**答えの記録はこの端末の `localStorage`（`komaki_quiz`）にだけ保存し、外へ送らない**（2026-11-22 ユーザー決定。集計は `quiz/finish`・`quiz/mode-*`・`quiz/theme`・`quiz/reset` の機能名だけ。説明は `privacy_li5`）。結果の共有は付けない。 クイズは `index.html` にも同じ枠で載せてある（2026-11-22 ユーザー指示）。問いは `data/quiz/` の13枚をそろえて直す。トップのページ冒頭の「このサイトについて」の右に、同じページのクイズの見出し `#east-quiz-h` へ飛ぶリンク `.hero-quiz-link`（`idx_quiz_jump`）がある。
+
+### クイズの専用ページと、答えで変わる出題（`quiz.html`・`js/quiz.js`、2026-11-22）
+
+ユーザー指示。トップと community.html の枠はそのままで、専用ページ `quiz.html`（テーマの制覇マップ・テーマ別の挑戦・記録を消すボタン）を足した。ヘッダのナビには足さず、導線はフッタと結果画面。3か所とも同じ `js/quiz.js` で、**先に5問を決めず1問ごとに次を選ぶ**。
+
+- **つながりは `data/quiz_meta.json`（手で直す）**。`d`＝難しさ1〜5（`lv: easy` は1〜3、`hard` は3〜5）、`routes`＝同じ場所・話題の問いを**かんたん→むずかしいの順**に並べた道（`_` 始まりは名前を画面に出さない）、`hide`＝名前を出すと答えが分かる道。**問いを足すときは `data/quiz/` の13枚と、ここの `d`・`routes` にも足す**（`site_lint.py` の `quiz_data` が確かめる）。
+- 正解すると同じ道を一段上へ、まちがえると一段下へ。正解率がおよそ7割になる難しさを狙い、同じテーマを続けず、1回3テーマ以上、4問目に未開拓のテーマ、前の回でまちがえた問いを1問までリベンジ。難易度ボタンは候補の範囲をしぼる。
+- 一言・テーマ名・道の名前は `data/quiz/<言語>.json` の `ui`（ふだんの辞書に入れず、クイズを開いたときだけ読む）。
+- `quiz.html` は連絡先の表を置かない（check 15 の対象外）。関連リンクの計算からも外してある（`SKIP_CALC_PAGES`）。
 
 ### 福厳寺・大久佐八幡宮・ちごりんの里山・ファーム誘致（2026-11-22 ユーザー指示）
 

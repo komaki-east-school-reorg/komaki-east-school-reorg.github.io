@@ -65,6 +65,7 @@
   "privacy_state_dnt": "브라우저가 ‘추적 안 함’으로 설정되어 있어 열람 수를 세지 않습니다.",
   "privacy_state_off": "이 기기의 열람은 집계되지 않습니다.",
   "privacy_state_on": "이 기기의 열람도 집계되고 있습니다.",
+  "quiz_h": "동부 탐험 퀴즈",
   "search_btn": "사이트 내 검색",
   "search_contact": "문의처 →",
   "search_count": "{n}건",

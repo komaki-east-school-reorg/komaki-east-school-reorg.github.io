@@ -561,6 +561,32 @@ def quiz_data():
         themes[th] = themes.get(th, 0) + 1
     if len(set(themes.values())) > 1:
         out.append(f"テーマの問題数がそろっていない {themes}")
+    # つながり（data/quiz_meta.json）：全問に難しさと道があり、道は かんたん→むずかしい の順
+    meta = json.load(open("data/quiz_meta.json", encoding="utf-8"))
+    ja = {x["id"]: x for x in json.load(open("data/quiz/ja.json", encoding="utf-8"))["items"]}
+    if set(meta["d"]) != set(ja):
+        out.append("quiz_meta.json: 難しさ d の問いが問題ファイルと食い違う")
+    joined = set()
+    for r, ids in meta["routes"].items():
+        joined |= set(ids)
+        if not set(ids) <= set(ja):
+            out.append(f"quiz_meta.json: 道 {r} に無い問いがある")
+        elif [meta["d"][i] for i in ids] != sorted(meta["d"][i] for i in ids):
+            out.append(f"quiz_meta.json: 道 {r} が かんたん→むずかしい の順でない")
+    if set(ja) - joined:
+        out.append(f"quiz_meta.json: どの道にも入っていない問い {sorted(set(ja) - joined)}")
+    for i, x in ja.items():
+        d = meta["d"].get(i, 0)
+        if (x["lv"] == "easy" and not 1 <= d <= 3) or (x["lv"] == "hard" and not 3 <= d <= 5):
+            out.append(f"quiz_meta.json: {i} の難しさ {d} が lv と合わない")
+    # 画面の文言（ui）は13言語で同じキー
+    uis = {os.path.basename(f): set(json.load(open(f, encoding="utf-8")).get("ui", {})) for f in glob.glob("data/quiz/*.json")}
+    if len({frozenset(v) for v in uis.values()}) > 1:
+        out.append("data/quiz: ui のキーが言語でそろっていない")
+    named = {r for r in meta["routes"] if not r.startswith("_")}
+    for name, keys in uis.items():
+        if {"pl_" + r for r in named} - keys:
+            out.append(f"{name}: 道の名前 pl_* が足りない")
     return out
 
 

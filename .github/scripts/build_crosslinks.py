@@ -49,6 +49,8 @@ SKIP_TARGET_RE = re.compile(r"^(|contact|rev-contact|.*-container|site-updates.*
                             r"site-intro|operator)$")
 # 運営の話のページはリンク先にしない（読者が次に知りたいことではないため）
 SKIP_TARGET_PAGES = {"site"}
+# クイズの専用ページは計算に入れない（本文が短く、ほかのページの関連リンクを動かさないため。2026-11-22）
+SKIP_CALC_PAGES = {"quiz"}
 
 
 def load_index(lang):
@@ -133,12 +135,12 @@ def sources():
 
 def bsi_pages():
     import glob
-    return [p[:-5] for p in sorted(glob.glob("*.html")) if p not in bsi.SKIP_PAGES]
+    return [p[:-5] for p in sorted(glob.glob("*.html")) if p not in bsi.SKIP_PAGES and p[:-5] not in SKIP_CALC_PAGES]
 
 
 def build():
     idx = {l: load_index(l) for l in LANGS}
-    ja = idx["ja"]["items"]
+    ja = [x for x in idx["ja"]["items"] if x[0] not in SKIP_CALC_PAGES]
     # 定型文（書き直しの注記・窓口の部署名・出典の書き方など）は、3ページ以上に出てくる文として外す。
     # 残すと、連絡先や注記を含む節どうしが中身と関係なく似てしまう。
     seg_pages = defaultdict(set)

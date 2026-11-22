@@ -3902,3 +3902,25 @@ html.has-share-sticky .to-top { bottom: calc(var(--share-sticky-h, 3.4rem) + .8r
 .east-quiz .season-pick { color: var(--accent); }
 .east-quiz .season-pick img { background: var(--white); border-radius: var(--radius-sm); }
 #east-quiz-h { scroll-margin-top: calc(var(--header-h, 80px) + 1.7rem); }
+
+/* ===== 東部たんけんクイズ：答えで変わる出題と専用ページ（quiz.html、2026-11-22） ===== */
+.east-quiz-bridge { margin: .25rem 0 0; font-size: .8rem; color: var(--accent); }
+.east-quiz-stars { margin-left: .35rem; letter-spacing: .05em; font-weight: 400; }
+.east-quiz-type { margin: 0 0 .25rem; font-weight: 700; color: var(--accent); }
+.east-quiz-insight { margin: 0 0 .25rem; font-size: .88rem; color: rgba(255,255,255,.88); }
+.east-quiz-links { display: flex; flex-wrap: wrap; gap: .2rem 1rem; margin: .25rem 0 .7rem; font-size: .85rem; }
+.east-quiz-links a { color: var(--accent); }
+.quiz-page-sec .east-quiz { max-width: 44rem; margin: 0 auto; }
+.quiz-map-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 13.5rem), 1fr)); gap: .7rem; margin-top: .8rem; }
+.quiz-map-card { display: grid; grid-template-columns: 1fr auto; gap: .3rem .5rem; align-items: start; min-width: 0; padding: .7rem .8rem; background: var(--white); border: 1px solid rgba(27,56,38,.18); border-radius: var(--radius-sm); overflow-wrap: anywhere; }
+.quiz-map-card.is-done { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.quiz-map-name { font-weight: 700; font-size: .9rem; }
+.quiz-map-n { font-size: .8rem; color: var(--text-muted); white-space: nowrap; }
+.quiz-map-bar { grid-column: 1 / -1; display: block; height: .4rem; overflow: hidden; background: rgba(27,56,38,.12); border-radius: var(--radius-pill); }
+.quiz-map-bar i { display: block; height: 100%; background: var(--primary); }
+.quiz-map-go { grid-column: 1 / -1; justify-self: start; min-height: 2.25rem; padding: .15rem .7rem; border: 1px solid var(--primary); border-radius: var(--radius-pill); background: transparent; color: var(--primary); font-size: .8rem; cursor: pointer; }
+.quiz-map-go:hover { background: var(--primary); color: #fff; }
+.quiz-store { margin-top: 1rem; font-size: .82rem; color: var(--text-muted); }
+.quiz-reset { min-height: 2.25rem; padding: .1rem .6rem; border: 0; background: transparent; color: inherit; text-decoration: underline; cursor: pointer; }
+#quiz-map[hidden] { display: none; }
+@media (forced-colors: active) { .quiz-map-bar i { background: Highlight; } }
