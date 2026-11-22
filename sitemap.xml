@@ -227,6 +227,22 @@
     <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/quiz.html?lang=my"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/quiz.html"/>
   </url>
+  <url>
+    <loc>https://komaki-east-school-reorg.github.io/shinooka.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://komaki-east-school-reorg.github.io/shinooka.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://komaki-east-school-reorg.github.io/shinooka.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://komaki-east-school-reorg.github.io/shinooka.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://komaki-east-school-reorg.github.io/shinooka.html?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="tl" href="https://komaki-east-school-reorg.github.io/shinooka.html?lang=tl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://komaki-east-school-reorg.github.io/shinooka.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://komaki-east-school-reorg.github.io/shinooka.html?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://komaki-east-school-reorg.github.io/shinooka.html?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://komaki-east-school-reorg.github.io/shinooka.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://komaki-east-school-reorg.github.io/shinooka.html?lang=ne"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://komaki-east-school-reorg.github.io/shinooka.html?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="my" href="https://komaki-east-school-reorg.github.io/shinooka.html?lang=my"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://komaki-east-school-reorg.github.io/shinooka.html"/>
+  </url>
   <!-- EVENTS:BEGIN 予定ごとの固有ページ。build_event_pages.py が生成する。手編集しないこと -->
   <url>
     <loc>https://komaki-east-school-reorg.github.io/events/2025-05-10-1.html</loc>

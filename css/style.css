@@ -3926,3 +3926,17 @@ html.has-share-sticky .to-top { bottom: calc(var(--share-sticky-h, 3.4rem) + .8r
 .quiz-reset { min-height: 2.25rem; padding: .1rem .6rem; border: 0; background: transparent; color: inherit; text-decoration: underline; cursor: pointer; }
 #quiz-map[hidden] { display: none; }
 @media (forced-colors: active) { .quiz-map-bar i { background: Highlight; } }
+
+/* 「篠岡」の名前の由来（shinooka.html） */
+.sn-estates { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; margin: 1.2rem 0 0; }
+.sn-est { display: flex; flex-direction: column; gap: .25rem; padding: .85rem 1rem; border: 2px solid var(--primary-dark); border-radius: var(--radius, 10px); background: #e6f0e8; }
+.sn-est--b { background: #fbf1cf; }
+.sn-join { grid-column: 1 / -1; padding: .65rem 1rem; border-radius: var(--radius, 10px); background: var(--primary-dark); color: #fff; font-weight: 800; text-align: center; }
+.sn-warn { margin-top: 1rem; padding: .85rem 1rem; border: 1px solid var(--accent); border-radius: var(--radius, 10px); background: #fffaf0; }
+.sn-src { margin-top: .8rem; font-size: .82rem; color: var(--text-muted); }
+.sn-quote { margin: 1.2rem 0 0; padding: 1rem 1.15rem; border: 1px solid var(--border, #cfd8d0); border-radius: var(--radius, 10px); background: #fffdf6; }
+.sn-quote figcaption { font-weight: 800; margin-bottom: .55rem; }
+.sn-quote blockquote { margin: 0; font-family: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", serif; line-height: 1.95; }
+.sn-quote blockquote p { margin: 0 0 .45rem; }
+.sn-card-link { margin-top: .5rem; font-weight: 700; }
+@media (max-width: 560px) { .sn-estates { grid-template-columns: minmax(0, 1fr); } }

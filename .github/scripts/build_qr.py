@@ -47,6 +47,7 @@ PAGES = {
     "analysis": "analysis.html",
     "site": "site.html",
     "quiz": "quiz.html",
+    "shinooka": "shinooka.html",
 }
 
 # 紙に印刷して読むので、誤り訂正は高め（H）にしておく。折り目や汚れに強い。

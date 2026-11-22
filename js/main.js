@@ -3868,7 +3868,7 @@ window.KomakiGrade = (function () {
   var qrNoteTpl = tplSpan('share_qr_note', '読み取ると、このページを表示中の言語で開きます。チラシや掲示にお使いください。');
   var qrSaveTpl = tplSpan('share_qr_save', '画像を保存');
   var qrCloseTpl = tplSpan('share_qr_close', '閉じる');
-  var QR_PAGES = ['index', 'about', 'schedule', 'faq', 'bus', 'clubs', 'council', 'community', 'map', 'nationwide', 'review', 'analysis', 'site', 'quiz'];
+  var QR_PAGES = ['index', 'about', 'schedule', 'faq', 'bus', 'clubs', 'council', 'community', 'map', 'nationwide', 'review', 'analysis', 'site', 'quiz', 'shinooka'];
   var PAGE_ID_SB = document.documentElement.getAttribute('data-page') ||
     (location.pathname.match(/([^/]+)\.html$/) || ['', 'index'])[1] || 'index';
   var qrDlg = null;

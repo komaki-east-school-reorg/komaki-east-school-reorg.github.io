@@ -1081,7 +1081,7 @@ def main():
     # （図書館＝level "library" も「図書館で調べる」として各ページに要る。同日指示）
     # 市（city）・県（pref）・国（nat / mext）がそろっているか、載せたはずの番号が本当に
     # そのページにあるかを見る。ページを足したら contacts.json にも登録すること。
-    CONTACT_PAGES = sorted(p for p in glob.glob("*.html") if p not in ("index.html", "site.html", "quiz.html", "voices.html", "404.html"))  # site.html はサイト自体の説明（2026-10-30）
+    CONTACT_PAGES = sorted(p for p in glob.glob("*.html") if p not in ("index.html", "site.html", "quiz.html", "shinooka.html", "voices.html", "404.html"))  # site.html はサイト自体の説明（2026-10-30）
     with open("data/contacts.json", encoding="utf-8") as f:
         _contacts = json.load(f)["contacts"]
     ct_problems = []
