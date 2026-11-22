@@ -1,6 +1,6 @@
 {
- "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / f 喫茶・カフェ / g パン・お菓子・直売 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし / k もっと東部のお店 / l ごはん処と古民家カフェ。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
- "ui": {"br_up": "{x} hakkında, bir adım daha zor", "br_same": "{x} hakkında bir soru daha", "br_down": "{x} hakkında daha kolay bir soru", "br_up0": "Bir adım daha", "br_same0": "Aynı konunun devamı", "br_down0": "Daha kolay bir soruyla toparlanalım", "br_revenge": "Rövanş! Daha önce yanlış yaptığın soru", "br_new": "Henüz denemediğin bir temaya", "type": "Sen bir “{x}” kâşifisin", "rec": "Sıradaki öneri: {x}", "review": "Yanlış soruyu kartında incele →", "page": "Quiz sayfasına git →", "level": "Zorluk {n} / 5", "map_go": "Bu temayı dene", "reset_ask": "Quiz kaydın silinsin mi?", "th_a": "Tarih", "th_b": "Tokadai Mahallesi", "th_c": "Festivaller ve gelenekler", "th_d": "Yöresel ürünler", "th_e": "Doğa ve parklar", "th_f": "Kahvehaneler ve kafeler", "th_g": "Ekmek, tatlı ve doğrudan satış", "th_h": "Yer adları ve okunuşları", "th_i": "Sengoku dönemi ve eski köyler", "th_j": "Nehirler, yollar, sanayi ve simgeler", "th_k": "Doğudaki diğer dükkânlar", "th_l": "Lokantalar ve eski ev kafeleri", "pl_okusa": "Okusa", "pl_oyama": "Oyama", "pl_noguchi": "Noguchi", "pl_kamisue": "Kamisue", "pl_takane": "Takane", "pl_ikenouchi": "Ikenouchi", "pl_hayashi": "Hayashi", "pl_tokadai": "Tokadai", "pl_shinooka": "Shinooka", "pl_kiln": "çömlekçilik", "pl_temple": "tapınaklar", "pl_rail": "demiryolu", "pl_festival": "festivaller", "pl_fruit": "meyve", "pl_chicken": "Nagoya Cochin", "pl_nature": "doğa", "pl_oldtimes": "eski günler", "pl_food": "yemek"},
+ "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし / お店（f お店1 喫茶・カフェ / g お店2 パン・お菓子 / k お店3 ごはん処 / l お店4 農園・直売。id の頭の文字とテーマは一致しないことがある）。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
+ "ui": {"br_up": "{x} hakkında, bir adım daha zor", "br_same": "{x} hakkında bir soru daha", "br_down": "{x} hakkında daha kolay bir soru", "br_up0": "Bir adım daha", "br_same0": "Aynı konunun devamı", "br_down0": "Daha kolay bir soruyla toparlanalım", "br_revenge": "Rövanş! Daha önce yanlış yaptığın soru", "br_new": "Henüz denemediğin bir temaya", "type": "Sen bir “{x}” kâşifisin", "rec": "Sıradaki öneri: {x}", "review": "Yanlış soruyu kartında incele →", "page": "Quiz sayfasına git →", "level": "Zorluk {n} / 5", "map_go": "Bu temayı dene", "reset_ask": "Quiz kaydın silinsin mi?", "th_a": "Tarih", "th_b": "Tokadai Mahallesi", "th_c": "Festivaller ve gelenekler", "th_d": "Yöresel ürünler", "th_e": "Doğa ve parklar", "th_f": "Dükkânlar 1 (Kahvehaneler ve kafeler)", "th_g": "Dükkânlar 2 (Ekmek ve tatlı)", "th_h": "Yer adları ve okunuşları", "th_i": "Sengoku dönemi ve eski köyler", "th_j": "Nehirler, yollar, sanayi ve simgeler", "th_k": "Dükkânlar 3 (Lokantalar)", "th_l": "Dükkânlar 4 (Çiftlikler ve doğrudan satış)", "pl_okusa": "Okusa", "pl_oyama": "Oyama", "pl_noguchi": "Noguchi", "pl_kamisue": "Kamisue", "pl_takane": "Takane", "pl_ikenouchi": "Ikenouchi", "pl_hayashi": "Hayashi", "pl_tokadai": "Tokadai", "pl_shinooka": "Shinooka", "pl_kiln": "çömlekçilik", "pl_temple": "tapınaklar", "pl_rail": "demiryolu", "pl_festival": "festivaller", "pl_fruit": "meyve", "pl_chicken": "Nagoya Cochin", "pl_nature": "doğa", "pl_oldtimes": "eski günler", "pl_food": "yemek"},
   "items": [
   {
    "id": "a01",
@@ -709,7 +709,7 @@
   },
   {
    "id": "f09",
-   "theme": "f",
+   "theme": "k",
    "more": null,
    "q": "Ikenouchi’deki Çin restoranı Sasakatsu adını kurulduğu yerden alır. Neresi?",
    "o": [
@@ -839,7 +839,7 @@
   },
   {
    "id": "g09",
-   "theme": "g",
+   "theme": "l",
    "more": null,
    "q": "Çiftçi tezgâhlarında da satılan Komaki üzümünün mevsimi ne zaman?",
    "o": [
@@ -852,7 +852,7 @@
   },
   {
    "id": "g10",
-   "theme": "g",
+   "theme": "l",
    "more": null,
    "q": "Yokoyama ve Nishio üzüm bağları hangi bölgede?",
    "o": [
@@ -1251,7 +1251,7 @@
   },
   {
    "id": "k01",
-   "theme": "k",
+   "theme": "g",
    "more": null,
    "q": "Mahou no Cake-ya JIJI pastanesi hangi binadadır?",
    "o": [
@@ -1264,7 +1264,7 @@
   },
   {
    "id": "k02",
-   "theme": "k",
+   "theme": "g",
    "more": null,
    "q": "JIJI’yi popüler yapan pasta hangisidir?",
    "o": [
@@ -1277,7 +1277,7 @@
   },
   {
    "id": "k03",
-   "theme": "k",
+   "theme": "g",
    "more": null,
    "q": "Soramimi PAN fırını hangi bölgede?",
    "o": [
@@ -1290,7 +1290,7 @@
   },
   {
    "id": "k04",
-   "theme": "k",
+   "theme": "g",
    "more": null,
    "q": "Soramimi PAN ekmek mayasını neyden üretir?",
    "o": [
@@ -1303,7 +1303,7 @@
   },
   {
    "id": "k05",
-   "theme": "k",
+   "theme": "l",
    "more": null,
    "q": "Kamisue’deki Rich Farm’da ne kazılabilir?",
    "o": [
@@ -1316,7 +1316,7 @@
   },
   {
    "id": "k06",
-   "theme": "k",
+   "theme": "l",
    "more": null,
    "q": "Rich Farm’da hangi meyve toplanabilir?",
    "o": [
@@ -1368,7 +1368,7 @@
   },
   {
    "id": "k10",
-   "theme": "k",
+   "theme": "l",
    "more": null,
    "q": "Suzuki ve Ogawa üzüm bağları hangi bölgede?",
    "o": [
@@ -1381,7 +1381,7 @@
   },
   {
    "id": "l01",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "Kissaten Pineapple hangi bölgede?",
    "o": [
@@ -1394,7 +1394,7 @@
   },
   {
    "id": "l02",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "Kissaten Pineapple nesiyle dolu olmasıyla bilinir?",
    "o": [
@@ -1407,7 +1407,7 @@
   },
   {
    "id": "l03",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "Chika-chan lokantası hangi bölgede?",
    "o": [
@@ -1420,7 +1420,7 @@
   },
   {
    "id": "l04",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "Noguchi’deki Chika-chan nasıl bir yerdir?",
    "o": [
@@ -1433,7 +1433,7 @@
   },
   {
    "id": "l05",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "Kiki no Kamaza hangi bölgede?",
    "o": [
@@ -1446,7 +1446,7 @@
   },
   {
    "id": "l06",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "Kiki no Kamaza hangi yaratıcı mutfağı sunar?",
    "o": [
@@ -1459,7 +1459,7 @@
   },
   {
    "id": "l07",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "Kiki no Kamaza’nın önerdiği köride hangi sığır eti kullanılır?",
    "o": [
@@ -1472,7 +1472,7 @@
   },
   {
    "id": "l08",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "Min cade KU kafesi nasıl bir binadır?",
    "o": [
@@ -1485,7 +1485,7 @@
   },
   {
    "id": "l09",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "Min cade KU hangi bölgede?",
    "o": [
@@ -1498,7 +1498,7 @@
   },
   {
    "id": "l10",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "Min cade KU menüsünde öne çıkan fermente malzeme hangisi?",
    "o": [

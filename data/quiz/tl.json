@@ -1,6 +1,6 @@
 {
- "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / f 喫茶・カフェ / g パン・お菓子・直売 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし / k もっと東部のお店 / l ごはん処と古民家カフェ。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
- "ui": {"br_up": "Tungkol pa sa {x}, mas mahirap nang kaunti", "br_same": "Isa pa tungkol sa {x}", "br_down": "Mas madali tungkol sa {x}", "br_up0": "Isang hakbang pa", "br_same0": "Karugtong ng parehong kuwento", "br_down0": "Bumawi tayo sa mas madali", "br_revenge": "Rematch! Tanong na nagkamali ka dati", "br_new": "Sa temang hindi mo pa nasusubukan", "type": "Isa kang “{x}” explorer", "rec": "Susubukan: {x}", "review": "Tingnan sa card ang tanong na namali →", "page": "Pumunta sa pahina ng quiz →", "level": "Hirap {n} sa 5", "map_go": "Subukan ang temang ito", "reset_ask": "Burahin ang tala mo sa quiz?", "th_a": "Kasaysayan", "th_b": "Bayan ng Tokadai", "th_c": "Pista at tradisyon", "th_d": "Lokal na produkto", "th_e": "Kalikasan at parke", "th_f": "Mga coffee shop at café", "th_g": "Tinapay, matamis at direktang bentahan", "th_h": "Pangalan ng lugar at pagbasa", "th_i": "Sengoku at mga lumang nayon", "th_j": "Ilog, daan, industriya at palatandaan", "th_k": "Iba pang tindahan sa silangan", "th_l": "Kainan at café sa lumang bahay", "pl_okusa": "Okusa", "pl_oyama": "Oyama", "pl_noguchi": "Noguchi", "pl_kamisue": "Kamisue", "pl_takane": "Takane", "pl_ikenouchi": "Ikenouchi", "pl_hayashi": "Hayashi", "pl_tokadai": "Tokadai", "pl_shinooka": "Shinooka", "pl_kiln": "palayok", "pl_temple": "templo at dambana", "pl_rail": "riles", "pl_festival": "pista", "pl_fruit": "prutas", "pl_chicken": "Nagoya Cochin", "pl_nature": "kalikasan", "pl_oldtimes": "noong unang panahon", "pl_food": "pagkain"},
+ "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし / お店（f お店1 喫茶・カフェ / g お店2 パン・お菓子 / k お店3 ごはん処 / l お店4 農園・直売。id の頭の文字とテーマは一致しないことがある）。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
+ "ui": {"br_up": "Tungkol pa sa {x}, mas mahirap nang kaunti", "br_same": "Isa pa tungkol sa {x}", "br_down": "Mas madali tungkol sa {x}", "br_up0": "Isang hakbang pa", "br_same0": "Karugtong ng parehong kuwento", "br_down0": "Bumawi tayo sa mas madali", "br_revenge": "Rematch! Tanong na nagkamali ka dati", "br_new": "Sa temang hindi mo pa nasusubukan", "type": "Isa kang “{x}” explorer", "rec": "Susubukan: {x}", "review": "Tingnan sa card ang tanong na namali →", "page": "Pumunta sa pahina ng quiz →", "level": "Hirap {n} sa 5", "map_go": "Subukan ang temang ito", "reset_ask": "Burahin ang tala mo sa quiz?", "th_a": "Kasaysayan", "th_b": "Bayan ng Tokadai", "th_c": "Pista at tradisyon", "th_d": "Lokal na produkto", "th_e": "Kalikasan at parke", "th_f": "Tindahan 1 (Coffee shop at café)", "th_g": "Tindahan 2 (Tinapay at matamis)", "th_h": "Pangalan ng lugar at pagbasa", "th_i": "Sengoku at mga lumang nayon", "th_j": "Ilog, daan, industriya at palatandaan", "th_k": "Tindahan 3 (Kainan)", "th_l": "Tindahan 4 (Bukid at direktang bentahan)", "pl_okusa": "Okusa", "pl_oyama": "Oyama", "pl_noguchi": "Noguchi", "pl_kamisue": "Kamisue", "pl_takane": "Takane", "pl_ikenouchi": "Ikenouchi", "pl_hayashi": "Hayashi", "pl_tokadai": "Tokadai", "pl_shinooka": "Shinooka", "pl_kiln": "palayok", "pl_temple": "templo at dambana", "pl_rail": "riles", "pl_festival": "pista", "pl_fruit": "prutas", "pl_chicken": "Nagoya Cochin", "pl_nature": "kalikasan", "pl_oldtimes": "noong unang panahon", "pl_food": "pagkain"},
   "items": [
   {
    "id": "a01",
@@ -709,7 +709,7 @@
   },
   {
    "id": "f09",
-   "theme": "f",
+   "theme": "k",
    "more": null,
    "q": "Ipinangalan ang Chinese restaurant na Sasakatsu sa Ikenouchi sa lugar kung saan ito itinatag. Saan?",
    "o": [
@@ -839,7 +839,7 @@
   },
   {
    "id": "g09",
-   "theme": "g",
+   "theme": "l",
    "more": null,
    "q": "Kailan ang panahon ng ubas ng Komaki, na mabibili rin sa mga magsasaka?",
    "o": [
@@ -852,7 +852,7 @@
   },
   {
    "id": "g10",
-   "theme": "g",
+   "theme": "l",
    "more": null,
    "q": "Saang lugar ang mga ubasan ng Yokoyama at Nishio?",
    "o": [
@@ -1251,7 +1251,7 @@
   },
   {
    "id": "k01",
-   "theme": "k",
+   "theme": "g",
    "more": null,
    "q": "Saang gusali ang cake shop na Mahou no Cake-ya JIJI?",
    "o": [
@@ -1264,7 +1264,7 @@
   },
   {
    "id": "k02",
-   "theme": "k",
+   "theme": "g",
    "more": null,
    "q": "Aling cake ang nagpasikat sa JIJI?",
    "o": [
@@ -1277,7 +1277,7 @@
   },
   {
    "id": "k03",
-   "theme": "k",
+   "theme": "g",
    "more": null,
    "q": "Saang lugar ang panaderyang Soramimi PAN?",
    "o": [
@@ -1290,7 +1290,7 @@
   },
   {
    "id": "k04",
-   "theme": "k",
+   "theme": "g",
    "more": null,
    "q": "Saan pinalalaki ng Soramimi PAN ang bread starter nito?",
    "o": [
@@ -1303,7 +1303,7 @@
   },
   {
    "id": "k05",
-   "theme": "k",
+   "theme": "l",
    "more": null,
    "q": "Ano ang mahuhukay sa Rich Farm sa Kamisue?",
    "o": [
@@ -1316,7 +1316,7 @@
   },
   {
    "id": "k06",
-   "theme": "k",
+   "theme": "l",
    "more": null,
    "q": "Aling prutas ang mapipitas sa Rich Farm?",
    "o": [
@@ -1368,7 +1368,7 @@
   },
   {
    "id": "k10",
-   "theme": "k",
+   "theme": "l",
    "more": null,
    "q": "Saang lugar ang mga ubasan ng Suzuki at Ogawa?",
    "o": [
@@ -1381,7 +1381,7 @@
   },
   {
    "id": "l01",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "Saang lugar ang Kissaten Pineapple?",
    "o": [
@@ -1394,7 +1394,7 @@
   },
   {
    "id": "l02",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "Ano ang maraming makikita sa Kissaten Pineapple?",
    "o": [
@@ -1407,7 +1407,7 @@
   },
   {
    "id": "l03",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "Saang lugar ang kainang Chika-chan?",
    "o": [
@@ -1420,7 +1420,7 @@
   },
   {
    "id": "l04",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "Anong klaseng lugar ang Chika-chan sa Noguchi?",
    "o": [
@@ -1433,7 +1433,7 @@
   },
   {
    "id": "l05",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "Saang lugar ang Kiki no Kamaza?",
    "o": [
@@ -1446,7 +1446,7 @@
   },
   {
    "id": "l06",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "Anong creative cuisine ang inihahain ng Kiki no Kamaza?",
    "o": [
@@ -1459,7 +1459,7 @@
   },
   {
    "id": "l07",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "Anong baka ang nasa inirerekomendang curry ng Kiki no Kamaza?",
    "o": [
@@ -1472,7 +1472,7 @@
   },
   {
    "id": "l08",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "Anong klaseng gusali ang café na Min cade KU?",
    "o": [
@@ -1485,7 +1485,7 @@
   },
   {
    "id": "l09",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "Saang lugar ang Min cade KU?",
    "o": [
@@ -1498,7 +1498,7 @@
   },
   {
    "id": "l10",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "Anong fermented na sangkap ang tampok sa menu ng Min cade KU?",
    "o": [

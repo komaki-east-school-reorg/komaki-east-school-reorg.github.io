@@ -1,6 +1,6 @@
 {
- "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / f 喫茶・カフェ / g パン・お菓子・直売 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし / k もっと東部のお店 / l ごはん処と古民家カフェ。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
- "ui": {"br_up": "Más sobre {x}, un poco más difícil", "br_same": "Otra sobre {x}", "br_down": "Una más fácil sobre {x}", "br_up0": "Un paso más", "br_same0": "Seguimos con el mismo tema", "br_down0": "Retomemos con una más fácil", "br_revenge": "¡Revancha! Una que fallaste antes", "br_new": "Vamos a un tema nuevo", "type": "Eres explorador(a) de “{x}”", "rec": "Siguiente sugerencia: {x}", "review": "Revisa en su tarjeta la pregunta fallada →", "page": "Ir a la página del quiz →", "level": "Dificultad {n} de 5", "map_go": "Probar este tema", "reset_ask": "¿Borrar tu registro del quiz?", "th_a": "Historia", "th_b": "Barrio de Tokadai", "th_c": "Fiestas y tradiciones", "th_d": "Productos locales", "th_e": "Naturaleza y parques", "th_f": "Cafeterías", "th_g": "Pan, dulces y venta directa", "th_h": "Nombres de lugares y lectura", "th_i": "Época Sengoku y pueblos antiguos", "th_j": "Ríos, caminos, industria y puntos de referencia", "th_k": "Más tiendas del este", "th_l": "Restaurantes y cafés en casas antiguas", "pl_okusa": "Okusa", "pl_oyama": "Oyama", "pl_noguchi": "Noguchi", "pl_kamisue": "Kamisue", "pl_takane": "Takane", "pl_ikenouchi": "Ikenouchi", "pl_hayashi": "Hayashi", "pl_tokadai": "Tokadai", "pl_shinooka": "Shinooka", "pl_kiln": "cerámica", "pl_temple": "templos y santuarios", "pl_rail": "el ferrocarril", "pl_festival": "fiestas", "pl_fruit": "frutas", "pl_chicken": "Nagoya Cochin", "pl_nature": "naturaleza", "pl_oldtimes": "los tiempos antiguos", "pl_food": "comida"},
+ "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし / お店（f お店1 喫茶・カフェ / g お店2 パン・お菓子 / k お店3 ごはん処 / l お店4 農園・直売。id の頭の文字とテーマは一致しないことがある）。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
+ "ui": {"br_up": "Más sobre {x}, un poco más difícil", "br_same": "Otra sobre {x}", "br_down": "Una más fácil sobre {x}", "br_up0": "Un paso más", "br_same0": "Seguimos con el mismo tema", "br_down0": "Retomemos con una más fácil", "br_revenge": "¡Revancha! Una que fallaste antes", "br_new": "Vamos a un tema nuevo", "type": "Eres explorador(a) de “{x}”", "rec": "Siguiente sugerencia: {x}", "review": "Revisa en su tarjeta la pregunta fallada →", "page": "Ir a la página del quiz →", "level": "Dificultad {n} de 5", "map_go": "Probar este tema", "reset_ask": "¿Borrar tu registro del quiz?", "th_a": "Historia", "th_b": "Barrio de Tokadai", "th_c": "Fiestas y tradiciones", "th_d": "Productos locales", "th_e": "Naturaleza y parques", "th_f": "Tiendas 1 (Cafeterías)", "th_g": "Tiendas 2 (Pan y dulces)", "th_h": "Nombres de lugares y lectura", "th_i": "Época Sengoku y pueblos antiguos", "th_j": "Ríos, caminos, industria y puntos de referencia", "th_k": "Tiendas 3 (Restaurantes)", "th_l": "Tiendas 4 (Granjas y venta directa)", "pl_okusa": "Okusa", "pl_oyama": "Oyama", "pl_noguchi": "Noguchi", "pl_kamisue": "Kamisue", "pl_takane": "Takane", "pl_ikenouchi": "Ikenouchi", "pl_hayashi": "Hayashi", "pl_tokadai": "Tokadai", "pl_shinooka": "Shinooka", "pl_kiln": "cerámica", "pl_temple": "templos y santuarios", "pl_rail": "el ferrocarril", "pl_festival": "fiestas", "pl_fruit": "frutas", "pl_chicken": "Nagoya Cochin", "pl_nature": "naturaleza", "pl_oldtimes": "los tiempos antiguos", "pl_food": "comida"},
   "items": [
   {
    "id": "a01",
@@ -709,7 +709,7 @@
   },
   {
    "id": "f09",
-   "theme": "f",
+   "theme": "k",
    "more": null,
    "q": "El restaurante chino Sasakatsu, en Ikenouchi, lleva el nombre del lugar donde se fundó. ¿Cuál es?",
    "o": [
@@ -839,7 +839,7 @@
   },
   {
    "id": "g09",
-   "theme": "g",
+   "theme": "l",
    "more": null,
    "q": "¿Cuándo es la temporada de las uvas de Komaki, vendidas también en puestos?",
    "o": [
@@ -852,7 +852,7 @@
   },
   {
    "id": "g10",
-   "theme": "g",
+   "theme": "l",
    "more": null,
    "q": "¿En qué zona están los viñedos Yokoyama y Nishio?",
    "o": [
@@ -1251,7 +1251,7 @@
   },
   {
    "id": "k01",
-   "theme": "k",
+   "theme": "g",
    "more": null,
    "q": "¿En qué edificio está la pastelería Mahou no Cake-ya JIJI?",
    "o": [
@@ -1264,7 +1264,7 @@
   },
   {
    "id": "k02",
-   "theme": "k",
+   "theme": "g",
    "more": null,
    "q": "¿Qué pasteles hicieron tan popular a JIJI?",
    "o": [
@@ -1277,7 +1277,7 @@
   },
   {
    "id": "k03",
-   "theme": "k",
+   "theme": "g",
    "more": null,
    "q": "¿En qué zona está la panadería Soramimi PAN?",
    "o": [
@@ -1290,7 +1290,7 @@
   },
   {
    "id": "k04",
-   "theme": "k",
+   "theme": "g",
    "more": null,
    "q": "¿De qué cultiva Soramimi PAN su masa madre?",
    "o": [
@@ -1303,7 +1303,7 @@
   },
   {
    "id": "k05",
-   "theme": "k",
+   "theme": "l",
    "more": null,
    "q": "¿Qué se puede desenterrar en Rich Farm, en Kamisue?",
    "o": [
@@ -1316,7 +1316,7 @@
   },
   {
    "id": "k06",
-   "theme": "k",
+   "theme": "l",
    "more": null,
    "q": "¿Qué fruta se puede cosechar en Rich Farm?",
    "o": [
@@ -1368,7 +1368,7 @@
   },
   {
    "id": "k10",
-   "theme": "k",
+   "theme": "l",
    "more": null,
    "q": "¿En qué zona están los viñedos Suzuki y Ogawa?",
    "o": [
@@ -1381,7 +1381,7 @@
   },
   {
    "id": "l01",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "¿En qué zona está Kissaten Pineapple?",
    "o": [
@@ -1394,7 +1394,7 @@
   },
   {
    "id": "l02",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "¿De qué está lleno Kissaten Pineapple, según su fama?",
    "o": [
@@ -1407,7 +1407,7 @@
   },
   {
    "id": "l03",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "¿En qué zona está el restaurante Chika-chan?",
    "o": [
@@ -1420,7 +1420,7 @@
   },
   {
    "id": "l04",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "¿Qué tipo de lugar es Chika-chan, en Noguchi?",
    "o": [
@@ -1433,7 +1433,7 @@
   },
   {
    "id": "l05",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "¿En qué zona está Kiki no Kamaza?",
    "o": [
@@ -1446,7 +1446,7 @@
   },
   {
    "id": "l06",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "¿Qué cocina creativa sirve Kiki no Kamaza?",
    "o": [
@@ -1459,7 +1459,7 @@
   },
   {
    "id": "l07",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "¿Qué carne lleva el curry recomendado de Kiki no Kamaza?",
    "o": [
@@ -1472,7 +1472,7 @@
   },
   {
    "id": "l08",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "¿Qué tipo de edificio es el café Min cade KU?",
    "o": [
@@ -1485,7 +1485,7 @@
   },
   {
    "id": "l09",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "¿En qué zona está Min cade KU?",
    "o": [
@@ -1498,7 +1498,7 @@
   },
   {
    "id": "l10",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "¿Qué ingrediente fermentado destaca en el menú de Min cade KU?",
    "o": [

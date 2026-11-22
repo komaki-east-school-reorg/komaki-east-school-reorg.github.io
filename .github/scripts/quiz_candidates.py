@@ -52,7 +52,7 @@ def main(src, dst):
     if not kept:
         return 2
     head = ("AI がウェブで探した候補です。**サイトはまだ変わっていません。** 出どころを開いて確かめ、"
-            "採用するものだけ `data/quiz/` の13枚に足してください（テーマの問題数はそろえる）。\n")
+            "採用するものだけ `data/quiz/` の13枚に足してください（お店以外のテーマの問題数はそろえ、`data/quiz_meta.json` にも足す）。\n")
     if dropped:
         head += f"\n（出どころの条件を満たさない候補を {dropped} 件外しました）\n"
     with open(dst, "w", encoding="utf-8") as f:

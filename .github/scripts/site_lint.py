@@ -559,7 +559,10 @@ def quiz_data():
     themes = {}
     for _, th, _m in base or []:
         themes[th] = themes.get(th, 0) + 1
-    if len(set(themes.values())) > 1:
+    # お店1〜4（f・g・k・l）は中身で分けるので数が違ってよく、合わせて40問。ほかのテーマは同じ数にそろえる
+    shop = sum(themes.get(t, 0) for t in "fgkl")
+    rest = {t: n for t, n in themes.items() if t not in "fgkl"}
+    if len(set(rest.values())) > 1 or (rest and shop != 4 * next(iter(rest.values()))):
         out.append(f"テーマの問題数がそろっていない {themes}")
     # つながり（data/quiz_meta.json）：全問に難しさと道があり、道は かんたん→むずかしい の順
     meta = json.load(open("data/quiz_meta.json", encoding="utf-8"))

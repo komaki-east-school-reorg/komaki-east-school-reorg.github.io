@@ -1,6 +1,6 @@
 {
- "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / f 喫茶・カフェ / g パン・お菓子・直売 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし / k もっと東部のお店 / l ごはん処と古民家カフェ。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
- "ui": {"br_up": "Lagi tentang {x}, sedikit lebih sulit", "br_same": "Satu lagi tentang {x}", "br_down": "Yang lebih mudah tentang {x}", "br_up0": "Selangkah lebih jauh", "br_same0": "Lanjutan cerita tadi", "br_down0": "Mari bangkit dengan soal lebih mudah", "br_revenge": "Balas dendam! Soal yang dulu salah", "br_new": "Ke tema yang belum dicoba", "type": "Kamu penjelajah “{x}”", "rec": "Saran berikutnya: {x}", "review": "Periksa soal yang salah di kartunya →", "page": "Buka halaman kuis →", "level": "Kesulitan {n} dari 5", "map_go": "Coba tema ini", "reset_ask": "Hapus catatan kuis Anda?", "th_a": "Sejarah", "th_b": "Kawasan Tokadai", "th_c": "Festival dan tradisi", "th_d": "Produk khas", "th_e": "Alam dan taman", "th_f": "Kedai kopi dan kafe", "th_g": "Roti, kudapan dan penjualan langsung", "th_h": "Nama tempat dan cara baca", "th_i": "Era Sengoku dan desa lama", "th_j": "Sungai, jalan, industri dan penanda", "th_k": "Toko lain di timur", "th_l": "Rumah makan dan kafe rumah tua", "pl_okusa": "Okusa", "pl_oyama": "Oyama", "pl_noguchi": "Noguchi", "pl_kamisue": "Kamisue", "pl_takane": "Takane", "pl_ikenouchi": "Ikenouchi", "pl_hayashi": "Hayashi", "pl_tokadai": "Tokadai", "pl_shinooka": "Shinooka", "pl_kiln": "tembikar", "pl_temple": "kuil", "pl_rail": "kereta", "pl_festival": "festival", "pl_fruit": "buah", "pl_chicken": "Nagoya Cochin", "pl_nature": "alam", "pl_oldtimes": "masa lalu", "pl_food": "makanan"},
+ "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし / お店（f お店1 喫茶・カフェ / g お店2 パン・お菓子 / k お店3 ごはん処 / l お店4 農園・直売。id の頭の文字とテーマは一致しないことがある）。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
+ "ui": {"br_up": "Lagi tentang {x}, sedikit lebih sulit", "br_same": "Satu lagi tentang {x}", "br_down": "Yang lebih mudah tentang {x}", "br_up0": "Selangkah lebih jauh", "br_same0": "Lanjutan cerita tadi", "br_down0": "Mari bangkit dengan soal lebih mudah", "br_revenge": "Balas dendam! Soal yang dulu salah", "br_new": "Ke tema yang belum dicoba", "type": "Kamu penjelajah “{x}”", "rec": "Saran berikutnya: {x}", "review": "Periksa soal yang salah di kartunya →", "page": "Buka halaman kuis →", "level": "Kesulitan {n} dari 5", "map_go": "Coba tema ini", "reset_ask": "Hapus catatan kuis Anda?", "th_a": "Sejarah", "th_b": "Kawasan Tokadai", "th_c": "Festival dan tradisi", "th_d": "Produk khas", "th_e": "Alam dan taman", "th_f": "Toko 1 (Kedai kopi dan kafe)", "th_g": "Toko 2 (Roti dan kudapan)", "th_h": "Nama tempat dan cara baca", "th_i": "Era Sengoku dan desa lama", "th_j": "Sungai, jalan, industri dan penanda", "th_k": "Toko 3 (Rumah makan)", "th_l": "Toko 4 (Kebun dan penjualan langsung)", "pl_okusa": "Okusa", "pl_oyama": "Oyama", "pl_noguchi": "Noguchi", "pl_kamisue": "Kamisue", "pl_takane": "Takane", "pl_ikenouchi": "Ikenouchi", "pl_hayashi": "Hayashi", "pl_tokadai": "Tokadai", "pl_shinooka": "Shinooka", "pl_kiln": "tembikar", "pl_temple": "kuil", "pl_rail": "kereta", "pl_festival": "festival", "pl_fruit": "buah", "pl_chicken": "Nagoya Cochin", "pl_nature": "alam", "pl_oldtimes": "masa lalu", "pl_food": "makanan"},
   "items": [
   {
    "id": "a01",
@@ -709,7 +709,7 @@
   },
   {
    "id": "f09",
-   "theme": "f",
+   "theme": "k",
    "more": null,
    "q": "Restoran Tionghoa Sasakatsu di Ikenouchi dinamai dari tempat pendiriannya. Di mana?",
    "o": [
@@ -839,7 +839,7 @@
   },
   {
    "id": "g09",
-   "theme": "g",
+   "theme": "l",
    "more": null,
    "q": "Kapan musim anggur Komaki, yang juga dijual di kios petani?",
    "o": [
@@ -852,7 +852,7 @@
   },
   {
    "id": "g10",
-   "theme": "g",
+   "theme": "l",
    "more": null,
    "q": "Di area mana kebun anggur Yokoyama dan Nishio?",
    "o": [
@@ -1251,7 +1251,7 @@
   },
   {
    "id": "k01",
-   "theme": "k",
+   "theme": "g",
    "more": null,
    "q": "Di gedung mana toko kue Mahou no Cake-ya JIJI?",
    "o": [
@@ -1264,7 +1264,7 @@
   },
   {
    "id": "k02",
-   "theme": "k",
+   "theme": "g",
    "more": null,
    "q": "Kue apa yang membuat JIJI populer?",
    "o": [
@@ -1277,7 +1277,7 @@
   },
   {
    "id": "k03",
-   "theme": "k",
+   "theme": "g",
    "more": null,
    "q": "Di area mana toko roti Soramimi PAN?",
    "o": [
@@ -1290,7 +1290,7 @@
   },
   {
    "id": "k04",
-   "theme": "k",
+   "theme": "g",
    "more": null,
    "q": "Dari apa Soramimi PAN menumbuhkan biang rotinya?",
    "o": [
@@ -1303,7 +1303,7 @@
   },
   {
    "id": "k05",
-   "theme": "k",
+   "theme": "l",
    "more": null,
    "q": "Apa yang bisa digali di Rich Farm, Kamisue?",
    "o": [
@@ -1316,7 +1316,7 @@
   },
   {
    "id": "k06",
-   "theme": "k",
+   "theme": "l",
    "more": null,
    "q": "Buah apa yang bisa dipetik di Rich Farm?",
    "o": [
@@ -1368,7 +1368,7 @@
   },
   {
    "id": "k10",
-   "theme": "k",
+   "theme": "l",
    "more": null,
    "q": "Di area mana kebun anggur Suzuki dan Ogawa?",
    "o": [
@@ -1381,7 +1381,7 @@
   },
   {
    "id": "l01",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "Di area mana Kissaten Pineapple?",
    "o": [
@@ -1394,7 +1394,7 @@
   },
   {
    "id": "l02",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "Kissaten Pineapple dikenal penuh dengan apa?",
    "o": [
@@ -1407,7 +1407,7 @@
   },
   {
    "id": "l03",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "Di area mana rumah makan Chika-chan?",
    "o": [
@@ -1420,7 +1420,7 @@
   },
   {
    "id": "l04",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "Tempat seperti apa Chika-chan di Noguchi?",
    "o": [
@@ -1433,7 +1433,7 @@
   },
   {
    "id": "l05",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "Di area mana Kiki no Kamaza?",
    "o": [
@@ -1446,7 +1446,7 @@
   },
   {
    "id": "l06",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "Masakan kreasi apa yang disajikan Kiki no Kamaza?",
    "o": [
@@ -1459,7 +1459,7 @@
   },
   {
    "id": "l07",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "Daging sapi apa yang dipakai kari andalan Kiki no Kamaza?",
    "o": [
@@ -1472,7 +1472,7 @@
   },
   {
    "id": "l08",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "Bangunan seperti apa kafe Min cade KU?",
    "o": [
@@ -1485,7 +1485,7 @@
   },
   {
    "id": "l09",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "Di area mana Min cade KU?",
    "o": [
@@ -1498,7 +1498,7 @@
   },
   {
    "id": "l10",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "Bahan fermentasi apa yang menonjol di menu Min cade KU?",
    "o": [

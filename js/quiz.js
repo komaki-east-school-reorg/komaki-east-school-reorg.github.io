@@ -6,7 +6,8 @@
    ・読者の見立ては localStorage の komaki_quiz（この端末だけ）。外へ送らない（集計は機能の名前だけ）。
    選ぶ処理（Engine）は DOM に触らず、乱数を渡せる。 */
 (function () {
-  var KEY = 'komaki_quiz', ROUND = 5, THEMES = 'abcdefghijkl'.split('');
+  var KEY = 'komaki_quiz', ROUND = 5, THEMES = 'abcdehijfgkl'.split('');   // f・g・k・l はお店1〜4
+  function groupOf(th) { return 'fgkl'.indexOf(th) >= 0 ? 'shop' : th; }   // お店は1つのまとまりとして偏りを見る
 
   function blank() { return { v: 1, a: 3, rounds: 0, th: {}, rt: {}, seen: {}, miss: {} }; }
   function clamp(x, lo, hi) { return Math.max(lo, Math.min(hi, x)); }
@@ -39,22 +40,22 @@
     }
     function themesIn(ctx) {
       var out = {};
-      ctx.round.forEach(function (r) { var th = byId[r.id].theme; out[th] = (out[th] || 0) + 1; });
+      ctx.round.forEach(function (r) { var th = groupOf(byId[r.id].theme); out[th] = (out[th] || 0) + 1; });
       return out;
     }
     function pool(ctx) {
-      var used = {}, used2 = themesIn(ctx), lastTh = ctx.last ? byId[ctx.last.id].theme : '';
+      var used = {}, used2 = themesIn(ctx), lastTh = ctx.last ? groupOf(byId[ctx.last.id].theme) : '';
       ctx.round.forEach(function (r) { used[r.id] = 1; });
       var all = items.map(function (x) { return x.id; }).filter(function (id) {
         return !used[id] && inMode(id, ctx.mode) && (!ctx.focus || byId[id].theme === ctx.focus);
       });
       if (ctx.focus) return all;
       var strict = all.filter(function (id) {
-        var th = byId[id].theme;
+        var th = groupOf(byId[id].theme);
         return th !== lastTh && (used2[th] || 0) < 2;
       });
       if (strict.length) return strict;
-      var soft = all.filter(function (id) { return byId[id].theme !== lastTh; });
+      var soft = all.filter(function (id) { return groupOf(byId[id].theme) !== lastTh; });
       return soft.length ? soft : all;
     }
     function score(id, ctx) {
@@ -97,7 +98,7 @@
       var usedTh = themesIn(ctx), least = Infinity, out = [];
       list.forEach(function (id) {
         var th = byId[id].theme;
-        if (usedTh[th]) return;
+        if (usedTh[groupOf(th)]) return;
         var n = seenInTheme(th);
         if (n < least) { least = n; out = [id]; } else if (n === least) out.push(id);
       });

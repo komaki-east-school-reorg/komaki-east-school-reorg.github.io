@@ -1,6 +1,6 @@
 {
- "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / f 喫茶・カフェ / g パン・お菓子・直売 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし / k もっと東部のお店 / l ごはん処と古民家カフェ。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
- "ui": {"br_up": "继续{x}话题，难度提高一级", "br_same": "再来一题：{x}", "br_down": "换一道简单的{x}题", "br_up0": "再往前一步", "br_same0": "接着刚才的话题", "br_down0": "用简单一点的题重新开始", "br_revenge": "复仇！之前答错的题", "br_new": "去还没探索的主题", "type": "你是“{x}”探险家", "rec": "下一个推荐：{x}", "review": "到卡片上查看答错的题 →", "page": "前往测验专页 →", "level": "难度 {n} / 5", "map_go": "挑战这个主题", "reset_ask": "要清除测验记录吗？", "th_a": "历史", "th_b": "桃花台社区", "th_c": "节庆与传统", "th_d": "特产", "th_e": "自然与公园", "th_f": "咖啡馆", "th_g": "面包、点心与直销", "th_h": "地名与读法", "th_i": "战国与古村", "th_j": "河流、道路、产业与地标", "th_k": "更多东部店铺", "th_l": "餐馆与古民居咖啡馆", "pl_okusa": "大草", "pl_oyama": "大山", "pl_noguchi": "野口", "pl_kamisue": "上末", "pl_takane": "高根", "pl_ikenouchi": "池之内", "pl_hayashi": "林", "pl_tokadai": "桃花台", "pl_shinooka": "篠冈", "pl_kiln": "陶器", "pl_temple": "寺庙神社", "pl_rail": "铁路", "pl_festival": "节庆", "pl_fruit": "水果", "pl_chicken": "名古屋交趾鸡", "pl_nature": "自然", "pl_oldtimes": "往事", "pl_food": "美食"},
+ "description": "東部たんけんクイズ。o の先頭が正解（画面では並びをまぜる）。テーマ a 歴史 / b 桃花台のまち / c 祭りと伝統 / d 特産物 / e 自然と公園 / h 地名と読み方 / i 戦国と昔の村 / j 川・道・産業と目じるし / お店（f お店1 喫茶・カフェ / g お店2 パン・お菓子 / k お店3 ごはん処 / l お店4 農園・直売。id の頭の文字とテーマは一致しないことがある）。lv=easy はこのサイトのカードで答えを確かめられる問い。more が無い問いは src に出どころを書く",
+ "ui": {"br_up": "继续{x}话题，难度提高一级", "br_same": "再来一题：{x}", "br_down": "换一道简单的{x}题", "br_up0": "再往前一步", "br_same0": "接着刚才的话题", "br_down0": "用简单一点的题重新开始", "br_revenge": "复仇！之前答错的题", "br_new": "去还没探索的主题", "type": "你是“{x}”探险家", "rec": "下一个推荐：{x}", "review": "到卡片上查看答错的题 →", "page": "前往测验专页 →", "level": "难度 {n} / 5", "map_go": "挑战这个主题", "reset_ask": "要清除测验记录吗？", "th_a": "历史", "th_b": "桃花台社区", "th_c": "节庆与传统", "th_d": "特产", "th_e": "自然与公园", "th_f": "店铺1（咖啡馆）", "th_g": "店铺2（面包与点心）", "th_h": "地名与读法", "th_i": "战国与古村", "th_j": "河流、道路、产业与地标", "th_k": "店铺3（餐馆）", "th_l": "店铺4（农园与直销）", "pl_okusa": "大草", "pl_oyama": "大山", "pl_noguchi": "野口", "pl_kamisue": "上末", "pl_takane": "高根", "pl_ikenouchi": "池之内", "pl_hayashi": "林", "pl_tokadai": "桃花台", "pl_shinooka": "篠冈", "pl_kiln": "陶器", "pl_temple": "寺庙神社", "pl_rail": "铁路", "pl_festival": "节庆", "pl_fruit": "水果", "pl_chicken": "名古屋交趾鸡", "pl_nature": "自然", "pl_oldtimes": "往事", "pl_food": "美食"},
   "items": [
   {
    "id": "a01",
@@ -709,7 +709,7 @@
   },
   {
    "id": "f09",
-   "theme": "f",
+   "theme": "k",
    "more": null,
    "q": "池之内的中餐馆Sasakatsu，店名来自创业之地。是哪里？",
    "o": [
@@ -839,7 +839,7 @@
   },
   {
    "id": "g09",
-   "theme": "g",
+   "theme": "l",
    "more": null,
    "q": "也可在直销处买到的小牧葡萄，当季是几月？",
    "o": [
@@ -852,7 +852,7 @@
   },
   {
    "id": "g10",
-   "theme": "g",
+   "theme": "l",
    "more": null,
    "q": "横山、西尾葡萄园在哪个地区？",
    "o": [
@@ -1251,7 +1251,7 @@
   },
   {
    "id": "k01",
-   "theme": "k",
+   "theme": "g",
    "more": null,
    "q": "蛋糕店“魔法蛋糕屋JIJI”位于哪栋建筑？",
    "o": [
@@ -1264,7 +1264,7 @@
   },
   {
    "id": "k02",
-   "theme": "k",
+   "theme": "g",
    "more": null,
    "q": "JIJI最受欢迎的蛋糕是？",
    "o": [
@@ -1277,7 +1277,7 @@
   },
   {
    "id": "k03",
-   "theme": "k",
+   "theme": "g",
    "more": null,
    "q": "面包店Soramimi PAN在哪个地区？",
    "o": [
@@ -1290,7 +1290,7 @@
   },
   {
    "id": "k04",
-   "theme": "k",
+   "theme": "g",
    "more": null,
    "q": "Soramimi PAN用什么培养面种？",
    "o": [
@@ -1303,7 +1303,7 @@
   },
   {
    "id": "k05",
-   "theme": "k",
+   "theme": "l",
    "more": null,
    "q": "在上末的Rich Farm可以挖什么？",
    "o": [
@@ -1316,7 +1316,7 @@
   },
   {
    "id": "k06",
-   "theme": "k",
+   "theme": "l",
    "more": null,
    "q": "在Rich Farm可以采摘哪种水果？",
    "o": [
@@ -1368,7 +1368,7 @@
   },
   {
    "id": "k10",
-   "theme": "k",
+   "theme": "l",
    "more": null,
    "q": "铃木、小川葡萄园在哪个地区？",
    "o": [
@@ -1381,7 +1381,7 @@
   },
   {
    "id": "l01",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "喫茶店Pineapple在哪个地区？",
    "o": [
@@ -1394,7 +1394,7 @@
   },
   {
    "id": "l02",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "喫茶店Pineapple以什么丰富而闻名？",
    "o": [
@@ -1407,7 +1407,7 @@
   },
   {
    "id": "l03",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "大众食堂“Chika-chan”在哪个地区？",
    "o": [
@@ -1420,7 +1420,7 @@
   },
   {
    "id": "l04",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "野口的“Chika-chan”是什么样的店？",
    "o": [
@@ -1433,7 +1433,7 @@
   },
   {
    "id": "l05",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "“木木の釜座”在哪个地区？",
    "o": [
@@ -1446,7 +1446,7 @@
   },
   {
    "id": "l06",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "“木木の釜座”是哪种创意料理店？",
    "o": [
@@ -1459,7 +1459,7 @@
   },
   {
    "id": "l07",
-   "theme": "l",
+   "theme": "k",
    "more": null,
    "q": "“木木の釜座”推荐的咖喱用哪种牛肉？",
    "o": [
@@ -1472,7 +1472,7 @@
   },
   {
    "id": "l08",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "咖啡馆Min cade KU是什么建筑？",
    "o": [
@@ -1485,7 +1485,7 @@
   },
   {
    "id": "l09",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "Min cade KU在哪个地区？",
    "o": [
@@ -1498,7 +1498,7 @@
   },
   {
    "id": "l10",
-   "theme": "l",
+   "theme": "f",
    "more": null,
    "q": "Min cade KU菜单的特色发酵食材是？",
    "o": [
