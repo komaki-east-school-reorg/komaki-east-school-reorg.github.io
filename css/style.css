@@ -3938,5 +3938,14 @@ html.has-share-sticky .to-top { bottom: calc(var(--share-sticky-h, 3.4rem) + .8r
 .sn-quote figcaption { font-weight: 800; margin-bottom: .55rem; }
 .sn-quote blockquote { margin: 0; font-family: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", serif; line-height: 1.95; }
 .sn-quote blockquote p { margin: 0 0 .45rem; }
+.sn-fact, .sn-view { font-size: .95rem; line-height: 1.85; padding-left: .9rem; }
+.sn-fact { border-left: 4px solid var(--neutral-color); margin-bottom: .9rem; }
+.sn-view { border-left: 4px solid var(--accent); }
+.sn-top { display: flex; gap: 1.1rem; align-items: flex-start; margin-top: 1.2rem; padding: 1.1rem 1.2rem; border: 2px solid var(--accent); border-radius: var(--radius, 10px); background: #fffdf6; }
+.sn-top img { flex: 0 0 auto; width: 7.5rem; height: auto; }
+.sn-top h3 { margin: 0 0 .5rem; font-size: 1.08rem; color: var(--primary-dark); }
+.sn-top .card-link { display: inline-block; margin-top: .55rem; }
+@media (max-width: 560px) { .sn-top { flex-direction: column; } .sn-top img { align-self: center; } }
+@media (forced-colors: active) { .sn-fact { border-left-style: solid; } .sn-view { border-left-style: double; } }
 .sn-card-link { margin-top: .5rem; font-weight: 700; }
 @media (max-width: 560px) { .sn-estates { grid-template-columns: minmax(0, 1fr); } }

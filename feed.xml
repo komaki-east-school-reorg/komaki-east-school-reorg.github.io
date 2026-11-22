@@ -6,26 +6,10 @@
   <link rel="self" type="application/atom+xml" href="https://komaki-east-school-reorg.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/"/>
   <id>https://komaki-east-school-reorg.github.io/</id>
-  <updated>2026-11-23T00:00:00+09:00</updated>
+  <updated>2026-11-22T00:00:00+09:00</updated>
   <author><name>「これがまちつくサイトの解。」THE UNIT（住民有志・非公式）</name></author>
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
   <rights>このサイトは「これがまちつくサイトの解。」THE UNIT（住民有志）が運営しており、小牧市・教育委員会とは無関係です。</rights>
-  <entry>
-    <title>季節でめぐる東部に火渡り・初詣・各地の祭りを反映</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#legacy"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:a3c9bf39b20bc588</id>
-    <updated>2026-11-23T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜季節でめぐる東部に火渡り・初詣・各地の祭りを反映</summary>
-  </entry>
-  <entry>
-    <title>大城小学校区の町名から再編後の学校を調べる欄を追加</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/map.html#town-lookup"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:10d929692c390ab0</id>
-    <updated>2026-11-23T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜大城小学校区の町名から再編後の学校を調べる欄を追加</summary>
-  </entry>
   <entry>
     <title>東部の0〜17歳の年齢別グラフをトップに追加</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#child-estimate"/>
@@ -57,6 +41,22 @@
     <updated>2026-11-22T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜既存校のレガシーの検討にピーチライナーや自然・音楽のまちを追加</summary>
+  </entry>
+  <entry>
+    <title>季節でめぐる東部に火渡り・初詣・各地の祭りを反映</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#legacy"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:79be879c18221d4c</id>
+    <updated>2026-11-22T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜季節でめぐる東部に火渡り・初詣・各地の祭りを反映</summary>
+  </entry>
+  <entry>
+    <title>大城小学校区の町名から再編後の学校を調べる欄を追加</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/map.html#town-lookup"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:b0b7a479888f756b</id>
+    <updated>2026-11-22T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜大城小学校区の町名から再編後の学校を調べる欄を追加</summary>
   </entry>
   <entry>
     <title>地域の取組に福厳寺 あきば大祭（12/5・火渡り）を掲載</title>
@@ -113,6 +113,14 @@
     <updated>2026-11-22T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜「篠岡」の名前の由来と当サイトの見解のページを追加</summary>
+  </entry>
+  <entry>
+    <title>「しのおか学園」の名前への疑問をトップと由来のページに追加</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/shinooka.html#gakuen"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:0bca929712ce7575</id>
+    <updated>2026-11-22T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜「しのおか学園」の名前への疑問をトップと由来のページに追加</summary>
   </entry>
   <entry>
     <title>都市計画「尾張都市計画桃花台地区計画の変更に関する公聴会の開催」の閲覧期間を予定に掲載</title>
@@ -321,13 +329,5 @@
     <updated>2026-11-07T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜都市計画の動き（東部地域）を地域とまちづくりのページへ</summary>
-  </entry>
-  <entry>
-    <title>通学路の防犯カメラと防犯灯についてのQ&amp;Aを追加</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/faq.html#faq-q30"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:ab070186aeedf6b8</id>
-    <updated>2026-11-07T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜通学路の防犯カメラと防犯灯についてのQ&amp;Aを追加</summary>
   </entry>
 </feed>
