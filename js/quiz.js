@@ -168,7 +168,7 @@
   var mapBox = document.getElementById('quiz-map');
   var isPage = !!mapBox;
   var state = loadState(), engine = null, items = null, byId = null, meta = null, ui = {};
-  var mode = 'normal', modeBox = null, loaded = '', round = [], at = 0, score = 0, picked = -1, counted = false, focus = null, rec = null;
+  var pageLink = null, mode = 'normal', modeBox = null, loaded = '', round = [], at = 0, score = 0, picked = -1, counted = false, focus = null, rec = null;
 
   function loadState() {
     try {
@@ -286,15 +286,23 @@
       a.href = moreHref(byId[missed.id].more);
       links.appendChild(a);
     }
-    if (!isPage && ui.page) {
-      var g = el('a', '', ui.page);
-      g.href = pageUrl('quiz.html');
-      links.appendChild(g);
-    }
     if (links.childNodes.length) stage.appendChild(links);
     stage.appendChild(btn(t('retry'), 'east-quiz-next', function () { focus = null; newRound(); draw(); }));
   }
+  /* トップと community.html の枠から専用ページへ（説明文のすぐ下） */
+  function drawPageLink() {
+    if (isPage || !ui.page) return;
+    if (!pageLink) {
+      pageLink = el('a', 'east-quiz-pagelink');
+      pageLink.addEventListener('click', function () { if (window.KomakiCount) window.KomakiCount('quiz/page'); });
+      var lead = box.querySelector('.east-quiz-lead');
+      box.insertBefore(pageLink, lead ? lead.nextSibling : stage);
+    }
+    pageLink.textContent = ui.page;
+    pageLink.href = pageUrl('quiz.html');
+  }
   function draw() {
+    drawPageLink();
     drawModes();
     stage.textContent = '';
     var n = want();

@@ -3910,6 +3910,8 @@ html.has-share-sticky .to-top { bottom: calc(var(--share-sticky-h, 3.4rem) + .8r
 .east-quiz-insight { margin: 0 0 .25rem; font-size: .88rem; color: rgba(255,255,255,.88); }
 .east-quiz-links { display: flex; flex-wrap: wrap; gap: .2rem 1rem; margin: .25rem 0 .7rem; font-size: .85rem; }
 .east-quiz-links a { color: var(--accent); }
+.east-quiz-pagelink { display: inline-flex; align-items: center; min-height: 2.75rem; margin: -.45rem 0 .25rem; color: var(--accent); font-size: .9rem; font-weight: 700; }
+.east-quiz-pagelink:hover { color: #fff; }
 .quiz-page-sec .east-quiz { max-width: 44rem; margin: 0 auto; }
 .quiz-map-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 13.5rem), 1fr)); gap: .7rem; margin-top: .8rem; }
 .quiz-map-card { display: grid; grid-template-columns: 1fr auto; gap: .3rem .5rem; align-items: start; min-width: 0; padding: .7rem .8rem; background: var(--white); border: 1px solid rgba(27,56,38,.18); border-radius: var(--radius-sm); overflow-wrap: anywhere; }
