@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>学校の場所（地図） – 小牧市東部（篠岡地区）学校再編ナビ</title>
-  <meta name="description" content="篠岡地区の再編前8校・再編後4校の場所をGoogleマップで確認できます。東西グループ別の統合先も掲載。">
+  <meta name="description" content="篠岡地区の再編前8校・再編後4校の場所をGoogleマップで確認できます。東西グループ別の統合先も掲載。大城小学校区は町名から学校を調べられます。">
   <meta name="robots" content="max-snippet:-1, max-image-preview:large">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="小牧市東部（篠岡地区）学校再編ナビ｜桃花台エリアの非公式でもわかりやすい地域情報メディア">
   <meta property="og:title" content="学校の場所（地図） – 小牧市東部（篠岡地区）学校再編ナビ">
-  <meta property="og:description" content="篠岡地区の再編前8校・再編後4校の場所をGoogleマップで確認できます。東西グループ別の統合先も掲載。">
+  <meta property="og:description" content="篠岡地区の再編前8校・再編後4校の場所をGoogleマップで確認できます。東西グループ別の統合先も掲載。大城小学校区は町名から学校を調べられます。">
   <meta property="og:url" content="https://komaki-east-school-reorg.github.io/map.html">
   <meta property="og:image" content="https://komaki-east-school-reorg.github.io/img/og-image.png?v=20261011">
   <meta property="og:image:width" content="1200">
@@ -18,7 +18,7 @@
   <meta property="og:locale" content="ja_JP">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="学校の場所（地図） – 小牧市東部（篠岡地区）学校再編ナビ">
-  <meta name="twitter:description" content="篠岡地区の再編前8校・再編後4校の場所をGoogleマップで確認できます。東西グループ別の統合先も掲載。">
+  <meta name="twitter:description" content="篠岡地区の再編前8校・再編後4校の場所をGoogleマップで確認できます。東西グループ別の統合先も掲載。大城小学校区は町名から学校を調べられます。">
   <meta name="twitter:image" content="https://komaki-east-school-reorg.github.io/img/og-image.png?v=20261011">
   <meta name="twitter:image:alt" content="黒板のデザインに「小牧市東部（篠岡地区）学校再編ナビ」と書かれたタイトル画像">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -138,6 +138,7 @@
           <li><a href="#overview"><img class="ill-step-pic" src="img/illust/mappin.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="map_overview_h2">エリア概要マップ<small>Area Overview</small></span></a></li>
           <li><a href="#before"><img class="ill-step-pic" src="img/illust/school.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="map_before_h2">再編前の学校の場所<small>Current School Locations</small></span></a></li>
           <li><a href="#after"><img class="ill-step-pic" src="img/illust/merge.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="map_after_h2">再編後の4校の位置<small>New School Locations (from April 2027)</small></span></a></li>
+          <li><a href="#town-lookup"><img class="ill-step-pic" src="img/illust/townfind.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n="map_tl_pick_card">町名から学校を調べる</span></a></li>
           <li><a href="#bus-area"><img class="ill-step-pic" src="img/illust/bus.svg" alt="" width="160" height="120" loading="lazy" decoding="async"><span data-i18n-html="map_busmap_h2">通学区域とスクールバスの対象エリア<small>School Districts & Bus Service Area</small></span></a></li>
       </ol>
     </div>
@@ -333,6 +334,60 @@
 
       </div>
 
+      <!-- 町名から学校を調べる（TOWN LOOKUP in js/main.js、2026-11-23、日次アイデア 10/01）。根拠は市の計画図と城山三・四丁目の案内。JS が無いときはこの表のまま読める -->
+      <div class="town-lookup" id="town-lookup">
+        <div class="tl-head">
+          <div class="tl-head-text">
+            <h3 class="section-title sub" data-i18n-html="map_tl_h">町名から学校を調べる<small>Find Your School by Town</small></h3>
+            <p class="tl-lead" data-i18n="map_tl_lead">大城小学校区は、再編で東と西に分かれます。町名を選ぶと、令和9年度からの小学校と中学校がわかります。</p>
+          </div>
+          <img class="tl-ill" src="img/illust/townfind.svg" alt="" width="160" height="120" loading="lazy" decoding="async">
+        </div>
+        <div class="tl-ui" hidden>
+          <p class="tl-pick" id="tl-pick" data-i18n="map_tl_pick">町名を選んでください</p>
+          <div class="tl-towns" role="group" aria-labelledby="tl-pick"></div>
+          <div class="tl-result" aria-live="polite"></div>
+          <span class="tl-tpl" hidden data-i18n="map_tl_result">{town} の令和9年度からの学校</span>
+        </div>
+        <div class="tl-table">
+          <table>
+            <thead><tr><th scope="col" data-i18n="map_tl_town">町名</th><th scope="col" data-i18n="map_tl_elem">小学校</th><th scope="col" data-i18n="map_tl_jr">中学校</th><th scope="col" data-i18n="map_tl_note">注意</th></tr></thead>
+            <tbody>
+              <tr data-side="east">
+                <th scope="row" data-i18n="map_tl_t1">大草</th>
+                <td><span data-i18n="school_tokadai_east_elem">桃花台東小学校</span><small data-i18n="map_tl_ef">いまの光ヶ丘小学校の校舎</small></td>
+                <td><span data-i18n="school_tokadai_east_jhs">桃花台東中学校</span><small data-i18n="map_tl_ejf">いまの光ヶ丘中学校の校舎</small></td>
+                <td></td>
+              </tr>
+              <tr data-side="west">
+                <th scope="row" data-i18n="map_tl_t2">城山二丁目</th>
+                <td><span data-i18n="school_tokadai_west_elem">桃花台西小学校</span><small data-i18n="map_tl_wf">いまの桃ヶ丘小学校の校舎</small></td>
+                <td><span data-i18n="school_tokadai_west_jhs">桃花台西中学校</span><small data-i18n="map_tl_wjf">いまの桃陵中学校の校舎</small></td>
+                <td></td>
+              </tr>
+              <tr data-side="east">
+                <th scope="row" data-i18n="map_tl_t3">城山三丁目</th>
+                <td><span data-i18n="school_tokadai_east_elem">桃花台東小学校</span><small data-i18n="map_tl_ef">いまの光ヶ丘小学校の校舎</small></td>
+                <td><span data-i18n="school_tokadai_east_jhs">桃花台東中学校</span><small data-i18n="map_tl_ejf">いまの光ヶ丘中学校の校舎</small></td>
+                <td><span data-i18n="map_tl_n3">保護者が市へ申請すると、桃花台西小・中学校に変更できます。変更で通学距離が2kmを超えても、スクールバスの対象にはなりません。</span></td>
+              </tr>
+              <tr data-side="west">
+                <th scope="row" data-i18n="map_tl_t4">城山四丁目</th>
+                <td><span data-i18n="school_tokadai_west_elem">桃花台西小学校</span><small data-i18n="map_tl_wf">いまの桃ヶ丘小学校の校舎</small></td>
+                <td><span data-i18n="school_tokadai_west_jhs">桃花台西中学校</span><small data-i18n="map_tl_wjf">いまの桃陵中学校の校舎</small></td>
+                <td><span data-i18n="map_tl_n4">保護者が市へ申請すると、桃花台東小・中学校に変更できます。変更で通学距離が2kmを超えても、スクールバスの対象にはなりません。令和8年度末に光ヶ丘中に通っている生徒は、引き続き光ヶ丘中の校舎の学校に通います。</span></td>
+              </tr>
+              <tr data-side="west">
+                <th scope="row" data-i18n="map_tl_t5">城山五丁目</th>
+                <td><span data-i18n="school_tokadai_west_elem">桃花台西小学校</span><small data-i18n="map_tl_wf">いまの桃ヶ丘小学校の校舎</small></td>
+                <td><span data-i18n="school_tokadai_west_jhs">桃花台西中学校</span><small data-i18n="map_tl_wjf">いまの桃陵中学校の校舎</small></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="tl-foot" data-i18n-html="map_tl_foot">番地や個別の事情による扱いは、市の教育委員会 教育総務課 学校再編推進係にお確かめください。<a href="#contact">問い合わせ先へ →</a></p>
+      </div>
     </div>
   </section>
   <!-- ===== スクールバスの対象エリア（bus.html の地図と同じもの）=====

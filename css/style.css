@@ -698,6 +698,42 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   .hero .hero-count-meta { font-size: .76rem; line-height: 1.45; }
 }
 
+.town-lookup { margin-top: 2rem; scroll-margin-top: calc(var(--header-h, 72px) + 12px); }
+.tl-head { display: grid; grid-template-columns: minmax(0, 1fr) 8rem; gap: 1rem; align-items: center; }
+.tl-head-text { min-width: 0; }
+.tl-lead { margin: .2rem 0 0; color: var(--text-muted); font-size: .92rem; }
+.tl-ill { width: 100%; height: auto; padding: .3rem .4rem; border-radius: 18px; background: var(--accent-light); }
+.tl-pick { margin: 1rem 0 .4rem; font-size: .84rem; font-weight: 700; }
+.tl-towns { display: flex; flex-wrap: wrap; gap: .45rem; }
+.tl-town { min-height: 2.75rem; padding: .3rem 1rem; border: 2px solid var(--border); border-radius: var(--radius-pill); background: #fff; color: var(--text); font: inherit; font-size: .92rem; font-weight: 700; cursor: pointer; }
+.tl-town:hover { border-color: var(--primary); }
+.tl-town:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.tl-town[aria-pressed="true"] { border-color: var(--primary-dark); background: var(--primary-dark); color: #fff; }
+.tl-result { margin-top: 1rem; padding: 1.05rem 1.1rem 1.15rem; border-radius: var(--radius); background: var(--primary-dark); color: #fff; }
+.tl-result h4 { margin: 0 0 .75rem; color: #fff; font-size: 1.05rem; line-height: 1.45; }
+.tl-result h4 b { color: var(--accent); }
+.tl-schools { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
+.tl-school { min-width: 0; padding: .65rem .85rem .7rem; border-radius: 9px; background: var(--primary-light); color: var(--text); }
+.tl-school.west { background: #e8eef5; }
+.tl-school span { display: block; color: var(--text-muted); font-size: .76rem; font-weight: 700; }
+.tl-school strong { display: block; color: var(--primary-dark); font-family: var(--heading-font); font-size: 1.12rem; line-height: 1.4; overflow-wrap: anywhere; }
+.tl-school.west strong { color: #30485f; }
+.tl-school em { display: block; color: var(--text-muted); font-size: .76rem; font-style: normal; }
+.tl-change { margin: .75rem 0 0; padding: .6rem .8rem; border-radius: 8px; background: var(--accent-light); color: var(--text); font-size: .85rem; line-height: 1.65; }
+.tl-foot { margin: .8rem 0 0; color: var(--text-muted); font-size: .8rem; }
+.tl-table { margin-top: 1rem; overflow-x: auto; }
+.tl-table table { width: 100%; min-width: 34rem; border-collapse: collapse; background: #fff; font-size: .84rem; }
+.tl-table th, .tl-table td { padding: .45rem .55rem; border: 1px solid var(--border); text-align: left; vertical-align: top; }
+.tl-table small { display: block; color: var(--text-muted); }
+.tl-has-ui .tl-table { display: none; }
+@media (max-width: 520px) {
+  .tl-head { grid-template-columns: minmax(0, 1fr) 5.4rem; gap: .6rem; }
+  .tl-schools { grid-template-columns: minmax(0, 1fr); }
+  .tl-town { flex: 1 1 calc(50% - .45rem); padding-inline: .4rem; }
+}
+@media print { .tl-ui { display: none !important; } .tl-has-ui .tl-table { display: block; } .tl-table table { min-width: 0; } }
+@media (forced-colors: active) { .tl-town[aria-pressed="true"] { outline: 2px solid Highlight; } }
+
 /* ===== SCHOOL WEBSITE UPDATES（対象8校ホームページの更新コーナー） ===== */
 .school-lead {
   font-size: .92rem;

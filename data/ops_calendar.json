@@ -13,8 +13,8 @@
       "id": "reach-search-titles",
       "due": "2026-12-01",
       "notice_days": 7,
-      "title": "閲覧数を増やす計画：題名と説明文を検索語に合わせる・町名から学校がわかる早見",
-      "how": "① 週次の利用状況（📈）と Search Console から、週の閲覧数・参照元・入口ページ・表示回数が多いのにクリックの少ない検索語を書き出す（目標の数字は決めない） ② その検索語をもとに meta_title_* / meta_desc_*（13辞書）を書き直す（宣伝文にしない）→ build_page_dicts.py・build_manifest.py・build_search_index.py ③ 町名から学校がわかる早見（大草・城山三丁目＝桃花台東、城山二・四・五丁目＝桃花台西。公表済みの区分だけ）。紙の案内は作らない（2026-11-16 ユーザー決定）。"
+      "title": "閲覧数を増やす計画：題名と説明文を検索語に合わせる",
+      "how": "① 週次の利用状況（📈）と Search Console から、週の閲覧数・参照元・入口ページ・表示回数が多いのにクリックの少ない検索語を書き出す（目標の数字は決めない） ② その検索語をもとに meta_title_* / meta_desc_*（13辞書）を書き直す（宣伝文にしない）→ build_page_dicts.py・build_manifest.py・build_search_index.py。紙の案内は作らない（2026-11-16 ユーザー決定）。"
     },
     {
       "id": "reach-enrollment-guide",

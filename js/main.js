@@ -7076,6 +7076,59 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   line.hidden = false;
 })();
 
+/* ===== TOWN LOOKUP（map.html #town-lookup、町名から再編後の学校を調べる。2026-11-23、日次アイデア 10/01） =====
+   文字はすべて下の表（辞書で訳される）から読む。JS が無いときは表のまま読める。
+   選んだ町名は保存も送信もしない（集計は town/lookup の1回だけで、町名は送らない）。 */
+(function () {
+  var box = document.getElementById('town-lookup');
+  if (!box) return;
+  var ui = box.querySelector('.tl-ui'), towns = box.querySelector('.tl-towns'), out = box.querySelector('.tl-result');
+  var rows = Array.prototype.slice.call(box.querySelectorAll('tbody tr'));
+  var at = 2, counted = false;
+  function school(cell, label, cls) {
+    var d = document.createElement('div'), l = document.createElement('span'), n = document.createElement('strong'), f = document.createElement('em');
+    d.className = 'tl-school ' + cls;
+    l.textContent = label;
+    n.textContent = cell.querySelector('span').textContent;
+    f.textContent = cell.querySelector('small').textContent;
+    d.appendChild(l); d.appendChild(n); d.appendChild(f);
+    return d;
+  }
+  function draw() {
+    towns.textContent = '';
+    rows.forEach(function (tr, i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'tl-town';
+      b.textContent = tr.cells[0].textContent;
+      b.setAttribute('aria-pressed', i === at ? 'true' : 'false');
+      b.addEventListener('click', function () {
+        at = i; draw();
+        var again = towns.querySelector('[aria-pressed="true"]');
+        if (again) again.focus();
+        if (!counted && window.KomakiCount) { counted = true; window.KomakiCount('town/lookup'); }
+      });
+      towns.appendChild(b);
+    });
+    var tr = rows[at], cls = tr.getAttribute('data-side'), heads = box.querySelectorAll('thead th');
+    var parts = box.querySelector('.tl-tpl').textContent.split('{town}');
+    var h = document.createElement('h4'), t = document.createElement('b');
+    t.textContent = tr.cells[0].textContent;
+    h.appendChild(document.createTextNode(parts[0] || '')); h.appendChild(t); h.appendChild(document.createTextNode(parts.slice(1).join('') || ''));
+    var grid = document.createElement('div');
+    grid.className = 'tl-schools';
+    grid.appendChild(school(tr.cells[1], heads[1].textContent, cls));
+    grid.appendChild(school(tr.cells[2], heads[2].textContent, cls));
+    out.textContent = '';
+    out.appendChild(h); out.appendChild(grid);
+    var note = tr.cells[3].textContent.trim();
+    if (note) { var p = document.createElement('p'); p.className = 'tl-change'; p.textContent = note; out.appendChild(p); }
+  }
+  ui.hidden = false;
+  box.classList.add('tl-has-ui');
+  draw();
+  document.addEventListener('komaki:i18n-applied', draw);
+})();
+
 /* ===== QUIZ（東部たんけんクイズ、community.html と index.html。2026-11-22） =====
    問題は data/quiz/<言語>.json（120問・12テーマ各10問。o の先頭が正解）。開いた人の言語の1枚だけ読む。
    難易度：easy＝lv が easy（このサイトのカードで答えがわかる問い）、hard＝それ以外、normal＝全部。

@@ -6,10 +6,26 @@
   <link rel="self" type="application/atom+xml" href="https://komaki-east-school-reorg.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/"/>
   <id>https://komaki-east-school-reorg.github.io/</id>
-  <updated>2026-11-22T00:00:00+09:00</updated>
+  <updated>2026-11-23T00:00:00+09:00</updated>
   <author><name>「これがまちつくサイトの解。」THE UNIT（住民有志・非公式）</name></author>
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
   <rights>このサイトは「これがまちつくサイトの解。」THE UNIT（住民有志）が運営しており、小牧市・教育委員会とは無関係です。</rights>
+  <entry>
+    <title>季節でめぐる東部に火渡り・初詣・各地の祭りを反映</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#legacy"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:a3c9bf39b20bc588</id>
+    <updated>2026-11-23T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜季節でめぐる東部に火渡り・初詣・各地の祭りを反映</summary>
+  </entry>
+  <entry>
+    <title>大城小学校区の町名から再編後の学校を調べる欄を追加</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/map.html#town-lookup"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:10d929692c390ab0</id>
+    <updated>2026-11-23T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜大城小学校区の町名から再編後の学校を調べる欄を追加</summary>
+  </entry>
   <entry>
     <title>東部の0〜17歳の年齢別グラフをトップに追加</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#child-estimate"/>
@@ -313,21 +329,5 @@
     <updated>2026-11-07T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜言語を切り替えても読んでいた位置のまま表示</summary>
-  </entry>
-  <entry>
-    <title>横にはみ出す表に「横にスクロールできます」の合図</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:502498ef2f15bcd4</id>
-    <updated>2026-11-07T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜横にはみ出す表に「横にスクロールできます」の合図</summary>
-  </entry>
-  <entry>
-    <title>検索の言葉をリンクで共有できるように</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:705fbd1e3f44c69e</id>
-    <updated>2026-11-07T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜検索の言葉をリンクで共有できるように</summary>
   </entry>
 </feed>
