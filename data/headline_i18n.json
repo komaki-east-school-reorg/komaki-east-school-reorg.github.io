@@ -40,6 +40,19 @@
       "tr": "Kitazato bölgesinin okullarını düşünme toplantısı (2.)",
       "my": "Kitazato ဒေသ ကျောင်းများအကြောင်း စဉ်းစားသည့် ဒုတိယအကြိမ် အစည်းအဝေး"
     },
+    "11/22 全尾張中学軟式野球大会": {
+      "en": "11/22 All-Owari Junior High School Rubber-Ball Baseball Tournament",
+      "pt": "22/11 Torneio de Beisebol com Bola de Borracha das Escolas Secundárias de Todo Owari",
+      "vi": "22/11 Giải bóng chày bóng mềm các trường trung học cơ sở toàn Owari",
+      "tl": "11/22 Paligsahan sa Rubber-Ball Baseball ng mga Junior High School sa Buong Owari",
+      "es": "22/11 Torneo de Béisbol con Pelota de Goma de las Secundarias de Todo Owari",
+      "zh": "11/22 全尾张中学软式棒球大赛",
+      "id": "22/11 Turnamen Bisbol Bola Karet SMP Se-Owari",
+      "ko": "11/22 전 오와리 중학교 연식 야구 대회",
+      "ne": "11/22 सम्पूर्ण ओवारी जुनियर हाइस्कूल रबर बल बेसबल प्रतियोगिता",
+      "tr": "22/11 Tüm Owari Ortaokulları Yumuşak Top Beyzbol Turnuvası",
+      "my": "11/22 Owari တစ်ခွင် အလယ်တန်းကျောင်းများ ရော်ဘာဘောလုံး ဘေ့စ်ဘော ပြိုင်ပွဲ"
+    },
     "11/21 全尾張中学軟式野球大会１回戦": {
       "en": "Nov 21: All-Owari Junior High Rubber-Ball Baseball Tournament, Round 1",
       "pt": "21/11: Torneio de Beisebol Soft das Escolas de Ensino Fundamental II de Owari, 1ª rodada",
@@ -66,18 +79,44 @@
       "tr": "Okul Sağlık Komitesi",
       "my": "ကျောင်းကျန်းမာရေးကော်မတီ"
     },
-    "PTAカルチャー講座": {
-      "en": "PTA Culture Course",
-      "pt": "Curso cultural da APM (PTA)",
-      "vi": "Khóa học văn hóa của PTA",
-      "tl": "Kursong Pangkultura ng PTA",
-      "es": "Curso cultural de la APA (PTA)",
-      "zh": "PTA文化讲座",
-      "id": "Kursus Budaya PTA",
-      "ko": "PTA 문화 강좌",
-      "ne": "PTA संस्कृति कक्षा",
-      "tr": "PTA Kültür Kursu",
-      "my": "PTA ယဉ်ကျေးမှုသင်တန်း"
+    "敗北の悔しさを、明日を変える一歩に。": {
+      "en": "Turning the sting of defeat into a step that changes tomorrow.",
+      "pt": "Transformando a frustração da derrota em um passo que muda o amanhã.",
+      "vi": "Biến nỗi tiếc nuối của thất bại thành bước đi thay đổi ngày mai.",
+      "tl": "Gawing hakbang ang sakit ng pagkatalo para baguhin ang bukas.",
+      "es": "Convertir la frustración de la derrota en un paso que cambie el mañana.",
+      "zh": "把落败的不甘，变成改变明天的一步。",
+      "id": "Mengubah penyesalan akibat kekalahan menjadi langkah yang mengubah hari esok.",
+      "ko": "패배의 분함을 내일을 바꾸는 한 걸음으로.",
+      "ne": "हारको पीडालाई भोलि बदल्ने एउटा पाइला बनाऔं।",
+      "tr": "Yenilginin acısını yarını değiştiren bir adıma dönüştürmek.",
+      "my": "ရှုံးနိမ့်မှု၏ နာကျင်မှုကို မနက်ဖြန်ကို ပြောင်းလဲစေသော ခြေလှမ်းတစ်ခု ဖြစ်စေပါစေ။"
+    },
+    "全尾張中学軟式野球大会 １回戦突破": {
+      "en": "All-Owari Junior High Rubber-Ball Baseball Tournament: Advanced Past the First Round",
+      "pt": "Torneio de beisebol com bola macia das escolas de ensino fundamental II de toda a região de Owari: classificação na primeira rodada",
+      "vi": "Giải bóng chày mềm trung học cơ sở toàn vùng Owari: vượt qua vòng 1",
+      "tl": "All-Owari Junior High Soft Baseball Tournament: Umabante sa Unang Round",
+      "es": "Torneo de béisbol con pelota blanda de secundarias de toda la región de Owari: avance de la primera ronda",
+      "zh": "全尾张初中软式棒球大赛 晋级首轮",
+      "id": "Turnamen Bisbol Bola Lunak SMP Seluruh Owari: Lolos Babak Pertama",
+      "ko": "전 오와리 중학교 연식 야구 대회 1회전 통과",
+      "ne": "सम्पूर्ण ओवारी माध्यमिक विद्यालय सफ्ट बेसबल प्रतियोगिता: पहिलो चरण पार",
+      "tr": "Tüm Owari Ortaokulları Yumuşak Top Beyzbol Turnuvası: İlk Turu Geçti",
+      "my": "Owari အလယ်တန်းကျောင်းများ ဘေ့စ်ဘောပွဲ အားလုံးပါဝင်သော ပြိုင်ပွဲ - ပထမအဆင့် ကျော်လွှားခြင်း"
+    },
+    "夢の教室": {
+      "en": "Dream Classroom",
+      "pt": "Sala de aula dos sonhos",
+      "vi": "Lớp học ước mơ",
+      "tl": "Silid-Aralan ng Pangarap",
+      "es": "Aula de los sueños",
+      "zh": "梦想课堂",
+      "id": "Kelas Impian",
+      "ko": "꿈의 교실",
+      "ne": "सपनाको कक्षा",
+      "tr": "Hayal Sınıfı",
+      "my": "အိပ်မက်သင်ခန်းစာ"
     },
     "ジュニア奉仕団 レター書き": {
       "en": "Junior Service Group: Letter Writing",
@@ -117,45 +156,6 @@
       "ne": "कक्षा 1 पेसा अनुसन्धान: अन्तर्वार्ता कसरी लिने",
       "tr": "1. Sınıf Meslek Araştırması: Röportaj Nasıl Yapılır",
       "my": "အတန်း ၁ အလုပ်အကိုင်လေ့လာခြင်း - အင်တာဗျူးလုပ်နည်း"
-    },
-    "全尾張中学軟式野球大会 １回戦突破": {
-      "en": "All-Owari Junior High Rubber-Ball Baseball Tournament: Advanced Past the First Round",
-      "pt": "Torneio de beisebol com bola macia das escolas de ensino fundamental II de toda a região de Owari: classificação na primeira rodada",
-      "vi": "Giải bóng chày mềm trung học cơ sở toàn vùng Owari: vượt qua vòng 1",
-      "tl": "All-Owari Junior High Soft Baseball Tournament: Umabante sa Unang Round",
-      "es": "Torneo de béisbol con pelota blanda de secundarias de toda la región de Owari: avance de la primera ronda",
-      "zh": "全尾张初中软式棒球大赛 晋级首轮",
-      "id": "Turnamen Bisbol Bola Lunak SMP Seluruh Owari: Lolos Babak Pertama",
-      "ko": "전 오와리 중학교 연식 야구 대회 1회전 통과",
-      "ne": "सम्पूर्ण ओवारी माध्यमिक विद्यालय सफ्ट बेसबल प्रतियोगिता: पहिलो चरण पार",
-      "tr": "Tüm Owari Ortaokulları Yumuşak Top Beyzbol Turnuvası: İlk Turu Geçti",
-      "my": "Owari အလယ်တန်းကျောင်းများ ဘေ့စ်ဘောပွဲ အားလုံးပါဝင်သော ပြိုင်ပွဲ - ပထမအဆင့် ကျော်လွှားခြင်း"
-    },
-    "夢の教室": {
-      "en": "Dream Classroom",
-      "pt": "Sala de aula dos sonhos",
-      "vi": "Lớp học ước mơ",
-      "tl": "Silid-Aralan ng Pangarap",
-      "es": "Aula de los sueños",
-      "zh": "梦想课堂",
-      "id": "Kelas Impian",
-      "ko": "꿈의 교실",
-      "ne": "सपनाको कक्षा",
-      "tr": "Hayal Sınıfı",
-      "my": "အိပ်မက်သင်ခန်းစာ"
-    },
-    "『冬の足音と、新しいご縁』": {
-      "en": "\"The Footsteps of Winter and New Connections\"",
-      "pt": "\"Os passos do inverno e novos laços\"",
-      "vi": "\"Bước chân mùa đông và những mối duyên mới\"",
-      "tl": "\"Ang yabag ng taglamig at mga bagong ugnayan\"",
-      "es": "\"Los pasos del invierno y nuevos lazos\"",
-      "zh": "“冬天的脚步与新的缘分”",
-      "id": "\"Langkah Musim Dingin dan Jalinan Baru\"",
-      "ko": "\"겨울의 발소리와 새로운 인연\"",
-      "ne": "\"जाडोको पदचाप र नयाँ सम्बन्धहरू\"",
-      "tr": "\"Kışın Ayak Sesleri ve Yeni Bağlar\"",
-      "my": "\"ဆောင်းရာသီ၏ ခြေသံနှင့် ဆက်ဆံရေးသစ်များ\""
     },
     "11月２０日 夢チャレンジ科～漫画講座～": {
       "en": "November 20: Dream Challenge Class – Manga Lecture",
@@ -573,6 +573,19 @@
       "tr": "Yeni okul bölgesi buluşması: müzik festivali",
       "my": "ကျောင်းနယ်မြေသစ် ဖလှယ်ပွဲ - ဂီတပွဲတော်"
     },
+    "福厳寺 あきば大祭・火渡り": {
+      "en": "Fukugonji Akiba Grand Festival and Fire-Walking",
+      "pt": "Grande Festival Akiba do Fukugonji e caminhada no fogo",
+      "vi": "Đại lễ Akiba chùa Fukugonji và nghi lễ đi trên lửa",
+      "tl": "Akiba Grand Festival ng Fukugonji at Paglakad sa Apoy",
+      "es": "Gran Festival Akiba de Fukugonji y caminata sobre fuego",
+      "zh": "福严寺秋叶大祭・火渡",
+      "id": "Festival Besar Akiba Fukugonji dan Berjalan di Atas Api",
+      "ko": "후쿠곤지 아키바 대제·불 건너기",
+      "ne": "फुकुगोन्जी आकिबा महोत्सव र आगोमा हिँड्ने अनुष्ठान",
+      "tr": "Fukugonji Akiba Büyük Festivali ve Ateşte Yürüme",
+      "my": "Fukugonji Akiba ပွဲတော်ကြီးနှင့် မီးပေါ်လျှောက်ခြင်း"
+    },
     "大にこにこ祭り ニコサイ": {
       "en": "Big Niko-Niko Festival “Nikosai”",
       "pt": "Grande Festival Niko-Niko “Nikosai”",
@@ -858,19 +871,6 @@
       "ne": "साकाशिता माध्यमिक विद्यालय क्षेत्रमा विद्यालय निर्माणबारे छलफल बैठक",
       "tr": "Sakashita Ortaokulu bölgesinde okul oluşturma görüşme toplantısı",
       "my": "Sakashita အလယ်တန်းကျောင်းဒေသ ကျောင်းတည်ဆောက်ရေး ဆွေးနွေးပွဲ"
-    },
-    "福厳寺 あきば大祭・火渡り": {
-      "en": "Fukugonji Akiba Grand Festival and Fire-Walking",
-      "pt": "Grande Festival Akiba do Fukugonji e caminhada no fogo",
-      "vi": "Đại lễ Akiba chùa Fukugonji và nghi lễ đi trên lửa",
-      "tl": "Akiba Grand Festival ng Fukugonji at Paglakad sa Apoy",
-      "es": "Gran Festival Akiba de Fukugonji y caminata sobre fuego",
-      "zh": "福严寺秋叶大祭・火渡",
-      "id": "Festival Besar Akiba Fukugonji dan Berjalan di Atas Api",
-      "ko": "후쿠곤지 아키바 대제·불 건너기",
-      "ne": "फुकुगोन्जी आकिबा महोत्सव र आगोमा हिँड्ने अनुष्ठान",
-      "tr": "Fukugonji Akiba Büyük Festivali ve Ateşte Yürüme",
-      "my": "Fukugonji Akiba ပွဲတော်ကြီးနှင့် မီးပေါ်လျှောက်ခြင်း"
     }
   }
 }
