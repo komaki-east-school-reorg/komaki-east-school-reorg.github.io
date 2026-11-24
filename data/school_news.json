@@ -1,8 +1,37 @@
 {
-  "fetched_at": "2026-11-23T03:01:24Z",
+  "fetched_at": "2026-11-24T06:16:44Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "hikarigaoka-e",
+      "level": "elem",
+      "names": {
+        "ja": "光ヶ丘小学校",
+        "ja_kids": "ひかりがおか小学校",
+        "en": "Hikarigaoka Elem. School",
+        "zh": "光之丘小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
+      "latest_date": "2026-11-23",
+      "items": [
+        {
+          "title": "小牧市民スポーツ大会【バスケットボール】",
+          "date": "2026-11-23",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136596189?tm=20261123154904"
+        },
+        {
+          "title": "やまももくらぶ「クラウンショー」",
+          "date": "2026-11-19",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136585116?tm=20261119181847"
+        },
+        {
+          "title": "5年生 体育 ゴール型ゲーム",
+          "date": "2026-11-19",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136584540?tm=20261119172435"
+        }
+      ]
+    },
     {
       "slug": "toryo-j",
       "level": "jhs",
@@ -203,35 +232,6 @@
           "title": "４年生 体育でハードル走",
           "date": "2026-11-16",
           "url": "https://www.komaki-aic.ed.jp/ohshiro_e/weblog/136558108?tm=20261116133526"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-e",
-      "level": "elem",
-      "names": {
-        "ja": "光ヶ丘小学校",
-        "ja_kids": "ひかりがおか小学校",
-        "en": "Hikarigaoka Elem. School",
-        "zh": "光之丘小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
-      "latest_date": "2026-11-19",
-      "items": [
-        {
-          "title": "やまももくらぶ「クラウンショー」",
-          "date": "2026-11-19",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136585116?tm=20261119181847"
-        },
-        {
-          "title": "5年生 体育 ゴール型ゲーム",
-          "date": "2026-11-19",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136584540?tm=20261119172435"
-        },
-        {
-          "title": "4年生 国語「クラスみんなで決めるには」",
-          "date": "2026-11-19",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136579045?tm=20261119103456"
         }
       ]
     }
