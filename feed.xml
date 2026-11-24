@@ -6,10 +6,18 @@
   <link rel="self" type="application/atom+xml" href="https://komaki-east-school-reorg.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/"/>
   <id>https://komaki-east-school-reorg.github.io/</id>
-  <updated>2026-11-24T00:00:00+09:00</updated>
+  <updated>2026-11-25T00:00:00+09:00</updated>
   <author><name>「これがまちつくサイトの解。」THE UNIT（住民有志・非公式）</name></author>
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
   <rights>このサイトは「これがまちつくサイトの解。」THE UNIT（住民有志）が運営しており、小牧市・教育委員会とは無関係です。</rights>
+  <entry>
+    <title>このサイトを Ver.1.1 に</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/site.html"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:5ace6dcfcac564ec</id>
+    <updated>2026-11-25T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜このサイトを Ver.1.1 に</summary>
+  </entry>
   <entry>
     <title>東部まちづくり：小牧市東部まちづくり審議会委員の公募について</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#community-actions"/>
@@ -321,13 +329,5 @@
     <updated>2026-11-10T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜更新履歴の各行から関係するコーナーへ移れるように</summary>
-  </entry>
-  <entry>
-    <title>各節の終わりに関連する所へのリンク「あわせて読みたい」を追加</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/about.html#why"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:2ffa58eff858f873</id>
-    <updated>2026-11-10T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜各節の終わりに関連する所へのリンク「あわせて読みたい」を追加</summary>
   </entry>
 </feed>
