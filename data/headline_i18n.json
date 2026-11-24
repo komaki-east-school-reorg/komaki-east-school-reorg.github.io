@@ -40,6 +40,45 @@
       "tr": "Kitazato bölgesinin okullarını düşünme toplantısı (2.)",
       "my": "Kitazato ဒေသ ကျောင်းများအကြောင်း စဉ်းစားသည့် ဒုတိယအကြိမ် အစည်းအဝေး"
     },
+    "小牧市民スポーツ大会【バスケットボール】": {
+      "en": "Komaki Citizens' Sports Tournament [Basketball]",
+      "pt": "Torneio Esportivo dos Cidadãos de Komaki [Basquete]",
+      "vi": "Đại hội thể thao người dân Komaki [Bóng rổ]",
+      "tl": "Sports Tournament ng mga Mamamayan ng Komaki [Basketball]",
+      "es": "Torneo Deportivo de los Ciudadanos de Komaki [Baloncesto]",
+      "zh": "小牧市民运动会【篮球】",
+      "id": "Turnamen Olahraga Warga Komaki [Bola Basket]",
+      "ko": "고마키 시민 스포츠 대회 [농구]",
+      "ne": "कोमाकी नागरिक खेलकुद प्रतियोगिता [बास्केटबल]",
+      "tr": "Komaki Vatandaşları Spor Turnuvası [Basketbol]",
+      "my": "Komaki မြို့သူမြို့သား အားကစားပြိုင်ပွဲ [ဘတ်စကက်ဘော]"
+    },
+    "やまももくらぶ「クラウンショー」": {
+      "en": "Yamamomo Club \"Clown Show\"",
+      "pt": "Yamamomo Club \"Show de Palhaço\"",
+      "vi": "Câu lạc bộ Yamamomo \"Chương trình chú hề\"",
+      "tl": "Yamamomo Club \"Clown Show\"",
+      "es": "Yamamomo Club \"Show de payasos\"",
+      "zh": "Yamamomo俱乐部“小丑表演”",
+      "id": "Klub Yamamomo \"Pertunjukan Badut\"",
+      "ko": "야마모모 클럽 \"클라운 쇼\"",
+      "ne": "यामामोमो क्लब \"क्लाउन सो\"",
+      "tr": "Yamamomo Kulübü \"Palyaço Gösterisi\"",
+      "my": "Yamamomo ကလပ် \"လူရွှင်တော်ပွဲ\""
+    },
+    "5年生 体育 ゴール型ゲーム": {
+      "en": "5th grade PE: goal-type game",
+      "pt": "5º ano, Educação Física: jogo de gol",
+      "vi": "Lớp 5 Thể dục: trò chơi ghi bàn",
+      "tl": "Grade 5 PE: larong may goal",
+      "es": "5.º grado, Educación Física: juego de portería",
+      "zh": "5年级 体育 球门类游戏",
+      "id": "Kelas 5 Olahraga: permainan gawang",
+      "ko": "5학년 체육 골 유형 게임",
+      "ne": "कक्षा 5 शारीरिक शिक्षा: गोल खेल",
+      "tr": "5. sınıf Beden Eğitimi: gol türü oyun",
+      "my": "ကျောင်းသား ၅ တန်း ကာယပညာ: ဂိုးသွင်းကစားနည်း"
+    },
     "11/22 全尾張中学軟式野球大会": {
       "en": "11/22 All-Owari Junior High School Rubber-Ball Baseball Tournament",
       "pt": "22/11 Torneio de Beisebol com Bola de Borracha das Escolas Secundárias de Todo Owari",
@@ -313,45 +352,6 @@
       "tr": "4. sınıf beden eğitimi: Engelli koşu",
       "my": "တန်း 4 ကာယပညာ - အတားအဆီးပြေးခြင်း"
     },
-    "やまももくらぶ「クラウンショー」": {
-      "en": "Yamamomo Club \"Clown Show\"",
-      "pt": "Yamamomo Club \"Show de Palhaço\"",
-      "vi": "Câu lạc bộ Yamamomo \"Chương trình chú hề\"",
-      "tl": "Yamamomo Club \"Clown Show\"",
-      "es": "Yamamomo Club \"Show de payasos\"",
-      "zh": "Yamamomo俱乐部“小丑表演”",
-      "id": "Klub Yamamomo \"Pertunjukan Badut\"",
-      "ko": "야마모모 클럽 \"클라운 쇼\"",
-      "ne": "यामामोमो क्लब \"क्लाउन सो\"",
-      "tr": "Yamamomo Kulübü \"Palyaço Gösterisi\"",
-      "my": "Yamamomo ကလပ် \"လူရွှင်တော်ပွဲ\""
-    },
-    "5年生 体育 ゴール型ゲーム": {
-      "en": "5th grade PE: goal-type game",
-      "pt": "5º ano, Educação Física: jogo de gol",
-      "vi": "Lớp 5 Thể dục: trò chơi ghi bàn",
-      "tl": "Grade 5 PE: larong may goal",
-      "es": "5.º grado, Educación Física: juego de portería",
-      "zh": "5年级 体育 球门类游戏",
-      "id": "Kelas 5 Olahraga: permainan gawang",
-      "ko": "5학년 체육 골 유형 게임",
-      "ne": "कक्षा 5 शारीरिक शिक्षा: गोल खेल",
-      "tr": "5. sınıf Beden Eğitimi: gol türü oyun",
-      "my": "ကျောင်းသား ၅ တန်း ကာယပညာ: ဂိုးသွင်းကစားနည်း"
-    },
-    "4年生 国語「クラスみんなで決めるには」": {
-      "en": "4th Grade Japanese: \"How to Decide as a Whole Class\"",
-      "pt": "4º ano, língua japonesa: \"Como decidir com toda a turma\"",
-      "vi": "Lớp 4, môn Quốc ngữ: \"Cách cả lớp cùng quyết định\"",
-      "tl": "Grade 4, Wikang Hapon: \"Paano Magpasya Bilang Buong Klase\"",
-      "es": "4.º grado, lengua japonesa: \"Cómo decidir entre toda la clase\"",
-      "zh": "四年级 语文“全班如何做决定”",
-      "id": "Kelas 4, Bahasa Jepang: \"Cara Memutuskan Bersama Satu Kelas\"",
-      "ko": "4학년 국어 '반 모두가 함께 정하려면'",
-      "ne": "कक्षा 4 जापानी भाषा: \"पूरै कक्षाले कसरी निर्णय गर्ने\"",
-      "tr": "4. Sınıf Japonca: \"Bütün Sınıfça Nasıl Karar Verilir\"",
-      "my": "၄ တန်းအတန်း ဂျပန်စာ - \"အတန်းလုံးအတူ ဆုံးဖြတ်ပုံ\""
-    },
     "桃ヶ丘小学校区地域協議会 あおぞら市場": {
       "en": "Momogaoka Elementary School District Community Council: Open-Air Market",
       "pt": "Conselho comunitário da área da escola primária Momogaoka: feira ao ar livre",
@@ -416,6 +416,19 @@
       "ne": "कोमाकी प्राथमिक विद्यालय क्षेत्र सामुदायिक परिषद्: तीन पुस्ता भेटघाट, Happy Festa",
       "tr": "Komaki İlkokulu bölgesi mahalle konseyi: Üç kuşak buluşması, Happy Festa",
       "my": "ကိုမာကီ မူလတန်းကျောင်း ဇုန် ရပ်ရွာကောင်စီ - မျိုးဆက်သုံးဆက် ဆုံတွေ့ပွဲ Happy Festa"
+    },
+    "小牧市東部まちづくり審議会委員の公募について": {
+      "en": "Open Call for Members of the Komaki City Eastern District Development Council",
+      "pt": "Chamada pública para membros do Conselho de Desenvolvimento da Região Leste da Cidade de Komaki",
+      "vi": "Thông báo tuyển thành viên công khai cho Hội đồng phát triển khu vực phía Đông thành phố Komaki",
+      "tl": "Bukas na Panawagan para sa mga Miyembro ng Konseho sa Pagpapaunlad ng Silangang Distrito ng Lungsod ng Komaki",
+      "es": "Convocatoria pública de miembros del Consejo de Desarrollo del Distrito Este de la ciudad de Komaki",
+      "zh": "小牧市东部城镇建设审议会委员公开招募",
+      "id": "Pengumuman Rekrutmen Terbuka Anggota Dewan Pembangunan Kawasan Timur Kota Komaki",
+      "ko": "고마키시 동부 마을 만들기 심의회 위원 공개 모집",
+      "ne": "कोमाकी सहरको पूर्वी क्षेत्र विकास परिषद् सदस्यका लागि खुला आह्वान",
+      "tr": "Komaki Şehri Doğu Bölgesi Kalkınma Konseyi Üyeleri İçin Açık Çağrı",
+      "my": "Komaki မြို့အရှေ့ပိုင်း မြို့ရွာဖွံ့ဖြိုးရေး ကောင်စီ အဖွဲ့ဝင် ပွင့်လင်းစုဆောင်းခြင်း"
     },
     "令和8年度第3回小牧市東部まちづくり審議会": {
       "en": "Komaki City Eastern District Development Council, 3rd Meeting of FY2026 (Reiwa 8)",
