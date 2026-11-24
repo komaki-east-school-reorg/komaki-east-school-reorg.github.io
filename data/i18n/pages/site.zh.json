@@ -61,6 +61,7 @@
   "intro_dl": "保存图片（PNG・1200×630）",
   "intro_h": "介绍本网站<small>Introduce This Site</small>",
   "intro_p": "在居委会的通知、社交媒体等处介绍本网站时，请使用这张图片。同时附上网址（https://komaki-east-school-reorg.github.io/），读者就能找到这里。",
+  "llms_line": "我们还为生成式AI和搜索服务提供了网站指南 <a href=\"https://komaki-east-school-reorg.github.io/llms.txt\">llms.txt</a> 和正文全文 <a href=\"https://komaki-east-school-reorg.github.io/llms-full.txt\">llms-full.txt</a>（日语）。",
   "logo_area": "小牧市东部（篠冈地区）",
   "logo_main": "学校重组<b>导航</b>",
   "meta_desc_site": "本站的介绍图片、作为应用使用的方法、话题标签、意见提交处、译文核对、全部更新记录，以及不使用 Cookie 的浏览次数统计说明。",

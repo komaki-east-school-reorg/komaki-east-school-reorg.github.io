@@ -66,12 +66,19 @@ jobs:
         if: steps.check.outputs.diff == 'true'
         run: python3 .github/scripts/build_crosslinks.py
 
+      # 生成AI向けの llms.txt と、各ページの静的な構造化データも作り直す（auto_gates.py check 30・31。2026-11-24）
+      - name: Rebuild llms.txt and static structured data
+        if: steps.check.outputs.diff == 'true'
+        run: |
+          python3 .github/scripts/build_llms.py
+          python3 .github/scripts/build_static_seo.py
+
       - name: Commit automatic number fixes
         if: steps.check.outputs.diff == 'true'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A data/contacts.json data/i18n data/search data/crosslinks *.html qa
+          git add -A data/contacts.json data/i18n data/search data/crosslinks *.html qa llms.txt llms-full.txt
           if git diff --staged --quiet; then
             echo "Nothing to commit (報告のみ)"
           else

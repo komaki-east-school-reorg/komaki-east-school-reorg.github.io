@@ -61,6 +61,7 @@
   "intro_dl": "이미지 저장(PNG・1200×630)",
   "intro_h": "이 사이트 소개하기<small>Introduce This Site</small>",
   "intro_p": "자치회 안내문이나 SNS 등에서 이 사이트를 소개할 때 이 이미지를 사용해 주세요. 사이트 주소(https://komaki-east-school-reorg.github.io/)를 함께 실으면 읽은 사람이 찾아올 수 있습니다.",
+  "llms_line": "생성형 AI와 검색 서비스를 위해 사이트 안내 <a href=\"https://komaki-east-school-reorg.github.io/llms.txt\">llms.txt</a>와 본문 전체 <a href=\"https://komaki-east-school-reorg.github.io/llms-full.txt\">llms-full.txt</a>(일본어)도 두고 있습니다.",
   "logo_area": "고마키시 동부(시노오카 지구)",
   "logo_main": "학교 재편 <b>내비</b>",
   "meta_desc_site": "이 사이트의 소개용 이미지, 앱으로 쓰는 방법, 해시태그, 의견 보내는 곳, 번역 확인, 업데이트 내역 전체, 쿠키를 쓰지 않는 열람 수 집계에 대한 설명입니다.",

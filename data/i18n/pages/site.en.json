@@ -61,6 +61,7 @@
   "intro_dl": "Save the image (PNG, 1200×630)",
   "intro_h": "Introduce This Site<small>このサイトを紹介する</small>",
   "intro_p": "You are welcome to use this image when introducing the site in a neighborhood association handout, on social media or elsewhere. Print the address (https://komaki-east-school-reorg.github.io/) with it so readers can find their way here.",
+  "llms_line": "For AI assistants and search services, we also provide a site guide, <a href=\"https://komaki-east-school-reorg.github.io/llms.txt\">llms.txt</a>, and the full text, <a href=\"https://komaki-east-school-reorg.github.io/llms-full.txt\">llms-full.txt</a> (in Japanese).",
   "logo_area": "Eastern Komaki (Shinooka District)",
   "logo_main": "School Reorganization <b>Guide</b>",
   "meta_desc_site": "The introduction image, using the site as an app, hashtags, where to send feedback, help with translations, the full update log, and how visits are counted without cookies on Komaki East School Reorganization.",

@@ -5,4 +5,29 @@ Allow: /
 # JavaScript 側で noindex を付けている（js/i18n.js の applyKidsSeoMeta）。
 # ここでは特に禁止する場所はない。
 
+# 生成AIのクローラも、検索・回答用と学習用のどちらも歓迎する（2026-11-24 運営者の決定）。
+# 上の「*」で許可済みだが、名指しの指定を探すクローラのために明記している。
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: anthropic-ai
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: Amazonbot
+User-agent: meta-externalagent
+User-agent: DuckAssistBot
+User-agent: MistralAI-User
+User-agent: cohere-ai
+Allow: /
+
+# 生成AI向けのサイト案内と本文の全文（日本語）:
+#   https://komaki-east-school-reorg.github.io/llms.txt
+#   https://komaki-east-school-reorg.github.io/llms-full.txt
+
 Sitemap: https://komaki-east-school-reorg.github.io/sitemap.xml

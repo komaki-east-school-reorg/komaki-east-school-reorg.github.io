@@ -593,6 +593,15 @@ def quiz_data():
     return out
 
 
+def static_seo():
+    """各ページの静的な構造化データ（build_static_seo.py の SEO:BEGIN〜END）が古くないか（2026-11-24）。
+    自動更新で faq_a* などが変わると古くなる。auto_gates.py check 31 は警告だけなので、ここで週1回知らせる。"""
+    import subprocess
+    r = subprocess.run([sys.executable, ".github/scripts/build_static_seo.py", "--check"],
+                       capture_output=True, text=True)
+    return [] if r.returncode == 0 else [r.stdout.strip() + "（build_static_seo.py を実行してコミット）"]
+
+
 CHECKS = [
     ("東部たんけんクイズのデータ", quiz_data),
     ("辞書に無いキー（HTML の data-i18n）", missing_keys),
@@ -614,6 +623,7 @@ CHECKS = [
     ("日付と曜日の食い違い", weekday_mismatch),
     ("許可する市の URL の記載もれ", permitted_sync),
     ("関連リンクの偏り", crosslink_balance),
+    ("静的な構造化データの古さ", static_seo),
 ]
 
 

@@ -58,7 +58,9 @@ ALLOWED_PREFIXES = ("data/i18n/pages/",
 # data/i18n/pages/a.html、sitemap.xml.bak まで通っていた。
 ALLOWED_GENERATED = re.compile(r"^(data/i18n/pages/[A-Za-z0-9-]+\.[A-Za-z-]+\.json"
                                r"|events/\d{4}-\d{2}-\d{2}-\d+\.html|qa/[a-z]+(?:-[a-z]+)*\d+\.html|sitemap\.xml|feed\.xml"
-                               r"|data/search/[A-Za-z-]+\.json|data/crosslinks/[a-z0-9-]+\.json|calendar\.[a-z]{2}\.ics)$")
+                               r"|data/search/[A-Za-z-]+\.json|data/crosslinks/[a-z0-9-]+\.json|calendar\.[a-z]{2}\.ics"
+                               # 生成AI向けの案内と全文は build_llms.py の生成物（2026-11-24）
+                               r"|llms\.txt|llms-full\.txt)$")
 
 
 def is_allowed_path(p):
@@ -569,6 +571,32 @@ def main():
     except Exception as e:
         fail(f"build_crosslinks.py が実行できない: {e}")
 
+    # --- 30. 生成AI向けの llms.txt / llms-full.txt が最新か（2026-11-24） ---
+    # 検索の索引と辞書から決定的に作る。古いと、AI が消えた節や昔の文を引用する。
+    try:
+        r = subprocess.run([sys.executable, ".github/scripts/build_llms.py", "--check"],
+                           capture_output=True, text=True)
+        if r.returncode != 0:
+            fail("llms.txt が古い（build_llms.py を実行すること）: " + r.stdout.strip())
+        else:
+            ok("llms.txt / llms-full.txt は最新")
+    except Exception as e:
+        fail(f"build_llms.py が実行できない: {e}")
+
+    # --- 31. 各ページの静的な構造化データ（SEO:BEGIN〜END）が最新か（2026-11-24） ---
+    # JavaScript を実行しないクローラ向けの写し。画面と実行時の構造化データは i18n.js が作るので、
+    # 古くても読者には見えない。自動更新の起案（faq_a* の書き換えなど）で止めないよう警告だけにし、
+    # 週1回の番号照合（check-contacts.yml）と手作業のときに build_static_seo.py で作り直す。
+    try:
+        r = subprocess.run([sys.executable, ".github/scripts/build_static_seo.py", "--check"],
+                           capture_output=True, text=True)
+        if r.returncode != 0:
+            print("WARN: " + r.stdout.strip() + "（build_static_seo.py を実行すること）")
+        else:
+            ok("静的な構造化データは最新")
+    except Exception as e:
+        fail(f"build_static_seo.py が実行できない: {e}")
+
     # --- 6. 外部リンク規則（サイト全体を検査） ---
     link_violations = []
     # 翻訳辞書も見る：非日本語ではリンクの実体が data/i18n/*.json 側の文面なので、
@@ -640,7 +668,7 @@ def main():
     host_violations = []
     url_re = re.compile(r"(?i)(?<![\w.@-])(?:https?:)?//([^/\s\"'<>)\\`?#]+)([^\s\"'<>)\\`]*)")
     bad_scheme = re.compile(r"(?i)(?:href|src|action|formaction|xlink:href)\s*=\s*[\"']?\s*(?:javascript|data|vbscript):")
-    scan = (glob.glob("*.html") + glob.glob("events/*.html") + glob.glob("qa/*.html") + glob.glob("js/*.js") + ["sw.js"]
+    scan = (glob.glob("*.html") + glob.glob("events/*.html") + glob.glob("qa/*.html") + glob.glob("js/*.js") + ["sw.js", "robots.txt", "llms.txt", "llms-full.txt"]
             + glob.glob("data/i18n/*.json")
             + ["data/events.json", "data/community_actions.json", "data/headline_i18n.json"])
     for p in scan:
@@ -664,8 +692,8 @@ def main():
             if host not in PERMITTED_HOSTS:
                 host_violations.append(f"{p}: 許可リストにないホスト {host}")
             elif host == "www.youtube.com":
-                # 新篠岡音頭のレコード音源の1本だけ（2026-11-22 ユーザー指示。community.html だけ）
-                if m.group(2) != YOUTUBE_LEGACY or p != "community.html":
+                # 新篠岡音頭のレコード音源の1本だけ（2026-11-22 ユーザー指示。community.html と、2026-11-24 から歌詞を引用した shinooka.html だけ）
+                if m.group(2) != YOUTUBE_LEGACY or p not in ("community.html", "shinooka.html"):
                     host_violations.append(f"{p}: 許可外の YouTube のURL {m.group(2)[:60]}")
             elif host in LEGACY_SOURCES:
                 from urllib.parse import unquote

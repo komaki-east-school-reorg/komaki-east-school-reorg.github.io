@@ -109,7 +109,9 @@ data/crosslinks/            関連リンク「あわせて読みたい」（<ペ
                             i18n.js はこちらを優先して取得し、404 のときだけ全体辞書に落ちる。
 
 ■ 検索エンジン向け
-robots.txt                  クローラ向けの許可設定とサイトマップの所在。全ページ許可。
+robots.txt                  クローラ向けの許可設定とサイトマップの所在。全ページ許可。生成AIのクローラ（検索・回答用も学習用も）を名指しで許可（2026-11-24）。
+llms.txt                    生成AI向けのサイト案内（非公式・運営者・事実と見解の書き分け・ページと主な節の一覧）。.github/scripts/build_llms.py が生成。手編集不可。
+llms-full.txt               生成AI向けの本文の全文（日本語、検索の索引から）。build_llms.py が生成。手編集不可。
 sitemap.xml                 全11ページのサイトマップ。各URLに12言語＋x-defaultのhreflang相互参照を付与。
                             手動管理のため、ページを追加・削除したらここも更新すること。
 
@@ -137,6 +139,8 @@ sitemap.xml                 全11ページのサイトマップ。各URLに12言
 .github/scripts/map_targets.py      変更された公式ページのスラッグをsite-facts.jsonで引き、サイト内の更新候補箇所をMarkdown出力するスクリプト（Issue本文生成用）。
 .github/scripts/build_page_dicts.py  data/i18n/pages/ を生成する。辞書やHTMLのdata-i18nを変えたら実行してコミットすること。--check で鮮度検証のみ。
 .github/scripts/build_search_index.py  data/search/ を生成する（サイト内検索の索引）。辞書やページの文を変えたら実行してコミットすること。--check で鮮度検証のみ（auto_gates.py check 23）。
+.github/scripts/build_llms.py       llms.txt / llms-full.txt を生成する。build_search_index.py のあとに実行。--check で鮮度検証（auto_gates.py check 30）。
+.github/scripts/build_static_seo.py 各ページ <head> の SEO:BEGIN〜END に WebPage・BreadcrumbList（faq.html は FAQPage も）の JSON-LD を書く。--check（auto_gates.py check 31 は警告だけ、site_lint.py が週1回知らせる）。
 .github/scripts/build_crosslinks.py  data/crosslinks/ を生成する（関連リンク）。build_search_index.py のあとに実行してコミットすること。--check で鮮度検証のみ（auto_gates.py check 27）、--show で選ばれた組み合わせを一覧。
 .github/scripts/build_qr.py         共有欄の「QR」ボタンが使うQRコード（qr/<ページ>.<言語>.svg）を生成する。segnoが必要（pip install segno）。--check で鮮度検証のみ。
 .github/scripts/auto_gates.py       自動更新のガードレール検証（編集範囲・スキーマ・ja/enキー一致・こどもモード1行の長さ・ページ別辞書の鮮度・外部リンク規則・出典実在チェック）。exit 0=合格/3=変更なし/1=不合格。

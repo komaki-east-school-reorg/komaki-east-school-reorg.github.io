@@ -1,0 +1,113 @@
+# 小牧市東部（篠岡地区）学校再編ナビ
+
+> 令和9年度（2027年度）実施予定の小牧市東部（篠岡地区）学校再編計画について、公式情報をもとにわかりやすく解説する、桃花台エリアの非公式の地域情報メディアです。
+
+- 運営：「これがまちつくサイトの解。」THE UNIT（住民有志）。小牧市・教育委員会の公式サイトではありません。
+- 公式情報の確かめ先：小牧市教育委員会 教育総務課 学校再編推進係のページ https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/303/index.html
+- 事実は市・県・国の公表資料にもとづき、市の資料の文面はそのまま載せず当サイトの言葉で書き直しています。
+- 当サイトの見解（🔎 検証・💡 提案）を載せているのは review.html・analysis.html と、shinooka.html の見解の節だけです。【事実】と 🔎・💡 の印で書き分けています。引用するときは、事実と当サイトの見解を区別してください。
+- 個人名・政党名は載せていません。計画の決定や最新の日程は、市の公表で確かめてください。
+- 12言語で読めます（URL に ?lang=en / pt / vi / tl / es / zh / id / ko / ne / tr / my）。この案内と本文は日本語です。
+- 最新の動き：Atom フィード https://komaki-east-school-reorg.github.io/feed.xml 、予定：https://komaki-east-school-reorg.github.io/calendar.ja.ics 、全文：https://komaki-east-school-reorg.github.io/llms-full.txt
+
+## ページ
+
+- [小牧市東部（篠岡地区）学校再編ナビ｜桃花台エリアの非公式でもわかりやすい地域情報メディア](https://komaki-east-school-reorg.github.io/): 令和9年度（2027年度）実施予定の小牧市東部（篠岡地区）学校再編計画について、公式情報をもとにわかりやすく解説する、桃花台エリアの非公式の地域情報メディアです。
+  - [現在の状況](https://komaki-east-school-reorg.github.io/#status)
+  - [最新の動き](https://komaki-east-school-reorg.github.io/#latest)
+- [計画概要](https://komaki-east-school-reorg.github.io/about.html): 小学校5校・中学校3校を令和9年度に4校へ再編する計画の背景と内容、通学区域をくわしく説明します。再編後の学びと支えについて市が示している方針もまとめています。となりの春日井市と、小牧市のほかの地区（北里地区など）の学校再編の動きもまとめています。
+  - [なぜ今、再編が必要なのか](https://komaki-east-school-reorg.github.io/about.html#why)
+  - [再編で期待されること](https://komaki-east-school-reorg.github.io/about.html#merits)
+  - [再編後の学びと支え](https://komaki-east-school-reorg.github.io/about.html#learning)
+  - [第1期再編の内容](https://komaki-east-school-reorg.github.io/about.html#plan)
+  - [第2期再編について](https://komaki-east-school-reorg.github.io/about.html#phase2)
+  - [意思決定のプロセス](https://komaki-east-school-reorg.github.io/about.html#process)
+  - [ことばメモ](https://komaki-east-school-reorg.github.io/about.html#glossary)
+  - [ほかの地区や、となりのまちでは？](https://komaki-east-school-reorg.github.io/about.html#nearby)
+- [スケジュール](https://komaki-east-school-reorg.github.io/schedule.html): 学校再編の説明会・意見交換会・実施予定など、計画全体のスケジュールをまとめています。
+  - [入学・進級までの流れ](https://komaki-east-school-reorg.github.io/schedule.html#prep)
+- [よくある質問と賛否の声](https://komaki-east-school-reorg.github.io/faq.html): 市の公式情報にもとづくQ&A32問に加え、賛成・反対・中立の声とパブリックコメント142件の論点を掲載しています。
+  - [よくある質問](https://komaki-east-school-reorg.github.io/faq.html#qa)
+  - [賛成・反対・中立の声](https://komaki-east-school-reorg.github.io/faq.html#voices)
+  - [パブリックコメントで実際に言われたこと](https://komaki-east-school-reorg.github.io/faq.html#pubcom)
+- [議会での審議](https://komaki-east-school-reorg.github.io/council.html): 令和8年の第1回（3月）・第2回（6月）・第3回（9月）定例会で、篠岡地区の学校再編にかかわることがどう審議されたかを、わかりやすくまとめています。
+- [スクールバス計画](https://komaki-east-school-reorg.github.io/bus.html): 2027年度に始まる篠岡地区のスクールバスの計画です。運行エリア・便数・費用・安全対策・乗り始めるまでのチェックリスト・よくある質問をまとめています。
+  - [サービス概要](https://komaki-east-school-reorg.github.io/bus.html#overview)
+  - [運行エリア](https://komaki-east-school-reorg.github.io/bus.html#area)
+  - [対象エリアの地図](https://komaki-east-school-reorg.github.io/bus.html#area-map)
+  - [申請の手続き](https://komaki-east-school-reorg.github.io/bus.html#apply)
+  - [乗り始めるまでのチェックリスト](https://komaki-east-school-reorg.github.io/bus.html#checklist)
+  - [バス停と乗降場所](https://komaki-east-school-reorg.github.io/bus.html#stops)
+  - [運行事業者と契約](https://komaki-east-school-reorg.github.io/bus.html#operator)
+  - [安全対策](https://komaki-east-school-reorg.github.io/bus.html#safety)
+  - [導入スケジュール](https://komaki-east-school-reorg.github.io/bus.html#timeline)
+  - [よくある質問](https://komaki-east-school-reorg.github.io/bus.html#faq)
+- [地域クラブ・課外活動](https://komaki-east-school-reorg.github.io/clubs.html): 学校の部活動と、校区で活動している地域のクラブを学校ごとに並べています。部活動の地域移行についての説明もあります。運動系のほか、合唱やプログラミングなどの文化・コンピュータ系も載せています。
+  - [部活動の地域移行とは](https://komaki-east-school-reorg.github.io/clubs.html#transition)
+  - [校区をまたぐ・市内全域の活動](https://komaki-east-school-reorg.github.io/clubs.html#wide)
+  - [学校ごとの部活動と地域クラブ](https://komaki-east-school-reorg.github.io/clubs.html#schools)
+  - [このページの情報について](https://komaki-east-school-reorg.github.io/clubs.html#clubs-note)
+- [地域協議会と地域のまちづくり](https://komaki-east-school-reorg.github.io/community.html): 小牧市篠岡地区の地域協議会とは何か、学校とのつながり、学校再編で変わること・変わらないことを解説。協議会のイベント案内と住民有志の取組も掲載しています。東部まちづくりプラットフォームへの参加方法も案内しています。東部の都市計画の動きも毎日自動で並べています。
+  - [地域協議会とは](https://komaki-east-school-reorg.github.io/community.html#what)
+  - [学校と地域協議会の関係](https://komaki-east-school-reorg.github.io/community.html#schools)
+  - [再編後の変化と継続](https://komaki-east-school-reorg.github.io/community.html#changes)
+  - [よくある疑問](https://komaki-east-school-reorg.github.io/community.html#qa)
+  - [地域のレガシー](https://komaki-east-school-reorg.github.io/community.html#legacy)
+  - [地域の取組](https://komaki-east-school-reorg.github.io/community.html#community-actions)
+  - [東部まちづくりプラットフォーム](https://komaki-east-school-reorg.github.io/community.html#platform)
+  - [東部振興構想の見直しと桃花台の土地利用](https://komaki-east-school-reorg.github.io/community.html#tobu-kousou)
+  - [都市計画の動き（東部地域）](https://komaki-east-school-reorg.github.io/community.html#toshikeikaku)
+- [学校の場所（地図）](https://komaki-east-school-reorg.github.io/map.html): 篠岡地区の再編前の8校と再編後の4校の場所を、Googleマップで確かめられます。東西それぞれの統合先も載せています。大城小学校区は町名から学校を調べられます。
+  - [エリア概要マップ](https://komaki-east-school-reorg.github.io/map.html#overview)
+  - [再編前の学校の場所](https://komaki-east-school-reorg.github.io/map.html#before)
+  - [再編後の4校の位置](https://komaki-east-school-reorg.github.io/map.html#after)
+  - [町名から学校を調べる](https://komaki-east-school-reorg.github.io/map.html#town-lookup)
+  - [通学区域とスクールバスの対象エリア](https://komaki-east-school-reorg.github.io/map.html#bus-area)
+- [全国から見る学校再編](https://komaki-east-school-reorg.github.io/nationwide.html): 文部科学省の統計と、2026年8月に10年ぶりに改訂された国の手引をもとに、学校再編の全国的な動きと国が示す規模・通学の基準を整理しています。
+  - [数字でみる全国](https://komaki-east-school-reorg.github.io/nationwide.html#nw-figures)
+  - [国が示している基準](https://komaki-east-school-reorg.github.io/nationwide.html#nw-standards)
+  - [2026年8月、国の手引が10年ぶりに改訂](https://komaki-east-school-reorg.github.io/nationwide.html#nw-guide)
+  - [小中一貫という形](https://komaki-east-school-reorg.github.io/nationwide.html#nw-ikkan)
+  - [中高一貫という形](https://komaki-east-school-reorg.github.io/nationwide.html#nw-chuko)
+- [計画の検証と、これからの提案](https://komaki-east-school-reorg.github.io/review.html): 小牧市東部（篠岡地区）の学校再編計画について、当サイトが検証した核心10項目と、教育の質を守り高める・東部の子どもを増やす・既存校のレガシーを引き継ぐための提案15項目をまとめています。市・教育委員会・県・国への質問集も載せています（市の見解ではありません）。
+  - [検証の土台になる数字](https://komaki-east-school-reorg.github.io/review.html#rev-numbers)
+  - [検証の核心（10項目）](https://komaki-east-school-reorg.github.io/review.html#rev-core)
+  - [提案の核心（15項目）](https://komaki-east-school-reorg.github.io/review.html#rev-core-ideas)
+  - [市・教育委員会・県・国への質問集](https://komaki-east-school-reorg.github.io/review.html#rev-open)
+  - [さらに深く読む](https://komaki-east-school-reorg.github.io/review.html#rev-deep)
+  - [関係する部署の問い合わせ先](https://komaki-east-school-reorg.github.io/review.html#rev-contact)
+- [深掘り検証](https://komaki-east-school-reorg.github.io/analysis.html): 小牧市東部（篠岡地区）の学校再編を、計画そのもの・教育の質・子どもの人数の3部に分けて、根拠からくわしく検証する当サイトの考察です。（市の見解ではありません）。
+  - [検証：計画から読み取れないこと](https://komaki-east-school-reorg.github.io/analysis.html#rev-gaps)
+  - [だれが決め、どこまで市が決められるのか](https://komaki-east-school-reorg.github.io/analysis.html#rev-power)
+  - [検証：教育の質から見た再編](https://komaki-east-school-reorg.github.io/analysis.html#rev-quality)
+  - [検討：これからの子どもに要る力を、この地区でどう育てるか](https://komaki-east-school-reorg.github.io/analysis.html#rev-skills)
+  - [検討：既存校のレガシーを引き継ぐ](https://komaki-east-school-reorg.github.io/analysis.html#rev-legacy)
+  - [検証：これまでの施策は東部に効いたか](https://komaki-east-school-reorg.github.io/analysis.html#rev-history)
+  - [検証：県と国は何をしてきたか](https://komaki-east-school-reorg.github.io/analysis.html#rev-nation)
+  - [本来どうすべきだったか、これから何ができるか](https://komaki-east-school-reorg.github.io/analysis.html#rev-should)
+  - [検討：地区全体の子どもを増やすには](https://komaki-east-school-reorg.github.io/analysis.html#rev-ideas)
+  - [検討：この地区に高校を置けるか](https://komaki-east-school-reorg.github.io/analysis.html#rev-highschool)
+- [このサイトについて](https://komaki-east-school-reorg.github.io/site.html): 小牧市東部（篠岡地区）学校再編ナビの紹介用画像、アプリとしての使い方、ハッシュタグ、ご意見の送り先、翻訳の確認のお願い、これまでの更新履歴の一覧、Cookie を使わない閲覧数の集計についての説明です。
+  - [運営者](https://komaki-east-school-reorg.github.io/site.html#operator)
+  - [このサイトを紹介する](https://komaki-east-school-reorg.github.io/site.html#site-intro)
+  - [アプリとして使う](https://komaki-east-school-reorg.github.io/site.html#app)
+  - [フィード（RSS）で受け取る](https://komaki-east-school-reorg.github.io/site.html#feed)
+  - [使い方を広める・応援する](https://komaki-east-school-reorg.github.io/site.html#spread)
+  - [ご意見の送り先](https://komaki-east-school-reorg.github.io/site.html#feedback)
+  - [翻訳を確かめてくださる方へ](https://komaki-east-school-reorg.github.io/site.html#translation)
+  - [更新履歴の一覧](https://komaki-east-school-reorg.github.io/site.html#changelog)
+  - [更新履歴の一覧](https://komaki-east-school-reorg.github.io/site.html#site-updates-all)
+  - [閲覧数の集計について](https://komaki-east-school-reorg.github.io/site.html#privacy)
+- [東部たんけんクイズ](https://komaki-east-school-reorg.github.io/quiz.html): 東部の歴史や地名、祭り、お店の120問。答えに合わせて、かんたんからむずかしいまで次の問題が変わるクイズです。
+- [「篠岡」の名前の由来](https://komaki-east-school-reorg.github.io/shinooka.html): 「篠岡」は篠木荘と味岡荘にちなむ名前です。『篠岡村誌』の記述、二つの荘園の広がり、新篠岡音頭に込められた思い、「桃花台」との関係についての当サイトの見解をまとめました。
+  - [村誌に書かれた由来](https://komaki-east-school-reorg.github.io/shinooka.html#origin)
+  - [二つの荘園の広がり](https://komaki-east-school-reorg.github.io/shinooka.html#estates)
+  - [篠岡村より前の学校](https://komaki-east-school-reorg.github.io/shinooka.html#before-village)
+  - [当サイトの見解](https://komaki-east-school-reorg.github.io/shinooka.html#view)
+  - [「新篠岡音頭」に込められた思い](https://komaki-east-school-reorg.github.io/shinooka.html#ondo)
+  - [「しのおか学園」という名前への疑問](https://komaki-east-school-reorg.github.io/shinooka.html#gakuen)
+
+## Optional
+
+- [本文の全文（日本語）](https://komaki-east-school-reorg.github.io/llms-full.txt): 各ページの節・カード・Q&A の本文
+- [サイトマップ](https://komaki-east-school-reorg.github.io/sitemap.xml): 予定ごとのページ（events/）と Q&A の1問ずつのページ（qa/）を含む
