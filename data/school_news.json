@@ -1,8 +1,66 @@
 {
-  "fetched_at": "2026-11-24T06:16:44Z",
+  "fetched_at": "2026-11-25T05:05:11Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "sue-e",
+      "level": "elem",
+      "names": {
+        "ja": "陶小学校",
+        "ja_kids": "すえ小学校",
+        "en": "Sue Elem. School",
+        "zh": "陶小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/sue-e/",
+      "latest_date": "2026-11-25",
+      "items": [
+        {
+          "title": "11/25 生活科：収穫した芋をいただきました！（２年生）",
+          "date": "2026-11-25",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136605723?tm=20261125134000"
+        },
+        {
+          "title": "🍮おいしいプリンの作り方を教えてもらったよ🍮",
+          "date": "2026-11-25",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136603082?tm=20261125092624"
+        },
+        {
+          "title": "11/25 読み聞かせ（１～３年生）",
+          "date": "2026-11-25",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136602753?tm=20261125084116"
+        }
+      ]
+    },
+    {
+      "slug": "shinooka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "篠岡中学校",
+        "ja_kids": "しのおか中学校",
+        "en": "Shinooka Junior High",
+        "zh": "篠冈中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
+      "latest_date": "2026-11-25",
+      "items": [
+        {
+          "title": "《桃花台野球部》全尾張大会に出場しました",
+          "date": "2026-11-25",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136603580?tm=20261125103118"
+        },
+        {
+          "title": "学校保健委員会を行いました",
+          "date": "2026-11-25",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136603085?tm=20261125092653"
+        },
+        {
+          "title": "１年生 明日のプレ登校の確認",
+          "date": "2026-11-25",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136602797?tm=20261125084804"
+        }
+      ]
+    },
     {
       "slug": "hikarigaoka-e",
       "level": "elem",
@@ -13,22 +71,22 @@
         "zh": "光之丘小学"
       },
       "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
-      "latest_date": "2026-11-23",
+      "latest_date": "2026-11-25",
       "items": [
+        {
+          "title": "5年生 図工「美しく立つはり金」",
+          "date": "2026-11-25",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136604312?tm=20261125114507"
+        },
+        {
+          "title": "廃食用油回収へのご協力ありがとうございました",
+          "date": "2026-11-25",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136602781?tm=20261125084426"
+        },
         {
           "title": "小牧市民スポーツ大会【バスケットボール】",
           "date": "2026-11-23",
           "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136596189?tm=20261123154904"
-        },
-        {
-          "title": "やまももくらぶ「クラウンショー」",
-          "date": "2026-11-19",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136585116?tm=20261119181847"
-        },
-        {
-          "title": "5年生 体育 ゴール型ゲーム",
-          "date": "2026-11-19",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136584540?tm=20261119172435"
         }
       ]
     },
@@ -87,64 +145,6 @@
           "title": "夢の教室",
           "date": "2026-11-20",
           "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136592971?tm=20261120173811"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "篠岡中学校",
-        "ja_kids": "しのおか中学校",
-        "en": "Shinooka Junior High",
-        "zh": "篠冈中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-11-21",
-      "items": [
-        {
-          "title": "ジュニア奉仕団 レター書き",
-          "date": "2026-11-21",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136594449?tm=20261121113545"
-        },
-        {
-          "title": "３年生 家庭科",
-          "date": "2026-11-20",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136593163?tm=20261120175130"
-        },
-        {
-          "title": "１年生 職業調べ インタビューの仕方",
-          "date": "2026-11-20",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136590326?tm=20261120141806"
-        }
-      ]
-    },
-    {
-      "slug": "sue-e",
-      "level": "elem",
-      "names": {
-        "ja": "陶小学校",
-        "ja_kids": "すえ小学校",
-        "en": "Sue Elem. School",
-        "zh": "陶小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-11-20",
-      "items": [
-        {
-          "title": "11月２０日 夢チャレンジ科～漫画講座～",
-          "date": "2026-11-20",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136593899?tm=20261120194006"
-        },
-        {
-          "title": "11/20 社会：陶地区の戦国時代（６年生）",
-          "date": "2026-11-20",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136589826?tm=20261120134438"
-        },
-        {
-          "title": "11/19 今日の給食",
-          "date": "2026-11-19",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136554008?tm=20261119141024"
         }
       ]
     },
