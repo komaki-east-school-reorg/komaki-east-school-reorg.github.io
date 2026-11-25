@@ -461,6 +461,20 @@ DESCRIPTION:यी मिति स्वयंसेवी बासि
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=ne
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-10-30-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261030T000000Z
+DTSTART;VALUE=DATE:20261030
+DTEND;VALUE=DATE:20261031
+SUMMARY:令和8年度第2回小牧市都市計画審議会 (सहरी 
+ योजना)
+DESCRIPTION:यी मिति स्वयंसेवी बासि
+ न्दाहरूको साइटले जम्मा गरे
+ का हुन्। औपचारिक सूचना नगर
+ बाट आउने कागजातमै पक्का गर
+ ्नुहोस्।
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=ne
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-10-31-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261031T000000Z
 DTSTART;VALUE=DATE:20261001

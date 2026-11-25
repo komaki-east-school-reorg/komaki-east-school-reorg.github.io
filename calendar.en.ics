@@ -330,6 +330,17 @@ DESCRIPTION:These dates were compiled by a resident-run site. Check the d
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=en
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-10-30-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261030T000000Z
+DTSTART;VALUE=DATE:20261030
+DTEND;VALUE=DATE:20261031
+SUMMARY:令和8年度第2回小牧市都市計画審議会 (city planning
+ )
+DESCRIPTION:These dates were compiled by a resident-run site. Check the d
+ ocuments sent by the city for the official notice.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=en
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-10-31-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261031T000000Z
 DTSTART;VALUE=DATE:20261001
