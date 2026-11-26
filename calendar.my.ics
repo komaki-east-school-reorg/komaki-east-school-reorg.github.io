@@ -529,8 +529,10 @@ UID:2026-10-30-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261030T000000Z
 DTSTART;VALUE=DATE:20261030
 DTEND;VALUE=DATE:20261031
-SUMMARY:令和8年度第2回小牧市都市計画審議会 (မြို
- ့ပြစီမံကိန်း)
+SUMMARY:Reiwa ၈ (၂၀၂၆ ဘဏ္ဍာရေးနှစ်) ဒ
+ ုတိယအကြိမ် Komaki မြို့ မြို့ပ
+ ြစီမံကိန်းကောင်စီ (မြို့ပ
+ ြစီမံကိန်း)
 DESCRIPTION:ဤရက်စွဲများကို ဒေသခံမ
  ျား လုပ်ဆောင်သော ဝဘ်ဆိုက်
  မှ စုစည်းထားခြင်း ဖြစ်သည်
@@ -778,8 +780,10 @@ UID:council-1acreqi-2026-12-13@komaki-east-school-reorg.github.io
 DTSTAMP:20261213T000000Z
 DTSTART:20261213T010000Z
 DTEND:20261213T024500Z
-SUMMARY:陶小学校区地域協議会 凧あげ大会 (ဒေသဆိ
- ုင်ရာ ကောင်စီ)
+SUMMARY:Sue မူလတန်းကျောင်း နယ်မြေ
+  ရပ်ရွာအဖွဲ့ကောင်စီ: စွန်လ
+ ွှတ်ပွဲ (ဒေသဆိုင်ရာ ကောင်စ
+ ီ)
 DESCRIPTION:ဤရက်စွဲများကို ဒေသခံမ
  ျား လုပ်ဆောင်သော ဝဘ်ဆိုက်
  မှ စုစည်းထားခြင်း ဖြစ်သည်
@@ -787,7 +791,7 @@ DESCRIPTION:ဤရက်စွဲများကို ဒေသခံမ
  ်ကို မြို့တော်မှ ပေးပို့သ
  ော စာရွက်စာတမ်းများဖြင့် 
  စစ်ဆေးပါ။\n12月13日 10時00分～11時45分
-LOCATION:陶小学校
+LOCATION:Sue မူလတန်းကျောင်း
 URL:https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3
  /3_2/chiikikyougikaievent/53004.html
 END:VEVENT
@@ -816,8 +820,10 @@ UID:council-19vpscb-2026-12-19@komaki-east-school-reorg.github.io
 DTSTAMP:20261219T000000Z
 DTSTART:20261219T010000Z
 DTEND:20261219T030000Z
-SUMMARY:篠岡学区地域協議会 もちつき大会 (ဒေသဆိ
- ုင်ရာ ကောင်စီ)
+SUMMARY:Shinooka ကျောင်းနယ်မြေ ရပ်ရွ
+ ာအဖွဲ့ကောင်စီ: မိုချိထုထေ
+ ာင်းပွဲ (ဒေသဆိုင်ရာ ကောင်စ
+ ီ)
 DESCRIPTION:ဤရက်စွဲများကို ဒေသခံမ
  ျား လုပ်ဆောင်သော ဝဘ်ဆိုက်
  မှ စုစည်းထားခြင်း ဖြစ်သည်
@@ -825,7 +831,7 @@ DESCRIPTION:ဤရက်စွဲများကို ဒေသခံမ
  ်ကို မြို့တော်မှ ပေးပို့သ
  ော စာရွက်စာတမ်းများဖြင့် 
  စစ်ဆေးပါ။\n12月19日 10時～12時
-LOCATION:篠岡小学校
+LOCATION:Shinooka မူလတန်းကျောင်း
 URL:https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3
  /3_2/chiikikyougikaievent/53003.html
 END:VEVENT
