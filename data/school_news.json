@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-25T05:05:11Z",
+  "fetched_at": "2026-11-26T04:21:19Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
@@ -16,19 +16,19 @@
       "latest_date": "2026-11-25",
       "items": [
         {
+          "title": "最後の陶の森の花壇が完成しました！",
+          "date": "2026-11-25",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136714150?tm=20261125232423"
+        },
+        {
+          "title": "11/25 今日の給食",
+          "date": "2026-11-25",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136554009?tm=20261125142935"
+        },
+        {
           "title": "11/25 生活科：収穫した芋をいただきました！（２年生）",
           "date": "2026-11-25",
           "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136605723?tm=20261125134000"
-        },
-        {
-          "title": "🍮おいしいプリンの作り方を教えてもらったよ🍮",
-          "date": "2026-11-25",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136603082?tm=20261125092624"
-        },
-        {
-          "title": "11/25 読み聞かせ（１～３年生）",
-          "date": "2026-11-25",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136602753?tm=20261125084116"
         }
       ]
     },
@@ -45,6 +45,11 @@
       "latest_date": "2026-11-25",
       "items": [
         {
+          "title": "３年生 面接練習",
+          "date": "2026-11-25",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136606675?tm=20261125150743"
+        },
+        {
           "title": "《桃花台野球部》全尾張大会に出場しました",
           "date": "2026-11-25",
           "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136603580?tm=20261125103118"
@@ -53,11 +58,35 @@
           "title": "学校保健委員会を行いました",
           "date": "2026-11-25",
           "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136603085?tm=20261125092653"
+        }
+      ]
+    },
+    {
+      "slug": "shinooka-e",
+      "level": "elem",
+      "names": {
+        "ja": "篠岡小学校",
+        "ja_kids": "しのおか小学校",
+        "en": "Shinooka Elem. School",
+        "zh": "篠冈小学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
+      "latest_date": "2026-11-25",
+      "items": [
+        {
+          "title": "アミーゴ給食",
+          "date": "2026-11-25",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136608403?tm=20261125174037"
         },
         {
-          "title": "１年生 明日のプレ登校の確認",
+          "title": "花壇に花を植えました",
           "date": "2026-11-25",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136602797?tm=20261125084804"
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136608282?tm=20261125173031"
+        },
+        {
+          "title": "アミーゴ給食２",
+          "date": "2026-11-19",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136585842?tm=20261119212640"
         }
       ]
     },
@@ -174,35 +203,6 @@
           "title": "２日間の思い出をお土産に…",
           "date": "2026-11-18",
           "url": "https://www.komaki-aic.ed.jp/momogaoka_e/weblog/136574992?tm=20261118152147"
-        }
-      ]
-    },
-    {
-      "slug": "shinooka-e",
-      "level": "elem",
-      "names": {
-        "ja": "篠岡小学校",
-        "ja_kids": "しのおか小学校",
-        "en": "Shinooka Elem. School",
-        "zh": "篠冈小学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
-      "latest_date": "2026-11-19",
-      "items": [
-        {
-          "title": "アミーゴ給食２",
-          "date": "2026-11-19",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136585842?tm=20261119212640"
-        },
-        {
-          "title": "秋の深まり",
-          "date": "2026-11-19",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136585836?tm=20261119212141"
-        },
-        {
-          "title": "今回のしのキッズは",
-          "date": "2026-11-19",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136585832?tm=20261119211712"
         }
       ]
     },
