@@ -6,10 +6,42 @@
   <link rel="self" type="application/atom+xml" href="https://komaki-east-school-reorg.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/"/>
   <id>https://komaki-east-school-reorg.github.io/</id>
-  <updated>2026-11-25T00:00:00+09:00</updated>
+  <updated>2026-11-26T00:00:00+09:00</updated>
   <author><name>「これがまちつくサイトの解。」THE UNIT（住民有志・非公式）</name></author>
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
   <rights>このサイトは「これがまちつくサイトの解。」THE UNIT（住民有志）が運営しており、小牧市・教育委員会とは無関係です。</rights>
+  <entry>
+    <title>地域協議会の催し：陶小学校区地域協議会 凧あげ大会（12月13日 10時00分～11時45分）</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#council-events"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:02ee72699b28723c</id>
+    <updated>2026-11-26T00:00:00+09:00</updated>
+    <category term="地域協議会のイベント案内"/>
+    <summary>地域協議会のイベント案内｜地域協議会の催し：陶小学校区地域協議会 凧あげ大会（12月13日 10時00分～11時45分）</summary>
+  </entry>
+  <entry>
+    <title>地域協議会の催し：篠岡学区地域協議会 もちつき大会（12月19日 10時～12時）</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#council-events"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:81ddad78e80f7450</id>
+    <updated>2026-11-26T00:00:00+09:00</updated>
+    <category term="地域協議会のイベント案内"/>
+    <summary>地域協議会のイベント案内｜地域協議会の催し：篠岡学区地域協議会 もちつき大会（12月19日 10時～12時）</summary>
+  </entry>
+  <entry>
+    <title>「陶小学校区地域協議会 凧あげ大会」を地域の取組と予定に掲載</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#council-events"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:ea6ef3bc8fde0ca8</id>
+    <updated>2026-11-26T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜「陶小学校区地域協議会 凧あげ大会」を地域の取組と予定に掲載</summary>
+  </entry>
+  <entry>
+    <title>「篠岡学区地域協議会 もちつき大会」を地域の取組と予定に掲載</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#council-events"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:fbe35756b90af1ec</id>
+    <updated>2026-11-26T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜「篠岡学区地域協議会 もちつき大会」を地域の取組と予定に掲載</summary>
+  </entry>
   <entry>
     <title>このサイトを Ver.1.1 に</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/site.html"/>
@@ -297,37 +329,5 @@
     <updated>2026-11-11T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜カレンダーに「この月の予定」の一覧と、今月・次の予定の月へのボタンを追加</summary>
-  </entry>
-  <entry>
-    <title>よくある質問に絞り込みと「すべて開く」を追加</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/faq.html#qa"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:d62c3f9536b0fbec</id>
-    <updated>2026-11-11T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜よくある質問に絞り込みと「すべて開く」を追加</summary>
-  </entry>
-  <entry>
-    <title>過去の更新履歴をすべて見られる一覧を追加</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/site.html#changelog"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:3c5922e01b8abf85</id>
-    <updated>2026-11-10T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜過去の更新履歴をすべて見られる一覧を追加</summary>
-  </entry>
-  <entry>
-    <title>質問集に愛知県・国あての問いを追加</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/review.html#rev-open"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:d94402e383528bd5</id>
-    <updated>2026-11-10T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜質問集に愛知県・国あての問いを追加</summary>
-  </entry>
-  <entry>
-    <title>更新履歴の各行から関係するコーナーへ移れるように</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html#site-updates"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:1017035535b6800b</id>
-    <updated>2026-11-10T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜更新履歴の各行から関係するコーナーへ移れるように</summary>
   </entry>
 </feed>

@@ -537,6 +537,20 @@ DESCRIPTION:Các mốc thời gian này do một trang do người dân l
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=vi
 END:VEVENT
 BEGIN:VEVENT
+UID:council-1acreqi-2026-12-13@komaki-east-school-reorg.github.io
+DTSTAMP:20261213T000000Z
+DTSTART:20261213T010000Z
+DTEND:20261213T024500Z
+SUMMARY:陶小学校区地域協議会 凧あげ大会 (hội đồng c
+ ộng đồng)
+DESCRIPTION:Các mốc thời gian này do một trang do người dân l
+ ập tổng hợp. Hãy kiểm tra thông báo chính thức trong giấ
+ y tờ thành phố gửi.\n12月13日 10時00分～11時45分
+LOCATION:陶小学校
+URL:https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3
+ /3_2/chiikikyougikaievent/53004.html
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-15-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261215T000000Z
 DTSTART;VALUE=DATE:20261201
@@ -548,6 +562,20 @@ DESCRIPTION:Các mốc thời gian này do một trang do người dân l
  ập tổng hợp. Hãy kiểm tra thông báo chính thức trong giấ
  y tờ thành phố gửi.
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=vi
+END:VEVENT
+BEGIN:VEVENT
+UID:council-19vpscb-2026-12-19@komaki-east-school-reorg.github.io
+DTSTAMP:20261219T000000Z
+DTSTART:20261219T010000Z
+DTEND:20261219T030000Z
+SUMMARY:篠岡学区地域協議会 もちつき大会 (hội đồng c
+ ộng đồng)
+DESCRIPTION:Các mốc thời gian này do một trang do người dân l
+ ập tổng hợp. Hãy kiểm tra thông báo chính thức trong giấ
+ y tờ thành phố gửi.\n12月19日 10時～12時
+LOCATION:篠岡小学校
+URL:https://www.city.komaki.aichi.jp/admin/soshiki/kenkouikigai/sasaeai/3
+ /3_2/chiikikyougikaievent/53003.html
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-12-25-komaki-saihen@komaki-east-school-reorg.github.io
