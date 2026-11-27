@@ -6,10 +6,18 @@
   <link rel="self" type="application/atom+xml" href="https://komaki-east-school-reorg.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/"/>
   <id>https://komaki-east-school-reorg.github.io/</id>
-  <updated>2026-11-26T00:00:00+09:00</updated>
+  <updated>2026-11-27T00:00:00+09:00</updated>
   <author><name>「これがまちつくサイトの解。」THE UNIT（住民有志・非公式）</name></author>
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
   <rights>このサイトは「これがまちつくサイトの解。」THE UNIT（住民有志）が運営しており、小牧市・教育委員会とは無関係です。</rights>
+  <entry>
+    <title>東部まちづくり：東部振興構想(2022～2031年度)</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#community-actions"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:8155fced227797c8</id>
+    <updated>2026-11-27T00:00:00+09:00</updated>
+    <category term="東部まちづくりの動き"/>
+    <summary>東部まちづくりの動き｜東部まちづくり：東部振興構想(2022～2031年度)</summary>
+  </entry>
   <entry>
     <title>地域協議会の催し：陶小学校区地域協議会 凧あげ大会（12月13日 10時00分～11時45分）</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#council-events"/>
@@ -321,13 +329,5 @@
     <updated>2026-11-11T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜読み上げに速さの切り替えと「通して読む」を追加・区切りで間を置くよう改良</summary>
-  </entry>
-  <entry>
-    <title>カレンダーに「この月の予定」の一覧と、今月・次の予定の月へのボタンを追加</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/schedule.html#calendar-view"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:00d0922ece1d7d10</id>
-    <updated>2026-11-11T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜カレンダーに「この月の予定」の一覧と、今月・次の予定の月へのボタンを追加</summary>
   </entry>
 </feed>
