@@ -35,6 +35,14 @@
     <summary>サイトの更新履歴｜地域の取組・都市計画・他地区の一覧の見出しから公式ページへ</summary>
   </entry>
   <entry>
+    <title>今後のスケジュールの各予定からスケジュールの該当箇所へ</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/schedule.html"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:e25fd4d30f7be0af</id>
+    <updated>2026-11-27T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜今後のスケジュールの各予定からスケジュールの該当箇所へ</summary>
+  </entry>
+  <entry>
     <title>地域協議会の催し：陶小学校区地域協議会 凧あげ大会（12月13日 10時00分～11時45分）</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#council-events"/>
     <id>tag:komaki-east-school-reorg.github.io,2026:02ee72699b28723c</id>
@@ -321,13 +329,5 @@
     <updated>2026-11-13T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜地域クラブ・課外活動を種目でしぼれるボタンを追加</summary>
-  </entry>
-  <entry>
-    <title>スクールバスに乗り始めるまでのチェックリストを追加</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/bus.html#checklist"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:2e621857275082ef</id>
-    <updated>2026-11-13T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜スクールバスに乗り始めるまでのチェックリストを追加</summary>
   </entry>
 </feed>

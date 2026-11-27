@@ -993,6 +993,9 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 .upcoming-name {
   overflow-wrap: anywhere;
 }
+/* 各予定からスケジュールのその予定へ（2026-11-27）。色は帯の文字のまま、下線でリンクと分かるように */
+.upcoming-link { color: inherit; text-decoration: underline; text-decoration-color: rgba(255,255,255,.35); text-underline-offset: .2em; }
+.upcoming-link:hover, .upcoming-link:focus-visible { color: #fff; text-decoration-color: currentColor; }
 /* 「あと◯日」の札。数えるのは日付の決まった予定だけ（NEXT COUNTDOWN）。 */
 .upcoming-countdown {
   display: inline-block;
@@ -3968,3 +3971,18 @@ html:lang(ja) .sn-gist { display: none; }
 .sn-lesson p { margin: 0 0 .5rem; }
 .sn-lesson-list { margin: 0; padding-left: 1.4rem; display: grid; gap: .55rem; }
 .feed-llms { font-size: .88rem; color: var(--text-muted); }
+
+/* ===== 上寄せ（2026-11-27 ユーザー指示：レイアウトで上下が真ん中に寄っているものは上寄せに） =====
+   見出しが折り返して何行にもなる行で、日付・札・📅 が行の真ん中に浮いていた。
+   文字の並ぶ行は「1行目の文字の並び（baseline）」にそろえ、挿絵や写真と文の組は上端にそろえる。
+   ボタン・ヘッダ・ナビ・切り替えなどの部品は対象外（1行の高さの中で真ん中に置くのが正しいため）。 */
+.upcoming-item, .tobu-head, .action-head, .school-card-head, .update-meta { align-items: baseline; }
+.faq-q { align-items: flex-start; }
+.faq-q-icon { margin-top: .1em; }
+.bus-map-legend li { align-items: flex-start; }
+.bus-map-key { margin-top: .2em; }
+.tl-head { align-items: start; }
+.ill-steps--3 li { align-items: flex-start; }
+@media (min-width: 561px) {
+  .op-card, .pr-card { align-items: flex-start; }
+}

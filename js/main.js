@@ -182,6 +182,7 @@ window.KomakiCount = (function () {
     ['.faq-link', 'link/faq'],
     ['.xlink', 'xlink/go'],
     ['.event-permalink', 'link/event'],
+    ['.upcoming-link', 'upcoming/go'],   // 2026-11-27 今後のスケジュールの各予定 → スケジュールのその予定
     ['.footer-feed a, .feed-box-link, .feed-section-link', 'feed/open'],
     ['.fb-open', 'feedback/open'],
     ['.tr-open', 'translation/open'],      // 2026-11-08 翻訳の修正提案（site.html#translation）
@@ -1394,6 +1395,63 @@ window.KomakiGrade = (function () {
   document.addEventListener('komaki:i18n-applied', function () { renderSchedule(); renderDigest(); });
 })();
 
+/* ===== SCHEDULE JUMP（schedule.html。トップの「今後のスケジュール」から来たときの着地） =====
+   2026-11-27 ユーザー指示：帯の各予定から、スケジュールの一覧のその予定へ飛ぶ。帯は予定を
+   events.json のキー（終わりの日）と何件目か（data-ev="キー|n"）でしか知らないので、リンクは
+   schedule.html#at-<キー>-<n> とし、ここで .event-item[data-ev] を探して着地する。自動で足す催し
+   （TOKADAI SCHEDULE、data-auto）は後から描かれるので、見つかるまで最大6秒待つ。手書きの予定は
+   本当の id（ev-…）があるので、ハッシュをそれに置き換える（そのまま共有できる URL にする）。
+   見つからなければ主要イベント一覧の見出しへ。着地は1回だけ。 */
+(function () {
+  var m = /^#at-(\d{4}-\d{2}-\d{2})-(\d+)$/.exec(location.hash || '');
+  if (!m || !document.querySelector('.event-list')) return;
+  var sel = '.event-item[data-ev="' + m[1] + '|' + m[2] + '"]';
+  var done = false, obs = null;
+  function land(el) {
+    if (done) return;
+    done = true;
+    if (obs) obs.disconnect();
+    if (el.id) { try { history.replaceState(history.state, '', location.pathname + location.search + '#' + el.id); } catch (e) {} }
+    // 辞書の適用や後から描く一覧で上の段の高さが変わるので、瞬時に合わせてから何度か合わせ直す
+    // （なめらかなスクロールは途中のレイアウト変化で止まってしまう）。読者がスクロールしたらやめる。
+    var moved = false, mine = false;
+    // 自動の催しは辞書が当たるたびに描き直される（TOKADAI SCHEDULE）ので、毎回探し直す
+    function cur() { return el.isConnected ? el : (document.querySelector(sel) || el); }
+    function flash() {
+      var x = cur();
+      x.classList.add('just-landed');
+      setTimeout(function () { x.classList.remove('just-landed'); }, 2400);
+    }
+    function align() {
+      el = cur();
+      if (moved || !el.isConnected) return;
+      var r = el.getBoundingClientRect();
+      mine = true;
+      window.scrollTo(0, Math.max(0, window.scrollY + r.top - (window.innerHeight - r.height) / 2));
+      setTimeout(function () { mine = false; }, 50);
+    }
+    ['wheel', 'touchstart', 'keydown'].forEach(function (t) {
+      window.addEventListener(t, function () { if (!mine) moved = true; }, {passive: true, once: true});
+    });
+    setTimeout(function () { align(); flash(); }, 150);
+    setTimeout(align, 700);
+    setTimeout(function () { align(); if (!document.querySelector(sel + '.just-landed')) flash(); }, 1600);
+  }
+  function tryFind() { var el = document.querySelector(sel); if (el) land(el); return !!el; }
+  if (tryFind()) return;
+  if (window.MutationObserver) {
+    obs = new MutationObserver(function () { tryFind(); });
+    obs.observe(document.querySelector('main') || document.body, {childList: true, subtree: true});
+  }
+  setTimeout(function () {
+    if (done) return;
+    done = true;
+    if (obs) obs.disconnect();
+    var h = document.querySelector('[data-i18n-html="schedule_events_h2"]');
+    if (h) h.scrollIntoView({block: 'start'});
+  }, 6000);
+})();
+
 /* ===== PAST COMMUNITY EVENTS（schedule.html） =====
    2026-11-05 ユーザー指示：スケジュールの一覧では、すでに終わった「地域の取組」だけを隠す。
    対象は schedule.html で data-community を付けた手書きの予定（札が「住民有志」「地域協議会」のもの）。
@@ -1633,7 +1691,8 @@ window.KomakiGrade = (function () {
       return '<div class="upcoming-item"' + (ev.day === true && it.key >= it.today ? ' data-countdown="' + esc(it.key) + '"' : ' data-key="' + esc(it.key) + '"') +
                ' data-ev="' + esc(it.key + '|' + it.idx) + '">' +
                '<span class="upcoming-date">' + esc(date) + '</span>' +
-               '<span class="upcoming-name">' + esc(name) + '</span>' +
+               // 押すとスケジュールページのその予定へ（2026-11-27 ユーザー指示。着地は SCHEDULE JUMP）
+               '<a class="upcoming-name upcoming-link" href="schedule.html#at-' + esc(it.key + '-' + it.idx) + '">' + esc(name) + '</a>' +
              '</div>';
     }).join('');
     var bar = box.closest('.upcoming-bar');

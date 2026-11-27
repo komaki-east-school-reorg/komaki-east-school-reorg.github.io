@@ -4,6 +4,13 @@
     {
       "date": "2026-11-27",
       "type": "feature",
+      "ja": "今後のスケジュールの各予定からスケジュールの該当箇所へ",
+      "en": "Each upcoming item now links to its place on the schedule page",
+      "link": "schedule.html"
+    },
+    {
+      "date": "2026-11-27",
+      "type": "feature",
       "ja": "地域の取組・都市計画・他地区の一覧の見出しから公式ページへ",
       "en": "Headings in community, city planning and nearby-district lists now link to the official pages",
       "link": "community.html#community-actions"
