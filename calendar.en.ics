@@ -535,6 +535,19 @@ DESCRIPTION:These dates were compiled by a resident-run site. Check the d
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=en
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-28-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261228T000000Z
+DTSTART;VALUE=DATE:20261127
+DTEND;VALUE=DATE:20261229
+SUMMARY:Public comments: Eastern District Strategy mid-term review (date 
+ TBD\, 11/2026 – 12/2026)
+DESCRIPTION:The date has not been announced yet. It is entered as the ann
+ ounced period (11/2026 – 12/2026). Please update this entry once the d
+ ate is known.\nThese dates were compiled by a resident-run site. Check t
+ he documents sent by the city for the official notice.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=en
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-31-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261231T000000Z
 DTSTART;VALUE=DATE:20261201

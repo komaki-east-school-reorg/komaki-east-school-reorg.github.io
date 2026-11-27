@@ -586,6 +586,20 @@ DESCRIPTION:この予定は住民有志のサイトがまとめたもの
 URL:https://komaki-east-school-reorg.github.io/schedule.html
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-28-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261228T000000Z
+DTSTART;VALUE=DATE:20261127
+DTEND;VALUE=DATE:20261229
+SUMMARY:東部振興構想 中間見直し（案）の意見募集（日
+ 程未定・2026年11月〜12月）
+DESCRIPTION:日付はまだ公表されていません。公表された
+ 時期（2026年11月〜12月）を期間として登録しています
+ 。日程が分かったら、この予定を直してください。\n
+ この予定は住民有志のサイトがまとめたものです。正
+ 式な案内は市から届く書類でご確認ください。
+URL:https://komaki-east-school-reorg.github.io/schedule.html
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-31-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261231T000000Z
 DTSTART;VALUE=DATE:20261201

@@ -540,6 +540,19 @@ DESCRIPTION:Estas datas foram reunidas por um site de moradores. Confirme
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-28-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261228T000000Z
+DTSTART;VALUE=DATE:20261127
+DTEND;VALUE=DATE:20261229
+SUMMARY:Consulta pública: revisão da estratégia do distrito leste (dat
+ a a definir\, 11/2026 – 12/2026)
+DESCRIPTION:A data ainda não foi divulgada. Foi registrada como o perío
+ do divulgado (11/2026 – 12/2026). Atualize este evento quando a data f
+ or conhecida.\nEstas datas foram reunidas por um site de moradores. Conf
+ irme o aviso oficial nos documentos enviados pela prefeitura.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=pt
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-31-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261231T000000Z
 DTSTART;VALUE=DATE:20261201

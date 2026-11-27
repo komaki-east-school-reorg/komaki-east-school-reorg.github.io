@@ -584,6 +584,20 @@ DESCRIPTION:Ang mga petsang ito ay tinipon ng isang site na pinapatakbo n
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=tl
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-28-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261228T000000Z
+DTSTART;VALUE=DATE:20261127
+DTEND;VALUE=DATE:20261229
+SUMMARY:Public comment: pagrepaso sa estratehiya ng silangang distrito (w
+ ala pang petsa\, 11/2026 – 12/2026)
+DESCRIPTION:Hindi pa inaanunsyo ang petsa. Itinala ito bilang inanunsyong
+  panahon (11/2026 – 12/2026). Paki-update kapag alam na ang petsa.\nAn
+ g mga petsang ito ay tinipon ng isang site na pinapatakbo ng mga residen
+ te. Tingnan ang mga dokumentong ipinadala ng lungsod para sa opisyal na 
+ abiso.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=tl
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-31-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261231T000000Z
 DTSTART;VALUE=DATE:20261201

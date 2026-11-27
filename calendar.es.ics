@@ -542,6 +542,19 @@ DESCRIPTION:Estas fechas las ha reunido un sitio vecinal. Confirme el avi
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=es
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-28-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261228T000000Z
+DTSTART;VALUE=DATE:20261127
+DTEND;VALUE=DATE:20261229
+SUMMARY:Consulta pública: revisión de la estrategia del distrito este (
+ fecha por definir\, 11/2026 – 12/2026)
+DESCRIPTION:La fecha aún no se ha anunciado. Se registró como el perío
+ do anunciado (11/2026 – 12/2026). Actualice este evento cuando se cono
+ zca la fecha.\nEstas fechas las ha reunido un sitio vecinal. Confirme el
+  aviso oficial en los documentos que le envíe el ayuntamiento.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=es
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-31-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261231T000000Z
 DTSTART;VALUE=DATE:20261201
