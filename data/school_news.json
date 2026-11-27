@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-26T04:21:19Z",
+  "fetched_at": "2026-11-27T04:28:18Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
@@ -13,22 +13,22 @@
         "zh": "陶小学"
       },
       "url": "https://www.komaki-aic.ed.jp/sue-e/",
-      "latest_date": "2026-11-25",
+      "latest_date": "2026-11-27",
       "items": [
         {
-          "title": "最後の陶の森の花壇が完成しました！",
-          "date": "2026-11-25",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136714150?tm=20261125232423"
+          "title": "４年生 楽しかったね☆",
+          "date": "2026-11-27",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136724732?tm=20261127120124"
         },
         {
-          "title": "11/25 今日の給食",
-          "date": "2026-11-25",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136554009?tm=20261125142935"
+          "title": "１・２年生校外学習",
+          "date": "2026-11-26",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136719496?tm=20261126153036"
         },
         {
-          "title": "11/25 生活科：収穫した芋をいただきました！（２年生）",
-          "date": "2026-11-25",
-          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136605723?tm=20261125134000"
+          "title": "たくさんの学びがあった校外学習！",
+          "date": "2026-11-26",
+          "url": "https://www.komaki-aic.ed.jp/sue_e/weblog/136719726?tm=20261126154651"
         }
       ]
     },
@@ -42,8 +42,13 @@
         "zh": "篠冈中学"
       },
       "url": "https://www.komaki-aic.ed.jp/shinooka-j/",
-      "latest_date": "2026-11-25",
+      "latest_date": "2026-11-27",
       "items": [
+        {
+          "title": "2年生 プレ登校",
+          "date": "2026-11-27",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136724388?tm=20261127113411"
+        },
         {
           "title": "３年生 面接練習",
           "date": "2026-11-25",
@@ -53,11 +58,35 @@
           "title": "《桃花台野球部》全尾張大会に出場しました",
           "date": "2026-11-25",
           "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136603580?tm=20261125103118"
+        }
+      ]
+    },
+    {
+      "slug": "toryo-j",
+      "level": "jhs",
+      "names": {
+        "ja": "桃陵中学校",
+        "ja_kids": "とうりょう中学校",
+        "en": "Toryo Junior High",
+        "zh": "桃陵中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
+      "latest_date": "2026-11-26",
+      "items": [
+        {
+          "title": "【職業人体験】",
+          "date": "2026-11-26",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136721945?tm=20261126184545"
         },
         {
-          "title": "学校保健委員会を行いました",
-          "date": "2026-11-25",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136603085?tm=20261125092653"
+          "title": "【職業人体験】",
+          "date": "2026-11-26",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136721784?tm=20261126183307"
+        },
+        {
+          "title": "【職業人体験】",
+          "date": "2026-11-26",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136721668?tm=20261126183149"
         }
       ]
     },
@@ -116,35 +145,6 @@
           "title": "小牧市民スポーツ大会【バスケットボール】",
           "date": "2026-11-23",
           "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136596189?tm=20261123154904"
-        }
-      ]
-    },
-    {
-      "slug": "toryo-j",
-      "level": "jhs",
-      "names": {
-        "ja": "桃陵中学校",
-        "ja_kids": "とうりょう中学校",
-        "en": "Toryo Junior High",
-        "zh": "桃陵中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
-      "latest_date": "2026-11-22",
-      "items": [
-        {
-          "title": "11/22 全尾張中学軟式野球大会",
-          "date": "2026-11-22",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136595759?tm=20261122142952"
-        },
-        {
-          "title": "11/21 全尾張中学軟式野球大会１回戦",
-          "date": "2026-11-21",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136594553?tm=20261121142244"
-        },
-        {
-          "title": "学校保健委員会",
-          "date": "2026-11-21",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136591766?tm=20261121142052"
         }
       ]
     },
