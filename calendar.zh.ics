@@ -533,6 +533,19 @@ DESCRIPTION:这些日程由居民自发运营的网站整理。正式通
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=zh
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-28-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261228T000000Z
+DTSTART;VALUE=DATE:20261127
+DTEND;VALUE=DATE:20261229
+SUMMARY:东部振兴构想中期修订草案意见征集（日期未定
+ ・2026年11月〜12月）
+DESCRIPTION:具体日期尚未公布，按已公布的时期（2026年11
+ 月〜12月）登记。确定日期后请修改此日程。\n这些日
+ 程由居民自发运营的网站整理。正式通知请以市里寄送
+ 的文件为准。
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=zh
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-31-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261231T000000Z
 DTSTART;VALUE=DATE:20261201

@@ -591,6 +591,20 @@ DESCRIPTION:Các mốc thời gian này do một trang do người dân l
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=vi
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-28-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261228T000000Z
+DTSTART;VALUE=DATE:20261127
+DTEND;VALUE=DATE:20261229
+SUMMARY:Lấy ý kiến: rà soát đề án khu Đông (chưa có ngày 
+ cụ thể\, 11/2026 – 12/2026)
+DESCRIPTION:Ngày cụ thể chưa được công bố. Sự kiện đư
+ ợc ghi theo khoảng thời gian đã công bố (11/2026 – 12/2026)
+ . Hãy cập nhật khi biết ngày.\nCác mốc thời gian này do m
+ ột trang do người dân lập tổng hợp. Hãy kiểm tra thông b
+ áo chính thức trong giấy tờ thành phố gửi.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=vi
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-31-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261231T000000Z
 DTSTART;VALUE=DATE:20261201

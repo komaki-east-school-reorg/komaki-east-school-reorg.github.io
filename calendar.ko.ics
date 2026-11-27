@@ -583,6 +583,20 @@ DESCRIPTION:이 예정은 뜻있는 주민들의 사이트가 정리한
 URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=ko
 END:VEVENT
 BEGIN:VEVENT
+UID:2026-12-28-komaki-saihen@komaki-east-school-reorg.github.io
+DTSTAMP:20261228T000000Z
+DTSTART;VALUE=DATE:20261127
+DTEND;VALUE=DATE:20261229
+SUMMARY:동부 진흥 구상 중간 재검토안 의견 공모(날짜 미
+ 정・2026년 11월~12월)
+DESCRIPTION:날짜는 아직 발표되지 않았습니다. 발표된 시
+ 기(2026년 11월~12월)를 기간으로 등록했습니다. 날짜가 
+ 정해지면 이 일정을 고쳐 주세요.\n이 예정은 뜻있는 
+ 주민들의 사이트가 정리한 것입니다. 정식 안내는 시
+ 에서 도착하는 서류로 확인해 주세요.
+URL:https://komaki-east-school-reorg.github.io/schedule.html?lang=ko
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-31-komaki-saihen@komaki-east-school-reorg.github.io
 DTSTAMP:20261231T000000Z
 DTSTART;VALUE=DATE:20261201
