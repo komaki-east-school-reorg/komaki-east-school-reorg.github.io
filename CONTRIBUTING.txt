@@ -53,8 +53,19 @@
 ■ 別枠：春日井市「小中学校の適正規模等について」の索引（1本だけ）
       https://www.city.kasugai.lg.jp/kosodate/kyouiku/school/1009208/index.html
       ※2026-11-07 に追加（ユーザー指示）。about.html「近隣他地区の状況」の春日井市の一覧の出典行
-        だけに使う（URL は js/main.js の KASUGAI WATCH）。配下の個別ページ・PDF は不可。
+        だけに使う（URL は js/main.js の KASUGAI WATCH）。配下の個別ページは下の「見出しの直リンク」だけ、PDF は不可。
         auto_gates.py の KASUGAI_PATHS / KASUGAI_PAGES が about.html と js/main.js に限っている。
+
+■ 別枠：自動取得の一覧の見出しから元の公式ページへの直リンク（2026-11-27 ユーザー指示）
+      地域協議会のイベント・東部まちづくりの動き・都市計画の動き（東部地域）・小牧市のほかの地区・
+      春日井市の一覧は、見出しから元の公式ページへ直接リンクする。張ってよいのは次の配下の .html だけ
+      （PDF は不可）で、URL は自動生成の JSON の url にだけ置く（HTML・辞書・js には書かない）。
+        data/community_events.json  … 小牧市 …/kenkouikigai/sasaeai/3/3_2/
+        data/tobu_actions.json      … 小牧市 …/toubumachidukuri/tobumachidukurisingikai/
+        data/toshikeikaku_east.json … 小牧市 …/toshiseisakubu/toshikeikaku/1/
+        data/nearby_komaki.json     … 小牧市 …/kyoiku/kyouikusoumu/303/719/
+        data/kasugai_reorg.json     … 春日井市 /kosodate/kyouiku/school/1009208/
+      範囲は .github/scripts/official_links.py の1か所で、auto_gates.py check 6b が同じ表で守る。
 
 ■ 別枠：再編対象8校のホームページ（komaki-aic.ed.jp）
   市サイトとは別ドメインで、各校が自分で運営している。市サイトのように

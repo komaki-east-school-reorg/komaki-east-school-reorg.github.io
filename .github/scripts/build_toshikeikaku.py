@@ -22,7 +22,8 @@
    市サイトへのリンクは許可された索引ページのみ（CLAUDE.md／auto_gates.py check 6）。
    2026-10-17 に都市計画課の索引が許可に加わったので、コーナーの「出典」だけ
    そこへリンクする（URL は js/main.js が持つ＝機械検査の対象になる）。
-   個々の記事ページは許可されていないので、項目は url を持たない。
+   2026-11-27 から、各項目と日程は元の公式ページの url を持ち、見出しからそこへ直リンクする
+   （official_links.py の範囲の HTML だけ。PDF へは張らない）。
 
 ■ 決まった日程はスケジュールへ（2026-10-18 ユーザー指示）
    東部に関係するページ（上と同じ判定。表示の5件に限らない）に「開催日時」「開催期日」
@@ -55,6 +56,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build_community_events import EAST_PLACE_KEYWORDS, SITE_UPDATES, UPDATE_MAX_CHARS  # noqa: E402
+from official_links import article_url  # noqa: E402
 
 SNAPSHOT_DIR = "data/official_pages"
 PREFIX = "toshikeikaku-1-"
@@ -91,6 +93,13 @@ def read_snapshot(path):
         raw = f.read()
     _, _, body = raw.partition("\n---\n")
     return [l.strip() for l in body.split("\n") if l.strip()]
+
+
+def url_of(path):
+    """スナップショットの1行目（元のページの URL）。許可範囲の HTML でなければ None。"""
+    with open(path, encoding="utf-8") as f:
+        first = f.readline()
+    return article_url(first, OUTPUT)
 
 
 def kind_of(name):
@@ -182,6 +191,9 @@ def build():
             "hits": hits[:MAX_HITS],
             "slug": name[:-4],
         })
+        link = url_of(path)
+        if link:
+            items[-1]["url"] = link
         seen = set()
         for ev in dates_of(title, lines):
             k = (ev["role"], ev["date"], ev.get("start"))
@@ -189,6 +201,8 @@ def build():
                 continue
             seen.add(k)
             events.append(dict({"title": title}, **ev, slug=name[:-4]))
+            if link:
+                events[-1]["url"] = link
     # 更新日の新しい順。同じ日なら題名に地名があるものを先に、あとはスラッグ順（出力を安定させる）
     items.sort(key=lambda i: (i["updated_at"], i["in_title"], i["slug"]), reverse=True)
     events.sort(key=lambda e: (e.get("start", e["date"]), e["date"], e["slug"], e["role"]))
@@ -198,7 +212,7 @@ def build():
                         ".github/scripts/build_toshikeikaku.py が "
                         "data/official_pages/" + PREFIX + "*.txt から組み立てる。"
                         f"更新日の新しい順に{MAX_ITEMS}件。"
-                        "個々の記事ページへのリンクは許可されていないので url は持たない。"
+                        "url は見出しから張る元の公式ページ（official_links.py の範囲の HTML だけ）。"
                         "events は東部に関係するページの決まった日程（スケジュールに自動で載る）。"),
         "source_label": "小牧市 都市政策部 都市計画課",
         "matched": total,

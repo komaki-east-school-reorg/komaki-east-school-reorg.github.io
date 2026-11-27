@@ -28,6 +28,7 @@ from html import unescape
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import fetch_news  # noqa: E402
+from official_links import article_url  # noqa: E402
 
 BASE = "https://www.city.kasugai.lg.jp"
 ROOT = BASE + "/kosodate/kyouiku/school/1009208/"
@@ -159,6 +160,10 @@ def main():
         upd = re.search(r"更新日[\s　]*((?:令和|平成)[^<\n]*?日)", body)
         items[slug] = {"slug": slug, "title": title,
                        "updated": wareki_to_iso(upd.group(1)) if upd else None}
+        # 見出しから元のページへ直リンクする（2026-11-27 ユーザー指示。official_links.py の範囲の HTML だけ）
+        link = article_url(url, OUTPUT.replace(os.sep, "/"))
+        if link:
+            items[slug]["url"] = link
         if depth < MAX_DEPTH:
             for link, heading in links_in(body, url):
                 if url == INDEX:

@@ -218,6 +218,10 @@ YOUTUBE_LEGACY = "/watch?v=h_WC-X5YbuE"   # 地域のレガシー「新篠岡音
 # 配下の個別ページ・PDF は不可。増やすときは CLAUDE.md・CONTRIBUTING.txt 規則1・README.md も直す。
 KASUGAI_PATHS = {"/kosodate/kyouiku/school/1009208/index.html"}
 KASUGAI_PAGES = ("about.html", "js/main.js")
+# 自動取得の一覧の見出しから元の公式ページへ張る直リンク（2026-11-27 ユーザー指示）。
+# 自動生成の JSON の "url" だけで、ファイルごとに決まった配下の .html に限る（PDF は不可）。範囲は official_links.py の1か所。
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from official_links import ARTICLE_SCOPES, in_scope  # noqa: E402
 # 6b で使う：サイトに書いてよい外部ホストのすべて（2026-10-26 にいまの全ファイルから洗い出した）。
 # どのページで使ってよいか・どのパスまでよいかは、下の各 PERMITTED_* と 6 が見る。
 # 新しいドメインを足すときは、CLAUDE.md・CONTRIBUTING.txt 規則1・README.md と一緒にここにも足す。
@@ -670,7 +674,8 @@ def main():
     bad_scheme = re.compile(r"(?i)(?:href|src|action|formaction|xlink:href)\s*=\s*[\"']?\s*(?:javascript|data|vbscript):")
     scan = (glob.glob("*.html") + glob.glob("events/*.html") + glob.glob("qa/*.html") + glob.glob("js/*.js") + ["sw.js", "robots.txt", "llms.txt", "llms-full.txt"]
             + glob.glob("data/i18n/*.json")
-            + ["data/events.json", "data/community_actions.json", "data/headline_i18n.json"])
+            + ["data/events.json", "data/community_actions.json", "data/headline_i18n.json"]
+            + sorted(ARTICLE_SCOPES))   # 自動取得の一覧の見出しリンク（2026-11-27、official_links.py）
     for p in scan:
         if not os.path.exists(p):
             continue
@@ -689,6 +694,11 @@ def main():
             host = m.group(1).lower().rstrip(".").split("@")[-1].split(":")[0]
             if not re.match(r"^[a-z0-9.-]+\.[a-z]{2,}$", host):
                 continue   # 正規表現や JS の式の一部（//… のコメントなど）
+            if p in ARTICLE_SCOPES and host == ARTICLE_SCOPES[p][0]:
+                # 自動取得の一覧の見出しリンク：そのファイルの中では、決まった配下の .html だけ（PDF は不可）
+                if not in_scope(m.group(0) if m.group(0).startswith("https:") else "https:" + m.group(0), p):
+                    host_violations.append(f"{p}: 見出しリンクの範囲外のURL {m.group(0)[:90]}")
+                continue
             if host not in PERMITTED_HOSTS:
                 host_violations.append(f"{p}: 許可リストにないホスト {host}")
             elif host == "www.youtube.com":

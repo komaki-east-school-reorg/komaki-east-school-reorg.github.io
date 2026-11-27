@@ -1,5 +1,5 @@
 {
-  "description": "東部まちづくりの取組（自動生成・手編集不可）。.github/scripts/build_tobu_actions.py が data/official_pages/toubumachidukuri-tobumachidukurisingikai-*.txt から組み立てる。日付が直近60日より古いものは載せない（これからの催しは残す）。個々の記事ページへのリンクは許可されていないので url は持たない。",
+  "description": "東部まちづくりの取組（自動生成・手編集不可）。.github/scripts/build_tobu_actions.py が data/official_pages/toubumachidukuri-tobumachidukurisingikai-*.txt から組み立てる。日付が直近60日より古いものは載せない（これからの催しは残す）。url は見出しから張る元の公式ページ（official_links.py の範囲の HTML だけ）。",
   "source_label": "小牧市 都市政策部 東部まちづくり推進室",
   "window_days": 60,
   "items": [
@@ -7,67 +7,78 @@
       "kind": "info",
       "title": "東部振興構想(2022～2031年度)",
       "date": "2026-11-27",
-      "from": "東部振興構想"
+      "from": "東部振興構想",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubusinnkoukousou/37432.html"
     },
     {
       "kind": "info",
       "title": "小牧市東部まちづくり審議会委員の公募について",
       "date": "2026-11-24",
-      "from": "東部まちづくり"
+      "from": "東部まちづくり",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/46244.html"
     },
     {
       "kind": "report",
       "title": "令和8年度第3回小牧市東部まちづくり審議会",
       "date": "2026-11-12",
-      "from": "小牧市東部まちづくり審議会"
+      "from": "小牧市東部まちづくり審議会",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/34277.html"
     },
     {
       "kind": "info",
       "title": "東部地域にある愛知県県営住宅について",
       "date": "2026-11-02",
-      "from": "東部まちづくり"
+      "from": "東部まちづくり",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/51526.html"
     },
     {
       "kind": "info",
       "title": "湯あがりに考える もしもの時に困らないための〇〇の話",
       "date": "2026-10-26",
-      "from": "東部地域トライアル活動"
+      "from": "東部地域トライアル活動",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa8nenndo/52628.html"
     },
     {
       "kind": "info",
       "title": "リユースバスケット",
       "date": "2026-10-26",
-      "from": "東部地域トライアル活動"
+      "from": "東部地域トライアル活動",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa8nenndo/52629.html"
     },
     {
       "kind": "info",
       "title": "ランチしよっ！",
       "date": "2026-10-26",
-      "from": "東部地域トライアル活動"
+      "from": "東部地域トライアル活動",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa8nenndo/52630.html"
     },
     {
       "kind": "info",
       "title": "ゆっくりめぐるまめなし散歩",
       "date": "2026-10-26",
-      "from": "東部地域トライアル活動"
+      "from": "東部地域トライアル活動",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa8nenndo/52631.html"
     },
     {
       "kind": "report",
       "title": "栄森の地下街「まちのたね」",
       "date": "2026-10-13",
-      "from": "令和8年度東部まちづくりニュース"
+      "from": "令和8年度東部まちづくりニュース",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/51859.html"
     },
     {
       "kind": "info",
       "title": "東部地域トライアル活動支援",
       "date": "2026-10-08",
-      "from": "東部地域トライアル活動"
+      "from": "東部地域トライアル活動",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/37823.html"
     },
     {
       "kind": "info",
       "title": "まちの編集室",
       "date": "2026-10-08",
-      "from": "東部地域トライアル活動"
+      "from": "東部地域トライアル活動",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa8nenndo/52649.html"
     },
     {
       "kind": "event",
@@ -76,7 +87,8 @@
       "date_note": "令和8年11月15日(日曜日)14時から（開場13時）",
       "place": "東部市民センター  講堂",
       "from": "協働提案事業",
-      "organizer": "桃花台を考える会"
+      "organizer": "桃花台を考える会",
+      "url": "https://www.city.komaki.aichi.jp/admin/soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/kyoudouteianjigyou/52429.html"
     }
   ]
 }

@@ -61,6 +61,20 @@ window.KomakiSafeUrl = function (u) {
   } catch (e) { return '#'; }
 };
 
+/* 自動取得の一覧の見出し（2026-11-27 ユーザー指示：見出しから元の公式ページへ直リンク）。
+   url があれば別タブで開くリンク、無ければ今までどおりの文字だけ。data-hl は KomakiHeadline.apply が
+   表示言語の訳に置き換える目印（a でも span でも同じく効く）。URL は自動生成の JSON の "url" だけで、
+   許可範囲は .github/scripts/official_links.py と auto_gates.py check 6b が守る。 */
+window.KomakiTitleLink = function (cls, title, url) {
+  var e = function (x) { return String(x == null ? '' : x).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+  var t = e(title);
+  var safe = url ? window.KomakiSafeUrl(url) : '#';
+  if (safe === '#') return '<span class="' + cls + '" data-hl="' + t + '">' + t + '</span>';
+  var internal = !/^https?:/i.test(String(url));
+  return '<a class="' + cls + ' title-link" href="' + e(safe) + '"' + (internal ? '' : ' target="_blank" rel="noopener"') +
+         ' data-hl="' + t + '">' + t + '</a>';
+};
+
 /* ===== COUNTER：Cookie を使わない閲覧数の集計（2026-10-24 ユーザー指示） =====
    サイトがどう読まれているか（ページ・表示言語・参照元・機能の使われ方・紙の QR からの来訪）を
    運営者が確かめるため、GoatCounter（下の ENDPOINT）へ数を送る。
@@ -646,7 +660,7 @@ window.KomakiTokadaiEvents = (function () {
         var tokadai = ((res[0] && res[0].items) || []).filter(function (t) {
           return t.organizer && t.kind === 'event' && ISO.test(t.date || '');
         }).map(function (t) {
-          return {title: t.title, place: t.place || '', date_note: t.date_note || '', date: t.date, kind: 'tokadai'};
+          return {title: t.title, place: t.place || '', date_note: t.date_note || '', date: t.date, url: t.url || '', kind: 'tokadai'};
         });
         var council = ((res[1] && res[1].events) || []).filter(function (e) {
           return e.shinooka && ISO.test(e.date || '');
@@ -656,7 +670,7 @@ window.KomakiTokadaiEvents = (function () {
         var toshi = ((res[3] && res[3].events) || []).filter(function (e) {
           return TAG_TOSHI[e.role] && ISO.test(e.date || '') && (e.role === 'day' || ISO.test(e.start || ''));
         }).map(function (e) {
-          return {title: e.title, place: '', date_note: e.date_note || '', date: e.date, start: e.start || '', role: e.role, kind: 'toshi'};
+          return {title: e.title, place: '', date_note: e.date_note || '', date: e.date, start: e.start || '', role: e.role, url: e.url || '', kind: 'toshi'};
         });
         return tokadai.concat(council, toshi).map(function (t) {
           var tags = t.kind === 'council' ? TAG_COUNCIL : t.kind === 'toshi' ? TAG_TOSHI[t.role] : TAG;
@@ -1341,7 +1355,9 @@ window.KomakiGrade = (function () {
         if (at >= 0) item.setAttribute('data-ev', key + '|' + at);
         item.innerHTML = '<div class="event-date">' + esc(date) +
             '<span class="event-status ' + state + '" data-i18n="event_status_' + state + '">' + esc(badge) + '</span></div>' +
-          '<div class="event-desc"><strong>' + esc(title) + esc(tag) + '</strong><br>' +
+          '<div class="event-desc"><strong>' + (t.url && window.KomakiSafeUrl(t.url) !== '#'
+              ? '<a class="title-link" href="' + esc(window.KomakiSafeUrl(t.url)) + '" target="_blank" rel="noopener">' + esc(title) + '</a>'
+              : esc(title)) + esc(tag) + '</strong><br>' +
             (line ? esc(line) + '<br>' : '') + body + '</div>';
         var before = null;
         list.querySelectorAll('.event-item').forEach(function (it) {
@@ -5268,7 +5284,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     var it = {title_ja: t.title, date: t.date, badge: 'citizen', _placeHl: true,
               place_ja: t.place || '', date_note_ja: t.date_note || '',
               source_label: pick({x_ja: _at.tokadai_src.ja, x_en: _at.tokadai_src.en}, 'x'),
-              source_url: window.KomakiTobuSourceUrl};
+              source_url: t.url || window.KomakiTobuSourceUrl, title_url: t.url || ''};
     it['body_' + _al] = at('tokadai_body');
     if (_al !== 'ja' && t.date_note) it['date_note_' + _al] = window.KomakiJaWhen(t.date_note, _al, {iso: t.date});
     return it;
@@ -5281,7 +5297,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     var it = {title_ja: t.title, date: t.date, badge: 'council', _placeHl: true,
               place_ja: t.place || '', date_note_ja: t.date_note || '',
               source_label: at('council_src'),
-              source_url: 'community.html#council-events', _internal: true};
+              source_url: 'community.html#council-events', _internal: true, title_url: t.url || ''};
     it['body_' + _al] = at('council_body');
     if (_al !== 'ja' && t.date_note) it['date_note_' + _al] = window.KomakiJaWhen(t.date_note, _al, {iso: t.date});
     return it;
@@ -5356,7 +5372,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
         return '<li class="action-item"' + (it.date ? ' data-countdown="' + esc(it.date_start || it.date) + '"' : ' data-standing="1"') +
                  (it._ev ? ' data-ev="' + esc(it._ev) + '"' : '') + '>' +
                  '<div class="action-head">' +
-                   '<span class="action-title" data-hl="' + esc(it.title_ja || '') + '">' + esc(it.title_ja || '') + '</span>' +
+                   window.KomakiTitleLink('action-title', it.title_ja || '', it.title_url || (it._internal ? '' : it.source_url)) +
                    '<span class="action-badge">' + at(it.badge === 'council' || it.badge === 'facility' || it.badge === 'foundation' || it.badge === 'temple' ? it.badge : 'citizen') + '</span>' +
                  '</div>' +
                  '<div class="action-school">' + esc(pick(it, 'school')) + '</div>' +
@@ -5479,7 +5495,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
            (it.kind === 'event' && it.date ? ' data-countdown="' + esc(it.date) + '"' : '') + '>' +
              '<div class="tobu-head">' +
                '<span class="tobu-date">' + esc(fmtDate(it.date)) + '</span>' +
-               '<span class="tobu-title" data-hl="' + esc(it.title || '') + '">' + esc(it.title || '') + '</span>' +
+               window.KomakiTitleLink('tobu-title', it.title || '', it.url) +
                '<span class="ce-badge">' + tt('badge') + '</span>' +
              '</div>' + extra +
            '</li>';
@@ -5600,7 +5616,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     return '<li class="tobu-item" data-date="' + esc(it.updated_at || '') + '">' +
              '<div class="tobu-head">' +
                '<span class="tobu-date">' + tt('updated') + ' ' + esc(fmtDate(it.updated_at)) + '</span>' +
-               '<span class="tobu-title" data-hl="' + esc(it.title || '') + '">' + esc(it.title || '') + '</span>' +
+               window.KomakiTitleLink('tobu-title', it.title || '', it.url) +
                '<span class="ce-badge">' + tt('badge') + '</span>' +
                (isFresh(it.updated_at) ? '<span class="school-badge school-badge--new">' + tt('fresh') + '</span>' : '') +
              '</div>' +
@@ -5663,7 +5679,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
   function row(it) {
     return '<li class="tobu-item" data-date="' + esc(it.updated || '') + '"><div class="tobu-head">' +
       (it.updated ? '<span class="tobu-date">' + pick(T.updated) + ' ' + esc(fmtDate(it.updated)) + '</span>' : '') +
-      '<span class="tobu-title" data-hl="' + esc(it.title || '') + '">' + esc(it.title || '') + '</span>' +
+      window.KomakiTitleLink('tobu-title', it.title || '', it.url) +
       '<span class="ce-badge">' + pick(T.badge) + '</span>' +
       (isFresh(it.updated) ? '<span class="school-badge school-badge--new">' + pick(T.fresh) + '</span>' : '') +
       '</div><span class="tobu-from tobu-from--tag">' + esc(pick(DIST[it.district] || DIST.other)) + '</span></li>';
@@ -5756,7 +5772,7 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     return '<li class="tobu-item" data-date="' + esc(it.updated || '') + '">' +
              '<div class="tobu-head">' +
                (it.updated ? '<span class="tobu-date">' + pick(T.updated) + ' ' + esc(fmtDate(it.updated)) + '</span>' : '') +
-               '<span class="tobu-title" data-hl="' + esc(it.title || '') + '">' + esc(it.title || '') + '</span>' +
+               window.KomakiTitleLink('tobu-title', it.title || '', it.url) +
                '<span class="ce-badge">' + pick(T.badge) + '</span>' +
                (isFresh(it.updated) ? '<span class="school-badge school-badge--new">' + pick(T.fresh) + '</span>' : '') +
              '</div>' +

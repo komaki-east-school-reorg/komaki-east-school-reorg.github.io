@@ -2367,6 +2367,10 @@ footer {
   color: var(--primary);
   line-height: 1.5;
 }
+/* 見出しから元の公式ページへの直リンク（2026-11-27）。字の形は見出しのまま、下線でリンクと分かるように */
+a.title-link { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; }
+a.title-link:hover, a.title-link:focus-visible { text-decoration-thickness: 2px; }
+a.tobu-title, a.action-title { color: var(--primary); }
 /* .action-row ＋ .action-label と同じ形 */
 .tobu-from { display: block; font-size: .9rem; margin-top: .35rem; }
 .tobu-from--tag { padding-left: 3.2rem; color: var(--text-muted); font-size: .82rem; }

@@ -22,6 +22,8 @@ import sys
 
 SNAP_DIR = os.path.join("data", "official_pages")
 OUTPUT = os.path.join("data", "nearby_komaki.json")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from official_links import article_url  # noqa: E402
 # 篠岡地区（このサイトの本体）と、全市の推進計画の検討委員会は対象外
 EXCLUDE = ("sinookachiku", "aratanagakkoudukurisuishinkeikakukentouiinnkai")
 # 市のフォルダ名 → 地区（表示は js/main.js の NEARBY KOMAKI が訳す）
@@ -47,6 +49,10 @@ def build():
             "updated": f"{upd.group(1)}-{upd.group(2)}-{upd.group(3)}" if upd else None,
             "district": DISTRICTS.get(m.group(1), "other"),
         })
+        # 見出しから元の公式ページへ直リンクする（2026-11-27 ユーザー指示）
+        link = article_url(lines[0], "data/nearby_komaki.json")
+        if link:
+            items[-1]["url"] = link
     items.sort(key=lambda it: (it["updated"] or "", it["slug"]), reverse=True)
     out = {
         "description": "小牧市の、篠岡地区以外の地区の学校再編の掲載（自動生成・手編集不可）。"

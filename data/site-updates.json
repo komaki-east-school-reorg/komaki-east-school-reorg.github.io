@@ -3,6 +3,13 @@
   "updates": [
     {
       "date": "2026-11-27",
+      "type": "feature",
+      "ja": "地域の取組・都市計画・他地区の一覧の見出しから公式ページへ",
+      "en": "Headings in community, city planning and nearby-district lists now link to the official pages",
+      "link": "community.html#community-actions"
+    },
+    {
+      "date": "2026-11-27",
       "type": "content",
       "ja": "東部振興構想の意見募集期間をスケジュールに追加",
       "en": "Eastern District Strategy comment period added to the schedule",

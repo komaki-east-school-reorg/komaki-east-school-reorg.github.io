@@ -30,7 +30,8 @@
    市サイトへのリンクは許可された索引ページのみ（CLAUDE.md／auto_gates.py check 6）。
    2026-09-13 に東部まちづくりの索引が許可に加わったので、コーナーの「出典」だけ
    そこへリンクする（リンクの文字列は js/main.js が持つ＝機械検査の対象になる）。
-   個々の記事ページは許可されていないので、項目ごとのリンクは持たない。
+   2026-11-27 から、各項目は元の公式ページの url を持ち、見出しからそこへ直リンクする
+   （official_links.py の範囲の HTML だけ。PDF へは張らない）。
 
 ■ 桃花台を考える会の催しには organizer を付ける（2026-09-26 ユーザー指示）
    市民活動団体「桃花台を考える会」が開く催しは、市の欄（東部まちづくりの動き）ではなく
@@ -54,6 +55,9 @@ import os
 import re
 import sys
 from datetime import date, datetime, timedelta, timezone
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from official_links import article_url  # noqa: E402
 
 SNAPSHOT_DIR = "data/official_pages"
 PREFIX = "toubumachidukuri-tobumachidukurisingikai-"
@@ -133,6 +137,7 @@ def parse_page(path):
             break
 
     out = []
+    link = article_url(url, OUTPUT)
 
     # 1. 催し（開催日・期間を持つページ）
     when = field_value(lines, "開催日・期間")
@@ -151,7 +156,7 @@ def parse_page(path):
         })
         if by_group:
             out[-1]["organizer"] = TOKADAI_GROUP
-        return out
+        return _with_url(out, link)
 
     # 2. 記録（本文に並ぶ〈見出し（令和○年○月○日）〉）
     for line in lines:
@@ -170,7 +175,7 @@ def parse_page(path):
             "from": page_title,
         })
     if out:
-        return out
+        return _with_url(out, link)
 
     # 3. その他（トライアル活動の紹介など）。ページの更新日を日付として扱う。
     if updated:
@@ -180,7 +185,15 @@ def parse_page(path):
             "date": updated,
             "from": section_of(path, "東部まちづくり"),
         })
-    return out
+    return _with_url(out, link)
+
+
+def _with_url(items, link):
+    """見出しから元の公式ページへ直リンクする（2026-11-27 ユーザー指示。official_links.py の範囲だけ）。"""
+    if link:
+        for it in items:
+            it["url"] = link
+    return items
 
 
 def main():
@@ -232,7 +245,7 @@ def main():
                         ".github/scripts/build_tobu_actions.py が "
                         "data/official_pages/" + PREFIX + "*.txt から組み立てる。"
                         f"日付が直近{WINDOW_DAYS}日より古いものは載せない（これからの催しは残す）。"
-                        "個々の記事ページへのリンクは許可されていないので url は持たない。"),
+                        "url は見出しから張る元の公式ページ（official_links.py の範囲の HTML だけ）。"),
         "source_label": "小牧市 都市政策部 東部まちづくり推進室",
         "window_days": WINDOW_DAYS,
         "items": items,
