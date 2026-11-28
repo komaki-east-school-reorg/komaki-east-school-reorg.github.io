@@ -1,0 +1,1835 @@
+{
+ "description": "東部たんけんクイズの「組み立てる問題」の元（手で直す）。事実1件から型（data/quiz/<言語>.json の ui の gt_*）で問題をその場で作る（js/quiz.js の QUIZ GEN）。町・種類・年・月はカード（more）か出どころ（src）で確かめたものだけ。事実を足したら site_lint.py の quiz_data で検査する。",
+ "towns": {
+  "shiroyama": {
+   "ja": "城山",
+   "ja-kids": "城山",
+   "en": "Shiroyama",
+   "pt": "Shiroyama",
+   "vi": "Shiroyama",
+   "tl": "Shiroyama",
+   "es": "Shiroyama",
+   "zh": "城山",
+   "id": "Shiroyama",
+   "ko": "시로야마",
+   "ne": "Shiroyama",
+   "tr": "Shiroyama",
+   "my": "Shiroyama"
+  },
+  "koga": {
+   "ja": "古雅",
+   "ja-kids": "古雅",
+   "en": "Koga",
+   "pt": "Koga",
+   "vi": "Koga",
+   "tl": "Koga",
+   "es": "Koga",
+   "zh": "古雅",
+   "id": "Koga",
+   "ko": "고가",
+   "ne": "Koga",
+   "tr": "Koga",
+   "my": "Koga"
+  }
+ },
+ "kinds": {
+  "temple": {
+   "group": "A",
+   "name": {
+    "ja": "神社・お寺",
+    "ja-kids": "神社や お寺",
+    "en": "a shrine or temple",
+    "pt": "um santuário ou templo",
+    "vi": "đền hoặc chùa",
+    "tl": "dambana o templo",
+    "es": "un santuario o templo",
+    "zh": "神社或寺庙",
+    "id": "kuil atau vihara",
+    "ko": "신사나 절",
+    "ne": "मन्दिर",
+    "tr": "bir tapınak",
+    "my": "နတ်ကွန်း သို့မဟုတ် ဘုရားကျောင်း"
+   }
+  },
+  "park": {
+   "group": "A",
+   "name": {
+    "ja": "公園・里山",
+    "ja-kids": "公園や 里山",
+    "en": "a park or woodland",
+    "pt": "um parque ou bosque",
+    "vi": "công viên hoặc rừng",
+    "tl": "parke o gubat",
+    "es": "un parque o bosque",
+    "zh": "公园或里山",
+    "id": "taman atau hutan",
+    "ko": "공원이나 숲",
+    "ne": "पार्क वा वन",
+    "tr": "bir park ya da koru",
+    "my": "ပန်းခြံ သို့မဟုတ် တောအုပ်"
+   }
+  },
+  "product": {
+   "group": "A",
+   "name": {
+    "ja": "東部の特産物",
+    "ja-kids": "東部の とくさんぶつ",
+    "en": "an eastern specialty",
+    "pt": "um produto típico do leste",
+    "vi": "đặc sản phía đông",
+    "tl": "espesyal na produkto ng silangan",
+    "es": "un producto típico del este",
+    "zh": "东部特产",
+    "id": "produk khas wilayah timur",
+    "ko": "동부 특산물",
+    "ne": "पूर्वको विशेष उत्पादन",
+    "tr": "doğunun yöresel ürünü",
+    "my": "အရှေ့ပိုင်း ထူးခြားထွက်ကုန်"
+   }
+  },
+  "event": {
+   "group": "A",
+   "name": {
+    "ja": "祭り・伝統行事",
+    "ja-kids": "おまつりや むかしからの 行事",
+    "en": "a festival or tradition",
+    "pt": "uma festa ou tradição",
+    "vi": "lễ hội hoặc truyền thống",
+    "tl": "pista o tradisyon",
+    "es": "una fiesta o tradición",
+    "zh": "节庆或传统活动",
+    "id": "festival atau tradisi",
+    "ko": "축제나 전통 행사",
+    "ne": "चाड वा परम्परा",
+    "tr": "bir festival ya da gelenek",
+    "my": "ပွဲတော် သို့မဟုတ် ဓလေ့"
+   }
+  },
+  "cafe": {
+   "group": "B",
+   "name": {
+    "ja": "喫茶店・カフェ",
+    "ja-kids": "きっさてんや カフェ",
+    "en": "a coffee shop or café",
+    "pt": "uma cafeteria",
+    "vi": "quán cà phê",
+    "tl": "kapihan",
+    "es": "una cafetería",
+    "zh": "咖啡馆",
+    "id": "kafe",
+    "ko": "카페",
+    "ne": "क्याफे",
+    "tr": "bir kafe",
+    "my": "ကော်ဖီဆိုင်"
+   }
+  },
+  "bakery": {
+   "group": "B",
+   "name": {
+    "ja": "パン屋・お菓子屋",
+    "ja-kids": "パンやさんや おかしやさん",
+    "en": "a bakery or sweets shop",
+    "pt": "uma padaria ou doceria",
+    "vi": "tiệm bánh",
+    "tl": "panaderya o tindahan ng matamis",
+    "es": "una panadería o dulcería",
+    "zh": "面包店或点心店",
+    "id": "toko roti atau kue",
+    "ko": "빵집이나 과자점",
+    "ne": "बेकरी वा मिठाई पसल",
+    "tr": "bir fırın ya da tatlıcı",
+    "my": "မုန့်ဆိုင်"
+   }
+  },
+  "food": {
+   "group": "B",
+   "name": {
+    "ja": "ごはんのお店",
+    "ja-kids": "ごはんの お店",
+    "en": "a place to eat a meal",
+    "pt": "um restaurante",
+    "vi": "quán ăn",
+    "tl": "kainan",
+    "es": "un restaurante",
+    "zh": "饭馆",
+    "id": "rumah makan",
+    "ko": "식당",
+    "ne": "भोजनालय",
+    "tr": "bir lokanta",
+    "my": "စားသောက်ဆိုင်"
+   }
+  }
+ },
+ "facts": [
+  {
+   "id": "oyama_haiji",
+   "town": "oyama",
+   "theme": "a",
+   "rt": [
+    "oyama",
+    "temple"
+   ],
+   "more": "legacy-hist",
+   "name": {
+    "ja": "大山廃寺跡",
+    "ja-kids": "大山廃寺跡",
+    "en": "Oyama Temple Ruins",
+    "pt": "Ruínas do Templo de Oyama",
+    "vi": "Di tích chùa Oyama",
+    "tl": "Mga guho ng Templo ng Oyama",
+    "es": "Ruinas del templo de Oyama",
+    "zh": "大山废寺遗址",
+    "id": "Reruntuhan Kuil Oyama",
+    "ko": "오야마 폐사 터",
+    "ne": "ओयामा मन्दिर भग्नावशेष",
+    "tr": "Oyama Tapınağı kalıntıları",
+    "my": "Oyama ဘုရားကျောင်းပျက်"
+   }
+  },
+  {
+   "id": "chigo",
+   "town": "oyama",
+   "kind": "temple",
+   "theme": "a",
+   "rt": [
+    "oyama",
+    "temple"
+   ],
+   "more": "legacy-hist",
+   "name": {
+    "ja": "児神社",
+    "ja-kids": "児神社",
+    "en": "Chigo Shrine",
+    "pt": "Santuário Chigo",
+    "vi": "Đền Chigo",
+    "tl": "Dambana ng Chigo",
+    "es": "Santuario Chigo",
+    "zh": "儿神社",
+    "id": "Kuil Chigo",
+    "ko": "지고 신사",
+    "ne": "चिगो मन्दिर",
+    "tr": "Chigo Tapınağı",
+    "my": "Chigo နတ်ကွန်း"
+   }
+  },
+  {
+   "id": "fukugonji",
+   "town": "okusa",
+   "kind": "temple",
+   "theme": "c",
+   "rt": [
+    "okusa",
+    "temple"
+   ],
+   "more": "legacy-fukugonji",
+   "name": {
+    "ja": "福厳寺",
+    "ja-kids": "福厳寺",
+    "en": "Fukugonji Temple",
+    "pt": "Templo Fukugonji",
+    "vi": "Chùa Fukugonji",
+    "tl": "Templo ng Fukugonji",
+    "es": "Templo Fukugonji",
+    "zh": "福严寺",
+    "id": "Kuil Fukugonji",
+    "ko": "후쿠곤지",
+    "ne": "फुकुगोन्जी मन्दिर",
+    "tr": "Fukugonji Tapınağı",
+    "my": "Fukugonji ဘုရားကျောင်း"
+   }
+  },
+  {
+   "id": "okusa_hachiman",
+   "town": "okusa",
+   "kind": "temple",
+   "theme": "c",
+   "rt": [
+    "okusa",
+    "temple"
+   ],
+   "more": "legacy-okusa",
+   "name": {
+    "ja": "大久佐八幡宮",
+    "ja-kids": "大久佐八幡宮",
+    "en": "Okusa Hachimangu Shrine",
+    "pt": "Santuário Okusa Hachimangu",
+    "vi": "Đền Okusa Hachimangu",
+    "tl": "Dambana ng Okusa Hachimangu",
+    "es": "Santuario Okusa Hachimangu",
+    "zh": "大久佐八幡宫",
+    "id": "Kuil Okusa Hachimangu",
+    "ko": "오쿠사 하치만구",
+    "ne": "ओकुसा हाचिमान्गु",
+    "tr": "Okusa Hachimangu Tapınağı",
+    "my": "Okusa Hachimangu နတ်ကွန်း"
+   }
+  },
+  {
+   "id": "shoun",
+   "town": "hayashi",
+   "kind": "temple",
+   "theme": "i",
+   "rt": [
+    "hayashi",
+    "temple"
+   ],
+   "more": "legacy-shoun",
+   "name": {
+    "ja": "祥雲寺",
+    "ja-kids": "祥雲寺",
+    "en": "Shounji Temple",
+    "pt": "Templo Shounji",
+    "vi": "Chùa Shounji",
+    "tl": "Templo ng Shounji",
+    "es": "Templo Shounji",
+    "zh": "祥云寺",
+    "id": "Kuil Shounji",
+    "ko": "쇼운지",
+    "ne": "शोउन्जी मन्दिर",
+    "tr": "Shounji Tapınağı",
+    "my": "Shounji ဘုရားကျောင်း"
+   }
+  },
+  {
+   "id": "hakusan",
+   "town": "noguchi",
+   "kind": "temple",
+   "theme": "i",
+   "rt": [
+    "noguchi",
+    "temple"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "name": {
+    "ja": "白山宮",
+    "ja-kids": "白山宮",
+    "en": "Hakusan Shrine",
+    "pt": "Santuário Hakusan",
+    "vi": "Đền Hakusan",
+    "tl": "Dambana ng Hakusan",
+    "es": "Santuario Hakusan",
+    "zh": "白山宫",
+    "id": "Kuil Hakusan",
+    "ko": "하쿠산궁",
+    "ne": "हाकुसान मन्दिर",
+    "tr": "Hakusan Tapınağı",
+    "my": "Hakusan နတ်ကွန်း"
+   }
+  },
+  {
+   "id": "shiki",
+   "town": "okusa",
+   "kind": "park",
+   "theme": "e",
+   "rt": [
+    "okusa",
+    "nature"
+   ],
+   "more": "legacy-shiki",
+   "name": {
+    "ja": "市民四季の森",
+    "ja-kids": "市民四季の森",
+    "en": "Shiki-no-Mori park",
+    "pt": "Parque Shiki-no-Mori",
+    "vi": "Công viên Shiki-no-Mori",
+    "tl": "Parke ng Shiki-no-Mori",
+    "es": "Parque Shiki-no-Mori",
+    "zh": "市民四季之森",
+    "id": "Taman Shiki-no-Mori",
+    "ko": "시키노모리 공원",
+    "ne": "सिकिनोमोरी पार्क",
+    "tr": "Shiki-no-Mori Parkı",
+    "my": "Shiki-no-Mori ပန်းခြံ"
+   }
+  },
+  {
+   "id": "tkpark",
+   "town": "shiroyama",
+   "kind": "park",
+   "theme": "b",
+   "rt": [
+    "tokadai"
+   ],
+   "more": "legacy-tkpark",
+   "name": {
+    "ja": "桃花台中央公園",
+    "ja-kids": "桃花台中央公園",
+    "en": "Tokadai Central Park",
+    "pt": "Parque Central de Tokadai",
+    "vi": "Công viên Trung tâm Tokadai",
+    "tl": "Tokadai Central Park",
+    "es": "Parque Central de Tokadai",
+    "zh": "桃花台中央公园",
+    "id": "Taman Pusat Tokadai",
+    "ko": "도카다이 중앙공원",
+    "ne": "तोकादाइ केन्द्रीय पार्क",
+    "tr": "Tokadai Merkez Parkı",
+    "my": "Tokadai ဗဟိုပန်းခြံ"
+   }
+  },
+  {
+   "id": "chigorin",
+   "town": "oyama",
+   "kind": "park",
+   "theme": "e",
+   "rt": [
+    "oyama",
+    "nature"
+   ],
+   "more": "legacy-chigorin",
+   "name": {
+    "ja": "ちごりんの里山",
+    "ja-kids": "ちごりんの里山",
+    "en": "Chigorin no Satoyama",
+    "pt": "Chigorin no Satoyama",
+    "vi": "Chigorin no Satoyama",
+    "tl": "Chigorin no Satoyama",
+    "es": "Chigorin no Satoyama",
+    "zh": "Chigorin里山",
+    "id": "Chigorin no Satoyama",
+    "ko": "지고린 사토야마",
+    "ne": "चिगोरिन नो सातोयामा",
+    "tr": "Chigorin no Satoyama",
+    "my": "Chigorin no Satoyama"
+   }
+  },
+  {
+   "id": "stadium",
+   "town": "kamisue",
+   "theme": "e",
+   "rt": [
+    "kamisue"
+   ],
+   "more": "legacy-stadium",
+   "name": {
+    "ja": "市民球場",
+    "ja-kids": "市民球場",
+    "en": "Municipal baseball stadium",
+    "pt": "Estádio municipal de beisebol",
+    "vi": "Sân bóng chày thành phố",
+    "tl": "Munisipal na istadyum ng beysbol",
+    "es": "Estadio municipal de béisbol",
+    "zh": "市民棒球场",
+    "id": "Stadion bisbol kota",
+    "ko": "시민 야구장",
+    "ne": "नगरको बेसबल स्टेडियम",
+    "tr": "Belediye beyzbol stadyumu",
+    "my": "မြို့တော် ဘေ့စ်ဘောကွင်း"
+   }
+  },
+  {
+   "id": "winery",
+   "town": "noguchi",
+   "theme": "d",
+   "rt": [
+    "noguchi",
+    "food"
+   ],
+   "more": "legacy-winery",
+   "name": {
+    "ja": "小牧ワイナリー",
+    "ja-kids": "小牧ワイナリー",
+    "en": "Komaki Winery",
+    "pt": "Vinícola de Komaki",
+    "vi": "Nhà máy rượu vang Komaki",
+    "tl": "Komaki Winery",
+    "es": "Vinícola de Komaki",
+    "zh": "小牧酒庄",
+    "id": "Kilang Anggur Komaki",
+    "ko": "고마키 와이너리",
+    "ne": "कोमाकी वाइनरी",
+    "tr": "Komaki Şaraphanesi",
+    "my": "Komaki ဝိုင်ချက်စက်ရုံ"
+   }
+  },
+  {
+   "id": "firefly",
+   "town": "oyama",
+   "theme": "e",
+   "rt": [
+    "oyama",
+    "nature"
+   ],
+   "more": "legacy-hotaru",
+   "name": {
+    "ja": "ホタルの里",
+    "ja-kids": "ホタルの里",
+    "en": "Firefly Village",
+    "pt": "Vila dos Vaga-lumes",
+    "vi": "Làng đom đóm",
+    "tl": "Nayon ng mga Alitaptap",
+    "es": "Aldea de las Luciérnagas",
+    "zh": "萤火虫之里",
+    "id": "Desa Kunang-kunang",
+    "ko": "반딧불이 마을",
+    "ne": "जुनकिरी गाउँ",
+    "tr": "Ateş Böceği Köyü",
+    "my": "ပိုးစုန်းကြူးရွာ"
+   }
+  },
+  {
+   "id": "richfarm",
+   "town": "kamisue",
+   "theme": "l",
+   "rt": [
+    "kamisue",
+    "fruit"
+   ],
+   "src": "リッチファーム 公式サイト",
+   "name": {
+    "ja": "リッチファーム",
+    "ja-kids": "リッチファーム",
+    "en": "Rich Farm",
+    "pt": "Rich Farm",
+    "vi": "Rich Farm",
+    "tl": "Rich Farm",
+    "es": "Rich Farm",
+    "zh": "Rich Farm",
+    "id": "Rich Farm",
+    "ko": "리치 팜",
+    "ne": "रिच फार्म",
+    "tr": "Rich Farm",
+    "my": "Rich Farm"
+   }
+  },
+  {
+   "id": "peare",
+   "town": "koga",
+   "theme": "j",
+   "rt": [
+    "tokadai"
+   ],
+   "src": "こまき市民文化財団の案内",
+   "name": {
+    "ja": "ピアーレ桃花台",
+    "ja-kids": "ピアーレ桃花台",
+    "en": "Peare Tokadai",
+    "pt": "Peare Tokadai",
+    "vi": "Peare Tokadai",
+    "tl": "Peare Tokadai",
+    "es": "Peare Tokadai",
+    "zh": "Peare桃花台",
+    "id": "Peare Tokadai",
+    "ko": "피아레 도카다이",
+    "ne": "पिआरे तोकादाइ",
+    "tr": "Peare Tokadai",
+    "my": "Peare Tokadai"
+   }
+  },
+  {
+   "id": "momo",
+   "kind": "product",
+   "theme": "d",
+   "rt": [
+    "fruit"
+   ],
+   "more": "legacy-momo",
+   "name": {
+    "ja": "桃",
+    "ja-kids": "もも",
+    "en": "Peaches",
+    "pt": "Pêssego",
+    "vi": "Đào",
+    "tl": "Peach",
+    "es": "Durazno",
+    "zh": "桃",
+    "id": "Persik",
+    "ko": "복숭아",
+    "ne": "आरु",
+    "tr": "Şeftali",
+    "my": "မက်မွန်သီး"
+   }
+  },
+  {
+   "id": "budou",
+   "kind": "product",
+   "theme": "d",
+   "rt": [
+    "fruit"
+   ],
+   "more": "legacy-budou",
+   "name": {
+    "ja": "ぶどう",
+    "ja-kids": "ぶどう",
+    "en": "Grapes",
+    "pt": "Uva",
+    "vi": "Nho",
+    "tl": "Ubas",
+    "es": "Uva",
+    "zh": "葡萄",
+    "id": "Anggur",
+    "ko": "포도",
+    "ne": "अंगुर",
+    "tr": "Üzüm",
+    "my": "စပျစ်သီး"
+   }
+  },
+  {
+   "id": "cochin",
+   "kind": "product",
+   "theme": "d",
+   "rt": [
+    "chicken"
+   ],
+   "more": "legacy-cochin",
+   "name": {
+    "ja": "名古屋コーチン",
+    "ja-kids": "名古屋コーチン",
+    "en": "Nagoya Cochin chicken",
+    "pt": "Galinha Nagoya Cochin",
+    "vi": "Gà Nagoya Cochin",
+    "tl": "Manok na Nagoya Cochin",
+    "es": "Gallina Nagoya Cochin",
+    "zh": "名古屋交趾鸡",
+    "id": "Ayam Nagoya Cochin",
+    "ko": "나고야 코친",
+    "ne": "नागोया कोचिन कुखुरा",
+    "tr": "Nagoya Cochin tavuğu",
+    "my": "Nagoya Cochin ကြက်"
+   }
+  },
+  {
+   "id": "bonote",
+   "kind": "event",
+   "theme": "c",
+   "rt": [
+    "festival"
+   ],
+   "more": "legacy-bonote",
+   "name": {
+    "ja": "棒の手",
+    "ja-kids": "ぼうのて",
+    "en": "Bo-no-te",
+    "pt": "Bo-no-te",
+    "vi": "Bo-no-te",
+    "tl": "Bo-no-te",
+    "es": "Bo-no-te",
+    "zh": "棒之手",
+    "id": "Bo-no-te",
+    "ko": "보노테",
+    "ne": "बो-नो-ते",
+    "tr": "Bo-no-te",
+    "my": "Bo-no-te"
+   }
+  },
+  {
+   "id": "tkmatsuri",
+   "kind": "event",
+   "theme": "c",
+   "rt": [
+    "festival",
+    "tokadai"
+   ],
+   "more": "legacy-matsuri",
+   "name": {
+    "ja": "桃花台まつり",
+    "ja-kids": "桃花台まつり",
+    "en": "Tokadai Festival",
+    "pt": "Festival de Tokadai",
+    "vi": "Lễ hội Tokadai",
+    "tl": "Pista ng Tokadai",
+    "es": "Festival de Tokadai",
+    "zh": "桃花台祭",
+    "id": "Festival Tokadai",
+    "ko": "도카다이 축제",
+    "ne": "तोकादाइ महोत्सव",
+    "tr": "Tokadai Festivali",
+    "my": "Tokadai ပွဲတော်"
+   }
+  },
+  {
+   "id": "hiwatari",
+   "kind": "event",
+   "theme": "c",
+   "rt": [
+    "festival",
+    "temple"
+   ],
+   "more": "legacy-fukugonji",
+   "name": {
+    "ja": "火渡り神事",
+    "ja-kids": "火わたり",
+    "en": "Hiwatari fire-walking",
+    "pt": "Hiwatari (caminhada no fogo)",
+    "vi": "Hiwatari (đi trên lửa)",
+    "tl": "Hiwatari (paglakad sa apoy)",
+    "es": "Hiwatari (caminata sobre el fuego)",
+    "zh": "火渡",
+    "id": "Hiwatari (berjalan di atas api)",
+    "ko": "히와타리(불 건너기)",
+    "ne": "हिवातारी (आगोमा हिँड्ने)",
+    "tr": "Hiwatari (ateş üstünde yürüme)",
+    "my": "Hiwatari (မီးပေါ်လျှောက်)"
+   }
+  },
+  {
+   "id": "camarade",
+   "town": "kamisue",
+   "kind": "cafe",
+   "theme": "f",
+   "rt": [
+    "kamisue",
+    "food"
+   ],
+   "src": "小牧つーしん",
+   "name": {
+    "ja": "カマラード珈琲店",
+    "ja-kids": "カマラード珈琲店",
+    "en": "Camarade Coffee",
+    "pt": "Camarade Coffee",
+    "vi": "Camarade Coffee",
+    "tl": "Camarade Coffee",
+    "es": "Camarade Coffee",
+    "zh": "Camarade咖啡店",
+    "id": "Camarade Coffee",
+    "ko": "카마라드 커피",
+    "ne": "कामाराद कफी",
+    "tr": "Camarade Coffee",
+    "my": "Camarade Coffee"
+   }
+  },
+  {
+   "id": "shincafe",
+   "town": "okusa",
+   "kind": "cafe",
+   "theme": "f",
+   "rt": [
+    "okusa",
+    "food"
+   ],
+   "src": "小牧つーしん",
+   "name": {
+    "ja": "シンカフェ",
+    "ja-kids": "シンカフェ",
+    "en": "Shin Cafe",
+    "pt": "Shin Cafe",
+    "vi": "Shin Cafe",
+    "tl": "Shin Cafe",
+    "es": "Shin Cafe",
+    "zh": "Shin Cafe",
+    "id": "Shin Cafe",
+    "ko": "신 카페",
+    "ne": "सिन क्याफे",
+    "tr": "Shin Cafe",
+    "my": "Shin Cafe"
+   }
+  },
+  {
+   "id": "bodaiju",
+   "town": "okusa",
+   "kind": "cafe",
+   "theme": "f",
+   "rt": [
+    "okusa",
+    "food"
+   ],
+   "src": "Retty",
+   "name": {
+    "ja": "喫茶「ぼだい樹」",
+    "ja-kids": "喫茶「ぼだい樹」",
+    "en": "Bodaiju",
+    "pt": "Bodaiju",
+    "vi": "Bodaiju",
+    "tl": "Bodaiju",
+    "es": "Bodaiju",
+    "zh": "喫茶“菩提树”",
+    "id": "Bodaiju",
+    "ko": "카페 보다이주",
+    "ne": "बोदाइजु",
+    "tr": "Bodaiju",
+    "my": "Bodaiju"
+   }
+  },
+  {
+   "id": "monterosa",
+   "town": "okusa",
+   "kind": "cafe",
+   "theme": "f",
+   "rt": [
+    "okusa",
+    "food"
+   ],
+   "src": "食べログ",
+   "name": {
+    "ja": "喫茶モンテローザ",
+    "ja-kids": "喫茶モンテローザ",
+    "en": "Kissa Monte Rosa",
+    "pt": "Kissa Monte Rosa",
+    "vi": "Kissa Monte Rosa",
+    "tl": "Kissa Monte Rosa",
+    "es": "Kissa Monte Rosa",
+    "zh": "喫茶Monte Rosa",
+    "id": "Kissa Monte Rosa",
+    "ko": "깃사 몬테로자",
+    "ne": "किस्सा मोन्टे रोजा",
+    "tr": "Kissa Monte Rosa",
+    "my": "Kissa Monte Rosa"
+   }
+  },
+  {
+   "id": "bambina",
+   "town": "ikenouchi",
+   "kind": "cafe",
+   "theme": "f",
+   "rt": [
+    "ikenouchi",
+    "food"
+   ],
+   "src": "小牧つーしん",
+   "name": {
+    "ja": "カフェ「バンビーナ」",
+    "ja-kids": "カフェ「バンビーナ」",
+    "en": "Bambina",
+    "pt": "Bambina",
+    "vi": "Bambina",
+    "tl": "Bambina",
+    "es": "Bambina",
+    "zh": "咖啡馆Bambina",
+    "id": "Bambina",
+    "ko": "카페 밤비나",
+    "ne": "बाम्बिना",
+    "tr": "Bambina",
+    "my": "Bambina"
+   }
+  },
+  {
+   "id": "pineapple",
+   "town": "hayashi",
+   "kind": "cafe",
+   "theme": "f",
+   "rt": [
+    "hayashi",
+    "food"
+   ],
+   "src": "小牧つーしん",
+   "name": {
+    "ja": "喫茶店パイナップル",
+    "ja-kids": "喫茶店パイナップル",
+    "en": "Kissaten Pineapple",
+    "pt": "Kissaten Pineapple",
+    "vi": "Kissaten Pineapple",
+    "tl": "Kissaten Pineapple",
+    "es": "Kissaten Pineapple",
+    "zh": "喫茶店Pineapple",
+    "id": "Kissaten Pineapple",
+    "ko": "깃사텐 파인애플",
+    "ne": "किस्सातेन पाइनएप्पल",
+    "tr": "Kissaten Pineapple",
+    "my": "Kissaten Pineapple"
+   }
+  },
+  {
+   "id": "mincade",
+   "town": "hayashi",
+   "kind": "cafe",
+   "theme": "f",
+   "rt": [
+    "hayashi",
+    "food"
+   ],
+   "src": "Lemon8 の投稿",
+   "name": {
+    "ja": "Min cade KU",
+    "ja-kids": "Min cade KU",
+    "en": "Min cade KU",
+    "pt": "Min cade KU",
+    "vi": "Min cade KU",
+    "tl": "Min cade KU",
+    "es": "Min cade KU",
+    "zh": "Min cade KU",
+    "id": "Min cade KU",
+    "ko": "Min cade KU",
+    "ne": "Min cade KU",
+    "tr": "Min cade KU",
+    "my": "Min cade KU"
+   }
+  },
+  {
+   "id": "minato",
+   "kind": "cafe",
+   "theme": "f",
+   "rt": [
+    "food"
+   ],
+   "src": "コマキタイムズ",
+   "name": {
+    "ja": "喫茶みなと",
+    "ja-kids": "喫茶みなと",
+    "en": "Kissa Minato",
+    "pt": "Kissa Minato",
+    "vi": "Kissa Minato",
+    "tl": "Kissa Minato",
+    "es": "Kissa Minato",
+    "zh": "喫茶Minato",
+    "id": "Kissa Minato",
+    "ko": "깃사 미나토",
+    "ne": "किस्सा मिनातो",
+    "tr": "Kissa Minato",
+    "my": "Kissa Minato"
+   }
+  },
+  {
+   "id": "soramimi",
+   "town": "kamisue",
+   "kind": "bakery",
+   "theme": "g",
+   "rt": [
+    "kamisue",
+    "food"
+   ],
+   "src": "チルチンびと広場",
+   "name": {
+    "ja": "ソラミミPAN",
+    "ja-kids": "ソラミミPAN",
+    "en": "Soramimi PAN",
+    "pt": "Soramimi PAN",
+    "vi": "Soramimi PAN",
+    "tl": "Soramimi PAN",
+    "es": "Soramimi PAN",
+    "zh": "Soramimi PAN",
+    "id": "Soramimi PAN",
+    "ko": "소라미미 PAN",
+    "ne": "सोरामिमी PAN",
+    "tr": "Soramimi PAN",
+    "my": "Soramimi PAN"
+   }
+  },
+  {
+   "id": "ebisuya",
+   "town": "ikenouchi",
+   "kind": "bakery",
+   "theme": "g",
+   "rt": [
+    "ikenouchi",
+    "food"
+   ],
+   "src": "名古屋コーチングルメなび",
+   "name": {
+    "ja": "御菓子処ゑびすや",
+    "ja-kids": "御菓子処ゑびすや",
+    "en": "Ebisuya",
+    "pt": "Ebisuya",
+    "vi": "Ebisuya",
+    "tl": "Ebisuya",
+    "es": "Ebisuya",
+    "zh": "点心店Ebisuya",
+    "id": "Ebisuya",
+    "ko": "과자점 에비스야",
+    "ne": "एबिसुया",
+    "tr": "Ebisuya",
+    "my": "Ebisuya"
+   }
+  },
+  {
+   "id": "panbell",
+   "town": "shiroyama",
+   "kind": "bakery",
+   "theme": "g",
+   "rt": [
+    "food"
+   ],
+   "src": "小牧市 東部まちづくりニュース",
+   "name": {
+    "ja": "パンベル",
+    "ja-kids": "パンベル",
+    "en": "Panbell",
+    "pt": "Panbell",
+    "vi": "Panbell",
+    "tl": "Panbell",
+    "es": "Panbell",
+    "zh": "Panbell",
+    "id": "Panbell",
+    "ko": "판벨",
+    "ne": "पानबेल",
+    "tr": "Panbell",
+    "my": "Panbell"
+   }
+  },
+  {
+   "id": "hotei",
+   "kind": "bakery",
+   "theme": "g",
+   "rt": [
+    "food"
+   ],
+   "src": "コマキタイムズ",
+   "name": {
+    "ja": "ほていぱん桃花台店",
+    "ja-kids": "ほていぱん桃花台店",
+    "en": "Hoteipan Tokadai",
+    "pt": "Hoteipan Tokadai",
+    "vi": "Hoteipan Tokadai",
+    "tl": "Hoteipan Tokadai",
+    "es": "Hoteipan Tokadai",
+    "zh": "Hoteipan桃花台店",
+    "id": "Hoteipan Tokadai",
+    "ko": "호테이빵 도카다이점",
+    "ne": "होतेइपान तोकादाइ",
+    "tr": "Hoteipan Tokadai",
+    "my": "Hoteipan Tokadai"
+   }
+  },
+  {
+   "id": "jiji",
+   "kind": "bakery",
+   "theme": "g",
+   "rt": [
+    "food"
+   ],
+   "src": "コマキタイムズ",
+   "name": {
+    "ja": "まほうのケーキ屋JIJI",
+    "ja-kids": "まほうのケーキ屋JIJI",
+    "en": "Mahou no Cake-ya JIJI",
+    "pt": "Mahou no Cake-ya JIJI",
+    "vi": "Mahou no Cake-ya JIJI",
+    "tl": "Mahou no Cake-ya JIJI",
+    "es": "Mahou no Cake-ya JIJI",
+    "zh": "魔法蛋糕店JIJI",
+    "id": "Mahou no Cake-ya JIJI",
+    "ko": "마법의 케이크 가게 JIJI",
+    "ne": "माहोउ नो केक-या JIJI",
+    "tr": "Mahou no Cake-ya JIJI",
+    "my": "Mahou no Cake-ya JIJI"
+   }
+  },
+  {
+   "id": "kodanuki",
+   "town": "kamisue",
+   "kind": "food",
+   "theme": "k",
+   "rt": [
+    "kamisue",
+    "food"
+   ],
+   "src": "食べログ",
+   "name": {
+    "ja": "こだぬき",
+    "ja-kids": "こだぬき",
+    "en": "Kodanuki",
+    "pt": "Kodanuki",
+    "vi": "Kodanuki",
+    "tl": "Kodanuki",
+    "es": "Kodanuki",
+    "zh": "Kodanuki",
+    "id": "Kodanuki",
+    "ko": "고다누키",
+    "ne": "कोदानुकी",
+    "tr": "Kodanuki",
+    "my": "Kodanuki"
+   }
+  },
+  {
+   "id": "sasakatsu",
+   "town": "ikenouchi",
+   "kind": "food",
+   "theme": "k",
+   "rt": [
+    "ikenouchi",
+    "food"
+   ],
+   "src": "食べログの口コミ",
+   "name": {
+    "ja": "ささかつ",
+    "ja-kids": "ささかつ",
+    "en": "Sasakatsu",
+    "pt": "Sasakatsu",
+    "vi": "Sasakatsu",
+    "tl": "Sasakatsu",
+    "es": "Sasakatsu",
+    "zh": "Sasakatsu",
+    "id": "Sasakatsu",
+    "ko": "사사카쓰",
+    "ne": "सासाकात्सु",
+    "tr": "Sasakatsu",
+    "my": "Sasakatsu"
+   }
+  },
+  {
+   "id": "izumi",
+   "town": "hayashi",
+   "kind": "food",
+   "theme": "k",
+   "rt": [
+    "hayashi",
+    "food"
+   ],
+   "src": "Retty",
+   "name": {
+    "ja": "自家製麺いづみ",
+    "ja-kids": "自家製麺いづみ",
+    "en": "Jikasei-men Izumi",
+    "pt": "Jikasei-men Izumi",
+    "vi": "Jikasei-men Izumi",
+    "tl": "Jikasei-men Izumi",
+    "es": "Jikasei-men Izumi",
+    "zh": "自家制面Izumi",
+    "id": "Jikasei-men Izumi",
+    "ko": "자가제면 이즈미",
+    "ne": "जिकासेइ-मेन इजुमी",
+    "tr": "Jikasei-men Izumi",
+    "my": "Jikasei-men Izumi"
+   }
+  },
+  {
+   "id": "chikachan",
+   "town": "noguchi",
+   "kind": "food",
+   "theme": "k",
+   "rt": [
+    "noguchi",
+    "food"
+   ],
+   "src": "小牧つーしん（Yahoo!ニュース エキスパート）",
+   "name": {
+    "ja": "大衆食堂ちかちゃん",
+    "ja-kids": "大衆食堂ちかちゃん",
+    "en": "Chika-chan",
+    "pt": "Chika-chan",
+    "vi": "Chika-chan",
+    "tl": "Chika-chan",
+    "es": "Chika-chan",
+    "zh": "大众食堂Chika-chan",
+    "id": "Chika-chan",
+    "ko": "대중식당 지카짱",
+    "ne": "चिका-चान",
+    "tr": "Chika-chan",
+    "my": "Chika-chan"
+   }
+  },
+  {
+   "id": "haruto",
+   "town": "takane",
+   "kind": "food",
+   "theme": "k",
+   "rt": [
+    "takane",
+    "food"
+   ],
+   "src": "個人ブログ「懸勝麺ロード」",
+   "name": {
+    "ja": "らーめん晴都",
+    "ja-kids": "らーめん晴都",
+    "en": "Ramen Haruto",
+    "pt": "Ramen Haruto",
+    "vi": "Ramen Haruto",
+    "tl": "Ramen Haruto",
+    "es": "Ramen Haruto",
+    "zh": "拉面晴都",
+    "id": "Ramen Haruto",
+    "ko": "라멘 하루토",
+    "ne": "रामेन हारुतो",
+    "tr": "Ramen Haruto",
+    "my": "Ramen Haruto"
+   }
+  },
+  {
+   "id": "kigi",
+   "town": "okusa",
+   "kind": "food",
+   "theme": "k",
+   "rt": [
+    "okusa",
+    "food"
+   ],
+   "src": "木木の釜座 公式サイト",
+   "name": {
+    "ja": "木木の釜座",
+    "ja-kids": "木木の釜座",
+    "en": "Kiki no Kamaza",
+    "pt": "Kiki no Kamaza",
+    "vi": "Kiki no Kamaza",
+    "tl": "Kiki no Kamaza",
+    "es": "Kiki no Kamaza",
+    "zh": "木木の釜座",
+    "id": "Kiki no Kamaza",
+    "ko": "기키노 가마자",
+    "ne": "किकि नो कामाजा",
+    "tr": "Kiki no Kamaza",
+    "my": "Kiki no Kamaza"
+   }
+  }
+ ],
+ "years": [
+  {
+   "id": "hoshakuji",
+   "y": 1450,
+   "theme": "i",
+   "rt": [
+    "noguchi",
+    "temple"
+   ],
+   "more": "legacy-fukugonji",
+   "name": {
+    "ja": "宝積寺（福厳寺のもと）が建てられる",
+    "ja-kids": "福厳寺の もとの おてらが できる",
+    "en": "Hoshakuji, the origin of Fukugonji, is built",
+    "pt": "Construção do Hoshakuji, origem do Fukugonji",
+    "vi": "Xây chùa Hoshakuji, tiền thân của Fukugonji",
+    "tl": "Itinayo ang Hoshakuji, pinagmulan ng Fukugonji",
+    "es": "Se construye el Hoshakuji, origen del Fukugonji",
+    "zh": "福严寺前身宝积寺建成",
+    "id": "Hoshakuji, cikal bakal Fukugonji, dibangun",
+    "ko": "후쿠곤지의 뿌리 호샤쿠지 건립",
+    "ne": "फुकुगोन्जीको मूल होशाकुजी बन्यो",
+    "tr": "Fukugonji’nin kökeni Hoshakuji kuruldu",
+    "my": "Fukugonji ၏ မူလ Hoshakuji တည်ဆောက်"
+   }
+  },
+  {
+   "id": "battle",
+   "y": 1584,
+   "theme": "i",
+   "rt": [
+    "okusa",
+    "oldtimes"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "name": {
+    "ja": "小牧・長久手の戦い",
+    "ja-kids": "小牧・長久手の たたかい",
+    "en": "Battle of Komaki–Nagakute",
+    "pt": "Batalha de Komaki–Nagakute",
+    "vi": "Trận Komaki–Nagakute",
+    "tl": "Labanan sa Komaki–Nagakute",
+    "es": "Batalla de Komaki–Nagakute",
+    "zh": "小牧长久手之战",
+    "id": "Pertempuran Komaki–Nagakute",
+    "ko": "고마키·나가쿠테 전투",
+    "ne": "कोमाकी–नागाकुते युद्ध",
+    "tr": "Komaki–Nagakute Savaşı",
+    "my": "Komaki–Nagakute တိုက်ပွဲ"
+   }
+  },
+  {
+   "id": "sue",
+   "y": 1889,
+   "theme": "a",
+   "rt": [
+    "kamisue",
+    "oldtimes"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "name": {
+    "ja": "上末村と下末村が合わさって陶村になる",
+    "ja-kids": "上末と 下末が いっしょに なり 陶村が できる",
+    "en": "Kamisue and Shimosue merge into Sue Village",
+    "pt": "Kamisue e Shimosue se unem na vila de Sue",
+    "vi": "Kamisue và Shimosue hợp thành làng Sue",
+    "tl": "Nagsanib ang Kamisue at Shimosue bilang nayon ng Sue",
+    "es": "Kamisue y Shimosue se unen en la villa de Sue",
+    "zh": "上末与下末合并为陶村",
+    "id": "Kamisue dan Shimosue bergabung menjadi Desa Sue",
+    "ko": "가미스에·시모스에가 합쳐 스에촌이 됨",
+    "ne": "कामिसुए र शिमोसुए मिलेर सुए गाउँ बन्यो",
+    "tr": "Kamisue ve Shimosue, Sue köyü olarak birleşti",
+    "my": "Kamisue နှင့် Shimosue ပေါင်း၍ Sue ရွာ ဖြစ်"
+   }
+  },
+  {
+   "id": "village",
+   "y": 1906,
+   "theme": "a",
+   "rt": [
+    "shinooka",
+    "oldtimes"
+   ],
+   "more": "legacy-shinooka",
+   "name": {
+    "ja": "篠岡村が生まれる",
+    "ja-kids": "しのおか村が できる",
+    "en": "Shinooka Village is born",
+    "pt": "Nasce a vila de Shinooka",
+    "vi": "Làng Shinooka ra đời",
+    "tl": "Isinilang ang nayon ng Shinooka",
+    "es": "Nace la villa de Shinooka",
+    "zh": "篠冈村诞生",
+    "id": "Desa Shinooka lahir",
+    "ko": "시노오카촌 탄생",
+    "ne": "सिनोओका गाउँ बन्यो",
+    "tr": "Shinooka köyü kuruldu",
+    "my": "Shinooka ရွာ ပေါ်ပေါက်"
+   }
+  },
+  {
+   "id": "city",
+   "y": 1955,
+   "theme": "h",
+   "rt": [
+    "shinooka",
+    "oldtimes"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "name": {
+    "ja": "小牧市が生まれる",
+    "ja-kids": "小牧市が できる",
+    "en": "Komaki City is formed",
+    "pt": "Nasce a cidade de Komaki",
+    "vi": "Thành phố Komaki ra đời",
+    "tl": "Nabuo ang Lungsod ng Komaki",
+    "es": "Nace la ciudad de Komaki",
+    "zh": "小牧市成立",
+    "id": "Kota Komaki terbentuk",
+    "ko": "고마키시 탄생",
+    "ne": "कोमाकी नगर बन्यो",
+    "tr": "Komaki şehri kuruldu",
+    "my": "Komaki မြို့ ဖွဲ့စည်း"
+   }
+  },
+  {
+   "id": "minato_open",
+   "y": 1969,
+   "theme": "f",
+   "rt": [
+    "food"
+   ],
+   "src": "コマキタイムズ",
+   "name": {
+    "ja": "喫茶みなとが開店する",
+    "ja-kids": "喫茶みなとが できる",
+    "en": "Kissa Minato opens",
+    "pt": "Abre o Kissa Minato",
+    "vi": "Kissa Minato khai trương",
+    "tl": "Nagbukas ang Kissa Minato",
+    "es": "Abre el Kissa Minato",
+    "zh": "喫茶Minato开业",
+    "id": "Kissa Minato dibuka",
+    "ko": "깃사 미나토 개업",
+    "ne": "किस्सा मिनातो खुल्यो",
+    "tr": "Kissa Minato açıldı",
+    "my": "Kissa Minato ဖွင့်"
+   }
+  },
+  {
+   "id": "chuo",
+   "y": 1972,
+   "theme": "j",
+   "rt": [
+    "oyama"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "name": {
+    "ja": "中央自動車道が大山に開通する",
+    "ja-kids": "大山に 中央道が 通る",
+    "en": "The Chuo Expressway opens through Oyama",
+    "pt": "A Via Expressa Chuo chega a Oyama",
+    "vi": "Cao tốc Chuo thông đến Oyama",
+    "tl": "Nagbukas ang Chuo Expressway sa Oyama",
+    "es": "La autopista Chuo llega a Oyama",
+    "zh": "中央高速公路通到大山",
+    "id": "Jalan Tol Chuo dibuka melewati Oyama",
+    "ko": "주오 고속도로 오야마 개통",
+    "ne": "चुओ एक्सप्रेसवे ओयामामा खुल्यो",
+    "tr": "Chuo Otoyolu Oyama’dan geçti",
+    "my": "Chuo အမြန်လမ်း Oyama တွင် ဖွင့်"
+   }
+  },
+  {
+   "id": "townname",
+   "y": 1979,
+   "theme": "h",
+   "rt": [
+    "shinooka"
+   ],
+   "src": "葵エンジニアリング「地名の由来」",
+   "name": {
+    "ja": "町名の「篠岡」ができる",
+    "ja-kids": "町の 名前「篠岡」が できる",
+    "en": "The town name “Shinooka” begins",
+    "pt": "Surge o nome de bairro “Shinooka”",
+    "vi": "Tên khu phố “Shinooka” ra đời",
+    "tl": "Nagsimula ang pangalang “Shinooka”",
+    "es": "Surge el nombre de barrio “Shinooka”",
+    "zh": "町名“篠冈”出现",
+    "id": "Nama kelurahan “Shinooka” lahir",
+    "ko": "동네 이름 ‘시노오카’ 탄생",
+    "ne": "“सिनोओका” टोलको नाम सुरु",
+    "tr": "“Shinooka” mahalle adı doğdu",
+    "my": "“Shinooka” ရပ်ကွက်အမည် စတင်"
+   }
+  },
+  {
+   "id": "nt",
+   "y": 1980,
+   "theme": "b",
+   "rt": [
+    "tokadai"
+   ],
+   "more": "legacy-ryokudo",
+   "name": {
+    "ja": "桃花台ニュータウンの入居が始まる",
+    "ja-kids": "桃花台に 人が すみはじめる",
+    "en": "Residents begin moving into Tokadai New Town",
+    "pt": "Começam as mudanças para Tokadai New Town",
+    "vi": "Cư dân bắt đầu vào ở Tokadai New Town",
+    "tl": "Nagsimulang lumipat ang mga residente sa Tokadai New Town",
+    "es": "Llegan los primeros vecinos a Tokadai New Town",
+    "zh": "桃花台新城开始入住",
+    "id": "Warga mulai menempati Tokadai New Town",
+    "ko": "도카다이 뉴타운 입주 시작",
+    "ne": "तोकादाइ न्यु टाउनमा बसोबास सुरु",
+    "tr": "Tokadai New Town’a taşınmalar başladı",
+    "my": "Tokadai New Town တွင် နေထိုင်မှု စတင်"
+   }
+  },
+  {
+   "id": "stadium_done",
+   "y": 1988,
+   "theme": "e",
+   "rt": [
+    "kamisue"
+   ],
+   "more": "legacy-stadium",
+   "name": {
+    "ja": "市民球場が完成する",
+    "ja-kids": "市民球場が できる",
+    "en": "The municipal baseball stadium is completed",
+    "pt": "Fica pronto o estádio municipal de beisebol",
+    "vi": "Sân bóng chày thành phố hoàn thành",
+    "tl": "Natapos ang munisipal na istadyum ng beysbol",
+    "es": "Se termina el estadio municipal de béisbol",
+    "zh": "市民棒球场建成",
+    "id": "Stadion bisbol kota selesai",
+    "ko": "시민 야구장 완공",
+    "ne": "नगरको बेसबल स्टेडियम बन्यो",
+    "tr": "Belediye beyzbol stadyumu tamamlandı",
+    "my": "မြို့တော် ဘေ့စ်ဘောကွင်း ပြီးစီး"
+   }
+  },
+  {
+   "id": "peach_open",
+   "y": 1991,
+   "theme": "b",
+   "rt": [
+    "rail",
+    "tokadai"
+   ],
+   "more": "legacy-peach",
+   "name": {
+    "ja": "ピーチライナーが開業する",
+    "ja-kids": "ピーチライナーが 走りはじめる",
+    "en": "The Peachliner opens",
+    "pt": "Inauguração do Peachliner",
+    "vi": "Peachliner khai trương",
+    "tl": "Nagbukas ang Peachliner",
+    "es": "Se inaugura el Peachliner",
+    "zh": "Peachliner开通",
+    "id": "Peachliner mulai beroperasi",
+    "ko": "피치라이너 개통",
+    "ne": "Peachliner खुल्यो",
+    "tr": "Peachliner açıldı",
+    "my": "Peachliner စတင်ပြေးဆွဲ"
+   }
+  },
+  {
+   "id": "tkpark_open",
+   "y": 1992,
+   "theme": "b",
+   "rt": [
+    "tokadai"
+   ],
+   "more": "legacy-tkpark",
+   "name": {
+    "ja": "桃花台中央公園が開園する",
+    "ja-kids": "桃花台中央公園が できる",
+    "en": "Tokadai Central Park opens",
+    "pt": "Abre o Parque Central de Tokadai",
+    "vi": "Công viên Trung tâm Tokadai mở cửa",
+    "tl": "Nagbukas ang Tokadai Central Park",
+    "es": "Abre el Parque Central de Tokadai",
+    "zh": "桃花台中央公园开园",
+    "id": "Taman Pusat Tokadai dibuka",
+    "ko": "도카다이 중앙공원 개원",
+    "ne": "तोकादाइ केन्द्रीय पार्क खुल्यो",
+    "tr": "Tokadai Merkez Parkı açıldı",
+    "my": "Tokadai ဗဟိုပန်းခြံ ဖွင့်"
+   }
+  },
+  {
+   "id": "tower",
+   "y": 1995,
+   "theme": "j",
+   "rt": [
+    "tokadai"
+   ],
+   "more": "legacy-tower",
+   "name": {
+    "ja": "丘の上の給水塔が小牧市へ移される",
+    "ja-kids": "給水塔が 小牧市の ものに なる",
+    "en": "The hilltop water tower is transferred to Komaki City",
+    "pt": "A torre de água passa para a cidade de Komaki",
+    "vi": "Tháp nước được chuyển cho thành phố Komaki",
+    "tl": "Inilipat sa Lungsod ng Komaki ang tore ng tubig",
+    "es": "La torre de agua pasa a la ciudad de Komaki",
+    "zh": "山丘上的水塔移交小牧市",
+    "id": "Menara air diserahkan ke Kota Komaki",
+    "ko": "언덕 위 급수탑 고마키시로 이관",
+    "ne": "पानी ट्यांकी कोमाकी नगरलाई हस्तान्तरण",
+    "tr": "Su kulesi Komaki şehrine devredildi",
+    "my": "ရေစင် Komaki မြို့သို့ လွှဲပြောင်း"
+   }
+  },
+  {
+   "id": "stage",
+   "y": 2002,
+   "theme": "b",
+   "rt": [
+    "tokadai"
+   ],
+   "more": "legacy-tkpark",
+   "name": {
+    "ja": "桃花台中央公園に野外ステージができる",
+    "ja-kids": "桃花台中央公園に 外の ステージが できる",
+    "en": "An outdoor stage is built in Tokadai Central Park",
+    "pt": "Construção do palco ao ar livre no Parque Central de Tokadai",
+    "vi": "Sân khấu ngoài trời được xây ở Công viên Trung tâm Tokadai",
+    "tl": "Itinayo ang entablado sa labas sa Tokadai Central Park",
+    "es": "Se construye el escenario al aire libre del Parque Central de Tokadai",
+    "zh": "桃花台中央公园建成露天舞台",
+    "id": "Panggung terbuka dibangun di Taman Pusat Tokadai",
+    "ko": "도카다이 중앙공원 야외 무대 완성",
+    "ne": "तोकादाइ केन्द्रीय पार्कमा खुला मञ्च बन्यो",
+    "tr": "Tokadai Merkez Parkı’na açık hava sahnesi yapıldı",
+    "my": "Tokadai ဗဟိုပန်းခြံ၌ ပြင်ပဇာတ်စင် တည်ဆောက်"
+   }
+  },
+  {
+   "id": "peach_end",
+   "y": 2006,
+   "theme": "b",
+   "rt": [
+    "rail",
+    "tokadai"
+   ],
+   "more": "legacy-peach",
+   "name": {
+    "ja": "ピーチライナーの運行が終わる",
+    "ja-kids": "ピーチライナーが 走るのを やめる",
+    "en": "The Peachliner stops running",
+    "pt": "O Peachliner deixa de funcionar",
+    "vi": "Peachliner ngừng chạy",
+    "tl": "Huminto ang Peachliner",
+    "es": "El Peachliner deja de funcionar",
+    "zh": "Peachliner停运",
+    "id": "Peachliner berhenti beroperasi",
+    "ko": "피치라이너 운행 종료",
+    "ne": "Peachliner बन्द भयो",
+    "tr": "Peachliner seferleri sona erdi",
+    "my": "Peachliner ပြေးဆွဲမှု ရပ်"
+   }
+  },
+  {
+   "id": "winery_open",
+   "y": 2015,
+   "theme": "d",
+   "rt": [
+    "noguchi",
+    "food"
+   ],
+   "more": "legacy-winery",
+   "name": {
+    "ja": "小牧ワイナリーが開く",
+    "ja-kids": "小牧ワイナリーが できる",
+    "en": "Komaki Winery opens",
+    "pt": "Abre a Vinícola de Komaki",
+    "vi": "Nhà máy rượu vang Komaki mở cửa",
+    "tl": "Nagbukas ang Komaki Winery",
+    "es": "Abre la Vinícola de Komaki",
+    "zh": "小牧酒庄开业",
+    "id": "Kilang Anggur Komaki dibuka",
+    "ko": "고마키 와이너리 개업",
+    "ne": "कोमाकी वाइनरी खुल्यो",
+    "tr": "Komaki Şaraphanesi açıldı",
+    "my": "Komaki ဝိုင်ချက်စက်ရုံ ဖွင့်"
+   }
+  }
+ ],
+ "months": [
+  {
+   "id": "bonote_m",
+   "m": 10,
+   "theme": "c",
+   "rt": [
+    "festival",
+    "okusa",
+    "noguchi"
+   ],
+   "more": "legacy-bonote",
+   "name": {
+    "ja": "棒の手の奉納",
+    "ja-kids": "ぼうのての おまつり",
+    "en": "Bo-no-te performances",
+    "pt": "Apresentação do Bo-no-te",
+    "vi": "Biểu diễn Bo-no-te",
+    "tl": "Pagtatanghal ng Bo-no-te",
+    "es": "Presentación del Bo-no-te",
+    "zh": "棒之手奉纳",
+    "id": "Pertunjukan Bo-no-te",
+    "ko": "보노테 봉납",
+    "ne": "बो-नो-ते प्रदर्शन",
+    "tr": "Bo-no-te gösterisi",
+    "my": "Bo-no-te ပြသခြင်း"
+   }
+  },
+  {
+   "id": "cochin_day",
+   "m": 3,
+   "theme": "d",
+   "rt": [
+    "chicken"
+   ],
+   "more": "legacy-cochin",
+   "name": {
+    "ja": "「名古屋コーチンの日」",
+    "ja-kids": "名古屋コーチンの日",
+    "en": "Nagoya Cochin Day",
+    "pt": "Dia do Nagoya Cochin",
+    "vi": "Ngày Nagoya Cochin",
+    "tl": "Araw ng Nagoya Cochin",
+    "es": "Día del Nagoya Cochin",
+    "zh": "名古屋交趾鸡日",
+    "id": "Hari Nagoya Cochin",
+    "ko": "나고야 코친의 날",
+    "ne": "नागोया कोचिन दिवस",
+    "tr": "Nagoya Cochin Günü",
+    "my": "Nagoya Cochin နေ့"
+   }
+  },
+  {
+   "id": "firefly_m",
+   "m": 6,
+   "theme": "e",
+   "rt": [
+    "oyama",
+    "nature"
+   ],
+   "more": "legacy-hotaru",
+   "name": {
+    "ja": "大山川のゲンジボタル",
+    "ja-kids": "大山川の ホタル",
+    "en": "Genji fireflies on the Oyama River",
+    "pt": "Vaga-lumes Genji do rio Oyama",
+    "vi": "Đom đóm Genji ở sông Oyama",
+    "tl": "Mga alitaptap na Genji sa Ilog Oyama",
+    "es": "Luciérnagas Genji del río Oyama",
+    "zh": "大山川的源氏萤",
+    "id": "Kunang-kunang Genji di Sungai Oyama",
+    "ko": "오야마강의 겐지반딧불이",
+    "ne": "ओयामा नदीका गेन्जी जुनकिरी",
+    "tr": "Oyama Nehri’nin Genji ateş böcekleri",
+    "my": "Oyama မြစ်၏ Genji ပိုးစုန်းကြူး"
+   }
+  },
+  {
+   "id": "hiwatari_m",
+   "m": 12,
+   "theme": "c",
+   "rt": [
+    "temple",
+    "festival"
+   ],
+   "more": "legacy-fukugonji",
+   "name": {
+    "ja": "福厳寺の火渡り",
+    "ja-kids": "福厳寺の 火わたり",
+    "en": "Fire-walking at Fukugonji",
+    "pt": "Caminhada no fogo do Fukugonji",
+    "vi": "Đi trên lửa ở Fukugonji",
+    "tl": "Paglakad sa apoy sa Fukugonji",
+    "es": "Caminata sobre el fuego en Fukugonji",
+    "zh": "福严寺火渡",
+    "id": "Berjalan di atas api di Fukugonji",
+    "ko": "후쿠곤지의 히와타리",
+    "ne": "फुकुगोन्जीको हिवातारी",
+    "tr": "Fukugonji’de ateş üstünde yürüme",
+    "my": "Fukugonji ၏ မီးပေါ်လျှောက်ပွဲ"
+   }
+  },
+  {
+   "id": "matsuri_m",
+   "m": 7,
+   "theme": "c",
+   "rt": [
+    "festival",
+    "tokadai"
+   ],
+   "more": "legacy-matsuri",
+   "name": {
+    "ja": "桃花台まつり",
+    "ja-kids": "桃花台まつり",
+    "en": "Tokadai Festival",
+    "pt": "Festival de Tokadai",
+    "vi": "Lễ hội Tokadai",
+    "tl": "Pista ng Tokadai",
+    "es": "Festival de Tokadai",
+    "zh": "桃花台祭",
+    "id": "Festival Tokadai",
+    "ko": "도카다이 축제",
+    "ne": "तोकादाइ महोत्सव",
+    "tr": "Tokadai Festivali",
+    "my": "Tokadai ပွဲတော်"
+   }
+  },
+  {
+   "id": "grape_m",
+   "m": 8,
+   "theme": "l",
+   "rt": [
+    "fruit"
+   ],
+   "src": "小牧つーしん",
+   "name": {
+    "ja": "小牧のぶどうの旬",
+    "ja-kids": "ぶどうが おいしい 時期",
+    "en": "Komaki grape season",
+    "pt": "Safra da uva de Komaki",
+    "vi": "Mùa nho Komaki",
+    "tl": "Panahon ng ubas sa Komaki",
+    "es": "Temporada de uva de Komaki",
+    "zh": "小牧葡萄当季",
+    "id": "Musim anggur Komaki",
+    "ko": "고마키 포도 제철",
+    "ne": "कोमाकी अंगुरको सिजन",
+    "tr": "Komaki üzüm mevsimi",
+    "my": "Komaki စပျစ်ရာသီ"
+   }
+  }
+ ],
+ "tpl": {
+  "gt_where": {
+   "ja": "{x}がある町は？",
+   "ja-kids": "{x}が ある 町は？",
+   "en": "In which area is {x}?",
+   "pt": "Em que área fica {x}?",
+   "vi": "{x} ở khu nào?",
+   "tl": "Saang lugar matatagpuan ang {x}?",
+   "es": "¿En qué zona está {x}?",
+   "zh": "{x}在哪个地区？",
+   "id": "Di wilayah mana {x} berada?",
+   "ko": "{x}, 어디에 있을까요?",
+   "ne": "{x} कुन क्षेत्रमा छ?",
+   "tr": "{x} hangi bölgede?",
+   "my": "{x} ဘယ်ဒေသမှာလဲ။"
+  },
+  "gt_in": {
+   "ja": "{t}にあるのはどれ？",
+   "ja-kids": "{t}に あるのは どれ？",
+   "en": "Which of these is in {t}?",
+   "pt": "Qual destes fica em {t}?",
+   "vi": "Nơi nào ở {t}?",
+   "tl": "Alin dito ang nasa {t}?",
+   "es": "¿Cuál de estos está en {t}?",
+   "zh": "以下哪个在{t}？",
+   "id": "Mana yang berada di {t}?",
+   "ko": "{t}에 있는 것은?",
+   "ne": "यीमध्ये कुन {t}मा छ?",
+   "tr": "Bunlardan hangisi {t} bölgesinde?",
+   "my": "{t} တွင် ရှိသည်မှာ ဘယ်ဟာလဲ။"
+  },
+  "gt_notin": {
+   "ja": "{t}に無いのはどれ？",
+   "ja-kids": "{t}に ないのは どれ？",
+   "en": "Which of these is NOT in {t}?",
+   "pt": "Qual destes NÃO fica em {t}?",
+   "vi": "Nơi nào KHÔNG ở {t}?",
+   "tl": "Alin dito ang WALA sa {t}?",
+   "es": "¿Cuál de estos NO está en {t}?",
+   "zh": "以下哪个不在{t}？",
+   "id": "Mana yang TIDAK berada di {t}?",
+   "ko": "{t}에 없는 것은?",
+   "ne": "यीमध्ये कुन {t}मा छैन?",
+   "tr": "Bunlardan hangisi {t} bölgesinde DEĞİL?",
+   "my": "{t} တွင် မရှိသည်မှာ ဘယ်ဟာလဲ။"
+  },
+  "gt_kind": {
+   "ja": "次のうち、{k}はどれ？",
+   "ja-kids": "つぎの うち、{k}は どれ？",
+   "en": "Which of these is {k}?",
+   "pt": "Qual destes é {k}?",
+   "vi": "Cái nào là {k}?",
+   "tl": "Alin dito ang {k}?",
+   "es": "¿Cuál de estos es {k}?",
+   "zh": "以下哪个是{k}？",
+   "id": "Mana yang merupakan {k}?",
+   "ko": "다음 중 {k}에 해당하는 것은?",
+   "ne": "यीमध्ये कुन {k} हो?",
+   "tr": "Bunlardan hangisi {k}?",
+   "my": "အောက်ပါတို့တွင် {k} ဖြစ်သည်မှာ ဘယ်ဟာလဲ။"
+  },
+  "gt_notkind": {
+   "ja": "次のうち、{k}でないのはどれ？",
+   "ja-kids": "つぎの うち、{k}では ないのは どれ？",
+   "en": "Which of these is NOT {k}?",
+   "pt": "Qual destes NÃO é {k}?",
+   "vi": "Cái nào KHÔNG phải là {k}?",
+   "tl": "Alin dito ang HINDI {k}?",
+   "es": "¿Cuál de estos NO es {k}?",
+   "zh": "以下哪个不是{k}？",
+   "id": "Mana yang BUKAN {k}?",
+   "ko": "다음 중 {k}에 해당하지 않는 것은?",
+   "ne": "यीमध्ये कुन {k} होइन?",
+   "tr": "Bunlardan hangisi {k} DEĞİL?",
+   "my": "အောက်ပါတို့တွင် {k} မဟုတ်သည်မှာ ဘယ်ဟာလဲ။"
+  },
+  "gt_old": {
+   "ja": "いちばん昔のできごとはどれ？",
+   "ja-kids": "いちばん むかしの できごとは どれ？",
+   "en": "Which of these happened first?",
+   "pt": "Qual destes aconteceu primeiro?",
+   "vi": "Sự kiện nào xảy ra sớm nhất?",
+   "tl": "Alin ang naunang nangyari?",
+   "es": "¿Cuál de estos ocurrió primero?",
+   "zh": "以下哪件事最早发生？",
+   "id": "Peristiwa mana yang paling dulu terjadi?",
+   "ko": "가장 먼저 일어난 일은?",
+   "ne": "यीमध्ये पहिले कुन भयो?",
+   "tr": "Bunlardan hangisi önce oldu?",
+   "my": "အစောဆုံး ဖြစ်ခဲ့သည်မှာ ဘယ်ဟာလဲ။"
+  },
+  "gt_new": {
+   "ja": "いちばん最近のできごとはどれ？",
+   "ja-kids": "いちばん あたらしい できごとは どれ？",
+   "en": "Which of these happened most recently?",
+   "pt": "Qual destes aconteceu por último?",
+   "vi": "Sự kiện nào xảy ra gần đây nhất?",
+   "tl": "Alin ang pinakahuling nangyari?",
+   "es": "¿Cuál de estos ocurrió más recientemente?",
+   "zh": "以下哪件事最晚发生？",
+   "id": "Peristiwa mana yang paling akhir terjadi?",
+   "ko": "가장 나중에 일어난 일은?",
+   "ne": "यीमध्ये सबैभन्दा पछि कुन भयो?",
+   "tr": "Bunlardan hangisi en son oldu?",
+   "my": "နောက်ဆုံး ဖြစ်ခဲ့သည်မှာ ဘယ်ဟာလဲ။"
+  },
+  "gt_early": {
+   "ja": "1年のうち、いちばん早い月にあるのはどれ？",
+   "ja-kids": "1年の うち、いちばん はやい 月に あるのは どれ？",
+   "en": "Which of these comes earliest in the year?",
+   "pt": "Qual destes acontece mais cedo no ano?",
+   "vi": "Cái nào diễn ra sớm nhất trong năm?",
+   "tl": "Alin ang pinakamaaga sa loob ng taon?",
+   "es": "¿Cuál de estos ocurre más temprano en el año?",
+   "zh": "以下哪个在一年中最早？",
+   "id": "Mana yang paling awal dalam setahun?",
+   "ko": "1년 중 가장 이른 달에 있는 것은?",
+   "ne": "वर्षमा सबैभन्दा पहिले कुन आउँछ?",
+   "tr": "Bunlardan hangisi yılın en erken ayında?",
+   "my": "တစ်နှစ်အတွင်း အစောဆုံးလတွင် ရှိသည်မှာ ဘယ်ဟာလဲ။"
+  },
+  "gt_late": {
+   "ja": "1年のうち、いちばん遅い月にあるのはどれ？",
+   "ja-kids": "1年の うち、いちばん おそい 月に あるのは どれ？",
+   "en": "Which of these comes latest in the year?",
+   "pt": "Qual destes acontece mais tarde no ano?",
+   "vi": "Cái nào diễn ra muộn nhất trong năm?",
+   "tl": "Alin ang pinakahuli sa loob ng taon?",
+   "es": "¿Cuál de estos ocurre más tarde en el año?",
+   "zh": "以下哪个在一年中最晚？",
+   "id": "Mana yang paling akhir dalam setahun?",
+   "ko": "1년 중 가장 늦은 달에 있는 것은?",
+   "ne": "वर्षमा सबैभन्दा पछि कुन आउँछ?",
+   "tr": "Bunlardan hangisi yılın en geç ayında?",
+   "my": "တစ်နှစ်အတွင်း နောက်ဆုံးလတွင် ရှိသည်မှာ ဘယ်ဟာလဲ။"
+  }
+ }
+}

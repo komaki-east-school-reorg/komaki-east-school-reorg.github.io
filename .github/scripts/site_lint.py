@@ -593,7 +593,83 @@ def quiz_data():
     for name, keys in uis.items():
         if {"pl_" + r for r in named} - keys:
             out.append(f"{name}: 道の名前 pl_* が足りない")
+    out += quiz_gen_check(page)[0]
     return out
+
+
+GEN_TOWNS = ["okusa", "oyama", "noguchi", "kamisue", "ikenouchi", "hayashi", "takane", "shiroyama", "koga"]
+
+
+def quiz_gen_check(page=None):
+    """組み立てる問題（data/quiz_facts.json と js/quiz.js の QUIZ GEN）：13言語のそろい・飛び先・出どころ・
+    正解がちょうど1つになる条件を確かめ、組み立てられる問題の数（問いの数・選択肢の組み合わせの数）を返す。"""
+    from itertools import combinations
+    from math import comb
+    page = page or open("community.html", encoding="utf-8").read()
+    out = []
+    F = json.load(open("data/quiz_facts.json", encoding="utf-8"))
+    langs = [os.path.basename(f)[:-5] for f in glob.glob("data/quiz/*.json")]
+    uis = {l: json.load(open(f"data/quiz/{l}.json", encoding="utf-8"))["ui"] for l in langs}
+    facts, years, months = F["facts"], F["years"], F["months"]
+    allx = facts + years + months
+    for x in allx:
+        miss = [l for l in langs if not (x.get("name") or {}).get(l)]
+        if miss:
+            out.append(f"quiz_facts {x['id']}: 名前の訳が無い {miss}")
+        if not x.get("more") and not x.get("src"):
+            out.append(f"quiz_facts {x['id']}: 飛び先も出どころも無い")
+        if x.get("more") and f'id="{x["more"]}"' not in page:
+            out.append(f"quiz_facts {x['id']}: 飛び先 {x['more']} が無い")
+        if re.search("再編|パブリックコメント|教育委員会|議会|音頭", json.dumps(x.get("name"), ensure_ascii=False)):
+            out.append(f"quiz_facts {x['id']}: 出さない話題の語がある")
+    for k, v in F["tpl"].items():
+        if [l for l in langs if not v.get(l)]:
+            out.append(f"quiz_facts tpl {k}: 訳が無い")
+    for k, v in F["kinds"].items():
+        if [l for l in langs if not v["name"].get(l)]:
+            out.append(f"quiz_facts kind {k}: 訳が無い")
+    for f in facts:
+        if f.get("town") and f["town"] not in GEN_TOWNS:
+            out.append(f"quiz_facts {f['id']}: 知らない町 {f['town']}")
+        if f.get("kind") and f["kind"] not in F["kinds"]:
+            out.append(f"quiz_facts {f['id']}: 知らない種類 {f['kind']}")
+    for t in GEN_TOWNS:
+        for l in langs:
+            if not (uis[l].get("pl_" + t) or (F["towns"].get(t) or {}).get(l)):
+                out.append(f"quiz_facts: 町 {t} の {l} の名前が無い")
+    # 同じ言語で名前が重なると選択肢が区別できない
+    for l in langs:
+        for grp in (facts, years, months):
+            names = [x["name"].get(l) for x in grp]
+            if len(names) != len(set(names)):
+                out.append(f"quiz_facts: {l} で名前が重なっている")
+    # 数え上げ（JS と同じ規則）
+    g = lambda f: F["kinds"][f["kind"]]["group"] if f.get("kind") else "A"
+    wt = [f for f in facts if f.get("town")]
+    wk = [f for f in facts if f.get("kind")]
+    stems = combos = 0
+    for c in wt:   # where
+        stems += 1; combos += comb(len(GEN_TOWNS) - 1, 2)
+    for c in wt:   # in
+        n = len([f for f in wt if f["town"] != c["town"] and g(f) == g(c)])
+        if n >= 2: stems += 1; combos += comb(n, 2)
+    for c in wt:   # not in
+        for t in GEN_TOWNS:
+            n = len([f for f in wt if f["town"] == t and g(f) == g(c)])
+            if t != c["town"] and n >= 2: stems += 1; combos += comb(n, 2)
+    for c in wk:   # kind
+        n = len([f for f in wk if f["kind"] != c["kind"] and g(f) == g(c)])
+        if n >= 2: stems += 1; combos += comb(n, 2)
+    for c in wk:   # not kind
+        for k, kv in F["kinds"].items():
+            n = len([f for f in wk if f["kind"] == k])
+            if k != c["kind"] and kv["group"] == g(c) and n >= 2: stems += 1; combos += comb(n, 2)
+    for key, lst, gap in (("y", years, 3), ("m", months, 1)):
+        for tri in combinations(lst, 3):
+            v = [x[key] for x in tri]
+            if all(abs(a - b) >= gap for a, b in combinations(v, 2)):
+                stems += 2; combos += 2
+    return out, stems, combos
 
 
 def static_seo():

@@ -12,6 +12,109 @@
   function blank() { return { v: 1, a: 3, rounds: 0, th: {}, rt: {}, seen: {}, miss: {} }; }
   function clamp(x, lo, hi) { return Math.max(lo, Math.min(hi, x)); }
 
+  /* ---------- 組み立てる問題（QUIZ GEN、2026-11-28 ユーザー指示） ----------
+     5000問を書く代わりに、確かめた事実の表（data/quiz_facts.json）と型（gt_*）から、出題のたびに組み立てる。
+     ・事実はカード（more）か出どころ（src）で確かめたものだけ。町・種類・年・月は1つずつで、正解はちょうど1つになる。
+     ・id は「型＋正解の事実」（年・月の型は3つの組）で決まるので、同じ問いは同じ id になり記録が増えすぎない。
+     ・選択肢の組み合わせは毎回変わる。検査と数え上げは site_lint.py の quiz_data（同じ規則を Python で）。 */
+  var GEN_TOWNS = ['okusa', 'oyama', 'noguchi', 'kamisue', 'ikenouchi', 'hayashi', 'takane', 'shiroyama', 'koga'];
+  function Gen(F, ui, L) {
+    var facts = F.facts || [], years = F.years || [], months = F.months || [];
+    function nm(f) { return (f.name && (f.name[L] || f.name.en)) || f.id; }
+    function town(t) { return ui['pl_' + t] || (F.towns[t] && (F.towns[t][L] || F.towns[t].en)) || t; }
+    function tp(k) { var x = F.tpl[k]; return (x && (x[L] || x.en)) || ''; }
+    function kname(k) { var x = F.kinds[k].name; return x[L] || x.en; }
+    function grp(f) { return f.kind ? F.kinds[f.kind].group : 'A'; }
+    function pick(arr, n, rand) {
+      var a = arr.slice(), out = [];
+      while (out.length < n && a.length) out.push(a.splice(Math.floor(rand() * a.length), 1)[0]);
+      return out.length === n ? out : null;
+    }
+    function one(arr, rand) { return arr.length ? arr[Math.floor(rand() * arr.length)] : null; }
+    function make(id, c, q, opts, used, d, extraRt) {
+      var easy = used.every(function (f) { return !!f.more; });
+      var it = { id: id, gen: true, theme: c.theme, q: q, o: opts, lv: easy ? 'easy' : 'hard',
+        d: easy ? clamp(d, 1, 3) : clamp(d, 3, 5), routes: (c.rt || []).concat(extraRt || []) };
+      if (easy || !c.src) it.more = c.more || null; else it.src = c.src;
+      return it;
+    }
+    var withTown = facts.filter(function (f) { return f.town; });
+    var withKind = facts.filter(function (f) { return f.kind; });
+    var T = {
+      where: function (rand) {
+        var c = one(withTown, rand), o = c && pick(GEN_TOWNS.filter(function (t) { return t !== c.town; }), 2, rand);
+        if (!o) return null;
+        return make('gw:' + c.id, c, tp('gt_where').replace('{x}', nm(c)), [town(c.town), town(o[0]), town(o[1])], [c], grp(c) === 'B' ? 4 : 2, [c.town]);
+      },
+      inTown: function (rand) {
+        var c = one(withTown, rand);
+        var ds = c && pick(withTown.filter(function (f) { return f.town !== c.town && grp(f) === grp(c); }), 2, rand);
+        if (!ds) return null;
+        return make('gi:' + c.id, c, tp('gt_in').replace('{t}', town(c.town)), [nm(c), nm(ds[0]), nm(ds[1])], [c].concat(ds), grp(c) === 'B' ? 4 : 3, [c.town]);
+      },
+      notIn: function (rand) {
+        var c = one(withTown, rand);
+        if (!c) return null;
+        var ts = GEN_TOWNS.filter(function (t) {
+          return t !== c.town && withTown.filter(function (f) { return f.town === t && grp(f) === grp(c); }).length >= 2;
+        });
+        var t = one(ts, rand);
+        var ins = t && pick(withTown.filter(function (f) { return f.town === t && grp(f) === grp(c); }), 2, rand);
+        if (!ins) return null;
+        return make('gn:' + t + ':' + c.id, c, tp('gt_notin').replace('{t}', town(t)), [nm(c), nm(ins[0]), nm(ins[1])], [c].concat(ins), 4, [t]);
+      },
+      kind: function (rand) {
+        var c = one(withKind, rand);
+        var ds = c && pick(withKind.filter(function (f) { return f.kind !== c.kind && grp(f) === grp(c); }), 2, rand);
+        if (!ds) return null;
+        return make('gk:' + c.id, c, tp('gt_kind').replace('{k}', kname(c.kind)), [nm(c), nm(ds[0]), nm(ds[1])], [c].concat(ds), grp(c) === 'B' ? 3 : 2);
+      },
+      notKind: function (rand) {
+        var c = one(withKind, rand);
+        if (!c) return null;
+        var ks = Object.keys(F.kinds).filter(function (k) {
+          return k !== c.kind && F.kinds[k].group === grp(c) && withKind.filter(function (f) { return f.kind === k; }).length >= 2;
+        });
+        var k = one(ks, rand), ins = k && pick(withKind.filter(function (f) { return f.kind === k; }), 2, rand);
+        if (!ins) return null;
+        return make('gnk:' + k + ':' + c.id, c, tp('gt_notkind').replace('{k}', kname(k)), [nm(c), nm(ins[0]), nm(ins[1])], [c].concat(ins), grp(c) === 'B' ? 4 : 3);
+      },
+      order: function (rand, key, list, minGap, tplOld, tplNew, pre) {
+        var three = pick(list, 3, rand);
+        if (!three) return null;
+        var v = three.map(function (x) { return x[key]; });
+        for (var i = 0; i < 3; i++) for (var j = i + 1; j < 3; j++) if (Math.abs(v[i] - v[j]) < minGap) return null;
+        var old = rand() < 0.5;
+        three.sort(function (a, b) { return old ? a[key] - b[key] : b[key] - a[key]; });
+        var c = three[0], gap = Math.abs(three[1][key] - c[key]);
+        var d = key === 'y' ? (gap >= 100 ? 2 : gap >= 20 ? 3 : 4) : (gap >= 3 ? 2 : 3);
+        var ids = three.map(function (x) { return x.id; }).slice().sort().join('.');
+        return make(pre + (old ? 'o:' : 'n:') + ids, c, tp(old ? tplOld : tplNew), three.map(nm), three, d);
+      }
+    };
+    var plan = [['where', 2], ['inTown', 2], ['notIn', 1], ['kind', 2], ['notKind', 1], ['years', 2], ['months', 1]];
+    var total = plan.reduce(function (s, p) { return s + p[1]; }, 0);
+    function once(rand) {
+      var r = rand() * total, name = plan[0][0];
+      for (var i = 0; i < plan.length; i++) { r -= plan[i][1]; if (r <= 0) { name = plan[i][0]; break; } }
+      if (name === 'years') return T.order(rand, 'y', years, 3, 'gt_old', 'gt_new', 'gy');
+      if (name === 'months') return T.order(rand, 'm', months, 1, 'gt_early', 'gt_late', 'gm');
+      return T[name](rand);
+    }
+    return {
+      sample: function (n, rand) {
+        rand = rand || Math.random;
+        var out = [], seen = {};
+        for (var tries = 0; out.length < n && tries < n * 6; tries++) {
+          var it = once(rand);
+          if (it && !seen[it.id] && it.q) { seen[it.id] = 1; out.push(it); }
+        }
+        return out;
+      }
+    };
+  }
+  window.KomakiQuizGen = Gen;
+
   /* ---------- 出題の判断 ---------- */
   function Engine(items, meta, state) {
     var byId = {}, routesOf = {}, routes = (meta && meta.routes) || {}, hide = (meta && meta.hide) || {};
@@ -23,8 +126,27 @@
       routes[r].forEach(function (id) { if (routesOf[id]) routesOf[id].push(r); });
     });
     function diff(id) {
+      if (byId[id].d) return byId[id].d;
       var d = meta && meta.d && meta.d[id];
       return d || (byId[id].lv === 'easy' ? 2 : 4);
+    }
+    /* 組み立てた問題を候補に足す／いらなくなったものを外す（手書きの問いは外さない） */
+    function add(list) {
+      list.forEach(function (it) {
+        if (byId[it.id]) return;
+        items.push(it);
+        byId[it.id] = it;
+        routesOf[it.id] = (it.routes || []).slice();
+      });
+    }
+    function prune(keep) {
+      for (var i = items.length - 1; i >= 0; i--) {
+        var it = items[i];
+        if (it.gen && !keep[it.id]) { items.splice(i, 1); delete byId[it.id]; delete routesOf[it.id]; }
+      }
+    }
+    function handOpen(mode) {
+      return items.some(function (x) { return !x.gen && inMode(x.id, mode) && state.seen[x.id] == null; });
     }
     function inMode(id, mode) { return mode === 'normal' || byId[id].lv === mode; }
     function target(mode) {
@@ -36,7 +158,7 @@
       return routesOf[a].filter(function (r) { return routesOf[b].indexOf(r) >= 0; });
     }
     function seenInTheme(th) {
-      return Object.keys(state.seen).filter(function (id) { return byId[id] && byId[id].theme === th; }).length;
+      return Object.keys(state.seen).filter(function (id) { return byId[id] && !byId[id].gen && byId[id].theme === th; }).length;
     }
     function themesIn(ctx) {
       var out = {};
@@ -46,8 +168,11 @@
     function pool(ctx) {
       var used = {}, used2 = themesIn(ctx), lastTh = ctx.last ? groupOf(byId[ctx.last.id].theme) : '';
       ctx.round.forEach(function (r) { used[r.id] = 1; });
+      // 手書きの問いにまだ見ていないものがあるうちは、組み立てた問題は1回に2問まで
+      var genIn = ctx.round.filter(function (r) { return byId[r.id] && byId[r.id].gen; }).length;
+      var noGen = genIn >= 2 && handOpen(ctx.mode);
       var all = items.map(function (x) { return x.id; }).filter(function (id) {
-        return !used[id] && inMode(id, ctx.mode) && (!ctx.focus || byId[id].theme === ctx.focus);
+        return !used[id] && !(noGen && byId[id].gen) && inMode(id, ctx.mode) && (!ctx.focus || byId[id].theme === ctx.focus);
       });
       if (ctx.focus) return all;
       var strict = all.filter(function (id) {
@@ -123,6 +248,11 @@
         state.rt[r] = Math.round(((state.rt[r] || 0) * 0.9 + (ok ? 1 : 0.4)) * 100) / 100;
       });
       state.seen[id] = state.rounds;
+      if (it.gen) {   // 組み立てた問題はリベンジに使わない。記録は新しい400件まで
+        var g = Object.keys(state.seen).filter(function (k) { return k.indexOf(':') > 0; });
+        if (g.length > 400) g.sort(function (a, b) { return state.seen[a] - state.seen[b]; }).slice(0, g.length - 400).forEach(function (k) { delete state.seen[k]; });
+        return;
+      }
       if (ok) delete state.miss[id]; else state.miss[id] = state.rounds;
     }
     /* 問題の上に出す一言の種類と、名前を出す道 */
@@ -151,14 +281,14 @@
       round.forEach(function (r) { used[byId[r.id].theme] = 1; });
       THEMES.forEach(function (th) {
         if (used[th]) return;
-        var open = items.filter(function (x) { return x.theme === th && inMode(x.id, mode) && state.seen[x.id] == null; }).length;
+        var open = items.filter(function (x) { return !x.gen && x.theme === th && inMode(x.id, mode) && state.seen[x.id] == null; }).length;
         if (!open) return;
         var n = seenInTheme(th);
         if (n < low) { low = n; best = th; }
       });
       return best;
     }
-    return { pick: pick, record: record, bridge: bridge, diff: diff, bestTheme: bestTheme, recommend: recommend, seenInTheme: seenInTheme };
+    return { pick: pick, record: record, bridge: bridge, diff: diff, bestTheme: bestTheme, recommend: recommend, seenInTheme: seenInTheme, add: add, prune: prune, get: function (id) { return byId[id]; } };
   }
   window.KomakiQuizEngine = Engine;
 
@@ -168,7 +298,7 @@
   var stage = box.querySelector('.east-quiz-stage');
   var mapBox = document.getElementById('quiz-map');
   var isPage = !!mapBox;
-  var state = loadState(), engine = null, items = null, byId = null, meta = null, ui = {};
+  var state = loadState(), engine = null, items = null, byId = null, meta = null, ui = {}, facts = null, gen = null;
   var pageLink = null, mode = 'normal', modeBox = null, loaded = '', round = [], at = 0, score = 0, picked = -1, counted = false, focus = null, rec = null;
 
   function loadState() {
@@ -226,6 +356,12 @@
     return { id: p.id, ok: !!p.ok };
   }
   function addNext() {
+    if (gen) {   // 組み立てた問題の候補を出題のたびに入れ替える（いま出ている問いは残す）
+      var keep = {};
+      round.forEach(function (r) { if (r) keep[r.id] = 1; });
+      engine.prune(keep);
+      engine.add(gen.sample(24));
+    }
     var ctx = { mode: mode, focus: focus, rec: rec, last: lastAnswer(), round: round.slice(0, at) };
     var p = engine.pick(ctx);
     if (!p) return false;
@@ -264,7 +400,7 @@
     modeBox.appendChild(el('p', 'east-quiz-mode-note', t('note_' + mode)));
   }
   function bridgeText(cur) {
-    var q = byId[cur.id], last = at ? { id: round[at - 1].id, ok: !!round[at - 1].ok } : null;
+    var q = engine.get(cur.id), last = at ? { id: round[at - 1].id, ok: !!round[at - 1].ok } : null;
     var b = engine.bridge(cur.id, last, cur.why, function (r) {
       // 表示する名前が選択肢に入っていると答えが分かるので出さない
       var name = ui['pl_' + r];
@@ -280,11 +416,11 @@
     if (bt && ui.type) stage.appendChild(el('p', 'east-quiz-type', ui.type.replace('{x}', ui['th_' + bt] || '')));
     rec = focus ? null : engine.recommend(mode, round);
     if (rec && ui.rec) stage.appendChild(el('p', 'east-quiz-insight', ui.rec.replace('{x}', ui['th_' + rec] || '')));
-    var missed = round.filter(function (p) { return !p.ok && byId[p.id].more; })[0];
+    var missed = round.filter(function (p) { return !p.ok && engine.get(p.id) && engine.get(p.id).more; })[0];
     var links = el('p', 'east-quiz-links');
     if (missed && ui.review) {
       var a = el('a', '', ui.review);
-      a.href = moreHref(byId[missed.id].more);
+      a.href = moreHref(engine.get(missed.id).more);
       links.appendChild(a);
     }
     if (links.childNodes.length) stage.appendChild(links);
@@ -318,7 +454,7 @@
       drawMap();
       return;
     }
-    var cur = round[at], q = byId[cur.id];
+    var cur = round[at], q = engine.get(cur.id);
     var num = el('p', 'east-quiz-num', 'Q' + (at + 1) + ' / ' + n);
     if (isPage) {
       var d = engine.diff(cur.id), stars = el('span', 'east-quiz-stars', '★★★★★'.slice(0, d) + '☆☆☆☆☆'.slice(0, 5 - d));
@@ -377,7 +513,7 @@
     var grid = mapBox.querySelector('.quiz-map-grid');
     grid.textContent = '';
     THEMES.forEach(function (th) {
-      var total = items.filter(function (x) { return x.theme === th; }).length, n = engine.seenInTheme(th);
+      var total = items.filter(function (x) { return !x.gen && x.theme === th; }).length, n = engine.seenInTheme(th);
       var card = el('div', 'quiz-map-card' + (n >= total ? ' is-done' : ''));
       card.appendChild(el('span', 'quiz-map-name', ui['th_' + th] || th));
       card.appendChild(el('span', 'quiz-map-n', n + ' / ' + total));
@@ -388,7 +524,7 @@
       card.appendChild(bar);
       card.appendChild(btn(ui.map_go || '', 'quiz-map-go', function () {
         focus = th;
-        if (!items.some(function (x) { return x.theme === th && (mode === 'normal' || x.lv === mode); })) mode = 'normal';
+        if (!items.some(function (x) { return !x.gen && x.theme === th && (mode === 'normal' || x.lv === mode); })) mode = 'normal';
         newRound(); draw();
         box.scrollIntoView({ block: 'start' });
         if (window.KomakiCount) window.KomakiCount('quiz/theme');
@@ -418,18 +554,26 @@
       if (!r.ok) throw new Error('meta');
       return r.json();
     }).catch(function () { return { d: {}, routes: {}, hide: {} }; });   // 読めなければ、つながり無しで出題する
+    var getFacts = facts ? Promise.resolve(facts) : fetch('data/quiz_facts.json').then(function (r) {
+      if (!r.ok) throw new Error('facts');
+      return r.json();
+    }).catch(function () { return null; });   // 読めなければ、手書きの問いだけで出題する
     Promise.all([fetch('data/quiz/' + l + '.json').then(function (res) {
       if (!res.ok) throw new Error('quiz');
       return res.json();
-    }), getMeta]).then(function (got) {
+    }), getMeta, getFacts]).then(function (got) {
       if (l !== loaded) return;
       var first = !byId;
       meta = got[1];
-      items = got[0].items;
+      facts = got[2];
+      items = got[0].items.slice();
       ui = got[0].ui || {};
       byId = {};
       items.forEach(function (it) { byId[it.id] = it; });
       engine = Engine(items, meta, state);
+      gen = facts ? Gen(facts, ui, l) : null;
+      // 言語が変わったとき、組み立てた問題が出ていたら新しい回にする（その言語で作り直せないため）
+      if (!first && round.some(function (r) { return r && !byId[r.id]; })) newRound();
       if (first) newRound();
       box.hidden = false;
       draw();

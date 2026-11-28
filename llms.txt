@@ -98,7 +98,7 @@
   - [更新履歴の一覧](https://komaki-east-school-reorg.github.io/site.html#changelog)
   - [更新履歴の一覧](https://komaki-east-school-reorg.github.io/site.html#site-updates-all)
   - [閲覧数の集計について](https://komaki-east-school-reorg.github.io/site.html#privacy)
-- [東部たんけんクイズ](https://komaki-east-school-reorg.github.io/quiz.html): 東部の歴史や地名、祭り、お店の120問。答えに合わせて、かんたんからむずかしいまで次の問題が変わるクイズです。
+- [東部たんけんクイズ](https://komaki-east-school-reorg.github.io/quiz.html): 東部の歴史や地名、祭り、お店のクイズ。確かめた事実を組み合わせて毎回ちがう問題を作り、答えに合わせて次の問題が変わります。
 - [「篠岡」の名前の由来](https://komaki-east-school-reorg.github.io/shinooka.html): 「篠岡」は篠木荘と味岡荘にちなむ名前です。『篠岡村誌』の記述、二つの荘園の広がり、新篠岡音頭に込められた思い、「桃花台」との関係についての当サイトの見解をまとめました。
   - [村誌に書かれた由来](https://komaki-east-school-reorg.github.io/shinooka.html#origin)
   - [二つの荘園の広がり](https://komaki-east-school-reorg.github.io/shinooka.html#estates)

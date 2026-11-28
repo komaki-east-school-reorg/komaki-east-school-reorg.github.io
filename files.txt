@@ -177,3 +177,4 @@ calendar.<lang>.ics 購読できるカレンダー（12言語、自動生成・�
 .github/scripts/quiz_candidates.py  候補を検査して Issue の本文に整える
 data/quiz/<言語>.json  東部たんけんクイズの問題（手で直す）
 data/quiz_meta.json  クイズの問題の難しさ（1〜5）と、かんたん→むずかしいに並べたつながり（手で直す）
+data/quiz_facts.json クイズの「組み立てる問題」の元（手で直す）。確かめた事実（町・種類・年・月）と13言語の名前、型 gt_*。js/quiz.js の QUIZ GEN が出題のたびに問題を組み立てる（2026-11-28）

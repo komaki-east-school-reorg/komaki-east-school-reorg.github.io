@@ -6,10 +6,26 @@
   <link rel="self" type="application/atom+xml" href="https://komaki-east-school-reorg.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/"/>
   <id>https://komaki-east-school-reorg.github.io/</id>
-  <updated>2026-11-27T00:00:00+09:00</updated>
+  <updated>2026-11-28T00:00:00+09:00</updated>
   <author><name>「これがまちつくサイトの解。」THE UNIT（住民有志・非公式）</name></author>
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
   <rights>このサイトは「これがまちつくサイトの解。」THE UNIT（住民有志）が運営しており、小牧市・教育委員会とは無関係です。</rights>
+  <entry>
+    <title>東部たんけんクイズに毎回ちがう問題を組み立てる仕組み</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/quiz.html"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:b5dc6b26c422a5f1</id>
+    <updated>2026-11-28T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜東部たんけんクイズに毎回ちがう問題を組み立てる仕組み</summary>
+  </entry>
+  <entry>
+    <title>トップの今後のスケジュールに挿絵</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:b356998eecdf3fd0</id>
+    <updated>2026-11-28T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜トップの今後のスケジュールに挿絵</summary>
+  </entry>
   <entry>
     <title>東部まちづくり：東部振興構想(2022～2031年度)</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/community.html#community-actions"/>
@@ -313,21 +329,5 @@
     <updated>2026-11-15T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜今後のスケジュールで、数日つづく予定を最終日まで表示</summary>
-  </entry>
-  <entry>
-    <title>よくある質問・スクールバスの Q&amp;A に、1問ずつのページを追加</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/faq.html#qa"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:898b4f883a06e3ae</id>
-    <updated>2026-11-14T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜よくある質問・スクールバスの Q&amp;A に、1問ずつのページを追加</summary>
-  </entry>
-  <entry>
-    <title>地域クラブ・課外活動を種目でしぼれるボタンを追加</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/clubs.html#wide"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:e287ed19beadb526</id>
-    <updated>2026-11-13T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜地域クラブ・課外活動を種目でしぼれるボタンを追加</summary>
   </entry>
 </feed>

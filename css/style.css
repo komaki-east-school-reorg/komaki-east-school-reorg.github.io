@@ -545,6 +545,7 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
 .page-quiz-link:focus-visible { background: #e6c04a; outline: 2px solid #fff; outline-offset: 2px; }
 @media print { .page-hero-quiz { display: none; } }
 @media print { .hero-site { display: none; } }
+@media print { .upcoming-ill { display: none; } }
 
 /* ===== NOW BAR（トップ冒頭「いまの状況」を一文で示す枠） ===== */
 .now-bar {
@@ -1026,8 +1027,17 @@ nav a:hover, nav a.active { background: rgba(255,255,255,.22); color: #fff; text
   text-decoration: none;
 }
 .upcoming-more:hover { background: var(--accent); color: var(--primary-dark); text-decoration: none; }
+/* 見出しを上端に寄せ、その下の空きにチョーク線の挿絵（2026-11-28 ユーザー指示）。
+   予定が1行のときに帯が太らないよう、挿絵の高さは抑える。モバイル・印刷では出さない。 */
+.upcoming-inner { align-items: flex-start; }
+.upcoming-inner > .upcoming-more { align-self: flex-start; margin-top: .1rem; }
+.upcoming-head { display: flex; flex-direction: column; align-items: flex-start; gap: .35rem; flex-shrink: 0; }
+.upcoming-head > .upcoming-label { padding-top: .28rem; }
+.upcoming-ill { display: block; width: 6.2rem; height: auto; max-height: 4.6rem; object-fit: contain; object-position: left top; }
 
 @media (max-width: 768px) {
+  .upcoming-ill { display: none; }
+  .upcoming-head > .upcoming-label { padding-top: 0; }
   .upcoming-inner { flex-direction: column; align-items: flex-start; gap: .6rem; }
   .upcoming-list { flex-direction: column; gap: 0; align-self: stretch; }
   .upcoming-name { flex: 1; min-width: 0; }
