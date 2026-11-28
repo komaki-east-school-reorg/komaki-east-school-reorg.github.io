@@ -25,7 +25,7 @@ OFFICIAL = "https://www.city.komaki.aichi.jp/admin/soshiki/kyoiku/kyouikusoumu/3
 OUT_INDEX = "llms.txt"
 OUT_FULL = "llms-full.txt"
 # 当サイトの見解（🔎 検証・💡 提案）を載せているページ
-VIEW_PAGES = {"review", "analysis", "shinooka"}
+VIEW_PAGES = {"review", "analysis", "naze", "shinooka"}
 # llms.txt の「主な節」に出さない id（カード・Q&A・予定・部品）。llms-full.txt には全部入る。
 NOT_SECTION = re.compile(
     r"^(rev-(?:[a-z]-)?[a-z]+\d+|rev-l-name|rev-m-fact|legacy-|ev-|faq-q|bus-faq-q|council-|kz-|cal-|grade-|"
@@ -73,7 +73,7 @@ def head(ja):
         "- 運営：「これがまちつくサイトの解。」THE UNIT（住民有志）。小牧市・教育委員会の公式サイトではありません。",
         f"- 公式情報の確かめ先：小牧市教育委員会 教育総務課 学校再編推進係のページ {OFFICIAL}",
         "- 事実は市・県・国の公表資料にもとづき、市の資料の文面はそのまま載せず当サイトの言葉で書き直しています。",
-        "- 当サイトの見解（🔎 検証・💡 提案）を載せているのは review.html・analysis.html と、shinooka.html の見解の節だけです。"
+        "- 当サイトの見解（🔎 検証・💡 提案）を載せているのは review.html・analysis.html・naze.html と、shinooka.html の見解の節だけです。"
         "【事実】と 🔎・💡 の印で書き分けています。引用するときは、事実と当サイトの見解を区別してください。",
         "- 個人名・政党名は載せていません。計画の決定や最新の日程は、市の公表で確かめてください。",
         "- 12言語で読めます（URL に ?lang=en / pt / vi / tl / es / zh / id / ko / ne / tr / my）。この案内と本文は日本語です。",

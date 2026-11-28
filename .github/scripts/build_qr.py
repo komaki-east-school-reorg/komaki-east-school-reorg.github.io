@@ -45,6 +45,7 @@ PAGES = {
     "nationwide": "nationwide.html",
     "review": "review.html",
     "analysis": "analysis.html",
+    "naze": "naze.html",
     "site": "site.html",
     "quiz": "quiz.html",
     "shinooka": "shinooka.html",

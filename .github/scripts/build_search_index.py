@@ -33,7 +33,7 @@ SKIP_PAGES = {"voices.html", "404.html"}
 PAGE_LABEL = {"index": "nav_home", "about": "nav_about", "schedule": "nav_schedule", "faq": "nav_faq",
               "council": "nav_council", "community": "nav_community", "map": "nav_map",
               "nationwide": "nav_nationwide", "bus": "nav_bus", "review": "nav_review",
-              "clubs": "nav_clubs", "analysis": "rev_tab2", "site": "footer_site", "quiz": "quiz_h", "shinooka": "sn_h"}
+              "clubs": "nav_clubs", "analysis": "rev_tab2", "naze": "rev_tab3", "site": "footer_site", "quiz": "quiz_h", "shinooka": "sn_h"}
 SKIP_CLASSES = {"xlinks", "share", "related", "page-toc", "tts-row", "breadcrumb", "share-buttons", "mc-card", "faq-tools", "cal-month-list", "club-filter", "chk-tools", "plan-steps", "ask-tools", "ask-copy-hint", "leg-season-box", "east-quiz", "season-line", "hero-quiz-link", "leg-src"}  # mc-card＝窓口で見せる日本語（日本語表示では出さない）
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"}
 

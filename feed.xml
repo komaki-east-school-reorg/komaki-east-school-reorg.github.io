@@ -11,6 +11,14 @@
   <icon>https://komaki-east-school-reorg.github.io/favicon.svg</icon>
   <rights>このサイトは「これがまちつくサイトの解。」THE UNIT（住民有志）が運営しており、小牧市・教育委員会とは無関係です。</rights>
   <entry>
+    <title>計画の問題点を掘り下げる「なぜなぜ分析」のページを追加</title>
+    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/naze.html"/>
+    <id>tag:komaki-east-school-reorg.github.io,2026:00bcace2a9670b43</id>
+    <updated>2026-11-28T00:00:00+09:00</updated>
+    <category term="サイトの更新履歴"/>
+    <summary>サイトの更新履歴｜計画の問題点を掘り下げる「なぜなぜ分析」のページを追加</summary>
+  </entry>
+  <entry>
     <title>東部たんけんクイズに毎回ちがう問題を組み立てる仕組み</title>
     <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/quiz.html"/>
     <id>tag:komaki-east-school-reorg.github.io,2026:b5dc6b26c422a5f1</id>
@@ -321,13 +329,5 @@
     <updated>2026-11-15T00:00:00+09:00</updated>
     <category term="サイトの更新履歴"/>
     <summary>サイトの更新履歴｜地域の取組に「大にこにこ祭り ニコサイ」（12/5・6）を追加</summary>
-  </entry>
-  <entry>
-    <title>今後のスケジュールで、数日つづく予定を最終日まで表示</title>
-    <link rel="alternate" type="text/html" href="https://komaki-east-school-reorg.github.io/index.html"/>
-    <id>tag:komaki-east-school-reorg.github.io,2026:ae2f58010c0fcb9a</id>
-    <updated>2026-11-15T00:00:00+09:00</updated>
-    <category term="サイトの更新履歴"/>
-    <summary>サイトの更新履歴｜今後のスケジュールで、数日つづく予定を最終日まで表示</summary>
   </entry>
 </feed>

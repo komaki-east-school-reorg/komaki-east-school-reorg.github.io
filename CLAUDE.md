@@ -246,7 +246,7 @@ A manually maintained human-readable index of all site files with descriptions. 
 | `docs/claude/pipelines.md` | news.json・監視ページ・添付PDF・自動更新パイプライン・日次アイデア・学校HP・協議会イベント・東部まちづくり・都市計画・子どもの数の推定・リンク確認・取得状況・site_lint・見出しの翻訳 | 自動取得・ワークフロー・生成スクリプトを触る | 自動生成ファイル（`news.json` `school_news.json` `community_events.json` `tobu_actions.json` `toshikeikaku_east.json` `child_estimate.json` `official_pages/` `headline_i18n.json` の AI 書き込み など）は手で直さない。市サーバへの負荷を増やさない。AI の工程は信用しない前提の手順を外さない |
 | `docs/claude/ui.md` | `js/main.js` の各機能（共有・検索・関連リンク・カレンダー・.ics・学年ビュー・カットイン・目次・読み上げ・前回からの印・最新の動き）とヘッダのロゴ | 画面の機能・ヘッダを触る | ヘッダの寸法は `--hr`。共有の送り先は `js/main.js` だけ。外部スクリプトは はてなスター だけ |
 | `docs/claude/pages-community.md` | 地域の取組・レガシー・クイズ・東部振興構想 | community.html・クイズ | 地域の取組は必ずスケジュール（schedule.html＋events.json＋`status_digest`）にも載せる。Instagram は機械で読まない。マークと発信元の行を外さない |
-| `docs/claude/pages-review.md` | review / analysis の構成・節の表・核心と根拠の対応 | review.html・analysis.html | 当サイトの見解はこの2ページ（と shinooka.html の見解の節）だけ。【事実】／🔎／💡 の書き分けと `rev_stance` を外さない。わからないことは質問集 `#rev-open` に問いとして足す |
+| `docs/claude/pages-review.md` | review / analysis / naze（なぜなぜ分析）の構成・節の表・核心と根拠の対応 | review.html・analysis.html・naze.html | 当サイトの見解はこの3ページ（と shinooka.html の見解の節）だけ。【事実】／🔎／💡 の書き分けと `rev_stance` を外さない。わからないことは質問集 `#rev-open` に問いとして足す |
 | `docs/claude/pages-other.md` | about の近隣他地区・ことばメモ・町名早見、nationwide、clubs とチェックリスト、faq、教育の質、shinooka | 各ページ | nationwide の事実は文科省だけ。faq の `faq_q<N>` は欠番なし。賛否の声を市の答えと混ぜない |
 | `docs/claude/contacts.md` | 担当部署の連絡先・週次照合 | ページを更新したとき（問い合わせ先も見直す） | トップ・site 以外の全ページに市・県・国と「図書館で調べる」（check 15）。番号は公表ページで確かめ `contacts.json` に登録。部署名は日本語のまま |
 | `docs/claude/bus-map.md` | 対象エリアの地図の由来 | 地図に触れる前に | ⛔ **地図は凍結。ユーザーの明示的な指示がないかぎり一切変更しない** |

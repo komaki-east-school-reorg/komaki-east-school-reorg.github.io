@@ -23,7 +23,8 @@
         "schedule.html",
         "nationwide.html",
         "community.html",
-        "map.html"
+        "map.html",
+        "naze.html"
       ]
     },
     {
@@ -57,7 +58,8 @@
         "review.html",
         "analysis.html",
         "schedule.html",
-        "community.html"
+        "community.html",
+        "naze.html"
       ]
     },
     {
@@ -75,7 +77,8 @@
         "review.html",
         "analysis.html",
         "map.html",
-        "community.html"
+        "community.html",
+        "naze.html"
       ]
     },
     {
@@ -91,7 +94,8 @@
       },
       "shown_in": [
         "review.html",
-        "analysis.html"
+        "analysis.html",
+        "naze.html"
       ]
     },
     {
@@ -109,7 +113,8 @@
         "review.html",
         "analysis.html",
         "faq.html",
-        "community.html"
+        "community.html",
+        "naze.html"
       ]
     },
     {
@@ -125,7 +130,8 @@
       },
       "shown_in": [
         "review.html",
-        "analysis.html"
+        "analysis.html",
+        "naze.html"
       ]
     },
     {
@@ -141,7 +147,8 @@
       },
       "shown_in": [
         "review.html",
-        "analysis.html"
+        "analysis.html",
+        "naze.html"
       ]
     },
     {
@@ -157,7 +164,8 @@
       },
       "shown_in": [
         "review.html",
-        "analysis.html"
+        "analysis.html",
+        "naze.html"
       ]
     },
     {
@@ -173,7 +181,8 @@
       "shown_in": [
         "review.html",
         "analysis.html",
-        "map.html"
+        "map.html",
+        "naze.html"
       ]
     },
     {
@@ -188,7 +197,8 @@
       },
       "shown_in": [
         "review.html",
-        "analysis.html"
+        "analysis.html",
+        "naze.html"
       ]
     },
     {
@@ -203,7 +213,8 @@
       },
       "shown_in": [
         "review.html",
-        "analysis.html"
+        "analysis.html",
+        "naze.html"
       ]
     },
     {
@@ -218,7 +229,8 @@
       },
       "shown_in": [
         "review.html",
-        "analysis.html"
+        "analysis.html",
+        "naze.html"
       ]
     },
     {
@@ -237,7 +249,8 @@
         "about.html",
         "faq.html",
         "schedule.html",
-        "nationwide.html"
+        "nationwide.html",
+        "naze.html"
       ]
     },
     {
@@ -257,7 +270,8 @@
         "about.html",
         "faq.html",
         "schedule.html",
-        "bus.html"
+        "bus.html",
+        "naze.html"
       ]
     },
     {
@@ -274,7 +288,8 @@
         "nationwide.html",
         "review.html",
         "analysis.html",
-        "about.html"
+        "about.html",
+        "naze.html"
       ]
     },
     {
@@ -365,7 +380,8 @@
       "shown_in": [
         "nationwide.html",
         "review.html",
-        "analysis.html"
+        "analysis.html",
+        "naze.html"
       ]
     },
     {
@@ -385,7 +401,8 @@
         "map.html",
         "clubs.html",
         "review.html",
-        "analysis.html"
+        "analysis.html",
+        "naze.html"
       ]
     },
     {
@@ -506,7 +523,8 @@
       "shown_in": [
         "bus.html",
         "review.html",
-        "analysis.html"
+        "analysis.html",
+        "naze.html"
       ]
     },
     {
@@ -522,7 +540,8 @@
       "shown_in": [
         "about.html",
         "review.html",
-        "analysis.html"
+        "analysis.html",
+        "naze.html"
       ]
     },
     {
@@ -733,7 +752,8 @@
       "shown_in": [
         "about.html",
         "review.html",
-        "analysis.html"
+        "analysis.html",
+        "naze.html"
       ]
     },
     {
@@ -758,7 +778,8 @@
         "nationwide.html",
         "review.html",
         "analysis.html",
-        "shinooka.html"
+        "shinooka.html",
+        "naze.html"
       ]
     },
     {
@@ -784,7 +805,8 @@
         "nationwide.html",
         "review.html",
         "analysis.html",
-        "shinooka.html"
+        "shinooka.html",
+        "naze.html"
       ]
     },
     {
@@ -810,7 +832,8 @@
         "nationwide.html",
         "review.html",
         "analysis.html",
-        "shinooka.html"
+        "shinooka.html",
+        "naze.html"
       ]
     },
     {
@@ -836,7 +859,8 @@
         "nationwide.html",
         "review.html",
         "analysis.html",
-        "shinooka.html"
+        "shinooka.html",
+        "naze.html"
       ]
     },
     {
@@ -901,7 +925,8 @@
         "analysis.html",
         "community.html",
         "review.html",
-        "shinooka.html"
+        "shinooka.html",
+        "naze.html"
       ]
     },
     {

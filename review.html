@@ -85,9 +85,9 @@
     .ask-flow li:last-child { background: var(--primary); color: var(--white); }
     .ask-flow li + li { position: relative; }
     .ask-list { list-style: none; margin: 0 0 1.6rem; padding: 0; counter-reset: ask; display: grid; gap: .8rem; }
-    .ask-list--cont { counter-reset: ask 26; }
-    .ask-list--pref { counter-reset: ask 38; }
-    .ask-list--nat { counter-reset: ask 45; }
+    .ask-list--cont { counter-reset: ask 28; }
+    .ask-list--pref { counter-reset: ask 40; }
+    .ask-list--nat { counter-reset: ask 47; }
     .ask-item { counter-increment: ask; position: relative; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .9rem 1rem .9rem 3.6rem; }
     .ask-item::before { content: "Q" counter(ask); position: absolute; left: .8rem; top: .85rem; min-width: 2.2rem; height: 2.2rem; border-radius: 999px; background: var(--accent); color: var(--primary-dark); font-weight: 800; font-size: .82rem; display: flex; align-items: center; justify-content: center; }
     .ask-q { margin: 0 0 .5rem; font-weight: 700; line-height: 1.7; }
@@ -334,7 +334,7 @@
        JS が無くても動くよう静的リンク。いま見ているほうに aria-current="page"。 -->
   <div class="rev-tabs" role="navigation" aria-label="検証と提案のページの切り替え" data-i18n-aria="rev_tabs_aria">
     <div class="container" style="max-width:900px;">
-      <a href="review.html" aria-current="page" data-i18n="rev_tab1">① 要点（核心）</a><a href="analysis.html" data-i18n="rev_tab2">② くわしく（深掘り）</a>
+      <a href="review.html" aria-current="page" data-i18n="rev_tab1">① 要点（核心）</a><a href="analysis.html" data-i18n="rev_tab2">② くわしく（深掘り）</a><a href="naze.html" data-i18n="rev_tab3">③ なぜなぜ分析</a>
     </div>
   </div>
 
@@ -729,6 +729,14 @@
           <p class="ask-q" data-i18n="rev_o52">「新篠岡音頭」は、いつ、どんなきっかけで作られましたか？ いまも地域の盆踊りなどで踊られていますか？</p>
           <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 文化財課 文化財係</span></span> <a class="ask-rel" href="shinooka.html#ondo" data-i18n="rev_ask_rel">関連する検証 →</a></p>
         </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o53">意見募集や説明会の前に、意見で変えられる範囲と変えられない範囲を示す考えはありますか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 教育総務課 学校再編推進係</span></span> <a class="ask-rel" href="naze.html#why-process" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
+        <li class="ask-item">
+          <p class="ask-q" data-i18n="rev_o54">第1期の結果（学び・子どもの様子・地域の変化）を、第2期を判断する前に住民へ報告する予定はありますか？</p>
+          <p class="ask-meta"><span class="ask-to"><span class="ask-to-l" data-i18n="rev_ask_to">宛先</span><span class="ask-to-d" lang="ja">教育委員会事務局 教育総務課 学校再編推進係</span></span> <a class="ask-rel" href="naze.html#why-phase2" data-i18n="rev_ask_rel">関連する検証 →</a></p>
+        </li>
       </ol>
       <h3 class="rev-subh" data-i18n="rev_o_h2">市長部局へ</h3>
       <ol class="ask-list ask-list--cont">
@@ -887,7 +895,8 @@
           </ul>
         </div>
       </div>
-      <p class="rev-guide-end"><span data-i18n="rev_guide_last">最後に：</span> <a href="#rev-open" data-i18n="rev_open_short">市・教育委員会・県・国への質問集（40問）</a> ・ <a href="analysis.html#contact" data-i18n="rev_contact_short">問い合わせ先</a></p>
+      <p class="rev-guide-end"><a href="naze.html" data-i18n="rev_deep_naze">③ なぜなぜ分析：計画の問題点から真因と解決策を探る</a></p>
+      <p class="rev-guide-end"><span data-i18n="rev_guide_last">最後に：</span> <a href="#rev-open" data-i18n="rev_open_short">市・教育委員会・県・国への質問集（51問）</a> ・ <a href="analysis.html#contact" data-i18n="rev_contact_short">問い合わせ先</a></p>
     </div>
   </section>
 
