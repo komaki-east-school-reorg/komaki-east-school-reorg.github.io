@@ -499,7 +499,7 @@ def weekday_mismatch():
 
 
 def permitted_sync():
-    """auto_gates.py の許可する市の URL が、CLAUDE.md・CONTRIBUTING.txt・README.md にも書いてあるか。"""
+    """auto_gates.py の許可する市の URL が、CLAUDE.md（docs/claude/ を含む）・CONTRIBUTING.txt・README.md にも書いてあるか。"""
     import ast
     src = open(".github/scripts/auto_gates.py", encoding="utf-8").read()
     links = None
@@ -511,6 +511,9 @@ def permitted_sync():
     out = []
     for doc in ("CLAUDE.md", "CONTRIBUTING.txt", "README.md"):
         text = open(doc, encoding="utf-8").read()
+        if doc == "CLAUDE.md":   # 詳細は docs/claude/ に分けてある（許可URLの表は links.md）
+            for f in sorted(glob.glob("docs/claude/*.md")):
+                text += open(f, encoding="utf-8").read()
         for u in links:
             tail = u[3:] if u.startswith("jp/") else u
             if tail not in text:

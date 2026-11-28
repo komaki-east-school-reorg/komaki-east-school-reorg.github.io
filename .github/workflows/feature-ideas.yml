@@ -74,7 +74,7 @@ jobs:
               読者の「知りたい」に答えるもの（2026-09-22 追加）
 
             ## まず読むもの
-            1. CLAUDE.md … このサイトの規則。特に「Important constraints」「Machine-checked invariants」
+            1. CLAUDE.md … このサイトの規則。特に「Important constraints」と末尾の索引。詳細は docs/claude/ の各ファイル（機械で確かめる決まりは docs/claude/gates.md）
             2. files.txt … ファイル構成の一覧
             3. auto_ideas/history.json … **過去に出した提案の見出し。ここにある案は二度出さない**
                `implemented` の付いた案はサイトに実装済み（日付と commit つき）。その実装を前提に、重ならない案を考える

@@ -28,53 +28,10 @@ python3 -m http.server 8000
 # then open http://localhost:8000/
 ```
 
+
 ## Validation checks (run before every commit)
 
-**1. Illegal external links** — exactly **thirty-eight** city URLs are permitted: five index pages, plus article pages that the user explicitly allowed (2026-09-27, 2026-10-26, 2026-10-31, 2026-11-15, 2026-11-22; 29 of them are legacy-card sources, listed under the table and at the end of this file). The authoritative list is `PERMITTED_LINKS` in `auto_gates.py`; the grep below shows only the first fourteen, so rely on check 6 for the rest. No PDF direct links, no other article subpages.
-
-| Permitted URL | Used by |
-|---|---|
-| `.../kyoiku/kyouikusoumu/303/index.html` | school reorganization (Education General Affairs Div.) — site-wide |
-| `.../kenkouikigai/sasaeai/3/3_2/index.html` | community councils (Mutual Support Div.) — `community.html` only |
-| `.../toubumachidukuri/tobumachidukurisingikai/index.html` | eastern-district development (Eastern District Office) — the 出典 line of the 地域の取組 corner, built in `js/main.js` (added 2026-09-13 on the user's say-so) |
-| `.../tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/38222.html` | 東部まちづくりプラットフォームの説明 — `community.html` `#platform` **only** (added 2026-09-27 on the user's instruction; the one article page allowed). The same block links the city's registration form `logoform.jp/form/uSYk/80018`, also `community.html` only. Both are pinned by `CITY_PAGE_ONLY` / `PERMITTED_FORM_LINKS` in `auto_gates.py` |
-| `.../toshiseisakubu/toshikeikaku/1/index.html` | city planning (Urban Planning Division) — the 出典 line of the 都市計画の動き（東部地域） corner on `community.html#toshikeikaku` (review.html → analysis.html on 2026-10-31 → community.html on 2026-11-07), built in `js/main.js` (added 2026-10-17 on the user's say-so; confined to `community.html` / `js/main.js` by `CITY_PAGE_ONLY`). Matched with its `index.html` suffix, so the lower indexes and article pages under it stay forbidden |
-| `.../shigikai/index.html` | Komaki City Council top page — `council.html` only, in the 市議会の公式ページ line under the 出典 box (added 2026-10-26 on the user's instruction; `CITY_PAGE_ONLY`). The pages under it (会議録, PDFs) stay forbidden |
-| `.../shigikai/houkoku/43556.html` | 市議会だより (the council newsletter page) — `council.html` only, same line (added 2026-10-26 on the user's instruction; `CITY_PAGE_ONLY`). The newsletter PDFs it lists stay forbidden |
-| `.../kyoiku/bunkazai/52305.html` | こまき歴史発見館 (the city's history museum on Lapio 4F, Cultural Properties Division) — `community.html` (#legacy) and `analysis.html` (#rev-legacy) only, linked from the museum's name in the 大山廃寺 / 古窯 cards and proposal 8 (added 2026-10-31 on the user's instruction; `CITY_PAGE_ONLY`) |
-| `.../shisei/jyohokokai/kaigikoukai/4/53024.html` | 令和8年度第3回 東部まちづくり審議会の会議資料のページ — `community.html` `#tobu-kousou` の出典行 **only** (added 2026-11-15 on the user's instruction; `CITY_PAGE_ONLY`). The PDFs attached to it stay forbidden |
-
-**地域のレガシーのカードの出典（2026-11-22 ユーザー指示、community.html だけ）：市の5ページ shiteibunkazai/1/9109.html・midokoro/kankou/2/10630.html・shiteibunkazai/4/9128.html・sisetuunnei/2_1/3492.html・dragons/51869.html と、komakici.jp・dragons.jp・www.kashiwabara.co.jp・www.blue-style.com・komaki2.jp の各1〜2ページ（`LEGACY_SOURCES`）。PDF へは今までどおり直リンクしない。**
-
-```bash
-grep -rn "city\.komaki\.aichi\.jp" *.html js/*.js \
-  | grep -v -e "303/index\.html" -e "sasaeai/3/3_2/index\.html" \
-           -e "tobumachidukurisingikai/index\.html" -e "purattofo-mu/38222\.html" \
-           -e "toshikeikaku/1/index\.html" -e "jp/shigikai/index\.html" \
-           -e "shigikai/houkoku/43556\.html" -e "kyoiku/bunkazai/52305\.html" \
-           -e "kaigikoukai/4/53024\.html" \
-           -e "shiteibunkazai/1/9109\.html" -e "midokoro/kankou/2/10630\.html" \
-           -e "shiteibunkazai/4/9128\.html" -e "sisetuunnei/2_1/3492\.html" -e "dragons/51869\.html"
-# Any output = violation. Replace with one of the permitted URLs.
-```
-
-The same URLs are encoded in `PERMITTED_LINKS` (and `CITY_PATHS`) in `.github/scripts/auto_gates.py` — keep them in sync. The third one is matched with its `index.html` suffix on purpose, so the pages **under** it (`.../tobumachidukurisingikai/34277.html`, `.../toubumatidukurinyu-su/index.html`) stay forbidden. Adding another requires updating this file, `CONTRIBUTING.txt` rule 1, `README.md`, and that gate together.
-
-**Headline links in the automatic lists (2026-11-27, user's instruction).** The headings of the 地域協議会のイベント, 東部まちづくりの動き, 都市計画の動き（東部地域）, 小牧市のほかの地区 and 春日井市 lists link straight to the official page each item came from — **only `.html` pages under** `…/kenkouikigai/sasaeai/3/3_2/` (`data/community_events.json`), `…/toubumachidukuri/tobumachidukurisingikai/` (`data/tobu_actions.json`), `…/toshiseisakubu/toshikeikaku/1/` (`data/toshikeikaku_east.json`), `…/kyoiku/kyouikusoumu/303/719/` (`data/nearby_komaki.json`) and Kasugai's `/kosodate/kyouiku/school/1009208/` (`data/kasugai_reorg.json`); never a PDF. The URL lives **only in the generated JSON's `url`** (the generators read it from line 1 of the snapshot — no extra HTTP), never in HTML, a dictionary or `js/main.js`, which draws it through `window.KomakiTitleLink()`. The scope is one table, `ARTICLE_SCOPES` in `.github/scripts/official_links.py`, used by the generators (`article_url()`) and by `auto_gates.py` check 6b. The same `url` makes the matching headings link on `schedule.html` (the auto-added 協議会・桃花台を考える会・都市計画 items — hand-written items stay unlinked) and in 地域の取組 (the 桃花台を考える会 items link to their 協働提案事業 page, the council items to their article; the hand-maintained items' heading links to the 発信元 `source_url`, the 発信元 line and the mark stay).
-
-**Kasugai City (2026-11-07, user's instruction):** one more government page, outside the nine above — `https://www.city.kasugai.lg.jp/kosodate/kyouiku/school/1009208/index.html` (春日井市「小中学校の適正規模等について」), confined to `about.html` / `js/main.js` (the 出典 line of the Kasugai list in `#nearby`, 「ほかの地区や、となりのまちでは？」) by `KASUGAI_PATHS` / `KASUGAI_PAGES` in `auto_gates.py`. The pages under it and its PDFs stay forbidden.
-
-Several other domains are permitted and are outside this grep. The **eight target schools' own homepages** (`komaki-aic.ed.jp/<slug>/`) may be linked: they are a different domain run by the schools, and the URLs are stable. They appear in `map.html` (the 各校ホームページ block) and, via `data/school_news.json`, in the bottom section of `index.html`. The grep above does not cover them — when the set of schools changes, keep `SCHOOLS` in `fetch_schools.py` and the `map.html` block in sync. And **five MEXT pages** (`mext.go.jp`) are linked from `nationwide.html` only, as the sources for the nationwide figures and the national standards — see that page's section below. And **five Instagram accounts** — three resident-run (`instagram.com/arigato.ohshirosho`, `instagram.com/tokadaidancefestival`, `instagram.com/bamboo_installation_ookusa`) and two of the city's children's centres (`instagram.com/shinookajidoukan`, `instagram.com/warabekan`, added 2026-09-26) — plus `instagram.com/2525marche.komaki` (にこにこマルシェ, organiser of 大にこにこ祭り ニコサイ on 2026-12-05/06, a city-certified 東部地域トライアル活動; added 2026-11-15 on the user's instruction, content passed on by the user) — are linked from the 地域の取組 corner, which appears on `community.html` and — as the same list inside the 最新の動き group — on `index.html` — see `data/community_actions.json` below. One more Instagram account, **`instagram.com/tokadai_komaki`** (桃花台を考える会), is linked from the **PR card** (`aside.pr-card`, the group's member-recruitment poster `img/pr-tokadai-member-xmas.webp` — the Christmas version since 2026-11-18, keys `pr_tk_*`) on `community.html` and `index.html` (under the 地域の取組 list) and `schedule.html` (its own slim section after the event list) — added 2026-11-02 on the user's instruction, **not recorded in the changelog** (user's instruction); keep `pr_tk_note` (「市の募集ではありません」) and the 「PR」 badge. **On phones (≤560px) the badge and `pr_tk_note` come first**, above the heading and the poster, so the card reads as PR from the top (2026-11-05, user's instruction; `.pr-card-body { display: contents }` + `order` in `css/style.css`). The poster carries a date (12/12 定例会 10:00–11:00, 東部市民センター 2F 学習室 — that meeting is also on the schedule, `sched_*48`, since 2026-11-18 at the user's instruction), so replace or remove the card when it passes. **Since 2026-11-07 the card takes itself down**: `aside.pr-card` (and schedule.html's `.pr-section`) carry `data-expires="2026-12-12"`; a dated sentence inside `pr_tk_p` (`data-i18n-html`) can be wrapped in `<span data-until="…">` (the 11/15 音楽まつり one was, until the poster was replaced); DATED TEXT in `js/main.js` hides/removes them the day after (the same idea as NOW BAR, for all of `<main>`). `auto_gates.py` 10b only warns when a `data-expires` has passed — replace the card with the group's next poster, or delete it. The footer's 「参考リンク（住民有志）」 block (the four SNS accounts of 桃花台を考える会【新しいまちづくり】) was **removed on 2026-10-17** on the user's instruction; the footer now carries only 「参考リンク（公式）」. `PERMITTED_SNS` in `auto_gates.py` confines `x.com`, `facebook.com` and `tiktok.com` to the share endpoints (TikTok: nothing at all) and **one more: `facebook.com/city.komaki`** — the city's own Facebook, allowed on 2026-09-24 on the user's instruction so that a 地域の取組 item can link the city post its text relies on (the reader can then read that post themselves). That one **is** a city publication and may be cited; it is only ever the `ref_url` of an entry in `data/community_actions.json`. Finally, the **share buttons** at the bottom of every page point at eight sharing endpoints (`social-plugins.line.me` — `line.me/R/share` on phones, see below —, `x.com/intent/post`, `www.facebook.com/sharer/sharer.php`, `b.hatena.ne.jp/entry/panel/`, `note.com/intent/post` (added 2026-10-06; the official button script `cdn.st-note.com` is **not** loaded), `www.threads.net/intent/post`, `bsky.app/intent/compose`, `www.reddit.com/submit`), at whatever Mastodon server the reader names (`https://<host>/share`), and load one external script (`s.hatena.ne.jp/js/HatenaStar.js`) — see the SHARE BUTTONS section below. Those URLs are built in `js/main.js`, never written into HTML or a dictionary, and are **not sources**: nothing on the site may cite them. Two more (2026-10-24, user's instruction — see 「利用状況の計測・ハッシュタグ・声の窓口」 below): the **GitHub Issue form** `github.com/komaki-east-school-reorg/komaki-east-school-reorg.github.io/issues/new?template=feedback.yml`, linked from `site.html#feedback` only (`PERMITTED_GITHUB`), and its sibling `…/issues/new?template=translation.yml`, linked from `site.html#translation` only (added 2026-11-08), and — not a link — the cookie-free visit counter's endpoint `komaki-saihen.goatcounter.com/count`, written only in the COUNTER block of `js/main.js` (`PERMITTED_COUNTER`).
-
-```bash
-grep -rn "mext\.go\.jp" *.html js/*.js data/i18n/*.json \
-  | grep -v -e "tekisei/index\.htm" -e "tekisei/1413885_00007\.htm" \
-           -e "zyosei/yoyuu_00002\.htm" -e "kihon/1267995\.htm" \
-           -e "ikkan/2/1316125\.htm"
-# Any output = violation. A hit in any page other than nationwide.html is also a violation.
-```
-
-`PERMITTED_MEXT_LINKS` and `MEXT_PAGES` in `auto_gates.py` enforce both halves of that rule, and the link check now also scans `data/i18n/*.json` — for non-Japanese readers the link that actually renders comes from the dictionary, not from the HTML.
+**1. External links** — the authoritative lists are `PERMITTED_LINKS` / `CITY_PATHS` / `PERMITTED_HOSTS` and the other `PERMITTED_*` tables in `.github/scripts/auto_gates.py` (check 6 / 6b). In short: only the 38 permitted city pages (5 index pages + article pages the user allowed), **never a PDF**, MEXT only on `nationwide.html`, each Instagram account / club site / other domain only on its listed pages, share endpoints built only in `js/main.js` and never cited as sources. **Adding a URL or domain means updating `auto_gates.py`, `docs/claude/links.md`, `CONTRIBUTING.txt` rule 1 and `README.md` together** (`site_lint.py` `permitted_sync` checks that the city URLs appear in the docs). The full table, the grep commands and the per-page details are in `docs/claude/links.md`.
 
 **2. i18n JSON syntax** — parse every translation file, not just the ones you edited.
 
@@ -94,6 +51,7 @@ sys.exit(1 if bad else 0)
 ```
 
 A broken non-`ja` file is easy to miss: `i18n.js` silently falls back, so the page still renders — just in the wrong language.
+
 
 ## i18n architecture
 
@@ -116,44 +74,6 @@ Translations live in `data/i18n/<lang>.json` (ja, en, pt, vi, tl, es, zh, id, ko
 
 2026-10-23 ユーザー決定。英語で Tokadai East と Tokadai Higashi が混ざると、読者には同じ学校だと分からない。**新校名・学校区（桃花台東／桃花台西）は、ラテン文字の言語と `my` では方角を訳さず `Tokadai Higashi` / `Tokadai Nishi`（ハイフンなし）**、`zh` は 桃花台东／西（学校名は「〇〇中学」で「初中」にしない）、`ko` は 도카다이 동／서、`ne` は तोकादाइ पूर्व／पश्चिम。**英語は -ize**（reorganization）。使わない表記は `data/term_rules.json` に正規表現で書き、`auto_gates.py` check 18 が辞書・`headline_i18n.json`・`events.json`・`community_actions.json` を、`headline_i18n.py apply` が見出しの自動翻訳を検査する（照合は `.github/scripts/term_rules.py`）。ゆれを見つけたら規則を1行足す — 直すだけだと次の翻訳でまた戻る。`translate-headlines.yml` のプロンプトにも同じ表記を書いてある。
 
-### 原文（日本語）の併記（`.orig-toggle` / `.orig-ja`）
-
-2026-09-24 追加。外国語表示のとき、ヘッダの「🇯🇵 原文」を押すと本文の各要素の下に**日本語の原文**が並ぶ。このサイトの外国語表示は「市の資料を当サイトの言葉に書き直した日本語」をさらに訳したものなので、市の資料や窓口の日本語と突き合わせたい読者のための機能。状態は `localStorage` の `komaki_orig`。
-
-- **ボタンの見た目と置き場所はこどもむけの切り替えと同じ**（2026-09-26 ユーザー指示。PC・モバイルとも）。CSS は `.kids-toggle, .orig-toggle` で規則を共有し、スイッチも同じ `.kids-switch`。ラベルは内側の `<span data-i18n="orig_toggle">` に入れる — ボタン自体に `data-i18n` を付けると `textContent` ごと差し替わってスイッチが消える（実際に消えていた）。モバイルの幅は 7.4rem 固定なので、`orig_toggle` の訳は短く（`id` は「🇯🇵 Jepang」）。
-- **日本語表示（こどもむけを含む）ではボタンを出さない。** 原文そのものを読んでいるため。`updateOrigToggleUI()` が `display:none` にする。
-- **`ja` の辞書は押されたときに初めて取る。** ふだん `ja.json` を取らない設計（約23KB・`body` が隠れたままの経路）は崩さない。取得は `fetchDict('ja')` で、ページ別辞書→全体辞書のフォールバックもそのまま効く。
-- **付けるのは `<main>` の中だけ**で、`.page-toc` / `.tts-row` / `.share` / `.notice-banner` / `.lang-switcher` / `.breadcrumb` は除く。パンくずに付けると2行になって読みにくい。
-- **見出しの `<small>` 副題は原文から落とす。** 副題の言語は表示言語で決まっている（`en` は日本語・他は英語）ので、見出し本文だけを並べる。そのうえで「すでに同じ日本語が見えている要素」には付けないので、`en` の見出しには自動的に付かない（`<small>` が日本語のため）。
-- **`applyDict` は `textContent` / `innerHTML` ごと差し替える**ので、原文は `applyDict` の最後で毎回貼り直す（`renderOrig()`）。
-- **原文を「文字として拾う2か所」から外してある**：READ ALOUD の `SKIP`、ページ目次の `label()`。**`.orig-ja` の出し方を変えるときはこの2か所も見ること** — 外すと、英語の声で日本語を読み上げる／目次の文字が二重になる。
-- `.orig-ja` を `display:none` や `[hidden]` で隠さないこと。READ ALOUD は `.orig-ja` を名指しで除いており、`[hidden]` は閉じた Q&A と同じ扱いになる。
-
-### Page-scoped dictionaries
-
-`i18n.js` does not fetch the whole-site dictionary. It fetches **`data/i18n/pages/<pageId>.<lang>.json`** — the subset of keys that page actually uses — and falls back to the full `data/i18n/<lang>.json` on a 404. Each page uses only 9–20% of the 661 keys, so this cuts a page view from ~45 KB to 4–10 KB gzip on the critical render path.
-
-Those files are **generated**: run `python3 .github/scripts/build_page_dicts.py` after changing any `data/i18n/*.json` or adding a `data-i18n` attribute to a page, and commit the result. Never hand-edit `data/i18n/pages/`. `check 5` in `auto_gates.py` runs the generator with `--check` and fails if the committed output is stale; the daily workflow regenerates them after the drafter AI edits any dictionary. A *stale* page dictionary is worse than a missing one — a missing file 404s and falls back, while a stale file serves old text with a 200.
-
-Keys that `main.js` attaches at runtime (`status_done`, `event_status_*`) never appear in the HTML, so they are listed in `RUNTIME_KEYS` in the generator and force-included in every page.
-
-**トップの「各ページへのリンク」の説明文（`ql_<ページID>_p`）は、そのページに実際に載っている内容を書く。**ページに節を足したり中身を大きく変えたりしたら、この説明文も12言語＋こどもむけで直すこと（2026-09-20 ユーザー指示。節見出しを機械的に並べる案は試したうえで、要約文を直すほうを採った）。
-
-**`ja.json` is deliberately not fetched for non-Japanese languages.** It used to be the first of three layers, but `ja` and `en` carry identical key sets, so the `en` layer overwrote every one of its keys — the `ja` layer contributed zero keys to the merged dictionary while costing ~23 KB gzip on every page view, on the critical render path (`body` stays hidden until `.i18n-ready`). If a key were ever missing from `en`, the element simply keeps the Japanese default text already written inline in the HTML, which is the same thing the `ja` layer would have supplied. `check 3` in `.github/scripts/auto_gates.py` machine-verifies the `ja` ⇔ `en` key-set equality this relies on — **do not remove that gate.**
-
-There is also `data/i18n/ja-kids.json`: when the kids-mode toggle is active (Japanese only), it is fetched and merged on top of `ja.json` (`Object.assign({}, ja_dict, kids_dict)`), overriding keys with simpler hiragana/easy-Japanese text.
-
-Language preference and kids-mode state are persisted in `localStorage` under `komaki_lang` and `komaki_kids`. (Other per-reader keys: `komaki_nocount`, `komaki_orig`, `komaki_fs`, `komaki_grade`, `komaki_mastodon`, `komaki_quiz`, `komaki_seen_items`, `komaki_hide_done`, `komaki_bus_check` — see their sections.)
-
-### Language in the URL (`?lang=`)
-
-Every page also accepts `?lang=<code>` (the codes in `LANGS`, e.g. `about.html?lang=pt`). **The URL wins over `localStorage`**, so a link shared in a community group opens in that language for someone who has never visited. After the dictionary is applied, `i18n.js` rewrites the address bar to match the selected language via `history.replaceState` (no history entry — a back button that only rewinds the language is confusing), and updates `<link rel="canonical">` and `og:url` to the same URL. Japanese is the bare URL with no parameter; it is the canonical form.
-
-**First visit: the browser's language picks the initial language** (added 2026-09-14). When the URL has no `?lang=` and `localStorage` has no `komaki_lang`, `detectFirstVisitLang()` at the top of `i18n.js` walks `navigator.languages` and takes the first of the 10 supported languages (`fil` → `tl`; a Japanese hit means "stay Japanese"). It writes that language into the URL **synchronously, before `main.js` runs**, so `window.KomakiLang()` and the dictionary agree. Only on that auto-selected visit, a one-line bar under the header says so and offers 「日本語で見る」 (sets `komaki_lang=ja` and reloads the bare URL) — for Japanese speakers whose phones are set to English. **Robots and automation are excluded** (`navigator.webdriver`, and a UA regex for bot/crawl/spider/lighthouse/headless/preview…): a crawler's browser language is usually English, and letting it through would index the Japanese pages as English. Shared links (`?lang=`) and anyone who has visited before are never auto-switched.
-
-**Kids mode in the URL (`?kids=1`, 2026-11-07, daily idea 10/03).** On Japanese pages `?kids=1` / `?kids=0` wins over `komaki_kids` (and is saved to it), so a link shared from kids mode opens in kids mode. `syncUrl()` keeps `kids=1` in the address bar while kids mode is on and drops it otherwise (and for every other language); the share buttons' URL (`shareUrl()`) adds it too. canonical / hreflang never carry it — kids mode stays `noindex`.
-
-`js/main.js` resolves the language through the shared `window.KomakiLang()` helper defined at the top of the file, which reads `?lang=` first and `localStorage` second. Use it rather than reading `localStorage` directly — the blocks in `main.js` (official news, school news, changelog, calendar) render before `i18n.js` has finished fetching and written `komaki_lang`, so on a first visit through a shared link they would otherwise render in the wrong language.
 
 ### HTML attributes for translated content
 
@@ -169,7 +89,7 @@ Page `<title>` and OG/Twitter meta tags are updated automatically via keys named
 
 Keys follow the pattern `<page>_<section>_<type>`, e.g., `about_whatis_p1`, `faq_a3`. Shared/global keys (nav, footer, notice, hero) have no page prefix.
 
-### 見出しの `<small>` 副題（62キー）
+### 見出しの `<small>` 副題
 
 節見出し（`h2.section-title` など）は `見出し本文<small>副題</small>` という形の1キーで、`data-i18n-html` で流し込む。副題の言語は**たった1つの規則**で決まる（2026-09-06 ユーザー指示）：
 
@@ -182,8 +102,7 @@ Keys follow the pattern `<page>_<section>_<type>`, e.g., `about_whatis_p1`, `faq
 
 - **副題に見出しと同じ言語を入れない。** 英語見出し＋英語副題（`Key Points<small>Key Points</small>`）や、ポルトガル語見出し＋ポルトガル語副題（`Pontos-Chave<small>Destaques</small>`）は同じ語が二度出るだけ。`en` に日本語を置くのは、英語話者が市の日本語資料と照合する手がかりになるため。
 - **検証と提案の2ページ（review / analysis）の見出しには、2026-11-04 から先頭の絵文字を付けない**（ユーザー指示。挿絵と重なって過剰になるため）。`en` の副題も日本語の見出し本文そのまま（絵文字なし）。
-- `council_s1_h`〜`s5_h` は 2026-09-06 まで `ja`・`ja-kids`・一部言語で副題が日本語だったが、上の規則に合わせて英語に統一した。
-- `ja-kids` は 62キー中 24キーにしか副題がない（`rev_*` など残りは副題ごと落としてある）。**副題が有るものは英語**、という点だけ守ればよい。
+- `ja-kids` は副題を落としてあるキーが多い。**副題が有るものは英語**、という点だけ守ればよい。
 - 新しい節見出しを足すときは、`ja` に英語副題・`en` に日本語副題・他言語に英語副題、という形をそろえること。
 
 ## Important constraints
@@ -191,210 +110,15 @@ Keys follow the pattern `<page>_<section>_<type>`, e.g., `about_whatis_p1`, `faq
 - **ページ冒頭の挿絵（`.page-hero-ill`）は PC（≥769px）で `clamp(10rem, 15vw, 13rem)`、パンくずの行まで上げて題名・説明文の高さに見合う大きさ**（トップの `.hero-ill-pc` は `clamp(11rem, 17vw, 15rem)`。2026-11-10 ユーザー指示。モバイルの帯は別）。
 - **挿絵と図はサイトのポリシー（2026-10-31 ユーザー指示）。** 既存のページも、**新しいコーナーやページを足すときも**、Claude Design で作った挿絵と図で見やすく・わかりやすく・親しみやすくする。新しい絵は Claude Design の下絵をユーザーに見せてから実装する。挿絵は `img/illust/*.svg`（160×120、**文字を含まない**、`alt=""`、線 `#1b3826`、色はサイトのトークン、下に薄い影の楕円）。文字が入る図は SVG にせず HTML＋CSS で組み、文字は `data-i18n` で13辞書から流す。【事実】／🔎／💡 の色分けと外さない注記は絵のまわりでも崩さない。
 - **市の資料の文面をそのまま載せない（ユーザー指示 2026-09-13）。** 計画・パブリックコメントの回答・説明会の質疑応答・市議会だよりなどは、読んで理解したうえで**当サイトの言葉で書き直す**。数値・日付・議決結果のような事実はそのまま使ってよい。**書き直していることはページに明記し**（共通キー `recomposed_note`／`council_ref_box`／`voices_pc_note`）、**その理由は書かない**（同指示）。
-- **The header title is the title logo, set in text (HTML + CSS)** (2026-10-15, user's instructions: the OGP image's design is the site's official title logo; then "set it in text, not as an image"; and "in foreign languages, show the main title in each language too"). `<a class="site-title">` holds `.logo > .logo-fr > .logo-bd` with the chalk dots (`.logo-dots`, `aria-hidden`), `.logo-l1` (`logo_area`, 「小牧市東部（篠岡地区）」), `.logo-mn` (`logo_main`, `data-i18n-html`, the highlighted word in `<b>` — 「学校再編<b>ナビ</b>」), the yellow rule `.logo-ru`, and `.logo-sb` (`site_sub`, now `data-i18n-html` so `ja`/`zh` can carry a `<wbr>` at the line break; `word-break: keep-all` stops CJK breaking anywhere else). **This replaces the old "site name is permanently Japanese in the header" rule** — every language, `ja-kids` included, now shows its own `logo_area` / `logo_main` / `site_sub`. The foreign main titles are new logo strings (「ナビ」 rendered as the language's word for "guide", 导航 / 내비 in zh / ko); the footer, `<title>` and `meta_*` names are unchanged.
-  - **Keep the look identical to the OGP image** (user's instruction): accent-yellow frame, `--primary-dark` band, `--primary` board, M PLUS Rounded 1c. **Since 2026-10-16 (user's instruction) 「小牧市東部（篠岡地区）」 and 「学校再編ナビ」 sit side by side** on the top row, then the rule, then the subtitle — `.logo-bd` is a CSS grid `1fr | logo_area | logo_main | 1fr` (the HTML is unchanged; `.logo-dots` is `display: contents`, and `.logo-sb` is `width:0; min-width:100%` so the subtitle never widens the top-row columns); when space runs short the area column shrinks and wraps inside (mobile: 「小牧市東部／（篠岡地区）」), and for non-CJK languages it is capped at `fit-content(11em)` so the main title keeps priority. **The chalk dots sit only in the top-left and bottom-right corners, inside the board's left/right padding** (2026-10-17, user's point that text and dots overlapped at the corners, and the user's suggestion to move the right dots to the bottom-right): every dot is within .62em of the edge (.53em on mobile), so the horizontal padding of `.logo-bd` must never drop below that — measured: no dot touches any text in 12 languages + ja-kids at 360–1280px, heights unchanged. **The yellow rule under the top row spans exactly the area + main-title columns** (`.logo-ru { grid-column: 2 / 4; width: 94% }`, centred, 2026-10-17 — the user asked to stretch it to nearly the title's width, then for it to be "a few percent shorter than the full text width") — a share of the top row, not of the board. Its colour is the accent yellow at `opacity: .72`, a little paler than 「ナビ」 (same day, user's suggestion). Everything inside `.logo` is in `em`, so `.logo`'s `font-size` (= the first line's size) scales the whole logo; that size is set in `--hr`, never `rem`, so the font-size switch never grows the header. The width is fixed per layout (23em at 769–1099px, 29.5em ≈ 300px at ≥1100px — widening it squeezes the nav into wrapping, measured in pt / es / ja-kids) in every language — long languages wrap inside (`text-wrap: balance`) and grow taller; non-CJK languages get a smaller main title (`html:not(:lang(ja/zh/ko))`).
-  - Layout by width (set by measurement): **the logo's height matches what sits beside it** (2026-10-16, user's instruction): ≥1100px one-line subtitle, ja ~58px against the nav's two rows ~61px; 769–1099px two-line subtitle, ~67px (here the right-hand column, ~97px, sets the header height), with the menu's two rows and the language switcher stacked to the **right** of the logo (thinner than the old two-row header: 122→113px); mobile: `.site-title` is a size container (`container-type: inline-size`, `flex: 1`) and `.logo { width: 100%; font-size: min(8.8px, 100cqi / 19.5) }`, so the logo always fills the width left over by the language switcher and the hamburger (no gap to its right — user's point); once the text reaches 8.8px it stops growing and only the logo widens. Its height is about the language switcher's (ja at 390px: logo 48px, switcher 46px, header 67px — it was 89 / 107px before 2026-10-16, user: "two sizes smaller, the same height as the switcher and the hamburger"); the hamburger lines are 26px with 6px gaps. When the container is ≥300px (tablets) the subtitle goes on one line (`@container`, `wbr` hidden). Re-measure every width, all 12 languages and ja-kids after any header change ([[header nav no overlap]]).
+- **The header title is the title logo, set in text (HTML + CSS)** (2026-10-15, user's instructions: the OGP image's design is the site's official title logo; then "set it in text, not as an image"; and "in foreign languages, show the main title in each language too"). `<a class="site-title">` holds `.logo > .logo-fr > .logo-bd` with the chalk dots (`.logo-dots`, `aria-hidden`), `.logo-l1` (`logo_area`, 「小牧市東部（篠岡地区）」), `.logo-mn` (`logo_main`, `data-i18n-html`, the highlighted word in `<b>` — 「学校再編<b>ナビ</b>」), the yellow rule `.logo-ru`, and `.logo-sb` (`site_sub`, now `data-i18n-html` so `ja`/`zh` can carry a `<wbr>` at the line break; `word-break: keep-all` stops CJK breaking anywhere else). **This replaces the old "site name is permanently Japanese in the header" rule** — every language, `ja-kids` included, now shows its own `logo_area` / `logo_main` / `site_sub`. The foreign main titles are new logo strings (「ナビ」 rendered as the language's word for "guide", 导航 / 내비 in zh / ko); the footer, `<title>` and `meta_*` names are unchanged. Details of the look and the layout by width: `docs/claude/ui.md`「ヘッダのタイトルロゴ」. Re-measure every width, all 12 languages and ja-kids after any header change.
 - **All facts must come from official sources** — the permitted city URL above, or official printed materials (cite the source inline). Do not add speculative or unconfirmed information. Newspaper reporting is never evidence for a claim on the site (the 報道 corner that used to list headlines was removed on 2026-10-10). **Nationwide figures and national standards come from MEXT** and live on `nationwide.html` only; they are never evidence for a statement about the Komaki plan itself, and the city's information is never used for a nationwide claim.
-- **Korean (`ko`) and Nepali (`ne`) were added on 2026-09-17** (user's instruction), placed before Turkish in every language list, and reached full key coverage on 2026-09-18 — so `PARTIAL` (`i18n.js`) and `PARTIAL_LANGS` (`auto_gates.py`) are empty again. **All twelve languages are fully translated, and `ja-kids` covers every key** (1011/1011 as of 2026-09-02), `review.html` included: its `rev_*` keys plus the twelve review-related keys that appear on other pages (`nav_review`, `ql_review_*`, `rel_*`, `meta_*_review`, `status_digest`) were translated into the remaining eight languages on 2026-09-02. Turkish (`tr`) and Burmese (`my`) reached full key coverage on 2026-08-13, so `PARTIAL` in `i18n.js` is empty and the "parts of this page are in English" notice bar no longer appears. `events.json` labels are a strict **12-language** requirement (`LANGS` in `auto_gates.py`). If a new partially-translated language is ever added, put its code in both `PARTIAL` (`i18n.js`) and `PARTIAL_LANGS` (`auto_gates.py`) so the notice bar shows and its event labels are not demanded.
+- **All twelve languages are fully translated and `ja-kids` covers every key**, so `PARTIAL` (`i18n.js`) and `PARTIAL_LANGS` (`auto_gates.py`) are empty (`ko` / `ne` sit before Turkish in every language list). `events.json` labels are a strict **12-language** requirement (`LANGS` in `auto_gates.py`). If a partially-translated language is ever added, put its code in both `PARTIAL` and `PARTIAL_LANGS` so the "parts of this page are in English" notice bar shows and its event labels are not demanded.
 
-## `data/news.json`
-
-Auto-updated by GitHub Actions (`.github/workflows/fetch-news.yml`), which runs daily at 07:17 JST (off the hour, and with a 3–5 s polite wait between requests, to avoid load on the city server). The script (`.github/scripts/fetch_news.py`) scrapes two official city index pages, visits each item page to read its update date, keeps only items updated within the last `WINDOW_DAYS` (30) days, and commits changes with `[skip ci]`. To trigger manually: GitHub → Actions → "Fetch Official News" → Run workflow. Do not hand-edit `items` — it will be overwritten on the next run. The `window_days` and `source_url` fields are safe to edit.
-
-**The city site is behind an Imperva/Incapsula WAF, so `fetch_html()` shells out to `curl` — do not "simplify" it back to `urllib`.** The first request gets a 302 to the *same* URL carrying `visid_incap_*` / `incap_ses_*` cookies; without keeping those, the client redirects forever. Cookies alone are not enough: Python's `urllib` is answered with a flat **403** even with a browser `User-Agent` and cookie jar (the WAF fingerprints the TLS/HTTP client, not the headers), while `curl` gets 200 for the same URL and UA. `curl` is preinstalled on `ubuntu-latest`. The cookie jar is one temp file reused for the whole run, so the extra WAF round-trip happens only on the first page.
-
-### Watch-only pages (community councils)
-
-Beyond the school-reorganization subtree, `fetch_news.py` also snapshots a small set of **watch-only** pages under `admin/soshiki/kenkouikigai/sasaeai/3/3_2/` (community councils — a different city department). These are declared as `WATCH_PAGES` / `WATCH_INDEXES` and get slugs prefixed `sasaeai-3-3_2-`. They are **snapshot-monitored only**: they never enter `news.json` `items`, so they never appear in the site's news list and add no external links. `site-facts.json` maps them to the `community` target, so a change opens the usual Issue and the auto-update pipeline may draft edits to `community.html`.
-
-The same script also saves a normalized body-text snapshot of every item page to `data/official_pages/<slug>.txt` (auto-generated — never hand-edit). When any snapshot changes (page added/edited/removed on the city site), the workflow auto-opens a GitHub Issue titled 「📡 公式ページ更新検知 YYYY-MM-DD」 containing the changed-page list, a diff excerpt, and — via `.github/scripts/map_targets.py` — the site locations likely needing an update, looked up in `data/site-facts.json` (a hand-maintained map from official-page slug prefixes to site targets; add an entry when the city publishes a new page). Script exit codes: 0 = content changed, 2 = no change, 1 = fatal error.
-
-### 添付 PDF の本文 (`data/official_pages/` の下の資料群)
-
-市の掲載ページは HTML だが、肝心の中身が添付 PDF の中にある資料が多い。`fetch_news.py` のスナップショットは PDF の題名しか拾えないので、`.github/scripts/fetch_pdf_docs.py` が PDF の本文テキストを取り出して `data/official_pages/<群>/` に保存する（2026-09-13 に `fetch_newsletters.py` から一般化）。取り込む資料群は同スクリプトの `SOURCES` に宣言する。
-
-| 群 | 中身 | 主な使い道 |
-|---|---|---|
-| `newsletters/` | 『篠岡地区学校再編だより』各号 | 全般（日程・新校名・通学区域など） |
-| `setsumeikai/` | 保護者等説明会6会場の質疑応答、意見提出シートの質問と回答・意見と提案 | `faq.html` のQ&Aと賛否の声、`bus.html` のQ&A |
-| `pubcom/` | パブリックコメント55件の意見と市の考え方、実施結果概要、計画修正案 | `faq.html#pubcom` の「実際に言われたこと」 |
-| `gikai/` | こまき市議会だより | `council.html` |
-
-- **⛔ 市の資料の文面をそのままページに貼らないこと（ユーザー指示 2026-09-13）。** ここに取り込むのは**出典であって原稿ではない**。読んで理解し、当サイトの言葉で書き直す。数値・日付・議決結果のような事実そのものはもちろんそのまま使ってよい。**書き直していることはページに明記する**（共通キー `recomposed_note`、`council_ref_box`、`voices_pc_note`）。ただし**その理由はページに書かない**（同指示）。
-- **Never hand-edit** these files — they are regenerated from the PDFs.
-- **市サーバへの負荷はほぼ増えない。** 掲載ページの HTML は `fetch_news.py` の run-local キャッシュ（`HTML_CACHE_DIR`）を使い回し、PDF は **URL が新しいか、リンク文字列のファイルサイズ表示が変わったときだけ**落とす。ふつうの日は1本もダウンロードしない。だから `fetch_news.py` の**あと**に実行すること。
-- **図・地図・表の多くは画像なので、その中の文字は取り出せない。** 各ファイルの冒頭にその旨が書いてある。テキストに無いことは「載っていない」の証拠にならない。
-- **こまき市議会だよりの PDF は文字レイヤを持たない**（紙面がまるごと画像）。抽出結果は「本文テキストを取り出せませんでした」という1行になる。`council.html` を更新するときは、人（かAI）が PDF の紙面を読んで書き起こすしかない。掲載ページ（`gikai-giji-2-2-51603`）は監視対象なので、新しい号が出れば検知はされる。
-- **サイトから PDF へ直リンクしてはいけない。** 取り出したテキストを根拠に本文を書くのはよいが、PDF の URL をリンクとして書くと `auto_gates.py` check 6 に引っかかる。
-- **古い資料は消さない。** 市がページから下ろしても、それを根拠に書いた記述の裏取りができなくなるため（`newsletters/` などのサブディレクトリは `fetch_news.py` の剪定ループの対象外なので、サブディレクトリに置き続けること）。
-- だよりのスラッグは**リンク文字列の号数**から作る（市の PDF 名は `saihendayori01` / `kawaraban2` / `dayori3_nishi` と不統一）。号数の無い資料は PDF のファイル名をそのまま使う。
-### Auto-update pipeline (`auto-update` job)
-
-When a content change is detected, a second job drafts site updates fully automatically: a drafter Claude (via `anthropics/claude-code-action`, subscription OAuth — secret `CLAUDE_CODE_OAUTH_TOKEN`; if the secret is missing the job skips silently and only the detection issue remains) reads the diff (including any newly extracted newsletter text — see above) and may edit **only** `data/events.json`, `data/i18n/*.json`, `index.html`, `schedule.html`, `community.html` and `data/site-updates.json`, and must write `auto_update/evidence.json` quoting the exact official-source text for every change. `.github/scripts/auto_gates.py` then machine-verifies scope, schemas (10-language event labels), the external-link rule, and that every quote actually exists in `data/official_pages/` (hallucination check; exit 0 = pass, 3 = no changes, 1 = fail). An independent verifier Claude reviews the diff and writes `auto_update/verdict.json`; only on `approve` is the PR auto-merged (squash) and the detection issue closed with a report from `.github/scripts/auto_report.py`. Kill switch: set repo variable `AUTO_MERGE` to `false` to stop before merge (PR is still created). Any gate/verdict failure leaves `main` untouched.
-
-**The drafter also weighs whether the change deserves a changelog line** (2026-11-04, user's instruction): when a reader would notice it (an event added, a date changed, a new fact published) it prepends one line — at most two — to `data/site-updates.json` (`date` = today, `type`, `ja` in the usual noun-ending style ≤45 chars, `en`), and lists that file in `evidence.json` too. Wording-only changes to いまの状況, typo fixes and the council events that `build_community_events.py` already logs get no line. `auto_gates.py` **check 22** fails the run if any existing line was changed, removed or reordered, if more than two were added, or if a new line breaks the format (other keys, a date more than 3 days from today, tags/URLs, over 45 chars, 「。」/「しました」, 「廃止」, `term_rules.json` spellings in `en`). The workflow then rebuilds `feed.xml` and commits both; the verifier checks that the line matches the change.
-
-**The AI steps are treated as untrusted** (2026-10-26). The drafter reads text nobody here controls — public-comment opinions and briefing Q&A inside the city's PDFs, school blog titles — so a sentence planted there could steer it. Therefore, in all three AI workflows (`fetch-news.yml`, `translate-headlines.yml`, `feature-ideas.yml`): `.git/config` is copied aside before the AI runs and put back after it, `core.hooksPath` is set to `/dev/null`, `.github/` is checked out again from `main` **before any repository script runs**, and the job stops if the working tree has changes outside what that AI may write (drafter: the `ALLOWED` files + `auto_update/` + `report/`; translator: nothing outside `auto_i18n/`; ideas: nothing outside `auto_ideas/ideas.md` and `auto_ideas/recent_commits.txt`). In `fetch-news.yml` the auto-update job's checkout has `persist-credentials: false` and `GH_TOKEN` is given only to the steps that call `gh` / push; `auto_update/verdict.json` is deleted right before the verifier runs, and the same restore-and-check runs again after the verifier. The ideas AI no longer has `Bash(git log:*)` (`--output=` can write files); it reads `auto_ideas/recent_commits.txt` instead. **Do not remove these steps**, and keep the scope regex in the drafter's check in step with `ALLOWED`. `AUTO_MERGE` is unset in the repository as of 2026-10-26, which means "merge".
-
-## 新機能アイデアの日次メール（`.github/workflows/feature-ideas.yml`）
-
-毎日 06:35 JST に、このサイトに足すとよさそうな機能を Claude（`anthropics/claude-code-action`、`CLAUDE_CODE_OAUTH_TOKEN`）に考えさせ、**メールで届ける**だけの仕事。サイトのファイルは一切変更しない。
-
-- **出すのは2種類**（2026-09-22 ユーザー指示で `[内容]` を追加）。`[機能]` は画面の仕組み・操作・見せ方、`[内容]` は載せる中身そのもの。見出しにこの印を付けさせるので、`auto_ideas/history.json` にも印が残り、後から種類が分かる。**`[内容]` の提案には「どの資料のどこを根拠にするか」を必ず書かせる** — 書けない案は出させない。**件数の割合は `[機能]`2 : `[内容]`1 を目安**（1日最大3件なので、ふだんは機能2件＋内容1件。2026-09-24 ユーザー指示）。片方に出すに値する案が無い日は、割合を埋めるために絞り出させず件数を減らす。使ってよい出どころは `data/official_pages/` の取り込み済み資料・市の公表ページ・文科省（`nationwide.html` 限定）・対象8校のHP・行政以外の主体についてはその主体自身の公表で、サイト本体の規則と同じ。
-- **求める案は5つ**（2026-11-12 ユーザー指示）：最新のトレンドを反映したもの／最新鋭のもの／子どもが喜ぶもの／人気が出やすいもの／街が活性化する内容。どれか1つ以上に当てはまる案だけを出させ、各案の「ねらい」の行にどれかを書かせる。禁止事項と下の「出さない種類」はこの5つより優先。検査・点検だけの案は週に1件まで。
-- **不採用の案は履歴から消さず、`rejected`（日付）と `reason` を付ける**（2026-11-12 に39件。消すとまた提案される）。似た案も止めるため、起案プロンプトに「出さない種類の案」を4つ書いてある：すでにある機能と役目が重なる／読者が気づかない小さな飾り・操作／決めてある方針とぶつかる／手間や副作用が効果に見合わない。**不採用にする案が増えたら、印を付けるだけでなく、この4つに当てはまらない種類ならプロンプトにも足す。** `ideas_digest.py` が毎回書き直す `description` にも同じ説明がある。
-- **AI が書いてよいのは `auto_ideas/ideas.md` の1枚だけ。** サイトの実装はさせない（提案と実装を同じ走行で混ぜると、検証されていない変更が毎日入ってくる）。
-- **本文はリポジトリに残さない。** 残るのは `auto_ideas/history.json`（過去に出した見出し）だけで、`ideas.md` は `.gitignore` 済み。起案AIはこの履歴を読んで**同じ案を二度出さない**。本文はメールと Actions のアーティファクト（30日）にある。
-- **通知は SMTP → だめなら Issue。** `.github/scripts/send_mail.py` は設定が無ければ exit 2 を返し、ワークフローは `gh issue create` に切り替える（Issue を立てれば GitHub の通知メールが届く）。必要な Secrets は `SMTP_HOST` / `SMTP_USER` / `SMTP_PASS`（任意で `MAIL_TO`＝未指定なら `SMTP_USER` 宛て、`SMTP_PORT`＝既定 587・465 なら SMTP_SSL、`MAIL_FROM`）。**未設定でも壊れない**のが設計で、設定を促す警告だけが出る。**宛先は1件だけ**で、カンマ区切りで複数渡すと送らずに失敗する（自分宛ての通知がいつのまにか同報配信になる事故を機械で止めるため）。**このリポジトリは公開なので、宛先のアドレスはワークフローにもスクリプトにも書かない** — Secrets に置くか、`SMTP_USER` と同じにする。
-- 見出しの抽出・履歴の更新・件名の組み立ては `.github/scripts/ideas_digest.py` が決定的に行う。**AI に JSON を直接書かせない** — 壊れていても気づけないため。件名はシェルの `"..."` を通るので、`"` `` ` `` `$` `\` は見出しから落としてある。
-- **SEO・SNS 対策の観点も出させる**（2026-10-11 ユーザー指示）。「桃花台」「Tokadai」の名前で外から検索・共有・引用されたときに見つかり広がるための案（構造化データ、hreflang、SNS カード、直リンク、フィード、QR など）。禁止事項（外部ドメイン・トラッキング・第三者スクリプトを増やさない、宣伝文にしない）はそのまま。
-- 起案プロンプトには、この CLAUDE.md の禁止事項（外部ドメインを増やさない／自動読み込みの第三者スクリプトを増やさない／`bus.html` の地図は凍結／自動生成ファイルを手編集する案を出さない）を明記してある。**規則を増やしたらこのプロンプトにも書き足すこと。**
-- 「今日は出すに値する案が無い」日は `## ` 見出しを1つも書かせない。その日はメールも Issue も出ず、履歴も増えない。
-
-## `data/school_news.json` (target-school website updates)
-
-The **bottom section of `index.html`** lists recent posts from the eight affected schools' own websites (`komaki-aic.ed.jp/<slug>/` — a different domain, run by each school, not the city). `.github/scripts/fetch_schools.py` scrapes each school's top page once a day from the same workflow, taking the newest 3 article cards (`class="blogtitle"` + 公開日), and writes them here sorted newest-school-first. Cards updated within 7 days get a 新着 badge, computed client-side.
-
-**Only the newest article of each school is displayed** — the block in `js/main.js` slices `items` to 1, and the article's own date is not repeated next to the headline because the card's footer row already shows 最終更新 (it sits there, not in the header, so it never has to wrap around the school name and badges). The file keeps all three so the display count can be changed without waiting for a re-fetch.
-
-- **Never hand-edit** `data/school_news.json`, and never add it to the auto-update pipeline's `ALLOWED` set — it is regenerated daily.
-- The eight schools are hard-coded in `SCHOOLS` in the script, with display names for ja / ja-kids / en / zh (other languages fall back to en).
-- Article headlines are **translated for non-Japanese readers** via `data/headline_i18n.json` (see 「自動取得した見出しの翻訳」 below). The surrounding labels are localized in `js/main.js` (same inline-dict pattern as the official-news block).
-- A school whose page can't be fetched or parsed keeps its previous entries rather than being blanked; the workflow step is `continue-on-error` so a school-site outage never fails the run. Exit codes: 0 = changed, 2 = no change, 1 = all eight failed.
-- Changes here commit as `chore: update school website news [skip ci]` and do **not** open an Issue or trigger the auto-update job — these are not school-reorganization source facts.
-
-## `data/community_events.json` (community council events)
-
-The bottom of **`community.html`** lists the city's community-council event announcements. `.github/scripts/build_community_events.py` builds it **from the snapshots `fetch_news.py` has already saved** in `data/official_pages/sasaeai-3-3_2-chiikikyougikaievent-*.txt` — it makes **no HTTP request of its own**, so adding this corner did not increase load on the city server. It therefore must run *after* `fetch_news.py` in the workflow.
-
-- **Never hand-edit** it, and never add it to the auto-update pipeline's `ALLOWED` set — it is regenerated daily.
-- The city's listing covers **all 16 elementary school districts in Komaki**, not just Shinooka. Events are shown in the city's own order, but the five Shinooka councils (`SHINOOKA_COUNCILS` in the script) are flagged `shinooka: true`, sorted first, and badged. Other districts' events are deliberately kept rather than filtered out: as of 2026-08-13 **no Shinooka event is listed at all**, so filtering would leave the corner permanently empty, and seeing what other councils actually run is a useful concrete answer to "what does a community council do?".
-- Event titles are **translated for non-Japanese readers** via `data/headline_i18n.json`, and the 日時 text is re-formatted into the reader's language by `window.KomakiJaWhen()` in `js/main.js`. Labels use an inline dict.
-- The corner is rendered as **the same plain row list as the 市公式サイト お知らせ block**: the linked title plus 日時, nothing else. `place` and `updated_at` are still collected in the JSON but not displayed — the linked article carries them.
-- The parser stops at 関連イベント / 関連ファイル / この記事に関するお問い合わせ先, because after those headings the page lists unrelated city-wide events.
-- **東部地域の催しは「地域の取組」・スケジュール・更新履歴へ自動で載る**（2026-10-05 ユーザー指示）。`shinooka: true` は「題名に篠岡地区5協議会の名前がある」**または**「会場（`place`）に東部の地名がある」（`EAST_PLACE_KEYWORDS`＝当サイトが東部の地名として使っているもの＋東部市民センター）。各イベントの `date`（ISO）は `when` の月日に `updated_at` の年を補ったもの（更新日より2か月以上前なら翌年）。`shinooka` かつ `date` のある催しは、`window.KomakiTokadaiEvents()`（桃花台を考える会の催しと同じ仕組み。ラベルは見出しの訳＋「（地域協議会）」）を通って、カレンダー・`.ics`・あと◯日・schedule.html の一覧（`.event-item[data-auto="council"]`）・トップの帯と `status_digest` の件数・「地域の取組」（札は `council`、発信元はサイト内の `community.html#council-events` — sasaeai の索引は community.html 限定なので index にも出るこの欄から外へは張らない）に出る。`events.json` / `community_actions.json` に同じ催しを手で書けばそちらが優先され、二重にはならない。更新履歴へはこのスクリプトが1行足す（`auto_key` = 記事 URL。終わった催しはさかのぼって足さない）。東部の催しは会場名も `headline_i18n.json` で訳す。
-
-## `about.html#nearby`（「ほかの地区や、となりのまちでは？」＝近隣他地区の状況）— 随時更新
-
-2026-11-07 追加（ユーザー指示：「篠岡地区以外の小牧市の他地区と春日井市の内容を『近隣他地区の状況』としてまとめる」「随時更新されるように」）。計画概要の「ことばメモ」の次（`#contact` の前）。見出しは 2026-11-07 にユーザー指示で親しみやすい疑問形「ほかの地区や、となりのまちでは？」に変え、ことばメモの下へ移した（id `nearby` は据え置き）。**篠岡地区の計画とは別の計画**であることをリードで断り、**公表された事実だけ**を書く（🔎 は書かない）。
-
-- **手書きの説明（13辞書、`about_nb_*`）＋自動の一覧2つ**。説明の上に時点 `about_nearby_asof`（「2026年11月時点」）。**動きがあったら説明と時点を直す**（`now_text` と同じ「随時更新」の扱い）。合図は2つの Issue：小牧市側は「📡 公式ページ更新検知」（`site-facts.json` の `303-719-kitazatochiku-` → `about_nearby`）、春日井市側は「🏫 春日井市 学校再編ページ更新検知」。about.html は自動更新ジョブの `ALLOWED` 外なので**人が直す**。
-- **小牧市のほかの地区**：北里地区（考える会・方向性（案）＝3校を1校に、北里小・中の敷地に小中一貫校を前提）、巾下地区・小牧／小牧南／味岡地区（『新たな学校づくり推進計画』の地区別の記述）。出典は推進計画のページ（`303-718-45169`）と考える会の資料（`data/official_pages/kitazato/`、`fetch_pdf_docs.py` の `kitazato` 群）。一覧は `data/nearby_komaki.json`（`build_nearby_komaki.py` が `303-719-<地区>-*` のスナップショットから作る。篠岡と全市の検討委員会は除く。**市が新しい地区のフォルダを作れば自動で出る**。地区名は `DISTRICTS` と `js/main.js` の NEARBY KOMAKI の `DIST` に足す）。check 14b が古さを止める。
-- **春日井市**：坂下中学校区（基本方針 令和8年6月、小学校3校を統合、坂下中の敷地に小中一貫校、令和15〜16年度開校目標）、高蔵寺ニュータウン地区（中間案、2地区に分けて検討、パブコメ23人44件）。取得は `.github/scripts/fetch_kasugai.py`（索引と配下約25ページを毎日、3〜5秒あけて。春日井市も小牧市と同じ Cookie 必須の WAF なので `fetch_news._curl_get` を使う）。スナップショットは `data/official_pages/kasugai/`（サブディレクトリなので fetch_news の剪定の対象外）、添付 PDF は `fetch_pdf_docs.py --only=kasugai`（全編・通信・中間案）→ `kasugai/pdf/`。一覧は `data/kasugai_reorg.json`（更新日の新しい5件、地区の札は索引の見出しから）。**小牧の検知・自動更新には混ぜない**：`fetch-news.yml` で単独コミット（`chore: update Kasugai school reorganization watch`）、メインの `git add` は `':!data/official_pages/kasugai'` で除外。FETCH STATUS の取得元 `kasugai`。
-- **両一覧の見出しは元の公式ページへ直リンクする**（2026-11-27 ユーザー指示。`url` は `build_nearby_komaki.py`・`fetch_kasugai.py` が書く。範囲は `official_links.py`）。
-- 見出しの訳は `headline_i18n.py` の `current_headlines()`（両一覧）。春日井市の地名のローマ字は `term_rules.json` と `translate-headlines.yml` に固定（Kozoji New Town / Sakashita / Fujiyamadai / Iwanaridai / Takamoridai / Ishiodai）。読みが公表資料で確かめられない名前（巾下・三ツ渕・村中・小木・神屋など）は、外国語では漢字を括弧で添えるか学校名を出さない。
-- 連絡先：`about.html#contact` に「近隣の市」（`contact_lv_nearby`）として春日井市 教育委員会 学校教育課 新たな学校づくり推進室（`contacts.json` の `kasugai-aratanagakko`、`level: "nearby"`、`probe.match` で照合）。
-- 中身を足したら `ql_about_p`・`meta_desc_about` も直す。
 
 ## 報道コーナーは廃止（2026-10-10 ユーザー指示）
 
-トップの「報道でみる東部地域」（中日新聞Webの記事見出しを毎日自動で並べていたコーナー）は**廃止した**。`index.html` の節・`js/main.js` の PRESS COVERAGE ブロック・CSS・辞書キー（`section_press` / `press_lead` / `press_note`）・`fetch-news.yml` の取得ステップ・`.github/scripts/fetch_chunichi.py`・`data/chunichi_news.json` はすべて削除済み。**復活させないこと**（ユーザーの明示的な指示があれば別）。⛔ `chunichi.co.jp` は AI 用クローラを拒否しているので、AI のブラウズ機能で取りに行かないことも変わらない。
+トップの「報道でみる東部地域」（新聞記事の見出しの自動一覧）は廃止済み。**復活させないこと**（ユーザーの明示的な指示があれば別）。⛔ `chunichi.co.jp` は AI 用クローラを拒否しているので、AI のブラウズ機能で取りに行かないことも変わらない。
 
-## `data/community_actions.json` (resident-run farewell events)
-
-The **地域の取組 section on `community.html`**, sitting directly below the 地域協議会のイベント案内 corner, lists things local residents are doing in the district — 「ありがとう大城小」, a farewell event at Oshiro Elementary on 2026-12-13; the 新学校区交流 ミュージックフェスティバル run by the Hikarigaoka council on 2026-10-31; and 「TOKADAI DANCE FESTIVAL」, a dance competition at Peare Tokadai on 2026-10-12 (added 2026-09-24 on the user's say-so; its 学校区 line reads 「ALL」 — the festival is not tied to one school district, 2026-09-26; organised by 株式会社iサポート, and the user confirmed the 住民有志 badge for it; the head's place of residence was the reason, but it is **not** written on the page — removed 2026-10-05 as information about a private individual). Events that mark a closing school are what the corner started from, but it is not limited to them. Hand-maintained; rendered by the COMMUNITY ACTIONS block in `js/main.js`. Past events drop off the list automatically (`date` compared with today).
-
-- **Everything listed here must also be reflected in the schedule** — an `.event-item` in `schedule.html` (in `data-start` order, with `sched_date<N>`/`sched_desc<N>` keys in all 12 languages plus `ja-kids`) and an entry in `data/events.json` for the calendar. A reader who only looks at スケジュール must not miss an event that the 地域の取組 corner announces. When adding one, bump the count in `status_digest` (「全 N 件」) in every dictionary too, and give its `.event-item` the **`data-community`** attribute: on `schedule.html` an event of the 地域の取組 that is over (today later than its `data-event-date`) is hidden (PAST COMMUNITY EVENTS in `js/main.js`; 2026-11-05, user's instruction — only community efforts, the city's own events stay), and the auto-added 桃花台を考える会 / council events are not inserted once over (TOKADAI SCHEDULE). Standing instruction from the user (2026-09-03): check this every time this file changes.
-- **This is neither official information nor reporting — it is what residents themselves have posted.** Like newspaper reporting, it is never evidence for a claim made elsewhere on the site, and never a source for the plan's contents, figures or dates.
-- An entry may also carry an optional **`ref_url` / `ref_label_<lang>`**, rendered as a separate 参考 line under 発信元 (added 2026-09-24). 発信元 is the organiser's own posting; 参考 is where a fact stated in the body comes from — **keep them on separate lines**, merging them would make a third party look like the organiser. The only target allowed there today is the city's Facebook post (`PERMITTED_SNS`).
-- An entry may also carry an optional **`venue_url` / `venue_label_<lang>`**, rendered as a 会場の案内 line (added 2026-09-27 on the user's instruction). It is the **venue's own notice** of the event — today only ピアーレ桃花台's page for TOKADAI DANCE FESTIVAL (`peare-toukadai.jp/event_campaign/tokadai-dance-festival/`). It is neither the organiser (発信元) nor a source (参考), so it gets a line of its own; never evidence for anything. Adding another venue domain requires updating this file, `CONTRIBUTING.txt` rule 1 and `README.md` together.
-- Every entry carries a badge and a 発信元 line linking the source. **Do not strip either** — they are what stops the corner reading as a city announcement. The badge follows who runs it: `citizen`（住民有志・既定）, `council`（地域協議会）, `facility`（児童館 — 2026-09-26 に篠岡児童館・大城児童館を載せたときに追加。市の施設に「住民有志」を付けると主催者を偽ることになる）, `foundation`（市民文化財団 — 2026-11-16、ユーザー決定。こまき市民文化財団のプラネタリウムが案内する 秋の「星を見る会」〈11/21、ピアーレ桃花台 屋上駐車場、問い合わせは小牧中部公民館〉を載せたときに追加。ラベルは `js/main.js` の COMMUNITY ACTIONS の辞書、スケジュールの予定名の括弧も同じ語）. `temple`（神社・仏閣 — 2026-11-22、ユーザー指示。福厳寺 あきば大祭。年中行事なので `data/ops_calendar.json` の `akiba-taisai` が毎年開催を確かめるよう知らせる。発信元 `akiba.busshin.or.jp/` は `AKIBA_PATHS` でトップだけ、`data/community_actions.json` だけ）. **この印はユーザーとの会話では「札」ではなく「マーク」と呼ぶ**（2026-11-16 ユーザー指示）.
-- **`www.komaki-bunka.or.jp` は1ページだけ**（2026-11-16 ユーザー指示）：`/planet/news/3579.html`（星を見る会の案内）を、`data/community_actions.json` の `source_url`（発信元）としてだけ使う。`auto_gates.py` の `BUNKA_PATHS` / `BUNKA_PAGES` と `PERMITTED_HOSTS`。次の回の案内ページを載せるときは、このファイル・`CONTRIBUTING.txt` 規則1・`README.md`・そのゲートを一緒に直す。
-- **An entry without `date` is a standing effort, not an event** (the two 児童館 — 2026-09-26). It never expires, is listed after the dated events, carries `data-standing` on its `.action-item`. Nothing goes on the schedule for it; the schedule rule above applies as soon as a date is known. バンブーインスタレーション in おおくさ was added undated and got its dates the same day (2026-11-13〜15, marché 11/14) — `date` is the **last** day, so the entry stays up until the event ends.
-- **⛔ Instagram prohibits automated collection** (its `robots.txt`: no collection by automated means without written permission, and `ClaudeBot` is disallowed outright). Do not fetch Instagram with AI browsing tools or scripts, and do not build a workflow that scrapes these accounts. Their content is checked by a person: the user passes on what they see, and it is reflected by hand (2026-09-26 — the user chose not to add even a reminder workflow).
-- Event names are **translated for non-Japanese readers** via `data/headline_i18n.json` (the script picks up `title_ja`); school names, dates and places come from the entry's own `school_<lang>` / `date_note_<lang>` / `place_<lang>` fields (falling back to `_en`). Labels use an inline dict in `js/main.js`.
-- **It sits next to the council-events corner, not merged into it.** Both are things the district does for itself — the councils are the form the city gives that, this is what residents started on their own — so they read as a pair of adjacent sections with their own headings. Do not fold them into one list.
-- `source_url` may only point at an account listed in `PERMITTED_INSTAGRAM` in `auto_gates.py`. That map is **account → the pages it may appear on**: `arigato.ohshirosho`, `tokadaidancefestival`, `bamboo_installation_ookusa`, `shinookajidoukan`, `warabekan` and `2525marche.komaki` are confined to `community.html` and `index.html` (the two pages that render this corner), while an account whose value is `None` may appear anywhere — that is what the footer links use. Adding an account, or another page that renders the corner, requires updating this file, `CONTRIBUTING.txt` rule 1, `README.md` and that gate together.
-- As of 2026-08-26 only the Oshiro account is known; searches found no equivalent account for 篠岡小・陶小・篠岡中. Do not guess at handles — an account that turns out to be someone else's would be presented here as if it spoke for the school community.
-
-## `community.html#legacy`（地域のレガシー）
-
-2026-10-31 追加（ユーザー指示）。東部で学校とは別に受け継がれてきたものを、**事実だけ**で21枚のカードにして7つのまとまりで並べる：東部の歴史（大山廃寺跡と児神社・古窯と陶業の歴史・ピーチライナー〈2026-11-02 追加。出典は愛知県「旧桃花台線について」、市の年表・こまき検定・ピーチバスと旧車両基地用地のページ〉）／桃花台ニュータウン（桃花台中央公園・丘の上の給水塔・スカイステージ33・緑道と各地区の公園・音楽のまち。2026-11-02 ユーザー指示。出典は市の公園ページ・県の景観資源「桃花台ニュータウンのまちなみ」・『東部まちづくりニュース』・意見提出シートへの市の回答。**藤棚・桜はユーザーから伝えられた現地の様子で、公表資料では確かめていない。スカイステージ33（民間の集合住宅。見学できる施設ではないと書く）の竣工年・階数・高さ・戸数は、2026-11-22 にユーザーが示した改修会社の施工事例と建物情報サイトで一致を確かめたものだけを書く（竣工月は資料で6月と7月に分かれるので書かない。番地・「市内で最も高い」は書かない。リンクは張らない）** — 名前と存在だけを書き、**出典の行（`comm_leg_src`）の1文でだけ**そう断る（新篠岡音頭の由来も同じ1文。2026-11-05 にカードごとの断りを外してまとめた）。由来・本数・場所を推測で補わない）／祭りと芸能（棒の手・桃花台まつり・東部各地の祭り・新篠岡音頭〈挿絵は盆踊り〉・音楽のまち〈桃花台音楽まつり。出演者の個人名は書かない。2026-11-02 ユーザー指示で桃花台ニュータウンから移した〉）／特産物（桃・ぶどう・名古屋コーチン・小牧ワイナリー〈2026-11-02 追加。出典はワイナリー自身の公表＝社会福祉法人AJU自立の家が2015年4月に開設、と市の東部まちづくりのイベント情報・トライアル活動のページ。こどもむけでは「ワインは大人の飲み物」と添える〉）／自然（大山川のホタル・マメナシ）／公園とスポーツ（市民四季の森・市民球場〈総合運動場〉。2026-11-02 追加。出典は市の施設ページ・景観資源の指定ページ・市制70周年「小牧市のあゆみ」〈野球場の完成＝昭和63年〉。四季の森の開園年は公表ページで確かめられなかったので書いていない）／郷土カルタ（篠岡カルタ）。連絡先は community.html#contact に みどり公園課 花と緑推進係（四季の森）と総合運動場（市民球場）を足してある（`ct_w_midori` / `ct_w_stadium`）。キーは `comm_leg_*`、カードの id は `legacy-<キー>`。まとまりの見出しは `h3.leg-group-h`、カードの見出しは `h4`（`section-title` にしない — 目次と読み上げの単位を増やさないため）。
-
-- **出典は市の公表**（文化財課・『こまき検定 問題一覧と解説文』・歴史民俗資料展示施設（仮称）の展示設計説明書・「美しい愛知づくり景観資源」の指定ページ・『東部まちづくりニュース』と東部地域トライアル活動）と、**学校自身の公表**（篠岡小HPの「篠岡カルタ」、各校の学校日記）。本文の最後に文字で書き、リンクは張らない。
-- **新篠岡音頭**は公表資料に無く、動画投稿サイトに個人が上げたレコードの音源で「名前とレコードになったこと」だけを確かめた。出典としてその音源1本にリンクし（2026-11-22 ユーザー指示）、このカードには作詞・作曲者の個人名を書かない。由来と踊られている場は「確かめられていない」と書く。**歌詞は `shinooka.html#ondo` にだけ、解説に必要な数行を引用する**（下の shinooka.html の節）。カードからそこへ `comm_leg_ondo_more` でリンクする。
-- 当サイトの考え（提案）は書かず、`comm_leg_more` で `analysis.html#rev-legacy` へ送る（事実のページに提案を混ぜない）。
-- 中身を足したら `ql_community_p`（13辞書＋index.html）も直す。
-
-### 季節めぐりと東部たんけんクイズ（2026-11-22）
-
-日次アイデア 11/13・11/14（2件）・11/17 を統合。`#legacy` の冒頭に季節めぐり（`.leg-season`、文字はカードの見出し `comm_leg_*_h` を使い回す）、末尾にクイズ（QUIZ。問題は `data/quiz/<言語>.json`＝手で直す、120問・12テーマ〈歴史／桃花台のまち／祭りと伝統／特産物／自然と公園／地名と読み方／戦国と昔の村／川・道・産業と目じるし 各10問と、お店を1つにまとめて中身で分けたお店1（喫茶・カフェ）14問／お店2（パン・お菓子）12問／お店3（ごはん処）9問／お店4（農園・直売）5問＝2026-11-22 ユーザー指示。1回の出題ではお店全体を1つのまとまりとして偏りを見る〉、`o` の先頭が正解。1回5問を別々のテーマからランダムに出し、全テーマを一巡するまで同じテーマを選ばず、テーマの中で全問出るまで重複させない。難易度はかんたん（`lv: easy`＝このサイトのカードで答えを確かめられる問いだけ）／ふつう（全部）／むずかしい（それ以外）で、問いを足すときは `lv` を確かめる。`site_lint.py` の `quiz_data` が検査。**お店と新しいテーマの事実はクイズの中だけに置き**、出どころは公式に限らず地元の情報サイト・お店自身の案内でよい〈`src` に名前を文字で書き、リンクは張らない〉。お店は閉店・移転があるので見直す（桃源郷は閉店済みで載せない）。InstagramなどのSNSは機械で読まない。難易度の選択は問題の下に控えめに置き、初期値は「ふつう」。**新しいお店・テーマの候補は `.github/workflows/quiz-candidates.yml`（毎週木曜 7:40 JST）が AI に探させ、Issue「🧩 クイズの問題の候補」にするだけで、サイトは変更しない。** 運営者が承認した候補だけを人（かAI）が `data/quiz/` の13枚に足す。お店以外のテーマの問題数はそろえる。Issue の本文は `quiz_candidates.py` が整える（出どころの URL が無い候補と、SNS・地図サービスを根拠にした候補は落とす）。2026-11-22 ユーザー指示）。`#season-line`（トップと community.html の `#east-quiz` の見出しの中、クイズの下）は SEASON が今の季節の項目から、開くたびにランダムで1つ選ぶ（2026-11-22 ユーザー指示）。**季節は基本的にカードに時期が書いてあるものを置く**（例外はユーザー指示の冬の「初詣（地域内の神社・仏閣）」〈特定の寺社に限らない。飛び先は寺社のまとまり `#legacy-temples`〉と秋の「東部各地の祭り」で、秋の祭りが公表資料で確かめられていないことは `comm_leg_src` に書いてある。マメナシは春だけ。2026-11-22）。**もとの決まり：カードに時期が書いてあるものだけ、問いは地域のレガシーと東部の地名・歴史・雑学だけで、サイトのカードに書いてある事実から作る。**学校再編・行政の問いは出さない**（2026-11-22 ユーザー指示）**（新篠岡音頭は出題しない）。カードの時期や「5校→2校」が変わったら直す。**答えの記録はこの端末の `localStorage`（`komaki_quiz`）にだけ保存し、外へ送らない**（2026-11-22 ユーザー決定。集計は `quiz/finish`・`quiz/mode-*`・`quiz/theme`・`quiz/reset`・`quiz/page` の機能名だけ。説明は `privacy_li5`）。結果の共有は付けない。 クイズは `index.html` にも同じ枠で載せてある（2026-11-22 ユーザー指示）。問いは `data/quiz/` の13枚をそろえて直す。トップのページ冒頭の「このサイトについて」の右に、同じページのクイズの見出し `#east-quiz-h` へ飛ぶリンク `.hero-quiz-link`（`idx_quiz_jump`）がある。
-
-### クイズの専用ページと、答えで変わる出題（`quiz.html`・`js/quiz.js`、2026-11-22）
-
-ユーザー指示。トップと community.html の枠はそのままで、専用ページ `quiz.html`（テーマの制覇マップ・テーマ別の挑戦・記録を消すボタン）を足した。ヘッダのナビには足さず、導線はフッタと、トップ・community.html のクイズ枠の説明文の下のリンク（`ui.page`、集計 `quiz/page`）。3か所とも同じ `js/quiz.js` で、**先に5問を決めず1問ごとに次を選ぶ**。
-
-- **つながりは `data/quiz_meta.json`（手で直す）**。`d`＝難しさ1〜5（`lv: easy` は1〜3、`hard` は3〜5）、`routes`＝同じ場所・話題の問いを**かんたん→むずかしいの順**に並べた道（`_` 始まりは名前を画面に出さない）、`hide`＝名前を出すと答えが分かる道。**問いを足すときは `data/quiz/` の13枚と、ここの `d`・`routes` にも足す**（`site_lint.py` の `quiz_data` が確かめる）。
-- 正解すると同じ道を一段上へ、まちがえると一段下へ。正解率がおよそ7割になる難しさを狙い、同じテーマを続けず、1回3テーマ以上、4問目に未開拓のテーマ、前の回でまちがえた問いを1問までリベンジ。難易度ボタンは候補の範囲をしぼる。
-- 一言・テーマ名・道の名前は `data/quiz/<言語>.json` の `ui`（ふだんの辞書に入れず、クイズを開いたときだけ読む）。
-- `quiz.html` は連絡先の表を置かない（check 15 の対象外）。関連リンクの計算からも外してある（`SKIP_CALC_PAGES`）。
-
-### 福厳寺・大久佐八幡宮・ちごりんの里山・ファーム誘致（2026-11-22 ユーザー指示）
-
-`community.html#legacy` に独立カード `legacy-fukugonji` / `legacy-okusa` / `legacy-chigorin` / `legacy-farm`（出典の行 `comm_leg_src2`）。福厳寺の火渡りは市のページで日付が分かれる（12月16日頃／第2日曜）ので「12月」とだけ書く。ちごりんの里山の出どころは小牧市市民活動センターで、代表者名と個人の電話番号は書かない。**ファーム誘致の事実は市の「中日ドラゴンズファーム本拠地移転に関する取組」と球団の公募の発表だけ**（リンクは張らない。報道は使わない。要望書を出した会派・議員の名前は書かない）。問題点は当サイトの考えなので `analysis.html#rev-l-f14`・`rev_l_v2`・`rev-l-p12`、問いは `rev_o44`〜`46` に置く。**優先交渉権者が決まったら（令和9年5月ごろ）これらと `council_r3_site_p` を直す。**
-
-## `community.html#tobu-kousou`（東部振興構想の見直しと桃花台の土地利用）
-
-2026-11-15 追加（ユーザー指示）。令和8年度第3回 東部まちづくり審議会（2026-11-12）の会議資料にもとづく**【事実】だけの節**（「地域の取組」と「都市計画の動き」のあいだ）。東部振興構想（2022〜2031年度）の中間見直し（案）と、桃花台の戸建て住宅地（地区計画のA・B地区）で開ける店の種類を広げる地区計画の変更（案）を、当サイトの言葉で書き直して載せる。**どちらも案の段階** — 時点 `comm_kz_asof`、「市の資料から」のマーク `comm_kz_tag`、緑の左帯。
-
-- **出典は `data/official_pages/tobu_shingikai/`**（`fetch_pdf_docs.py` の `tobu-shingikai` 群。資料2〜9と参考資料だけを取り、**委員名簿（資料1）と次第は取り込まない** — 個人名の一覧のため）。図や地図の中の文字は読めていない（`comm_kz_src` に明記）。出典リンクは9本目の許可URL（会議資料のページ、このページ限定）。
-- **当サイトの考えはここに書かない。** analysis.html の `#rev-e7`（検証「構想の中間見直し（案）で変わること・変わらないこと」）と `#rev-p8`（提案「県営住宅の空き住戸を、子育てを始める世帯の住まいにも」）、年表 `rev_y16`、質問集 `rev_o41`〜`43` に置き、節の末尾の `comm_kz_more` で送る。
-- **意見募集の囲み（`.kz-pubcom`）とトップの案内の行（index.html の `.kz-line`、`idx_kz_line`）は `data-expires="2026-12-27"`** で、最終日のあと自動で隠れる。審議会資料では意見募集は 11/27〜12/27 の「予定」。**正式な案内が出るまでスケジュール（events.json・schedule.html）には載せない。** 合図は市の「パブリックコメント実施状況（令和8年度）」のページ（`fetch_news.py` の `WATCH_PAGES`、スラッグ `admin-shisei-shisei-2-R8zyoukyou-index`、年度が変わったら `R9zyoukyou`）で、`site-facts.json` が `calendar` / `key_events` / `tobu_kousou` を指し、自動更新の起案プロンプトにも手順がある。期限は `data/ops_calendar.json` の `tobu-pubcom-open`（11/27）と `tobu-pubcom-close`（12/27）。
-- 地区計画の変更は別の手続き（2026年12月 公聴会 → 2027年6月 決定の予定、`comm_kz_tl_list`）。決まったら「案」を外す。「いま開けるもの／案で加わるもの」の対比（`.kz-compare`）は文字の入る図なので HTML＋CSS。
-- キーは `comm_kz_*`。中身を変えたら `ql_community_p`、analysis の `rev_e7_*` / `rev_p8_*` も確かめる。
-
-## `data/tobu_actions.json`（東部まちづくりの取組）
-
-2026-09-13 追加（ユーザー指示）。**「地域の取組」欄の下半分**に、市の東部まちづくり推進室が公表している東部地域の取組を並べる。`community.html` と `index.html` の両方に出る（`#tobu-actions-container` を見つけた所に `js/main.js` の TOBU ACTIONS ブロックが描く）。住民有志の取組（`data/community_actions.json`）とは**見出しを分けてある** — 上は住民自身が始めたもの、下は市の部署が公表したもので、混ぜると「誰が出している情報か」が消えるため。ただし**行の形（カード）は 2026-09-20 のユーザー指示で住民有志の取組（`.action-item`）とそろえた**（上下の欄が続いて見えるようにするため）。出どころの違いは **①「市公式」の札 ②カード左帯の色（市公式は `--primary` の緑、住民有志は `--accent` の黄） ③最後の出典行** の3つで示す — この3つは外さないこと。
-
-- **自動生成・手編集不可。** `fetch_news.py` が監視している `data/official_pages/toubumachidukuri-tobumachidukurisingikai-*.txt` から `.github/scripts/build_tobu_actions.py` が組み立てる（市サーバへのアクセスはゼロ。`fetch_news.py` の**あと**に実行すること）。自動更新パイプラインの `ALLOWED` にも入れない。
-- **載せるのは直近2か月ぶんだけ**（`WINDOW_DAYS = 60`、2026-09-13 ユーザー指示）。古い記録が積もると「いま何が起きているか」が読めなくなるため。**ただし、これから開催される催しは日付が未来なので必ず残る** — 参加できる催しを期限切れで落としては、この欄を置く意味がない。画面は「これからの催し」（最大3件）→「最近の動き」（**最大3件**、2026-10-05 ユーザー指示。表記は「さいきん」ではなく「最近」）の順。
-- **拾い方は3通り。** ①「開催場所・会場」「開催日・期間」を持つページ＝催し（協働提案事業・団体等のイベント情報）。②年度別『東部まちづくりニュース』と『東部まちづくり審議会』の本文に〈見出し（令和8年8月24日）〉の形で並ぶ行＝記録。③それ以外のページ（トライアル活動の紹介など）はそのページの更新日を日付として扱う。**図やPDFの中は読めないので、載っていない＝存在しない ではない。**
-- **出典の索引は1本。** コーナーの出典は `.../toubumachidukuri/tobumachidukurisingikai/index.html`（URL は `js/main.js` の TOBU ACTIONS ブロック）。**2026-11-27 から各項目の見出しは元の個別ページへ直リンクする**（ユーザー指示。`url` は `build_tobu_actions.py` がスナップショットの1行目から書き、範囲は `official_links.py`、check 6b が JSON も見る）。見出し・会場名は日本語以外の表示で `data/headline_i18n.json` の訳に置き換え、「どのページ群から拾ったか」の分類名（協働提案事業など）は TOBU ACTIONS ブロックの `_from` で訳す。市がページ群を増やしたら `_from` に足すこと（足すまでは原文で出る）。
-- 監視対象は `TOBU_BASE` 配下。ディレクトリが入れ子なので `fetch_news.py` の watch は `<li class="dir">` も辿るが、**過去年度の記録まで含めると110ページ規模**あるため、ふだんは直下まで（`WATCH_DIR_MAX_DEPTH = 1`）。**日曜だけ `WATCH_DEEP=1` で全階層**を回る（`fetch-news.yml` の "Decide crawl depth" ステップ）。浅い巡回の日は下位ページのスナップショットを `keep_slugs` で守る — 守らないと毎日消えて毎週復活し、差分が無意味に膨らむ。
-- **深いところにある2つだけは毎日見る**（2026-09-13 ユーザー指示）：協働提案事業（これからの催しが載る）と東部地域トライアル活動（年度ごとの認定活動）。`WATCH_INDEXES` に直接足してあるが、配下に過去分が数十ページ積もっているので、浅い巡回の日は**末尾（＝新しいほう）だけ**を取る（`WATCH_TAIL_INDEXES` / `WATCH_TAIL_PAGES = 8` / `WATCH_TAIL_DIRS = 1`）。市のインデックスは古い順に並んでいるため末尾が最新。これで毎日の取得は東部まちづくり全体で 40ページ弱に収まる。
-- **桃花台を考える会の催しは「地域の取組」（住民側）に出す**（2026-09-26 ユーザー指示）。`build_tobu_actions.py` が催し（`kind: "event"`）に `organizer: "桃花台を考える会"` を付け、TOBU ACTIONS はそれを外し、COMMUNITY ACTIONS が `data/tobu_actions.json` からそれを拾って住民有志の札で並べる。判定は「本文に団体名がある」か「協働提案事業のページで題名が同会の続き物（`TOKADAI_SERIES`：桃花台音楽まつり・我が家の相続セミナー・桃花台を考える講演会・住まいの相談会）」— 第11回桃花台音楽まつりのページには団体名が無いため（第3〜10回はすべて同会との協働提案事業）。本文は「同会が市の東部まちづくり推進室との協働提案事業として開く催し」と書き、発信元は東部まちづくりの索引（掲載しているのが市のページのため）。**スケジュールにも自動で載る**（同日ユーザー指示）。`js/main.js` の `KomakiTokadaiEvents()` がこれを events.json と同じ形（12言語ラベル＝見出しの訳＋「（住民有志）」、`day: true`）に直し、`KomakiEvents()` が events.json に足す。カレンダー・`.ics`・「あと◯日」はこれを読み、TOKADAI SCHEDULE ブロックが `schedule.html` のその年の一覧に `.event-item[data-auto="tokadai"]` を `data-start` 順に差し込み、`index.html` の `status_digest` の件数に足す。**events.json に同じ催し（ja ラベルが題名で始まるもの）があれば足さない**ので、手で丁寧に書いた項目（第11回桃花台音楽まつりの `sched_*44`）が優先される。年表に残すため、`TOKADAI_SINCE`（2026-09-26）以降の同会の催しは `build_tobu_actions.py` で60日の窓・件数上限にかけない。記録（ニュースの〈桃花台を考える会〉行）は市の記録として東部まちづくりの欄に残る。
-- `site-facts.json` ではこの接頭辞の `targets` を空にしてある。**一覧は自動で入れ替わるので、検知 Issue を見た人やAIが手でページを直す必要はない。**
-## `data/toshikeikaku_east.json`（都市計画の動き・東部地域）
-
-2026-10-17 追加（ユーザー指示）。**`community.html` の `#toshikeikaku`**（「地域の取組」の次。2026-10-31 に review.html から analysis.html へ、**2026-11-07 にユーザー指示で community.html へ**移した。キー名 `rev_s11_h` / `rev_tk_*` は据え置き。古いアンカー `analysis.html#rev-toshikeikaku` / `review.html#rev-toshikeikaku` は MOVED ANCHORS の `RENAMED` が送る。analysis の `#rev-power` の末尾に案内 `rev_tk_moved` がある）に、市の都市計画課の配下（`.../toshiseisakubu/toshikeikaku/1/`：都市計画審議会・景観審議会の会議録、地区計画、公聴会、電子告示、マスタープラン・立地適正化計画、パブコメ）のうち、**題名か本文に東部の地名があるページを更新日の新しい順に5件**（ユーザー指定）並べる。14日以内の更新には「新着」。
-
-- **自動生成・手編集不可。** `fetch_news.py` が保存する `data/official_pages/toshikeikaku-1-*.txt` から `.github/scripts/build_toshikeikaku.py` が組み立てる（市サーバへのアクセスはゼロ。`fetch_news.py` の**あと**に実行。`--check` あり）。`ALLOWED` にも入れない。`site-facts.json` の `targets` は空。
-- **東部の判定は `build_community_events.py` の `EAST_PLACE_KEYWORDS` を import して使う**（地名の一覧は1か所）。索引ページと申請書の様式集（`toshikeikaku-1-1-1-*`）は拾わない。図・PDF の中は読めないので、載っていない＝無い ではない（`rev_tk_note` に明記）。
-- **巡回の負荷**：配下は索引37・記事約125ページ。ふだんは動きのある索引（`TOSHI_DAILY`：告示・公聴会・パブコメ・地区計画・都市計画審議会・会議の開催案内の最新年度）の**末尾だけ**を見て、最上位の索引からは降りない（`TOSHI_NO_DESCEND`）。全階層は日曜の `WATCH_DEEP`。浅い日は `toshikeikaku-1-` のスナップショットを `keep_slugs` で守る。`WATCH_TAIL_INDEXES` は「索引 → (末尾の記事数, 末尾の下位索引数)」の dict。
-- **出典の索引は1本**（5本目の許可URL、`js/main.js` の TOSHIKEIKAKU EAST ブロック）。**2026-11-27 から各項目の見出しは元の個別ページへ直リンクする**（`url` は `build_toshikeikaku.py` が書く。スケジュールに載る日程の見出しも同じ）。題名と「該当した地名」は日本語以外で `headline_i18n.json` の訳に置き換える（`current_headlines()` に追加済み）。
-- **決まった日程はスケジュールへ自動で載る**（2026-10-18 ユーザー指示）。東部に関係するページ（表示の5件に限らない）の「開催日時」「開催期日」「閲覧期間」「縦覧期間」「意見募集期間」の次の行から日付を読み、`events`（`role`：`day`＝1日の予定／`viewing`＝案の閲覧・縦覧／`pubcom`＝意見募集、期間は `start`〜`date`）に入れる。`KomakiTokadaiEvents()` が `kind: 'toshi'` として予定の形（ラベル＝見出しの訳＋`TAG_TOSHI[role]`「（都市計画）」など。1日なら `"day": true`、期間は `start` と `span: true`）に直し、カレンダー・`.ics`・schedule.html の一覧（`.event-item[data-auto="toshi"]`、本文は `community.html#toshikeikaku` へ）・トップの帯（`span` は「10月15日（木）〜11月12日（木）」と日付まで）・`status_digest` の件数に出る。**「地域の取組」には出さない**（地域の催しではないため）。`SCHEDULE_SINCE`（2026-10-17）より前に終わった日程はさかのぼって足さない。**新しい日程が載ったら更新履歴に1行足す**（2026-10-18 ユーザー指示。「都市計画「…」の閲覧期間を予定に掲載」、`auto_key` は `toshikeikaku:` 始まり。カットインに出る都市計画の行はこれだけ。生成モードのときだけ書き、`--check` では書かない）。題名に「中止」「延期」があるページは日程を拾わず、「は開催しません」とあるページは開催日だけ落とす（閲覧期間は行われたので残す）。市の「開催予定の審議会等」の索引（`4/2/kaigikaisai_r*`）は議題が無く東部との関係が読めないので拾わない — 会議ページに議題が載り東部の地名が出た時点で載る。
-- **【事実】だけの欄。** 札（市公式）・緑の左帯・出典行は東部まちづくりの動きと同じ形（`.tobu-*` を再利用）。🔎・💡 はこの欄に書かない（リードの最後の1文で analysis.html#rev-power の当サイトの考えへ送るだけ）。
-
-## `data/child_estimate.json`（東部地域の0〜17歳・当サイトの推定）
-
-2026-10-22 追加（ユーザー指示）。`index.html` の**トップのヒーローの中**（`.hero-count#child-estimate`。誰の目にも明らかなよう数字を大きく — 同日ユーザー指示）に、**東部地域（篠岡地区）に住む0〜17歳の子どもの数を当サイトの推定で、小数第1位まで**出す。
-
-- **材料は市の人口統計（市民窓口課 住民登録係）だけ**：「指定区別年齢別男女別人口統計表」（年1回・10月1日現在、町字×1歳刻みの xlsx。約5か月遅れで出る）と「人口世帯表」（毎月1日現在、町字別の総人口の csv）。`.github/scripts/fetch_population.py` が索引3枚を見て、**新しい表が出たときだけ**ダウンロードし、東部の行を `data/official_pages/population/` に保存する（手編集不可・古いものも消さない）。**市の統計ページへはリンクしない**（許可外の URL）。出典は `child_est_method` に文字で書いてある。
-- **東部＝表の「小針二丁目」の次の「大山」から「城山五丁目」までの連続した塊**（`EAST_TOWNS` の32町字＋塊の中に新設された町字。令和8年の人口世帯表には工業地の長治町・郷西町が入っている）。表の先頭近くの「大山（小牧）」は小牧地区の別の町字。既知の町字が1つでも欠けたら取得を失敗させる（黙って小さくならないように）。
-- **推定のしかた**（`build_child_estimate.py`、市サーバへのアクセスなし、`--check` あり）：年次表の新しい2時点から子どもの割合とその変化の速さ、月次表の最新月と1年前から総人口の変化の速さを出し、`base_value`（最新月の1日の推定）× `exp(daily_rate × 経過日数)`。**今日の値はブラウザが日本時間の日付で計算する**（CHILD ESTIMATE in `js/main.js`）ので、ワークフローが止まっても日付が変われば数字は変わる。
-- **小数第1位まで出すのは「毎日必ず数字が切り替わる」ため**（ユーザー指示）。一の位だと1日の動き（いまは約0.57人）で変わらない日が出る。1日の動きが 0.1 人を下回る係数になると `build_child_estimate.py` が失敗する（check 17）。**一の位で毎日±1を強制する形は採らない** — 1年で公表値から100人以上ずれるため。
-- **増減は画面に出さない**（同日ユーザー指示）。出すのは推定値・その日付・市の公表値（年次表の最新時点）・推定のしかた（`<details>`）だけ。「当サイトの推定」「市が公表した数ではありません」は外さないこと。読み上げ（READ ALOUD）の対象外（ヒーローの題名と同じ扱い）。
-- 人口統計の取り込みは学校再編の一次情報ではないので、`fetch-news.yml` では**単独でコミット**し、Issue も自動更新ジョブも動かさない。`ALLOWED` にも `site-facts.json` にも入れない。
-- **年齢別の棒グラフ**（2026-11-22、日次アイデア 11/17）：「推定のしかた」の中に、年次表の最新時点を東部で合算した0〜17歳の人数（`official.by_age`）を表＋棒で出す。推定ではなく市の公表値。増減と町字ごとの数は出さない。
-- 文言キーは `child_est_*`（12言語＋こどもむけ）。書式（`{n}` / `{date}`）は隠し要素 `[data-ce]` から読む。
-
-## 外部リンクの死活確認と、自動取得の「最後に確かめた日時」（2026-10-23）
-
-- **外部リンクの死活確認**（`.github/workflows/check-links.yml`、毎週月曜 5:40 JST）。`check_links.py` が `*.html`・`js/*.js`・`data/i18n/*.json` と `data/community_actions.json`（まだ終わっていない項目だけ）の URL を、`fetch_news._curl_get` で1本ずつ3〜5秒あけて取りに行く。**Instagram・Facebook は robots.txt が機械での収集を禁じているので見ない**。共有ボタンの送り先と Google マップ（検索語のリンク）も外す。一時的な不調（メンテナンスの 503 など）で騒がないよう、**2週続けて開けない URL だけ**を Issue（🔗、開いているものがあれば追記）で知らせる。記録は `data/link_check.json`（自動生成）。**自動では直さない** — 移転先は発信元の公表で確かめてから差し替え、市・文科省の URL なら許可URLの表と `PERMITTED_LINKS` も直す。
-- **自動取得の各コーナーの下に「最後に確かめた日時」**（FETCH STATUS in `js/main.js`）。`news.json` などの `fetched_at` は内容に変化の無い日はコミットされないので使えない。代わりに `fetch-news.yml` の最後のステップ（`if: always()`）が `record_fetch_status.py` で `data/fetch_status.json` に取得元（`city` / `schools`）ごとの `checked_at`・`ok`・`last_ok_at` を毎回書いてコミットする。**取れなかった日は「取得できませんでした。この一覧は◯日に確かめた時点の内容です」、36時間以上確かめていなければ「◯日から確かめられていません」と、一覧が古いことを赤字で書く** — 古い一覧を最新に見せないため（オフラインの断り書きと同じ考え方）。対象は市のお知らせ・学校HP・地域協議会のイベント・東部まちづくりの動き・都市計画の動き。新しい自動取得コーナーを足したら `MAP` にも足す。
-- **止まったら運営者に Issue で知らせる**（2026-11-07、日次アイデア 11/2）。`.github/workflows/check-fetch.yml`（毎日 10:20 JST）が `check_fetch_health.py` で `data/fetch_status.json` を読み、`ok:false` か `checked_at` が36時間より古い取得元があれば「⚠️ 自動取得の停止」の Issue を作る（開いていれば追記。自動では閉じない）。毎日の巡回とは別のワークフローなので、巡回そのものが動かなくなっても気づける。外部にはアクセスせず、AI も使わない。取得元を足したら `record_fetch_status.py` の `LABELS` に足せば、ここも自動で見る。
-
-## サイトの点検（`site_lint.py`、週1回。2026-11-11）
-
-日次アイデアにたまっていた検査の案（約20件）を1本にまとめた。**止めない点検**で、`.github/workflows/check-site.yml`（毎週月曜 6:20 JST）が `.github/scripts/site_lint.py` を回し、気になる所があれば Issue「🧹 サイトの点検」1件で知らせる（開いていれば追記、自動では閉じない）。外部にはアクセスせず、AI も使わない。
-
-- 見るもの：使われていない辞書のキー／訳の抜け（12言語・こどもむけ）／言語の一覧のそろい（`i18n.js`・各スクリプト・sitemap）／`meta_desc_*` の長さ／`target="_blank"` の `rel="noopener"`／`<img>` の `alt`・`width`・`height` と挿絵 SVG の文字／`site_version` と `og-image.png?v=` のそろい／文中の数と実数（`faq_qa_intro` の「◯問」、`faq_q` の連番、`rev_open_short` の「◯問」）／1日の予定の `"day": true`／ページ別辞書の重さ／3か月より古い `*_asof`／「市民」の表記（固有名詞の許可リスト `SHIMIN_OK`）／`HANDOVER.md` とワークフロー・Secrets・Issue の印の食い違い。
-- 2026-11-22 に3つ足した（日次アイデア 11/11・11/12）：日付と曜日の食い違い（`weekday_mismatch`。年が直前に無い日付は 2025〜2027 年のどれとも合わないものだけ）、許可する市の URL の記載もれ（`permitted_sync`。`auto_gates.py` の `PERMITTED_LINKS` と CLAUDE.md・`CONTRIBUTING.txt`・`README.md`）、関連リンクの偏り（`crosslink_balance`。どこからも指されないページ・3割超が集まるページ）。
-- `build_search_index.py` は、1つの `<section>` に h2 が複数あるページ（nationwide.html）を **h2 ごとの項目に分ける**（飛び先は PAGE TOC と同じ規則）。
-- **検査を足したいときは、まずここに点検を1つ足す**（関数を書いて `CHECKS` に足す）。`auto_gates.py` に足すのは、壊れると読者に見えるものだけ — 止める検査が増えると、毎日の自動更新が小さなことで止まる。いま上げてあるのは check 28（辞書に無いキー）と 29（サイト内リンク切れ）の2つで、どちらも `site_lint.py` の関数を呼ぶ（実装は1か所）。
-- 固有名詞を足したら `SHIMIN_OK`、言語を足したら `LANGS`、Issue の種類を足したら `HANDOVER.md` の表も直す（点検が食い違いを知らせる）。
-- 2026-11-11 に、点検で見つかった使われていないキー9つ（`rel_voices_*`・`rev_f11_*`・`rev_f12_*`・`rev_src_pref`・`site_op_label`）を13辞書から消した。
 
 ## `data/site-updates.json` (this site's own changelog)
 
@@ -419,360 +143,8 @@ The **`#site-updates` section of `index.html`** (its own `<h2>` section right af
 - 新しいコーナーを足すときも、断り書きを段落で足さず、印と1行で済ませること。
 - **強制カラー（Windows の高コントラスト）**（`@media (forced-colors: active)`、2026-11-11）：背景色が消されても【事実】（実線の左帯）と 🔎・💡（二重線の左帯）、カードの枠、押されているボタン、読み上げ中の文が見分けられるよう、枠線とシステム色で示す。色の切り替えボタンは作らない。色だけで区別する部品を足したら、ここにも足す。
 
-## `nationwide.html` (the nationwide context page)
 
-Added 2026-08-22. It answers "is this only happening here?" with MEXT statistics and the standards the national government sets, so that a reader can judge the Komaki plan against something. It is **static hand-written content** — no JSON feed, no script, nothing on the daily workflow.
-
-- **Every fact on it must come from MEXT**, and the five permitted `mext.go.jp` URLs are its bibliography. Numbers currently on the page: 8,850 closures FY2004–FY2023 and 298 in FY2023 (191/82/25), 92 in Aichi (62/14/16), 74.4% of 7,612 surviving buildings reused, ~2,000 fewer public schools and ~850,000 fewer pupils in ten years, standards of 12–18 classes (18–27 for compulsory education schools), 4 km / 6 km, "about one hour", the 2026-08-05 revision (notice 8文科初第1125号) and its 広域化 / 総合化 / 現代化 pillars, ~40% / ~50% below 12 classes, ~16% one-elementary-one-JHS municipalities, 5,812,000 / 3,105,000 pupils, 232 public compulsory education schools with 75,828 pupils (FY2024); and, in the 中高一貫 section added 2026-09-26 on the user's instruction, 678 combined junior–senior high schools in FY2023 — 中等教育学校 57 (4/35/18), 併設型 537 (1/105/431), 連携型 84 (0/79/5), system started April 1999 (MEXT「中高一貫教育の概要と設置状況」, the 5th permitted link, plus the 高等学校教育の在り方WG 参考資料5 of 2024-09-12, cited in text only).
-- **No 賛否 content, and no resident-run events.** The page deliberately carries no pro/con framing — that belongs in the 賛否の声 section of `faq.html` — and does not advertise meetings or lectures held by any group, whichever side they are on. A neutral-looking national page is the easiest place on this site to smuggle in a position, so keep it descriptive.
-- **Class size and teacher numbers (added 2026-10-24)**: the comparison table also has rows for the maximum class size (elementary 35; junior high also 35 under Act No. 7 of 2026, phased in until FY2027 by the supplementary provisions) and teacher numbers (calculated from the number of classes, Art. 7). These cite the Act on Standards for Class Formation and Staff Numbers in text — a national law administered by MEXT — with no new link. The same 2026 amendment is reflected in `rev_n4_f`, `rev_k4_f`, `about_learn_c2_p` and `faq_a25`; if the phase-in changes, change all of them.
-- The 国の基準 ⇔ 小牧の計画 table is the point of the page. Its right-hand column restates facts that already exist elsewhere on this site (令和15年に各学年1学級, 2km でスクールバス, ガイドラインは未定) — when those change, change them here too.
-- The 手引 was revised in August 2026 and will be revised again. When it is, the numeric standards must be re-checked against the new 改訂版 rather than assumed to carry over.
-- Not in the auto-update pipeline's `ALLOWED` set: the city's page changes do not move national statistics.
-- 末尾に **国の担当部署の連絡先**（`id="contact"`）がある。数値ごとにどの部署の所管かを並べたもので、番号は文科省が各ページで公表しているものだけ。リンクは増やしていない（出典リンクは上の5つのまま）。中高一貫の所管部署はまだ載せていない。詳しくは「担当部署の連絡先」の節を参照。
-
-## 担当部署の連絡先（`data/contacts.json` と週1回の照合）
-
-2026-09-13 追加（ユーザー指示）。読者が「では誰に聞けばいいのか」で止まらないよう、**制度ごとの担当部署と電話番号**をサイトに載せている。置き場所は4か所：
-
-| ページ | 何を載せるか |
-|---|---|
-| `about.html#contact` / `faq.html` | 学校再編そのもの（教育総務課 学校再編推進係） |
-| `bus.html#contact` | スクールバス。市の窓口と、**運行事業者**（あおい交通株式会社・本社と野口営業所）。`bus_contact_*` / `bus_c*_w` キー |
-| `council.html#contact` | 市議会。傍聴・請願・会議録は議会事務局 議事課、条例の中身は教育総務課。`council_contact_*` / `council_c*_w` キー |
-| `community.html#contact` | 地域協議会（支え合い協働推進課）。`comm_contact_*` キー |
-| `review.html#rev-contact` | このページで触れた事柄の市8部署・県5部署・国3部署（文部科学省。2026-09-26 追加）。`rev_c_*` / `rev_s9_*` キー |
-| `nationwide.html#contact` | 全国の統計と国の基準を所管する文科省4部署（中高一貫の高等学校振興課を 2026-09-26 に追加）。`nw_c*_w` ほか |
-| `schedule.html#contact` / `map.html#contact` / `clubs.html#contact`（新設）、`about`・`faq`・`community` の #contact の下の「関係するほかの部署」 | 2026-09-27 ユーザー指示で**トップ以外の全ページ**に広げた分。共通キー `contact_rel_*`・`contact_lv_other`・`ct_w_*`（所管の説明）と、review の `rev_c_*_w` を使い回す。区分の小見出しは `h4.contact-level-h`（節見出しにすると目次と読み上げボタンが区分ごとに増えるため）。clubs は市（学校教育課・文化・スポーツ課）・県（保健体育課・あいちの学び推進課）・国（スポーツ庁 地域スポーツ課）・その他（小牧市スポーツ協会）。map は地図と都市計画の窓口も載せる（ユーザー指示）：市 都市計画係、県 土地利用計画グループ、国＝地図の元データの所管（国土数値情報の運営事務局・総務省統計局。区分見出しは `contact_lv_nat`「国」）。統計局のサイトは Shift_JIS なので、`fetch_news.py` の `_curl_get` は UTF-8 で読めなければ cp932 で読み直す |
-
-**ページを更新するたびに、そのページの問い合わせ先も見直す**（2026-09-27 ユーザー指示）。話題を足したら所管部署を足し、`data/contacts.json` に `source`・`probe`・`shown_in` つきで登録する。
-
-**トップ以外の各ページに、市・県・国の部署をそれぞれ最低1件**（2026-10-11 ユーザー指示。`auto_gates.py` check 15 が `contacts.json` の `shown_in` から検査し、番号がページに本当にあるかも見る）。選び方は「ページの内容に関係する、または本文の言葉から引ける所管部署」。**広い観点で選んでよい**（例：バス＝国交省 中部運輸局 愛知運輸支局、議会＝選挙管理委員会と政治資金の所管）。2026-10-11 に足したもの：
-
-| ページ | 市 | 県 | 国 |
-|---|---|---|---|
-| `schedule` | （既存） | 財務施設課 | 文科省 教育制度改革室 |
-| `bus` | （既存） | 保健体育課 安全グループ（学校安全・通学） | 文科省 教育制度改革室（通学距離とスクールバスの手引）、中部運輸局 愛知運輸支局 輸送担当 |
-| `council` | 選挙管理委員会事務局 | 市町村課 行政グループ、同 選挙グループ（政治団体の届出・政治資金収支報告書） | 総務省 自治行政局 行政課（地方議会制度）、同 選挙部 政治資金課 |
-| `community` | （既存） | 市町村課 地域振興室 市町村行政支援グループ | 総務省 地域振興室（地域運営組織） |
-| `faq` | 広報広聴課 広報広聴係（パブリックコメント制度・住民の要望と意見） | 政策企画局 広報広聴課 広報・広聴グループ（県のパブリック・コメント） | 総務省 行政管理局（行政手続法の意見公募手続） |
-| `nationwide` | 教育総務課、秘書政策課 市政戦略係（国とのやり取りを含む重要施策の総合調整） | 財務施設課、政策企画局 政策調整課（国への要請の取りまとめ） | （既存の文科省4部署） |
-| `about` | （既存） | ＋義務教育課 振興・調整グループ | （既存） |
-
-- **番号は必ずその部署の公表ページで確かめ、`contacts.json` に照合できる `probe` を付ける**（週1回の照合で読めることを確かめてから載せる）。国の部署で直通番号が公表されていなければ代表番号＋（代表）。照合元に無い FAX や所在地は登録しない（照合が毎週「見当たらない」と報告するため）。
-- **各ページに「図書館で調べる」も置く**（2026-10-11 ユーザー指示。図書館で調べることも有意義なため）。小牧市立図書館（教育委員会事務局 図書館、0568-73-9951）・愛知県図書館の調査相談専用（052-212-3200）・国立国会図書館 東京本館（代表）の3つ。キーは `contact_lv_library` / `contact_library_lead` / `ct_w_lib_*`、`contacts.json` の `level: "library"`。check 15 が各ページにあることも見る。
-- **確かめられなかった候補は載せない**。いったん見送った東部市民センター・国土地理院 中部地方測量部・小牧警察署は、同日ユーザー指示で広く検索し直して公表ページで確かめ、**住所を部署名のあとに括弧で添えて**載せた（東部市民センター 図書室＝全ページの「図書館で調べる」、同 公民館＝community・schedule、中部地方測量部＝map、小牧警察署＝bus）。**電話番号が見つからなくても住所が公表されていれば載せてよい**（同指示）。
-- **国土地理院（gsi.go.jp）は古い TLS 再ネゴシエーションしか話さない**ので、OpenSSL 3 の curl は exit 35 で落ちる。`fetch_news._curl_get` はそのエラーのときだけ `UnsafeLegacyRenegotiation` を許す一時設定で取り直す。番号が全角で書かれたページもあるので、`check_contacts.py` は NFKC で半角にそろえてから比べる。
-- 区分の見出しは、文科省だけの表は `rev_c_nat_h`（国（文部科学省））、他省庁を含む表は `contact_lv_nat`（国）。文科省の表に他省庁の行を混ぜない。
-
-**窓口で見せる日本語（`about.html#contact` の `.mc-card`、2026-11-07、日次アイデア 10/02）**：外国語表示の読者が市役所の窓口や電話でそのまま見せられる定型文5つ。太字の日本語（`.mc-ja`）は HTML に固定で書き `data-i18n` を付けない（部署名と同じ考え方）、下の行の意味だけ `mc_m1`〜`5`（`mc_h` / `mc_lead`）で訳す。日本語表示では出さない（`html:lang(ja) .mc-card`）。原文併記（`ORIG_SKIP`）・読み上げ（`SKIP` の `.mc-ja`）・検索索引（`SKIP_CLASSES`）から外してある。定型文に事実の主張を書かない。
-
-トップページの「各ページへのリンク」の下に、この4か所への案内（`contacts_guide_*`）を置いてある。**番号そのものをトップに書かない** — 直す場所が増えると必ず食い違うため。
-
-- **日本語のまま出す名前には `lang="ja" translate="no"` を付ける**（2026-11-11）。連絡先の表の「部署」欄（1列目の `<td>`）、窓口で見せる日本語（`.mc-ja`）、clubs.html のクラブ名・会場名（`.club-name` / `.club-place`。日本語を含まない名前は `translate="no"` だけ）。ブラウザの自動翻訳で部署名が別の言葉に変わると、窓口で通じなくなるため。**連絡先の行やクラブを足すときも付けること。** 読み上げは、日本語・中国語以外の表示ではこれらを声に渡さない。
-- **部署名は日本語のまま**（表の「部署」欄に `data-i18n` を付けない）。窓口で見せたり電話で伝えたりするのは日本語の名称そのもので、訳すと用を成さないため。訳すのは「このページで触れた事柄」の欄とラベルだけ。年表の西暦欄と同じ考え方。ただし `about.html`・`faq.html`・`community.html` の `.contact-box` は従来どおり部署名も翻訳する（1部署だけなので窓口で示す用途より読みやすさを優先）。
-- **番号は HTML と辞書に直接書く。** `tel:` リンクの数字だけの形と、表示用のハイフン入りの形の2つが本文中にある。
-- **出典は「その部署の公表ページ」**。市・県・国のどのページから写したかは `data/contacts.json` の `source` にある。**このURLはサイトからはリンクしない**（許可外部リンクを増やせないため）。
-- **週1回、機械で見張る。** `.github/workflows/check-contacts.yml`（日曜 21:50 UTC＝月曜 6:50 JST）が `.github/scripts/check_contacts.py` を回し、45件の連絡先を公表ページと突き合わせる。**電話・FAX番号の変更は `--fix` がそのまま `*.html` と `data/i18n/*.json` を書き換えてコミットし、ページ別辞書も作り直す**（番号は翻訳されないので機械で直せる）。**部署名・所在地の変更は直さず Issue（☎️）で知らせるだけ** — 部署名は12言語＋こどもむけに訳してあるので、人（かAI）が文面を書き直す必要がある。
-- 照合のしかたは `probe.kind`（`article_contact` / `kakari` / `pref_group` / `text`）で切り替える。市の記事ページの「この記事に関するお問い合わせ先」、係の一覧表、愛知県の「連絡先」欄、文科省の「お問合せ先」で構造が違うため。**係名はページ上部の目次にも出るので、`kakari` は「次の行が『電話番号』」のものだけを本文の表とみなす** — ここを緩めると隣の係の番号を読む。
-- **運行事業者のような民間の連絡先も同じ扱い。** 出所はその会社が自社サイトで公表しているページで、**サイトからリンクはしない**（許可外部リンクを増やせない）。`bus_contact_note` に「制度のことを会社にたずねても答えは出ない」と書いてあるのは、市の窓口へ行くべき問い合わせが会社に流れるのを防ぐため — 外さないこと。
-- **議員個人の氏名・連絡先は載せない**（[[個人名は書かない]]の方針）。`council.html` は職と部署だけを書く。**政党名・会派名・議員団名も書かない**（2026-09-14 ユーザー指示）— 一般質問も「だれが聞いたか」ではなく「何が問われ、市がどう答えたか」だけを書く。定例会の本文（質問・答弁の要約を含む）は「です・ます」でそろえる（同指示）。
-- 組織改編は4月1日付が多い。**4月の第1週は結果を必ず見ること。**
-
-### ことばメモ（`about.html#glossary`）
-
-2026-09-22 追加。**こどもむけ表示にしても残ってしまう言葉**（学校再編・適正規模・パブリックコメント・地域協議会など9語）を、子どもが自分で確かめられるようにした欄。平易化は文を易しくするが**言葉そのものは残る**ので、読み上げ・こどもむけと合わせて「子どもが一人で読める」ための3つ目にあたる。
-
-- 対象語は **`ja-kids` にも残っている語**を基準に選んだ（`学校再編`・`パブリックコメント`・`地域協議会`・`義務教育学校`・`学区`・`小中一貫` など）。語を足すときも同じ基準で選ぶこと。
-- 説明は**当サイトの言葉**で書いたもので、市の資料の文面ではない。ただし中身（数値・時期）は公表資料にもとづく（5小3中→2小2中、12〜18学級、55件、令和8年度など）。**数字を書くときは既にサイトに載っている事実だけを使うこと。**
-- キーは `gloss_t_<key>`（語）と `gloss_d_<key>`（説明）。12言語＋こどもむけが要る。
-- **本文中の語に印を付ける方式は採っていない。** 本文は `data-i18n` で辞書から流し込まれるので、印を入れると13辞書すべての値を書き換えることになる。実行時に DOM を書き換える案も、「規模」のような部分一致の誤爆と、READ ALOUD のテキスト走査への影響があるため見送った。
-
-## `map.html#town-lookup`（町名から学校を調べる）
-
-2026-11-22 追加（日次アイデア 10/01、閲覧数計画の町名早見）。「再編後の4校の位置」の中。大城小学校区の5町（大草・城山二〜五丁目）だけを、令和9年度からの小中学校に対応づける。根拠は市の `48650` のページの計画図と城山三・四丁目の図（大城小は中学校区で分かれ、大草・三丁目＝東、二・四・五丁目＝西）。**三・四丁目の申請による変更、変更で2kmを超えてもバス対象外、四丁目の光ヶ丘中在籍者の扱いは外さない。** 文字は表（`map_tl_*`、JS 無効でも読める）にあり、TOWN LOOKUP（`js/main.js`）がそこからボタンと結果を作る。選んだ町名は保存も送信もしない。区域が変わったら表とこの節を直す。
-
-## `clubs.html`（地域クラブ・課外活動）
-
-2026-09-22 追加（ユーザー指示）。**部活動の地域移行を見越して、校区内で活動している地域クラブと各校の部活動を1ページに並べる。**ナビは「スクールバス」の次。静的な手書きページで、日次の更新も JSON もない（`nationwide.html` と同じ扱い）。
-
-- **節の順は「部活動の地域移行とは（`#transition`）→ 校区をまたぐ・市内全域（`#wide`）→ 学校ごと（`#schools`）→ このページの情報について（`#clubs-note`）」**（2026-09-22 ユーザー指示で `#wide` を `#schools` の上にした）。背景は `section-alt` → `section` → `section-alt` → `section` の交互。
-- **分類は「いまの学校名」で、再編後も永続的にこの分け方を使う**（ユーザー指示）。学校名の中はさらに種目で分ける。活動場所が特定の校区に結びつかないものだけ `#wide` に置く。**近隣市（春日井市など）に拠点があって、この地区から通えるもの**も `#wide` に入れ、場所を明記する（`clubs_s3_lead` がその旨を断っている）。**校区が確認できないものを推測で学校に割り当てないこと。** 光ヶ丘チェリーズは当初、名称に「光ヶ丘」を含むだけでは根拠にならないとして `#wide` に置いていたが、2026-09-22 にユーザーから活動場所が光ヶ丘小学校だと示され、光ヶ丘小学校の欄へ移した。**裏づけが得られたら移す、得られないうちは `#wide` に置く**、という順でよい。
-- **出典は「その主体自身の公表」**。地域クラブは各クラブの Instagram・ホームページ、学校の部活動は各校のページと学校日記、教室は小牧市スポーツ協会の公表。2026-09-20 のユーザー指示（行政以外の主体はその主体自身の公表を出典にしてよい）に沿う。**ここに載る情報は、計画の内容・数値・日程の根拠には決して使わない**（報道コーナー・地域の取組と同じ扱い）。
-- **部活動の一覧は3中学校とも公表されていない**（2026-09-22 に調査）。光ヶ丘中は部活動ページがあるが理念のみ、篠岡中・桃陵中は専用ページなし。そこで **① 各校の部活動ページ・学校日記へリンクする ② 学校日記などで確認できた部名だけ載せる ③ 網羅的でないと明記する** の3つで扱っている（`clubs_bukatsu_none` / `clubs_bukatsu_partial`）。**部名を推測で補わないこと。**
-- **文化系・コンピュータ系も載せる**（2026-09-27 ユーザー指示）。合唱（小牧少年少女合唱団＝小牧市音楽連盟の団体紹介）、プログラミング（エンカレッジ小牧＝所在地は高根2丁目だが、通う子は校区に関係ないので `#wide`〈ユーザー指示。教室・塾のように校区を問わず通うものは所在地で学校に割り当てない〉、パソコンスクールビッツ＝小牧市小牧）。**eスポーツ**は Legame（小牧市岩崎の会社。まなび創造館・勤労センターで地域大会「LegameCup」、オンラインのeスポーツ英会話。ユーザー提示。Instagram は取得せず会社サイトで確認）を `#wide` に載せた。（2026-11-05 に「探したが見つからなかった」旨の注記 `clubs_esports_none` と、`#transition` の「確認できていないこと」の箱は外した。部活動の扱いが未公表であることは `clubs_s1_p2` の1段落に書いてある。）小牧市スポーツ協会の**ジュニア育成活動**（市内の小中学生）は、チラシ PDF の会場表で東部の会場を確かめて学校の欄に置いた（桃陵中武道館の剣道・光ヶ丘中グラウンドのサッカー・光ヶ丘中武道館の合気道）。陶運動場のサッカーは校区が未確認なので `#wide`。部名は3中学校の学校日記「部活動」カテゴリから拾い、あいまいな略称（桃陵中の「ソフト部」）は載せていない。野球は学校日記で「桃花台」の合同チーム名で出場している（`clubs_tokadai_bb`）。
-- **国の方針は本文に文字で出典を書き、リンクは張らない**（`clubs_s1_src`）。文科省サイトへのリンクは `nationwide.html` 限定のままで、`review.html` と同じ方式。⚠️ **ドメイン名は HTML コメントにも書かない** — `auto_gates.py` check 6 は文字列で検査するので、コメントであっても違反として止まる（実際に一度止まった）。
-- **リンク規則**：Instagram 11アカウントは `PERMITTED_INSTAGRAM` に `("clubs.html",)` 付きで登録。クラブ・団体の公式サイト10ドメイン（`komaki-sports.or.jp` / `acmilansoccerschool-aichi.jp` / `seigakan.net` / `komaki-kendo.jp` / `fc-fervor.net` / `komakishion.com`（小牧市音楽連盟）/ `pc-bitz.jp` / `encourage-toukadai.com` / `legameinc.com` / `white700957.studio.site`（ダンススクールD☆vivace））は `PERMITTED_CLUB_SITES` で `clubs.html` 限定。学校サイト（`komaki-aic.ed.jp`）はもともとゲートの検査対象外。増やすときは `CONTRIBUTING.txt` 規則1・`README.md` も同時に更新すること。
-- **クラブ名・学校名・会場名は翻訳しない**（固有名詞。部署名・学校名と同じ扱い）。訳すのは種目（`clubs_sp_*`）・対象（`clubs_tg_*`）・ラベルだけ。種目を増やすときは13辞書に `clubs_sp_<種目>` を足す。
-- **学校名の見出し（`.clubs-school-h`）は `section-title sub` に独自クラスを重ねている。** `sub` だけだと節見出し（h2）と同じ見た目になって階層が消える。`sub` は外さないこと（READ ALOUD が `h3.section-title.sub` を対象にしている）。読み上げボタンが帯に食い込まないよう `.section-title.clubs-school-h + .tts-row` で余白を取り直してある — **`.section-title.sub + .tts-row` と詳細度を揃えないと効かない**。
-
-## チェックリストと種目フィルタ（2026-11-13、日次アイデア 9/4・9/25）
-
-- **`bus.html#checklist`「乗り始めるまでのチェックリスト」**（BUS CHECKLIST in `js/main.js`、`#apply` の次の節）。申請受付は 2026-09-30 で締め切られているので、ユーザー決定で中身を「乗り始めるまで」（4項目）＋「家庭で確かめておくこと・毎朝の確認」（6項目）にした。**項目は公表資料で確かめられたものだけ**：だより vol.6、導入スケジュール、保護者等説明会（令和8年6月）の質疑応答と提出された質問への市の回答（`data/official_pages/setsumeikai/`。乗降場所は市が指定・目印は置かない、通学団をもとに集団で移動、乗り遅れてもバスは待たず原則保護者が対応、荷物は膝の上か座席の下、乗車カード、シートベルト）。**まだ決まっていないこと（休む日・運休の連絡の仕組み）は項目にせず、質問集の `rev_o40` に置いた** — 市が公表したら項目に足して問いを外す。項目を足すときも出典を確かめ、当サイトの言葉で書く。印は `localStorage` の `komaki_bus_check`（`data-chk` の配列。この端末だけ）。ラベルの文字は `<label>` の内側の `<span data-i18n>` に付ける（label に付けると input が消える）。進み具合の書式は隠し要素 `[data-chk-fmt]`（`bus_chk_progress`）。`.chk-tools` は読み上げ（`SKIP`）・原文併記（`ORIG_SKIP`）・検索の索引（`SKIP_CLASSES`）から外し、印刷では隠す（項目と印は印刷に出す）。断り書き `bus_chk_note`（市の配布物ではない・端末だけに保存）は外さない。キー `bus_chk_*`、集計は `checklist/check`（最初の1回）・`checklist/reset`（どの項目かは送らない）。**第1期の開校後（2027年4月）は「乗り始めるまで」の4項目を見直す。**
-- **`clubs.html` の「種目でしぼる」**（CLUB FILTER in `js/main.js`、`.club-filter`、`#wide` のリードの下。`#wide` と `#schools` の両方に効く）。ボタンは JS がページの種目の札（`.club-sport`、キー `clubs_sp_<種目>`）から作るので、**クラブを足せばボタンも増える**（手で足さない）。ボタンの文字は札の表示中の文字を写し、`komaki:i18n-applied` で付け直す。学校の部活動の行は札を持たないので、**部名が既存の種目に当たるものだけ `data-sports="baseball soccer"` を付ける**（新しい種目は作らない。部活動の行を直したらこの属性も直す）。隠すのは `.is-filtered`（`hidden` は使わない）、空になった `.club-group`・`.club-school` も隠す。印刷では全部出す。キー `clubs_filter_label` / `clubs_filter_all` / `clubs_filter_count`、集計は `clubs/filter`（最初の1回。種目は送らない）。
-
-## `faq.html`（よくある質問と賛否の声）
-
-2026-09-22 に**`voices.html`（賛否の声）を統合**した（ユーザー指示）。もともと「よくある疑問 → 市の答え」と「住民の声」は、`faq_cat4`（意見・参加について）と `voices.html#pubcom` で主題が重なっていた。いまは1ページに3つの節が**この順で**並ぶ。
-
-| 節 | 見出し | 中身 | 性格 |
-|---|---|---|---|
-| `#qa` | `faq_qa_h`（h2） | よくある質問 30問（2026-10-24 に学級・心のケア・教育内容を決める場の3問、2026-11-07 に城山三丁目・四丁目の学区・中学校の修学旅行先・通学路の防犯カメラと防犯灯を追加）。カテゴリ4つ（`faq_cat1`〜`4`）は **`h3.section-title.sub`** | 答えが公表されていること |
-| `#voices` | `voices_cols_h`（h2） | 賛成・反対・中立の声 18件（3列） | 意見が割れていること。**当サイトによる要約・再構成**で市の見解ではない（`voices_about`） |
-| `#pubcom` | `voices_pc_h`（h2） | パブリックコメントの実施結果・論点の横棒グラフ・論点5件・計画が変わったところ | 市が公表した意見と「市の考え方」にもとづく（`voices_pc_note`） |
-| `#contact` | `faq_contact_h`（h2） | 教育総務課 学校再編推進係の連絡先 | 他ページの `#contact` と同じ位置づけ |
-
-- **節見出し（h2）の下には必ず説明の1段落を置く**（`faq_qa_intro` / `voices_intro` / `voices_pc_lead`）。他ページと同じ `.section-lead`（`font-size:.95rem` の淡色）で、見出しだけが並んで中身が始まる形にしない（2026-09-22 ユーザー指摘）。`#contact` だけは他ページの `#contact` と同じく説明を置かない。
-- **賛否の声の注記（`voices_about`）は見出しの<u>下</u>**。`voices.html` から移したときは見出しの上に来ていて、節が注記から始まっていた。並びは「見出し → 説明（`voices_intro`）→ 注記（`voices_about`）→ 3列」。
-- **Q&A のカテゴリ見出しには `faq-cat` クラスが要る。** `section-title sub` だけだと h2 と同じ「左に黄色い帯・緑の太字」になり、すぐ上の `faq_qa_h` と見分けがつかず見出しが二重に見える（同日ユーザー指摘）。`.faq-cat` は左帯を消して下線の小見出しにするもので、その下線に読み上げボタンが食い込まないよう `.section-title.faq-cat + .tts-row` で余白を取り直してある（`.section-title.sub + .tts-row` の負マージンは index の帯用で、下線のある見出しには合わない）。**`sub` は外さないこと** — READ ALOUD が `h2.section-title, h3.section-title.sub` を対象にしているため、外すとカテゴリ単位の読み上げボタンが消える。
-- **カテゴリを `h3` にしてあるのは、ページの構成を目次に出すため**（2026-09-22 ユーザー指示で見直し）。統合直後はカテゴリ4つが `h2` のままで、`PAGE TOC`（`main h2.section-title` から自動生成）に「4カテゴリ＋声＋パブコメ」の6つが並び、**3部構成が読み取れなかった**。`h3` に下げて `faq_qa_h` を立てたことで、目次は「よくある質問／賛成・反対・中立の声／パブリックコメント…／市へのお問い合わせ」の4つになる。**読み上げボタンは `h2.section-title, h3.section-title.sub` の両方に付く**ので、カテゴリ単位で読み上げる挙動は変わっていない。
-- **`voices_about` は「この欄について」、`voices_pc_lead` は「この欄は」で始める。** どちらも `voices.html` 時代は「このページについて」「ここから下は」だったが、統合後はページ全体の説明にも、節をまたぐ指示にもなってしまう（2026-09-22 ユーザー指摘）。節の注記は**節を指す言葉**で書くこと。
-- **パブリックコメントの数は「55名から142件」**（2026-09-24 に訂正）。市の『実施結果概要』は「５５名より計１４２件」で、**55 は人数・142 が件数**。さらに「(参考) 意見提出方法の内訳」の郵送1・メール39・ファックス13・持参2 は**単位が「人」**であって件数ではない。サイトは長く 55 を件数として書いていて、`rev_i5_v`（🔎 当サイトの見方）の「多いとは言えない」という論もその数に乗っていた。**この2つの数を混ぜないこと** — 統計ボックスは「142件・55人・39人・13人・3人」の5枠になっている。
-- **論点の横棒グラフ（`.pc-bars`）は市自身の見出しを数えただけのもの。** 市の『提出された意見及び市の考え方』は、回答ごとに `■第１期再編の時期について` のような論点見出しが付いている。その見出しを数えると **143個・53論点**（市の公表は142件）で、上位8つを棒に、残り45論点（計69件）は文で出している。**当サイトが分類したのではない**ので、分類基準を作り直さないこと。数値は `faq.html` に直書き、外部ライブラリは使わない（自動で読む第三者スクリプトを増やさない方針）。棒の長さは最多18を100%とした相対値で、実数は `.pc-bar-n` に必ず併記する。**賛否の色（`--for-color` 等）は使わない** — 「意見が多い＝反対が多い」と読めてしまうため。`voices_pc_themes_note` の「件数は賛成・反対の強さを表さない」も外さないこと。
-- 「ほかのページにもＱ＆Ａがあります」（`faq_more_*`）の箱は **`#qa` の末尾**。Q&A の導線なので、問い合わせ先とは別の節に置く。
-
-- **順番と節の区切りを崩さないこと。** 「答えが出ている問い」→「答えが割れている問い」という流れで、背景色も `section-alt` → `section` → `section-alt` → `section` と交互にしてある。声を先に置いたり、Q&A と声を同じ節に混ぜたりすると、**住民の声が市の答えに読めてしまう**。`review.html` の【事実】と 🔎 を版面で分けるのと同じ考え方。
-- **`FAQPage` 構造化データに入るのは `#qa` だけ。** `i18n.js` の `applyFaqJsonLd` が `faq_q<N>`/`faq_a<N>` の連番から組み立てる（`pageId === 'faq'` 判定、最初の欠番で止まる）ので、**番号を飛ばさないこと**。声もパブコメも質問でも答えでもないので、構造化データには入れない。
-- **キー名は統合前のまま**（`voice_*` / `voices_*` / `col_*` / `pubcom_*` / `stat_*`）。付け替えると12言語＋こどもむけ13辞書の訳をすべて作り直すことになるため、`faq_*` に寄せていない。`voices_` で始まるキーが `faq.html` にあるのは統合の名残で、誤りではない。
-- **スマートフォンでは声を列ごとに畳む**（`VOICES COLLAPSE` in `js/main.js`、2026-09-22 ユーザー指示）。Q&A 24問はアコーディオンで畳まれているのに声18枚が開いたままだと、狭い画面では声が本文の大半を占めるため。**PC 幅では件数も ＋/− の記号も外す**（指示は「スマートフォンだけ畳む」であって PC の見た目を変える話ではない）。見出しに足すのは数字と記号だけなので、辞書にキーは増えていない。
-  - 畳みは **`display:none`（`.voices-col.is-collapsed .voice-card`）で行う。** `hidden` 属性や `aria-hidden` にすると READ ALOUD の `SKIP` に当たり、畳んだ声が読み上げから丸ごと落ちる。`blocksOf()` の可視判定の例外は `.faq-a, .voice-card` の2つ — **この2つは対で維持すること**。
-  - 見出し（`.voices-col-header`）の中身は `i18n.js` が `textContent` ごと書き換えるので、件数と記号は `komaki:i18n-applied` のたびに付け直している。
-- **旧 `voices.html` は削除せず、移動案内の1枚として残してある。** GitHub Pages は静的で 301 を返せず、このサイトは共有ボタンを前面に出しているので `voices.html?lang=xx` が LINE などに出回っている。`noindex`、`canonical` は `faq.html`、`meta refresh`（JS 無効時の保険）に加えて、**JS が `?lang=` を引き継いで `faq.html?lang=xx#voices` へ送る**。`sitemap.xml` と `hreflang` からは外し、ヘッダのナビからも外した（`clubs.html` を足して、サイトは**13ページ** — 2026-10-30 に `analysis.html` と `site.html` を追加）。`meta_title_voices` / `meta_desc_voices` は移動案内の文言として残っている。
-- 他ページからの導線は `faq.html#voices`（`community.html`・`review.html`）と `faq.html#pubcom`（`council.html` の `council_warn_link`）。`council.html` は統合前に faq と voices の両方を「関連するページ」に挙げていたので、3つのうち1つを `review.html`（`rel_council_review`）に差し替えてある。
-- **ヘッダとフッタのナビだけは短い名前**（`nav_faq`＝「質問・賛否の声」）で、ページ名（`faq_h1` / `ql_faq_h`＝「よくある質問と賛否の声」）とは**わざと違う**（2026-09-22 ユーザー指示）。ナビは9項目が並ぶ場所なので、正式名をそのまま置くと長すぎる。**`community.html` も同じ例外**：ページ名（`community_h1`）は「地域協議会と地域のまちづくり」、ナビ（`nav_community`）は「地域とまちづくり」（2026-09-27 ユーザー指示。旧名「地域協議会と学校再編」／ナビ「地域協議会」）。**ほかのページは `nav_*` と `h1` が一致している。**中点は全角「・」（サイトの他の表記にそろえる）。
-- サイトの Q&A が3か所（`faq.html` / `bus.html#faq` / `community.html#qa`）に分かれている方針は統合後も変わらない。`faq_more_*` の箱がその導線。
-- **Q&A の絞り込みと「すべて開く」**（FAQ FILTER in `js/main.js`、2026-11-11。日次アイデアの FAQ まわりの案をまとめたもの）。`faq.html#qa` の説明文の下に入力欄と「すべて開く／すべて閉じる」（`.faq-tools`、見出し・挿絵なし）、`bus.html#faq` には「すべて開く」だけ。絞り込みは画面の文字（質問＋答え）を SITE SEARCH と同じ `norm()` で比べ（`window.KomakiSearch` の `norm` / `load` / `hrefFor` を使い回す）、当てはまらない問いと空になったカテゴリ見出しを `.is-filtered`（`display:none`。`hidden` は使わない）で隠す。一覧の下に、bus・community の Q&A で当てはまるもの（検索の索引から最大8件）。0件なら検索と同じ問い合わせ先の案内。「すべて開く」のあいだは `<html>` に `faq-all-open` が付き、FAQ ACCORDION は押した1問だけを開け閉めする。キー `faq_filter_ph` / `faq_filter_count` / `faq_filter_other` / `faq_open_all` / `faq_close_all`（HTML に書いてあるので `RUNTIME_KEYS` 不要）。**入力欄の例（`faq_filter_ph` の「制服」）は、その言語で実際に当たる語にすること**（最初の案「バス 申請」は0件だった）。`.faq-tools` は読み上げ（`SKIP`）・原文併記（`ORIG_SKIP`）・検索の索引（`SKIP_CLASSES`）から外し、印刷では隠して全問を出す。集計は `faq/filter`（最初の入力の1回）・`faq/open-all` で、入力した語は送らない。タグでの絞り込み・「あとで読み返す」印は採らなかった。
-
-## 教育の質の観点（2026-10-24、サイト全体）
-
-ユーザー指示で、サイト全体を教育の質（学力・人間力・教科ごとの力・生き抜く力・健康）の観点で見直した。**見解は analysis.html（`#rev-quality` / `#rev-skills`。2026-10-30 に review.html から移した）だけ**、事実ページは市・国の公表事実だけ：about.html `#learning`、faq.html q25〜q27、nationwide.html の比較表（1学級の人数・教職員の数）、council.html `#council-quality`（このページに既にある答弁をページ内リンクで整理。答弁の位置には `#council-gq2` / `#council-r2q3` / `#council-visit`）、clubs.html `clubs_s1_p3`、community.html `comm_qa3_a`。市議会の答弁「21〜25人程度のクラス替えが可能な学級規模」「総合教育支援センター（閉校後の校舎も候補・未定）」は about・faq にも引いてある — council.html の答弁を直したらそれらも直す。**重複は正本に寄せる**（2026-10-30 ユーザー指示）：1学級の上限・県と国の引き下げ・この答弁の正本は `about.html#learning`（市）と `nationwide.html` の比較表（国）で、`analysis.html` の `rev_k4_f` は数字だけ添えて正本へリンクする。`faq_a25` は構造化データ（FAQPage）に入るので単独で読める形のまま残す。新しく同じ事実を別ページに書くときは、正本へのリンクで済ませること。トップの「ポイント」④は「少人数学級の解消」ではなく「単学級（1学年1学級）の解消」（市は少人数学級を否定していない）。
-
-## `shinooka.html`（「篠岡」の名前の由来と当サイトの見解）
-
-2026-11-22 追加（ユーザー指示）。`community.html#legacy-shinooka` からリンクする。挿絵は `img/illust/shinooka-map.svg`（荘園の古地図の中央に桃）。キーは `sn_*`。**review / analysis のほかに当サイトの見解（🔎）を載せる唯一の例外**で、見解は `#view` の節だけに置き、【事実】の節に混ぜない。
-
-- **出典**：『篠岡村誌』（篠岡村誌編纂部、昭和2年〈1927年〉）第一章冒頭（ユーザーが図書館で複写し、原本の画像で照合済み。画像はコミットしない）。荘園の範囲は郷土史の個人サイト「中世 小牧・春日井周辺の荘園領域についての覚書」と「ローカルヒストリア」の春日井市・小牧市のページ。**どちらも文字で書き、リンクは張らない。『春日井市史』『小牧市史』『張州府志』は孫引きで、原本は未確認**（`sn_src` に明記）。原本を確かめたら直す。
-- **村誌の原文の抜粋（`.sn-quote`、ユーザー指示）**：第一章第一節の冒頭3文を、原本の画像と照合して旧字体のまま載せる（`lang="ja" translate="no"`、辞書に入れない）。「木會」「鷹木村」は誤りに見えても印刷どおりで、直さない。
-- **資料の食い違いを消さない**：村誌は林・池之内・上末・下末を味岡荘とするが、市史は味岡荘の範囲を「不詳」とし、『張州府志』などはこの4か所を熊野荘（六師荘）に挙げる（`sn_warn`、問い `rev_o48`）。「一字ずつ取った」とも村誌は書いていない。
-- **「桃花台＝折衷案」は当サイトの仮説**で、命名の経緯は未確認（問い `rev_o47`）。**棒の手が大草・野口にあることと篠木荘の関係も未確認**（問い `rev_o49`）で、事実としても見解の根拠としても書かない。
-- **「しのおか学園」の名前への疑問（`#gakuen`、キー `sn_g_*`）と、トップの囲み `.sn-top`（`idx_sn_*`、2026-11-22 ユーザー指示）**：トップで当サイトの見方を載せる唯一の例外。🔎 の印と左帯を外さない。「篠岡」を使うこと自体が誤りとは書かない。問いは `rev_o50`。
-- **「篠岡」の名は村より古い（`#before-village`、キー `sn_e_*`、2026-11-23）**：『篠岡教育七十年』（記念誌編集委員会編、篠岡小学校創立70周年記念事業実行委員会、昭和55年〈1980年〉、校長の言葉と2〜13ページ。写真はコミットしない）によると、明治6年（1873年）に「篠岡学校」（学区は林・野口・大山）が創設された。**これは学校名で、一般的な地名の「篠岡」とは分けて書く**（ユーザー指示。地名として確認できるのは明治39年の篠岡村から。「名前が明治6年にさかのぼる」と書かない）。創設の場の祥雲寺は `community.html#legacy-shoun`（2026-11-23 ユーザー指示で由緒を追加。曹洞宗・少林山・読みは寺の公式サイト `syouunji.net/about/` ＝このカードの出典だけに許可した外部リンク、`SHOUNJI_PATHS`。元の字「正雲寺」・元禄の移転・文正年間の創建は個人サイトとブログを通じた『尾張徇行記』『小牧市史』の孫引きで、カードに明記。創建は資料で分かれるので並べて書く。文化15年の移設説は出所不明なので載せない。**お寺のことは質問集に書かない**（ユーザー指示）。墓碑・家紋・姓は書かない）。東部全体が一つの学校になったのは明治42年（1909年）。反対運動の記述は**村の合併**についてのもので、学校統合への反対とは書かない。問いは `rev_o51`。
-- **新篠岡音頭に込められた思い（`#ondo`、キー `sn_o_*`、2026-11-24 ユーザー指示）**：`#view` と `#gakuen` のあいだ。歌詞はユーザーが歌詞カードの画像で渡したもの（画像はコミットしない）。**引用は著作権法32条の範囲で1・4・5番の一部だけ**（`.sn-quote.sn-lyric`、`lang="ja" translate="no"`、辞書に入れずHTMLに固定。全文を載せない・行を足さない）。**出典の行にだけ作詩・作曲 牧すすむ、編曲 山田耕世、歌 わかばちどり、コロムビア・オーケストラを書く**（48条の出所明示のための例外。ユーザー決定。ほかの場所では個人名を書かない）。外国語表示では引用の下に意味の要約 `sn_o_gist`（日本語表示では隠す）。読み解き（`sn_o_v1`〜`3`）と「再編計画を進めるうえで大切なこと」（`sn_o_l_*`）は 🔎 の当サイトの考えで、帯と印を外さない。作られた年・経緯・二山や児の宮が何を指すかは推測で書かない（問い `rev_o52`）。YouTube の音源リンクはこの節にも許可（`auto_gates.py` の YOUTUBE_LEGACY）。クイズに出題しない決まりは変わらない。
-- 連絡先は市の文化財課と「図書館で調べる」だけで、check 15 の対象外（`quiz.html` と同じ扱い）。
-
-## `review.html` / `analysis.html`（計画の検証と提案のページ）
-
-2026-08-28 追加。**このサイトで当サイト自身の検証と提案を載せるのはこの2ページだけ**です。
-
-**2026-10-30 にユーザー指示で2ページに分け、2026-10-31 に「要点＝核心」「深掘り＝根拠のすべて」に組み直した**（ユーザー指示「最初のページでは核心として検証7〜10項目と、教育の質の維持向上・東部の子どもを増やすための提案7〜10項目を挙げ、深掘りのページにこれまでの検証と提案を詳細かつ分かりやすくまとめる」「2ページの関連を読みやすくシームレスに」「絵でわかりやすく親しみやすく」）。
-
-- **`review.html`（要点）**：ヒーロー → 切り替えタブ（`.rev-tabs`、`rev_tab1/2`。両ページ共通の静的リンク、いま見ているほうに `aria-current`。`<nav>` にしないこと）→ `rev_stance` / `rev_stance_general` と、4つの絵の場面の「この検証の要点」（`rev_sum1`〜`4`、`.rev-steps`）→ `rev-numbers` → **`rev-core`「🔎 検証の核心（10項目）」**（`rev_cv{1-10}_h/f/v`、計画そのもの1〜5・教育の質6〜8・子どもの数9〜10）→ **`rev-core-ideas`「💡 提案の核心（15項目）」**（`rev_cp{1-15}_h/p`、教育の質①〜⑤・東部の子どもを増やす⑥〜⑩・既存校のレガシーを引き継ぐ⑪〜⑮（2026-10-31 追加、同日ユーザー指示で5項目に）の3列。PC（1000px 以上）ではこの節だけ版面を 1200px に広げて3列、それより狭いと2列→1列（同日ユーザー指示）。`rev_cp_lead` の「市が検討しているものではない」を外さない）→→ **`rev-open`「市・教育委員会・県・国への質問集」**（39問。2026-11-09 にユーザー指示で analysis.html から移した。2026-11-10 に愛知県へ・国（文部科学省）へを足し、篠岡音頭の問い `rev_o27` を外した。古い `analysis.html#rev-open` は MOVED ANCHORS が review へ送る。問いの「関連する検証 →」は `analysis.html#rev-<キー>` へ）→ `rev-deep`（analysis の3部の地図）→ `rev-contact`。核心のカードは【事実】と 🔎（または 💡）を今までどおり帯で分け、「くわしく →」（`rev_more` / `rev_more_idea`、`data-rev-from`）で analysis の**根拠のカード**へ直接降りる。
-- **`analysis.html`（深掘り）**：冒頭に「このページの構成」の3部の地図（`rev_guide_*` / `rev_part*`、review の `rev-deep` と同じ形）。**第1部 計画そのもの**＝`rev-gaps` → `rev-power`（対応表 `rev_map_*`。末尾に都市計画の動きへの案内 `rev_tk_moved`）、**第2部 教育の質**＝`rev-quality` → `rev-skills` → `rev-legacy`（既存校のレガシーを引き継ぐ。校歌・賛歌・応援歌の録音と配信／サブスク、権利の確認、アーカイブ、和太鼓など学校で育った活動を棒の手の保存会のように受け継ぐ会。2026-10-31。⛔ 歌詞・音源はサイトに載せない。学校ごとの活動は学校日記で確かめた一部で、推測で補わない）、**第3部 子どもの数**＝`rev-history`（働く場と子どもの対比の絵 `rev_pic_*`）→ `rev-nation` → `rev-should` → `rev-ideas` → `rev-highschool`（質問集 `rev-open` は review.html にある。3部の地図の「最後に：」と最後の部の「次へ」は `review.html#rev-open` へ）→ `#contact`。部の区切りは h2 にせず帯（`p.rev-part`）、各節の先頭に「この節の要点」（`.rev-point`、`rev_pt_*`、🔎/💡 の印つき）、各部の最後に「次の部へ／要点に戻る」（`.rev-partnav`）。**根拠のカードには `id="rev-<キー>"`**（`rev_k4_h` → `#rev-k4`、`rev_m_p2_h` → `#rev-m-p2`）が付いていて、核心から着地する。
-- **行き来の札**：analysis の根拠のカードの見出しの下に「要点で使っている項目：🔎 検証7 ・ 💡 提案2」（`rev_back_*`、隠し要素 `#rev-back-strings` から読む）を `js/main.js` の **REVIEW LINKS** が描く。**核心⇔根拠の対応表はそこ1か所**（`LINKS`。各核心の先頭の根拠＝review の「くわしく」の飛び先）。review から来て同じ項目の札を押すと履歴を戻る。**`auto_gates.py` check 21** が、核心25枚（検証10・提案15）・「くわしく」の飛び先・LINKS・両ページの相互リンクの食い違いを止める。**核心の文面を直したら、根拠のカードの文面も確かめる**（逆も同じ）。核心に項目を足すときは LINKS も足す。
-- **挿絵**は `img/illust/*.svg`（文字を含まない飾り、`alt=""`）。説明の文字はすべて辞書。下絵は Claude Design で作ってユーザーに見せる（[[イラストでサイトを親しみやすく]]、サイト全体に広げていく方針）。
-- **キー名と節 id は分割前のまま**で、`review.html#rev-quality`・`#rev-gaps`・`#rev-power` のような古いリンクは MOVED ANCHORS（`js/main.js` 冒頭）が `analysis.html` の同じ節へ送る（`#rev-toshikeikaku` は 2026-11-07 から `community.html#toshikeikaku` へ — `RENAMED`）。どちらのページも冒頭に `rev_stance` / `rev_stance_general` を置く（片方だけを開く読者がいるため）。節を移すときは MOVED ANCHORS の `MOVES`・3部の地図・REVIEW LINKS も直すこと。ナビ（9項目）には `analysis.html` を足していない。他のページは「公式情報をわかりやすく伝える」に徹していますが、ここだけは違います。だからこそ書き分けの規則が重い。
-
-- **見出しの冒頭に絵文字を付けない**（2026-11-04 ユーザー指示。挿絵が入ったので過剰になる）。節見出し・小見出し・提案カードの見出し・3部の地図のリンクが対象。本文の印（`<strong>🔎 当サイトの見方：</strong>`・💡 提案：・`rev_pt_*` の「この節の要点」・`rev_back_*` の札）は印なので残す。
-- **核心7（学級の人数）と根拠 `rev_k4`・`rev_n4` は 2026-11-04 に書き直した**（ユーザー指摘「意味が分かりにくい」）。筋は「35人の上限は超えたら学級を分ける線 → いまの1学年1学級の学校では効いていない → 統合後は学年の人数しだいで18人にも35人にもなる」。`rev_k4` に計算例の表（`rev_k4_t_cap` / `rev_k4_th1`〜`3`、数字は翻訳しない）がある。1学級の上限の数字を変えるときは about.html#learning・`faq_a25`・nationwide の比較表と一緒に直す。
-- **🔎・💡 は「一般論にもとづく考察」だと明記する**（2026-09-20 ユーザー指示）。冒頭の `rev_stance_general` が、検証と提案は公表資料に加えて制度のしくみや他地域の例という一般論をもとにした考察であり、当サイトが地区について特別な情報を持っているわけではない、と断っている。`rev_stance` と同じく外さないこと。
-- **事実と意見を版面で分ける。** 【事実】は公表資料にもとづき出典つき（`.rev-fact`、左帯は `--neutral-color`）、🔎 検証・💡 提案は当サイトの考え（`.rev-view`、左帯は `--accent`）。この色分けと帯を外さないこと。冒頭の `rev_stance`（市の見解ではない旨）も外さない。
-- **この地区に高校を置けるかの節（`rev-highschool`、中高一貫校を含む）は 2026-09-20 追加。** 第2期の小中一貫とは別の軸として、閉校する校地に高校を置けるかを検討する。**「高校段階」という語は一般的でないので使わない**（2026-11-04 ユーザー指示。「高校」「高校（中高一貫校を含む）」と書く）。**「高校をつくれば子どもが増える」とは書かない**（`rev_s10_note` に明記）— 名古屋造形大学は令和4年に市外へ移転し、愛知文教大学は令和9年度以降の学生募集停止を公表、県立高校も再編で減る局面にある、という事実を同じ節の中に置いてあるためで、この対比を崩さないこと。制度の事実（学校教育法第71条・第4条、同施行規則第75条・第87条、市町村立学校職員給与負担法第1条）は法令そのものを出典にしている。
-- **私立学校など行政以外の主体については、その主体自身の公表と報道を出典にしてよい**（2026-09-20 ユーザー指示）。私立の動きは行政資料に出てこないため。愛知文教大学の募集停止は大学の公表（令和8年3月30日の臨時理事会）、誉高校の名古屋市港区への移転（2029年）は学校自身の公表（2026年6月3日）、移転先が名古屋競馬場跡地であることは報道による。**「アジア競技大会の選手村跡地」とは書かない**（2026-09-20 ユーザー指摘。選手村として使う計画は無くなった）。**この例外はその主体自身のことに限る** — 市の計画・数値・日程のような行政の事実を報道で代用しないこと。⛔ `chunichi.co.jp` は AI 用クローラを拒否しているので、AI のブラウズ機能で取りに行かないこと（`data/chunichi_news.json` の節も参照）。
-- **事実の出所は「行政が公表した資料」だけ。** 市の公式情報（学校再編計画、人口ビジョン、東部振興構想、立地適正化計画、都市計画決定、産業の現状資料、入札結果など）、『篠岡地区 学校再編だより』、そして **2026-09-06 に追加した県・国の資料**（愛知県、文部科学省、厚生労働省の人口動態統計、内閣官房・こども家庭庁）。新聞報道と住民有志の発信は、このページでも根拠にしない。MEXT の数値は `nationwide.html` 経由で引用し、**このページから `mext.go.jp` に直リンクしない**（`MEXT_PAGES` は `nationwide.html` 限定のまま）。**出典は本文中に文字で書き、外部リンクは張らない** — 許可外部リンクは増やせないため（`auto_gates.py` check 6）。
-- **個人名を書かない（ユーザー指示 2026-09-06）。** 市長・市議会議員などの氏名は出さず、責任は職と部署に置いて書く。所管部署名（教育総務課 学校再編推進係、東部まちづくり推進室、こども未来部、企業立地・次世代産業推進課 など）は公表資料に載っているので書いてよい。
-- **公表資料でわからなかったことは review.html の「市・教育委員会・県・国への質問集」（`#rev-open`、`rev_o1`〜`rev_o52`）の1か所にだけ置く**（2026-11-05 ユーザー指示で一覧を1か所に。2026-11-09 にユーザー指示で「確認できなかったこと」を質問集に組み替え、同日 analysis.html から review.html の「提案の核心」の次へ移した）。各カードの末尾に「確認できていないこと：…」を書かず、🔎 の欄でも「公表資料に見当たりません」を繰り返さない。新しくわからないことが出たら、**問いの形で1件足す**（`rev_o<N>`＝問い、宛先の部署名は日本語のまま `data-i18n` なしで `#contact` の表にある部署から、関連リンクは根拠のカードの `#rev-<キー>`。教育委員会へ／市長部局へ／愛知県へ／国（文部科学省）への4つの `ol.ask-list` のどれかに入れ、Q の番号が続くよう、その後ろの一覧の `counter-reset`（`.ask-list--cont` / `--pref` / `--nat`）の数を合わせる）。**作業中に出てきた「わからなかったこと・確認できないこと・ふとした疑問・説明のはっきりしないこと・アイデアのよしあし」は、常にこの質問集に問いとして足す**（2026-11-09 ユーザー指示。どのページの作業でも、気づいた時点で足す。13辞書＋宛先＋関連リンク）。**当サイトは実際には送らない**（載せるだけ。送付・回答の状態は持たない — ユーザー決定）。答えが公表されたら問いを外し、本文に事実として書く。冒頭の `rev_s4_lead` で「当サイトが送ったものではない」「答えが見つからない＝存在しない、ではない」と断っている。挿絵は `img/illust/ask.svg`。件数は `rev_open_short`（「市・教育委員会・県・国への質問集（49問）」）（review の3部の地図・analysis の地図と最後の部の「次へ」に出る）にある — 足したら直す。提案カード（`rev_m_p*` / `rev_p*` / `rev_h6〜8` / `rev_l_p*`）は「考え方：」の札を付けない（`rev_q*` の「考え方：／これからできること：」の対は残す。「攻略」という語は使わない）。
-- **提案は市が検討しているものではない。** `rev_s3_lead` にそう書いてある。市が実際に検討を始めたら、その事実は出典つきで別途書き、提案からは外すこと。
-- 翻訳は **12言語すべて**（2026-09-02 に `rev_*` 76キー、2026-09-06 にさらに 103キーを追加し、`rev_*` は計 179キー）。`rev_*` を足したり書き換えたりしたら、12言語ぶん入れて `build_page_dicts.py` を回すこと。`ja-kids` も同様。**こどもむけでも【わかって いる こと】／🔎／💡 の書き分けを崩さないこと** — 平易にする過程で印を落とすと、検証と事実が地続きに読めてしまう。見出しの `<small>` の英語副題は、他ページの `ja-kids` と同じく落としてある。
-
-### 節の構成（2026-09-06 に4節追加、2026-09-13 に連絡先を追加）
-
-行き先の一覧は、全ページ共通の「このページの目次」（PAGE TOC）が見出しから自動で作る（2026-09-15 に手書きの `rev_nav*` を廃止）。節の `id` は他ページや外部から張られうるので、むやみに変えないこと。
-
-| id | 内容 | 主なキー |
-|---|---|---|
-| `rev-numbers` | 検証の土台になる数字 | `rev_f1`〜`rev_f10` |
-| `rev-core` | 🔎 検証の核心（10項目。review.html。2026-10-31） | `rev_cv_*`、`rev_cv1`〜`rev_cv10` |
-| `rev-core-ideas` | 💡 提案の核心（15項目。教育の質5・子どもを増やす5・既存校のレガシー5。review.html。2026-10-31） | `rev_cp_*`、`rev_cp1`〜`rev_cp15` |
-| `rev-gaps` | 🔎 計画から読み取れないこと（6論点） | `rev_i1`〜`rev_i6` |
-| `rev-quality` | 🎓 教育の質から見た再編（学力・人間力・学級・移り変わり・先生・健康と安全の7論点。2026-10-24 ユーザー指示） | `rev_s12_*`、`rev_k1`〜`rev_k7` |
-| `rev-legacy` | 💡 既存校のレガシーを引き継ぐ（事実13＋提案11。棒の手・東部の祭り・東部の特産物はそれぞれ別のカード。節全体への 🔎 は事実と提案のあいだの独立した囲み（`.rev-view--block`）。著作権法の条文を本文に文字で出典。学校ごとの活動＝陶小の和太鼓部・光ヶ丘小の「光っこソーラン」のはっぴなどは各校のホームページ（学校日記）、篠岡小の郷土カルタ「篠岡カルタ」（36組、画像のみ）は同校のホームページ、大草・野口の棒の手（市指定無形民俗文化財）は市の文化財課、桃花台まつり・名古屋コーチンなどの特産物は市の『東部まちづくりニュース』とトライアル活動のページを出典にし、リンクは張らない。篠岡音頭（新篠岡音頭）は名前とレコードになったことだけ（動画投稿サイトの音源。community.html のカードからだけリンクし、作詞・作曲者の個人名は書かない）で、由来と踊られている場は「確認できていないこと」。2026-10-31） | `rev_s14_*`、`rev_l_f1`〜`f13`、`rev_l_p1`〜`p11`、`rev_l_v`、`rev_l_open` |
-| `rev-skills` | 💡 これからの子どもに要る力（学習指導要領の教科別の表＋8つの力の 🔎＋提案9件。数学力・情報・プロジェクト・地域経営・生き抜く力・生活力・保健医療。同日） | `rev_s13_*`、`rev_m_*` |
-| `rev-history` | 📊 これまでの市の施策は東部に効いたか（年表＋7論点。7つ目は東部振興構想の中間見直し（案）、2026-11-15） | `rev_y1`〜`rev_y16`、`rev_e1`〜`rev_e7` |
-| `rev-nation` | 🗾 県と国は何をしてきたか（4論点） | `rev_n1`〜`rev_n4` |
-| `rev-power` | 🏛 だれが決め、どこまで市が決められるのか（3論点） | `rev_r1`〜`rev_r3` |
-| `rev-should` | 💡 本来どうすべきだったか（10提案） | `rev_q1`〜`rev_q10` |
-| `rev-ideas` | 💡 地区全体の子どもを増やすには（8提案。7番目は高校の話で、次の節へ送る。8番目は県営住宅の空き住戸、2026-11-15） | `rev_p1`〜`rev_p8` |
-| `rev-highschool` | この地区に高校を置けるか（事実5＋提案3。2026-09-20 ユーザー指示で追加） | `rev_s10_*`、`rev_h1`〜`rev_h8` |
-| ~~`rev-toshikeikaku`~~ | 2026-11-07 に community.html#toshikeikaku へ移した（上の `data/toshikeikaku_east.json` の節） | `rev_s11_h`・`rev_tk_*` |
-| `rev-open` | 市・教育委員会・県・国への質問集（review.html だけ。2026-11-09 に「確認できなかったこと」から組み替えて analysis.html から移した。2026-11-10 に県・国を追加） | `rev_o1`〜`rev_o52`（`rev_o7`・`rev_o9`・`rev_o27` は欠番。いま49問）、`rev_o_h1`〜`h4`、`rev_ask_*` |
-| `rev-contact` | 関係する部署の連絡先（市8・県5・国3） | `rev_s9_*`、`rev_c_c1_w`〜`rev_c_c8_w`、`rev_c_p1_w`〜`rev_c_p5_w`、`rev_c_nat_h`・`rev_c_n1_w`〜`rev_c_n3_w` |
-
-- **背景色は `section` / `section-alt` の交互**。節を挿入したら、以降のクラスをずらして交互を保つこと。
-- **`rev-quality` / `rev-skills` の国の制度は、学習指導要領（平成29年告示）・学校教育法・義務標準法（第7条＝教員数は学級数から、第8条＝養護教諭は3学級以上に1人、小801人・中751人以上で+1）・医療的ケア児支援法を本文に文字で出典を書き、リンクは張らない。** 説明会・パブコメの声は「だれが言ったか」を書かずに中身だけ。`rev-skills` の小見出しは `h3.rev-subh`（`section-title` にしない — 目次と読み上げの単位を増やさないため）。
-- **年表（`rev_y*`）の年の欄は翻訳しない。** `<td>` に西暦の数字をそのまま書いてあり `data-i18n` を付けていない。数字は言語に依存せず、これで 15キー分の翻訳を節約している。出典の欄は `rev_src_sangyo` / `rev_src_tobu` / `rev_src_toshi` / `rev_src_komaki` の4つを使い回す。
-- **`rev-history`／`rev-nation` の要点は「子育て支援は効かず、住宅・交通・仕事が効いた」という一本の筋**。東部地域の事業所数・従業者数は H21→H26 に増えている（917→1,095、12,388→20,671人）のに人口と子どもは減った、という対比がこの節の背骨なので、数字を落とさないこと。
-- **産業の話（`rev_q4`〜`rev_q6`）は「工場・物流以外の入口が制度上ない」という一点**。企業立地促進補助金の要件（延べ 1,000㎡以上・固定資産 5億円以上、中小企業者は1億円以上）が IT・デザイン・アパレル・音楽・映像・文化の仕事に届かない、という事実がその根拠。要件が変わったらここも直すこと。
-
-## `js/main.js`
-
-Self-contained IIFE blocks handling: hamburger nav, active nav link highlighting, auto-date status, "last updated" display, upcoming schedule expiry (`data-expires`), FAQ accordion, voice filter, official news rendering, target-school website updates, the share buttons at the bottom of every page, and the interactive calendar on `schedule.html`. Calendar events live in `data/events.json` (`{"events": {"YYYY-MM-DD": {ja, en, pt, vi, tl, es, zh, id, ko, ne, tr, my}}}`), fetched at runtime by the calendar block — edit that file, not `main.js`, to add/change events. All 12 language labels are required per event. **A date may hold more than one event: the value is either that object or an array of them** (added 2026-09-03, when the 就学時健診 and the district music festival both fell on 10/31). The calendar draws one dot per event and the `.ics` writer emits one VEVENT per event — its UID gets a `-2`, `-3` … suffix from the second entry on, so the first event's UID never changes and already-imported calendars do not duplicate it. `check 2` in `auto_gates.py` validates both shapes. If the fetch fails or the file is empty, the calendar section hides itself.
-
-**`"start": "YYYY-MM-DD"`（任意）は月単位・期間の予定の始まり**（2026-10-05 追加）。キーは終わり（月末など）、`start` は始まり（schedule.html の `data-start` と同じ日）。トップの帯が「11月〜12月」と出すのに使う。`"day": true` の予定には付けない。`check 2` は言語キー以外に `day` と `start` と `until`（`EVENT_META`）を認める。**`"until": "YYYY-MM-DD"`（任意、2026-10-23）は `"day": true` の予定が何日か続くときの最終日**（バンブーインスタレーション 11/13〜15）。「カレンダーに追加」がその日まで続く終日予定として書き出す。**schedule.html の一覧と events.json は check 9 が突き合わせる**ので、予定を足すときは両方に書くこと。
-
-**主要イベント一覧の「終わった予定を隠す」**（HIDE PAST EVENTS in `js/main.js`、2026-11-07、日次アイデア 9/10）。ふだんは全部見せ、押すと最終日が今日より前の予定と、中身が全部隠れた h4・年の h3 を `.is-past-hidden`（display:none）で隠す。`hidden` 属性は使わない（PAST COMMUNITY EVENTS の `hidden` と混ぜないため）。状態は `localStorage` の `komaki_hide_done`、文言は `sched_hide_done`、集計は `schedule/hide-done`・`schedule/show-done`。隠せる予定が無ければ切り替えごと出さない。
-
-**何日か続く予定（`"day": true` ＋ `"until"`）は、トップの「今後のスケジュール」の帯に最終日まで出し続ける**（2026-11-15 ユーザー指示。UPCOMING BAR）。日付は「11月13日（金）〜11月15日（日）」と最終日まで書き、始まったあとは「あと◯日」を付けない。
-
-**`"day": true`（任意）は「その日に行われると決まっている予定」の印**（2026-09-26 追加）。月単位・期間の予定（「2026年10月」「11月〜12月頃」）は月末などの日付で置いてあるので、この印を付けない。`check 2` は言語キー以外に `day` だけを認め、値は `true` のみ。トップの「次の予定まであと◯日」（NEXT COUNTDOWN）は**この印の予定だけを数える** — 付け忘れても数えないだけで、存在しない日を数えることはない。予定を足すときは schedule.html の `data-start` と `data-event-date` が同じ日（＝1日の予定）かどうかで判断する。
-
-### SHARE BUTTONS (every page)
-
-Every page carries a `<section class="section share" id="share">` just above `</main>`: the heading, lead and closing note are in the HTML with `data-i18n`, and the buttons themselves are built by the SHARE BUTTONS block in `js/main.js` into `#share-buttons` / `#share-star`.
-
-**2026-09: a fixed bar (`.share-sticky`, id `#share-buttons-sticky` for its button row) follows scroll at the bottom of every page**, showing the exact same button set as `#share-buttons` (built by the same code, see below) so a way to share is always on screen without scrolling to the end. Since 2026-09-15 (user's instruction) it also carries a はてなスター ☆ at its right end, loaded only when the reader touches it (see that section). It carries only the sharing buttons and the star. It is created entirely by JS and appended to `document.body`, so no HTML changes were needed on any of the 11 pages. `html.has-share-sticky` is added to the root only once the bar exists, and `body` gets bottom padding only under that class — so a reader with JS disabled gets no dead space reserved for a bar that was never built. Hidden on `@media print` (a `position:fixed` bar has no sensible printed form) and given `z-index:90`, below the sticky header's 100, so the mobile hamburger dropdown still covers it when open.
-
-- **Buttons**, in row order: LINE, X, Facebook, はてなブックマーク, note, Threads, Bluesky, Reddit (`<a target="_blank">`, URL built by the entry's `url()`), Mastodon (`<button>`, see below), Instagram / TikTok (`<button>`, copy-only, see below), リンクをコピー, and — only where `navigator.share` exists — ほかのアプリで共有. The native-share button is what covers WhatsApp / Zalo / Messenger and is the only route that actually *opens* Instagram / TikTok, so do not drop it in favour of adding more per-service buttons.
-- **Open the app when it is installed** (2026-09-15, user's instruction). `serviceHref()` picks the link per device. **Android**: `intent://…#Intent;scheme=…;package=<app>;S.browser_fallback_url=<the web share URL>;end` for LINE (`line.me/R/share`), X (`twitter://post`), Facebook, Threads, Bluesky and Reddit — if the app is missing or rejects the URL, Chrome silently opens the web URL, so nothing breaks. **iPhone/iPad**: never a custom scheme (Safari shows an "invalid address" alert when the app is absent); only https universal links, i.e. the normal URLs, except LINE, which switches to LINE's own `line.me/R/share` because `social-plugins.line.me` is not an app link. はてなブックマーク and Mastodon stay web-only (no app can be named reliably). PCs get the unchanged web URLs.
-- **There is no Facebook いいね (Like) button, and none can be added**: Meta discontinued the Like/Comment plugins for external sites on 2026-02-10 (they now render as a 0×0 frame). A reader asked for one on 2026-09-15; the existing Facebook *share* button (`sharer.php`) still works and is the substitute. Do not embed `facebook.com/plugins/like.php` or the SDK — it would send every reader's visit to Meta and show nothing.
-- **Button colours follow each service's own button.** note is black (`#1a1a1a`, matching note's official button — 2026-10-11, user's instruction), not its old green.
-- **Instagram and TikTok publish no share intent that accepts a link**, so their buttons copy the URL and show 「{app} に貼り付けてください」 instead of opening anything. Their labels say （リンクをコピー） so that is visible before the press. If either ever ships a real intent URL, move it into `SERVICES` and drop the copy path — do not invent an endpoint for them in the meantime.
-- **Mastodon is decentralized**, so there is no single endpoint: the button asks once for the reader's server domain, normalizes it (`https://`, trailing path and `@user@` forms are all stripped), keeps it in `localStorage` under `komaki_mastodon`, and opens `https://<host>/share?text=`. A third-party redirect service would be simpler but would add an external host to a site that has exactly one; don't. The prompt text lives in the dictionary (`share_mastodon_prompt`) and is read out of a hidden `data-i18n` node, because `main.js` has no access to the dictionary itself.
-- **The buttons carry no text label — only an icon**, with the service name in `aria-label` (via `data-i18n-aria`) and mirrored into `title` on hover by `syncTitles()`. With ten of them in one row, per-button text labels made the share box the largest block on the page. The icons are letters and symbols set in the site's own font, not brand logo images: an image would add an external host (or bytes) and a fixed width that the ten languages do not share. `share_lead` / `share_note` are deliberately one short line each for the same reason.
-- **The shared URL is built from `<link rel="canonical">` plus the current language**, not from `location.href`. `i18n.js` writes `?lang=` into the address bar only *after* the dictionary fetch resolves, so reading the address bar gives a one-step-stale URL right after load and right after a language switch. The block captures the canonical value once, at parse time, because `i18n.js` later rewrites that element to the per-language URL.
-- **`href` and the page title are recomputed on `pointerdown` / `focusin` / language change**, since `document.title` is replaced by `i18n.js` after its fetch. Without that the page would be shared under its Japanese title.
-- **Labels use `data-i18n`, not an inline dictionary.** The news blocks carry inline dicts because they render before the dictionary arrives; this block builds its DOM before `applyDict` runs, so the dictionary can own the text. The keys are invisible to the HTML scanner, so they are listed in `RUNTIME_KEYS` in `build_page_dicts.py` — **add any new share key there too**, or non-Japanese pages will silently fall back to the inline Japanese default.
-- **The button-building code runs once per container** (`boxes.forEach(...)`, `boxes = [mainBox, stickyBox]`), so `#share-buttons` and `#share-buttons-sticky` end up with independent DOM nodes for every button — a `<button>`/`<a>` cannot exist in two places at once, so nothing is shared between them except the closures (`shareUrl()`, `shareTitle()`, `copyLink()`, …) and the `links` array used by `refresh()` to rebuild every `<a href>` in both containers at once. Each container gets its **own** copy-result toast (`makeToast(box)`), so feedback appears next to whichever row the reader actually used — but the toast **text itself** (`share_copied`, `share_mastodon_prompt`, …) is a single set of hidden `data-i18n` templates (`tpl`), read via `.textContent` rather than duplicated, so there is exactly one translation to keep in sync per key. `syncTitles()` queries `.share-btn` globally (not scoped to one box) for the same reason — it has to reach both rows.
-
-**The two notes under the buttons are one block** (2026-10-15, user's instruction): SHARE BUTTONS moves the ★ note (`share_star_note`) next to the closing `.share-note` inside `.share-notes`, a wrapping flex row — one line when both fit (PC), one sentence per row when they don't. The ★ note hides with the star row (`hideStar()`) when Hatena fails to load.
-
-**The common print stylesheet** (2026-09-14). The `@media print` block near the end of `css/style.css` makes an ordinary Ctrl+P usable: it hides the on-screen machinery (header and language switcher, share section, sticky bar padding, related pages, the page TOC, the footer's page list) and **forces every Q&A answer (`.faq-a`) open**. It does **not** touch the body text, tables or figures, and it deliberately **keeps the unofficial-site banner (`.notice-banner`) and the footer's operator line**, so a printed page cannot pass for a city handout. **The 🖨 print button, the 回覧板 sheet (BOARD SHEET) and the URL/date line at the end of a print (PRINT STAMP) were retired on 2026-11-04 at the user's instruction** — do not bring them back; the print stylesheet stays for Ctrl+P.
-
-**はてなスター** sits below the buttons as ラベル → page-title link → star container, the standard Hatena Star arrangement (`Hatena.Star.SiteConfig.entryNodes`). Two things about it are deliberate:
-
-- Its URL is the **bare canonical URL with no `?lang=`**. A star is a reaction to the page, not a share; keying it per language would scatter one page's stars across ten URLs.
-- `HatenaStar.js` is **the only external script this site loads**, and it is not loaded until the share section comes within 200 px of the viewport (`IntersectionObserver`; a click on the star row is the fallback where that API is missing). A reader who never reaches the bottom of the page causes no request to Hatena. **The sticky bar's ☆** (`.share-sticky-star`, added 2026-09-15) cannot use that trigger — the bar is always on screen — so it loads the script on `pointerenter` / `focusin` / `touchstart` / click of that ☆; until then it is a plain `.share-btn--star` button, which hides itself once Hatena draws into its holder. Its title link is `.visually-hidden` (Hatena still reads its `innerText`). Do not give `.share-sticky-star` `overflow:hidden`: Hatena floats its colour-star picker above the ☆+ as an iframe, and clipping cuts it off. If a second third-party script is ever added, revisit this — the "no automatic third-party script" property is worth more than any one widget. (Since 2026-10-24 there is one automatic outside request besides this: the cookie-free visit count, an image GET with no script — see 「利用状況の計測・ハッシュタグ・声の窓口」.)
-- **Loading it late takes two non-obvious steps** (both were got wrong first time round, and the failure is silent — the label renders with no star next to it):
-  1. Set `Hatena.Star.SiteConfig` **after** the script loads, never before. The script's own line is `void 0 === window.Hatena.Star && (window.Hatena.Star = {…})`, so pre-creating `window.Hatena.Star` to hold the config makes it skip its own assignment and never initialize.
-  2. Its initializer is registered as `window.addEventListener("DOMContentLoaded", …)`, which has long since fired by the time the section scrolls into view, so it must be re-triggered with `window.dispatchEvent(new Event('DOMContentLoaded'))`. There is no public entry point for this — `Hatena.Star.EntryLoader.loadEntries()` does not exist in the current build. Double-firing is safe: it skips any entry node that already contains `[data-hatena-star]`.
-- In the current build **both the star's URL and its displayed title are read from the `uri` node** (the title comes from that element's `innerText`, not from the `title` selector). The permalink's text is the page title, so both readings give the right answer — keep it that way rather than moving the title into a separate node.
-- If nothing renders within 4 s the whole star row hides itself, so a broken widget never leaves a label with no star beside it.
-
-### サイト内検索（全ページ、2026-11-05）
-
-ユーザーが過去の提案から選んだ（2026-09-17「サイト内横断検索窓」）。**索引は事前に作る**：`.github/scripts/build_search_index.py` が各ページの `<main>` を読み、辞書の文で `data/search/<言語>.json`（12言語＋`ja-kids`、各約300KB）を書く。1件は `<section>` ごと（飛び先は PAGE TOC と同じ規則）、その中の id を持つ要素（予定 `ev-…`、根拠のカード `rev-…`、`legacy-…` など）、Q&A の1問ずつ（`.faq-item`、飛び先は SECTION LINKS と同じ「質問のキーの `_` を `-` に」）。共有欄・関連ページ・目次・隠し要素は入れない。自動取得の一覧は入らない。**辞書や HTML の文を変えたら実行してコミット**（`--check` あり、`auto_gates.py` check 23。毎日の自動更新と週1回の番号照合のワークフローも作り直す）。手編集不可。
-
-- 画面は `js/main.js` の SITE SEARCH。PC はヘッダの言語切替の行の右端（📲 の右、`.search-open-btn`、寸法は `--hr`）、**モバイルはハンバーガーメニューの最後**（`li.nav-search`。モバイルのヘッダには置かない — 📲 と同じ理由）、404 はページ内の欄（`#site-search-inline`）。窓を初めて開いたときだけ表示言語（こどもむけなら `ja-kids`）の索引を読む。空白区切りの語をすべて含む所を、見出し一致＞ページ名一致＞本文の出現数の順に最大30件。日本語・中国語は NFKC・カタカナ→ひらがな・空白を無視して比べる。0件なら問い合わせ先（about.html#contact）へ案内し、`magnifier.svg` を添える。
-- 🔍 を足してもヘッダの高さは変わらない（2026-11-05 に 769〜1280px × 13表示で実測）。ヘッダに手を入れたら測り直すこと。
-- 文言は `search_*`（`RUNTIME_KEYS`）。集計は `search/open`・`search/go` だけで、入力した語は送らない。
-
-- **検索語を URL で渡せる**（2026-11-07、日次アイデア 11/6 の案）。`?q=語` で開くと、トップ・404 はページ内の欄に、他のページは検索の窓を開いて、その語で検索した状態になる。結果の件数の行に「🔗 この検索のリンクをコピー」（`search_link_copy` / `search_link_copied`、`RUNTIME_KEYS`）— コピーするのはトップの `index.html?q=語`（＋`?lang=`）。index.html の `WebSite` 構造化データに `SearchAction`（同じ URL）。**`q` は集計に送らない**（COUNTER の `pagePath()` は `?lang=` / `?kids=1` しか付けない — ここを変えるときも `q` を入れない）。
-
-### 関連リンク「あわせて読みたい」（全ページ、2026-11-10）
-
-ユーザー指示「サイトの回遊性を高めるため、サイト内で必要と考えられる箇所すべて計算してたくさんリンクを作成」。**手で1本ずつ書かない**（方針として記憶済み）。`.github/scripts/build_crosslinks.py` が検索の索引 `data/search/<言語>.json` の日本語の本文から、文字2-gram の TF-IDF のコサイン類似度でリンク先を選び、`data/crosslinks/<ページ>.json`（手編集不可、`--check`、`auto_gates.py` **check 27**、`--show` で組み合わせを一覧）に書く。画面は `js/main.js` の CROSS LINKS で、そのページの1枚だけを読む。
-
-- **リンク元**：h2 の節（問い合わせ先・更新履歴・運営の節は除く）、Q&A の1問（開いた答えの下）、節の中のカード（`rev-…` の根拠・核心、`legacy-…`、`council-…`、予定 `ev-…`）。**リンク先**：索引の全項目から、同じページ・`site.html`・連絡先・部品の id・本文が 3000字を超える項目（何にでも似てしまう）を除いたもの。
-- **選び方**：3ページ以上に出てくる文（書き直しの注記・窓口の部署名など）は計算から外す。似ている順に、1ページにつき1件まで、節は4件・Q&A とカードは2件まで、類似度 0.17 未満は出さない。カード・予定の見出しが親の節と同じときは本文の頭を見出しにする。
-- **文を変えたら** `build_search_index.py` → `build_crosslinks.py` の順に回す（毎日の自動更新と週1回の番号照合のワークフローも同じ順で作り直す。`ALLOWED_GENERATED` に入れてある）。新しい節・Q&A・カードは自動で対象になる。
-- 文言は `xlinks_label`（`RUNTIME_KEYS`）。読み上げ（`SKIP`）・原文併記（`ORIG_SKIP`）・検索の索引（`SKIP_CLASSES`）から外し、印刷では隠す。集計は `xlink/go`。
-
-### 計画の段階の図と「入学・進級までの流れ」（schedule.html、2026-11-21）
-
-日次アイデア 9/17・11/15 を統合。`#plan-steps` は PLAN STEPS（`js/main.js`）が下の縦の年表（`.tl-item`）の名前と状態から作るので、**段階を直すときは年表だけ直す**。`#prep` は公表済みの予定だけを時期ごとに並べ（キー `prep_*`）、過ぎた時期は `data-until`、節全体は `data-expires="2027-04-30"` で外れる。未公表の日程は項目にせず、バスの持ち物などは `bus.html#checklist` へ送って二重に書かない。予定が変わったら `events.json`・schedule.html の一覧と一緒に `prep_m*` も直す。
-
-### カレンダーの月送りと「この月の予定」（schedule.html、2026-11-11）
-
-日次アイデアのカレンダーまわりの案をまとめたもの。CALENDAR（`js/main.js`）の中。
-- 月送りの行の下に「今月に戻る」（`#cal-today`。今月を見ているときは出さない）と「次の予定のある月へ」（`#cal-next-ev`。表示中の月より後で、まだ終わっていない予定がある最初の月。無ければ出さない）。**初期表示は今月のまま**（予定のある月へ自動で飛ばさない方針は変えていない）。
-- 升目を左右にはらうと月送り（横に50px以上で、縦の動きの1.5倍より大きいときだけ。縦のスクロールは妨げない）。
-- カレンダーの下に「この月の予定」（`#cal-month-list`）：その月の予定を日付順に文字で並べ、押すと日カードが開く。**日付を付けるのは `"day": true` と `span` の予定だけ** — 月単位の予定は月末の日付で置いてあるだけなので、名前だけを出す（日付を作らない）。予定の種類のアイコンは入れていない（種類分けを当サイトが作ることになるため）。
-- キー `cal_today` / `cal_next_ev` / `cal_month_h` / `cal_month_none`（HTML にあるので `RUNTIME_KEYS` 不要）。集計は `calendar/today`・`calendar/next-ev`・`calendar/swipe`。
-
-### 購読できるカレンダー（`calendar.<言語>.ics`、2026-11-07）
-
-日次アイデア 10/22 の案をユーザーが採用。schedule.html のカレンダーの下の「🔔 カレンダーアプリで購読する」（`#cal-sub`、`cal_sub_*`）から、`webcal://…/calendar.<表示言語>.ics` を購読するか、URL をコピーして Google カレンダーの「URL で追加」に貼る（外部サービスへのリンクは張らない）。CALENDAR SUBSCRIBE（`js/main.js`）が表示言語に合わせて href を書く。
-
-- **生成は `.github/scripts/build_calendar.py`**（手編集不可、`--check`、`auto_gates.py` check 25）。`events.json` に、`KomakiTokadaiEvents` / `KomakiEvents` と**同じ選び方・同じ並び**で自動の催し（桃花台を考える会・東部の協議会・都市計画の日程）を足し、`KomakiIcs.entry()` と同じ規則で12言語ぶん書く。**UID は「📅 カレンダーに追加」と同じ**（`日付[-n]-komaki-saihen@…`、協議会は `councilUid` と同じハッシュ）なので、1件ずつ足した人が購読しても二重にならない — JS 側の UID・タグ・時刻の読み方を変えたら、このスクリプトも同時に直すこと。2026-11-07 に画面の UID 47件と一致を確認。
-- 出力は入力だけで決まる（DTSTAMP は予定の日付から、終わった予定も残す）。`REFRESH-INTERVAL` / `X-PUBLISHED-TTL` は1日。
-- 作り直すのは `fetch-news.yml`（毎日・起案AIのあと）と `translate-headlines.yml`（訳が入ると催しの名前が変わる）。自動更新ジョブの `ALLOWED_GENERATED` に `calendar.xx.ics` を入れてある。sitemap には入れない。集計は `calendar/subscribe`・`calendar/sub-copy`。
-
-### 検索の言い換え語・入口の語・着地の強調（2026-11-21）
-
-日次アイデア 9/21・9/27・11/8・11/15・11/21 を統合。**言い換え語**は `data/search_aliases.json`（手編集可。値は本文で実際に使う語だけ。言語は `ja`〈こどもむけも使う〉と `en`）。**入口の語**は `search_hints`（`|` 区切り、`RUNTIME_KEYS`）で、検索の窓の中だけに出す（トップの欄は入力欄1本のまま）。語を変えたら `site_lint.py` の `search_words` が索引に当たるかを見る。**LANDING**（`js/main.js`）は検索結果と「あわせて読みたい」から着いたときだけ見出しを強調し、検索語を CSS Custom Highlight API で示す。語は `sessionStorage` の `komaki_land` に15秒だけ置き、**URL・集計には載せない**。`faq.html`・`bus.html` の Q&A の冒頭にことばメモへの案内（`gloss_pointer`）。
-
-### 自動取得の見出しの原文併記と、質問集のコピー（2026-11-21）
-
-日次アイデア 9/26・11/10。**原文併記**は `data-hl`（見出しの原文）にも効く（`window.KomakiOrigHl`。`KomakiHeadline.apply` のあとにも呼ぶ）。**ASK COPY**（`js/main.js`）は `review.html#rev-open` の問いに印を付けて、宛先の部署ごとに日本語の問い（外国語表示では訳も）をコピーする。先頭の断り書き `ask_copy_note`（運営者が送ったものではない）は外さない。**送信機能は作らない**、選択は保存しない、問いの中身は集計に送らない（`ask/copy` のみ）。問いを足すと印は自動で付く。
-
-### このページの最近の更新と、Q&A の共有 URL（2026-11-22）
-
-日次アイデア 11/11・11/21。**PAGE RECENT**（`js/main.js`）は `data/site-updates.json` の `link` がそのページを指す行を新しい順に3件、目次の下の `<details>` に出し、最新日を `WebPage` の `dateModified` に入れる（トップ・site・予定・Q&A の1問ページには出さない。キー `page_recent_h`）。**更新履歴の行に `link` を付けないと、ここにも出ない。** SECTION LINKS の Q&A の🔗は、`faq-qN` / `bus-faq-qN` なら `qa/<id>.html`（＋`?lang=`）をコピーする（SNS のカードにその質問が出るため）。節の `#` は今までどおり。
-
-### 本文へ移動・上へ戻る（全ページ、2026-11-05）
-
-ユーザーが過去の提案から選んだ（2026-09-02）。`js/main.js` の SKIP LINK / TO TOP。**本文へ移動**は `<body>` の先頭に JS で差し込むリンク（`.skip-link`、Tab の最初、フォーカスで見える）で、`<main>` に id（無ければ `main-content`）と `tabindex=-1` を付けて飛ばす。**上へ戻る**（`.to-top`）は 1.5画面ぶん下で右下に出る。画面下の共有バーの実際の高さを測って（`--share-sticky-h`）その上に浮かせる。`prefers-reduced-motion` では瞬時に移動、印刷では隠す。文言は `skip_to_main` / `to_top`（`RUNTIME_KEYS`）、集計は `nav/top`・`nav/skip`。
-
-### 横長の表の合図・言語切り替えで位置を保つ（全ページ、2026-11-07）
-
-日次アイデア 10/04・9/30。**TABLE SCROLL HINT**（`js/main.js`）は `main .table-wrap` の上に「← 横にスクロールできます →」（`table_scroll_hint`、`RUNTIME_KEYS`）を差し込み、表がはみ出しているときだけ出して、その表を一度横に動かしたら消す（`aria-hidden`・`ORIG_SKIP`・印刷で非表示）。**言語の切り替え**（`js/i18n.js` の `saveReadingPos` / `restoreReadingPos`）は、読み直す前に画面上端にいちばん近い `main` 内の id つき要素とずれを `sessionStorage` の `komaki_lang_pos` に残し、読み直したページで同じ要素へ戻す（30秒以内・同じパスだけ、id が無ければ縦位置の割合。600ms・1500ms 後にも合わせ直し、読者がスクロールしたらやめる）。節・Q&A・予定の id を変えると戻り先がずれるので、id は今までどおり変えないこと。
-
-### 文字の大きさ（全ページ、2026-10-13）
-
-「このページの目次」（PAGE TOC）の横、`<details>` の外に「文字の大きさ [A][A][A]」（小・中・大）を置く（置き場所はユーザー指定。ヘッダには置かない）。状態は `localStorage` の `komaki_fs`（`s` / `l`、無し＝中）で、`i18n.js` の冒頭が同期的に `<html>` へ `fs-s` / `fs-l` を付け、CSS が `:root` の font-size を 14px / 18px にする。本文の字はほぼすべて rem なので一律に効く。
-
-- **ヘッダは大きくしない。** ヘッダの寸法は rem ではなく `:root` の `--hr: 16px`（`calc(X * var(--hr))`）で書いてあり、`header { font-size: var(--hr) }`。既定の 16px では 1rem と同じなので見た目は変わらない（2026-10-13 に変更前とスクリーンショットで一致を確認）。**ヘッダに規則を足すときも rem ではなく `--hr` を使うこと** — rem で書くと「大」でヘッダが膨らみ、ナビが重なる。
-- 印刷（Ctrl+P）は選んだ大きさのまま。
-- ボタンの「A」は px 固定（押しても跳ねない）。文言は `fs_label` / `aria_fs_*`（`RUNTIME_KEYS`）。目次を作らないページ（見出しが2つ未満：予定ページ・404）にはボタンが無いが、設定は効く。
-
-### `.ics` の共通部品（`window.KomakiIcs`）と「📅 カレンダーに追加」
-
-2026-10-13 に GRADE VIEW から切り出した。**2026-10-23 のユーザー指示で、カレンダーとスケジュールのすべての予定（終わっていないもの）に「📅 カレンダーに追加」を付けた。** 付いている場所：schedule.html の主要イベント一覧（手書きの予定と自動で足す催し）、カレンダーの日カード（予定ごと。2件以上ある日は「この日の予定をカレンダーに追加」も）、トップの「今後のスケジュール」の帯（アイコンだけ）、予定ごとの固有ページ（events/*.html）、community.html の地域協議会イベントの各行（以前からのもの）、**「地域の取組」欄**（2026-10-24 ユーザー指示。community.html と index.html）。
-
-- **ボタンは `[data-ev="<日付>|<その日の何件目>"]` の要素に `KomakiIcs.attach(箱)` が付ける。** 手書きの予定と予定ページの `data-ev` は `build_event_pages.py` が書く（events.json の ja の予定名が本文に最も長く一致するものを選ぶ。期間が重なるだけでは決まらないため）。自動で描く一覧（TOKADAI SCHEDULE・UPCOMING BAR・日カード）は描いたあとに自分で `attach` を呼ぶ。**新しく予定を並べる場所を作ったら、`data-ev` を付けて `attach` を呼ぶこと。**
-- **「地域の取組」の上半分（住民有志・協議会・桃花台を考える会の催し）は、スケジュールの同じ予定に結びつけて UID をそろえる。** 取組はすべてスケジュールにも載せる決まりなので、COMMUNITY ACTIONS が `KomakiIcs.findEv()` で `date_start`〜`date` の予定から名前（括弧書きと「」を除く）の一致するものを探して `data-ev` を付ける。見つからない取組（常設の児童館など）には付けない。**下半分の東部まちづくりの「これからの催し」はスケジュールに載らないので、TOBU ACTIONS が `KomakiIcs.addButton()` で単独の予定として書き出す**（UID は `tobu-<題名のハッシュ>-<日付>`）。
-- **.ics の組み立ては `KomakiIcs.entry()` の1か所**（一括書き出しも同じ）。`"day": true` はその日の終日（`"until"` があればその日まで）。`"span": true`（都市計画の閲覧・意見募集）は決まった期間。**それ以外の月単位の予定は、公表された時期（`start`〜キー、`start` が無ければキーの月）を終日の期間として入れ、名前に「（日程未定・2026年11月〜12月）」、説明に `ics_tbd_desc` を添える**（2026-10-23 ユーザー決定。日付を作らないため）。
-- **UID は `KomakiIcs.schedule()` の「日付[-n]-komaki-saihen@…」で、一括・日カード・各ボタンで同じ。** 地域協議会の催しは `KomakiIcs.councilUid()`（記事 URL のハッシュ）で、community.html の行とスケジュールに自動で足した同じ催しが同じ UID になる。どちらから何度取り込んでも二重にならない。この形を変えないこと。
-- 協議会・桃花台を考える会の催しは `KomakiJaWhen.times()` で時刻を読み、日本時間を UTC（`…Z`）に直して書く（`KomakiTokadaiEvents` が `ev.ics` に持たせる）。**終わりの時刻が公表されていなければ `DTEND` を書かない**（推測で作らない）。読めなければ終日。
-- 文言は辞書の `ics_add` / `ics_tbd` / `ics_tbd_desc` と `grade_ics_calname` / `grade_ics_desc` / `grade_ics_fail`（すべて `RUNTIME_KEYS`）を、`KomakiIcs` が作る隠し要素 `#ics-strings` で受け取る。ボタンは印刷では消える。
-
-### 学年ビュー（`schedule.html`）
-
-2026-08-30 追加。「共有」を広げるための機能で、扱いに注意が要る。（同時に作った回覧板シートは 2026-11-04 にユーザー指示で廃止した。）
-
-**学年ビュー（`GRADE VIEW` in `js/main.js`）** — `?grade=` で学年を1つ選ぶと、`.event-item` の各予定に「そのときお子さんは何年生か」を添える。`window.KomakiGrade()`（`main.js` 冒頭）が `?grade=` → `localStorage`（`komaki_grade`）の順で解決する。
-
-- **これは公表日付に対する学年の足し算にすぎない。** 市の計画に学年別の扱いがあるという意味ではなく、どの学校に通うかは住所で決まる。その旨は `grade_lead` に書いてある — **消さないこと**。ここを外すと、ただの計算が「市の学年別方針」に読めてしまう。
-- 学年コードは**令和8年度（2026年度）の学年**。`y3/y4/y5`＝年少・年中・年長、`e1`〜`e6`＝小1〜小6、`j1`〜`j3`＝中1〜中3。基準は `BASE_FY = 2026`。**年度が変わったら `BASE_FY` を上げる**（上げないと1年ずれた学年が出る）。年度は4月始まりで、1〜3月の日付は前年度として数える。
-- 予定の選り分けはしない。「この予定はこの学年に関係する」という判断は公表資料に無く、当サイトが作ると事実になってしまうため、**全部の予定に学年を添えるだけ**にしてある。
-- `.ics` は静的ファイルではなく、押されたときに `data/events.json` から組み立てる。`events.json` は自動更新パイプラインの編集対象なので、静的な `.ics` を置くと更新のたびに古くなる。折り返しは RFC 5545 の**75オクテット**規定で、日本語は1文字3バイトなので文字数で数えないこと。
-- 共有 URL にも `grade` が乗る（`shareUrl()`）。同学年の保護者にそのまま渡せる。
-
-### カットイン（全ページ、ヘッダの下）
-
-`TOP CUT-IN` in `js/main.js`（2026-09-03 に `NEW FEATURE CUT-IN` から改称・拡張）。**2026-09-20 のユーザー指示で、トップページだけでなく全ページに出す**ようにした（読者が最初に開くページはトップとはかぎらないため）。`#feature-cutin` と `#feature-strings` の2つの `div` は11ページすべての `</header>` 直後にあり、同じブロックがそれを見つけて描く。ヘッダの下にスライドインする帯で、**今日を含む直近5日間**（`WINDOW_DAYS`、2026-11-06 ユーザー指示）の新しい情報を、ページを開くたびに出す。出すのは3種類：
-
-| 札 | 元データ | 飛び先 |
-|---|---|---|
-| 新機能 | `data/site-updates.json` の `type: "feature"` | `#site-updates` |
-| 更新 | 同 `type: "content"` | `#site-updates` |
-| 市からのお知らせ | `data/news.json`（日本語以外では見出しを訳して出す） | `#news` |
-
-飛び先の2つのアンカーは `index.html` にしかないので、**トップ以外のページでは `index.html` を前に付ける**（`ON_TOP` / `at()`）。トップでは付けない — 同じページ内の移動をページ再読込にしないため。
-
-`type: "fix"` は出さない（誤字直しや体裁の修正は帯で知らせる話ではない）。**都市計画関連の行も出さない**（2026-10-18 ユーザー指示）：更新履歴の `ja` に「都市計画」を含む行は帯から外す。例外は、都市計画の日程がスケジュールに載ったときに `build_toshikeikaku.py` が足す行（`auto_key` が `toshikeikaku:` 始まり）だけ。市のお知らせでも**飛び先は本文の該当コーナー**にする — 帯から直接市の個別ページへ出すと、読者が説明を読まないまま外へ抜けてしまう。
-
-- **並びは「新しいかつ重要度が高い順」**（2026-09-22 ユーザー指示）。`rank()` が **重要度 + `RECENCY_WEIGHT`（8）× 新しさ** で点を付け、高いものを、下の割合の枠ごとに出す（同点なら新しいほう）。新しさは今日 = 1・5日前 = 0 の線形、重要度は ①種類（お知らせ 6 > 新機能 3 > 更新 2）②緊急語（`URGENT_RE`、+4）③`data/site-updates.json` の任意の `priority`（`high` +6 / `low` −4）で、ふだんの幅は 2〜10。**`RECENCY_WEIGHT` はその幅とほぼ同じ値にしてある** — 片方だけを支配的にしないためで、重要度側の点を動かしたら重みも見直すこと。
-- **緊急語（`URGENT_RE`）は市のお知らせにだけ効かせる。** 更新履歴の文面は「説明会の質疑からQ&Aを追加」のように市の催しに言及するだけのことが多く、読者に締切があるわけではない（そのまま当てると全部が緊急になり順位が意味を失う）。更新履歴を上げ下げしたいときは `priority` を使う。語を足すときも「読者が何かをする必要がある言葉」に限ること。
-- **判定は日本語の原文（`ja`）で行う。** 訳文で判定すると、表示言語によって帯の順番が入れ替わってしまう。
-- **3件の内訳は「市からのお知らせ」1・「更新」1・「新機能」1**（`SLOTS`、2026-10-15 ユーザー指示。2026-10-11 から お知らせ1・更新履歴2 だった）。それぞれの枠の中で `rank()` の点の高いものを取り、ある種類に期間内の項目が無ければ空いた枠を残りの点の高いもので埋める。選んだ3件は点の順に並べる。
-- **札とリンクには `data-i18n` を付けない。** 項目ごとに種類が変わるので、辞書に上書きされると札と中身が食い違う。文言は `#feature-strings` の隠し要素から `data-fk` で読む（`label` / `label_update` / `label_news` / `more` / `more_news` / `close` / `news_fmt`）。**市のお知らせは見出しだけを置かず、更新履歴と同じ体言止めの一行にする**（`news_fmt`＝辞書の `feature_new_news_fmt`「市が「{title}」のページを更新」。`{title}` に訳した見出しが入る。2026-10-11 ユーザー指示）。
-
-- **カットイン専用のお知らせデータを作らないこと。** 文面は更新履歴と市のお知らせ、どちらもサイトが既に持っているデータそのもの。別データにすると元の一覧と食い違ったまま気づけなくなる。**更新履歴に1行足す／市がページを更新する**だけでここは自動的に出て、5日で自動的に消える（消し忘れが起きない）。
-- **直近5日間の新着は、ページを開くたびに出す**（2026-11-06 ユーザー指示。既読の記録はしない — 以前の `komaki_feature_seen` は読み込み時に消している）。複数あるときは最大3件を7秒ごとに入れ替え、全件を1回ずつ見せたら自動で閉じる（2026-11-04 ユーザー指示。1件だけのときも7秒で閉じる）。マウスやフォーカスが乗ったら止まり、離れたらその項目をもう一度7秒見せてから先へ進む。`prefers-reduced-motion` では動きを出さない。
-- 帯は `position: sticky` のヘッダの**下**（`</header>` の直後、通常フロー）に置く（2026-09-20 ユーザー指示。それまではヘッダの上だった）。ヘッダに重ねると本文が読めなくなるので、重ねない。
-- **帯の色は上下の背景と同じ黒板グリーンの系統でそろえる**（同日ユーザー指示）。上はヘッダ（`--primary-dark`）、下はヒーロー（`135deg` で `#111f14` → `--primary-dark` → `#2e5c3a`）なので、帯も同じ `135deg` で `--primary-dark` → `#24492e`、つまり両隣の値の内側に収める。同系色が続いて境目が消えないよう、上下に細い線（白 .14 / 黒 .25）を入れてある。
-- `.feature-cutin` の `display:flex` は UA の `[hidden]{display:none}` に勝つので、`.feature-cutin[hidden] { display:none; }` が要る。無いと出す前と閉じたあとに padding ぶんの帯が残る。
-- リンク先は `index.html#site-updates`。そのアンカーを外すとカットインの「くわしく」がどこにも飛ばなくなる。
+## 日付で変わる表示と時系列
 
 ### Date-driven auto-display (and when it updates)
 
@@ -832,6 +204,7 @@ The *Current Status* list (`index.html`) and the *Key Events* list (`schedule.ht
 
 `data/site-facts.json` lists this as the `now_bar` target and includes it in `default_targets`, so the auto-update pipeline is prompted to maintain it on every detected change; the drafter prompt carries the same three-part rule and the verifier AI checks it too.
 
+
 ## Page structure
 
 Every HTML page follows the same pattern: `notice-banner` → `<header>` (with `.lang-switcher` containing `.kids-toggle` and `.lang-select`) → `<main>` → `<footer>`. Both `js/i18n.js` and `js/main.js` are loaded at the end of `<body>`. Pages are standalone — there is no shared template or server-side include. Every page also carries the SHARE section (`<section class="section share" id="share">`) as the last thing inside `<main>`. When adding a new page, copy the full header/share/footer blocks from an existing page — **and add it to `sitemap.xml` and `files.txt`**, plus `meta_title_<pageId>` / `meta_desc_<pageId>` keys in every language file.
@@ -847,142 +220,11 @@ Every HTML page follows the same pattern: `notice-banner` → `<header>` (with `
 - `review.html` の手書きの目次（`rev_toc_h` / `rev_nav1`〜`rev_nav9`）はこれに置き換えて**廃止**した（目次が2つ並ぶため）。キーも辞書から消してある。
 - ヘッダはナビが1段にも2段にもなる（1000px 前後で約122px）ので、アンカーの `scroll-margin-top` は固定値ではなく、HEADER HEIGHT ブロックが入れる実測値 `--header-h` から計算する。
 
-### 節ごとの読み上げ（`.tts-row`）
-
-2026-09-15 追加（ユーザー採用）。`js/main.js` の READ ALOUD が、全ページの `main h2.section-title`（と index の「最新の動き」各コーナーの `h3.section-title.sub`、その「地域の取組」の下半分「東部まちづくりの動き」の `h4.section-title.sub` — 見出しが別なので読み上げも別、2026-09-27 ユーザー指示）の下に「🔊 読み上げる」を置き（見出しの無い小さなコーナー — トップの「いまの状況」「今後のスケジュール」— はラベル `.now-label` / `.upcoming-label` を見出しの代わりにして、本文の下／ラベルの横に置く。2026-10-05 ユーザー指示）、その節の本文をブラウザ内蔵の `speechSynthesis` で**表示中の言語のまま**読む。ボタンの文言は `tts_play` / `tts_stop`（`RUNTIME_KEYS` 入り）。
-
-- **声が端末に無い言語ではボタンを出さない。** 注記で断るより、押して無音のほうがまずい。ビルマ語はほぼ出ない。声は端末内（`localService`）を優先する。
-- **1文ずつ区切って渡す**（日本語・中国語は70字、他は180字で読点・空白で切る）。Chrome は長い発話を黙って止めることがある。
-- 読まないもの：「くわしく見る →」「詳細 →」のような案内リンク（`.now-more` / `.upcoming-more`）、表示されていない要素（閉じた Q&A の答えは読む）、見出しの `<small>` 副題（英語表示では日本語なので英語の声で日本語を読むことになる）、地図と層の切り替え、ボタン、目次、絵文字。表は行ごと、セルの間に読点。札（`tag`/`badge`/`label`/`date` を含むクラス）のあとにも読点。
-- **日本語の地名の読み替え（`YOMI`）は、公表資料で読みが確かめられたものだけ**（しのおか・おおくさ）。読みは事実なので推測で足さない。
-- **区切りや改行のある所は続けて読まない**（2026-11-11 ユーザー指示）。ひとまとまりは「inline でないいちばん近い祖先」（`unitOf()`。横に並んだ札・日付・名前＝flex の子や、段落・項目が別々のまとまりになる。表だけは行ごとでセルの間は読点）で、`<br>`・`<hr>` をまたいでも新しいまとまりにする。まとまりが変わるときは間（`GAP` 380ms を速さで割る）を置き、同じまとまりの中の文は続けて読む。**横に並べる部品を `display:inline` のままにすると前後とつながって読まれる** — 新しい部品は flex / block で組むこと。
-- **声に渡す文字の直し**（`speakable()`、2026-11-11。全ページ×6表示の「声に渡す文」を書き出して不自然な所を直した。画面の文字とハイライトの範囲は変えない）：文頭・文末の矢印、※・■・★・#、Instagram の @アカウント名は渡さない。電話番号は1桁ずつ。**日本語**は、曜日の括弧（（月）→ げつよう）、「〜」→「から」（括弧の頭の「〜11/15」は「まで」）、「11/15」→「11月15日」、番地の「2-4」→「2の4」、H21・R8 → 平成21年・令和8年、km²・㎡・ha、文中の「→」は数字のそばなら「から」・ほかは読点、「／」「｜」「＝」「←」と名前を並べる「・」は読点（カタカナ語の中の中点はそのまま）。**日本語・中国語以外**は、日本語のまま出している部署名・資料名（かな・漢字）を声に渡さない（中国語は、かなを含む部分だけ）。
-- **文の切り方**：ピリオドのあとが小文字・数字のとき、略語（No.・Elem.・Art.・p. ej. など `ABBR`）や番号（「1. 」）のあとでは切らない。長い文（日本語・中国語70字、韓国語80、ネパール語120、ほか180）は読点・空白で切り、無ければかぎ括弧の終わりか助詞のあと（次がかな以外）で切る。1.25倍までのはみ出しは切らない（短い切れ端を残さない）。
-- **速さと「通して読む」**（目次の横、「文字の大きさ」の隣の `.tts-ctrl`。2026-11-11）。速さは ゆっくり 0.8／ふつう 1／はやい 1.25、`localStorage` の `komaki_tts_rate`（`slow`／`fast`、無し＝ふつう）で、読んでいる途中に変えると次の文から効く。「通して読む」は見出しを上から順に `play()` に渡すだけ（見出しの文字は `blocksOf()` が先頭に拾う）。声の無い言語では節ごとのボタンと一緒に隠れる。目次の無いページ（予定ページ・404）には出ない。キー `tts_all` / `tts_rate_label` / `tts_rate_slow` / `tts_rate_normal` / `tts_rate_fast`（`RUNTIME_KEYS`）。寸法は px 固定（文字の大きさの切り替えで跳ねない）。集計は `tts/all`・`tts/rate-slow|fast`。
-- **読みの置き換え（`YOMI`）の出どころ**：篠岡・大草＝市の公表資料、光ヶ丘・桃ヶ丘・陶（陶小・陶小学校のときだけ）・大城・桃陵＝各校が自分のホームページで使っているローマ字（`fetch_schools.py` の slug）、桃花台東・西＝新校名の表記（`term_rules.json`）。**確かめられない名前（巾下・三ツ渕など）は足さない。**
-- **読み上げを直したら、声に渡す文を書き出して前後を比べる**：`speechSynthesis` を差し替えて `speak()` に渡った文字を記録する（声の一覧も偽物を返す）。記号・数字・切れ目の不自然さはコードを読むより書き出したほうが早く見つかる。
-- こどもむけの切り替えで本文が作り直されると止まる。そのために `i18n.js` は `applyDict` の最後で `komaki:i18n-applied` を `document` に投げる（**本文の DOM を掴んでおく処理を足すときはこれを使う**）。
-
-### 「前回から」の印（index.html「最新の動き」）
-
-2026-09-15 追加（ユーザー採用）。`js/main.js` の SINCE LAST VISIT が、前回このページを見たときに無かった項目に「前回から」の印を付け、`#latest` のリード文の下に「前回ご覧になったあとに増えた項目が N 件」と出す。読者は何も操作しない。
-
-- **比べるのは日付ではなく項目の目印の集合**（リンク先 URL、見出しの原文 `data-hl`、更新履歴は描画時に付ける `data-key`）。表示言語に左右されない。**コーナーの描画クラス名や `data-hl` / `data-key` を変えたら、ブロック冒頭の `CORNERS` も直すこと。**
-- 記録は `localStorage` の `komaki_seen_items`（目印→最後に見た日、120日で捨てる）。「前回」の写しは `sessionStorage` の `komaki_seen_prev` に1時間持つ — 開いた瞬間に「見た」と上書きするので、写しが無いと再読み込みで印が消える。
-- **初めて来た人には印を付けない**（全部に付くと意味が無い）。
-- **印の文字は CSS の `[data-unseen]::after { content: attr(data-unseen) }`。** 読み上げ・原文併記は `textContent` を拾うので、文字で入れると混ざる。**リンク（`<a>`）には付けない** — 外部リンクの「↗」が同じ `::after` を使っていて、印が消える。
-- 学校HPの「新着」（7日以内・黄色）とは別物。混同しないよう、言葉も色（青系）も分けてある。
 
 ### 関連するページ（`.related-list`）は各ページ3つ
 
 どのページも末尾の「関連するページ」は **ちょうど3つ**（2026-09-13 にユーザー指示で統一。それまで2つのページと3つのページが混ざっていた）。ナビの再掲ではなく「このページを読んだ人が次に必要とする所」を選ぶ、という方針は変わらない。ページを足すときも3つ選ぶこと。文言キーは `rel_<このページ>_<行き先>`。
 
-### The 「最新の動き」 group on `index.html`
-
-The bottom of `index.html` is split in two. Everything down to **現在の状況** is the site's own hand-written explanation; everything below the `.group-head` band (`<section id="latest">`, key `section_latest`) is "what just happened" — 市公式サイト お知らせ (`id="news"`), 対象校ホームページの更新, 地域の取組 (the 報道でみる東部地域 corner was removed on 2026-10-10; サイトの更新履歴 was taken out of the group on 2026-10-24 at the user's instruction and is now its own `<h2>` section, `#site-updates`, directly after the group). The band's `<h2>` groups them, so those three corner headings are `<h3 class="section-title sub">`, not `<h2>` — do not promote them back. The reader benefit is that "what this site says" and "what just happened" are no longer interleaved. **Below the changelog** sits only a one-line pointer (`#site-card`, `site_card_p` / `site_card_link`) to **`site.html`（このサイトについて）**, which holds the sections about using this site — このサイトを紹介する (`#site-intro`), アプリとして使う (`#app`), フィード（RSS）で受け取る (`#feed`), 使い方を広める・応援する (`#spread`), ご意見の送り先 (`#feedback`), 閲覧数の集計について (`#privacy`). They moved from `about.html` to the top on 2026-10-24, then to `site.html` on 2026-10-30 (user's instruction: keep the top page on what parents need). Old links such as `index.html#app?lang=pt` are forwarded by MOVED ANCHORS (top of `js/main.js`). `site.html` carries no contact tables (exempt from check 15) and is linked from every page's footer (`footer_site`). `about.html` ends with its contact section. `fb_li3` points readers to the 計画概要 page's contact section for questions about the plan.
-
-**地域の取組 is the corner with two halves.** Its top half is hand-maintained (`data/community_actions.json`, the COMMUNITY ACTIONS block, drawn wherever `#community-actions-container` exists — the same list as on `community.html`); its bottom half, 東部まちづくりの動き, refreshes automatically like the other corners (`data/tobu_actions.json`, the TOBU ACTIONS block, `#tobu-actions-container` — see that file's section above). `latest_lead` says exactly this; keep that caveat accurate if the mix of automatic and manual corners changes again. Because the Instagram source link is rendered here at runtime, `index.html` is in `INSTAGRAM_PAGES` in `auto_gates.py` alongside `community.html` — a third page rendering this corner has to be added there too.
-
-
-- `.group-head` and `.group-head + .section` in `css/style.css` trim the padding so the band and the first corner read as one block. If a corner is inserted between them, that pairing breaks.
-
-#### 自動取得した見出しの翻訳（2026-09-14 ユーザー指示：見出しを原文のまま残さない）
-
-「最新の動き」の各コーナーと community.html に自動で並ぶ見出し（市のお知らせ・各校HPの記事・地域協議会のイベント・東部まちづくりの取組名と会場名・地域の取組の催し名）は、**日本語以外の表示では訳した見出しに置き換える**。原文を残して下に参考訳を添える形（2026-09-06 に検討・保留した案）は採らない — ユーザーが「原文のまま残すことは禁止」と指示した。日本語とこどもむけでは原文をそのまま出す。
-
-- **訳の置き場は `data/headline_i18n.json`**（`{"items": {"見出しの原文": {"en": …, …, "my": …}}}`）。キーは見出しの原文そのもので、見出しが1文字でも変われば別キーになり訳し直される。いま表示されない見出しの訳は自動で落ちる。
-- **毎日の更新は `.github/workflows/translate-headlines.yml`**。「Fetch Official News」が終わると動き、`headline_i18n.py pending` で訳の無い見出しを出し、Claude（sonnet）に `auto_i18n/translations.json` だけを書かせ、`headline_i18n.py apply` が機械検証（9言語そろい・タグ/URL/改行なし・かな残りなし・zh 以外に漢字なし・長さ）して合格分だけ取り込む。市・学校・新聞社のサーバには一切アクセスしない。`CLAUDE_CODE_OAUTH_TOKEN` が無ければ何もしない。
-- **⛔ AI に `data/headline_i18n.json` を直接書かせない。** 壊れた JSON や規則違反の訳がそのまま公開されるため。人が誤訳を直すのはよい（見出しが変わらないかぎり上書きされない）。
-- **⛔ 自動生成される `news.json` / `school_news.json` などに訳を書き足さないこと。** 毎日上書きされる。
-- 画面側は `js/main.js` 冒頭の `window.KomakiHeadline`。各コーナーは見出しの要素に `data-hl="原文"` を付けて描き、描き終えたら `KomakiHeadline.apply(container)` を呼ぶ。帯（TOP CUT-IN）は `KomakiHeadline.text()` で文字列を訳す。**新しい自動取得コーナーを足すときは、この2つと `headline_i18n.py` の `current_headlines()` の3か所をそろえること。**
-- **訳がまだ無い見出しだけは原文で出る**（取得直後で翻訳ジョブがまだ走っていない数分〜、または訳が検証に落ちた日）。見出しごと隠すと新着があったこと自体が伝わらないため。
-- 読者向けの注記（`news_note` / `school_news_note` / `tobu_actions_lead` / `tobu_actions_note`）には「日本語以外の表示では自動翻訳」と書いてある。訳す範囲を変えたらここも直す。
-- 自動取得の日時（「9月23日 13時30分～16時00分」「令和8年11月15日(日曜日)14時から（開場13時）」）は `window.KomakiJaWhen()` が日付と時刻だけを読み取り、表示言語の書式に組み直す。読めない書き方のときは原文が出る。
-
-### The map on `bus.html`
-
-> **⛔ この地図は完成・凍結。ユーザーの明示的な指示がないかぎり、図形・枠・縮尺・色・線を一切変更しないこと。**
-> 2026-08-30 に市の公表図と同じ枠・同じ縮尺に合わせ、紫の対象エリアを公表図からの読み取りに置き換えて完了した。
-> 「もっと良くできそう」に見えても手を出さない。以下は変更するためではなく、なぜこうなっているかを保存するための記録。
-
-The 対象エリアの地図 draws **three sources with different accuracy** — see the header comment of the BUS SERVICE AREA MAP block in `js/main.js`. The two that matter:
-
-- **The 通学区域 (red line) is not traced — it is built from government open data**, and must not be redrawn by eye. It composes the five current elementary-school districts from 国土数値情報「小学校区」 (MLIT, A27-21) exactly the way the newsletter says they merge, and splits 大城小学校区 along 町丁 boundaries from the e-Stat census small-area data (Statistics Bureau): 大草・城山三丁目 go east, 城山二・四・五丁目 go west. The resulting areas are **桃花台東 20.31 km² and 桃花台西 6.89 km²** against the newsletter vol.3 published 20.3 and 6.9 — a match to the first decimal in both, which is what validates the composition. Note 城山一丁目 belongs to 桃ヶ丘小 (hence west), not to 大城小.
-- The previous by-eye trace put **城山四丁目 and 高根三丁目 on the wrong side** and left **大字大山 (5.1 km²) out of the map entirely**, understating 桃花台東 by 9.05 km². If the line ever looks wrong again, re-derive it from the same two datasets rather than adjusting it by hand.
-- **The 対象エリア (purple) is no longer a by-eye trace — it is read off the city's own figure.** The coloured pixels of `R9sinooka_busarea.png` are extracted by colour (`b - r > 15`), the red 学校区 line drawn on top of them is added back where it touches purple, and the result is clipped to the district polygons above and vectorised (Douglas–Peucker at 2 px ≈ 7.6 m). Error against the original figure is about one pixel (~4 m); the old trace was off by up to ~300 m. **Re-derive it the same way rather than adjusting it by hand.**
-- **The area cross-checks against the city's published figures.** Inside the frame: bus area **12.28 km²**, district 20.72 km², so the walking area comes to **8.42 km²** against the published 8.7 km² (5.2 + 3.5). District outside the frame is 6.48 km², and the bus area missing from the frame is 18.5 − 12.28 = 6.22 km² — the two agree to within 0.03 km². If a future edit moves these numbers, that arithmetic is the check.
-- **Inside the frame, uncoloured land inside the red line now means "walking area", not "missing from the figure"** — the frame *is* the figure. Only the land beyond the frame is undrawn. `bus_map_legend_walk` and `bus_map_caveat` were rewritten for this; do not reinstate the old "not in the original figure" wording for the in-frame area.
-- **The purple is a single polygon with a hole** (a non-bus pocket on the east side, ~0.005 km²), so `js/main.js` keeps `busPolys` as an array of ring-arrays and paints with `fill-rule="evenodd"`. Do not go back to drawing `coordinates[0]` only.
-- **The map frame is the city's own figure's frame.** `view_bbox` at the top of the geojson is the ground extent of `R9sinooka_busarea.png` (the 対象エリア図 on the city's `48603.html`), obtained by aligning the district boundary onto that image's 学校区 line: **1639×1179 px at 3.785 m/px**, i.e. 6203.6 × 4462.6 m. `VIEW_W = 1639` in `main.js` matches it, so one SVG unit is one pixel of the official figure and the two are at the same scale in the same frame. There is no padding — the map fills the frame exactly, as the original does; `UI_PAD` insets only the scale bar and the north arrow. 桃花台東 continues past the frame's **top edge (from about 30% in from the left) and the upper part of its right edge** — not just the north-east corner — and it is cut in the original figure too. That is intended, and `bus_map_caveat` / `bus_map_legend_line` both say the district continues beyond the top and right edges (they said "top-right corner" until 2026-09-15, which sent readers looking at the wrong place). Both district labels must stay inside `view_bbox`. Remove `view_bbox` and `main.js` falls back to fitting everything (a much wider frame that shrinks the built-up part of 桃花台 by about a third).
-- **`px()`/`py()` use the real length of a degree in each axis** (`MPD_LON` / `MPD_LAT` series), not `cos(lat)` alone — the plain-cosine form stretched the map vertically by ~0.5%, which is enough to break the exact-scale match above.
-- `boundary_note` on each `district` feature records the derivation; `bus_map_caveat` states the two accuracy levels to the reader; `bus_map_osm` credits OSM **plus** 国土数値情報 and e-Stat. Do not drop any of the three.
-- **The legend swatches must match what is actually painted** (fixed 2026-09-15): the walking area is *inside* the red line, so it carries the pale yellow/blue district tint — it is not white, and `bus_map_legend_walk` must not call it uncoloured; the new-school swatch has the yellow (`--accent`) ring the map draws; the purple swatch uses the map's own fill/stroke values. The 表示する情報 checkboxes carry the same marks (学・園・公・店・C・神, road lines) as the map. These are legend-only changes — the map itself stays frozen.
-- **The same map is also shown on `map.html`** (section `#bus-area`, added 2026-09-15 at the user's instruction). It is the same BUS SERVICE AREA MAP block — it finds its elements by id, so it runs on whichever page carries them. The layer checkboxes, legend, zoom controls and **`bus_map_caveat`** are copied from `bus.html`; **change both pages together**, and never show the map on either page without the caveat.
-- **Zoom and pan were added on 2026-09-15 at the user's explicit instruction** — the one change to the frozen map's *display* so far. Only the SVG `viewBox` moves; no coordinate, colour or frame changes, and **at zoom 1 the rendering is pixel-identical to the frozen map** (checked by screenshot diff against the previous commit — keep it that way). Range is confined to the original frame, zoom 1–`MAX_ZOOM` (6). Labels, marks and line widths are redrawn at 1/√z (`SCALE_ITEMS` / `STROKES`) so they grow only √z on screen; the scale bar and north arrow stay screen-fixed and the bar switches 1 km → 500 m → 200 m → 100 m. Controls: the `.bus-map-zoom` buttons (`bus_map_zoom_in/out/reset`), Ctrl/⌘ + wheel, double-click, drag while zoomed; on touch, two fingers pinch, and one finger pans only while zoomed — at zoom 1 a single finger still scrolls the page, so the map never traps a phone reader. A plain wheel is left to page scrolling. `bus_map_zoom_hint` explains this under the map.
-- **`cls: 'local'` roads are the 桃花台 main local streets (OSM `tertiary`) plus 桃花台鳥居松線** (named 桃花台・春日井線 in OSM). They live in the `localroad` layer so a reader can switch them off; the 幹線 keep the `road` layer and are drawn above them.
-
-- **Five anchors are linked from other pages and must not be removed**: `index.html#news` (from `actions_note` on `community.html`), `community.html#qa` (from the 「ほかのページにもQ&A」 box on `faq.html`), `bus.html#area-map` (the 対象エリアの地図 heading, linked from the 通学区域とスクールバスの対象エリア section on `map.html`, added 2026-09-15), and — since the 2026-09-22 merge — `faq.html#voices` (from `community.html`, `review.html` and the `voices.html` redirect) and `faq.html#pubcom` (from `council_warn_link` on `council.html`). They carry an HTML comment saying so.
-- The site's Q&A deliberately lives in three places — `faq.html`, the FAQ section of `bus.html` (`#faq`), and the よくある疑問 section of `community.html` (`#qa`). Keeping each next to its context is the point; the box at the bottom of `faq.html` (`faq_more_*`) is what stops the other two from being unreachable for a reader who treats `faq.html` as the index of questions.
-
-## SEO
-
-| Piece | Where | Notes |
-|---|---|---|
-| OGP image | `img/og-image.png` | 1200×630, the blackboard design with the site name in three lines (「小牧市東部（篠岡地区）」/「学校再編ナビ」/ the subtitle), redrawn 2026-10-11 for the rename. Every page references it as `og-image.png?v=YYYYMMDD` — **bump `v` on all 12 pages whenever the image changes** (the header logo is not this image — it is set in text, see Important constraints), or LINE / X / Facebook keep showing the cached old one. Since 2026-10-13 the same image is also **shown inside the site** with the same `?v=` — the footer of every page (`.footer-logo`, so also `events/*.html` via `build_event_pages.py`), the share section's 「共有するとこう見える」 card (built in SHARE BUTTONS), `index.html#site-intro` (with a download link) and `404.html`; bump those too. The image was rendered from an HTML mock-up with Playwright; that mock-up is not in the repo. |
-| `robots.txt` | repo root | Allows everything; points at the sitemap. Kids mode is excluded via a JS-injected `noindex` (`applyKidsSeoMeta`), not here. |
-| `sitemap.xml` | repo root | Hand-maintained, one `<url>` per page — except the `EVENTS:BEGIN〜END` block, which `build_event_pages.py` rewrites (one `<url>` per event page) — (11 — `voices.html` was merged into `faq.html` on 2026-09-22 and is excluded; `clubs.html` was added the same day), each carrying the full `xhtml:link` alternate set. No `lastmod` — a stale date is worse than none. |
-| `<link rel="canonical">` | every page `<head>` | Static value is the bare (Japanese) URL. `i18n.js` rewrites it to the `?lang=` URL of the language actually being shown. |
-| `hreflang` | every page `<head>` | 12 languages + `x-default`, each pointing at a **distinct** `?lang=` URL. They previously all pointed at the same URL, which is an error Search Console reports. |
-| JSON-LD `WebSite` | `index.html` only | Static. Deliberately carries **no `publisher`/`Organization`** — inventing one would imply this site is official, which it is not. `citation` points at the permitted city URL. |
-| JSON-LD `FAQPage` | `faq.html`, generated at runtime **and** statically by `build_static_seo.py` | Built by `applyFaqJsonLd` in `i18n.js` from the loaded dictionary's `faq_q<N>`/`faq_a<N>` pairs. **Do not hand-write it into `faq.html`** — the static Japanese copy between `SEO:BEGIN`/`SEO:END` is generated (see 生成AI・JS を実行しないクローラ below). The loop stops at the first missing `faq_q<N>`, so FAQ keys must stay contiguously numbered. |
-| JSON-LD `BreadcrumbList` | every page with a `.breadcrumb`, generated at runtime | `applyBreadcrumbJsonLd` in `i18n.js` builds it from the translated breadcrumb text, in the reader's language, with URLs in the canonical `?lang=` form (2026-10-11). Same reason as FAQPage: never hand-write it |
-| JSON-LD `WebPage`, `og:locale`, `og:image:alt` | every page, at runtime | `applyPageMeta` in `i18n.js` (2026-11-11) writes a `WebPage` (name / description / url = canonical / `inLanguage` / `isPartOf`, **no `publisher`**) in the reader's language, and switches `og:locale` (Facebook's codes; `es` is `es_LA`) and `og:image:alt` / `twitter:image:alt` (key `og_image_alt`, in `RUNTIME_KEYS`). No `WebPage` in kids mode, on `noindex` pages (404, voices) or on event pages (they carry `Event`). The static `<head>` of every page holds the Japanese values (`og:locale` `ja_JP`, the alt text) for crawlers that do not run JS — **copy those lines when adding a page** |
-| `<meta name="robots" content="max-snippet:-1, max-image-preview:large">` | every indexable page `<head>` (not 404 / voices), and the event-page template | Lets search results quote as much as they like and show the large image (2026-11-11). Kids mode adds its own `noindex, follow` next to it; the stricter one wins |
-| `rel="alternate" type="text/calendar"` | `schedule.html` `<head>` only | Points at `calendar.ja.ics` (2026-11-11) |
-| Atom feed | `feed.xml` (generated) | See 「外から見つけてもらう仕組み」 below. Linked from every page's `<head>` with `rel="alternate"` |
-
-Google has restricted `FAQPage` rich results to authoritative government and health sites, so this markup will most likely not produce rich results here. It is still valid, accurate structured data and costs nothing to keep.
-
-## 外から見つけてもらう仕組み（2026-10-11 ユーザー指示）
-
-「桃花台」「Tokadai」の名前で検索・共有・引用されたときに見つかり、正しく読まれ、広がるための5つ。日次アイデアの起案プロンプトにも SEO・SNS の観点を足してある。**どれも外部ドメイン・第三者スクリプトを増やさず、中身を宣伝文にしない**（非公式・中立が引用される理由）。
-
-- **節・質問への直リンク（SECTION LINKS in `js/main.js`）** — `main h2.section-title` の右の「#」でその節の URL（canonical＝表示言語の `?lang=` 付き＋`#id`）をコピー。id は PAGE TOC が決めたもの（**SECTION LINKS は PAGE TOC より後に置く**）。Q&A（`.faq-item`）は質問のキーから id（`faq_q3`→`faq-q3`、`bus_faq_q2`→`bus-faq-q2`）を付け、開いた答えの下に🔗。その id で開かれたら答えを開いて着地する。**ボタンは文字を持たない**（記号は CSS の `::before`）— 目次・読み上げ・原文併記が見出しの textContent を拾うため。見出しは辞書で作り直されるので `komaki:i18n-applied` のたびに付け直す。キーは `sec_link_copy` / `faq_link_copy` / `sec_link_copied`（`RUNTIME_KEYS`）。**Q&A のキー名を変えると共有済みのリンクが切れる。**
-- **予定ごとの固有ページ（`events/<開始日>-<N>.html`）** — `.github/scripts/build_event_pages.py` が schedule.html の手書きの予定（`sched_date<N>` / `sched_desc<N>`）1件ずつに生成する。**手編集不可。schedule.html の予定を足したり直したりしたら必ず実行**（自動更新ジョブも起案のあとに回す。check 13 が古さを止める）。同じスクリプトが schedule.html の各予定に `id="ev-…"` と🔗（`a.event-permalink`、`event_permalink`）と `data-ev`（events.json のどの予定か。「📅 カレンダーに追加」が読む）を書き込み、sitemap.xml の `EVENTS:BEGIN〜END` を作り直し、消えた予定のページを消す（消えた URL は 404.html が受ける）。**`events.json` で `"day": true` の予定のうち、題名の直後の（…）に会場名が書いてあるものには `Event` の構造化データ**（name・日付・会場名＋小牧市・説明。主催者は書かない — 公式の案内に見せないため。2026-11-07）を同じスクリプトが `<head>` に書く。ページは `<html data-page="event">` で、45枚が1つのページ別辞書 `event.<lang>.json` を共有する（`build_page_dicts.py`）。静的な title・og・大見出しは日本語で、EVENT PAGE（`js/main.js`）が表示言語の予定名（本文の `<strong>`）に書き換える。本文はキーで流すので訳は既存の13辞書がそのまま使われる。**自動で足される催し（`data-auto`）は対象外**（辞書キーを持たない）。ページは `events/` の下なので `<base href="/">` を持つ。TOKADAI SCHEDULE は `data-page="event"` では催しを足さない。
-- **Q&A の1問ずつのページ（`qa/faq-q<N>.html`・`qa/bus-faq-q<N>.html`、2026-11-14）** — 検索の入口を増やすため（閲覧数を増やす計画の 1(b)）。`.github/scripts/build_qa_pages.py` が faq.html の「よくある質問」と bus.html の Q&A（`.faq-item`）1問ずつに生成する（47枚。community.html の Q&A は形が違うので対象外）。**手編集不可。Q&A の質問・答え（`faq_q*` / `faq_a*` / `bus_faq_q*` / `bus_faq_a*`）を足したり直したりしたら必ず実行**（静的な日本語は `ja.json` から取る。自動更新ジョブと週1回の番号照合も回す。check 13b が古さを止める）。ファイル名は直リンクの id と同じ（`faq_q3` → `qa/faq-q3.html`）なので、**キー名を変えると公開済みの URL が変わる**。同じスクリプトが faq.html・bus.html の各問いに固有ページへのリンク（`a.qa-permalink`、文字なし・📄 は CSS、`qa_permalink`。開いた答えの下で 🔗 の右）を書き込み、sitemap.xml の `QA:BEGIN〜END` を作り直し、消えた問いのページを消す。ページは `<html data-page="qa">` で、47枚が1つのページ別辞書 `qa.<lang>.json` を共有する。静的な title（質問そのもの）・description（答えの頭）は日本語で、QA PAGE（`js/main.js`）が表示言語に書き換える。本文の下に `recomposed_note`・もとのページの同じ問いへ戻るリンク（`qa_page_back`）・前後の質問（`qa_prev` / `qa_next`、同じページの中だけ）。**`QAPage` の構造化データは付けない**（答えは市の公表を書き直したもので、当サイトが出どころではないため。`FAQPage` は faq.html だけ）。`.faq-item` などのクラスは使わない（アコーディオン・絞り込み・直リンクのボタンを動かさないため）。QR・関連リンクは出さない。
-- **404.html** — GitHub Pages が存在しない URL にそのまま返す。**`<base href="/">` を外さないこと**（深いパスで css・js・data・リンクが壊れる）。ページ ID はパスから決められないので `<html data-page="404">`（`i18n.js` の `PAGE_ID` がこれを優先）。`noindex`、sitemap 対象外（check 12）、共有欄なし（check 11 の対象外）。キーは `nf_*` と `meta_*_404`。
-- **ページごとの QR** — `build_qr.py` が13ページ×12言語＝156枚（`qr/<ページ>.<言語>.svg`）。共有欄の「▣」（`share_qr*`、`RUNTIME_KEYS`）が `<dialog>` で表示・保存させる。QR に入るのは canonical（表示言語の URL）。**ページを足したら `build_qr.py` の `PAGES` と `js/main.js` の `QR_PAGES` の両方に足す。** JS で QR を作らない方針はそのまま。予定ページ・404 には出さない。
-- **Atom フィード（`feed.xml`）** — `.github/scripts/build_feed.py` が `news.json`・`community_events.json`（東部のみ）・`tobu_actions.json`（催しを除く — 開催日は公表日ではないため）・`site-updates.json`（fix を除く）から作る。**リンクはこのサイトの該当コーナーだけ**で、市の個別ページへは張らない。見出しはカットインと同じ一行（「市が「…」のページを更新」）。出力は入力だけで決まる（`--check` のため）。毎日のワークフローが作り直し、更新履歴を手で足したときは手で回す（check 14）。**配信していることは画面にも出す**（2026-10-13 ユーザー指示）：全ページのフッタの `.footer-feed`（`feed_link`）と、トップ「最新の動き」の見出し下の**一行**の `.feed-box.feed-line`（`feed_link` と `site.html#feed` への `feed_more`）。くわしい説明（届くもの・受け取り方・リンク先・日本語であること）は `site.html#feed`（`feed_h` / `feed_lead` / `feed_li1`〜`4`、2026-10-30 ユーザー指示でトップから移して書き直した）。`feed_li4` に「フィードは日本語」と書いてある — フィードを多言語にしたら、また届くものを変えたら `feed_li1` も直す。
-- **パンくずの構造化データ** — SEO の表を参照。
-
-## 生成AI・JS を実行しないクローラへの対応（2026-11-24 ユーザー指示）
-
-「サイト内全部の各ページで SEO および生成AIからのアクセスに対応を強化」。生成AIのクローラの多くは JavaScript を実行しないので、実行時に作る構造化データや一覧は見えない。
-
-- **robots.txt**：検索・回答用も学習用も、AI のクローラを名指しで許可（ユーザー決定）。llms.txt の所在をコメントで案内。
-- **`llms.txt` / `llms-full.txt`**（`build_llms.py`、手編集不可、`--check`＝check 30）：サイトの説明（非公式・運営者・公式情報の確かめ先・【事実】と 🔎💡 の書き分け）とページ・主な節の一覧、本文の全文（日本語、検索の索引から。自動取得の一覧は入らない）。**検索の索引を作り直したら続けて回す**（自動更新ジョブも回す。`ALLOWED_GENERATED`）。見解を含むページは `VIEW_PAGES`。`site.html#feed` に案内の1行 `llms_line`。
-- **静的な構造化データ**（`build_static_seo.py`、各ページ `<head>` の `SEO:BEGIN〜END`）：日本語の `WebPage`・`BreadcrumbList`、faq.html は `FAQPage`。`i18n.js` が同じ id を上書きするので二重にならない（こどもむけでは WebPage を消す）。**publisher は書かない・日付は入れない**（dateModified は PAGE RECENT）。古くても読者には見えないので check 31 は警告だけ、週1回の `site_lint.py` と番号照合（check-contacts.yml）で作り直す。題名・説明文・パンくず・faq_q*/faq_a* を変えたら回す。ページを足したら回せば自動で入る。
-- **JS 無効のときの一覧**：トップと community.html の自動取得の一覧に `<noscript>` で feed.xml への案内（日本語だけ）。
-
-## ウェブアプリ化（ホーム画面に追加。2026-10-17 ユーザー指示）
-
-「📲 アプリにする」でサイトをホーム画面に置け、アイコンから全画面で開ける。仕組みは3つ。
-
-- **マニフェスト** `manifest.<言語>.webmanifest`（12枚）。`.github/scripts/build_manifest.py` が辞書の `meta_title_index`（name）・`logo_main` のタグを外したもの（short_name）・`meta_desc_index` から作る — **この3キーを変えたら実行**（check 16 が古さを止める）。全ページの `<head>` は `manifest.ja.webmanifest`・`img/icon-180.png`（apple-touch-icon）・`theme-color`・`apple-mobile-web-app-title` を持ち、`i18n.js` の `updateAppMeta()` が表示言語のマニフェストとアプリ名に差し替える。ページを足すときはこの4行もコピーすること（予定ページは `build_event_pages.py` の雛形にある）。アイコン `img/icon-*.png` は `favicon.svg` の花を Playwright で一度だけ描いてコミットしたもの（maskable は花を 72% に縮め、余白を黒板の緑で埋める）。
-- **service worker `/sw.js`**（ユーザー決定：オフラインでは「前に見たページだけ読める」）。**同じオリジンの GET だけ**を **network-first** で扱う：ネットから取れたらキャッシュを上書きし、つながらないときだけキャッシュを返す。キャッシュに無いページは sw.js に埋め込んだ短い案内（ja＋en）。**キャッシュを先に出す方式（cache-first / stale-while-revalidate）にしないこと** — 古い内容を最新に見せ、古い JS と新しい辞書が噛み合わなくなる。外部ドメイン（はてなスターなど）には触れない。ふだんは `CACHE` の版（いまは `komaki-v2`）を上げなくてよく、sw.js の仕組みを変えたときだけ上げる。**ページ（navigate）は検索語を外した URL で1枚だけ保存し、`/` は `/index.html` として保存する**（v2、2026-10-26。`?fbclid=` などのたびにキャッシュが増え続けていたため）。リダイレクト後の応答は保存しない。check 16 が同じオリジンの判定と network-first の形を見張る。
-- **ボタン**（`INSTALL APP` in `js/main.js`、`window.KomakiApp.track()`）。置き場所は5か所：PC のヘッダ（`.lang-pick` の右端の `.app-install-btn`。寸法は `--hr`）、モバイルのハンバーガーメニューの最後（`li.nav-app`。モバイル幅だけ表示）、フッタ（`.footer-app`、フィードの行の下）、共有欄と固定バー（`share-btn--app`）、`site.html#app` の大きなボタン。**モバイルのヘッダには 📲 を出さない** — 言語のセレクトが狭まって「日本語」が「日」まで切れた（2026-10-17 実測）。Chrome / Edge は `beforeinstallprompt` を取っておいてインストール画面を出し、iPhone・iPad はその API が無いので「共有 → ホーム画面に追加」の手順を小窓で案内する。アプリとして開いている（`display-mode: standalone` / `navigator.standalone`）ときと、`appinstalled` のあとはどこにも出さない。どれも JS が作る（JS が無効なら何も出ない。about の大きなボタンは HTML では `hidden`）。文言キー `share_app` / `app_*`（`RUNTIME_KEYS`）。
-- **オフラインのときはヘッダの直下に断り書き**（`.app-offline-notice`、`app_offline`「前に開いたときの内容を表示しています」）。古い内容を最新に見せないためで、外さないこと。
-- 通知はしない。利用状況は Cookie なしの閲覧数の集計だけ（`app_note` / `app_li3` と `site.html#privacy` にそう書いてある。2026-10-24 に「記録しない」から書き換えた）。Playwright の `set_offline` は service worker の通信を止めないので、オフラインの検証はローカルのサーバを止めて行う。
-
-## 利用状況の計測・ハッシュタグ・声の窓口（2026-10-24 ユーザー指示）
-
-サイトがどう読まれ・使われているかを運営者が確かめ、SNS で使い方に触れてもらうための3つ。
-
-- **閲覧数の集計（COUNTER in `js/main.js`、ファイル冒頭）** — GoatCounter（`komaki-saihen`）に画像1枚ぶんの GET を送るだけで、**外部スクリプトは読まない**（`count.js` も使わない）。送るのはパス（＋`?lang=` / `?kids=1`）・参照元のドメイン（パスや検索語は送らない）・画面の大きさ・機能の名前（`share/x`・`share-bar/x`・`calendar/add`・`tts/play`・`toggle/kids`・`font/l`・`link/section`・`lang/pt`・`tags/copy`・`feedback/open`・`entry/qr`・`open/app`・`app/installed` など。2026-10-31 に `app/open`・`cutin/more|close`・`review/tab-*|more|back|partnav`・`toc/jump`・`steps/jump`・`map/zoom-*`・`map/layer`・`faq/toggle`・`child-est/method`・`contact/tel` と、外部リンクの行き先の種類 `out/city|school|mext|instagram|facebook|other` を追加 — アドレスは送らない。`privacy_li1` に明記）。入力した文字・共有先・学年・Mastodon のサーバー名は送らない。**Cookie も識別子も作らない。** DNT / GPC、`localStorage.komaki_nocount`（`site.html#privacy` のボタン）、`navigator.webdriver`・ボット UA、https 以外・localhost では送らない。機能の判定は document のクリックを1か所で見る `EVENTS` の表なので、**ボタンのクラス名を変えたら `EVENTS` も直す**。読者への説明は `site.html#privacy`（`privacy_*`）・`share_note`・`app_note`・`app_li3` — 数え方を変えたら全部直す。
-- **紙の QR からの来訪** — `build_qr.py` が QR の URL に `src=qr` を足す。`i18n.js` の冒頭（`takeEntrySrc`）が同期的に読んで `window.KomakiEntrySrc` に退避し、`replaceState` で URL から消す（共有 URL・canonical に残さない）。COUNTER が `entry/qr` として数える。QR を作り直したら同じ形を保つこと。
-- **週1回の報告**（`.github/workflows/check-reach.yml`、月曜 7:10 JST、`check_reach.py`）— GoatCounter API（Secret `GOATCOUNTER_TOKEN`、無ければ省く）・はてなブックマーク数（`bookmark.hatenaapis.com/count/entries`）・Bluesky 公開検索（`api.bsky.app`、`since` は受け付けないので取得後に日時で絞る）。**X・Instagram・Facebook・Threads・TikTok は robots.txt が機械での収集を禁じるので取りに行かない**（報告にタグ検索ページのリンクだけ載せる）。Search Console は API を使わず人が月初に見る。メール（`send_mail.py`）→ だめなら Issue（📈）。**数字はリポジトリにコミットしない。**
-- **ハッシュタグは5つ：`#学校再編ナビ #桃花台 #小牧 #小牧市東部 #篠岡地区`**（どの言語でも日本語のまま）。出す場所は、全ページの共有欄（HASHTAGS ブロックが `.share-lead` の下にタグとコピーボタンを足す。固定バーには入れない）、`site.html#spread`（タグ・使い方の例・投稿の例文・お願い）。**共有ボタンの投稿文にもタグを添える**（同日、ユーザー指示で「入れない」から変更）：本文を渡せる LINE・X・Threads・Bluesky・Mastodon・端末の共有だけで（`SERVICES` の `tags: true` と `withTags()`）、URL しか受け取らない Facebook・note、題名欄しかないはてなブックマーク・Reddit、リンクを貼る使い方の Instagram・TikTok（URL だけコピー）には付けない。タグの文字列は `window.KomakiTags`（`js/main.js` 冒頭）の1か所。タグは1つずつ `.tag-one`（nowrap）で包む — 「#」と語の間で折れるため。タグを変えるときは `window.KomakiTags`・`site.html#spread`・`check_reach.py` の `TAGS` をそろえる。**このサイトは SNS の投稿を転載・埋め込みしない**（`spread_ask_p` に明記）。投稿の例文に賛否を書かない。
-- **声の窓口（`site.html#feedback`）** — GitHub の Issue フォーム（`.github/ISSUE_TEMPLATE/feedback.yml`、ラベル `feedback`）。公開されること・GitHub アカウントが要ること・個人情報を書かないこと・計画そのものへの意見は市の窓口へ、を必ず書く。**説明に「分かりにくい所」「誤りの報告」を例として書かない**（2026-10-24 ユーザー指示。見出しは「ご意見の送り先」）。
 
 ## CSS design tokens
 
@@ -992,68 +234,21 @@ All colours and radii are defined as CSS custom properties on `:root` in `css/st
 
 A manually maintained human-readable index of all site files with descriptions. Update it when adding or removing files.
 
-## Machine-checked invariants (`.github/scripts/auto_gates.py`)
 
-Beyond the auto-update pipeline's scope and evidence checks, these run site-wide on every gate invocation and are the things most likely to be broken by an innocent-looking edit:
+## 詳しい説明の置き場（`docs/claude/`）
 
-| # | Check | Why it exists |
-|---|---|---|
-| 3 | `ja` and `en` have identical key sets | `i18n.js` skips `ja.json` for non-Japanese languages and relies on this |
-| 4 | No `ja-kids` line exceeds 65 mora | Kids mode targets 3rd-grade reading; splitting sentences matters more than opening kanji |
-| 5 | `data/i18n/pages/` is up to date | A stale page dictionary serves old text with a 200 and cannot be caught at runtime |
-| 6 | External links (city / MEXT / Instagram) | Each domain is confined to its permitted URLs, and MEXT/Instagram additionally to their permitted pages |
-| 8 | Timelines are in ascending `data-start` order | Both lists are append-targets; an out-of-order entry silently misstates when things happened |
-| 9 | schedule.html ⇔ events.json agree for every event not yet over | The top-page bar and the calendar are drawn from events.json; the schedule list is hand-written HTML. Each list item's `data-start`〜`data-event-date` must contain an events.json date and vice versa |
-| 10 | `now_text` marks every date with `data-past` / `data-until` | The いまの状況 box is prose; without the marks a passed date silently stays on the top page |
-| 11 | Every page (except the `voices.html` redirect) carries `#share` / `#share-buttons` | The share buttons and the sticky bar are built only where that section exists; `clubs.html` shipped without it and nobody noticed until a reader did (2026-10-05) |
-| 12 | Every root `*.html` is in `files.txt`, and every page except `voices.html` / `404.html` is in `sitemap.xml` with the 13 hreflang links in the `?lang=` form | Both files are hand-maintained; a page missing from the sitemap (or a broken hreflang) silently drops it — and its 11 translations — from search |
-| 13 | `events/*.html`, the `id`/🔗 on each schedule item, and the sitemap's EVENTS block match `schedule.html` (`build_event_pages.py --check`) | A stale event page keeps a changed date in search results |
-| 13b | `qa/*.html`, the link on each Q&A item of `faq.html` / `bus.html`, and the sitemap's QA block match the dictionary (`build_qa_pages.py --check`) | A stale Q&A page keeps the old answer in search results (2026-11-14) |
-| 14 | `feed.xml` matches its data (`build_feed.py --check`) | Adding a changelog line by hand without rebuilding leaves the feed behind |
-| 15 | Every page except `index` / `site` / `voices` / `404` lists at least one city, one prefecture and one national department plus the library block, and every number `contacts.json` says is shown on a page is really there | The user asked for all three levels on every page (2026-10-11); a department added to the HTML but not to `contacts.json` would escape the weekly number check |
-| 17 | `data/child_estimate.json` matches `data/official_pages/population/` (`build_child_estimate.py --check`), its daily movement is at least 0.1, and the population files come only from the city's population-statistics pages | The top page shows the estimate to one decimal place so that it changes every day (2026-10-22); a stale or flat estimate would silently break that |
-| 18 | No avoided spelling from `data/term_rules.json` appears in any dictionary, headline translation, event label or community-action field | English had Tokadai East and Tokadai Higashi for the same school (2026-10-23); a fix without a rule would drift back with the next translation |
-| 6b | Every URL in `*.html`, `events/*.html`, `js/*.js`, `sw.js`, the dictionaries, `events.json`, `community_actions.json` and `headline_i18n.json` — after undoing HTML entities, JSON escapes and %-encoding — has a host in `PERMITTED_HOSTS`, and every `www.city.komaki.aichi.jp` URL has a path in `CITY_PATHS`; no `javascript:` / `data:` / `vbscript:` URL anywhere | Check 6 only looked for known domains, so `https://evil.example`, `//evil.example`, upper-case or entity-encoded hosts and `…/x.pdf#303/index.html` all passed (2026-10-26). **A new domain has to be added to `PERMITTED_HOSTS` too** |
-| 19 | Dictionary HTML uses only `strong br small a span p li dt dd ul b em wbr` with `href target rel style class data-past data-until`; `href` is https / in-site / `#` / `tel:` / `mailto:`; `style` has no `url()`/`expression`; headline translations, event labels and community actions carry no tags at all | `data-i18n-html` goes straight into `innerHTML`; an `<img onerror>` drafted by the AI used to pass every gate (2026-10-26) |
-| 19b | No HTML character reference (`&amp;` `&lt;` `&quot;` `&#…;` …) in a dictionary value that is shown as text (`data-i18n`, `-aria`, `-alt`, `meta_*`, keys main.js inserts as `data-i18n`), nor in `site-updates.json` / `events.json` / `community_actions.json` / `headline_i18n.json` | Those go in via `textContent`, so 「Q&amp;A」 showed literally on the top page (`ql_faq_p` / `ql_bus_p`, 2026-11-07, user's instruction). Write a plain `&`; only `data-i18n-html` values may use entities |
-| 20 | No token-like string (`sk-ant-`, `ghp_`, `github_pat_`, private keys…) in any changed file | Last net against an AI writing a credential it could read into a public file (2026-10-26) |
-| 22 | Lines the auto-update drafter adds to `data/site-updates.json` only prepend (≤2), leave every existing line untouched, and follow the changelog format | The drafter may log its own change (2026-11-04); the hand-written history and the scripts' `auto_key` lines must never be rewritten by an AI |
-| 24 | Every `.ill-steps` / `.rev-steps` card links to an `#id` that exists on its page | Pages change and the cards under the TOC have to follow (2026-11-07) |
-| 25 | `calendar.*.ics` matches the data (`build_calendar.py --check`) | A stale subscription calendar silently shows old dates in readers' own calendars (2026-11-07) |
-| 23 | `data/search/*.json` matches the dictionaries and the pages (`build_search_index.py --check`) | A stale search index shows old wording or jumps to a section that no longer exists (2026-11-05) |
-| 26 | Every `link` in `data/site-updates.json` points at an existing page and `#id` | Changelog lines link to the corner they are about (2026-11-10); a removed section must not leave dead links |
-| 27 | `data/crosslinks/*.json` matches the search index (`build_crosslinks.py --check`) | The related links are computed from the page text (2026-11-10); a stale file points at removed sections or misses new ones |
-| 28 | Every `data-i18n*` key in the HTML exists in `ja.json` (`site_lint.missing_keys()`) | A key with no dictionary entry keeps its inline Japanese in every language and nobody notices (2026-11-11) |
-| 29 | Every in-site link (`page.html#id`, `#id`) in `*.html` and in dictionary values points at something that exists (`site_lint.broken_links()`; runtime ids `faq-qN` / `toc-<key>` and the old anchors MOVED ANCHORS forwards are accepted) | Sections get renamed and moved; a dead in-page link fails silently (2026-11-11) |
-| 30 | `llms.txt` / `llms-full.txt` match the search index (`build_llms.py --check`) | AI assistants would quote removed sections or old wording (2026-11-24) |
-| 31 | (warning only) the static JSON-LD block in each page is current (`build_static_seo.py --check`) | Crawlers that run no JavaScript read only this copy (2026-11-24) |
-| 21 | review.html's 25 key-point cards (10 findings, 15 proposals), their 「くわしく →」 targets, `REVIEW LINKS` in `js/main.js` and the links between review.html and analysis.html all agree | The two pages are read as one: a key point must land on its evidence and every evidence card must lead back (2026-10-31) |
+この CLAUDE.md には毎回要る決まりだけを置き、詳細は下のファイルに分けてある（2026-11-28 ユーザー指示。CLAUDE.md が大きくなりすぎたため）。**その作業をする前に該当ファイルを読むこと。** 新しい決まりを書くときも、毎回要る決まりならここ、特定の機能・ページの詳細なら該当ファイルに書く（迷ったら詳細ファイルに書き、ここには1行の要点だけ）。
 
-
-**地域のレガシーの各カードの出典（2026-11-22 ユーザー指示。community.html だけ）で追加した市のページ：**
-- `event_1/midokoro/shiminshikinomori/16376.html`
-- `event_1/midokoro/shiminshikinomori/16809.html`
-- `soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/2/9116.html`
-- `soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/3/9118.html`
-- `soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/4/9137.html`
-- `soshiki/kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/4/9146.html`
-- `soshiki/kyoiku/kyouikusoumu/303/52402.html`
-- `soshiki/toshiseisakubu/kouen/1/8/1/35746.html`
-- `soshiki/toshiseisakubu/kouen/1/8/1/tikukouen/22276.html`
-- `soshiki/toshiseisakubu/toshikeikaku/1/1_1/toshikeikan/5901.html`
-- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/46417.html`
-- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/35668.html`
-- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/45200.html`
-- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/51859.html`
-- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/kyoudouteianjigyou/index.html`
-- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/machidukurisemina/46283.html`
-- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa4nendo/39361.html`
-- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa4nendo/39418.html`
-- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa5nendo/43097.html`
-- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/45800.html`
-- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/45889.html`
-- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/46053.html`
-- `soshiki/toshiseisakubu/toubumachidukuri/tobumachidukurisingikai/toubumatidukurinyu-su/purattofo-mu/trial/reiwa6nendo/48386.html`
-ほかに愛知県2ページ（旧桃花台線・風景群リスト）と葵エンジニアリング「地名の由来」9ページ（`LEGACY_SOURCES`）。PDF へは直リンクしない。新篠岡音頭の出典は YouTube の音源1本だけ（`https://www.youtube.com/watch?v=h_WC-X5YbuE`、2026-11-22 ユーザー指示。`YOUTUBE_LEGACY`、community.html だけ）。作詞・作曲者や歌い手の名前は書かない。
-
-- `kyoiku/bunkazai/1_1/2/bunkazai/shiteibunkazai/1/9103.html`（`shiteibunkazai/1/9103.html`、篠岡古窯跡群）と、国立国会図書館サーチの1件 `ndlsearch.ndl.go.jp/books/R100000001-I23111100253640`（『篠岡古窯址群』、昭和46〜47年。古窯のカードの出典、community.html だけ）。
+| ファイル | 中身 | 読むとき | 常に守る要点 |
+|---|---|---|---|
+| `docs/claude/links.md` | 許可URLの表・grep・春日井市・Instagram・SNS・共有の送り先・レガシーの出典一覧・見出しの直リンク | リンクを足す・直す | 上の「1. External links」 |
+| `docs/claude/i18n.md` | 原文の併記、ページ別辞書、`?lang=`・初回の言語判定・`?kids=1` | 言語まわりの仕組みを触る | 辞書を直したら `build_page_dicts.py`。`ja`⇔`en` のキー一致（check 3）を外さない。言語は `window.KomakiLang()` で読む |
+| `docs/claude/pipelines.md` | news.json・監視ページ・添付PDF・自動更新パイプライン・日次アイデア・学校HP・協議会イベント・東部まちづくり・都市計画・子どもの数の推定・リンク確認・取得状況・site_lint・見出しの翻訳 | 自動取得・ワークフロー・生成スクリプトを触る | 自動生成ファイル（`news.json` `school_news.json` `community_events.json` `tobu_actions.json` `toshikeikaku_east.json` `child_estimate.json` `official_pages/` `headline_i18n.json` の AI 書き込み など）は手で直さない。市サーバへの負荷を増やさない。AI の工程は信用しない前提の手順を外さない |
+| `docs/claude/ui.md` | `js/main.js` の各機能（共有・検索・関連リンク・カレンダー・.ics・学年ビュー・カットイン・目次・読み上げ・前回からの印・最新の動き）とヘッダのロゴ | 画面の機能・ヘッダを触る | ヘッダの寸法は `--hr`。共有の送り先は `js/main.js` だけ。外部スクリプトは はてなスター だけ |
+| `docs/claude/pages-community.md` | 地域の取組・レガシー・クイズ・東部振興構想 | community.html・クイズ | 地域の取組は必ずスケジュール（schedule.html＋events.json＋`status_digest`）にも載せる。Instagram は機械で読まない。マークと発信元の行を外さない |
+| `docs/claude/pages-review.md` | review / analysis の構成・節の表・核心と根拠の対応 | review.html・analysis.html | 当サイトの見解はこの2ページ（と shinooka.html の見解の節）だけ。【事実】／🔎／💡 の書き分けと `rev_stance` を外さない。わからないことは質問集 `#rev-open` に問いとして足す |
+| `docs/claude/pages-other.md` | about の近隣他地区・ことばメモ・町名早見、nationwide、clubs とチェックリスト、faq、教育の質、shinooka | 各ページ | nationwide の事実は文科省だけ。faq の `faq_q<N>` は欠番なし。賛否の声を市の答えと混ぜない |
+| `docs/claude/contacts.md` | 担当部署の連絡先・週次照合 | ページを更新したとき（問い合わせ先も見直す） | トップ・site 以外の全ページに市・県・国と「図書館で調べる」（check 15）。番号は公表ページで確かめ `contacts.json` に登録。部署名は日本語のまま |
+| `docs/claude/bus-map.md` | 対象エリアの地図の由来 | 地図に触れる前に | ⛔ **地図は凍結。ユーザーの明示的な指示がないかぎり一切変更しない** |
+| `docs/claude/seo.md` | SEO の表・直リンク・予定ページ・Q&A ページ・404・QR・フィード・AI クローラ・ウェブアプリ・計測・ハッシュタグ | ページを足す・予定や Q&A を直す | 予定を直したら `build_event_pages.py`、Q&A なら `build_qa_pages.py`、更新履歴なら `build_feed.py`、文を変えたら `build_search_index.py`→`build_crosslinks.py`→`build_llms.py`。トラッキング・第三者スクリプトを増やさない |
+| `docs/claude/gates.md` | `auto_gates.py` の各 check の意味 | ゲートが落ちたとき・検査を足すとき | 検査を足すならまず `site_lint.py`（止めない点検）に |

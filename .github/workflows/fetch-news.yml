@@ -429,7 +429,7 @@ jobs:
                review.html に出るので、手で書き足してはいけない。学校再編そのものの事実が書かれていた
                場合にかぎり、通常どおり扱う
             3. data/site-facts.json で影響しうるサイト内の箇所を確認する
-            4. CLAUDE.md のルール（特に日付連動の自動表示・属性の使い分け）を読む
+            4. CLAUDE.md のルール（特に日付連動の自動表示・属性の使い分け）を読む。詳細は CLAUDE.md 末尾の索引にある docs/claude/ の各ファイル（地域の取組は pages-community.md、外部リンクは links.md、自動取得は pipelines.md）
             5. サイトのデータを更新すべきか判断し、必要な場合のみ次のファイルだけを編集する:
                - data/events.json … カレンダー。日付キー YYYY-MM-DD、12言語（ja,en,pt,vi,tl,es,zh,id,ko,ne,tr,my）すべて必須
                  （1日に複数の予定があるときは、その日付の値をオブジェクトの配列にする）
@@ -664,7 +664,7 @@ jobs:
               うち data/official_pages/newsletters/saihen-dayori-*.txt は『学校再編だより』
               各号の本文。図版・地図の中の文字は取り出せていないので、原文テキストに
               無い事実を起案AIが書いていたら、それは推測とみなして reject する
-            - サイト規則: CLAUDE.md、対応表: data/site-facts.json
+            - サイト規則: CLAUDE.md と docs/claude/ の各ファイル、対応表: data/site-facts.json
 
             ## 審査観点
             1. すべての変更が公式ソース原文に裏付けられているか（日付・名称・会場が原文と一致するか）

@@ -167,7 +167,8 @@ auto_ideas/history.json             過去に出した新機能アイデアの�
 .claude/settings.local.json    Claude Codeのプロジェクト固有の権限・設定を記述するローカル設定ファイル。
 CONTRIBUTING.txt               コンテンツ管理チェックリスト。外部リンク制限・i18nルール・日付連動の自動表示・こどもむけ等の運用ルールと検証手順を記載。
 README.md                      プロジェクト概要・ページ構成・対応言語・ローカル開発手順を説明する公開用READMEファイル。
-CLAUDE.md                      Claude Code向けの開発ガイド（英語）。i18n仕様・検証コマンド・制約事項を記載。
+CLAUDE.md                      Claude Code向けの開発ガイド。毎回要る決まりと、docs/claude/ の索引だけを置く（2026-11-28 に詳細を分けた）。
+docs/claude/*.md               CLAUDE.md から分けた詳細（links・i18n・pipelines・ui・pages-community・pages-review・pages-other・contacts・bus-map・seo・gates）。その作業のときに読む。
 CLAUDE_ja.md                   CLAUDE.mdの日本語説明ファイル。日本語話者向けにCLAUDE.mdの内容を解説。
 files.txt                      本ファイル。サイト構成ファイルの一覧と説明を手動管理するインデックス。
 calendar.<lang>.ics 購読できるカレンダー（12言語、自動生成・手編集不可）。schedule.html の「🔔 カレンダーアプリで購読する」から登録する。build_calendar.py が作る。
