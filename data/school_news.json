@@ -1,8 +1,66 @@
 {
-  "fetched_at": "2026-11-27T04:28:18Z",
+  "fetched_at": "2026-11-28T04:07:25Z",
   "source": "各校公式ホームページ（小牧市立学校）",
   "max_items": 3,
   "schools": [
+    {
+      "slug": "hikarigaoka-j",
+      "level": "jhs",
+      "names": {
+        "ja": "光ヶ丘中学校",
+        "ja_kids": "ひかりがおか中学校",
+        "en": "Hikarigaoka Junior High",
+        "zh": "光之丘中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
+      "latest_date": "2026-11-28",
+      "items": [
+        {
+          "title": "雨の日の「ありがとう」",
+          "date": "2026-11-28",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136730203?tm=20261128121015"
+        },
+        {
+          "title": "敗北の悔しさを、明日を変える一歩に。",
+          "date": "2026-11-22",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136595778?tm=20261122131740"
+        },
+        {
+          "title": "全尾張中学軟式野球大会 １回戦突破",
+          "date": "2026-11-21",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136594509?tm=20261121121040"
+        }
+      ]
+    },
+    {
+      "slug": "toryo-j",
+      "level": "jhs",
+      "names": {
+        "ja": "桃陵中学校",
+        "ja_kids": "とうりょう中学校",
+        "en": "Toryo Junior High",
+        "zh": "桃陵中学"
+      },
+      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
+      "latest_date": "2026-11-27",
+      "items": [
+        {
+          "title": "人権教室",
+          "date": "2026-11-27",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136727893?tm=20261127161838"
+        },
+        {
+          "title": "【職業人体験】",
+          "date": "2026-11-27",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136727308?tm=20261127165948"
+        },
+        {
+          "title": "【職業人体験】",
+          "date": "2026-11-27",
+          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136727203?tm=20261127165841"
+        }
+      ]
+    },
     {
       "slug": "sue-e",
       "level": "elem",
@@ -45,6 +103,11 @@
       "latest_date": "2026-11-27",
       "items": [
         {
+          "title": "１年生プレ登校",
+          "date": "2026-11-27",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136728552?tm=20261127171350"
+        },
+        {
           "title": "2年生 プレ登校",
           "date": "2026-11-27",
           "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136724388?tm=20261127113411"
@@ -53,40 +116,6 @@
           "title": "３年生 面接練習",
           "date": "2026-11-25",
           "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136606675?tm=20261125150743"
-        },
-        {
-          "title": "《桃花台野球部》全尾張大会に出場しました",
-          "date": "2026-11-25",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_j/weblog/136603580?tm=20261125103118"
-        }
-      ]
-    },
-    {
-      "slug": "toryo-j",
-      "level": "jhs",
-      "names": {
-        "ja": "桃陵中学校",
-        "ja_kids": "とうりょう中学校",
-        "en": "Toryo Junior High",
-        "zh": "桃陵中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/toryo-j/",
-      "latest_date": "2026-11-26",
-      "items": [
-        {
-          "title": "【職業人体験】",
-          "date": "2026-11-26",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136721945?tm=20261126184545"
-        },
-        {
-          "title": "【職業人体験】",
-          "date": "2026-11-26",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136721784?tm=20261126183307"
-        },
-        {
-          "title": "【職業人体験】",
-          "date": "2026-11-26",
-          "url": "https://www.komaki-aic.ed.jp/toryo_j/weblog/136721668?tm=20261126183149"
         }
       ]
     },
@@ -100,8 +129,13 @@
         "zh": "篠冈小学"
       },
       "url": "https://www.komaki-aic.ed.jp/shinooka-e/",
-      "latest_date": "2026-11-25",
+      "latest_date": "2026-11-27",
       "items": [
+        {
+          "title": "国語：たぬきの糸ぐるま",
+          "date": "2026-11-27",
+          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136729617?tm=20261127195746"
+        },
         {
           "title": "アミーゴ給食",
           "date": "2026-11-25",
@@ -111,11 +145,6 @@
           "title": "花壇に花を植えました",
           "date": "2026-11-25",
           "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136608282?tm=20261125173031"
-        },
-        {
-          "title": "アミーゴ給食２",
-          "date": "2026-11-19",
-          "url": "https://www.komaki-aic.ed.jp/shinooka_e2/weblog/136585842?tm=20261119212640"
         }
       ]
     },
@@ -129,8 +158,13 @@
         "zh": "光之丘小学"
       },
       "url": "https://www.komaki-aic.ed.jp/hikarigaoka-e/",
-      "latest_date": "2026-11-25",
+      "latest_date": "2026-11-27",
       "items": [
+        {
+          "title": "６年生 給食",
+          "date": "2026-11-27",
+          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136726519?tm=20261127142507"
+        },
         {
           "title": "5年生 図工「美しく立つはり金」",
           "date": "2026-11-25",
@@ -140,40 +174,6 @@
           "title": "廃食用油回収へのご協力ありがとうございました",
           "date": "2026-11-25",
           "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136602781?tm=20261125084426"
-        },
-        {
-          "title": "小牧市民スポーツ大会【バスケットボール】",
-          "date": "2026-11-23",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_e/weblog/136596189?tm=20261123154904"
-        }
-      ]
-    },
-    {
-      "slug": "hikarigaoka-j",
-      "level": "jhs",
-      "names": {
-        "ja": "光ヶ丘中学校",
-        "ja_kids": "ひかりがおか中学校",
-        "en": "Hikarigaoka Junior High",
-        "zh": "光之丘中学"
-      },
-      "url": "https://www.komaki-aic.ed.jp/hikarigaoka-j/",
-      "latest_date": "2026-11-22",
-      "items": [
-        {
-          "title": "敗北の悔しさを、明日を変える一歩に。",
-          "date": "2026-11-22",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136595778?tm=20261122131740"
-        },
-        {
-          "title": "全尾張中学軟式野球大会 １回戦突破",
-          "date": "2026-11-21",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136594509?tm=20261121121040"
-        },
-        {
-          "title": "夢の教室",
-          "date": "2026-11-20",
-          "url": "https://www.komaki-aic.ed.jp/hikarigaoka_j/weblog/136592971?tm=20261120173811"
         }
       ]
     },
