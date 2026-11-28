@@ -3666,6 +3666,19 @@ header nav li.nav-search { display: none; }
 .search-snip { display: block; font-size: .88rem; line-height: 1.6; color: var(--text-muted); margin-top: .15rem; }
 .search-result mark { background: #fbe9a8; color: inherit; padding: 0 .1em; border-radius: 2px; }
 .search-box.inline { max-width: 680px; margin: 1rem auto 0; text-align: left; }
+/* 検索の候補（SEARCH SUGGEST。2026-11-28）：入力欄のすぐ下に重ねる一覧。押すとその言葉で検索する */
+.search-form { position: relative; }
+.search-sug {
+  position: absolute; left: 0; right: 0; top: calc(100% + .25rem); z-index: 30;
+  list-style: none; margin: 0; padding: .3rem 0; max-height: 18rem; overflow: auto;
+  background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius-sm); box-shadow: var(--shadow-lg);
+}
+.search-sug[hidden] { display: none; }
+.search-sug-h { padding: .2rem .9rem .3rem; font-size: .75rem; font-weight: 800; color: var(--text-muted); }
+.search-sug-opt { padding: .45rem .9rem; cursor: pointer; line-height: 1.5; font-size: .95rem; overflow-wrap: anywhere; }
+.search-sug-opt:hover, .search-sug-opt[aria-selected="true"] { background: var(--primary-light); }
+.search-sug-opt mark { background: #fbe9a8; color: inherit; padding: 0; }
+@media print { .search-sug { display: none !important; } }
 
 /* ===== 本文へ移動・上へ戻る（SKIP LINK / TO TOP in js/main.js。2026-11-05） ===== */
 .skip-link {

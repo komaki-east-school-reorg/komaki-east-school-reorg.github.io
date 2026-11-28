@@ -327,6 +327,8 @@
   "search_more": "(위에서 {n}건 표시)",
   "search_none": "해당하는 곳이 없습니다. 다른 단어로 찾거나 문의처에 물어보세요.",
   "search_ph": "무엇을 찾으세요? (예: 스쿨버스 신청)",
+  "search_sug_guess": "혹시 이것인가요",
+  "search_sug_pop": "추천 검색어",
   "season_autumn": "가을",
   "season_fire": "후쿠곤지(불 건너기)",
   "season_h": "계절로 둘러보는 동부",

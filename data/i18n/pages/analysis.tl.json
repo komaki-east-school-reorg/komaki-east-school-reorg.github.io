@@ -506,6 +506,8 @@
   "search_more": "(ipinapakita ang unang {n})",
   "search_none": "Walang tumugma. Subukan ang ibang salita, o magtanong sa tanggapan.",
   "search_ph": "Ano ang hinahanap mo? (hal.: school bus aplikasyon)",
+  "search_sug_guess": "Mga mungkahi",
+  "search_sug_pop": "Mga mungkahing salita",
   "sec_link_copied": "Nakopya ang link",
   "sec_link_copy": "Kopyahin ang link sa seksyong ito",
   "share_app": "Gamitin bilang app (idagdag sa Home Screen)",

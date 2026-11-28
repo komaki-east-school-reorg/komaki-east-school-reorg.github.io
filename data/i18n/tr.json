@@ -2476,5 +2476,7 @@
   "rel_naze_faq": "Kamuoyu görüşlerinde dile getirilenleri gör",
   "rev_deep_naze": "③ “Neden-neden” analizi: planın sorunlarından kök nedenlere ve çözümlere",
   "rev_o53": "Görüş toplamadan veya bilgilendirme yapmadan önce görüşlerin neyi değiştirip neyi değiştiremeyeceğini gösterecek misiniz?",
-  "rev_o54": "2. aşamaya karar vermeden önce 1. aşamanın sonuçlarını (öğrenme, çocukların durumu, topluluktaki değişim) sakinlere bildirecek misiniz?"
+  "rev_o54": "2. aşamaya karar vermeden önce 1. aşamanın sonuçlarını (öğrenme, çocukların durumu, topluluktaki değişim) sakinlere bildirecek misiniz?",
+  "search_sug_pop": "Önerilen kelimeler",
+  "search_sug_guess": "Öneriler"
 }

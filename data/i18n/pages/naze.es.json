@@ -219,6 +219,8 @@
   "search_more": "(se muestran los {n} primeros)",
   "search_none": "No hay coincidencias. Prueba con otras palabras o pregunta a la oficina de contacto.",
   "search_ph": "¿Qué buscas? (p. ej.: bus escolar solicitud)",
+  "search_sug_guess": "Sugerencias",
+  "search_sug_pop": "Palabras sugeridas",
   "sec_link_copied": "Enlace copiado",
   "sec_link_copy": "Copiar enlace a esta sección",
   "share_app": "Usar como app (agregar a la pantalla de inicio)",

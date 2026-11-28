@@ -6802,7 +6802,8 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
    ['search_fail', '検索の準備ができませんでした。通信の状態を確かめて、もう一度開いてください。'],
    ['search_menu', '🔍 サイト内を検索'], ['search_btn', 'サイト内を検索'], ['share_qr_close', '閉じる'],
    ['search_link_copy', '🔗 この検索のリンクをコピー'], ['search_link_copied', 'リンクをコピーしました'],
-   ['search_hints', 'スクールバス|制服|通学区域|説明会|閉校式|問い合わせ']
+   ['search_hints', 'スクールバス|制服|通学区域|説明会|閉校式|問い合わせ'],
+   ['search_sug_pop', 'おすすめの言葉'], ['search_sug_guess', 'もしかして']
   ].forEach(function (p) {
     var el = document.createElement('span');
     el.setAttribute('data-i18n', p[0]);
@@ -6956,6 +6957,32 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
     }).catch(function () { status.textContent = t('search_fail'); });
   }
 
+  /* 候補（SEARCH SUGGEST、2026-11-28 ユーザー指示：検索窓を押したら推測やおすすめの言葉を出す）
+     ・空のとき：おすすめの言葉（search_hints）。打ち始めたら：索引の見出し・言い換え語・おすすめの言葉のうち、
+       打った文字を含むものを最大8件（先頭が一致するもの・短いものを先に）。
+     ・選ぶと入力欄に入れて検索する。上下キー・Enter・Esc で操作できる（combobox / listbox）。
+     ・打った語は保存も送信もしない（集計は search/suggest の機能名だけ）。 */
+  var sugSeq = 0;
+  function suggestions(q, d, l) {
+    var cjk = CJK.test(l), nq = norm(q, cjk), seen = {}, out = [];
+    function add(w, kind) {
+      w = String(w || '').trim();
+      if (!w || w.length > 40) return;
+      var n = norm(w, cjk);
+      if (!n || seen[n] || n === nq) return;
+      var at = n.indexOf(nq);
+      if (nq && at < 0) return;
+      seen[n] = 1;
+      out.push({ w: w, at: at, kind: kind, len: w.length });
+    }
+    t('search_hints').split('|').forEach(function (w) { add(w, 0); });
+    if (!nq) return out;
+    Object.keys((d && d.aliases) || {}).forEach(function (w) { add(w, 1); });
+    ((d && d.items) || []).forEach(function (it) { add(it[2], 2); });
+    out.sort(function (a, b) { return (a.kind < 2 ? 0 : 1) - (b.kind < 2 ? 0 : 1) || (a.at === 0 ? 0 : 1) - (b.at === 0 ? 0 : 1) || a.len - b.len; });   // おすすめ・言い換え語を先に
+    return out.slice(0, 8);
+  }
+
   function makeBox(cls) {
     var box = document.createElement('div');
     box.className = 'search-box ' + (cls || '');
@@ -6966,8 +6993,85 @@ window.KomakiTobuSourceUrl = 'https://www.city.komaki.aichi.jp/admin/soshiki/tos
       '<ul class="search-results"></ul>';
     var input = box.querySelector('.search-input');
     var timer = null;
-    input.addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(function () { search(box); }, 180); });
-    box.querySelector('.search-form').addEventListener('submit', function (e) { e.preventDefault(); search(box); });
+    // 候補の一覧（入力欄のすぐ下に重ねて出す）
+    var sugId = 'search-sug-' + (++sugSeq);
+    var sug = document.createElement('ul');
+    sug.className = 'search-sug';
+    sug.id = sugId;
+    sug.setAttribute('role', 'listbox');
+    sug.hidden = true;
+    box.querySelector('.search-form').appendChild(sug);
+    input.setAttribute('role', 'combobox');
+    input.setAttribute('aria-autocomplete', 'list');
+    input.setAttribute('aria-controls', sugId);
+    input.setAttribute('aria-expanded', 'false');
+    var active = -1, counted = false;
+    function closeSug() {
+      sug.hidden = true; sug.textContent = ''; active = -1;
+      input.setAttribute('aria-expanded', 'false');
+      input.removeAttribute('aria-activedescendant');
+    }
+    function pick(w) {
+      input.value = w;
+      closeSug();
+      search(box);
+      if (!counted && window.KomakiCount) { counted = true; window.KomakiCount('search/suggest'); }   // どの語かは送らない
+    }
+    function setActive(i) {
+      var opts = sug.querySelectorAll('[role="option"]');
+      if (!opts.length) return;
+      active = (i + opts.length) % opts.length;
+      opts.forEach(function (o, k) { o.setAttribute('aria-selected', k === active ? 'true' : 'false'); });
+      input.setAttribute('aria-activedescendant', opts[active].id);
+      opts[active].scrollIntoView({ block: 'nearest' });
+    }
+    function showSug() {
+      var q = input.value.trim(), l = lang();
+      var render = function (d) {
+        if (document.activeElement !== input || input.value.trim() !== q) return;
+        var list = suggestions(q, d, l);
+        sug.textContent = ''; active = -1;
+        if (!list.length) { closeSug(); return; }
+        var h = document.createElement('li');
+        h.className = 'search-sug-h';
+        h.setAttribute('role', 'presentation');
+        h.textContent = q ? t('search_sug_guess') : t('search_sug_pop');
+        sug.appendChild(h);
+        list.forEach(function (s, i) {
+          var li = document.createElement('li');
+          li.id = sugId + '-' + i;
+          li.className = 'search-sug-opt';
+          li.setAttribute('role', 'option');
+          li.setAttribute('aria-selected', 'false');
+          li.innerHTML = q ? marked(s.w, [q.toLowerCase()]) : esc(s.w);
+          // pointerdown：入力欄のフォーカスが外れる前に選ぶ
+          li.addEventListener('pointerdown', function (e) { e.preventDefault(); pick(s.w); });
+          sug.appendChild(li);
+        });
+        sug.hidden = false;
+        input.setAttribute('aria-expanded', 'true');
+      };
+      if (!q) { render(null); return; }
+      load(l).then(render, function () { render(null); });
+    }
+    input.addEventListener('focus', showSug);
+    input.addEventListener('click', function () { if (sug.hidden) showSug(); });
+    input.addEventListener('blur', function () { setTimeout(closeSug, 120); });
+    input.addEventListener('keydown', function (e) {
+      if (sug.hidden) { if (e.key === 'ArrowDown') { showSug(); e.preventDefault(); } return; }
+      if (e.key === 'ArrowDown') { setActive(active + 1); e.preventDefault(); }
+      else if (e.key === 'ArrowUp') { setActive(active - 1); e.preventDefault(); }
+      else if (e.key === 'Escape') { closeSug(); e.preventDefault(); e.stopPropagation(); }   // 窓（dialog）は閉じない
+      else if (e.key === 'Enter' && active >= 0) {
+        var o = sug.querySelectorAll('[role="option"]')[active];
+        if (o) { e.preventDefault(); pick(o.textContent); }
+      }
+    });
+    input.addEventListener('input', function () {
+      clearTimeout(timer);
+      timer = setTimeout(function () { search(box); showSug(); }, 180);
+    });
+    box.querySelector('.search-form').addEventListener('submit', function (e) { e.preventDefault(); closeSug(); search(box); });
     function texts() {
       input.placeholder = t('search_ph');
       input.setAttribute('aria-label', t('search_h'));

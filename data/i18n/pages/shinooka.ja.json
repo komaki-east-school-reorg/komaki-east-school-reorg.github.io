@@ -95,6 +95,8 @@
   "search_more": "（上から{n}件を表示）",
   "search_none": "当てはまる所はありませんでした。言葉を変えて探すか、問い合わせ先にたずねてください。",
   "search_ph": "調べたい言葉（例：スクールバス 申請）",
+  "search_sug_guess": "もしかして",
+  "search_sug_pop": "おすすめの言葉",
   "sec_link_copied": "リンクをコピーしました",
   "sec_link_copy": "この節へのリンクをコピー",
   "share_app": "アプリにする（ホーム画面に追加）",

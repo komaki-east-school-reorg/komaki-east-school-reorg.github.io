@@ -102,6 +102,8 @@
   "search_more": "(hiển thị {n} kết quả đầu)",
   "search_none": "Không tìm thấy. Hãy thử từ khác hoặc hỏi nơi liên hệ.",
   "search_ph": "Bạn muốn tìm gì? (ví dụ: xe buýt trường học đăng ký)",
+  "search_sug_guess": "Gợi ý",
+  "search_sug_pop": "Từ gợi ý",
   "sec_link_copied": "Đã sao chép liên kết",
   "sec_link_copy": "Sao chép liên kết đến mục này",
   "share_app": "Dùng như ứng dụng (thêm vào Màn hình chính)",

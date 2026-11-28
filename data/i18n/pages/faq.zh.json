@@ -214,6 +214,8 @@
   "search_more": "（显示前{n}条）",
   "search_none": "没有找到相关内容。请换个词再试，或向咨询窗口询问。",
   "search_ph": "想查什么？（例：校车 申请）",
+  "search_sug_guess": "您是不是要找",
+  "search_sug_pop": "推荐词",
   "sec_link_copied": "链接已复制",
   "sec_link_copy": "复制本节链接",
   "share_app": "作为应用使用（添加到主屏幕）",

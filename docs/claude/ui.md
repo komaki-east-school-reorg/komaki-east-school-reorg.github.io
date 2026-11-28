@@ -54,6 +54,7 @@ Every page carries a `<section class="section share" id="share">` just above `</
 - 🔍 を足してもヘッダの高さは変わらない（2026-11-05 に 769〜1280px × 13表示で実測）。ヘッダに手を入れたら測り直すこと。
 - 文言は `search_*`（`RUNTIME_KEYS`）。集計は `search/open`・`search/go` だけで、入力した語は送らない。
 
+- **候補の一覧（SEARCH SUGGEST、2026-11-28 ユーザー指示）**：検索窓（トップの欄・検索の窓とも）を押すと、入力欄のすぐ下に「おすすめの言葉」（`search_hints`）、打ち始めると「もしかして」として、打った文字を含む候補（おすすめの言葉・言い換え語 `data/search_aliases.json`・索引の見出し）を最大8件（おすすめと言い換え語を先に、次に先頭一致、短い順）。押すか上下キー＋Enter でその言葉を入れて検索。Esc は一覧だけを閉じる（窓は閉じない）。combobox / listbox の ARIA。**打った語は保存も送信もしない**（集計は `search/suggest` の機能名を1回だけ）。文言 `search_sug_pop` / `search_sug_guess`（`RUNTIME_KEYS`）。トップの欄は、ふだんは入力欄1本のまま（一覧は押したときだけ重なって出る）。
 - **検索語を URL で渡せる**（2026-11-07、日次アイデア 11/6 の案）。`?q=語` で開くと、トップ・404 はページ内の欄に、他のページは検索の窓を開いて、その語で検索した状態になる。結果の件数の行に「🔗 この検索のリンクをコピー」（`search_link_copy` / `search_link_copied`、`RUNTIME_KEYS`）— コピーするのはトップの `index.html?q=語`（＋`?lang=`）。index.html の `WebSite` 構造化データに `SearchAction`（同じ URL）。**`q` は集計に送らない**（COUNTER の `pagePath()` は `?lang=` / `?kids=1` しか付けない — ここを変えるときも `q` を入れない）。
 
 ### 関連リンク「あわせて読みたい」（全ページ、2026-11-10）

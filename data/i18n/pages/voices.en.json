@@ -80,6 +80,8 @@
   "search_more": "(showing the top {n})",
   "search_none": "No matches. Try other words, or ask the contact office.",
   "search_ph": "What are you looking for? (e.g. school bus application)",
+  "search_sug_guess": "Suggestions",
+  "search_sug_pop": "Suggested words",
   "sec_link_copied": "Link copied",
   "sec_link_copy": "Copy link to this section",
   "share_app": "Use as an app (add to Home Screen)",

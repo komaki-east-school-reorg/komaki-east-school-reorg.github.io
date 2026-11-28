@@ -173,6 +173,8 @@
   "search_more": "(mostrando os {n} primeiros)",
   "search_none": "Nenhum resultado. Tente outras palavras ou pergunte ao órgão responsável.",
   "search_ph": "O que você procura? (ex.: ônibus escolar inscrição)",
+  "search_sug_guess": "Sugestões",
+  "search_sug_pop": "Palavras sugeridas",
   "sec_link_copied": "Link copiado",
   "sec_link_copy": "Copiar link desta seção",
   "share_app": "Usar como app (adicionar à tela inicial)",
